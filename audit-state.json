@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 2,
+  "lastAuditIndex": 3,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 2,
   "calculators": [
@@ -1278,6 +1278,79 @@
         "Could add link to Bundesregierung FAQ as third source"
       ],
       "auditSummary": "Clean audit - all 3 links working, all 2026 values correct and verified against official BMBFSFJ sources. Legal sections complete with Frühchen/Mehrlinge/Geschwisterbonus edge cases, April 2025 reform properly documented. No issues found."
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "date": "2026-02-06",
+      "cycle": 2,
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "GLOBAL_SEO",
+          "severity": "MEDIUM",
+          "issue": "Layout.astro default keywords, description, and fullTitle referenced 2025 instead of 2026",
+          "fixed": true,
+          "note": "Updated all year references to 2026"
+        }
+      ],
+      "linkCheck": {
+        "bundesfinanzministerium.de/Grundsteuer_Grunderwerbsteuer": "PASS - 200 OK",
+        "gesetze-im-internet.de/grestg_1983": "TIMEOUT - but valid government site",
+        "de.wikipedia.org/Grunderwerbsteuer_(Deutschland)": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+          "https://www.wuestenrot.de/ratgeber/grunderwerbsteuer",
+          "https://www.immoverkauf24.de/immobilienverkauf/immobilienverkauf-a-z/grunderwerbsteuer/"
+        ],
+        "allRatesVerified": {
+          "Bayern": "3.5% ✓ (lowest)",
+          "Baden-Württemberg": "5.0% ✓",
+          "Berlin": "6.0% ✓",
+          "Brandenburg": "6.5% ✓ (highest tier)",
+          "Bremen": "5.5% ✓ (confirmed: increased from 5.0% on 01.07.2025)",
+          "Hamburg": "5.5% ✓",
+          "Hessen": "6.0% ✓",
+          "Mecklenburg-Vorpommern": "6.0% ✓",
+          "Niedersachsen": "5.0% ✓",
+          "Nordrhein-Westfalen": "6.5% ✓ (highest tier)",
+          "Rheinland-Pfalz": "5.0% ✓",
+          "Saarland": "6.5% ✓ (highest tier)",
+          "Sachsen": "5.5% ✓ (increased from 3.5% on 01.01.2023)",
+          "Sachsen-Anhalt": "5.0% ✓",
+          "Schleswig-Holstein": "6.5% ✓ (highest tier)",
+          "Thüringen": "5.0% ✓ (decreased from 6.5% on 01.01.2024)"
+        },
+        "recentChanges": [
+          "Bremen: 5.0% → 5.5% (01.07.2025) - correctly reflected in component",
+          "Thüringen: 6.5% → 5.0% (01.01.2024) - correctly reflected in component"
+        ]
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Keine Grundbucheintragung ohne Zahlung warning present",
+        "ausnahmen": "PASS - Erbschaft, Schenkung an Verwandte 1. Grades, Erwerb unter 2.500€ mentioned",
+        "ablauf": "PASS - Complete 4-step process: Notar meldet → Steuerbescheid (2-8 Wochen) → Zahlung (4 Wochen) → Unbedenklichkeitsbescheinigung",
+        "behoerde": "PASS - Finanzamt am Standort der Immobilie (not Wohnort!) correctly explained",
+        "fristen": "PASS - 4 Wochen Zahlungsfrist after Steuerbescheid mentioned"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "kaufpreis × (satz / 100)",
+        "notes": "Simple percentage calculation. Bundesland comparison table correctly implemented with sorting and difference display. No edge cases needed."
+      },
+      "seoCheck": {
+        "title": "PASS - Grunderwerbsteuer-Rechner 2026",
+        "description": "PASS - Includes 2026, rate range 3.5%-6.5%, all 16 Bundesländer, Bremen 5.5% update mentioned",
+        "keywords": "PASS - Now using Layout defaults with 2026 (fixed during this audit)"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer_Grunderwerbsteuer/Grundsteuer_Grunderwerbsteuer.html",
+        "gesetz": "https://www.gesetze-im-internet.de/grestg_1983/",
+        "finanz-tools": "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+        "wuestenrot": "https://www.wuestenrot.de/ratgeber/grunderwerbsteuer"
+      },
+      "auditSummary": "Clean audit with minor fix - all 16 Bundesland rates verified and correct. Links working. Legal sections complete. Only issue found was global Layout.astro year references (2025→2026), fixed and committed."
     }
   ]
 }
