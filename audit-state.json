@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 1,
+  "lastAuditIndex": 2,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 4,
   "calculators": [
@@ -2013,6 +2013,70 @@
         "drv": "https://www.deutsche-rentenversicherung.de"
       },
       "auditSummary": "Clean audit cycle 4 - all 4 links working (200 OK), all 2026 SV values and Grundfreibetrag verified against Bundesregierung, TK, AOK, BMF official sources. Legal sections complete with disclaimer, 6 Steuerklassen, Kirchensteuer, Kinderlosenzuschlag. Calculation logic verified correct with 2026 tax tariff. No issues found."
+    },
+    {
+      "calculator": "elterngeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 4,
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "WORDING_ACCURACY",
+          "severity": "LOW",
+          "issue": "Frühchen rule said \"vor 37. SSW\" but official rule is \"mindestens 6 Wochen vor dem errechneten Entbindungstermin\"",
+          "fixed": true
+        }
+      ],
+      "linkCheck": {
+        "elterngeld-digital.de": "PASS - 200 OK (redirects to /ams/Elterngeld)",
+        "familienportal.de/elterngeld": "PASS - 200 OK",
+        "bmbfsfj.bund.de/elterngeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588",
+          "https://familienportal.de/familienportal/familienleistungen/elterngeld/faq/wie-viel-elterngeld-kann-ich-bekommen--124616",
+          "https://familienportal.de/familienportal/familienleistungen/elterngeld/familiensituation/geschwisterbonus-wie-viel-elterngeld-bekomme-ich-wenn-ich-weitere-kinder-habe--124684"
+        ],
+        "2026ValuesVerified": {
+          "Einkommensgrenze": "175.000€ einheitlich für alle (seit April 2025) ✓",
+          "Basiselterngeld_Min": "300€ ✓",
+          "Basiselterngeld_Max": "1.800€ ✓",
+          "ElterngeldPlus_Min": "150€ ✓",
+          "ElterngeldPlus_Max": "900€ ✓",
+          "Ersatzrate_standard": "65% ✓",
+          "Ersatzrate_gering": "67% bei ≤1.200€ ✓",
+          "Ersatzrate_gleitzone": "1.200-1.240€: 67%→65% (0,05% pro Euro) ✓",
+          "Partnermonate": "12 + 2 ✓",
+          "Mehrlinge": "+300€ Basis / +150€ Plus pro weiteres Kind ✓",
+          "Geschwisterbonus": "+10% (min. 75€ Basis / 37,50€ Plus) ✓"
+        },
+        "parallelBezug": "Max 1 Monat in den ersten 12 Lebensmonaten (seit April 2024) ✓"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 3-month deadline warning present",
+        "edgeCases": "PASS - Frühchen (corrected wording), Mehrlinge, Geschwisterbonus all explained",
+        "behoerde": "PASS - Elterngeldstelle, ElterngeldDigital (10 Bundesländer) with BundID",
+        "deadlines": "PASS - 3 Monate rückwirkend noted",
+        "neuregelung2025": "PASS - April 2025 reform (175k limit, 1 month parallel) explained",
+        "unterlagen": "PASS - Geburtsurkunde, Einkommensnachweise, Krankenkasse listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Ersatzrate 65-67% correct with gleitzone 1200-1240€ (0.0005 factor). Min/Max bounds correct. ElterngeldPlus = Basis/2 correct. Partnermonate logic correct."
+      },
+      "seoCheck": {
+        "title": "PASS - Elterngeld-Rechner 2026 – Basiselterngeld & ElterngeldPlus berechnen",
+        "description": "PASS - Includes 2026, amount ranges (300-1800/150-900), Einkommensgrenze 175.000€",
+        "keywords": "IMPLICIT - Title/description contain: Elterngeld Rechner, 2026, Basiselterngeld, ElterngeldPlus, Einkommensgrenze"
+      },
+      "officialSources": {
+        "bmbfsfj_neuregelung": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588",
+        "familienportal_elterngeld": "https://familienportal.de/familienportal/familienleistungen/elterngeld",
+        "familienportal_hoehe": "https://familienportal.de/familienportal/familienleistungen/elterngeld/faq/wie-viel-elterngeld-kann-ich-bekommen--124616",
+        "elterngeld_digital": "https://www.elterngeld-digital.de/"
+      },
+      "auditSummary": "Elterngeld-Rechner audit cycle 4: All 3 links working (200 OK). All 2026 values verified against BMBFSFJ and Familienportal official sources (175k Einkommensgrenze, 300-1800€ Basis, 150-900€ Plus, 65-67% Ersatzrate). Minor wording fix: Frühchen rule updated from \"vor 37. SSW\" to official wording \"mindestens 6 Wochen vor dem errechneten Termin\". Legal sections complete with April 2025 reform info. Calculation logic verified correct."
     }
   ]
 }

@@ -330,7 +330,7 @@ export default function ElterngeldRechner() {
             <div>
               <p className="font-medium text-purple-800">Sonderregelungen</p>
               <p className="text-purple-700">
-                <strong>Frühchen:</strong> Bis zu 4 Extra-Monate bei Geburt vor 37. SSW. 
+                <strong>Frühchen:</strong> Bis zu 4 Extra-Monate bei Geburt mindestens 6 Wochen vor dem errechneten Termin. 
                 <strong> Mehrlinge:</strong> +300€ Zuschlag pro weiterem Kind. 
                 <strong> Geschwisterbonus:</strong> +10% (min. 75€/37,50€) bei weiteren kleinen Kindern.
               </p>
