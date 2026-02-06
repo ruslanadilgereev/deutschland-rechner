@@ -200,8 +200,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'KuG-Anspruch berechnen',
     icon: '📉',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Kurzarbeitergeld Rechner, KuG berechnen, Kurzarbeit Geld',
+    fertig: true,
+    seoKeywords: 'Kurzarbeitergeld Rechner, KuG berechnen, Kurzarbeit Geld, Kurzarbeitergeld 2026, Kurzarbeitergeld Höhe',
+    quellen: [
+      'https://www.arbeitsagentur.de/unternehmen/finanziell/kurzarbeitergeld',
+      'https://www.gesetze-im-internet.de/sgb_3/__105.html',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kurzarbeit/kurzarbeit-artikel.html',
+    ],
   },
   {
     id: 'stundenlohn',
