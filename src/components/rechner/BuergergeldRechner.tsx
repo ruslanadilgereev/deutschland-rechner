@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 
-// Bürgergeld Regelsätze 2025 (ab 01.01.2025)
-const REGELSAETZE_2025 = {
+// Bürgergeld Regelsätze 2026 (unverändert gegenüber 2025 - Besitzschutzregelung § 28a Abs. 5 SGB XII)
+const REGELSAETZE_2026 = {
   alleinstehend: 563,      // Regelbedarfsstufe 1
   partner: 506,            // Regelbedarfsstufe 2 (je Partner)
   kind_14_17: 471,         // Regelbedarfsstufe 4
@@ -24,9 +24,9 @@ interface Kind {
 
 function berechneKindRegelsatz(alter: 'klein' | 'mittel' | 'gross'): number {
   switch (alter) {
-    case 'klein': return REGELSAETZE_2025.kind_0_5;
-    case 'mittel': return REGELSAETZE_2025.kind_6_13;
-    case 'gross': return REGELSAETZE_2025.kind_14_17;
+    case 'klein': return REGELSAETZE_2026.kind_0_5;
+    case 'mittel': return REGELSAETZE_2026.kind_6_13;
+    case 'gross': return REGELSAETZE_2026.kind_14_17;
   }
 }
 
@@ -64,9 +64,9 @@ export default function BuergergeldRechner() {
     // Regelbedarf berechnen
     let regelbedarf = 0;
     if (mitPartner) {
-      regelbedarf = REGELSAETZE_2025.partner * 2;
+      regelbedarf = REGELSAETZE_2026.partner * 2;
     } else {
-      regelbedarf = REGELSAETZE_2025.alleinstehend;
+      regelbedarf = REGELSAETZE_2026.alleinstehend;
     }
     
     // Kinder
@@ -130,7 +130,7 @@ export default function BuergergeldRechner() {
             >
               <span className="text-2xl">👤</span>
               <div className="font-bold mt-1">Alleinstehend</div>
-              <div className="text-xs mt-1 opacity-80">{formatEuro(REGELSAETZE_2025.alleinstehend)}</div>
+              <div className="text-xs mt-1 opacity-80">{formatEuro(REGELSAETZE_2026.alleinstehend)}</div>
             </button>
             <button
               onClick={() => setMitPartner(true)}
@@ -142,7 +142,7 @@ export default function BuergergeldRechner() {
             >
               <span className="text-2xl">👫</span>
               <div className="font-bold mt-1">Mit Partner</div>
-              <div className="text-xs mt-1 opacity-80">je {formatEuro(REGELSAETZE_2025.partner)}</div>
+              <div className="text-xs mt-1 opacity-80">je {formatEuro(REGELSAETZE_2026.partner)}</div>
             </button>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function BuergergeldRechner() {
             >
               <div>👶</div>
               <div className="font-medium">0-5 Jahre</div>
-              <div className="text-xs text-gray-500">{formatEuro(REGELSAETZE_2025.kind_0_5)}</div>
+              <div className="text-xs text-gray-500">{formatEuro(REGELSAETZE_2026.kind_0_5)}</div>
             </button>
             <button
               onClick={() => addKind('mittel')}
@@ -189,7 +189,7 @@ export default function BuergergeldRechner() {
             >
               <div>🧒</div>
               <div className="font-medium">6-13 Jahre</div>
-              <div className="text-xs text-gray-500">{formatEuro(REGELSAETZE_2025.kind_6_13)}</div>
+              <div className="text-xs text-gray-500">{formatEuro(REGELSAETZE_2026.kind_6_13)}</div>
             </button>
             <button
               onClick={() => addKind('gross')}
@@ -198,7 +198,7 @@ export default function BuergergeldRechner() {
             >
               <div>🧑</div>
               <div className="font-medium">14-17 Jahre</div>
-              <div className="text-xs text-gray-500">{formatEuro(REGELSAETZE_2025.kind_14_17)}</div>
+              <div className="text-xs text-gray-500">{formatEuro(REGELSAETZE_2026.kind_14_17)}</div>
             </button>
           </div>
         </div>
@@ -373,10 +373,27 @@ export default function BuergergeldRechner() {
         </div>
       </div>
 
+      {/* Hinweis Gesetzesänderung */}
+      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+        <h4 className="font-bold text-amber-800 mb-2">📢 Hinweis: Änderungen ab Juli 2026</h4>
+        <p className="text-sm text-amber-700">
+          Das Bürgergeld wird zum 1. Juli 2026 zur <strong>„Grundsicherung für Arbeitssuchende"</strong> umbenannt. 
+          Die Regelsätze bleiben vorerst unverändert, aber Vermögensfreibeträge und Sanktionsregeln werden angepasst.
+        </p>
+      </div>
+
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
+          <a 
+            href="https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Bundesregierung – Regelbedarfe 2026
+          </a>
           <a 
             href="https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld"
             target="_blank"
@@ -386,12 +403,12 @@ export default function BuergergeldRechner() {
             Bundesagentur für Arbeit – Bürgergeld
           </a>
           <a 
-            href="https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/buergergeld.html"
+            href="https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMAS – Bürgergeld-Gesetz
+            BMAS – Bürgergeld
           </a>
         </div>
       </div>

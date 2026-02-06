@@ -1103,8 +1103,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'GEZ-Beitrag & Befreiung prüfen',
     icon: '📺',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Rundfunkbeitrag Rechner, GEZ Rechner, GEZ Befreiung',
+    fertig: true,
+    seoKeywords: 'GEZ Rechner, Rundfunkbeitrag Rechner, GEZ Befreiung, Rundfunkbeitrag 2026, GEZ Kosten',
+    quellen: [
+      'https://www.rundfunkbeitrag.de',
+      'https://www.gesetze-im-internet.de/rbstv/',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/rundfunkbeitrag',
+    ],
   },
   {
     id: 'zeitrechner',
