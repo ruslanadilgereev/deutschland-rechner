@@ -214,8 +214,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Von Monatsgehalt zu Stundenlohn umrechnen',
     icon: '⌛',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenlohn',
+    fertig: true,
+    seoKeywords: 'Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenlohn, Stundenlohn Formel, Brutto Stundenlohn, Mindestlohn Rechner',
+    quellen: [
+      'https://www.gesetze-im-internet.de/milog/',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Mindestlohn/mindestlohn.html',
+      'https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2025',
+      'https://www.destatis.de/DE/Themen/Arbeit/Verdienste/Verdienste-Verdienstunterschiede/_inhalt.html',
+    ],
   },
   {
     id: 'gehaltsvergleich',
