@@ -544,6 +544,29 @@ export default function ArbeitslosengeldRechner() {
         </div>
       </div>
 
+      {/* Neu 2026 Info Box */}
+      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
+        <h3 className="font-bold text-blue-800 mb-3">🆕 Neuerungen 2026</h3>
+        <ul className="space-y-2 text-sm text-blue-700">
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>BBG vereinheitlicht:</strong> 8.450€/Monat bundesweit – keine Unterscheidung mehr zwischen Ost und West</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>Grundfreibetrag erhöht:</strong> 12.348€/Jahr (2025: 11.784€)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>KV-Zusatzbeitrag gestiegen:</strong> Durchschnittlich 2,9% (AN: 1,45%)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>Leistungssätze unverändert:</strong> 60% ohne Kind, 67% mit Kind</span>
+          </li>
+        </ul>
+      </div>
+
       {/* Info Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert Arbeitslosengeld I</h3>
