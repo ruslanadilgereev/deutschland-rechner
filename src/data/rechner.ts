@@ -78,7 +78,8 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Fahrtkosten steuerlich absetzen',
     icon: '🚗',
     kategorie: 'arbeit',
-    fertig: false,
+    fertig: true,
+    quellen: ['https://www.bundesfinanzministerium.de'],
   },
   
   // Steuern & Abgaben
@@ -115,7 +116,8 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Anspruch auf Bürgergeld prüfen',
     icon: '🏦',
     kategorie: 'soziales',
-    fertig: false,
+    fertig: true,
+    quellen: ['https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld'],
   },
   {
     id: 'arbeitslosengeld',
