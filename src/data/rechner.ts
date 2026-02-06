@@ -257,11 +257,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'einkommensteuer',
     name: 'Einkommensteuer-Rechner',
-    beschreibung: 'Einkommensteuer 2025 berechnen',
-    icon: '📊',
+    beschreibung: 'Steuerlast 2026 berechnen mit Splittingtarif',
+    icon: '🧾',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Einkommensteuer Rechner, Einkommensteuer berechnen 2025, Steuerlast',
+    fertig: true,
+    seoKeywords: 'Einkommensteuer Rechner 2026, Einkommensteuer berechnen, Steuerlast, zvE berechnen, Grundfreibetrag, Splittingtarif, Kinderfreibetrag, Grenzsteuersatz',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+      'https://www.bmf-steuerrechner.de',
+      'https://www.bundesfinanzministerium.de',
+    ],
   },
   {
     id: 'erbschaftsteuer',
