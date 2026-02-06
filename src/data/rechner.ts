@@ -76,8 +76,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Mutterschutzfristen & Mutterschaftsgeld berechnen',
     icon: '🤰',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Mutterschutz Rechner, Mutterschaftsgeld, Mutterschutzfrist berechnen',
+    fertig: true,
+    seoKeywords: 'Mutterschutz Rechner, Mutterschaftsgeld berechnen, Mutterschutzfrist, Mutterschaftsgeld 2025, Mutterschaftsgeld 2026, Schutzfrist Geburt',
+    quellen: [
+      'https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz',
+      'https://www.bundesamtsozialesicherung.de/de/mutterschaftsgeld/ueberblick/',
+      'https://www.gesetze-im-internet.de/muschg_2018/',
+      'https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen',
+    ],
   },
   {
     id: 'elternzeit',

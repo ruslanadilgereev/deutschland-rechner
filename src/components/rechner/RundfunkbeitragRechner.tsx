@@ -1,9 +1,12 @@
 import { useState, useMemo } from 'react';
 
-// Rundfunkbeitrag-Daten 2024/2025/2026
+// Rundfunkbeitrag-Daten 2026
+// Stand: Der Beitrag bleibt 18,36€ - die geplante Erhöhung auf 18,94€ wurde von den
+// Bundesländern abgelehnt. ARD/ZDF haben Verfassungsbeschwerde eingelegt (1 BvR 2524/24).
+// BVerfG-Entscheidung erwartet 2026. KEF schlägt 18,64€ ab Januar 2027 vor.
 const BEITRAG = {
-  standard: 18.36,           // € pro Monat (seit 2024)
-  ermaessigt: 6.12,          // € pro Monat für Ermäßigungsberechtigte
+  standard: 18.36,           // € pro Monat (seit Januar 2024, unverändert bis mind. Ende 2026)
+  ermaessigt: 6.12,          // € pro Monat für Ermäßigungsberechtigte (RF-Merkzeichen)
   quartal: 55.08,            // € pro Quartal (3 × 18,36€)
   quartalErmaessigt: 18.36,  // € pro Quartal ermäßigt
   jahr: 220.32,              // € pro Jahr
@@ -553,9 +556,9 @@ export default function RundfunkbeitragRechner() {
               <div>
                 <p className="font-medium text-gray-800">Online-Formulare</p>
                 <ul className="text-gray-600 mt-1 space-y-1">
-                  <li>• <a href="https://www.rundfunkbeitrag.de/anmelden" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Anmelden</a></li>
-                  <li>• <a href="https://www.rundfunkbeitrag.de/abmelden" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Abmelden</a></li>
-                  <li>• <a href="https://www.rundfunkbeitrag.de/buergerinnen_und_buerger/formulare/befreiung_oder_ermaessigung_beantragen/index_ger.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Befreiung beantragen</a></li>
+                  <li>• <a href="https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/formulare/anmelden" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Anmelden</a></li>
+                  <li>• <a href="https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/formulare/abmelden" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Abmelden</a></li>
+                  <li>• <a href="https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/formulare/befreiung-oder-ermaessigung-beantragen" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Befreiung beantragen</a></li>
                 </ul>
               </div>
             </div>
@@ -595,20 +598,20 @@ export default function RundfunkbeitragRechner() {
             Rundfunkbeitragsstaatsvertrag (RBStV) – Gesetze im Internet
           </a>
           <a 
-            href="https://www.ard.de/die-ard/der-rundfunkbeitrag-100"
+            href="https://www.finanztip.de/rundfunkbeitrag/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            ARD – Der Rundfunkbeitrag erklärt
+            Finanztip – Rundfunkbeitrag 2025/2026 erklärt
           </a>
           <a 
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/rundfunkbeitrag"
+            href="https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-alles-rund-um-befreiung-und-ermaessigung-40324"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Verbraucherzentrale – Rundfunkbeitrag Ratgeber
+            Verbraucherzentrale – Befreiung und Ermäßigung
           </a>
         </div>
       </div>
