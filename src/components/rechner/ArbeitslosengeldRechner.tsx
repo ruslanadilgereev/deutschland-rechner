@@ -79,7 +79,7 @@ function berechneNetto(
   region: 'west' | 'ost'
 ): { netto: number; details: any } {
   // Beitragsbemessungsgrenze anwenden
-  const bemessungsbrutto = Math.min(brutto, BEITRAGSBEMESSUNGSGRENZEN[region]);
+  const bemessungsbrutto = Math.min(brutto, BEITRAGSBEMESSUNGSGRENZE[region]);
   
   // Sozialabgaben berechnen
   const rv = bemessungsbrutto * SOZIALABGABEN.rentenversicherung;

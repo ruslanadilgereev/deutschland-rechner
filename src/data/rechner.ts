@@ -390,8 +390,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'ALG I Anspruch & Dauer berechnen',
     icon: '📋',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Arbeitslosengeld Rechner, ALG 1 berechnen, Arbeitslosengeld Höhe',
+    fertig: true,
+    seoKeywords: 'Arbeitslosengeld Rechner, ALG 1 berechnen, Arbeitslosengeld Höhe, ALG I Rechner, Arbeitslosengeld 2025',
+    quellen: [
+      'https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld',
+      'https://www.gesetze-im-internet.de/sgb_3/',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsfoerderung/arbeitsfoerderung.html',
+    ],
   },
   {
     id: 'wohngeld',
