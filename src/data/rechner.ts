@@ -1150,8 +1150,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Fruchtbare Tage & Eisprung berechnen',
     icon: '🌸',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'Eisprung Rechner, fruchtbare Tage, Ovulation berechnen, Eisprungkalender',
+    fertig: true,
+    seoKeywords: 'Eisprung Rechner, fruchtbare Tage, Ovulation berechnen, Eisprungkalender, Kinderwunsch Rechner, wann bin ich fruchtbar, Ovulationsrechner, Zyklusrechner, NFP',
+    quellen: [
+      'https://www.familienplanung.de/verhuetung/verhuetungsmethoden/natuerliche-methoden/',
+      'https://www.frauenaerzte-im-netz.de/familienplanung-verhuetung/natuerliche-familienplanung/',
+      'https://www.profamilia.de/themen/verhuetung',
+      'https://www.awmf.org/leitlinien/detail/ll/015-015.html',
+    ],
   },
   {
     id: 'ssw',
