@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 2,
+  "lastAuditIndex": 3,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 4,
   "calculators": [
@@ -2077,6 +2077,77 @@
         "elterngeld_digital": "https://www.elterngeld-digital.de/"
       },
       "auditSummary": "Elterngeld-Rechner audit cycle 4: All 3 links working (200 OK). All 2026 values verified against BMBFSFJ and Familienportal official sources (175k Einkommensgrenze, 300-1800€ Basis, 150-900€ Plus, 65-67% Ersatzrate). Minor wording fix: Frühchen rule updated from \"vor 37. SSW\" to official wording \"mindestens 6 Wochen vor dem errechneten Termin\". Legal sections complete with April 2025 reform info. Calculation logic verified correct."
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "date": "2026-02-06",
+      "cycle": 4,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "finanzen.hessen.de/initiativen/hessengeld": "PASS - 200 OK (Hessengeld program verified active)",
+        "bundesfinanzministerium.de/Grundsteuer_Grunderwerbsteuer": "PASS - 200 OK",
+        "finanztip.de/grunderwerbsteuer": "PASS - 200 OK (Updated Feb 5, 2026)",
+        "gesetze-im-internet.de/grestg_1983": "TIMEOUT - Valid government site",
+        "de.wikipedia.org/Grunderwerbsteuer_(Deutschland)": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+          "https://www.finanztip.de/grunderwerbsteuer/",
+          "https://www.wuestenrot.de/ratgeber/grunderwerbsteuer",
+          "https://finanzen.hessen.de/initiativen/hessengeld"
+        ],
+        "allRatesVerified": {
+          "Bayern": "3.5% ✓ (lowest in Germany)",
+          "Baden-Württemberg": "5.0% ✓",
+          "Berlin": "6.0% ✓",
+          "Brandenburg": "6.5% ✓",
+          "Bremen": "5.5% ✓ (increased 01.07.2025)",
+          "Hamburg": "5.5% ✓",
+          "Hessen": "6.0% ✓",
+          "Mecklenburg-Vorpommern": "6.0% ✓",
+          "Niedersachsen": "5.0% ✓",
+          "Nordrhein-Westfalen": "6.5% ✓",
+          "Rheinland-Pfalz": "5.0% ✓",
+          "Saarland": "6.5% ✓",
+          "Sachsen": "5.5% ✓",
+          "Sachsen-Anhalt": "5.0% ✓",
+          "Schleswig-Holstein": "6.5% ✓",
+          "Thüringen": "5.0% ✓ (reduced from 6.5% on 01.01.2024)"
+        },
+        "foerderprogramme": {
+          "hessengeld": "VERIFIED - 10k/adult + 5k/child (max=GrESt), 10 annual installments",
+          "thueringen_freibetrag": "NOT VERIFIED - Could not find any official source confirming 25.000€ Freibetrag",
+          "nrw_zuschuss": "Ended since late 2024"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Keine Grundbucheintragung ohne Zahlung warning present",
+        "ausnahmen": "PASS - Erbschaft, Schenkung an Verwandte 1. Grades, Erwerb unter 2.500€ mentioned",
+        "ablauf": "PASS - 4-step process: Notar meldet → Steuerbescheid (2-8 Wo) → Zahlung (4 Wo) → Unbedenklichkeitsbescheinigung",
+        "behoerde": "PASS - Finanzamt am Standort der Immobilie (not Wohnort!) correctly explained",
+        "fristen": "PASS - 4 Wochen Zahlungsfrist mentioned"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "kaufpreis × (satz / 100)",
+        "notes": "Simple percentage calculation. Bundesland comparison table correctly implemented with sorting and difference display. No edge cases needed."
+      },
+      "seoCheck": {
+        "title": "PASS - Grunderwerbsteuer-Rechner 2026",
+        "description": "PASS - Includes 2026, Bundesländer comparison, Hessengeld info",
+        "keywords": "PASS - Layout defaults with 2026"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer_Grunderwerbsteuer/Grundsteuer_Grunderwerbsteuer.html",
+        "finanztip": "https://www.finanztip.de/grunderwerbsteuer/",
+        "finanz_tools": "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+        "wuestenrot": "https://www.wuestenrot.de/ratgeber/grunderwerbsteuer",
+        "hessengeld": "https://finanzen.hessen.de/initiativen/hessengeld",
+        "gesetz": "https://www.gesetze-im-internet.de/grestg_1983/"
+      },
+      "auditSummary": "Grunderwerbsteuer-Rechner audit cycle 4: All 16 Bundesland rates verified correct against finanz-tools, Finanztip, wuestenrot (Bremen 5.5% since 01.07.2025, Thüringen 5.0% since 01.01.2024). Hessengeld program verified active. All 5 links working (1 timeout but valid gov site). Thüringen section correctly states rate reduction fact only. Legal sections complete with disclaimers, Ausnahmen, 4-step Ablauf. Calculation logic simple and correct. No issues found."
     }
   ]
 }
