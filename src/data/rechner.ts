@@ -254,8 +254,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Urlaubsanspruch bei Teilzeit & Wechsel',
     icon: '🏖️',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Urlaubstage Rechner, Urlaub berechnen, Urlaubsanspruch Teilzeit',
+    fertig: true,
+    seoKeywords: 'Urlaubstage Rechner, Urlaub berechnen, Urlaubsanspruch Teilzeit, Urlaub Kündigung, anteiliger Urlaub, Resturlaub, Teilzeit Urlaub, BUrlG, gesetzlicher Urlaub, Urlaubsabgeltung',
+    quellen: [
+      'https://www.gesetze-im-internet.de/burlg/',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Urlaub/urlaub.html',
+      'https://www.bag-urteil.com/urlaub/',
+    ],
   },
   {
     id: 'ueberstunden',

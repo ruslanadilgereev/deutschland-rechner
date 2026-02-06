@@ -1,0 +1,268 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UrlaubstageRechner from '../components/rechner/UrlaubstageRechner.tsx';
+
+const title = 'Urlaubstage-Rechner 2025 – Urlaub bei Teilzeit, Jobwechsel & Kündigung berechnen';
+const description = 'Urlaubstage berechnen: Anteiliger Urlaub bei Teilzeit, neuem Job oder Kündigung. Gesetzlicher Mindesturlaub 20 Tage. Kostenloser Rechner nach BUrlG mit Resturlaub.';
+const keywords = 'Urlaubstage Rechner, Urlaub berechnen, Urlaubsanspruch Teilzeit, Urlaub Kündigung, anteiliger Urlaub, Resturlaub, Urlaubstage Teilzeit, Urlaubsanspruch berechnen, BUrlG, gesetzlicher Urlaub, Urlaub Jobwechsel, Urlaubsabgeltung, Teilzeit Urlaub Rechner, Urlaub pro Monat';
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg mb-4">
+          <span class="text-4xl">🏖️</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          Urlaubstage-Rechner 2025
+        </h1>
+        <p class="text-gray-600 max-w-lg mx-auto">
+          Berechnen Sie Ihren Urlaubsanspruch: Jahresurlaub, Teilzeit, Jobwechsel oder Kündigung – alles nach BUrlG.
+        </p>
+      </div>
+
+      <!-- Calculator Component -->
+      <UrlaubstageRechner client:load />
+
+      <!-- SEO Content Section -->
+      <div class="mt-12 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📚 Alles Wichtige zum Urlaubsanspruch</h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Urlaubstage stehen mir zu?</h3>
+            <p>
+              Nach dem <strong>Bundesurlaubsgesetz (BUrlG)</strong> haben alle Arbeitnehmer Anspruch auf 
+              mindestens <strong>24 Werktage</strong> Urlaub pro Jahr – das gilt bei einer 6-Tage-Woche. 
+              Bei der heute üblichen 5-Tage-Woche entspricht das <strong>20 Arbeitstagen</strong>. 
+              Viele Arbeits- und Tarifverträge sehen jedoch mehr Urlaub vor, oft 28-30 Tage.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie berechne ich Urlaub bei Teilzeit?</h3>
+            <p>
+              Bei Teilzeit wird der Urlaub <strong>anteilig</strong> berechnet, aber Sie bekommen 
+              <strong>gleich viele Urlaubswochen</strong> wie Vollzeitkräfte! Die Formel: 
+              <code class="bg-gray-100 px-2 py-1 rounded">(Vollzeit-Urlaub ÷ 5) × Teilzeit-Arbeitstage</code>. 
+              Bei 30 Tagen Vollzeit-Urlaub und 3 Arbeitstagen pro Woche erhalten Sie 18 Urlaubstage – 
+              beide haben 6 Wochen Urlaub.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Was passiert mit meinem Urlaub bei Kündigung?</h3>
+            <p>
+              Bei Kündigung haben Sie Anspruch auf <strong>anteiligen Urlaub</strong> (1/12 pro Monat). 
+              Scheiden Sie <strong>nach dem 30. Juni</strong> aus, steht Ihnen der volle Jahresurlaub zu! 
+              Nicht genommener Urlaub muss <strong>ausgezahlt werden</strong> (Urlaubsabgeltung).
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wann verfällt mein Resturlaub?</h3>
+            <p>
+              Grundsätzlich muss Urlaub <strong>bis zum 31. Dezember</strong> genommen werden. 
+              Bei dringenden betrieblichen oder persönlichen Gründen kann er bis zum 
+              <strong>31. März des Folgejahres</strong> übertragen werden. 
+              Wichtig: Der Arbeitgeber muss Sie aktiv auf drohenden Verfall hinweisen – 
+              sonst kann der Urlaub <strong>nicht verfallen</strong> (EuGH-Urteil).
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Habe ich in der Probezeit Urlaubsanspruch?</h3>
+            <p>
+              Ja! Auch während der Probezeit entsteht Urlaubsanspruch: <strong>1/12 des Jahresurlaubs 
+              pro Monat</strong>. Den <strong>vollen</strong> Urlaubsanspruch haben Sie allerdings erst 
+              nach 6 Monaten Betriebszugehörigkeit (Wartezeit nach § 4 BUrlG).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Schema -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zu Urlaubstagen</h2>
+        
+        <div class="space-y-4">
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-green-600">
+              Wie berechne ich meinen Urlaub bei einem Jobwechsel?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Bei einem Jobwechsel teilen sich alter und neuer Arbeitgeber den Urlaubsanspruch anteilig auf. 
+              Wichtig: Lassen Sie sich vom alten Arbeitgeber eine <strong>Urlaubsbescheinigung</strong> geben! 
+              Diese muss dem neuen Arbeitgeber vorgelegt werden, damit bereits genommener Urlaub angerechnet wird (§ 6 BUrlG).
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-green-600">
+              Kann ich mir Urlaub auszahlen lassen?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Grundsätzlich <strong>nein</strong> – Urlaub dient der Erholung und kann während des 
+              laufenden Arbeitsverhältnisses nicht ausgezahlt werden. Eine Ausnahme gibt es nur bei 
+              <strong>Beendigung des Arbeitsverhältnisses</strong>: Dann muss nicht genommener Urlaub 
+              als Urlaubsabgeltung ausgezahlt werden (§ 7 Abs. 4 BUrlG).
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-green-600">
+              Was ist, wenn ich im Urlaub krank werde?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Wenn Sie im Urlaub krank werden und ein <strong>ärztliches Attest</strong> vorlegen, werden 
+              die Krankheitstage <strong>nicht auf den Urlaub angerechnet</strong> (§ 9 BUrlG). 
+              Sie bekommen die Urlaubstage zurück! Das Attest sollte ab dem ersten Krankheitstag vorliegen.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-green-600">
+              Bekomme ich mehr Urlaub, je älter ich werde?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Das BUrlG sieht keine Staffelung nach Alter vor. Allerdings enthalten viele 
+              <strong>Tarifverträge</strong> (z.B. Einzelhandel) Regelungen, die zusätzliche Urlaubstage 
+              nach Alter oder Betriebszugehörigkeit vorsehen. Prüfen Sie Ihren Arbeitsvertrag oder 
+              den anwendbaren Tarifvertrag.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-green-600">
+              Kann mein Chef mir vorschreiben, wann ich Urlaub nehme?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Grundsätzlich bestimmen Sie, wann Sie Urlaub nehmen möchten. Der Arbeitgeber muss 
+              Ihre Wünsche berücksichtigen, es sei denn, <strong>dringende betriebliche Belange</strong> 
+              sprechen dagegen (z.B. Auftragsspitzen, Urlaubswünsche anderer mit Schulkindern). 
+              Betriebsurlaub kann durch Betriebsvereinbarung geregelt werden.
+            </p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Vergleichsrechner -->
+      <div class="mt-8 bg-green-50 border border-green-200 rounded-2xl p-6">
+        <h3 class="font-bold text-green-800 mb-3">📱 Weitere nützliche Rechner</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <a 
+            href="/brutto-netto-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">💵</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Brutto-Netto</span>
+          </a>
+          <a 
+            href="/stundenlohn-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">⌛</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Stundenlohn</span>
+          </a>
+          <a 
+            href="/arbeitslosengeld-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">📋</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Arbeitslosengeld</span>
+          </a>
+          <a 
+            href="/abfindung-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">🤝</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Abfindung</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="mt-8 text-center">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-600 hover:text-green-800 font-medium"
+        >
+          ← Alle Rechner anzeigen
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie viele Urlaubstage stehen mir gesetzlich zu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach dem Bundesurlaubsgesetz haben alle Arbeitnehmer Anspruch auf mindestens 24 Werktage Urlaub bei einer 6-Tage-Woche, das entspricht 20 Arbeitstagen bei einer 5-Tage-Woche. Viele Arbeitsverträge sehen mehr vor (oft 28-30 Tage)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie berechne ich Urlaub bei Teilzeit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei Teilzeit wird der Urlaub anteilig berechnet: (Vollzeit-Urlaub ÷ 5 Tage) × Ihre Arbeitstage pro Woche. Bei 30 Tagen Vollzeit-Urlaub und 3 Arbeitstagen ergibt das 18 Urlaubstage – beide haben gleich viele Urlaubswochen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert mit meinem Urlaub bei Kündigung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei Kündigung haben Sie Anspruch auf anteiligen Urlaub (1/12 pro Monat). Bei Ausscheiden nach dem 30. Juni steht Ihnen der volle Jahresurlaub zu. Nicht genommener Urlaub muss als Urlaubsabgeltung ausgezahlt werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann verfällt mein Resturlaub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Urlaub muss grundsätzlich bis 31. Dezember genommen werden. Bei wichtigen Gründen kann er bis 31. März übertragen werden. Wichtig: Der Arbeitgeber muss Sie aktiv auf drohenden Verfall hinweisen, sonst verfällt der Urlaub nicht (EuGH-Rechtsprechung)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Habe ich in der Probezeit Urlaubsanspruch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, auch in der Probezeit entsteht Urlaubsanspruch: 1/12 des Jahresurlaubs pro Monat. Den vollen Urlaubsanspruch haben Sie nach 6 Monaten Betriebszugehörigkeit (Wartezeit nach § 4 BUrlG)."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Urlaubstage-Rechner 2025",
+  "description": "Berechnen Sie Ihren Urlaubsanspruch: Jahresurlaub, anteiliger Urlaub bei Teilzeit, Jobwechsel oder Kündigung. Nach Bundesurlaubsgesetz.",
+  "url": "https://deutschland-rechner.de/urlaubstage-rechner",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+}
+</script>
+</Layout>
