@@ -415,6 +415,25 @@ export default function RundfunkbeitragRechner() {
         </div>
       </div>
 
+      {/* Aktuelles: Verfassungsbeschwerde */}
+      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
+        <h3 className="font-bold text-blue-800 mb-3">⚖️ Aktuell: Rundfunkbeitrag vor dem Bundesverfassungsgericht</h3>
+        <div className="space-y-2 text-sm text-blue-700">
+          <p>
+            <strong>Stand 2026:</strong> Der Rundfunkbeitrag bleibt bei <strong>{formatEuro(BEITRAG.standard)}/Monat</strong>. 
+            Die von der KEF empfohlene Erhöhung auf 18,94€ wurde von den Ministerpräsidenten abgelehnt.
+          </p>
+          <p>
+            <strong>Verfassungsbeschwerde:</strong> ARD und ZDF haben im November 2024 Verfassungsbeschwerde 
+            eingereicht (Az. 1 BvR 2524/24). Das Bundesverfassungsgericht wird voraussichtlich 2026 entscheiden.
+          </p>
+          <p>
+            <strong>Ausblick:</strong> Die KEF schlägt für 2027 einen Beitrag von 18,64€ vor (25. KEF-Bericht 
+            wird Ende Februar 2026 erwartet).
+          </p>
+        </div>
+      </div>
+
       {/* Info Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert der Rundfunkbeitrag</h3>
@@ -425,7 +444,7 @@ export default function RundfunkbeitragRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Aktueller Beitrag:</strong> {formatEuro(BEITRAG.standard)} pro Monat ({formatEuro(BEITRAG.quartal)} pro Quartal) seit Januar 2024</span>
+            <span><strong>Aktueller Beitrag:</strong> {formatEuro(BEITRAG.standard)} pro Monat ({formatEuro(BEITRAG.quartal)} pro Quartal) – unverändert seit Januar 2024</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
