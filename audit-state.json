@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 9,
+  "lastAuditIndex": 10,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -927,6 +927,108 @@
       },
       "additionalChanges": {
         "info_box_2026": "Added info box about 2026 changes: unified BBG, Grundfreibetrag increase, KV-Zusatzbeitrag increase"
+      }
+    },
+    {
+      "calculator": "rundfunkbeitrag-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "ARD link https://www.ard.de/die-ard/der-rundfunkbeitrag-100 returned 404",
+          "fixed": true,
+          "newUrl": "https://www.finanztip.de/rundfunkbeitrag/"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "Verbraucherzentrale link https://www.verbraucherzentrale.de/wissen/geld-versicherungen/rundfunkbeitrag returned 404",
+          "fixed": true,
+          "newUrl": "https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-alles-rund-um-befreiung-und-ermaessigung-40324"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "Abmelden link https://www.rundfunkbeitrag.de/abmelden returned 404",
+          "fixed": true,
+          "newUrl": "https://www.rundfunkbeitrag.de/buergerinnen-und-buerger/formulare/abmelden"
+        },
+        {
+          "type": "URL_FORMAT",
+          "severity": "MEDIUM",
+          "issue": "Other rundfunkbeitrag.de links used old URL format (underscores)",
+          "fixed": true,
+          "note": "Updated all to new format with hyphens"
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "HIGH",
+          "issue": "No mention of Verfassungsbeschwerde (1 BvR 2524/24) - ARD/ZDF vs Bundesländer",
+          "fixed": true,
+          "added": "New info box about court case, added to FAQ and SEO content"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "MEDIUM",
+          "issue": "Title/subtitle said 2025/2026 - simplified to 2026",
+          "fixed": true
+        }
+      ],
+      "linkCheck": {
+        "rundfunkbeitrag.de": "PASS - 200 OK",
+        "gesetze-im-internet.de/rbstv": "TIMEOUT - but valid government site",
+        "ard.de/der-rundfunkbeitrag-100": "FAIL - 404 (replaced with Finanztip)",
+        "verbraucherzentrale.de/rundfunkbeitrag": "FAIL - 404 (replaced with new URL)",
+        "rundfunkbeitrag.de/anmelden": "PASS - 200 OK (updated URL format)",
+        "rundfunkbeitrag.de/abmelden": "FAIL - 404 (fixed URL format)",
+        "rundfunkbeitrag.de/befreiung": "PASS - 200 OK (redirects to new format)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.finanztip.de/rundfunkbeitrag/",
+          "https://presse.rundfunkbeitrag.de",
+          "https://de.wikipedia.org/wiki/Rundfunkbeitrag"
+        ],
+        "2026ValuesVerified": {
+          "Standard": "18,36€/Monat ✓",
+          "Ermäßigt": "6,12€/Monat ✓",
+          "Quartal": "55,08€ ✓",
+          "Jahr": "220,32€ ✓"
+        },
+        "currentSituation": {
+          "beitrag": "18,36€ unchanged since Jan 2024",
+          "geplanteErhoehung": "18,94€ - rejected by Ministerpräsidenten Dec 2024",
+          "verfassungsbeschwerde": "ARD/ZDF filed Nov 2024, Az. 1 BvR 2524/24",
+          "bverfgEntscheidung": "Expected 2026",
+          "kefVorschlag2027": "18,64€ (25. KEF-Bericht erwartet Feb 2026)"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Befreiung muss beantragt werden warning present",
+        "befreiungsgruende": "PASS - All 8 grounds per § 4 RBStV listed (Bürgergeld, Grundsicherung, BAföG, Asyl, Hilfe zur Pflege, Taubblind, Pflegeheim, Sonderfürsorge)",
+        "ermaessigung": "PASS - RF-Merkzeichen explained, 6,12€ correct",
+        "behoerde": "PASS - ARD ZDF Deutschlandradio Beitragsservice with address, phone, online portal",
+        "fristen": "PASS - Anmeldepflicht within 1 month, 3 year retroactive collection mentioned",
+        "vollstreckung": "PASS - Consequences of non-payment explained (Mahnung, 1% Säumniszuschlag, Pfändung, Bußgeld)",
+        "zweitwohnung": "PASS - Exemption for second homes explained"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Simple flat rate calculation. Pro-Person splitting for info purposes only (cosmetic). Befreiung/Ermäßigung toggle correctly sets rate to 0/6.12. Zweitwohnung exemption logic correct."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to \"Rundfunkbeitrag-Rechner 2026 – GEZ Kosten 18,36€ & Befreiung prüfen\"",
+        "description": "PASS - Includes 18,36€, 220,32€/Jahr, Verfassungsbeschwerde mention",
+        "keywords": "PASS - Includes: Rundfunkbeitrag 2026, GEZ Rechner, 18,36 Euro, Befreiung, Ermäßigung, Verfassungsbeschwerde",
+        "faqSchema": "PASS - 6 questions including new rate increase question"
+      },
+      "officialSources": {
+        "beitragsservice": "https://www.rundfunkbeitrag.de",
+        "rbstv": "https://www.gesetze-im-internet.de/rbstv/",
+        "finanztip": "https://www.finanztip.de/rundfunkbeitrag/",
+        "verbraucherzentrale": "https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-alles-rund-um-befreiung-und-ermaessigung-40324"
       }
     }
   ]
