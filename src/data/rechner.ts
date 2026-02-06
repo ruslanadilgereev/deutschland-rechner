@@ -720,11 +720,17 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'pflegegeld',
     name: 'Pflegegeld-Rechner',
-    beschreibung: 'Pflegegeld nach Pflegegrad 1-5',
+    beschreibung: 'Pflegegeld nach Pflegegrad 1-5 berechnen',
     icon: '🩺',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'Pflegegeld Rechner, Pflegegeld 2025, Pflegegrad Geld',
+    fertig: true,
+    seoKeywords: 'Pflegegeld Rechner, Pflegegeld 2025, Pflegegeld 2026, Pflegegrad Geld, Pflegegeld Höhe, Pflegegeld berechnen, Pflegegeld Tabelle',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_11/',
+      'https://www.bundesgesundheitsministerium.de/themen/pflege/pflegeversicherung-leistungen',
+      'https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegeleistungen/pflegegeld/',
+      'https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/pflegeantrag-und-leistungen',
+    ],
   },
   {
     id: 'pflegegrad',
