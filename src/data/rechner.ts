@@ -942,8 +942,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Vermögenswachstum berechnen',
     icon: '📈',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'Zinseszins Rechner, Zinseszins berechnen, Vermögenswachstum',
+    fertig: true,
+    seoKeywords: 'Zinseszins Rechner, Zinseszins berechnen, Vermögenswachstum, Sparplan Rechner, ETF Rechner, Zinseszinseffekt, Compound Interest, 72er Regel',
+    quellen: [
+      'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
+      'https://www.gesetze-im-internet.de/estg/__20.html',
+      'https://www.bafin.de/DE/Verbraucher/verbraucher_node.html',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage',
+      'https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html',
+    ],
   },
   {
     id: 'sparrechner',
