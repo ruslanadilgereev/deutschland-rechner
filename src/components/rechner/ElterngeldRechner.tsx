@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
 
-// Elterngeld 2025 - Quellen: BMFSFJ
-const ELTERNGELD_2025 = {
+// Elterngeld 2026 - Quellen: BMFSFJ, Familienportal
+// Wichtig: Seit 1. April 2025 gilt einheitliche Einkommensgrenze für alle
+const ELTERNGELD_2026 = {
   minBasis: 300,     // Mindestbetrag Basiselterngeld
   maxBasis: 1800,    // Höchstbetrag Basiselterngeld
   minPlus: 150,      // Mindestbetrag ElterngeldPlus
@@ -9,8 +10,7 @@ const ELTERNGELD_2025 = {
   ersatzrate: 0.65,  // 65% des Nettoeinkommens (Standard)
   ersatzrateGering: 0.67, // 67% bei niedrigem Einkommen (unter 1.200€)
   ersatzrateHoch: 0.65,   // Bis 65% bei hohem Einkommen
-  einkommensgrenze: 200000, // Ab 2024: 200.000€ für Paare
-  einkommensgrenzeAlleinerziehend: 150000,
+  einkommensgrenze: 175000, // Ab 1. April 2025: 175.000€ für ALLE (Paare & Alleinerziehende)
 };
 
 function berechneElterngeld(nettoMonat: number): {
@@ -31,11 +31,11 @@ function berechneElterngeld(nettoMonat: number): {
 
   // Basiselterngeld
   let basis = Math.round(nettoMonat * ersatzrate);
-  basis = Math.max(ELTERNGELD_2025.minBasis, Math.min(ELTERNGELD_2025.maxBasis, basis));
+  basis = Math.max(ELTERNGELD_2026.minBasis, Math.min(ELTERNGELD_2026.maxBasis, basis));
 
   // ElterngeldPlus = halber Satz, doppelte Dauer
   let plus = Math.round(basis / 2);
-  plus = Math.max(ELTERNGELD_2025.minPlus, Math.min(ELTERNGELD_2025.maxPlus, plus));
+  plus = Math.max(ELTERNGELD_2026.minPlus, Math.min(ELTERNGELD_2026.maxPlus, plus));
 
   return {
     basis,
@@ -262,7 +262,7 @@ export default function ElterngeldRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Einkommensgrenze: <strong>200.000 € (Paar)</strong> / 150.000 € (Alleinerziehend)</span>
+            <span>Einkommensgrenze: <strong>175.000 €</strong> zu versteuerndes Einkommen (für alle seit April 2025)</span>
           </li>
         </ul>
       </div>
@@ -282,14 +282,14 @@ export default function ElterngeldRechner() {
               <div>
                 <p className="font-medium text-gray-800">Online beantragen</p>
                 <a 
-                  href="https://familienportal.de/familienportal/meta/egon"
+                  href="https://www.elterngeld-digital.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
                   ElterngeldDigital →
                 </a>
-                <p className="text-xs text-gray-500 mt-1">In vielen Bundesländern verfügbar</p>
+                <p className="text-xs text-gray-500 mt-1">In 10 Bundesländern verfügbar (BE, BB, HB, HH, MV, NI, RP, ST, SH, TH)</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
@@ -321,6 +321,24 @@ export default function ElterngeldRechner() {
               <p className="text-blue-700">Geburtsurkunde, Einkommensnachweise (letzte 12 Monate), Bescheinigung der Krankenkasse.</p>
             </div>
           </div>
+          <div className="flex gap-3 p-3 bg-purple-50 rounded-xl">
+            <span className="text-xl">👶</span>
+            <div>
+              <p className="font-medium text-purple-800">Sonderregelungen</p>
+              <p className="text-purple-700">
+                <strong>Frühchen:</strong> Bis zu 4 Extra-Monate bei Geburt vor 37. SSW. 
+                <strong> Mehrlinge:</strong> +300€ Zuschlag pro weiterem Kind. 
+                <strong> Geschwisterbonus:</strong> +10% (min. 75€/37,50€) bei weiteren kleinen Kindern.
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-3 p-3 bg-orange-50 rounded-xl">
+            <span className="text-xl">📅</span>
+            <div>
+              <p className="font-medium text-orange-800">Neuregelung seit April 2025</p>
+              <p className="text-orange-700">Einheitliche Einkommensgrenze 175.000€ für alle. Gleichzeitiger Bezug nur noch 1 Monat in den ersten 12 Lebensmonaten möglich.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -337,12 +355,12 @@ export default function ElterngeldRechner() {
             Familienportal – Elterngeld
           </a>
           <a 
-            href="https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/elterngeld"
+            href="https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMFSFJ – Elterngeld & ElterngeldPlus
+            BMBFSFJ – Elterngeld & ElterngeldPlus
           </a>
         </div>
       </div>
