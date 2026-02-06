@@ -401,8 +401,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Optimale Steuerklasse für Ehepaare',
     icon: '💑',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Steuerklasse Rechner, Steuerklassenwechsel, Steuerklasse Ehepaar',
+    fertig: true,
+    seoKeywords: 'Steuerklasse Rechner, Steuerklassenwechsel, Steuerklasse Ehepaar, Steuerklasse 3 5, Steuerklasse 4 4, Faktorverfahren',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__38b.html',
+      'https://www.gesetze-im-internet.de/estg/__39.html',
+      'https://www.bmf-steuerrechner.de',
+      'https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Lohnsteuer/lohnsteuer.html',
+    ],
   },
   {
     id: 'steuererklarung',
