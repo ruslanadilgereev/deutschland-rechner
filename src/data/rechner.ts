@@ -171,11 +171,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'midijob',
     name: 'Midijob-Rechner',
-    beschreibung: 'Übergangsbereich 538-2000€ berechnen',
+    beschreibung: 'Übergangsbereich 603-2000€ berechnen',
     icon: '📊',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Midijob Rechner, Übergangsbereich, Gleitzone Rechner',
+    fertig: true,
+    seoKeywords: 'Midijob Rechner, Übergangsbereich, Gleitzone Rechner, Midijob 2026, Übergangsbereich 603 2000',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_4/__20.html',
+      'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Arbeitnehmer-und-Selbststaendige/01-uebergangsbereich/uebergangsbereich_node.html',
+      'https://www.lohn-info.de/uebergangsbereich.html',
+    ],
   },
   {
     id: 'kurzarbeitergeld',
