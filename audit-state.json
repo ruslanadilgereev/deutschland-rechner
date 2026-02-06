@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 8,
+  "lastAuditIndex": 9,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -814,6 +814,119 @@
       },
       "additionalFixes": {
         "ArbeitslosengeldRechner": "Fixed typo: BEITRAGSBEMESSUNGSGRENZEN → BEITRAGSBEMESSUNGSGRENZE (build was failing)"
+      }
+    },
+    {
+      "calculator": "arbeitslosengeld-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "BBG was 7.550€ West / 7.450€ Ost (2025 pre-unification values), should be 8.450€ bundesweit (unified since 01.01.2025)",
+          "fixed": true,
+          "oldValue": "7.550€ West / 7.450€ Ost",
+          "newValue": "8.450€ bundesweit einheitlich"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Grundfreibetrag was 982€/Monat (11.784€/Jahr - 2025 value), should be 1.029€/Monat (12.348€/Jahr - 2026)",
+          "fixed": true,
+          "oldValue": "982€/Mon (11.784€/Jahr)",
+          "newValue": "1.029€/Mon (12.348€/Jahr)"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "HIGH",
+          "issue": "KV Zusatzbeitrag was 1,7% (2025), should be 1,45% AN-Anteil (2,9% durchschnittlich 2026)",
+          "fixed": true,
+          "oldValue": "1,7%",
+          "newValue": "1,45%"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "HIGH",
+          "issue": "PV Beitragssatz was 1,7%/2,3%, should be 1,8%/2,4% (3,6%/4,8% gesamt 2026)",
+          "fixed": true,
+          "oldValue": "1,7% / 2,3%",
+          "newValue": "1,8% / 2,4%"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "DRV link https://www.deutsche-rentenversicherung.de/.../beitragssaetze-beitragsbemessungsgrenzen-2025.html redirects to homepage",
+          "fixed": true,
+          "newUrl": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "Page title, header, code comments all said 2025 instead of 2026",
+          "fixed": true
+        },
+        {
+          "type": "OBSOLETE_FEATURE",
+          "severity": "MEDIUM",
+          "issue": "Region toggle (Ost/West) was present but no longer relevant since BBG unified in 2025",
+          "fixed": true,
+          "action": "Removed region toggle, updated to use single bundesweit BBG"
+        }
+      ],
+      "linkCheck": {
+        "arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld": "PASS - 200 OK",
+        "gesetze-im-internet.de/sgb_3": "TIMEOUT - but valid government site",
+        "bmas.de/DE/Arbeit/Arbeitsfoerderung/arbeitsfoerderung.html": "PASS - 200 OK",
+        "deutsche-rentenversicherung.de/.../2025.html": "FAIL - redirects to homepage (replaced)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+          "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+        ],
+        "2026ValuesUpdated": {
+          "BBG_RV_ALV": "8.450€/Monat = 101.400€/Jahr (bundesweit)",
+          "Grundfreibetrag": "12.348€/Jahr = 1.029€/Monat",
+          "KV_Basis": "7,3% AN-Anteil",
+          "KV_Zusatzbeitrag": "1,45% AN-Anteil (2,9% durchschnittlich)",
+          "PV_mit_Kind": "1,8% AN-Anteil",
+          "PV_kinderlos": "2,4% AN-Anteil (3,6% + 1,2% Zuschlag = 4,8%)",
+          "RV": "9,3% AN-Anteil",
+          "ALV": "1,3% AN-Anteil"
+        },
+        "leistungssaetze": {
+          "ohne_Kind": "60% ✓ (unverändert)",
+          "mit_Kind": "67% ✓ (unverändert)"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Schätzung' warning present, Agentur für Arbeit is authoritative",
+        "edgeCases": "PASS - Sperrzeit (12 Wochen), Zuverdienst (165€), Verfügbarkeit (15h+) all mentioned",
+        "behoerde": "PASS - Agentur für Arbeit mit Hotline 0800 4 555500, Online-Antrag",
+        "fristen": "PASS - 3 Monate vorher / 3 Tage nach Kenntnis / Tag 1 arbeitslos melden",
+        "nachAlg1": "PASS - Bürgergeld/Wohngeld als Alternativen erwähnt"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Bemessungsentgelt → Netto (pauschalisiert) → 60%/67% Leistungssatz correct. BBG cap applied. Anspruchsdauer-Tabelle nach Alter (unter 50/ab 50/ab 55/ab 58) und Beschäftigungsmonate (12-48) korrekt implementiert."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Arbeitslosengeld-Rechner 2026 – ALG I Höhe & Dauer berechnen | BBG 8.450€'",
+        "description": "PASS - Includes 2026, BBG 8.450€, Grundfreibetrag 12.348€",
+        "keywords": "PASS - Includes: Arbeitslosengeld Rechner, ALG 1 berechnen, Arbeitslosengeld 2026, Beitragsbemessungsgrenze 2026"
+      },
+      "officialSources": {
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+        "tk": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+        "arbeitsagentur": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld",
+        "bmas": "https://www.bmas.de/DE/Arbeit/Arbeitsfoerderung/arbeitsfoerderung.html",
+        "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+      },
+      "additionalChanges": {
+        "info_box_2026": "Added info box about 2026 changes: unified BBG, Grundfreibetrag increase, KV-Zusatzbeitrag increase"
       }
     }
   ]
