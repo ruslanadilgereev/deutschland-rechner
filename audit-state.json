@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 3,
+  "lastAuditIndex": 4,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -308,6 +308,87 @@
         "gesetz": "https://www.gesetze-im-internet.de/grestg_1983/",
         "wikipedia": "https://de.wikipedia.org/wiki/Grunderwerbsteuer_(Deutschland)",
         "finanz-tools": "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle"
+      }
+    },
+    {
+      "calculator": "buergergeld-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "BROKEN_LINK",
+          "severity": "CRITICAL",
+          "issue": "BMAS link https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/buergergeld.html returned 404",
+          "fixed": true,
+          "newUrl": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "Page title, description, header, and code comments said 2025 instead of 2026",
+          "fixed": true
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "No mention of upcoming July 2026 Grundsicherungsgeld reform",
+          "fixed": true,
+          "added": "New info box about July 2026 law changes (Grundsicherungsgeld umbenennung)"
+        },
+        {
+          "type": "SEO",
+          "severity": "MEDIUM",
+          "issue": "Page title was generic, improved with key terms",
+          "fixed": true,
+          "newTitle": "Bürgergeld-Rechner 2026 – Regelsätze, Freibeträge & KdU berechnen"
+        }
+      ],
+      "linkCheck": {
+        "arbeitsagentur.de/buergergeld": "PASS - 200 OK",
+        "jobcenter.digital": "PASS - 301 redirect to arbeitsagentur.de (expected)",
+        "bmas.de/buergergeld": "FAIL - 404 (replaced)"
+      },
+      "dataAccuracy": {
+        "note": "Regelsätze 2026 unchanged from 2025 (Besitzschutzregelung § 28a Abs. 5 SGB XII)",
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+          "https://www.finanztip.de/buergergeld/",
+          "https://www.dgb.de/service/ratgeber/buergergeld/"
+        ],
+        "allRatesVerified": {
+          "Alleinstehend (Stufe 1)": "563€ ✓",
+          "Partner (Stufe 2)": "506€ ✓",
+          "Kind 14-17 (Stufe 4)": "471€ ✓",
+          "Kind 6-13 (Stufe 5)": "390€ ✓",
+          "Kind 0-5 (Stufe 6)": "357€ ✓"
+        },
+        "freibetraege": {
+          "grundfreibetrag": "100€ ✓",
+          "100-520€": "20% ✓",
+          "520-1000€": "30% ✓",
+          "1000-1200/1500€": "10% ✓ (1200€ ohne Kind, 1500€ mit Kind)"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Jobcenter zuständig mentioned",
+        "edgeCases": "PASS - Freibeträge, Vermögensschutz (40.000€ Karenzzeit)",
+        "behoerde": "PASS - Jobcenter, jobcenter.digital, Bürgertelefon 0800 4 5555 00",
+        "gesetzesaenderung": "PASS - Added: Note about July 2026 Grundsicherungsgeld reform"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Regelbedarf + KdU - Anrechnung formula correct. Freibetrag calculation verified against Finanztip example (700€ brutto → 238€ Freibetrag). Kinder toggle for higher Obergrenze (1500€ vs 1200€) correct."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Bürgergeld-Rechner 2026 – Regelsätze, Freibeträge & KdU berechnen'",
+        "description": "PASS - Includes 2026, 563€ Alleinstehend rate, key terms",
+        "keywords": "IMPLICIT - Title contains: Bürgergeld Rechner, 2026, Regelsätze, Freibeträge, KdU"
+      },
+      "officialSources": {
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+        "arbeitsagentur": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld",
+        "bmas": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html",
+        "jobcenter": "https://www.jobcenter.digital"
       }
     }
   ]
