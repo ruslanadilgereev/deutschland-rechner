@@ -2,9 +2,22 @@
 interface Props {
   title: string;
   description?: string;
+  keywords?: string;
+  canonical?: string;
+  ogImage?: string;
 }
 
-const { title, description = "Alle deutschen Rechner auf einen Blick. Kindergeld, Bürgergeld, Brutto-Netto und mehr." } = Astro.props;
+const { 
+  title, 
+  description = "Alle deutschen Rechner auf einen Blick. Kindergeld, Bürgergeld, Brutto-Netto und mehr – kostenlos und aktuell für 2025.", 
+  keywords = "Rechner, Deutschland, Kindergeld, Bürgergeld, Brutto Netto, Elterngeld, Steuer, 2025",
+  canonical,
+  ogImage = "/og-default.png"
+} = Astro.props;
+
+const siteUrl = "https://deutschland-rechner.vercel.app";
+const fullTitle = title === "Alle Rechner" ? "Deutschlandrechner – Alle deutschen Rechner 2025" : `${title} | Deutschlandrechner`;
+const canonicalUrl = canonical || Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -12,12 +25,49 @@ const { title, description = "Alle deutschen Rechner auf einen Blick. Kindergeld
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- SEO Meta -->
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Deutschlandrechner" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={`${siteUrl}${canonicalUrl}`} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}${canonicalUrl}`} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Deutschlandrechner" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    
+    <!-- Theme & PWA -->
     <meta name="theme-color" content="#1a56db" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | Deutschlandrechner</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Deutschlandrechner",
+      "url": siteUrl,
+      "description": "Kostenlose Online-Rechner für Deutschland: Kindergeld, Bürgergeld, Brutto-Netto, Elterngeld und mehr.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${siteUrl}/?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    })} />
   </head>
   <body class="safe-area-top safe-area-bottom">
     <slot />
