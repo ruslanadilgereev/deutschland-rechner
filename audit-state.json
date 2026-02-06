@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 3,
+  "lastAuditIndex": 4,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 3,
   "calculators": [
@@ -1776,6 +1776,78 @@
         "hessengeld": "https://finanzen.hessen.de/initiativen/hessengeld"
       },
       "auditSummary": "Grunderwerbsteuer-Rechner audit cycle 3: All 16 Bundesland rates verified correct against finanz-tools, Wüstenrot, Finanztip. Added missing Förderprogramme section for first-time buyers (Hessengeld, Thüringen Freibetrag). Added Finanztip as source. Updated SEO description. All links working."
+    },
+    {
+      "calculator": "buergergeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 3,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "jobcenter.digital": "PASS - 200 OK (redirects to arbeitsagentur.de/buergergeld as expected)",
+        "bundesregierung.de/nullrunde-buergergeld-2383676": "PASS - 200 OK",
+        "arbeitsagentur.de/buergergeld": "PASS - 200 OK",
+        "bmas.de/grundsicherung-buergergeld": "PASS - 200 OK",
+        "finanztip.de/buergergeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+          "https://www.buergergeld.org/sgb-ii/zuverdienst/",
+          "https://www.finanztip.de/buergergeld/",
+          "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562"
+        ],
+        "regelsaetze2026": {
+          "Alleinstehend_RS1": "563€ ✓",
+          "Partner_RS2": "506€ ✓",
+          "Kind_14_17_RS4": "471€ ✓",
+          "Kind_6_13_RS5": "390€ ✓",
+          "Kind_0_5_RS6": "357€ ✓"
+        },
+        "freibetraege": {
+          "Grundfreibetrag": "100€ ✓",
+          "100_520": "20% (max 84€) ✓",
+          "520_1000": "30% (max 144€) ✓",
+          "1000_1200_ohneKind": "10% (max 20€) ✓",
+          "1000_1500_mitKind": "10% (max 50€) ✓",
+          "MaxFreibetrag_ohneKind": "348€ ✓",
+          "MaxFreibetrag_mitKind": "378€ ✓"
+        },
+        "calculationVerified": "Tested with buergergeld.org example: 1.400€ Brutto mit Kind = 368€ Freibetrag → exact match"
+      },
+      "reformInfo": {
+        "status": "PASS - Accurate and well-sourced",
+        "source": "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562",
+        "kabinettsDate": "17.12.2025 ✓",
+        "inKraftTreten": "01.07.2026 ✓",
+        "changesDocumented": [
+          "Grundsicherungsgeld Umbenennung ✓",
+          "Vermittlungsvorrang ✓",
+          "Karenzzeit abgeschafft, Vermögen altersabhängig ✓",
+          "Sanktionen bis 30% ✓",
+          "Wohnkosten 1,5× Deckelung ✓",
+          "Alleinerziehende ab 1 Jahr ✓"
+        ]
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Jobcenter zuständig mentioned, online-antrag link present",
+        "edgeCases": "PASS - Mehrbedarf section present (Alleinerziehende, Schwangere, Behinderte, Kranke)",
+        "behoerde": "PASS - Jobcenter, Bürgertelefon 0800 4 5555 00, jobcenter.digital",
+        "vermoegenFreigrenze": "PASS - 40.000€ Karenzzeit mentioned",
+        "reformInfo": "PASS - Detailed Grundsicherungsgeld changes for July 2026",
+        "sources": "PASS - 4 authoritative sources listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Regelbedarf + KdU - (Einkommen - Freibetrag)",
+        "notes": "Freibetrag calculation verified: 100€ + 20%×420 + 30%×480 + 10%×(obergrenze-1000). All brackets correct. Tested against official buergergeld.org example."
+      },
+      "seoCheck": {
+        "title": "PASS - Bürgergeld-Rechner 2026 – Regelsätze, Freibeträge & KdU berechnen | Ab Juli: Grundsicherungsgeld",
+        "description": "PASS - Includes 563€, 506€, reform mention, Einkommensfreibeträge",
+        "keywords": "PASS - Includes: Bürgergeld Rechner, 2026, Regelsätze, Freibeträge, KdU, Grundsicherungsgeld"
+      },
+      "auditSummary": "Clean audit cycle 3 - all 5 links working, all Regelsätze and Freibeträge verified correct against Bundesregierung/buergergeld.org. Reform info (July 2026 Grundsicherungsgeld) verified against Bundeskabinett source. Calculation logic verified with official example. No issues found."
     }
   ]
 }
