@@ -46,11 +46,15 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'unterhalt',
     name: 'Unterhalts-Rechner',
-    beschreibung: 'Kindesunterhalt nach Düsseldorfer Tabelle 2025',
+    beschreibung: 'Kindesunterhalt nach Düsseldorfer Tabelle 2026',
     icon: '💰',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Unterhalt Rechner, Kindesunterhalt berechnen, Düsseldorfer Tabelle 2025',
+    fertig: true,
+    seoKeywords: 'Unterhalt Rechner, Kindesunterhalt berechnen, Düsseldorfer Tabelle 2026',
+    quellen: [
+      'https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/index.php',
+      'https://www.bmj.de/DE/themen/gesellschaft/familie-und-unterhalt/unterhalt/unterhalt-node.html',
+    ],
   },
   {
     id: 'kinderzuschlag',

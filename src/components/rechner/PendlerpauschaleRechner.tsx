@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react';
 
-// Pendlerpauschale 2025
-const PAUSCHALE_2025 = {
-  km_1_20: 0.30,      // 30 Cent für die ersten 20 km
-  km_ab_21: 0.38,     // 38 Cent ab dem 21. km
-  arbeitstage_max: 230, // Maximal anerkannte Arbeitstage
+// Pendlerpauschale 2026 - Neue einheitliche Pauschale ab 01.01.2026!
+// Quelle: https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html
+const PAUSCHALE_2026 = {
+  km_einheitlich: 0.38,  // 38 Cent ab dem ERSTEN km (neu ab 2026!)
+  arbeitstage_max: 230,  // Maximal anerkannte Arbeitstage
 };
 
 export default function PendlerpauschaleRechner() {
@@ -14,20 +14,14 @@ export default function PendlerpauschaleRechner() {
   const [steuersatz, setSteuersatz] = useState(35);
 
   const ergebnis = useMemo(() => {
-    const effektiveArbeitstage = Math.min(arbeitstage - homeoffice, PAUSCHALE_2025.arbeitstage_max);
+    const effektiveArbeitstage = Math.min(arbeitstage - homeoffice, PAUSCHALE_2026.arbeitstage_max);
     
-    // Berechnung nach Entfernungskilometern
-    let pauschaleProTag = 0;
-    
-    if (entfernung <= 20) {
-      pauschaleProTag = entfernung * PAUSCHALE_2025.km_1_20;
-    } else {
-      pauschaleProTag = (20 * PAUSCHALE_2025.km_1_20) + ((entfernung - 20) * PAUSCHALE_2025.km_ab_21);
-    }
+    // NEU ab 2026: Einheitlich 38 Cent ab dem ERSTEN Kilometer!
+    const pauschaleProTag = entfernung * PAUSCHALE_2026.km_einheitlich;
     
     const jahresPauschale = Math.round(pauschaleProTag * effektiveArbeitstage);
     
-    // Werbungskostenpauschale abziehen (1.230 € in 2025)
+    // Werbungskostenpauschale (1.230 € in 2026 - unverändert)
     const werbungskostenpauschale = 1230;
     const ueberschuss = Math.max(0, jahresPauschale - werbungskostenpauschale);
     
@@ -175,23 +169,11 @@ export default function PendlerpauschaleRechner() {
         <h3 className="font-bold text-gray-800 mb-4">📊 Berechnung</h3>
         
         <div className="space-y-3 text-sm">
-          {entfernung <= 20 ? (
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">{entfernung} km × 0,30 € × {ergebnis.effektiveArbeitstage} Tage</span>
-              <span className="font-bold">{formatEuro(ergebnis.jahresPauschale)}</span>
-            </div>
-          ) : (
-            <>
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-600">Erste 20 km: 20 × 0,30 € × {ergebnis.effektiveArbeitstage} Tage</span>
-                <span className="font-medium">{formatEuro(20 * 0.30 * ergebnis.effektiveArbeitstage)}</span>
-              </div>
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-600">Ab 21. km: {entfernung - 20} × 0,38 € × {ergebnis.effektiveArbeitstage} Tage</span>
-                <span className="font-medium">{formatEuro((entfernung - 20) * 0.38 * ergebnis.effektiveArbeitstage)}</span>
-              </div>
-            </>
-          )}
+          {/* Ab 2026: Einheitlich 38 Cent pro km */}
+          <div className="flex justify-between py-2 border-b border-gray-100">
+            <span className="text-gray-600">{entfernung} km × 0,38 € × {ergebnis.effektiveArbeitstage} Tage</span>
+            <span className="font-bold">{formatEuro(ergebnis.jahresPauschale)}</span>
+          </div>
           
           <div className="flex justify-between py-2 border-b border-gray-200 bg-blue-50 -mx-6 px-6">
             <span className="font-medium">Pendlerpauschale gesamt</span>
@@ -216,15 +198,11 @@ export default function PendlerpauschaleRechner() {
 
       {/* Info Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert's</h3>
+        <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert's (2026)</h3>
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
-            <span>✓</span>
-            <span><strong>30 Cent/km</strong> für die ersten 20 Kilometer</span>
-          </li>
-          <li className="flex gap-2">
-            <span>✓</span>
-            <span><strong>38 Cent/km</strong> ab dem 21. Kilometer (2025)</span>
+            <span>🆕</span>
+            <span><strong>38 Cent/km ab dem ersten Kilometer</strong> – neu seit 01.01.2026!</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -232,13 +210,22 @@ export default function PendlerpauschaleRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Max. <strong>230 Arbeitstage</strong> anerkannt</span>
+            <span>Max. <strong>230 Arbeitstage</strong> werden anerkannt</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
             <span>Gilt unabhängig vom <strong>Verkehrsmittel</strong> (Auto, Bahn, Fahrrad...)</span>
           </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>Werbungskostenpauschale</strong>: 1.230 € automatisch abgezogen</span>
+          </li>
         </ul>
+        <div className="mt-4 p-3 bg-green-50 rounded-xl text-sm">
+          <p className="text-green-800">
+            <strong>💡 Neu 2026:</strong> Die Erhöhung auf 38 Cent ab dem ersten Kilometer entlastet besonders Pendler mit kürzeren Strecken (unter 20 km) – eine Verbesserung gegenüber 2025!
+          </p>
+        </div>
       </div>
 
       {/* Wichtige Hinweise */}
@@ -267,20 +254,28 @@ export default function PendlerpauschaleRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.bundesfinanzministerium.de"
+            href="https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesfinanzministerium – Entfernungspauschale
+            Bundesfinanzministerium – Steuerliche Änderungen 2026
           </a>
           <a 
-            href="https://www.vlh.de/arbeiten-pendeln/pendeln/entfernungspauschale.html"
+            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            VLH – Pendlerpauschale 2025
+            ADAC – Pendlerpauschale 2026
+          </a>
+          <a 
+            href="https://www.vlh.de/arbeiten-pendeln/pendeln/die-pendlerpauschale-fuer-einsteiger.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            VLH – Pendlerpauschale für Einsteiger
           </a>
         </div>
       </div>
