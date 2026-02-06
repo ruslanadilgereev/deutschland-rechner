@@ -72,33 +72,37 @@ const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
 </Layout>
 
 <script>
-  // Simple search functionality
-  const searchInput = document.getElementById('search-input') as HTMLInputElement;
-  const rechnerItems = document.querySelectorAll('.rechner-item');
-  const kategorienSections = document.querySelectorAll('.kategorie-section');
+  // Search functionality - fixed version
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const rechnerItems = document.querySelectorAll('.rechner-item') as NodeListOf<HTMLElement>;
+    const kategorienSections = document.querySelectorAll('.kategorie-section') as NodeListOf<HTMLElement>;
 
-  searchInput?.addEventListener('input', (e) => {
-    const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
-    
-    if (!query) {
-      rechnerItems.forEach(item => (item as HTMLElement).style.display = 'block');
-      kategorienSections.forEach(section => (section as HTMLElement).style.display = 'block');
-      return;
-    }
+    if (!searchInput) return;
 
-    rechnerItems.forEach(item => {
-      const name = item.getAttribute('data-name') || '';
-      const matches = name.includes(query);
-      (item as HTMLElement).style.display = matches ? 'block' : 'none';
-    });
+    searchInput.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      
+      // Reset all if empty query
+      if (!query) {
+        rechnerItems.forEach(item => item.style.display = '');
+        kategorienSections.forEach(section => section.style.display = '');
+        return;
+      }
 
-    // Hide empty categories
-    kategorienSections.forEach(section => {
-      const visibleItems = section.querySelectorAll('.rechner-item[style="display: block"], .rechner-item:not([style])');
-      const hasVisible = Array.from(visibleItems).some(item => 
-        (item as HTMLElement).style.display !== 'none'
-      );
-      (section as HTMLElement).style.display = hasVisible ? 'block' : 'none';
+      // Filter rechner items
+      rechnerItems.forEach(item => {
+        const name = item.getAttribute('data-name') || '';
+        const matches = name.includes(query);
+        item.style.display = matches ? '' : 'none';
+      });
+
+      // Hide empty categories
+      kategorienSections.forEach(section => {
+        const items = section.querySelectorAll('.rechner-item') as NodeListOf<HTMLElement>;
+        const hasVisible = Array.from(items).some(item => item.style.display !== 'none');
+        section.style.display = hasVisible ? '' : 'none';
+      });
     });
   });
 </script>

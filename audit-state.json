@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 2,
+  "lastAuditIndex": 3,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -216,6 +216,98 @@
         "bmbfsfj": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
         "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/neuregelung-elterngeld-2268810",
         "bmbfsfj_neuregelung": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588"
+      }
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Bremen Grunderwerbsteuer rate was 5.0%, should be 5.5% (increased 01.07.2025)",
+          "fixed": true,
+          "oldValue": "5.0%",
+          "newValue": "5.5%"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "Page title and comment said '2025' instead of '2026'",
+          "fixed": true
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "MEDIUM",
+          "issue": "BMF link was generic homepage, improved to specific Grunderwerbsteuer page",
+          "fixed": true,
+          "newUrl": "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer_Grunderwerbsteuer/Grundsteuer_Grunderwerbsteuer.html"
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "LOW",
+          "issue": "Added direct link to Grunderwerbsteuergesetz (GrEStG)",
+          "fixed": true,
+          "newUrl": "https://www.gesetze-im-internet.de/grestg_1983/"
+        }
+      ],
+      "linkCheck": {
+        "bundesfinanzministerium.de": "PASS - 200 OK (improved to specific GrESt page)",
+        "wikipedia/Grunderwerbsteuer_(Deutschland)": "PASS - 200 OK",
+        "gesetze-im-internet.de/grestg_1983": "PASS - Official government law site (added)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+          "https://www.wuestenrot.de/ratgeber/grunderwerbsteuer"
+        ],
+        "allRatesVerified": {
+          "Bayern": "3.5% ✓",
+          "Baden-Württemberg": "5.0% ✓",
+          "Berlin": "6.0% ✓",
+          "Brandenburg": "6.5% ✓",
+          "Bremen": "5.5% ✓ (FIXED - was 5.0%)",
+          "Hamburg": "5.5% ✓",
+          "Hessen": "6.0% ✓",
+          "Mecklenburg-Vorpommern": "6.0% ✓",
+          "Niedersachsen": "5.0% ✓",
+          "Nordrhein-Westfalen": "6.5% ✓",
+          "Rheinland-Pfalz": "5.0% ✓",
+          "Saarland": "6.5% ✓",
+          "Sachsen": "5.5% ✓",
+          "Sachsen-Anhalt": "5.0% ✓",
+          "Schleswig-Holstein": "6.5% ✓",
+          "Thüringen": "5.0% ✓ (reduced from 6.5% in 2024)"
+        },
+        "recentChanges": [
+          "Bremen: 5.0% → 5.5% (01.07.2025)",
+          "Thüringen: 6.5% → 5.0% (01.01.2024)",
+          "Hamburg: 4.5% → 5.5% (01.01.2023)",
+          "Sachsen: 3.5% → 5.5% (01.01.2023)"
+        ]
+      },
+      "legalCompleteness": {
+        "ausnahmen": "PASS - Erbschaft, Schenkung an Verwandte 1. Grades, Erwerb unter 2.500€ mentioned",
+        "ablauf": "PASS - Complete: Notar meldet Kauf → Finanzamt Steuerbescheid (2-8 Wochen) → Zahlung 4 Wochen → Unbedenklichkeitsbescheinigung → Grundbuch",
+        "fristen": "PASS - 4 Wochen Zahlungsfrist mentioned",
+        "behoerde": "PASS - Finanzamt am Standort der Immobilie (not Wohnort!) correctly explained",
+        "warnungen": "PASS - 'Keine Grundbucheintragung ohne Zahlung' warning present"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Simple percentage calculation: kaufpreis * (satz / 100). Formula correct. Bundesland comparison table correctly implemented with sorting and difference display."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Grunderwerbsteuer-Rechner 2026'",
+        "description": "PASS - Enhanced: includes 2026, rate range 3.5%-6.5%, mentions Bremen 5.5% update",
+        "keywords": "IMPLICIT - Title contains: Grunderwerbsteuer Rechner, 2026, Bundesländer, Immobilienkauf"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer_Grunderwerbsteuer/Grundsteuer_Grunderwerbsteuer.html",
+        "gesetz": "https://www.gesetze-im-internet.de/grestg_1983/",
+        "wikipedia": "https://de.wikipedia.org/wiki/Grunderwerbsteuer_(Deutschland)",
+        "finanz-tools": "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle"
       }
     }
   ]
