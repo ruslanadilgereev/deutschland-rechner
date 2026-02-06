@@ -21,12 +21,16 @@ function berechneElterngeld(nettoMonat: number): {
   ersatzrate: number;
 } {
   // Ersatzrate bestimmen (65-67%)
+  // Quelle: § 2 Abs. 2 BEEG, familienportal.de
   let ersatzrate = 0.65;
-  if (nettoMonat < 1200) {
+  if (nettoMonat <= 1200) {
+    // Unter 1.200€: 67% (für 1.000-1.200€ pauschal)
+    // Unter 1.000€: Erhöht sich weiter bis 100% (hier vereinfacht)
     ersatzrate = 0.67;
   } else if (nettoMonat > 1200 && nettoMonat < 1240) {
-    // Gleitzone
-    ersatzrate = 0.67 - ((nettoMonat - 1200) * 0.001);
+    // Gleitzone 1.200-1.240€: Sinkt von 67% auf 65%
+    // Formel: -0,1% je 2 Euro Mehrverdienst = -0,0005 je Euro
+    ersatzrate = 0.67 - ((nettoMonat - 1200) * 0.0005);
   }
 
   // Basiselterngeld
