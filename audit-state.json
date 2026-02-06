@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 3,
+  "lastAuditIndex": 4,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 2,
   "calculators": [
@@ -1351,6 +1351,98 @@
         "wuestenrot": "https://www.wuestenrot.de/ratgeber/grunderwerbsteuer"
       },
       "auditSummary": "Clean audit with minor fix - all 16 Bundesland rates verified and correct. Links working. Legal sections complete. Only issue found was global Layout.astro year references (2025→2026), fixed and committed."
+    },
+    {
+      "calculator": "buergergeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 2,
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "COMMENT_TYPO",
+          "severity": "LOW",
+          "issue": "Comment said 'Freibeträge 2025' instead of '2026'",
+          "fixed": true
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "No Mehrbedarf section (Alleinerziehende, Schwangere, Behinderte)",
+          "fixed": true,
+          "added": "New Mehrbedarf info box with all categories and percentages"
+        },
+        {
+          "type": "REFORM_INFO",
+          "severity": "MEDIUM",
+          "issue": "Reform info box was too brief, missing key changes",
+          "fixed": true,
+          "added": "Detailed Grundsicherungsgeld changes: Vermittlungsvorrang, Vermögen altersabhängig, Sanktionen verschärft, Wohnkosten gedeckelt"
+        },
+        {
+          "type": "SEO",
+          "severity": "LOW",
+          "issue": "Title and description didn't mention reform",
+          "fixed": true,
+          "newTitle": "Bürgergeld-Rechner 2026 – Regelsätze, Freibeträge & KdU berechnen | Ab Juli: Grundsicherungsgeld"
+        }
+      ],
+      "linkCheck": {
+        "jobcenter.digital": "PASS - 200 OK (redirects to arbeitsagentur.de/buergergeld as expected)",
+        "bundesregierung.de/nullrunde-buergergeld-2383676": "PASS - 200 OK",
+        "arbeitsagentur.de/buergergeld": "PASS - 200 OK",
+        "bmas.de/grundsicherung-buergergeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+          "https://www.buergergeld.org/sgb-ii/zuverdienst/",
+          "https://www.finanztip.de/buergergeld/",
+          "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562"
+        ],
+        "allRatesVerified": {
+          "Alleinstehend_RS1": "563€ ✓",
+          "Partner_RS2": "506€ ✓",
+          "Kind_14_17_RS4": "471€ ✓",
+          "Kind_6_13_RS5": "390€ ✓",
+          "Kind_0_5_RS6": "357€ ✓"
+        },
+        "freibetraegeVerified": {
+          "Grundfreibetrag": "100€ ✓",
+          "100_520": "20% (max 84€) ✓",
+          "520_1000": "30% (max 144€) ✓",
+          "1000_1200_ohneKind": "10% (max 20€) ✓",
+          "1000_1500_mitKind": "10% (max 50€) ✓",
+          "MaxFreibetrag_ohneKind": "348€ ✓",
+          "MaxFreibetrag_mitKind": "378€ ✓"
+        },
+        "calculationVerified": "Tested with official example: 1.400€ Brutto mit Kind = 368€ Freibetrag → matches exactly"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Jobcenter zuständig mentioned, online-antrag link present",
+        "edgeCases": "IMPROVED - Added Mehrbedarf section for Alleinerziehende, Schwangere, Behinderte, Kranke",
+        "behoerde": "PASS - Jobcenter, Bürgertelefon 0800 4 5555 00, jobcenter.digital",
+        "vermoegenFreigrenze": "PASS - 40.000€ Karenzzeit mentioned",
+        "reformInfo": "IMPROVED - Detailed Grundsicherungsgeld changes for July 2026",
+        "sources": "IMPROVED - Added Finanztip as 4th authoritative source"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Regelbedarf + KdU - (Einkommen - Freibetrag)",
+        "notes": "Freibetrag calculation verified: 100€ + 20%×420 + 30%×480 + 10%×(obergrenze-1000). All brackets correct. Tested against official buergergeld.org example."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated: 'Bürgergeld-Rechner 2026 – Regelsätze, Freibeträge & KdU berechnen | Ab Juli: Grundsicherungsgeld'",
+        "description": "PASS - Includes 563€, 506€, reform mention",
+        "keywords": "PASS - Includes: Bürgergeld Rechner, 2026, Regelsätze, Freibeträge, KdU, Grundsicherungsgeld"
+      },
+      "officialSources": {
+        "bundesregierung_regelsaetze": "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+        "bundesregierung_reform": "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562",
+        "arbeitsagentur": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld",
+        "bmas": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html",
+        "finanztip": "https://www.finanztip.de/buergergeld/"
+      },
+      "auditSummary": "Bürgergeld-Rechner audit cycle 2: All Regelsätze and Freibeträge verified correct. All 4 links working. Added comprehensive Mehrbedarf info section and detailed July 2026 Grundsicherungsgeld reform changes. Minor fixes: comment year update, improved SEO."
     }
   ]
 }
