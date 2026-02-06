@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 10,
+  "lastAuditIndex": 11,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -1029,6 +1029,101 @@
         "rbstv": "https://www.gesetze-im-internet.de/rbstv/",
         "finanztip": "https://www.finanztip.de/rundfunkbeitrag/",
         "verbraucherzentrale": "https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-alles-rund-um-befreiung-und-ermaessigung-40324"
+      }
+    },
+    {
+      "calculator": "einkommensteuer-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Kindergeld was 255€/Monat (3.060€/Jahr - 2025 value), should be 259€/Monat (3.108€/Jahr - 2026)",
+          "fixed": true,
+          "oldValue": "3.060€/Jahr (255€ × 12)",
+          "newValue": "3.108€/Jahr (259€ × 12)"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Kinderfreibetrag was 9.600€, should be 9.756€ (6.828€ + 2.928€ BEA)",
+          "fixed": true,
+          "oldValue": "9.600€ (6.672€ + 2.928€)",
+          "newValue": "9.756€ (6.828€ + 2.928€)"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Pendlerpauschale used old tiered system (30¢ first 20km, 38¢ from km 21). 2026 law: 38¢ unified from first km!",
+          "fixed": true,
+          "oldValue": "bis20km: 0.30, ab21km: 0.38",
+          "newValue": "0.38 ab km 1 (einheitlich)"
+        }
+      ],
+      "linkCheck": {
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)",
+        "lohnsteuerhilfe.net": "PASS - 200 OK",
+        "bstbk.de": "PASS - 200 OK (redirects to /de/)",
+        "bmf-steuerrechner.de": "PASS - 200 OK",
+        "bundesfinanzministerium.de": "PASS - 200 OK",
+        "gesetze-im-internet.de/estg/__32a.html": "TIMEOUT - but valid government site",
+        "gesetze-im-internet.de/estg/__33.html": "TIMEOUT - but valid government site"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+          "https://www.familienservice.de/-/mehr-geld-fuer-familien-kindergeld-kinderfreibetrag",
+          "https://www.arbeitsagentur.de/presse/2025-53-kindergeld-steigt-ab-januar-2026"
+        ],
+        "2026ValuesVerified": {
+          "Grundfreibetrag": "12.348€ ✓ (was correct)",
+          "Zone1Ende": "17.799€ ✓ (was correct)",
+          "Zone2Ende": "69.878€ ✓ (was correct)",
+          "Zone3Ende": "277.825€ ✓ (was correct)",
+          "Reichensteuer": "45% ab 277.826€ ✓",
+          "Kindergeld": "259€/Monat = 3.108€/Jahr ✓ (FIXED)",
+          "Kinderfreibetrag": "9.756€ ✓ (FIXED - 6.828€ + 2.928€ BEA)",
+          "Pendlerpauschale": "0,38€ ab km 1 ✓ (FIXED)",
+          "Homeoffice": "6€/Tag, max 1.260€/Jahr ✓",
+          "Werbungskostenpauschbetrag": "1.230€ ✓",
+          "Soli_Freigrenze_single": "18.130€ ✓",
+          "Soli_Freigrenze_verheiratet": "36.260€ ✓"
+        },
+        "newIn2026": {
+          "Grundfreibetrag": "+252€ (12.096€ → 12.348€)",
+          "Kindergeld": "+4€/Monat (255€ → 259€)",
+          "Kinderfreibetrag": "+156€ (9.600€ → 9.756€)",
+          "Pendlerpauschale": "38¢ ab km 1 (vorher ab km 21)",
+          "Aktivrente": "Bis 2.000€/Monat steuerfrei für Rentner mit Job"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Orientierung' warning, ELSTER reference present",
+        "edgeCases": "PASS - Splittingtarif, Günstigerprüfung Kindergeld/Kinderfreibetrag, GdB-Pauschbeträge",
+        "behoerde": "PASS - Finanzamt, ELSTER, BMF-Bürgertelefon, Lohnsteuerhilfeverein, Steuerberaterkammer",
+        "rechtsgrundlagen": "PASS - §32a EStG, §33 EStG referenced"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Tarifformel §32a EStG 2026 korrekt implementiert. Splittingverfahren korrekt (zvE/2, Steuer*2). Günstigerprüfung Kindergeld vs Kinderfreibetrag automatisch. Soli Milderungszone (11,9% auf Überschreitung) korrekt."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Einkommensteuer-Rechner 2026 – Steuerlast berechnen | Grundfreibetrag 12.348€'",
+        "description": "PASS - Includes 2026, Grundfreibetrag 12.348€, Kinderfreibetrag 9.756€, Pendlerpauschale 38¢, Kindergeld 259€",
+        "keywords": "PASS - Includes: Einkommensteuer Rechner 2026, Grundfreibetrag 12348, Kinderfreibetrag 9756, Kindergeld 259 Euro, Pendlerpauschale 38 Cent"
+      },
+      "enhancements": {
+        "infoBox2026": "Added '🆕 Neu in 2026 – Steuerliche Änderungen' info box with all major changes",
+        "pendlerUI": "Updated pendlerpauschale display text to show '38¢ ab erstem km'",
+        "sources": "Added BMF 'Das ändert sich 2026' to Quellen section"
+      },
+      "officialSources": {
+        "bmf_2026": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "estg_32a": "https://www.gesetze-im-internet.de/estg/__32a.html",
+        "estg_33": "https://www.gesetze-im-internet.de/estg/__33.html",
+        "bmf_steuerrechner": "https://www.bmf-steuerrechner.de",
+        "elster": "https://www.elster.de"
       }
     }
   ]
