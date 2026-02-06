@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 3,
+  "lastAuditIndex": 4,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 4,
   "calculators": [
@@ -2148,6 +2148,111 @@
         "gesetz": "https://www.gesetze-im-internet.de/grestg_1983/"
       },
       "auditSummary": "Grunderwerbsteuer-Rechner audit cycle 4: All 16 Bundesland rates verified correct against finanz-tools, Finanztip, wuestenrot (Bremen 5.5% since 01.07.2025, Thüringen 5.0% since 01.01.2024). Hessengeld program verified active. All 5 links working (1 timeout but valid gov site). Thüringen section correctly states rate reduction fact only. Legal sections complete with disclaimers, Ausnahmen, 4-step Ablauf. Calculation logic simple and correct. No issues found."
+    },
+    {
+      "calculator": "buergergeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 4,
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "MEDIUM",
+          "issue": "Mehrbedarf Schwangere: stated '12. Schwangerschaftswoche' but official sources (BMAS, Finanztip) say '13. Schwangerschaftswoche'",
+          "fixed": true
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "LOW",
+          "issue": "Kindersofortzuschlag (+25€ pro Kind) not mentioned in 'So funktioniert's' section",
+          "fixed": true
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "LOW",
+          "issue": "Missing direct link to Bundesregierung Grundsicherungsgeld reform announcement",
+          "fixed": true,
+          "newUrl": "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562"
+        }
+      ],
+      "linkCheck": {
+        "jobcenter.digital": "PASS - 200 OK (redirects to arbeitsagentur.de/buergergeld as expected)",
+        "bundesregierung.de/nullrunde-buergergeld-2383676": "PASS - 200 OK",
+        "arbeitsagentur.de/buergergeld": "PASS - 200 OK",
+        "bmas.de/grundsicherung-buergergeld": "PASS - 200 OK",
+        "finanztip.de/buergergeld": "PASS - 200 OK (Updated Jan 15, 2026)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+          "https://www.buergergeld.org/sgb-ii/zuverdienst/",
+          "https://www.finanztip.de/buergergeld/",
+          "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562"
+        ],
+        "regelsaetze2026": {
+          "Alleinstehend_RS1": "563€ ✓",
+          "Partner_RS2": "506€ ✓",
+          "Kind_14_17_RS4": "471€ ✓",
+          "Kind_6_13_RS5": "390€ ✓",
+          "Kind_0_5_RS6": "357€ ✓"
+        },
+        "freibetraegeVerified": {
+          "Grundfreibetrag": "100€ ✓",
+          "100_520": "20% (max 84€) ✓",
+          "520_1000": "30% (max 144€) ✓",
+          "1000_1200_ohneKind": "10% (max 20€) ✓",
+          "1000_1500_mitKind": "10% (max 50€) ✓",
+          "MaxFreibetrag_ohneKind": "348€ ✓",
+          "MaxFreibetrag_mitKind": "378€ ✓"
+        },
+        "calculationVerified": "Tested with buergergeld.org example: 1.400€ Brutto mit Kind → 368€ Freibetrag → exact match",
+        "kindersofortzuschlag": "25€ seit 2025 ✓ (added to info section)"
+      },
+      "mehrbedarfVerified": {
+        "Alleinerziehende": "12-60% ✓ (per § 21 Abs. 3 SGB II)",
+        "Schwangere": "17% ab 13. SSW ✓ (FIXED - was incorrectly 12. SSW)",
+        "Behinderte": "17-35% ✓ (depending on Merkzeichen/Teilhabeleistungen)"
+      },
+      "reformInfo": {
+        "status": "PASS - Verified accurate against Bundesregierung source",
+        "kabinettsDate": "17.12.2025 ✓",
+        "inKraftTreten": "01.07.2026 ✓",
+        "changesDocumented": [
+          "Grundsicherungsgeld Umbenennung ✓",
+          "Vermittlungsvorrang ✓",
+          "Karenzzeit abgeschafft, Vermögen altersabhängig ✓",
+          "Sanktionen bis 30% ✓",
+          "Wohnkosten 1,5× Deckelung ✓",
+          "Alleinerziehende ab 1 Jahr ✓"
+        ]
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Jobcenter zuständig mentioned, online-antrag link present",
+        "edgeCases": "PASS - Mehrbedarf section present (Alleinerziehende, Schwangere, Behinderte, Kranke)",
+        "behoerde": "PASS - Jobcenter, Bürgertelefon 0800 4 5555 00, jobcenter.digital",
+        "vermoegenFreigrenze": "PASS - 40.000€ Karenzzeit mentioned",
+        "reformInfo": "PASS - Detailed Grundsicherungsgeld changes for July 2026 with Bundesregierung source",
+        "sources": "PASS - Now 5 authoritative sources (added Bundesregierung reform link)"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Regelbedarf + KdU - (Einkommen - Freibetrag)",
+        "notes": "Freibetrag calculation verified: 100€ + 20%×(brutto-100,max 420) + 30%×(brutto-520,max 480) + 10%×(brutto-1000,max 200/500). All brackets correct. Tested against buergergeld.org example."
+      },
+      "seoCheck": {
+        "title": "PASS - 'Bürgergeld-Rechner 2026 – Regelsätze, Freibeträge & KdU berechnen | Ab Juli: Grundsicherungsgeld'",
+        "description": "PASS - Includes 563€ Alleinstehend, 506€ Partner, Freibeträge, reform mention",
+        "keywords": "PASS - Includes: Bürgergeld Rechner, 2026, Regelsätze, Freibeträge, KdU, Grundsicherungsgeld"
+      },
+      "officialSources": {
+        "bundesregierung_regelsaetze": "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+        "bundesregierung_reform": "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562",
+        "arbeitsagentur": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld",
+        "bmas": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html",
+        "finanztip": "https://www.finanztip.de/buergergeld/",
+        "buergergeld_org": "https://www.buergergeld.org/sgb-ii/zuverdienst/"
+      },
+      "auditSummary": "Bürgergeld-Rechner audit cycle 4: All 5 links working (200 OK). Fixed: Schwangere Mehrbedarf now correctly states '13. Schwangerschaftswoche' (was '12.'). Added Kindersofortzuschlag +25€ info. Added Bundesregierung reform source. All Regelsätze (563€/506€/471€/390€/357€) and Freibeträge (100€+20%+30%+10%) verified correct. Reform info about July 2026 Grundsicherungsgeld verified accurate. Calculation logic verified with buergergeld.org example (1.400€→368€ Freibetrag)."
     }
   ]
 }
