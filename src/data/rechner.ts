@@ -921,8 +921,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Kreditrate & Zinsen berechnen',
     icon: '💳',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'Kredit Rechner, Kreditrate berechnen, Kredit Zinsen',
+    fertig: true,
+    seoKeywords: 'Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zinsen, Tilgungsrechner, Ratenkredit Rechner, Autokredit Rechner, Darlehen Rechner, Annuitätenrechner, Monatsrate berechnen',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__488.html',
+      'https://www.gesetze-im-internet.de/bgb/__491.html',
+      'https://www.bafin.de/DE/Verbraucher/verbraucher_node.html',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit',
+      'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
+    ],
   },
   {
     id: 'zinseszins',

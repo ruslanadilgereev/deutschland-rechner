@@ -237,8 +237,8 @@ export default function GrunderwerbsteuerRechner() {
           <div className="flex gap-3 p-3 bg-green-50 rounded-xl">
             <span className="text-xl">🌲</span>
             <div>
-              <p className="font-medium text-green-800">Thüringen Erstkäufer-Freibetrag (seit 2024)</p>
-              <p className="text-green-700">Bei selbstgenutztem Wohneigentum: <strong>bis zu 25.000 € steuerfrei</strong> – zusätzlich zum reduzierten Steuersatz von 5,0%.</p>
+              <p className="font-medium text-green-800">Thüringen: Niedrigster Steuersatz in Ostdeutschland</p>
+              <p className="text-green-700">Seit 1. Januar 2024 gilt in Thüringen nur noch <strong>5,0% Grunderwerbsteuer</strong> (gesenkt von 6,5%) – der niedrigste Satz aller ostdeutschen Bundesländer.</p>
             </div>
           </div>
           <p className="text-gray-500 text-xs mt-2">
