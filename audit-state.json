@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 4,
+  "lastAuditIndex": 5,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 6,
   "calculators": [
@@ -19,6 +19,53 @@
     "einkommensteuer-rechner"
   ],
   "auditHistory": [
+    {
+      "calculator": "pendlerpauschale-rechner",
+      "date": "2026-02-06",
+      "cycle": 6,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bundesfinanzministerium.de/das-aendert-sich-2026": "PASS - 200 OK",
+        "adac.de/pendlerpauschale": "PASS - 200 OK",
+        "vlh.de/fuenf-aenderungen-fuer-2026": "PASS - 200 OK",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+          "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/",
+          "https://www.vlh.de/presse/pressemitteilungen/fuenf-aenderungen-fuer-2026-mit-blick-auf-die-einkommensteuer.html"
+        ],
+        "2026Values": {
+          "Pauschale_pro_km": "0,38€ ab erstem km ✓ (unified since 01.01.2026)",
+          "Max_Arbeitstage": "230 ✓",
+          "Werbungskostenpauschale": "1.230€ ✓",
+          "Homeoffice_Pauschale": "6€/Tag (max 1.260€/Jahr) ✓"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Werbungskostenpauschale 1.230€ warning present",
+        "edgeCases": "PASS - Kürzeste Straßenverbindung, Verkehrsmittel-unabhängig, Homeoffice-Abzug mentioned",
+        "behoerde": "PASS - Finanzamt/ELSTER complete with online link",
+        "neuRegelung2026": "PASS - Info box explaining 38 Cent ab erstem km benefits"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Correct formula: entfernung × 0.38 × effektiveArbeitstage. Werbungskostenpauschale 1.230€ correctly deducted. Steuerersparnis on Überschuss calculated. effektive days capped at 230."
+      },
+      "seoCheck": {
+        "title": "PASS - Pendlerpauschale-Rechner 2026 – Einheitlich 38 Cent/km berechnen",
+        "description": "PASS - Includes 2026, 38 Cent ab ERSTEM km, Homeoffice-Abzug, Steuerersparnis",
+        "keywords": "IMPLICIT - Title contains: Pendlerpauschale, 2026, 38 Cent, km, berechnen"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "adac": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/",
+        "vlh": "https://www.vlh.de/presse/pressemitteilungen/fuenf-aenderungen-fuer-2026-mit-blick-auf-die-einkommensteuer.html",
+        "elster": "https://www.elster.de"
+      }
+    },
     {
       "calculator": "kindergeld-rechner",
       "date": "2026-02-06",
