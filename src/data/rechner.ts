@@ -427,8 +427,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Gesetzliche Rente berechnen',
     icon: '👴',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Renten Rechner, Rente berechnen, gesetzliche Rente',
+    fertig: true,
+    seoKeywords: 'Renten Rechner, Rente berechnen, gesetzliche Rente 2026, Entgeltpunkte, Rentenwert, Regelaltersgrenze, Rente mit 63',
+    quellen: [
+      'https://www.deutsche-rentenversicherung.de',
+      'https://www.bundesregierung.de/breg-de/aktuelles/rentenanpassung-2025-2337000',
+      'https://www.gesetze-im-internet.de/sgb_6/',
+    ],
   },
   {
     id: 'rentenluecke',

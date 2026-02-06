@@ -1,20 +1,21 @@
 import { useState, useMemo } from 'react';
 
-// BAföG Bedarfssätze 2024/2025 (letzte Erhöhung WS 2024)
+// BAföG Bedarfssätze 2026 (gültig seit WS 2024/25, unverändert für 2026)
+// Quelle: https://www.bafög.de
 const BAFOEG_SAETZE = {
   grundbedarf: 475,                    // Grundbedarf
   wohnpauschale_eltern: 62,            // Bei Eltern wohnend
   wohnpauschale_eigene: 380,           // Eigene Wohnung
-  kv_zuschlag: 122,                    // Krankenversicherung
-  pv_zuschlag: 36,                     // Pflegeversicherung (wenn selbst versichert)
+  kv_pv_zuschlag: 137,                 // KV + PV Zuschlag zusammen (wenn selbst versichert)
 };
 
-// Freibeträge 2024/2025
+// Freibeträge 2026
+// Quelle: https://www.bafög.de/bafoeg/de/das-bafoeg-alle-infos-auf-einen-blick/foerderungsarten-und-foerderungshoehe/welche-freibetraege-werden-gewaehrt
 const FREIBETRAEGE = {
   eltern_verheiratet: 2_485,           // Netto-Freibetrag verheiratete Eltern
   eltern_alleinerziehend: 1_655,       // Netto-Freibetrag alleinerziehend
   zusatz_pro_kind: 730,                // Zusätzlich pro unterhaltsberechtigtem Kind
-  eigenes_einkommen: 520,              // Minijob-Grenze (brutto)
+  eigenes_einkommen: 603,              // Minijob-Grenze 2026 (brutto) - erhöht von 556€
   vermoegen_unter_30: 15_000,          // Vermögensfreibetrag < 30 Jahre
   vermoegen_ab_30: 45_000,             // Vermögensfreibetrag ≥ 30 Jahre
 };
@@ -53,12 +54,11 @@ export default function BafoegRechner() {
     }
     
     // KV/PV-Zuschlag (nur bei eigener Versicherung, meist ab 25 Jahren)
-    let kvZuschlag = 0;
-    let pvZuschlag = 0;
+    // Seit WS 2024/25: 137€ gesamt für KV+PV (Quelle: bafög.de)
+    let kvPvZuschlag = 0;
     if (selbstVersichert) {
-      kvZuschlag = BAFOEG_SAETZE.kv_zuschlag;
-      pvZuschlag = BAFOEG_SAETZE.pv_zuschlag;
-      bedarf += kvZuschlag + pvZuschlag;
+      kvPvZuschlag = BAFOEG_SAETZE.kv_pv_zuschlag;
+      bedarf += kvPvZuschlag;
     }
     
     // === SCHRITT 2: Eltern-Freibetrag berechnen ===
