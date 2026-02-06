@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 0,
+  "lastAuditIndex": 1,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 5,
   "calculators": [
@@ -2364,6 +2364,69 @@
         "source": "kindergeld.org Feb 2026"
       },
       "auditSummary": "Clean audit cycle 5 - all 4 links working (200 OK), 259€ per child verified against BA official page, Familienportal, kindergeld.org. All legal sections complete (Antrag-Hinweis, 6-Monat-Frist, Unterlagen, Behörden-Info). Calculation logic simple and correct. SEO metadata complete with 2026 keywords. No issues found."
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "date": "2026-02-06",
+      "cycle": 5,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bmf-steuerrechner.de": "PASS - 200 OK",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)",
+        "deutsche-rentenversicherung.de": "PASS - 200 OK (redirects to /DRV/DE/Home)",
+        "bundesregierung.de/beitragsgemessungsgrenzen-2386514": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+          "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+        ],
+        "2026ValuesVerified": {
+          "Grundfreibetrag": "12.348€ ✓ (BMF confirmed: steigt um 252 Euro auf 12.348 Euro)",
+          "BBG_RV": "101.400€/Jahr (8.450€/Monat) ✓ (Bundesregierung, TK confirmed)",
+          "BBG_KV": "69.750€/Jahr (5.812,50€/Monat) ✓ (Bundesregierung, TK confirmed)",
+          "RV_Satz": "9,3% AN-Anteil ✓ (AOK confirmed)",
+          "AV_Satz": "1,3% AN-Anteil ✓ (AOK confirmed)",
+          "KV_Basis": "7,3% AN-Anteil ✓ (AOK: bundeseinheitlicher Beitragssatz 14,6%, je Hälfte)",
+          "KV_Zusatzbeitrag": "1,45% AN-Anteil ✓ (AOK: durchschnittlicher Zusatzbeitrag 2026 steigt auf 2,9%)",
+          "PV_mit_Kind": "1,8% AN-Anteil ✓ (AOK: 3,6% gesamt, je Hälfte)",
+          "PV_kinderlos": "2,4% AN-Anteil ✓ (AOK: 4,2% gesamt = 3,6% + 0,6% Zuschlag AN)",
+          "Soli_Freigrenze": "18.130€ ✓ (BMF)"
+        },
+        "note": "All values match official sources from Bundesregierung, TK, AOK, and BMF. KV Zusatzbeitrag 2,9% durchschnittlich ist korrekt (Erhöhung von 2,5% in 2025)."
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Vereinfachte Berechnung – exakte Werte via BMF-Steuerrechner' warning present",
+        "edgeCases": "PASS - All 6 Steuerklassen implemented, Kirchensteuer toggle (8%/9%), Kinderlosenzuschlag checkbox",
+        "behoerde": "PASS - Zuständige Behörden section complete: Finanzamt (ELSTER link), Krankenkasse",
+        "sources": "PASS - 3 authoritative sources listed (BMF-Steuerrechner, DRV, Bundesregierung)"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "steuertarif2026": "§32a EStG zones correct: 0-12.348€ (0%), 12.348-17.799€ (14-24%), 17.799-69.878€ (24-42%), 69.878-277.825€ (42%), >277.825€ (45%)",
+        "bbgCaps": "Correctly applied: RV/AV capped at 101.400€, KV/PV capped at 69.750€",
+        "soliMilderungszone": "Correctly implemented: 11,9% rate on excess above 18.130€",
+        "pvKinderlos": "Correctly implemented: 0,6% Zuschlag entirely AN (ab 23 Jahre)",
+        "notes": "Formula matches official BMF Steuerrechner methodology. All brackets and percentages verified against multiple official sources."
+      },
+      "seoCheck": {
+        "title": "PASS - 'Brutto-Netto-Rechner 2026'",
+        "description": "PASS - Includes: Grundfreibetrag 12.348€, BBG 101.400€ RV / 69.750€ KV, Lohnsteuer, Sozialversicherung",
+        "keywords": "PASS - Includes: Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen, Lohnsteuer Rechner, Steuerklasse, Grundfreibetrag 2026, BBG 2026"
+      },
+      "officialSources": {
+        "bmf_steuerrechner": "https://www.bmf-steuerrechner.de",
+        "bmf_aenderungen_2026": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "bundesregierung_bbg": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+        "tk_bbg": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+        "aok_rechengroessen": "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+        "elster": "https://www.elster.de",
+        "drv": "https://www.deutsche-rentenversicherung.de"
+      },
+      "auditSummary": "Clean audit cycle 5 - all 4 links working (200 OK), all 2026 SV values and tax parameters verified against Bundesregierung, TK, AOK, and BMF official sources: Grundfreibetrag 12.348€, BBG RV 101.400€, BBG KV 69.750€, KV-Zusatzbeitrag 2,9%, PV 3,6%/4,2%. Legal sections complete with disclaimer, 6 Steuerklassen, Kirchensteuer, Kinderlosenzuschlag. Calculation logic verified correct with 2026 tax tariff per §32a EStG. No issues found."
     }
   ]
 }
