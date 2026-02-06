@@ -358,8 +358,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Abgeltungssteuer auf Kapitalerträge',
     icon: '📈',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Kapitalertragsteuer Rechner, Abgeltungssteuer, Aktien Steuer',
+    fertig: true,
+    seoKeywords: 'Kapitalertragsteuer Rechner, Abgeltungssteuer, Aktien Steuer, ETF Steuer, Krypto Steuer, Dividenden Steuer, Sparerpauschbetrag',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__20.html',
+      'https://www.gesetze-im-internet.de/estg/__32d.html',
+      'https://www.gesetze-im-internet.de/invstg_2018/',
+      'https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Kapitalertragsteuer/kapitalertragsteuer.html',
+      'https://www.bzst.de/DE/Privatpersonen/Kapitalertraege/kapitalertraege_node.html',
+    ],
   },
   {
     id: 'grundsteuer',
