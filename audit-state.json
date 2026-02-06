@@ -1,12 +1,68 @@
 {
-  "lastAuditIndex": -1,
+  "lastAuditIndex": 0,
   "calculators": [
     "kindergeld-rechner",
-    "brutto-netto-rechner", 
+    "brutto-netto-rechner",
     "elterngeld-rechner",
     "grunderwerbsteuer-rechner",
     "buergergeld-rechner",
     "pendlerpauschale-rechner"
   ],
-  "auditHistory": []
+  "auditHistory": [
+    {
+      "calculator": "kindergeld-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Kindergeld amount was 255€ (2025 rate), should be 259€ (2026 rate)",
+          "fixed": true
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "Online-Antrag URL https://web.arbeitsagentur.de/opal/kgo-antrag returned 404",
+          "fixed": true,
+          "newUrl": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer/kindergeld-antrag-starten"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "Familienkasse URL https://www.arbeitsagentur.de/familie-und-kinder/familienkasse returned 404",
+          "fixed": true,
+          "newUrl": "https://www.arbeitsagentur.de/ueber-uns/familienkasse-der-ba"
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "MEDIUM",
+          "issue": "Source URL structure changed, old URL partially broken",
+          "fixed": true,
+          "newUrl": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer"
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "LOW",
+          "issue": "BMFSFJ domain changed to bmbfsfj.bund.de - switched to familienportal.de instead",
+          "fixed": true
+        }
+      ],
+      "legalCompleteness": {
+        "disclaimer": "PASS - Antrag erforderlich warning present",
+        "edgeCases": "PASS - Rückwirkend beantragbar (6 Monate) mentioned, age limits (18/25) explained",
+        "behoerde": "PASS - Familienkasse section complete with hotline, online-antrag, vor Ort",
+        "deadlines": "PASS - 6 month retroactive claim limit mentioned"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Simple linear calculation: anzahlKinder * 259€. Correct formula, no edge cases needed for this calculator."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to Kindergeld-Rechner 2026",
+        "description": "PASS - Updated to mention 259€",
+        "keywords": "PASS - Includes: Kindergeld Rechner, Kindergeld 2026, Kindergeld Höhe, Kindergeld berechnen, Kindergeld beantragen, Familienkasse, 259 Euro Kindergeld"
+      }
+    }
+  ]
 }

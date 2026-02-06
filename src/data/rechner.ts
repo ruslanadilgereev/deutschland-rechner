@@ -134,8 +134,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: '538€-Grenze und Abgaben berechnen',
     icon: '⏰',
     kategorie: 'arbeit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Minijob Rechner, 538 Euro Job, Minijob Abgaben',
+    quellen: [
+      'https://www.minijob-zentrale.de',
+      'https://www.gesetze-im-internet.de/sgb_4/',
+      'https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2024-2132292',
+    ],
   },
   {
     id: 'midijob',

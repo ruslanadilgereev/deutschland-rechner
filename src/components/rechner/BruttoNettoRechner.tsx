@@ -1,23 +1,23 @@
 import { useState, useMemo } from 'react';
 
-// 2025 Werte - Quellen: BMF, Deutsche Rentenversicherung, GKV
-const SOZIALVERSICHERUNG_2025 = {
-  rentenversicherung: 0.093, // 9,3% AN-Anteil
-  arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil
+// 2026 Werte - Quellen: BMF, Deutsche Rentenversicherung, GKV, Bundesregierung
+// Stand: 01.01.2026 (Sozialversicherungsrechengrößen-Verordnung 2026)
+const SOZIALVERSICHERUNG_2026 = {
+  rentenversicherung: 0.093, // 9,3% AN-Anteil (unverändert)
+  arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil (unverändert)
   pflegeversicherung: {
-    basis: 0.017, // 1,7% AN-Anteil
+    basis: 0.018, // 1,8% AN-Anteil (erhöht um 0,2% seit 2025)
     kinderlos_zuschlag: 0.006, // +0,6% für Kinderlose ab 23
   },
   krankenversicherung: {
     basis: 0.073, // 7,3% AN-Anteil
-    zusatzbeitrag: 0.008, // ~0,8% durchschnittl. Zusatzbeitrag
+    zusatzbeitrag: 0.0145, // 1,45% AN-Anteil (durchschnittl. Zusatzbeitrag 2026: 2,9%)
   },
 };
 
-const BBG_2025 = {
-  rente_west: 96600, // Beitragsbemessungsgrenze RV West
-  rente_ost: 96600, // 2025 vereinheitlicht
-  kranken: 66150, // BBG Kranken/Pflege
+const BBG_2026 = {
+  rente: 101400, // Beitragsbemessungsgrenze RV (bundesweit einheitlich seit 2025)
+  kranken: 69750, // BBG Kranken/Pflege
 };
 
 const STEUERKLASSEN = [
@@ -29,10 +29,10 @@ const STEUERKLASSEN = [
   { wert: 6, label: 'Steuerklasse 6', beschreibung: 'Zweitjob / Nebenjob' },
 ];
 
-// Vereinfachte Lohnsteuerberechnung 2025
+// Vereinfachte Lohnsteuerberechnung 2026
 function berechneLohnsteuer(jahresbrutto: number, steuerklasse: number): number {
-  // Grundfreibetrag 2025: 12.096 € (geplant)
-  const grundfreibetrag = 12096;
+  // Grundfreibetrag 2026: 12.348 € (§32a EStG)
+  const grundfreibetrag = 12348;
   
   // Vereinfachte Freibeträge je Steuerklasse
   let freibetrag = grundfreibetrag;
@@ -41,20 +41,25 @@ function berechneLohnsteuer(jahresbrutto: number, steuerklasse: number): number 
   
   const zvE = Math.max(0, jahresbrutto - freibetrag);
   
-  // 2025 Steuertarif (vereinfacht)
+  // 2026 Steuertarif (vereinfacht nach §32a EStG)
+  // Zonen: 0-12.348 (0%), 12.348-17.799 (14-24%), 17.799-69.878 (24-42%), 69.878-277.825 (42%), >277.825 (45%)
   let steuer = 0;
   if (zvE <= 0) {
     steuer = 0;
-  } else if (zvE <= 17005) {
+  } else if (zvE <= 17799 - grundfreibetrag) {
+    // Zone 1: 14-24% progressiv (bis 17.799€ zvE nach Grundfreibetrag-Abzug = 5.451€)
     const y = (zvE - 1) / 10000;
-    steuer = (922.98 * y + 1400) * y;
-  } else if (zvE <= 66760) {
-    const z = (zvE - 17005) / 10000;
-    steuer = (181.19 * z + 2397) * z + 1025.38;
-  } else if (zvE <= 277825) {
-    steuer = 0.42 * zvE - 10602.13;
+    steuer = (933.52 * y + 1400) * y;
+  } else if (zvE <= 69878 - grundfreibetrag) {
+    // Zone 2: 24-42% progressiv (bis 69.878€ zvE nach Grundfreibetrag-Abzug = 57.530€)
+    const z = (zvE - (17799 - grundfreibetrag)) / 10000;
+    steuer = (176.64 * z + 2397) * z + 1015.13;
+  } else if (zvE <= 277825 - grundfreibetrag) {
+    // Zone 3: 42% Spitzensteuersatz
+    steuer = 0.42 * zvE - 10911.92;
   } else {
-    steuer = 0.45 * zvE - 18936.88;
+    // Zone 4: 45% Reichensteuer
+    steuer = 0.45 * zvE - 18918.79;
   }
   
   // Steuerklasse 5 & 6 haben höhere Abzüge
@@ -93,21 +98,21 @@ export default function BruttoNettoRechner() {
   const ergebnis = useMemo(() => {
     const bruttoJahr = bruttoMonat * 12;
     
-    // Sozialversicherung
-    const rvBrutto = Math.min(bruttoJahr, BBG_2025.rente_west);
-    const kvBrutto = Math.min(bruttoJahr, BBG_2025.kranken);
+    // Sozialversicherung (2026 Werte)
+    const rvBrutto = Math.min(bruttoJahr, BBG_2026.rente);
+    const kvBrutto = Math.min(bruttoJahr, BBG_2026.kranken);
     
-    const rv = rvBrutto * SOZIALVERSICHERUNG_2025.rentenversicherung;
-    const av = rvBrutto * SOZIALVERSICHERUNG_2025.arbeitslosenversicherung;
+    const rv = rvBrutto * SOZIALVERSICHERUNG_2026.rentenversicherung;
+    const av = rvBrutto * SOZIALVERSICHERUNG_2026.arbeitslosenversicherung;
     
-    let pv = kvBrutto * SOZIALVERSICHERUNG_2025.pflegeversicherung.basis;
+    let pv = kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.basis;
     if (kinderlos) {
-      pv += kvBrutto * SOZIALVERSICHERUNG_2025.pflegeversicherung.kinderlos_zuschlag;
+      pv += kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.kinderlos_zuschlag;
     }
     
     const kv = kvBrutto * (
-      SOZIALVERSICHERUNG_2025.krankenversicherung.basis + 
-      SOZIALVERSICHERUNG_2025.krankenversicherung.zusatzbeitrag
+      SOZIALVERSICHERUNG_2026.krankenversicherung.basis + 
+      SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag
     );
     
     const svGesamt = rv + av + pv + kv;
@@ -275,11 +280,11 @@ export default function BruttoNettoRechner() {
                 <span>− {formatEuro(ergebnis.rv)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Krankenversicherung (~8,1%)</span>
+                <span>Krankenversicherung (~8,75%)</span>
                 <span>− {formatEuro(ergebnis.kv)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Pflegeversicherung ({kinderlos ? '2,3%' : '1,7%'})</span>
+                <span>Pflegeversicherung ({kinderlos ? '2,4%' : '1,8%'})</span>
                 <span>− {formatEuro(ergebnis.pv)}</span>
               </div>
               <div className="flex justify-between">
@@ -329,15 +334,19 @@ export default function BruttoNettoRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Berechnung nach <strong>Steuerformel 2025</strong> (BMF)</span>
+            <span>Berechnung nach <strong>Steuerformel 2026</strong> (BMF)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Grundfreibetrag: 12.096 €</strong> (geplant für 2025)</span>
+            <span><strong>Grundfreibetrag: 12.348 €</strong> (Stand 01.01.2026)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Beitragsbemessungsgrenzen <strong>RV: 96.600 €</strong> / <strong>KV: 66.150 €</strong></span>
+            <span>Beitragsbemessungsgrenzen <strong>RV: 101.400 €</strong> / <strong>KV: 69.750 €</strong></span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span>Durchschnittlicher KV-Zusatzbeitrag: <strong>2,9%</strong> (Ihr Wert kann abweichen)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -377,7 +386,7 @@ export default function BruttoNettoRechner() {
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen (Stand: 2026)</h4>
         <div className="space-y-1">
           <a 
             href="https://www.bmf-steuerrechner.de"
@@ -385,7 +394,7 @@ export default function BruttoNettoRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMF – Offizieller Lohnsteuerrechner
+            BMF – Offizieller Lohnsteuerrechner 2026
           </a>
           <a 
             href="https://www.deutsche-rentenversicherung.de"
@@ -393,7 +402,15 @@ export default function BruttoNettoRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Deutsche Rentenversicherung – Beitragssätze 2025
+            Deutsche Rentenversicherung – Beitragssätze
+          </a>
+          <a 
+            href="https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Bundesregierung – Sozialversicherungs-Rechengrößen 2026
           </a>
         </div>
       </div>
