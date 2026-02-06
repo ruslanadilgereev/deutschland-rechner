@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 4,
+  "lastAuditIndex": 5,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 2,
   "calculators": [
@@ -1443,6 +1443,71 @@
         "finanztip": "https://www.finanztip.de/buergergeld/"
       },
       "auditSummary": "Bürgergeld-Rechner audit cycle 2: All Regelsätze and Freibeträge verified correct. All 4 links working. Added comprehensive Mehrbedarf info section and detailed July 2026 Grundsicherungsgeld reform changes. Minor fixes: comment year update, improved SEO."
+    },
+    {
+      "calculator": "pendlerpauschale-rechner",
+      "date": "2026-02-06",
+      "cycle": 2,
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "SOURCE_LINK",
+          "severity": "MEDIUM",
+          "issue": "VLH link pointed to generic Pendlerpauschale-für-Einsteiger article that had not been updated for 2026 changes",
+          "fixed": true,
+          "newUrl": "https://www.vlh.de/presse/pressemitteilungen/fuenf-aenderungen-fuer-2026-mit-blick-auf-die-einkommensteuer.html"
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "No Zuständige Behörde section (Finanzamt/ELSTER info missing)",
+          "fixed": true,
+          "added": "New Zuständige Behörde section with Finanzamt info, ELSTER link, and Steuersoftware tip"
+        }
+      ],
+      "linkCheck": {
+        "bundesfinanzministerium.de/das-aendert-sich-2026": "PASS - 200 OK",
+        "adac.de/pendlerpauschale": "PASS - 200 OK",
+        "vlh.de/fuenf-aenderungen-2026": "PASS - 200 OK (updated URL)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+          "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/",
+          "https://www.zdfheute.de/politik/deutschland/pendlerpauschale-anstieg-2026-100.html",
+          "https://www.bundesregierung.de/breg-de/aktuelles/steueraenderungsgesetz-bundesrat-2383684"
+        ],
+        "2026ValuesVerified": {
+          "Pendlerpauschale": "0,38€/km ab erstem km ✓ (neu ab 01.01.2026)",
+          "Werbungskostenpauschale": "1.230€ ✓ (unverändert)",
+          "MaxArbeitstage": "230 ✓ (unverändert)",
+          "HomeofficesPauschale": "6€/Tag, max 1.260€ (210 Tage) ✓"
+        },
+        "bmfConfirmation": "Die Entfernungspauschale wird zum 1. Januar 2026 einheitlich auf 38 Cent ab dem ersten gefahrenen Kilometer erhöht."
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Werbungskostenpauschale 1.230€ warning present",
+        "edgeCases": "PASS - Homeoffice-Abzug, max 230 Arbeitstage, kürzeste Straßenverbindung, Verkehrsmittel-unabhängig",
+        "behoerde": "PASS - Added: Finanzamt section with ELSTER link and Steuersoftware tip",
+        "neuRegelung2026": "PASS - Clear info box explaining 38 Cent ab km 1 benefits"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "entfernung × 0.38 × effektiveArbeitstage",
+        "notes": "Simple unified calculation (no more two-tier system). Werbungskostenpauschale 1.230€ correctly deducted. Steuerersparnis on Überschuss correctly calculated based on Grenzsteuersatz."
+      },
+      "seoCheck": {
+        "title": "PASS - Pendlerpauschale-Rechner 2026 – Einheitlich 38 Cent/km berechnen",
+        "description": "PASS - Includes 2026, 38 Cent ab ERSTEM km, Homeoffice-Abzug, Steuerersparnis",
+        "keywords": "IMPLICIT - Title contains: Pendlerpauschale Rechner, 2026, 38 Cent, km"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "adac": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/",
+        "vlh": "https://www.vlh.de/presse/pressemitteilungen/fuenf-aenderungen-fuer-2026-mit-blick-auf-die-einkommensteuer.html",
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/steueraenderungsgesetz-bundesrat-2383684"
+      },
+      "auditSummary": "Pendlerpauschale-Rechner audit cycle 2: All 2026 values correct (38¢/km ab km 1). Minor fixes: Updated VLH source to current 2026 article, added Zuständige Behörde section with Finanzamt/ELSTER info. All links working."
     }
   ]
 }
