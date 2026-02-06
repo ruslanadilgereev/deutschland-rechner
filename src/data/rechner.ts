@@ -343,8 +343,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Steuer auf Schenkungen & Freibeträge',
     icon: '🎁',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Schenkungsteuer Rechner, Schenkung Freibetrag, Schenkung versteuern',
+    fertig: true,
+    seoKeywords: 'Schenkungsteuer Rechner, Schenkung Freibetrag, Schenkung versteuern, Schenkungsteuer 2025, 10-Jahres-Regel Schenkung, Schenkungsteuer Kinder',
+    quellen: [
+      'https://www.gesetze-im-internet.de/erbstg_1974/',
+      'https://www.gesetze-im-internet.de/bewg/',
+      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html',
+      'https://www.steuertipps.de/erbschaft-schenkung',
+    ],
   },
   {
     id: 'kapitalertragsteuer',
