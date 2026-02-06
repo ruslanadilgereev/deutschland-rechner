@@ -62,8 +62,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Kinderzuschlag-Anspruch prüfen (bis 292€/Kind)',
     icon: '💶',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Kinderzuschlag Rechner, Kinderzuschlag berechnen, KiZ 2025',
+    fertig: true,
+    seoKeywords: 'Kinderzuschlag Rechner, Kinderzuschlag berechnen, KiZ 2026, Kinderzuschlag Höhe',
+    quellen: [
+      'https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag',
+      'https://familienportal.de/familienportal/familienleistungen/kinderzuschlag',
+      'https://www.bmas.de/DE/Soziales/Familie-und-Kinder/Familienleistungen/Kinderzuschlag/kinderzuschlag.html',
+    ],
   },
   {
     id: 'mutterschutz',

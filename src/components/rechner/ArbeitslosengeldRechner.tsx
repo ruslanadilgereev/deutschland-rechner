@@ -1,13 +1,12 @@
 import { useState, useMemo } from 'react';
 
-// ALG I Berechnungsgrundlagen 2025/2026
+// ALG I Berechnungsgrundlagen 2026
 // Quelle: https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld
+// Quelle: https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514
 
-// Beitragsbemessungsgrenzen 2025/2026 (monatlich)
-const BEITRAGSBEMESSUNGSGRENZE = {
-  west: 7550, // 2025: 7.550€, 2026 geschätzt ähnlich
-  ost: 7450,  // 2025: 7.450€
-};
+// Beitragsbemessungsgrenze 2026 (monatlich) - bundesweit einheitlich seit 2025!
+// Keine Ost/West-Unterscheidung mehr ab 1.1.2025
+const BEITRAGSBEMESSUNGSGRENZE = 8450; // 2026: 8.450€/Monat = 101.400€/Jahr
 
 // Lohnsteuerklassen
 const STEUERKLASSEN = [1, 2, 3, 4, 5, 6] as const;
@@ -25,21 +24,23 @@ const ANSPRUCHSDAUER_TABELLE: { beschaeftigung: number; alter50: number; alter55
   { beschaeftigung: 48, standard: 12, alter50: 18, alter55: 22, alter58: 24 },
 ];
 
-// Sozialabgaben für pauschale Nettoberechnung (2025/2026)
+// Sozialabgaben für pauschale Nettoberechnung 2026
+// Quelle: https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026
 const SOZIALABGABEN = {
-  rentenversicherung: 0.093, // 9,3% AN-Anteil
-  krankenversicherung: 0.073, // 7,3% + Zusatzbeitrag
-  zusatzbeitrag_kv: 0.017, // Durchschnitt 1,7%
-  pflegeversicherung: 0.017, // 1,7% (mit Kindern) / 2,3% (ohne Kinder)
-  pflegeversicherung_kinderlos: 0.023, // Kinderlosenzuschlag ab 23 Jahre
-  arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil
+  rentenversicherung: 0.093, // 9,3% AN-Anteil (18,6% / 2)
+  krankenversicherung: 0.073, // 7,3% AN-Anteil (14,6% / 2)
+  zusatzbeitrag_kv: 0.0145, // 2026 durchschnittlich 2,9% → 1,45% AN-Anteil
+  pflegeversicherung: 0.018, // 2026: 1,8% AN-Anteil (3,6% / 2)
+  pflegeversicherung_kinderlos: 0.024, // 2026: 2,4% AN-Anteil (3,6% + 1,2% Kinderlosenzuschlag = 4,8% → 2,4% AN)
+  arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil (2,6% / 2)
 };
 
-// Vereinfachte Lohnsteuer-Näherung nach Steuerklasse (monatlich, 2025)
+// Vereinfachte Lohnsteuer-Näherung nach Steuerklasse (monatlich, 2026)
 // Echte Berechnung ist komplexer, dies ist eine Näherung
+// Quelle: https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html
 function berechneUngefaehreLohnsteuer(brutto: number, steuerklasse: Steuerklasse, kirchensteuer: boolean): number {
-  // Grundfreibetrag 2025: 11.784€/Jahr = 982€/Monat
-  const grundfreibetrag = 982;
+  // Grundfreibetrag 2026: 12.348€/Jahr = 1.029€/Monat
+  const grundfreibetrag = 1029;
   
   // Vereinfachte Steuerberechnung
   let steuerpflichtig = brutto - grundfreibetrag;
@@ -75,11 +76,10 @@ function berechneNetto(
   brutto: number,
   steuerklasse: Steuerklasse,
   kirchensteuer: boolean,
-  hatKinder: boolean,
-  region: 'west' | 'ost'
+  hatKinder: boolean
 ): { netto: number; details: any } {
-  // Beitragsbemessungsgrenze anwenden
-  const bemessungsbrutto = Math.min(brutto, BEITRAGSBEMESSUNGSGRENZE[region]);
+  // Beitragsbemessungsgrenze anwenden (bundesweit einheitlich seit 2025)
+  const bemessungsbrutto = Math.min(brutto, BEITRAGSBEMESSUNGSGRENZE);
   
   // Sozialabgaben berechnen
   const rv = bemessungsbrutto * SOZIALABGABEN.rentenversicherung;
@@ -134,11 +134,11 @@ export default function ArbeitslosengeldRechner() {
   const [hatKinder, setHatKinder] = useState(false);
   const [alter, setAlter] = useState(35);
   const [beschaeftigungMonate, setBeschaeftigungMonate] = useState(24);
-  const [region, setRegion] = useState<'west' | 'ost'>('west');
+  // Hinweis: Region (Ost/West) ist seit 2025 irrelevant - bundesweit einheitliche BBG
 
   const ergebnis = useMemo(() => {
     // 1. Netto berechnen (Bemessungsentgelt)
-    const { netto, details } = berechneNetto(bruttogehalt, steuerklasse, kirchensteuer, hatKinder, region);
+    const { netto, details } = berechneNetto(bruttogehalt, steuerklasse, kirchensteuer, hatKinder);
     
     // 2. ALG I berechnen (60% ohne Kinder, 67% mit Kinder)
     const alg1Prozent = hatKinder ? 0.67 : 0.60;
@@ -178,11 +178,10 @@ export default function ArbeitslosengeldRechner() {
       differenzZuNetto,
       differenzProzent,
       
-      // Sonstiges
-      region,
-      beitragsbemessungsgrenze: BEITRAGSBEMESSUNGSGRENZE[region],
+      // Sonstiges (BBG bundesweit einheitlich seit 2025)
+      beitragsbemessungsgrenze: BEITRAGSBEMESSUNGSGRENZE,
     };
-  }, [bruttogehalt, steuerklasse, kirchensteuer, hatKinder, alter, beschaeftigungMonate, region]);
+  }, [bruttogehalt, steuerklasse, kirchensteuer, hatKinder, alter, beschaeftigungMonate]);
 
   const formatEuro = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €';
 
@@ -351,36 +350,6 @@ export default function ArbeitslosengeldRechner() {
           )}
         </div>
 
-        {/* Region */}
-        <div className="mb-6">
-          <label className="block mb-3">
-            <span className="text-gray-700 font-medium">Region</span>
-            <span className="text-xs text-gray-500 block mt-1">Für Beitragsbemessungsgrenze</span>
-          </label>
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() => setRegion('west')}
-              className={`py-3 px-4 rounded-xl font-medium transition-all ${
-                region === 'west'
-                  ? 'bg-blue-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              🇩🇪 West
-            </button>
-            <button
-              onClick={() => setRegion('ost')}
-              className={`py-3 px-4 rounded-xl font-medium transition-all ${
-                region === 'ost'
-                  ? 'bg-blue-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              🇩🇪 Ost
-            </button>
-          </div>
-        </div>
-
         {/* Kirchensteuer */}
         <div className="mb-4">
           <button
@@ -476,7 +445,7 @@ export default function ArbeitslosengeldRechner() {
           
           {ergebnis.bruttogehalt > ergebnis.beitragsbemessungsgrenze && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-amber-600">
-              <span>⚠️ Beitragsbemessungsgrenze ({region === 'west' ? 'West' : 'Ost'})</span>
+              <span>⚠️ Beitragsbemessungsgrenze 2026</span>
               <span>{formatEuro(ergebnis.beitragsbemessungsgrenze)}</span>
             </div>
           )}
@@ -765,12 +734,20 @@ export default function ArbeitslosengeldRechner() {
             BMAS – Arbeitsförderung
           </a>
           <a 
-            href="https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2024/beitragssaetze-beitragsbemessungsgrenzen-2025.html"
+            href="https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            DRV – Beitragsbemessungsgrenzen 2025
+            Bundesregierung – Beitragsbemessungsgrenzen 2026
+          </a>
+          <a 
+            href="https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            TK – Beitragsbemessungsgrenzen 2026
           </a>
         </div>
       </div>
