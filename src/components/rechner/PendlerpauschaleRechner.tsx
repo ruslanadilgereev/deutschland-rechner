@@ -249,6 +249,34 @@ export default function PendlerpauschaleRechner() {
         </div>
       </div>
 
+      {/* Zuständige Behörde */}
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 className="font-bold text-gray-800 mb-3">🏛️ Zuständige Behörde</h3>
+        <div className="space-y-3 text-sm text-gray-600">
+          <p>
+            Die Pendlerpauschale gibst du in der <strong>Steuererklärung</strong> an – genauer in der <strong>Anlage N</strong> (Werbungskosten).
+          </p>
+          <div className="flex gap-3 p-3 bg-blue-50 rounded-xl">
+            <span className="text-xl">📋</span>
+            <div>
+              <p className="font-medium text-blue-800">Finanzamt</p>
+              <p className="text-blue-700">Dein zuständiges Finanzamt bearbeitet deine Steuererklärung. Du erreichst es am einfachsten über ELSTER.</p>
+              <a 
+                href="https://www.elster.de" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline inline-block mt-1"
+              >
+                → www.elster.de (Online-Steuererklärung)
+              </a>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500">
+            Tipp: Viele Steuersoftware-Programme (z.B. WISO Steuer, Tax) berechnen die Pendlerpauschale automatisch.
+          </p>
+        </div>
+      </div>
+
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
@@ -270,12 +298,12 @@ export default function PendlerpauschaleRechner() {
             ADAC – Pendlerpauschale 2026
           </a>
           <a 
-            href="https://www.vlh.de/arbeiten-pendeln/pendeln/die-pendlerpauschale-fuer-einsteiger.html"
+            href="https://www.vlh.de/presse/pressemitteilungen/fuenf-aenderungen-fuer-2026-mit-blick-auf-die-einkommensteuer.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            VLH – Pendlerpauschale für Einsteiger
+            VLH – Fünf Steueränderungen 2026 (inkl. Pendlerpauschale)
           </a>
         </div>
       </div>
