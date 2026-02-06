@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 4,
+  "lastAuditIndex": 5,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -389,6 +389,86 @@
         "arbeitsagentur": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld",
         "bmas": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html",
         "jobcenter": "https://www.jobcenter.digital"
+      }
+    },
+    {
+      "calculator": "pendlerpauschale-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Calculation used 2025 formula (30¢ first 20km, 38¢ from km 21). New 2026 law: 38¢ unified from first km!",
+          "fixed": true,
+          "oldValue": "km_1_20: 0.30, km_ab_21: 0.38",
+          "newValue": "km_einheitlich: 0.38 (ab km 1)"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "VLH link https://www.vlh.de/arbeiten-pendeln/pendeln/entfernungspauschale.html returned 404",
+          "fixed": true,
+          "newUrl": "https://www.vlh.de/arbeiten-pendeln/pendeln/die-pendlerpauschale-fuer-einsteiger.html"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "Page title, description, subtitle, constant names, and info section all said 2025 instead of 2026",
+          "fixed": true
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "MEDIUM",
+          "issue": "BMF link was too generic (homepage), improved to specific 2026 changes page",
+          "fixed": true,
+          "newUrl": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "LOW",
+          "issue": "Added ADAC as additional authoritative source",
+          "fixed": true,
+          "newUrl": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/"
+        }
+      ],
+      "linkCheck": {
+        "bundesfinanzministerium.de/das-aendert-sich-2026": "PASS - 200 OK",
+        "adac.de/pendlerpauschale": "PASS - 200 OK",
+        "vlh.de/pendlerpauschale-fuer-einsteiger": "PASS - 200 OK",
+        "vlh.de/entfernungspauschale.html": "FAIL - 404 (replaced)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+          "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/"
+        ],
+        "2026Values": {
+          "pauschale_pro_km": "0,38€ ab dem ersten km ✓ (neu ab 01.01.2026)",
+          "arbeitstage_max": "230 ✓",
+          "werbungskostenpauschale": "1.230€ ✓"
+        },
+        "lawChange": "Entfernungspauschale wird zum 1. Januar 2026 einheitlich auf 38 Cent ab dem ersten gefahrenen Kilometer erhöht (§ 9 Abs. 1 Satz 3 EStG)"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Werbungskostenpauschale 1.230€ warning present",
+        "edgeCases": "PASS - Homeoffice-Tage Abzug, max 230 Arbeitstage, kürzeste Straßenverbindung explained",
+        "verkehrsmittel": "PASS - Gilt unabhängig vom Verkehrsmittel (Auto, Bahn, Fahrrad)",
+        "neuRegelung2026": "PASS - Added info box explaining the new unified 38¢ rate benefits shorter commuters"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Simplified calculation: entfernung * 0.38 * effektiveArbeitstage. No more two-tier system. Werbungskostenpauschale 1.230€ correctly deducted. Steuerersparnis on Überschuss correctly calculated."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Pendlerpauschale-Rechner 2026 – Einheitlich 38 Cent/km berechnen'",
+        "description": "PASS - Includes 2026, 38 Cent ab ERSTEM km, Homeoffice-Abzug, Steuerersparnis",
+        "keywords": "IMPLICIT - Title contains: Pendlerpauschale Rechner, 2026, 38 Cent, km"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "adac": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/",
+        "vlh": "https://www.vlh.de/arbeiten-pendeln/pendeln/die-pendlerpauschale-fuer-einsteiger.html"
       }
     }
   ]
