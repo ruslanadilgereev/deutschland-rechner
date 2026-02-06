@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 1,
+  "lastAuditIndex": 2,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -140,6 +140,82 @@
         "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
         "tk": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
         "finanztip": "https://www.finanztip.de/beitragsbemessungsgrenze/"
+      }
+    },
+    {
+      "calculator": "elterngeld-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Einkommensgrenze was 200.000€ (Paare) / 150.000€ (Alleinerziehend) - outdated values from before April 2025",
+          "fixed": true,
+          "newValue": "175.000€ einheitlich für alle (seit 1. April 2025)"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "CRITICAL",
+          "issue": "ElterngeldDigital link https://familienportal.de/familienportal/meta/egon returned 404",
+          "fixed": true,
+          "newUrl": "https://www.elterngeld-digital.de/"
+        },
+        {
+          "type": "SOURCE_LINK",
+          "severity": "MEDIUM",
+          "issue": "BMFSFJ domain changed to bmbfsfj.bund.de",
+          "fixed": true,
+          "newUrl": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "All references said 2025 instead of 2026 (variable name, title, header)",
+          "fixed": true
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "Missing edge cases: Frühchen-Regel, Mehrlingsbonus, Geschwisterbonus",
+          "fixed": true,
+          "added": "New 'Sonderregelungen' section with Frühchen (4 Extra-Monate), Mehrlinge (+300€), Geschwisterbonus (+10%)"
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "Missing note about April 2025 reform (Neuregelung gleichzeitiger Bezug)",
+          "fixed": true,
+          "added": "Note about new rules: einheitliche Einkommensgrenze, max 1 month parallel bezug"
+        }
+      ],
+      "linkCheck": {
+        "familienportal.de/elterngeld": "PASS - 200 OK",
+        "bmbfsfj.bund.de/elterngeld": "PASS - 200 OK",
+        "elterngeld-digital.de": "PASS - 200 OK",
+        "familienportal.de/meta/egon": "FAIL - 404 (replaced)"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 3-month deadline warning present",
+        "edgeCases": "PASS - Now includes Frühchen, Mehrlinge, Geschwisterbonus",
+        "behoerde": "PASS - Elterngeldstelle mentioned, ElterngeldDigital link with 10 Bundesländer",
+        "deadlines": "PASS - 3 month rückwirkend noted",
+        "neuregelung2025": "PASS - April 2025 reform explained"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Ersatzrate 65-67% correct. Gleitzone 1200-1240€ implemented. Min/Max bounds correct (300/1800 Basis, 150/900 Plus). ElterngeldPlus = Basis/2 correct. Partnermonate logic correct."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Elterngeld-Rechner 2026 – Basiselterngeld & ElterngeldPlus berechnen'",
+        "description": "PASS - Includes 2026, amount ranges, Einkommensgrenze 175.000€",
+        "keywords": "IMPLICIT - Title and description contain: Elterngeld Rechner, 2026, Basiselterngeld, ElterngeldPlus, Einkommensgrenze"
+      },
+      "officialSources": {
+        "familienportal": "https://familienportal.de/familienportal/familienleistungen/elterngeld",
+        "bmbfsfj": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/neuregelung-elterngeld-2268810",
+        "bmbfsfj_neuregelung": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588"
       }
     }
   ]
