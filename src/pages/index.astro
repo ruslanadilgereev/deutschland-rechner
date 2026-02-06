@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RechnerCard from '../components/RechnerCard';
+import { rechnerListe, kategorien } from '../data/rechner';
+
+// Group by category
+const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
+  key,
+  ...kat,
+  rechner: rechnerListe.filter(r => r.kategorie === key),
+}));
+---
+
+<Layout title="Alle Rechner">
+  <main class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 px-4">
+      <div class="max-w-2xl mx-auto text-center">
+        <h1 class="text-3xl font-bold mb-2">🇩🇪 Deutschlandrechner</h1>
+        <p class="text-blue-100">Alle wichtigen Rechner – 1 Klick entfernt</p>
+      </div>
+    </header>
+
+    <!-- Search (optional für später) -->
+    <div class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b px-4 py-3">
+      <div class="max-w-2xl mx-auto">
+        <input 
+          type="search" 
+          placeholder="🔍 Rechner suchen..." 
+          class="w-full px-4 py-3 rounded-xl bg-gray-100 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
+          id="search-input"
+        />
+      </div>
+    </div>
+
+    <!-- Rechner Liste -->
+    <div class="max-w-2xl mx-auto px-4 py-6 space-y-8" id="rechner-liste">
+      {gruppiertNachKategorie.map(({ key, name, icon, color, rechner }) => (
+        <section class="kategorie-section" data-kategorie={key}>
+          <div class="flex items-center gap-2 mb-4">
+            <span class={`w-8 h-8 rounded-lg ${color} flex items-center justify-center text-white text-sm`}>
+              {icon}
+            </span>
+            <h2 class="font-bold text-gray-800">{name}</h2>
+            <span class="text-xs text-gray-400">({rechner.length})</span>
+          </div>
+          <div class="space-y-3">
+            {rechner.map((r) => (
+              <div class="rechner-item" data-name={r.name.toLowerCase()}>
+                <RechnerCard rechner={r} client:load />
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-400 text-sm">
+      <p>© 2025 Deutschlandrechner</p>
+      <p class="mt-1">Alle Berechnungen ohne Gewähr</p>
+    </footer>
+  </main>
+</Layout>
+
+<script>
+  // Simple search functionality
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const rechnerItems = document.querySelectorAll('.rechner-item');
+  const kategorienSections = document.querySelectorAll('.kategorie-section');
+
+  searchInput?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    
+    if (!query) {
+      rechnerItems.forEach(item => (item as HTMLElement).style.display = 'block');
+      kategorienSections.forEach(section => (section as HTMLElement).style.display = 'block');
+      return;
+    }
+
+    rechnerItems.forEach(item => {
+      const name = item.getAttribute('data-name') || '';
+      const matches = name.includes(query);
+      (item as HTMLElement).style.display = matches ? 'block' : 'none';
+    });
+
+    // Hide empty categories
+    kategorienSections.forEach(section => {
+      const visibleItems = section.querySelectorAll('.rechner-item[style="display: block"], .rechner-item:not([style])');
+      const hasVisible = Array.from(visibleItems).some(item => 
+        (item as HTMLElement).style.display !== 'none'
+      );
+      (section as HTMLElement).style.display = hasVisible ? 'block' : 'none';
+    });
+  });
+</script>

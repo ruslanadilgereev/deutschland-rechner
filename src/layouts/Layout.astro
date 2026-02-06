@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Alle deutschen Rechner auf einen Blick. Kindergeld, Bürgergeld, Brutto-Netto und mehr." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1a56db" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Deutschlandrechner</title>
+  </head>
+  <body class="safe-area-top safe-area-bottom">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
