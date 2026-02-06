@@ -1,5 +1,7 @@
 {
-  "lastAuditIndex": 11,
+  "lastAuditIndex": 0,
+  "lastAuditDate": "2026-02-06",
+  "currentCycle": 2,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -1125,6 +1127,53 @@
         "bmf_steuerrechner": "https://www.bmf-steuerrechner.de",
         "elster": "https://www.elster.de"
       }
+    },
+    {
+      "calculator": "kindergeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 2,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "arbeitsagentur.de/kindergeld-anspruch-hoehe-dauer": "PASS - 200 OK",
+        "arbeitsagentur.de/kindergeld-antrag-starten": "PASS - 200 OK",
+        "arbeitsagentur.de/familienkasse-der-ba": "PASS - 200 OK",
+        "familienportal.de/kindergeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.arbeitsagentur.de/presse/2025-53-kindergeld-steigt-ab-januar-2026",
+          "https://familienportal.de/familienportal/familienleistungen/kindergeld",
+          "https://www.dgb.de/service/ratgeber/kindergeld/",
+          "https://www.deutscher-familienverband.de/familien-2026-was-ist-neu-in-diesem-jahr/"
+        ],
+        "2026Values": {
+          "Kindergeld_pro_Kind": "259€/Monat ✓ (confirmed by BA press release)",
+          "Jahr": "3.108€ (259€ × 12) ✓",
+          "Staffelung": "Keine - einheitlich für alle Kinder seit 2023 ✓",
+          "Altersgrenze": "18 Jahre (25 in Ausbildung) ✓"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Antrag erforderlich warning present",
+        "edgeCases": "PASS - Age limits (18/25), retroactive claim (6 months), documents required all mentioned",
+        "behoerde": "PASS - Familienkasse complete with hotline 0800 4 555530, online-antrag, Standortsuche",
+        "deadlines": "PASS - 6 month retroactive claim limit mentioned",
+        "unterlagen": "PASS - Geburtsurkunde, Steuer-ID, Ausbildungsnachweis listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Simple linear calculation: anzahlKinder × 259€. Correct formula, no edge cases needed."
+      },
+      "seoCheck": {
+        "title": "PASS - Kindergeld-Rechner 2026",
+        "description": "PASS - Includes 259€ pro Kind, aktuellen Sätzen, Familienkasse-Kontakt",
+        "keywords": "PASS - Includes: Kindergeld Rechner, Kindergeld 2026, Kindergeld Höhe, Kindergeld berechnen, Kindergeld beantragen, Familienkasse, 259 Euro Kindergeld"
+      },
+      "newsNoted": {
+        "automatisierung_ab_mitte_2026": "Familienkasse will automate some Kindergeld processing from mid-2026 (source: BA/CHIP). Does not affect calculator values."
+      },
+      "auditSummary": "Clean audit - all links working, all 2026 values correct (259€), legal sections complete, calculation logic verified. No issues found."
     }
   ]
 }
