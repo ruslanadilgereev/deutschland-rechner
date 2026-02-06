@@ -106,8 +106,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Errechneter Geburtstermin & SSW',
     icon: '🗓️',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Geburtstermin Rechner, SSW Rechner, Schwangerschaftswoche',
+    fertig: true,
+    seoKeywords: 'Geburtstermin Rechner, SSW Rechner, Schwangerschaftswoche berechnen, ET berechnen, Entbindungstermin Rechner, Geburtstermin berechnen, wann kommt mein Baby, Schwangerschaftsrechner 2025',
+    quellen: [
+      'https://www.familienplanung.de/schwangerschaft/',
+      'https://www.frauenaerzte-im-netz.de/schwangerschaft-geburt/',
+      'https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz',
+    ],
   },
   {
     id: 'scheidungskosten',
