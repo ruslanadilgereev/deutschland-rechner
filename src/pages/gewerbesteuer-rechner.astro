@@ -1,0 +1,299 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GewerbesteuerRechner from '../components/rechner/GewerbesteuerRechner';
+
+const title = "Gewerbesteuer-Rechner 2025/2026 – Hebesatz, Freibetrag & Berechnung";
+const description = "Gewerbesteuer Rechner 2025: Berechnen Sie Ihre Gewerbesteuer online. Mit Hebesatz-Vergleich, Freibetrag, ESt-Anrechnung & Steuermessbetrag. Für GmbH, Einzelunternehmer & Personengesellschaften.";
+const keywords = "Gewerbesteuer Rechner, Gewerbesteuer berechnen, Gewerbesteuer 2025, Gewerbesteuer 2026, Hebesatz Rechner, Steuermessbetrag, Gewerbesteuer GmbH, Gewerbesteuer Einzelunternehmer, Gewerbesteuer Freibetrag, Gewerbesteuer Anrechnung, Gewerbeertrag berechnen, Gewerbesteuer Hebesatz Vergleich, Gewerbesteuer Personengesellschaft, ESt Anrechnung Gewerbesteuer";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏢</span>
+          <div>
+            <h1 class="text-2xl font-bold">Gewerbesteuer-Rechner</h1>
+            <p class="text-amber-100 text-sm">Hebesatz, Freibetrag & Berechnung 2025/2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GewerbesteuerRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Gewerbesteuer 2025/2026: Alles was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Gewerbesteuer</strong> ist eine der wichtigsten Steuern für Unternehmen in Deutschland. 
+            Als Gemeindesteuer finanziert sie kommunale Aufgaben und wird von allen gewerblichen Unternehmen 
+            erhoben. Mit unserem <strong>Gewerbesteuer-Rechner</strong> ermitteln Sie schnell und präzise, 
+            wie viel Gewerbesteuer Ihr Unternehmen zahlen muss.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Gewerbesteuer berechnet?</h3>
+          <p>
+            Die Berechnung der Gewerbesteuer erfolgt in drei Schritten nach dem <strong>Gewerbesteuergesetz (GewStG)</strong>:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li>
+              <strong>Gewerbeertrag ermitteln:</strong> Gewinn aus Gewerbebetrieb 
+              + Hinzurechnungen (z.B. Zinsen, Mieten) − Kürzungen (z.B. Grundbesitz) − Freibetrag
+            </li>
+            <li>
+              <strong>Steuermessbetrag berechnen:</strong> Gewerbeertrag × 3,5% (Steuermesszahl)
+            </li>
+            <li>
+              <strong>Gewerbesteuer berechnen:</strong> Steuermessbetrag × Hebesatz der Gemeinde
+            </li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Hebesatz: Warum der Standort wichtig ist</h3>
+          <p>
+            Der <strong>Hebesatz</strong> wird von jeder Gemeinde selbst festgelegt und variiert stark:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Mindest-Hebesatz:</strong> 200% (gesetzlich vorgeschrieben)</li>
+            <li><strong>Niedrigste Hebesätze:</strong> ca. 200-250% (z.B. Monheim, Zossen)</li>
+            <li><strong>Durchschnitt:</strong> ca. 400-450%</li>
+            <li><strong>Höchste Hebesätze:</strong> bis zu 900% (einige Großstädte)</li>
+          </ul>
+          <p>
+            Die Standortwahl kann damit bei gleichem Gewinn zu <strong>Unterschieden von mehreren tausend Euro</strong> führen!
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibetrag: 24.500 € für Personenunternehmen</h3>
+          <p>
+            <strong>Einzelunternehmer</strong> und <strong>Personengesellschaften</strong> (GbR, OHG, KG) 
+            profitieren von einem Freibetrag von <strong>24.500 €</strong> pro Jahr. Das bedeutet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Bei einem Gewerbeertrag bis 24.500 € fällt keine Gewerbesteuer an</li>
+            <li>Darüber wird nur der überschießende Betrag besteuert</li>
+            <li><strong>Kapitalgesellschaften (GmbH, UG, AG)</strong> haben keinen Freibetrag!</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">ESt-Anrechnung: Gewerbesteuer reduzieren</h3>
+          <p>
+            Für <strong>natürliche Personen</strong> (Einzelunternehmer, Gesellschafter von Personengesellschaften) 
+            gibt es eine wichtige Entlastung nach <strong>§ 35 EStG</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Das <strong>4-fache des Steuermessbetrags</strong> wird auf die Einkommensteuer angerechnet</li>
+            <li>Bei Hebesätzen bis 400% wird die Gewerbesteuer praktisch vollständig kompensiert</li>
+            <li>Bei höheren Hebesätzen verbleibt eine Restbelastung</li>
+          </ul>
+          <p>
+            <strong>Beispiel:</strong> Bei 400% Hebesatz und 10.000 € Steuermessbetrag zahlen Sie 40.000 € Gewerbesteuer, 
+            können aber 40.000 € (4 × 10.000 €) auf Ihre Einkommensteuer anrechnen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Hinzurechnungen & Kürzungen</h3>
+          <p>
+            Der Gewerbeertrag weicht oft vom steuerlichen Gewinn ab:
+          </p>
+          <h4 class="font-semibold mt-3">Hinzurechnungen (§ 8 GewStG):</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>25% der Zinsen und Finanzierungskosten (nach 200.000 € Freibetrag)</li>
+            <li>50% der Mieten/Pachten für bewegliche Güter</li>
+            <li>75% der Mieten/Pachten für unbewegliche Güter</li>
+            <li>25% der Lizenzgebühren</li>
+          </ul>
+          <h4 class="font-semibold mt-3">Kürzungen (§ 9 GewStG):</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>1,2% des Einheitswerts von Grundbesitz</li>
+            <li>Gewinne aus Beteiligungen an anderen Gewerbebetrieben</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gewerbesteuer: GmbH vs. Einzelunternehmen</h3>
+          <p>
+            Die Rechtsform beeinflusst die Gewerbesteuer erheblich:
+          </p>
+          <table class="w-full text-sm border-collapse mt-2">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="border p-2 text-left">Aspekt</th>
+                <th class="border p-2 text-left">Einzelunternehmen</th>
+                <th class="border p-2 text-left">GmbH</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">Freibetrag</td>
+                <td class="border p-2 text-green-600">24.500 €</td>
+                <td class="border p-2 text-red-600">0 €</td>
+              </tr>
+              <tr>
+                <td class="border p-2">ESt-Anrechnung</td>
+                <td class="border p-2 text-green-600">Ja (4× Messbetrag)</td>
+                <td class="border p-2 text-red-600">Nein</td>
+              </tr>
+              <tr>
+                <td class="border p-2">Zusätzliche Steuern</td>
+                <td class="border p-2">Einkommensteuer</td>
+                <td class="border p-2">Körperschaftsteuer (15%)</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer ist gewerbesteuerpflichtig?</h3>
+          <p><strong>Gewerbesteuerpflichtig</strong> sind:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Alle im Inland betriebenen Gewerbebetriebe</li>
+            <li>Kapitalgesellschaften (kraft Rechtsform immer gewerblich)</li>
+            <li>Gewerblich tätige Personengesellschaften</li>
+          </ul>
+          <p class="mt-3"><strong>Nicht gewerbesteuerpflichtig</strong> sind:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Freiberufler (Ärzte, Rechtsanwälte, Steuerberater, Architekten, etc.)</li>
+            <li>Land- und Forstwirte</li>
+            <li>Vermögensverwaltende Tätigkeiten</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gewerbesteuer-Vorauszahlungen</h3>
+          <p>
+            Die Gewerbesteuer wird <strong>quartalsweise</strong> im Voraus gezahlt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>15. Februar (für Q1)</li>
+            <li>15. Mai (für Q2)</li>
+            <li>15. August (für Q3)</li>
+            <li>15. November (für Q4)</li>
+          </ul>
+          <p>
+            Die Höhe richtet sich nach der Gewerbesteuer des Vorjahres. Nach Abgabe der 
+            <strong>Gewerbesteuererklärung</strong> erfolgt die Schlussabrechnung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gewerbesteuererklärung: Fristen & Pflichten</h3>
+          <p>
+            Die <strong>Gewerbesteuererklärung</strong> muss jährlich abgegeben werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Frist:</strong> 31. Juli des Folgejahres (mit Steuerberater: 28./29. Februar des übernächsten Jahres)</li>
+            <li><strong>Formulare:</strong> GewSt 1 A (Hauptvordruck), ggf. Anlagen</li>
+            <li><strong>Elektronisch:</strong> Pflicht zur elektronischen Übermittlung über ELSTER</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gewerbesteuer sparen: Tipps</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Standortwahl prüfen:</strong> Gemeinden mit niedrigem Hebesatz können 
+              tausende Euro sparen (z.B. Grünwald bei München: 240%)
+            </li>
+            <li>
+              <strong>Freibetrag nutzen:</strong> Als Einzelunternehmer oder Personengesellschaft 
+              den Freibetrag von 24.500 € optimal ausnutzen
+            </li>
+            <li>
+              <strong>Hinzurechnungen minimieren:</strong> Finanzierungskosten und Mieten 
+              im Auge behalten (Freibetrag: 200.000 €)
+            </li>
+            <li>
+              <strong>Rechtsform überdenken:</strong> Je nach Situation kann ein Wechsel 
+              der Rechtsform steuerlich sinnvoll sein
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gewerbesteuer-Rechner 2025/2026",
+    "description": description,
+    "url": "https://deutschland-rechner.de/gewerbesteuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Gewerbesteuer 2025?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Höhe der Gewerbesteuer hängt vom Hebesatz der Gemeinde ab. Die Formel lautet: Gewerbeertrag × 3,5% (Steuermesszahl) × Hebesatz. Bei einem Gewinn von 100.000 € und 400% Hebesatz beträgt die Gewerbesteuer etwa 10.500 € (nach Freibetrag von 24.500 € für Einzelunternehmer)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer muss Gewerbesteuer zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gewerbesteuerpflichtig sind alle gewerblichen Unternehmen: Einzelunternehmer mit Gewerbebetrieb, Personengesellschaften (GbR, OHG, KG) und Kapitalgesellschaften (GmbH, UG, AG). Nicht gewerbesteuerpflichtig sind Freiberufler, Land- und Forstwirte sowie rein vermögensverwaltende Tätigkeiten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Gewerbesteuer-Freibetrag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Freibetrag beträgt 24.500 € pro Jahr und gilt nur für Einzelunternehmer und Personengesellschaften. Kapitalgesellschaften (GmbH, UG, AG) haben keinen Freibetrag. Bei einem Gewerbeertrag unter 24.500 € fällt somit keine Gewerbesteuer an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Hebesatz bei der Gewerbesteuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Hebesatz wird von jeder Gemeinde selbst festgelegt und liegt zwischen 200% (Mindest-Hebesatz) und über 900% bei einigen Großstädten. Der Durchschnitt liegt bei etwa 400-450%. Der Hebesatz wird mit dem Steuermessbetrag multipliziert, um die Gewerbesteuer zu berechnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird die Gewerbesteuer auf die Einkommensteuer angerechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, für Einzelunternehmer und Gesellschafter von Personengesellschaften wird das 4-fache des Steuermessbetrags auf die Einkommensteuer angerechnet (§ 35 EStG). Bei einem Hebesatz von 400% wird die Gewerbesteuer dadurch praktisch vollständig kompensiert. Für GmbHs gilt diese Anrechnung nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann muss die Gewerbesteuererklärung abgegeben werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gewerbesteuererklärung muss bis zum 31. Juli des Folgejahres elektronisch über ELSTER abgegeben werden. Mit Steuerberater verlängert sich die Frist auf den 28./29. Februar des übernächsten Jahres. Vorauszahlungen sind quartalsweise am 15.02., 15.05., 15.08. und 15.11. fällig."
+        }
+      }
+    ]
+  })} />
+</Layout>

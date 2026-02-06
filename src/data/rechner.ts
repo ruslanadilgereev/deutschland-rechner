@@ -401,8 +401,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Gewerbesteuer für Unternehmen berechnen',
     icon: '🏢',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Gewerbesteuer Rechner, Gewerbesteuer berechnen, Hebesatz',
+    fertig: true,
+    seoKeywords: 'Gewerbesteuer Rechner, Gewerbesteuer berechnen, Hebesatz, Gewerbesteuer 2025, Steuermessbetrag, Gewerbesteuer GmbH, Gewerbesteuer Einzelunternehmer, Gewerbesteuer Freibetrag',
+    quellen: [
+      'https://www.gesetze-im-internet.de/gewstg/',
+      'https://www.gesetze-im-internet.de/estg/__35.html',
+      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Gewerbesteuer/gewerbesteuer.html',
+      'https://www.ihk.de/themen/steuern/gewerbesteuer',
+      'https://www.destatis.de/DE/Themen/Staat/Steuern/Gewerbesteuer/_inhalt.html',
+    ],
   },
   {
     id: 'mehrwertsteuer',
