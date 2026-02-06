@@ -34,7 +34,8 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Basis-Elterngeld & ElterngeldPlus berechnen',
     icon: '🍼',
     kategorie: 'familie',
-    fertig: false,
+    fertig: true,
+    quellen: ['https://familienportal.de/familienportal/familienleistungen/elterngeld'],
   },
   {
     id: 'unterhalt',
@@ -52,7 +53,8 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Was bleibt vom Gehalt übrig?',
     icon: '💵',
     kategorie: 'arbeit',
-    fertig: false,
+    fertig: true,
+    quellen: ['https://www.bmf-steuerrechner.de', 'https://www.deutsche-rentenversicherung.de'],
   },
   {
     id: 'minijob',
@@ -102,7 +104,8 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Steuer beim Immobilienkauf (nach Bundesland)',
     icon: '🏗️',
     kategorie: 'steuern',
-    fertig: false,
+    fertig: true,
+    quellen: ['https://www.bundesfinanzministerium.de'],
   },
   
   // Sozialleistungen
