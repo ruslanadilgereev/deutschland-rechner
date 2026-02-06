@@ -215,6 +215,38 @@ export default function GrunderwerbsteuerRechner() {
         </div>
       </div>
 
+      {/* Förderprogramme für Erstkäufer */}
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 className="font-bold text-gray-800 mb-3">💰 Förderprogramme für Erstkäufer</h3>
+        <div className="space-y-3 text-sm">
+          <div className="flex gap-3 p-3 bg-blue-50 rounded-xl">
+            <span className="text-xl">🏠</span>
+            <div>
+              <p className="font-medium text-blue-800">Hessengeld (seit März 2024)</p>
+              <p className="text-blue-700">Erstkäufer in Hessen können bis zu <strong>10.000 € pro Erwachsenen</strong> und <strong>5.000 € pro Kind</strong> zurückbekommen – max. die gezahlte Grunderwerbsteuer. Auszahlung in 10 Jahresraten.</p>
+              <a 
+                href="https://finanzen.hessen.de/initiativen/hessengeld"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline mt-1 inline-block"
+              >
+                → Antrag stellen
+              </a>
+            </div>
+          </div>
+          <div className="flex gap-3 p-3 bg-green-50 rounded-xl">
+            <span className="text-xl">🌲</span>
+            <div>
+              <p className="font-medium text-green-800">Thüringen Erstkäufer-Freibetrag (seit 2024)</p>
+              <p className="text-green-700">Bei selbstgenutztem Wohneigentum: <strong>bis zu 25.000 € steuerfrei</strong> – zusätzlich zum reduzierten Steuersatz von 5,0%.</p>
+            </div>
+          </div>
+          <p className="text-gray-500 text-xs mt-2">
+            ⚠️ NRW.Zuschuss Wohneigentum ist seit Ende 2024 eingestellt.
+          </p>
+        </div>
+      </div>
+
       {/* Wichtige Hinweise */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">📋 Wichtige Hinweise</h3>
@@ -247,6 +279,14 @@ export default function GrunderwerbsteuerRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Bundesfinanzministerium – Grundsteuer & Grunderwerbsteuer
+          </a>
+          <a 
+            href="https://www.finanztip.de/grunderwerbsteuer/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Finanztip – Grunderwerbsteuer Ratgeber (Stand: Feb 2026)
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/grestg_1983/"
