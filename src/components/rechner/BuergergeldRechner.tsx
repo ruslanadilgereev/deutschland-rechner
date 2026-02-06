@@ -334,6 +334,10 @@ export default function BuergergeldRechner() {
             <span>✓</span>
             <span>Vermögen bis <strong>40.000 € geschützt</strong> (1 Jahr Karenzzeit)</span>
           </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>+25 € Kindersofortzuschlag</strong> pro Kind zusätzlich</span>
+          </li>
         </ul>
       </div>
 
@@ -378,7 +382,7 @@ export default function BuergergeldRechner() {
         <h4 className="font-bold text-blue-800 mb-2">➕ Mehrbedarf (nicht im Rechner enthalten)</h4>
         <ul className="text-sm text-blue-700 space-y-1">
           <li>• <strong>Alleinerziehende:</strong> +12% bis +60% je nach Kinderzahl/Alter</li>
-          <li>• <strong>Schwangere:</strong> +17% ab 12. Schwangerschaftswoche</li>
+          <li>• <strong>Schwangere:</strong> +17% ab 13. Schwangerschaftswoche</li>
           <li>• <strong>Menschen mit Behinderung:</strong> +17-35% je nach Merkzeichen</li>
           <li>• <strong>Kranke:</strong> Mehrbedarf für kostenaufwändige Ernährung möglich</li>
         </ul>
@@ -436,6 +440,14 @@ export default function BuergergeldRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Finanztip – Bürgergeld 2026 & Grundsicherungsgeld
+          </a>
+          <a 
+            href="https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Bundesregierung – Neue Grundsicherung (Kabinettsbeschluss)
           </a>
         </div>
       </div>
