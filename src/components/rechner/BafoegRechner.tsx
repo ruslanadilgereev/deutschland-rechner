@@ -102,8 +102,7 @@ export default function BafoegRechner() {
       bedarf,
       grundbedarf: BAFOEG_SAETZE.grundbedarf,
       wohnpauschale: wohnsituation === 'eigene' ? BAFOEG_SAETZE.wohnpauschale_eigene : BAFOEG_SAETZE.wohnpauschale_eltern,
-      kvZuschlag,
-      pvZuschlag,
+      kvPvZuschlag,
       elternFreibetrag,
       geschwisterFreibetrag,
       elternAnrechnung,
@@ -332,7 +331,7 @@ export default function BafoegRechner() {
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">€</span>
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            Freibetrag: {formatEuro(FREIBETRAEGE.eigenes_einkommen)} (Minijob-Grenze)
+            Freibetrag: {formatEuro(FREIBETRAEGE.eigenes_einkommen)} (Minijob-Grenze 2026)
           </p>
         </div>
 
@@ -424,16 +423,10 @@ export default function BafoegRechner() {
             <span className="font-bold text-gray-900">{formatEuro(ergebnis.wohnpauschale)}</span>
           </div>
           {selbstVersichert && (
-            <>
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-600">+ KV-Zuschlag</span>
-                <span className="font-bold text-gray-900">{formatEuro(ergebnis.kvZuschlag)}</span>
-              </div>
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-gray-600">+ PV-Zuschlag</span>
-                <span className="font-bold text-gray-900">{formatEuro(ergebnis.pvZuschlag)}</span>
-              </div>
-            </>
+            <div className="flex justify-between py-2 border-b border-gray-100">
+              <span className="text-gray-600">+ KV/PV-Zuschlag</span>
+              <span className="font-bold text-gray-900">{formatEuro(ergebnis.kvPvZuschlag)}</span>
+            </div>
           )}
           <div className="flex justify-between py-2 border-b border-gray-200 bg-blue-50 -mx-6 px-6">
             <span className="font-medium text-blue-700">= Dein Bedarf (Höchstsatz)</span>
@@ -486,7 +479,7 @@ export default function BafoegRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>520 € Nebenjob</strong> anrechnungsfrei (Minijob-Grenze)</span>
+            <span><strong>603 € Nebenjob</strong> anrechnungsfrei (Minijob-Grenze 2026)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -520,6 +513,22 @@ export default function BafoegRechner() {
             <span><strong>Antrag stellen!</strong> BAföG wird nicht rückwirkend gezahlt – erst ab Antragsmonat.</span>
           </li>
         </ul>
+      </div>
+
+      {/* Ausblick WS 2026/27 */}
+      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
+        <h3 className="font-bold text-blue-800 mb-3">🔮 Ausblick: BAföG-Reform WS 2026/27</h3>
+        <p className="text-sm text-blue-700 mb-2">
+          Laut Koalitionsvertrag 2025 sind zum <strong>Wintersemester 2026/27</strong> folgende Änderungen geplant:
+        </p>
+        <ul className="space-y-1 text-sm text-blue-700">
+          <li>• <strong>Wohnpauschale:</strong> Erhöhung von 380 € auf 440 € (+60 €)</li>
+          <li>• <strong>Grundbedarf:</strong> Schrittweise Anhebung Richtung Bürgergeld-Niveau (563 €)</li>
+          <li>• <strong>Freibeträge:</strong> Dynamisierung geplant</li>
+        </ul>
+        <p className="text-xs text-blue-600 mt-2">
+          Stand: Februar 2026. Diese Änderungen sind noch nicht in Kraft und müssen noch beschlossen werden.
+        </p>
       </div>
 
       {/* Zuständige Behörde */}
@@ -579,12 +588,12 @@ export default function BafoegRechner() {
             Offizielles BAföG-Portal des BMBF
           </a>
           <a 
-            href="https://www.studentenwerke.de/de/bafoeg"
+            href="https://www.studentenwerke.de/de/content/baf%C3%B6g-beantragen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Deutsches Studierendenwerk – BAföG
+            Deutsches Studierendenwerk – BAföG beantragen
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/baf_g/"
