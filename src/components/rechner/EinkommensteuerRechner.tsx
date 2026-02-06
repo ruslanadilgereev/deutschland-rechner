@@ -722,6 +722,36 @@ export default function EinkommensteuerRechner() {
         </div>
       </div>
 
+      {/* Neu in 2026 */}
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6 mb-6">
+        <h3 className="font-bold text-green-800 mb-3">🆕 Neu in 2026 – Steuerliche Änderungen</h3>
+        <ul className="space-y-2 text-sm text-green-700">
+          <li className="flex gap-2">
+            <span>✅</span>
+            <span><strong>Grundfreibetrag</strong> auf 12.348 € erhöht (+252 €)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✅</span>
+            <span><strong>Kindergeld</strong> auf 259 €/Monat erhöht (+4 €)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✅</span>
+            <span><strong>Kinderfreibetrag</strong> auf 9.756 €/Kind erhöht (+156 €)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✅</span>
+            <span><strong>Pendlerpauschale</strong>: Jetzt 38 Cent ab dem 1. Kilometer (vorher erst ab km 21)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✅</span>
+            <span><strong>Aktivrente</strong>: Bis 2.000 €/Monat steuerfrei für Rentner mit Job</span>
+          </li>
+        </ul>
+        <p className="text-xs text-green-600 mt-3">
+          Quelle: <a href="https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html" target="_blank" rel="noopener noreferrer" className="underline">BMF – Das ändert sich 2026</a>
+        </p>
+      </div>
+
       {/* Info Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">ℹ️ Wichtige Hinweise</h3>
@@ -823,6 +853,14 @@ export default function EinkommensteuerRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen (Stand: 2026)</h4>
         <div className="space-y-1">
           <a 
+            href="https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            BMF – Steuerliche Änderungen 2026
+          </a>
+          <a 
             href="https://www.gesetze-im-internet.de/estg/__32a.html"
             target="_blank"
             rel="noopener noreferrer"
@@ -844,7 +882,7 @@ export default function EinkommensteuerRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesministerium der Finanzen – Steuern
+            Bundesministerium der Finanzen
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/estg/__33.html"
