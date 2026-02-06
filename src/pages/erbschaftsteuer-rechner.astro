@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ErbschaftsteuerRechner from '../components/rechner/ErbschaftsteuerRechner';
+
+const title = "Erbschaftsteuer-Rechner 2025/2026 – Steuer, Freibeträge & Steuerklassen berechnen";
+const description = "Erbschaftsteuer Rechner 2025: Berechnen Sie Ihre Erbschaftsteuer online. Mit Freibeträgen nach Verwandtschaftsgrad, Steuerklassen I-III & aktuellen Steuersätzen. Kostenlos & sofort!";
+const keywords = "Erbschaftsteuer Rechner, Erbschaftsteuer berechnen, Erbschaftsteuer Freibetrag, Erbschaftsteuer 2025, Erbschaftsteuer 2026, Erbschaft versteuern, Erbschaftsteuer Tabelle, Erbschaftsteuer Steuerklasse, Erbschaftsteuer Kinder, Erbschaftsteuer Ehepartner, Erbschaft Freibetrag, Erbschaftsteuer Immobilien, Erbschaftsteuer Deutschland";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📜</span>
+          <div>
+            <h1 class="text-2xl font-bold">Erbschaftsteuer-Rechner</h1>
+            <p class="text-emerald-100 text-sm">Steuer auf Erbschaft & Freibeträge 2025/2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ErbschaftsteuerRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Erbschaftsteuer in Deutschland: Das müssen Sie wissen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Erbschaftsteuer</strong> in Deutschland wird auf den Vermögensübergang von Todes wegen erhoben. 
+            Mit unserem <strong>Erbschaftsteuer-Rechner</strong> können Sie schnell und einfach berechnen, wie viel 
+            Steuer auf Ihre Erbschaft anfällt – unter Berücksichtigung aller Freibeträge und der aktuellen 
+            Steuersätze 2025/2026.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Erbschaftsteuer?</h3>
+          <p>
+            Die Erbschaftsteuer ist eine Steuer auf den Erwerb von Vermögen durch Erbschaft oder Vermächtnis. 
+            Sie wird im <strong>Erbschaftsteuer- und Schenkungsteuergesetz (ErbStG)</strong> geregelt und ist eine 
+            der ältesten Steuerarten in Deutschland. Das Aufkommen fließt den Bundesländern zu.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 3 Steuerklassen bei der Erbschaftsteuer</h3>
+          <p>
+            Die Höhe der Erbschaftsteuer hängt maßgeblich von der <strong>Steuerklasse</strong> ab, die sich 
+            aus dem Verwandtschaftsverhältnis zum Erblasser ergibt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Steuerklasse I (7-30%):</strong> Ehepartner, Kinder, Enkel, Eltern (bei Erbschaft)</li>
+            <li><strong>Steuerklasse II (15-43%):</strong> Geschwister, Nichten/Neffen, Stiefeltern, Schwiegerkinder</li>
+            <li><strong>Steuerklasse III (30-50%):</strong> Alle anderen Personen (Freunde, Lebensgefährten ohne Eintragung)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibeträge bei der Erbschaftsteuer 2025</h3>
+          <p>
+            Jeder Erbe hat einen <strong>persönlichen Freibetrag</strong>, bis zu dem keine Erbschaftsteuer anfällt. 
+            Diese Freibeträge können alle 10 Jahre neu genutzt werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ehepartner/Lebenspartner:</strong> 500.000 € (+ Versorgungsfreibetrag bis 256.000 €)</li>
+            <li><strong>Kinder:</strong> 400.000 € pro Kind (+ altersabhängiger Versorgungsfreibetrag)</li>
+            <li><strong>Enkel:</strong> 200.000 € (400.000 € wenn Elternteil bereits verstorben)</li>
+            <li><strong>Eltern/Großeltern:</strong> 100.000 €</li>
+            <li><strong>Geschwister, Nichten, Neffen:</strong> 20.000 €</li>
+            <li><strong>Alle anderen:</strong> 20.000 €</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Versorgungsfreibetrag</h3>
+          <p>
+            Zusätzlich zum persönlichen Freibetrag gibt es den <strong>Versorgungsfreibetrag</strong> nach § 17 ErbStG:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ehepartner:</strong> 256.000 € (wird um Versorgungsbezüge wie Witwenrente gekürzt)</li>
+            <li><strong>Kinder bis 5 Jahre:</strong> 52.000 €</li>
+            <li><strong>Kinder 6-10 Jahre:</strong> 41.000 €</li>
+            <li><strong>Kinder 11-15 Jahre:</strong> 30.700 €</li>
+            <li><strong>Kinder 16-20 Jahre:</strong> 20.500 €</li>
+            <li><strong>Kinder 21-27 Jahre:</strong> 10.300 €</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erbschaftsteuer-Tabelle: Die Steuersätze</h3>
+          <p>
+            Der <strong>Steuersatz</strong> richtet sich nach dem steuerpflichtigen Erwerb und der Steuerklasse. 
+            Er liegt zwischen 7% (Steuerklasse I, bis 75.000 €) und 50% (Steuerklasse III, ab 13 Mio €). 
+            Wichtig: Der Steuersatz wird auf den gesamten steuerpflichtigen Betrag angewendet, nicht 
+            progressiv wie bei der Einkommensteuer.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 10-Jahres-Regel bei Erbschaft und Schenkung</h3>
+          <p>
+            <strong>Vorsicht bei Schenkungen:</strong> Schenkungen innerhalb der letzten 10 Jahre vor dem 
+            Erbfall werden zusammengerechnet. Der Freibetrag gilt also für alle Übertragungen innerhalb 
+            von 10 Jahren – nicht für jede einzeln! Deshalb ist <strong>vorausschauende Schenkung</strong> 
+            eine beliebte Methode zur Erbschaftsteuer-Optimierung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuerbefreiung für das Familienheim</h3>
+          <p>
+            Eine wichtige Ausnahme: <strong>Selbstgenutzte Immobilien</strong> (Familienheim) können unter 
+            bestimmten Voraussetzungen steuerfrei vererbt werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>An Ehepartner:</strong> Vollständige Steuerbefreiung, unabhängig vom Wert</li>
+            <li><strong>An Kinder:</strong> Steuerbefreiung bis 200 qm Wohnfläche, wenn das Kind 10 Jahre selbst darin wohnt</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Immobilienbewertung bei der Erbschaftsteuer</h3>
+          <p>
+            Immobilien werden zum <strong>Verkehrswert (Marktwert)</strong> nach dem Bewertungsgesetz bewertet. 
+            Dies kann je nach Lage und Zustand der Immobilie zu deutlich höheren Bewertungen führen als 
+            in der Vergangenheit. Ein Verkehrswertgutachten kann sich lohnen, wenn der tatsächliche 
+            Marktwert niedriger liegt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erbschaftsteuer vermeiden: Legale Wege</h3>
+          <p>
+            Es gibt verschiedene <strong>legale Strategien</strong> zur Minimierung der Erbschaftsteuer:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Frühzeitige Schenkungen:</strong> Freibeträge alle 10 Jahre nutzen</li>
+            <li><strong>Güterstandsschaukel:</strong> Wechsel zwischen Gütertrennung und Zugewinngemeinschaft</li>
+            <li><strong>Nießbrauch:</strong> Vermögensübertragung unter Vorbehalt des Nutzungsrechts</li>
+            <li><strong>Familienheim-Befreiung:</strong> Selbstgenutzte Immobilie steuerfrei übertragen</li>
+            <li><strong>Betriebsvermögen:</strong> Bis zu 100% Verschonungsabschlag möglich</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erbschaftsteuer anmelden: Fristen & Pflichten</h3>
+          <p>
+            <strong>Anzeigepflicht:</strong> Innerhalb von 3 Monaten nach dem Erbfall muss die Erbschaft 
+            dem Finanzamt angezeigt werden (§ 30 ErbStG). Das Finanzamt fordert dann ggf. eine 
+            Erbschaftsteuererklärung an.
+          </p>
+          <p>
+            <strong>Steuererklärung:</strong> Über das ELSTER-Portal kann die Erbschaftsteuererklärung 
+            elektronisch abgegeben werden. Bei größeren Erbschaften empfiehlt sich die Hinzuziehung 
+            eines Steuerberaters.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundung der Erbschaftsteuer</h3>
+          <p>
+            Wenn die Steuer aus dem Erbe nicht sofort bezahlt werden kann (z.B. bei Immobilien), 
+            kann eine <strong>Stundung über bis zu 10 Jahre</strong> beantragt werden. Dies ist 
+            besonders bei illiquiden Vermögenswerten wie Immobilien oder Unternehmensbeteiligungen relevant.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Erbschaftsteuer-Rechner 2025",
+    "description": description,
+    "url": "https://deutschland-rechner.vercel.app/erbschaftsteuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Freibetrag bei der Erbschaftsteuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Freibetrag hängt vom Verwandtschaftsgrad ab: Ehepartner 500.000€, Kinder 400.000€, Enkel 200.000€, Geschwister und andere 20.000€. Die Freibeträge können alle 10 Jahre neu genutzt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Erbschaftsteuer muss ich zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Erbschaftsteuer beträgt zwischen 7% und 50%, abhängig von Steuerklasse und Höhe des steuerpflichtigen Erwerbs. Steuerklasse I (nahe Verwandte) zahlt 7-30%, Steuerklasse III bis zu 50%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann muss ich die Erbschaft dem Finanzamt melden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Erbschaft muss innerhalb von 3 Monaten nach dem Erbfall dem zuständigen Finanzamt angezeigt werden. Das Finanzamt prüft dann, ob eine Erbschaftsteuererklärung erforderlich ist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich ein Haus steuerfrei erben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, unter bestimmten Voraussetzungen: Ehepartner können das Familienheim unbegrenzt steuerfrei erben. Kinder können bis zu 200 qm steuerfrei erben, wenn sie 10 Jahre selbst darin wohnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden Schenkungen auf die Erbschaftsteuer angerechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Schenkungen der letzten 10 Jahre vor dem Erbfall werden zusammengerechnet. Der Freibetrag gilt für alle Übertragungen innerhalb von 10 Jahren zusammen."
+        }
+      }
+    ]
+  })} />
+</Layout>

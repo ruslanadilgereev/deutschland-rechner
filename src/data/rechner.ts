@@ -328,8 +328,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Steuer auf Erbschaft & Freibeträge',
     icon: '📜',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Erbschaftsteuer Rechner, Erbschaftsteuer Freibetrag, Erbschaft versteuern',
+    fertig: true,
+    seoKeywords: 'Erbschaftsteuer Rechner, Erbschaftsteuer Freibetrag, Erbschaft versteuern, Erbschaftsteuer 2025, Erbschaftsteuer Steuerklasse',
+    quellen: [
+      'https://www.gesetze-im-internet.de/erbstg_1974/',
+      'https://www.gesetze-im-internet.de/bewg/',
+      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html',
+      'https://www.steuertipps.de/erbschaft-schenkung',
+    ],
   },
   {
     id: 'schenkungsteuer',
