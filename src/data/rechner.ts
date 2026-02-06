@@ -1025,8 +1025,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Blutalkohol nach Getränken berechnen',
     icon: '🍺',
     kategorie: 'gesundheit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Promille Rechner, Alkohol Rechner, Blutalkohol berechnen, Promille berechnen',
+    quellen: [
+      'https://www.bzga.de',
+      'https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/promillegrenze/',
+      'https://www.gesetze-im-internet.de/stvg/__24a.html',
+    ],
   },
   {
     id: 'eisprung',

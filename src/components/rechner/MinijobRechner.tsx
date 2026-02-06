@@ -1,33 +1,36 @@
 import { useState, useMemo } from 'react';
 
-// Minijob-Grenzen und Abgaben 2024/2025
+// Minijob-Grenzen und Abgaben 2026
+// Quelle: Minijob-Zentrale, BMAS, DRV
 const MINIJOB = {
-  verdienstgrenze: 538,                 // Monatliche Verdienstgrenze
-  jahresgrenze: 6456,                   // 538 × 12 Monate
-  mindestlohn: 12.41,                   // Mindestlohn seit 01.01.2024
-  mindestlohn_2025: 12.82,              // Mindestlohn ab 01.01.2025
+  verdienstgrenze: 603,                 // Monatliche Verdienstgrenze ab 01.01.2026
+  jahresgrenze: 7236,                   // 603 × 12 Monate
+  mindestlohn: 13.90,                   // Mindestlohn ab 01.01.2026 (12,82€ war 2025)
+  // Formel: Mindestlohn × 130 ÷ 3 = 13,90 × 130 / 3 = 602,33 → aufgerundet 603€
 };
 
-// Arbeitgeber-Pauschalen (in Prozent)
+// Arbeitgeber-Pauschalen 2026 (in Prozent)
+// Quelle: https://magazin.minijob-zentrale.de/minijob-beitraege-2026/
 const AG_ABGABEN = {
-  krankenversicherung: 13.0,            // Pauschale KV
-  rentenversicherung: 15.0,             // RV (volle Pauschale)
-  pauschsteuer: 2.0,                    // 2% Pauschsteuer
-  unfallversicherung: 1.6,              // Durchschnitt UV
-  umlage_u1: 1.1,                       // Umlage Krankheit
-  umlage_u2: 0.24,                      // Umlage Mutterschaft
-  insolvenzumlage: 0.06,                // Insolvenzgeldumlage
+  krankenversicherung: 13.0,            // Pauschale KV (unverändert)
+  rentenversicherung: 15.0,             // RV (volle Pauschale, unverändert)
+  pauschsteuer: 2.0,                    // 2% Pauschsteuer (unverändert)
+  unfallversicherung: 1.6,              // Durchschnitt UV (unverändert)
+  umlage_u1: 0.80,                      // Umlage Krankheit (gesenkt von 1,1% auf 0,8%)
+  umlage_u2: 0.22,                      // Umlage Mutterschaft (angepasst von 0,24%)
+  insolvenzumlage: 0.15,                // Insolvenzgeldumlage (erhöht von 0,06%)
 };
 
-// Arbeitnehmer-Anteile
+// Arbeitnehmer-Anteile 2026
 const AN_ABGABEN = {
-  rv_eigenanteil: 3.6,                  // RV Eigenanteil (wenn RV-pflichtig)
+  rv_eigenanteil: 3.6,                  // RV Eigenanteil bei gewerblichem Minijob
+  rv_eigenanteil_privathaushalt: 13.6,  // RV Eigenanteil bei Privathaushalt (weil AG nur 5% zahlt)
 };
 
 type Steuermodell = 'pauschal' | 'lohnsteuer';
 
 export default function MinijobRechner() {
-  const [bruttolohn, setBruttolohn] = useState(538);
+  const [bruttolohn, setBruttolohn] = useState(603);
   const [steuermodell, setSteuermodell] = useState<Steuermodell>('pauschal');
   const [rentenversicherungspflicht, setRentenversicherungspflicht] = useState(true);
   const [stundenWoche, setStundenWoche] = useState(10);
@@ -70,8 +73,8 @@ export default function MinijobRechner() {
       // AN muss nur Differenz zu 18.6% Gesamt-RV zahlen (AG zahlt 15%)
       anRentenversicherung = bruttolohn * (AN_ABGABEN.rv_eigenanteil / 100);
     } else if (rentenversicherungspflicht && istPrivathaushalt) {
-      // Bei Privathaushalt: AN zahlt 13.6% (weil AG nur 5% zahlt)
-      anRentenversicherung = bruttolohn * 0.136;
+      // Bei Privathaushalt: AN zahlt 13,6% (weil AG nur 5% zahlt statt 15%)
+      anRentenversicherung = bruttolohn * (AN_ABGABEN.rv_eigenanteil_privathaushalt / 100);
     }
 
     const nettolohn = bruttolohn - anRentenversicherung;
@@ -86,11 +89,11 @@ export default function MinijobRechner() {
     const jahresverdienst = bruttolohn * 12;
 
     // === Rentenauswirkung ===
-    // Bei RV-Pflicht: ca. 0.3 Rentenpunkte pro Jahr bei 538€/Monat
+    // Bei RV-Pflicht: ca. 0.16 Rentenpunkte pro Jahr bei 603€/Monat
     const rentenPunkteJahr = rentenversicherungspflicht 
-      ? (bruttolohn * 12 / 45358) // Durchschnittsentgelt 2024 ca. 45.358€
+      ? (bruttolohn * 12 / 48314) // Durchschnittsentgelt 2026 ca. 48.314€ (vorläufig)
       : 0;
-    const rentenProMonat = rentenPunkteJahr * 37.60; // Rentenwert West 2024: 37,60€
+    const rentenProMonat = rentenPunkteJahr * 40.79; // Rentenwert 2026: 40,79€ (einheitlich seit 01.07.2025)
 
     return {
       // Arbeitgeber
@@ -150,15 +153,15 @@ export default function MinijobRechner() {
             onChange={(e) => setBruttolohn(Number(e.target.value))}
             className="w-full mt-3 accent-blue-500"
             min="0"
-            max="700"
+            max="800"
             step="10"
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>0 €</span>
-            <span className={bruttolohn <= 538 ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}>
+            <span className={bruttolohn <= 603 ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}>
               Grenze: {MINIJOB.verdienstgrenze} €
             </span>
-            <span>700 €</span>
+            <span>800 €</span>
           </div>
         </div>
 
@@ -301,8 +304,8 @@ export default function MinijobRechner() {
             <div>
               <h4 className="font-bold text-red-800">Minijob-Grenze überschritten!</h4>
               <p className="text-sm text-red-700 mt-1">
-                Mit {formatEuro(bruttolohn)} monatlich überschreitest du die 538€-Grenze. 
-                Dies ist dann ein <strong>Midijob</strong> mit anderen Abgaben.
+                Mit {formatEuro(bruttolohn)} monatlich überschreitest du die 603€-Grenze. 
+                Dies ist dann ein <strong>Midijob</strong> (603,01€ – 2.000€) mit anderen Abgaben.
               </p>
             </div>
           </div>
@@ -405,7 +408,7 @@ export default function MinijobRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>538€-Grenze:</strong> Bis zu 538€ monatlich (6.456€ im Jahr) ohne volle Sozialabgaben</span>
+            <span><strong>603€-Grenze 2026:</strong> Bis zu 603€ monatlich (7.236€ im Jahr) ohne volle Sozialabgaben</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -421,7 +424,7 @@ export default function MinijobRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Mehrere Minijobs:</strong> Werden zusammengerechnet – max. 538€ gesamt!</span>
+            <span><strong>Mehrere Minijobs:</strong> Werden zusammengerechnet – max. 603€ gesamt!</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -451,20 +454,26 @@ export default function MinijobRechner() {
             <strong>Befreiung möglich:</strong> Mit einem schriftlichen Antrag an den Arbeitgeber 
             kannst du dich befreien lassen – dann erhältst du den vollen Bruttolohn.
           </p>
+          <div className="bg-green-100 border border-green-300 rounded-xl p-3 mt-3">
+            <p className="text-green-800">
+              <strong>Neu ab Juli 2026:</strong> Wer sich bereits von der RV-Pflicht befreit hat, 
+              kann erstmals wieder zurück in den vollen Rund-um-Schutz wechseln!
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Wichtige Hinweise */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise</h3>
+        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise 2026</h3>
         <ul className="space-y-2 text-sm text-amber-700">
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Mindestlohn beachten:</strong> Seit 2024 gilt 12,41€/Stunde, ab 2025: 12,82€/Stunde</span>
+            <span><strong>Mindestlohn 2026:</strong> 13,90€/Stunde (erhöht von 12,82€ in 2025)</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Verdienstgrenze anpassen:</strong> Bei Mindestlohn-Erhöhung steigt auch die 538€-Grenze entsprechend</span>
+            <span><strong>Verdienstgrenze gekoppelt:</strong> Bei Mindestlohn-Erhöhung steigt auch die Grenze → jetzt 603€ statt 556€</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>
@@ -473,6 +482,10 @@ export default function MinijobRechner() {
           <li className="flex gap-2">
             <span>•</span>
             <span><strong>Meldung bei Minijob-Zentrale:</strong> AG muss Minijob bei der Minijob-Zentrale anmelden</span>
+          </li>
+          <li className="flex gap-2">
+            <span>•</span>
+            <span><strong>Umlage U1 gesenkt:</strong> Ab 2026 nur noch 0,8% statt 1,1% – Arbeitgeber profitieren</span>
           </li>
         </ul>
       </div>
@@ -534,20 +547,28 @@ export default function MinijobRechner() {
             Minijob-Zentrale – Offizielle Informationen
           </a>
           <a 
+            href="https://magazin.minijob-zentrale.de/minijob-beitraege-2026/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Minijob-Zentrale – Beiträge & Abgaben 2026
+          </a>
+          <a 
+            href="https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2025/mindestlohn-steigt-zum-ersten-januar-2026.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            BMAS – Mindestlohn 13,90€ ab 2026
+          </a>
+          <a 
             href="https://www.gesetze-im-internet.de/sgb_4/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             Sozialgesetzbuch IV – Geringfügige Beschäftigung
-          </a>
-          <a 
-            href="https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2024-2132292"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Bundesregierung – Mindestlohn 2024/2025
           </a>
         </div>
       </div>

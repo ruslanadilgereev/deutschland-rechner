@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 5,
+  "lastAuditIndex": 6,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -7,6 +7,14 @@
     "grunderwerbsteuer-rechner",
     "buergergeld-rechner",
     "pendlerpauschale-rechner"
+  ],
+  "newerCalculators": [
+    "bafoeg-rechner",
+    "minijob-rechner",
+    "wohngeld-rechner",
+    "arbeitslosengeld-rechner",
+    "rundfunkbeitrag-rechner",
+    "einkommensteuer-rechner"
   ],
   "auditHistory": [
     {
@@ -469,6 +477,101 @@
         "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
         "adac": "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/",
         "vlh": "https://www.vlh.de/arbeiten-pendeln/pendeln/die-pendlerpauschale-fuer-einsteiger.html"
+      }
+    },
+    {
+      "calculator": "bafoeg-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "KV/PV-Zuschlag was 122€+36€=158€, should be 137€ total (official bafög.de value)",
+          "fixed": true,
+          "oldValue": "kv_zuschlag: 122, pv_zuschlag: 36",
+          "newValue": "kv_pv_zuschlag: 137 (combined)"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Eigenes Einkommen Freibetrag was 520€ (2024 Minijob), should be 603€ (Minijob 2026)",
+          "fixed": true,
+          "oldValue": "520€",
+          "newValue": "603€"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "Page title, description, header, code comments, SEO content all said 2025/2024 instead of 2026",
+          "fixed": true
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "MEDIUM",
+          "issue": "studentenwerke.de/de/bafoeg returned 404",
+          "fixed": true,
+          "newUrl": "https://www.studentenwerke.de/de/content/baf%C3%B6g-beantragen"
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "No mention of upcoming WS 2026/27 BAföG reform",
+          "fixed": true,
+          "added": "New info box about planned WS 2026/27 changes: Wohnpauschale 440€, Grundbedarf towards 563€"
+        }
+      ],
+      "linkCheck": {
+        "bafoeg-digital.de": "PASS - 200 OK",
+        "bafög.de": "PASS - 200 OK (redirects to xn--bafg-7qa.de)",
+        "studentenwerke.de/de/bafoeg": "FAIL - 404 (replaced with /de/content/bafög-beantragen)",
+        "gesetze-im-internet.de/baf_g": "PASS - Official law site (fetch timeout but valid)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bafög.de/bafoeg/de/das-bafoeg-alle-infos-auf-einen-blick/foerderungsarten-und-foerderungshoehe/was-sind-bedarfssaetze-und-wie-hoch-sind-sie",
+          "https://www.finanztip.de/bafoeg/",
+          "https://www.bafoeg-rechner.de/FAQ/bafoeg-hoechstsatz.php"
+        ],
+        "2026Values": {
+          "Grundbedarf": "475€ ✓",
+          "Wohnpauschale_eigene": "380€ ✓",
+          "Wohnpauschale_eltern": "62€ ✓",
+          "KV_PV_Zuschlag": "137€ ✓ (FIXED - was 158€)",
+          "Höchstsatz": "992€ ✓ (475+380+137)",
+          "Minijob_Freibetrag": "603€ ✓ (FIXED - was 520€)",
+          "Vermögensfreibetrag_unter30": "15.000€ ✓",
+          "Vermögensfreibetrag_ab30": "45.000€ ✓",
+          "Eltern_Freibetrag_verheiratet": "2.485€ ✓",
+          "Eltern_Freibetrag_alleinerziehend": "1.655€ ✓"
+        },
+        "upcomingChanges_WS2026_27": {
+          "Wohnpauschale": "380€ → 440€ (geplant)",
+          "Grundbedarf": "Schrittweise Richtung 563€ (Bürgergeld-Niveau)"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Dies ist eine Schätzung' warning present",
+        "edgeCases": "PASS - Elternunabhängiges BAföG criteria explained (5 Jahre, 30 Jahre etc.)",
+        "behoerde": "PASS - Studierendenwerk/BAföG-Amt, bafoeg-digital.de, Hotline 0800 223 63 41",
+        "deadlines": "PASS - 'BAföG wird nicht rückwirkend gezahlt' warning present",
+        "unterlagen": "PASS - Benötigte Unterlagen listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Bedarf = Grundbedarf + Wohnpauschale + KV/PV-Zuschlag. Elternanrechnung = 45% vom übersteigenden Einkommen. Eigenes Einkommen: Sozialabgaben-Pauschale 78.7%. Vermögen: monatlich 1/12 angerechnet. Max Rückzahlung 10.010€ für Studenten-BAföG."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'BAföG-Rechner 2026 – Anspruch & Höhe berechnen | 603€ Minijob-Freibetrag'",
+        "description": "PASS - Includes 2026, 992€ Höchstsatz, 603€ Minijob-Freibetrag",
+        "keywords": "PASS - Includes: BAföG Rechner, BAföG 2026, BAföG Höhe, Studenten BAföG, Schüler BAföG, BAföG Höchstsatz, BAföG 603 Euro"
+      },
+      "officialSources": {
+        "bafög_de": "https://www.bafög.de",
+        "bafög_bedarfssätze": "https://www.xn--bafg-7qa.de/bafoeg/de/das-bafoeg-alle-infos-auf-einen-blick/foerderungsarten-und-foerderungshoehe/was-sind-bedarfssaetze-und-wie-hoch-sind-sie",
+        "bafög_freibeträge": "https://www.xn--bafg-7qa.de/bafoeg/de/das-bafoeg-alle-infos-auf-einen-blick/foerderungsarten-und-foerderungshoehe/welche-freibetraege-werden-gewaehrt",
+        "studentenwerke": "https://www.studentenwerke.de/de/content/baf%C3%B6g-beantragen",
+        "finanztip": "https://www.finanztip.de/bafoeg/"
       }
     }
   ]

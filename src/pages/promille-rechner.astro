@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PromilleRechner from '../components/rechner/PromilleRechner';
+
+const title = "Promille-Rechner 2025 – Blutalkohol berechnen (Widmark-Formel)";
+const description = "Promille-Rechner: Berechne deinen Blutalkoholgehalt nach Bier, Wein oder Schnaps. Mit Zeit bis nüchtern, rechtlichen Grenzen und Abbauzeit.";
+const keywords = "Promille Rechner, Alkohol Rechner, Blutalkohol berechnen, Promille berechnen, BAK Rechner, Widmark Formel, Alkoholabbau, Zeit bis nüchtern, Promillegrenze, Alkohol Autofahren";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-red-500 to-orange-500 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-red-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🍺</span>
+          <div>
+            <h1 class="text-2xl font-bold">Promille-Rechner</h1>
+            <p class="text-red-100 text-sm">Blutalkohol schätzen & Abbauzeit berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PromilleRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Promille berechnen: So funktioniert der Alkohol-Rechner</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Unser <strong>Promille-Rechner</strong> schätzt deinen <strong>Blutalkoholgehalt (BAK)</strong> basierend auf 
+            der bewährten <strong>Widmark-Formel</strong>. Gib einfach dein Geschlecht, Gewicht und die konsumierten 
+            Getränke ein – der Rechner zeigt dir sofort den geschätzten Promillewert und wann du wieder nüchtern bist.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Widmark-Formel zur Promille-Berechnung</h3>
+          <p>
+            Die <strong>Widmark-Formel</strong> wurde vom schwedischen Chemiker Erik Widmark entwickelt und ist 
+            seit Jahrzehnten der Standard zur Schätzung des Blutalkoholspiegels:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-xl font-mono text-center">
+            BAK (‰) = (Alkohol in Gramm) ÷ (Körpergewicht × Reduktionsfaktor)
+          </div>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Reduktionsfaktor Männer:</strong> 0,68 (höherer Wasseranteil im Körper)</li>
+            <li><strong>Reduktionsfaktor Frauen:</strong> 0,55 (geringerer Wasseranteil)</li>
+            <li><strong>Abbaurate:</strong> ca. 0,1-0,2 ‰ pro Stunde</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Promillegrenzen in Deutschland 2025</h3>
+          <p>
+            In Deutschland gelten klare <strong>Promillegrenzen für Autofahrer</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>0,0 ‰:</strong> Absolutes Alkoholverbot für Fahranfänger (Probezeit) und unter 21-Jährige</li>
+            <li><strong>Ab 0,3 ‰:</strong> Strafbar bei Ausfallerscheinungen oder Unfall</li>
+            <li><strong>Ab 0,5 ‰:</strong> Ordnungswidrigkeit – 500€ Bußgeld, 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>Ab 1,1 ‰:</strong> Straftat – absolute Fahruntüchtigkeit, Führerscheinentzug</li>
+            <li><strong>Ab 1,6 ‰:</strong> MPU (Idiotentest) erforderlich für Wiedererteilung</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie lange braucht Alkohol zum Abbau?</h3>
+          <p>
+            Die Leber baut Alkohol mit einer Rate von etwa <strong>0,1-0,15 Promille pro Stunde</strong> ab – 
+            unabhängig von Kaffee, Duschen oder frischer Luft. Beispiele:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>0,5 ‰:</strong> ca. 3-5 Stunden bis nüchtern</li>
+            <li><strong>1,0 ‰:</strong> ca. 7-10 Stunden bis nüchtern</li>
+            <li><strong>1,5 ‰:</strong> ca. 10-15 Stunden bis nüchtern</li>
+          </ul>
+          <p>
+            <strong>Achtung Restalkohol:</strong> Wer abends viel trinkt, kann am nächsten Morgen noch 
+            über der Promillegrenze liegen! Dies wird oft unterschätzt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Alkoholgehalt typischer Getränke</h3>
+          <p>
+            Der <strong>Alkoholgehalt</strong> variiert stark je nach Getränk:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bier (0,5l):</strong> ca. 20g reiner Alkohol (5% Vol.)</li>
+            <li><strong>Wein (0,2l):</strong> ca. 20g reiner Alkohol (13% Vol.)</li>
+            <li><strong>Schnaps (2cl):</strong> ca. 6g reiner Alkohol (40% Vol.)</li>
+            <li><strong>Sekt (0,1l):</strong> ca. 9g reiner Alkohol (11% Vol.)</li>
+          </ul>
+          <p>
+            Faustregel: Ein "Standardgetränk" (Bier, Wein, Schnaps) enthält etwa 10-12g reinen Alkohol.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was beeinflusst den Promillewert?</h3>
+          <p>
+            Neben Körpergewicht und Geschlecht spielen weitere Faktoren eine Rolle:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Mageninhalt:</strong> Mit vollem Magen wird Alkohol langsamer aufgenommen</li>
+            <li><strong>Trinkgeschwindigkeit:</strong> Schnelles Trinken führt zu höheren Spitzenwerten</li>
+            <li><strong>Medikamente:</strong> Können die Wirkung verstärken</li>
+            <li><strong>Körperfettanteil:</strong> Höherer Fettanteil = höherer Promillewert</li>
+            <li><strong>Gewöhnung:</strong> Beeinflusst nur die gefühlte Wirkung, nicht den BAK</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zum Promille-Rechner</h3>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">Wie genau ist der Promille-Rechner?</h4>
+          <p>
+            Der Rechner liefert eine <strong>Schätzung</strong> auf Basis der Widmark-Formel. Der tatsächliche 
+            Wert kann je nach individuellen Faktoren um 0,1-0,3 ‰ abweichen. Im Zweifel: Nicht fahren!
+          </p>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">Kann ich mich auf den Rechner verlassen?</h4>
+          <p>
+            <strong>Nein!</strong> Der Rechner ist nur eine Orientierungshilfe. Nur ein Bluttest oder 
+            Atemalkoholtest liefert rechtlich verwertbare Werte. Im Straßenverkehr gilt: Wer trinkt, fährt nicht.
+          </p>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">Wie schnell bin ich wieder nüchtern?</h4>
+          <p>
+            Die Leber baut ca. <strong>0,1-0,2 ‰ pro Stunde</strong> ab – bei den meisten Menschen etwa 0,15 ‰. 
+            Dieser Prozess lässt sich nicht beschleunigen: Weder Kaffee noch Bewegung helfen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Promille-Rechner 2025",
+    "description": description,
+    "url": "https://deutschland-rechner.de/promille-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man Promille?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Promille-Berechnung erfolgt mit der Widmark-Formel: BAK = Alkohol in Gramm ÷ (Körpergewicht × Reduktionsfaktor). Der Reduktionsfaktor beträgt 0,68 für Männer und 0,55 für Frauen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Promille hat ein Bier (0,5l)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein 0,5l Bier (5% Vol.) enthält ca. 20g reinen Alkohol. Bei einem 80kg schweren Mann führt dies zu etwa 0,3-0,4 Promille, bei einer 60kg schweren Frau zu etwa 0,5-0,6 Promille."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert es, bis 1 Promille abgebaut ist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Leber baut etwa 0,1-0,2 Promille pro Stunde ab. Bei einem Wert von 1,0 Promille dauert es daher ca. 7-10 Stunden, bis der Alkohol vollständig abgebaut ist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wie viel Promille darf man nicht mehr Auto fahren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Deutschland gilt eine Promillegrenze von 0,5 für erfahrene Fahrer. Für Fahranfänger in der Probezeit und unter 21-Jährige gilt 0,0 Promille. Ab 0,3 Promille kann bei Ausfallerscheinungen bereits eine Strafe drohen."
+        }
+      }
+    ]
+  })} />
+</Layout>
