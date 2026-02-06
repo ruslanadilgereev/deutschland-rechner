@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 1,
+  "lastAuditIndex": 2,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 2,
   "calculators": [
@@ -1224,6 +1224,60 @@
         "keywords": "PASS - Includes: Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen, Lohnsteuer Rechner, Steuerklasse, Grundfreibetrag, BBG"
       },
       "auditSummary": "Clean audit - all 4 links working, all 2026 values correct, legal sections complete, calculation logic verified. No issues found."
+    },
+    {
+      "calculator": "elterngeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 2,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "elterngeld-digital.de": "PASS - 200 OK (redirects to /ams/Elterngeld)",
+        "familienportal.de/elterngeld": "PASS - 200 OK",
+        "bmbfsfj.bund.de/elterngeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588",
+          "https://www.bundesregierung.de/breg-de/aktuelles/neuregelung-elterngeld-2268810",
+          "https://www.finanztip.de/elterngeld/",
+          "https://familienportal.de/familienportal/familienleistungen/elterngeld"
+        ],
+        "2026ValuesVerified": {
+          "Einkommensgrenze": "175.000€ ✓ (since April 2025 for all)",
+          "Basiselterngeld_Min": "300€ ✓",
+          "Basiselterngeld_Max": "1.800€ ✓",
+          "ElterngeldPlus_Min": "150€ ✓",
+          "ElterngeldPlus_Max": "900€ ✓",
+          "Ersatzrate": "65-67% ✓ (67% under 1.200€ income)",
+          "Partnermonate": "12 + 2 ✓",
+          "gleichzeitigerBezug": "Max 1 Monat in ersten 12 Lebensmonaten ✓"
+        },
+        "note": "All values match official BMBFSFJ and Bundesregierung sources"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 3-month deadline warning present",
+        "edgeCases": "PASS - Frühchen (4 Extra-Monate), Mehrlinge (+300€), Geschwisterbonus (+10%/min 75€) all mentioned",
+        "behoerde": "PASS - Elterngeldstelle, ElterngeldDigital link with 10 Bundesländer list",
+        "deadlines": "PASS - 3 months retroactive limit mentioned",
+        "neuregelung2025": "PASS - April 2025 reform (175k limit, 1 month parallel) explained in info box",
+        "unterlagen": "PASS - Geburtsurkunde, Einkommensnachweise (12 Mon), Krankenkasse listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Ersatzrate 65-67% correct with gleitzone 1200-1240€. Min/Max bounds correct (300/1800 Basis, 150/900 Plus). ElterngeldPlus = Basis/2 correct. Partnermonate logic correct (12+0/1/2)."
+      },
+      "seoCheck": {
+        "title": "PASS - Elterngeld-Rechner 2026 – Basiselterngeld & ElterngeldPlus berechnen",
+        "description": "PASS - Includes 2026, amount ranges (300-1800/150-900), Einkommensgrenze 175.000€",
+        "keywords": "IMPLICIT - Title/description contain: Elterngeld Rechner, 2026, Basiselterngeld, ElterngeldPlus, Einkommensgrenze"
+      },
+      "potentialImprovements": [
+        "Could add 32h/week work limit explicitly in info section",
+        "Could add Partnerschaftsbonus explanation (extends to 36 months total)",
+        "Could add link to Bundesregierung FAQ as third source"
+      ],
+      "auditSummary": "Clean audit - all 3 links working, all 2026 values correct and verified against official BMBFSFJ sources. Legal sections complete with Frühchen/Mehrlinge/Geschwisterbonus edge cases, April 2025 reform properly documented. No issues found."
     }
   ]
 }
