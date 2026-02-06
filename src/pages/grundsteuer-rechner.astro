@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrundsteuerRechner from '../components/rechner/GrundsteuerRechner';
+
+const title = "Grundsteuer-Rechner 2025 – Neue Grundsteuer online berechnen";
+const description = "Grundsteuer Rechner 2025: Berechnen Sie Ihre neue Grundsteuer nach Bundesmodell, Bodenwertmodell oder Flächenmodell. Mit Hebesatz, Bodenrichtwert & allen 16 Bundesländern.";
+const keywords = "Grundsteuer Rechner, Grundsteuer 2025, neue Grundsteuer berechnen, Grundsteuer Reform, Grundsteuerwert, Grundsteuermessbetrag, Hebesatz, Bodenrichtwert, Grundsteuer Bayern, Grundsteuer NRW, Grundsteuer Baden-Württemberg, Flächenmodell, Bundesmodell, Bodenwertmodell, Grundsteuer Haus, Grundsteuer Wohnung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-yellow-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-yellow-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏡</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grundsteuer-Rechner</h1>
+            <p class="text-yellow-100 text-sm">Neue Grundsteuer 2025 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GrundsteuerRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Die neue Grundsteuer 2025: Was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Seit dem <strong>1. Januar 2025</strong> gilt die neue Grundsteuer in ganz Deutschland. 
+            Nach einem Urteil des Bundesverfassungsgerichts von 2018 musste das veraltete System 
+            grundlegend reformiert werden. Mit unserem <strong>Grundsteuer-Rechner</strong> können 
+            Sie Ihre neue Steuerlast online berechnen – für alle 16 Bundesländer und alle drei Berechnungsmodelle.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Grundsteuer?</h3>
+          <p>
+            Die <strong>Grundsteuer</strong> ist eine Steuer auf Grundbesitz, die jährlich von den 
+            Gemeinden erhoben wird. Sie betrifft:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundsteuer A:</strong> Land- und forstwirtschaftliche Grundstücke</li>
+            <li><strong>Grundsteuer B:</strong> Bebaute und unbebaute Grundstücke (Häuser, Wohnungen, Gewerbe)</li>
+          </ul>
+          <p>
+            Die Einnahmen fließen vollständig an die Gemeinden und finanzieren Schulen, 
+            Straßen, Kindergärten und andere kommunale Aufgaben.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Grundsteuer-Formel</h3>
+          <p>
+            Die Berechnung erfolgt in drei Schritten:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-mono text-center text-lg">
+              <strong>Grundsteuerwert</strong> × <strong>Steuermesszahl</strong> × <strong>Hebesatz</strong> = <strong>Grundsteuer</strong>
+            </p>
+          </div>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundsteuerwert:</strong> Vom Finanzamt ermittelter Wert des Grundstücks</li>
+            <li><strong>Steuermesszahl:</strong> Gesetzlich festgelegter Faktor (z.B. 0,31‰ für Wohngebäude)</li>
+            <li><strong>Hebesatz:</strong> Von der Gemeinde festgelegter Multiplikator (z.B. 500%)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Grundsteuer-Modelle im Vergleich</h3>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">1. Bundesmodell (11 Bundesländer)</h4>
+          <p>
+            Das <strong>Bundesmodell</strong> berücksichtigt den Bodenwert, die Gebäudeart, das Baujahr 
+            und die Wohnfläche. Es ist das komplexeste Modell, soll aber "wertgerecht" sein.
+          </p>
+          <p class="text-sm text-gray-500">
+            Bundesländer: Berlin, Brandenburg, Bremen, Mecklenburg-Vorpommern, Nordrhein-Westfalen, 
+            Rheinland-Pfalz, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein, Thüringen
+          </p>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">2. Bodenwertmodell (Baden-Württemberg)</h4>
+          <p>
+            In <strong>Baden-Württemberg</strong> zählt nur der Bodenwert (Bodenrichtwert × Grundstücksfläche). 
+            Gebäude werden nicht bewertet. Einfach, aber teuer für Grundstücke in guten Lagen.
+          </p>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">3. Flächenmodell (Bayern, Hamburg, Hessen, Niedersachsen)</h4>
+          <p>
+            Das <strong>Flächenmodell</strong> berechnet nur nach Quadratmetern – weder Lage noch Wert 
+            spielen eine Rolle. Grundstücksfläche (0,04€/m²) + Wohnfläche (0,50€/m²) = Grundsteuermessbetrag.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Hebesätze 2025: Viele Gemeinden passen an</h3>
+          <p>
+            Die Reform soll <strong>aufkommensneutral</strong> sein – die Gesamteinnahmen der Gemeinden 
+            sollen gleich bleiben. Dafür passen viele Gemeinden ihre Hebesätze an:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Manche Gemeinden <strong>senken</strong> den Hebesatz (wo Grundsteuerwerte stark gestiegen sind)</li>
+            <li>Andere <strong>erhöhen</strong> ihn (wo Werte gefallen sind)</li>
+            <li>Individuell kann Ihre Grundsteuer trotzdem <strong>steigen oder fallen</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann wird die Grundsteuer fällig?</h3>
+          <p>
+            Die Grundsteuer wird <strong>vierteljährlich</strong> fällig, jeweils zur Mitte des Quartals:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>15. Februar</li>
+            <li>15. Mai</li>
+            <li>15. August</li>
+            <li>15. November</li>
+          </ul>
+          <p>
+            Alternativ kann bei der Gemeinde eine jährliche Zahlung zum 1. Juli beantragt werden.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundsteuer bei Vermietung</h3>
+          <p>
+            Vermieter können die Grundsteuer als <strong>Betriebskosten auf Mieter umlegen</strong> 
+            (§ 2 Nr. 1 BetrKV). Dies muss im Mietvertrag vereinbart sein. Bei der Steuererklärung 
+            kann die Grundsteuer als Werbungskosten abgesetzt werden.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einspruch gegen den Grundsteuerbescheid</h3>
+          <p>
+            Sind Sie mit Ihrem Bescheid nicht einverstanden? Sie können <strong>innerhalb eines Monats</strong> 
+            Einspruch beim Finanzamt einlegen. Gründe können sein:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Falscher Bodenrichtwert verwendet</li>
+            <li>Wohnfläche falsch berechnet</li>
+            <li>Baujahr nicht korrekt</li>
+            <li>Grundstücksgröße fehlerhaft</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grundsteuer-Rechner 2025",
+    "description": description,
+    "url": "https://deutschland-rechner.vercel.app/grundsteuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet sich die neue Grundsteuer 2025?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die neue Grundsteuer berechnet sich nach der Formel: Grundsteuerwert × Steuermesszahl × Hebesatz = Grundsteuer. Je nach Bundesland gilt das Bundesmodell, Bodenwertmodell oder Flächenmodell."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welches Grundsteuer-Modell gilt in meinem Bundesland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "11 Bundesländer nutzen das Bundesmodell, Baden-Württemberg das Bodenwertmodell, und Bayern, Hamburg, Hessen sowie Niedersachsen das Flächenmodell."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo finde ich meinen Bodenrichtwert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ihren Bodenrichtwert finden Sie im BORIS-Portal (bodenrichtwerte-boris.de) oder bei den Gutachterausschüssen Ihrer Kommune. Er ist auch im Grundsteuerwertbescheid des Finanzamts angegeben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich gegen den Grundsteuerbescheid Einspruch einlegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, innerhalb eines Monats nach Erhalt des Bescheids können Sie Einspruch beim Finanzamt einlegen. Gründe können falsche Bodenrichtwerte, Wohnflächen oder Baujahre sein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann wird die Grundsteuer fällig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Grundsteuer wird vierteljährlich fällig: am 15. Februar, 15. Mai, 15. August und 15. November. Eine jährliche Zahlung zum 1. Juli ist auf Antrag möglich."
+        }
+      }
+    ]
+  })} />
+</Layout>

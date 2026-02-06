@@ -374,8 +374,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Neue Grundsteuer ab 2025 berechnen',
     icon: '🏡',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Grundsteuer Rechner, Grundsteuer 2025, neue Grundsteuer berechnen',
+    fertig: true,
+    seoKeywords: 'Grundsteuer Rechner, Grundsteuer 2025, neue Grundsteuer berechnen, Grundsteuer Reform, Grundsteuerwert, Bundesmodell, Flächenmodell, Bodenwertmodell, Hebesatz, Bodenrichtwert',
+    quellen: [
+      'https://www.gesetze-im-internet.de/grstg_1973/',
+      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer/grundsteuer.html',
+      'https://www.grundsteuer.de',
+      'https://www.bodenrichtwerte-boris.de',
+    ],
   },
   {
     id: 'gewerbesteuer',
