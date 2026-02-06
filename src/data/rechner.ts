@@ -674,8 +674,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Krankengeld-Anspruch berechnen',
     icon: '🏥',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'Krankengeld Rechner, Krankengeld berechnen, Krankengeld Höhe',
+    fertig: true,
+    seoKeywords: 'Krankengeld Rechner, Krankengeld berechnen, Krankengeld Höhe, Krankengeld 2025, Krankengeld Dauer, Krankengeld nach 6 Wochen, Lohnfortzahlung Ende',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_5/__44.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__47.html',
+      'https://www.bundesgesundheitsministerium.de/krankengeld',
+      'https://www.gkv-spitzenverband.de',
+    ],
   },
   {
     id: 'pflegegeld',

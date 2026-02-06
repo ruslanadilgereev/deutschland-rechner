@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 0,
+  "lastAuditIndex": 1,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 2,
   "calculators": [
@@ -1174,6 +1174,56 @@
         "automatisierung_ab_mitte_2026": "Familienkasse will automate some Kindergeld processing from mid-2026 (source: BA/CHIP). Does not affect calculator values."
       },
       "auditSummary": "Clean audit - all links working, all 2026 values correct (259€), legal sections complete, calculation logic verified. No issues found."
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "date": "2026-02-06",
+      "cycle": 2,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bmf-steuerrechner.de": "PASS - 200 OK",
+        "deutsche-rentenversicherung.de": "PASS - 200 OK (redirects to /DRV/DE/Home/home_node.html)",
+        "bundesregierung.de/beitragsgemessungsgrenzen-2386514": "PASS - 200 OK",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+          "https://www.finanztip.de/beitragsbemessungsgrenze/",
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+        ],
+        "2026ValuesVerified": {
+          "BBG_RV": "101.400€/Jahr (8.450€/Monat) ✓",
+          "BBG_KV": "69.750€/Jahr (5.812,50€/Monat) ✓",
+          "Grundfreibetrag": "12.348€ ✓",
+          "RV_Satz": "9,3% AN-Anteil ✓",
+          "AV_Satz": "1,3% AN-Anteil ✓",
+          "KV_Basis": "7,3% AN-Anteil ✓",
+          "KV_Zusatzbeitrag": "1,45% AN-Anteil (durchschnittl. 2,9%) ✓",
+          "PV_mit_Kind": "1,8% AN-Anteil ✓",
+          "PV_kinderlos": "2,4% AN-Anteil (1,8% + 0,6%) ✓",
+          "Soli_Freigrenze": "18.130€ ✓"
+        },
+        "note": "All values match official sources from Bundesregierung, TK, and BMF"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Vereinfachte Berechnung warning with BMF-Steuerrechner link present",
+        "edgeCases": "PASS - All 6 Steuerklassen, Kirchensteuer (8%/9%), Kinderlosenzuschlag",
+        "behoerde": "PASS - Finanzamt (ELSTER), Krankenkasse sections complete",
+        "sources": "PASS - 3 authoritative sources listed (BMF, DRV, Bundesregierung)"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "2026 Steuertarif §32a correctly implemented. BBG caps applied. Soli Milderungszone (11.9%) correct. PV Kinderlosenzuschlag 0.6% correct."
+      },
+      "seoCheck": {
+        "title": "PASS - Brutto-Netto-Rechner 2026",
+        "description": "PASS - Includes Grundfreibetrag 12.348€, BBG values 101.400€/69.750€",
+        "keywords": "PASS - Includes: Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen, Lohnsteuer Rechner, Steuerklasse, Grundfreibetrag, BBG"
+      },
+      "auditSummary": "Clean audit - all 4 links working, all 2026 values correct, legal sections complete, calculation logic verified. No issues found."
     }
   ]
 }
