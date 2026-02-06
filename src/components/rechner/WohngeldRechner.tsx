@@ -104,7 +104,7 @@ export default function WohngeldRechner() {
     
     // Anrechenbares Jahreseinkommen
     const anrechenbaresEinkommenJahr = Math.max(0, jahresbrutto - gesamtfreibetraege);
-    const anrechenbaresEinkommenMonat = anrechenbaresEinkommen­Jahr / 12;
+    const anrechenbaresEinkommenMonat = anrechenbaresEinkommenJahr / 12;
     
     // === 2. Berücksichtigte Miete (max. Höchstbetrag) ===
     const personenIndex = Math.min(haushaltsgroesse - 1, 7);

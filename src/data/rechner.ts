@@ -387,11 +387,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'wohngeld',
     name: 'Wohngeld-Rechner',
-    beschreibung: 'Wohngeld-Anspruch 2025 prüfen',
+    beschreibung: 'Wohngeld-Anspruch 2025/2026 prüfen',
     icon: '🏘️',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Wohngeld Rechner, Wohngeld berechnen, Wohngeld 2025 Anspruch',
+    fertig: true,
+    seoKeywords: 'Wohngeld Rechner, Wohngeld 2026, Wohngeld berechnen, Wohngeld Anspruch, Mietzuschuss',
+    quellen: [
+      'https://www.gesetze-im-internet.de/wogg/',
+      'https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/wohnen/wohngeld/wohngeld-node.html',
+      'https://www.wohngeld.org',
+    ],
   },
   {
     id: 'bafoeg',
