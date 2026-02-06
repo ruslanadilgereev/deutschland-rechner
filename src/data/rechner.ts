@@ -895,8 +895,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: '1%-Regelung vs. Fahrtenbuch',
     icon: '🚙',
     kategorie: 'auto',
-    fertig: false,
-    seoKeywords: 'Firmenwagen Rechner, 1% Regelung, Dienstwagen versteuern',
+    fertig: true,
+    seoKeywords: 'Firmenwagen Rechner, 1 Prozent Regelung, geldwerter Vorteil Rechner, Dienstwagen Rechner, Firmenwagen versteuern, 1% Regelung Rechner, Firmenwagen Steuer, Dienstwagen Steuer, Firmenwagen Elektro, 0.25% Regelung, Fahrtenbuch vs 1 Prozent',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__6.html',
+      'https://www.gesetze-im-internet.de/estg/__8.html',
+      'https://www.bundesfinanzministerium.de/Content/DE/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-12-15-steuerliche-behandlung-der-ueberlassung-eines-betrieblichen-kraftfahrzeugs.html',
+      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/firmenfahrzeuge/',
+    ],
   },
   {
     id: 'elektroauto',
