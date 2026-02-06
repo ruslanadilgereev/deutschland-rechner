@@ -79,17 +79,108 @@ export default function KindergeldRechner() {
         </ul>
       </div>
 
+      {/* Zuständige Behörde */}
+      <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
+        <h3 className="font-bold text-gray-800 mb-3">🏛️ Zuständige Behörde</h3>
+        <div className="space-y-4">
+          <div className="bg-blue-50 rounded-xl p-4">
+            <p className="font-semibold text-blue-900">Familienkasse der Bundesagentur für Arbeit</p>
+            <p className="text-sm text-blue-700 mt-1">Bundesweit einheitlich zuständig – unabhängig vom Bundesland</p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+              <span className="text-xl">📞</span>
+              <div>
+                <p className="font-medium text-gray-800">Kindergeld-Hotline</p>
+                <a href="tel:08004555530" className="text-blue-600 hover:underline font-mono">0800 4 555530</a>
+                <p className="text-xs text-gray-500 mt-1">Kostenfrei · Mo–Fr 8–18 Uhr</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+              <span className="text-xl">🌐</span>
+              <div>
+                <p className="font-medium text-gray-800">Online-Antrag</p>
+                <a 
+                  href="https://web.arbeitsagentur.de/opal/kgo-antrag" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Jetzt beantragen →
+                </a>
+                <p className="text-xs text-gray-500 mt-1">Digital mit Personalausweis</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl text-sm">
+            <span className="text-xl">📍</span>
+            <div>
+              <p className="font-medium text-gray-800">Familienkasse vor Ort finden</p>
+              <a 
+                href="https://www.arbeitsagentur.de/familie-und-kinder/familienkasse" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Standortsuche öffnen →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Wichtige Hinweise */}
+      <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
+        <h3 className="font-bold text-gray-800 mb-3">📋 Wichtige Hinweise</h3>
+        <div className="space-y-3 text-sm text-gray-600">
+          <div className="flex gap-3 p-3 bg-yellow-50 rounded-xl">
+            <span className="text-xl">⚠️</span>
+            <div>
+              <p className="font-medium text-yellow-800">Antrag erforderlich!</p>
+              <p className="text-yellow-700">Kindergeld wird nicht automatisch gezahlt – du musst es bei der Familienkasse beantragen.</p>
+            </div>
+          </div>
+          <div className="flex gap-3 p-3 bg-green-50 rounded-xl">
+            <span className="text-xl">✅</span>
+            <div>
+              <p className="font-medium text-green-800">Rückwirkend beantragbar</p>
+              <p className="text-green-700">Bis zu 6 Monate rückwirkend ab Antragstellung.</p>
+            </div>
+          </div>
+          <div className="flex gap-3 p-3 bg-blue-50 rounded-xl">
+            <span className="text-xl">📄</span>
+            <div>
+              <p className="font-medium text-blue-800">Benötigte Unterlagen</p>
+              <p className="text-blue-700">Geburtsurkunde des Kindes, Steuer-ID (Kind + Eltern), ggf. Ausbildungsnachweis ab 18.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <a 
-          href="https://www.arbeitsagentur.de/familie-und-kinder/kindergeld-anspruch-hoehe-dauer"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-blue-600 hover:underline break-all"
-        >
-          Bundesagentur für Arbeit – Kindergeld 2025
-        </a>
+        <div className="space-y-1">
+          <a 
+            href="https://www.arbeitsagentur.de/familie-und-kinder/kindergeld-anspruch-hoehe-dauer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Bundesagentur für Arbeit – Kindergeld 2025
+          </a>
+          <a 
+            href="https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/kindergeld"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Bundesministerium für Familie – Kindergeld
+          </a>
+        </div>
       </div>
     </div>
   );

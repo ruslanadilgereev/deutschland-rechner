@@ -14,45 +14,49 @@ const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
 <Layout title="Alle Rechner">
   <main class="min-h-screen">
     <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 px-4">
-      <div class="max-w-2xl mx-auto text-center">
-        <h1 class="text-3xl font-bold mb-2">🇩🇪 Deutschlandrechner</h1>
-        <p class="text-blue-100">Alle wichtigen Rechner – 1 Klick entfernt</p>
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 px-4">
+      <div class="max-w-7xl mx-auto text-center">
+        <h1 class="text-4xl font-bold mb-3">🇩🇪 Deutschlandrechner</h1>
+        <p class="text-blue-100 text-lg">Alle wichtigen Rechner für Deutschland – kostenlos & aktuell</p>
       </div>
     </header>
 
-    <!-- Search (optional für später) -->
-    <div class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b px-4 py-3">
-      <div class="max-w-2xl mx-auto">
+    <!-- Search -->
+    <div class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b px-4 py-4">
+      <div class="max-w-xl mx-auto">
         <input 
           type="search" 
           placeholder="🔍 Rechner suchen..." 
-          class="w-full px-4 py-3 rounded-xl bg-gray-100 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
+          class="w-full px-5 py-3 rounded-xl bg-gray-100 border-0 focus:ring-2 focus:ring-blue-500 outline-none text-lg"
           id="search-input"
         />
       </div>
     </div>
 
-    <!-- Rechner Liste -->
-    <div class="max-w-2xl mx-auto px-4 py-6 space-y-8" id="rechner-liste">
-      {gruppiertNachKategorie.map(({ key, name, icon, color, rechner }) => (
-        <section class="kategorie-section" data-kategorie={key}>
-          <div class="flex items-center gap-2 mb-4">
-            <span class={`w-8 h-8 rounded-lg ${color} flex items-center justify-center text-white text-sm`}>
-              {icon}
-            </span>
-            <h2 class="font-bold text-gray-800">{name}</h2>
-            <span class="text-xs text-gray-400">({rechner.length})</span>
-          </div>
-          <div class="space-y-3">
-            {rechner.map((r) => (
-              <div class="rechner-item" data-name={r.name.toLowerCase()}>
-                <RechnerCard rechner={r} client:load />
+    <!-- Rechner Liste - 3 Spalten Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-8" id="rechner-liste">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {gruppiertNachKategorie.map(({ key, name, icon, color, rechner }) => (
+          <section class="kategorie-section" data-kategorie={key}>
+            <div class="flex items-center gap-2 mb-4">
+              <span class={`w-10 h-10 rounded-xl ${color} flex items-center justify-center text-white text-lg`}>
+                {icon}
+              </span>
+              <div>
+                <h2 class="font-bold text-gray-800">{name}</h2>
+                <span class="text-xs text-gray-400">{rechner.length} Rechner</span>
               </div>
-            ))}
-          </div>
-        </section>
-      ))}
+            </div>
+            <div class="space-y-3">
+              {rechner.map((r) => (
+                <div class="rechner-item" data-name={r.name.toLowerCase()}>
+                  <RechnerCard rechner={r} client:load />
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
     </div>
 
     <!-- Footer -->
