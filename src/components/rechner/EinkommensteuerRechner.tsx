@@ -23,10 +23,9 @@ const PAUSCHBETRAEGE = {
     80: 2120, 90: 2460, 100: 2840,
     hilflos: 7400, // GdB 100 + Merkzeichen H, Bl, TBl
   },
-  entfernungspauschale: {
-    bis20km: 0.30,
-    ab21km: 0.38,
-  },
+  // Pendlerpauschale 2026: Einheitlich 38 Cent ab erstem Kilometer!
+  // (Vorher: 30¢ bis 20km, 38¢ ab 21km - ab 01.01.2026 vereinheitlicht)
+  entfernungspauschale: 0.38,     // 38 Cent pro km ab km 1 (2026)
   homeoffice: 6,                  // pro Tag, max 1260 €/Jahr (210 Tage)
   homeofficeMax: 1260,
 };
@@ -140,13 +139,10 @@ export default function EinkommensteuerRechner() {
     const einkuenfteGesamt = bruttoArbeit + kapitalertraege + vermietung + selbststaendig + sonstige;
     
     // 2. Werbungskosten berechnen
-    // Pendlerpauschale
+    // Pendlerpauschale 2026: Einheitlich 38 Cent ab erstem km
     let pendlerpauschale = 0;
     if (pendlerKm > 0 && pendlerTage > 0) {
-      const km20 = Math.min(pendlerKm, 20);
-      const kmUeber20 = Math.max(0, pendlerKm - 20);
-      pendlerpauschale = ((km20 * PAUSCHBETRAEGE.entfernungspauschale.bis20km) + 
-                         (kmUeber20 * PAUSCHBETRAEGE.entfernungspauschale.ab21km)) * pendlerTage;
+      pendlerpauschale = pendlerKm * PAUSCHBETRAEGE.entfernungspauschale * pendlerTage;
     }
     
     // Homeoffice-Pauschale
@@ -171,8 +167,8 @@ export default function EinkommensteuerRechner() {
     }
     
     // 5. Kinderfreibeträge (nur relevant für Vergleichsrechnung)
-    // 2026: 6.672 € Kinderfreibetrag + 2.928 € BEA = 9.600 € pro Kind
-    const kinderfreibetragWert = kinderfreibetraege * 9600;
+    // 2026: 6.828 € Kinderfreibetrag + 2.928 € BEA = 9.756 € pro Kind
+    const kinderfreibetragWert = kinderfreibetraege * 9756;
     
     // 6. Zu versteuerndes Einkommen (zvE)
     const abzuegeGesamt = werbungskostenEffektiv + sonderausgabenEffektiv + 
@@ -189,8 +185,8 @@ export default function EinkommensteuerRechner() {
     const einkommensteuerMitKinder = berechneEinkommensteuer(zvE, verheiratet);
     
     // Günstigerprüfung: Kindergeld vs. Kinderfreibetrag
-    // Kindergeld 2026: 255 € pro Kind pro Monat = 3.060 € pro Jahr
-    const kindergeldJahr = kinderfreibetraege * 3060;
+    // Kindergeld 2026: 259 € pro Kind pro Monat = 3.108 € pro Jahr
+    const kindergeldJahr = kinderfreibetraege * 3108;
     const steuerersparnisKinderfreibetrag = einkommensteuerOhneKinder - einkommensteuerMitKinder;
     const kinderfreibetragGuenstiger = steuerersparnisKinderfreibetrag > kindergeldJahr;
     
@@ -478,7 +474,7 @@ export default function EinkommensteuerRechner() {
           {pendlerKm > 0 && (
             <p className="text-sm text-green-600 bg-green-50 p-2 rounded-lg">
               📍 Pendlerpauschale: {formatEuro(ergebnis.pendlerpauschale)}
-              {pendlerKm > 20 && <span className="block text-xs mt-1">Ab 21 km: 0,38 €/km (erhöht)</span>}
+              <span className="block text-xs mt-1">2026: Einheitlich 0,38 €/km ab dem ersten Kilometer</span>
             </p>
           )}
           
@@ -744,7 +740,7 @@ export default function EinkommensteuerRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Kinderfreibetrag 2026: <strong>9.600 €/Kind</strong> (6.672 € + 2.928 € BEA)</span>
+            <span>Kinderfreibetrag 2026: <strong>9.756 €/Kind</strong> (6.828 € + 2.928 € BEA)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>

@@ -91,8 +91,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Elternzeit planen – Dauer & Aufteilung',
     icon: '📅',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Elternzeit Rechner, Elternzeit berechnen, Elternzeit Dauer',
+    fertig: true,
+    seoKeywords: 'Elternzeit Rechner, Elternzeit berechnen, Elternzeit Dauer, Elternzeit planen, Elternzeit 2025, Elternzeit 2026, Elternzeit Vater, Elternzeit Mutter, Elternzeit Anmeldung, Elternzeit Frist, Elternzeit Teilzeit, Elternzeit Kündigungsschutz',
+    quellen: [
+      'https://familienportal.de/familienportal/familienleistungen/elternzeit',
+      'https://www.gesetze-im-internet.de/beeg/',
+      'https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/elternzeit',
+      'https://www.arbeitsagentur.de/familie-und-kinder/elternzeit',
+    ],
   },
   {
     id: 'geburtstermin',
