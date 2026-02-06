@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 1,
+  "lastAuditIndex": 2,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 6,
   "calculators": [
@@ -2539,6 +2539,71 @@
         "drv": "https://www.deutsche-rentenversicherung.de"
       },
       "auditSummary": "Clean audit cycle 6 - all 4 links working (200 OK). All 2026 SV and tax values verified against official Bundesregierung, BMF, TK, and AOK sources: Grundfreibetrag 12.348€, BBG RV 101.400€, BBG KV 69.750€, KV-Zusatzbeitrag 2,9% (durchschnittlich), PV 3,6%/4,2%. Legal sections complete with disclaimer referencing BMF-Steuerrechner, 6 Steuerklassen, Kirchensteuer 8%/9%, Kinderlosenzuschlag 0,6%. Calculation logic verified per §32a EStG 2026 tariff with correct zone boundaries and Soli Milderungszone. No issues found."
+    },
+    {
+      "calculator": "elterngeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 6,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "elterngeld-digital.de": "PASS - 200 OK (redirects to /ams/Elterngeld)",
+        "familienportal.de/elterngeld": "PASS - 200 OK",
+        "bmbfsfj.bund.de/elterngeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://familienportal.de/familienportal/familienleistungen/elterngeld/faq/wie-viel-elterngeld-kann-ich-bekommen--124616",
+          "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588",
+          "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld"
+        ],
+        "2026ValuesVerified": {
+          "Basiselterngeld_Min": "300€ ✓ (Familienportal: 'mindestens 300 Euro')",
+          "Basiselterngeld_Max": "1.800€ ✓ (Familienportal: 'höchstens 1.800 Euro')",
+          "ElterngeldPlus_Min": "150€ ✓ (Familienportal: 'mindestens 150 Euro')",
+          "ElterngeldPlus_Max": "900€ ✓ (Familienportal: 'höchstens 900 Euro')",
+          "Ersatzrate_standard": "65% ✓ (Familienportal: '65 % des Netto-Einkommens')",
+          "Ersatzrate_gering": "67% bei ≤1.200€ ✓ (Familienportal: 'steigt auf 67 %')",
+          "Gleitzone": "1.200-1.240€: 67%→65% ✓ (0.1% je 2€ = 0.0005/€)",
+          "Einkommensgrenze": "175.000€ einheitlich seit April 2025 ✓ (BMBFSFJ: 'für Geburten ab dem 1. April 2025 auf 175.000 Euro')",
+          "ParallelerBezug": "Max 1 Monat in ersten 12 Lebensmonaten ✓ (BMBFSFJ confirmed)",
+          "MaxEinkommenFuerBerechnung": "2.770€ Netto ✓"
+        },
+        "sonderregelungenVerified": {
+          "Fruehchen": "6 Wochen vor errechneter Termin ✓ (BMBFSFJ: 'mindestens sechs Wochen vor dem errechneten Entbindungstermin')",
+          "Mehrlinge": "+300€ pro weiteres Kind ✓",
+          "Geschwisterbonus": "+10% (min 75€/37,50€) ✓"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 3-month deadline warning present with yellow background ('Antrag innerhalb von 3 Monaten!')",
+        "edgeCases": "PASS - Frühchen (6 Wochen vor Termin), Mehrlinge (+300€), Geschwisterbonus (+10%) all explained correctly",
+        "behoerde": "PASS - Elterngeldstelle, ElterngeldDigital link with 10 Bundesländer list (BE, BB, HB, HH, MV, NI, RP, ST, SH, TH)",
+        "deadlines": "PASS - '3 Monate rückwirkend' warning present",
+        "neuregelung2025": "PASS - April 2025 reform explained: 175.000€ Einkommensgrenze, 1 Monat gleichzeitiger Bezug",
+        "unterlagen": "PASS - Geburtsurkunde, Einkommensnachweise (letzte 12 Monate), Krankenkassen-Bescheinigung listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Basiselterngeld = nettoMonat × ersatzrate (65-67%), clamped to 300-1.800€",
+        "gleitzone": "Correctly implemented: 0.67 - ((netto - 1200) * 0.0005) for 1200-1240€ range",
+        "elterngeldPlus": "Correctly = Basis / 2, clamped to 150-900€",
+        "partnermonate": "12 + partnerMonate (0-2) correct",
+        "notes": "All formulas match official Familienportal documentation. Ersatzrate calculation verified."
+      },
+      "seoCheck": {
+        "title": "PASS - 'Elterngeld-Rechner 2026 – Basiselterngeld & ElterngeldPlus berechnen'",
+        "description": "PASS - Includes 2026, 300-1800€ Basis, 150-900€ Plus, 175.000€ Einkommensgrenze",
+        "keywords": "IMPLICIT - Title/description contain: Elterngeld Rechner, 2026, Basiselterngeld, ElterngeldPlus, Einkommensgrenze"
+      },
+      "officialSources": {
+        "familienportal_elterngeld": "https://familienportal.de/familienportal/familienleistungen/elterngeld",
+        "familienportal_hoehe": "https://familienportal.de/familienportal/familienleistungen/elterngeld/faq/wie-viel-elterngeld-kann-ich-bekommen--124616",
+        "bmbfsfj_elterngeld": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+        "bmbfsfj_neuregelung": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588",
+        "elterngeld_digital": "https://www.elterngeld-digital.de/"
+      },
+      "auditSummary": "Clean audit cycle 6 - all 3 links working (200 OK). All Elterngeld 2026 values verified against BMBFSFJ and Familienportal official sources: Basiselterngeld 300-1.800€, ElterngeldPlus 150-900€, Ersatzrate 65-67%, Einkommensgrenze 175.000€ since April 2025. Legal sections complete with 3-month deadline warning, Frühchen/Mehrlinge/Geschwisterbonus Sonderregelungen, April 2025 reform info. Calculation logic verified (Gleitzone 0.0005 factor correct). No issues found."
     }
   ]
 }
