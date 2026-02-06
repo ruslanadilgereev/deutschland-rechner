@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 0,
+  "lastAuditIndex": 1,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 4,
   "calculators": [
@@ -1954,6 +1954,65 @@
         "familienservice": "https://www.familienservice.de/-/mehr-geld-fuer-familien-kindergeld-kinderfreibetrag"
       },
       "auditSummary": "Clean audit cycle 4 - all 4 links working (200 OK), 259€ per child verified against multiple official sources (Bundesagentur für Arbeit, Familienportal, familienservice.de). Legal sections complete with Antrag-Hinweis, 6-Monat-Frist, Unterlagen, Behörden-Info. Calculation logic simple and correct. SEO metadata complete. No issues found."
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "date": "2026-02-06",
+      "cycle": 4,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bmf-steuerrechner.de": "PASS - 200 OK",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)",
+        "deutsche-rentenversicherung.de": "PASS - 200 OK (redirects to /DRV/DE/Home/home_node.html)",
+        "bundesregierung.de/beitragsgemessungsgrenzen-2386514": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+          "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html"
+        ],
+        "2026ValuesVerified": {
+          "Grundfreibetrag": "12.348€ ✓ (BMF confirmed)",
+          "BBG_RV": "101.400€/Jahr (8.450€/Monat) ✓ (Bundesregierung, TK)",
+          "BBG_KV": "69.750€/Jahr (5.812,50€/Monat) ✓ (Bundesregierung, TK)",
+          "RV_Satz": "9,3% AN-Anteil ✓",
+          "AV_Satz": "1,3% AN-Anteil ✓",
+          "KV_Basis": "7,3% AN-Anteil ✓ (14,6% gesamt per AOK)",
+          "KV_Zusatzbeitrag": "1,45% AN-Anteil ✓ (2,9% durchschnittl. gesamt per AOK)",
+          "PV_mit_Kind": "1,8% AN-Anteil ✓ (3,6% gesamt per AOK)",
+          "PV_kinderlos": "2,4% AN-Anteil ✓ (4,2% gesamt = 3,6% + 0,6% Zuschlag, AOK confirmed)",
+          "Soli_Freigrenze": "18.130€ ✓"
+        },
+        "note": "All SV values match official sources from Bundesregierung, TK, and AOK Rechengrößen 2026"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Vereinfachte Berechnung warning with BMF-Steuerrechner link present",
+        "edgeCases": "PASS - All 6 Steuerklassen, Kirchensteuer (8%/9%), Kinderlosenzuschlag implemented",
+        "behoerde": "PASS - Finanzamt (ELSTER), Krankenkasse sections complete",
+        "sources": "PASS - 3 authoritative sources listed (BMF, DRV, Bundesregierung)"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "2026 Steuertarif §32a correctly implemented. BBG caps applied. Soli Milderungszone (11.9%) correct. PV Kinderlosenzuschlag 0.6% entirely AN correct. Tax zones verified: 12.348-17.799 (14-24%), 17.799-69.878 (24-42%), 69.878-277.825 (42%), >277.825 (45%)."
+      },
+      "seoCheck": {
+        "title": "PASS - Brutto-Netto-Rechner 2026",
+        "description": "PASS - Includes Grundfreibetrag 12.348€, BBG values 101.400€/69.750€",
+        "keywords": "PASS - Includes: Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen, Lohnsteuer Rechner, Steuerklasse, Grundfreibetrag 2026, BBG 2026"
+      },
+      "officialSources": {
+        "bmf_steuerrechner": "https://www.bmf-steuerrechner.de",
+        "bmf_2026_changes": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+        "tk": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+        "aok": "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+        "elster": "https://www.elster.de",
+        "drv": "https://www.deutsche-rentenversicherung.de"
+      },
+      "auditSummary": "Clean audit cycle 4 - all 4 links working (200 OK), all 2026 SV values and Grundfreibetrag verified against Bundesregierung, TK, AOK, BMF official sources. Legal sections complete with disclaimer, 6 Steuerklassen, Kirchensteuer, Kinderlosenzuschlag. Calculation logic verified correct with 2026 tax tariff. No issues found."
     }
   ]
 }
