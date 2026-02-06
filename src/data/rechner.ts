@@ -839,8 +839,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Kraftfahrzeugsteuer berechnen',
     icon: '🚗',
     kategorie: 'auto',
-    fertig: false,
-    seoKeywords: 'Kfz Steuer Rechner, Auto Steuer berechnen, Kraftfahrzeugsteuer',
+    fertig: true,
+    seoKeywords: 'Kfz Steuer Rechner, Auto Steuer berechnen, Kraftfahrzeugsteuer, Kfz Steuer 2025, CO2 Steuer Auto, Hubraum Steuer, Kfz Steuer Diesel Benzin Elektro',
+    quellen: [
+      'https://www.gesetze-im-internet.de/kraftstg/',
+      'https://www.zoll.de/DE/Privatpersonen/Kraftfahrzeugsteuer/kraftfahrzeugsteuer_node.html',
+      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Zoll/Kraftfahrzeugsteuer/kraftfahrzeugsteuer.html',
+      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/kfz-steuer/',
+    ],
   },
   {
     id: 'spritkosten',

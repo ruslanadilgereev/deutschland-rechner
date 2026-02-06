@@ -1,0 +1,1554 @@
+/* empty css                                             */
+import { c as createComponent, r as renderComponent, g as renderScript, a as renderTemplate, m as maybeRenderHead, f as addAttribute } from '../chunks/astro/server_Bf3RW9Fp.mjs';
+import 'piccolore';
+import { $ as $$Layout } from '../chunks/Layout_v22DC8tm.mjs';
+import { jsx, jsxs } from 'react/jsx-runtime';
+export { renderers } from '../renderers.mjs';
+
+function RechnerCard({ rechner }) {
+  const href = rechner.fertig ? `/${rechner.id}-rechner` : "#";
+  const isDisabled = !rechner.fertig;
+  return /* @__PURE__ */ jsx(
+    "a",
+    {
+      href,
+      className: `
+        block p-4 rounded-2xl transition-all duration-200
+        ${isDisabled ? "bg-gray-100 opacity-50 cursor-not-allowed" : "bg-white shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"}
+      `,
+      onClick: (e) => isDisabled && e.preventDefault(),
+      children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-4", children: [
+        /* @__PURE__ */ jsx("span", { className: "text-4xl", children: rechner.icon }),
+        /* @__PURE__ */ jsxs("div", { className: "flex-1 min-w-0", children: [
+          /* @__PURE__ */ jsx("h3", { className: "font-bold text-gray-900 truncate", children: rechner.name }),
+          /* @__PURE__ */ jsx("p", { className: "text-sm text-gray-500 truncate", children: rechner.beschreibung })
+        ] }),
+        rechner.fertig ? /* @__PURE__ */ jsx("svg", { className: "w-6 h-6 text-blue-500 flex-shrink-0", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 5l7 7-7 7" }) }) : /* @__PURE__ */ jsx("span", { className: "text-xs bg-gray-200 text-gray-500 px-2 py-1 rounded-full flex-shrink-0", children: "Bald" })
+      ] })
+    }
+  );
+}
+
+const kategorien = {
+  familie: { name: "Familie & Kinder", icon: "👨‍👩‍👧‍👦", color: "bg-pink-500" },
+  arbeit: { name: "Arbeit & Gehalt", icon: "💼", color: "bg-blue-500" },
+  steuern: { name: "Steuern & Abgaben", icon: "🏛️", color: "bg-yellow-500" },
+  soziales: { name: "Sozialleistungen", icon: "🤝", color: "bg-green-500" },
+  wohnen: { name: "Wohnen & Immobilien", icon: "🏠", color: "bg-purple-500" },
+  gesundheit: { name: "Gesundheit", icon: "❤️", color: "bg-red-500" },
+  auto: { name: "Auto & Mobilität", icon: "🚗", color: "bg-orange-500" },
+  finanzen: { name: "Finanzen & Kredit", icon: "💳", color: "bg-emerald-500" },
+  alltag: { name: "Alltag & Lifestyle", icon: "🧮", color: "bg-indigo-500" }
+};
+const rechnerListe = [
+  // ═══════════════════════════════════════════════════════════════
+  // FAMILIE & KINDER (Mega-Traffic!)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "kindergeld",
+    name: "Kindergeld-Rechner",
+    beschreibung: "Berechne deinen Kindergeld-Anspruch 2026",
+    icon: "👶",
+    kategorie: "familie",
+    fertig: true,
+    quellen: ["https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer"]
+  },
+  {
+    id: "elterngeld",
+    name: "Elterngeld-Rechner",
+    beschreibung: "Basis-Elterngeld & ElterngeldPlus berechnen",
+    icon: "🍼",
+    kategorie: "familie",
+    fertig: true,
+    quellen: ["https://familienportal.de/familienportal/familienleistungen/elterngeld"]
+  },
+  {
+    id: "unterhalt",
+    name: "Unterhalts-Rechner",
+    beschreibung: "Kindesunterhalt nach Düsseldorfer Tabelle 2026",
+    icon: "💰",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Unterhalt Rechner, Kindesunterhalt berechnen, Düsseldorfer Tabelle 2026",
+    quellen: [
+      "https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/index.php",
+      "https://www.bmj.de/DE/themen/gesellschaft/familie-und-unterhalt/unterhalt/unterhalt-node.html"
+    ]
+  },
+  {
+    id: "kinderzuschlag",
+    name: "Kinderzuschlag-Rechner",
+    beschreibung: "Kinderzuschlag-Anspruch prüfen (bis 292€/Kind)",
+    icon: "💶",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Kinderzuschlag Rechner, Kinderzuschlag berechnen, KiZ 2026, Kinderzuschlag Höhe",
+    quellen: [
+      "https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag",
+      "https://familienportal.de/familienportal/familienleistungen/kinderzuschlag",
+      "https://www.bmas.de/DE/Soziales/Familie-und-Kinder/Familienleistungen/Kinderzuschlag/kinderzuschlag.html"
+    ]
+  },
+  {
+    id: "mutterschutz",
+    name: "Mutterschutz-Rechner",
+    beschreibung: "Mutterschutzfristen & Mutterschaftsgeld berechnen",
+    icon: "🤰",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Mutterschutz Rechner, Mutterschaftsgeld berechnen, Mutterschutzfrist, Mutterschaftsgeld 2025, Mutterschaftsgeld 2026, Schutzfrist Geburt",
+    quellen: [
+      "https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz",
+      "https://www.bundesamtsozialesicherung.de/de/mutterschaftsgeld/ueberblick/",
+      "https://www.gesetze-im-internet.de/muschg_2018/",
+      "https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen"
+    ]
+  },
+  {
+    id: "elternzeit",
+    name: "Elternzeit-Rechner",
+    beschreibung: "Elternzeit planen – Dauer & Aufteilung",
+    icon: "📅",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Elternzeit Rechner, Elternzeit berechnen, Elternzeit Dauer, Elternzeit planen, Elternzeit 2025, Elternzeit 2026, Elternzeit Vater, Elternzeit Mutter, Elternzeit Anmeldung, Elternzeit Frist, Elternzeit Teilzeit, Elternzeit Kündigungsschutz",
+    quellen: [
+      "https://familienportal.de/familienportal/familienleistungen/elternzeit",
+      "https://www.gesetze-im-internet.de/beeg/",
+      "https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/elternzeit",
+      "https://www.arbeitsagentur.de/familie-und-kinder/elternzeit"
+    ]
+  },
+  {
+    id: "geburtstermin",
+    name: "Geburtstermin-Rechner",
+    beschreibung: "Errechneter Geburtstermin & SSW",
+    icon: "🗓️",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Geburtstermin Rechner, SSW Rechner, Schwangerschaftswoche berechnen, ET berechnen, Entbindungstermin Rechner, Geburtstermin berechnen, wann kommt mein Baby, Schwangerschaftsrechner 2025",
+    quellen: [
+      "https://www.familienplanung.de/schwangerschaft/",
+      "https://www.frauenaerzte-im-netz.de/schwangerschaft-geburt/",
+      "https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz"
+    ]
+  },
+  {
+    id: "scheidungskosten",
+    name: "Scheidungskosten-Rechner",
+    beschreibung: "Anwalts- und Gerichtskosten bei Scheidung",
+    icon: "⚖️",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Scheidungskosten Rechner, Scheidung Kosten, Anwaltskosten Scheidung, Scheidung wie teuer, einvernehmliche Scheidung Kosten, Verfahrenswert Scheidung",
+    quellen: [
+      "https://www.gesetze-im-internet.de/gkg_2004/",
+      "https://www.gesetze-im-internet.de/rvg/",
+      "https://www.gesetze-im-internet.de/famgkg/",
+      "https://www.bmj.de/DE/Themen/FamilieUndPartnerschaft/Scheidung/Scheidung_node.html"
+    ]
+  },
+  {
+    id: "ehegattenunterhalt",
+    name: "Ehegattenunterhalt-Rechner",
+    beschreibung: "Trennungs- und Ehegattenunterhalt berechnen",
+    icon: "💔",
+    kategorie: "familie",
+    fertig: true,
+    seoKeywords: "Ehegattenunterhalt Rechner, Trennungsunterhalt berechnen, nachehelicher Unterhalt, Ehegattenunterhalt 2026, Scheidung Unterhalt",
+    quellen: [
+      "https://www.gesetze-im-internet.de/bgb/__1361.html",
+      "https://www.gesetze-im-internet.de/bgb/__1569.html",
+      "https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/index.php",
+      "https://www.bmj.de/DE/themen/gesellschaft/familie-und-unterhalt/unterhalt/unterhalt-node.html"
+    ]
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // ARBEIT & GEHALT (Mega-Traffic!)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "brutto-netto",
+    name: "Brutto-Netto-Rechner",
+    beschreibung: "Was bleibt vom Gehalt übrig?",
+    icon: "💵",
+    kategorie: "arbeit",
+    fertig: true,
+    quellen: ["https://www.bmf-steuerrechner.de", "https://www.deutsche-rentenversicherung.de"]
+  },
+  {
+    id: "pendlerpauschale",
+    name: "Pendlerpauschale-Rechner",
+    beschreibung: "Fahrtkosten steuerlich absetzen",
+    icon: "🛣️",
+    kategorie: "arbeit",
+    fertig: true,
+    quellen: ["https://www.bundesfinanzministerium.de"]
+  },
+  {
+    id: "minijob",
+    name: "Minijob-Rechner",
+    beschreibung: "538€-Grenze und Abgaben berechnen",
+    icon: "⏰",
+    kategorie: "arbeit",
+    fertig: true,
+    seoKeywords: "Minijob Rechner, 538 Euro Job, Minijob Abgaben",
+    quellen: [
+      "https://www.minijob-zentrale.de",
+      "https://www.gesetze-im-internet.de/sgb_4/",
+      "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2024-2132292"
+    ]
+  },
+  {
+    id: "midijob",
+    name: "Midijob-Rechner",
+    beschreibung: "Übergangsbereich 603-2000€ berechnen",
+    icon: "📊",
+    kategorie: "arbeit",
+    fertig: true,
+    seoKeywords: "Midijob Rechner, Übergangsbereich, Gleitzone Rechner, Midijob 2026, Übergangsbereich 603 2000",
+    quellen: [
+      "https://www.gesetze-im-internet.de/sgb_4/__20.html",
+      "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Arbeitnehmer-und-Selbststaendige/01-uebergangsbereich/uebergangsbereich_node.html",
+      "https://www.lohn-info.de/uebergangsbereich.html"
+    ]
+  },
+  {
+    id: "kurzarbeitergeld",
+    name: "Kurzarbeitergeld-Rechner",
+    beschreibung: "KuG-Anspruch berechnen",
+    icon: "📉",
+    kategorie: "arbeit",
+    fertig: true,
+    seoKeywords: "Kurzarbeitergeld Rechner, KuG berechnen, Kurzarbeit Geld, Kurzarbeitergeld 2026, Kurzarbeitergeld Höhe",
+    quellen: [
+      "https://www.arbeitsagentur.de/unternehmen/finanziell/kurzarbeitergeld",
+      "https://www.gesetze-im-internet.de/sgb_3/__105.html",
+      "https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kurzarbeit/kurzarbeit-artikel.html"
+    ]
+  },
+  {
+    id: "stundenlohn",
+    name: "Stundenlohn-Rechner",
+    beschreibung: "Von Monatsgehalt zu Stundenlohn umrechnen",
+    icon: "⌛",
+    kategorie: "arbeit",
+    fertig: true,
+    seoKeywords: "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenlohn, Stundenlohn Formel, Brutto Stundenlohn, Mindestlohn Rechner",
+    quellen: [
+      "https://www.gesetze-im-internet.de/milog/",
+      "https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Mindestlohn/mindestlohn.html",
+      "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2025",
+      "https://www.destatis.de/DE/Themen/Arbeit/Verdienste/Verdienste-Verdienstunterschiede/_inhalt.html"
+    ]
+  },
+  {
+    id: "gehaltsvergleich",
+    name: "Gehaltsvergleich-Rechner",
+    beschreibung: "Verdienst du über oder unter Durchschnitt?",
+    icon: "📈",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Gehaltsvergleich, Durchschnittsgehalt Deutschland, Gehalt vergleichen"
+  },
+  {
+    id: "abfindung",
+    name: "Abfindungs-Rechner",
+    beschreibung: "Abfindung berechnen & Steuer optimieren",
+    icon: "🤝",
+    kategorie: "arbeit",
+    fertig: true,
+    seoKeywords: "Abfindung Rechner, Abfindung berechnen, Abfindung versteuern, Fünftelregelung Rechner, Abfindung netto, Abfindung Steuer 2025",
+    quellen: [
+      "https://www.gesetze-im-internet.de/estg/__34.html",
+      "https://www.gesetze-im-internet.de/kschg/__1a.html",
+      "https://www.gesetze-im-internet.de/sgb_3/__159.html",
+      "https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kuendigung-und-Aufhebungsvertrag/kuendigung-aufhebungsvertrag.html",
+      "https://www.bmf-steuerrechner.de"
+    ]
+  },
+  {
+    id: "urlaubstage",
+    name: "Urlaubstage-Rechner",
+    beschreibung: "Urlaubsanspruch bei Teilzeit & Wechsel",
+    icon: "🏖️",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Urlaubstage Rechner, Urlaub berechnen, Urlaubsanspruch Teilzeit"
+  },
+  {
+    id: "ueberstunden",
+    name: "Überstunden-Rechner",
+    beschreibung: "Überstunden-Vergütung berechnen",
+    icon: "⏱️",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Überstunden Rechner, Überstunden berechnen, Überstunden auszahlen"
+  },
+  {
+    id: "teilzeit",
+    name: "Teilzeit-Rechner",
+    beschreibung: "Gehalt & Stunden bei Teilzeit",
+    icon: "⚖️",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Teilzeit Rechner, Teilzeitgehalt berechnen, Teilzeit Stunden"
+  },
+  {
+    id: "nachtschicht",
+    name: "Nachtschicht-Zuschlag-Rechner",
+    beschreibung: "Nacht-, Sonn- und Feiertagszuschläge",
+    icon: "🌙",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Nachtschicht Zuschlag, Nachtzuschlag Rechner, Sonntagszuschlag"
+  },
+  {
+    id: "arbeitstage",
+    name: "Arbeitstage-Rechner",
+    beschreibung: "Arbeitstage zwischen zwei Daten zählen",
+    icon: "📆",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen"
+  },
+  {
+    id: "mindestlohn",
+    name: "Mindestlohn-Rechner",
+    beschreibung: "Mindestlohn 2025: 12,82€/Stunde",
+    icon: "💶",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Mindestlohn Rechner, Mindestlohn 2025, Mindestlohn berechnen"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // STEUERN & ABGABEN (Mega-Traffic!)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "grunderwerbsteuer",
+    name: "Grunderwerbsteuer-Rechner",
+    beschreibung: "Steuer beim Immobilienkauf (nach Bundesland)",
+    icon: "🏗️",
+    kategorie: "steuern",
+    fertig: true,
+    quellen: ["https://www.bundesfinanzministerium.de"]
+  },
+  {
+    id: "einkommensteuer",
+    name: "Einkommensteuer-Rechner",
+    beschreibung: "Steuerlast 2026 berechnen mit Splittingtarif",
+    icon: "🧾",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Einkommensteuer Rechner 2026, Einkommensteuer berechnen, Steuerlast, zvE berechnen, Grundfreibetrag, Splittingtarif, Kinderfreibetrag, Grenzsteuersatz",
+    quellen: [
+      "https://www.gesetze-im-internet.de/estg/__32a.html",
+      "https://www.bmf-steuerrechner.de",
+      "https://www.bundesfinanzministerium.de"
+    ]
+  },
+  {
+    id: "erbschaftsteuer",
+    name: "Erbschaftsteuer-Rechner",
+    beschreibung: "Steuer auf Erbschaft & Freibeträge",
+    icon: "📜",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Erbschaftsteuer Rechner, Erbschaftsteuer Freibetrag, Erbschaft versteuern, Erbschaftsteuer 2025, Erbschaftsteuer Steuerklasse",
+    quellen: [
+      "https://www.gesetze-im-internet.de/erbstg_1974/",
+      "https://www.gesetze-im-internet.de/bewg/",
+      "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html",
+      "https://www.steuertipps.de/erbschaft-schenkung"
+    ]
+  },
+  {
+    id: "schenkungsteuer",
+    name: "Schenkungsteuer-Rechner",
+    beschreibung: "Steuer auf Schenkungen & Freibeträge",
+    icon: "🎁",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Schenkungsteuer Rechner, Schenkung Freibetrag, Schenkung versteuern, Schenkungsteuer 2025, 10-Jahres-Regel Schenkung, Schenkungsteuer Kinder",
+    quellen: [
+      "https://www.gesetze-im-internet.de/erbstg_1974/",
+      "https://www.gesetze-im-internet.de/bewg/",
+      "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html",
+      "https://www.steuertipps.de/erbschaft-schenkung"
+    ]
+  },
+  {
+    id: "kapitalertragsteuer",
+    name: "Kapitalertragsteuer-Rechner",
+    beschreibung: "Abgeltungssteuer auf Kapitalerträge",
+    icon: "📈",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Kapitalertragsteuer Rechner, Abgeltungssteuer, Aktien Steuer, ETF Steuer, Krypto Steuer, Dividenden Steuer, Sparerpauschbetrag",
+    quellen: [
+      "https://www.gesetze-im-internet.de/estg/__20.html",
+      "https://www.gesetze-im-internet.de/estg/__32d.html",
+      "https://www.gesetze-im-internet.de/invstg_2018/",
+      "https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Kapitalertragsteuer/kapitalertragsteuer.html",
+      "https://www.bzst.de/DE/Privatpersonen/Kapitalertraege/kapitalertraege_node.html"
+    ]
+  },
+  {
+    id: "grundsteuer",
+    name: "Grundsteuer-Rechner",
+    beschreibung: "Neue Grundsteuer ab 2025 berechnen",
+    icon: "🏡",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Grundsteuer Rechner, Grundsteuer 2025, neue Grundsteuer berechnen, Grundsteuer Reform, Grundsteuerwert, Bundesmodell, Flächenmodell, Bodenwertmodell, Hebesatz, Bodenrichtwert",
+    quellen: [
+      "https://www.gesetze-im-internet.de/grstg_1973/",
+      "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer/grundsteuer.html",
+      "https://www.grundsteuer.de",
+      "https://www.bodenrichtwerte-boris.de"
+    ]
+  },
+  {
+    id: "gewerbesteuer",
+    name: "Gewerbesteuer-Rechner",
+    beschreibung: "Gewerbesteuer für Unternehmen berechnen",
+    icon: "🏢",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Gewerbesteuer Rechner, Gewerbesteuer berechnen, Hebesatz"
+  },
+  {
+    id: "mehrwertsteuer",
+    name: "Mehrwertsteuer-Rechner",
+    beschreibung: "MwSt. berechnen (19% / 7%)",
+    icon: "🧾",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Mehrwertsteuer Rechner, MwSt Rechner, Umsatzsteuer berechnen, Netto Brutto Rechner, 19 Prozent Rechner, 7 Prozent MwSt",
+    quellen: [
+      "https://www.gesetze-im-internet.de/ustg_1980/",
+      "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/umsatzsteuer.html",
+      "https://www.ihk.de/themen/steuern/umsatzsteuer"
+    ]
+  },
+  {
+    id: "steuerklassenwechsel",
+    name: "Steuerklassen-Rechner",
+    beschreibung: "Optimale Steuerklasse für Ehepaare",
+    icon: "💑",
+    kategorie: "steuern",
+    fertig: true,
+    seoKeywords: "Steuerklasse Rechner, Steuerklassenwechsel, Steuerklasse Ehepaar, Steuerklasse 3 5, Steuerklasse 4 4, Faktorverfahren",
+    quellen: [
+      "https://www.gesetze-im-internet.de/estg/__38b.html",
+      "https://www.gesetze-im-internet.de/estg/__39.html",
+      "https://www.bmf-steuerrechner.de",
+      "https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Lohnsteuer/lohnsteuer.html"
+    ]
+  },
+  {
+    id: "steuererklarung",
+    name: "Steuererstattungs-Rechner",
+    beschreibung: "Geschätzte Steuererstattung berechnen",
+    icon: "💰",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Steuererstattung Rechner, Steuererklärung Erstattung, Steuerrückzahlung"
+  },
+  {
+    id: "soli",
+    name: "Solidaritätszuschlag-Rechner",
+    beschreibung: "Soli-Berechnung mit Freigrenzen",
+    icon: "🇩🇪",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Solidaritätszuschlag Rechner, Soli berechnen, Soli Freigrenze"
+  },
+  {
+    id: "kirchensteuer",
+    name: "Kirchensteuer-Rechner",
+    beschreibung: "Kirchensteuer 8-9% berechnen",
+    icon: "⛪",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Kirchensteuer Rechner, Kirchensteuer berechnen, Kirchensteuer Ersparnis"
+  },
+  {
+    id: "lohnsteuer",
+    name: "Lohnsteuer-Rechner",
+    beschreibung: "Monatliche Lohnsteuer berechnen",
+    icon: "💳",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Lohnsteuer Rechner, Lohnsteuer berechnen, Lohnsteuerklasse"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // SOZIALLEISTUNGEN (Mega-Traffic!)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "buergergeld",
+    name: "Bürgergeld-Rechner",
+    beschreibung: "Anspruch auf Bürgergeld prüfen",
+    icon: "🏦",
+    kategorie: "soziales",
+    fertig: true,
+    quellen: ["https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld"]
+  },
+  {
+    id: "arbeitslosengeld",
+    name: "Arbeitslosengeld-Rechner",
+    beschreibung: "ALG I Anspruch & Dauer berechnen",
+    icon: "📋",
+    kategorie: "soziales",
+    fertig: true,
+    seoKeywords: "Arbeitslosengeld Rechner, ALG 1 berechnen, Arbeitslosengeld Höhe, ALG I Rechner, Arbeitslosengeld 2025",
+    quellen: [
+      "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld",
+      "https://www.gesetze-im-internet.de/sgb_3/",
+      "https://www.bmas.de/DE/Arbeit/Arbeitsfoerderung/arbeitsfoerderung.html"
+    ]
+  },
+  {
+    id: "wohngeld",
+    name: "Wohngeld-Rechner",
+    beschreibung: "Wohngeld-Anspruch 2025/2026 prüfen",
+    icon: "🏘️",
+    kategorie: "soziales",
+    fertig: true,
+    seoKeywords: "Wohngeld Rechner, Wohngeld 2026, Wohngeld berechnen, Wohngeld Anspruch, Mietzuschuss",
+    quellen: [
+      "https://www.gesetze-im-internet.de/wogg/",
+      "https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/wohnen/wohngeld/wohngeld-node.html",
+      "https://www.wohngeld.org"
+    ]
+  },
+  {
+    id: "bafoeg",
+    name: "BAföG-Rechner",
+    beschreibung: "BAföG-Förderung berechnen",
+    icon: "🎓",
+    kategorie: "soziales",
+    fertig: true,
+    seoKeywords: "BAföG Rechner, BAföG berechnen, BAföG Höhe 2025",
+    quellen: [
+      "https://www.bafög.de",
+      "https://www.studentenwerke.de/de/bafoeg",
+      "https://www.gesetze-im-internet.de/baf_g/"
+    ]
+  },
+  {
+    id: "rente",
+    name: "Renten-Rechner",
+    beschreibung: "Gesetzliche Rente berechnen",
+    icon: "👴",
+    kategorie: "soziales",
+    fertig: true,
+    seoKeywords: "Renten Rechner, Rente berechnen, gesetzliche Rente 2026, Entgeltpunkte, Rentenwert, Regelaltersgrenze, Rente mit 63",
+    quellen: [
+      "https://www.deutsche-rentenversicherung.de",
+      "https://www.bundesregierung.de/breg-de/aktuelles/rentenanpassung-2025-2337000",
+      "https://www.gesetze-im-internet.de/sgb_6/"
+    ]
+  },
+  {
+    id: "rentenluecke",
+    name: "Rentenlücke-Rechner",
+    beschreibung: "Wie viel fehlt zur Wunschrente?",
+    icon: "📉",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Rentenlücke Rechner, Versorgungslücke berechnen, Rente Altersvorsorge"
+  },
+  {
+    id: "rentensteuer",
+    name: "Rentensteuer-Rechner",
+    beschreibung: "Steuer auf Rente berechnen",
+    icon: "🧓",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Rentensteuer Rechner, Rente versteuern, Rentenbesteuerung"
+  },
+  {
+    id: "riester",
+    name: "Riester-Renten-Rechner",
+    beschreibung: "Riester-Förderung & Zulagen berechnen",
+    icon: "🏛️",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Riester Rechner, Riester Rente berechnen, Riester Zulage"
+  },
+  {
+    id: "erwerbsminderungsrente",
+    name: "Erwerbsminderungsrente-Rechner",
+    beschreibung: "EM-Rente berechnen",
+    icon: "♿",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Erwerbsminderungsrente Rechner, EM Rente berechnen"
+  },
+  {
+    id: "witwenrente",
+    name: "Witwenrente-Rechner",
+    beschreibung: "Hinterbliebenenrente berechnen",
+    icon: "🕊️",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Witwenrente Rechner, Hinterbliebenenrente berechnen"
+  },
+  {
+    id: "grundrente",
+    name: "Grundrente-Rechner",
+    beschreibung: "Grundrentenzuschlag berechnen",
+    icon: "📊",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Grundrente Rechner, Grundrentenzuschlag berechnen"
+  },
+  {
+    id: "rentenabzuege",
+    name: "Rentenabzüge-Rechner",
+    beschreibung: "Abzüge bei vorzeitiger Rente",
+    icon: "➖",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Rentenabzüge Rechner, Rente mit 63, vorzeitige Rente Abzüge"
+  },
+  {
+    id: "mutterrente",
+    name: "Mütterrente-Rechner",
+    beschreibung: "Rentenpunkte für Kindererziehungszeiten",
+    icon: "👩‍👧",
+    kategorie: "soziales",
+    fertig: false,
+    seoKeywords: "Mütterrente Rechner, Kindererziehungszeiten Rente"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // WOHNEN & IMMOBILIEN
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "mieterhoehung",
+    name: "Mieterhöhungs-Rechner",
+    beschreibung: "Zulässige Mieterhöhung prüfen (Kappungsgrenze)",
+    icon: "📈",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Mieterhöhung Rechner, Mieterhöhung zulässig, Kappungsgrenze Miete"
+  },
+  {
+    id: "nebenkosten",
+    name: "Nebenkosten-Rechner",
+    beschreibung: "Betriebskostenabrechnung prüfen",
+    icon: "💡",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Nebenkosten Rechner, Betriebskosten berechnen, Nebenkostenabrechnung"
+  },
+  {
+    id: "stromkosten",
+    name: "Stromkosten-Rechner",
+    beschreibung: "Stromverbrauch & Kosten berechnen",
+    icon: "⚡",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Stromkosten Rechner, Stromverbrauch berechnen, Strompreis"
+  },
+  {
+    id: "heizkosten",
+    name: "Heizkosten-Rechner",
+    beschreibung: "Heizkosten pro qm berechnen",
+    icon: "🔥",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Heizkosten Rechner, Heizkosten berechnen, Heizkosten pro qm"
+  },
+  {
+    id: "gaskosten",
+    name: "Gaskosten-Rechner",
+    beschreibung: "Gasverbrauch & Kosten berechnen",
+    icon: "🔵",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Gaskosten Rechner, Gasverbrauch berechnen, Gaspreis"
+  },
+  {
+    id: "mietkaution",
+    name: "Mietkaution-Rechner",
+    beschreibung: "Kaution & Zinsen berechnen",
+    icon: "🔐",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Mietkaution Rechner, Kaution berechnen, Kaution Zinsen"
+  },
+  {
+    id: "quadratmeterpreis",
+    name: "Quadratmeterpreis-Rechner",
+    beschreibung: "Preis pro qm bei Kauf/Miete berechnen",
+    icon: "📐",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Quadratmeterpreis Rechner, Preis pro qm, Immobilienpreis berechnen"
+  },
+  {
+    id: "kaufnebenkosten",
+    name: "Kaufnebenkosten-Rechner",
+    beschreibung: "Alle Nebenkosten beim Immobilienkauf",
+    icon: "🏠",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Kaufnebenkosten Rechner, Nebenkosten Hauskauf, Notar Grundbuch Kosten"
+  },
+  {
+    id: "notarkosten",
+    name: "Notarkosten-Rechner",
+    beschreibung: "Notar- und Grundbuchkosten berechnen",
+    icon: "📝",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Notarkosten Rechner, Notarkosten Hauskauf, Grundbuchkosten"
+  },
+  {
+    id: "maklerkosten",
+    name: "Maklerkosten-Rechner",
+    beschreibung: "Maklergebühren nach Bundesland",
+    icon: "🤵",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Maklerkosten Rechner, Maklerprovision, Maklergebühren"
+  },
+  {
+    id: "baufinanzierung",
+    name: "Baufinanzierung-Rechner",
+    beschreibung: "Immobilienkredit & Rate berechnen",
+    icon: "🏗️",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Baufinanzierung Rechner, Hauskredit berechnen, Immobilienfinanzierung"
+  },
+  {
+    id: "tilgung",
+    name: "Tilgungsplan-Rechner",
+    beschreibung: "Tilgungsplan für Immobiliendarlehen",
+    icon: "📊",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Tilgungsrechner, Tilgungsplan berechnen, Kredit Tilgung"
+  },
+  {
+    id: "eigenkapital",
+    name: "Eigenkapital-Rechner",
+    beschreibung: "Wie viel Eigenkapital für Hauskauf?",
+    icon: "💰",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Eigenkapital Hauskauf, Eigenkapital berechnen, wie viel Eigenkapital"
+  },
+  {
+    id: "miete-oder-kaufen",
+    name: "Mieten-oder-Kaufen-Rechner",
+    beschreibung: "Was lohnt sich mehr?",
+    icon: "🤔",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Mieten oder Kaufen Rechner, Miete vs Kaufen, lohnt sich Hauskauf"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // GESUNDHEIT
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "krankengeld",
+    name: "Krankengeld-Rechner",
+    beschreibung: "Krankengeld-Anspruch berechnen",
+    icon: "🏥",
+    kategorie: "gesundheit",
+    fertig: true,
+    seoKeywords: "Krankengeld Rechner, Krankengeld berechnen, Krankengeld Höhe, Krankengeld 2025, Krankengeld Dauer, Krankengeld nach 6 Wochen, Lohnfortzahlung Ende",
+    quellen: [
+      "https://www.gesetze-im-internet.de/sgb_5/__44.html",
+      "https://www.gesetze-im-internet.de/sgb_5/__47.html",
+      "https://www.bundesgesundheitsministerium.de/krankengeld",
+      "https://www.gkv-spitzenverband.de"
+    ]
+  },
+  {
+    id: "pflegegeld",
+    name: "Pflegegeld-Rechner",
+    beschreibung: "Pflegegeld nach Pflegegrad 1-5 berechnen",
+    icon: "🩺",
+    kategorie: "gesundheit",
+    fertig: true,
+    seoKeywords: "Pflegegeld Rechner, Pflegegeld 2025, Pflegegeld 2026, Pflegegrad Geld, Pflegegeld Höhe, Pflegegeld berechnen, Pflegegeld Tabelle",
+    quellen: [
+      "https://www.gesetze-im-internet.de/sgb_11/",
+      "https://www.bundesgesundheitsministerium.de/themen/pflege/pflegeversicherung-leistungen",
+      "https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegeleistungen/pflegegeld/",
+      "https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/pflegeantrag-und-leistungen"
+    ]
+  },
+  {
+    id: "pflegegrad",
+    name: "Pflegegrad-Rechner",
+    beschreibung: "Pflegegrad ermitteln (Selbsttest)",
+    icon: "📋",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Pflegegrad Rechner, Pflegegrad ermitteln, Pflegegrad Test"
+  },
+  {
+    id: "zuzahlung",
+    name: "Zuzahlungs-Rechner",
+    beschreibung: "Zuzahlungsbefreiung Krankenkasse",
+    icon: "💊",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Zuzahlung Rechner, Zuzahlungsbefreiung, Belastungsgrenze Krankenkasse"
+  },
+  {
+    id: "pkv-gkv",
+    name: "PKV-GKV-Vergleich-Rechner",
+    beschreibung: "Private vs. gesetzliche Krankenversicherung",
+    icon: "⚕️",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "PKV GKV Vergleich, private Krankenversicherung Rechner"
+  },
+  {
+    id: "krankenkassenbeitrag",
+    name: "Krankenkassenbeitrag-Rechner",
+    beschreibung: "GKV-Beitrag berechnen",
+    icon: "🏛️",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Krankenkassenbeitrag Rechner, GKV Beitrag berechnen"
+  },
+  {
+    id: "bmi",
+    name: "BMI-Rechner",
+    beschreibung: "Body-Mass-Index berechnen",
+    icon: "⚖️",
+    kategorie: "gesundheit",
+    fertig: true,
+    seoKeywords: "BMI Rechner, BMI berechnen, Body Mass Index, BMI Tabelle, Idealgewicht, Normalgewicht, BMI Formel, BMI Frau, BMI Mann",
+    quellen: [
+      "https://www.who.int/europe/news-room/fact-sheets/item/a-healthy-lifestyle---who-recommendations",
+      "https://www.dge.de/gesunde-ernaehrung/gut-essen-und-trinken/dge-empfehlungen/",
+      "https://www.rki.de/DE/Content/Gesundheitsmonitoring/Themen/Uebergewicht_Adipositas/Uebergewicht_Adipositas_node.html",
+      "https://www.bzfe.de/ernaehrung/ernaehrungswissen/gesundheit/bmi-rechner/"
+    ]
+  },
+  {
+    id: "kalorienrechner",
+    name: "Kalorien-Rechner",
+    beschreibung: "Täglichen Kalorienbedarf berechnen",
+    icon: "🍎",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Kalorienrechner, Kalorienbedarf berechnen, Grundumsatz"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // AUTO & MOBILITÄT
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "kfz-steuer",
+    name: "Kfz-Steuer-Rechner",
+    beschreibung: "Kraftfahrzeugsteuer berechnen",
+    icon: "🚗",
+    kategorie: "auto",
+    fertig: true,
+    seoKeywords: "Kfz Steuer Rechner, Auto Steuer berechnen, Kraftfahrzeugsteuer, Kfz Steuer 2025, CO2 Steuer Auto, Hubraum Steuer, Kfz Steuer Diesel Benzin Elektro",
+    quellen: [
+      "https://www.gesetze-im-internet.de/kraftstg/",
+      "https://www.zoll.de/DE/Privatpersonen/Kraftfahrzeugsteuer/kraftfahrzeugsteuer_node.html",
+      "https://www.bundesfinanzministerium.de/Web/DE/Themen/Zoll/Kraftfahrzeugsteuer/kraftfahrzeugsteuer.html",
+      "https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/kfz-steuer/"
+    ]
+  },
+  {
+    id: "spritkosten",
+    name: "Spritkosten-Rechner",
+    beschreibung: "Benzin/Diesel-Kosten für Strecke berechnen",
+    icon: "⛽",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Spritkosten Rechner, Benzinkosten berechnen, Fahrtkosten Auto"
+  },
+  {
+    id: "spritverbrauch",
+    name: "Spritverbrauch-Rechner",
+    beschreibung: "Verbrauch in L/100km berechnen",
+    icon: "📊",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Spritverbrauch Rechner, Verbrauch berechnen, L/100km"
+  },
+  {
+    id: "autoleasing",
+    name: "Auto-Leasing-Rechner",
+    beschreibung: "Leasingrate & Gesamtkosten berechnen",
+    icon: "🔑",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Auto Leasing Rechner, Leasingrate berechnen, Leasing Kosten"
+  },
+  {
+    id: "autofinanzierung",
+    name: "Autofinanzierung-Rechner",
+    beschreibung: "Autokredit & Rate berechnen",
+    icon: "💳",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Autofinanzierung Rechner, Autokredit berechnen, Auto Rate"
+  },
+  {
+    id: "firmenwagen",
+    name: "Firmenwagen-Rechner",
+    beschreibung: "1%-Regelung vs. Fahrtenbuch",
+    icon: "🚙",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Firmenwagen Rechner, 1% Regelung, Dienstwagen versteuern"
+  },
+  {
+    id: "elektroauto",
+    name: "E-Auto-Kosten-Rechner",
+    beschreibung: "Strom vs. Benzin Vergleich",
+    icon: "🔋",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "E-Auto Kosten Rechner, Elektroauto Kosten, Strom vs Benzin"
+  },
+  {
+    id: "fahrrad-pendeln",
+    name: "Fahrrad-Pendler-Rechner",
+    beschreibung: "Ersparnis durch Radfahren berechnen",
+    icon: "🚴",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Fahrrad Pendler Rechner, Fahrrad statt Auto, Pendeln Ersparnis"
+  },
+  {
+    id: "co2-steuer",
+    name: "CO2-Steuer-Rechner",
+    beschreibung: "CO2-Abgabe auf Heizung & Kraftstoff",
+    icon: "🌱",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "CO2 Steuer Rechner, CO2 Abgabe berechnen, CO2 Preis"
+  },
+  {
+    id: "bussgeld",
+    name: "Bußgeld-Rechner",
+    beschreibung: "Bußgeld & Punkte bei Verkehrsverstößen",
+    icon: "🚨",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Bußgeld Rechner, Bußgeldkatalog, Punkte Flensburg"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // FINANZEN & KREDIT
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "kreditrechner",
+    name: "Kredit-Rechner",
+    beschreibung: "Kreditrate & Zinsen berechnen",
+    icon: "💳",
+    kategorie: "finanzen",
+    fertig: true,
+    seoKeywords: "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zinsen, Tilgungsrechner, Ratenkredit Rechner, Autokredit Rechner, Darlehen Rechner, Annuitätenrechner, Monatsrate berechnen",
+    quellen: [
+      "https://www.gesetze-im-internet.de/bgb/__488.html",
+      "https://www.gesetze-im-internet.de/bgb/__491.html",
+      "https://www.bafin.de/DE/Verbraucher/verbraucher_node.html",
+      "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit",
+      "https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen"
+    ]
+  },
+  {
+    id: "zinseszins",
+    name: "Zinseszins-Rechner",
+    beschreibung: "Vermögenswachstum berechnen",
+    icon: "📈",
+    kategorie: "finanzen",
+    fertig: true,
+    seoKeywords: "Zinseszins Rechner, Zinseszins berechnen, Vermögenswachstum, Sparplan Rechner, ETF Rechner, Zinseszinseffekt, Compound Interest, 72er Regel",
+    quellen: [
+      "https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen",
+      "https://www.gesetze-im-internet.de/estg/__20.html",
+      "https://www.bafin.de/DE/Verbraucher/verbraucher_node.html",
+      "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage",
+      "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html"
+    ]
+  },
+  {
+    id: "sparrechner",
+    name: "Spar-Rechner",
+    beschreibung: "Sparziel & monatliche Rate berechnen",
+    icon: "🐷",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Sparrechner, Sparziel berechnen, wie viel sparen"
+  },
+  {
+    id: "etf-sparplan",
+    name: "ETF-Sparplan-Rechner",
+    beschreibung: "ETF-Rendite & Vermögen berechnen",
+    icon: "📊",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "ETF Sparplan Rechner, ETF Rendite berechnen, Sparplan Rechner"
+  },
+  {
+    id: "inflation",
+    name: "Inflations-Rechner",
+    beschreibung: "Kaufkraftverlust berechnen",
+    icon: "📉",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Inflationsrechner, Kaufkraftverlust berechnen, Inflation"
+  },
+  {
+    id: "dispositionskredit",
+    name: "Dispo-Rechner",
+    beschreibung: "Dispo-Zinsen berechnen",
+    icon: "🏧",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Dispo Rechner, Dispozinsen berechnen, Überziehungskredit"
+  },
+  {
+    id: "währungsrechner",
+    name: "Währungs-Rechner",
+    beschreibung: "EUR in andere Währungen umrechnen",
+    icon: "💱",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Währungsrechner, Euro umrechnen, Wechselkurs"
+  },
+  {
+    id: "privatinsolvenz",
+    name: "Privatinsolvenz-Rechner",
+    beschreibung: "Pfändungsfreies Einkommen berechnen",
+    icon: "⚠️",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Privatinsolvenz Rechner, Pfändungsfreibetrag, pfändungsfrei"
+  },
+  {
+    id: "budget",
+    name: "Budget-Rechner",
+    beschreibung: "Monatsbudget planen (50-30-20)",
+    icon: "📋",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Budget Rechner, Haushaltsbuch, 50 30 20 Regel"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // ALLTAG & LIFESTYLE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "trinkgeld",
+    name: "Trinkgeld-Rechner",
+    beschreibung: "Trinkgeld berechnen (5-15%)",
+    icon: "💶",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld"
+  },
+  {
+    id: "prozentrechner",
+    name: "Prozent-Rechner",
+    beschreibung: "Prozentrechnung aller Art",
+    icon: "%",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Prozentrechner, Prozent berechnen, Rabatt Prozent"
+  },
+  {
+    id: "rabatt",
+    name: "Rabatt-Rechner",
+    beschreibung: "Rabatt & Endpreis berechnen",
+    icon: "🏷️",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Rabatt Rechner, Rabatt berechnen, Preisnachlass"
+  },
+  {
+    id: "umzugskosten",
+    name: "Umzugskosten-Rechner",
+    beschreibung: "Umzugskosten schätzen",
+    icon: "📦",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Umzugskosten Rechner, Umzug Kosten, Umzugsunternehmen Kosten"
+  },
+  {
+    id: "hundesteuer",
+    name: "Hundesteuer-Rechner",
+    beschreibung: "Hundesteuer nach Stadt",
+    icon: "🐕",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Hundesteuer Rechner, Hundesteuer berechnen, Hundesteuer Stadt"
+  },
+  {
+    id: "rentabilitaet",
+    name: "Rentabilitäts-Rechner",
+    beschreibung: "Investition Rentabilität berechnen",
+    icon: "📈",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Rentabilität Rechner, ROI berechnen, Return on Investment"
+  },
+  {
+    id: "flugzeit",
+    name: "Flugzeit-Rechner",
+    beschreibung: "Flugzeit zwischen Städten",
+    icon: "✈️",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegen"
+  },
+  {
+    id: "zeitzone",
+    name: "Zeitzonen-Rechner",
+    beschreibung: "Uhrzeit in anderen Zeitzonen",
+    icon: "🌍",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Zeitzonen Rechner, Zeitunterschied berechnen, Uhrzeit weltweit"
+  },
+  {
+    id: "alter",
+    name: "Alter-Rechner",
+    beschreibung: "Genaues Alter in Jahren, Monaten, Tagen",
+    icon: "🎂",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Alter Rechner, Alter berechnen, wie alt bin ich genau"
+  },
+  {
+    id: "tage-zwischen",
+    name: "Tage-Rechner",
+    beschreibung: "Tage zwischen zwei Daten zählen",
+    icon: "📅",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Tage Rechner, Tage berechnen, wie viele Tage bis"
+  },
+  {
+    id: "einheiten",
+    name: "Einheiten-Rechner",
+    beschreibung: "Maßeinheiten umrechnen (km, kg, l...)",
+    icon: "📏",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Einheiten Rechner, Maßeinheiten umrechnen, Umrechner"
+  },
+  {
+    id: "hochzeit",
+    name: "Hochzeitskosten-Rechner",
+    beschreibung: "Hochzeitsbudget planen",
+    icon: "💒",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Hochzeitskosten Rechner, Hochzeit Kosten, Hochzeit Budget"
+  },
+  {
+    id: "geburtstag",
+    name: "Geburtstags-Rechner",
+    beschreibung: "Wochentag & Sternzeichen für Datum",
+    icon: "🎉",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Geburtstag Rechner, Wochentag berechnen, Sternzeichen"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // MEGA-TRAFFIC ERGÄNZUNGEN (Die wichtigsten fehlenden!)
+  // ═══════════════════════════════════════════════════════════════
+  // GESUNDHEIT - Mega-Traffic
+  {
+    id: "promille",
+    name: "Promille-Rechner",
+    beschreibung: "Blutalkohol nach Getränken berechnen",
+    icon: "🍺",
+    kategorie: "gesundheit",
+    fertig: true,
+    seoKeywords: "Promille Rechner, Alkohol Rechner, Blutalkohol berechnen, Promille berechnen",
+    quellen: [
+      "https://www.bzga.de",
+      "https://www.adac.de/verkehr/recht/verkehrsvorschriften-deutschland/promillegrenze/",
+      "https://www.gesetze-im-internet.de/stvg/__24a.html"
+    ]
+  },
+  {
+    id: "eisprung",
+    name: "Eisprung-Rechner",
+    beschreibung: "Fruchtbare Tage & Eisprung berechnen",
+    icon: "🌸",
+    kategorie: "gesundheit",
+    fertig: true,
+    seoKeywords: "Eisprung Rechner, fruchtbare Tage, Ovulation berechnen, Eisprungkalender, Kinderwunsch Rechner, wann bin ich fruchtbar, Ovulationsrechner, Zyklusrechner, NFP",
+    quellen: [
+      "https://www.familienplanung.de/verhuetung/verhuetungsmethoden/natuerliche-methoden/",
+      "https://www.frauenaerzte-im-netz.de/familienplanung-verhuetung/natuerliche-familienplanung/",
+      "https://www.profamilia.de/themen/verhuetung",
+      "https://www.awmf.org/leitlinien/detail/ll/015-015.html"
+    ]
+  },
+  {
+    id: "ssw",
+    name: "SSW-Rechner",
+    beschreibung: "Schwangerschaftswoche berechnen",
+    icon: "🤰",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "SSW Rechner, Schwangerschaftswoche berechnen, welche SSW bin ich"
+  },
+  {
+    id: "idealgewicht",
+    name: "Idealgewicht-Rechner",
+    beschreibung: "Optimales Gewicht nach Größe & Alter",
+    icon: "⚖️",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Idealgewicht Rechner, optimales Gewicht, Normalgewicht berechnen"
+  },
+  {
+    id: "koerperfett",
+    name: "Körperfett-Rechner",
+    beschreibung: "Körperfettanteil berechnen",
+    icon: "📊",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Körperfett Rechner, Körperfettanteil berechnen, KFA Rechner"
+  },
+  {
+    id: "grundumsatz",
+    name: "Grundumsatz-Rechner",
+    beschreibung: "Grundumsatz & Leistungsumsatz berechnen",
+    icon: "🔥",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Grundumsatz Rechner, Grundumsatz berechnen, Kalorienbedarf Ruhe"
+  },
+  {
+    id: "blutdruck",
+    name: "Blutdruck-Rechner",
+    beschreibung: "Blutdruckwerte einordnen",
+    icon: "❤️",
+    kategorie: "gesundheit",
+    fertig: false,
+    seoKeywords: "Blutdruck Rechner, Blutdruck Tabelle, Blutdruck normal"
+  },
+  // ALLTAG - Mega-Traffic
+  {
+    id: "dreisatz",
+    name: "Dreisatz-Rechner",
+    beschreibung: "Dreisatz einfach berechnen",
+    icon: "🔢",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Dreisatz Rechner, Dreisatz berechnen, Dreisatzrechner online"
+  },
+  {
+    id: "entfernung",
+    name: "Entfernungs-Rechner",
+    beschreibung: "Entfernung zwischen Städten (km)",
+    icon: "📍",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Entfernung Rechner, Entfernung berechnen, km zwischen Städten"
+  },
+  {
+    id: "iban",
+    name: "IBAN-Rechner",
+    beschreibung: "IBAN berechnen & prüfen",
+    icon: "🏦",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "IBAN Rechner, IBAN berechnen, IBAN prüfen, BIC ermitteln"
+  },
+  {
+    id: "rundfunkbeitrag",
+    name: "Rundfunkbeitrag-Rechner",
+    beschreibung: "GEZ-Beitrag & Befreiung prüfen",
+    icon: "📺",
+    kategorie: "alltag",
+    fertig: true,
+    seoKeywords: "GEZ Rechner, Rundfunkbeitrag Rechner, GEZ Befreiung, Rundfunkbeitrag 2026, GEZ Kosten",
+    quellen: [
+      "https://www.rundfunkbeitrag.de",
+      "https://www.gesetze-im-internet.de/rbstv/",
+      "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/rundfunkbeitrag"
+    ]
+  },
+  {
+    id: "zeitrechner",
+    name: "Zeit-Rechner",
+    beschreibung: "Stunden & Minuten addieren/subtrahieren",
+    icon: "⏰",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berechnen"
+  },
+  {
+    id: "bruchrechner",
+    name: "Bruch-Rechner",
+    beschreibung: "Brüche berechnen & kürzen",
+    icon: "➗",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addieren"
+  },
+  {
+    id: "notendurchschnitt",
+    name: "Notendurchschnitt-Rechner",
+    beschreibung: "Schulnoten-Durchschnitt berechnen",
+    icon: "📚",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Notendurchschnitt Rechner, Noten berechnen, Zeugnis Durchschnitt"
+  },
+  {
+    id: "abi-schnitt",
+    name: "Abitur-Schnitt-Rechner",
+    beschreibung: "Abi-Durchschnitt berechnen",
+    icon: "🎓",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Abi Rechner, Abitur Durchschnitt, Abi Schnitt berechnen, NC Rechner"
+  },
+  {
+    id: "lebenserwartung",
+    name: "Lebenserwartung-Rechner",
+    beschreibung: "Statistische Lebenserwartung berechnen",
+    icon: "📈",
+    kategorie: "alltag",
+    fertig: false,
+    seoKeywords: "Lebenserwartung Rechner, Lebenserwartung berechnen, wie alt werde ich"
+  },
+  // WOHNEN - Mega-Traffic
+  {
+    id: "photovoltaik",
+    name: "Photovoltaik-Rechner",
+    beschreibung: "Solar-Ertrag & Amortisation berechnen",
+    icon: "☀️",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Photovoltaik Rechner, Solar Rechner, PV Anlage berechnen, Solaranlage Kosten"
+  },
+  {
+    id: "waermepumpe",
+    name: "Wärmepumpe-Rechner",
+    beschreibung: "Wärmepumpen-Kosten & Ersparnis",
+    icon: "🌡️",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Wärmepumpe Rechner, Wärmepumpe Kosten, Wärmepumpe berechnen"
+  },
+  {
+    id: "mietpreisbremse",
+    name: "Mietpreisbremse-Rechner",
+    beschreibung: "Zulässige Miete nach Mietpreisbremse",
+    icon: "🛑",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Mietpreisbremse Rechner, Miete zu hoch, Mietpreisbremse prüfen"
+  },
+  {
+    id: "vorfaelligkeit",
+    name: "Vorfälligkeitsentschädigung-Rechner",
+    beschreibung: "Vorfälligkeitsentschädigung bei Kreditablösung",
+    icon: "💸",
+    kategorie: "wohnen",
+    fertig: false,
+    seoKeywords: "Vorfälligkeitsentschädigung Rechner, Kredit ablösen Kosten"
+  },
+  // STEUERN - Mega-Traffic
+  {
+    id: "afa",
+    name: "AfA-Rechner",
+    beschreibung: "Abschreibung für Immobilien & Anlagen",
+    icon: "📉",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "AfA Rechner, Abschreibung berechnen, Gebäude AfA, Immobilien Abschreibung"
+  },
+  {
+    id: "verlustvortrag",
+    name: "Verlustvortrag-Rechner",
+    beschreibung: "Verlustvortrag bei der Steuer nutzen",
+    icon: "📊",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Verlustvortrag Rechner, Verluste absetzen, Steuerverlust vortragen"
+  },
+  {
+    id: "haushaltshilfe",
+    name: "Haushaltshilfe-Rechner",
+    beschreibung: "Minijob-Haushaltshilfe steuerlich absetzen",
+    icon: "🧹",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Haushaltshilfe absetzen, Putzfrau Steuer, haushaltsnahe Dienstleistungen"
+  },
+  {
+    id: "handwerker",
+    name: "Handwerkerkosten-Rechner",
+    beschreibung: "Handwerkerleistungen steuerlich absetzen",
+    icon: "🔧",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Handwerkerkosten absetzen, Handwerkerrechnung Steuer, Handwerkerleistungen"
+  },
+  {
+    id: "doppelhaushalt",
+    name: "Doppelte-Haushaltsführung-Rechner",
+    beschreibung: "Zweitwohnung steuerlich absetzen",
+    icon: "🏠",
+    kategorie: "steuern",
+    fertig: false,
+    seoKeywords: "Doppelte Haushaltsführung Rechner, Zweitwohnung absetzen"
+  },
+  // ARBEIT - Mega-Traffic
+  {
+    id: "homeoffice-pauschale",
+    name: "Homeoffice-Pauschale-Rechner",
+    beschreibung: "Homeoffice-Pauschale 2025 berechnen",
+    icon: "🏡",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Homeoffice Pauschale Rechner, Homeoffice absetzen, Arbeitszimmer Steuer"
+  },
+  {
+    id: "verpflegungsmehraufwand",
+    name: "Verpflegungsmehraufwand-Rechner",
+    beschreibung: "Spesen & Verpflegungspauschale berechnen",
+    icon: "🍽️",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise Pauschale"
+  },
+  {
+    id: "sabbatical",
+    name: "Sabbatical-Rechner",
+    beschreibung: "Sabbatical-Finanzierung planen",
+    icon: "🌴",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Sabbatical Rechner, Auszeit finanzieren, Sabbatjahr planen"
+  },
+  {
+    id: "fruehrente",
+    name: "Frührente-Rechner",
+    beschreibung: "Rente mit 63 – Abzüge berechnen",
+    icon: "🏖️",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Frührente Rechner, Rente mit 63, vorzeitige Rente Abschläge"
+  },
+  {
+    id: "altersteilzeit",
+    name: "Altersteilzeit-Rechner",
+    beschreibung: "Altersteilzeit-Modell berechnen",
+    icon: "⏳",
+    kategorie: "arbeit",
+    fertig: false,
+    seoKeywords: "Altersteilzeit Rechner, Altersteilzeit berechnen, ATZ Rechner"
+  },
+  // FINANZEN - Mega-Traffic
+  {
+    id: "aktien-steuer",
+    name: "Aktien-Steuer-Rechner",
+    beschreibung: "Steuer auf Aktiengewinne berechnen",
+    icon: "📈",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Aktien Steuer Rechner, Aktiengewinn versteuern, Kapitalerträge Steuer"
+  },
+  {
+    id: "krypto-steuer",
+    name: "Krypto-Steuer-Rechner",
+    beschreibung: "Bitcoin & Krypto-Gewinne versteuern",
+    icon: "₿",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Krypto Steuer Rechner, Bitcoin Steuer, Kryptowährung versteuern"
+  },
+  {
+    id: "dividende",
+    name: "Dividenden-Rechner",
+    beschreibung: "Dividendenrendite & Netto-Dividende",
+    icon: "💵",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Dividenden Rechner, Dividendenrendite berechnen, Netto Dividende"
+  },
+  {
+    id: "vermoegenswirksam",
+    name: "VL-Rechner",
+    beschreibung: "Vermögenswirksame Leistungen berechnen",
+    icon: "🏦",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "VL Rechner, vermögenswirksame Leistungen, VWL Rechner"
+  },
+  {
+    id: "bausparvertrag",
+    name: "Bauspar-Rechner",
+    beschreibung: "Bausparen Rendite & Zuteilung",
+    icon: "🏠",
+    kategorie: "finanzen",
+    fertig: false,
+    seoKeywords: "Bauspar Rechner, Bausparen berechnen, Bausparvertrag Rechner"
+  },
+  // AUTO - Mega-Traffic
+  {
+    id: "restwert",
+    name: "Auto-Restwert-Rechner",
+    beschreibung: "Fahrzeug-Restwert ermitteln",
+    icon: "🚗",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Auto Restwert Rechner, Fahrzeugbewertung, Auto Wert ermitteln"
+  },
+  {
+    id: "versicherung-auto",
+    name: "Kfz-Versicherung-Rechner",
+    beschreibung: "Auto-Versicherung & SF-Klasse",
+    icon: "🛡️",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "Kfz Versicherung Rechner, Autoversicherung berechnen, SF Klasse"
+  },
+  {
+    id: "thg-quote",
+    name: "THG-Quoten-Rechner",
+    beschreibung: "THG-Prämie für E-Autos",
+    icon: "🔌",
+    kategorie: "auto",
+    fertig: false,
+    seoKeywords: "THG Quote Rechner, THG Prämie, E-Auto Prämie"
+  }
+];
+
+const $$Index = createComponent(($$result, $$props, $$slots) => {
+  const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
+    key,
+    ...kat,
+    rechner: rechnerListe.filter((r) => r.kategorie === key)
+  }));
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Alle Rechner", "description": "Deutschlandrechner: Kostenlose Online-Rechner f\xFCr Deutschland 2025. Kindergeld, B\xFCrgergeld, Brutto-Netto, Elterngeld, Grunderwerbsteuer und mehr.", "keywords": "Deutschland Rechner, Online Rechner, Kindergeld Rechner, B\xFCrgergeld Rechner, Brutto Netto Rechner, Elterngeld Rechner, Steuerrechner 2025, kostenlos" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="min-h-screen"> <!-- Header --> <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 px-4"> <div class="max-w-7xl mx-auto text-center"> <h1 class="text-4xl font-bold mb-3">🇩🇪 Deutschlandrechner</h1> <p class="text-blue-100 text-lg">Alle wichtigen Rechner für Deutschland – kostenlos & aktuell</p> </div> </header> <!-- Search --> <div class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b px-4 py-4"> <div class="max-w-xl mx-auto"> <input type="search" placeholder="🔍 Rechner suchen..." class="w-full px-5 py-3 rounded-xl bg-gray-100 border-0 focus:ring-2 focus:ring-blue-500 outline-none text-lg" id="search-input"> </div> </div> <!-- Rechner Liste - 3 Spalten Grid --> <div class="max-w-7xl mx-auto px-4 py-8" id="rechner-liste"> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> ${gruppiertNachKategorie.map(({ key, name, icon, color, rechner }) => renderTemplate`<section class="kategorie-section"${addAttribute(key, "data-kategorie")}> <div class="flex items-center gap-2 mb-4"> <span${addAttribute(`w-10 h-10 rounded-xl ${color} flex items-center justify-center text-white text-lg`, "class")}> ${icon} </span> <div> <h2 class="font-bold text-gray-800">${name}</h2> <span class="text-xs text-gray-400">${rechner.length} Rechner</span> </div> </div> <div class="space-y-3"> ${rechner.map((r) => renderTemplate`<div class="rechner-item"${addAttribute(r.name.toLowerCase(), "data-name")}> ${renderComponent($$result2, "RechnerCard", RechnerCard, { "rechner": r, "client:load": true, "client:component-hydration": "load", "client:component-path": "/home/ubuntu/clawd/deutschlandrechner/src/components/RechnerCard", "client:component-export": "default" })} </div>`)} </div> </section>`)} </div> </div> <!-- Footer --> <footer class="text-center py-8 text-gray-400 text-sm"> <p>© 2025 Deutschlandrechner</p> <p class="mt-1">Alle Berechnungen ohne Gewähr</p> </footer> </main> ` })} ${renderScript($$result, "/home/ubuntu/clawd/deutschlandrechner/src/pages/index.astro?astro&type=script&index=0&lang.ts")}`;
+}, "/home/ubuntu/clawd/deutschlandrechner/src/pages/index.astro", void 0);
+
+const $$file = "/home/ubuntu/clawd/deutschlandrechner/src/pages/index.astro";
+const $$url = "";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
