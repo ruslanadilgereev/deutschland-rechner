@@ -180,7 +180,7 @@ export default function ArbeitslosengeldRechner() {
       
       // Sonstiges
       region,
-      beitragsbemessungsgrenze: BEITRAGSBEMESSUNGSGRENZEN[region],
+      beitragsbemessungsgrenze: BEITRAGSBEMESSUNGSGRENZE[region],
     };
   }, [bruttogehalt, steuerklasse, kirchensteuer, hatKinder, alter, beschaeftigungMonate, region]);
 

@@ -1,20 +1,21 @@
 import { useState, useMemo } from 'react';
 
-// Wohngeld-Tabellen 2024/2025/2026 (Wohngeld-Plus-Gesetz)
+// Wohngeld-Tabellen 2025/2026 (Wohngeld-Plus-Gesetz)
 // Mietstufen I-VII nach Gemeinde
 const MIETSTUFEN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'] as const;
 type Mietstufe = typeof MIETSTUFEN[number];
 
-// Höchstbeträge für die zu berücksichtigende Miete (in €/Monat) - Stand 2024/2025
-// Nach § 12 WoGG - erhöht durch Wohngeld-Plus-Gesetz
+// Höchstbeträge für die zu berücksichtigende Miete (in €/Monat) - Stand 2025/2026
+// Nach § 12 WoGG inkl. Heizkostenzuschlag + Klimakomponente (Wohngeld-Plus)
+// Quelle: https://www.wohngeld.org/wohnkosten/
 const HOECHSTBETRAEGE: Record<Mietstufe, number[]> = {
-  'I':   [404, 489, 582, 672, 763, 850, 937, 1024],   // 1-8 Personen
-  'II':  [432, 524, 623, 720, 816, 909, 1002, 1095],
-  'III': [463, 561, 667, 770, 874, 974, 1073, 1172],
-  'IV':  [507, 615, 731, 844, 958, 1067, 1176, 1285],
-  'V':   [549, 666, 792, 915, 1038, 1157, 1276, 1395],
-  'VI':  [598, 725, 863, 996, 1131, 1260, 1389, 1518],
-  'VII': [651, 790, 939, 1085, 1231, 1373, 1514, 1656],
+  'I':   [491, 604, 721, 840, 959, 1073, 1188, 1302],   // 1-8 Personen (gerundet)
+  'II':  [538, 660, 787, 918, 1047, 1174, 1300, 1427],
+  'III': [586, 718, 857, 998, 1140, 1278, 1417, 1555],
+  'IV':  [641, 786, 937, 1090, 1247, 1398, 1550, 1701],
+  'V':   [692, 847, 1009, 1178, 1345, 1506, 1668, 1829],
+  'VI':  [745, 912, 1087, 1267, 1448, 1628, 1809, 1991],
+  'VII': [807, 987, 1175, 1371, 1567, 1762, 1958, 2153],
 };
 
 // Koeffizienten für die Wohngeld-Formel nach § 19 WoGG (Anlage 1)
@@ -29,7 +30,8 @@ const KOEFFIZIENTEN: Record<number, { a: number; b: number; c: number }> = {
   6: { a: -1.000e-2, b: 0.700e-5, c: 1.200e-4 },
 };
 
-// Freibeträge 2024/2025
+// Freibeträge 2025/2026
+// Quelle: https://www.wohngeld.org/einkommen/
 const FREIBETRAEGE = {
   grundfreibetrag: 1800,           // Monatl. Mindesteinkommen (etwa)
   schwerbehindert_50_80: 1800,     // GdB 50-80 (jährlich)
@@ -41,15 +43,16 @@ const FREIBETRAEGE = {
   werbungskosten_pauschal: 1230,   // Jährlich (102.50€/Monat)
 };
 
-// Einkommensgrenzen für Wohngeld (vereinfacht)
+// Einkommensgrenzen für Wohngeld 2025/2026 (monatlich)
+// Quelle: https://www.wohngeld.org/einkommen/
 const EINKOMMENSGRENZEN: Record<Mietstufe, number[]> = {
-  'I':   [1350, 1850, 2270, 2980, 3500, 4000, 4500, 5000],
-  'II':  [1400, 1900, 2350, 3050, 3600, 4100, 4600, 5100],
-  'III': [1450, 1980, 2450, 3150, 3700, 4200, 4700, 5200],
-  'IV':  [1500, 2050, 2550, 3250, 3800, 4400, 4900, 5400],
-  'V':   [1550, 2120, 2650, 3350, 3950, 4550, 5050, 5550],
-  'VI':  [1600, 2180, 2750, 3450, 4050, 4650, 5200, 5700],
-  'VII': [1650, 2250, 2850, 3550, 4200, 4800, 5350, 5850],
+  'I':   [1443, 1953, 2453, 3324, 3822, 4319, 4761, 5001],
+  'II':  [1530, 2074, 2610, 3542, 4077, 4611, 5086, 5341],
+  'III': [1620, 2199, 2773, 3769, 4341, 4912, 5423, 5695],
+  'IV':  [1713, 2327, 2942, 4004, 4617, 5228, 5776, 6068],
+  'V':   [1803, 2451, 3104, 4229, 4880, 5528, 6111, 6420],
+  'VI':  [1896, 2580, 3273, 4465, 5158, 5849, 6469, 6799],
+  'VII': [1992, 2715, 3451, 4714, 5451, 6185, 6845, 7198],
 };
 
 // Beispielstädte nach Mietstufen
@@ -296,12 +299,12 @@ export default function WohngeldRechner() {
               {BEISPIELSTAEDTE[mietstufe].join(', ')}
             </p>
             <a
-              href="https://www.bmwsb.bund.de/SharedDocs/downloads/Webs/BMWSB/DE/veroeffentlichungen/wohnen/wohngeld/Mietstufen.pdf"
+              href="https://www.wohngeld.org/mietstufe/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-purple-600 hover:underline mt-1 inline-block"
             >
-              → Alle Mietstufen nachschlagen (PDF)
+              → Alle Mietstufen nachschlagen
             </a>
           </div>
         </div>
@@ -555,7 +558,7 @@ export default function WohngeldRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Wohngeld-Plus 2023:</strong> Deutliche Erhöhung der Leistungen und Miethöchstbeträge</span>
+            <span><strong>Wohngeld-Plus:</strong> Seit 2023 deutlich höhere Leistungen mit Heizkosten- und Klimakomponente</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -643,7 +646,7 @@ export default function WohngeldRechner() {
               <div>
                 <p className="font-medium text-gray-800">Bundesportal</p>
                 <a 
-                  href="https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/wohnen/wohngeld/wohngeld-node.html"
+                  href="https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -696,7 +699,7 @@ export default function WohngeldRechner() {
             Wohngeldgesetz (WoGG) – Gesetze im Internet
           </a>
           <a 
-            href="https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/wohnen/wohngeld/wohngeld-node.html"
+            href="https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -712,12 +715,20 @@ export default function WohngeldRechner() {
             Wohngeld.org – Ratgeber und Rechner
           </a>
           <a 
-            href="https://www.bmwsb.bund.de/SharedDocs/downloads/Webs/BMWSB/DE/veroeffentlichungen/wohnen/wohngeld/Mietstufen.pdf"
+            href="https://www.wohngeld.org/wohnkosten/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Mietstufen-Verzeichnis (PDF)
+            Wohngeld Höchstbeträge 2026 – Tabellen
+          </a>
+          <a 
+            href="https://www.wohngeld.org/mietstufe/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Mietstufen-Verzeichnis nach Bundesländern
           </a>
         </div>
       </div>
