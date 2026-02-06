@@ -238,8 +238,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Abfindung berechnen & Steuer optimieren',
     icon: '🤝',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Abfindung Rechner, Abfindung berechnen, Abfindung versteuern',
+    fertig: true,
+    seoKeywords: 'Abfindung Rechner, Abfindung berechnen, Abfindung versteuern, Fünftelregelung Rechner, Abfindung netto, Abfindung Steuer 2025',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__34.html',
+      'https://www.gesetze-im-internet.de/kschg/__1a.html',
+      'https://www.gesetze-im-internet.de/sgb_3/__159.html',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kuendigung-und-Aufhebungsvertrag/kuendigung-aufhebungsvertrag.html',
+      'https://www.bmf-steuerrechner.de',
+    ],
   },
   {
     id: 'urlaubstage',
