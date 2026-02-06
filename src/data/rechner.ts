@@ -135,8 +135,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Trennungs- und Ehegattenunterhalt berechnen',
     icon: '💔',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Ehegattenunterhalt Rechner, Trennungsunterhalt berechnen',
+    fertig: true,
+    seoKeywords: 'Ehegattenunterhalt Rechner, Trennungsunterhalt berechnen, nachehelicher Unterhalt, Ehegattenunterhalt 2026, Scheidung Unterhalt',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__1361.html',
+      'https://www.gesetze-im-internet.de/bgb/__1569.html',
+      'https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/index.php',
+      'https://www.bmj.de/DE/themen/gesellschaft/familie-und-unterhalt/unterhalt/unterhalt-node.html',
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════

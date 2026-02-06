@@ -9,7 +9,7 @@ const REGELSAETZE_2026 = {
   kind_0_5: 357,           // Regelbedarfsstufe 6
 };
 
-// Freibeträge vom Einkommen 2025
+// Freibeträge vom Einkommen 2026 (§ 11b SGB II - unverändert)
 const FREIBETRAEGE = {
   grundfreibetrag: 100,            // Grundfreibetrag
   freibetrag_100_520: 0.20,        // 20% von 100-520€
@@ -373,13 +373,32 @@ export default function BuergergeldRechner() {
         </div>
       </div>
 
+      {/* Mehrbedarf Info */}
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+        <h4 className="font-bold text-blue-800 mb-2">➕ Mehrbedarf (nicht im Rechner enthalten)</h4>
+        <ul className="text-sm text-blue-700 space-y-1">
+          <li>• <strong>Alleinerziehende:</strong> +12% bis +60% je nach Kinderzahl/Alter</li>
+          <li>• <strong>Schwangere:</strong> +17% ab 12. Schwangerschaftswoche</li>
+          <li>• <strong>Menschen mit Behinderung:</strong> +17-35% je nach Merkzeichen</li>
+          <li>• <strong>Kranke:</strong> Mehrbedarf für kostenaufwändige Ernährung möglich</li>
+        </ul>
+        <p className="text-xs text-blue-600 mt-2">Diese Mehrbedarfe werden zusätzlich zum Regelbedarf gewährt (§ 21 SGB II).</p>
+      </div>
+
       {/* Hinweis Gesetzesänderung */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
-        <h4 className="font-bold text-amber-800 mb-2">📢 Hinweis: Änderungen ab Juli 2026</h4>
-        <p className="text-sm text-amber-700">
-          Das Bürgergeld wird zum 1. Juli 2026 zur <strong>„Grundsicherung für Arbeitssuchende"</strong> umbenannt. 
-          Die Regelsätze bleiben vorerst unverändert, aber Vermögensfreibeträge und Sanktionsregeln werden angepasst.
-        </p>
+        <h4 className="font-bold text-amber-800 mb-2">📢 Änderungen ab 1. Juli 2026: „Grundsicherungsgeld"</h4>
+        <div className="text-sm text-amber-700 space-y-2">
+          <p>Das Bürgergeld wird zum <strong>„Grundsicherungsgeld"</strong> umbenannt. Wichtige Neuerungen:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Vermittlungsvorrang:</strong> Arbeitsvermittlung hat Priorität vor Weiterbildung</li>
+            <li><strong>Vermögen:</strong> Karenzzeit wird abgeschafft, Freibeträge werden altersabhängig</li>
+            <li><strong>Sanktionen verschärft:</strong> Bis zu 30% Kürzung bei Pflichtverletzung</li>
+            <li><strong>Wohnkosten:</strong> Deckelung schon in Karenzzeit (1,5× Angemessenheitsgrenze)</li>
+            <li><strong>Alleinerziehende:</strong> Ab 1 Jahr (statt 3 Jahre) für Arbeit heranziehbar</li>
+          </ul>
+          <p className="text-xs mt-2">Quelle: Bundeskabinett-Beschluss vom 17.12.2025, Bundestag berät aktuell</p>
+        </div>
       </div>
 
       {/* Quellen */}
@@ -409,6 +428,14 @@ export default function BuergergeldRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             BMAS – Bürgergeld
+          </a>
+          <a 
+            href="https://www.finanztip.de/buergergeld/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Finanztip – Bürgergeld 2026 & Grundsicherungsgeld
           </a>
         </div>
       </div>
