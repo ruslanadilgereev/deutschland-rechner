@@ -120,8 +120,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Anwalts- und Gerichtskosten bei Scheidung',
     icon: '⚖️',
     kategorie: 'familie',
-    fertig: false,
-    seoKeywords: 'Scheidungskosten Rechner, Scheidung Kosten, Anwaltskosten Scheidung',
+    fertig: true,
+    seoKeywords: 'Scheidungskosten Rechner, Scheidung Kosten, Anwaltskosten Scheidung, Scheidung wie teuer, einvernehmliche Scheidung Kosten, Verfahrenswert Scheidung',
+    quellen: [
+      'https://www.gesetze-im-internet.de/gkg_2004/',
+      'https://www.gesetze-im-internet.de/rvg/',
+      'https://www.gesetze-im-internet.de/famgkg/',
+      'https://www.bmj.de/DE/Themen/FamilieUndPartnerschaft/Scheidung/Scheidung_node.html',
+    ],
   },
   {
     id: 'ehegattenunterhalt',
