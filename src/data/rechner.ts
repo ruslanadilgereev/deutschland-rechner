@@ -28,11 +28,11 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'kindergeld',
     name: 'Kindergeld-Rechner',
-    beschreibung: 'Berechne deinen Kindergeld-Anspruch 2025',
+    beschreibung: 'Berechne deinen Kindergeld-Anspruch 2026',
     icon: '👶',
     kategorie: 'familie',
     fertig: true,
-    quellen: ['https://www.arbeitsagentur.de/familie-und-kinder/kindergeld-anspruch-hoehe-dauer'],
+    quellen: ['https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer'],
   },
   {
     id: 'elterngeld',
@@ -394,8 +394,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'BAföG-Förderung berechnen',
     icon: '🎓',
     kategorie: 'soziales',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'BAföG Rechner, BAföG berechnen, BAföG Höhe 2025',
+    quellen: [
+      'https://www.bafög.de',
+      'https://www.studentenwerke.de/de/bafoeg',
+      'https://www.gesetze-im-internet.de/baf_g/',
+    ],
   },
   {
     id: 'rente',

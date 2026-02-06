@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BafoegRechner from '../components/rechner/BafoegRechner';
+
+const title = "BAföG-Rechner 2025 – Anspruch & Höhe berechnen";
+const description = "BAföG berechnen: Prüfe deinen Anspruch auf Studenten-BAföG oder Schüler-BAföG 2025. Mit Höchstsatz, Elterneinkommen-Rechner & Freibeträgen.";
+const keywords = "BAföG Rechner, BAföG berechnen, BAföG 2025, BAföG Höhe, Studenten BAföG, Schüler BAföG, BAföG Anspruch, BAföG Höchstsatz, BAföG Elterneinkommen, BAföG Freibetrag";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎓</span>
+          <div>
+            <h1 class="text-2xl font-bold">BAföG-Rechner</h1>
+            <p class="text-blue-100 text-sm">Bedarfssätze 2024/2025</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BafoegRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">BAföG 2025: Alles Wichtige zur Studienförderung</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Das <strong>BAföG (Bundesausbildungsförderungsgesetz)</strong> unterstützt Studierende und Schüler, 
+            deren Eltern die Ausbildung nicht vollständig finanzieren können. Der <strong>BAföG-Höchstsatz 2025</strong> 
+            beträgt bis zu <strong>992 € monatlich</strong> für Studierende mit eigener Wohnung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BAföG-Bedarfssätze 2024/2025</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundbedarf:</strong> 475 € monatlich</li>
+            <li><strong>Wohnpauschale:</strong> 380 € (eigene Wohnung) oder 62 € (bei Eltern)</li>
+            <li><strong>KV-Zuschlag:</strong> 122 € (bei eigener Krankenversicherung)</li>
+            <li><strong>PV-Zuschlag:</strong> 36 € (Pflegeversicherung)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird BAföG berechnet?</h3>
+          <p>
+            Die BAföG-Berechnung berücksichtigt das <strong>Einkommen der Eltern</strong>, dein eigenes Einkommen 
+            und Vermögen. Vom Elterneinkommen werden großzügige Freibeträge abgezogen – für verheiratete 
+            Eltern etwa 2.485 € netto. Nur 45% des übersteigenden Einkommens werden angerechnet.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Studenten-BAföG vs. Schüler-BAföG</h3>
+          <p>
+            <strong>Studenten-BAföG</strong> besteht zur Hälfte aus einem Zuschuss (geschenkt) und zur Hälfte aus einem 
+            zinslosen Darlehen. Die Rückzahlung ist auf maximal 10.010 € gedeckelt – unabhängig von der Gesamtsumme.
+          </p>
+          <p>
+            <strong>Schüler-BAföG</strong> für Fachschulen und bestimmte Schulformen ist komplett geschenkt und muss 
+            nicht zurückgezahlt werden.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BAföG-Antrag stellen</h3>
+          <p>
+            Wichtig: BAföG wird <strong>nicht rückwirkend</strong> gezahlt! Die Förderung beginnt erst ab dem Monat 
+            der Antragstellung. Nutze daher <a href="https://www.bafoeg-digital.de" target="_blank" rel="noopener" class="text-blue-600 hover:underline">bafoeg-digital.de</a> 
+            für deinen Online-Antrag oder wende dich an das Studierendenwerk deiner Hochschule.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BAföG-Rechner 2025",
+    "description": description,
+    "url": "https://deutschland-rechner.vercel.app/bafoeg-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+</Layout>

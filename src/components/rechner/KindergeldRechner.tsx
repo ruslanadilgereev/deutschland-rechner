@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-// Kindergeld 2025 (ab Januar 2025)
-// Quelle: https://www.arbeitsagentur.de/familie-und-kinder/kindergeld-anspruch-hoehe-dauer
-const KINDERGELD_PRO_KIND = 255; // € pro Kind pro Monat (2025)
+// Kindergeld 2026 (ab Januar 2026)
+// Quelle: https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer
+const KINDERGELD_PRO_KIND = 259; // € pro Kind pro Monat (2026)
 
 export default function KindergeldRechner() {
   const [anzahlKinder, setAnzahlKinder] = useState(1);
@@ -62,7 +62,7 @@ export default function KindergeldRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>255 € pro Kind</strong> pro Monat (Stand: 2025)</span>
+            <span><strong>259 € pro Kind</strong> pro Monat (Stand: 2026)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -103,14 +103,14 @@ export default function KindergeldRechner() {
               <div>
                 <p className="font-medium text-gray-800">Online-Antrag</p>
                 <a 
-                  href="https://web.arbeitsagentur.de/opal/kgo-antrag" 
+                  href="https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer/kindergeld-antrag-starten" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
                   Jetzt beantragen →
                 </a>
-                <p className="text-xs text-gray-500 mt-1">Digital mit Personalausweis</p>
+                <p className="text-xs text-gray-500 mt-1">Digital mit BundID</p>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function KindergeldRechner() {
             <div>
               <p className="font-medium text-gray-800">Familienkasse vor Ort finden</p>
               <a 
-                href="https://www.arbeitsagentur.de/familie-und-kinder/familienkasse" 
+                href="https://www.arbeitsagentur.de/ueber-uns/familienkasse-der-ba" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
@@ -165,20 +165,20 @@ export default function KindergeldRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.arbeitsagentur.de/familie-und-kinder/kindergeld-anspruch-hoehe-dauer"
+            href="https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesagentur für Arbeit – Kindergeld 2025
+            Bundesagentur für Arbeit – Kindergeld 2026
           </a>
           <a 
-            href="https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/kindergeld"
+            href="https://familienportal.de/familienportal/familienleistungen/kindergeld"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesministerium für Familie – Kindergeld
+            Familienportal der Bundesregierung – Kindergeld
           </a>
         </div>
       </div>
