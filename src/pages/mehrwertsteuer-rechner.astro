@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MehrwertsteuerRechner from '../components/rechner/MehrwertsteuerRechner';
+---
+
+<Layout 
+  title="Mehrwertsteuer-Rechner 2025 | MwSt berechnen – Netto ↔ Brutto" 
+  description="MwSt-Rechner 2025: Mehrwertsteuer schnell berechnen. Netto zu Brutto oder Brutto zu Netto umrechnen. 19% Regelsteuersatz, 7% ermäßigt. Kostenlos & einfach."
+  keywords="MwSt Rechner, Mehrwertsteuer Rechner, Umsatzsteuer Rechner, Netto Brutto Rechner, MwSt berechnen, 19 Prozent Rechner, 7 Prozent MwSt, Brutto Netto umrechnen, USt Rechner, Mehrwertsteuer 2025"
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-yellow-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧾</span>
+          <div>
+            <h1 class="text-2xl font-bold">Mehrwertsteuer-Rechner</h1>
+            <p class="text-yellow-100 text-sm">MwSt berechnen: Netto ↔ Brutto</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MehrwertsteuerRechner client:load />
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mehrwertsteuer-Rechner",
+    "description": "Kostenloser MwSt-Rechner: Berechne Mehrwertsteuer für 19% und 7%. Netto zu Brutto oder Brutto zu Netto umrechnen.",
+    "url": "https://deutschland-rechner.de/mehrwertsteuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "featureList": [
+      "Netto zu Brutto berechnen",
+      "Brutto zu Netto berechnen", 
+      "19% Regelsteuersatz",
+      "7% ermäßigter Steuersatz",
+      "Kostenlos ohne Anmeldung"
+    ]
+  })} />
+</Layout>

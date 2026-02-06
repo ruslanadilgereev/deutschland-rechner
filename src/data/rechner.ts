@@ -398,8 +398,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'MwSt. berechnen (19% / 7%)',
     icon: '🧾',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Mehrwertsteuer Rechner, MwSt Rechner, Umsatzsteuer berechnen',
+    fertig: true,
+    seoKeywords: 'Mehrwertsteuer Rechner, MwSt Rechner, Umsatzsteuer berechnen, Netto Brutto Rechner, 19 Prozent Rechner, 7 Prozent MwSt',
+    quellen: [
+      'https://www.gesetze-im-internet.de/ustg_1980/',
+      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/umsatzsteuer.html',
+      'https://www.ihk.de/themen/steuern/umsatzsteuer',
+    ],
   },
   {
     id: 'steuerklassenwechsel',
