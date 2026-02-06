@@ -1,7 +1,7 @@
 {
-  "lastAuditIndex": 5,
+  "lastAuditIndex": 0,
   "lastAuditDate": "2026-02-06",
-  "currentCycle": 6,
+  "currentCycle": 7,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -2832,6 +2832,67 @@
         "buergergeld_org": "https://www.buergergeld.org/sgb-ii/zuverdienst/"
       },
       "auditSummary": "Clean audit cycle 6 - all 6 links working (200 OK). All Regelsätze (563€/506€/471€/390€/357€) and Freibeträge verified correct against Bundesregierung and buergergeld.org. Reform info (July 2026 Grundsicherungsgeld) verified accurate against Bundeskabinett source (17.12.2025). Mehrbedarf section present with correct 13. SSW, Kindersofortzuschlag +25€ mentioned. Calculation logic verified with buergergeld.org example (1.400€→368€ Freibetrag → exact match). No issues found."
+    },
+    {
+      "calculator": "kindergeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 7,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "arbeitsagentur.de/kindergeld-anspruch-hoehe-dauer": "PASS - 200 OK",
+        "arbeitsagentur.de/kindergeld-antrag-starten": "PASS - 200 OK",
+        "arbeitsagentur.de/familienkasse-der-ba": "PASS - 200 OK",
+        "familienportal.de/kindergeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+          "https://www.arbeitsagentur.de/presse/2025-53-kindergeld-steigt-ab-januar-2026",
+          "https://familienportal.de/familienportal/familienleistungen/kindergeld",
+          "https://www.kindergeld.org/"
+        ],
+        "2026ValuesVerified": {
+          "Kindergeld_pro_Kind": "259€/Monat ✓ (BA confirmed: 'Sie erhalten pro Kind 259 Euro Kindergeld im Monat')",
+          "Kindergeld_Jahr": "3.108€ (259€ × 12) ✓",
+          "Staffelung": "Keine - einheitlich für alle Kinder seit 2023 ✓",
+          "Altersgrenze_Standard": "18 Jahre ✓",
+          "Altersgrenze_Ausbildung": "25 Jahre ✓",
+          "Rueckwirkend": "6 Monate ✓",
+          "Erhoehung_2026": "+4€ (von 255€ auf 259€ ab 01.01.2026) ✓"
+        },
+        "hotline": "0800 4 555530 ✓ (verified on BA page - kostenfrei Mo-Fr 8-18 Uhr)",
+        "kinderfreibetrag2026": "9.756€ (per kindergeld.org)"
+      },
+      "newsNoted": {
+        "kindersofortzuschlag": "25€ für bedürftige Kinder weiterhin aktiv (Kindergrundsicherung offiziell nicht eingeführt)",
+        "source": "kindergeld.org Februar 2026"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Antrag erforderlich!' warning with yellow background present",
+        "edgeCases": "PASS - Age limits (18 Jahre standard, 25 in Ausbildung), 6-month retroactive claim limit mentioned",
+        "behoerde": "PASS - Familienkasse complete: Hotline 0800 4 555530, Online-Antrag via BundID, Standortsuche link",
+        "deadlines": "PASS - '6 Monate rückwirkend' explicitly stated",
+        "unterlagen": "PASS - Geburtsurkunde, Steuer-ID (Kind + Eltern), Ausbildungsnachweis ab 18 listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "anzahlKinder × 259€ = monatlich, × 12 = jaehrlich",
+        "notes": "Simple linear calculation with correct 2026 rate. Min 1 child, max 10 children (reasonable UI limits). No edge cases needed - straightforward multiplication."
+      },
+      "seoCheck": {
+        "title": "PASS - 'Kindergeld-Rechner 2026'",
+        "description": "PASS - 'Kindergeld berechnen 2026: 259€ pro Kind pro Monat. Kostenloser Kindergeld-Rechner mit aktuellen Sätzen, Antrag-Infos und Familienkasse-Kontakt.'",
+        "keywords": "PASS - 'Kindergeld Rechner, Kindergeld 2026, Kindergeld Höhe, Kindergeld berechnen, Kindergeld beantragen, Familienkasse, 259 Euro Kindergeld'"
+      },
+      "officialSources": {
+        "arbeitsagentur_kindergeld": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+        "arbeitsagentur_presse": "https://www.arbeitsagentur.de/presse/2025-53-kindergeld-steigt-ab-januar-2026",
+        "arbeitsagentur_familienkasse": "https://www.arbeitsagentur.de/ueber-uns/familienkasse-der-ba",
+        "familienportal": "https://familienportal.de/familienportal/familienleistungen/kindergeld",
+        "kindergeld_org": "https://www.kindergeld.org/"
+      },
+      "auditSummary": "Clean audit cycle 7 - all 4 links working (200 OK). 259€ per child verified against official BA page ('Sie erhalten pro Kind 259 Euro Kindergeld im Monat'), BA press release, Familienportal, and kindergeld.org. Hotline 0800 4 555530 confirmed. All legal sections complete (Antrag-Hinweis, 6-Monat-Frist, Unterlagen, Behörden-Info). Calculation logic simple and correct. SEO metadata complete with 2026 keywords. No issues found."
     }
   ]
 }
