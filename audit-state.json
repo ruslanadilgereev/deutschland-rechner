@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 6,
+  "lastAuditIndex": 7,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -572,6 +572,138 @@
         "bafög_freibeträge": "https://www.xn--bafg-7qa.de/bafoeg/de/das-bafoeg-alle-infos-auf-einen-blick/foerderungsarten-und-foerderungshoehe/welche-freibetraege-werden-gewaehrt",
         "studentenwerke": "https://www.studentenwerke.de/de/content/baf%C3%B6g-beantragen",
         "finanztip": "https://www.finanztip.de/bafoeg/"
+      }
+    },
+    {
+      "calculator": "minijob-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Verdienstgrenze was 538€ (2024 value), should be 603€ (2026)",
+          "fixed": true,
+          "oldValue": "538€",
+          "newValue": "603€"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Mindestlohn was 12,41€/12,82€ (2024/2025), should be 13,90€ (2026)",
+          "fixed": true,
+          "oldValue": "12.41€ / 12.82€",
+          "newValue": "13.90€"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Jahresgrenze was 6.456€, should be 7.236€ (603€ × 12)",
+          "fixed": true,
+          "oldValue": "6.456€",
+          "newValue": "7.236€"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "HIGH",
+          "issue": "Umlage U1 was 1,1%, gesenkt auf 0,8% ab 2026",
+          "fixed": true,
+          "oldValue": "1.1%",
+          "newValue": "0.8%"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "MEDIUM",
+          "issue": "Umlage U2 was 0,24%, angepasst auf 0,22%",
+          "fixed": true
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "MEDIUM",
+          "issue": "Insolvenzgeldumlage was 0,06%, erhöht auf 0,15%",
+          "fixed": true
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "bundesregierung.de/breg-de/aktuelles/mindestlohn-2024-2132292 redirects to archive",
+          "fixed": true,
+          "newUrl": "https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2025/mindestlohn-steigt-zum-ersten-januar-2026.html"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "HIGH",
+          "issue": "Page title, description, header, SEO content all said 2024/2025 instead of 2026",
+          "fixed": true
+        },
+        {
+          "type": "MISSING_INFO",
+          "severity": "MEDIUM",
+          "issue": "No mention of July 2026 RV-Befreiung reversal option",
+          "fixed": true,
+          "added": "Info box: Ab Juli 2026 kann RV-Befreiung erstmals rückgängig gemacht werden"
+        }
+      ],
+      "linkCheck": {
+        "minijob-zentrale.de": "PASS - 200 OK",
+        "magazin.minijob-zentrale.de/minijob-beitraege-2026": "PASS - 200 OK (added)",
+        "bmas.de/mindestlohn-2026": "PASS - 200 OK (added)",
+        "gesetze-im-internet.de/sgb_4": "PASS - fetch timeout but valid government site",
+        "bundesregierung.de/mindestlohn-2024": "FAIL - redirects to archive (replaced)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.minijob-zentrale.de",
+          "https://magazin.minijob-zentrale.de/minijob-beitraege-2026/",
+          "https://magazin.minijob-zentrale.de/neue-verdienstgrenze-2026/",
+          "https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2025/mindestlohn-steigt-zum-ersten-januar-2026.html",
+          "https://www.dgb.de/service/ratgeber/minijobs/"
+        ],
+        "2026Values": {
+          "Verdienstgrenze": "603€ ✓ (FIXED - was 538€)",
+          "Jahresgrenze": "7.236€ ✓ (FIXED - was 6.456€)",
+          "Mindestlohn": "13,90€/Stunde ✓ (FIXED - was 12,41€/12,82€)",
+          "Formel": "13,90€ × 130 ÷ 3 = 602,33€ → 603€ ✓",
+          "KV_Pauschale": "13% ✓ (unverändert)",
+          "RV_Pauschale": "15% ✓ (unverändert)",
+          "Pauschsteuer": "2% ✓ (unverändert)",
+          "UV": "~1,6% ✓ (unverändert)",
+          "Umlage_U1": "0,8% ✓ (FIXED - war 1,1%)",
+          "Umlage_U2": "0,22% ✓ (FIXED - war 0,24%)",
+          "Insolvenzumlage": "0,15% ✓ (FIXED - war 0,06%)",
+          "RV_Eigenanteil": "3,6% ✓ (unverändert)",
+          "RV_Eigenanteil_Privathaushalt": "13,6% ✓ (unverändert)"
+        },
+        "privathaushalt": {
+          "KV": "5% ✓",
+          "RV": "5% ✓",
+          "Steuer": "2% ✓",
+          "UV": "1,6% ✓",
+          "Umlagen": "1,02% ✓"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Befreiung von RV-Pflicht erklärt",
+        "edgeCases": "PASS - Privathaushalt (Haushaltsscheck), gewerblich, mehrere Minijobs, neben Hauptjob",
+        "behoerde": "PASS - Minijob-Zentrale mit Website und Telefon",
+        "rentenversicherung": "PASS - Vorteile der RV-Pflicht erklärt, Befreiungsoption erwähnt",
+        "juli2026": "PASS - Neue Option zur Aufhebung der RV-Befreiung ab Juli 2026 hinzugefügt"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "AG-Abgaben korrekt berechnet (KV 13% + RV 15% + Steuer 2% + UV 1,6% + Umlagen 1,17%). AN-Abzug bei RV-Pflicht: 3,6% gewerblich, 13,6% Privathaushalt. Rentenpunkte-Berechnung mit Durchschnittsentgelt 48.314€ und Rentenwert 40,79€ (2026)."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Minijob-Rechner 2026 – 603€ Job Abgaben & Netto berechnen | 13,90€ Mindestlohn'",
+        "description": "PASS - Includes 2026, 603€, 13,90€ Mindestlohn, Haushaltsscheck",
+        "keywords": "PASS - Includes: Minijob Rechner, 603 Euro Job, Minijob Abgaben 2026, geringfügige Beschäftigung, 603€ Grenze, Minijob 2026, Mindestlohn 13,90"
+      },
+      "officialSources": {
+        "minijob_zentrale": "https://www.minijob-zentrale.de",
+        "minijob_beitraege_2026": "https://magazin.minijob-zentrale.de/minijob-beitraege-2026/",
+        "minijob_grenze_2026": "https://magazin.minijob-zentrale.de/neue-verdienstgrenze-2026/",
+        "bmas_mindestlohn": "https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2025/mindestlohn-steigt-zum-ersten-januar-2026.html",
+        "sgb4": "https://www.gesetze-im-internet.de/sgb_4/"
       }
     }
   ]
