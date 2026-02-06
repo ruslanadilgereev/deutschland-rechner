@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 0,
+  "lastAuditIndex": 1,
   "lastAuditDate": "2026-02-06",
   "currentCycle": 6,
   "calculators": [
@@ -2465,6 +2465,80 @@
         "drv": "https://www.deutsche-rentenversicherung.de"
       },
       "auditSummary": "Clean audit cycle 5 - all 4 links working (200 OK), all 2026 SV values and tax parameters verified against Bundesregierung, TK, AOK, and BMF official sources: Grundfreibetrag 12.348€, BBG RV 101.400€, BBG KV 69.750€, KV-Zusatzbeitrag 2,9%, PV 3,6%/4,2%. Legal sections complete with disclaimer, 6 Steuerklassen, Kirchensteuer, Kinderlosenzuschlag. Calculation logic verified correct with 2026 tax tariff per §32a EStG. No issues found."
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "date": "2026-02-06",
+      "cycle": 6,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bmf-steuerrechner.de": "PASS - 200 OK (Lohn- und Einkommensteuerrechner:Startseite)",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start - ELSTER Startseite)",
+        "deutsche-rentenversicherung.de": "PASS - 200 OK (redirects to /DRV/DE/Home/home_node.html)",
+        "bundesregierung.de/beitragsgemessungsgrenzen-2386514": "PASS - 200 OK (Beitragsbemessungsgrenzen 2026 | Bundesregierung)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+          "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+          "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026"
+        ],
+        "2026ValuesVerified": {
+          "Grundfreibetrag": "12.348€ ✓ (BMF: '2026 steigt er um 252 Euro auf 12.348 Euro')",
+          "BBG_RV": "101.400€/Jahr (8.450€/Monat) ✓ (Bundesregierung, TK confirmed)",
+          "BBG_KV": "69.750€/Jahr (5.812,50€/Monat) ✓ (Bundesregierung, TK confirmed)",
+          "RV_Satz": "9,3% AN-Anteil ✓ (unverändert)",
+          "AV_Satz": "1,3% AN-Anteil ✓ (unverändert)",
+          "KV_Basis": "7,3% AN-Anteil ✓ (AOK: 'bundeseinheitlicher Beitragssatz 14,6%')",
+          "KV_Zusatzbeitrag": "1,45% AN-Anteil ✓ (AOK: 'durchschnittlicher Zusatzbeitrag 2026 von 2,5 auf 2,9 Prozent')",
+          "PV_mit_Kind": "1,8% AN-Anteil ✓ (AOK: '3,6 Prozent' total)",
+          "PV_kinderlos": "2,4% AN-Anteil ✓ (AOK: '4,2 Prozent' total = 3,6% + 0,6% Zuschlag AN)",
+          "Soli_Freigrenze": "18.130€ ✓ (unchanged since 2021 reform)"
+        },
+        "bmfConfirmed": {
+          "Kindergeld": "259€/Monat (steigt um 4 Euro)",
+          "Kinderfreibetrag": "9.756€ (steigt um 156 Euro)",
+          "Pendlerpauschale": "38 Cent ab erstem km (vorher ab 21. km)"
+        },
+        "bundesregierungConfirmed": {
+          "BBG_Kranken": "69.750€/Jahr (5.812,50€/Monat) - 2025 waren 66.150€",
+          "BBG_Rente": "101.400€/Jahr (8.450€/Monat) - 2025 waren 96.600€",
+          "Versicherungspflichtgrenze": "77.400€/Jahr (6.450€/Monat)",
+          "Durchschnittsentgelt": "51.944€"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Vereinfachte Berechnung – exakte Werte via BMF-Steuerrechner' warning present with link",
+        "edgeCases": "PASS - All 6 Steuerklassen with descriptions, Kirchensteuer toggle (8%/9%), Kinderlosenzuschlag checkbox",
+        "behoerde": "PASS - Zuständige Behörden section with Finanzamt (ELSTER link), Krankenkasse",
+        "sources": "PASS - 3 authoritative sources: BMF-Steuerrechner, DRV, Bundesregierung"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "steuertarif2026": "§32a EStG zones correct: 0-12.348€ (0%), 12.348-17.799€ (14-24%), 17.799-69.878€ (24-42%), 69.878-277.825€ (42%), >277.825€ (45%)",
+        "bbgCaps": "Correctly applied: RV/AV capped at 101.400€, KV/PV capped at 69.750€",
+        "soliMilderungszone": "Correctly implemented: 11,9% rate on excess above 18.130€ Freigrenze",
+        "pvKinderlos": "Correctly implemented: 0,6% Zuschlag entirely paid by AN (ab 23 Jahre)",
+        "kirchensteuer": "8% for BY/BW, 9% for all other Bundesländer - correct",
+        "notes": "Formula is simplified (documented as such) but matches official BMF methodology. All brackets, percentages, and caps verified."
+      },
+      "seoCheck": {
+        "title": "PASS - 'Brutto-Netto-Rechner 2026'",
+        "description": "PASS - 'Brutto Netto Rechner 2026: Berechne dein Nettogehalt mit aktuellen Abzügen. Lohnsteuer, Sozialversicherung, Kirchensteuer – alle Steuerklassen. Grundfreibetrag 12.348€, BBG 101.400€ RV / 69.750€ KV.'",
+        "keywords": "PASS - 'Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen, Lohnsteuer Rechner, Steuerklasse, Nettogehalt, was bleibt vom Gehalt, Grundfreibetrag 2026, Beitragsbemessungsgrenze 2026'"
+      },
+      "officialSources": {
+        "bmf_steuerrechner": "https://www.bmf-steuerrechner.de",
+        "bmf_aenderungen_2026": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "bundesregierung_bbg": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+        "tk_bbg": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+        "aok_rechengroessen": "https://www.aok.de/pp/gg/update/rechengroessen-2026/",
+        "elster": "https://www.elster.de",
+        "drv": "https://www.deutsche-rentenversicherung.de"
+      },
+      "auditSummary": "Clean audit cycle 6 - all 4 links working (200 OK). All 2026 SV and tax values verified against official Bundesregierung, BMF, TK, and AOK sources: Grundfreibetrag 12.348€, BBG RV 101.400€, BBG KV 69.750€, KV-Zusatzbeitrag 2,9% (durchschnittlich), PV 3,6%/4,2%. Legal sections complete with disclaimer referencing BMF-Steuerrechner, 6 Steuerklassen, Kirchensteuer 8%/9%, Kinderlosenzuschlag 0,6%. Calculation logic verified per §32a EStG 2026 tariff with correct zone boundaries and Soli Milderungszone. No issues found."
     }
   ]
 }

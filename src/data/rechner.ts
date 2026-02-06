@@ -980,8 +980,16 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'ETF-Rendite & Vermögen berechnen',
     icon: '📊',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'ETF Sparplan Rechner, ETF Rendite berechnen, Sparplan Rechner',
+    fertig: true,
+    seoKeywords: 'ETF Sparplan Rechner, ETF Rechner, Sparplan Rechner, ETF Rendite berechnen, Zinseszins Rechner ETF, ETF Vermögen berechnen, Sparplan Zinseszins, MSCI World Rechner, ETF Sparplan 2025, Aktienfonds Rechner, ETF Steuern berechnen, Teilfreistellung Rechner, Fondssparplan Rechner',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__20.html',
+      'https://www.gesetze-im-internet.de/invstg_2018/',
+      'https://www.bafin.de/DE/Verbraucher/verbraucher_node.html',
+      'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage',
+      'https://www.finanztip.de/indexfonds-etf/',
+    ],
   },
   {
     id: 'inflation',
