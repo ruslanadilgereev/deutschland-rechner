@@ -1451,8 +1451,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Spesen & Verpflegungspauschale berechnen',
     icon: '🍽️',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise Pauschale',
+    fertig: true,
+    seoKeywords: 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise Pauschale, Verpflegungspauschale 2025, Reisekosten absetzen, Tagespauschale Dienstreise',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__9.html',
+      'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-11-21-steuerliche-behandlung-reisekosten-reisekostenverguetungen.html',
+      'https://www.haufe.de/steuern/steuer-office-gold/verpflegungsmehraufwendungen_idesk_PI11525_HI1119281.html',
+    ],
   },
   {
     id: 'sabbatical',
