@@ -1418,8 +1418,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Homeoffice-Pauschale 2025 berechnen',
     icon: '🏡',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Homeoffice Pauschale Rechner, Homeoffice absetzen, Arbeitszimmer Steuer',
+    fertig: true,
+    seoKeywords: 'Homeoffice Pauschale Rechner, Homeoffice absetzen, Arbeitszimmer Steuer, Homeoffice Pauschale 2025, 6 Euro Pauschale, Home Office Steuererklärung, Werbungskosten Homeoffice',
+    quellen: [
+      'https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Home-Office-Pauschale/faq-homeoffice-pauschale.html',
+      'https://www.gesetze-im-internet.de/estg/__4.html',
+      'https://www.vlh.de/arbeiten-pendeln/beruf/homeoffice-pauschale-so-setzen-sie-die-kosten-ab.html',
+      'https://www.haufe.de/steuern/finanzverwaltung/homeoffice-pauschale-wird-dauerhaft-eingefuehrt_164_586644.html',
+    ],
   },
   {
     id: 'verpflegungsmehraufwand',
