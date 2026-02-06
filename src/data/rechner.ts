@@ -1333,8 +1333,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Solar-Ertrag & Amortisation berechnen',
     icon: '☀️',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Photovoltaik Rechner, Solar Rechner, PV Anlage berechnen, Solaranlage Kosten',
+    fertig: true,
+    seoKeywords: 'Photovoltaik Rechner, Solar Rechner, PV Anlage berechnen, Solaranlage Kosten, Einspeisevergütung 2025, Solarrechner, Photovoltaik Amortisation, Solaranlage Rendite, PV Speicher Rechner, Eigenverbrauch Rechner',
+    quellen: [
+      'https://www.gesetze-im-internet.de/eeg_2014/',
+      'https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/start.html',
+      'https://www.solarwirtschaft.de',
+      'https://re.jrc.ec.europa.eu/pvg_tools/en/',
+      'https://www.verbraucherzentrale.de/wissen/energie/erneuerbare-energien/photovoltaik-was-bei-der-planung-einer-solaranlage-wichtig-ist-5574',
+    ],
   },
   {
     id: 'waermepumpe',
