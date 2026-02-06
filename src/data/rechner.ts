@@ -780,8 +780,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Body-Mass-Index berechnen',
     icon: '⚖️',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'BMI Rechner, BMI berechnen, Body Mass Index',
+    fertig: true,
+    seoKeywords: 'BMI Rechner, BMI berechnen, Body Mass Index, BMI Tabelle, Idealgewicht, Normalgewicht, BMI Formel, BMI Frau, BMI Mann',
+    quellen: [
+      'https://www.who.int/europe/news-room/fact-sheets/item/a-healthy-lifestyle---who-recommendations',
+      'https://www.dge.de/gesunde-ernaehrung/gut-essen-und-trinken/dge-empfehlungen/',
+      'https://www.rki.de/DE/Content/Gesundheitsmonitoring/Themen/Uebergewicht_Adipositas/Uebergewicht_Adipositas_node.html',
+      'https://www.bzfe.de/ernaehrung/ernaehrungswissen/gesundheit/bmi-rechner/',
+    ],
   },
   {
     id: 'kalorienrechner',
