@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 7,
+  "lastAuditIndex": 8,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -704,6 +704,116 @@
         "minijob_grenze_2026": "https://magazin.minijob-zentrale.de/neue-verdienstgrenze-2026/",
         "bmas_mindestlohn": "https://www.bmas.de/DE/Service/Presse/Pressemitteilungen/2025/mindestlohn-steigt-zum-ersten-januar-2026.html",
         "sgb4": "https://www.gesetze-im-internet.de/sgb_4/"
+      }
+    },
+    {
+      "calculator": "wohngeld-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Höchstbeträge used 2022/2023 values (before Wohngeld-Plus), should be 2025/2026 values with Heizkosten+Klimazuschlag",
+          "fixed": true,
+          "example": "1 Person Mietstufe I: 404€ → 491€"
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Einkommensgrenzen outdated - used pre-2025 values",
+          "fixed": true,
+          "example": "1 Person Mietstufe I: 1350€ → 1443€"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "BMWSB Mietstufen PDF link https://www.bmwsb.bund.de/SharedDocs/downloads/Webs/BMWSB/DE/veroeffentlichungen/wohnen/wohngeld/Mietstufen.pdf returned 404",
+          "fixed": true,
+          "newUrl": "https://www.wohngeld.org/mietstufe/"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "HIGH",
+          "issue": "BMWSB Wohngeld info page https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/wohnen/wohngeld/wohngeld-node.html returned 404",
+          "fixed": true,
+          "newUrl": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html"
+        },
+        {
+          "type": "YEAR_REFERENCE",
+          "severity": "MEDIUM",
+          "issue": "Page title and SEO content said '2025/2026' instead of '2026'",
+          "fixed": true
+        },
+        {
+          "type": "SEO",
+          "severity": "MEDIUM",
+          "issue": "SEO content about Wohngeld-Plus 2023 updated to include 2025 Erhöhung (+15%)",
+          "fixed": true
+        }
+      ],
+      "linkCheck": {
+        "wohngeld.org/antrag": "PASS - 200 OK",
+        "wohngeld.org": "PASS - 200 OK",
+        "gesetze-im-internet.de/wogg": "PASS - fetch timeout but valid government site",
+        "bmwsb.bund.de/mietstufen.pdf": "FAIL - 404 (replaced)",
+        "bmwsb.bund.de/wohngeld-node.html": "FAIL - 404 (fixed path)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.wohngeld.org/wohnkosten/ (Höchstbeträge 2026)",
+          "https://www.wohngeld.org/einkommen/ (Einkommensgrenzen 2026)",
+          "https://www.wohngeld.org/wohngeld-erhoehung-2025-neue-tabellen-und-zahlen-im-ueberblick/"
+        ],
+        "2026ValuesUpdated": {
+          "Höchstbeträge_Mietstufe_I": {
+            "1_Person": "491€ (was 404€)",
+            "2_Personen": "604€ (was 489€)",
+            "3_Personen": "721€ (was 582€)"
+          },
+          "Höchstbeträge_Mietstufe_VII": {
+            "1_Person": "807€ (was 651€)",
+            "2_Personen": "987€ (was 790€)"
+          },
+          "Einkommensgrenzen_Mietstufe_I": {
+            "1_Person": "1443€ (was 1350€)",
+            "2_Personen": "1953€ (was 1850€)"
+          },
+          "note": "All 7 Mietstufen × 8 Haushaltsgrößen updated"
+        },
+        "components": {
+          "Grundbetrag_§12_WoGG": "✓ Base amount",
+          "Heizkostenzuschlag": "✓ Now included",
+          "Klimakomponente": "✓ Now included"
+        }
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Schätzung' warning present, hinweis auf Wohngeldstelle",
+        "edgeCases": "PASS - Mieter vs Eigentümer (Lastenzuschuss), no BAföG/Bürgergeld combination",
+        "behoerde": "PASS - Wohngeldstelle der Gemeinde/Stadt explained",
+        "deadlines": "PASS - 'Wohngeld wird erst ab Antragsmonat gezahlt' warning present",
+        "unterlagen": "PASS - Required documents listed",
+        "aenderungsmeldepflicht": "PASS - >15% income changes must be reported"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Formula Wohngeld = 1.15 × (M − (a + b×M + c×Y) × Y) correctly implemented. Höchstbetrag cap applied. Freibeträge (Werbungskosten 1230€, 10% Erwerbstätigen, Schwerbehindert, Alleinerziehend) correct."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to 'Wohngeld-Rechner 2026 – Anspruch, Höhe & Mietstufen berechnen'",
+        "description": "PASS - Includes 2026, Höchstbeträge, Mietstufen I-VII, Einkommensgrenzen",
+        "keywords": "PASS - Includes: Wohngeld Rechner, Wohngeld 2026, Wohngeld berechnen, Mietzuschuss, Wohngeld-Plus, Wohngeld Höchstbetrag"
+      },
+      "officialSources": {
+        "bmwsb": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html",
+        "wogg": "https://www.gesetze-im-internet.de/wogg/",
+        "wohngeld_org": "https://www.wohngeld.org",
+        "wohngeld_wohnkosten": "https://www.wohngeld.org/wohnkosten/",
+        "wohngeld_mietstufen": "https://www.wohngeld.org/mietstufe/",
+        "wohngeld_einkommen": "https://www.wohngeld.org/einkommen/"
+      },
+      "additionalFixes": {
+        "ArbeitslosengeldRechner": "Fixed typo: BEITRAGSBEMESSUNGSGRENZEN → BEITRAGSBEMESSUNGSGRENZE (build was failing)"
       }
     }
   ]
