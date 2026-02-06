@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 
-// Grunderwerbsteuer-Sätze nach Bundesland (Stand 2025)
+// Grunderwerbsteuer-Sätze nach Bundesland (Stand 2026)
+// Letzte Änderung: Bremen von 5,0% auf 5,5% erhöht (01.07.2025)
 const BUNDESLAENDER = [
   { kuerzel: 'BW', name: 'Baden-Württemberg', satz: 5.0 },
   { kuerzel: 'BY', name: 'Bayern', satz: 3.5 },
   { kuerzel: 'BE', name: 'Berlin', satz: 6.0 },
   { kuerzel: 'BB', name: 'Brandenburg', satz: 6.5 },
-  { kuerzel: 'HB', name: 'Bremen', satz: 5.0 },
+  { kuerzel: 'HB', name: 'Bremen', satz: 5.5 },  // Erhöht von 5,0% am 01.07.2025
   { kuerzel: 'HH', name: 'Hamburg', satz: 5.5 },
   { kuerzel: 'HE', name: 'Hessen', satz: 6.0 },
   { kuerzel: 'MV', name: 'Mecklenburg-Vorpommern', satz: 6.0 },
@@ -240,12 +241,20 @@ export default function GrunderwerbsteuerRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.bundesfinanzministerium.de"
+            href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer_Grunderwerbsteuer/Grundsteuer_Grunderwerbsteuer.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesfinanzministerium – Grunderwerbsteuer
+            Bundesfinanzministerium – Grundsteuer & Grunderwerbsteuer
+          </a>
+          <a 
+            href="https://www.gesetze-im-internet.de/grestg_1983/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Grunderwerbsteuergesetz (GrEStG) – Gesetze im Internet
           </a>
           <a 
             href="https://de.wikipedia.org/wiki/Grunderwerbsteuer_(Deutschland)"
