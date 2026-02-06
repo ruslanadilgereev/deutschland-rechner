@@ -1,5 +1,5 @@
 {
-  "lastAuditIndex": 0,
+  "lastAuditIndex": 1,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -62,6 +62,84 @@
         "title": "PASS - Updated to Kindergeld-Rechner 2026",
         "description": "PASS - Updated to mention 259€",
         "keywords": "PASS - Includes: Kindergeld Rechner, Kindergeld 2026, Kindergeld Höhe, Kindergeld berechnen, Kindergeld beantragen, Familienkasse, 259 Euro Kindergeld"
+      }
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "date": "2026-02-06",
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "BBG Rentenversicherung was 96.600€ (2025), should be 101.400€ (2026)",
+          "fixed": true
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "BBG Krankenversicherung was 66.150€ (2025), should be 69.750€ (2026)",
+          "fixed": true
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "CRITICAL",
+          "issue": "Grundfreibetrag was 12.096€ (2025), should be 12.348€ (2026)",
+          "fixed": true
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "HIGH",
+          "issue": "KV Zusatzbeitrag was 0,8% (very outdated), should be 1,45% AN-Anteil (2,9% durchschnittl. 2026)",
+          "fixed": true
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "HIGH",
+          "issue": "PV Basissatz was 1,7% (2024), should be 1,8% (erhöht um 0,2% ab 2025)",
+          "fixed": true
+        },
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "HIGH",
+          "issue": "Steuertarif-Zonen used 2025 values, updated to 2026 tariff",
+          "fixed": true
+        },
+        {
+          "type": "SEO",
+          "severity": "MEDIUM",
+          "issue": "Page title, meta description, keywords referenced 2025 instead of 2026",
+          "fixed": true
+        }
+      ],
+      "linkCheck": {
+        "bmf-steuerrechner.de": "PASS - 200 OK",
+        "deutsche-rentenversicherung.de": "PASS - 200 OK (redirects to /DRV/DE/Home/home_node.html)",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)"
+      },
+      "sourcesAdded": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
+      ],
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Vereinfachte Berechnung' note with BMF link present",
+        "edgeCases": "PASS - All 6 Steuerklassen covered, Kinderlosenzuschlag implemented, Kirchensteuer option (8%/9%)",
+        "behoerde": "PASS - Finanzamt (ELSTER) and Krankenkasse mentioned",
+        "approximateCalculation": "PASS - Clear note that exact values via BMF-Steuerrechner"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "notes": "Updated to 2026 tariff formula with correct zone thresholds. BBG limits correctly applied. Soli Freigrenze (18.130€) unchanged for 2026. Kinderlosenzuschlag now correctly 2,4% (1,8% + 0,6%)."
+      },
+      "seoCheck": {
+        "title": "PASS - Updated to Brutto-Netto-Rechner 2026",
+        "description": "PASS - Includes 2026 year, Grundfreibetrag 12.348€, BBG values",
+        "keywords": "PASS - Includes: Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen, Lohnsteuer Rechner, Steuerklasse, Nettogehalt, Grundfreibetrag 2026, Beitragsbemessungsgrenze 2026"
+      },
+      "officialSources": {
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+        "bmf": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+        "tk": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+        "finanztip": "https://www.finanztip.de/beitragsbemessungsgrenze/"
       }
     }
   ]
