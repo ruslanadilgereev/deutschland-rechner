@@ -1,7 +1,7 @@
 {
-  "lastAuditIndex": 5,
+  "lastAuditIndex": 0,
   "lastAuditDate": "2026-02-06",
-  "currentCycle": 4,
+  "currentCycle": 5,
   "calculators": [
     "kindergeld-rechner",
     "brutto-netto-rechner",
@@ -2304,6 +2304,66 @@
         "elster": "https://www.elster.de"
       },
       "auditSummary": "Clean audit cycle 4 - all 4 links working (200 OK), all 2026 values verified correct against BMF, ADAC, and VLH official sources (38¢/km ab km 1, Werbungskostenpauschale 1.230€, max 230 Arbeitstage, Homeoffice 6€/Tag max 1.260€). Legal sections complete with Zuständige Behörde, edge cases explained, and 2026 reform info box. Calculation logic simple and correct (unified 38¢ formula). No issues found."
+    },
+    {
+      "calculator": "kindergeld-rechner",
+      "date": "2026-02-06",
+      "cycle": 5,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "arbeitsagentur.de/kindergeld-anspruch-hoehe-dauer": "PASS - 200 OK",
+        "arbeitsagentur.de/kindergeld-antrag-starten": "PASS - 200 OK",
+        "arbeitsagentur.de/familienkasse-der-ba": "PASS - 200 OK",
+        "familienportal.de/kindergeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+          "https://familienportal.de/familienportal/familienleistungen/kindergeld",
+          "https://www.kindergeld.org/",
+          "https://www.mainpost.de/wirtschaft/finanzen/kindergeld-2026-wie-hoch-ist-es-und-wann-wird-es-ausgezahlt-30-1-26-112718483"
+        ],
+        "2026ValuesVerified": {
+          "Kindergeld_pro_Kind": "259€/Monat ✓ (BA confirmed: Sie erhalten pro Kind 259 Euro Kindergeld im Monat)",
+          "Kindergeld_Jahr": "3.108€ (259€ × 12) ✓",
+          "Staffelung": "Keine - einheitlich für alle Kinder seit 2023 ✓",
+          "Altersgrenze_Standard": "18 Jahre ✓",
+          "Altersgrenze_Ausbildung": "25 Jahre ✓",
+          "Rueckwirkend": "6 Monate ✓",
+          "Kindersofortzuschlag": "25€ für bedürftige Kinder (seit 2025, weiterhin gültig) ✓"
+        },
+        "hotline": "0800 4 555530 ✓ (verified on BA page - Mo-Fr 8-18 Uhr, kostenfrei)"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Antrag erforderlich warning with yellow background present",
+        "edgeCases": "PASS - Age limits (18/25), 6 month retroactive claim, documents required all mentioned",
+        "behoerde": "PASS - Familienkasse complete with hotline 0800 4 555530, Online-Antrag via BundID, Standortsuche",
+        "deadlines": "PASS - 6 Monate rückwirkend explicitly stated",
+        "unterlagen": "PASS - Geburtsurkunde, Steuer-ID (Kind + Eltern), Ausbildungsnachweis ab 18 listed"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "anzahlKinder × 259€",
+        "notes": "Simple linear calculation with correct 2026 rate. Min 1 child, max 10 children (reasonable UI limits). No edge cases needed - straightforward multiplication."
+      },
+      "seoCheck": {
+        "title": "PASS - Kindergeld-Rechner 2026",
+        "description": "PASS - 259€ pro Kind, aktuellen Sätzen, Antrag-Infos, Familienkasse-Kontakt",
+        "keywords": "PASS - Kindergeld Rechner, Kindergeld 2026, Kindergeld Höhe, Kindergeld berechnen, Kindergeld beantragen, Familienkasse, 259 Euro Kindergeld"
+      },
+      "officialSources": {
+        "arbeitsagentur_kindergeld": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+        "arbeitsagentur_antrag": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer/kindergeld-antrag-starten",
+        "arbeitsagentur_familienkasse": "https://www.arbeitsagentur.de/ueber-uns/familienkasse-der-ba",
+        "familienportal": "https://familienportal.de/familienportal/familienleistungen/kindergeld",
+        "kindergeld_org": "https://www.kindergeld.org/"
+      },
+      "newsNoted": {
+        "kindergrundsicherung": "Kindergrundsicherung officially cancelled, Kindersofortzuschlag (25€) remains indefinitely.",
+        "source": "kindergeld.org Feb 2026"
+      },
+      "auditSummary": "Clean audit cycle 5 - all 4 links working (200 OK), 259€ per child verified against BA official page, Familienportal, kindergeld.org. All legal sections complete (Antrag-Hinweis, 6-Monat-Frist, Unterlagen, Behörden-Info). Calculation logic simple and correct. SEO metadata complete with 2026 keywords. No issues found."
     }
   ]
 }
