@@ -151,20 +151,32 @@ export default function WohngeldRechner() {
     // Vereinfachung: Warmmiete direkt verwenden, da Heizkosten berücksichtigt
     const beruecksichtigteMiete = Math.min(warmmiete, hoechstbetrag);
     
-    // === 3. Wohngeld-Formel nach § 19 WoGG ===
-    // Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) × 12 (für Jahresberechnung)
-    // M = monatliche zu berücksichtigende Miete
+    // === 3. Heizkosten- und Klimakomponente (Wohngeld-Plus) ===
+    // Nach § 12 Abs. 6 und 7 WoGG werden diese zur Miete addiert
+    const heizkostenEntlastung = personenIndex < 8 
+      ? HEIZKOSTEN_ENTLASTUNG[personenIndex + 1] 
+      : HEIZKOSTEN_ENTLASTUNG[8] + (personenIndex - 7) * HEIZKOSTEN_ZUSATZ_PRO_PERSON;
+    
+    const klimakomponente = personenIndex < 8
+      ? KLIMAKOMPONENTE[personenIndex + 1]
+      : KLIMAKOMPONENTE[8] + (personenIndex - 7) * 7; // 7€ pro weitere Person
+    
+    // === 4. Wohngeld-Formel nach § 19 Abs. 1 WoGG ===
+    // Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) Euro
+    // M = monatliche zu berücksichtigende Miete (inkl. Heizkosten- & Klimakomponente)
     // Y = monatliches zu berücksichtigendes Einkommen
     
-    const koeff = KOEFFIZIENTEN[Math.min(haushaltsgroesse, 6)];
-    const M = beruecksichtigteMiete;
+    const koeff = KOEFFIZIENTEN[Math.min(haushaltsgroesse, 12)];
+    // M = Bruttokaltmiete + Heizkostenentlastung + Klimakomponente (max. Höchstbetrag)
+    const MRoh = beruecksichtigteMiete + heizkostenEntlastung + klimakomponente;
+    const M = Math.min(MRoh, hoechstbetrag + heizkostenEntlastung + klimakomponente);
     const Y = anrechenbaresEinkommenMonat;
     
-    // Formel anwenden
+    // Formel anwenden nach § 19 Abs. 1 WoGG
     const faktor = koeff.a + koeff.b * M + koeff.c * Y;
     const wohngeldBrutto = 1.15 * (M - faktor * Y);
     
-    // Wohngeld muss mindestens 0 sein, und es gibt eine Untergrenze von 10€
+    // Wohngeld muss mindestens 0 sein, Mindestwohngeld beträgt 10€
     const wohngeldMonatlich = wohngeldBrutto >= 10 ? Math.round(wohngeldBrutto) : 0;
     
     // === 4. Einkommensgrenze prüfen ===
@@ -191,6 +203,11 @@ export default function WohngeldRechner() {
       hoechstbetrag,
       beruecksichtigteMiete,
       mieteGekappt: warmmiete > hoechstbetrag,
+      
+      // Wohngeld-Plus Komponenten
+      heizkostenEntlastung: Math.round(heizkostenEntlastung * 100) / 100,
+      klimakomponente: Math.round(klimakomponente * 100) / 100,
+      mieteMitKomponenten: Math.round(M * 100) / 100,
       
       // Ergebnis
       wohngeldMonatlich,
@@ -565,9 +582,17 @@ export default function WohngeldRechner() {
             </span>
             <span className="text-gray-900">{formatEuro(ergebnis.hoechstbetrag)}</span>
           </div>
+          <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
+            <span>+ Heizkosten-Entlastung (§ 12 Abs. 6 WoGG)</span>
+            <span>{formatEuro(ergebnis.heizkostenEntlastung)}</span>
+          </div>
+          <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
+            <span>+ Klimakomponente (§ 12 Abs. 7 WoGG)</span>
+            <span>{formatEuro(ergebnis.klimakomponente)}</span>
+          </div>
           <div className="flex justify-between py-2 bg-purple-50 -mx-6 px-6">
-            <span className="font-medium text-purple-700">= Berücksichtigte Miete</span>
-            <span className="font-bold text-purple-900">{formatEuro(ergebnis.beruecksichtigteMiete)}</span>
+            <span className="font-medium text-purple-700">= Berücksichtigte Miete (M)</span>
+            <span className="font-bold text-purple-900">{formatEuro(ergebnis.mieteMitKomponenten)}</span>
           </div>
           
           {/* Ergebnis */}

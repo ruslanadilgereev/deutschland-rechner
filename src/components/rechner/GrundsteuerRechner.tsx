@@ -22,20 +22,27 @@ const BUNDESLAENDER = [
   { id: 'th', name: 'Thüringen', modell: 'bundesmodell', hebesatzSchnitt: 422 },
 ] as const;
 
-// Grundsteuer-Messzahlen (pro 1.000€ Grundsteuerwert)
-// Bundesmodell: 0,31‰ für Wohngebäude, 0,34‰ für andere
+// Grundsteuer-Messzahlen und Äquivalenzzahlen
+// Quellen: GrStG, BayGrStG, LGrStG BW
+
 const MESSZAHLEN = {
+  // Bundesmodell (§15 GrStG): Steuermesszahlen
   bundesmodell: {
-    wohnen: 0.00031, // 0,31‰
-    gewerbe: 0.00034, // 0,34‰
+    wohnen: 0.00031, // 0,31‰ für Wohngrundstücke
+    gewerbe: 0.00034, // 0,34‰ für Nichtwohngrundstücke
   },
+  // Baden-Württemberg Bodenwertmodell (LGrStG BW):
+  // Basis-Steuermesszahl 1,30‰, Wohngrundstücke 30% Ermäßigung = 0,91‰
   bodenwert: {
-    wohnen: 0.00091, // 0,91‰ (BaWü reduziert für Wohngrundstücke)
-    gewerbe: 0.00126, // 1,26‰
+    wohnen: 0.00091, // 0,91‰ (= 1,30‰ × 0,7)
+    gewerbe: 0.00130, // 1,30‰ (volle Steuermesszahl)
   },
+  // Bayern Flächenmodell (BayGrStG): Äquivalenzzahlen
+  // Wohnnutzung: 30% Abschlag auf die 0,50€ → 0,35€/m²
   flaeche: {
-    wohnenProQm: 0.50, // €/qm Wohnfläche
-    grundProQm: 0.04, // €/qm Grundstücksfläche
+    wohnenProQm: 0.35, // €/m² Wohnfläche (0,50€ × 0,7 wegen Wohnabschlag)
+    nutzflaecheProQm: 0.50, // €/m² Gewerbefläche (volle Äquivalenzzahl)
+    grundProQm: 0.04, // €/m² Grundstücksfläche
   },
 };
 
@@ -148,16 +155,20 @@ export default function GrundsteuerRechner() {
     } 
     else if (modell === 'flaeche') {
       // Bayern, Hamburg, Hessen, Niedersachsen: Flächenmodell
+      // Äquivalenzzahlen nach BayGrStG: 0,04€/m² Grund, 0,50€/m² Gebäude
+      // Wohnnutzung erhält 30% Abschlag → 0,35€/m²
       const grundAnteil = grundstuecksflaeche * MESSZAHLEN.flaeche.grundProQm;
-      const wohnAnteil = istUnbebaut ? 0 : wohnflaeche * MESSZAHLEN.flaeche.wohnenProQm;
+      const flaechenFaktor = istWohnen ? MESSZAHLEN.flaeche.wohnenProQm : MESSZAHLEN.flaeche.nutzflaecheProQm;
+      const wohnAnteil = istUnbebaut ? 0 : wohnflaeche * flaechenFaktor;
       grundsteuermessbetrag = grundAnteil + wohnAnteil;
       grundsteuerJahr = grundsteuermessbetrag * (hebesatz / 100);
       grundsteuerwert = grundsteuermessbetrag * 1000; // Rückrechnung für Anzeige
 
+      const flaechenLabel = istWohnen ? '0,35 €/m² (inkl. 30% Abschlag)' : '0,50 €/m²';
       berechnungsweg = [
         { label: 'Grundstücksfläche × 0,04 €/m²', wert: `${grundstuecksflaeche} m² × 0,04 € = ${grundAnteil.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €` },
         ...(istUnbebaut ? [] : [
-          { label: 'Wohnfläche × 0,50 €/m²', wert: `${wohnflaeche} m² × 0,50 € = ${wohnAnteil.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €` },
+          { label: `${istWohnen ? 'Wohnfläche' : 'Nutzfläche'} × ${flaechenLabel}`, wert: `${wohnflaeche} m² × ${flaechenFaktor.toFixed(2)} € = ${wohnAnteil.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €` },
         ]),
         { label: 'Grundsteuermessbetrag (Summe)', wert: `${grundsteuermessbetrag.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €` },
         { label: `× Hebesatz (${hebesatz}%)`, wert: `= ${grundsteuerJahr.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € / Jahr` },
@@ -538,8 +549,9 @@ export default function GrundsteuerRechner() {
           <div className="bg-white/70 rounded-xl p-4">
             <h4 className="font-semibold text-yellow-900 mb-2">📏 Flächenmodell (Bayern, Hamburg, Hessen, Niedersachsen)</h4>
             <p className="text-sm text-yellow-800">
-              Berechnung nur nach <strong>Flächen</strong>: Grundstücksfläche × 0,04€ + Wohnfläche × 0,50€.
-              Wert und Lage spielen keine Rolle – das ist am "fairsten", aber nicht werteorientiert.
+              Berechnung nur nach <strong>Flächen</strong> mit Äquivalenzzahlen: Grundstück × 0,04€/m² + 
+              Gebäude × 0,50€/m². <strong>Bei Wohnnutzung 30% Abschlag</strong> → effektiv 0,35€/m².
+              Wert und Lage spielen keine Rolle.
             </p>
           </div>
         </div>
@@ -646,7 +658,7 @@ export default function GrundsteuerRechner() {
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">
           <a 
             href="https://www.gesetze-im-internet.de/grstg_1973/"
@@ -654,7 +666,23 @@ export default function GrundsteuerRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Grundsteuergesetz (GrStG) – Gesetze im Internet
+            §15 GrStG – Steuermesszahlen (0,31‰ / 0,34‰)
+          </a>
+          <a 
+            href="https://www.grundsteuer.bayern.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Bayern – Flächenmodell (Äquivalenzzahlen 0,04€/0,50€, 30% Wohnabschlag)
+          </a>
+          <a 
+            href="https://fm.baden-wuerttemberg.de/de/steuern/grundsteuer/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Baden-Württemberg – Bodenwertmodell (1,30‰ / 0,91‰ für Wohnen)
           </a>
           <a 
             href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer/grundsteuer.html"
@@ -663,14 +691,6 @@ export default function GrundsteuerRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Bundesfinanzministerium – Grundsteuer-Reform
-          </a>
-          <a 
-            href="https://www.grundsteuer.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Grundsteuer.de – Offizielle Informationsseite
           </a>
           <a 
             href="https://www.bodenrichtwerte-boris.de"

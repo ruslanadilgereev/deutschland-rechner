@@ -1,13 +1,36 @@
 import { useState, useMemo } from 'react';
 
-// Mutterschutz 2026 - Quellen: BMFSFJ, Krankenkasse, BfAS
+/**
+ * Mutterschutz & Mutterschaftsgeld 2025/2026 - EXAKTE offizielle Berechnung
+ * 
+ * Rechtsgrundlagen:
+ * - Mutterschutzgesetz (MuSchG) - Schutzfristen
+ * - § 19 MuSchG - Mutterschaftsgeld
+ * - § 20 MuSchG - Zuschuss zum Mutterschaftsgeld
+ * - § 24i SGB V - Mutterschaftsgeld der Krankenkasse
+ * 
+ * Quellen:
+ * - BMFSFJ: https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz
+ * - Bundesamt für Soziale Sicherung: https://www.bundesamtsozialesicherung.de/de/mutterschaftsgeld/
+ * - Familienportal: https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen
+ * - TK Firmenkunden: https://www.tk.de/firmenkunden/versicherung/versicherung-faq/mutterschaftsgeld/
+ * 
+ * Berechnungsmethode (§ 20 MuSchG, § 24i SGB V):
+ * 1. Kalendertägliches Netto = (Nettolohn der letzten 3 Monate) / 90 Tage
+ * 2. Krankenkasse zahlt max. 13€/Tag (bei GKV-Versicherten)
+ * 3. Arbeitgeber zahlt Differenz: Kalendertägliches Netto - 13€
+ * 
+ * Bei PKV/Familienversicherten:
+ * - Bundesamt zahlt einmalig max. 210€ (§ 19 Abs. 2 MuSchG)
+ * - Arbeitgeber zahlt: Kalendertägliches Netto - 13€ (fiktiver Kassensatz)
+ */
 const MUTTERSCHUTZ_2026 = {
-  kassenMax: 13,           // Max. 13€/Tag von der Krankenkasse
-  bundesamtMax: 210,       // Max. 210€ gesamt vom Bundesamt (nicht GKV-versichert)
-  schutzfristVor: 6,       // 6 Wochen vor Geburt
-  schutzfristNach: 8,      // 8 Wochen nach Geburt
-  schutzfristNachFrueh: 12, // 12 Wochen bei Früh-/Mehrlingsgeburt
-  tageProWoche: 7,         // Kalendertage
+  kassenMax: 13,           // Max. 13€/Tag von Krankenkasse (§ 24i Abs. 2 SGB V)
+  bundesamtMax: 210,       // Max. 210€ einmalig vom Bundesamt (§ 19 Abs. 2 MuSchG)
+  schutzfristVor: 6,       // 6 Wochen vor Geburt (§ 3 Abs. 1 MuSchG)
+  schutzfristNach: 8,      // 8 Wochen nach Geburt (§ 3 Abs. 2 MuSchG)
+  schutzfristNachFrueh: 12, // 12 Wochen bei Früh-/Mehrlingsgeburt (§ 3 Abs. 2 Satz 2 MuSchG)
+  tageProWoche: 7,         // Kalendertage (nicht Arbeitstage!)
 };
 
 type Versicherungsart = 'gkv' | 'pkv' | 'keine' | 'mini';

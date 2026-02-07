@@ -1,8 +1,19 @@
 import { useState, useMemo } from 'react';
 
+// ============================================================================
 // ALG I Berechnungsgrundlagen 2026
+// ============================================================================
+// Rechtsgrundlage: SGB III (Arbeitsförderungsgesetz)
+// - § 149 SGB III: Grundsätze der Bemessung (60%/67% Leistungssatz)
+// - § 150 SGB III: Bemessungszeitraum (letzte 12 Monate)
+// - § 151 SGB III: Bemessungsentgelt (durchschnittliches Bruttoentgelt)
+// - § 152 SGB III: Leistungsentgelt (pauschaliertes Nettoentgelt)
+// - § 147 SGB III: Anspruchsdauer (nach Alter und Beschäftigungsdauer)
+//
 // Quelle: https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld
+// Quelle: https://www.gesetze-im-internet.de/sgb_3/__149.html
 // Quelle: https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514
+// ============================================================================
 
 // Beitragsbemessungsgrenze 2026 (monatlich) - bundesweit einheitlich seit 2025!
 // Keine Ost/West-Unterscheidung mehr ab 1.1.2025

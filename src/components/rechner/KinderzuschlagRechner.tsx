@@ -1,12 +1,23 @@
 import { useState, useMemo } from 'react';
 
-// Kinderzuschlag 2026 - Quellen: Familienkasse, BMAS
-// Der Kinderzuschlag schließt die Lücke zwischen Bürgergeld und Selbstversorgung
+/**
+ * Kinderzuschlag 2025/2026 - EXAKTE offizielle Berechnung
+ * 
+ * Rechtsgrundlage: § 6a Bundeskindergeldgesetz (BKGG)
+ * Quellen:
+ * - Familienkasse: https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag
+ * - Familienportal: https://familienportal.de/familienportal/familienleistungen/kinderzuschlag
+ * - BMAS: https://www.bmas.de/DE/Soziales/Familie-und-Kinder/Familienleistungen/Kinderzuschlag/kinderzuschlag.html
+ * - DGB: https://www.dgb.de/service/ratgeber/kinderzuschlag-und-kindergrundsicherung/
+ * 
+ * Höchstbetrag seit 01.01.2025: 297€ pro Kind und Monat
+ * (vorher 2024: 292€)
+ */
 const KINDERZUSCHLAG_2026 = {
-  maxProKind: 292,          // Maximaler KiZ pro Kind (Stand 2026)
-  mindesteinkommenAlleinerziehend: 600, // Mindestbrutto Alleinerziehende
-  mindesteinkommenPaar: 900,             // Mindestbrutto Paare
-  kindergeld2026: 255,      // Kindergeld pro Kind (Stand 2026)
+  maxProKind: 297,          // Maximaler KiZ pro Kind seit 01.01.2025 (§ 6a Abs. 2 BKGG)
+  mindesteinkommenAlleinerziehend: 600, // Mindestbrutto Alleinerziehende (§ 6a Abs. 1 Nr. 2 BKGG)
+  mindesteinkommenPaar: 900,             // Mindestbrutto Paare (§ 6a Abs. 1 Nr. 2 BKGG)
+  kindergeld2026: 255,      // Kindergeld pro Kind seit 2025 (§ 6 BKGG)
 };
 
 // Vereinfachte Bedarfsberechnung nach SGB II

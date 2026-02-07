@@ -1,8 +1,21 @@
 import { useState, useMemo } from 'react';
 
+// ============================================================================
 // Kurzarbeitergeld Berechnungsgrundlagen 2026
+// ============================================================================
+// Rechtsgrundlage: SGB III (Arbeitsförderungsgesetz)
+// - § 95 SGB III: Anspruch auf Kurzarbeitergeld
+// - § 96 SGB III: Erheblicher Arbeitsausfall
+// - § 105 SGB III: Höhe des Kurzarbeitergeldes
+// - § 106 SGB III: Nettoentgeltdifferenz
+//
+// Berechnungsformel nach § 105 SGB III:
+// KuG = (SOLL-Netto - IST-Netto) × Leistungssatz (60% oder 67%)
+//
 // Quelle: https://www.arbeitsagentur.de/unternehmen/finanziell/kurzarbeitergeld
 // Quelle: https://www.gesetze-im-internet.de/sgb_3/__105.html
+// Quelle: https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kurzarbeit/kurzarbeit-artikel.html
+// ============================================================================
 
 // Beitragsbemessungsgrenze 2026 (monatlich) - bundesweit einheitlich
 const BEITRAGSBEMESSUNGSGRENZE = 8450; // 2026: 8.450€/Monat

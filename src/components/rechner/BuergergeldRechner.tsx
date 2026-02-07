@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 
 // Bürgergeld Regelsätze 2026 (unverändert gegenüber 2025 - Besitzschutzregelung § 28a Abs. 5 SGB XII)
+// Quelle: https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676
+// Quelle: https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/Buergergeld/buergergeld.html
 const REGELSAETZE_2026 = {
   alleinstehend: 563,      // Regelbedarfsstufe 1
   partner: 506,            // Regelbedarfsstufe 2 (je Partner)
@@ -8,6 +10,10 @@ const REGELSAETZE_2026 = {
   kind_6_13: 390,          // Regelbedarfsstufe 5
   kind_0_5: 357,           // Regelbedarfsstufe 6
 };
+
+// Kindersofortzuschlag nach § 72 SGB II - 25€ pro Kind zusätzlich zum Regelbedarf
+// Quelle: https://www.arbeitsagentur.de/lexikon/kindersofortzuschlag
+const KINDERSOFORTZUSCHLAG = 25;
 
 // Freibeträge vom Einkommen 2026 (§ 11b SGB II - unverändert)
 const FREIBETRAEGE = {
@@ -69,16 +75,21 @@ export default function BuergergeldRechner() {
       regelbedarf = REGELSAETZE_2026.alleinstehend;
     }
     
-    // Kinder
+    // Kinder (Regelbedarf)
     kinder.forEach(kind => {
       regelbedarf += berechneKindRegelsatz(kind.alter);
     });
     
+    // Kindersofortzuschlag nach § 72 SGB II (25€ pro Kind)
+    // Wird zusätzlich zum Regelbedarf gezahlt
+    const kindersofortzuschlag = kinder.length * KINDERSOFORTZUSCHLAG;
+    
     // Kosten der Unterkunft (KdU) - vereinfacht: volle Warmmiete
+    // Nach § 22 SGB II werden angemessene KdU übernommen
     const kdu = warmmiete;
     
-    // Gesamtbedarf
-    const gesamtbedarf = regelbedarf + kdu;
+    // Gesamtbedarf (inkl. Kindersofortzuschlag)
+    const gesamtbedarf = regelbedarf + kindersofortzuschlag + kdu;
     
     // Anrechenbares Einkommen
     const freibetrag = berechneEinkommenFreibetrag(einkommen, kinder.length > 0);
@@ -89,12 +100,14 @@ export default function BuergergeldRechner() {
     
     return {
       regelbedarf,
+      kindersofortzuschlag,
       kdu,
       gesamtbedarf,
       freibetrag,
       anrechnung,
       anspruch,
       hatAnspruch: anspruch > 0,
+      anzahlKinder: kinder.length,
     };
   }, [mitPartner, kinder, warmmiete, einkommen]);
 
@@ -277,6 +290,12 @@ export default function BuergergeldRechner() {
             <span className="text-gray-600">Regelbedarf</span>
             <span className="font-bold text-gray-900">{formatEuro(ergebnis.regelbedarf)}</span>
           </div>
+          {ergebnis.kindersofortzuschlag > 0 && (
+            <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
+              <span>+ Kindersofortzuschlag (§ 72 SGB II)</span>
+              <span className="font-bold">{formatEuro(ergebnis.kindersofortzuschlag)} ({ergebnis.anzahlKinder} × 25€)</span>
+            </div>
+          )}
           <div className="flex justify-between py-2 border-b border-gray-100">
             <span className="text-gray-600">+ Kosten der Unterkunft (KdU)</span>
             <span className="font-bold text-gray-900">{formatEuro(ergebnis.kdu)}</span>
@@ -336,7 +355,7 @@ export default function BuergergeldRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>+25 € Kindersofortzuschlag</strong> pro Kind zusätzlich</span>
+            <span><strong>+25 € Kindersofortzuschlag</strong> pro Kind zusätzlich (§ 72 SGB II)</span>
           </li>
         </ul>
       </div>

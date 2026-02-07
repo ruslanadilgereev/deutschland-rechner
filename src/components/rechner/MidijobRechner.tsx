@@ -1,21 +1,24 @@
 import { useState, useMemo } from 'react';
 
-// Midijob / Übergangsbereich Konstanten 2026
+// Midijob / Übergangsbereich Konstanten 2025
 // Quelle: § 20 SGB IV, BMF, DRV
+// Berechnung nach DAK-Formel: https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500
+// Vereinfachte Formel: F × Untergrenze + ((O/(O-U)) - (U×F/(O-U))) × (Brutto - U)
 const MIDIJOB = {
-  untergrenze: 603.01,                  // Ab 603,01€ beginnt der Midijob (Minijob-Grenze + 1 Cent)
+  untergrenze: 556.01,                  // Ab 556,01€ beginnt der Midijob (Minijob-Grenze 556€ + 1 Cent, seit 01.01.2025)
   obergrenze: 2000.00,                  // Obergrenze seit 01.01.2023 (erhöht von 1.600€)
-  // Beitragssätze 2026
+  // Beitragssätze 2025
   krankenversicherung: 14.6,            // Allgemeiner Beitragssatz
-  zusatzbeitragKV: 2.5,                 // Durchschnittlicher Zusatzbeitrag 2026 (erhöht von 1,7%)
+  zusatzbeitragKV: 2.5,                 // Durchschnittlicher Zusatzbeitrag 2025 (erhöht von 1,7%)
   rentenversicherung: 18.6,             // RV-Beitrag
   arbeitslosenversicherung: 2.6,        // AV-Beitrag
   pflegeversicherung: 3.4,              // PV ohne Kinder
   pflegeversicherungMitKind: 3.4,       // Basis-PV-Satz
   pvZuschlagKinderlos: 0.6,             // Zuschlag ab 23 ohne Kinder
   pvAbschlagKinder: [0, 0.25, 0.25, 0.25, 0.25], // Abschläge pro Kind (2-5+)
-  // Faktor F für Gleitzonenformel 2026
-  faktorF: 0.6846,                      // Formel: 28% ÷ Gesamtbeitragssatz (ca. 40.9%)
+  // Faktor F für Gleitzonenformel 2025
+  // F = 28% / Gesamtbeitragssatz (bei 41,7% → F ≈ 0,6715)
+  faktorF: 0.6715,                      // Formel: 28% ÷ Gesamtbeitragssatz
 };
 
 // Gesamtbeitragssatz für Berechnung des Faktors F
@@ -41,7 +44,7 @@ export default function MidijobRechner() {
   const ergebnis = useMemo(() => {
     // Prüfe ob im Übergangsbereich
     const istMidijob = bruttolohn >= MIDIJOB.untergrenze && bruttolohn <= MIDIJOB.obergrenze;
-    const istMinijob = bruttolohn <= 603;
+    const istMinijob = bruttolohn <= 556;
     const istVolljob = bruttolohn > MIDIJOB.obergrenze;
 
     // ═══════════════════════════════════════════════════════════════
@@ -49,10 +52,10 @@ export default function MidijobRechner() {
     // Formel nach § 20 Abs. 2a SGB IV (seit 01.10.2022)
     // ═══════════════════════════════════════════════════════════════
     
-    // Faktor F (2026): F = 28% / Gesamtbeitragssatz
+    // Faktor F (2025): F = 28% / Gesamtbeitragssatz
     // Mit durchschnittlichem Zusatzbeitrag 2,5%:
     // Gesamtbeitrag = 14,6 + 2,5 + 18,6 + 2,6 + 3,4 = 41,7%
-    // F = 28 / 41,7 = 0,6715 (gerundet für 2026)
+    // F = 28 / 41,7 = 0,6715
     const gesamtBeitragssatz = 
       MIDIJOB.krankenversicherung + 
       zusatzbeitragKV + 
@@ -63,8 +66,9 @@ export default function MidijobRechner() {
     const F = 28 / gesamtBeitragssatz;
     
     // Formel für beitragspflichtige Einnahme (BE) im Übergangsbereich:
-    // BE = F × Untergrenze + ([Obergrenze / (Obergrenze - Untergrenze)] - [Untergrenze × F / (Obergrenze - Untergrenze)]) × (Brutto - Untergrenze)
-    // Vereinfacht: BE = F × 603,01 + Faktor2 × (Brutto - 603,01)
+    // Offizielle DAK-Formel: F × G + ((O/(O-G)) - (G×F/(O-G))) × (AE - G)
+    // wobei: G = Geringfügigkeitsgrenze, O = Obergrenze, AE = Arbeitsentgelt
+    // Vereinfachte Formel 2025: 1,0696 × Arbeitsentgelt - 100,16 (bei F = 0,6715)
     
     const untergrenze = MIDIJOB.untergrenze;
     const obergrenze = MIDIJOB.obergrenze;
@@ -182,10 +186,10 @@ export default function MidijobRechner() {
     
     // Rentenpunkte werden auf BASIS der beitragspflichtigen Einnahme berechnet
     // ABER: Mindestregel - AN erwirbt Punkte auf vollem Brutto (seit 2022)
-    const durchschnittsentgelt2026 = 48314; // Vorläufiges Durchschnittsentgelt 2026
-    const rentenpunkteJahr = (bruttolohn * 12) / durchschnittsentgelt2026;
-    const rentenwert2026 = 40.79; // Aktueller Rentenwert (einheitlich seit Juli 2025)
-    const renteProMonat = rentenpunkteJahr * rentenwert2026;
+    const durchschnittsentgelt2025 = 47084; // Durchschnittsentgelt 2025
+    const rentenpunkteJahr = (bruttolohn * 12) / durchschnittsentgelt2025;
+    const rentenwert2025 = 39.32; // Aktueller Rentenwert (einheitlich seit Juli 2024)
+    const renteProMonat = rentenpunkteJahr * rentenwert2025;
 
     return {
       // Status
@@ -263,8 +267,8 @@ export default function MidijobRechner() {
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>500 €</span>
-            <span className={bruttolohn >= 603.01 && bruttolohn <= 2000 ? 'text-purple-500 font-bold' : 'text-gray-500'}>
-              Übergangsbereich: 603,01 € – 2.000 €
+            <span className={bruttolohn >= 556.01 && bruttolohn <= 2000 ? 'text-purple-500 font-bold' : 'text-gray-500'}>
+              Übergangsbereich: 556,01 € – 2.000 €
             </span>
             <span>2.500 €</span>
           </div>
@@ -276,14 +280,14 @@ export default function MidijobRechner() {
             <div className="bg-green-100 border border-green-300 rounded-xl p-4 text-center">
               <span className="text-2xl">⏰</span>
               <p className="font-bold text-green-800 mt-1">Das ist ein Minijob</p>
-              <p className="text-sm text-green-600">Bis 603 € – nutze den Minijob-Rechner!</p>
+              <p className="text-sm text-green-600">Bis 556 € – nutze den Minijob-Rechner!</p>
             </div>
           )}
           {ergebnis.istMidijob && (
             <div className="bg-purple-100 border border-purple-300 rounded-xl p-4 text-center">
               <span className="text-2xl">📊</span>
               <p className="font-bold text-purple-800 mt-1">Übergangsbereich (Midijob)</p>
-              <p className="text-sm text-purple-600">603,01 € – 2.000 € → Reduzierte AN-Beiträge!</p>
+              <p className="text-sm text-purple-600">556,01 € – 2.000 € → Reduzierte AN-Beiträge!</p>
             </div>
           )}
           {ergebnis.istVolljob && (
@@ -588,7 +592,7 @@ export default function MidijobRechner() {
             </div>
           </div>
           <p className="text-xs text-blue-600">
-            Berechnung: ({formatEuro(bruttolohn)} × 12) ÷ 48.314€ = {ergebnis.rentenpunkteJahr.toFixed(3)} Punkte × 40,79€ Rentenwert
+            Berechnung: ({formatEuro(bruttolohn)} × 12) ÷ 47.084€ = {ergebnis.rentenpunkteJahr.toFixed(3)} Punkte × 39,32€ Rentenwert
           </p>
         </div>
       </div>
@@ -626,7 +630,7 @@ export default function MidijobRechner() {
 
       {/* Wichtige Hinweise */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise 2026</h3>
+        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise 2025</h3>
         <ul className="space-y-2 text-sm text-amber-700">
           <li className="flex gap-2">
             <span>•</span>
@@ -634,7 +638,7 @@ export default function MidijobRechner() {
           </li>
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Untergrenze dynamisch:</strong> Gekoppelt an Mindestlohn → 603,01€ ab 2026</span>
+            <span><strong>Untergrenze dynamisch:</strong> Gekoppelt an Mindestlohn (12,82€/h) → 556,01€ ab 2025</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>
@@ -671,8 +675,8 @@ export default function MidijobRechner() {
           <tbody>
             <tr className="border-b border-gray-100">
               <td className="py-3 px-2 text-gray-700">Verdienstgrenze</td>
-              <td className="py-3 px-2 text-center">≤ 603 €</td>
-              <td className="py-3 px-2 text-center">603,01 – 2.000 €</td>
+              <td className="py-3 px-2 text-center">≤ 556 €</td>
+              <td className="py-3 px-2 text-center">556,01 – 2.000 €</td>
               <td className="py-3 px-2 text-center">&gt; 2.000 €</td>
             </tr>
             <tr className="border-b border-gray-100">

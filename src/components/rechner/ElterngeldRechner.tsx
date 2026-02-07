@@ -1,17 +1,66 @@
 import { useState, useMemo } from 'react';
 
-// Elterngeld 2026 - Quellen: BMFSFJ, Familienportal
-// Wichtig: Seit 1. April 2025 gilt einheitliche Einkommensgrenze für alle
+/**
+ * Elterngeld 2025/2026 - EXAKTE offizielle Berechnung
+ * 
+ * Rechtsgrundlage: § 2 Bundeselterngeld- und Elternzeitgesetz (BEEG)
+ * Quellen:
+ * - ZBFS Bayern: https://www.zbfs.bayern.de/familienleistungen/elterngeld/faq/berechnung_hoehe/
+ * - Familienportal: https://familienportal.de/familienportal/familienleistungen/elterngeld
+ * - § 2 Abs. 2 BEEG (Geringverdienerkomponente)
+ * - § 2 Abs. 2 BEEG (Hochverdienerkomponente)
+ * 
+ * Ersatzraten-Staffelung (Stand 2025/2026):
+ * - Unter 1.000€: 67% + 0,1 Prozentpunkte je 2€ unter 1.000€ (max. 100%)
+ *   Formel: (1.000 - Netto) / 2 × 0,1% + 67%
+ * - 1.000€ - 1.200€: 67%
+ * - 1.200€ - 1.240€: Sinkt von 67% auf 65% (Abschmelzzone)
+ *   Formel: 67% - (Netto - 1.200) / 2 × 0,1%
+ * - Über 1.240€: 65%
+ */
 const ELTERNGELD_2026 = {
-  minBasis: 300,     // Mindestbetrag Basiselterngeld
-  maxBasis: 1800,    // Höchstbetrag Basiselterngeld
+  minBasis: 300,     // Mindestbetrag Basiselterngeld (§ 2 Abs. 4 BEEG)
+  maxBasis: 1800,    // Höchstbetrag Basiselterngeld (§ 2 Abs. 1 BEEG)
   minPlus: 150,      // Mindestbetrag ElterngeldPlus
   maxPlus: 900,      // Höchstbetrag ElterngeldPlus
-  ersatzrate: 0.65,  // 65% des Nettoeinkommens (Standard)
-  ersatzrateGering: 0.67, // 67% bei niedrigem Einkommen (unter 1.200€)
-  ersatzrateHoch: 0.65,   // Bis 65% bei hohem Einkommen
-  einkommensgrenze: 175000, // Ab 1. April 2025: 175.000€ für ALLE (Paare & Alleinerziehende)
+  // Einkommensgrenzen für Ersatzraten-Staffelung
+  geringverdienerGrenze: 1000,  // Unter 1.000€: Ersatzrate steigt
+  basisGrenze: 1200,            // 1.000-1.200€: 67% Ersatzrate
+  abschmelzungsEnde: 1240,      // Über 1.240€: 65% Ersatzrate
+  // Ersatzraten
+  ersatzrateMin: 0.65,    // Minimum bei hohem Einkommen
+  ersatzrateBasis: 0.67,  // Standard bei 1.000-1.200€
+  ersatzrateMax: 1.00,    // Maximum bei sehr geringem Einkommen (100%)
+  einkommensgrenze: 175000, // Ab 1. April 2025: 175.000€ für ALLE (§ 1 Abs. 8 BEEG)
 };
+
+/**
+ * Berechnet die Ersatzrate nach § 2 Abs. 2 BEEG
+ * EXAKTE offizielle Formel
+ */
+function berechneErsatzrate(nettoMonat: number): number {
+  if (nettoMonat < ELTERNGELD_2026.geringverdienerGrenze) {
+    // GERINGVERDIENERKOMPONENTE (§ 2 Abs. 2 Satz 1 BEEG)
+    // Formel: (1.000 - Netto) / 2 × 0,001 + 0,67
+    // = 0,1 Prozentpunkte je 2€ unter 1.000€
+    // Beispiel: Bei 600€: (1.000-600)/2 × 0,1% + 67% = 200 × 0,1% + 67% = 20% + 67% = 87%
+    const differenz = ELTERNGELD_2026.geringverdienerGrenze - nettoMonat;
+    const zusatz = (differenz / 2) * 0.001; // 0,1% = 0,001 pro 2€
+    return Math.min(ELTERNGELD_2026.ersatzrateMax, ELTERNGELD_2026.ersatzrateBasis + zusatz);
+  } else if (nettoMonat <= ELTERNGELD_2026.basisGrenze) {
+    // STANDARDRATE: 1.000€ - 1.200€ → 67%
+    return ELTERNGELD_2026.ersatzrateBasis;
+  } else if (nettoMonat < ELTERNGELD_2026.abschmelzungsEnde) {
+    // ABSCHMELZUNGSZONE: 1.200€ - 1.240€ → sinkt von 67% auf 65%
+    // Formel: 67% - (Netto - 1.200) / 2 × 0,1%
+    const differenz = nettoMonat - ELTERNGELD_2026.basisGrenze;
+    const abzug = (differenz / 2) * 0.001;
+    return Math.max(ELTERNGELD_2026.ersatzrateMin, ELTERNGELD_2026.ersatzrateBasis - abzug);
+  } else {
+    // ÜBER 1.240€: Minimum 65%
+    return ELTERNGELD_2026.ersatzrateMin;
+  }
+}
 
 function berechneElterngeld(nettoMonat: number): {
   basis: number;
@@ -20,18 +69,8 @@ function berechneElterngeld(nettoMonat: number): {
   plusMonate: number;
   ersatzrate: number;
 } {
-  // Ersatzrate bestimmen (65-67%)
-  // Quelle: § 2 Abs. 2 BEEG, familienportal.de
-  let ersatzrate = 0.65;
-  if (nettoMonat <= 1200) {
-    // Unter 1.200€: 67% (für 1.000-1.200€ pauschal)
-    // Unter 1.000€: Erhöht sich weiter bis 100% (hier vereinfacht)
-    ersatzrate = 0.67;
-  } else if (nettoMonat > 1200 && nettoMonat < 1240) {
-    // Gleitzone 1.200-1.240€: Sinkt von 67% auf 65%
-    // Formel: -0,1% je 2 Euro Mehrverdienst = -0,0005 je Euro
-    ersatzrate = 0.67 - ((nettoMonat - 1200) * 0.0005);
-  }
+  // Ersatzrate nach exakter offizieller Formel berechnen
+  const ersatzrate = berechneErsatzrate(nettoMonat);
 
   // Basiselterngeld
   let basis = Math.round(nettoMonat * ersatzrate);
