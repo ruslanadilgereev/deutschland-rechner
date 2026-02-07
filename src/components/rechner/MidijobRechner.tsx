@@ -1,34 +1,61 @@
 import { useState, useMemo } from 'react';
 
-// Midijob / Übergangsbereich Konstanten 2025
-// Quelle: § 20 SGB IV, BMF, DRV
-// Berechnung nach DAK-Formel: https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500
-// Vereinfachte Formel: F × Untergrenze + ((O/(O-U)) - (U×F/(O-U))) × (Brutto - U)
+// ═══════════════════════════════════════════════════════════════════════════════
+// Midijob / Übergangsbereich - Offizielle Berechnungsformeln
+// ═══════════════════════════════════════════════════════════════════════════════
+// 
+// RECHTSGRUNDLAGE: § 20 Abs. 2 SGB IV
+// QUELLE: DAK Arbeitgeber-Portal (offizielle Formeln)
+// https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500
+//
+// WICHTIG: Es gibt ZWEI verschiedene Formeln:
+// 1. Gesamtbeitrag (BE) - für Gesamtsozialversicherungsbeitrag
+// 2. Reduziertes beitragspflichtiges Entgelt (RBE) - NUR für Arbeitnehmeranteil
+//
+// Die Formel für BE (Gesamtbeitrag):
+//   BE = F × G + ((O/(O-G)) - (G×F/(O-G))) × (AE - G)
+//   Vereinfacht 2025: BE = 1,1277183 × AE - 255,4365651
+//
+// Die Formel für RBE (AN-Anteil):
+//   RBE = (O / (O-G)) × (AE - G)
+//   Vereinfacht 2025: RBE = 1,3850416 × AE - 770,0831025
+//
+// Berechnung in 3 Schritten:
+//   Schritt 1: Gesamtbeitrag auf BE × ½ Beitragssatz × 2 = Gesamtbeitrag
+//   Schritt 2: RBE × ½ Beitragssatz = Arbeitnehmeranteil
+//   Schritt 3: Gesamtbeitrag - AN-Anteil = Arbeitgeberanteil
+// ═══════════════════════════════════════════════════════════════════════════════
+
 const MIDIJOB = {
-  untergrenze: 556.01,                  // Ab 556,01€ beginnt der Midijob (Minijob-Grenze 556€ + 1 Cent, seit 01.01.2025)
-  obergrenze: 2000.00,                  // Obergrenze seit 01.01.2023 (erhöht von 1.600€)
+  // Grenzen 2025 (01.01.2025 - 31.12.2025)
+  untergrenze: 556.01,                  // Geringfügigkeitsgrenze + 1 Cent (Mindestlohn 12,82€/h × 43,33h)
+  obergrenze: 2000.00,                  // Obergrenze seit 01.01.2023
+  
+  // OFFIZIELLER Faktor F 2025 (vom BMAS festgelegt, NICHT selbst berechnen!)
+  // F = 28% / durchschnittlicher Gesamtsozialversicherungsbeitragssatz
+  // Quelle: DAK, veröffentlicht jährlich
+  faktorF_2025: 0.6683,                 // Gültig 01.01.2025 - 31.12.2025
+  
+  // Vereinfachte Formeln 2025 (aus DAK-Dokumentation)
+  // Diese Koeffizienten sind EXAKT und sollten nicht gerundet werden
+  formelGesamtbeitrag: {
+    faktor: 1.1277183,
+    offset: 255.4365651,
+  },
+  formelANAnteil: {
+    faktor: 1.3850416,
+    offset: 770.0831025,
+  },
+  
   // Beitragssätze 2025
   krankenversicherung: 14.6,            // Allgemeiner Beitragssatz
-  zusatzbeitragKV: 2.5,                 // Durchschnittlicher Zusatzbeitrag 2025 (erhöht von 1,7%)
+  zusatzbeitragKV: 2.5,                 // Durchschnittlicher Zusatzbeitrag 2025
   rentenversicherung: 18.6,             // RV-Beitrag
   arbeitslosenversicherung: 2.6,        // AV-Beitrag
-  pflegeversicherung: 3.4,              // PV ohne Kinder
-  pflegeversicherungMitKind: 3.4,       // Basis-PV-Satz
+  pflegeversicherung: 3.4,              // PV Basis-Satz
   pvZuschlagKinderlos: 0.6,             // Zuschlag ab 23 ohne Kinder
   pvAbschlagKinder: [0, 0.25, 0.25, 0.25, 0.25], // Abschläge pro Kind (2-5+)
-  // Faktor F für Gleitzonenformel 2025
-  // F = 28% / Gesamtbeitragssatz (bei 41,7% → F ≈ 0,6715)
-  faktorF: 0.6715,                      // Formel: 28% ÷ Gesamtbeitragssatz
 };
-
-// Gesamtbeitragssatz für Berechnung des Faktors F
-const GESAMTBEITRAG = 
-  MIDIJOB.krankenversicherung + 
-  MIDIJOB.zusatzbeitragKV + 
-  MIDIJOB.rentenversicherung + 
-  MIDIJOB.arbeitslosenversicherung + 
-  MIDIJOB.pflegeversicherung;
-// F = 28% / Gesamtbeitragssatz ≈ 28 / 40.9 ≈ 0.6846
 
 type Familienstand = 'ledig' | 'verheiratet';
 
@@ -48,14 +75,11 @@ export default function MidijobRechner() {
     const istVolljob = bruttolohn > MIDIJOB.obergrenze;
 
     // ═══════════════════════════════════════════════════════════════
-    // BERECHNUNG DER BEITRAGSBEMESSUNGSGRUNDLAGE (BBG) IM ÜBERGANGSBEREICH
-    // Formel nach § 20 Abs. 2a SGB IV (seit 01.10.2022)
+    // OFFIZIELLE BERECHNUNG NACH DAK-FORMEL (§ 20 Abs. 2 SGB IV)
+    // Quelle: https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500
     // ═══════════════════════════════════════════════════════════════
     
-    // Faktor F (2025): F = 28% / Gesamtbeitragssatz
-    // Mit durchschnittlichem Zusatzbeitrag 2,5%:
-    // Gesamtbeitrag = 14,6 + 2,5 + 18,6 + 2,6 + 3,4 = 41,7%
-    // F = 28 / 41,7 = 0,6715
+    // Gesamtbeitragssatz (für Anzeige und Vergleich)
     const gesamtBeitragssatz = 
       MIDIJOB.krankenversicherung + 
       zusatzbeitragKV + 
@@ -63,58 +87,98 @@ export default function MidijobRechner() {
       MIDIJOB.arbeitslosenversicherung + 
       MIDIJOB.pflegeversicherung;
     
-    const F = 28 / gesamtBeitragssatz;
+    // OFFIZIELLER Faktor F (vom BMAS vorgegeben, NICHT selbst berechnen!)
+    const F = MIDIJOB.faktorF_2025;
     
-    // Formel für beitragspflichtige Einnahme (BE) im Übergangsbereich:
-    // Offizielle DAK-Formel: F × G + ((O/(O-G)) - (G×F/(O-G))) × (AE - G)
-    // wobei: G = Geringfügigkeitsgrenze, O = Obergrenze, AE = Arbeitsentgelt
-    // Vereinfachte Formel 2025: 1,0696 × Arbeitsentgelt - 100,16 (bei F = 0,6715)
-    
-    const untergrenze = MIDIJOB.untergrenze;
-    const obergrenze = MIDIJOB.obergrenze;
-    const spanne = obergrenze - untergrenze; // 1396,99
-    
-    const faktor2 = (obergrenze / spanne) - (untergrenze * F / spanne);
-    
+    // ═══════════════════════════════════════════════════════════════
+    // SCHRITT 1: Beitragspflichtige Einnahme (BE) für GESAMTBEITRAG
+    // Vereinfachte DAK-Formel 2025: BE = 1,1277183 × AE - 255,4365651
+    // ═══════════════════════════════════════════════════════════════
     let beitragspflichtigeEinnahme = bruttolohn;
     if (istMidijob) {
-      beitragspflichtigeEinnahme = F * untergrenze + faktor2 * (bruttolohn - untergrenze);
+      beitragspflichtigeEinnahme = 
+        MIDIJOB.formelGesamtbeitrag.faktor * bruttolohn - 
+        MIDIJOB.formelGesamtbeitrag.offset;
+      // Sicherheit: Minimum ist Brutto selbst nicht unterschreiten, Maximum ist Brutto
+      beitragspflichtigeEinnahme = Math.max(0, Math.min(bruttolohn, beitragspflichtigeEinnahme));
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // SCHRITT 2: Reduziertes beitragspflichtiges Entgelt (RBE) für AN-ANTEIL
+    // Vereinfachte DAK-Formel 2025: RBE = 1,3850416 × AE - 770,0831025
+    // ═══════════════════════════════════════════════════════════════
+    let reduziertesEntgeltAN = bruttolohn;
+    if (istMidijob) {
+      reduziertesEntgeltAN = 
+        MIDIJOB.formelANAnteil.faktor * bruttolohn - 
+        MIDIJOB.formelANAnteil.offset;
+      reduziertesEntgeltAN = Math.max(0, reduziertesEntgeltAN);
     }
 
     // ═══════════════════════════════════════════════════════════════
-    // ARBEITNEHMER-ANTEILE
+    // BERECHNUNG DER BEITRÄGE (3-Schritte-Verfahren nach DAK)
     // ═══════════════════════════════════════════════════════════════
     
-    // Gesamtbeitrag auf Basis der reduzierten BBG
-    const gesamtBeitragAufBBG = beitragspflichtigeEinnahme * (gesamtBeitragssatz / 100);
+    // Schritt 1: Gesamtbeitrag pro Versicherungszweig
+    // (BE × ½ Beitragssatz) gerundet × 2 = Gesamtbeitrag
+    const berechneGesamtbeitrag = (be: number, satz: number) => {
+      return Math.round(be * (satz / 2 / 100) * 100) / 100 * 2;
+    };
     
-    // AG-Anteil wird auf VOLLEN Bruttolohn berechnet (halber Beitragssatz)
-    const agAnteilKV = bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
-    const agAnteilRV = bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
-    const agAnteilAV = bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
-    const agAnteilPV = bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
-    const agGesamtAnteil = agAnteilKV + agAnteilRV + agAnteilAV + agAnteilPV;
+    // Schritt 2: AN-Anteil = RBE × ½ Beitragssatz
+    const berechneANAnteil = (rbe: number, satz: number) => {
+      return Math.round(rbe * (satz / 2 / 100) * 100) / 100;
+    };
     
-    // AN-Anteil = Gesamtbeitrag auf BBG - AG-Anteil auf vollem Brutto
-    let anGesamtAnteil = istMidijob ? gesamtBeitragAufBBG - agGesamtAnteil : 0;
+    let anKV: number, anRV: number, anAV: number, anPV: number;
+    let agKVCalc: number, agRVCalc: number, agAVCalc: number, agPVCalc: number;
     
-    // Bei vollem Job: normale 50/50 Teilung
-    if (istVolljob) {
-      anGesamtAnteil = bruttolohn * (gesamtBeitragssatz / 2 / 100);
+    if (istMidijob) {
+      // Gesamtbeiträge berechnen
+      const gesamtKV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.krankenversicherung + zusatzbeitragKV);
+      const gesamtRV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.rentenversicherung);
+      const gesamtAV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.arbeitslosenversicherung);
+      const gesamtPV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.pflegeversicherung);
+      
+      // AN-Anteile berechnen (auf reduziertem Entgelt)
+      anKV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.krankenversicherung + zusatzbeitragKV);
+      anRV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.rentenversicherung);
+      anAV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.arbeitslosenversicherung);
+      anPV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.pflegeversicherung);
+      
+      // AG-Anteile = Gesamtbeitrag - AN-Anteil (Schritt 3)
+      agKVCalc = gesamtKV - anKV;
+      agRVCalc = gesamtRV - anRV;
+      agAVCalc = gesamtAV - anAV;
+      agPVCalc = gesamtPV - anPV;
+    } else if (istVolljob) {
+      // Reguläre 50/50 Aufteilung
+      anKV = bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
+      anRV = bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
+      anAV = bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
+      anPV = bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
+      
+      agKVCalc = anKV;
+      agRVCalc = anRV;
+      agAVCalc = anAV;
+      agPVCalc = anPV;
+    } else {
+      // Minijob - keine regulären SV-Beiträge für AN
+      anKV = 0;
+      anRV = 0;
+      anAV = 0;
+      anPV = 0;
+      agKVCalc = 0;
+      agRVCalc = 0;
+      agAVCalc = 0;
+      agPVCalc = 0;
     }
 
-    // Aufschlüsselung AN-Anteile (proportional zum Beitragssatz)
-    const kvSatz = (MIDIJOB.krankenversicherung + zusatzbeitragKV) / gesamtBeitragssatz;
-    const rvSatz = MIDIJOB.rentenversicherung / gesamtBeitragssatz;
-    const avSatz = MIDIJOB.arbeitslosenversicherung / gesamtBeitragssatz;
-    const pvSatz = MIDIJOB.pflegeversicherung / gesamtBeitragssatz;
-
-    let anKV = anGesamtAnteil * kvSatz;
-    let anRV = anGesamtAnteil * rvSatz;
-    let anAV = anGesamtAnteil * avSatz;
-    let anPV = anGesamtAnteil * pvSatz;
-
-    // Pflegeversicherung: Zuschlag für Kinderlose ab 23
+    // ═══════════════════════════════════════════════════════════════
+    // PFLEGEVERSICHERUNG: Zuschläge und Abschläge
+    // ═══════════════════════════════════════════════════════════════
+    
+    // Zuschlag für Kinderlose ab 23 (zusätzlich zum AN-Anteil, auf VOLLEM Brutto)
     let pvZuschlag = 0;
     if (kinderlos && alter >= 23) {
       pvZuschlag = bruttolohn * (MIDIJOB.pvZuschlagKinderlos / 100);
@@ -127,6 +191,7 @@ export default function MidijobRechner() {
       pvAbschlag = bruttolohn * (abschlaege * 0.25 / 100);
     }
     
+    // PV-Zuschlag/-Abschlag zum AN-Anteil addieren
     anPV = anPV + pvZuschlag - pvAbschlag;
     if (anPV < 0) anPV = 0;
 
@@ -136,20 +201,22 @@ export default function MidijobRechner() {
     // VERGLEICH: Normal vs. Übergangsbereich
     // ═══════════════════════════════════════════════════════════════
     
-    const normalerANAnteil = bruttolohn * (gesamtBeitragssatz / 2 / 100);
+    // Was würde AN bei normaler 50/50 Teilung zahlen?
+    const normalerANAnteil = bruttolohn * (gesamtBeitragssatz / 2 / 100) + pvZuschlag - pvAbschlag;
     const ersparnis = normalerANAnteil - anSozialversicherung;
     const ersparnisProzent = normalerANAnteil > 0 ? (ersparnis / normalerANAnteil) * 100 : 0;
 
     // ═══════════════════════════════════════════════════════════════
-    // ARBEITGEBER-ABGABEN (immer auf vollen Bruttolohn!)
+    // ARBEITGEBER-ABGABEN
+    // Im Übergangsbereich: AG zahlt MEHR als 50% (Ausgleich für AN-Entlastung)
+    // Die AG-Anteile wurden oben bereits berechnet (Gesamtbeitrag - AN-Anteil)
     // ═══════════════════════════════════════════════════════════════
     
-    // AG zahlt IMMER den vollen AG-Anteil auf das tatsächliche Bruttogehalt
-    // Keine Reduzierung im Übergangsbereich für AG!
-    const agKV = bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
-    const agRV = bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
-    const agAV = bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
-    const agPV = bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
+    // Für Anzeige: AG-Anteile (wurden oben berechnet oder sind 50/50 bei Volljob)
+    const agKV = istMidijob ? agKVCalc : bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
+    const agRV = istMidijob ? agRVCalc : bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
+    const agAV = istMidijob ? agAVCalc : bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
+    const agPV = istMidijob ? agPVCalc : bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
     
     // Umlagen nur AG
     const agUmlageU1 = bruttolohn * 0.016;   // ca. 1,6% U1 (variiert nach Krankenkasse)
@@ -199,7 +266,8 @@ export default function MidijobRechner() {
       // Berechnungsgrundlage
       bruttolohn,
       beitragspflichtigeEinnahme: Math.round(beitragspflichtigeEinnahme * 100) / 100,
-      faktorF: Math.round(F * 10000) / 10000,
+      reduziertesEntgeltAN: Math.round(reduziertesEntgeltAN * 100) / 100,
+      faktorF: F,
       gesamtBeitragssatz: Math.round(gesamtBeitragssatz * 100) / 100,
       // AN-Anteile
       anKV: Math.round(anKV * 100) / 100,
@@ -483,11 +551,15 @@ export default function MidijobRechner() {
           {ergebnis.istMidijob && (
             <div className="bg-purple-50 border border-purple-200 rounded-xl p-3 mb-4">
               <p className="text-purple-800 text-xs">
-                <strong>Beitragsbemessungsgrundlage:</strong> {formatEuro(ergebnis.beitragspflichtigeEinnahme)} 
-                <span className="opacity-70"> (statt {formatEuro(bruttolohn)})</span>
+                <strong>Beitragspflichtige Einnahme (BE):</strong> {formatEuro(ergebnis.beitragspflichtigeEinnahme)} 
+                <span className="opacity-70 ml-1">(für Gesamtbeitrag)</span>
               </p>
-              <p className="text-purple-600 text-xs mt-1">
-                Faktor F = {ergebnis.faktorF.toFixed(4)} | Gesamtbeitragssatz = {ergebnis.gesamtBeitragssatz}%
+              <p className="text-purple-800 text-xs mt-1">
+                <strong>Reduziertes Entgelt (RBE):</strong> {formatEuro(ergebnis.reduziertesEntgeltAN)} 
+                <span className="opacity-70 ml-1">(für AN-Anteil)</span>
+              </p>
+              <p className="text-purple-600 text-xs mt-2">
+                Offizieller Faktor F (2025) = {ergebnis.faktorF} | Gesamtbeitragssatz = {ergebnis.gesamtBeitragssatz}%
               </p>
             </div>
           )}
@@ -603,7 +675,7 @@ export default function MidijobRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Wer profitiert:</strong> Arbeitnehmer mit Bruttolohn zwischen 603,01€ und 2.000€</span>
+            <span><strong>Wer profitiert:</strong> Arbeitnehmer mit Bruttolohn zwischen 556,01€ und 2.000€ (2025)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -759,15 +831,23 @@ export default function MidijobRechner() {
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Berechnungsgrundlagen</h4>
         <div className="space-y-1">
+          <a 
+            href="https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline font-medium"
+          >
+            ★ DAK – Offizielle Formeln Übergangsbereich 2025
+          </a>
           <a 
             href="https://www.gesetze-im-internet.de/sgb_4/__20.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            § 20 SGB IV – Übergangsbereich (Gesetze im Internet)
+            § 20 SGB IV – Beitragsberechnung bei Beschäftigten
           </a>
           <a 
             href="https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Arbeitnehmer-und-Selbststaendige/01-uebergangsbereich/uebergangsbereich_node.html"
@@ -778,22 +858,20 @@ export default function MidijobRechner() {
             Deutsche Rentenversicherung – Übergangsbereich
           </a>
           <a 
-            href="https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2024-2132292"
+            href="https://www.tk.de/firmenkunden/versicherung/beitraege-faq/minijobs-und-midijobs/beitragspflichtiges-entgelt-fuer-uebergangsbereich-berechnen-2037942"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesregierung – Mindestlohn
-          </a>
-          <a 
-            href="https://www.lohn-info.de/uebergangsbereich.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Lohn-Info – Übergangsbereich Rechner & Formel
+            Techniker Krankenkasse – Midijobrechner
           </a>
         </div>
+        <p className="text-xs text-gray-500 mt-3">
+          <strong>Berechnungsformel 2025:</strong><br/>
+          BE = 1,1277183 × Brutto − 255,4365651 (Gesamtbeitrag)<br/>
+          RBE = 1,3850416 × Brutto − 770,0831025 (AN-Anteil)<br/>
+          Faktor F = 0,6683 (offiziell vom BMAS)
+        </p>
       </div>
     </div>
   );

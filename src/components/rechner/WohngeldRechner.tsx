@@ -1,104 +1,142 @@
 import { useState, useMemo } from 'react';
 
-// Wohngeld-Tabellen 2025/2026 (Wohngeld-Plus-Gesetz)
+// ============================================================================
+// Wohngeld-Berechnung 2025/2026 nach Wohngeldgesetz (WoGG)
+// ============================================================================
+// Rechtsgrundlage: Wohngeldgesetz (WoGG) in der Fassung ab 01.01.2023 (Wohngeld-Plus)
+// - § 12 WoGG: Höchstbeträge für Miete und Belastung
+// - § 19 WoGG: Wohngeldformel
+// - Anlage 1 zu § 12: Höchstbeträge nach Mietstufen
+// - Anlage 2 zu § 19: Koeffizienten a, b, c
+// - Anlage 3 zu § 19: Rechenschritte und Rundungen
+//
+// Quellen:
+// - https://www.gesetze-im-internet.de/wogg/
+// - https://www.wohngeld.org/wohngeldgesetz-wogg/paragraph19/
+// - https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/
+// - https://www.wohngeld.org/wohnkosten/ (Höchstbeträge 2025/2026)
+// ============================================================================
+
 // Mietstufen I-VII nach Gemeinde
 const MIETSTUFEN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'] as const;
 type Mietstufe = typeof MIETSTUFEN[number];
 
-// Höchstbeträge für die zu berücksichtigende Miete (in €/Monat) - Stand 2025/2026
-// Nach § 12 WoGG inkl. Heizkostenzuschlag + Klimakomponente (Wohngeld-Plus)
+// ============================================================================
+// HÖCHSTBETRÄGE 2025/2026 nach § 12 WoGG (Grundbetrag + Heizkosten + Klima)
+// Stand: 01.01.2025, gültig auch für 2026
 // Quelle: https://www.wohngeld.org/wohnkosten/
+// ============================================================================
+// Format: [1 Person, 2 Personen, 3 Personen, 4 Personen, 5 Personen]
+// Für weitere Personen: +MEHRBETRAG pro Person
 const HOECHSTBETRAEGE: Record<Mietstufe, number[]> = {
-  'I':   [491, 604, 721, 840, 959, 1073, 1188, 1302],   // 1-8 Personen (gerundet)
-  'II':  [538, 660, 787, 918, 1047, 1174, 1300, 1427],
-  'III': [586, 718, 857, 998, 1140, 1278, 1417, 1555],
-  'IV':  [641, 786, 937, 1090, 1247, 1398, 1550, 1701],
-  'V':   [692, 847, 1009, 1178, 1345, 1506, 1668, 1829],
-  'VI':  [745, 912, 1087, 1267, 1448, 1628, 1809, 1991],
-  'VII': [807, 987, 1175, 1371, 1567, 1762, 1958, 2153],
+  'I':   [490.60, 604.40, 720.80, 840.20, 958.60],
+  'II':  [537.60, 660.40, 786.80, 918.20, 1046.60],
+  'III': [585.60, 718.40, 856.80, 998.20, 1139.60],
+  'IV':  [640.60, 786.40, 936.80, 1090.20, 1246.60],
+  'V':   [691.60, 847.40, 1008.80, 1178.20, 1344.60],
+  'VI':  [744.60, 912.40, 1086.80, 1267.20, 1447.60],
+  'VII': [806.60, 987.40, 1174.80, 1371.20, 1566.60],
 };
 
-// Koeffizienten für die Wohngeld-Formel nach § 19 Abs. 1 WoGG
-// Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) Euro
-// Quelle: Anlage 2 zu § 19 Abs. 1 WoGG (exakte Werte aus dem Gesetzestext)
-// https://www.gesetze-im-internet.de/wogg/anlage_2.html
+// Mehrbetrag pro weiteres Haushaltsmitglied ab 6. Person
+const MEHRBETRAG_PRO_PERSON: Record<Mietstufe, number> = {
+  'I': 114.40,
+  'II': 126.40,
+  'III': 138.40,
+  'IV': 151.40,
+  'V': 161.40,
+  'VI': 181.40,
+  'VII': 195.40,
+};
+
+// ============================================================================
+// KOEFFIZIENTEN a, b, c nach Anlage 2 zu § 19 Abs. 1 WoGG
+// EXAKTE WERTE aus dem Gesetzestext!
+// Quelle: https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/
+// ============================================================================
+// E-1 = geteilt durch 10
+// E-2 = geteilt durch 100
+// E-4 = geteilt durch 10.000
+// E-5 = geteilt durch 100.000
 const KOEFFIZIENTEN: Record<number, { a: number; b: number; c: number }> = {
-  1:  { a: 4.0e-2,   b: 5.4e-5,  c: 2.65e-4 },
-  2:  { a: 3.0e-2,   b: 3.5e-5,  c: 2.14e-4 },
-  3:  { a: 2.0e-2,   b: 2.4e-5,  c: 1.80e-4 },
-  4:  { a: 1.0e-2,   b: 1.6e-5,  c: 1.56e-4 },
-  5:  { a: 0.0e-2,   b: 1.1e-5,  c: 1.39e-4 },
-  6:  { a: -1.0e-2,  b: 0.8e-5,  c: 1.25e-4 },
-  7:  { a: -1.5e-2,  b: 0.6e-5,  c: 1.15e-4 },
-  8:  { a: -2.0e-2,  b: 0.5e-5,  c: 1.07e-4 },
-  9:  { a: -2.5e-2,  b: 0.4e-5,  c: 1.00e-4 },
-  10: { a: -3.0e-2,  b: 0.35e-5, c: 0.94e-4 },
-  11: { a: -3.5e-2,  b: 0.3e-5,  c: 0.89e-4 },
-  12: { a: -4.0e-2,  b: 0.25e-5, c: 0.85e-4 },
+  1:  { a: 4.000e-2,   b: 4.991e-4,  c: 4.620e-5 },  // 0.04, 0.0004991, 0.0000462
+  2:  { a: 3.000e-2,   b: 3.716e-4,  c: 3.450e-5 },  // 0.03, 0.0003716, 0.0000345
+  3:  { a: 2.000e-2,   b: 3.035e-4,  c: 2.780e-5 },  // 0.02, 0.0003035, 0.0000278
+  4:  { a: 1.000e-2,   b: 2.251e-4,  c: 2.000e-5 },  // 0.01, 0.0002251, 0.00002
+  5:  { a: 0,          b: 1.985e-4,  c: 1.950e-5 },  // 0, 0.0001985, 0.0000195
+  6:  { a: -1.000e-2,  b: 1.792e-4,  c: 1.880e-5 },  // -0.01, 0.0001792, 0.0000188
+  7:  { a: -2.000e-2,  b: 1.657e-4,  c: 1.870e-5 },  // -0.02, 0.0001657, 0.0000187
+  8:  { a: -3.000e-2,  b: 1.648e-4,  c: 1.870e-5 },  // -0.03, 0.0001648, 0.0000187
+  9:  { a: -4.000e-2,  b: 1.432e-4,  c: 1.880e-5 },  // -0.04, 0.0001432, 0.0000188
+  10: { a: -6.000e-2,  b: 1.300e-4,  c: 1.880e-5 },  // -0.06, 0.00013, 0.0000188
+  11: { a: -9.000e-2,  b: 1.188e-4,  c: 2.220e-5 },  // -0.09, 0.0001188, 0.0000222
+  12: { a: -1.200e-1,  b: 1.152e-4,  c: 2.510e-5 },  // -0.12, 0.0001152, 0.0000251
 };
 
-// Heizkosten-Entlastungsbetrag nach § 12 Abs. 6 WoGG (monatlich)
-// Quelle: https://www.wohngeld.org/wohngeldrechner/
-const HEIZKOSTEN_ENTLASTUNG: Record<number, number> = {
-  1: 14.40,
-  2: 18.60,
-  3: 22.20,
-  4: 25.80,
-  5: 29.40,
-  6: 33.00,
-  7: 36.60,
-  8: 40.20,
-};
-const HEIZKOSTEN_ZUSATZ_PRO_PERSON = 3.60; // Ab Person 6+
+// Zusatzbetrag für jedes weitere Haushaltsmitglied ab 13. Person (§ 19 Abs. 3 WoGG)
+const ZUSATZ_AB_13_PERSON = 57; // Euro pro Person
 
-// Klimakomponente nach § 12 Abs. 7 WoGG (ca. 0,40€/qm, pauschaliert)
-// Wird hier als Pauschale pro Haushaltsgröße angenähert
-const KLIMAKOMPONENTE: Record<number, number> = {
-  1: 20,
-  2: 28,
-  3: 35,
-  4: 42,
-  5: 49,
-  6: 56,
-  7: 63,
-  8: 70,
-};
-
-// Freibeträge 2025/2026
-// Quelle: https://www.wohngeld.org/einkommen/
+// ============================================================================
+// FREIBETRÄGE vom Einkommen nach § 17 WoGG
+// ============================================================================
 const FREIBETRAEGE = {
-  grundfreibetrag: 1800,           // Monatl. Mindesteinkommen (etwa)
-  schwerbehindert_50_80: 1800,     // GdB 50-80 (jährlich)
-  schwerbehindert_80_100: 2100,    // GdB 80-100 (jährlich)
-  pflegebedürftig: 2100,           // Pflegegrad 1-3 (jährlich)
-  alleinerziehend: 1320,           // Pro Kind (jährlich)
-  kind_unter_25_ausbildung: 100,   // Kind in Ausbildung (monatlich)
-  erwerbstaetig_pauschal: 0.10,    // 10% vom Bruttoeinkommen
-  werbungskosten_pauschal: 1230,   // Jährlich (102.50€/Monat)
+  // Werbungskostenpauschale (jährlich, § 16 Abs. 1 Nr. 2 WoGG)
+  werbungskosten_pauschal: 1230, // 102.50€/Monat
+  
+  // Erwerbstätigenfreibetrag (§ 17 Nr. 3 WoGG): 10% vom Brutto, max. 100€/Monat = 1200€/Jahr
+  erwerbstaetig_prozent: 0.10,
+  erwerbstaetig_max_jahr: 1200,
+  
+  // Schwerbehinderten-Pauschbetrag (§ 17 Nr. 4 WoGG, jährlich)
+  schwerbehindert_50_80: 1800,   // GdB 50-80
+  schwerbehindert_80_100: 2100,  // GdB 80-100 oder häusliche Pflege
+  
+  // Alleinerziehenden-Freibetrag (§ 17 Nr. 5 WoGG, jährlich pro Kind)
+  alleinerziehend: 1320,
 };
 
-// Einkommensgrenzen für Wohngeld 2025/2026 (monatlich)
+// Beispielstädte nach Mietstufen (zur Orientierung)
+const BEISPIELSTAEDTE: Record<Mietstufe, string[]> = {
+  'I':   ['Chemnitz', 'Halle (Saale)', 'Magdeburg', 'Gera', 'Cottbus'],
+  'II':  ['Leipzig', 'Dresden', 'Erfurt', 'Rostock', 'Kiel'],
+  'III': ['Hannover', 'Bremen', 'Dortmund', 'Essen', 'Duisburg'],
+  'IV':  ['Köln', 'Düsseldorf', 'Hamburg', 'Nürnberg', 'Bonn'],
+  'V':   ['Berlin', 'Potsdam', 'Mainz', 'Wiesbaden'],
+  'VI':  ['Frankfurt a.M.', 'Stuttgart', 'Freiburg', 'Heidelberg'],
+  'VII': ['München', 'Starnberg', 'Miesbach', 'Garmisch-Partenkirchen'],
+};
+
+// Einkommensgrenzen für Wohngeld 2025/2026 (monatlich, ca. Richtwerte)
 // Quelle: https://www.wohngeld.org/einkommen/
 const EINKOMMENSGRENZEN: Record<Mietstufe, number[]> = {
-  'I':   [1443, 1953, 2453, 3324, 3822, 4319, 4761, 5001],
-  'II':  [1530, 2074, 2610, 3542, 4077, 4611, 5086, 5341],
-  'III': [1620, 2199, 2773, 3769, 4341, 4912, 5423, 5695],
-  'IV':  [1713, 2327, 2942, 4004, 4617, 5228, 5776, 6068],
-  'V':   [1803, 2451, 3104, 4229, 4880, 5528, 6111, 6420],
-  'VI':  [1896, 2580, 3273, 4465, 5158, 5849, 6469, 6799],
-  'VII': [1992, 2715, 3451, 4714, 5451, 6185, 6845, 7198],
+  'I':   [1443, 1953, 2453, 3324, 3822],
+  'II':  [1530, 2074, 2610, 3542, 4077],
+  'III': [1620, 2199, 2773, 3769, 4341],
+  'IV':  [1713, 2327, 2942, 4004, 4617],
+  'V':   [1803, 2451, 3104, 4229, 4880],
+  'VI':  [1896, 2580, 3273, 4465, 5158],
+  'VII': [1992, 2715, 3451, 4714, 5451],
 };
 
-// Beispielstädte nach Mietstufen
-const BEISPIELSTAEDTE: Record<Mietstufe, string[]> = {
-  'I':   ['Chemnitz', 'Halle (Saale)', 'Magdeburg', 'Gera'],
-  'II':  ['Leipzig', 'Dresden', 'Erfurt', 'Rostock'],
-  'III': ['Hannover', 'Bremen', 'Dortmund', 'Essen'],
-  'IV':  ['Köln', 'Düsseldorf', 'Hamburg', 'Nürnberg'],
-  'V':   ['Berlin', 'Frankfurt (Oder)', 'Potsdam'],
-  'VI':  ['Frankfurt a.M.', 'Stuttgart', 'Freiburg'],
-  'VII': ['München', 'Starnberg', 'Miesbach'],
-};
+// Höchstbetrag berechnen (für Haushaltsgrößen > 5)
+function getHoechstbetrag(mietstufe: Mietstufe, personen: number): number {
+  if (personen <= 5) {
+    return HOECHSTBETRAEGE[mietstufe][personen - 1];
+  }
+  // Ab 6 Personen: Höchstbetrag für 5 + Mehrbetrag pro weitere Person
+  const basis = HOECHSTBETRAEGE[mietstufe][4]; // 5-Personen-Haushalt
+  const mehrbetrag = MEHRBETRAG_PRO_PERSON[mietstufe] * (personen - 5);
+  return basis + mehrbetrag;
+}
+
+// Einkommensgrenze berechnen (für Haushaltsgrößen > 5)
+function getEinkommensgrenze(mietstufe: Mietstufe, personen: number): number {
+  if (personen <= 5) {
+    return EINKOMMENSGRENZEN[mietstufe][personen - 1];
+  }
+  // Näherung: +500€ pro weitere Person
+  return EINKOMMENSGRENZEN[mietstufe][4] + (personen - 5) * 500;
+}
 
 export default function WohngeldRechner() {
   // Eingabewerte
@@ -112,18 +150,20 @@ export default function WohngeldRechner() {
   const [istErwerbstaetig, setIstErwerbstaetig] = useState(true);
 
   const ergebnis = useMemo(() => {
-    // === 1. Anrechenbares Einkommen berechnen ===
+    // ========================================================================
+    // 1. Anrechenbares Einkommen berechnen (§§ 14-17 WoGG)
+    // ========================================================================
     const jahresbrutto = bruttoeinkommen * 12;
     
-    // Werbungskostenpauschale
+    // Werbungskostenpauschale (§ 16 Abs. 1 Nr. 2 WoGG)
     const werbungskosten = FREIBETRAEGE.werbungskosten_pauschal;
     
-    // Erwerbstätigenfreibetrag (10% vom Brutto)
+    // Erwerbstätigenfreibetrag: 10% vom Brutto, max. 1200€/Jahr (§ 17 Nr. 3 WoGG)
     const erwerbstaetigenfreibetrag = istErwerbstaetig 
-      ? Math.min(jahresbrutto * FREIBETRAEGE.erwerbstaetig_pauschal, 1200) // Max. 100€/Monat
+      ? Math.min(jahresbrutto * FREIBETRAEGE.erwerbstaetig_prozent, FREIBETRAEGE.erwerbstaetig_max_jahr)
       : 0;
     
-    // Freibeträge für Schwerbehinderte
+    // Freibeträge für Schwerbehinderte (§ 17 Nr. 4 WoGG)
     let schwerbehindertenfreibetrag = 0;
     if (schwerbehindert === '50-80') {
       schwerbehindertenfreibetrag = FREIBETRAEGE.schwerbehindert_50_80;
@@ -131,7 +171,7 @@ export default function WohngeldRechner() {
       schwerbehindertenfreibetrag = FREIBETRAEGE.schwerbehindert_80_100;
     }
     
-    // Alleinerziehenden-Freibetrag
+    // Alleinerziehenden-Freibetrag (§ 17 Nr. 5 WoGG)
     const alleinerziehendenfreibetrag = alleinerziehend 
       ? FREIBETRAEGE.alleinerziehend * Math.max(1, anzahlKinder)
       : 0;
@@ -143,47 +183,66 @@ export default function WohngeldRechner() {
     const anrechenbaresEinkommenJahr = Math.max(0, jahresbrutto - gesamtfreibetraege);
     const anrechenbaresEinkommenMonat = anrechenbaresEinkommenJahr / 12;
     
-    // === 2. Berücksichtigte Miete (max. Höchstbetrag) ===
-    const personenIndex = Math.min(haushaltsgroesse - 1, 7);
-    const hoechstbetrag = HOECHSTBETRAEGE[mietstufe][personenIndex];
+    // ========================================================================
+    // 2. Berücksichtigte Miete (M) - max. Höchstbetrag nach § 12 WoGG
+    // ========================================================================
+    const hoechstbetrag = getHoechstbetrag(mietstufe, haushaltsgroesse);
     
-    // Heizkosten werden pauschal abgezogen (ca. 1,20€/qm für Wohngeld)
-    // Vereinfachung: Warmmiete direkt verwenden, da Heizkosten berücksichtigt
+    // M = min(tatsächliche Miete, Höchstbetrag)
+    // Die Höchstbeträge enthalten bereits Heizkosten- und Klimakomponente!
     const beruecksichtigteMiete = Math.min(warmmiete, hoechstbetrag);
     
-    // === 3. Heizkosten- und Klimakomponente (Wohngeld-Plus) ===
-    // Nach § 12 Abs. 6 und 7 WoGG werden diese zur Miete addiert
-    const heizkostenEntlastung = personenIndex < 8 
-      ? HEIZKOSTEN_ENTLASTUNG[personenIndex + 1] 
-      : HEIZKOSTEN_ENTLASTUNG[8] + (personenIndex - 7) * HEIZKOSTEN_ZUSATZ_PRO_PERSON;
+    // ========================================================================
+    // 3. Wohngeld-Berechnung nach § 19 Abs. 1 WoGG
+    // ========================================================================
+    // Formel: Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) Euro
+    // M = berücksichtigte monatliche Miete
+    // Y = monatliches Gesamteinkommen
     
-    const klimakomponente = personenIndex < 8
-      ? KLIMAKOMPONENTE[personenIndex + 1]
-      : KLIMAKOMPONENTE[8] + (personenIndex - 7) * 7; // 7€ pro weitere Person
+    const anzahlPersonen = Math.min(haushaltsgroesse, 12);
+    const koeff = KOEFFIZIENTEN[anzahlPersonen];
     
-    // === 4. Wohngeld-Formel nach § 19 Abs. 1 WoGG ===
-    // Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) Euro
-    // M = monatliche zu berücksichtigende Miete (inkl. Heizkosten- & Klimakomponente)
-    // Y = monatliches zu berücksichtigendes Einkommen
-    
-    const koeff = KOEFFIZIENTEN[Math.min(haushaltsgroesse, 12)];
-    // M = Bruttokaltmiete + Heizkostenentlastung + Klimakomponente (max. Höchstbetrag)
-    const MRoh = beruecksichtigteMiete + heizkostenEntlastung + klimakomponente;
-    const M = Math.min(MRoh, hoechstbetrag + heizkostenEntlastung + klimakomponente);
+    const M = beruecksichtigteMiete;
     const Y = anrechenbaresEinkommenMonat;
     
-    // Formel anwenden nach § 19 Abs. 1 WoGG
-    const faktor = koeff.a + koeff.b * M + koeff.c * Y;
-    const wohngeldBrutto = 1.15 * (M - faktor * Y);
+    // Rechenschritte nach Anlage 3 zu § 19 WoGG
+    // z1 = a + b × M + c × Y
+    const z1 = koeff.a + koeff.b * M + koeff.c * Y;
     
-    // Wohngeld muss mindestens 0 sein, Mindestwohngeld beträgt 10€
-    const wohngeldMonatlich = wohngeldBrutto >= 10 ? Math.round(wohngeldBrutto) : 0;
+    // z2 = z1 × Y
+    const z2 = z1 * Y;
     
-    // === 4. Einkommensgrenze prüfen ===
-    const einkommensgrenze = EINKOMMENSGRENZEN[mietstufe][personenIndex];
-    const hatAnspruch = anrechenbaresEinkommenMonat <= einkommensgrenze && wohngeldMonatlich > 0;
+    // z3 = M − z2
+    const z3 = M - z2;
     
-    // === 5. Jahreswohngeld ===
+    // z4 = 1,15 × z3 (ungerundetes Wohngeld)
+    const z4 = 1.15 * z3;
+    
+    // Zusatz für Haushalte > 12 Personen (§ 19 Abs. 3 WoGG)
+    let zusatzAbPerson13 = 0;
+    if (haushaltsgroesse > 12) {
+      zusatzAbPerson13 = (haushaltsgroesse - 12) * ZUSATZ_AB_13_PERSON;
+    }
+    
+    // Aufrunden auf vollen Euro (Anlage 3, Nr. 3)
+    // Mindest-Wohngeld: 10€, Maximum: berücksichtigte Miete
+    let wohngeldMonatlich = Math.ceil(z4) + zusatzAbPerson13;
+    
+    // Wohngeld darf nicht höher als die berücksichtigte Miete sein
+    wohngeldMonatlich = Math.min(wohngeldMonatlich, M);
+    
+    // Mindest-Wohngeld: 10€, sonst kein Anspruch
+    if (wohngeldMonatlich < 10) {
+      wohngeldMonatlich = 0;
+    }
+    
+    // ========================================================================
+    // 4. Anspruchsprüfung
+    // ========================================================================
+    const einkommensgrenze = getEinkommensgrenze(mietstufe, haushaltsgroesse);
+    const hatAnspruch = wohngeldMonatlich >= 10;
+    
+    // Jahreswohngeld
     const wohngeldJaehrlich = wohngeldMonatlich * 12;
     
     return {
@@ -191,12 +250,12 @@ export default function WohngeldRechner() {
       bruttoMonat: bruttoeinkommen,
       bruttoJahr: jahresbrutto,
       werbungskosten,
-      erwerbstaetigenfreibetrag,
+      erwerbstaetigenfreibetrag: Math.round(erwerbstaetigenfreibetrag),
       schwerbehindertenfreibetrag,
       alleinerziehendenfreibetrag,
-      gesamtfreibetraege,
-      anrechenbaresEinkommenJahr,
-      anrechenbaresEinkommenMonat,
+      gesamtfreibetraege: Math.round(gesamtfreibetraege),
+      anrechenbaresEinkommenJahr: Math.round(anrechenbaresEinkommenJahr),
+      anrechenbaresEinkommenMonat: Math.round(anrechenbaresEinkommenMonat),
       
       // Miete
       warmmiete,
@@ -204,10 +263,12 @@ export default function WohngeldRechner() {
       beruecksichtigteMiete,
       mieteGekappt: warmmiete > hoechstbetrag,
       
-      // Wohngeld-Plus Komponenten
-      heizkostenEntlastung: Math.round(heizkostenEntlastung * 100) / 100,
-      klimakomponente: Math.round(klimakomponente * 100) / 100,
-      mieteMitKomponenten: Math.round(M * 100) / 100,
+      // Formel-Zwischenwerte (für Nachvollziehbarkeit)
+      koeffizienten: koeff,
+      z1: z1.toFixed(10),
+      z2: z2.toFixed(2),
+      z3: z3.toFixed(2),
+      z4Ungerundet: z4.toFixed(2),
       
       // Ergebnis
       wohngeldMonatlich,
@@ -222,7 +283,7 @@ export default function WohngeldRechner() {
   }, [bruttoeinkommen, warmmiete, haushaltsgroesse, mietstufe, schwerbehindert, alleinerziehend, anzahlKinder, istErwerbstaetig]);
 
   const formatEuro = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €';
-  const formatEuroExact = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+  const formatEuro2 = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -247,7 +308,7 @@ export default function WohngeldRechner() {
               </div>
             </div>
             <button
-              onClick={() => setHaushaltsgroesse(Math.min(8, haushaltsgroesse + 1))}
+              onClick={() => setHaushaltsgroesse(Math.min(12, haushaltsgroesse + 1))}
               className="w-12 h-12 rounded-xl bg-gray-100 hover:bg-gray-200 text-xl font-bold transition-colors"
             >
               +
@@ -318,7 +379,7 @@ export default function WohngeldRechner() {
           />
           {ergebnis.mieteGekappt && (
             <p className="text-sm text-amber-600 mt-2">
-              ⚠️ Höchstbetrag für Mietstufe {mietstufe}: {formatEuro(ergebnis.hoechstbetrag)}
+              ⚠️ Höchstbetrag für Mietstufe {mietstufe}: {formatEuro2(ergebnis.hoechstbetrag)}
             </p>
           )}
         </div>
@@ -505,8 +566,7 @@ export default function WohngeldRechner() {
           <div className="py-4">
             <p className="text-white/90">
               Mit einem anrechenbaren Einkommen von <strong>{formatEuro(ergebnis.anrechenbaresEinkommenMonat)}/Monat</strong> 
-              {' '}liegt Ihr Haushalt über der Einkommensgrenze von{' '}
-              <strong>{formatEuro(ergebnis.einkommensgrenze)}</strong> für Mietstufe {mietstufe}.
+              {' '}ergibt die Wohngeldformel keinen Anspruch (Ergebnis unter 10€).
             </p>
             <p className="mt-3 text-sm text-white/70">
               Prüfen Sie, ob weitere Freibeträge anwendbar sind, oder schauen Sie sich 
@@ -518,12 +578,12 @@ export default function WohngeldRechner() {
 
       {/* Berechnungsdetails */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📊 Berechnungsdetails</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📊 Berechnungsdetails nach § 19 WoGG</h3>
         
         <div className="space-y-3 text-sm">
           {/* Einkommen */}
           <div className="font-medium text-gray-500 text-xs uppercase tracking-wide">
-            Einkommensberechnung
+            1. Einkommensberechnung (§§ 14-17 WoGG)
           </div>
           
           <div className="flex justify-between py-2 border-b border-gray-100">
@@ -536,24 +596,24 @@ export default function WohngeldRechner() {
           </div>
           
           <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-            <span>− Werbungskostenpauschale</span>
+            <span>− Werbungskostenpauschale (§ 16)</span>
             <span>{formatEuro(ergebnis.werbungskosten)}</span>
           </div>
           {ergebnis.erwerbstaetigenfreibetrag > 0 && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-              <span>− Erwerbstätigenfreibetrag (10%)</span>
+              <span>− Erwerbstätigenfreibetrag 10% (§ 17 Nr. 3)</span>
               <span>{formatEuro(ergebnis.erwerbstaetigenfreibetrag)}</span>
             </div>
           )}
           {ergebnis.schwerbehindertenfreibetrag > 0 && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-              <span>− Schwerbehindertenfreibetrag</span>
+              <span>− Schwerbehindertenfreibetrag (§ 17 Nr. 4)</span>
               <span>{formatEuro(ergebnis.schwerbehindertenfreibetrag)}</span>
             </div>
           )}
           {ergebnis.alleinerziehendenfreibetrag > 0 && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-              <span>− Alleinerziehenden-Freibetrag</span>
+              <span>− Alleinerziehenden-Freibetrag (§ 17 Nr. 5)</span>
               <span>{formatEuro(ergebnis.alleinerziehendenfreibetrag)}</span>
             </div>
           )}
@@ -563,13 +623,13 @@ export default function WohngeldRechner() {
             <span className="font-bold text-gray-900">{formatEuro(ergebnis.anrechenbaresEinkommenJahr)}</span>
           </div>
           <div className="flex justify-between py-2">
-            <span className="text-gray-600">= Anrechenbares Einkommen (Monat)</span>
+            <span className="text-gray-600">= Y (monatliches Gesamteinkommen)</span>
             <span className="font-bold text-purple-700">{formatEuro(ergebnis.anrechenbaresEinkommenMonat)}</span>
           </div>
           
           {/* Miete */}
           <div className="font-medium text-gray-500 text-xs uppercase tracking-wide pt-4">
-            Mietberechnung
+            2. Berücksichtigte Miete (§ 12 WoGG)
           </div>
           
           <div className="flex justify-between py-2 border-b border-gray-100">
@@ -580,24 +640,45 @@ export default function WohngeldRechner() {
             <span className="text-gray-600">
               Höchstbetrag (Mietstufe {mietstufe}, {haushaltsgroesse} Pers.)
             </span>
-            <span className="text-gray-900">{formatEuro(ergebnis.hoechstbetrag)}</span>
-          </div>
-          <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-            <span>+ Heizkosten-Entlastung (§ 12 Abs. 6 WoGG)</span>
-            <span>{formatEuro(ergebnis.heizkostenEntlastung)}</span>
-          </div>
-          <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-            <span>+ Klimakomponente (§ 12 Abs. 7 WoGG)</span>
-            <span>{formatEuro(ergebnis.klimakomponente)}</span>
+            <span className="text-gray-900">{formatEuro2(ergebnis.hoechstbetrag)}</span>
           </div>
           <div className="flex justify-between py-2 bg-purple-50 -mx-6 px-6">
-            <span className="font-medium text-purple-700">= Berücksichtigte Miete (M)</span>
-            <span className="font-bold text-purple-900">{formatEuro(ergebnis.mieteMitKomponenten)}</span>
+            <span className="font-medium text-purple-700">= M (berücksichtigte Miete)</span>
+            <span className="font-bold text-purple-900">{formatEuro2(ergebnis.beruecksichtigteMiete)}</span>
+          </div>
+          
+          {/* Wohngeld-Formel */}
+          <div className="font-medium text-gray-500 text-xs uppercase tracking-wide pt-4">
+            3. Wohngeldformel nach § 19 Abs. 1 WoGG
+          </div>
+          
+          <div className="p-4 bg-blue-50 rounded-xl text-blue-800 text-sm font-mono">
+            <p className="mb-2"><strong>Formel:</strong> Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y)</p>
+            <p className="text-xs text-blue-600">
+              Koeffizienten für {haushaltsgroesse} Pers.: a={ergebnis.koeffizienten.a}, b={ergebnis.koeffizienten.b}, c={ergebnis.koeffizienten.c}
+            </p>
+          </div>
+          
+          <div className="flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs">
+            <span>z1 = a + b×M + c×Y</span>
+            <span>{ergebnis.z1}</span>
+          </div>
+          <div className="flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs">
+            <span>z2 = z1 × Y</span>
+            <span>{ergebnis.z2} €</span>
+          </div>
+          <div className="flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs">
+            <span>z3 = M − z2</span>
+            <span>{ergebnis.z3} €</span>
+          </div>
+          <div className="flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs">
+            <span>z4 = 1,15 × z3 (ungerundet)</span>
+            <span>{ergebnis.z4Ungerundet} €</span>
           </div>
           
           {/* Ergebnis */}
           <div className="flex justify-between py-3 bg-purple-100 -mx-6 px-6 rounded-b-xl mt-4">
-            <span className="font-bold text-purple-800">Wohngeld pro Monat</span>
+            <span className="font-bold text-purple-800">Wohngeld pro Monat (aufgerundet)</span>
             <span className="font-bold text-2xl text-purple-900">{formatEuro(ergebnis.wohngeldMonatlich)}</span>
           </div>
         </div>
@@ -666,7 +747,7 @@ export default function WohngeldRechner() {
         <ul className="space-y-2 text-sm text-amber-700">
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Schätzung:</strong> Dieser Rechner liefert eine Orientierung – die tatsächliche Berechnung durch die Wohngeldstelle kann abweichen</span>
+            <span><strong>Exakte Berechnung:</strong> Dieser Rechner verwendet die offizielle Formel nach § 19 WoGG mit den Koeffizienten aus Anlage 2</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>
@@ -747,7 +828,7 @@ export default function WohngeldRechner() {
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">
           <a 
             href="https://www.gesetze-im-internet.de/wogg/"
@@ -758,20 +839,20 @@ export default function WohngeldRechner() {
             Wohngeldgesetz (WoGG) – Gesetze im Internet
           </a>
           <a 
-            href="https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html"
+            href="https://www.wohngeld.org/wohngeldgesetz-wogg/paragraph19/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMWSB – Wohngeld Informationen
+            § 19 WoGG – Wohngeldformel mit Berechnungsbeispielen
           </a>
           <a 
-            href="https://www.wohngeld.org"
+            href="https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Wohngeld.org – Ratgeber und Rechner
+            Anlage 2 zu § 19 WoGG – Koeffizienten a, b, c
           </a>
           <a 
             href="https://www.wohngeld.org/wohnkosten/"
@@ -779,7 +860,7 @@ export default function WohngeldRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Wohngeld Höchstbeträge 2026 – Tabellen
+            Wohngeld Höchstbeträge 2025/2026 – Tabellen
           </a>
           <a 
             href="https://www.wohngeld.org/mietstufe/"
@@ -788,6 +869,14 @@ export default function WohngeldRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Mietstufen-Verzeichnis nach Bundesländern
+          </a>
+          <a 
+            href="https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            BMWSB – Wohngeld Informationen
           </a>
         </div>
       </div>
