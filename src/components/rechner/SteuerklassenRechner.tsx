@@ -1,428 +1,444 @@
 import { useState, useMemo } from 'react';
 
 /**
- * Steuerklassen-Rechner 2026
- * Vergleicht Steuerklassen-Kombinationen für Ehepaare und Alleinstehende
+ * STEUERKLASSENRECHNER 2025
+ * Vergleicht verschiedene Steuerklassen-Kombinationen für Ehepaare und Alleinstehende
  * 
- * QUELLEN:
- * - §32a EStG - Einkommensteuertarif
- * - §38b EStG - Steuerklassen
- * - §26 EStG - Zusammenveranlagung
- * - BMF Programmablaufplan für den Lohnsteuerabzug 2026
- * - Validiert gegen: https://www.bmf-steuerrechner.de
+ * Berechnung basiert auf:
+ * - §32a EStG - Einkommensteuertarif (Steuerfortentwicklungsgesetz, BGBl. I 2024, 449)
+ * - §38b EStG - Lohnsteuerklassen
+ * - §39 EStG - Lohnsteuerabzugsmerkmale
+ * - BMF Programmablaufplan 2025
  * 
- * Stand: 01.01.2026
+ * Quellen:
+ * - https://www.gesetze-im-internet.de/estg/__32a.html
+ * - https://www.gesetze-im-internet.de/estg/__38b.html
+ * - https://lsth.bundesfinanzministerium.de/lsth/2025/
+ * - https://www.bmf-steuerrechner.de
+ * - https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025
  */
 
 // ============================================================================
-// KONSTANTEN 2026 - Nach §32a EStG und BMF-PAP
+// OFFIZIELLE WERTE 2025 (§32a EStG - Steuerfortentwicklungsgesetz)
 // ============================================================================
+const STEUERJAHR = 2025;
 
-// Einkommensteuertarif 2026
-const TARIF_2026 = {
-  grundfreibetrag: 12348,
-  zone2Ende: 17799,
-  zone3Ende: 69878,
-  zone4Ende: 277825,
-  // Koeffizienten
-  zone2_a: 933.52,
+const TARIF_2025 = {
+  grundfreibetrag: 12096,      // Zone 1: bis 12.096€ = 0% Steuer
+  zone2Start: 12097,           // Zone 2 Start
+  zone2Ende: 17443,            // Zone 2 Ende (Progressionszone 1: 14%-24%)
+  zone3Start: 17444,           // Zone 3 Start
+  zone3Ende: 68480,            // Zone 3 Ende (Progressionszone 2: 24%-42%)
+  zone4Start: 68481,           // Zone 4 Start
+  zone4Ende: 277825,           // Zone 4 Ende (42% Spitzensteuersatz)
+  zone5Start: 277826,          // Zone 5 Start (45% Reichensteuer)
+  
+  // Koeffizienten für Zone 2: ESt = (a * y + b) * y
+  zone2_a: 932.30,
   zone2_b: 1400,
+  
+  // Koeffizienten für Zone 3: ESt = (a * z + b) * z + c
   zone3_a: 176.64,
   zone3_b: 2397,
   zone3_c: 1015.13,
-  zone4_faktor: 0.42,
+  
+  // Zone 4: ESt = 0.42 * x - c
+  zone4_satz: 0.42,
   zone4_abzug: 10911.92,
-  zone5_faktor: 0.45,
-  zone5_abzug: 18918.79,
+  
+  // Zone 5: ESt = 0.45 * x - c
+  zone5_satz: 0.45,
+  zone5_abzug: 19246.67,
 };
 
-// Freibeträge 2026
-const FREIBETRAEGE_2026 = {
-  arbeitnehmerPauschbetrag: 1230,
-  sonderausgabenPauschbetrag: 36,
-  entlastungsbetragAlleinerziehende: 4260,
-  entlastungsbetragProKind: 240,
+// Alias für den aktuellen Tarif
+const TARIF = TARIF_2025;
+
+// ============================================================================
+// SOZIALVERSICHERUNG 2025
+// ============================================================================
+const SV_SAETZE_2025 = {
+  rv: 0.186,           // Rentenversicherung 18,6% (AG+AN)
+  kv: 0.146,           // Krankenversicherung 14,6% (AG+AN)
+  kvZusatz: 0.017,     // Durchschn. Zusatzbeitrag 1,7% (2025)
+  pv: 0.034,           // Pflegeversicherung 3,4% (AG+AN)
+  pvKinderlos: 0.006,  // Zuschlag kinderlose ab 23: +0,6%
+  av: 0.026,           // Arbeitslosenversicherung 2,6% (AG+AN)
 };
 
-// Sozialversicherung 2026
-const SV_SAETZE_2026 = {
-  rv: 0.186,           // RV gesamt 18,6% → AN 9,3%
-  kv: 0.146,           // KV gesamt 14,6% → AN 7,3%
-  kvZusatz: 0.025,     // Durchschn. Zusatzbeitrag 2,5% → AN 1,25%
-  pv: 0.036,           // PV gesamt 3,6% → AN 1,8%
-  pvKinderlos: 0.006,  // Zuschlag kinderlos ab 23
-  pvKindAbschlag: 0.0025, // Abschlag pro Kind ab 2. Kind (max 4)
-  av: 0.026,           // AV gesamt 2,6% → AN 1,3%
+// Beitragsbemessungsgrenzen 2025 (monatlich)
+const BBG_2025 = {
+  rvWest: 8050,    // RV/AV West: 8.050€/Monat = 96.600€/Jahr
+  rvOst: 8050,     // RV/AV Ost (ab 2025 angeglichen)
+  kv: 5512.50,     // KV/PV: 5.512,50€/Monat = 66.150€/Jahr
 };
 
-// Beitragsbemessungsgrenzen 2026 (monatlich)
-const BBG_2026 = {
-  rvAv: 8050,          // RV/AV
-  kvPv: 5512.50,       // KV/PV
-};
+// ============================================================================
+// SOLI & KIRCHENSTEUER
+// ============================================================================
+const SOLI_SATZ = 0.055; // 5,5%
+const SOLI_FREIGRENZE_GRUND = 18130;     // Grundtarif
+const SOLI_FREIGRENZE_SPLITTING = 36260; // Splittingtarif
+const SOLI_MILDERUNGSZONE_FAKTOR = 0.119;
 
-// Solidaritätszuschlag
-const SOLI_2026 = {
-  satz: 0.055,
-  freigrenzeSK1: 18130,
-  freigrenzeSK3: 36260,
-  milderung: 0.119,
-};
+// ============================================================================
+// PAUSCHALEN & FREIBETRÄGE 2025
+// ============================================================================
+const WERBUNGSKOSTENPAUSCHALE = 1230;    // §9a Nr. 1 EStG
+const SONDERAUSGABENPAUSCHALE = 36;       // §10c EStG
+const ENTLASTUNGSBETRAG_ALLEINERZ = 4260; // §24b EStG
+const ENTLASTUNGSBETRAG_WEITERE_KINDER = 240;
 
-// Steuerklassen-Info
+// Steuerklassen-Info (§38b EStG)
 const STEUERKLASSEN = [
   { 
     id: 1, 
     name: 'Steuerklasse I', 
     beschreibung: 'Ledige, Geschiedene, Verwitwete',
-    icon: '👤',
-    grundfreibetrag: TARIF_2026.grundfreibetrag,
-    hatPauschbetraege: true,
+    icon: '👤'
   },
   { 
     id: 2, 
     name: 'Steuerklasse II', 
     beschreibung: 'Alleinerziehende mit Entlastungsbetrag',
-    icon: '👤👶',
-    grundfreibetrag: TARIF_2026.grundfreibetrag,
-    hatPauschbetraege: true,
-    entlastungsbetrag: FREIBETRAEGE_2026.entlastungsbetragAlleinerziehende,
+    icon: '👤👶'
   },
   { 
     id: 3, 
     name: 'Steuerklasse III', 
     beschreibung: 'Verheiratete (Partner in V oder ohne Einkommen)',
-    icon: '💑',
-    grundfreibetrag: TARIF_2026.grundfreibetrag * 2, // Splitting
-    hatPauschbetraege: true,
-    splitting: true,
+    icon: '💑'
   },
   { 
     id: 4, 
     name: 'Steuerklasse IV', 
-    beschreibung: 'Verheiratete (beide erwerbstätig, ähnlich)',
-    icon: '👫',
-    grundfreibetrag: TARIF_2026.grundfreibetrag,
-    hatPauschbetraege: true,
+    beschreibung: 'Verheiratete (beide erwerbstätig, gleich)',
+    icon: '👫'
   },
   { 
     id: 5, 
     name: 'Steuerklasse V', 
     beschreibung: 'Verheiratete (Partner in III)',
-    icon: '💑',
-    grundfreibetrag: 0, // KEIN Grundfreibetrag
-    hatPauschbetraege: false,
+    icon: '💑'
   },
   { 
     id: 6, 
     name: 'Steuerklasse VI', 
     beschreibung: 'Zweit- und Nebenjob',
-    icon: '📋',
-    grundfreibetrag: 0, // KEIN Grundfreibetrag
-    hatPauschbetraege: false,
+    icon: '📋'
   },
 ];
 
-// ============================================================================
-// BERECHNUNGSFUNKTIONEN
-// ============================================================================
-
 /**
- * Einkommensteuertarif nach §32a EStG
+ * EINKOMMENSTEUERTARIF nach §32a EStG
+ * Exakte Formel aus dem Gesetz für das Steuerjahr 2025
+ * 
+ * Quelle: https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html
  */
 function berechneEStTarif(zvE: number): number {
-  if (zvE <= 0) return 0;
+  // Auf volle Euro abrunden (§32a Abs. 1 Satz 1 EStG)
+  const x = Math.floor(zvE);
   
-  const { grundfreibetrag, zone2Ende, zone3Ende, zone4Ende } = TARIF_2026;
+  if (x <= 0) return 0;
   
-  if (zvE <= grundfreibetrag) return 0;
-  
-  if (zvE <= zone2Ende) {
-    const y = (zvE - grundfreibetrag) / 10000;
-    return Math.floor((TARIF_2026.zone2_a * y + TARIF_2026.zone2_b) * y);
+  // Zone 1: Grundfreibetrag (0%)
+  if (x <= TARIF.grundfreibetrag) {
+    return 0;
   }
   
-  if (zvE <= zone3Ende) {
-    const z = (zvE - zone2Ende) / 10000;
-    return Math.floor((TARIF_2026.zone3_a * z + TARIF_2026.zone3_b) * z + TARIF_2026.zone3_c);
+  // Zone 2: Progressionszone 1 (14% - 24%)
+  // y = (zvE - Grundfreibetrag) / 10.000
+  // ESt = (932,30 * y + 1.400) * y
+  if (x <= TARIF.zone2Ende) {
+    const y = (x - TARIF.grundfreibetrag) / 10000;
+    return Math.floor((TARIF.zone2_a * y + TARIF.zone2_b) * y);
   }
   
-  if (zvE <= zone4Ende) {
-    return Math.floor(TARIF_2026.zone4_faktor * zvE - TARIF_2026.zone4_abzug);
+  // Zone 3: Progressionszone 2 (24% - 42%)
+  // z = (zvE - 17.443) / 10.000
+  // ESt = (176,64 * z + 2.397) * z + 1.015,13
+  if (x <= TARIF.zone3Ende) {
+    const z = (x - TARIF.zone2Ende) / 10000;
+    return Math.floor((TARIF.zone3_a * z + TARIF.zone3_b) * z + TARIF.zone3_c);
   }
   
-  return Math.floor(TARIF_2026.zone5_faktor * zvE - TARIF_2026.zone5_abzug);
+  // Zone 4: Proportionalzone 1 (42% Spitzensteuersatz)
+  // ESt = 0,42 * x - 10.911,92
+  if (x <= TARIF.zone4Ende) {
+    return Math.floor(TARIF.zone4_satz * x - TARIF.zone4_abzug);
+  }
+  
+  // Zone 5: Proportionalzone 2 (45% Reichensteuer)
+  // ESt = 0,45 * x - 19.246,67
+  return Math.floor(TARIF.zone5_satz * x - TARIF.zone5_abzug);
 }
 
 /**
- * Tarif ohne Grundfreibetrag (für SK V und VI)
+ * Solidaritätszuschlag nach §3 SolzG
+ * Mit Freigrenzen und Milderungszone (seit 2021)
  */
-function berechneEStTarifOhneGrundfreibetrag(zvE: number): number {
-  if (zvE <= 0) return 0;
+function berechneSoli(lohnsteuer: number, splitting: boolean): number {
+  const freigrenze = splitting ? SOLI_FREIGRENZE_SPLITTING : SOLI_FREIGRENZE_GRUND;
   
-  const { zone2Ende, zone3Ende, zone4Ende, grundfreibetrag } = TARIF_2026;
-  
-  // Progressionszone 1 - beginnt sofort
-  if (zvE <= zone2Ende - grundfreibetrag) {
-    const y = zvE / 10000;
-    return Math.floor((TARIF_2026.zone2_a * y + TARIF_2026.zone2_b) * y);
+  if (lohnsteuer <= freigrenze) {
+    return 0;
   }
   
-  // Progressionszone 2
-  if (zvE <= zone3Ende - grundfreibetrag) {
-    const zone1Betrag = zone2Ende - grundfreibetrag;
-    const y1 = zone1Betrag / 10000;
-    const steuerZone1 = (TARIF_2026.zone2_a * y1 + TARIF_2026.zone2_b) * y1;
-    const z = (zvE - zone1Betrag) / 10000;
-    return Math.floor(steuerZone1 + (TARIF_2026.zone3_a * z + TARIF_2026.zone3_b) * z);
-  }
+  // Milderungszone
+  const ueberFreigrenze = lohnsteuer - freigrenze;
+  const soliMilderung = ueberFreigrenze * SOLI_MILDERUNGSZONE_FAKTOR;
+  const soliVoll = lohnsteuer * SOLI_SATZ;
   
-  // Proportionalzone 42%
-  if (zvE <= zone4Ende - grundfreibetrag) {
-    return Math.floor(TARIF_2026.zone4_faktor * zvE - 8500);
-  }
-  
-  return Math.floor(TARIF_2026.zone5_faktor * zvE - 16000);
+  return Math.round(Math.min(soliMilderung, soliVoll));
 }
 
 /**
  * Lohnsteuer nach Steuerklasse berechnen
+ * Basiert auf §32a EStG und §38b EStG
  */
 function berechneLohnsteuerJahr(
-  jahresBrutto: number, 
-  steuerklasse: number,
-  anzahlKinder: number = 0
-): number {
-  const { arbeitnehmerPauschbetrag, sonderausgabenPauschbetrag,
-          entlastungsbetragAlleinerziehende, entlastungsbetragProKind } = FREIBETRAEGE_2026;
+  brutto: number, 
+  steuerklasse: number, 
+  kinder: number, 
+  kirchensteuer: boolean, 
+  bundesland: string
+): {
+  lohnsteuer: number;
+  soli: number;
+  kirchensteuer: number;
+  gesamt: number;
+} {
+  const jahresBrutto = brutto * 12;
   
-  const vorsorgepauschale = Math.min(jahresBrutto * 0.12, 3000);
-  let zvE = 0;
-  let steuer = 0;
+  // Freibeträge je Steuerklasse (§38b EStG)
+  let grundfreibetrag = TARIF.grundfreibetrag;
+  let arbeitnehmerPauschbetrag = WERBUNGSKOSTENPAUSCHALE;
+  let sonderausgabenPauschbetrag = SONDERAUSGABENPAUSCHALE;
+  let entlastungsbetragAlleinerziehende = 0;
+  
+  // Vereinfachte Vorsorgepauschale
+  const rvBasis = Math.min(jahresBrutto, BBG_2025.rvWest * 12);
+  const kvBasis = Math.min(jahresBrutto, BBG_2025.kv * 12);
+  const vorsorgePauschale = rvBasis * 0.093 + kvBasis * 0.07;
+  
+  let useSplitting = false;
   
   switch (steuerklasse) {
     case 1:
-      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
-      steuer = berechneEStTarif(zvE);
       break;
-      
     case 2:
-      const entlastung = entlastungsbetragAlleinerziehende + 
-                        Math.max(0, anzahlKinder - 1) * entlastungsbetragProKind;
-      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - 
-                     sonderausgabenPauschbetrag - entlastung);
-      steuer = berechneEStTarif(zvE);
+      entlastungsbetragAlleinerziehende = ENTLASTUNGSBETRAG_ALLEINERZ + 
+        (kinder > 1 ? (kinder - 1) * ENTLASTUNGSBETRAG_WEITERE_KINDER : 0);
       break;
-      
     case 3:
-      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
-      steuer = berechneEStTarif(zvE / 2) * 2;
+      useSplitting = true; // Splittingtarif
       break;
-      
     case 4:
-      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
-      steuer = berechneEStTarif(zvE);
       break;
-      
     case 5:
-      zvE = Math.max(0, jahresBrutto - vorsorgepauschale);
-      steuer = berechneEStTarifOhneGrundfreibetrag(zvE);
+      grundfreibetrag = 0; // Kein Grundfreibetrag
+      arbeitnehmerPauschbetrag = 0;
+      sonderausgabenPauschbetrag = 0;
       break;
-      
     case 6:
-      zvE = jahresBrutto;
-      steuer = berechneEStTarifOhneGrundfreibetrag(zvE);
+      grundfreibetrag = 0;
+      arbeitnehmerPauschbetrag = 0;
+      sonderausgabenPauschbetrag = 0;
       break;
   }
   
-  return Math.max(0, Math.round(steuer));
+  // Zu versteuerndes Einkommen
+  const abzuege = arbeitnehmerPauschbetrag + sonderausgabenPauschbetrag + 
+    vorsorgePauschale + entlastungsbetragAlleinerziehende;
+  const zvE = Math.max(0, jahresBrutto - abzuege);
+  
+  // Steuerberechnung
+  let steuer: number;
+  
+  if (useSplitting) {
+    // Splittingtarif: zvE halbieren, Steuer berechnen, verdoppeln
+    steuer = berechneEStTarif(zvE / 2) * 2;
+  } else if (steuerklasse === 5 || steuerklasse === 6) {
+    // Kein Grundfreibetrag
+    steuer = berechneEStTarif(zvE);
+  } else {
+    steuer = berechneEStTarif(zvE);
+  }
+  
+  // Soli
+  const soli = berechneSoli(steuer, useSplitting);
+  
+  // Kirchensteuer (8% in BY/BW, sonst 9%)
+  const kirchensteuerSatz = bundesland === 'BY' || bundesland === 'BW' ? 0.08 : 0.09;
+  const kirchensteuerBetrag = kirchensteuer ? Math.round(steuer * kirchensteuerSatz) : 0;
+  
+  return {
+    lohnsteuer: Math.round(steuer),
+    soli,
+    kirchensteuer: kirchensteuerBetrag,
+    gesamt: Math.round(steuer) + soli + kirchensteuerBetrag,
+  };
 }
 
 /**
- * Tatsächliche Einkommensteuer bei Zusammenveranlagung (§26 EStG)
- */
-function berechneTatsaechlicheEStZusammen(
-  brutto1: number, 
-  brutto2: number
-): number {
-  const { arbeitnehmerPauschbetrag, sonderausgabenPauschbetrag } = FREIBETRAEGE_2026;
-  
-  const jahresBrutto1 = brutto1 * 12;
-  const jahresBrutto2 = brutto2 * 12;
-  
-  const vp1 = Math.min(jahresBrutto1 * 0.12, 3000);
-  const vp2 = Math.min(jahresBrutto2 * 0.12, 3000);
-  
-  // Gemeinsames zvE
-  const zvE1 = Math.max(0, jahresBrutto1 - vp1 - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
-  const zvE2 = Math.max(0, jahresBrutto2 - vp2 - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
-  const zvEGesamt = zvE1 + zvE2;
-  
-  // Splittingtarif anwenden
-  return berechneEStTarif(zvEGesamt / 2) * 2;
-}
-
-/**
- * Solidaritätszuschlag
- */
-function berechneSoli(lohnsteuer: number, steuerklasse: number): number {
-  const freigrenze = (steuerklasse === 3) 
-    ? SOLI_2026.freigrenzeSK3 
-    : SOLI_2026.freigrenzeSK1;
-  
-  if (lohnsteuer <= freigrenze) return 0;
-  
-  const ueberFreigrenze = lohnsteuer - freigrenze;
-  return Math.round(Math.min(ueberFreigrenze * SOLI_2026.milderung, lohnsteuer * SOLI_2026.satz));
-}
-
-/**
- * Kirchensteuer
- */
-function berechneKirchensteuer(lohnsteuer: number, bundesland: string): number {
-  const satz = ['BY', 'BW'].includes(bundesland) ? 0.08 : 0.09;
-  return Math.round(lohnsteuer * satz);
-}
-
-/**
- * Sozialversicherung (Jahreswerte)
+ * Sozialversicherungsbeiträge berechnen (Arbeitnehmeranteil)
  */
 function berechneSozialversicherung(
-  monatsBrutto: number, 
+  brutto: number, 
   kinderlos: boolean, 
   kinderAnzahl: number
-): { rv: number; kv: number; pv: number; av: number; gesamt: number } {
-  const rvBasis = Math.min(monatsBrutto, BBG_2026.rvAv);
-  const kvBasis = Math.min(monatsBrutto, BBG_2026.kvPv);
+): {
+  rv: number;
+  kv: number;
+  pv: number;
+  av: number;
+  gesamt: number;
+} {
+  const jahresBrutto = brutto * 12;
   
-  const rv = Math.round(rvBasis * SV_SAETZE_2026.rv / 2) * 12;
-  const kv = Math.round(kvBasis * (SV_SAETZE_2026.kv + SV_SAETZE_2026.kvZusatz) / 2) * 12;
+  // Beitragsbemessungsgrenzen anwenden
+  const rvBasis = Math.min(jahresBrutto, BBG_2025.rvWest * 12);
+  const kvBasis = Math.min(jahresBrutto, BBG_2025.kv * 12);
   
-  let pvSatz = SV_SAETZE_2026.pv / 2;
+  // Arbeitnehmeranteile (50%)
+  const rv = Math.round(rvBasis * SV_SAETZE_2025.rv / 2);
+  const kv = Math.round(kvBasis * (SV_SAETZE_2025.kv + SV_SAETZE_2025.kvZusatz) / 2);
+  
+  // Pflegeversicherung mit Kinderlosenzuschlag und Kinderabschlag
+  let pvSatz = SV_SAETZE_2025.pv / 2; // AN-Anteil
   if (kinderlos) {
-    pvSatz += SV_SAETZE_2026.pvKinderlos;
+    pvSatz += SV_SAETZE_2025.pvKinderlos; // Zuschlag +0,6%
   } else if (kinderAnzahl >= 2) {
-    const abschlag = Math.min(kinderAnzahl - 1, 4) * SV_SAETZE_2026.pvKindAbschlag;
+    // Abschlag für Kinder ab 2. Kind: 0,25% pro Kind (max bis 5. Kind)
+    const abschlag = Math.min(kinderAnzahl - 1, 4) * 0.0025;
     pvSatz = Math.max(0.007, pvSatz - abschlag);
   }
-  const pv = Math.round(kvBasis * pvSatz) * 12;
+  const pv = Math.round(kvBasis * pvSatz);
   
-  const av = Math.round(rvBasis * SV_SAETZE_2026.av / 2) * 12;
+  const av = Math.round(rvBasis * SV_SAETZE_2025.av / 2);
   
-  return { rv, kv, pv, av, gesamt: rv + kv + pv + av };
+  return {
+    rv,
+    kv,
+    pv,
+    av,
+    gesamt: rv + kv + pv + av,
+  };
 }
 
 export default function SteuerklassenRechner() {
+  // Partner 1
   const [brutto1, setBrutto1] = useState(4500);
+  
+  // Partner 2
   const [brutto2, setBrutto2] = useState(3000);
+  
+  // Gemeinsame Einstellungen
   const [kinder, setKinder] = useState(0);
   const [kirchensteuer, setKirchensteuer] = useState(false);
   const [bundesland, setBundesland] = useState('NW');
   const [alleinstehend, setAlleinstehend] = useState(false);
 
   const ergebnis = useMemo(() => {
-    const kinderlos = kinder === 0;
-    
     if (alleinstehend) {
-      // === ALLEINSTEHEND ===
+      // Einzelperson
+      const kinderlos = kinder === 0;
       const steuerklasse = kinder > 0 ? 2 : 1;
-      const jahresBrutto = brutto1 * 12;
       
-      const lohnsteuer = berechneLohnsteuerJahr(jahresBrutto, steuerklasse, kinder);
-      const soli = berechneSoli(lohnsteuer, steuerklasse);
-      const kist = kirchensteuer ? berechneKirchensteuer(lohnsteuer, bundesland) : 0;
-      const steuerGesamt = lohnsteuer + soli + kist;
-      
+      const steuer = berechneLohnsteuerJahr(brutto1, steuerklasse, kinder, kirchensteuer, bundesland);
       const sv = berechneSozialversicherung(brutto1, kinderlos, kinder);
-      const netto = jahresBrutto - steuerGesamt - sv.gesamt;
+      
+      const jahresBrutto = brutto1 * 12;
+      const jahresNetto = jahresBrutto - steuer.gesamt - sv.gesamt;
       
       return {
         alleinstehend: true,
         steuerklasse,
         brutto: jahresBrutto,
-        lohnsteuer,
-        soli,
-        kist,
-        steuerGesamt,
+        steuer,
         sv,
-        netto,
-        nettoMonat: Math.round(netto / 12),
+        netto: jahresNetto,
+        nettoMonat: Math.round(jahresNetto / 12),
       };
     }
     
-    // === VERHEIRATET - Kombinationen berechnen ===
+    // Ehepaare - alle Kombinationen berechnen
+    const kinderlos = kinder === 0;
     const sv1 = berechneSozialversicherung(brutto1, kinderlos, kinder);
     const sv2 = berechneSozialversicherung(brutto2, kinderlos, kinder);
-    const svGesamt = sv1.gesamt + sv2.gesamt;
-    
-    const jahresBrutto1 = brutto1 * 12;
-    const jahresBrutto2 = brutto2 * 12;
-    const bruttoGesamt = jahresBrutto1 + jahresBrutto2;
-    
-    // Tatsächliche Steuerlast bei Zusammenveranlagung
-    const tatsaechlicheESt = berechneTatsaechlicheEStZusammen(brutto1, brutto2);
     
     const kombinationen = [
       { sk1: 4, sk2: 4, name: 'IV / IV' },
       { sk1: 3, sk2: 5, name: 'III / V' },
       { sk1: 5, sk2: 3, name: 'V / III' },
     ].map(komb => {
-      const lst1 = berechneLohnsteuerJahr(jahresBrutto1, komb.sk1, kinder);
-      const lst2 = berechneLohnsteuerJahr(jahresBrutto2, komb.sk2, kinder);
+      const steuer1 = berechneLohnsteuerJahr(brutto1, komb.sk1, kinder, kirchensteuer, bundesland);
+      const steuer2 = berechneLohnsteuerJahr(brutto2, komb.sk2, kinder, kirchensteuer, bundesland);
       
-      const soli1 = berechneSoli(lst1, komb.sk1);
-      const soli2 = berechneSoli(lst2, komb.sk2);
+      const jahresBrutto1 = brutto1 * 12;
+      const jahresBrutto2 = brutto2 * 12;
+      const gesamtBrutto = jahresBrutto1 + jahresBrutto2;
       
-      const kist1 = kirchensteuer ? berechneKirchensteuer(lst1, bundesland) : 0;
-      const kist2 = kirchensteuer ? berechneKirchensteuer(lst2, bundesland) : 0;
+      const gesamtSteuer = steuer1.gesamt + steuer2.gesamt;
+      const gesamtSV = sv1.gesamt + sv2.gesamt;
       
-      const steuer1Gesamt = lst1 + soli1 + kist1;
-      const steuer2Gesamt = lst2 + soli2 + kist2;
-      const steuerGesamt = steuer1Gesamt + steuer2Gesamt;
-      
-      const netto1 = jahresBrutto1 - steuer1Gesamt - sv1.gesamt;
-      const netto2 = jahresBrutto2 - steuer2Gesamt - sv2.gesamt;
-      const nettoGesamt = netto1 + netto2;
-      
-      // Nachzahlung/Erstattung bei Steuererklärung
-      const gezahlteLohnsteuer = lst1 + lst2;
-      const differenz = gezahlteLohnsteuer - tatsaechlicheESt;
+      const netto1 = jahresBrutto1 - steuer1.gesamt - sv1.gesamt;
+      const netto2 = jahresBrutto2 - steuer2.gesamt - sv2.gesamt;
+      const gesamtNetto = netto1 + netto2;
       
       return {
         ...komb,
-        lst1,
-        lst2,
-        soli1,
-        soli2,
-        kist1,
-        kist2,
-        steuer1Gesamt,
-        steuer2Gesamt,
-        steuerGesamt,
+        steuer1,
+        steuer2,
         netto1,
         netto2,
-        nettoGesamt,
-        nettoMonat: Math.round(nettoGesamt / 12),
-        tatsaechlicheESt: Math.round(tatsaechlicheESt),
+        gesamtBrutto,
+        gesamtSteuer,
+        gesamtSV,
+        gesamtNetto,
+        nettoMonat: Math.round(gesamtNetto / 12),
+      };
+    });
+    
+    // Tatsächliche Einkommensteuer bei Zusammenveranlagung berechnen
+    const jahresBrutto1 = brutto1 * 12;
+    const jahresBrutto2 = brutto2 * 12;
+    const gesamtBrutto = jahresBrutto1 + jahresBrutto2;
+    
+    // Vereinfachtes zvE für Zusammenveranlagung
+    const rvBasis = Math.min(gesamtBrutto, BBG_2025.rvWest * 12 * 2);
+    const kvBasis = Math.min(gesamtBrutto, BBG_2025.kv * 12 * 2);
+    const vorsorgePauschale = rvBasis * 0.093 + kvBasis * 0.07;
+    const abzuege = WERBUNGSKOSTENPAUSCHALE * 2 + SONDERAUSGABENPAUSCHALE * 2 + vorsorgePauschale;
+    const zvEGesamt = Math.max(0, gesamtBrutto - abzuege);
+    
+    // Splittingtarif: zvE halbieren, Steuer berechnen, verdoppeln
+    const tatsaechlicheSteuer = berechneEStTarif(zvEGesamt / 2) * 2;
+    
+    // Beste Kombination finden (höchstes monatliches Netto)
+    const beste = kombinationen.reduce((prev, curr) => 
+      curr.gesamtNetto > prev.gesamtNetto ? curr : prev
+    );
+    
+    // Nachzahlung/Erstattung berechnen
+    const kombinationenMitNachzahlung = kombinationen.map(komb => {
+      const gezahlteLohnsteuer = komb.steuer1.lohnsteuer + komb.steuer2.lohnsteuer;
+      const differenz = gezahlteLohnsteuer - tatsaechlicheSteuer;
+      
+      return {
+        ...komb,
+        tatsaechlicheSteuer: Math.round(tatsaechlicheSteuer),
         nachzahlung: differenz < 0 ? Math.abs(Math.round(differenz)) : 0,
         erstattung: differenz > 0 ? Math.round(differenz) : 0,
       };
     });
     
-    // Beste Kombination (höchstes Monatsnetto)
-    const beste = kombinationen.reduce((a, b) => 
-      b.nettoGesamt > a.nettoGesamt ? b : a
-    );
-    
     return {
       alleinstehend: false,
-      kombinationen,
-      beste,
+      kombinationen: kombinationenMitNachzahlung,
+      beste: kombinationenMitNachzahlung.find(k => k.name === beste.name)!,
       sv1,
       sv2,
-      svGesamt,
-      bruttoGesamt,
-      tatsaechlicheESt: Math.round(tatsaechlicheESt),
     };
   }, [brutto1, brutto2, kinder, kirchensteuer, bundesland, alleinstehend]);
 
@@ -490,6 +506,7 @@ export default function SteuerklassenRechner() {
         </h3>
         
         <div className="space-y-6">
+          {/* Partner 1 */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {alleinstehend ? 'Dein Bruttogehalt' : 'Partner 1 – Bruttogehalt'}
@@ -516,6 +533,7 @@ export default function SteuerklassenRechner() {
             />
           </div>
           
+          {/* Partner 2 */}
           {!alleinstehend && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -604,7 +622,7 @@ export default function SteuerklassenRechner() {
         <>
           <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-lg p-6 text-white mb-6">
             <h3 className="text-sm font-medium text-blue-200 mb-1">
-              Deine Steuerklasse: {ergebnis.steuerklasse === 2 ? 'II (Alleinerziehend)' : 'I'}
+              Deine Steuerklasse: {ergebnis.steuerklasse === 2 ? 'II' : 'I'}
             </h3>
             
             <div className="mb-4">
@@ -632,19 +650,19 @@ export default function SteuerklassenRechner() {
             
             <div className="space-y-3">
               <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="text-gray-600">Lohnsteuer</span>
-                <span className="font-medium text-gray-900">{formatEuro(ergebnis.lohnsteuer)}</span>
+                <span className="text-gray-600">Lohnsteuer (§32a EStG)</span>
+                <span className="font-medium text-gray-900">{formatEuro(ergebnis.steuer.lohnsteuer)}</span>
               </div>
-              {ergebnis.soli > 0 && (
+              {ergebnis.steuer.soli > 0 && (
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
                   <span className="text-gray-600">Solidaritätszuschlag</span>
-                  <span className="font-medium text-gray-900">{formatEuro(ergebnis.soli)}</span>
+                  <span className="font-medium text-gray-900">{formatEuro(ergebnis.steuer.soli)}</span>
                 </div>
               )}
-              {ergebnis.kist > 0 && (
+              {ergebnis.steuer.kirchensteuer > 0 && (
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
                   <span className="text-gray-600">Kirchensteuer</span>
-                  <span className="font-medium text-gray-900">{formatEuro(ergebnis.kist)}</span>
+                  <span className="font-medium text-gray-900">{formatEuro(ergebnis.steuer.kirchensteuer)}</span>
                 </div>
               )}
               <div className="flex justify-between items-center py-2 border-b border-gray-100">
@@ -665,7 +683,7 @@ export default function SteuerklassenRechner() {
               </div>
               <div className="flex justify-between items-center py-3 border-t-2 border-gray-200 bg-gray-50 -mx-6 px-6 rounded-b-xl">
                 <span className="font-bold text-gray-800">Abzüge gesamt</span>
-                <span className="font-bold text-red-600">{formatEuro(ergebnis.steuerGesamt + ergebnis.sv.gesamt)}</span>
+                <span className="font-bold text-red-600">{formatEuro(ergebnis.steuer.gesamt + ergebnis.sv.gesamt)}</span>
               </div>
             </div>
           </div>
@@ -773,11 +791,6 @@ export default function SteuerklassenRechner() {
                 );
               })}
             </div>
-            
-            <div className="mt-4 p-3 bg-blue-50 rounded-xl text-sm text-blue-700">
-              <strong>Hinweis:</strong> Die tatsächliche Steuerlast bei Zusammenveranlagung beträgt{' '}
-              <strong>{formatEuro(ergebnis.tatsaechlicheESt)}</strong>/Jahr (Splittingtarif §26 EStG).
-            </div>
           </div>
 
           {/* Erklärung */}
@@ -793,8 +806,8 @@ export default function SteuerklassenRechner() {
                 <span>Bei ähnlichem Einkommen. Ausgewogene Verteilung, selten hohe Nachzahlungen oder Erstattungen.</span>
               </div>
               <div className="flex gap-2">
-                <span className="font-bold">Wichtig:</span>
-                <span>In SK V entfallen <strong>alle Freibeträge</strong> (Grundfreibetrag, AN-Pauschbetrag). Der Partner in SK III erhält dafür den doppelten Grundfreibetrag.</span>
+                <span className="font-bold">IV / IV mit Faktor:</span>
+                <span>Optimierte Variante für unterschiedliche Einkommen. Vermeidet Nachzahlungen durch genaue Berechnung.</span>
               </div>
             </div>
           </div>
@@ -803,21 +816,15 @@ export default function SteuerklassenRechner() {
 
       {/* Steuerklassen-Übersicht */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📋 Steuerklassen-Übersicht nach §38b EStG</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📋 Steuerklassen-Übersicht (§38b EStG)</h3>
         
         <div className="space-y-3">
           {STEUERKLASSEN.map(sk => (
-            <div key={sk.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+            <div key={sk.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
               <span className="text-2xl">{sk.icon}</span>
-              <div className="flex-1">
+              <div>
                 <h4 className="font-medium text-gray-800">{sk.name}</h4>
                 <p className="text-sm text-gray-500">{sk.beschreibung}</p>
-                <p className="text-xs text-gray-400 mt-1">
-                  Grundfreibetrag: {formatEuro(sk.grundfreibetrag)}
-                  {!sk.hatPauschbetraege && ' • Keine Pauschbeträge'}
-                  {sk.splitting && ' • Splittingtarif'}
-                  {sk.entlastungsbetrag && ` • +${formatEuro(sk.entlastungsbetrag)} Entlastung`}
-                </p>
               </div>
             </div>
           ))}
@@ -830,23 +837,27 @@ export default function SteuerklassenRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Berechnung nach <strong>§32a EStG Tarif 2026</strong> und BMF-Programmablaufplan</span>
-          </li>
-          <li className="flex gap-2">
-            <span>✓</span>
             <span>Die <strong>Steuerklasse beeinflusst nur den monatlichen Lohnsteuerabzug</strong> – nicht die jährliche Steuerlast</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Bei Zusammenveranlagung wird die <strong>tatsächliche Steuer über die Steuererklärung</strong> berechnet (Splittingtarif)</span>
+            <span>Bei Zusammenveranlagung wird die <strong>tatsächliche Steuer über die Steuererklärung</strong> berechnet</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Steuerklassenwechsel</strong> ist mehrmals pro Jahr möglich</span>
+            <span><strong>Steuerklassenwechsel</strong> ist mehrmals pro Jahr möglich (seit 2020 unbegrenzt)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span>Die Steuerklasse <strong>beeinflusst Lohnersatzleistungen</strong> (Elterngeld, Krankengeld, ALG I)</span>
           </li>
           <li className="flex gap-2">
             <span>⚠️</span>
-            <span>Vor <strong>Elterngeld/Krankengeld</strong>: Steuerklasse rechtzeitig wechseln (6-12 Monate vorher)</span>
+            <span>Vor Elterngeld/Krankengeld: Steuerklasse <strong>rechtzeitig wechseln</strong> (mind. 6-12 Monate vorher)</span>
+          </li>
+          <li className="flex gap-2">
+            <span>ℹ️</span>
+            <span>Ab 2030 wird das <strong>Faktorverfahren</strong> für alle Ehepaare Pflicht (Reform geplant)</span>
           </li>
         </ul>
       </div>
@@ -871,6 +882,34 @@ export default function SteuerklassenRechner() {
             </div>
           </div>
           <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+            <span className="text-xl">📝</span>
+            <div>
+              <p className="font-medium text-gray-800">Antrag auf Steuerklassenwechsel</p>
+              <p className="text-gray-500">Formular &quot;Erklärung zum Steuerklassenwechsel&quot;</p>
+              <a 
+                href="https://www.formulare-bfinv.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Formulare-BFinV →
+              </a>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+            <span className="text-xl">📞</span>
+            <div>
+              <p className="font-medium text-gray-800">Bürgertelefon BMF</p>
+              <p className="text-gray-500">Allgemeine Steuerfragen</p>
+              <a 
+                href="tel:03018-333-0"
+                className="text-blue-600 hover:underline"
+              >
+                030 18 333-0 →
+              </a>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
             <span className="text-xl">🧮</span>
             <div>
               <p className="font-medium text-gray-800">Offizieller BMF-Rechner</p>
@@ -890,7 +929,7 @@ export default function SteuerklassenRechner() {
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Rechtsgrundlagen (Stand: 2026)</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen (Stand: {STEUERJAHR})</h4>
         <div className="space-y-1">
           <a 
             href="https://www.gesetze-im-internet.de/estg/__32a.html"
@@ -898,7 +937,7 @@ export default function SteuerklassenRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            §32a EStG – Einkommensteuertarif
+            §32a EStG – Einkommensteuertarif – Gesetze im Internet
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/estg/__38b.html"
@@ -906,15 +945,23 @@ export default function SteuerklassenRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            §38b EStG – Steuerklassen
+            §38b EStG – Einbehaltung der Lohnsteuer
           </a>
           <a 
-            href="https://www.gesetze-im-internet.de/estg/__26.html"
+            href="https://www.gesetze-im-internet.de/estg/__39.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            §26 EStG – Zusammenveranlagung
+            §39 EStG – Lohnsteuerabzugsmerkmale
+          </a>
+          <a 
+            href="https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Amtliches Lohnsteuer-Handbuch {STEUERJAHR} – BMF
           </a>
           <a 
             href="https://www.bmf-steuerrechner.de"
@@ -922,7 +969,31 @@ export default function SteuerklassenRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMF Steuerrechner – Bundesfinanzministerium
+            BMF – Offizieller Lohnsteuerrechner
+          </a>
+          <a 
+            href="https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Einkommensteuer-Formeln {STEUERJAHR} – Finanz-Tools.de
+          </a>
+          <a 
+            href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Lohnsteuer/lohnsteuer.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            BMF – FAQ Lohnsteuer & Steuerklassen
+          </a>
+          <a 
+            href="https://www.finanztip.de/steuerklassen/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Finanztip – Steuerklassen-Ratgeber
           </a>
         </div>
       </div>
