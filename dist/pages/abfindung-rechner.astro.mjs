@@ -550,8 +550,8 @@ function AbfindungsRechner() {
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            /* @__PURE__ */ jsx("strong", { children: "Fünftelregelung:" }),
-            " Gilt automatisch bei außerordentlichen Einkünften (Zusammenballung)"
+            /* @__PURE__ */ jsx("strong", { children: "Fünftelregelung ab 2025:" }),
+            " Muss in der Steuererklärung beantragt werden (nicht mehr automatisch beim Lohnsteuerabzug)"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
@@ -587,6 +587,11 @@ function AbfindungsRechner() {
     /* @__PURE__ */ jsxs("div", { className: "bg-red-50 border border-red-200 rounded-2xl p-6 mb-6", children: [
       /* @__PURE__ */ jsx("h3", { className: "font-bold text-red-800 mb-3", children: "⚠️ Wichtige Hinweise" }),
       /* @__PURE__ */ jsxs("ul", { className: "space-y-2 text-sm text-red-700", children: [
+        /* @__PURE__ */ jsxs("li", { children: [
+          "• ",
+          /* @__PURE__ */ jsx("strong", { children: "NEU ab 2025:" }),
+          " Die Fünftelregelung wird NICHT mehr automatisch vom Arbeitgeber beim Lohnsteuerabzug berücksichtigt – Sie müssen sie in der Steuererklärung beantragen!"
+        ] }),
         /* @__PURE__ */ jsxs("li", { children: [
           "• ",
           /* @__PURE__ */ jsx("strong", { children: "Aufhebungsvertrag:" }),

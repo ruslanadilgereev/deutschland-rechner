@@ -18,6 +18,7 @@ const REGELSAETZE_2026 = {
   kind_0_5: 357
   // Regelbedarfsstufe 6
 };
+const KINDERSOFORTZUSCHLAG = 25;
 const FREIBETRAEGE = {
   grundfreibetrag: 100,
   // Grundfreibetrag
@@ -66,19 +67,22 @@ function BuergergeldRechner() {
     kinder.forEach((kind) => {
       regelbedarf += berechneKindRegelsatz(kind.alter);
     });
+    const kindersofortzuschlag = kinder.length * KINDERSOFORTZUSCHLAG;
     const kdu = warmmiete;
-    const gesamtbedarf = regelbedarf + kdu;
+    const gesamtbedarf = regelbedarf + kindersofortzuschlag + kdu;
     const freibetrag = berechneEinkommenFreibetrag(einkommen, kinder.length > 0);
     const anrechnung = Math.max(0, einkommen - freibetrag);
     const anspruch = Math.max(0, gesamtbedarf - anrechnung);
     return {
       regelbedarf,
+      kindersofortzuschlag,
       kdu,
       gesamtbedarf,
       freibetrag,
       anrechnung,
       anspruch,
-      hatAnspruch: anspruch > 0
+      hatAnspruch: anspruch > 0,
+      anzahlKinder: kinder.length
     };
   }, [mitPartner, kinder, warmmiete, einkommen]);
   const addKind = (alter) => {
@@ -242,6 +246,15 @@ function BuergergeldRechner() {
           /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "Regelbedarf" }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-gray-900", children: formatEuro(ergebnis.regelbedarf) })
         ] }),
+        ergebnis.kindersofortzuschlag > 0 && /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
+          /* @__PURE__ */ jsx("span", { children: "+ Kindersofortzuschlag (§ 72 SGB II)" }),
+          /* @__PURE__ */ jsxs("span", { className: "font-bold", children: [
+            formatEuro(ergebnis.kindersofortzuschlag),
+            " (",
+            ergebnis.anzahlKinder,
+            " × 25€)"
+          ] })
+        ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100", children: [
           /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "+ Kosten der Unterkunft (KdU)" }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-gray-900", children: formatEuro(ergebnis.kdu) })
@@ -312,7 +325,7 @@ function BuergergeldRechner() {
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
             /* @__PURE__ */ jsx("strong", { children: "+25 € Kindersofortzuschlag" }),
-            " pro Kind zusätzlich"
+            " pro Kind zusätzlich (§ 72 SGB II)"
           ] })
         ] })
       ] })

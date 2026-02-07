@@ -18,12 +18,39 @@ const HOECHSTBETRAEGE = {
   "VII": [807, 987, 1175, 1371, 1567, 1762, 1958, 2153]
 };
 const KOEFFIZIENTEN = {
-  1: { a: 0.04, b: 53e-6, c: 254e-6 },
-  2: { a: 0.03, b: 33e-6, c: 207e-6 },
-  3: { a: 0.02, b: 23e-6, c: 175e-6 },
-  4: { a: 0.01, b: 15e-6, c: 152e-6 },
-  5: { a: 0, b: 1e-5, c: 135e-6 },
-  6: { a: -0.01, b: 7e-6, c: 12e-5 }
+  1: { a: 0.04, b: 54e-6, c: 265e-6 },
+  2: { a: 0.03, b: 35e-6, c: 214e-6 },
+  3: { a: 0.02, b: 24e-6, c: 18e-5 },
+  4: { a: 0.01, b: 16e-6, c: 156e-6 },
+  5: { a: 0, b: 11e-6, c: 139e-6 },
+  6: { a: -0.01, b: 8e-6, c: 125e-6 },
+  7: { a: -0.015, b: 6e-6, c: 115e-6 },
+  8: { a: -0.02, b: 5e-6, c: 107e-6 },
+  9: { a: -0.025, b: 4e-6, c: 1e-4 },
+  10: { a: -0.03, b: 35e-7, c: 94e-6 },
+  11: { a: -0.035, b: 3e-6, c: 89e-6 },
+  12: { a: -0.04, b: 25e-7, c: 85e-6 }
+};
+const HEIZKOSTEN_ENTLASTUNG = {
+  1: 14.4,
+  2: 18.6,
+  3: 22.2,
+  4: 25.8,
+  5: 29.4,
+  6: 33,
+  7: 36.6,
+  8: 40.2
+};
+const HEIZKOSTEN_ZUSATZ_PRO_PERSON = 3.6;
+const KLIMAKOMPONENTE = {
+  1: 20,
+  2: 28,
+  3: 35,
+  4: 42,
+  5: 49,
+  6: 56,
+  7: 63,
+  8: 70
 };
 const FREIBETRAEGE = {
   // Monatl. Mindesteinkommen (etwa)
@@ -82,8 +109,11 @@ function WohngeldRechner() {
     const personenIndex = Math.min(haushaltsgroesse - 1, 7);
     const hoechstbetrag = HOECHSTBETRAEGE[mietstufe][personenIndex];
     const beruecksichtigteMiete = Math.min(warmmiete, hoechstbetrag);
-    const koeff = KOEFFIZIENTEN[Math.min(haushaltsgroesse, 6)];
-    const M = beruecksichtigteMiete;
+    const heizkostenEntlastung = personenIndex < 8 ? HEIZKOSTEN_ENTLASTUNG[personenIndex + 1] : HEIZKOSTEN_ENTLASTUNG[8] + (personenIndex - 7) * HEIZKOSTEN_ZUSATZ_PRO_PERSON;
+    const klimakomponente = personenIndex < 8 ? KLIMAKOMPONENTE[personenIndex + 1] : KLIMAKOMPONENTE[8] + (personenIndex - 7) * 7;
+    const koeff = KOEFFIZIENTEN[Math.min(haushaltsgroesse, 12)];
+    const MRoh = beruecksichtigteMiete + heizkostenEntlastung + klimakomponente;
+    const M = Math.min(MRoh, hoechstbetrag + heizkostenEntlastung + klimakomponente);
     const Y = anrechenbaresEinkommenMonat;
     const faktor = koeff.a + koeff.b * M + koeff.c * Y;
     const wohngeldBrutto = 1.15 * (M - faktor * Y);
@@ -107,6 +137,10 @@ function WohngeldRechner() {
       hoechstbetrag,
       beruecksichtigteMiete,
       mieteGekappt: warmmiete > hoechstbetrag,
+      // Wohngeld-Plus Komponenten
+      heizkostenEntlastung: Math.round(heizkostenEntlastung * 100) / 100,
+      klimakomponente: Math.round(klimakomponente * 100) / 100,
+      mieteMitKomponenten: Math.round(M * 100) / 100,
       // Ergebnis
       wohngeldMonatlich,
       wohngeldJaehrlich,
@@ -430,9 +464,17 @@ function WohngeldRechner() {
           ] }),
           /* @__PURE__ */ jsx("span", { className: "text-gray-900", children: formatEuro(ergebnis.hoechstbetrag) })
         ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
+          /* @__PURE__ */ jsx("span", { children: "+ Heizkosten-Entlastung (§ 12 Abs. 6 WoGG)" }),
+          /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.heizkostenEntlastung) })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
+          /* @__PURE__ */ jsx("span", { children: "+ Klimakomponente (§ 12 Abs. 7 WoGG)" }),
+          /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.klimakomponente) })
+        ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 bg-purple-50 -mx-6 px-6", children: [
-          /* @__PURE__ */ jsx("span", { className: "font-medium text-purple-700", children: "= Berücksichtigte Miete" }),
-          /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-900", children: formatEuro(ergebnis.beruecksichtigteMiete) })
+          /* @__PURE__ */ jsx("span", { className: "font-medium text-purple-700", children: "= Berücksichtigte Miete (M)" }),
+          /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-900", children: formatEuro(ergebnis.mieteMitKomponenten) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-3 bg-purple-100 -mx-6 px-6 rounded-b-xl mt-4", children: [
           /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-800", children: "Wohngeld pro Monat" }),

@@ -8,19 +8,43 @@ export { renderers } from '../renderers.mjs';
 
 const ELTERNGELD_2026 = {
   minBasis: 300,
-  // Mindestbetrag Basiselterngeld
+  // Mindestbetrag Basiselterngeld (§ 2 Abs. 4 BEEG)
   maxBasis: 1800,
-  // Höchstbetrag Basiselterngeld
+  // Höchstbetrag Basiselterngeld (§ 2 Abs. 1 BEEG)
   minPlus: 150,
   // Mindestbetrag ElterngeldPlus
-  maxPlus: 900};
-function berechneElterngeld(nettoMonat) {
-  let ersatzrate = 0.65;
-  if (nettoMonat <= 1200) {
-    ersatzrate = 0.67;
-  } else if (nettoMonat > 1200 && nettoMonat < 1240) {
-    ersatzrate = 0.67 - (nettoMonat - 1200) * 5e-4;
+  maxPlus: 900,
+  // Höchstbetrag ElterngeldPlus
+  // Einkommensgrenzen für Ersatzraten-Staffelung
+  geringverdienerGrenze: 1e3,
+  // Unter 1.000€: Ersatzrate steigt
+  basisGrenze: 1200,
+  // 1.000-1.200€: 67% Ersatzrate
+  abschmelzungsEnde: 1240,
+  // Über 1.240€: 65% Ersatzrate
+  // Ersatzraten
+  ersatzrateMin: 0.65,
+  // Minimum bei hohem Einkommen
+  ersatzrateBasis: 0.67,
+  // Standard bei 1.000-1.200€
+  ersatzrateMax: 1};
+function berechneErsatzrate(nettoMonat) {
+  if (nettoMonat < ELTERNGELD_2026.geringverdienerGrenze) {
+    const differenz = ELTERNGELD_2026.geringverdienerGrenze - nettoMonat;
+    const zusatz = differenz / 2 * 1e-3;
+    return Math.min(ELTERNGELD_2026.ersatzrateMax, ELTERNGELD_2026.ersatzrateBasis + zusatz);
+  } else if (nettoMonat <= ELTERNGELD_2026.basisGrenze) {
+    return ELTERNGELD_2026.ersatzrateBasis;
+  } else if (nettoMonat < ELTERNGELD_2026.abschmelzungsEnde) {
+    const differenz = nettoMonat - ELTERNGELD_2026.basisGrenze;
+    const abzug = differenz / 2 * 1e-3;
+    return Math.max(ELTERNGELD_2026.ersatzrateMin, ELTERNGELD_2026.ersatzrateBasis - abzug);
+  } else {
+    return ELTERNGELD_2026.ersatzrateMin;
   }
+}
+function berechneElterngeld(nettoMonat) {
+  const ersatzrate = berechneErsatzrate(nettoMonat);
   let basis = Math.round(nettoMonat * ersatzrate);
   basis = Math.max(ELTERNGELD_2026.minBasis, Math.min(ELTERNGELD_2026.maxBasis, basis));
   let plus = Math.round(basis / 2);
@@ -227,8 +251,14 @@ function ElterngeldRechner() {
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            /* @__PURE__ */ jsx("strong", { children: "65-67% des Nettos" }),
-            " (je nach Einkommen vor der Geburt)"
+            /* @__PURE__ */ jsx("strong", { children: "65-100% des Nettos" }),
+            " je nach Einkommen (§ 2 BEEG):",
+            /* @__PURE__ */ jsx("br", {}),
+            "• Unter 1.000€: 67% + 0,1% je 2€ (max. 100%)",
+            /* @__PURE__ */ jsx("br", {}),
+            "• 1.000-1.200€: 67%",
+            /* @__PURE__ */ jsx("br", {}),
+            "• Über 1.200€: sinkt auf 65%"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [

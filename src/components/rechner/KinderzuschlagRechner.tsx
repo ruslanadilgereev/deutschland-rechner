@@ -20,7 +20,19 @@ const KINDERZUSCHLAG_2026 = {
   kindergeld2026: 255,      // Kindergeld pro Kind seit 2025 (§ 6 BKGG)
 };
 
-// Vereinfachte Bedarfsberechnung nach SGB II
+/**
+ * Bedarfsberechnung nach § 6a Abs. 4 BKGG i.V.m. SGB II/XII
+ * 
+ * Regelbedarfe 2025/2026 (unverändert seit 2024 - "Nullrunde"):
+ * Quelle: https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676
+ * 
+ * Regelbedarfsstufen nach § 28 SGB XII / § 20 SGB II:
+ * - Stufe 1 (Alleinstehend): 563€
+ * - Stufe 2 (Paare je Person): 506€
+ * - Stufe 4 (Kinder 14-17 Jahre): 471€
+ * - Stufe 5 (Kinder 6-13 Jahre): 390€
+ * - Stufe 6 (Kinder 0-5 Jahre): 357€
+ */
 function berechneMindestsicherungsbedarf(
   anzahlErwachsene: number,
   kinderUnter6: number,
@@ -29,13 +41,13 @@ function berechneMindestsicherungsbedarf(
   warmmiete: number,
   heizkosten: number
 ): number {
-  // Regelbedarfe 2026 (geschätzt basierend auf Erhöhungen)
+  // Regelbedarfe 2025/2026 - offiziell bestätigt (Bundesregierung)
   const regelbedarf = {
-    alleinstehend: 563,
-    paar: 506 * 2,
-    kind0bis5: 357,
-    kind6bis13: 390,
-    kind14bis17: 471,
+    alleinstehend: 563,  // Regelbedarfsstufe 1 (§ 28 SGB XII)
+    paar: 506 * 2,       // Regelbedarfsstufe 2 × 2 (§ 28 SGB XII)
+    kind0bis5: 357,      // Regelbedarfsstufe 6 (§ 28 SGB XII)
+    kind6bis13: 390,     // Regelbedarfsstufe 5 (§ 28 SGB XII)
+    kind14bis17: 471,    // Regelbedarfsstufe 4 (§ 28 SGB XII)
   };
 
   let bedarf = 0;
@@ -538,7 +550,7 @@ export default function KinderzuschlagRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Bis zu 292 € pro Kind</strong> zusätzlich zum Kindergeld</span>
+            <span><strong>Bis zu 297 € pro Kind</strong> zusätzlich zum Kindergeld (seit 01.01.2025)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>

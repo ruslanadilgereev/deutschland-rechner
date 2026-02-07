@@ -25,23 +25,30 @@ const BUNDESLAENDER = [
   { id: "th", name: "Thüringen", modell: "bundesmodell", hebesatzSchnitt: 422 }
 ];
 const MESSZAHLEN = {
+  // Bundesmodell (§15 GrStG): Steuermesszahlen
   bundesmodell: {
     wohnen: 31e-5,
-    // 0,31‰
+    // 0,31‰ für Wohngrundstücke
     gewerbe: 34e-5
-    // 0,34‰
+    // 0,34‰ für Nichtwohngrundstücke
   },
+  // Baden-Württemberg Bodenwertmodell (LGrStG BW):
+  // Basis-Steuermesszahl 1,30‰, Wohngrundstücke 30% Ermäßigung = 0,91‰
   bodenwert: {
     wohnen: 91e-5,
-    // 0,91‰ (BaWü reduziert für Wohngrundstücke)
-    gewerbe: 126e-5
-    // 1,26‰
+    // 0,91‰ (= 1,30‰ × 0,7)
+    gewerbe: 13e-4
+    // 1,30‰ (volle Steuermesszahl)
   },
+  // Bayern Flächenmodell (BayGrStG): Äquivalenzzahlen
+  // Wohnnutzung: 30% Abschlag auf die 0,50€ → 0,35€/m²
   flaeche: {
-    wohnenProQm: 0.5,
-    // €/qm Wohnfläche
+    wohnenProQm: 0.35,
+    // €/m² Wohnfläche (0,50€ × 0,7 wegen Wohnabschlag)
+    nutzflaecheProQm: 0.5,
+    // €/m² Gewerbefläche (volle Äquivalenzzahl)
     grundProQm: 0.04
-    // €/qm Grundstücksfläche
+    // €/m² Grundstücksfläche
   }
 };
 const BODENRICHTWERT_SCHNITT = {
@@ -126,14 +133,16 @@ function GrundsteuerRechner() {
       ];
     } else if (modell === "flaeche") {
       const grundAnteil = grundstuecksflaeche * MESSZAHLEN.flaeche.grundProQm;
-      const wohnAnteil = istUnbebaut ? 0 : wohnflaeche * MESSZAHLEN.flaeche.wohnenProQm;
+      const flaechenFaktor = istWohnen ? MESSZAHLEN.flaeche.wohnenProQm : MESSZAHLEN.flaeche.nutzflaecheProQm;
+      const wohnAnteil = istUnbebaut ? 0 : wohnflaeche * flaechenFaktor;
       grundsteuermessbetrag = grundAnteil + wohnAnteil;
       grundsteuerJahr = grundsteuermessbetrag * (hebesatz / 100);
       grundsteuerwert = grundsteuermessbetrag * 1e3;
+      const flaechenLabel = istWohnen ? "0,35 €/m² (inkl. 30% Abschlag)" : "0,50 €/m²";
       berechnungsweg = [
         { label: "Grundstücksfläche × 0,04 €/m²", wert: `${grundstuecksflaeche} m² × 0,04 € = ${grundAnteil.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €` },
         ...istUnbebaut ? [] : [
-          { label: "Wohnfläche × 0,50 €/m²", wert: `${wohnflaeche} m² × 0,50 € = ${wohnAnteil.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €` }
+          { label: `${istWohnen ? "Wohnfläche" : "Nutzfläche"} × ${flaechenLabel}`, wert: `${wohnflaeche} m² × ${flaechenFaktor.toFixed(2)} € = ${wohnAnteil.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €` }
         ],
         { label: "Grundsteuermessbetrag (Summe)", wert: `${grundsteuermessbetrag.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €` },
         { label: `× Hebesatz (${hebesatz}%)`, wert: `= ${grundsteuerJahr.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € / Jahr` }
@@ -528,7 +537,9 @@ function GrundsteuerRechner() {
           /* @__PURE__ */ jsxs("p", { className: "text-sm text-yellow-800", children: [
             "Berechnung nur nach ",
             /* @__PURE__ */ jsx("strong", { children: "Flächen" }),
-            ': Grundstücksfläche × 0,04€ + Wohnfläche × 0,50€. Wert und Lage spielen keine Rolle – das ist am "fairsten", aber nicht werteorientiert.'
+            " mit Äquivalenzzahlen: Grundstück × 0,04€/m² + Gebäude × 0,50€/m². ",
+            /* @__PURE__ */ jsx("strong", { children: "Bei Wohnnutzung 30% Abschlag" }),
+            " → effektiv 0,35€/m². Wert und Lage spielen keine Rolle."
           ] })
         ] })
       ] })
@@ -643,7 +654,7 @@ function GrundsteuerRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-4 bg-gray-50 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen" }),
+      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen & Rechtsgrundlagen" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
         /* @__PURE__ */ jsx(
           "a",
@@ -652,7 +663,27 @@ function GrundsteuerRechner() {
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "Grundsteuergesetz (GrStG) – Gesetze im Internet"
+            children: "§15 GrStG – Steuermesszahlen (0,31‰ / 0,34‰)"
+          }
+        ),
+        /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://www.grundsteuer.bayern.de/",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline",
+            children: "Bayern – Flächenmodell (Äquivalenzzahlen 0,04€/0,50€, 30% Wohnabschlag)"
+          }
+        ),
+        /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://fm.baden-wuerttemberg.de/de/steuern/grundsteuer/",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline",
+            children: "Baden-Württemberg – Bodenwertmodell (1,30‰ / 0,91‰ für Wohnen)"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -663,16 +694,6 @@ function GrundsteuerRechner() {
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
             children: "Bundesfinanzministerium – Grundsteuer-Reform"
-          }
-        ),
-        /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://www.grundsteuer.de",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "block text-sm text-blue-600 hover:underline",
-            children: "Grundsteuer.de – Offizielle Informationsseite"
           }
         ),
         /* @__PURE__ */ jsx(

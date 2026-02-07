@@ -7,13 +7,13 @@ import { useState, useMemo } from 'react';
 export { renderers } from '../renderers.mjs';
 
 const MIDIJOB = {
-  untergrenze: 603.01,
-  // Ab 603,01€ beginnt der Midijob (Minijob-Grenze + 1 Cent)
+  untergrenze: 556.01,
+  // Ab 556,01€ beginnt der Midijob (Minijob-Grenze 556€ + 1 Cent, seit 01.01.2025)
   obergrenze: 2e3,
   // Obergrenze seit 01.01.2023 (erhöht von 1.600€)
-  // Beitragssätze 2026
+  // Beitragssätze 2025
   krankenversicherung: 14.6,
-  // Durchschnittlicher Zusatzbeitrag 2026 (erhöht von 1,7%)
+  // Durchschnittlicher Zusatzbeitrag 2025 (erhöht von 1,7%)
   rentenversicherung: 18.6,
   // RV-Beitrag
   arbeitslosenversicherung: 2.6,
@@ -31,7 +31,7 @@ function MidijobRechner() {
   const [bundesland, setBundesland] = useState("west");
   const ergebnis = useMemo(() => {
     const istMidijob = bruttolohn >= MIDIJOB.untergrenze && bruttolohn <= MIDIJOB.obergrenze;
-    const istMinijob = bruttolohn <= 603;
+    const istMinijob = bruttolohn <= 556;
     const istVolljob = bruttolohn > MIDIJOB.obergrenze;
     const gesamtBeitragssatz = MIDIJOB.krankenversicherung + zusatzbeitragKV + MIDIJOB.rentenversicherung + MIDIJOB.arbeitslosenversicherung + MIDIJOB.pflegeversicherung;
     const F = 28 / gesamtBeitragssatz;
@@ -94,10 +94,10 @@ function MidijobRechner() {
       geschaetzteSteuerlast = Math.max(0, (bruttolohn - 1200) * 0.14);
     }
     const nettolohn = nettoVorSteuer - geschaetzteSteuerlast;
-    const durchschnittsentgelt2026 = 48314;
-    const rentenpunkteJahr = bruttolohn * 12 / durchschnittsentgelt2026;
-    const rentenwert2026 = 40.79;
-    const renteProMonat = rentenpunkteJahr * rentenwert2026;
+    const durchschnittsentgelt2025 = 47084;
+    const rentenpunkteJahr = bruttolohn * 12 / durchschnittsentgelt2025;
+    const rentenwert2025 = 39.32;
+    const renteProMonat = rentenpunkteJahr * rentenwert2025;
     return {
       // Status
       istMidijob,
@@ -173,7 +173,7 @@ function MidijobRechner() {
         ),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-xs text-gray-400 mt-1", children: [
           /* @__PURE__ */ jsx("span", { children: "500 €" }),
-          /* @__PURE__ */ jsx("span", { className: bruttolohn >= 603.01 && bruttolohn <= 2e3 ? "text-purple-500 font-bold" : "text-gray-500", children: "Übergangsbereich: 603,01 € – 2.000 €" }),
+          /* @__PURE__ */ jsx("span", { className: bruttolohn >= 556.01 && bruttolohn <= 2e3 ? "text-purple-500 font-bold" : "text-gray-500", children: "Übergangsbereich: 556,01 € – 2.000 €" }),
           /* @__PURE__ */ jsx("span", { children: "2.500 €" })
         ] })
       ] }),
@@ -181,12 +181,12 @@ function MidijobRechner() {
         ergebnis.istMinijob && /* @__PURE__ */ jsxs("div", { className: "bg-green-100 border border-green-300 rounded-xl p-4 text-center", children: [
           /* @__PURE__ */ jsx("span", { className: "text-2xl", children: "⏰" }),
           /* @__PURE__ */ jsx("p", { className: "font-bold text-green-800 mt-1", children: "Das ist ein Minijob" }),
-          /* @__PURE__ */ jsx("p", { className: "text-sm text-green-600", children: "Bis 603 € – nutze den Minijob-Rechner!" })
+          /* @__PURE__ */ jsx("p", { className: "text-sm text-green-600", children: "Bis 556 € – nutze den Minijob-Rechner!" })
         ] }),
         ergebnis.istMidijob && /* @__PURE__ */ jsxs("div", { className: "bg-purple-100 border border-purple-300 rounded-xl p-4 text-center", children: [
           /* @__PURE__ */ jsx("span", { className: "text-2xl", children: "📊" }),
           /* @__PURE__ */ jsx("p", { className: "font-bold text-purple-800 mt-1", children: "Übergangsbereich (Midijob)" }),
-          /* @__PURE__ */ jsx("p", { className: "text-sm text-purple-600", children: "603,01 € – 2.000 € → Reduzierte AN-Beiträge!" })
+          /* @__PURE__ */ jsx("p", { className: "text-sm text-purple-600", children: "556,01 € – 2.000 € → Reduzierte AN-Beiträge!" })
         ] }),
         ergebnis.istVolljob && /* @__PURE__ */ jsxs("div", { className: "bg-blue-100 border border-blue-300 rounded-xl p-4 text-center", children: [
           /* @__PURE__ */ jsx("span", { className: "text-2xl", children: "💼" }),
@@ -526,9 +526,9 @@ function MidijobRechner() {
         /* @__PURE__ */ jsxs("p", { className: "text-xs text-blue-600", children: [
           "Berechnung: (",
           formatEuro(bruttolohn),
-          " × 12) ÷ 48.314€ = ",
+          " × 12) ÷ 47.084€ = ",
           ergebnis.rentenpunkteJahr.toFixed(3),
-          " Punkte × 40,79€ Rentenwert"
+          " Punkte × 39,32€ Rentenwert"
         ] })
       ] })
     ] }),
@@ -580,7 +580,7 @@ function MidijobRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6", children: [
-      /* @__PURE__ */ jsx("h3", { className: "font-bold text-amber-800 mb-3", children: "⚠️ Wichtige Hinweise 2026" }),
+      /* @__PURE__ */ jsx("h3", { className: "font-bold text-amber-800 mb-3", children: "⚠️ Wichtige Hinweise 2025" }),
       /* @__PURE__ */ jsxs("ul", { className: "space-y-2 text-sm text-amber-700", children: [
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "•" }),
@@ -593,7 +593,7 @@ function MidijobRechner() {
           /* @__PURE__ */ jsx("span", { children: "•" }),
           /* @__PURE__ */ jsxs("span", { children: [
             /* @__PURE__ */ jsx("strong", { children: "Untergrenze dynamisch:" }),
-            " Gekoppelt an Mindestlohn → 603,01€ ab 2026"
+            " Gekoppelt an Mindestlohn (12,82€/h) → 556,01€ ab 2025"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
@@ -638,8 +638,8 @@ function MidijobRechner() {
         /* @__PURE__ */ jsxs("tbody", { children: [
           /* @__PURE__ */ jsxs("tr", { className: "border-b border-gray-100", children: [
             /* @__PURE__ */ jsx("td", { className: "py-3 px-2 text-gray-700", children: "Verdienstgrenze" }),
-            /* @__PURE__ */ jsx("td", { className: "py-3 px-2 text-center", children: "≤ 603 €" }),
-            /* @__PURE__ */ jsx("td", { className: "py-3 px-2 text-center", children: "603,01 – 2.000 €" }),
+            /* @__PURE__ */ jsx("td", { className: "py-3 px-2 text-center", children: "≤ 556 €" }),
+            /* @__PURE__ */ jsx("td", { className: "py-3 px-2 text-center", children: "556,01 – 2.000 €" }),
             /* @__PURE__ */ jsx("td", { className: "py-3 px-2 text-center", children: "> 2.000 €" })
           ] }),
           /* @__PURE__ */ jsxs("tr", { className: "border-b border-gray-100", children: [

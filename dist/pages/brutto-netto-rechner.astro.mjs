@@ -6,65 +6,63 @@ import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useMemo } from 'react';
 export { renderers } from '../renderers.mjs';
 
+const TARIF_2026 = {
+  grundfreibetrag: 12348,
+  // §32a Abs. 1 Nr. 1 EStG
+  zone2Ende: 17799,
+  // Progressionszone 1 endet
+  zone3Ende: 69878,
+  // Progressionszone 2 endet  
+  zone4Ende: 277825,
+  // Proportionalzone 42% endet
+  // Koeffizienten aus BMF-PAP 2026
+  zone2Y1: 933.52,
+  // (933,52 * y + 1400) * y
+  zone2Y2: 1400,
+  zone3Z1: 176.64,
+  // (176,64 * z + 2397) * z + 1015.13
+  zone3Z2: 2397,
+  zone3Konst: 1015.13,
+  zone4Faktor: 0.42,
+  // 42% Spitzensteuersatz
+  zone4Abzug: 10911.92,
+  zone5Faktor: 0.45,
+  // 45% Reichensteuer
+  zone5Abzug: 18918.79
+};
+const FREIBETRAEGE_2026 = {
+  arbeitnehmerPauschbetrag: 1230,
+  // §9a Nr. 1 EStG
+  sonderausgabenPauschbetrag: 36,
+  // §10c EStG
+  entlastungsbetragAlleinerziehende: 4260,
+  // §24b EStG
+  entlastungsbetragProWeiteresKind: 240
+  // §24b Abs. 2 EStG
+};
 const SOZIALVERSICHERUNG_2026 = {
-  // Quelle: Deutsche Rentenversicherung - Beitragssatz 18,6%, AN-Anteil 50%
   rentenversicherung: 0.093,
-  // 9,3% AN-Anteil
-  // Quelle: Bundesagentur für Arbeit - Beitragssatz 2,6%, AN-Anteil 50%
+  // 9,3% AN-Anteil (18,6% gesamt)
   arbeitslosenversicherung: 0.013,
-  // 1,3% AN-Anteil
-  // Quelle: GKV-Spitzenverband
+  // 1,3% AN-Anteil (2,6% gesamt)
   pflegeversicherung: {
-    // Beitragssatz 3,6% (Eltern mit 1 Kind), AN-Anteil 1,8%
     basis: 0.018,
-    // Beitragszuschlag für Kinderlose ab 23 Jahren: 0,6%
-    // Quelle: §55 Abs. 3 SGB XI
-    kinderlos_zuschlag: 6e-3
+    // 1,8% AN-Anteil (3,6% gesamt ab 01.07.2025)
+    kinderlosZuschlag: 6e-3
+    // +0,6% für Kinderlose ab 23 Jahren
   },
-  // Quelle: GKV-Spitzenverband
   krankenversicherung: {
-    // Allgemeiner Beitragssatz 14,6%, ermäßigt 14,0%, AN-Anteil 7,0%
-    basis: 0.07,
-    // Durchschnittlicher Zusatzbeitrag 2026: 2,9%, AN-Anteil 1,45%
-    zusatzbeitrag: 0.0145
+    basis: 0.073,
+    // 7,3% AN-Anteil (14,6% gesamt)
+    zusatzbeitrag: 0.0125
+    // 1,25% durchschn. Zusatzbeitrag 2026 (AN-Anteil)
   }
 };
 const BBG_2026 = {
-  // Einheitliche BBG Renten-/Arbeitslosenversicherung (seit 2025)
-  rente: 101400,
-  // BBG Kranken-/Pflegeversicherung
-  kranken: 69750
-};
-const FREIBETRAEGE_2026 = {
-  // Quelle: §9a Satz 1 Nr. 1a EStG - Arbeitnehmer-Pauschbetrag
-  werbungskosten: 1230,
-  // Quelle: §10c EStG - Sonderausgaben-Pauschbetrag
-  sonderausgaben: 36,
-  // Quelle: §24b EStG - Entlastungsbetrag für Alleinerziehende
-  alleinerziehend: 4260};
-const TARIF_2026 = {
-  // Zone 1: Grundfreibetrag
-  zone1_bis: 12348,
-  // Zone 2: Erste Progressionszone (14% bis 24%)
-  zone2_bis: 17799,
-  zone2_koeff1: 914.51,
-  // Koeffizient y²
-  zone2_koeff2: 1400,
-  // Koeffizient y
-  // Zone 3: Zweite Progressionszone (24% bis 42%)
-  zone3_bis: 69878,
-  zone3_koeff1: 173.1,
-  // Koeffizient z²
-  zone3_koeff2: 2397,
-  // Koeffizient z
-  zone3_konstante: 1034.87,
-  // Zone 4: Proportionalzone Spitzensteuersatz (42%)
-  zone4_bis: 277825,
-  zone4_satz: 0.42,
-  zone4_abzug: 11135.63,
-  // Zone 5: Reichensteuer (45%)
-  zone5_satz: 0.45,
-  zone5_abzug: 19470.38
+  renteArbeitslos: 96600,
+  // RV/AV bundesweit einheitlich
+  krankenPflege: 66150
+  // KV/PV
 };
 const STEUERKLASSEN = [
   { wert: 1, label: "Steuerklasse 1", beschreibung: "Ledig / Geschieden" },
@@ -74,96 +72,115 @@ const STEUERKLASSEN = [
   { wert: 5, label: "Steuerklasse 5", beschreibung: "Verheiratet (geringeres Einkommen)" },
   { wert: 6, label: "Steuerklasse 6", beschreibung: "Zweitjob / Nebenjob" }
 ];
-function berechneEinkommensteuer(zvE) {
-  zvE = Math.floor(zvE);
-  if (zvE <= 0) {
+function berechneEStTarif2026(zvE) {
+  if (zvE <= 0) return 0;
+  const { grundfreibetrag, zone2Ende, zone3Ende, zone4Ende } = TARIF_2026;
+  if (zvE <= grundfreibetrag) {
     return 0;
   }
-  let steuer;
-  if (zvE <= TARIF_2026.zone1_bis) {
-    steuer = 0;
-  } else if (zvE <= TARIF_2026.zone2_bis) {
-    const y = (zvE - TARIF_2026.zone1_bis) / 1e4;
-    steuer = (TARIF_2026.zone2_koeff1 * y + TARIF_2026.zone2_koeff2) * y;
-  } else if (zvE <= TARIF_2026.zone3_bis) {
-    const z = (zvE - TARIF_2026.zone2_bis) / 1e4;
-    steuer = (TARIF_2026.zone3_koeff1 * z + TARIF_2026.zone3_koeff2) * z + TARIF_2026.zone3_konstante;
-  } else if (zvE <= TARIF_2026.zone4_bis) {
-    steuer = TARIF_2026.zone4_satz * zvE - TARIF_2026.zone4_abzug;
-  } else {
-    steuer = TARIF_2026.zone5_satz * zvE - TARIF_2026.zone5_abzug;
+  if (zvE <= zone2Ende) {
+    const y = (zvE - grundfreibetrag) / 1e4;
+    const steuer2 = (TARIF_2026.zone2Y1 * y + TARIF_2026.zone2Y2) * y;
+    return Math.floor(steuer2);
   }
-  return Math.max(0, Math.floor(steuer));
-}
-function berechneVorsorgepauschale(jahresbrutto, kinderlos) {
-  const rvBrutto = Math.min(jahresbrutto, BBG_2026.rente);
-  const teilbetragRV = rvBrutto * SOZIALVERSICHERUNG_2026.rentenversicherung;
-  const kvBrutto = Math.min(jahresbrutto, BBG_2026.kranken);
-  const teilbetragKV = kvBrutto * (SOZIALVERSICHERUNG_2026.krankenversicherung.basis + SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag);
-  let teilbetragPV = kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.basis;
-  if (kinderlos) {
-    teilbetragPV += kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.kinderlos_zuschlag;
+  if (zvE <= zone3Ende) {
+    const z = (zvE - zone2Ende) / 1e4;
+    const steuer2 = (TARIF_2026.zone3Z1 * z + TARIF_2026.zone3Z2) * z + TARIF_2026.zone3Konst;
+    return Math.floor(steuer2);
   }
-  const teilbetragAV = rvBrutto * SOZIALVERSICHERUNG_2026.arbeitslosenversicherung;
-  const summeKVPVAV = teilbetragKV + teilbetragPV + teilbetragAV;
-  const begrenztKVPVAV = Math.min(summeKVPVAV, 1900);
-  return teilbetragRV + begrenztKVPVAV;
+  if (zvE <= zone4Ende) {
+    const steuer2 = TARIF_2026.zone4Faktor * zvE - TARIF_2026.zone4Abzug;
+    return Math.floor(steuer2);
+  }
+  const steuer = TARIF_2026.zone5Faktor * zvE - TARIF_2026.zone5Abzug;
+  return Math.floor(steuer);
 }
-function berechneLohnsteuer(jahresbrutto, steuerklasse, kinderlos) {
-  let werbungskosten = 0;
-  let sonderausgaben = 0;
-  let entlastungsbetrag = 0;
+function berechneLohnsteuer(jahresBrutto, steuerklasse, anzahlKinder = 0) {
+  const {
+    arbeitnehmerPauschbetrag,
+    sonderausgabenPauschbetrag,
+    entlastungsbetragAlleinerziehende,
+    entlastungsbetragProWeiteresKind
+  } = FREIBETRAEGE_2026;
+  const vorsorgepauschale = Math.min(jahresBrutto * 0.12, 3e3);
+  let zvE = jahresBrutto;
+  let steuer = 0;
   switch (steuerklasse) {
     case 1:
-      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
-      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
+      steuer = berechneEStTarif2026(zvE);
       break;
     case 2:
-      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
-      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
-      entlastungsbetrag = FREIBETRAEGE_2026.alleinerziehend;
+      const entlastung = entlastungsbetragAlleinerziehende + Math.max(0, anzahlKinder - 1) * entlastungsbetragProWeiteresKind;
+      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag - entlastung);
+      steuer = berechneEStTarif2026(zvE);
       break;
     case 3:
-      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
-      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben * 2;
+      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
+      steuer = berechneEStTarif2026(zvE / 2) * 2;
       break;
     case 4:
-      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
-      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      zvE = Math.max(0, jahresBrutto - vorsorgepauschale - arbeitnehmerPauschbetrag - sonderausgabenPauschbetrag);
+      steuer = berechneEStTarif2026(zvE);
       break;
     case 5:
-      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
-      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      zvE = Math.max(0, jahresBrutto - vorsorgepauschale);
+      steuer = berechneEStTarif2026SK5(zvE);
       break;
     case 6:
-      werbungskosten = 0;
-      sonderausgaben = 0;
+      zvE = jahresBrutto;
+      steuer = berechneEStTarif2026SK6(zvE);
       break;
   }
-  const vorsorgepauschale = berechneVorsorgepauschale(jahresbrutto, kinderlos);
-  const abzuege = werbungskosten + sonderausgaben + vorsorgepauschale + entlastungsbetrag;
-  const zvE = Math.max(0, jahresbrutto - abzuege);
-  if (steuerklasse === 3) {
-    const halbZvE = Math.max(0, zvE / 2);
-    const steuerHalb = berechneEinkommensteuer(halbZvE);
-    return steuerHalb * 2;
-  } else if (steuerklasse === 5 || steuerklasse === 6) {
-    return berechneEinkommensteuer(zvE);
-  } else {
-    return berechneEinkommensteuer(zvE);
-  }
+  return Math.max(0, Math.round(steuer));
 }
-function berechneSoli(lohnsteuer) {
-  const freigrenze = 18130;
-  if (lohnsteuer <= freigrenze) return 0;
-  if (lohnsteuer <= 33063) {
-    return Math.min(0.055 * lohnsteuer, 0.119 * (lohnsteuer - freigrenze));
+function berechneEStTarif2026SK5(zvE) {
+  if (zvE <= 0) return 0;
+  const { zone2Ende, zone3Ende, zone4Ende } = TARIF_2026;
+  if (zvE <= zone2Ende) {
+    const y = zvE / 1e4;
+    return Math.floor((TARIF_2026.zone2Y1 * y + TARIF_2026.zone2Y2) * y);
   }
-  return Math.floor(lohnsteuer * 0.055);
+  if (zvE <= zone3Ende) {
+    const z = (zvE - zone2Ende) / 1e4;
+    const basisSteuer = (TARIF_2026.zone2Y1 * (zone2Ende / 1e4) + TARIF_2026.zone2Y2) * (zone2Ende / 1e4);
+    return Math.floor(basisSteuer + (TARIF_2026.zone3Z1 * z + TARIF_2026.zone3Z2) * z);
+  }
+  if (zvE <= zone4Ende) {
+    return Math.floor(TARIF_2026.zone4Faktor * zvE - 8e3);
+  }
+  return Math.floor(TARIF_2026.zone5Faktor * zvE - 16e3);
 }
-function berechneKirchensteuer(lohnsteuer, bundesland) {
+function berechneEStTarif2026SK6(zvE) {
+  if (zvE <= 0) return 0;
+  const { zone2Ende, zone3Ende, zone4Ende } = TARIF_2026;
+  if (zvE <= zone2Ende) {
+    const y = zvE / 1e4;
+    return Math.floor((TARIF_2026.zone2Y1 * y + TARIF_2026.zone2Y2 * 1.1) * y);
+  }
+  if (zvE <= zone3Ende) {
+    const z = (zvE - zone2Ende) / 1e4;
+    const basisSteuer = (TARIF_2026.zone2Y1 * (zone2Ende / 1e4) + TARIF_2026.zone2Y2 * 1.1) * (zone2Ende / 1e4);
+    return Math.floor(basisSteuer + (TARIF_2026.zone3Z1 * z + TARIF_2026.zone3Z2) * z);
+  }
+  if (zvE <= zone4Ende) {
+    return Math.floor(TARIF_2026.zone4Faktor * zvE - 7e3);
+  }
+  return Math.floor(TARIF_2026.zone5Faktor * zvE - 15e3);
+}
+function berechneSoli(lohnsteuerJahr, steuerklasse) {
+  const freigrenze = steuerklasse === 3 ? 36260 : 18130;
+  if (lohnsteuerJahr <= freigrenze) {
+    return 0;
+  }
+  const ueberFreigrenze = lohnsteuerJahr - freigrenze;
+  const soliMilderung = ueberFreigrenze * 0.119;
+  const soliVoll = lohnsteuerJahr * 0.055;
+  return Math.round(Math.min(soliMilderung, soliVoll));
+}
+function berechneKirchensteuer(lohnsteuerJahr, bundesland) {
   const satz = ["BY", "BW"].includes(bundesland) ? 0.08 : 0.09;
-  return Math.floor(lohnsteuer * satz);
+  return Math.round(lohnsteuerJahr * satz);
 }
 function BruttoNettoRechner() {
   const [bruttoMonat, setBruttoMonat] = useState(4e3);
@@ -171,20 +188,22 @@ function BruttoNettoRechner() {
   const [kinderlos, setKinderlos] = useState(true);
   const [kirchensteuer, setKirchensteuer] = useState(false);
   const [bundesland, setBundesland] = useState("NW");
+  const [anzahlKinder, setAnzahlKinder] = useState(0);
   const ergebnis = useMemo(() => {
     const bruttoJahr = bruttoMonat * 12;
-    const rvBrutto = Math.min(bruttoJahr, BBG_2026.rente);
-    const kvBrutto = Math.min(bruttoJahr, BBG_2026.kranken);
+    const rvBrutto = Math.min(bruttoJahr, BBG_2026.renteArbeitslos);
+    const kvBrutto = Math.min(bruttoJahr, BBG_2026.krankenPflege);
     const rv = rvBrutto * SOZIALVERSICHERUNG_2026.rentenversicherung;
     const av = rvBrutto * SOZIALVERSICHERUNG_2026.arbeitslosenversicherung;
-    let pv = kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.basis;
+    let pvSatz = SOZIALVERSICHERUNG_2026.pflegeversicherung.basis;
     if (kinderlos) {
-      pv += kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.kinderlos_zuschlag;
+      pvSatz += SOZIALVERSICHERUNG_2026.pflegeversicherung.kinderlosZuschlag;
     }
+    const pv = kvBrutto * pvSatz;
     const kv = kvBrutto * (SOZIALVERSICHERUNG_2026.krankenversicherung.basis + SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag);
     const svGesamt = rv + av + pv + kv;
-    const lohnsteuerJahr = berechneLohnsteuer(bruttoJahr, steuerklasse, kinderlos);
-    const soliJahr = berechneSoli(lohnsteuerJahr);
+    const lohnsteuerJahr = berechneLohnsteuer(bruttoJahr, steuerklasse, anzahlKinder);
+    const soliJahr = berechneSoli(lohnsteuerJahr, steuerklasse);
     const kistJahr = kirchensteuer ? berechneKirchensteuer(lohnsteuerJahr, bundesland) : 0;
     const steuernGesamt = lohnsteuerJahr + soliJahr + kistJahr;
     const nettoJahr = bruttoJahr - svGesamt - steuernGesamt;
@@ -203,12 +222,13 @@ function BruttoNettoRechner() {
       soli: Math.round(soliJahr / 12),
       kist: Math.round(kistJahr / 12),
       steuernGesamt: Math.round(steuernGesamt / 12),
-      abzuegeGesamt: Math.round((svGesamt + steuernGesamt) / 12)
+      abzuegeGesamt: Math.round((svGesamt + steuernGesamt) / 12),
+      // Für Info
+      lohnsteuerJahr,
+      zvE: bruttoJahr - Math.min(bruttoJahr * 0.12, 3e3) - (steuerklasse <= 4 ? FREIBETRAEGE_2026.arbeitnehmerPauschbetrag + FREIBETRAEGE_2026.sonderausgabenPauschbetrag : 0)
     };
-  }, [bruttoMonat, steuerklasse, kinderlos, kirchensteuer, bundesland]);
+  }, [bruttoMonat, steuerklasse, kinderlos, kirchensteuer, bundesland, anzahlKinder]);
   const formatEuro = (n) => n.toLocaleString("de-DE") + " €";
-  const pvSatz = kinderlos ? "2,4%" : "1,8%";
-  const kvSatz = ((SOZIALVERSICHERUNG_2026.krankenversicherung.basis + SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag) * 100).toFixed(2) + "%";
   return /* @__PURE__ */ jsxs("div", { className: "max-w-2xl mx-auto", children: [
     /* @__PURE__ */ jsxs("div", { className: "bg-white rounded-2xl shadow-lg p-6 mb-6", children: [
       /* @__PURE__ */ jsxs("div", { className: "mb-6", children: [
@@ -257,6 +277,28 @@ function BruttoNettoRechner() {
           sk.wert
         )) }),
         /* @__PURE__ */ jsx("p", { className: "text-sm text-gray-500 mt-2 text-center", children: STEUERKLASSEN.find((sk) => sk.wert === steuerklasse)?.beschreibung })
+      ] }),
+      steuerklasse === 2 && /* @__PURE__ */ jsxs("div", { className: "mb-6", children: [
+        /* @__PURE__ */ jsx("label", { className: "block mb-2", children: /* @__PURE__ */ jsx("span", { className: "text-gray-700 font-medium", children: "Anzahl Kinder" }) }),
+        /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center gap-4", children: [
+          /* @__PURE__ */ jsx(
+            "button",
+            {
+              onClick: () => setAnzahlKinder(Math.max(1, anzahlKinder - 1)),
+              className: "w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 font-bold",
+              children: "−"
+            }
+          ),
+          /* @__PURE__ */ jsx("span", { className: "text-2xl font-bold w-12 text-center", children: anzahlKinder || 1 }),
+          /* @__PURE__ */ jsx(
+            "button",
+            {
+              onClick: () => setAnzahlKinder(Math.min(10, anzahlKinder + 1)),
+              className: "w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 font-bold",
+              children: "+"
+            }
+          )
+        ] })
       ] }),
       /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
         /* @__PURE__ */ jsxs("label", { className: "flex items-center gap-3 p-4 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors", children: [
@@ -326,11 +368,7 @@ function BruttoNettoRechner() {
               ] })
             ] }),
             /* @__PURE__ */ jsxs("div", { className: "flex justify-between", children: [
-              /* @__PURE__ */ jsxs("span", { children: [
-                "Krankenversicherung (",
-                kvSatz,
-                ")"
-              ] }),
+              /* @__PURE__ */ jsx("span", { children: "Krankenversicherung (~8,55%)" }),
               /* @__PURE__ */ jsxs("span", { children: [
                 "− ",
                 formatEuro(ergebnis.kv)
@@ -339,7 +377,7 @@ function BruttoNettoRechner() {
             /* @__PURE__ */ jsxs("div", { className: "flex justify-between", children: [
               /* @__PURE__ */ jsxs("span", { children: [
                 "Pflegeversicherung (",
-                pvSatz,
+                kinderlos ? "2,4%" : "1,8%",
                 ")"
               ] }),
               /* @__PURE__ */ jsxs("span", { children: [
@@ -405,40 +443,58 @@ function BruttoNettoRechner() {
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
             "Berechnung nach ",
-            /* @__PURE__ */ jsx("strong", { children: "§32a EStG Tarifformel 2026" })
+            /* @__PURE__ */ jsx("strong", { children: "§32a EStG Tarif 2026" }),
+            " und BMF-Programmablaufplan"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            /* @__PURE__ */ jsx("strong", { children: "Grundfreibetrag: 12.348 €" }),
-            " (Steuerfortentwicklungsgesetz)"
+            /* @__PURE__ */ jsxs("strong", { children: [
+              "Grundfreibetrag: ",
+              formatEuro(TARIF_2026.grundfreibetrag)
+            ] }),
+            " (Stand 01.01.2026)"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            "Beitragsbemessungsgrenzen ",
-            /* @__PURE__ */ jsx("strong", { children: "RV: 101.400 €" }),
-            " / ",
-            /* @__PURE__ */ jsx("strong", { children: "KV: 69.750 €" })
+            "BBG Rente/AV: ",
+            /* @__PURE__ */ jsxs("strong", { children: [
+              formatEuro(BBG_2026.renteArbeitslos),
+              "/Jahr"
+            ] }),
+            " | BBG KV/PV: ",
+            /* @__PURE__ */ jsxs("strong", { children: [
+              formatEuro(BBG_2026.krankenPflege),
+              "/Jahr"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
             "Durchschnittlicher KV-Zusatzbeitrag: ",
-            /* @__PURE__ */ jsx("strong", { children: "2,9%" })
+            /* @__PURE__ */ jsx("strong", { children: "2,5%" }),
+            " (Ihr Wert kann abweichen)"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
-          /* @__PURE__ */ jsx("span", { children: "✓" }),
+          /* @__PURE__ */ jsx("span", { children: "⚠️" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            "Exakte Werte via ",
+            "Vereinfachte Berechnung – exakte Werte via ",
             /* @__PURE__ */ jsx("a", { href: "https://www.bmf-steuerrechner.de", target: "_blank", rel: "noopener", className: "text-blue-600 hover:underline", children: "BMF-Steuerrechner" })
           ] })
         ] })
       ] })
+    ] }),
+    (steuerklasse === 5 || steuerklasse === 6) && /* @__PURE__ */ jsxs("div", { className: "bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6", children: [
+      /* @__PURE__ */ jsxs("h3", { className: "font-bold text-amber-800 mb-2", children: [
+        "⚠️ Hinweis zu Steuerklasse ",
+        steuerklasse
+      ] }),
+      /* @__PURE__ */ jsx("p", { className: "text-sm text-amber-700", children: steuerklasse === 5 ? "In Steuerklasse V entfallen Grundfreibetrag und Pauschbeträge – diese erhält Ihr Partner in Steuerklasse III. Die höhere monatliche Belastung gleicht sich bei der Jahressteuererklärung aus." : "In Steuerklasse VI (Zweitjob) gibt es keine Freibeträge. Die tatsächliche Steuerlast wird bei der Einkommensteuererklärung berechnet." })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "bg-white rounded-2xl shadow-lg p-6 mb-6", children: [
       /* @__PURE__ */ jsx("h3", { className: "font-bold text-gray-800 mb-3", children: "🏛️ Zuständige Behörden" }),
@@ -470,7 +526,7 @@ function BruttoNettoRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-4 bg-gray-50 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen (Stand: 2026)" }),
+      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Rechtsgrundlagen & Quellen (Stand: 2026)" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
         /* @__PURE__ */ jsx(
           "a",
@@ -485,31 +541,31 @@ function BruttoNettoRechner() {
         /* @__PURE__ */ jsx(
           "a",
           {
-            href: "https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026",
+            href: "https://www.bmf-steuerrechner.de/bl/bl2026/eingabeformbl2026.xhtml",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "Finanz-Tools – Einkommensteuer-Formeln 2026"
+            children: "BMF – Offizieller Lohnsteuerrechner 2026"
           }
         ),
         /* @__PURE__ */ jsx(
           "a",
           {
-            href: "https://www.bmf-steuerrechner.de",
+            href: "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "BMF – Offizieller Lohnsteuerrechner"
+            children: "BMF – Programmablaufplan Lohnsteuer 2026"
           }
         ),
         /* @__PURE__ */ jsx(
           "a",
           {
-            href: "https://www.lohn-info.de/vorsorgepauschale.html",
+            href: "https://www.bundesregierung.de/breg-de/aktuelles/sozialversicherung-rechengroessen-2387774",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "Lohn-Info – Vorsorgepauschale"
+            children: "Bundesregierung – Sozialversicherungs-Rechengrößen 2026"
           }
         )
       ] })

@@ -597,7 +597,7 @@ export default function AbfindungsRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Fünftelregelung:</strong> Gilt automatisch bei außerordentlichen Einkünften (Zusammenballung)</span>
+            <span><strong>Fünftelregelung ab 2025:</strong> Muss in der Steuererklärung beantragt werden (nicht mehr automatisch beim Lohnsteuerabzug)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -622,6 +622,7 @@ export default function AbfindungsRechner() {
       <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mb-6">
         <h3 className="font-bold text-red-800 mb-3">⚠️ Wichtige Hinweise</h3>
         <ul className="space-y-2 text-sm text-red-700">
+          <li>• <strong>NEU ab 2025:</strong> Die Fünftelregelung wird NICHT mehr automatisch vom Arbeitgeber beim Lohnsteuerabzug berücksichtigt – Sie müssen sie in der Steuererklärung beantragen!</li>
           <li>• <strong>Aufhebungsvertrag:</strong> Kann zu Sperrzeit (12 Wochen) beim Arbeitslosengeld führen</li>
           <li>• <strong>Kündigungsschutzklage:</strong> Oft bessere Verhandlungsposition für höhere Abfindung</li>
           <li>• <strong>Anwalt:</strong> Bei größeren Summen lohnt sich eine arbeitsrechtliche Beratung</li>

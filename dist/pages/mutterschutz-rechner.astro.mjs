@@ -8,17 +8,17 @@ export { renderers } from '../renderers.mjs';
 
 const MUTTERSCHUTZ_2026 = {
   kassenMax: 13,
-  // Max. 13€/Tag von der Krankenkasse
+  // Max. 13€/Tag von Krankenkasse (§ 24i Abs. 2 SGB V)
   bundesamtMax: 210,
-  // Max. 210€ gesamt vom Bundesamt (nicht GKV-versichert)
+  // Max. 210€ einmalig vom Bundesamt (§ 19 Abs. 2 MuSchG)
   schutzfristVor: 6,
-  // 6 Wochen vor Geburt
+  // 6 Wochen vor Geburt (§ 3 Abs. 1 MuSchG)
   schutzfristNach: 8,
-  // 8 Wochen nach Geburt
+  // 8 Wochen nach Geburt (§ 3 Abs. 2 MuSchG)
   schutzfristNachFrueh: 12,
-  // 12 Wochen bei Früh-/Mehrlingsgeburt
+  // 12 Wochen bei Früh-/Mehrlingsgeburt (§ 3 Abs. 2 Satz 2 MuSchG)
   tageProWoche: 7
-  // Kalendertage
+  // Kalendertage (nicht Arbeitstage!)
 };
 function berechneMutterschutz(bruttoMonat, nettoMonat, versicherung, fruehgeburt, mehrlinge, behinderung) {
   const tageVor = MUTTERSCHUTZ_2026.schutzfristVor * MUTTERSCHUTZ_2026.tageProWoche;

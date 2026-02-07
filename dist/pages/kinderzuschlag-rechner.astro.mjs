@@ -7,22 +7,27 @@ import { useState, useMemo } from 'react';
 export { renderers } from '../renderers.mjs';
 
 const KINDERZUSCHLAG_2026 = {
-  maxProKind: 292,
-  // Maximaler KiZ pro Kind (Stand 2026)
+  maxProKind: 297,
+  // Maximaler KiZ pro Kind seit 01.01.2025 (§ 6a Abs. 2 BKGG)
   mindesteinkommenAlleinerziehend: 600,
-  // Mindestbrutto Alleinerziehende
+  // Mindestbrutto Alleinerziehende (§ 6a Abs. 1 Nr. 2 BKGG)
   mindesteinkommenPaar: 900,
-  // Mindestbrutto Paare
+  // Mindestbrutto Paare (§ 6a Abs. 1 Nr. 2 BKGG)
   kindergeld2026: 255
-  // Kindergeld pro Kind (Stand 2026)
+  // Kindergeld pro Kind seit 2025 (§ 6 BKGG)
 };
 function berechneMindestsicherungsbedarf(anzahlErwachsene, kinderUnter6, kinder6bis13, kinder14bis17, warmmiete, heizkosten) {
   const regelbedarf = {
     alleinstehend: 563,
+    // Regelbedarfsstufe 1 (§ 28 SGB XII)
     paar: 506 * 2,
+    // Regelbedarfsstufe 2 × 2 (§ 28 SGB XII)
     kind0bis5: 357,
+    // Regelbedarfsstufe 6 (§ 28 SGB XII)
     kind6bis13: 390,
+    // Regelbedarfsstufe 5 (§ 28 SGB XII)
     kind14bis17: 471
+    // Regelbedarfsstufe 4 (§ 28 SGB XII)
   };
   let bedarf = 0;
   if (anzahlErwachsene === 1) {
@@ -457,8 +462,8 @@ function KinderzuschlagRechner() {
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            /* @__PURE__ */ jsx("strong", { children: "Bis zu 292 € pro Kind" }),
-            " zusätzlich zum Kindergeld"
+            /* @__PURE__ */ jsx("strong", { children: "Bis zu 297 € pro Kind" }),
+            " zusätzlich zum Kindergeld (seit 01.01.2025)"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [

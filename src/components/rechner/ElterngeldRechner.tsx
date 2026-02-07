@@ -293,7 +293,10 @@ export default function ElterngeldRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>65-67% des Nettos</strong> (je nach Einkommen vor der Geburt)</span>
+            <span><strong>65-100% des Nettos</strong> je nach Einkommen (§ 2 BEEG):<br/>
+              • Unter 1.000€: 67% + 0,1% je 2€ (max. 100%)<br/>
+              • 1.000-1.200€: 67%<br/>
+              • Über 1.200€: sinkt auf 65%</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
