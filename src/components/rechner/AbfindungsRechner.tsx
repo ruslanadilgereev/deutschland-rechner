@@ -1,26 +1,62 @@
 import { useState, useMemo } from 'react';
 
-// 2025 Einkommensteuer-Tarif (§32a EStG)
+// ═══════════════════════════════════════════════════════════════════════════════
+// Abfindungsrechner mit Fünftelregelung (§ 34 EStG)
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// RECHTSGRUNDLAGE:
+// - § 34 Abs. 1 EStG: Außerordentliche Einkünfte (Fünftelregelung)
+// - § 24 Nr. 1 EStG: Entschädigungen für entgangene Einnahmen
+// - § 32a EStG: Einkommensteuertarif
+//
+// QUELLEN:
+// - BMF-Steuerrechner: https://www.bmf-steuerrechner.de
+// - Gesetze im Internet: https://www.gesetze-im-internet.de/estg/__34.html
+//
+// FÜNFTELREGELUNG - BERECHNUNG:
+// 1. Steuer auf zvE ohne Abfindung berechnen
+// 2. Steuer auf zvE + 1/5 der Abfindung berechnen
+// 3. Differenz (Mehrsteuer pro Fünftel) × 5 = Steuer auf Abfindung
+//
+// WICHTIG AB 2025:
+// Die Fünftelregelung wird NICHT mehr automatisch beim Lohnsteuerabzug durch
+// den Arbeitgeber berücksichtigt! Sie muss in der Steuererklärung beantragt werden.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Einkommensteuer-Tarif 2025 (§ 32a EStG)
+// Quelle: Bundesgesetzblatt, BMF
 const GRUNDFREIBETRAG_2025 = 12096;
 
 // Einkommensteuer nach Tarif 2025 berechnen
+// Formel nach § 32a Abs. 1 EStG
 function berechneEinkommensteuer(zvE: number): number {
+  // Nullzone: Grundfreibetrag
   if (zvE <= GRUNDFREIBETRAG_2025) return 0;
   
+  // Zone 2: Progressionszone I (12.097€ - 17.005€)
+  // ESt = (932,30 × y + 1.400) × y
+  // wobei y = (zvE - 12.096) / 10.000
   if (zvE <= 17005) {
     const y = (zvE - GRUNDFREIBETRAG_2025) / 10000;
     return Math.floor((932.30 * y + 1400) * y);
   }
   
+  // Zone 3: Progressionszone II (17.006€ - 66.760€)
+  // ESt = (176,64 × z + 2.397) × z + 1.025,38
+  // wobei z = (zvE - 17.005) / 10.000
   if (zvE <= 66760) {
     const z = (zvE - 17005) / 10000;
     return Math.floor((176.64 * z + 2397) * z + 1025.38);
   }
   
+  // Zone 4: Proportionalzone I (66.761€ - 277.825€)
+  // ESt = 0,42 × zvE - 10.636,31
   if (zvE <= 277825) {
     return Math.floor(0.42 * zvE - 10636.31);
   }
   
+  // Zone 5: Proportionalzone II / Reichensteuer (ab 277.826€)
+  // ESt = 0,45 × zvE - 18.971,94
   return Math.floor(0.45 * zvE - 18971.94);
 }
 
@@ -714,12 +750,28 @@ export default function AbfindungsRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">
           <a 
+            href="https://www.bmf-steuerrechner.de"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline font-medium"
+          >
+            ★ BMF Steuerrechner – Offizielle Einkommensteuerberechnung
+          </a>
+          <a 
             href="https://www.gesetze-im-internet.de/estg/__34.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             § 34 EStG – Außerordentliche Einkünfte (Fünftelregelung)
+          </a>
+          <a 
+            href="https://www.gesetze-im-internet.de/estg/__32a.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 32a EStG – Einkommensteuertarif 2025
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/kschg/__1a.html"
@@ -745,15 +797,12 @@ export default function AbfindungsRechner() {
           >
             BMAS – Kündigung und Aufhebungsvertrag
           </a>
-          <a 
-            href="https://www.bmf-steuerrechner.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            BMF Steuerrechner – Offizielle Steuerberechnung
-          </a>
         </div>
+        <p className="text-xs text-gray-500 mt-3">
+          <strong>Fünftelregelung (§ 34 Abs. 1 EStG):</strong><br/>
+          ESt(Abfindung) = 5 × [ESt(zvE + ⅕·Abfindung) − ESt(zvE)]<br/>
+          Einkommensteuertarif 2025: Grundfreibetrag 12.096€
+        </p>
       </div>
     </div>
   );

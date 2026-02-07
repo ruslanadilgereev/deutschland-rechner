@@ -694,11 +694,31 @@ function AbfindungsRechner() {
         /* @__PURE__ */ jsx(
           "a",
           {
+            href: "https://www.bmf-steuerrechner.de",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline font-medium",
+            children: "★ BMF Steuerrechner – Offizielle Einkommensteuerberechnung"
+          }
+        ),
+        /* @__PURE__ */ jsx(
+          "a",
+          {
             href: "https://www.gesetze-im-internet.de/estg/__34.html",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
             children: "§ 34 EStG – Außerordentliche Einkünfte (Fünftelregelung)"
+          }
+        ),
+        /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://www.gesetze-im-internet.de/estg/__32a.html",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline",
+            children: "§ 32a EStG – Einkommensteuertarif 2025"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -730,17 +750,14 @@ function AbfindungsRechner() {
             className: "block text-sm text-blue-600 hover:underline",
             children: "BMAS – Kündigung und Aufhebungsvertrag"
           }
-        ),
-        /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://www.bmf-steuerrechner.de",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "block text-sm text-blue-600 hover:underline",
-            children: "BMF Steuerrechner – Offizielle Steuerberechnung"
-          }
         )
+      ] }),
+      /* @__PURE__ */ jsxs("p", { className: "text-xs text-gray-500 mt-3", children: [
+        /* @__PURE__ */ jsx("strong", { children: "Fünftelregelung (§ 34 Abs. 1 EStG):" }),
+        /* @__PURE__ */ jsx("br", {}),
+        "ESt(Abfindung) = 5 × [ESt(zvE + ⅕·Abfindung) − ESt(zvE)]",
+        /* @__PURE__ */ jsx("br", {}),
+        "Einkommensteuertarif 2025: Grundfreibetrag 12.096€"
       ] })
     ] })
   ] });

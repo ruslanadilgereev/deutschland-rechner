@@ -7,19 +7,35 @@ import { useState, useMemo } from 'react';
 export { renderers } from '../renderers.mjs';
 
 const MIDIJOB = {
+  // Grenzen 2025 (01.01.2025 - 31.12.2025)
   untergrenze: 556.01,
-  // Ab 556,01€ beginnt der Midijob (Minijob-Grenze 556€ + 1 Cent, seit 01.01.2025)
+  // Geringfügigkeitsgrenze + 1 Cent (Mindestlohn 12,82€/h × 43,33h)
   obergrenze: 2e3,
-  // Obergrenze seit 01.01.2023 (erhöht von 1.600€)
+  // Obergrenze seit 01.01.2023
+  // OFFIZIELLER Faktor F 2025 (vom BMAS festgelegt, NICHT selbst berechnen!)
+  // F = 28% / durchschnittlicher Gesamtsozialversicherungsbeitragssatz
+  // Quelle: DAK, veröffentlicht jährlich
+  faktorF_2025: 0.6683,
+  // Gültig 01.01.2025 - 31.12.2025
+  // Vereinfachte Formeln 2025 (aus DAK-Dokumentation)
+  // Diese Koeffizienten sind EXAKT und sollten nicht gerundet werden
+  formelGesamtbeitrag: {
+    faktor: 1.1277183,
+    offset: 255.4365651
+  },
+  formelANAnteil: {
+    faktor: 1.3850416,
+    offset: 770.0831025
+  },
   // Beitragssätze 2025
   krankenversicherung: 14.6,
-  // Durchschnittlicher Zusatzbeitrag 2025 (erhöht von 1,7%)
+  // Durchschnittlicher Zusatzbeitrag 2025
   rentenversicherung: 18.6,
   // RV-Beitrag
   arbeitslosenversicherung: 2.6,
   // AV-Beitrag
   pflegeversicherung: 3.4,
-  // Basis-PV-Satz
+  // PV Basis-Satz
   pvZuschlagKinderlos: 0.6};
 function MidijobRechner() {
   const [bruttolohn, setBruttolohn] = useState(1e3);
@@ -34,33 +50,57 @@ function MidijobRechner() {
     const istMinijob = bruttolohn <= 556;
     const istVolljob = bruttolohn > MIDIJOB.obergrenze;
     const gesamtBeitragssatz = MIDIJOB.krankenversicherung + zusatzbeitragKV + MIDIJOB.rentenversicherung + MIDIJOB.arbeitslosenversicherung + MIDIJOB.pflegeversicherung;
-    const F = 28 / gesamtBeitragssatz;
-    const untergrenze = MIDIJOB.untergrenze;
-    const obergrenze = MIDIJOB.obergrenze;
-    const spanne = obergrenze - untergrenze;
-    const faktor2 = obergrenze / spanne - untergrenze * F / spanne;
+    const F = MIDIJOB.faktorF_2025;
     let beitragspflichtigeEinnahme = bruttolohn;
     if (istMidijob) {
-      beitragspflichtigeEinnahme = F * untergrenze + faktor2 * (bruttolohn - untergrenze);
+      beitragspflichtigeEinnahme = MIDIJOB.formelGesamtbeitrag.faktor * bruttolohn - MIDIJOB.formelGesamtbeitrag.offset;
+      beitragspflichtigeEinnahme = Math.max(0, Math.min(bruttolohn, beitragspflichtigeEinnahme));
     }
-    const gesamtBeitragAufBBG = beitragspflichtigeEinnahme * (gesamtBeitragssatz / 100);
-    const agAnteilKV = bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
-    const agAnteilRV = bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
-    const agAnteilAV = bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
-    const agAnteilPV = bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
-    const agGesamtAnteil = agAnteilKV + agAnteilRV + agAnteilAV + agAnteilPV;
-    let anGesamtAnteil = istMidijob ? gesamtBeitragAufBBG - agGesamtAnteil : 0;
-    if (istVolljob) {
-      anGesamtAnteil = bruttolohn * (gesamtBeitragssatz / 2 / 100);
+    let reduziertesEntgeltAN = bruttolohn;
+    if (istMidijob) {
+      reduziertesEntgeltAN = MIDIJOB.formelANAnteil.faktor * bruttolohn - MIDIJOB.formelANAnteil.offset;
+      reduziertesEntgeltAN = Math.max(0, reduziertesEntgeltAN);
     }
-    const kvSatz = (MIDIJOB.krankenversicherung + zusatzbeitragKV) / gesamtBeitragssatz;
-    const rvSatz = MIDIJOB.rentenversicherung / gesamtBeitragssatz;
-    const avSatz = MIDIJOB.arbeitslosenversicherung / gesamtBeitragssatz;
-    const pvSatz = MIDIJOB.pflegeversicherung / gesamtBeitragssatz;
-    let anKV = anGesamtAnteil * kvSatz;
-    let anRV = anGesamtAnteil * rvSatz;
-    let anAV = anGesamtAnteil * avSatz;
-    let anPV = anGesamtAnteil * pvSatz;
+    const berechneGesamtbeitrag = (be, satz) => {
+      return Math.round(be * (satz / 2 / 100) * 100) / 100 * 2;
+    };
+    const berechneANAnteil = (rbe, satz) => {
+      return Math.round(rbe * (satz / 2 / 100) * 100) / 100;
+    };
+    let anKV, anRV, anAV, anPV;
+    let agKVCalc, agRVCalc, agAVCalc, agPVCalc;
+    if (istMidijob) {
+      const gesamtKV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.krankenversicherung + zusatzbeitragKV);
+      const gesamtRV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.rentenversicherung);
+      const gesamtAV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.arbeitslosenversicherung);
+      const gesamtPV = berechneGesamtbeitrag(beitragspflichtigeEinnahme, MIDIJOB.pflegeversicherung);
+      anKV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.krankenversicherung + zusatzbeitragKV);
+      anRV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.rentenversicherung);
+      anAV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.arbeitslosenversicherung);
+      anPV = berechneANAnteil(reduziertesEntgeltAN, MIDIJOB.pflegeversicherung);
+      agKVCalc = gesamtKV - anKV;
+      agRVCalc = gesamtRV - anRV;
+      agAVCalc = gesamtAV - anAV;
+      agPVCalc = gesamtPV - anPV;
+    } else if (istVolljob) {
+      anKV = bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
+      anRV = bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
+      anAV = bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
+      anPV = bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
+      agKVCalc = anKV;
+      agRVCalc = anRV;
+      agAVCalc = anAV;
+      agPVCalc = anPV;
+    } else {
+      anKV = 0;
+      anRV = 0;
+      anAV = 0;
+      anPV = 0;
+      agKVCalc = 0;
+      agRVCalc = 0;
+      agAVCalc = 0;
+      agPVCalc = 0;
+    }
     let pvZuschlag = 0;
     if (kinderlos && alter >= 23) {
       pvZuschlag = bruttolohn * (MIDIJOB.pvZuschlagKinderlos / 100);
@@ -73,13 +113,13 @@ function MidijobRechner() {
     anPV = anPV + pvZuschlag - pvAbschlag;
     if (anPV < 0) anPV = 0;
     const anSozialversicherung = anKV + anRV + anAV + anPV;
-    const normalerANAnteil = bruttolohn * (gesamtBeitragssatz / 2 / 100);
+    const normalerANAnteil = bruttolohn * (gesamtBeitragssatz / 2 / 100) + pvZuschlag - pvAbschlag;
     const ersparnis = normalerANAnteil - anSozialversicherung;
     const ersparnisProzent = normalerANAnteil > 0 ? ersparnis / normalerANAnteil * 100 : 0;
-    const agKV = bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
-    const agRV = bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
-    const agAV = bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
-    const agPV = bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
+    const agKV = istMidijob ? agKVCalc : bruttolohn * ((MIDIJOB.krankenversicherung + zusatzbeitragKV) / 2 / 100);
+    const agRV = istMidijob ? agRVCalc : bruttolohn * (MIDIJOB.rentenversicherung / 2 / 100);
+    const agAV = istMidijob ? agAVCalc : bruttolohn * (MIDIJOB.arbeitslosenversicherung / 2 / 100);
+    const agPV = istMidijob ? agPVCalc : bruttolohn * (MIDIJOB.pflegeversicherung / 2 / 100);
     const agUmlageU1 = bruttolohn * 0.016;
     const agUmlageU2 = bruttolohn * 6e-3;
     const agInsolvenz = bruttolohn * 15e-4;
@@ -106,7 +146,8 @@ function MidijobRechner() {
       // Berechnungsgrundlage
       bruttolohn,
       beitragspflichtigeEinnahme: Math.round(beitragspflichtigeEinnahme * 100) / 100,
-      faktorF: Math.round(F * 1e4) / 1e4,
+      reduziertesEntgeltAN: Math.round(reduziertesEntgeltAN * 100) / 100,
+      faktorF: F,
       gesamtBeitragssatz: Math.round(gesamtBeitragssatz * 100) / 100,
       // AN-Anteile
       anKV: Math.round(anKV * 100) / 100,
@@ -377,18 +418,20 @@ function MidijobRechner() {
       /* @__PURE__ */ jsxs("div", { className: "space-y-3 text-sm", children: [
         ergebnis.istMidijob && /* @__PURE__ */ jsxs("div", { className: "bg-purple-50 border border-purple-200 rounded-xl p-3 mb-4", children: [
           /* @__PURE__ */ jsxs("p", { className: "text-purple-800 text-xs", children: [
-            /* @__PURE__ */ jsx("strong", { children: "Beitragsbemessungsgrundlage:" }),
+            /* @__PURE__ */ jsx("strong", { children: "Beitragspflichtige Einnahme (BE):" }),
             " ",
             formatEuro(ergebnis.beitragspflichtigeEinnahme),
-            /* @__PURE__ */ jsxs("span", { className: "opacity-70", children: [
-              " (statt ",
-              formatEuro(bruttolohn),
-              ")"
-            ] })
+            /* @__PURE__ */ jsx("span", { className: "opacity-70 ml-1", children: "(für Gesamtbeitrag)" })
           ] }),
-          /* @__PURE__ */ jsxs("p", { className: "text-purple-600 text-xs mt-1", children: [
-            "Faktor F = ",
-            ergebnis.faktorF.toFixed(4),
+          /* @__PURE__ */ jsxs("p", { className: "text-purple-800 text-xs mt-1", children: [
+            /* @__PURE__ */ jsx("strong", { children: "Reduziertes Entgelt (RBE):" }),
+            " ",
+            formatEuro(ergebnis.reduziertesEntgeltAN),
+            /* @__PURE__ */ jsx("span", { className: "opacity-70 ml-1", children: "(für AN-Anteil)" })
+          ] }),
+          /* @__PURE__ */ jsxs("p", { className: "text-purple-600 text-xs mt-2", children: [
+            "Offizieller Faktor F (2025) = ",
+            ergebnis.faktorF,
             " | Gesamtbeitragssatz = ",
             ergebnis.gesamtBeitragssatz,
             "%"
@@ -539,7 +582,7 @@ function MidijobRechner() {
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
             /* @__PURE__ */ jsx("strong", { children: "Wer profitiert:" }),
-            " Arbeitnehmer mit Bruttolohn zwischen 603,01€ und 2.000€"
+            " Arbeitnehmer mit Bruttolohn zwischen 556,01€ und 2.000€ (2025)"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
@@ -716,8 +759,18 @@ function MidijobRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-4 bg-gray-50 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen" }),
+      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen & Berechnungsgrundlagen" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
+        /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline font-medium",
+            children: "★ DAK – Offizielle Formeln Übergangsbereich 2025"
+          }
+        ),
         /* @__PURE__ */ jsx(
           "a",
           {
@@ -725,7 +778,7 @@ function MidijobRechner() {
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "§ 20 SGB IV – Übergangsbereich (Gesetze im Internet)"
+            children: "§ 20 SGB IV – Beitragsberechnung bei Beschäftigten"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -741,23 +794,22 @@ function MidijobRechner() {
         /* @__PURE__ */ jsx(
           "a",
           {
-            href: "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2024-2132292",
+            href: "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/minijobs-und-midijobs/beitragspflichtiges-entgelt-fuer-uebergangsbereich-berechnen-2037942",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "Bundesregierung – Mindestlohn"
-          }
-        ),
-        /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://www.lohn-info.de/uebergangsbereich.html",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "block text-sm text-blue-600 hover:underline",
-            children: "Lohn-Info – Übergangsbereich Rechner & Formel"
+            children: "Techniker Krankenkasse – Midijobrechner"
           }
         )
+      ] }),
+      /* @__PURE__ */ jsxs("p", { className: "text-xs text-gray-500 mt-3", children: [
+        /* @__PURE__ */ jsx("strong", { children: "Berechnungsformel 2025:" }),
+        /* @__PURE__ */ jsx("br", {}),
+        "BE = 1,1277183 × Brutto − 255,4365651 (Gesamtbeitrag)",
+        /* @__PURE__ */ jsx("br", {}),
+        "RBE = 1,3850416 × Brutto − 770,0831025 (AN-Anteil)",
+        /* @__PURE__ */ jsx("br", {}),
+        "Faktor F = 0,6683 (offiziell vom BMAS)"
       ] })
     ] })
   ] });

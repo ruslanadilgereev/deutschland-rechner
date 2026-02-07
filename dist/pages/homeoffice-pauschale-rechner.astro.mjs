@@ -626,8 +626,18 @@ function HomeofficeRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-4 bg-gray-50 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen" }),
+      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen & Rechtsgrundlagen" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
+        /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://www.gesetze-im-internet.de/estg/__4.html",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline font-medium",
+            children: "★ § 4 Abs. 5 Nr. 6c EStG – Tagespauschale (Gesetzestext)"
+          }
+        ),
         /* @__PURE__ */ jsx(
           "a",
           {
@@ -636,16 +646,6 @@ function HomeofficeRechner() {
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
             children: "BMF – FAQ Homeoffice-Pauschale"
-          }
-        ),
-        /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://www.gesetze-im-internet.de/estg/__4.html",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "block text-sm text-blue-600 hover:underline",
-            children: "EStG §4 Abs. 5 Nr. 6c – Homeoffice-Pauschale"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -668,6 +668,11 @@ function HomeofficeRechner() {
             children: "Haufe – Homeoffice-Pauschale dauerhaft"
           }
         )
+      ] }),
+      /* @__PURE__ */ jsxs("p", { className: "text-xs text-gray-500 mt-3", children: [
+        /* @__PURE__ */ jsx("strong", { children: "Offizielle Berechnung:" }),
+        /* @__PURE__ */ jsx("br", {}),
+        "Pauschale = Homeoffice-Tage × 6€ (max. 210 Tage = 1.260€/Jahr)"
       ] })
     ] })
   ] });

@@ -1,27 +1,62 @@
 import { useState, useMemo } from 'react';
 
-// Bürgergeld Regelsätze 2026 (unverändert gegenüber 2025 - Besitzschutzregelung § 28a Abs. 5 SGB XII)
+// ============================================================================
+// Bürgergeld Berechnungsgrundlagen 2025/2026
+// ============================================================================
+// Rechtsgrundlage: SGB II (Sozialgesetzbuch Zweites Buch)
+// - § 20 SGB II: Regelbedarf zur Sicherung des Lebensunterhalts
+// - § 21 SGB II: Mehrbedarfe
+// - § 22 SGB II: Bedarfe für Unterkunft und Heizung (KdU)
+// - § 11b SGB II: Absetzbeträge (Freibeträge vom Einkommen)
+// - § 72 SGB II: Kindersofortzuschlag
+//
+// Regelsätze 2025/2026: NULLRUNDE - keine Erhöhung gegenüber 2024
 // Quelle: https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676
 // Quelle: https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/Buergergeld/buergergeld.html
+// Quelle: https://www.buergergeld.org/sgb-ii/regelsatz/
+// ============================================================================
+
+// Regelbedarfsstufen 2025/2026 (§ 20 SGB II, § 8 RBEG)
+// Stand: 01.01.2024, unverändert für 2025 und 2026 (Besitzschutzregelung)
 const REGELSAETZE_2026 = {
-  alleinstehend: 563,      // Regelbedarfsstufe 1
-  partner: 506,            // Regelbedarfsstufe 2 (je Partner)
-  kind_14_17: 471,         // Regelbedarfsstufe 4
-  kind_6_13: 390,          // Regelbedarfsstufe 5
-  kind_0_5: 357,           // Regelbedarfsstufe 6
+  // Regelbedarfsstufe 1: Alleinstehende/Alleinerziehende
+  alleinstehend: 563,
+  
+  // Regelbedarfsstufe 2: Volljährige Partner in Bedarfsgemeinschaft (je 90%)
+  partner: 506,
+  
+  // Regelbedarfsstufe 3: Erwachsene unter 25 im Haushalt der Eltern / Behinderte in Einrichtung
+  unter25_bei_eltern: 451,
+  
+  // Regelbedarfsstufe 4: Jugendliche 14-17 Jahre
+  kind_14_17: 471,
+  
+  // Regelbedarfsstufe 5: Kinder 6-13 Jahre
+  kind_6_13: 390,
+  
+  // Regelbedarfsstufe 6: Kinder 0-5 Jahre
+  kind_0_5: 357,
 };
 
-// Kindersofortzuschlag nach § 72 SGB II - 25€ pro Kind zusätzlich zum Regelbedarf
-// Quelle: https://www.arbeitsagentur.de/lexikon/kindersofortzuschlag
+// Kindersofortzuschlag nach § 72 SGB II
+// 25€ pro Kind zusätzlich zum Regelbedarf für Kinder in RBS 3, 4, 5, 6
+// Quelle: https://www.buergergeld.org/news/kindersofortzuschlag/
 const KINDERSOFORTZUSCHLAG = 25;
 
-// Freibeträge vom Einkommen 2026 (§ 11b SGB II - unverändert)
+// ============================================================================
+// Freibeträge vom Erwerbseinkommen nach § 11b SGB II
+// ============================================================================
+// Bei Erwerbstätigkeit wird nicht das gesamte Einkommen angerechnet!
+// Quelle: https://www.buergergeld.org/sgb-ii/einkommen/
 const FREIBETRAEGE = {
-  grundfreibetrag: 100,            // Grundfreibetrag
-  freibetrag_100_520: 0.20,        // 20% von 100-520€
-  freibetrag_520_1000: 0.30,       // 30% von 520-1000€
-  freibetrag_1000_1200: 0.10,      // 10% von 1000-1200€ (ohne Kind)
-  freibetrag_1000_1500: 0.10,      // 10% von 1000-1500€ (mit Kind)
+  // § 11b Abs. 2 SGB II: Grundfreibetrag
+  grundfreibetrag: 100,
+  
+  // § 11b Abs. 3 SGB II: Erwerbstätigenfreibetrag (gestaffelt)
+  freibetrag_100_520: 0.20,    // 20% von 100,01€ bis 520€
+  freibetrag_520_1000: 0.30,   // 30% von 520,01€ bis 1.000€
+  freibetrag_1000_1200: 0.10,  // 10% von 1.000,01€ bis 1.200€ (ohne Kind)
+  freibetrag_1000_1500: 0.10,  // 10% von 1.000,01€ bis 1.500€ (mit Kind)
 };
 
 interface Kind {

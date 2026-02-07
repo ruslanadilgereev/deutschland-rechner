@@ -8,81 +8,97 @@ export { renderers } from '../renderers.mjs';
 
 const MIETSTUFEN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const HOECHSTBETRAEGE = {
-  "I": [491, 604, 721, 840, 959, 1073, 1188, 1302],
-  // 1-8 Personen (gerundet)
-  "II": [538, 660, 787, 918, 1047, 1174, 1300, 1427],
-  "III": [586, 718, 857, 998, 1140, 1278, 1417, 1555],
-  "IV": [641, 786, 937, 1090, 1247, 1398, 1550, 1701],
-  "V": [692, 847, 1009, 1178, 1345, 1506, 1668, 1829],
-  "VI": [745, 912, 1087, 1267, 1448, 1628, 1809, 1991],
-  "VII": [807, 987, 1175, 1371, 1567, 1762, 1958, 2153]
+  "I": [490.6, 604.4, 720.8, 840.2, 958.6],
+  "II": [537.6, 660.4, 786.8, 918.2, 1046.6],
+  "III": [585.6, 718.4, 856.8, 998.2, 1139.6],
+  "IV": [640.6, 786.4, 936.8, 1090.2, 1246.6],
+  "V": [691.6, 847.4, 1008.8, 1178.2, 1344.6],
+  "VI": [744.6, 912.4, 1086.8, 1267.2, 1447.6],
+  "VII": [806.6, 987.4, 1174.8, 1371.2, 1566.6]
+};
+const MEHRBETRAG_PRO_PERSON = {
+  "I": 114.4,
+  "II": 126.4,
+  "III": 138.4,
+  "IV": 151.4,
+  "V": 161.4,
+  "VI": 181.4,
+  "VII": 195.4
 };
 const KOEFFIZIENTEN = {
-  1: { a: 0.04, b: 54e-6, c: 265e-6 },
-  2: { a: 0.03, b: 35e-6, c: 214e-6 },
-  3: { a: 0.02, b: 24e-6, c: 18e-5 },
-  4: { a: 0.01, b: 16e-6, c: 156e-6 },
-  5: { a: 0, b: 11e-6, c: 139e-6 },
-  6: { a: -0.01, b: 8e-6, c: 125e-6 },
-  7: { a: -0.015, b: 6e-6, c: 115e-6 },
-  8: { a: -0.02, b: 5e-6, c: 107e-6 },
-  9: { a: -0.025, b: 4e-6, c: 1e-4 },
-  10: { a: -0.03, b: 35e-7, c: 94e-6 },
-  11: { a: -0.035, b: 3e-6, c: 89e-6 },
-  12: { a: -0.04, b: 25e-7, c: 85e-6 }
+  1: { a: 0.04, b: 4991e-7, c: 462e-7 },
+  // 0.04, 0.0004991, 0.0000462
+  2: { a: 0.03, b: 3716e-7, c: 345e-7 },
+  // 0.03, 0.0003716, 0.0000345
+  3: { a: 0.02, b: 3035e-7, c: 278e-7 },
+  // 0.02, 0.0003035, 0.0000278
+  4: { a: 0.01, b: 2251e-7, c: 2e-5 },
+  // 0.01, 0.0002251, 0.00002
+  5: { a: 0, b: 1985e-7, c: 195e-7 },
+  // 0, 0.0001985, 0.0000195
+  6: { a: -0.01, b: 1792e-7, c: 188e-7 },
+  // -0.01, 0.0001792, 0.0000188
+  7: { a: -0.02, b: 1657e-7, c: 187e-7 },
+  // -0.02, 0.0001657, 0.0000187
+  8: { a: -0.03, b: 1648e-7, c: 187e-7 },
+  // -0.03, 0.0001648, 0.0000187
+  9: { a: -0.04, b: 1432e-7, c: 188e-7 },
+  // -0.04, 0.0001432, 0.0000188
+  10: { a: -0.06, b: 13e-5, c: 188e-7 },
+  // -0.06, 0.00013, 0.0000188
+  11: { a: -0.09, b: 1188e-7, c: 222e-7 },
+  // -0.09, 0.0001188, 0.0000222
+  12: { a: -0.12, b: 1152e-7, c: 251e-7 }
+  // -0.12, 0.0001152, 0.0000251
 };
-const HEIZKOSTEN_ENTLASTUNG = {
-  1: 14.4,
-  2: 18.6,
-  3: 22.2,
-  4: 25.8,
-  5: 29.4,
-  6: 33,
-  7: 36.6,
-  8: 40.2
-};
-const HEIZKOSTEN_ZUSATZ_PRO_PERSON = 3.6;
-const KLIMAKOMPONENTE = {
-  1: 20,
-  2: 28,
-  3: 35,
-  4: 42,
-  5: 49,
-  6: 56,
-  7: 63,
-  8: 70
-};
+const ZUSATZ_AB_13_PERSON = 57;
 const FREIBETRAEGE = {
-  // Monatl. Mindesteinkommen (etwa)
+  // Werbungskostenpauschale (jährlich, § 16 Abs. 1 Nr. 2 WoGG)
+  werbungskosten_pauschal: 1230,
+  // 102.50€/Monat
+  // Erwerbstätigenfreibetrag (§ 17 Nr. 3 WoGG): 10% vom Brutto, max. 100€/Monat = 1200€/Jahr
+  erwerbstaetig_prozent: 0.1,
+  erwerbstaetig_max_jahr: 1200,
+  // Schwerbehinderten-Pauschbetrag (§ 17 Nr. 4 WoGG, jährlich)
   schwerbehindert_50_80: 1800,
-  // GdB 50-80 (jährlich)
+  // GdB 50-80
   schwerbehindert_80_100: 2100,
-  // Pflegegrad 1-3 (jährlich)
-  alleinerziehend: 1320,
-  // Kind in Ausbildung (monatlich)
-  erwerbstaetig_pauschal: 0.1,
-  // 10% vom Bruttoeinkommen
-  werbungskosten_pauschal: 1230
-  // Jährlich (102.50€/Monat)
-};
-const EINKOMMENSGRENZEN = {
-  "I": [1443, 1953, 2453, 3324, 3822, 4319, 4761, 5001],
-  "II": [1530, 2074, 2610, 3542, 4077, 4611, 5086, 5341],
-  "III": [1620, 2199, 2773, 3769, 4341, 4912, 5423, 5695],
-  "IV": [1713, 2327, 2942, 4004, 4617, 5228, 5776, 6068],
-  "V": [1803, 2451, 3104, 4229, 4880, 5528, 6111, 6420],
-  "VI": [1896, 2580, 3273, 4465, 5158, 5849, 6469, 6799],
-  "VII": [1992, 2715, 3451, 4714, 5451, 6185, 6845, 7198]
+  // GdB 80-100 oder häusliche Pflege
+  // Alleinerziehenden-Freibetrag (§ 17 Nr. 5 WoGG, jährlich pro Kind)
+  alleinerziehend: 1320
 };
 const BEISPIELSTAEDTE = {
-  "I": ["Chemnitz", "Halle (Saale)", "Magdeburg", "Gera"],
-  "II": ["Leipzig", "Dresden", "Erfurt", "Rostock"],
-  "III": ["Hannover", "Bremen", "Dortmund", "Essen"],
-  "IV": ["Köln", "Düsseldorf", "Hamburg", "Nürnberg"],
-  "V": ["Berlin", "Frankfurt (Oder)", "Potsdam"],
-  "VI": ["Frankfurt a.M.", "Stuttgart", "Freiburg"],
-  "VII": ["München", "Starnberg", "Miesbach"]
+  "I": ["Chemnitz", "Halle (Saale)", "Magdeburg", "Gera", "Cottbus"],
+  "II": ["Leipzig", "Dresden", "Erfurt", "Rostock", "Kiel"],
+  "III": ["Hannover", "Bremen", "Dortmund", "Essen", "Duisburg"],
+  "IV": ["Köln", "Düsseldorf", "Hamburg", "Nürnberg", "Bonn"],
+  "V": ["Berlin", "Potsdam", "Mainz", "Wiesbaden"],
+  "VI": ["Frankfurt a.M.", "Stuttgart", "Freiburg", "Heidelberg"],
+  "VII": ["München", "Starnberg", "Miesbach", "Garmisch-Partenkirchen"]
 };
+const EINKOMMENSGRENZEN = {
+  "I": [1443, 1953, 2453, 3324, 3822],
+  "II": [1530, 2074, 2610, 3542, 4077],
+  "III": [1620, 2199, 2773, 3769, 4341],
+  "IV": [1713, 2327, 2942, 4004, 4617],
+  "V": [1803, 2451, 3104, 4229, 4880],
+  "VI": [1896, 2580, 3273, 4465, 5158],
+  "VII": [1992, 2715, 3451, 4714, 5451]
+};
+function getHoechstbetrag(mietstufe, personen) {
+  if (personen <= 5) {
+    return HOECHSTBETRAEGE[mietstufe][personen - 1];
+  }
+  const basis = HOECHSTBETRAEGE[mietstufe][4];
+  const mehrbetrag = MEHRBETRAG_PRO_PERSON[mietstufe] * (personen - 5);
+  return basis + mehrbetrag;
+}
+function getEinkommensgrenze(mietstufe, personen) {
+  if (personen <= 5) {
+    return EINKOMMENSGRENZEN[mietstufe][personen - 1];
+  }
+  return EINKOMMENSGRENZEN[mietstufe][4] + (personen - 5) * 500;
+}
 function WohngeldRechner() {
   const [bruttoeinkommen, setBruttoeinkommen] = useState(1800);
   const [warmmiete, setWarmmiete] = useState(650);
@@ -95,7 +111,7 @@ function WohngeldRechner() {
   const ergebnis = useMemo(() => {
     const jahresbrutto = bruttoeinkommen * 12;
     const werbungskosten = FREIBETRAEGE.werbungskosten_pauschal;
-    const erwerbstaetigenfreibetrag = istErwerbstaetig ? Math.min(jahresbrutto * FREIBETRAEGE.erwerbstaetig_pauschal, 1200) : 0;
+    const erwerbstaetigenfreibetrag = istErwerbstaetig ? Math.min(jahresbrutto * FREIBETRAEGE.erwerbstaetig_prozent, FREIBETRAEGE.erwerbstaetig_max_jahr) : 0;
     let schwerbehindertenfreibetrag = 0;
     if (schwerbehindert === "50-80") {
       schwerbehindertenfreibetrag = FREIBETRAEGE.schwerbehindert_50_80;
@@ -106,41 +122,50 @@ function WohngeldRechner() {
     const gesamtfreibetraege = werbungskosten + erwerbstaetigenfreibetrag + schwerbehindertenfreibetrag + alleinerziehendenfreibetrag;
     const anrechenbaresEinkommenJahr = Math.max(0, jahresbrutto - gesamtfreibetraege);
     const anrechenbaresEinkommenMonat = anrechenbaresEinkommenJahr / 12;
-    const personenIndex = Math.min(haushaltsgroesse - 1, 7);
-    const hoechstbetrag = HOECHSTBETRAEGE[mietstufe][personenIndex];
+    const hoechstbetrag = getHoechstbetrag(mietstufe, haushaltsgroesse);
     const beruecksichtigteMiete = Math.min(warmmiete, hoechstbetrag);
-    const heizkostenEntlastung = personenIndex < 8 ? HEIZKOSTEN_ENTLASTUNG[personenIndex + 1] : HEIZKOSTEN_ENTLASTUNG[8] + (personenIndex - 7) * HEIZKOSTEN_ZUSATZ_PRO_PERSON;
-    const klimakomponente = personenIndex < 8 ? KLIMAKOMPONENTE[personenIndex + 1] : KLIMAKOMPONENTE[8] + (personenIndex - 7) * 7;
-    const koeff = KOEFFIZIENTEN[Math.min(haushaltsgroesse, 12)];
-    const MRoh = beruecksichtigteMiete + heizkostenEntlastung + klimakomponente;
-    const M = Math.min(MRoh, hoechstbetrag + heizkostenEntlastung + klimakomponente);
+    const anzahlPersonen = Math.min(haushaltsgroesse, 12);
+    const koeff = KOEFFIZIENTEN[anzahlPersonen];
+    const M = beruecksichtigteMiete;
     const Y = anrechenbaresEinkommenMonat;
-    const faktor = koeff.a + koeff.b * M + koeff.c * Y;
-    const wohngeldBrutto = 1.15 * (M - faktor * Y);
-    const wohngeldMonatlich = wohngeldBrutto >= 10 ? Math.round(wohngeldBrutto) : 0;
-    const einkommensgrenze = EINKOMMENSGRENZEN[mietstufe][personenIndex];
-    const hatAnspruch = anrechenbaresEinkommenMonat <= einkommensgrenze && wohngeldMonatlich > 0;
+    const z1 = koeff.a + koeff.b * M + koeff.c * Y;
+    const z2 = z1 * Y;
+    const z3 = M - z2;
+    const z4 = 1.15 * z3;
+    let zusatzAbPerson13 = 0;
+    if (haushaltsgroesse > 12) {
+      zusatzAbPerson13 = (haushaltsgroesse - 12) * ZUSATZ_AB_13_PERSON;
+    }
+    let wohngeldMonatlich = Math.ceil(z4) + zusatzAbPerson13;
+    wohngeldMonatlich = Math.min(wohngeldMonatlich, M);
+    if (wohngeldMonatlich < 10) {
+      wohngeldMonatlich = 0;
+    }
+    const einkommensgrenze = getEinkommensgrenze(mietstufe, haushaltsgroesse);
+    const hatAnspruch = wohngeldMonatlich >= 10;
     const wohngeldJaehrlich = wohngeldMonatlich * 12;
     return {
       // Einkommen
       bruttoMonat: bruttoeinkommen,
       bruttoJahr: jahresbrutto,
       werbungskosten,
-      erwerbstaetigenfreibetrag,
+      erwerbstaetigenfreibetrag: Math.round(erwerbstaetigenfreibetrag),
       schwerbehindertenfreibetrag,
       alleinerziehendenfreibetrag,
-      gesamtfreibetraege,
-      anrechenbaresEinkommenJahr,
-      anrechenbaresEinkommenMonat,
+      gesamtfreibetraege: Math.round(gesamtfreibetraege),
+      anrechenbaresEinkommenJahr: Math.round(anrechenbaresEinkommenJahr),
+      anrechenbaresEinkommenMonat: Math.round(anrechenbaresEinkommenMonat),
       // Miete
       warmmiete,
       hoechstbetrag,
       beruecksichtigteMiete,
       mieteGekappt: warmmiete > hoechstbetrag,
-      // Wohngeld-Plus Komponenten
-      heizkostenEntlastung: Math.round(heizkostenEntlastung * 100) / 100,
-      klimakomponente: Math.round(klimakomponente * 100) / 100,
-      mieteMitKomponenten: Math.round(M * 100) / 100,
+      // Formel-Zwischenwerte (für Nachvollziehbarkeit)
+      koeffizienten: koeff,
+      z1: z1.toFixed(10),
+      z2: z2.toFixed(2),
+      z3: z3.toFixed(2),
+      z4Ungerundet: z4.toFixed(2),
       // Ergebnis
       wohngeldMonatlich,
       wohngeldJaehrlich,
@@ -152,6 +177,7 @@ function WohngeldRechner() {
     };
   }, [bruttoeinkommen, warmmiete, haushaltsgroesse, mietstufe, schwerbehindert, alleinerziehend, anzahlKinder, istErwerbstaetig]);
   const formatEuro = (n) => n.toLocaleString("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + " €";
+  const formatEuro2 = (n) => n.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
   return /* @__PURE__ */ jsxs("div", { className: "max-w-2xl mx-auto", children: [
     /* @__PURE__ */ jsxs("div", { className: "bg-white rounded-2xl shadow-lg p-6 mb-6", children: [
       /* @__PURE__ */ jsxs("div", { className: "mb-6", children: [
@@ -172,7 +198,7 @@ function WohngeldRechner() {
           /* @__PURE__ */ jsx(
             "button",
             {
-              onClick: () => setHaushaltsgroesse(Math.min(8, haushaltsgroesse + 1)),
+              onClick: () => setHaushaltsgroesse(Math.min(12, haushaltsgroesse + 1)),
               className: "w-12 h-12 rounded-xl bg-gray-100 hover:bg-gray-200 text-xl font-bold transition-colors",
               children: "+"
             }
@@ -253,7 +279,7 @@ function WohngeldRechner() {
           "⚠️ Höchstbetrag für Mietstufe ",
           mietstufe,
           ": ",
-          formatEuro(ergebnis.hoechstbetrag)
+          formatEuro2(ergebnis.hoechstbetrag)
         ] })
       ] }),
       /* @__PURE__ */ jsxs("div", { className: "mb-6", children: [
@@ -403,20 +429,15 @@ function WohngeldRechner() {
             "/Monat"
           ] }),
           " ",
-          "liegt Ihr Haushalt über der Einkommensgrenze von",
-          " ",
-          /* @__PURE__ */ jsx("strong", { children: formatEuro(ergebnis.einkommensgrenze) }),
-          " für Mietstufe ",
-          mietstufe,
-          "."
+          "ergibt die Wohngeldformel keinen Anspruch (Ergebnis unter 10€)."
         ] }),
         /* @__PURE__ */ jsx("p", { className: "mt-3 text-sm text-white/70", children: "Prüfen Sie, ob weitere Freibeträge anwendbar sind, oder schauen Sie sich alternative Leistungen wie Bürgergeld oder Kinderzuschlag an." })
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "bg-white rounded-2xl shadow-lg p-6 mb-6", children: [
-      /* @__PURE__ */ jsx("h3", { className: "font-bold text-gray-800 mb-4", children: "📊 Berechnungsdetails" }),
+      /* @__PURE__ */ jsx("h3", { className: "font-bold text-gray-800 mb-4", children: "📊 Berechnungsdetails nach § 19 WoGG" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-3 text-sm", children: [
-        /* @__PURE__ */ jsx("div", { className: "font-medium text-gray-500 text-xs uppercase tracking-wide", children: "Einkommensberechnung" }),
+        /* @__PURE__ */ jsx("div", { className: "font-medium text-gray-500 text-xs uppercase tracking-wide", children: "1. Einkommensberechnung (§§ 14-17 WoGG)" }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100", children: [
           /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "Bruttoeinkommen (monatlich)" }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-gray-900", children: formatEuro(ergebnis.bruttoMonat) })
@@ -426,19 +447,19 @@ function WohngeldRechner() {
           /* @__PURE__ */ jsx("span", { className: "text-gray-900", children: formatEuro(ergebnis.bruttoJahr) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Werbungskostenpauschale" }),
+          /* @__PURE__ */ jsx("span", { children: "− Werbungskostenpauschale (§ 16)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.werbungskosten) })
         ] }),
         ergebnis.erwerbstaetigenfreibetrag > 0 && /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Erwerbstätigenfreibetrag (10%)" }),
+          /* @__PURE__ */ jsx("span", { children: "− Erwerbstätigenfreibetrag 10% (§ 17 Nr. 3)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.erwerbstaetigenfreibetrag) })
         ] }),
         ergebnis.schwerbehindertenfreibetrag > 0 && /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Schwerbehindertenfreibetrag" }),
+          /* @__PURE__ */ jsx("span", { children: "− Schwerbehindertenfreibetrag (§ 17 Nr. 4)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.schwerbehindertenfreibetrag) })
         ] }),
         ergebnis.alleinerziehendenfreibetrag > 0 && /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Alleinerziehenden-Freibetrag" }),
+          /* @__PURE__ */ jsx("span", { children: "− Alleinerziehenden-Freibetrag (§ 17 Nr. 5)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.alleinerziehendenfreibetrag) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 bg-gray-50 -mx-6 px-6", children: [
@@ -446,10 +467,10 @@ function WohngeldRechner() {
           /* @__PURE__ */ jsx("span", { className: "font-bold text-gray-900", children: formatEuro(ergebnis.anrechenbaresEinkommenJahr) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2", children: [
-          /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "= Anrechenbares Einkommen (Monat)" }),
+          /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "= Y (monatliches Gesamteinkommen)" }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-700", children: formatEuro(ergebnis.anrechenbaresEinkommenMonat) })
         ] }),
-        /* @__PURE__ */ jsx("div", { className: "font-medium text-gray-500 text-xs uppercase tracking-wide pt-4", children: "Mietberechnung" }),
+        /* @__PURE__ */ jsx("div", { className: "font-medium text-gray-500 text-xs uppercase tracking-wide pt-4", children: "2. Berücksichtigte Miete (§ 12 WoGG)" }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100", children: [
           /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "Ihre Warmmiete" }),
           /* @__PURE__ */ jsx("span", { className: "text-gray-900", children: formatEuro(ergebnis.warmmiete) })
@@ -462,22 +483,56 @@ function WohngeldRechner() {
             haushaltsgroesse,
             " Pers.)"
           ] }),
-          /* @__PURE__ */ jsx("span", { className: "text-gray-900", children: formatEuro(ergebnis.hoechstbetrag) })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "+ Heizkosten-Entlastung (§ 12 Abs. 6 WoGG)" }),
-          /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.heizkostenEntlastung) })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "+ Klimakomponente (§ 12 Abs. 7 WoGG)" }),
-          /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.klimakomponente) })
+          /* @__PURE__ */ jsx("span", { className: "text-gray-900", children: formatEuro2(ergebnis.hoechstbetrag) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 bg-purple-50 -mx-6 px-6", children: [
-          /* @__PURE__ */ jsx("span", { className: "font-medium text-purple-700", children: "= Berücksichtigte Miete (M)" }),
-          /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-900", children: formatEuro(ergebnis.mieteMitKomponenten) })
+          /* @__PURE__ */ jsx("span", { className: "font-medium text-purple-700", children: "= M (berücksichtigte Miete)" }),
+          /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-900", children: formatEuro2(ergebnis.beruecksichtigteMiete) })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "font-medium text-gray-500 text-xs uppercase tracking-wide pt-4", children: "3. Wohngeldformel nach § 19 Abs. 1 WoGG" }),
+        /* @__PURE__ */ jsxs("div", { className: "p-4 bg-blue-50 rounded-xl text-blue-800 text-sm font-mono", children: [
+          /* @__PURE__ */ jsxs("p", { className: "mb-2", children: [
+            /* @__PURE__ */ jsx("strong", { children: "Formel:" }),
+            " Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y)"
+          ] }),
+          /* @__PURE__ */ jsxs("p", { className: "text-xs text-blue-600", children: [
+            "Koeffizienten für ",
+            haushaltsgroesse,
+            " Pers.: a=",
+            ergebnis.koeffizienten.a,
+            ", b=",
+            ergebnis.koeffizienten.b,
+            ", c=",
+            ergebnis.koeffizienten.c
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs", children: [
+          /* @__PURE__ */ jsx("span", { children: "z1 = a + b×M + c×Y" }),
+          /* @__PURE__ */ jsx("span", { children: ergebnis.z1 })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs", children: [
+          /* @__PURE__ */ jsx("span", { children: "z2 = z1 × Y" }),
+          /* @__PURE__ */ jsxs("span", { children: [
+            ergebnis.z2,
+            " €"
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs", children: [
+          /* @__PURE__ */ jsx("span", { children: "z3 = M − z2" }),
+          /* @__PURE__ */ jsxs("span", { children: [
+            ergebnis.z3,
+            " €"
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-gray-500 text-xs", children: [
+          /* @__PURE__ */ jsx("span", { children: "z4 = 1,15 × z3 (ungerundet)" }),
+          /* @__PURE__ */ jsxs("span", { children: [
+            ergebnis.z4Ungerundet,
+            " €"
+          ] })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-3 bg-purple-100 -mx-6 px-6 rounded-b-xl mt-4", children: [
-          /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-800", children: "Wohngeld pro Monat" }),
+          /* @__PURE__ */ jsx("span", { className: "font-bold text-purple-800", children: "Wohngeld pro Monat (aufgerundet)" }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-2xl text-purple-900", children: formatEuro(ergebnis.wohngeldMonatlich) })
         ] })
       ] })
@@ -559,8 +614,8 @@ function WohngeldRechner() {
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "•" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            /* @__PURE__ */ jsx("strong", { children: "Schätzung:" }),
-            " Dieser Rechner liefert eine Orientierung – die tatsächliche Berechnung durch die Wohngeldstelle kann abweichen"
+            /* @__PURE__ */ jsx("strong", { children: "Exakte Berechnung:" }),
+            " Dieser Rechner verwendet die offizielle Formel nach § 19 WoGG mit den Koeffizienten aus Anlage 2"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
@@ -649,7 +704,7 @@ function WohngeldRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-4 bg-gray-50 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen" }),
+      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen & Rechtsgrundlagen" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
         /* @__PURE__ */ jsx(
           "a",
@@ -664,21 +719,21 @@ function WohngeldRechner() {
         /* @__PURE__ */ jsx(
           "a",
           {
-            href: "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html",
+            href: "https://www.wohngeld.org/wohngeldgesetz-wogg/paragraph19/",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "BMWSB – Wohngeld Informationen"
+            children: "§ 19 WoGG – Wohngeldformel mit Berechnungsbeispielen"
           }
         ),
         /* @__PURE__ */ jsx(
           "a",
           {
-            href: "https://www.wohngeld.org",
+            href: "https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/",
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "Wohngeld.org – Ratgeber und Rechner"
+            children: "Anlage 2 zu § 19 WoGG – Koeffizienten a, b, c"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -688,7 +743,7 @@ function WohngeldRechner() {
             target: "_blank",
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
-            children: "Wohngeld Höchstbeträge 2026 – Tabellen"
+            children: "Wohngeld Höchstbeträge 2025/2026 – Tabellen"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -699,6 +754,16 @@ function WohngeldRechner() {
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
             children: "Mietstufen-Verzeichnis nach Bundesländern"
+          }
+        ),
+        /* @__PURE__ */ jsx(
+          "a",
+          {
+            href: "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline",
+            children: "BMWSB – Wohngeld Informationen"
           }
         )
       ] })

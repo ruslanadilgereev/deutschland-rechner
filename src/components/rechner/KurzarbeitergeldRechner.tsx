@@ -34,36 +34,44 @@ const SOZIALABGABEN = {
   arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil
 };
 
-// Vereinfachte Lohnsteuer-Näherung nach Steuerklasse (monatlich, 2026)
+// ============================================================================
+// Lohnsteuer-Näherung nach Steuerklasse (monatlich, 2026)
+// ============================================================================
+// HINWEIS: Die Bundesagentur für Arbeit verwendet für Kurzarbeitergeld ein
+// "pauschaliertes Nettoentgelt" nach § 106 SGB III. Die exakte Berechnung
+// erfolgt über die offizielle Lohnsteuertabelle.
+//
+// Diese Näherung basiert auf vereinfachten Durchschnittssteuersätzen.
+// Grundfreibetrag 2026: 12.348€/Jahr = 1.029€/Monat
+// ============================================================================
 function berechneUngefaehreLohnsteuer(
   brutto: number,
   steuerklasse: Steuerklasse,
   kirchensteuer: boolean
 ): number {
-  // Grundfreibetrag 2026: 12.348€/Jahr = 1.029€/Monat
   const grundfreibetrag = 1029;
 
   let steuerpflichtig = brutto - grundfreibetrag;
   if (steuerpflichtig < 0) return 0;
 
-  // Steuerklassen-Faktoren (vereinfacht)
+  // Durchschnittliche Grenzsteuersätze nach Steuerklasse (vereinfacht)
   const faktoren: Record<Steuerklasse, number> = {
-    1: 0.2,
-    2: 0.18,
-    3: 0.12,
-    4: 0.2,
-    5: 0.3,
-    6: 0.35,
+    1: 0.2,   // Ledig
+    2: 0.18,  // Alleinerziehend
+    3: 0.12,  // Verheiratet, Alleinverdiener
+    4: 0.2,   // Verheiratet, beide verdienen ähnlich
+    5: 0.3,   // Verheiratet, Zweitverdiener
+    6: 0.35,  // Nebenjob
   };
 
   let steuer = steuerpflichtig * faktoren[steuerklasse];
 
-  // Kirchensteuer (8-9%)
+  // Kirchensteuer (8% Bayern/BW, 9% andere Länder → Ø 8,5%)
   if (kirchensteuer) {
     steuer *= 1.085;
   }
 
-  // Soli (nur für hohe Einkommen)
+  // Solidaritätszuschlag (5,5%, erst ab höheren Einkommen seit 2021)
   if (brutto > 4500) {
     steuer *= 1.055;
   }

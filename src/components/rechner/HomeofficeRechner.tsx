@@ -1,13 +1,31 @@
 import { useState, useMemo } from 'react';
 
-// Homeoffice-Pauschale Berechnungsgrundlagen 2025/2026
-// Quelle: https://www.bundesfinanzministerium.de
-// Quelle: https://www.gesetze-im-internet.de/estg/__4.html
+// ═══════════════════════════════════════════════════════════════════════════════
+// Homeoffice-Pauschale (Tagespauschale) - Offizielle Berechnung
+// ═══════════════════════════════════════════════════════════════════════════════
+//
+// RECHTSGRUNDLAGE: § 4 Abs. 5 Satz 1 Nr. 6c EStG (seit 2023 dauerhaft)
+//
+// OFFIZIELLE REGELUNG:
+// - 6 Euro pro Tag, an dem die betriebliche/berufliche Tätigkeit
+//   überwiegend in der häuslichen Wohnung ausgeübt wird
+// - Maximum: 210 Tage pro Kalenderjahr
+// - Höchstbetrag: 1.260 Euro pro Jahr (210 × 6€)
+//
+// QUELLEN:
+// - BMF: https://www.bundesfinanzministerium.de (FAQ Homeoffice-Pauschale)
+// - Gesetz: https://www.gesetze-im-internet.de/estg/__4.html
+//
+// WICHTIG:
+// - Kein separates Arbeitszimmer erforderlich
+// - Für denselben Tag KEINE Pendlerpauschale möglich
+// - Zählt zu den Werbungskosten (Anlage N)
+// ═══════════════════════════════════════════════════════════════════════════════
 
-// Homeoffice-Pauschale seit 2023
-const HOMEOFFICE_PAUSCHALE_PRO_TAG = 6; // 6€ pro Tag
-const HOMEOFFICE_MAX_TAGE = 210; // Maximum 210 Tage
-const HOMEOFFICE_MAX_BETRAG = HOMEOFFICE_PAUSCHALE_PRO_TAG * HOMEOFFICE_MAX_TAGE; // 1.260€
+// Homeoffice-Pauschale seit 2023 (§ 4 Abs. 5 Satz 1 Nr. 6c EStG)
+const HOMEOFFICE_PAUSCHALE_PRO_TAG = 6; // Offiziell: 6 Euro pro Tag
+const HOMEOFFICE_MAX_TAGE = 210; // Offiziell: Maximum 210 Tage
+const HOMEOFFICE_MAX_BETRAG = HOMEOFFICE_PAUSCHALE_PRO_TAG * HOMEOFFICE_MAX_TAGE; // = 1.260€
 
 // Arbeitstage pro Woche Standard
 const ARBEITSTAGE_PRO_WOCHE = [1, 2, 3, 4, 5] as const;
@@ -716,9 +734,17 @@ export default function HomeofficeRechner() {
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">
-          Quellen
+          Quellen & Rechtsgrundlagen
         </h4>
         <div className="space-y-1">
+          <a
+            href="https://www.gesetze-im-internet.de/estg/__4.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline font-medium"
+          >
+            ★ § 4 Abs. 5 Nr. 6c EStG – Tagespauschale (Gesetzestext)
+          </a>
           <a
             href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Home-Office-Pauschale/faq-homeoffice-pauschale.html"
             target="_blank"
@@ -726,14 +752,6 @@ export default function HomeofficeRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             BMF – FAQ Homeoffice-Pauschale
-          </a>
-          <a
-            href="https://www.gesetze-im-internet.de/estg/__4.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            EStG §4 Abs. 5 Nr. 6c – Homeoffice-Pauschale
           </a>
           <a
             href="https://www.vlh.de/arbeiten-pendeln/beruf/homeoffice-pauschale-so-setzen-sie-die-kosten-ab.html"
@@ -752,6 +770,10 @@ export default function HomeofficeRechner() {
             Haufe – Homeoffice-Pauschale dauerhaft
           </a>
         </div>
+        <p className="text-xs text-gray-500 mt-3">
+          <strong>Offizielle Berechnung:</strong><br/>
+          Pauschale = Homeoffice-Tage × 6€ (max. 210 Tage = 1.260€/Jahr)
+        </p>
       </div>
     </div>
   );

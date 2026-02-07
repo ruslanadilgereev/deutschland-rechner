@@ -28,11 +28,17 @@ function berechneUngefaehreLohnsteuer(brutto, steuerklasse, kirchensteuer) {
   if (steuerpflichtig < 0) return 0;
   const faktoren = {
     1: 0.2,
+    // Ledig
     2: 0.18,
+    // Alleinerziehend
     3: 0.12,
+    // Verheiratet, Alleinverdiener
     4: 0.2,
+    // Verheiratet, beide verdienen ähnlich
     5: 0.3,
+    // Verheiratet, Zweitverdiener
     6: 0.35
+    // Nebenjob
   };
   let steuer = steuerpflichtig * faktoren[steuerklasse];
   if (kirchensteuer) {

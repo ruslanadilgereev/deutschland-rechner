@@ -6,18 +6,41 @@ import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useMemo } from 'react';
 export { renderers } from '../renderers.mjs';
 
-const GRUNDFREIBETRAG_2026 = 12096;
-const LOHNSTEUER_PARAMS_2026 = {
-  zone2End: 17443,
-  zone3End: 68480,
-  zone4End: 277826};
+const STEUERJAHR = 2025;
+const TARIF_2025 = {
+  grundfreibetrag: 12096,
+  // Zone 2 Start
+  zone2Ende: 17443,
+  // Zone 3 Start
+  zone3Ende: 68480,
+  // Zone 4 Start
+  zone4Ende: 277825,
+  // Zone 5 Start (45% Reichensteuer)
+  // Koeffizienten für Zone 2: ESt = (a * y + b) * y
+  zone2_a: 932.3,
+  zone2_b: 1400,
+  // Koeffizienten für Zone 3: ESt = (a * z + b) * z + c
+  zone3_a: 176.64,
+  zone3_b: 2397,
+  zone3_c: 1015.13,
+  // Zone 4: ESt = 0.42 * x - c
+  zone4_satz: 0.42,
+  zone4_abzug: 10911.92,
+  // Zone 5: ESt = 0.45 * x - c
+  zone5_satz: 0.45,
+  zone5_abzug: 19246.67
+};
+const TARIF = TARIF_2025 ;
 const SOLI_SATZ = 0.055;
-const SOLI_FREIGRENZE_MONAT_SK1 = 1628.33;
-const SOLI_FREIGRENZE_MONAT_SK3 = 3072.5;
+const SOLI_FREIGRENZE_GRUND = 18130;
+const SOLI_FREIGRENZE_SPLITTING = 36260;
+const SOLI_MILDERUNGSZONE_FAKTOR = 0.119;
 const KIRCHENSTEUER_SAETZE = {
   "Baden-Württemberg": 0.08,
+  // 8% (BW + BY)
   "Bayern": 0.08,
   "Berlin": 0.09,
+  // 9% (alle anderen)
   "Brandenburg": 0.09,
   "Bremen": 0.09,
   "Hamburg": 0.09,
@@ -40,30 +63,68 @@ const STEUERKLASSEN_INFO = {
   5: { name: "Steuerklasse V", beschreibung: "Verheiratete (Geringverdiener-Partner zu III)" },
   6: { name: "Steuerklasse VI", beschreibung: "Zweit- oder Nebenjob" }
 };
-const KINDERFREIBETRAG_2026 = 6672;
-function berechneVorsorgepauschale(brutto, steuerklasse) {
-  const rvAnteil = Math.min(brutto * 0.093, 7850 * 0.093);
-  const kvAnteil = Math.min(brutto * 0.07, 5512.5 * 0.07);
-  return rvAnteil + kvAnteil;
-}
-function berechneLohnsteuerJahr(zvE) {
-  if (zvE <= 0) return 0;
-  const z = zvE;
-  if (z <= GRUNDFREIBETRAG_2026) {
+const WERBUNGSKOSTENPAUSCHALE = 1230;
+const SONDERAUSGABENPAUSCHALE = 36;
+const ENTLASTUNGSBETRAG_ALLEINERZ = 4260;
+const ENTLASTUNGSBETRAG_WEITERE_KINDER = 240;
+const KINDERFREIBETRAG = 6672;
+function berechneEinkommensteuer(zvE) {
+  const x = Math.floor(zvE);
+  if (x <= 0) return 0;
+  if (x <= TARIF.grundfreibetrag) {
     return 0;
   }
-  if (z <= LOHNSTEUER_PARAMS_2026.zone2End) {
-    const y = (z - GRUNDFREIBETRAG_2026) / 1e4;
-    return Math.floor((979.18 * y + 1400) * y);
+  if (x <= TARIF.zone2Ende) {
+    const y = (x - TARIF.grundfreibetrag) / 1e4;
+    const est2 = (TARIF.zone2_a * y + TARIF.zone2_b) * y;
+    return Math.floor(est2);
   }
-  if (z <= LOHNSTEUER_PARAMS_2026.zone3End) {
-    const y = (z - LOHNSTEUER_PARAMS_2026.zone2End) / 1e4;
-    return Math.floor((192.59 * y + 2397) * y + 966.53);
+  if (x <= TARIF.zone3Ende) {
+    const z = (x - TARIF.zone2Ende) / 1e4;
+    const est2 = (TARIF.zone3_a * z + TARIF.zone3_b) * z + TARIF.zone3_c;
+    return Math.floor(est2);
   }
-  if (z <= LOHNSTEUER_PARAMS_2026.zone4End) {
-    return Math.floor(0.42 * z - 10636.31);
+  if (x <= TARIF.zone4Ende) {
+    const est2 = TARIF.zone4_satz * x - TARIF.zone4_abzug;
+    return Math.floor(est2);
   }
-  return Math.floor(0.45 * z - 18971.21);
+  const est = TARIF.zone5_satz * x - TARIF.zone5_abzug;
+  return Math.floor(est);
+}
+function berechneVorsorgepauschale(brutto, steuerklasse) {
+  const BBG_RV = 8050 * 12;
+  const BBG_KV = 5512.5 * 12;
+  const jahresBrutto = brutto * 12;
+  const rvBemessung = Math.min(jahresBrutto, BBG_RV);
+  const rvAnteil = rvBemessung * 0.093;
+  const kvBemessung = Math.min(jahresBrutto, BBG_KV);
+  const kvAnteil = kvBemessung * 0.07;
+  return Math.round((rvAnteil + kvAnteil) / 12);
+}
+function berechneSoli(lohnsteuer, steuerklasse) {
+  const freigrenze = steuerklasse === 3 ? SOLI_FREIGRENZE_SPLITTING : SOLI_FREIGRENZE_GRUND;
+  if (lohnsteuer <= freigrenze) {
+    return 0;
+  }
+  const ueberFreigrenze = lohnsteuer - freigrenze;
+  const soliMilderung = ueberFreigrenze * SOLI_MILDERUNGSZONE_FAKTOR;
+  const soliVoll = lohnsteuer * SOLI_SATZ;
+  return Math.round(Math.min(soliMilderung, soliVoll) * 100) / 100;
+}
+function berechneGrenzsteuersatz(zvE) {
+  if (zvE <= TARIF.grundfreibetrag) return 0;
+  if (zvE <= TARIF.zone2Ende) {
+    const anteil = (zvE - TARIF.grundfreibetrag) / (TARIF.zone2Ende - TARIF.grundfreibetrag);
+    return 14 + anteil * 10;
+  }
+  if (zvE <= TARIF.zone3Ende) {
+    const anteil = (zvE - TARIF.zone2Ende) / (TARIF.zone3Ende - TARIF.zone2Ende);
+    return 24 + anteil * 18;
+  }
+  if (zvE <= TARIF.zone4Ende) {
+    return 42;
+  }
+  return 45;
 }
 function LohnsteuerRechner() {
   const [bruttolohn, setBruttolohn] = useState(4e3);
@@ -71,95 +132,70 @@ function LohnsteuerRechner() {
   const [bundesland, setBundesland] = useState("Nordrhein-Westfalen");
   const [kirchensteuer, setKirchensteuer] = useState(false);
   const [anzahlKinder, setAnzahlKinder] = useState(0);
-  const [zeitraum, setZeitraum] = useState("monat");
-  const [rentenversicherung, setRentenversicherung] = useState(true);
-  const [krankenversicherung, setKrankenversicherung] = useState(true);
   const ergebnis = useMemo(() => {
     const jahresBrutto = bruttolohn * 12;
     const vorsorgepauschaleMonat = berechneVorsorgepauschale(bruttolohn);
     const vorsorgepauschaleJahr = vorsorgepauschaleMonat * 12;
-    const werbungskosten = 1230;
-    const sonderausgaben = 36;
-    const kinderfreibetragJahr = anzahlKinder * KINDERFREIBETRAG_2026 * (steuerklasse === 3 || steuerklasse === 4 ? 1 : 0.5);
-    const entlastungsbetrag = steuerklasse === 2 ? 4260 + (anzahlKinder > 1 ? (anzahlKinder - 1) * 240 : 0) : 0;
+    const werbungskosten = WERBUNGSKOSTENPAUSCHALE;
+    const sonderausgaben = SONDERAUSGABENPAUSCHALE;
+    const entlastungsbetrag = steuerklasse === 2 ? ENTLASTUNGSBETRAG_ALLEINERZ + (anzahlKinder > 1 ? (anzahlKinder - 1) * ENTLASTUNGSBETRAG_WEITERE_KINDER : 0) : 0;
+    const kinderfreibetragJahr = anzahlKinder * KINDERFREIBETRAG * (steuerklasse === 3 ? 1 : 0.5);
     let zvE = jahresBrutto - vorsorgepauschaleJahr - werbungskosten - sonderausgaben;
     if (steuerklasse === 2) {
       zvE -= entlastungsbetrag;
     }
     zvE = Math.max(0, zvE);
-    let lohnsteuerJahr = berechneLohnsteuerJahr(zvE);
-    if (steuerklasse === 3) {
-      const zvEHalb = zvE / 2;
-      lohnsteuerJahr = berechneLohnsteuerJahr(zvEHalb) * 2;
-    } else if (steuerklasse === 5) {
-      lohnsteuerJahr = lohnsteuerJahr * 1.25;
-    } else if (steuerklasse === 6) {
-      lohnsteuerJahr = berechneLohnsteuerJahr(jahresBrutto - vorsorgepauschaleJahr);
+    let lohnsteuerJahr;
+    switch (steuerklasse) {
+      case 3:
+        lohnsteuerJahr = berechneEinkommensteuer(zvE / 2) * 2;
+        break;
+      case 5:
+        lohnsteuerJahr = berechneEinkommensteuer(zvE) * 1.2;
+        break;
+      case 6:
+        const zvE6 = jahresBrutto - vorsorgepauschaleJahr;
+        lohnsteuerJahr = berechneEinkommensteuer(zvE6);
+        break;
+      default:
+        lohnsteuerJahr = berechneEinkommensteuer(zvE);
     }
     lohnsteuerJahr = Math.max(0, Math.round(lohnsteuerJahr));
     const lohnsteuerMonat = lohnsteuerJahr / 12;
-    const soliFreigrenze = steuerklasse === 3 ? SOLI_FREIGRENZE_MONAT_SK3 * 12 : SOLI_FREIGRENZE_MONAT_SK1 * 12;
-    let soliJahr = 0;
-    if (lohnsteuerJahr > soliFreigrenze) {
-      const ueberFreigrenze = lohnsteuerJahr - soliFreigrenze;
-      const soliMilderung = ueberFreigrenze * 0.119;
-      const soliVoll = lohnsteuerJahr * SOLI_SATZ;
-      soliJahr = Math.min(soliMilderung, soliVoll);
-    }
-    soliJahr = Math.round(soliJahr * 100) / 100;
+    const soliJahr = berechneSoli(lohnsteuerJahr, steuerklasse);
     const soliMonat = soliJahr / 12;
     const kirchensteuerSatz = kirchensteuer ? KIRCHENSTEUER_SAETZE[bundesland] || 0.09 : 0;
     const kirchensteuerJahr = Math.round(lohnsteuerJahr * kirchensteuerSatz);
     const kirchensteuerMonat = kirchensteuerJahr / 12;
     const gesamtSteuerJahr = lohnsteuerJahr + soliJahr + kirchensteuerJahr;
     const gesamtSteuerMonat = gesamtSteuerJahr / 12;
-    let grenzsteuersatz = 0;
-    if (zvE <= GRUNDFREIBETRAG_2026) {
-      grenzsteuersatz = 0;
-    } else if (zvE <= LOHNSTEUER_PARAMS_2026.zone2End) {
-      grenzsteuersatz = 14 + (zvE - GRUNDFREIBETRAG_2026) / (LOHNSTEUER_PARAMS_2026.zone2End - GRUNDFREIBETRAG_2026) * 10;
-    } else if (zvE <= LOHNSTEUER_PARAMS_2026.zone3End) {
-      grenzsteuersatz = 24 + (zvE - LOHNSTEUER_PARAMS_2026.zone2End) / (LOHNSTEUER_PARAMS_2026.zone3End - LOHNSTEUER_PARAMS_2026.zone2End) * 18;
-    } else if (zvE <= LOHNSTEUER_PARAMS_2026.zone4End) {
-      grenzsteuersatz = 42;
-    } else {
-      grenzsteuersatz = 45;
-    }
+    const grenzsteuersatz = berechneGrenzsteuersatz(zvE);
     const durchschnittssteuersatz = jahresBrutto > 0 ? lohnsteuerJahr / jahresBrutto * 100 : 0;
-    const lohnsteuerOhneKinder = steuerklasse === 3 ? berechneLohnsteuerJahr(zvE / 2 + kinderfreibetragJahr / 2) * 2 : berechneLohnsteuerJahr(zvE + kinderfreibetragJahr);
+    const lohnsteuerOhneKinder = steuerklasse === 3 ? berechneEinkommensteuer((zvE + kinderfreibetragJahr) / 2) * 2 : berechneEinkommensteuer(zvE + kinderfreibetragJahr);
     const steuerersparnisKinder = Math.max(0, lohnsteuerOhneKinder - lohnsteuerJahr);
     return {
-      // Eingangswerte
       bruttolohn,
       jahresBrutto,
       steuerklasse,
-      // Abzüge vor Steuer
       vorsorgepauschaleMonat,
       vorsorgepauschaleJahr,
       werbungskosten,
       sonderausgaben,
       entlastungsbetrag,
       kinderfreibetragJahr,
-      // Zu versteuerndes Einkommen
       zvE,
-      // Lohnsteuer
       lohnsteuerMonat,
       lohnsteuerJahr,
-      // Soli
       soliMonat,
       soliJahr,
-      soliFreigrenze,
-      // Kirchensteuer
+      soliFreigrenze: steuerklasse === 3 ? SOLI_FREIGRENZE_SPLITTING : SOLI_FREIGRENZE_GRUND,
       kirchensteuerMonat,
       kirchensteuerJahr,
       kirchensteuerSatz,
-      // Gesamt
       gesamtSteuerMonat,
       gesamtSteuerJahr,
-      // Steuersätze
       grenzsteuersatz,
       durchschnittssteuersatz,
-      // Extras
       steuerersparnisKinder
     };
   }, [bruttolohn, steuerklasse, bundesland, kirchensteuer, anzahlKinder]);
@@ -263,7 +299,7 @@ function LohnsteuerRechner() {
           /* @__PURE__ */ jsx("span", { className: "text-gray-700 font-medium", children: "Anzahl Kinder" }),
           /* @__PURE__ */ jsxs("span", { className: "text-xs text-gray-500 block mt-1", children: [
             "Kinderfreibetrag: ",
-            formatEuro(KINDERFREIBETRAG_2026),
+            formatEuro(KINDERFREIBETRAG),
             " pro Kind/Jahr"
           ] })
         ] }),
@@ -353,7 +389,10 @@ function LohnsteuerRechner() {
           /* @__PURE__ */ jsx("span", { className: "text-gray-600", children: "45%" })
         ] })
       ] }),
-      /* @__PURE__ */ jsx("p", { className: "text-xs text-gray-500 mt-2 text-center", children: "Ihr Grenzsteuersatz im Einkommensteuer-Tarif 2026" })
+      /* @__PURE__ */ jsxs("p", { className: "text-xs text-gray-500 mt-2 text-center", children: [
+        "Ihr Grenzsteuersatz im Einkommensteuer-Tarif ",
+        STEUERJAHR
+      ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "bg-white rounded-2xl shadow-lg p-6 mb-6", children: [
       /* @__PURE__ */ jsx("h3", { className: "font-bold text-gray-800 mb-4", children: "📋 Berechnungsdetails" }),
@@ -373,15 +412,15 @@ function LohnsteuerRechner() {
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.vorsorgepauschaleJahr) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-red-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Werbungskostenpauschale" }),
+          /* @__PURE__ */ jsx("span", { children: "− Werbungskostenpauschale (§9a EStG)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.werbungskosten) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-red-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Sonderausgabenpauschale" }),
+          /* @__PURE__ */ jsx("span", { children: "− Sonderausgabenpauschale (§10c EStG)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.sonderausgaben) })
         ] }),
         steuerklasse === 2 && ergebnis.entlastungsbetrag > 0 && /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100 text-green-600", children: [
-          /* @__PURE__ */ jsx("span", { children: "− Entlastungsbetrag Alleinerziehende" }),
+          /* @__PURE__ */ jsx("span", { children: "− Entlastungsbetrag Alleinerziehende (§24b EStG)" }),
           /* @__PURE__ */ jsx("span", { children: formatEuro(ergebnis.entlastungsbetrag) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 bg-gray-50 -mx-6 px-6", children: [
@@ -392,14 +431,18 @@ function LohnsteuerRechner() {
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100", children: [
           /* @__PURE__ */ jsxs("span", { className: "text-gray-600", children: [
             "Lohnsteuer",
-            /* @__PURE__ */ jsx("span", { className: "text-xs text-gray-400 ml-1", children: "(Tarif §32a EStG)" })
+            /* @__PURE__ */ jsxs("span", { className: "text-xs text-gray-400 ml-1", children: [
+              "(§32a EStG ",
+              STEUERJAHR,
+              ")"
+            ] })
           ] }),
           /* @__PURE__ */ jsx("span", { className: "font-bold text-yellow-600", children: formatEuro(ergebnis.lohnsteuerJahr) })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "flex justify-between py-2 border-b border-gray-100", children: [
           /* @__PURE__ */ jsxs("span", { className: "text-gray-600", children: [
             "+ Solidaritätszuschlag",
-            /* @__PURE__ */ jsx("span", { className: "text-xs text-gray-400 ml-1", children: "(5,5%)" })
+            /* @__PURE__ */ jsx("span", { className: "text-xs text-gray-400 ml-1", children: "(§3 SolzG)" })
           ] }),
           /* @__PURE__ */ jsx("span", { className: ergebnis.soliJahr > 0 ? "text-gray-900" : "text-green-600", children: ergebnis.soliJahr > 0 ? formatEuro(ergebnis.soliJahr) : "0,00 € (unter Freigrenze)" })
         ] }),
@@ -432,20 +475,16 @@ function LohnsteuerRechner() {
           /* @__PURE__ */ jsx("th", { className: "pb-2", children: "Für wen" }),
           /* @__PURE__ */ jsx("th", { className: "pb-2 text-right", children: "Lohnsteuer/Monat*" })
         ] }) }),
-        /* @__PURE__ */ jsx("tbody", { className: "divide-y divide-gray-100", children: [1, 2, 3, 4, 5, 6].map((sk) => {
-          const factor = sk === 3 ? 0.5 : sk === 5 ? 1.5 : sk === 6 ? 1.3 : 1;
-          ergebnis.lohnsteuerMonat * factor * (sk === steuerklasse ? 1 : 1);
-          return /* @__PURE__ */ jsxs("tr", { className: steuerklasse === sk ? "bg-yellow-50" : "", children: [
-            /* @__PURE__ */ jsxs("td", { className: "py-2 font-bold", children: [
-              sk,
-              steuerklasse === sk && /* @__PURE__ */ jsx("span", { className: "ml-1 text-yellow-500", children: "●" })
-            ] }),
-            /* @__PURE__ */ jsx("td", { className: "py-2 text-gray-600", children: STEUERKLASSEN_INFO[sk].beschreibung }),
-            /* @__PURE__ */ jsx("td", { className: "py-2 text-right font-medium", children: steuerklasse === sk ? formatEuro(ergebnis.lohnsteuerMonat) : "–" })
-          ] }, sk);
-        }) })
+        /* @__PURE__ */ jsx("tbody", { className: "divide-y divide-gray-100", children: [1, 2, 3, 4, 5, 6].map((sk) => /* @__PURE__ */ jsxs("tr", { className: steuerklasse === sk ? "bg-yellow-50" : "", children: [
+          /* @__PURE__ */ jsxs("td", { className: "py-2 font-bold", children: [
+            sk,
+            steuerklasse === sk && /* @__PURE__ */ jsx("span", { className: "ml-1 text-yellow-500", children: "●" })
+          ] }),
+          /* @__PURE__ */ jsx("td", { className: "py-2 text-gray-600", children: STEUERKLASSEN_INFO[sk].beschreibung }),
+          /* @__PURE__ */ jsx("td", { className: "py-2 text-right font-medium", children: steuerklasse === sk ? formatEuro(ergebnis.lohnsteuerMonat) : "–" })
+        ] }, sk)) })
       ] }) }),
-      /* @__PURE__ */ jsx("p", { className: "text-xs text-gray-500 mt-3", children: "*Exakte Berechnung nur für gewählte Steuerklasse. Wechsel Sie die SK oben für genaue Werte." })
+      /* @__PURE__ */ jsx("p", { className: "text-xs text-gray-500 mt-3", children: "*Exakte Berechnung nur für gewählte Steuerklasse. Wechseln Sie die SK oben für genaue Werte." })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "bg-white rounded-2xl shadow-lg p-6 mb-6", children: [
       /* @__PURE__ */ jsx("h3", { className: "font-bold text-gray-800 mb-3", children: "ℹ️ So funktioniert die Lohnsteuer" }),
@@ -474,9 +513,13 @@ function LohnsteuerRechner() {
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
           /* @__PURE__ */ jsx("span", { children: "✓" }),
           /* @__PURE__ */ jsxs("span", { children: [
-            /* @__PURE__ */ jsx("strong", { children: "Grundfreibetrag 2026:" }),
+            /* @__PURE__ */ jsxs("strong", { children: [
+              "Grundfreibetrag ",
+              STEUERJAHR,
+              ":"
+            ] }),
             " ",
-            formatEuro(GRUNDFREIBETRAG_2026),
+            formatEuro(TARIF.grundfreibetrag),
             " bleiben steuerfrei"
           ] })
         ] }),
@@ -497,7 +540,7 @@ function LohnsteuerRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "bg-yellow-50 border border-yellow-200 rounded-2xl p-6 mb-6", children: [
-      /* @__PURE__ */ jsx("h3", { className: "font-bold text-yellow-800 mb-3", children: "📚 Die 6 Steuerklassen erklärt" }),
+      /* @__PURE__ */ jsx("h3", { className: "font-bold text-yellow-800 mb-3", children: "📚 Die 6 Steuerklassen erklärt (§38b EStG)" }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-3 text-sm text-yellow-700", children: [
         /* @__PURE__ */ jsxs("div", { className: "bg-white/50 rounded-xl p-4", children: [
           /* @__PURE__ */ jsx("h4", { className: "font-semibold text-yellow-800", children: "Steuerklasse I" }),
@@ -507,7 +550,7 @@ function LohnsteuerRechner() {
           /* @__PURE__ */ jsx("h4", { className: "font-semibold text-yellow-800", children: "Steuerklasse II" }),
           /* @__PURE__ */ jsxs("p", { children: [
             "Für Alleinerziehende mit mindestens einem Kind im Haushalt. Zusätzlicher Entlastungsbetrag von ",
-            formatEuro(4260),
+            formatEuro(ENTLASTUNGSBETRAG_ALLEINERZ),
             "."
           ] })
         ] }),
@@ -550,7 +593,7 @@ function LohnsteuerRechner() {
           /* @__PURE__ */ jsx("span", { children: "•" }),
           /* @__PURE__ */ jsxs("span", { children: [
             /* @__PURE__ */ jsx("strong", { children: "Steuerklassenwahl:" }),
-            " Ehepaare können zwischen III/V und IV/IV wählen – am Jahresende gleicht sich's aus"
+            " Ehepaare können zwischen III/V und IV/IV wählen – am Jahresende gleicht sichs aus"
           ] })
         ] }),
         /* @__PURE__ */ jsxs("li", { className: "flex gap-2", children: [
@@ -624,7 +667,11 @@ function LohnsteuerRechner() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-4 bg-gray-50 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: "Quellen" }),
+      /* @__PURE__ */ jsxs("h4", { className: "text-xs font-bold text-gray-500 uppercase mb-2", children: [
+        "Quellen & Rechtsgrundlagen (Stand: ",
+        STEUERJAHR,
+        ")"
+      ] }),
       /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
         /* @__PURE__ */ jsx(
           "a",
@@ -646,6 +693,20 @@ function LohnsteuerRechner() {
             children: "§ 38b EStG – Lohnsteuerklassen – Gesetze im Internet"
           }
         ),
+        /* @__PURE__ */ jsxs(
+          "a",
+          {
+            href: "https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline",
+            children: [
+              "Amtliches Lohnsteuer-Handbuch ",
+              STEUERJAHR,
+              " – BMF"
+            ]
+          }
+        ),
         /* @__PURE__ */ jsx(
           "a",
           {
@@ -664,6 +725,20 @@ function LohnsteuerRechner() {
             rel: "noopener noreferrer",
             className: "block text-sm text-blue-600 hover:underline",
             children: "Programmablaufplan Lohnsteuer – BMF"
+          }
+        ),
+        /* @__PURE__ */ jsxs(
+          "a",
+          {
+            href: "https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "block text-sm text-blue-600 hover:underline",
+            children: [
+              "Einkommensteuer-Formeln ",
+              STEUERJAHR,
+              " – Finanz-Tools.de"
+            ]
           }
         ),
         /* @__PURE__ */ jsx(

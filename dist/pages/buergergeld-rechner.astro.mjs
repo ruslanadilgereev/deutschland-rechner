@@ -7,25 +7,26 @@ import { useState, useMemo } from 'react';
 export { renderers } from '../renderers.mjs';
 
 const REGELSAETZE_2026 = {
+  // Regelbedarfsstufe 1: Alleinstehende/Alleinerziehende
   alleinstehend: 563,
-  // Regelbedarfsstufe 1
+  // Regelbedarfsstufe 2: Volljährige Partner in Bedarfsgemeinschaft (je 90%)
   partner: 506,
-  // Regelbedarfsstufe 2 (je Partner)
+  // Regelbedarfsstufe 4: Jugendliche 14-17 Jahre
   kind_14_17: 471,
-  // Regelbedarfsstufe 4
+  // Regelbedarfsstufe 5: Kinder 6-13 Jahre
   kind_6_13: 390,
-  // Regelbedarfsstufe 5
+  // Regelbedarfsstufe 6: Kinder 0-5 Jahre
   kind_0_5: 357
-  // Regelbedarfsstufe 6
 };
 const KINDERSOFORTZUSCHLAG = 25;
 const FREIBETRAEGE = {
+  // § 11b Abs. 2 SGB II: Grundfreibetrag
   grundfreibetrag: 100,
-  // Grundfreibetrag
+  // § 11b Abs. 3 SGB II: Erwerbstätigenfreibetrag (gestaffelt)
   freibetrag_100_520: 0.2,
-  // 20% von 100-520€
+  // 20% von 100,01€ bis 520€
   freibetrag_520_1000: 0.3,
-  // 30% von 520-1000€
+  // 30% von 520,01€ bis 1.000€
   freibetrag_1000_1200: 0.1};
 function berechneKindRegelsatz(alter) {
   switch (alter) {

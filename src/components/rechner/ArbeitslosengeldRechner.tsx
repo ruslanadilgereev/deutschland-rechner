@@ -46,35 +46,46 @@ const SOZIALABGABEN = {
   arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil (2,6% / 2)
 };
 
-// Vereinfachte Lohnsteuer-Näherung nach Steuerklasse (monatlich, 2026)
-// Echte Berechnung ist komplexer, dies ist eine Näherung
-// Quelle: https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html
+// ============================================================================
+// Lohnsteuer-Näherung nach Steuerklasse (monatlich, 2026)
+// ============================================================================
+// HINWEIS: Die echte Lohnsteuerberechnung ist sehr komplex (Einkommensteuerformel
+// nach § 32a EStG mit 5 Tarifstufen). Die Bundesagentur für Arbeit verwendet
+// für ALG I ein "pauschaliertes Nettoentgelt" nach § 152 SGB III.
+//
+// Diese Näherung basiert auf vereinfachten Durchschnittssteuersätzen je Steuerklasse.
+// Für eine präzise Berechnung nutzen Sie den offiziellen Lohnsteuerrechner:
+// https://www.bmf-steuerrechner.de
+//
+// Grundfreibetrag 2026: 12.348€/Jahr = 1.029€/Monat
+// Quelle: https://www.bundesfinanzministerium.de
+// ============================================================================
 function berechneUngefaehreLohnsteuer(brutto: number, steuerklasse: Steuerklasse, kirchensteuer: boolean): number {
-  // Grundfreibetrag 2026: 12.348€/Jahr = 1.029€/Monat
-  const grundfreibetrag = 1029;
+  const grundfreibetrag = 1029; // Monatlicher Grundfreibetrag 2026
   
-  // Vereinfachte Steuerberechnung
   let steuerpflichtig = brutto - grundfreibetrag;
   if (steuerpflichtig < 0) return 0;
   
-  // Steuerklassen-Faktoren (sehr vereinfacht)
+  // Durchschnittliche Grenzsteuersätze nach Steuerklasse (vereinfacht)
+  // Basierend auf Lohnsteuertabellen für mittlere Einkommen
   const faktoren: Record<Steuerklasse, number> = {
-    1: 0.20, // Ledig
-    2: 0.18, // Alleinerziehend
-    3: 0.12, // Verheiratet, Alleinverdiener
+    1: 0.20, // Ledig, Standard
+    2: 0.18, // Alleinerziehend (Entlastungsbetrag)
+    3: 0.12, // Verheiratet, Alleinverdiener (Splitting-Vorteil)
     4: 0.20, // Verheiratet, beide verdienen ähnlich
-    5: 0.30, // Verheiratet, Zweitverdiener
-    6: 0.35, // Nebenjob
+    5: 0.30, // Verheiratet, Zweitverdiener (höhere Belastung)
+    6: 0.35, // Nebenjob (höchste Belastung)
   };
   
   let steuer = steuerpflichtig * faktoren[steuerklasse];
   
-  // Kirchensteuer (8-9%)
+  // Kirchensteuer (8% Bayern/Baden-Württemberg, 9% andere Länder)
   if (kirchensteuer) {
-    steuer *= 1.085; // 8,5% Durchschnitt
+    steuer *= 1.085; // Durchschnitt 8,5%
   }
   
-  // Soli (nur für hohe Einkommen, vereinfacht)
+  // Solidaritätszuschlag (5,5% der Lohnsteuer, erst ab höheren Einkommen)
+  // Seit 2021 für 90% der Steuerzahler abgeschafft (Freigrenzen erhöht)
   if (brutto > 4500) {
     steuer *= 1.055;
   }
