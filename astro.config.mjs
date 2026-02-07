@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://deutschland-rechner.vercel.app',
+  site: 'https://www.deutschland-rechner.de',
   integrations: [
     react(), 
     tailwind(),
