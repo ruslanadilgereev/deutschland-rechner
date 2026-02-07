@@ -473,8 +473,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Monatliche Lohnsteuer berechnen',
     icon: '💳',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Lohnsteuer Rechner, Lohnsteuer berechnen, Lohnsteuerklasse',
+    fertig: true,
+    seoKeywords: 'Lohnsteuer Rechner, Lohnsteuer berechnen, Lohnsteuerklasse, Lohnsteuer 2026, Steuerklasse Rechner, Lohnsteuertabelle, Grenzsteuersatz',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+      'https://www.gesetze-im-internet.de/estg/__38b.html',
+      'https://www.bmf-steuerrechner.de',
+      'https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/programmablaufplan.html',
+      'https://www.elster.de',
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════
