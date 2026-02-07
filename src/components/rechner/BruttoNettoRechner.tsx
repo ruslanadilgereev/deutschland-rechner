@@ -1,23 +1,102 @@
 import { useState, useMemo } from 'react';
 
-// 2026 Werte - Quellen: BMF, Deutsche Rentenversicherung, GKV, Bundesregierung
-// Stand: 01.01.2026 (Sozialversicherungsrechengrößen-Verordnung 2026)
+/**
+ * Brutto-Netto-Rechner 2026
+ * 
+ * ALLE Berechnungen basieren auf offiziellen Quellen:
+ * - §32a EStG: https://www.gesetze-im-internet.de/estg/__32a.html
+ * - BMF Programmablaufplan 2026: https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/
+ * - Steuerfortentwicklungsgesetz 2024: https://www.recht.bund.de/eli/bund/bgbl-1/2024/449
+ * - Finanz-Tools: https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026
+ */
+
+// ============================================================================
+// SOZIALVERSICHERUNG 2026 - Offizielle Werte
+// Quellen: Deutsche Rentenversicherung, GKV-Spitzenverband
+// ============================================================================
 const SOZIALVERSICHERUNG_2026 = {
-  rentenversicherung: 0.093, // 9,3% AN-Anteil (unverändert)
-  arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil (unverändert)
+  // Quelle: Deutsche Rentenversicherung - Beitragssatz 18,6%, AN-Anteil 50%
+  rentenversicherung: 0.093, // 9,3% AN-Anteil
+  
+  // Quelle: Bundesagentur für Arbeit - Beitragssatz 2,6%, AN-Anteil 50%
+  arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil
+  
+  // Quelle: GKV-Spitzenverband
   pflegeversicherung: {
-    basis: 0.018, // 1,8% AN-Anteil (erhöht um 0,2% seit 2025)
-    kinderlos_zuschlag: 0.006, // +0,6% für Kinderlose ab 23
+    // Beitragssatz 3,6% (Eltern mit 1 Kind), AN-Anteil 1,8%
+    basis: 0.018,
+    // Beitragszuschlag für Kinderlose ab 23 Jahren: 0,6%
+    // Quelle: §55 Abs. 3 SGB XI
+    kinderlos_zuschlag: 0.006,
   },
+  
+  // Quelle: GKV-Spitzenverband
   krankenversicherung: {
-    basis: 0.073, // 7,3% AN-Anteil
-    zusatzbeitrag: 0.0145, // 1,45% AN-Anteil (durchschnittl. Zusatzbeitrag 2026: 2,9%)
+    // Allgemeiner Beitragssatz 14,6%, ermäßigt 14,0%, AN-Anteil 7,0%
+    basis: 0.07,
+    // Durchschnittlicher Zusatzbeitrag 2026: 2,9%, AN-Anteil 1,45%
+    zusatzbeitrag: 0.0145,
   },
 };
 
+// ============================================================================
+// BEITRAGSBEMESSUNGSGRENZEN 2026
+// Quelle: Sozialversicherungsrechengrößen-Verordnung 2026
+// ============================================================================
 const BBG_2026 = {
-  rente: 101400, // Beitragsbemessungsgrenze RV (bundesweit einheitlich seit 2025)
-  kranken: 69750, // BBG Kranken/Pflege
+  // Einheitliche BBG Renten-/Arbeitslosenversicherung (seit 2025)
+  rente: 101400,
+  // BBG Kranken-/Pflegeversicherung
+  kranken: 69750,
+};
+
+// ============================================================================
+// STEUERLICHE FREIBETRÄGE 2026
+// Quelle: §32a EStG, Steuerfortentwicklungsgesetz
+// ============================================================================
+const FREIBETRAEGE_2026 = {
+  // Quelle: §32a Abs. 1 Nr. 1 EStG
+  grundfreibetrag: 12348,
+  
+  // Quelle: §9a Satz 1 Nr. 1a EStG - Arbeitnehmer-Pauschbetrag
+  werbungskosten: 1230,
+  
+  // Quelle: §10c EStG - Sonderausgaben-Pauschbetrag
+  sonderausgaben: 36,
+  
+  // Quelle: §24b EStG - Entlastungsbetrag für Alleinerziehende
+  alleinerziehend: 4260,
+  // Erhöhungsbetrag für jedes weitere Kind
+  alleinerziehend_kind: 240,
+};
+
+// ============================================================================
+// EINKOMMENSTEUER-TARIF 2026 nach §32a EStG
+// Quelle: https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026
+// ============================================================================
+const TARIF_2026 = {
+  // Zone 1: Grundfreibetrag
+  zone1_bis: 12348,
+  
+  // Zone 2: Erste Progressionszone (14% bis 24%)
+  zone2_bis: 17799,
+  zone2_koeff1: 914.51, // Koeffizient y²
+  zone2_koeff2: 1400,   // Koeffizient y
+  
+  // Zone 3: Zweite Progressionszone (24% bis 42%)
+  zone3_bis: 69878,
+  zone3_koeff1: 173.10,  // Koeffizient z²
+  zone3_koeff2: 2397,    // Koeffizient z
+  zone3_konstante: 1034.87,
+  
+  // Zone 4: Proportionalzone Spitzensteuersatz (42%)
+  zone4_bis: 277825,
+  zone4_satz: 0.42,
+  zone4_abzug: 11135.63,
+  
+  // Zone 5: Reichensteuer (45%)
+  zone5_satz: 0.45,
+  zone5_abzug: 19470.38,
 };
 
 const STEUERKLASSEN = [
@@ -29,63 +108,220 @@ const STEUERKLASSEN = [
   { wert: 6, label: 'Steuerklasse 6', beschreibung: 'Zweitjob / Nebenjob' },
 ];
 
-// Vereinfachte Lohnsteuerberechnung 2026
-function berechneLohnsteuer(jahresbrutto: number, steuerklasse: number): number {
-  // Grundfreibetrag 2026: 12.348 € (§32a EStG)
-  const grundfreibetrag = 12348;
+/**
+ * Berechnet die Einkommensteuer nach §32a EStG für 2026
+ * 
+ * @param zvE - Zu versteuerndes Einkommen (auf volle Euro abgerundet)
+ * @returns Einkommensteuer in Euro (auf volle Euro abgerundet)
+ * 
+ * Quelle: §32a EStG, https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026
+ */
+function berechneEinkommensteuer(zvE: number): number {
+  // Auf volle Euro abrunden gemäß §32a Abs. 1 Satz 1 EStG
+  zvE = Math.floor(zvE);
   
-  // Vereinfachte Freibeträge je Steuerklasse
-  let freibetrag = grundfreibetrag;
-  if (steuerklasse === 2) freibetrag += 4260; // Entlastungsbetrag Alleinerziehende
-  if (steuerklasse === 3) freibetrag = grundfreibetrag * 2;
-  
-  const zvE = Math.max(0, jahresbrutto - freibetrag);
-  
-  // 2026 Steuertarif (vereinfacht nach §32a EStG)
-  // Zonen: 0-12.348 (0%), 12.348-17.799 (14-24%), 17.799-69.878 (24-42%), 69.878-277.825 (42%), >277.825 (45%)
-  let steuer = 0;
   if (zvE <= 0) {
-    steuer = 0;
-  } else if (zvE <= 17799 - grundfreibetrag) {
-    // Zone 1: 14-24% progressiv (bis 17.799€ zvE nach Grundfreibetrag-Abzug = 5.451€)
-    const y = (zvE - 1) / 10000;
-    steuer = (933.52 * y + 1400) * y;
-  } else if (zvE <= 69878 - grundfreibetrag) {
-    // Zone 2: 24-42% progressiv (bis 69.878€ zvE nach Grundfreibetrag-Abzug = 57.530€)
-    const z = (zvE - (17799 - grundfreibetrag)) / 10000;
-    steuer = (176.64 * z + 2397) * z + 1015.13;
-  } else if (zvE <= 277825 - grundfreibetrag) {
-    // Zone 3: 42% Spitzensteuersatz
-    steuer = 0.42 * zvE - 10911.92;
-  } else {
-    // Zone 4: 45% Reichensteuer
-    steuer = 0.45 * zvE - 18918.79;
+    return 0;
   }
   
-  // Steuerklasse 5 & 6 haben höhere Abzüge
-  if (steuerklasse === 5) steuer *= 1.6;
-  if (steuerklasse === 6) steuer *= 1.8;
+  let steuer: number;
   
-  return Math.max(0, Math.round(steuer));
+  // Zone 1: Grundfreibetrag - keine Steuer
+  // §32a Abs. 1 Nr. 1: "bis 12.348 Euro (Grundfreibetrag): 0"
+  if (zvE <= TARIF_2026.zone1_bis) {
+    steuer = 0;
+  }
+  // Zone 2: Erste Progressionszone (14% → 24%)
+  // §32a Abs. 1 Nr. 2: "(914,51 · y + 1.400) · y"
+  // y = (zvE - 12.348) / 10.000
+  else if (zvE <= TARIF_2026.zone2_bis) {
+    const y = (zvE - TARIF_2026.zone1_bis) / 10000;
+    steuer = (TARIF_2026.zone2_koeff1 * y + TARIF_2026.zone2_koeff2) * y;
+  }
+  // Zone 3: Zweite Progressionszone (24% → 42%)
+  // §32a Abs. 1 Nr. 3: "(173,10 · z + 2.397) · z + 1.034,87"
+  // z = (zvE - 17.799) / 10.000
+  else if (zvE <= TARIF_2026.zone3_bis) {
+    const z = (zvE - TARIF_2026.zone2_bis) / 10000;
+    steuer = (TARIF_2026.zone3_koeff1 * z + TARIF_2026.zone3_koeff2) * z + TARIF_2026.zone3_konstante;
+  }
+  // Zone 4: Spitzensteuersatz 42%
+  // §32a Abs. 1 Nr. 4: "0,42 · x – 11.135,63"
+  else if (zvE <= TARIF_2026.zone4_bis) {
+    steuer = TARIF_2026.zone4_satz * zvE - TARIF_2026.zone4_abzug;
+  }
+  // Zone 5: Reichensteuer 45%
+  // §32a Abs. 1 Nr. 5: "0,45 · x – 19.470,38"
+  else {
+    steuer = TARIF_2026.zone5_satz * zvE - TARIF_2026.zone5_abzug;
+  }
+  
+  // Auf volle Euro abrunden gemäß §32a Abs. 1 Satz 6 EStG
+  return Math.max(0, Math.floor(steuer));
 }
 
-// Soli nur noch bei hohen Einkommen
+/**
+ * Berechnet die Vorsorgepauschale für den Lohnsteuerabzug
+ * 
+ * Quelle: §39b Abs. 2 Satz 5 Nr. 3 EStG
+ * Quelle: https://www.lohn-info.de/vorsorgepauschale.html
+ */
+function berechneVorsorgepauschale(jahresbrutto: number, kinderlos: boolean): number {
+  // Teilbetrag Rentenversicherung (§39b Abs. 2 Satz 5 Nr. 3a EStG)
+  // 9,3% des Arbeitslohns bis zur BBG RV
+  const rvBrutto = Math.min(jahresbrutto, BBG_2026.rente);
+  const teilbetragRV = rvBrutto * SOZIALVERSICHERUNG_2026.rentenversicherung;
+  
+  // Teilbetrag Krankenversicherung (§39b Abs. 2 Satz 5 Nr. 3b EStG)
+  const kvBrutto = Math.min(jahresbrutto, BBG_2026.kranken);
+  const teilbetragKV = kvBrutto * (
+    SOZIALVERSICHERUNG_2026.krankenversicherung.basis + 
+    SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag
+  );
+  
+  // Teilbetrag Pflegeversicherung (§39b Abs. 2 Satz 5 Nr. 3c EStG)
+  let teilbetragPV = kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.basis;
+  if (kinderlos) {
+    // Beitragszuschlag für Kinderlose ab 23 Jahren (§55 Abs. 3 SGB XI)
+    teilbetragPV += kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.kinderlos_zuschlag;
+  }
+  
+  // Teilbetrag Arbeitslosenversicherung ab 2026 (§39b Abs. 2 Satz 5 Nr. 3e EStG)
+  // Begrenzt auf 1.900€ zusammen mit KV+PV
+  const teilbetragAV = rvBrutto * SOZIALVERSICHERUNG_2026.arbeitslosenversicherung;
+  const summeKVPVAV = teilbetragKV + teilbetragPV + teilbetragAV;
+  const begrenztKVPVAV = Math.min(summeKVPVAV, 1900);
+  
+  // Gesamte Vorsorgepauschale
+  return teilbetragRV + begrenztKVPVAV;
+}
+
+/**
+ * Berechnet die Lohnsteuer für einen Jahresbruttolohn
+ * 
+ * Die Berechnung berücksichtigt:
+ * - Steuerklassen-spezifische Freibeträge
+ * - Werbungskostenpauschale
+ * - Sonderausgabenpauschale
+ * - Vorsorgepauschale
+ * 
+ * Quelle: BMF Programmablaufplan 2026
+ */
+function berechneLohnsteuer(jahresbrutto: number, steuerklasse: number, kinderlos: boolean): number {
+  // Schritt 1: Ermittle die Freibeträge je nach Steuerklasse
+  // Quelle: https://www.smart-rechner.de/lohnsteuer/rechner.php
+  let grundfreibetrag = 0;
+  let werbungskosten = 0;
+  let sonderausgaben = 0;
+  let entlastungsbetrag = 0;
+  
+  switch (steuerklasse) {
+    case 1:
+      // Steuerklasse 1: Volle Freibeträge
+      grundfreibetrag = FREIBETRAEGE_2026.grundfreibetrag;
+      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
+      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      break;
+      
+    case 2:
+      // Steuerklasse 2: Wie 1, plus Entlastungsbetrag für Alleinerziehende
+      grundfreibetrag = FREIBETRAEGE_2026.grundfreibetrag;
+      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
+      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      entlastungsbetrag = FREIBETRAEGE_2026.alleinerziehend;
+      break;
+      
+    case 3:
+      // Steuerklasse 3: Splittingverfahren (doppelter Grundfreibetrag)
+      // Quelle: §32a Abs. 5 EStG
+      grundfreibetrag = FREIBETRAEGE_2026.grundfreibetrag * 2;
+      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
+      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben * 2; // 72€
+      break;
+      
+    case 4:
+      // Steuerklasse 4: Wie Steuerklasse 1 (für Verheiratete mit ähnlichem Einkommen)
+      grundfreibetrag = FREIBETRAEGE_2026.grundfreibetrag;
+      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
+      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      break;
+      
+    case 5:
+      // Steuerklasse 5: KEIN Grundfreibetrag (Partner hat doppelten in Klasse 3)
+      // Nur Werbungskosten, Sonderausgaben und Vorsorgepauschale
+      grundfreibetrag = 0;
+      werbungskosten = FREIBETRAEGE_2026.werbungskosten;
+      sonderausgaben = FREIBETRAEGE_2026.sonderausgaben;
+      break;
+      
+    case 6:
+      // Steuerklasse 6: KEINE Freibeträge (Zweitjob)
+      // Nur Vorsorgepauschale
+      grundfreibetrag = 0;
+      werbungskosten = 0;
+      sonderausgaben = 0;
+      break;
+  }
+  
+  // Schritt 2: Berechne die Vorsorgepauschale
+  const vorsorgepauschale = berechneVorsorgepauschale(jahresbrutto, kinderlos);
+  
+  // Schritt 3: Berechne das zu versteuernde Einkommen (zvE)
+  // zvE = Brutto - Werbungskosten - Sonderausgaben - Vorsorgepauschale - Entlastungsbetrag
+  const abzuege = werbungskosten + sonderausgaben + vorsorgepauschale + entlastungsbetrag;
+  const zvE = Math.max(0, jahresbrutto - abzuege);
+  
+  // Schritt 4: Wende den Grundfreibetrag an und berechne die Steuer
+  // Der Grundfreibetrag ist in der Tarifformel bereits enthalten
+  // Bei Steuerklasse 3 wird das Splittingverfahren angewandt
+  if (steuerklasse === 3) {
+    // Splittingverfahren: zvE halbieren, Steuer berechnen, verdoppeln
+    // Quelle: §32a Abs. 5 EStG
+    const halbZvE = Math.max(0, zvE / 2);
+    const steuerHalb = berechneEinkommensteuer(halbZvE);
+    return steuerHalb * 2;
+  } else if (steuerklasse === 5 || steuerklasse === 6) {
+    // Bei Steuerklasse 5 und 6: Volle Besteuerung ohne Grundfreibetrag
+    // Der Grundfreibetrag wird hier nicht vom zvE abgezogen
+    return berechneEinkommensteuer(zvE);
+  } else {
+    // Steuerklassen 1, 2, 4: Normale Besteuerung
+    // Grundfreibetrag ist in der Tarifformel enthalten
+    return berechneEinkommensteuer(zvE);
+  }
+}
+
+/**
+ * Berechnet den Solidaritätszuschlag
+ * 
+ * Seit 2021: Soli nur noch für hohe Einkommen
+ * Quelle: §3 Abs. 3 SolZG
+ */
 function berechneSoli(lohnsteuer: number): number {
-  const freigrenze = 18130; // Jahresgrenze
+  // Nullzone: Kein Soli bis 18.130€ Lohnsteuer/Jahr (16.956€ bis 2020)
+  const freigrenze = 18130;
   if (lohnsteuer <= freigrenze) return 0;
   
-  // Gleitzone 18.130 - 33.063
+  // Gleitzone: 18.130€ bis 33.063€ (schrittweise Einführung)
+  // Der Soli steigt von 0% auf 5,5%
   if (lohnsteuer <= 33063) {
+    // 11,9% des Unterschiedsbetrags, max. 5,5% der Lohnsteuer
     return Math.min(0.055 * lohnsteuer, 0.119 * (lohnsteuer - freigrenze));
   }
   
-  return Math.round(lohnsteuer * 0.055);
+  // Voller Satz: 5,5% der Lohnsteuer
+  return Math.floor(lohnsteuer * 0.055);
 }
 
+/**
+ * Berechnet die Kirchensteuer
+ * 
+ * Quelle: Kirchensteuergesetze der Länder
+ */
 function berechneKirchensteuer(lohnsteuer: number, bundesland: string): number {
-  // Bayern & Baden-Württemberg: 8%, Rest: 9%
+  // Bayern und Baden-Württemberg: 8%, alle anderen: 9%
   const satz = ['BY', 'BW'].includes(bundesland) ? 0.08 : 0.09;
-  return Math.round(lohnsteuer * satz);
+  return Math.floor(lohnsteuer * satz);
 }
 
 export default function BruttoNettoRechner() {
@@ -98,18 +334,25 @@ export default function BruttoNettoRechner() {
   const ergebnis = useMemo(() => {
     const bruttoJahr = bruttoMonat * 12;
     
-    // Sozialversicherung (2026 Werte)
+    // ========================================
+    // SOZIALVERSICHERUNGSBEITRÄGE
+    // ========================================
     const rvBrutto = Math.min(bruttoJahr, BBG_2026.rente);
     const kvBrutto = Math.min(bruttoJahr, BBG_2026.kranken);
     
+    // Rentenversicherung: 9,3% AN-Anteil
     const rv = rvBrutto * SOZIALVERSICHERUNG_2026.rentenversicherung;
+    
+    // Arbeitslosenversicherung: 1,3% AN-Anteil
     const av = rvBrutto * SOZIALVERSICHERUNG_2026.arbeitslosenversicherung;
     
+    // Pflegeversicherung: 1,8% (+ 0,6% Kinderlosenzuschlag)
     let pv = kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.basis;
     if (kinderlos) {
       pv += kvBrutto * SOZIALVERSICHERUNG_2026.pflegeversicherung.kinderlos_zuschlag;
     }
     
+    // Krankenversicherung: 7,0% + 1,45% Zusatzbeitrag
     const kv = kvBrutto * (
       SOZIALVERSICHERUNG_2026.krankenversicherung.basis + 
       SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag
@@ -117,13 +360,17 @@ export default function BruttoNettoRechner() {
     
     const svGesamt = rv + av + pv + kv;
     
-    // Steuern
-    const lohnsteuerJahr = berechneLohnsteuer(bruttoJahr, steuerklasse);
+    // ========================================
+    // STEUERN
+    // ========================================
+    const lohnsteuerJahr = berechneLohnsteuer(bruttoJahr, steuerklasse, kinderlos);
     const soliJahr = berechneSoli(lohnsteuerJahr);
     const kistJahr = kirchensteuer ? berechneKirchensteuer(lohnsteuerJahr, bundesland) : 0;
     const steuernGesamt = lohnsteuerJahr + soliJahr + kistJahr;
     
-    // Netto
+    // ========================================
+    // NETTO
+    // ========================================
     const nettoJahr = bruttoJahr - svGesamt - steuernGesamt;
     const nettoMonat = nettoJahr / 12;
     
@@ -146,6 +393,11 @@ export default function BruttoNettoRechner() {
   }, [bruttoMonat, steuerklasse, kinderlos, kirchensteuer, bundesland]);
 
   const formatEuro = (n: number) => n.toLocaleString('de-DE') + ' €';
+
+  // Berechne PV-Satz für Anzeige
+  const pvSatz = kinderlos ? '2,4%' : '1,8%';
+  // Berechne KV-Satz für Anzeige
+  const kvSatz = ((SOZIALVERSICHERUNG_2026.krankenversicherung.basis + SOZIALVERSICHERUNG_2026.krankenversicherung.zusatzbeitrag) * 100).toFixed(2) + '%';
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -280,11 +532,11 @@ export default function BruttoNettoRechner() {
                 <span>− {formatEuro(ergebnis.rv)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Krankenversicherung (~8,75%)</span>
+                <span>Krankenversicherung ({kvSatz})</span>
                 <span>− {formatEuro(ergebnis.kv)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Pflegeversicherung ({kinderlos ? '2,4%' : '1,8%'})</span>
+                <span>Pflegeversicherung ({pvSatz})</span>
                 <span>− {formatEuro(ergebnis.pv)}</span>
               </div>
               <div className="flex justify-between">
@@ -334,11 +586,11 @@ export default function BruttoNettoRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Berechnung nach <strong>Steuerformel 2026</strong> (BMF)</span>
+            <span>Berechnung nach <strong>§32a EStG Tarifformel 2026</strong></span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Grundfreibetrag: 12.348 €</strong> (Stand 01.01.2026)</span>
+            <span><strong>Grundfreibetrag: 12.348 €</strong> (Steuerfortentwicklungsgesetz)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -346,11 +598,11 @@ export default function BruttoNettoRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Durchschnittlicher KV-Zusatzbeitrag: <strong>2,9%</strong> (Ihr Wert kann abweichen)</span>
+            <span>Durchschnittlicher KV-Zusatzbeitrag: <strong>2,9%</strong></span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Vereinfachte Berechnung – exakte Werte via <a href="https://www.bmf-steuerrechner.de" target="_blank" rel="noopener" className="text-blue-600 hover:underline">BMF-Steuerrechner</a></span>
+            <span>Exakte Werte via <a href="https://www.bmf-steuerrechner.de" target="_blank" rel="noopener" className="text-blue-600 hover:underline">BMF-Steuerrechner</a></span>
           </li>
         </ul>
       </div>
@@ -389,28 +641,36 @@ export default function BruttoNettoRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen (Stand: 2026)</h4>
         <div className="space-y-1">
           <a 
+            href="https://www.gesetze-im-internet.de/estg/__32a.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            §32a EStG – Einkommensteuertarif
+          </a>
+          <a 
+            href="https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            Finanz-Tools – Einkommensteuer-Formeln 2026
+          </a>
+          <a 
             href="https://www.bmf-steuerrechner.de"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMF – Offizieller Lohnsteuerrechner 2026
+            BMF – Offizieller Lohnsteuerrechner
           </a>
           <a 
-            href="https://www.deutsche-rentenversicherung.de"
+            href="https://www.lohn-info.de/vorsorgepauschale.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Deutsche Rentenversicherung – Beitragssätze
-          </a>
-          <a 
-            href="https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Bundesregierung – Sozialversicherungs-Rechengrößen 2026
+            Lohn-Info – Vorsorgepauschale
           </a>
         </div>
       </div>

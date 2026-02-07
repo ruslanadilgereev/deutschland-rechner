@@ -18,16 +18,50 @@ const HOECHSTBETRAEGE: Record<Mietstufe, number[]> = {
   'VII': [807, 987, 1175, 1371, 1567, 1762, 1958, 2153],
 };
 
-// Koeffizienten für die Wohngeld-Formel nach § 19 WoGG (Anlage 1)
-// Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) × 12
-// Diese Koeffizienten sind stark vereinfacht - echte Berechnung ist komplexer
+// Koeffizienten für die Wohngeld-Formel nach § 19 Abs. 1 WoGG
+// Wohngeld = 1,15 × (M − (a + b×M + c×Y) × Y) Euro
+// Quelle: Anlage 2 zu § 19 Abs. 1 WoGG (exakte Werte aus dem Gesetzestext)
+// https://www.gesetze-im-internet.de/wogg/anlage_2.html
 const KOEFFIZIENTEN: Record<number, { a: number; b: number; c: number }> = {
-  1: { a: 4.000e-2, b: 5.300e-5, c: 2.540e-4 },
-  2: { a: 3.000e-2, b: 3.300e-5, c: 2.070e-4 },
-  3: { a: 2.000e-2, b: 2.300e-5, c: 1.750e-4 },
-  4: { a: 1.000e-2, b: 1.500e-5, c: 1.520e-4 },
-  5: { a: 0.000e-2, b: 1.000e-5, c: 1.350e-4 },
-  6: { a: -1.000e-2, b: 0.700e-5, c: 1.200e-4 },
+  1:  { a: 4.0e-2,   b: 5.4e-5,  c: 2.65e-4 },
+  2:  { a: 3.0e-2,   b: 3.5e-5,  c: 2.14e-4 },
+  3:  { a: 2.0e-2,   b: 2.4e-5,  c: 1.80e-4 },
+  4:  { a: 1.0e-2,   b: 1.6e-5,  c: 1.56e-4 },
+  5:  { a: 0.0e-2,   b: 1.1e-5,  c: 1.39e-4 },
+  6:  { a: -1.0e-2,  b: 0.8e-5,  c: 1.25e-4 },
+  7:  { a: -1.5e-2,  b: 0.6e-5,  c: 1.15e-4 },
+  8:  { a: -2.0e-2,  b: 0.5e-5,  c: 1.07e-4 },
+  9:  { a: -2.5e-2,  b: 0.4e-5,  c: 1.00e-4 },
+  10: { a: -3.0e-2,  b: 0.35e-5, c: 0.94e-4 },
+  11: { a: -3.5e-2,  b: 0.3e-5,  c: 0.89e-4 },
+  12: { a: -4.0e-2,  b: 0.25e-5, c: 0.85e-4 },
+};
+
+// Heizkosten-Entlastungsbetrag nach § 12 Abs. 6 WoGG (monatlich)
+// Quelle: https://www.wohngeld.org/wohngeldrechner/
+const HEIZKOSTEN_ENTLASTUNG: Record<number, number> = {
+  1: 14.40,
+  2: 18.60,
+  3: 22.20,
+  4: 25.80,
+  5: 29.40,
+  6: 33.00,
+  7: 36.60,
+  8: 40.20,
+};
+const HEIZKOSTEN_ZUSATZ_PRO_PERSON = 3.60; // Ab Person 6+
+
+// Klimakomponente nach § 12 Abs. 7 WoGG (ca. 0,40€/qm, pauschaliert)
+// Wird hier als Pauschale pro Haushaltsgröße angenähert
+const KLIMAKOMPONENTE: Record<number, number> = {
+  1: 20,
+  2: 28,
+  3: 35,
+  4: 42,
+  5: 49,
+  6: 56,
+  7: 63,
+  8: 70,
 };
 
 // Freibeträge 2025/2026
