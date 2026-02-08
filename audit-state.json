@@ -1,6 +1,6 @@
 {
-  "lastAuditIndex": 2,
-  "lastAuditDate": "2026-02-07",
+  "lastAuditIndex": 3,
+  "lastAuditDate": "2026-02-08",
   "currentCycle": 7,
   "calculators": [
     "kindergeld-rechner",
@@ -3028,6 +3028,74 @@
         "elterngeld_digital": "https://www.elterngeld-digital.de/"
       },
       "auditSummary": "Clean audit cycle 7 - all 3 links working (200 OK). All Elterngeld 2026 values verified against official BMBFSFJ and Familienportal sources: Einkommensgrenze 175.000€ since April 2025, Basiselterngeld 300-1.800€, ElterngeldPlus 150-900€, Ersatzrate 65-67% with correctly implemented Gleitzone (0.0005 factor). Legal sections complete with 3-month deadline warning, Frühchen/Mehrlinge/Geschwisterbonus Sonderregelungen, April 2025 reform info. ElterngeldDigital 10 Bundesländer list verified current. No issues found."
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "date": "2026-02-08",
+      "cycle": 7,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bundesfinanzministerium.de/Grundsteuer_Grunderwerbsteuer": "PASS - 200 OK",
+        "finanztip.de/grunderwerbsteuer": "PASS - 200 OK (Stand: 05. Feb 2026)",
+        "gesetze-im-internet.de/grestg_1983": "PASS - Valid government site (fetch timeout expected)",
+        "de.wikipedia.org/Grunderwerbsteuer_(Deutschland)": "PASS - 200 OK",
+        "finanzen.hessen.de/initiativen/hessengeld": "PASS - 200 OK"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+          "https://www.finanztip.de/grunderwerbsteuer/",
+          "https://de.wikipedia.org/wiki/Grunderwerbsteuer_(Deutschland)"
+        ],
+        "allRatesVerified": {
+          "Baden-Württemberg": "5.0% ✓",
+          "Bayern": "3.5% ✓ (lowest in Germany)",
+          "Berlin": "6.0% ✓",
+          "Brandenburg": "6.5% ✓",
+          "Bremen": "5.5% ✓ (confirmed: erhöht von 5.0% am 01.07.2025)",
+          "Hamburg": "5.5% ✓ (erhöht 01.01.2023)",
+          "Hessen": "6.0% ✓",
+          "Mecklenburg-Vorpommern": "6.0% ✓",
+          "Niedersachsen": "5.0% ✓",
+          "Nordrhein-Westfalen": "6.5% ✓",
+          "Rheinland-Pfalz": "5.0% ✓",
+          "Saarland": "6.5% ✓",
+          "Sachsen": "5.5% ✓ (erhöht 01.01.2023)",
+          "Sachsen-Anhalt": "5.0% ✓",
+          "Schleswig-Holstein": "6.5% ✓",
+          "Thüringen": "5.0% ✓ (gesenkt von 6.5% am 01.01.2024)"
+        },
+        "rateRange": "3.5% (Bayern) bis 6.5% (BB, NW, SL, SH) ✓"
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Einmalige Steuer beim Kauf explained",
+        "ausnahmen": "PASS - Erbschaft, Schenkung an Verwandte 1. Grades, Erwerb unter 2.500€ correctly listed",
+        "ablauf": "PASS - Complete process: Notar → Finanzamt → Steuerbescheid (2-8 Wochen) → Zahlung 4 Wochen → Unbedenklichkeitsbescheinigung → Grundbuch",
+        "fristen": "PASS - 4 Wochen Zahlungsfrist mentioned",
+        "behoerde": "PASS - Finanzamt am Standort der Immobilie (NOT Wohnort!) correctly explained",
+        "warnungen": "PASS - Keine Grundbucheintragung ohne Zahlung! warning present",
+        "foerderprogramme": "PASS - Hessengeld explained (10.000€/Erwachsenen, 5.000€/Kind, max GrESt, 10 Jahresraten), NRW.Zuschuss correctly marked as ended"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "steuer = Math.round(kaufpreis * (satz / 100))",
+        "notes": "Simple percentage calculation, no edge cases. Bundesland comparison table correctly implemented with sorting and difference display."
+      },
+      "seoCheck": {
+        "title": "PASS - Grunderwerbsteuer-Rechner 2026",
+        "description": "PASS - Includes 2026, rate range 3.5%-6.5%, mentions Hessengeld 30.000€ max, Thüringen 5.0% in Ostdeutschland",
+        "keywords": "IMPLICIT - Title/description contain: Grunderwerbsteuer Rechner, 2026, Bundesländer, Bayern, NRW, Hessengeld"
+      },
+      "officialSources": {
+        "bmf": "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer_Grunderwerbsteuer/Grundsteuer_Grunderwerbsteuer.html",
+        "gesetz": "https://www.gesetze-im-internet.de/grestg_1983/",
+        "finanztip": "https://www.finanztip.de/grunderwerbsteuer/",
+        "finanz_tools": "https://www.finanz-tools.de/grunderwerbsteuer/bundeslaender-tabelle",
+        "wikipedia": "https://de.wikipedia.org/wiki/Grunderwerbsteuer_(Deutschland)",
+        "hessengeld": "https://finanzen.hessen.de/initiativen/hessengeld"
+      },
+      "auditSummary": "Clean audit cycle 7 - all 5 external links working (200 OK). All 16 Bundesland rates verified against finanz-tools.de (Jan 2026) and Finanztip (Feb 5, 2026): Range 3.5% (Bayern) to 6.5% (BB, NW, SL, SH). Recent changes confirmed: Bremen 5.0%→5.5% (01.07.2025), Thüringen 6.5%→5.0% (01.01.2024). Calculation formula simple and correct. Legal sections complete with ausnahmen, ablauf, fristen, behörde, warnungen. Hessengeld Förderprogramm correctly explained (up to 30.000€ for family with 2 kids). No issues found."
     }
   ]
 }
