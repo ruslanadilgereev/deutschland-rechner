@@ -295,8 +295,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Arbeitstage zwischen zwei Daten zählen',
     icon: '📆',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen',
+    fertig: true,
+    seoKeywords: 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, Arbeitstage im Jahr, Arbeitstage 2025, Arbeitstage 2026, Feiertage Deutschland, Arbeitstage Bundesland',
+    quellen: [
+      'https://www.bmi.bund.de/DE/themen/verfassung/staatliche-symbole/nationale-feiertage/nationale-feiertage-node.html',
+      'https://www.dgb.de/service/ratgeber/feiertage/',
+      'https://www.gesetze-im-internet.de/arbzg/',
+      'https://www.schulferien.org/deutschland/feiertage/',
+    ],
   },
   {
     id: 'mindestlohn',

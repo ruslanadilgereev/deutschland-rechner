@@ -1,0 +1,364 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArbeitstageRechner from '../components/rechner/ArbeitstageRechner.tsx';
+
+const title = 'Arbeitstage-Rechner 2025/2026 – Werktage zwischen zwei Daten berechnen';
+const description = 'Arbeitstage berechnen: Werktage zwischen zwei Daten zählen mit Feiertagen nach Bundesland. Kostenloser Rechner für 5- oder 6-Tage-Woche. Alle gesetzlichen Feiertage inklusive.';
+const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, Arbeitstage zwischen zwei Daten, Werktage Rechner, Arbeitstage im Jahr, Arbeitstage 2025, Arbeitstage 2026, Feiertage Deutschland, gesetzliche Feiertage, Arbeitstage Bundesland, Werktage berechnen, Kalendertage in Arbeitstage';
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg mb-4">
+          <span class="text-4xl">📆</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          Arbeitstage-Rechner 2025/2026
+        </h1>
+        <p class="text-gray-600 max-w-lg mx-auto">
+          Berechnen Sie die Anzahl der Arbeitstage zwischen zwei Daten – mit Feiertagen nach Bundesland.
+        </p>
+      </div>
+
+      <!-- Calculator Component -->
+      <ArbeitstageRechner client:load />
+
+      <!-- SEO Content Section -->
+      <div class="mt-12 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📚 Alles Wichtige zu Arbeitstagen in Deutschland</h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Arbeitstage hat ein Jahr?</h3>
+            <p>
+              Ein Jahr hat <strong>365 Tage</strong> (366 im Schaltjahr). Nach Abzug von Wochenenden 
+              (104 Tage) und bundesweiten Feiertagen (9 Tage) bleiben etwa <strong>250-252 Arbeitstage</strong>. 
+              Je nach Bundesland können es durch regionale Feiertage 2-4 Tage weniger sein. 
+              In Bayern mit den meisten Feiertagen sind es nur etwa <strong>248 Arbeitstage</strong>.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Welche Bundesländer haben die meisten Feiertage?</h3>
+            <p>
+              <strong>Bayern und Baden-Württemberg</strong> haben mit 12-13 gesetzlichen Feiertagen die meisten. 
+              <strong>Berlin</strong> hatte lange die wenigsten (9), hat aber seit 2019 den 
+              Internationalen Frauentag (8. März). 
+              <strong>Mecklenburg-Vorpommern</strong> hat seit 2023 ebenfalls den Frauentag.
+              Generell haben süddeutsche, katholisch geprägte Bundesländer mehr Feiertage.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Was sind die bundesweiten Feiertage?</h3>
+            <p>
+              Es gibt <strong>9 bundesweite gesetzliche Feiertage</strong>:
+              Neujahr (1.1.), Karfreitag, Ostermontag, Tag der Arbeit (1.5.), 
+              Christi Himmelfahrt, Pfingstmontag, Tag der Deutschen Einheit (3.10.), 
+              1. und 2. Weihnachtsfeiertag (25./26.12.).
+              Heiligabend (24.12.) und Silvester (31.12.) sind <strong>keine</strong> gesetzlichen Feiertage!
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie berechne ich Arbeitstage bei Teilzeit?</h3>
+            <p>
+              Die Anzahl der Arbeitstage im Jahr bleibt gleich – nur Ihre <strong>Arbeitsstunden</strong> 
+              ändern sich. Wenn Sie z.B. nur Montag, Dienstag und Mittwoch arbeiten, haben Sie 
+              trotzdem denselben Kalender. Für die Urlaubsberechnung werden die Arbeitstage dann 
+              auf Ihre Wochentage umgerechnet.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Muss ich an Feiertagen arbeiten?</h3>
+            <p>
+              An gesetzlichen Feiertagen darf <strong>nicht gearbeitet werden</strong> 
+              (§ 9 Arbeitszeitgesetz). Ausnahmen gelten für bestimmte Branchen wie 
+              Gastronomie, Gesundheitswesen, Polizei, Feuerwehr und öffentliche Verkehrsmittel.
+              Für Feiertagsarbeit gibt es oft <strong>Zuschläge</strong> oder Freizeitausgleich.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feiertage-Übersicht -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📅 Gesetzliche Feiertage nach Bundesland</h2>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-2 font-semibold text-gray-700">Feiertag</th>
+                <th class="text-left py-2 font-semibold text-gray-700">Datum</th>
+                <th class="text-left py-2 font-semibold text-gray-700">Bundesländer</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Neujahr</td>
+                <td class="py-2">1. Januar</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Heilige Drei Könige</td>
+                <td class="py-2">6. Januar</td>
+                <td class="py-2">BW, BY, ST</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Internationaler Frauentag</td>
+                <td class="py-2">8. März</td>
+                <td class="py-2">BE, MV</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Karfreitag</td>
+                <td class="py-2">variabel</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Ostermontag</td>
+                <td class="py-2">variabel</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Tag der Arbeit</td>
+                <td class="py-2">1. Mai</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Christi Himmelfahrt</td>
+                <td class="py-2">variabel</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Pfingstmontag</td>
+                <td class="py-2">variabel</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Fronleichnam</td>
+                <td class="py-2">variabel</td>
+                <td class="py-2">BW, BY, HE, NW, RP, SL</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Mariä Himmelfahrt</td>
+                <td class="py-2">15. August</td>
+                <td class="py-2">BY*, SL</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Weltkindertag</td>
+                <td class="py-2">20. September</td>
+                <td class="py-2">TH</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Tag der Deutschen Einheit</td>
+                <td class="py-2">3. Oktober</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Reformationstag</td>
+                <td class="py-2">31. Oktober</td>
+                <td class="py-2">BB, HB, HH, MV, NI, SN, ST, SH, TH</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Allerheiligen</td>
+                <td class="py-2">1. November</td>
+                <td class="py-2">BW, BY, NW, RP, SL</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Buß- und Bettag</td>
+                <td class="py-2">variabel (Nov.)</td>
+                <td class="py-2">SN</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">1. Weihnachtsfeiertag</td>
+                <td class="py-2">25. Dezember</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">2. Weihnachtsfeiertag</td>
+                <td class="py-2">26. Dezember</td>
+                <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-500 mt-2">* In Bayern nur in Gemeinden mit überwiegend katholischer Bevölkerung</p>
+        </div>
+      </div>
+
+      <!-- FAQ Schema -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zu Arbeitstagen</h2>
+        
+        <div class="space-y-4">
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wie viele Arbeitstage hat das Jahr 2025?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Das Jahr 2025 hat <strong>250-253 Arbeitstage</strong>, je nach Bundesland. 
+              Das Jahr hat 365 Tage, davon sind 104 Wochenendtage. Die verbleibenden 261 Werktage werden durch 
+              9 bundesweite und 2-4 regionale Feiertage reduziert.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wie viele Arbeitstage hat ein Monat durchschnittlich?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Ein Monat hat durchschnittlich etwa <strong>21-22 Arbeitstage</strong>. Bei der Gehaltsberechnung 
+              wird oft mit 21,75 Arbeitstagen pro Monat gerechnet (52 Wochen × 5 Tage ÷ 12 Monate).
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Was ist der Unterschied zwischen Arbeitstagen und Werktagen?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              <strong>Werktage</strong> sind alle Tage außer Sonntagen und Feiertagen – also Montag bis Samstag. 
+              <strong>Arbeitstage</strong> sind die Tage, an denen tatsächlich gearbeitet wird (meist Montag bis Freitag). 
+              Bei einer 5-Tage-Woche sind Arbeitstage = Werktage minus Samstage.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Warum brauche ich die Arbeitstage-Berechnung?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Die Berechnung ist wichtig für: <strong>Urlaubsplanung</strong> (anteiliger Urlaub), 
+              <strong>Projektplanung</strong> (realistische Zeitplanung), 
+              <strong>Gehaltsberechnung</strong> (z.B. bei Teilmonaten), 
+              <strong>Fristen</strong> (manche Fristen gelten in Arbeitstagen) und 
+              <strong>Buchführung</strong> (Arbeitstage für Steuererklärung).
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Zählt der Samstag als Arbeitstag?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              In der Regel <strong>nicht</strong>. Die meisten Arbeitnehmer haben eine 5-Tage-Woche (Mo-Fr). 
+              Samstag zählt aber als <strong>Werktag</strong> (wichtig für Kündigungsfristen, Urlaubsanspruch nach BUrlG). 
+              In manchen Branchen (Einzelhandel, Gastronomie) ist Samstag ein regulärer Arbeitstag.
+            </p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Vergleichsrechner -->
+      <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-6">
+        <h3 class="font-bold text-blue-800 mb-3">📱 Weitere nützliche Rechner</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <a 
+            href="/urlaubstage-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">🏖️</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Urlaubstage</span>
+          </a>
+          <a 
+            href="/stundenlohn-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">⌛</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Stundenlohn</span>
+          </a>
+          <a 
+            href="/brutto-netto-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">💵</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Brutto-Netto</span>
+          </a>
+          <a 
+            href="/pendlerpauschale-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">🛣️</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Pendlerpauschale</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="mt-8 text-center">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"
+        >
+          ← Alle Rechner anzeigen
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie viele Arbeitstage hat das Jahr 2025?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Jahr 2025 hat 250-253 Arbeitstage, je nach Bundesland. Das Jahr hat 365 Tage, davon sind 104 Wochenendtage. Die verbleibenden 261 Werktage werden durch 9 bundesweite und 2-4 regionale Feiertage reduziert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Arbeitstage hat ein Monat durchschnittlich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Monat hat durchschnittlich etwa 21-22 Arbeitstage. Bei der Gehaltsberechnung wird oft mit 21,75 Arbeitstagen pro Monat gerechnet (52 Wochen × 5 Tage ÷ 12 Monate)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Arbeitstagen und Werktagen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Werktage sind alle Tage außer Sonntagen und Feiertagen – also Montag bis Samstag. Arbeitstage sind die Tage, an denen tatsächlich gearbeitet wird (meist Montag bis Freitag). Bei einer 5-Tage-Woche sind Arbeitstage = Werktage minus Samstage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zählt der Samstag als Arbeitstag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Regel nicht. Die meisten Arbeitnehmer haben eine 5-Tage-Woche (Mo-Fr). Samstag zählt aber als Werktag, was für Kündigungsfristen und Urlaubsanspruch nach BUrlG wichtig ist. In manchen Branchen wie Einzelhandel oder Gastronomie ist Samstag ein regulärer Arbeitstag."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Arbeitstage-Rechner 2025/2026",
+  "description": "Berechnen Sie die Anzahl der Arbeitstage zwischen zwei Daten. Mit allen gesetzlichen Feiertagen nach Bundesland für Deutschland.",
+  "url": "https://deutschland-rechner.de/arbeitstage-rechner",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+}
+</script>
