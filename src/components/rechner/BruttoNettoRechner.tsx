@@ -17,22 +17,22 @@ import { useState, useMemo } from 'react';
 // KONSTANTEN 2026 - Offiziell nach BMF/Bundesregierung
 // ============================================================================
 
-// Einkommensteuertarif 2026 nach §32a EStG
+// Einkommensteuertarif 2026 nach §32a EStG (Steuerfortentwicklungsgesetz, BGBl. 2024 I Nr. 449)
 const TARIF_2026 = {
   grundfreibetrag: 12348,      // §32a Abs. 1 Nr. 1 EStG
   zone2Ende: 17799,            // Progressionszone 1 endet
   zone3Ende: 69878,            // Progressionszone 2 endet  
   zone4Ende: 277825,           // Proportionalzone 42% endet
-  // Koeffizienten aus BMF-PAP 2026
-  zone2Y1: 933.52,             // (933,52 * y + 1400) * y
+  // Koeffizienten aus §32a EStG 2026 - EXAKT nach Gesetz
+  zone2Y1: 914.51,             // (914,51 * y + 1400) * y
   zone2Y2: 1400,
-  zone3Z1: 176.64,             // (176,64 * z + 2397) * z + 1015.13
+  zone3Z1: 173.10,             // (173,10 * z + 2397) * z + 1034,87
   zone3Z2: 2397,
-  zone3Konst: 1015.13,
+  zone3Konst: 1034.87,
   zone4Faktor: 0.42,           // 42% Spitzensteuersatz
-  zone4Abzug: 10911.92,
+  zone4Abzug: 11135.63,        // ESt = 0,42 * zvE - 11.135,63
   zone5Faktor: 0.45,           // 45% Reichensteuer
-  zone5Abzug: 18918.79,
+  zone5Abzug: 19470.38,        // ESt = 0,45 * zvE - 19.470,38
 };
 
 // Freibeträge pro Steuerklasse (jährlich)
@@ -53,14 +53,14 @@ const SOZIALVERSICHERUNG_2026 = {
   },
   krankenversicherung: {
     basis: 0.073,               // 7,3% AN-Anteil (14,6% gesamt)
-    zusatzbeitrag: 0.0125,      // 1,25% durchschn. Zusatzbeitrag 2026 (AN-Anteil)
+    zusatzbeitrag: 0.0145,      // 1,45% durchschn. Zusatzbeitrag 2026 (AN-Anteil, 2,9% gesamt)
   },
 };
 
-// Beitragsbemessungsgrenzen 2026 (jährlich)
+// Beitragsbemessungsgrenzen 2026 (jährlich) - SV-Rechengrößenverordnung 2026
 const BBG_2026 = {
-  renteArbeitslos: 96600,       // RV/AV bundesweit einheitlich
-  krankenPflege: 66150,         // KV/PV
+  renteArbeitslos: 101400,      // RV/AV bundesweit einheitlich (8.450€/Monat)
+  krankenPflege: 69750,         // KV/PV (5.812,50€/Monat)
 };
 
 const STEUERKLASSEN = [
@@ -492,7 +492,7 @@ export default function BruttoNettoRechner() {
                 <span>− {formatEuro(ergebnis.rv)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Krankenversicherung (~8,55%)</span>
+                <span>Krankenversicherung (~8,75%)</span>
                 <span>− {formatEuro(ergebnis.kv)}</span>
               </div>
               <div className="flex justify-between">
@@ -554,11 +554,11 @@ export default function BruttoNettoRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>BBG Rente/AV: <strong>{formatEuro(BBG_2026.renteArbeitslos)}/Jahr</strong> | BBG KV/PV: <strong>{formatEuro(BBG_2026.krankenPflege)}/Jahr</strong></span>
+            <span>BBG Rente/AV: <strong>101.400 €/Jahr</strong> | BBG KV/PV: <strong>69.750 €/Jahr</strong></span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span>Durchschnittlicher KV-Zusatzbeitrag: <strong>2,5%</strong> (Ihr Wert kann abweichen)</span>
+            <span>Durchschnittlicher KV-Zusatzbeitrag: <strong>2,9%</strong> (Ihr Wert kann abweichen)</span>
           </li>
           <li className="flex gap-2">
             <span>⚠️</span>
