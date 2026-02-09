@@ -1,15 +1,15 @@
 import { useState, useMemo } from 'react';
 
-// Beitragsbemessungsgrenze (BBG) Krankenversicherung 2025
-const BBG_KV_2025 = 66150; // Jahres-BBG
-const BBG_KV_MONAT = 5512.50; // Monats-BBG
-const BBG_KV_TAG = 183.75; // Tages-BBG
+// Beitragsbemessungsgrenze (BBG) Krankenversicherung 2026
+const BBG_KV_2026 = 69750; // Jahres-BBG
+const BBG_KV_MONAT = 5812.50; // Monats-BBG
+const BBG_KV_TAG = 193.75; // Tages-BBG (5812.50 / 30)
 
-// Sozialversicherungsbeiträge (Arbeitnehmeranteil) auf Krankengeld 2025
+// Sozialversicherungsbeiträge (Arbeitnehmeranteil) auf Krankengeld 2026
 const BEITRAGSSAETZE = {
   rentenversicherung: 0.093, // 9,3% (halber Satz)
   arbeitslosenversicherung: 0.013, // 1,3% (halber Satz)
-  pflegeversicherung: 0.017, // 1,7% Basis
+  pflegeversicherung: 0.018, // 1,8% Basis (3,6% / 2 = 1,8% AN-Anteil ab 2026)
   pflegeversicherungKinderlos: 0.006, // +0,6% Zuschlag für Kinderlose ab 23
   pflegeversicherungMehrKinder: [-0.0025, -0.005, -0.0075, -0.01], // Abschläge für 2-5 Kinder
 };
