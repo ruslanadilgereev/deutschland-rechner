@@ -1,76 +1,76 @@
 import { useState, useMemo } from 'react';
 
 /**
- * STEUERKLASSENRECHNER 2025
+ * STEUERKLASSENRECHNER 2026
  * Vergleicht verschiedene Steuerklassen-Kombinationen für Ehepaare und Alleinstehende
  * 
  * Berechnung basiert auf:
  * - §32a EStG - Einkommensteuertarif (Steuerfortentwicklungsgesetz, BGBl. I 2024, 449)
  * - §38b EStG - Lohnsteuerklassen
  * - §39 EStG - Lohnsteuerabzugsmerkmale
- * - BMF Programmablaufplan 2025
+ * - BMF Programmablaufplan 2026
  * 
  * Quellen:
  * - https://www.gesetze-im-internet.de/estg/__32a.html
  * - https://www.gesetze-im-internet.de/estg/__38b.html
- * - https://lsth.bundesfinanzministerium.de/lsth/2025/
+ * - https://lsth.bundesfinanzministerium.de/lsth/2026/
  * - https://www.bmf-steuerrechner.de
- * - https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025
+ * - https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026
  */
 
 // ============================================================================
-// OFFIZIELLE WERTE 2025 (§32a EStG - Steuerfortentwicklungsgesetz)
+// OFFIZIELLE WERTE 2026 (§32a EStG - Steuerfortentwicklungsgesetz)
 // ============================================================================
-const STEUERJAHR = 2025;
+const STEUERJAHR = 2026;
 
-const TARIF_2025 = {
-  grundfreibetrag: 12096,      // Zone 1: bis 12.096€ = 0% Steuer
-  zone2Start: 12097,           // Zone 2 Start
-  zone2Ende: 17443,            // Zone 2 Ende (Progressionszone 1: 14%-24%)
-  zone3Start: 17444,           // Zone 3 Start
-  zone3Ende: 68480,            // Zone 3 Ende (Progressionszone 2: 24%-42%)
-  zone4Start: 68481,           // Zone 4 Start
+const TARIF_2026 = {
+  grundfreibetrag: 12348,      // Zone 1: bis 12.348€ = 0% Steuer
+  zone2Start: 12349,           // Zone 2 Start
+  zone2Ende: 17799,            // Zone 2 Ende (Progressionszone 1: 14%-24%)
+  zone3Start: 17800,           // Zone 3 Start
+  zone3Ende: 69878,            // Zone 3 Ende (Progressionszone 2: 24%-42%)
+  zone4Start: 69879,           // Zone 4 Start
   zone4Ende: 277825,           // Zone 4 Ende (42% Spitzensteuersatz)
   zone5Start: 277826,          // Zone 5 Start (45% Reichensteuer)
   
   // Koeffizienten für Zone 2: ESt = (a * y + b) * y
-  zone2_a: 932.30,
+  zone2_a: 914.51,
   zone2_b: 1400,
   
   // Koeffizienten für Zone 3: ESt = (a * z + b) * z + c
-  zone3_a: 176.64,
+  zone3_a: 173.10,
   zone3_b: 2397,
-  zone3_c: 1015.13,
+  zone3_c: 1034.87,
   
   // Zone 4: ESt = 0.42 * x - c
   zone4_satz: 0.42,
-  zone4_abzug: 10911.92,
+  zone4_abzug: 11135.63,
   
   // Zone 5: ESt = 0.45 * x - c
   zone5_satz: 0.45,
-  zone5_abzug: 19246.67,
+  zone5_abzug: 19470.38,
 };
 
 // Alias für den aktuellen Tarif
-const TARIF = TARIF_2025;
+const TARIF = TARIF_2026;
 
 // ============================================================================
-// SOZIALVERSICHERUNG 2025
+// SOZIALVERSICHERUNG 2026
 // ============================================================================
-const SV_SAETZE_2025 = {
+const SV_SAETZE_2026 = {
   rv: 0.186,           // Rentenversicherung 18,6% (AG+AN)
   kv: 0.146,           // Krankenversicherung 14,6% (AG+AN)
-  kvZusatz: 0.017,     // Durchschn. Zusatzbeitrag 1,7% (2025)
-  pv: 0.034,           // Pflegeversicherung 3,4% (AG+AN)
+  kvZusatz: 0.029,     // Durchschn. Zusatzbeitrag 2,9% (2026)
+  pv: 0.036,           // Pflegeversicherung 3,6% (AG+AN)
   pvKinderlos: 0.006,  // Zuschlag kinderlose ab 23: +0,6%
   av: 0.026,           // Arbeitslosenversicherung 2,6% (AG+AN)
 };
 
-// Beitragsbemessungsgrenzen 2025 (monatlich)
-const BBG_2025 = {
-  rvWest: 8050,    // RV/AV West: 8.050€/Monat = 96.600€/Jahr
-  rvOst: 8050,     // RV/AV Ost (ab 2025 angeglichen)
-  kv: 5512.50,     // KV/PV: 5.512,50€/Monat = 66.150€/Jahr
+// Beitragsbemessungsgrenzen 2026 (monatlich)
+const BBG_2026 = {
+  rvWest: 8450,    // RV/AV: 8.450€/Monat = 101.400€/Jahr (bundesweit einheitlich)
+  rvOst: 8450,     // RV/AV Ost (seit 2025 angeglichen)
+  kv: 5812.50,     // KV/PV: 5.812,50€/Monat = 69.750€/Jahr
 };
 
 // ============================================================================
@@ -217,8 +217,8 @@ function berechneLohnsteuerJahr(
   let entlastungsbetragAlleinerziehende = 0;
   
   // Vereinfachte Vorsorgepauschale
-  const rvBasis = Math.min(jahresBrutto, BBG_2025.rvWest * 12);
-  const kvBasis = Math.min(jahresBrutto, BBG_2025.kv * 12);
+  const rvBasis = Math.min(jahresBrutto, BBG_2026.rvWest * 12);
+  const kvBasis = Math.min(jahresBrutto, BBG_2026.kv * 12);
   const vorsorgePauschale = rvBasis * 0.093 + kvBasis * 0.07;
   
   let useSplitting = false;
@@ -297,17 +297,17 @@ function berechneSozialversicherung(
   const jahresBrutto = brutto * 12;
   
   // Beitragsbemessungsgrenzen anwenden
-  const rvBasis = Math.min(jahresBrutto, BBG_2025.rvWest * 12);
-  const kvBasis = Math.min(jahresBrutto, BBG_2025.kv * 12);
+  const rvBasis = Math.min(jahresBrutto, BBG_2026.rvWest * 12);
+  const kvBasis = Math.min(jahresBrutto, BBG_2026.kv * 12);
   
   // Arbeitnehmeranteile (50%)
-  const rv = Math.round(rvBasis * SV_SAETZE_2025.rv / 2);
-  const kv = Math.round(kvBasis * (SV_SAETZE_2025.kv + SV_SAETZE_2025.kvZusatz) / 2);
+  const rv = Math.round(rvBasis * SV_SAETZE_2026.rv / 2);
+  const kv = Math.round(kvBasis * (SV_SAETZE_2026.kv + SV_SAETZE_2026.kvZusatz) / 2);
   
   // Pflegeversicherung mit Kinderlosenzuschlag und Kinderabschlag
-  let pvSatz = SV_SAETZE_2025.pv / 2; // AN-Anteil
+  let pvSatz = SV_SAETZE_2026.pv / 2; // AN-Anteil
   if (kinderlos) {
-    pvSatz += SV_SAETZE_2025.pvKinderlos; // Zuschlag +0,6%
+    pvSatz += SV_SAETZE_2026.pvKinderlos; // Zuschlag +0,6%
   } else if (kinderAnzahl >= 2) {
     // Abschlag für Kinder ab 2. Kind: 0,25% pro Kind (max bis 5. Kind)
     const abschlag = Math.min(kinderAnzahl - 1, 4) * 0.0025;
@@ -315,7 +315,7 @@ function berechneSozialversicherung(
   }
   const pv = Math.round(kvBasis * pvSatz);
   
-  const av = Math.round(rvBasis * SV_SAETZE_2025.av / 2);
+  const av = Math.round(rvBasis * SV_SAETZE_2026.av / 2);
   
   return {
     rv,
@@ -406,8 +406,8 @@ export default function SteuerklassenRechner() {
     const gesamtBrutto = jahresBrutto1 + jahresBrutto2;
     
     // Vereinfachtes zvE für Zusammenveranlagung
-    const rvBasis = Math.min(gesamtBrutto, BBG_2025.rvWest * 12 * 2);
-    const kvBasis = Math.min(gesamtBrutto, BBG_2025.kv * 12 * 2);
+    const rvBasis = Math.min(gesamtBrutto, BBG_2026.rvWest * 12 * 2);
+    const kvBasis = Math.min(gesamtBrutto, BBG_2026.kv * 12 * 2);
     const vorsorgePauschale = rvBasis * 0.093 + kvBasis * 0.07;
     const abzuege = WERBUNGSKOSTENPAUSCHALE * 2 + SONDERAUSGABENPAUSCHALE * 2 + vorsorgePauschale;
     const zvEGesamt = Math.max(0, gesamtBrutto - abzuege);

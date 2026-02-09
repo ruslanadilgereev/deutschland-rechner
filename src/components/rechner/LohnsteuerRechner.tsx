@@ -17,7 +17,7 @@ import { useState, useMemo } from 'react';
 // ============================================================================
 // OFFIZIELLE WERTE 2025 (§32a EStG - Steuerfortentwicklungsgesetz)
 // ============================================================================
-const STEUERJAHR = 2025;
+const STEUERJAHR = 2026;
 
 const TARIF_2025 = {
   grundfreibetrag: 12096,      // Zone 1: bis 12.096€ = 0% Steuer
