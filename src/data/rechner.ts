@@ -600,8 +600,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Hinterbliebenenrente berechnen',
     icon: '🕊️',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Witwenrente Rechner, Hinterbliebenenrente berechnen',
+    fertig: true,
+    seoKeywords: 'Witwenrente Rechner, Hinterbliebenenrente berechnen, Witwenrente 2026, große Witwenrente, kleine Witwenrente, Witwenrente Einkommensanrechnung',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_6/__46.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__97.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__242a.html',
+      'https://www.deutsche-rentenversicherung.de',
+    ],
   },
   {
     id: 'grundrente',
