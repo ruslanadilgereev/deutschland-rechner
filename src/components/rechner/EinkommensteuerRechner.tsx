@@ -49,19 +49,19 @@ function berechneEinkommensteuer(zvE: number, verheiratet: boolean): number {
   if (zvEHalb <= GRUNDFREIBETRAG_2026) {
     steuer = 0;
   } else if (zvEHalb <= TARIFZONEN_2026.zone1Ende) {
-    // Zone 1: 14-24% progressiv
+    // Zone 1: 14-24% progressiv - §32a EStG 2026
     const y = (zvEHalb - GRUNDFREIBETRAG_2026) / 10000;
-    steuer = (933.52 * y + 1400) * y;
+    steuer = (914.51 * y + 1400) * y;
   } else if (zvEHalb <= TARIFZONEN_2026.zone2Ende) {
-    // Zone 2: 24-42% progressiv
+    // Zone 2: 24-42% progressiv - §32a EStG 2026
     const z = (zvEHalb - TARIFZONEN_2026.zone1Ende) / 10000;
-    steuer = (176.64 * z + 2397) * z + 1015.13;
+    steuer = (173.10 * z + 2397) * z + 1034.87;
   } else if (zvEHalb <= TARIFZONEN_2026.zone3Ende) {
-    // Zone 3: 42% Spitzensteuersatz
-    steuer = 0.42 * zvEHalb - 10911.92;
+    // Zone 3: 42% Spitzensteuersatz - §32a EStG 2026
+    steuer = 0.42 * zvEHalb - 11135.63;
   } else {
-    // Zone 4: 45% Reichensteuer
-    steuer = 0.45 * zvEHalb - 18918.79;
+    // Zone 4: 45% Reichensteuer - §32a EStG 2026
+    steuer = 0.45 * zvEHalb - 19470.38;
   }
   
   return Math.round(steuer * faktor);
@@ -73,7 +73,7 @@ function berechneDurchschnittssteuersatz(steuer: number, zvE: number): number {
   return (steuer / zvE) * 100;
 }
 
-// Grenzsteuersatz ermitteln
+// Grenzsteuersatz ermitteln - §32a EStG 2026
 function berechneGrenzsteuersatz(zvE: number, verheiratet: boolean): number {
   const faktor = verheiratet ? 2 : 1;
   const zvEHalb = zvE / faktor;
@@ -81,11 +81,11 @@ function berechneGrenzsteuersatz(zvE: number, verheiratet: boolean): number {
   if (zvEHalb <= GRUNDFREIBETRAG_2026) return 0;
   if (zvEHalb <= TARIFZONEN_2026.zone1Ende) {
     const y = (zvEHalb - GRUNDFREIBETRAG_2026) / 10000;
-    return Math.min(24, 14 + (2 * 933.52 * y + 1400) / 100);
+    return Math.min(24, 14 + (2 * 914.51 * y + 1400) / 100);
   }
   if (zvEHalb <= TARIFZONEN_2026.zone2Ende) {
     const z = (zvEHalb - TARIFZONEN_2026.zone1Ende) / 10000;
-    return Math.min(42, 24 + (2 * 176.64 * z + 2397) / 100);
+    return Math.min(42, 24 + (2 * 173.10 * z + 2397) / 100);
   }
   if (zvEHalb <= TARIFZONEN_2026.zone3Ende) return 42;
   return 45;
