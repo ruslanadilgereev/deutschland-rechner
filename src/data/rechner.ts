@@ -830,11 +830,18 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'krankenkassenbeitrag',
     name: 'Krankenkassenbeitrag-Rechner',
-    beschreibung: 'GKV-Beitrag berechnen',
-    icon: '🏛️',
+    beschreibung: 'GKV-Beitrag inkl. Zusatzbeitrag & Pflegeversicherung',
+    icon: '🏥',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'Krankenkassenbeitrag Rechner, GKV Beitrag berechnen',
+    fertig: true,
+    seoKeywords: 'Krankenkassenbeitrag Rechner, GKV Beitrag berechnen, Krankenkassenbeitrag 2026, Zusatzbeitrag Krankenkasse, Pflegeversicherung Beitrag, Krankenversicherung Kosten, Krankenkasse Vergleich, Beitragssatz Krankenkasse, Beitragsbemessungsgrenze 2026',
+    quellen: [
+      'https://www.bundesgesundheitsministerium.de/beitraege.html',
+      'https://www.gesetze-im-internet.de/sgb_5/',
+      'https://www.gesetze-im-internet.de/sgb_11/',
+      'https://www.gkv-spitzenverband.de',
+      'https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514',
+    ],
   },
   {
     id: 'bmi',
