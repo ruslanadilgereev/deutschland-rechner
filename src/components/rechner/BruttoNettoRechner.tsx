@@ -576,7 +576,8 @@ function berechneKirchensteuer(lohnsteuerJahr: number, bundesland: string): numb
 }
 
 export default function BruttoNettoRechner() {
-  const [bruttoMonat, setBruttoMonat] = useState(4000);
+  const [bruttoWert, setBruttoWert] = useState(4000);
+  const [istJahresgehalt, setIstJahresgehalt] = useState(false);
   const [steuerklasse, setSteuerklasse] = useState(1);
   const [kinderlos, setKinderlos] = useState(true);
   const [kirchensteuer, setKirchensteuer] = useState(false);
@@ -584,8 +585,11 @@ export default function BruttoNettoRechner() {
   const [anzahlKinder, setAnzahlKinder] = useState(0);
   const [kvZusatzbeitrag, setKvZusatzbeitrag] = useState(2.9); // Durchschnitt 2026
 
+  // Berechne Monatswert für die Anzeige
+  const bruttoMonat = istJahresgehalt ? bruttoWert / 12 : bruttoWert;
+
   const ergebnis = useMemo(() => {
-    const bruttoJahr = bruttoMonat * 12;
+    const bruttoJahr = istJahresgehalt ? bruttoWert : bruttoWert * 12;
     
     // === SOZIALVERSICHERUNG ===
     const rvBrutto = Math.min(bruttoJahr, BBG_2026.renteArbeitslos);
@@ -662,32 +666,76 @@ export default function BruttoNettoRechner() {
         {/* Brutto */}
         <div className="mb-6">
           <label className="block mb-2">
-            <span className="text-gray-700 font-medium">Brutto-Monatsgehalt</span>
+            <span className="text-gray-700 font-medium">
+              {istJahresgehalt ? 'Brutto-Jahresgehalt' : 'Brutto-Monatsgehalt'}
+            </span>
           </label>
+          
+          {/* Toggle Monat/Jahr */}
+          <div className="flex justify-center mb-4">
+            <div className="inline-flex rounded-xl bg-gray-100 p-1">
+              <button
+                onClick={() => {
+                  if (istJahresgehalt) {
+                    setBruttoWert(Math.round(bruttoWert / 12));
+                    setIstJahresgehalt(false);
+                  }
+                }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  !istJahresgehalt
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Monatlich
+              </button>
+              <button
+                onClick={() => {
+                  if (!istJahresgehalt) {
+                    setBruttoWert(bruttoWert * 12);
+                    setIstJahresgehalt(true);
+                  }
+                }}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  istJahresgehalt
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Jährlich
+              </button>
+            </div>
+          </div>
+          
           <div className="relative">
             <input
               type="number"
-              value={bruttoMonat}
-              onChange={(e) => setBruttoMonat(Math.max(0, Number(e.target.value)))}
+              value={bruttoWert}
+              onChange={(e) => setBruttoWert(Math.max(0, Number(e.target.value)))}
               className="w-full text-3xl font-bold text-center py-4 px-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-0 outline-none"
               min="0"
-              step="100"
+              step={istJahresgehalt ? 1000 : 100}
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">€</span>
           </div>
           <input
             type="range"
             min="0"
-            max="15000"
-            step="100"
-            value={bruttoMonat}
-            onChange={(e) => setBruttoMonat(Number(e.target.value))}
+            max={istJahresgehalt ? 180000 : 15000}
+            step={istJahresgehalt ? 1000 : 100}
+            value={bruttoWert}
+            onChange={(e) => setBruttoWert(Number(e.target.value))}
             className="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>0 €</span>
-            <span>15.000 €</span>
+            <span>{istJahresgehalt ? '180.000 €' : '15.000 €'}</span>
           </div>
+          {istJahresgehalt && (
+            <p className="text-center text-sm text-gray-500 mt-2">
+              = {formatEuro(Math.round(bruttoWert / 12))} / Monat
+            </p>
+          )}
         </div>
 
         {/* Steuerklasse */}
