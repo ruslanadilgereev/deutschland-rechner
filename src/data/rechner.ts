@@ -467,11 +467,18 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'kirchensteuer',
     name: 'Kirchensteuer-Rechner',
-    beschreibung: 'Kirchensteuer 8-9% berechnen',
+    beschreibung: 'Kirchensteuer 8-9% berechnen inkl. Kappung',
     icon: '⛪',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Kirchensteuer Rechner, Kirchensteuer berechnen, Kirchensteuer Ersparnis',
+    fertig: true,
+    seoKeywords: 'Kirchensteuer Rechner, Kirchensteuer berechnen, Kirchensteuer 8 Prozent, Kirchensteuer 9 Prozent, Kirchensteuer Kappung, Kirchensteuer Ersparnis, Kirchensteuer Bayern, Kirchensteuer NRW, Kirchensteuer absetzen',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__51a.html',
+      'https://www.gesetze-im-internet.de/estg/__10.html',
+      'https://www.lohn-info.de/kirchensteuer.html',
+      'https://www.kirchenfinanzen.de/kirchensteuer/kappung.html',
+      'https://www.bmf-steuerrechner.de',
+    ],
   },
   {
     id: 'lohnsteuer',

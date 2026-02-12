@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KirchensteuerRechner from '../components/rechner/KirchensteuerRechner';
+---
+
+<Layout 
+  title="Kirchensteuer-Rechner 2026 | 8% oder 9% berechnen + Kappung" 
+  description="Kirchensteuer-Rechner 2026: Berechnen Sie Ihre Kirchensteuer (8% oder 9%) inkl. Kappungsgrenze. Mit Kinderfreibetrag, Steuerersparnis durch Absetzbarkeit. Kostenlos!"
+  keywords="Kirchensteuer Rechner, Kirchensteuer berechnen, Kirchensteuer 8 Prozent, Kirchensteuer 9 Prozent, Kirchensteuer Kappung, Kirchensteuer Ersparnis, Kirchensteuer Bayern, Kirchensteuer NRW, Kirchensteuer absetzen, Kirchensteuer 2025, Kirchensteuer 2026"
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⛪</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kirchensteuer-Rechner</h1>
+            <p class="text-purple-100 text-sm">8-9% Kirchensteuer berechnen inkl. Kappung</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KirchensteuerRechner client:load />
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kirchensteuer-Rechner",
+    "description": "Kostenloser Kirchensteuer-Rechner: Berechnen Sie Ihre Kirchensteuer (8% oder 9%) inkl. Kappungsgrenze nach Bundesland und Konfession.",
+    "url": "https://deutschland-rechner.de/kirchensteuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "featureList": [
+      "8% Kirchensteuer (Bayern, Baden-Württemberg)",
+      "9% Kirchensteuer (alle anderen Bundesländer)",
+      "Kappungsgrenze nach Bundesland",
+      "Kinderfreibetrag-Berücksichtigung",
+      "Steuerersparnis durch Absetzbarkeit",
+      "Evangelisch und Katholisch",
+      "Splittingtarif für Verheiratete"
+    ]
+  })} />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Kirchensteuer in Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Kirchensteuer beträgt 8% in Bayern und Baden-Württemberg sowie 9% in allen anderen Bundesländern. Sie wird auf die Einkommensteuer (nicht auf das Einkommen) berechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Kappung der Kirchensteuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Kappung begrenzt die Kirchensteuer auf 2,75% bis 4% des zu versteuernden Einkommens (je nach Bundesland). In Bayern gibt es keine Kappung. In einigen Bundesländern muss die Kappung beantragt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich die Kirchensteuer von der Steuer absetzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, die Kirchensteuer ist als Sonderausgabe vollständig von der Einkommensteuer absetzbar (§10 Abs. 1 Nr. 4 EStG). Die effektive Belastung ist daher geringer als der gezahlte Betrag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich aus der Kirche austreten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Kirchenaustritt erfolgt beim Standesamt oder Amtsgericht (je nach Bundesland). Die Kirchensteuerpflicht endet im Folgemonat nach dem Austritt."
+        }
+      }
+    ]
+  })} />
+</Layout>
