@@ -458,11 +458,17 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'soli',
     name: 'Solidaritätszuschlag-Rechner',
-    beschreibung: 'Soli-Berechnung mit Freigrenzen',
+    beschreibung: 'Soli-Berechnung mit Freigrenzen & Milderungszone',
     icon: '🇩🇪',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Solidaritätszuschlag Rechner, Soli berechnen, Soli Freigrenze',
+    fertig: true,
+    seoKeywords: 'Solidaritätszuschlag Rechner, Soli berechnen, Soli Freigrenze, Soli Milderungszone, Soli 2026, wer zahlt noch Soli',
+    quellen: [
+      'https://www.gesetze-im-internet.de/solzg_1995/__3.html',
+      'https://www.gesetze-im-internet.de/solzg_1995/__4.html',
+      'https://www.bundesfinanzministerium.de/Monatsberichte/Ausgabe/2025/01/Inhalte/Kapitel-2-Fokus/die-wichtigsten-steuerlichen-aenderungen-2025.html',
+      'https://www.bmf-steuerrechner.de',
+    ],
   },
   {
     id: 'kirchensteuer',

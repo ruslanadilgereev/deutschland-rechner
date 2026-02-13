@@ -1,0 +1,253 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SoliRechner from '../components/rechner/SoliRechner';
+
+const title = "Solidaritätszuschlag-Rechner 2026 – Soli berechnen mit Freigrenze & Milderungszone";
+const description = "Solidaritätszuschlag-Rechner 2026: Berechnen Sie Ihren Soli (5,5%) mit den aktuellen Freigrenzen. Milderungszone, Ersparnis & wer noch Soli zahlt. Kostenlos!";
+const keywords = "Solidaritätszuschlag Rechner, Soli Rechner, Soli berechnen, Solidaritätszuschlag 2026, Soli Freigrenze, Soli Milderungszone, Soli abgeschafft, wer zahlt noch Soli, Solidaritätszuschlag Freigrenze 2026, 5,5 Prozent, Zuschlagsteuer, Soli Einkommensteuer";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-yellow-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🇩🇪</span>
+          <div>
+            <h1 class="text-2xl font-bold">Solidaritätszuschlag-Rechner</h1>
+            <p class="text-yellow-100 text-sm">Soli mit Freigrenze & Milderungszone {new Date().getFullYear()}</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SoliRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Solidaritätszuschlag 2026: Alles was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Solidaritätszuschlag</strong> (kurz: Soli) wurde 1991 eingeführt, um die Kosten 
+            der deutschen Wiedervereinigung zu finanzieren. Seit 2021 zahlen ca. <strong>90% der Steuerzahler 
+            keinen Soli mehr</strong> – dank der deutlich angehobenen Freigrenzen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie funktioniert der Solidaritätszuschlag?</h3>
+          <p>
+            Der Soli ist eine <strong>Zuschlagsteuer auf die Einkommensteuer</strong>. Das bedeutet: 
+            Erst wird Ihre Einkommensteuer berechnet, dann wird der Soli als Prozentsatz davon ermittelt.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Steuersatz:</strong> 5,5% der Einkommensteuer (§4 SolzG)</li>
+            <li><strong>Freigrenze 2026 Singles:</strong> 20.350 € Einkommensteuer</li>
+            <li><strong>Freigrenze 2026 Paare:</strong> 40.700 € Einkommensteuer (Zusammenveranlagung)</li>
+            <li><strong>Milderungszone:</strong> Schrittweiser Anstieg über der Freigrenze</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Soli-Zonen erklärt</h3>
+          <p>
+            Das Solidaritätszuschlaggesetz unterscheidet drei Bereiche:
+          </p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Zone 1 – Freigrenze (kein Soli):</strong> Liegt Ihre Einkommensteuer unter 
+              20.350 € (Singles) bzw. 40.700 € (Paare), zahlen Sie keinen Solidaritätszuschlag.
+            </li>
+            <li>
+              <strong>Zone 2 – Milderungszone (reduzierter Soli):</strong> Überschreitet Ihre 
+              Einkommensteuer die Freigrenze knapp, greift die Milderungszone. Der Soli beträgt 
+              maximal <strong>11,9% der Differenz</strong> zwischen Ihrer Einkommensteuer und der Freigrenze.
+            </li>
+            <li>
+              <strong>Zone 3 – Voller Soli (5,5%):</strong> Bei hohen Einkommen oberhalb der 
+              Milderungszone wird der volle Soli von 5,5% der Einkommensteuer fällig.
+            </li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 2026</h3>
+          <p>
+            <strong>Beispiel 1 – Single, 60.000 € Bruttojahresgehalt:</strong>
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Einkommensteuer ca. 12.500 €</li>
+            <li>Freigrenze: 20.350 € → Einkommensteuer liegt darunter</li>
+            <li><strong>Solidaritätszuschlag: 0 €</strong></li>
+          </ul>
+          
+          <p class="mt-4">
+            <strong>Beispiel 2 – Single, 100.000 € Bruttojahresgehalt:</strong>
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Einkommensteuer ca. 28.000 €</li>
+            <li>Freigrenze: 20.350 € → Liegt in der Milderungszone</li>
+            <li>Soli = 11,9% × (28.000 € − 20.350 €) = <strong>ca. 910 €</strong></li>
+          </ul>
+          
+          <p class="mt-4">
+            <strong>Beispiel 3 – Single, 150.000 € Bruttojahresgehalt:</strong>
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Einkommensteuer ca. 48.000 €</li>
+            <li>Oberhalb Milderungszone → voller Soli</li>
+            <li>Soli = 5,5% × 48.000 € = <strong>2.640 €</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer zahlt 2026 noch Soli?</h3>
+          <p>
+            Der Solidaritätszuschlag wurde <strong>nicht vollständig abgeschafft</strong>. 
+            Folgende Gruppen sind weiterhin betroffen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Gutverdienende Singles:</strong> Ab ca. 73.000 € Brutto (Milderungszone), 
+                voller Soli ab ca. 105.000 € Brutto</li>
+            <li><strong>Gutverdienende Paare:</strong> Ab ca. 146.000 € gemeinsames Brutto</li>
+            <li><strong>Kapitalanleger:</strong> Auf alle Kapitalerträge wird 5,5% Soli auf 
+                die Abgeltungssteuer erhoben – ohne Freigrenze!</li>
+            <li><strong>Unternehmen:</strong> GmbHs und AGs zahlen Soli auf die Körperschaftsteuer</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Soli auf Kapitalerträge</h3>
+          <p>
+            <strong>Wichtig:</strong> Auf Kapitalerträge (Zinsen, Dividenden, Aktiengewinne) wird 
+            der Solidaritätszuschlag <strong>ohne Freigrenze</strong> erhoben! Die Abgeltungssteuer 
+            von 25% wird um 5,5% Soli erhöht auf effektiv 26,375% (plus ggf. Kirchensteuer).
+          </p>
+          <p>
+            Der Sparerpauschbetrag von 1.000 € (2.000 € für Ehepaare) schützt nur vor der 
+            Abgeltungssteuer selbst, nicht vor dem Soli-Mechanismus.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Geschichte und Entwicklung der Freigrenzen</h3>
+          <p>
+            Die Freigrenzen wurden mehrfach angehoben:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bis 2020:</strong> 972 € / 1.944 € (quasi alle zahlten Soli)</li>
+            <li><strong>2021-2023:</strong> 16.956 € / 33.912 € (große Entlastung)</li>
+            <li><strong>2024:</strong> 18.130 € / 36.260 €</li>
+            <li><strong>2025:</strong> 19.950 € / 39.900 €</li>
+            <li><strong>2026:</strong> 20.350 € / 40.700 €</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ist der Soli verfassungsgemäß?</h3>
+          <p>
+            Diese Frage wurde lange diskutiert. Das <strong>Bundesverfassungsgericht</strong> hat 
+            im Jahr 2020 entschieden, dass der Solidaritätszuschlag weiterhin verfassungsgemäß ist 
+            (BVerfG, Beschluss vom 09.12.2020 – 2 BvR 2077/18).
+          </p>
+          <p>
+            Die Begründung: Der Soli ist eine Ergänzungsabgabe nach Art. 106 Abs. 1 Nr. 6 GG, 
+            deren Fortbestehen auch nach Auslaufen des Solidarpakts II (Ende 2019) gerechtfertigt 
+            ist, solange finanzielle Lasten aus der Wiedervereinigung bestehen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kann ich den Soli absetzen?</h3>
+          <p>
+            <strong>Nein.</strong> Der Solidaritätszuschlag ist keine Sonderausgabe und kann 
+            nicht von der Steuer abgesetzt werden. Dies unterscheidet ihn von der Kirchensteuer, 
+            die als Sonderausgabe geltend gemacht werden kann.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Soli beim Lohnsteuerabzug</h3>
+          <p>
+            Als Arbeitnehmer müssen Sie nichts unternehmen. Ihr Arbeitgeber berechnet den 
+            Solidaritätszuschlag automatisch beim monatlichen Lohnsteuerabzug und führt ihn 
+            zusammen mit der Lohnsteuer ans Finanzamt ab.
+          </p>
+          <p>
+            Falls Sie unter der Freigrenze liegen, wird kein Soli einbehalten. Falls Sie 
+            knapp darüber liegen, greift die Milderungszone automatisch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Solidaritätszuschlag-Rechner 2026",
+    "description": description,
+    "url": "https://deutschland-rechner.de/soli-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Solidaritätszuschlag 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Solidaritätszuschlag beträgt 5,5% der Einkommensteuer. Allerdings gilt für 2026 eine Freigrenze von 20.350 € Einkommensteuer für Singles und 40.700 € für Ehepaare. Unterhalb dieser Grenzen fällt kein Soli an. Knapp darüber greift die Milderungszone mit max. 11,9% der Differenz zur Freigrenze."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer muss noch Solidaritätszuschlag zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seit 2021 zahlen ca. 90% der Steuerzahler keinen Soli mehr. Betroffen sind noch: Gutverdienende Singles ab ca. 73.000 € Brutto, Paare ab ca. 146.000 € gemeinsam, alle Kapitalanleger auf Kapitalerträge (ohne Freigrenze), sowie GmbHs und AGs auf die Körperschaftsteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Milderungszone beim Soli?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Milderungszone verhindert einen abrupten Soli-Sprung bei Überschreiten der Freigrenze. In dieser Zone beträgt der Soli maximal 11,9% der Differenz zwischen Ihrer Einkommensteuer und der Freigrenze – und nicht sofort die vollen 5,5% der Einkommensteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich auf Kapitalerträge Soli zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, auf Kapitalerträge (Zinsen, Dividenden, Aktiengewinne) wird der Soli OHNE Freigrenze erhoben. Die Abgeltungssteuer von 25% erhöht sich durch den Soli auf effektiv 26,375%. Der Sparerpauschbetrag schützt nur vor der Steuer selbst, nicht vor dem Soli-Mechanismus."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab welchem Einkommen zahlt man Soli?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Single beginnt der Soli 2026 ab einer Einkommensteuer von 20.350 €, was einem Bruttoeinkommen von ca. 73.000 € entspricht. Für Ehepaare mit Zusammenveranlagung liegt die Grenze bei 40.700 € Einkommensteuer bzw. ca. 146.000 € gemeinsames Bruttoeinkommen."
+        }
+      }
+    ]
+  })} />
+</Layout>
