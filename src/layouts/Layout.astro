@@ -69,7 +69,7 @@ const canonicalUrl = canonical || Astro.url.pathname;
       }
     </script>
     
-    <!-- Structured Data -->
+    <!-- Structured Data: WebSite -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -81,6 +81,22 @@ const canonicalUrl = canonical || Astro.url.pathname;
         "target": `${siteUrl}/?q={search_term_string}`,
         "query-input": "required name=search_term_string"
       }
+    })} />
+    
+    <!-- Structured Data: Organization (für Knowledge Panel) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Deutschlandrechner",
+      "url": siteUrl,
+      "logo": `${siteUrl}/icons/icon-512x512.png`,
+      "description": "Kostenlose Online-Rechner für Deutschland: Kindergeld, Bürgergeld, Brutto-Netto, Elterngeld, Steuern und mehr. Alle Werte aktuell für 2026.",
+      "foundingDate": "2025",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Germany"
+      },
+      "sameAs": []
     })} />
   </head>
   <body class="safe-area-top safe-area-bottom">
