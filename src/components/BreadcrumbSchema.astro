@@ -1,0 +1,35 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const siteUrl = "https://www.deutschland-rechner.de";
+
+// Build the full breadcrumb list with home
+const breadcrumbList = [
+  { name: "Startseite", url: siteUrl },
+  ...items.map(item => ({
+    name: item.name,
+    url: item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`
+  }))
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbList.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.url
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
