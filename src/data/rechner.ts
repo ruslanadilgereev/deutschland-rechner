@@ -283,11 +283,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'nachtschicht',
     name: 'Nachtschicht-Zuschlag-Rechner',
-    beschreibung: 'Nacht-, Sonn- und Feiertagszuschläge',
+    beschreibung: 'Nacht-, Sonn- und Feiertagszuschläge steuerfrei nach §3b EStG',
     icon: '🌙',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Nachtschicht Zuschlag, Nachtzuschlag Rechner, Sonntagszuschlag',
+    fertig: true,
+    seoKeywords: 'Nachtschicht Zuschlag, Nachtzuschlag Rechner, Sonntagszuschlag, Feiertagszuschlag, §3b EStG, steuerfreie Zuschläge',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__3b.html',
+      'https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/II-Einkommen-2-24b/2-Steuerfreie-Einnahmen-3-3c/Paragraf-3b/inhalt.html',
+      'https://www.bundesfinanzministerium.de',
+    ],
   },
   {
     id: 'arbeitstage',
