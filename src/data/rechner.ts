@@ -591,8 +591,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Steuer auf Rente berechnen',
     icon: '🧓',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Rentensteuer Rechner, Rente versteuern, Rentenbesteuerung',
+    fertig: true,
+    seoKeywords: 'Rentensteuer Rechner, Rente versteuern, Rentenbesteuerung 2026, Steuer auf Rente, Besteuerungsanteil Rente, Rentner Steuererklärung, Rente steuerpflichtig, Rentenfreibetrag',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__22.html',
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+      'https://www.bmf-steuerrechner.de',
+      'https://www.bundesfinanzministerium.de',
+    ],
   },
   {
     id: 'riester',
