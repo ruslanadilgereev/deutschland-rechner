@@ -269,12 +269,24 @@ Keine kritischen Issues gefunden.
 
 ### Recommended Next Steps
 
-1. ✅ Minijob-Grenze auf 603€ korrigieren (2026)
-2. ⬜ /sitemap.xml Redirect einrichten
-3. ⬜ URL-Inkonsistenzen beheben
+1. ✅ Minijob-Grenze auf 603€ korrigieren (2026) — **GEFIXT**
+2. ✅ /sitemap.xml Redirect einrichten — **GEFIXT**
+3. ✅ URL-Inkonsistenzen in llms.txt beheben — **GEFIXT**
 4. ⬜ Google Search Console einrichten
 5. ⬜ Individuelle OG-Images pro Rechner
 6. ⬜ Top-5 "Bald"-Rechner priorisieren
+
+---
+
+## FIXES APPLIED (2026-02-16)
+
+**Commit:** `41cf16c` — Pushed to production
+
+### Changes Made:
+1. **llms.txt:** Minijob 538€ → 603€ (2026)
+2. **llms.txt:** Fixed URL /unterhalts-rechner → /unterhalt-rechner
+3. **rechner.ts:** Updated Minijob description & keywords for 2026
+4. **vercel.json:** Added /sitemap.xml → /sitemap-index.xml redirect
 
 ---
 
