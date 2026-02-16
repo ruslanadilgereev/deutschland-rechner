@@ -169,11 +169,11 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'minijob',
     name: 'Minijob-Rechner',
-    beschreibung: '538€-Grenze und Abgaben berechnen',
+    beschreibung: '603€-Grenze und Abgaben berechnen (2026)',
     icon: '⏰',
     kategorie: 'arbeit',
     fertig: true,
-    seoKeywords: 'Minijob Rechner, 538 Euro Job, Minijob Abgaben',
+    seoKeywords: 'Minijob Rechner, 603 Euro Job 2026, Minijob Abgaben, Minijob Grenze 2026',
     quellen: [
       'https://www.minijob-zentrale.de',
       'https://www.gesetze-im-internet.de/sgb_4/',
