@@ -835,12 +835,19 @@ export const rechnerListe: Rechner[] = [
   },
   {
     id: 'zuzahlung',
-    name: 'Zuzahlungs-Rechner',
-    beschreibung: 'Zuzahlungsbefreiung Krankenkasse',
+    name: 'Zuzahlungsbefreiung-Rechner',
+    beschreibung: 'Belastungsgrenze nach §62 SGB V berechnen',
     icon: '💊',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'Zuzahlung Rechner, Zuzahlungsbefreiung, Belastungsgrenze Krankenkasse',
+    fertig: true,
+    seoKeywords: 'Zuzahlung Rechner, Zuzahlungsbefreiung, Belastungsgrenze Krankenkasse, Zuzahlung 2026, chronisch krank 1 Prozent, §62 SGB V',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_5/__61.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__62.html',
+      'https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/A/Arzneimittelversorgung/Zuzahlungsregelungen_GKV.pdf',
+      'https://www.gkv-spitzenverband.de',
+      'https://www.g-ba.de/richtlinien/11/',
+    ],
   },
   {
     id: 'pkv-gkv',

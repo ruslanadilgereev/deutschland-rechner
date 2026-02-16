@@ -1,0 +1,231 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZuzahlungRechner from '../components/rechner/ZuzahlungRechner';
+
+const title = "Zuzahlungsbefreiung-Rechner 2026 – Belastungsgrenze GKV berechnen";
+const description = "Zuzahlungsbefreiung Rechner 2026: Berechnen Sie Ihre persönliche Belastungsgrenze nach §62 SGB V. 2% oder 1% für Chroniker. Mit Freibeträgen für Partner & Kinder. Jetzt prüfen!";
+const keywords = "Zuzahlungsbefreiung Rechner, Zuzahlung Krankenkasse, Belastungsgrenze 2026, Belastungsgrenze Krankenkasse, Zuzahlungsbefreiung beantragen, Zuzahlung GKV, chronisch krank 1 Prozent, Zuzahlung Medikamente, Belastungsgrenze §62 SGB V, Krankenkasse Eigenanteil, Zuzahlung Krankenhaus, Zuzahlung berechnen, GKV Zuzahlung 2026";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💊</span>
+          <div>
+            <h1 class="text-2xl font-bold">Zuzahlungsbefreiung-Rechner</h1>
+            <p class="text-purple-100 text-sm">Belastungsgrenze 2026 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ZuzahlungRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zuzahlungsbefreiung 2026: Was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Als gesetzlich Versicherter müssen Sie bei vielen Leistungen <strong>Zuzahlungen</strong> 
+            leisten – für Medikamente, Krankenhausaufenthalte oder Heilmittel. Damit Sie finanziell 
+            nicht überfordert werden, gibt es die <strong>Belastungsgrenze nach §62 SGB V</strong>. 
+            Mit unserem <strong>Zuzahlungsbefreiung-Rechner</strong> berechnen Sie schnell Ihre 
+            persönliche Grenze.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Belastungsgrenze?</h3>
+          <p>
+            Die Belastungsgrenze ist der Maximalbetrag, den Sie pro Kalenderjahr an Zuzahlungen 
+            leisten müssen. Haben Sie diesen Betrag erreicht, können Sie bei Ihrer Krankenkasse 
+            eine <strong>Befreiung</strong> beantragen und zahlen für den Rest des Jahres keine 
+            Zuzahlungen mehr.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2% des Bruttoeinkommens</strong> für alle Versicherten</li>
+            <li><strong>1% des Bruttoeinkommens</strong> für chronisch Kranke in Dauerbehandlung</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Belastungsgrenze berechnet?</h3>
+          <p>
+            Die Berechnung basiert auf den <strong>Bruttoeinnahmen zum Lebensunterhalt</strong> 
+            aller im Haushalt lebenden Familienmitglieder. Davon werden Freibeträge abgezogen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Partner-Freibetrag:</strong> 7.119 € (15% der Bezugsgröße 2026)</li>
+            <li><strong>Kinderfreibetrag:</strong> 9.756 € pro Kind (nach §32 Abs. 6 EStG)</li>
+          </ul>
+          <p>
+            Auf die reduzierte Bemessungsgrundlage wird dann der Prozentsatz (2% oder 1%) angewandt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beispielrechnung 2026</h3>
+          <p>
+            <strong>Familie mit einem Kind:</strong><br>
+            Familieneinkommen: 36.000 € brutto/Jahr<br>
+            − Partner-Freibetrag: 7.119 €<br>
+            − Kinderfreibetrag: 9.756 €<br>
+            = Bemessungsgrundlage: 19.125 €<br>
+            × 2% = <strong>Belastungsgrenze: 382,50 €</strong>
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Zuzahlungen zählen?</h3>
+          <p>
+            Nur die <strong>gesetzlich festgelegten Zuzahlungen</strong> nach §61 SGB V werden 
+            auf die Belastungsgrenze angerechnet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Arzneimittel:</strong> 10% des Preises (min. 5€, max. 10€)</li>
+            <li><strong>Krankenhaus:</strong> 10€ pro Tag (max. 28 Tage pro Jahr)</li>
+            <li><strong>Rehabilitation:</strong> 10€ pro Tag</li>
+            <li><strong>Heilmittel:</strong> 10€ pro Rezept + 10% der Kosten</li>
+            <li><strong>Hilfsmittel:</strong> 10% (min. 5€, max. 10€)</li>
+            <li><strong>Fahrkosten:</strong> 10% (min. 5€, max. 10€)</li>
+          </ul>
+          <p>
+            <strong>Nicht anrechenbar</strong> sind: Zahnersatz-Eigenanteile, IGeL-Leistungen, 
+            Aufzahlungen über Festbetrag, nicht verordnungsfähige Medikamente.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer gilt als chronisch krank?</h3>
+          <p>
+            Die reduzierte Belastungsgrenze von <strong>1%</strong> gilt für Versicherte mit einer 
+            <strong>schwerwiegenden chronischen Erkrankung</strong> in Dauerbehandlung. Die Kriterien 
+            sind in der <strong>Chroniker-Richtlinie des G-BA</strong> festgelegt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Mindestens 1 Jahr lang wegen derselben Krankheit in Behandlung</li>
+            <li><strong>UND</strong> einer der folgenden Punkte:</li>
+            <li>• Grad der Behinderung (GdB) von mindestens 60%</li>
+            <li>• Pflegegrad 3, 4 oder 5</li>
+            <li>• Ohne Behandlung: lebensbedrohliche Verschlimmerung</li>
+          </ul>
+          <p>
+            Sie benötigen eine <strong>ärztliche Bescheinigung</strong>, die alle 2 Jahre erneuert 
+            werden muss.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderfall: Bürgergeld & Sozialhilfe</h3>
+          <p>
+            Für Empfänger von <strong>Bürgergeld (ALG II)</strong>, Sozialhilfe oder Grundsicherung 
+            gilt eine Sonderregelung: Als Einkommen wird der <strong>Regelsatz der Bedarfsgemeinschaft</strong> 
+            angesetzt (6.756 €/Jahr in 2026). Die Belastungsgrenze liegt damit bei:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2% von 6.756 € = 135,12 €</strong> (Standard)</li>
+            <li><strong>1% von 6.756 € = 67,56 €</strong> (Chroniker)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So beantragen Sie die Befreiung</h3>
+          <p>
+            Sobald Ihre Zuzahlungen die Belastungsgrenze erreicht haben:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>1. Quittungen sammeln:</strong> Alle Zuzahlungsbelege aufheben</li>
+            <li><strong>2. Antrag stellen:</strong> Bei Ihrer Krankenkasse formlos oder per Formular</li>
+            <li><strong>3. Befreiungsausweis:</strong> Sie erhalten eine Karte für das laufende Jahr</li>
+          </ul>
+          <p>
+            <strong>Tipp:</strong> Sie können auch zu Jahresbeginn die <strong>Belastungsgrenze vorauszahlen</strong> 
+            und sind sofort für das ganze Jahr befreit – so sparen Sie sich das Sammeln von Quittungen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rückerstattung bei zu viel gezahlten Zuzahlungen</h3>
+          <p>
+            Haben Sie mehr gezahlt als Ihre Belastungsgrenze, können Sie die <strong>Differenz zurückfordern</strong>. 
+            Die Erstattung ist bis zu <strong>4 Jahre rückwirkend</strong> möglich. Reichen Sie einfach 
+            alle Quittungen bei Ihrer Krankenkasse ein.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zuzahlungsbefreiung-Rechner 2026",
+    "description": description,
+    "url": "https://deutschland-rechner.de/zuzahlung-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Belastungsgrenze 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Belastungsgrenze beträgt 2% Ihres jährlichen Bruttoeinkommens zum Lebensunterhalt. Für chronisch Kranke in Dauerbehandlung gilt die reduzierte Grenze von 1%. Von Ihrem Einkommen werden Freibeträge abgezogen: 7.119€ für den Partner und 9.756€ pro Kind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann bin ich von Zuzahlungen befreit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sobald Ihre Zuzahlungen die Belastungsgrenze erreicht haben, können Sie bei Ihrer Krankenkasse eine Befreiung beantragen. Sie erhalten dann einen Befreiungsausweis für das laufende Kalenderjahr und zahlen keine weiteren Zuzahlungen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Zuzahlungen werden angerechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Angerechnet werden nur gesetzlich vorgeschriebene Zuzahlungen nach §61 SGB V: Arzneimittel (10%, min. 5€, max. 10€), Krankenhaus (10€/Tag, max. 28 Tage), Reha (10€/Tag), Heilmittel (10€/Rezept + 10%), Hilfsmittel und Fahrkosten. Nicht anrechenbar sind Zahnersatz-Eigenanteile, IGeL-Leistungen und Aufzahlungen über Festbetrag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer gilt als chronisch krank für die 1%-Grenze?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die 1%-Grenze gilt für Versicherte mit schwerwiegender chronischer Erkrankung in Dauerbehandlung: mindestens 1 Jahr wegen derselben Krankheit in Behandlung UND entweder GdB ab 60%, Pflegegrad 3-5 oder lebensbedrohliche Verschlimmerung ohne Behandlung. Sie benötigen eine ärztliche Bescheinigung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Belastungsgrenze bei Bürgergeld?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Bürgergeld (ALG II), Sozialhilfe oder Grundsicherung wird der Regelsatz als Einkommen angesetzt: 6.756€/Jahr (563€/Monat) für 2026. Die Belastungsgrenze beträgt damit 135,12€ (2%) bzw. 67,56€ (1% für Chroniker)."
+        }
+      }
+    ]
+  })} />
+</Layout>
