@@ -1,6 +1,6 @@
 {
-  "lastAuditIndex": 3,
-  "lastAuditDate": "2026-02-15",
+  "lastAuditIndex": 4,
+  "lastAuditDate": "2026-02-16",
   "currentCycle": 8,
   "calculators": [
     "kindergeld-rechner",
@@ -19,6 +19,80 @@
     "einkommensteuer-rechner"
   ],
   "auditHistory": [
+    {
+      "calculator": "buergergeld-rechner",
+      "date": "2026-02-16",
+      "cycle": 8,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "bundesregierung.de/nullrunde-buergergeld": "PASS - 200 OK",
+        "arbeitsagentur.de/buergergeld": "PASS - 200 OK",
+        "bmas.de/grundsicherung-buergergeld": "PASS - 200 OK",
+        "finanztip.de/buergergeld": "PASS - 200 OK",
+        "bundesregierung.de/kabinett-neue-grundsicherung": "PASS - 200 OK",
+        "jobcenter.digital": "PASS - 301 redirect to arbeitsagentur.de (expected)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+          "https://www.finanztip.de/buergergeld/",
+          "https://www.buergergeld.org/sgb-ii/zuverdienst/",
+          "https://www.gesetze-im-internet.de/sgb_2/__72.html"
+        ],
+        "2026Values": {
+          "Alleinstehend_RBS1": "563€ ✓ (Nullrunde)",
+          "Partner_RBS2": "506€ ✓ (Nullrunde)",
+          "Unter25_bei_Eltern_RBS3": "451€ ✓ (Nullrunde)",
+          "Kind_14_17_RBS4": "471€ ✓ (Nullrunde)",
+          "Kind_6_13_RBS5": "390€ ✓ (Nullrunde)",
+          "Kind_0_5_RBS6": "357€ ✓ (Nullrunde)",
+          "Kindersofortzuschlag": "25€/Kind (§72 SGB II) ✓",
+          "Grundfreibetrag": "100€ ✓",
+          "Freibetrag_100_520": "20% ✓",
+          "Freibetrag_520_1000": "30% ✓",
+          "Freibetrag_1000_1200_1500": "10% ✓"
+        },
+        "note": "Regelsätze 2026 unchanged from 2024 (Besitzschutzregelung § 28a Abs. 5 SGB XII)"
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Regelbedarf + Kindersofortzuschlag + KdU - (Einkommen - Freibetrag)",
+        "testCase": {
+          "input": "Brutto 1.400€ with children",
+          "expected_freibetrag": "368€ (100 + 84 + 144 + 40)",
+          "result": "EXACT MATCH with buergergeld.org example"
+        },
+        "notes": [
+          "Freibetrag formula verified against § 11b SGB II",
+          "Kindersofortzuschlag 25€ pro Kind nach § 72 SGB II korrekt",
+          "Obergrenze 1200€/1500€ je nach Kind-Status korrekt implementiert",
+          "Regelbedarf uses correct 6 RBS values",
+          "No approximations or simplified formulas detected"
+        ]
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Jobcenter zuständig clearly stated",
+        "edgeCases": "PASS - Mehrbedarf section (Alleinerziehende +12-60%, Schwangere +17%, Behinderte +17-35%, Kranke) well documented",
+        "behoerde": "PASS - Jobcenter with online link and Bürgertelefon 0800 4 5555 00",
+        "gesetzesaenderung": "PASS - July 2026 Grundsicherungsgeld reform box with key changes",
+        "karenzzeit": "PASS - 40.000€ Vermögensschutz mentioned"
+      },
+      "seoCheck": {
+        "title": "PASS - Bürgergeld-Rechner 2026 – Regelsatz, Freibeträge & KdU",
+        "description": "PASS - Includes 563€ Alleinstehend, 506€ Partner, Freibeträge, KdU, 2026",
+        "structuredData": "PASS - WebApplication + FAQPage schema present"
+      },
+      "officialSources": {
+        "bundesregierung": "https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676",
+        "arbeitsagentur": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/buergergeld",
+        "bmas": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/grundsicherung-buergergeld.html",
+        "gesetz_sgb2_72": "https://www.gesetze-im-internet.de/sgb_2/__72.html",
+        "buergergeld_org": "https://www.buergergeld.org/sgb-ii/zuverdienst/",
+        "finanztip": "https://www.finanztip.de/buergergeld/"
+      },
+      "auditSummary": "Clean audit cycle 8 - all 6 external links working (200 OK or expected redirects). Regelsätze 2026 (Nullrunde) verified: 563€ alleinstehend, 506€ Partner, 471€ Jugendliche, 390€ Kind 6-13, 357€ Kind 0-5. Kindersofortzuschlag 25€ verified (§72 SGB II). Freibetrag calculation verified against official example (1.400€ brutto → 368€ Freibetrag) - EXACT MATCH. Formula implements § 11b SGB II correctly. Mehrbedarf section complete. July 2026 Grundsicherungsgeld reform info present. Structured data (WebApplication + FAQPage) present. No issues found."
+    },
     {
       "calculator": "grunderwerbsteuer-rechner",
       "date": "2026-02-15",
