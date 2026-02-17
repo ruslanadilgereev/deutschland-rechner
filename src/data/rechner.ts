@@ -739,11 +739,18 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'notarkosten',
     name: 'Notarkosten-Rechner',
-    beschreibung: 'Notar- und Grundbuchkosten berechnen',
+    beschreibung: 'Notar- und Grundbuchkosten nach GNotKG berechnen',
     icon: '📝',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Notarkosten Rechner, Notarkosten Hauskauf, Grundbuchkosten',
+    fertig: true,
+    seoKeywords: 'Notarkosten Rechner, Notargebühren berechnen, Notarkosten Hauskauf, GNotKG, Grundbuchkosten, Notarkosten Immobilienkauf, Notarkosten 2026, Tabelle B, Beurkundung Kosten',
+    quellen: [
+      'https://www.gesetze-im-internet.de/gnotkg/',
+      'https://www.gesetze-im-internet.de/gnotkg/anlage_2.html',
+      'https://dejure.org/gesetze/GNotKG/34.html',
+      'https://www.bnotk.de',
+      'http://www.gnotkg.de/gebuehrentabelle.html',
+    ],
   },
   {
     id: 'maklerkosten',
