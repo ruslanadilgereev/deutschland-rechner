@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MindestlohnRechner from '../components/rechner/MindestlohnRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Mindestlohn-Rechner 2026 – Gehalt prüfen & berechnen";
+const description = "Mindestlohn Rechner 2026: Prüfen Sie ob Ihr Stundenlohn den gesetzlichen Mindestlohn von 13,90€/Stunde erfüllt. Mit Ausnahmen, Minijob-Grenze & Brutto-Monatsgehalt. Kostenlos!";
+const keywords = "Mindestlohn Rechner, Mindestlohn 2026, Mindestlohn berechnen, Mindestlohn 13 90, gesetzlicher Mindestlohn, Mindestlohn prüfen, Mindestlohn Stundenlohn, Mindestlohn Deutschland, Mindestlohn Monat, Mindestlohn Brutto, MiLoG, Mindestlohngesetz, Minijob Mindestlohn, Mindestlohn Ausnahmen, Mindestlohn 2025 2026 2027";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Mindestlohn-Rechner", url: "/mindestlohn-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💶</span>
+          <div>
+            <h1 class="text-2xl font-bold">Mindestlohn-Rechner 2026</h1>
+            <p class="text-green-100 text-sm">Gesetzlicher Mindestlohn: 13,90 €/Stunde | Lohn prüfen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MindestlohnRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Mindestlohn 2026: Alles was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>gesetzliche Mindestlohn</strong> in Deutschland beträgt seit dem 1. Januar 2026 
+            <strong>13,90 Euro pro Stunde</strong>. Mit unserem Mindestlohn-Rechner können Sie prüfen, 
+            ob Ihr Stundenlohn den Mindestlohn erfüllt und wie viel Sie mindestens verdienen müssen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestlohn-Entwicklung 2024-2027</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2024:</strong> 12,41 € pro Stunde (ab Januar 2024)</li>
+            <li><strong>2025:</strong> 12,82 € pro Stunde (ab Januar 2025)</li>
+            <li><strong>2026:</strong> 13,90 € pro Stunde (ab Januar 2026)</li>
+            <li><strong>2027:</strong> 14,60 € pro Stunde (ab Januar 2027, geplant)</li>
+          </ul>
+          <p>
+            Dies entspricht einer Steigerung von <strong>17,6%</strong> innerhalb von 4 Jahren.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestlohn 2026: Brutto-Monatsgehalt</h3>
+          <p>
+            Bei einer <strong>40-Stunden-Woche</strong> ergibt sich mit dem Mindestlohn von 13,90 €/Stunde 
+            folgendes Brutto-Monatsgehalt:
+          </p>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-center font-mono text-lg text-green-900">
+              <strong>13,90 € × 40 Std. × 4,33 = 2.407,48 € brutto/Monat</strong>
+            </p>
+          </div>
+          <p>
+            Der Faktor 4,33 ergibt sich aus der durchschnittlichen Anzahl von Wochen pro Monat (52 ÷ 12).
+          </p>
+          
+          <table class="w-full my-4 text-sm">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="p-2 text-left">Wochenstunden</th>
+                <th class="p-2 text-right">Mindestlohn/Monat</th>
+                <th class="p-2 text-right">Mindestlohn/Jahr</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="p-2">10 Stunden</td>
+                <td class="p-2 text-right">601,87 €</td>
+                <td class="p-2 text-right">7.222,40 €</td>
+              </tr>
+              <tr class="border-b">
+                <td class="p-2">20 Stunden</td>
+                <td class="p-2 text-right">1.203,74 €</td>
+                <td class="p-2 text-right">14.444,80 €</td>
+              </tr>
+              <tr class="border-b">
+                <td class="p-2">30 Stunden</td>
+                <td class="p-2 text-right">1.805,61 €</td>
+                <td class="p-2 text-right">21.667,20 €</td>
+              </tr>
+              <tr class="border-b bg-green-50">
+                <td class="p-2 font-bold">40 Stunden</td>
+                <td class="p-2 text-right font-bold">2.407,48 €</td>
+                <td class="p-2 text-right font-bold">28.889,60 €</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer bekommt keinen Mindestlohn?</h3>
+          <p>
+            Nach <strong>§ 22 Mindestlohngesetz (MiLoG)</strong> sind folgende Personengruppen vom 
+            Mindestlohn ausgenommen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Jugendliche unter 18</strong> ohne abgeschlossene Berufsausbildung</li>
+            <li><strong>Auszubildende</strong> während der Berufsausbildung (eigene Mindestausbildungsvergütung)</li>
+            <li><strong>Pflichtpraktikanten</strong> aufgrund schulischer oder hochschulrechtlicher Vorgaben</li>
+            <li><strong>Orientierungspraktikanten</strong> (bis zu 3 Monate) zur Berufsorientierung</li>
+            <li><strong>Studienbegleitende Praktikanten</strong> (bis zu 3 Monate, einmalig pro Arbeitgeber)</li>
+            <li><strong>Ehrenamtliche</strong> ohne Arbeitnehmerstatus</li>
+            <li><strong>Langzeitarbeitslose</strong> in den ersten 6 Monaten nach Einstellung</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Minijob-Grenze 2026</h3>
+          <p>
+            Die <strong>Minijob-Grenze</strong> ist dynamisch an den Mindestlohn gekoppelt. Sie berechnet sich 
+            aus 45 Stunden multipliziert mit dem aktuellen Mindestlohn:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2025:</strong> 556 € (12,82 € × 43,4 Std. ≈ 45 × 12,35 €)</li>
+            <li><strong>2026:</strong> 603 € (13,90 € × 43,4 Std. ≈ 45 × 13,40 €)</li>
+            <li><strong>2027:</strong> 657 € (geplant, abhängig vom endgültigen Mindestlohn)</li>
+          </ul>
+          <p>
+            Bei Mindestlohn können Sie maximal etwa <strong>43,4 Stunden pro Monat</strong> arbeiten, 
+            ohne die Minijob-Grenze zu überschreiten.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was zählt zum Mindestlohn?</h3>
+          <p>
+            Der Mindestlohn muss aus dem <strong>Grundlohn</strong> bestehen. Folgendes darf 
+            <strong>nicht</strong> auf den Mindestlohn angerechnet werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Trinkgelder</li>
+            <li>Nacht-, Sonntags- und Feiertagszuschläge</li>
+            <li>Überstundenzuschläge</li>
+            <li>Sachleistungen (Dienstwagen, Jobticket, etc.)</li>
+            <li>Aufwandsentschädigungen</li>
+            <li>Vermögenswirksame Leistungen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was tun bei Mindestlohnverstoß?</h3>
+          <p>
+            Wenn Ihr Arbeitgeber weniger als den Mindestlohn zahlt:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li><strong>Dokumentieren:</strong> Arbeitszeiten und Löhne genau aufzeichnen</li>
+            <li><strong>Ansprechen:</strong> Arbeitgeber auf den Mindestlohn hinweisen</li>
+            <li><strong>Nachfordern:</strong> Schriftliche Aufforderung zur Nachzahlung</li>
+            <li><strong>Hilfe holen:</strong> Gewerkschaft, Anwalt oder Arbeitsgericht</li>
+            <li><strong>Melden:</strong> Anonyme Meldung beim Zoll (Finanzkontrolle Schwarzarbeit)</li>
+          </ol>
+          <p class="mt-2">
+            <strong>Wichtig:</strong> Der Anspruch auf den Mindestlohn kann bis zu 3 Jahre rückwirkend 
+            geltend gemacht werden. Arbeitgebern drohen bei Verstößen Bußgelder bis zu 500.000 €.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestlohn-Hotline</h3>
+          <p>
+            Bei Fragen zum Mindestlohn können Sie die kostenlose Hotline des Bundesministeriums 
+            für Arbeit und Soziales nutzen:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-center text-2xl font-bold text-blue-900">
+              📞 030 60 28 00 28
+            </p>
+            <p class="text-center text-sm text-blue-700 mt-1">
+              Mo–Do: 8–20 Uhr, Fr: 8–12 Uhr (kostenlos)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mindestlohn-Rechner 2026",
+    "description": description,
+    "url": "https://deutschland-rechner.de/mindestlohn-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Mindestlohn 2026 in Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der gesetzliche Mindestlohn beträgt seit dem 1. Januar 2026 13,90 Euro brutto pro Stunde. Bei einer 40-Stunden-Woche entspricht dies einem Brutto-Monatsgehalt von etwa 2.407 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Mindestlohn 2027?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab dem 1. Januar 2027 steigt der Mindestlohn auf 14,60 Euro pro Stunde. Dies wurde von der Mindestlohnkommission am 27. Juni 2025 beschlossen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer bekommt keinen Mindestlohn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach § 22 MiLoG sind ausgenommen: Jugendliche unter 18 ohne Berufsausbildung, Auszubildende, Pflichtpraktikanten, Orientierungspraktikanten (bis 3 Monate), ehrenamtlich Tätige und Langzeitarbeitslose in den ersten 6 Monaten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel darf man 2026 als Minijobber maximal verdienen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Minijob-Grenze 2026 liegt bei 603 Euro pro Monat. Bei Mindestlohn (13,90 €/Stunde) können Sie maximal etwa 43 Stunden pro Monat arbeiten, ohne die Grenze zu überschreiten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kann ich tun wenn mein Arbeitgeber unter Mindestlohn zahlt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sie können die Differenz bis zu 3 Jahre rückwirkend einfordern. Sprechen Sie zuerst den Arbeitgeber an, fordern Sie schriftlich nach. Bei Weigerung: Arbeitsgericht (mit Anwalt/Gewerkschaft) oder Meldung beim Zoll. Arbeitgebern drohen Bußgelder bis 500.000 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich mein Monatsgehalt mit Mindestlohn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Formel: Stundenlohn × Wochenstunden × 4,33 = Monatsgehalt. Beispiel bei 40 Stunden/Woche: 13,90 € × 40 × 4,33 = 2.407,48 € brutto pro Monat."
+        }
+      }
+    ]
+  })} />
+
+  <!-- HowTo Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Mindestlohn prüfen und Nachzahlung fordern",
+    "description": "Anleitung zum Prüfen ob Ihr Lohn den Mindestlohn erfüllt und was Sie bei Verstößen tun können",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Stundenlohn berechnen",
+        "text": "Teilen Sie Ihr Monatsgehalt durch die monatlichen Arbeitsstunden (Wochenstunden × 4,33). Der Stundenlohn muss mindestens 13,90 € betragen (2026)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Ausnahmen prüfen",
+        "text": "Prüfen Sie ob eine Ausnahme nach § 22 MiLoG gilt (Praktikum, Ausbildung, unter 18 Jahre, etc.)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Bei Unterschreitung: Dokumentieren",
+        "text": "Arbeitszeiten und Lohnabrechnungen aufbewahren. Diese dienen als Nachweis für Nachforderungen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Nachzahlung fordern",
+        "text": "Fordern Sie schriftlich die Differenz zum Mindestlohn ein. Ansprüche verjähren nach 3 Jahren."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Hilfe holen",
+        "text": "Bei Weigerung: Gewerkschaft, Arbeitsrechtsanwalt oder Arbeitsgericht. Alternativ: Meldung beim Zoll (Finanzkontrolle Schwarzarbeit)."
+      }
+    ]
+  })} />
+</Layout>

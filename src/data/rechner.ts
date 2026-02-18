@@ -312,11 +312,17 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'mindestlohn',
     name: 'Mindestlohn-Rechner',
-    beschreibung: 'Mindestlohn 2025: 12,82€/Stunde',
+    beschreibung: 'Mindestlohn 2026: 13,90€/Stunde – Lohn prüfen',
     icon: '💶',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Mindestlohn Rechner, Mindestlohn 2025, Mindestlohn berechnen',
+    fertig: true,
+    seoKeywords: 'Mindestlohn Rechner, Mindestlohn 2026, Mindestlohn berechnen, Mindestlohn 13 90, gesetzlicher Mindestlohn, MiLoG, Mindestlohn prüfen, Mindestlohn Monat, Minijob Mindestlohn',
+    quellen: [
+      'https://www.gesetze-im-internet.de/milog/',
+      'https://www.mindestlohn-kommission.de',
+      'https://www.zoll.de/DE/Fachthemen/Arbeit/Mindestarbeitsbedingungen/Mindestlohn-Mindestlohngesetz/mindestlohn-mindestlohngesetz_node.html',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Mindestlohn/mindestlohn.html',
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════
