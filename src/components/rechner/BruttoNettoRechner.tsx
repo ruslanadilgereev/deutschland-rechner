@@ -1022,12 +1022,12 @@ export default function BruttoNettoRechner() {
             BMF – Programmablaufplan Lohnsteuer 2026
           </a>
           <a 
-            href="https://www.bundesregierung.de/breg-de/aktuelles/sozialversicherung-rechengroessen-2387774"
+            href="https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesregierung – Sozialversicherungs-Rechengrößen 2026
+            Bundesregierung – Beitragsbemessungsgrenzen 2026
           </a>
         </div>
       </div>
