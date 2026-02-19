@@ -1,6 +1,6 @@
 {
-  "lastAuditIndex": 0,
-  "lastAuditDate": "2026-02-18",
+  "lastAuditIndex": 1,
+  "lastAuditDate": "2026-02-19",
   "currentCycle": 9,
   "calculators": [
     "kindergeld-rechner",
@@ -19,6 +19,88 @@
     "einkommensteuer-rechner"
   ],
   "auditHistory": [
+    {
+      "calculator": "brutto-netto-rechner",
+      "date": "2026-02-19",
+      "cycle": 9,
+      "status": "FIXED",
+      "findings": [
+        {
+          "type": "DATA_ACCURACY",
+          "severity": "MEDIUM",
+          "issue": "SEO-Content: Pflegeversicherung rate range was '1,7-2,3%' (2024 values), corrected to '0,8-2,4%' (2026 values)",
+          "fixed": true,
+          "location": "brutto-netto-rechner.astro (SEO-Content Abzüge-Liste)"
+        },
+        {
+          "type": "BROKEN_LINK",
+          "severity": "MEDIUM",
+          "issue": "Bundesregierung Sozialversicherungs-Rechengrößen URL redirected to subtitle file (wrong resource)",
+          "fixed": true,
+          "oldUrl": "https://www.bundesregierung.de/breg-de/aktuelles/sozialversicherung-rechengroessen-2387774",
+          "newUrl": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514"
+        }
+      ],
+      "linkCheck": {
+        "bmf-steuerrechner.de/bl2026": "PASS - 200 OK",
+        "elster.de": "PASS - 200 OK (redirects to /eportal/start)",
+        "bundesfinanzministerium.de/PAP-2026": "PASS - 200 OK",
+        "bundesregierung.de/beitragsgemessungsgrenzen": "PASS - 200 OK (after fix)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://www.bmf-steuerrechner.de/javax.faces.resource/daten/xmls/Lohnsteuer2026.xml.xhtml",
+          "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+          "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/pv-beitraege/wie-hoch-ist-pv-beitrag-2149454"
+        ],
+        "2026Values": {
+          "Grundfreibetrag": "12.348€ ✓ (PAP_2026.GFB)",
+          "BBG_RV_AV": "101.400€ ✓ (bundesweit einheitlich)",
+          "BBG_KV_PV": "69.750€ ✓ (bundesweit einheitlich)",
+          "RV_AN_Satz": "9,3% ✓",
+          "AV_AN_Satz": "1,3% ✓",
+          "PV_Basis_AN": "1,8% ✓",
+          "PV_Kinderlos_Zuschlag": "+0,6% ✓",
+          "PV_Kind_Abschlag": "-0,25% pro Kind (2.-5.) ✓",
+          "KV_Basis_AN": "7,3% ✓",
+          "KV_Durchschn_Zusatzbeitrag": "2,9% ✓"
+        }
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Exakte PAP 2026 Implementierung",
+        "notes": [
+          "MPARA: KV/PV-Sätze korrekt berechnet inkl. Kinderlogik",
+          "UPTAB26: §32a EStG Tarif 2026 mit korrekten Zonengrenzen",
+          "MST5_6: Steuerklasse V/VI Sonderberechnung korrekt",
+          "MSOLZ: Solidaritätszuschlag mit Milderungszone korrekt",
+          "Vorsorgepauschale (UPEVP): RV + KV/PV korrekt berechnet",
+          "All PAP constants verified against official BMF XML"
+        ]
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - 'Berechnung nach BMF-PAP 2026' note present with official links",
+        "edgeCases": "PASS - All 6 Steuerklassen, Kinderlosenzuschlag, Kindabschlag, Kirchensteuer 8%/9%",
+        "behoerde": "PASS - Finanzamt (ELSTER) and Krankenkasse mentioned",
+        "stkl_hinweis": "PASS - SK 5 & 6 warnings present"
+      },
+      "seoCheck": {
+        "title": "PASS - Brutto-Netto-Rechner 2026 – Gehaltsrechner kostenlos",
+        "description": "PASS - Includes 2026, Grundfreibetrag 12.348€, Steuerklassen",
+        "keywords": "PASS - Comprehensive: Brutto Netto Rechner, Gehaltsrechner 2026, Netto berechnen",
+        "structuredData": "PASS - WebApplication + FAQPage schema present"
+      },
+      "officialSources": {
+        "bmf_xml": "https://www.bmf-steuerrechner.de/javax.faces.resource/daten/xmls/Lohnsteuer2026.xml.xhtml",
+        "bmf_calculator": "https://www.bmf-steuerrechner.de/bl/bl2026/eingabeformbl2026.xhtml",
+        "bmf_pap": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026.html",
+        "bundesregierung_bbg": "https://www.bundesregierung.de/breg-de/aktuelles/beitragsgemessungsgrenzen-2386514",
+        "tk_bbg": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026",
+        "tk_pv": "https://www.tk.de/firmenkunden/versicherung/beitraege-faq/pv-beitraege/wie-hoch-ist-pv-beitrag-2149454"
+      },
+      "auditSummary": "Cycle 9 audit - FIXED 2 issues: (1) SEO content PV rate '1,7-2,3%' (2024) → '0,8-2,4%' (2026), (2) Bundesregierung link redirected to wrong resource, replaced with correct Beitragsbemessungsgrenzen URL. Calculator component (BruttoNettoRechner.tsx) implements official BMF PAP 2026 correctly - all constants verified against XML source. BBG values verified: RV 101.400€, KV/PV 69.750€. PV rates verified against TK: 3,6% gesamt (1,8% AN), +0,6% kinderlos, -0,25% per child. All 4 external links now working (200 OK). Structured data present."
+    },
     {
       "calculator": "kindergeld-rechner",
       "date": "2026-02-18",
