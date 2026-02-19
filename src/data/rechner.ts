@@ -1313,8 +1313,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Grundumsatz & Leistungsumsatz berechnen',
     icon: '🔥',
     kategorie: 'gesundheit',
-    fertig: false,
-    seoKeywords: 'Grundumsatz Rechner, Grundumsatz berechnen, Kalorienbedarf Ruhe',
+    fertig: true,
+    seoKeywords: 'Grundumsatz Rechner, Grundumsatz berechnen, Kalorienbedarf Ruhe, BMR Rechner, Mifflin St Jeor, Kalorienverbrauch, TDEE Rechner, PAL Faktor',
+    quellen: [
+      'https://www.dge.de/wissenschaft/referenzwerte/energie/',
+      'https://pubmed.ncbi.nlm.nih.gov/2305711/',
+      'https://www.verbraucherzentrale.de/wissen/lebensmittel/gesund-ernaehren/ernaehrung-umsatz-kalorien-wie-viel-energie-benoetigt-der-koerper-102519',
+      'https://www.who.int/publications/i/item/9789241210232',
+    ],
   },
   {
     id: 'blutdruck',

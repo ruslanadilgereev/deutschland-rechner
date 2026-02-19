@@ -1,0 +1,281 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrundumsatzRechner from '../components/rechner/GrundumsatzRechner';
+
+const title = "Grundumsatz-Rechner 2026 – Kalorienbedarf berechnen (Mifflin-St Jeor)";
+const description = "Grundumsatz & Kalorienbedarf kostenlos berechnen mit der wissenschaftlich anerkannten Mifflin-St Jeor Formel. Inkl. Gesamtumsatz, PAL-Faktoren & DGE-Referenzwerten.";
+const keywords = "Grundumsatz Rechner, Grundumsatz berechnen, Kalorienbedarf Rechner, BMR Rechner, Basal Metabolic Rate, Mifflin St Jeor, Harris Benedict, Kalorienverbrauch, Stoffwechsel berechnen, Energieumsatz, TDEE Rechner, PAL Faktor, DGE Referenzwerte, Ruheenergieverbrauch";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grundumsatz-Rechner</h1>
+            <p class="text-orange-100 text-sm">Kalorienbedarf wissenschaftlich berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GrundumsatzRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Grundumsatz-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Grundumsatz (BMR = Basal Metabolic Rate)</strong> ist die Energiemenge, die Ihr Körper 
+            in völliger Ruhe benötigt, um lebenswichtige Funktionen aufrechtzuerhalten. Mit unserem 
+            <strong>Grundumsatz-Rechner</strong> berechnen Sie Ihren persönlichen Kalorienbedarf wissenschaftlich 
+            genau – kostenlos und ohne Anmeldung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Grundumsatz?</h3>
+          <p>
+            Der Grundumsatz, auch <strong>Ruheenergieverbrauch</strong> genannt, beschreibt die Kalorien, die 
+            Ihr Körper im Ruhezustand verbraucht – also im Liegen, nüchtern und bei angenehmer Temperatur. 
+            Diese Energie wird benötigt für:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Herzschlag</strong> und Blutkreislauf</li>
+            <li><strong>Atmung</strong> und Lungenfunktion</li>
+            <li><strong>Gehirnaktivität</strong> (ca. 20% des Grundumsatzes!)</li>
+            <li><strong>Stoffwechsel</strong> und Zellregeneration</li>
+            <li><strong>Körpertemperatur</strong> aufrechterhalten</li>
+            <li><strong>Organfunktionen</strong> (Leber, Nieren, etc.)</li>
+          </ul>
+          <p>
+            Der Grundumsatz macht etwa <strong>60-75% Ihres täglichen Kalorienverbrauchs</strong> aus. 
+            Der Rest entfällt auf körperliche Aktivität und den thermischen Effekt der Nahrung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Mifflin-St Jeor Formel</h3>
+          <p>
+            Unser Rechner verwendet die <strong>Mifflin-St Jeor Formel (1990)</strong>, die als genaueste 
+            Schätzformel für den Grundumsatz gilt und von Ernährungswissenschaftlern weltweit empfohlen wird:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-mono text-sm">
+              <strong>Männer:</strong> BMR = 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter (Jahre) + 5<br/>
+              <strong>Frauen:</strong> BMR = 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter (Jahre) − 161
+            </p>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Ein 35-jähriger Mann mit 80 kg und 180 cm hat einen Grundumsatz von:
+            10 × 80 + 6,25 × 180 − 5 × 35 + 5 = 800 + 1125 − 175 + 5 = <strong>1.755 kcal/Tag</strong>
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundumsatz vs. Gesamtumsatz (TDEE)</h3>
+          <p>
+            Der <strong>Gesamtumsatz (TDEE = Total Daily Energy Expenditure)</strong> berücksichtigt zusätzlich 
+            Ihre körperliche Aktivität. Er wird berechnet als:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">Gesamtumsatz = Grundumsatz × PAL-Faktor</code>
+          </div>
+          <p>
+            Der <strong>PAL-Faktor (Physical Activity Level)</strong> gibt an, wie aktiv Sie im Alltag sind:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>PAL 1,2:</strong> Sitzend, kaum Bewegung (z.B. bettlägerig)</li>
+            <li><strong>PAL 1,4:</strong> Sitzende Tätigkeit, wenig Aktivität (Büroarbeit)</li>
+            <li><strong>PAL 1,6:</strong> Überwiegend gehend/stehend (Verkäufer, Lehrer)</li>
+            <li><strong>PAL 1,8:</strong> Körperlich anstrengend (Handwerker, regelmäßig Sport)</li>
+            <li><strong>PAL 2,0+:</strong> Sehr anstrengend (Bauarbeiter, Leistungssport)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faktoren, die den Grundumsatz beeinflussen</h3>
+          <p>
+            Ihr individueller Grundumsatz hängt von vielen Faktoren ab:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Muskelmasse:</strong> Muskeln verbrauchen mehr Energie als Fett – selbst in Ruhe</li>
+            <li><strong>Alter:</strong> Der Grundumsatz sinkt ab ca. 30 Jahren um 1-2% pro Jahrzehnt</li>
+            <li><strong>Geschlecht:</strong> Männer haben durchschnittlich 10% höheren Grundumsatz</li>
+            <li><strong>Körpergröße:</strong> Größere Menschen haben mehr Körpermasse zu versorgen</li>
+            <li><strong>Hormone:</strong> Schilddrüsenhormone beeinflussen den Stoffwechsel stark</li>
+            <li><strong>Genetik:</strong> Der Stoffwechsel ist teilweise vererbt</li>
+            <li><strong>Körpertemperatur:</strong> Fieber erhöht den Grundumsatz</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundumsatz beim Abnehmen</h3>
+          <p>
+            Für eine gesunde Gewichtsabnahme gilt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Nie unter Grundumsatz essen!</strong> Das bremst den Stoffwechsel und ist ungesund</li>
+            <li><strong>Moderates Defizit:</strong> 300-500 kcal unter dem Gesamtumsatz sind nachhaltig</li>
+            <li><strong>0,5 kg/Woche:</strong> Entspricht einem Defizit von ca. 500 kcal/Tag</li>
+            <li><strong>Krafttraining:</strong> Erhält Muskelmasse und damit einen höheren Grundumsatz</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Genauigkeit der Formeln</h3>
+          <p>
+            Alle Formeln zur Berechnung des Grundumsatzes liefern <strong>Schätzwerte</strong>. Die tatsächlichen 
+            Werte können individuell um ±10-15% abweichen. Für eine exakte Messung gibt es:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Indirekte Kalorimetrie:</strong> Messung über Atemgasanalyse (genaueste Methode)</li>
+            <li><strong>Spiroergometrie:</strong> Oft im Leistungssport oder medizinisch</li>
+            <li><strong>Bioimpedanzanalyse:</strong> Schätzt Muskelmasse und daraus den Grundumsatz</li>
+          </ul>
+          <p>
+            Die <strong>Mifflin-St Jeor Formel</strong> gilt als genaueste Schätzformel und übertrifft die ältere 
+            Harris-Benedict-Formel in Studien bei über 80% der Testpersonen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundumsatz erhöhen</h3>
+          <p>
+            Sie können Ihren Grundumsatz langfristig steigern durch:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Krafttraining:</strong> 1 kg Muskelmasse verbraucht ca. 13 kcal/Tag mehr</li>
+            <li><strong>Ausreichend Protein:</strong> Hält Muskeln erhalten und hat hohen thermischen Effekt</li>
+            <li><strong>Genug Schlaf:</strong> Schlafmangel senkt den Stoffwechsel</li>
+            <li><strong>Nicht zu wenig essen:</strong> Extreme Diäten senken den Grundumsatz</li>
+            <li><strong>Schilddrüse checken:</strong> Unterfunktion senkt den Stoffwechsel deutlich</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏥</span>
+          Beratung & Hilfe
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Ernährungsberatung</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Für eine individuelle Beratung zu Ernährung und Kalorienbedarf wenden Sie sich an:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Zertifizierte <strong>Ernährungsberater</strong> (von Krankenkassen bezuschusst!)</li>
+              <li>• <strong>Hausarzt/Hausärztin</strong> für medizinische Beratung</li>
+              <li>• <strong>Deutsche Gesellschaft für Ernährung (DGE)</strong>: <a href="https://www.dge.de" class="underline" target="_blank">www.dge.de</a></li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Kostenlose Angebote der Krankenkassen</h3>
+            <p class="text-green-700 text-sm">
+              Die meisten gesetzlichen Krankenkassen bieten kostenlose <strong>Präventionskurse</strong> 
+              zu Ernährung und Bewegung an (§20 SGB V). Fragen Sie bei Ihrer Krankenkasse nach!
+            </p>
+          </div>
+          
+          <div class="p-4 bg-orange-50 rounded-lg">
+            <h3 class="font-semibold text-orange-800 mb-2">Stoffwechsel messen lassen</h3>
+            <p class="text-orange-700 text-sm">
+              Für eine exakte Grundumsatz-Messung bieten viele <strong>Fitness-Studios</strong> und 
+              <strong>Sportmediziner</strong> eine Atemgasanalyse an. Kosten: ca. 50-150€.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grundumsatz-Rechner – Kalorienbedarf berechnen",
+    "description": description,
+    "url": "https://deutschland-rechner.de/grundumsatz-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist der Grundumsatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Grundumsatz (BMR = Basal Metabolic Rate) ist die Energiemenge in Kilokalorien, die Ihr Körper in völliger Ruhe benötigt, um lebenswichtige Funktionen wie Atmung, Herzschlag, Gehirnaktivität und Stoffwechsel aufrechtzuerhalten. Er macht etwa 60-75% Ihres täglichen Kalorienverbrauchs aus."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man den Grundumsatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die genaueste Formel ist die Mifflin-St Jeor Formel (1990): Für Männer: BMR = 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter + 5. Für Frauen: BMR = 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter − 161. Diese Formel ist von Ernährungswissenschaftlern weltweit empfohlen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Grundumsatz und Gesamtumsatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Grundumsatz (BMR) ist der Kalorienverbrauch in völliger Ruhe. Der Gesamtumsatz (TDEE = Total Daily Energy Expenditure) berücksichtigt zusätzlich Ihre tägliche Aktivität und wird berechnet als: Gesamtumsatz = Grundumsatz × PAL-Faktor. Der PAL-Faktor reicht von 1,2 (kaum Bewegung) bis 2,0+ (sehr aktiv)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich meinen Grundumsatz erhöhen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Den Grundumsatz können Sie langfristig erhöhen durch: Krafttraining (mehr Muskelmasse verbraucht mehr Energie), ausreichend Protein (erhält Muskeln), genügend Schlaf (Schlafmangel senkt den Stoffwechsel), nicht zu extreme Diäten (zu wenig Essen senkt den Stoffwechsel) und regelmäßige Schilddrüsen-Checks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sollte ich unter meinem Grundumsatz essen zum Abnehmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein! Sie sollten nie unter Ihrem Grundumsatz essen. Das kann den Stoffwechsel verlangsamen, Muskelmasse abbauen und ist ungesund. Für nachhaltiges Abnehmen empfiehlt sich ein moderates Kaloriendefizit von 300-500 kcal unter dem Gesamtumsatz (nicht dem Grundumsatz)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau sind Grundumsatz-Formeln?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Alle Formeln liefern Schätzwerte mit einer Abweichung von etwa ±10-15%. Die Mifflin-St Jeor Formel gilt als genaueste Schätzformel. Für exakte Werte kann der Grundumsatz mittels indirekter Kalorimetrie (Atemgasanalyse) beim Arzt oder im Fitnessstudio gemessen werden."
+        }
+      }
+    ]
+  })} />
+</Layout>
