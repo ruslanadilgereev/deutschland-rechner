@@ -718,11 +718,18 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'mietkaution',
     name: 'Mietkaution-Rechner',
-    beschreibung: 'Kaution & Zinsen berechnen',
+    beschreibung: 'Kaution & Zinsen nach §551 BGB berechnen',
     icon: '🔐',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Mietkaution Rechner, Kaution berechnen, Kaution Zinsen',
+    fertig: true,
+    seoKeywords: 'Mietkaution Rechner, Kaution berechnen, Kaution Zinsen, Mietkaution Zinsen, §551 BGB, Mietkaution Rückzahlung, Kaution 3 Monatsmieten, Mietkaution 2025, Kautionsrechner, Mietkaution Ratenzahlung',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__551.html',
+      'https://dejure.org/gesetze/BGB/551.html',
+      'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
+      'https://www.mieterbund.de',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/wohnen-und-mieten',
+    ],
   },
   {
     id: 'quadratmeterpreis',
