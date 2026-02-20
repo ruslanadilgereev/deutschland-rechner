@@ -1,6 +1,6 @@
 {
-  "lastAuditIndex": 1,
-  "lastAuditDate": "2026-02-19",
+  "lastAuditIndex": 2,
+  "lastAuditDate": "2026-02-20",
   "currentCycle": 9,
   "calculators": [
     "kindergeld-rechner",
@@ -19,6 +19,78 @@
     "einkommensteuer-rechner"
   ],
   "auditHistory": [
+    {
+      "calculator": "elterngeld-rechner",
+      "date": "2026-02-20",
+      "cycle": 9,
+      "status": "PASS",
+      "findings": [],
+      "linkCheck": {
+        "familienportal.de/elterngeld": "PASS - 200 OK",
+        "bmbfsfj.bund.de/elterngeld": "PASS - 200 OK",
+        "elterngeld-digital.de": "PASS - 200 OK (redirects to /ams/Elterngeld)"
+      },
+      "dataAccuracy": {
+        "verifiedAgainst": [
+          "https://familienportal.de/familienportal/familienleistungen/elterngeld/faq/wie-viel-elterngeld-kann-ich-bekommen--124616",
+          "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+          "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588"
+        ],
+        "2026Values": {
+          "Basiselterngeld_min": "300€ ✓",
+          "Basiselterngeld_max": "1.800€ ✓",
+          "ElterngeldPlus_min": "150€ ✓",
+          "ElterngeldPlus_max": "900€ ✓",
+          "Ersatzrate_Standard": "65% ✓ (über 1.240€)",
+          "Ersatzrate_1000_1200": "67% ✓",
+          "Ersatzrate_Abschmelzung": "1.200-1.240€: 67%→65% ✓",
+          "Ersatzrate_Geringverdiener": "+0,1% je 2€ unter 1.000€ (max 100%) ✓",
+          "Einkommensgrenze": "175.000€ für alle (ab April 2025) ✓",
+          "Max_Netto_berücksichtigt": "2.770€ ✓ (→ max 1.800€ bei 65%)",
+          "Partnermonate": "2 Monate ✓",
+          "Bezugsdauer_Basis": "12-14 Monate ✓",
+          "Bezugsdauer_Plus": "24-28 Monate ✓"
+        },
+        "testCases": {
+          "2500_Netto": "65% × 2.500€ = 1.625€ ✓",
+          "1000_Netto": "67% × 1.000€ = 670€ ✓",
+          "800_Netto": "77% × 800€ = 616€ ✓ (Geringverdiener-Zuschlag)",
+          "1220_Netto": "66% × 1.220€ = 805€ ✓ (Abschmelzzone)"
+        }
+      },
+      "calculationLogic": {
+        "status": "PASS",
+        "formula": "Exakte § 2 BEEG Implementierung",
+        "notes": [
+          "berechneErsatzrate() korrekt implementiert mit 4 Zonen",
+          "Geringverdienerkomponente: (1000-Netto)/2 × 0,1% + 67% ✓",
+          "Basiszone 1000-1200€: 67% ✓",
+          "Abschmelzungszone 1200-1240€: 67% - (Netto-1200)/2 × 0,1% ✓",
+          "Hochverdiener über 1240€: 65% ✓",
+          "Min/Max Grenzen korrekt angewendet",
+          "ElterngeldPlus = Basis/2 korrekt"
+        ]
+      },
+      "legalCompleteness": {
+        "disclaimer": "PASS - Antrag innerhalb von 3 Monaten warning present",
+        "edgeCases": "PASS - Frühchen, Mehrlinge, Geschwisterbonus, Teilzeit documented",
+        "behoerde": "PASS - Elterngeldstelle, ElterngeldDigital, 10 Bundesländer info",
+        "neuregelung2025": "PASS - April 2025 reform (175.000€, 1 Monat parallel) explained"
+      },
+      "seoCheck": {
+        "title": "PASS - Elterngeld-Rechner 2026 – Basiselterngeld & ElterngeldPlus",
+        "description": "PASS - Includes 300-1800€, 150-900€, 175.000€ Einkommensgrenze",
+        "structuredData": "PASS - WebApplication + FAQPage schema present"
+      },
+      "officialSources": {
+        "familienportal": "https://familienportal.de/familienportal/familienleistungen/elterngeld",
+        "familienportal_faq": "https://familienportal.de/familienportal/familienleistungen/elterngeld/faq/wie-viel-elterngeld-kann-ich-bekommen--124616",
+        "bmbfsfj": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+        "bmbfsfj_neuregelung": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/neuregelungen-beim-elterngeld-fuer-geburten-ab-1-april-2024-sowie-ab-1-april-2025-228588",
+        "elterngeld_digital": "https://www.elterngeld-digital.de/"
+      },
+      "auditSummary": "Clean audit cycle 9 - all 3 external links working (200 OK). Calculator implements exact § 2 BEEG Ersatzraten-Staffelung with 4 zones (Geringverdiener/Basis/Abschmelzung/Hochverdiener). Test calculations match official formula exactly: 2.500€→1.625€, 1.000€→670€, 800€→616€, 1.220€→805€. 2026 values verified: Einkommensgrenze 175.000€ (April 2025), Basiselterngeld 300-1.800€, ElterngeldPlus 150-900€, Ersatzraten 65-100%. April 2025 reform info (175k, 1 month parallel) correct. Legal sections complete with disclaimers, edge cases (Frühchen, Mehrlinge, Geschwisterbonus), behörde info. Structured data (WebApplication + FAQPage) present. No issues found."
+    },
     {
       "calculator": "brutto-netto-rechner",
       "date": "2026-02-19",
