@@ -612,8 +612,15 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Riester-Förderung & Zulagen berechnen',
     icon: '🏛️',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Riester Rechner, Riester Rente berechnen, Riester Zulage',
+    fertig: true,
+    seoKeywords: 'Riester Rechner, Riester Rente berechnen, Riester Zulage, Grundzulage 175 Euro, Kinderzulage 300 Euro, Mindesteigenbeitrag Riester, Riester 2025, Riester Steuervorteil, Riester Zulagenquote',
+    quellen: [
+      'https://riester.deutsche-rentenversicherung.de',
+      'https://www.gesetze-im-internet.de/estg/__10a.html',
+      'https://www.gesetze-im-internet.de/estg/__79.html',
+      'https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/Riester-Rente/riester-rente.html',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente',
+    ],
   },
   {
     id: 'erwerbsminderungsrente',
