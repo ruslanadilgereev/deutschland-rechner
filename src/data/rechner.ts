@@ -1510,11 +1510,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'handwerker',
     name: 'Handwerkerkosten-Rechner',
-    beschreibung: 'Handwerkerleistungen steuerlich absetzen',
+    beschreibung: 'Handwerkerleistungen steuerlich absetzen (bis 1.200€)',
     icon: '🔧',
     kategorie: 'steuern',
-    fertig: false,
-    seoKeywords: 'Handwerkerkosten absetzen, Handwerkerrechnung Steuer, Handwerkerleistungen',
+    fertig: true,
+    seoKeywords: 'Handwerkerkosten Rechner, Handwerkerleistungen absetzen, §35a EStG, Handwerker Steuer, Handwerkerrechnung absetzen, haushaltsnahe Dienstleistungen, Steuerermäßigung Handwerker, 1200 Euro Handwerker',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__35a.html',
+      'https://esth.bundesfinanzministerium.de/esth/2020/A-Einkommensteuergesetz/V-Steuerermaessigungen/4-Steuerermaessigung-bei-Aufwendungen-fuer-haushaltsnahe-Beschaeftigungsverhaeltnisse/Paragraf-35a/inhalt.html',
+      'https://www.bundesfinanzministerium.de',
+    ],
   },
   {
     id: 'doppelhaushalt',
