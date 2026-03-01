@@ -1,0 +1,333 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FahrradPendelnRechner from '../components/rechner/FahrradPendelnRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Fahrrad-Pendler-Rechner 2026 – Ersparnis, Kalorien & CO₂ berechnen";
+const description = "Fahrrad-Pendler-Rechner: Berechnen Sie, wie viel Sie sparen, wenn Sie mit dem Fahrrad zur Arbeit fahren statt mit dem Auto. Kostenersparnis, Kalorienverbrauch & CO₂-Einsparung.";
+const keywords = "Fahrrad Pendler Rechner, Fahrrad statt Auto, Pendeln mit Fahrrad, Radfahren Kalorien, CO2 sparen Fahrrad, Fahrrad Ersparnis, Autokosten Vergleich, E-Bike Pendeln, Radfahren zur Arbeit, Fahrrad Pendeln Gesundheit, Kilometerpauschale Fahrrad";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Fahrrad-Pendler-Rechner", url: "/fahrrad-pendeln-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚴</span>
+          <div>
+            <h1 class="text-2xl font-bold">Fahrrad-Pendler-Rechner</h1>
+            <p class="text-emerald-100 text-sm">Fahrrad vs. Auto – Ersparnis, Kalorien & CO₂ berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <FahrradPendelnRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Mit dem Fahrrad zur Arbeit: Was bringt das?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Immer mehr Deutsche entdecken das <strong>Fahrrad als Verkehrsmittel für den Arbeitsweg</strong>. 
+            Kein Wunder: Wer mit dem Fahrrad pendelt, spart nicht nur Geld, sondern verbrennt Kalorien, 
+            schont die Umwelt und tut aktiv etwas für die eigene Gesundheit. Mit unserem 
+            <strong>Fahrrad-Pendler-Rechner</strong> berechnen Sie konkret, wie viel Sie sparen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Geld spart man mit dem Fahrrad?</h3>
+          <p>
+            Die <strong>Kostenersparnis</strong> durch Radfahren ist erheblich. Nach ADAC-Vollkostenrechnung 
+            kostet ein Auto durchschnittlich <strong>40-65 Cent pro Kilometer</strong> – inklusive 
+            Wertverlust, Versicherung, Wartung und Kraftstoff. Ein Fahrrad kostet nur einen Bruchteil davon.
+          </p>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-green-800 font-medium">
+              <strong>Beispiel:</strong> Bei 10 km Arbeitsweg (hin + zurück = 20 km) und 5 Arbeitstagen 
+              sparen Sie jährlich <strong>1.500 – 3.000 €</strong> gegenüber dem Auto!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kalorienverbrauch beim Radfahren zur Arbeit</h3>
+          <p>
+            Radfahren ist ein <strong>effektives Ganzkörper-Training</strong>. Je nach Tempo und Körpergewicht 
+            verbrennen Sie:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Entspannt (15 km/h):</strong> ca. 300-400 kcal/Stunde</li>
+            <li><strong>Moderat (20 km/h):</strong> ca. 400-550 kcal/Stunde</li>
+            <li><strong>Sportlich (25 km/h):</strong> ca. 600-800 kcal/Stunde</li>
+            <li><strong>E-Bike (22 km/h):</strong> ca. 200-300 kcal/Stunde</li>
+          </ul>
+          <p>
+            Der Kalorienverbrauch wird nach der <strong>MET-Formel</strong> berechnet: 
+            Kalorien = MET × Körpergewicht × Zeit (Stunden). MET steht für "Metabolic Equivalent of Task" 
+            und gibt an, wie viel Energie eine Aktivität im Vergleich zum Ruhezustand verbraucht.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">CO₂-Einsparung: Wie viel spart das Fahrrad?</h3>
+          <p>
+            Ein durchschnittliches Auto stößt <strong>120-200 g CO₂ pro Kilometer</strong> aus. 
+            Das Fahrrad ist nahezu klimaneutral – nur die Produktion und das zusätzlich benötigte 
+            Essen verursachen minimale Emissionen (~8-15 g/km).
+          </p>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <p class="text-emerald-800 font-medium">
+              <strong>Faustregel:</strong> Pro 1.000 Fahrrad-Kilometer sparen Sie etwa 
+              <strong>150-180 kg CO₂</strong> gegenüber dem Auto.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gesundheitsvorteile des Rad-Pendelns</h3>
+          <p>
+            Die <strong>WHO empfiehlt mindestens 150 Minuten moderate Bewegung pro Woche</strong>. 
+            Wer täglich 15-20 Minuten zur Arbeit radelt, erreicht dieses Ziel automatisch – ohne 
+            extra Zeit für Sport aufwenden zu müssen.
+          </p>
+          <p>
+            Studien zeigen, dass regelmäßige Rad-Pendler:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>41% weniger</strong> Risiko für Herz-Kreislauf-Erkrankungen</li>
+            <li><strong>45% geringeres</strong> Krebsrisiko</li>
+            <li><strong>40% reduziertes</strong> Sterberisiko insgesamt</li>
+            <li>Verbesserte <strong>mentale Gesundheit</strong> und weniger Stress</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">E-Bike oder normales Fahrrad?</h3>
+          <p>
+            Ein <strong>E-Bike</strong> ist ideal für:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Längere Pendelstrecken (über 10-15 km einfach)</li>
+            <li>Hügelige Strecken</li>
+            <li>Wenn Sie nicht verschwitzt ankommen möchten</li>
+            <li>Wiedereinsteiger oder ältere Pendler</li>
+          </ul>
+          <p>
+            Auch mit E-Bike verbrennen Sie übrigens Kalorien – etwa <strong>200-300 kcal pro Stunde</strong>, 
+            da Sie trotz Motorunterstützung aktiv treten.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pendlerpauschale auch für Fahrrad?</h3>
+          <p>
+            Ja! Seit 2021 können Sie auch für den <strong>Fahrrad-Arbeitsweg die Pendlerpauschale</strong> 
+            geltend machen: <strong>0,30 € pro km</strong> (ab 21. km: 0,38 €). Nutzen Sie unseren 
+            <a href="/pendlerpauschale-rechner" class="text-emerald-600 hover:underline">Pendlerpauschale-Rechner</a> 
+            zur genauen Berechnung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für den Einstieg</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Klein anfangen:</strong> Erst 2x pro Woche, dann steigern</li>
+            <li><strong>Route planen:</strong> Fahrradwege oft schneller als Autoverkehr</li>
+            <li><strong>Kleidung vorbereiten:</strong> Wechselkleidung im Büro deponieren</li>
+            <li><strong>Wetter akzeptieren:</strong> Mit guter Regenkleidung geht fast jedes Wetter</li>
+            <li><strong>Hybrid-Lösung:</strong> Bei Extremwetter ÖPNV nutzen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Informationen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">📚</span>
+          Weiterführende Informationen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">ADFC – Allgemeiner Deutscher Fahrrad-Club</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Der ADFC bietet umfassende Informationen zum Radverkehr, Fahrradfreundliche Arbeitgeber 
+              und das "Mit dem Rad zur Arbeit"-Programm.
+            </p>
+            <a 
+              href="https://www.adfc.de" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-blue-600 hover:underline text-sm"
+            >
+              www.adfc.de →
+            </a>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">"Mit dem Rad zur Arbeit"</h3>
+            <p class="text-green-700 text-sm mb-2">
+              Die bundesweite Mitmachaktion von ADFC und AOK motiviert jährlich Hunderttausende, 
+              den Arbeitsweg per Rad zurückzulegen.
+            </p>
+            <a 
+              href="https://www.mit-dem-rad-zur-arbeit.de" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-green-600 hover:underline text-sm"
+            >
+              www.mit-dem-rad-zur-arbeit.de →
+            </a>
+          </div>
+          
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Dienstrad / Jobrad</h3>
+            <p class="text-amber-700 text-sm mb-2">
+              Viele Arbeitgeber bieten Diensträder per Gehaltsumwandlung an. 
+              Sie sparen bis zu 40% gegenüber dem Privatkauf!
+            </p>
+            <a 
+              href="https://www.jobrad.org" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-amber-600 hover:underline text-sm"
+            >
+              www.jobrad.org →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🧮</span>
+          Verwandte Rechner
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <a 
+            href="/pendlerpauschale-rechner" 
+            class="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            <span class="text-2xl">🛣️</span>
+            <p class="font-medium text-gray-800 mt-1">Pendlerpauschale</p>
+            <p class="text-xs text-gray-500">Steuerersparnis berechnen</p>
+          </a>
+          <a 
+            href="/spritkosten-rechner" 
+            class="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            <span class="text-2xl">⛽</span>
+            <p class="font-medium text-gray-800 mt-1">Spritkosten</p>
+            <p class="text-xs text-gray-500">Benzin/Diesel-Kosten</p>
+          </a>
+          <a 
+            href="/kalorienrechner" 
+            class="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            <span class="text-2xl">🍎</span>
+            <p class="font-medium text-gray-800 mt-1">Kalorien-Rechner</p>
+            <p class="text-xs text-gray-500">Tagesbedarf berechnen</p>
+          </a>
+          <a 
+            href="/bmi-rechner" 
+            class="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 mt-1">BMI-Rechner</p>
+            <p class="text-xs text-gray-500">Body-Mass-Index</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Fahrrad-Pendler-Rechner – Ersparnis, Kalorien & CO₂ berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/fahrrad-pendeln-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Geld spart man mit dem Fahrrad statt Auto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 10 km Arbeitsweg (hin + zurück 20 km) und 5 Tagen pro Woche sparen Sie jährlich etwa 1.500 – 3.000 € gegenüber dem Auto. Die genaue Ersparnis hängt vom Fahrzeugtyp ab – nach ADAC kosten Autos 35-65 Cent pro Kilometer inklusive aller Kosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Kalorien verbrennt man beim Radfahren zur Arbeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei moderatem Tempo (20 km/h) verbrennt eine 75 kg schwere Person etwa 500 kcal pro Stunde. Bei 10 km Arbeitsweg (30 Min.) sind das rund 250 kcal pro Tag oder über 50.000 kcal pro Jahr – das entspricht etwa 7 kg Körperfett."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel CO₂ spart man mit dem Fahrrad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Auto stößt durchschnittlich 150 g CO₂ pro Kilometer aus. Bei 20 km täglichem Arbeitsweg sparen Sie mit dem Fahrrad etwa 750 kg CO₂ pro Jahr – das entspricht 34 Bäumen, die ein Jahr lang CO₂ binden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich für den Fahrrad-Arbeitsweg die Pendlerpauschale nutzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja! Seit 2021 gilt die Pendlerpauschale auch für Fahrradfahrer: 0,30 € pro Kilometer, ab dem 21. Kilometer sogar 0,38 €. Bei 10 km einfacher Entfernung können Sie so über 600 € pro Jahr steuerlich geltend machen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist ein E-Bike zum Pendeln sinnvoll?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein E-Bike ist ideal für längere Strecken (über 10-15 km), hügelige Wege oder wenn Sie nicht verschwitzt ankommen möchten. Auch mit E-Bike verbrennen Sie noch etwa 200-300 kcal pro Stunde und profitieren von den Gesundheitsvorteilen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie gesund ist Radfahren zur Arbeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Studien zeigen: Regelmäßige Rad-Pendler haben ein um 41% geringeres Risiko für Herz-Kreislauf-Erkrankungen, 45% weniger Krebsrisiko und leben statistisch mehrere Jahre länger. Radfahren erfüllt automatisch die WHO-Empfehlung von 150 Minuten Bewegung pro Woche."
+        }
+      }
+    ]
+  })} />
+</Layout>

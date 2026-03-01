@@ -1,0 +1,327 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PflegegradRechner from '../components/rechner/PflegegradRechner';
+
+const title = "Pflegegrad-Rechner 2026 – Pflegegrad ermitteln (Selbsttest)";
+const description = "Pflegegrad-Rechner 2026: Ermitteln Sie Ihren Pflegegrad mit dem vereinfachten NBA-System. Selbsttest mit 6 Modulen, Punkte 0-100, Pflegegrad 1-5 und Pflegegeld-Tabelle.";
+const keywords = "Pflegegrad Rechner, Pflegegrad ermitteln, Pflegegrad Test, NBA Begutachtung, Pflegegrad 2026, Pflegegrad berechnen, Pflegegrad Selbsttest, Pflegegrad Punkte, MD Begutachtung, Pflegeversicherung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Pflegegrad-Rechner 2026</h1>
+            <p class="text-blue-100 text-sm">Pflegegrad ermitteln (Selbsttest)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PflegegradRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Pflegegrad ermitteln: So funktioniert das NBA-System</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Pflegegrad-Rechner</strong> können Sie Ihren Pflegegrad anhand des 
+            <strong>NBA (Neues Begutachtungsassessment)</strong> selbst einschätzen. Dieses System 
+            wird seit 2017 für die offizielle Pflegegrad-Begutachtung verwendet.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 6 Module der Pflegegrad-Begutachtung</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Modul 1 – Mobilität (10%):</strong> Fortbewegen, Treppensteigen, Positionswechsel</li>
+              <li><strong>Modul 2 – Kognitive Fähigkeiten (15%)*:</strong> Orientierung, Entscheidungen, Gefahren erkennen</li>
+              <li><strong>Modul 3 – Verhaltensweisen (15%)*:</strong> Psychische Probleme, Unruhe, Aggression</li>
+              <li><strong>Modul 4 – Selbstversorgung (40%):</strong> Waschen, Ankleiden, Essen, Toilette</li>
+              <li><strong>Modul 5 – Krankheitsanforderungen (20%):</strong> Medikamente, Verbände, Arztbesuche</li>
+              <li><strong>Modul 6 – Alltagsgestaltung (15%):</strong> Tagesablauf, soziale Kontakte</li>
+            </ul>
+            <p class="text-xs text-blue-600 mt-2">* Bei Modul 2 und 3 zählt nur der höhere Wert!</p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Von Punkten zum Pflegegrad</h3>
+          <p>
+            Die gewichteten Punkte aus allen Modulen ergeben eine Gesamtpunktzahl von 0-100:
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="text-left py-2 px-3">Pflegegrad</th>
+                  <th class="text-center py-2 px-3">Punkte</th>
+                  <th class="text-left py-2 px-3">Beeinträchtigung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-2 px-3 font-semibold">Kein Pflegegrad</td>
+                  <td class="py-2 px-3 text-center">0 – 12,4</td>
+                  <td class="py-2 px-3">Keine / geringe</td>
+                </tr>
+                <tr class="border-b bg-blue-50">
+                  <td class="py-2 px-3 font-semibold">Pflegegrad 1</td>
+                  <td class="py-2 px-3 text-center">12,5 – 26,9</td>
+                  <td class="py-2 px-3">Geringe Beeinträchtigung</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3 font-semibold">Pflegegrad 2</td>
+                  <td class="py-2 px-3 text-center">27 – 47,4</td>
+                  <td class="py-2 px-3">Erhebliche Beeinträchtigung</td>
+                </tr>
+                <tr class="border-b bg-blue-50">
+                  <td class="py-2 px-3 font-semibold">Pflegegrad 3</td>
+                  <td class="py-2 px-3 text-center">47,5 – 69,9</td>
+                  <td class="py-2 px-3">Schwere Beeinträchtigung</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3 font-semibold">Pflegegrad 4</td>
+                  <td class="py-2 px-3 text-center">70 – 89,9</td>
+                  <td class="py-2 px-3">Schwerste Beeinträchtigung</td>
+                </tr>
+                <tr class="bg-blue-50">
+                  <td class="py-2 px-3 font-semibold">Pflegegrad 5</td>
+                  <td class="py-2 px-3 text-center">90 – 100</td>
+                  <td class="py-2 px-3">Schwerste Beeinträchtigung mit besonderen Anforderungen</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pflegegeld & Sachleistungen 2025/2026</h3>
+          <p>
+            Je nach Pflegegrad haben Sie Anspruch auf verschiedene Leistungen:
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Pflegegrad 1:</strong> Kein Pflegegeld, aber Entlastungsbetrag (131€)</li>
+              <li><strong>Pflegegrad 2:</strong> 347€ Pflegegeld oder 796€ Sachleistungen</li>
+              <li><strong>Pflegegrad 3:</strong> 599€ Pflegegeld oder 1.497€ Sachleistungen</li>
+              <li><strong>Pflegegrad 4:</strong> 800€ Pflegegeld oder 1.859€ Sachleistungen</li>
+              <li><strong>Pflegegrad 5:</strong> 990€ Pflegegeld oder 2.299€ Sachleistungen</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie beantrage ich einen Pflegegrad?</h3>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Antrag stellen:</strong> Formloser Antrag bei Ihrer Pflegekasse (über Krankenkasse)</li>
+            <li><strong>MD-Begutachtung:</strong> Der Medizinische Dienst besucht Sie zuhause</li>
+            <li><strong>Gutachten:</strong> Der MD erstellt ein Gutachten mit Pflegegrad-Empfehlung</li>
+            <li><strong>Bescheid:</strong> Die Pflegekasse teilt Ihnen den Pflegegrad mit</li>
+            <li><strong>Widerspruch:</strong> Bei Ablehnung haben Sie 1 Monat Zeit für Widerspruch</li>
+          </ol>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-yellow-800">
+              <strong>Tipp für die Begutachtung:</strong> Führen Sie vorab ein Pflegetagebuch und 
+              dokumentieren Sie alle Hilfestellungen, die im Alltag nötig sind. Beschönigen Sie 
+              nichts – der Begutachtungstermin ist eine Momentaufnahme!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was wird bei der Begutachtung geprüft?</h3>
+          <p>Der Gutachter des MD prüft:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Wie selbstständig können alltägliche Verrichtungen durchgeführt werden?</li>
+            <li>Wie häufig wird Hilfe benötigt?</li>
+            <li>Welche Art der Unterstützung ist erforderlich (Anleitung, Beaufsichtigung, Teilübernahme, vollständige Übernahme)?</li>
+            <li>Liegen kognitive Einschränkungen oder Verhaltensauffälligkeiten vor?</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Unterschied: Selbsttest vs. MD-Begutachtung</h3>
+          <p>
+            Unser <strong>Pflegegrad-Rechner</strong> basiert auf dem NBA-System, ist aber 
+            <strong>vereinfacht</strong>. Die offizielle MD-Begutachtung ist deutlich 
+            umfangreicher und berücksichtigt viele Detailaspekte. Nutzen Sie den Test als 
+            erste Orientierung – das tatsächliche Ergebnis kann abweichen.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/pflegegeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🩺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflegegeld-Rechner</p>
+          </a>
+          <a href="/krankengeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Krankengeld-Rechner</p>
+          </a>
+          <a href="/grundrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏆</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundrente-Rechner</p>
+          </a>
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+          <a href="/zuzahlung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zuzahlungsbefreiung-Rechner</p>
+          </a>
+          <a href="/buergergeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bürgergeld-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Behörde
+        </h2>
+        
+        <div class="p-4 bg-blue-50 rounded-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">Ihre Pflegekasse</h3>
+          <p class="text-blue-700 text-sm mb-2">
+            Die Pflegekasse ist immer bei Ihrer <strong>Krankenkasse</strong> angesiedelt. 
+            Den Antrag auf Pflegegrad stellen Sie dort – telefonisch, per E-Mail oder Brief.
+          </p>
+          <p class="text-blue-700 text-sm">
+            <strong>Tipp:</strong> Ein formloser Antrag genügt: „Hiermit beantrage ich 
+            Leistungen der Pflegeversicherung."
+          </p>
+        </div>
+        
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">Hilfreiche Anlaufstellen</h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>
+              <strong>Pflegestützpunkte:</strong> Kostenlose Beratung vor Ort
+              <br><span class="text-xs text-gray-500">→ Adresse über Ihre Pflegekasse</span>
+            </li>
+            <li>
+              <strong>Pflegetelefon (BMG):</strong> 030 / 340 60 66 - 02
+              <br><span class="text-xs text-gray-500">→ Mo-Do 9-18 Uhr</span>
+            </li>
+            <li>
+              <strong>Bürgertelefon Pflege:</strong> 030 / 340 60 66 - 02
+            </li>
+          </ul>
+        </div>
+        
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">Quellen</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• <a href="https://www.gesetze-im-internet.de/sgb_11/" class="text-blue-600 hover:underline" target="_blank" rel="noopener">SGB XI – Soziale Pflegeversicherung</a></li>
+            <li>• <a href="https://www.bundesgesundheitsministerium.de/themen/pflege/pflegeversicherung" class="text-blue-600 hover:underline" target="_blank" rel="noopener">BMG: Pflegeversicherung</a></li>
+            <li>• <a href="https://www.medizinischerdienst.de/begutachtung/pflegebegutachtung" class="text-blue-600 hover:underline" target="_blank" rel="noopener">Medizinischer Dienst: Pflegebegutachtung</a></li>
+            <li>• <a href="https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegegrade/" class="text-blue-600 hover:underline" target="_blank" rel="noopener">pflege.de: Pflegegrade</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pflegegrad-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/pflegegrad-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie wird der Pflegegrad ermittelt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Pflegegrad wird mit dem NBA (Neues Begutachtungsassessment) ermittelt. Dabei werden 6 Module bewertet: Mobilität (10%), Kognitive Fähigkeiten (15%), Verhaltensweisen (15%), Selbstversorgung (40%), Krankheitsanforderungen (20%) und Alltagsgestaltung (15%). Die gewichteten Punkte ergeben den Pflegegrad 1-5."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Pflegegeld gibt es 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Pflegegeld 2025/2026 beträgt: Pflegegrad 2: 347€, Pflegegrad 3: 599€, Pflegegrad 4: 800€, Pflegegrad 5: 990€ pro Monat. Bei Pflegegrad 1 gibt es kein Pflegegeld, aber einen Entlastungsbetrag von 131€."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer führt die Pflegegrad-Begutachtung durch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Begutachtung wird vom MD (Medizinischer Dienst) durchgeführt. Ein Gutachter besucht den Antragsteller zuhause und prüft den Hilfebedarf anhand der 6 NBA-Module. Die Pflegekasse erteilt dann den Bescheid über den Pflegegrad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Punkte braucht man für Pflegegrad 3?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Pflegegrad 3 benötigt man 47,5 bis 69,9 Punkte im NBA-System. Dies entspricht einer schweren Beeinträchtigung der Selbstständigkeit. Unter 47,5 Punkten wird Pflegegrad 2 vergeben, ab 70 Punkten Pflegegrad 4."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann man gegen den Pflegegrad Widerspruch einlegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, gegen den Pflegegrad-Bescheid kann innerhalb eines Monats Widerspruch eingelegt werden. Der Widerspruch sollte schriftlich bei der Pflegekasse eingereicht werden. Es erfolgt dann eine erneute Prüfung, ggf. mit einem neuen Begutachtungstermin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Pflegegeld und Pflegesachleistungen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pflegegeld erhalten Pflegebedürftige, die von Angehörigen gepflegt werden – es wird frei ausgezahlt. Pflegesachleistungen werden für professionelle ambulante Pflegedienste gezahlt und direkt mit diesen abgerechnet. Beides kann auch kombiniert werden (Kombinationsleistung)."
+        }
+      }
+    ]
+  })} />
+</Layout>
