@@ -1,0 +1,320 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NebenkostenRechner from '../components/rechner/NebenkostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Nebenkosten-Rechner 2026 – Betriebskosten berechnen";
+const description = "Nebenkosten-Rechner 2026: Berechnen Sie Ihre voraussichtlichen Mietnebenkosten nach BetrKV §2. Heizkosten, Wasser, Müll & mehr. Bundesdurchschnitt ca. 2,88€/m². Kostenlos!";
+const keywords = "Nebenkosten Rechner, Betriebskosten berechnen, Nebenkostenabrechnung, Mietnebenkosten, zweite Miete, Heizkosten, Betriebskostenspiegel, BetrKV, warme Nebenkosten, kalte Nebenkosten";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Nebenkosten-Rechner", url: "/nebenkosten-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💡</span>
+          <div>
+            <h1 class="text-2xl font-bold">Nebenkosten-Rechner 2026</h1>
+            <p class="text-purple-100 text-sm">Betriebskosten nach BetrKV §2 schätzen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <NebenkostenRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Nebenkosten verstehen: Die "zweite Miete" 2026</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Nebenkosten-Rechner</strong> schätzen Sie die voraussichtlichen 
+            Betriebskosten für Ihre Mietwohnung. Der Rechner basiert auf dem aktuellen 
+            <strong>Betriebskostenspiegel</strong> des Deutschen Mieterbundes und berücksichtigt 
+            alle umlagefähigen Kosten nach <strong>BetrKV §2</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind Nebenkosten (Betriebskosten)?</h3>
+          <p>
+            <strong>Nebenkosten</strong> – rechtlich korrekt "Betriebskosten" – sind die laufenden Kosten, 
+            die dem Vermieter durch das Eigentum und den Betrieb des Gebäudes entstehen. Sie werden 
+            oft als "zweite Miete" bezeichnet und können erheblich sein.
+          </p>
+          
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <p class="font-semibold text-purple-800 mb-2">Bundesdurchschnitt 2024:</p>
+            <ul class="space-y-1 text-sm text-purple-700">
+              <li><strong>Mit Heizung:</strong> ca. 2,88€/m²/Monat (= 34,56€/m²/Jahr)</li>
+              <li><strong>Ohne Heizung:</strong> ca. 1,50€/m²/Monat (= 18,00€/m²/Jahr)</li>
+              <li><strong>Beispiel 70m²:</strong> ca. 200€/Monat gesamt</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 17 umlagefähigen Betriebskosten nach BetrKV §2</h3>
+          <p>
+            Die <strong>Betriebskostenverordnung (BetrKV)</strong> definiert abschließend, welche 
+            Kosten auf Mieter umgelegt werden dürfen:
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-3 py-2 text-left">Nr.</th>
+                  <th class="px-3 py-2 text-left">Kostenart</th>
+                  <th class="px-3 py-2 text-right">Ø €/m²/Monat</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y">
+                <tr><td class="px-3 py-2">1</td><td>Grundsteuer</td><td class="text-right">0,21€</td></tr>
+                <tr><td class="px-3 py-2">2</td><td>Wasserversorgung</td><td class="text-right">0,26€</td></tr>
+                <tr><td class="px-3 py-2">3</td><td>Entwässerung (Abwasser)</td><td class="text-right">0,24€</td></tr>
+                <tr class="bg-orange-50"><td class="px-3 py-2">4</td><td><strong>Heizung</strong></td><td class="text-right font-bold">1,10€</td></tr>
+                <tr class="bg-orange-50"><td class="px-3 py-2">5</td><td><strong>Warmwasser</strong></td><td class="text-right font-bold">0,30€</td></tr>
+                <tr><td class="px-3 py-2">6</td><td>Verbundene Heizung/Warmwasser</td><td class="text-right">—</td></tr>
+                <tr><td class="px-3 py-2">7</td><td>Aufzug</td><td class="text-right">0,18€</td></tr>
+                <tr><td class="px-3 py-2">8</td><td>Straßenreinigung & Müllabfuhr</td><td class="text-right">0,28€</td></tr>
+                <tr><td class="px-3 py-2">9</td><td>Gebäudereinigung</td><td class="text-right">0,19€</td></tr>
+                <tr><td class="px-3 py-2">10</td><td>Gartenpflege</td><td class="text-right">0,11€</td></tr>
+                <tr><td class="px-3 py-2">11</td><td>Beleuchtung (Allgemeinstrom)</td><td class="text-right">0,06€</td></tr>
+                <tr><td class="px-3 py-2">12</td><td>Schornsteinreinigung</td><td class="text-right">0,04€</td></tr>
+                <tr><td class="px-3 py-2">13</td><td>Versicherungen</td><td class="text-right">0,18€</td></tr>
+                <tr><td class="px-3 py-2">14</td><td>Hauswart</td><td class="text-right">0,23€</td></tr>
+                <tr><td class="px-3 py-2">15</td><td>Kabelanschluss (bis 06/2024)</td><td class="text-right">—</td></tr>
+                <tr><td class="px-3 py-2">16</td><td>Gemeinschaftswaschraum</td><td class="text-right">0,05€</td></tr>
+                <tr><td class="px-3 py-2">17</td><td>Sonstige Betriebskosten</td><td class="text-right">0,05€</td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warme vs. Kalte Nebenkosten</h3>
+          <div class="grid grid-cols-2 gap-4 my-4">
+            <div class="bg-orange-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-800 mb-2">🔥 Warme Nebenkosten</h4>
+              <ul class="text-sm text-orange-700 space-y-1">
+                <li>• Heizung</li>
+                <li>• Warmwasserbereitung</li>
+                <li>• ca. 1,40€/m²/Monat</li>
+              </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-blue-800 mb-2">❄️ Kalte Nebenkosten</h4>
+              <ul class="text-sm text-blue-700 space-y-1">
+                <li>• Alle anderen Kostenarten</li>
+                <li>• Wasser, Müll, Versicherung etc.</li>
+                <li>• ca. 1,50€/m²/Monat</li>
+              </ul>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Nicht umlagefähige Kosten</h3>
+          <p>
+            Folgende Kosten dürfen <strong>nicht</strong> auf Mieter umgelegt werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Verwaltungskosten:</strong> Hausverwaltung, Kontoführung, Verwaltergebühren</li>
+            <li><strong>Instandhaltung:</strong> Reparaturen, Wartung über normalen Betrieb hinaus</li>
+            <li><strong>Instandsetzung:</strong> Erneuerung von Bauteilen, Sanierung</li>
+            <li><strong>Rücklagen:</strong> Instandhaltungsrücklagen bei WEG</li>
+            <li><strong>Leerstandskosten:</strong> Kosten für leerstehende Wohnungen</li>
+            <li><strong>Finanzierungskosten:</strong> Hypothekenzinsen, Bankgebühren</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Heizkosten nach Energieträger 2026</h3>
+          <p>
+            Die Heizkosten variieren stark je nach Energieträger und werden durch die 
+            <strong>CO₂-Abgabe</strong> beeinflusst (2026: 55€/Tonne CO₂):
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Wärmepumpe:</strong> ca. 10€/m²/Jahr – am günstigsten</li>
+              <li><strong>Holzpellets:</strong> ca. 12€/m²/Jahr – nachwachsend</li>
+              <li><strong>Erdgas:</strong> ca. 13,50€/m²/Jahr – häufigste Heizung</li>
+              <li><strong>Heizöl:</strong> ca. 14,80€/m²/Jahr – CO₂-Abgabe steigt</li>
+              <li><strong>Fernwärme:</strong> ca. 15,60€/m²/Jahr – regionsabhängig</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps zur Nebenkostenkontrolle</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Abrechnung prüfen:</strong> 9 von 10 Abrechnungen enthalten Fehler</li>
+            <li><strong>Fristen beachten:</strong> Vermieter hat 12 Monate Zeit zur Abrechnung</li>
+            <li><strong>Belegeinsicht:</strong> Sie haben das Recht, alle Belege einzusehen</li>
+            <li><strong>Verteilerschlüssel:</strong> Prüfen Sie, ob fair nach qm oder Personen verteilt wird</li>
+            <li><strong>Vorauszahlung anpassen:</strong> Bei hoher Nachzahlung erhöhen lassen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Regionale Unterschiede</h3>
+          <p>
+            Die Nebenkosten variieren je nach Region erheblich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Teuer:</strong> München (+15%), Hamburg (+8%), Frankfurt (+8%)</li>
+            <li><strong>Günstig:</strong> Ostdeutschland (-10%), ländliche Gebiete (-5-10%)</li>
+            <li><strong>Heizkosten:</strong> Süddeutschland/Berge höher (kälteres Klima)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/wohngeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏘️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohngeld-Rechner</p>
+          </a>
+          <a href="/mietkaution-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mietkaution-Rechner</p>
+          </a>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          </a>
+          <a href="/buergergeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bürgergeld-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Hilfe & Beratung
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Deutscher Mieterbund</h3>
+            <p class="text-blue-700 text-sm">
+              Der <strong>Deutsche Mieterbund (DMB)</strong> und seine örtlichen Mietervereine 
+              bieten Beratung und Prüfung von Nebenkostenabrechnungen an. Als Mitglied erhalten 
+              Sie Rechtsschutz und Unterstützung bei Streitigkeiten.
+            </p>
+            <a href="https://www.mieterbund.de" target="_blank" rel="noopener" 
+               class="inline-block mt-2 text-blue-600 hover:underline text-sm">
+              → www.mieterbund.de
+            </a>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Verbraucherzentrale</h3>
+            <p class="text-green-700 text-sm">
+              Die <strong>Verbraucherzentralen</strong> bieten kostenlose oder günstige 
+              Beratung zu Mietrecht und Nebenkostenabrechnungen. Auch telefonische 
+              Kurzberatung ist möglich.
+            </p>
+            <a href="https://www.verbraucherzentrale.de" target="_blank" rel="noopener"
+               class="inline-block mt-2 text-green-600 hover:underline text-sm">
+              → www.verbraucherzentrale.de
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Nebenkosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/nebenkosten-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die durchschnittlichen Nebenkosten in Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Laut Betriebskostenspiegel des Deutschen Mieterbundes betragen die durchschnittlichen Nebenkosten etwa 2,88€ pro Quadratmeter und Monat (inkl. Heizung). Bei einer 70m²-Wohnung sind das ca. 200€ monatlich. Ohne Heizkosten liegen die kalten Nebenkosten bei etwa 1,50€/m²."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Nebenkosten darf der Vermieter auf Mieter umlegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Betriebskostenverordnung (BetrKV) §2 definiert 17 umlagefähige Kostenarten: Grundsteuer, Wasser/Abwasser, Heizung, Warmwasser, Aufzug, Straßenreinigung, Müllabfuhr, Gebäudereinigung, Gartenpflege, Allgemeinstrom, Schornsteinreinigung, Versicherungen, Hauswart, Kabelanschluss (bis 06/2024), Gemeinschaftswaschraum und sonstige Betriebskosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kosten sind nicht umlagefähig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nicht umlagefähig sind: Verwaltungskosten (Hausverwaltung), Instandhaltungs- und Reparaturkosten, Instandsetzungskosten (Erneuerungen), Rücklagen, Leerstandskosten und Finanzierungskosten (Hypothekenzinsen). Diese muss der Vermieter selbst tragen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen warmen und kalten Nebenkosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Warme Nebenkosten umfassen nur Heizung und Warmwasserbereitung (ca. 1,40€/m²/Monat). Kalte Nebenkosten sind alle anderen Betriebskosten wie Wasser, Müll, Versicherungen, Grundsteuer etc. (ca. 1,50€/m²/Monat). Zusammen bilden sie die 'zweite Miete'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich meine Nebenkostenabrechnung prüfen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prüfen Sie: 1) Abrechnungszeitraum (max. 12 Monate), 2) Frist (Abrechnung innerhalb 12 Monate nach Abrechnungszeitraum), 3) Verteilerschlüssel (qm, Personen, Verbrauch), 4) Nur umlagefähige Kosten nach BetrKV §2, 5) Keine Instandhaltung/Verwaltung. Sie haben das Recht auf Belegeinsicht. Der Mieterverein kann bei der Prüfung helfen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wirkt sich die CO₂-Abgabe auf die Nebenkosten aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die CO₂-Abgabe auf fossile Brennstoffe beträgt 2026: 55€/Tonne CO₂. Sie wird bei Heizöl und Erdgas zwischen Mieter und Vermieter aufgeteilt (je nach energetischer Qualität des Gebäudes). Bei schlecht gedämmten Häusern trägt der Vermieter bis zu 95% der CO₂-Kosten."
+        }
+      }
+    ]
+  })} />
+</Layout>

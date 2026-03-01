@@ -689,11 +689,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'nebenkosten',
     name: 'Nebenkosten-Rechner',
-    beschreibung: 'Betriebskostenabrechnung prüfen',
+    beschreibung: 'Miet-Nebenkosten nach BetrKV §2 schätzen',
     icon: '💡',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Nebenkosten Rechner, Betriebskosten berechnen, Nebenkostenabrechnung',
+    fertig: true,
+    seoKeywords: 'Nebenkosten Rechner, Betriebskosten berechnen, Nebenkostenabrechnung, Mietnebenkosten, zweite Miete, Heizkosten, Betriebskostenspiegel, BetrKV, warme Nebenkosten, kalte Nebenkosten',
+    quellen: [
+      'https://www.gesetze-im-internet.de/betrkv/',
+      'https://www.mieterbund.de',
+      'https://www.heizspiegel.de',
+    ],
   },
   {
     id: 'stromkosten',
@@ -793,8 +798,16 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Immobilienkredit & Rate berechnen',
     icon: '🏗️',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Baufinanzierung Rechner, Hauskredit berechnen, Immobilienfinanzierung',
+    fertig: true,
+    seoKeywords: 'Baufinanzierung Rechner, Hypothekenrechner, Immobilienkredit Rechner, Baukredit Rechner, Tilgungsrechner, Annuitätendarlehen, Baufinanzierung 2026, monatliche Rate berechnen, Restschuld berechnen, Zinsbindung, Sondertilgung, Hausfinanzierung, Bauzinsen 2026',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__489.html',
+      'https://www.gesetze-im-internet.de/preisabg/__6.html',
+      'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
+      'https://www.bafin.de/DE/Verbraucher/Finanzwissen/BansichereGeldanlagen/Immobilienfinanzierung/immobilienfinanzierung_node.html',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung',
+      'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/',
+    ],
   },
   {
     id: 'tilgung',
