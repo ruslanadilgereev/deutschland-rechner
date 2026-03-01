@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DividendeRechner from '../components/rechner/DividendeRechner';
+
+const title = "Dividenden-Rechner 2026 – Netto-Dividende & Quellensteuer berechnen";
+const description = "Dividenden-Rechner 2026: Bruttodividende, Quellensteuer Ausland (USA, Schweiz etc.), Abgeltungsteuer 26,375% & Anrechnung. Berechne deine Netto-Dividende!";
+const keywords = "Dividenden Rechner, Dividende berechnen, Quellensteuer Rechner, Abgeltungsteuer Dividende, Netto Dividende, Dividendenrendite, Quellensteuer USA, Quellensteuer Schweiz, Dividendensteuer, W-8BEN, DBA Anrechnung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💵</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dividenden-Rechner 2026</h1>
+            <p class="text-green-200 text-sm">Netto-Dividende nach Quellensteuer & Abgeltungsteuer</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DividendeRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Dividenden-Besteuerung 2026: Das müssen Anleger wissen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Dividenden-Rechner 2026</strong> berechnest du schnell und einfach, wie viel 
+            von deiner Brutto-Dividende nach allen Steuern übrig bleibt. Der Rechner berücksichtigt 
+            sowohl die <strong>Quellensteuer im Ausland</strong> als auch die <strong>deutsche Abgeltungsteuer</strong> 
+            und zeigt dir genau, wie viel angerechnet wird.
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-green-800 font-semibold mb-2">💵 Dividenden-Besteuerung im Überblick:</p>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li><strong>Abgeltungsteuer:</strong> 25% auf Dividenden</li>
+              <li><strong>+ Solidaritätszuschlag:</strong> 5,5% auf die Steuer = 1,375%</li>
+              <li><strong>Gesamt:</strong> 26,375% (ohne Kirchensteuer)</li>
+              <li><strong>Quellensteuer-Anrechnung:</strong> Bis 15% werden angerechnet</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist Quellensteuer?</h3>
+          <p>
+            <strong>Quellensteuer</strong> ist eine Steuer, die im Herkunftsland der Dividende einbehalten wird. 
+            Bei ausländischen Aktien wird sie direkt an der "Quelle" (also im Ausland) abgezogen, bevor 
+            die Dividende an dich ausgezahlt wird.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>USA:</strong> 15% mit W-8BEN Formular (sonst 30%)</li>
+            <li><strong>Schweiz:</strong> 35% (davon 15% anrechenbar, 20% erstattbar)</li>
+            <li><strong>Großbritannien/Irland:</strong> 0% (keine Quellensteuer)</li>
+            <li><strong>Frankreich:</strong> 25,33% (15% anrechenbar, Rest erstattbar)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Anrechnung auf deutsche Steuer</h3>
+          <p>
+            Dank der <strong>Doppelbesteuerungsabkommen (DBA)</strong> zwischen Deutschland und anderen Ländern 
+            wird die ausländische Quellensteuer auf die deutsche Abgeltungsteuer angerechnet – bis maximal <strong>15%</strong>.
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-blue-800 font-semibold mb-2">📊 Beispiel USA-Dividende (1.000 €):</p>
+            <ul class="space-y-1 text-sm text-blue-700">
+              <li>Brutto-Dividende: 1.000 €</li>
+              <li>US-Quellensteuer (15%): −150 €</li>
+              <li>Deutsche Abgeltungsteuer (25%): 250 €</li>
+              <li>Anrechnung: −150 €</li>
+              <li>Effektive dt. Steuer: 100 € + Soli + ggf. KiSt</li>
+              <li><strong>Netto-Dividende: ca. 737 €</strong></li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Quellensteuer zurückholen</h3>
+          <p>
+            Wenn das Herkunftsland <strong>mehr als 15% Quellensteuer</strong> einbehält, kannst du den Differenzbetrag 
+            oft im Ausland zurückfordern:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Schweiz:</strong> 20% von 35% erstattbar über die Eidgenössische Steuerverwaltung</li>
+            <li><strong>Frankreich:</strong> 10,33% erstattbar (oder Vorabbefreiung beantragen)</li>
+            <li><strong>Österreich:</strong> 12,5% von 27,5% erstattbar</li>
+          </ul>
+          <p class="text-sm text-gray-500 mt-2">
+            Hinweis: Die Erstattung kann aufwändig sein. Prüfe bei kleinen Beträgen, ob sich der Aufwand lohnt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sparerpauschbetrag nutzen</h3>
+          <p>
+            Der <strong>Sparerpauschbetrag</strong> beträgt 2026:
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Singles:</strong> 1.000 € pro Jahr steuerfrei</li>
+              <li><strong>Ehepaare (zusammen veranlagt):</strong> 2.000 € pro Jahr steuerfrei</li>
+            </ul>
+            <p class="mt-2 text-sm">
+              <strong>Wichtig:</strong> Richte einen Freistellungsauftrag bei deiner Bank ein, um den Freibetrag zu nutzen!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">W-8BEN Formular für US-Aktien</h3>
+          <p>
+            Bei US-Aktien ist das <strong>W-8BEN Formular</strong> entscheidend:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Mit W-8BEN:</strong> Nur 15% US-Quellensteuer</li>
+            <li><strong>Ohne W-8BEN:</strong> 30% US-Quellensteuer!</li>
+            <li>Die 15% sind vollständig auf die deutsche Steuer anrechenbar</li>
+            <li>Das Formular muss bei deinem Broker hinterlegt werden</li>
+          </ul>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-yellow-800">
+              <strong>💡 Tipp:</strong> Die meisten deutschen Broker (Trade Republic, Scalable Capital, ING, etc.) 
+              lassen dich das W-8BEN digital ausfüllen. Prüfe in deinem Depot-Bereich!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Dividenden vs. Kursgewinne</h3>
+          <p>
+            Steuerlich gibt es Unterschiede:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Dividenden:</strong> Werden sofort besteuert (Quellensteuer + Abgeltungsteuer)</li>
+            <li><strong>Kursgewinne:</strong> Erst bei Verkauf steuerpflichtig (Aufschub-Effekt)</li>
+            <li><strong>Thesaurierende ETFs:</strong> Vorabpauschale kann anfallen, sonst Besteuerung bei Verkauf</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">ETF-Sparplan-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/spar-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spar-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Anlaufstellen & Formulare
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">W-8BEN Formular (USA)</h3>
+            <p class="text-blue-700 text-sm">
+              Das Formular zur Reduzierung der US-Quellensteuer von 30% auf 15% muss bei deinem 
+              Broker hinterlegt werden. Die meisten deutschen Broker bieten eine digitale Erfassung an.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Quellensteuer-Erstattung Schweiz</h3>
+            <p class="text-green-700 text-sm mb-2">
+              Die Rückforderung der 20% überschießenden Schweizer Quellensteuer erfolgt über die 
+              Eidgenössische Steuerverwaltung (ESTV).
+            </p>
+            <a 
+              href="https://www.estv.admin.ch/estv/de/home/verrechnungssteuer.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-green-600 hover:underline text-sm"
+            >
+              ESTV – Verrechnungssteuer →
+            </a>
+          </div>
+          
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-2">Anlage KAP</h3>
+            <p class="text-purple-700 text-sm">
+              Für die Anrechnung ausländischer Quellensteuer in der Steuererklärung nutze die 
+              <strong>Anlage KAP</strong>. Die Steuerbescheinigung deiner Bank enthält alle nötigen Angaben.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dividenden-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/dividende-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie werden Dividenden in Deutschland besteuert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dividenden unterliegen der Abgeltungsteuer von 25% plus 5,5% Solidaritätszuschlag = 26,375%. Mit Kirchensteuer sind es ca. 27,8-28%. Der Sparerpauschbetrag von 1.000 € (2.000 € für Ehepaare) bleibt steuerfrei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist Quellensteuer bei ausländischen Dividenden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quellensteuer ist eine Steuer, die im Herkunftsland der Dividende einbehalten wird. Bei US-Aktien z.B. 15% (mit W-8BEN), bei Schweizer Aktien 35%. Bis zu 15% werden auf die deutsche Steuer angerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist das W-8BEN Formular?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das W-8BEN ist ein US-Steuerformular, das die Quellensteuer auf US-Dividenden von 30% auf 15% reduziert. Es muss bei deinem Broker hinterlegt werden und ist für deutsche Anleger mit US-Aktien essentiell."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird ausländische Quellensteuer angerechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ausländische Quellensteuer wird bis maximal 15% auf die deutsche Abgeltungsteuer angerechnet. Quellensteuer über 15% kann oft im Ausland zurückgefordert werden (z.B. Schweiz: 20% erstattbar)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Sparerpauschbetrag 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Sparerpauschbetrag beträgt 1.000 € für Singles und 2.000 € für zusammen veranlagte Ehepaare. Dividenden und andere Kapitalerträge bis zu diesem Betrag sind steuerfrei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich Dividenden in der Steuererklärung angeben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Normalerweise nicht, da die Bank die Abgeltungsteuer automatisch einbehält. Die Anlage KAP ist nur nötig für: ausländische Quellensteuer-Anrechnung, nicht genutzten Sparerpauschbetrag, Günstigerprüfung oder Verlustverrechnung."
+        }
+      }
+    ]
+  })} />
+</Layout>

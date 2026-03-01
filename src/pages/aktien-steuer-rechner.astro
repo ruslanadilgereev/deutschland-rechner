@@ -1,0 +1,331 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AktienSteuerRechner from '../components/rechner/AktienSteuerRechner';
+
+const title = "Aktien-Steuer-Rechner 2026 – Abgeltungsteuer auf Aktiengewinne berechnen";
+const description = "Aktien-Steuer berechnen 2026: Abgeltungsteuer 25% + 5,5% Soli auf Kursgewinne. Mit Sparerpauschbetrag 1.000€/2.000€, Verlustverrechnung & Kirchensteuer-Option!";
+const keywords = "Aktien Steuer Rechner, Aktiengewinn versteuern, Abgeltungsteuer Aktien, Aktien Steuer 2026, Sparerpauschbetrag, Aktienverkauf Steuer, Veräußerungsgewinn Aktien, Kapitalertragsteuer Aktien, FIFO Aktien, Freistellungsauftrag";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Aktien-Steuer-Rechner 2026</h1>
+            <p class="text-green-200 text-sm">Abgeltungsteuer auf Aktiengewinne berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AktienSteuerRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Aktien-Steuer 2026: So werden Aktiengewinne besteuert</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            In Deutschland unterliegen <strong>Gewinne aus Aktienverkäufen</strong> der Abgeltungsteuer. 
+            Mit unserem <strong>Aktien-Steuer-Rechner 2026</strong> berechnen Sie schnell und einfach, 
+            wie viel Steuer beim Verkauf Ihrer Aktien anfällt – inklusive Solidaritätszuschlag und 
+            optionaler Kirchensteuer.
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-green-800 font-semibold mb-2">📊 Aktiensteuer auf einen Blick:</p>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li><strong>Abgeltungsteuer:</strong> 25% auf den Gewinn</li>
+              <li><strong>+ Solidaritätszuschlag:</strong> 5,5% auf die Abgeltungsteuer</li>
+              <li><strong>+ Kirchensteuer:</strong> 8% oder 9% (falls Mitglied)</li>
+              <li><strong>= Effektiver Steuersatz:</strong> 26,375% (ohne KiSt) bis ca. 28% (mit KiSt)</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der Aktiengewinn berechnet?</h3>
+          <p>
+            Der steuerpflichtige <strong>Veräußerungsgewinn</strong> berechnet sich wie folgt:
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4 text-sm">
+            <p class="font-mono">
+              <strong>Verkaufspreis</strong><br/>
+              − Verkaufsgebühren (z.B. Ordergebühr)<br/>
+              = <strong>Veräußerungserlös (netto)</strong><br/>
+              − Kaufpreis (Anschaffungskosten)<br/>
+              − Kaufgebühren<br/>
+              = <strong>Kursgewinn (Brutto)</strong>
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sparerpauschbetrag 2026</h3>
+          <p>
+            Kapitalerträge bis zum <strong>Sparerpauschbetrag</strong> sind steuerfrei:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm text-blue-800">
+              <li><strong>Singles:</strong> 1.000 € steuerfrei pro Jahr</li>
+              <li><strong>Ehepaare (zusammen veranlagt):</strong> 2.000 € steuerfrei pro Jahr</li>
+              <li><strong>Wichtig:</strong> Freistellungsauftrag bei der Bank/Broker einrichten!</li>
+            </ul>
+          </div>
+          <p>
+            Der Sparerpauschbetrag gilt für <strong>alle Kapitalerträge</strong> zusammen – also Zinsen, 
+            Dividenden UND Kursgewinne aus Aktienverkäufen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktienverluste verrechnen</h3>
+          <p>
+            <strong>Wichtige Sonderregel:</strong> Verluste aus Aktienverkäufen können nur mit Gewinnen 
+            aus Aktienverkäufen verrechnet werden (§20 Abs. 6 Satz 5 EStG). Sie können NICHT mit:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Dividenden verrechnet werden</li>
+            <li>Zinserträgen verrechnet werden</li>
+            <li>Gewinnen aus ETFs/Fonds verrechnet werden</li>
+          </ul>
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-amber-800">
+              <strong>💡 Tipp:</strong> Nicht verrechnete Aktienverluste werden im "Aktienverlusttopf" 
+              automatisch ins nächste Jahr übertragen und können dann mit zukünftigen Aktiengewinnen 
+              verrechnet werden.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">FIFO-Prinzip: First In, First Out</h3>
+          <p>
+            Wenn Sie dieselbe Aktie zu verschiedenen Zeitpunkten gekauft haben, gilt das 
+            <strong>FIFO-Prinzip</strong>: Die zuerst gekauften Aktien werden beim Verkauf auch 
+            zuerst verkauft.
+          </p>
+          <p class="text-sm mt-2">
+            <strong>Beispiel:</strong> Sie kaufen im Januar 100 Aktien zu je 50 € und im Juni 50 Aktien 
+            zu je 70 €. Wenn Sie 80 Aktien verkaufen, werden die 80 Aktien aus dem Januar-Kauf 
+            zugrunde gelegt (Kaufpreis 50 €).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Altbestand vor 2009</h3>
+          <p>
+            Aktien, die <strong>vor dem 1. Januar 2009</strong> gekauft wurden, sind beim Verkauf 
+            <strong>komplett steuerfrei</strong>. Die Abgeltungsteuer wurde erst 2009 eingeführt, 
+            und für Altbestände gilt Bestandsschutz.
+          </p>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-green-800">
+              <strong>✅ Steuerfrei:</strong> Kursgewinne aus Aktien, die vor dem 1.1.2009 gekauft wurden<br/>
+              <strong>⚠️ Aber:</strong> Dividenden aus diesen Aktien sind trotzdem steuerpflichtig!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Günstigerprüfung (§32d Abs. 6 EStG)</h3>
+          <p>
+            Falls Ihr <strong>persönlicher Einkommensteuersatz unter 25%</strong> liegt, können Sie 
+            die Günstigerprüfung beantragen. Das Finanzamt besteuert Ihre Kapitalerträge dann zum 
+            niedrigeren persönlichen Steuersatz.
+          </p>
+          <p class="text-sm mt-2">
+            <strong>Lohnt sich für:</strong> Personen mit geringem Einkommen, Studenten, Rentner mit 
+            niedrigen Bezügen, Arbeitslose
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kirchensteuer auf Aktiengewinne</h3>
+          <p>
+            Wenn Sie Mitglied einer Kirche sind, wird zusätzlich Kirchensteuer auf die 
+            Abgeltungsteuer erhoben:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bayern & Baden-Württemberg:</strong> 8%</li>
+            <li><strong>Alle anderen Bundesländer:</strong> 9%</li>
+          </ul>
+          <p class="mt-2">
+            Die Kirchensteuer wird automatisch abgeführt, wenn Sie beim Bundeszentralamt für Steuern 
+            (BZSt) als kirchensteuerpflichtig registriert sind. Bei der Berechnung wird die 
+            Abgeltungsteuer um den Kirchensteuer-Anteil ermäßigt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was gilt für Aktienfonds und ETFs?</h3>
+          <p>
+            Für <strong>Aktienfonds und Aktien-ETFs</strong> gelten andere Regeln:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Teilfreistellung:</strong> 30% der Erträge bleiben steuerfrei (bei mind. 51% Aktienanteil)</li>
+            <li><strong>Verlustverrechnung:</strong> Fondsverluste können mit allen Kapitalerträgen verrechnet werden</li>
+            <li><strong>Vorabpauschale:</strong> Jährliche fiktive Besteuerung bei thesaurierenden Fonds</li>
+          </ul>
+          <p class="mt-2 text-sm">
+            Für ETFs und Fonds nutzen Sie unseren <a href="/kapitalertragsteuer-rechner" class="text-blue-600 hover:underline">Kapitalertragsteuer-Rechner</a>.
+          </p>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-yellow-800">
+              <strong>💡 Steuertipp:</strong> Verteilen Sie Ihren Freistellungsauftrag optimal auf alle 
+              Depots. Bei mehreren Banken: Summe aller Aufträge darf den Sparerpauschbetrag nicht überschreiten!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">ETF-Sparplan-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/kirchensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kirchensteuer-Rechner</p>
+          </a>
+          <a href="/soli-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🇩🇪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Soli-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Steuererklärung bei Aktiengewinnen
+        </h2>
+        
+        <div class="p-4 bg-blue-50 rounded-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">Wann ist eine Steuererklärung nötig?</h3>
+          <p class="text-blue-700 text-sm mb-3">
+            Die <strong>Abgeltungsteuer</strong> wird direkt von der Bank einbehalten – Sie müssen 
+            normalerweise nichts tun. Eine Steuererklärung mit <strong>Anlage KAP</strong> ist nur nötig für:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-blue-700 text-sm">
+            <li><strong>Günstigerprüfung:</strong> Falls Ihr Steuersatz unter 25% liegt</li>
+            <li><strong>Verlustverrechnung:</strong> Zwischen verschiedenen Banken</li>
+            <li><strong>Ausländische Erträge:</strong> Quellensteuer-Anrechnung</li>
+            <li><strong>Nicht genutzter Sparerpauschbetrag:</strong> Nachträgliche Anrechnung</li>
+          </ul>
+        </div>
+        
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">Wichtige Dokumente</h3>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+            <li><strong>Jahressteuerbescheinigung:</strong> Erhält man automatisch von der Bank</li>
+            <li><strong>Freistellungsauftrag:</strong> Bei der Bank einrichten (max. 1.000€ / 2.000€)</li>
+            <li><strong>Verlustbescheinigung:</strong> Beantragung bis 15.12. für Verlustvortrag</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Aktien-Steuer-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/aktien-steuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Steuer muss ich auf Aktiengewinne zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Auf Aktiengewinne fallen 25% Abgeltungsteuer plus 5,5% Solidaritätszuschlag an, also insgesamt 26,375%. Bei Kirchenmitgliedschaft kommen noch 8-9% Kirchensteuer hinzu (auf die Abgeltungsteuer), wodurch der effektive Steuersatz auf ca. 27,8-28% steigt. Der Sparerpauschbetrag von 1.000€ (2.000€ für Ehepaare) bleibt steuerfrei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Sparerpauschbetrag 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Sparerpauschbetrag beträgt 1.000€ für Singles und 2.000€ für zusammen veranlagte Ehepaare. Kapitalerträge bis zu diesem Betrag – also Zinsen, Dividenden und Kursgewinne zusammen – sind steuerfrei. Dafür muss ein Freistellungsauftrag bei der Bank eingerichtet werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich Verluste aus Aktien mit anderen Gewinnen verrechnen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, Verluste aus Aktienverkäufen können nur mit Gewinnen aus Aktienverkäufen verrechnet werden (nicht mit Dividenden, Zinsen oder Fondsgewinnen). Nicht verrechnete Verluste werden im Aktienverlust-Topf automatisch ins nächste Jahr übertragen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist das FIFO-Prinzip bei Aktien?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FIFO steht für 'First In, First Out'. Wenn Sie dieselbe Aktie zu verschiedenen Zeitpunkten gekauft haben, werden beim Verkauf steuerlich immer die zuerst gekauften Aktien als zuerst verkauft behandelt. Dies ist für die Berechnung des Kaufpreises wichtig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Aktien vor 2009 steuerfrei?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Kursgewinne aus Aktien, die vor dem 1. Januar 2009 gekauft wurden, sind komplett steuerfrei (Altbestandsschutz). Die Abgeltungsteuer wurde erst 2009 eingeführt. Dividenden aus diesen Aktien sind aber weiterhin steuerpflichtig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Günstigerprüfung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mit der Günstigerprüfung können Sie beantragen, dass Ihre Kapitalerträge statt mit 25% Abgeltungsteuer mit Ihrem niedrigeren persönlichen Einkommensteuersatz besteuert werden. Das lohnt sich, wenn Ihr Grenzsteuersatz unter 25% liegt – zum Beispiel bei geringem Einkommen, als Student oder Rentner."
+        }
+      }
+    ]
+  })} />
+</Layout>
