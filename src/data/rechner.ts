@@ -1201,8 +1201,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Pfändungsfreies Einkommen berechnen',
     icon: '⚠️',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'Privatinsolvenz Rechner, Pfändungsfreibetrag, pfändungsfrei',
+    fertig: true,
+    seoKeywords: 'Privatinsolvenz Rechner, Pfändungsfreibetrag, pfändungsfrei, Pfändungsfreigrenze 2026, Privatinsolvenz 2026, §850c ZPO, Pfändungstabelle, pfändbarer Betrag',
+    quellen: [
+      'https://www.gesetze-im-internet.de/zpo/__850c.html',
+      'https://www.recht.bund.de/bgbl/1/2025/110/VO.html',
+      'https://www.finanztip.de/pfaendungstabelle/',
+      'https://freibetragsrechner.justiz.nrw.de/',
+    ],
   },
   {
     id: 'budget',

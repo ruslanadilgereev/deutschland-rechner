@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EntfernungRechner from '../components/rechner/EntfernungRechner';
+
+const title = "Entfernungs-Rechner 2025 – Entfernung zwischen deutschen Städten";
+const description = "Entfernungs-Rechner: Berechnen Sie die Luftlinie und Fahrzeit zwischen deutschen Großstädten. Mit Entfernungstabelle der Top 20 Städte und Reisezeit-Vergleich.";
+const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten, Luftlinie Rechner, Fahrzeit berechnen, deutsche Städte Entfernung, Berlin München Entfernung, Hamburg Frankfurt km, Entfernungstabelle Deutschland, Kilometerrechner";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📍</span>
+          <div>
+            <h1 class="text-2xl font-bold">Entfernungs-Rechner</h1>
+            <p class="text-blue-100 text-sm">Luftlinie & Fahrzeit zwischen deutschen Städten</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <EntfernungRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Entfernungs-Rechner: Distanz zwischen deutschen Städten berechnen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Entfernungs-Rechner</strong> berechnen Sie schnell die Luftlinie und geschätzte 
+            Fahrzeit zwischen den 20 größten deutschen Städten. Ideal für die <strong>Reiseplanung</strong>, 
+            Kostenabschätzung oder wenn Sie wissen möchten, wie weit zwei Städte auseinander liegen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Unterschied zwischen Luftlinie und Straßenentfernung?</h3>
+          <p>
+            Die <strong>Luftlinie</strong> ist die kürzeste Verbindung zwischen zwei Punkten – als würde man 
+            direkt durch die Luft fliegen. Die <strong>Straßenentfernung</strong> ist länger, da Straßen 
+            Kurven, Umwege und Geländeformen folgen.
+          </p>
+          <div class="bg-blue-50 p-4 rounded-xl my-4">
+            <p class="font-semibold text-blue-800 mb-2">Faustregel:</p>
+            <p class="text-blue-700">
+              Straßenentfernung ≈ Luftlinie × 1,3 (etwa 30% länger)
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Entfernungen zwischen deutschen Großstädten</h3>
+          <p>
+            Deutschland hat über 80 Städte mit mehr als 100.000 Einwohnern. Hier die wichtigsten Entfernungen:
+          </p>
+          
+          <h4 class="font-semibold text-gray-800">Von Berlin (Luftlinie):</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Berlin – Hamburg: <strong>256 km</strong></li>
+            <li>Berlin – München: <strong>504 km</strong></li>
+            <li>Berlin – Köln: <strong>477 km</strong></li>
+            <li>Berlin – Frankfurt: <strong>423 km</strong></li>
+            <li>Berlin – Stuttgart: <strong>512 km</strong></li>
+          </ul>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">Von München (Luftlinie):</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>München – Stuttgart: <strong>191 km</strong></li>
+            <li>München – Frankfurt: <strong>304 km</strong></li>
+            <li>München – Hamburg: <strong>612 km</strong></li>
+            <li>München – Köln: <strong>456 km</strong></li>
+            <li>München – Nürnberg: <strong>151 km</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So berechnen wir die Entfernung</h3>
+          <p>
+            Die Luftlinie wird mit der <strong>Haversine-Formel</strong> berechnet. Diese mathematische 
+            Formel berücksichtigt die Erdkrümmung und berechnet die kürzeste Distanz auf einer Kugeloberfläche 
+            (Großkreisentfernung):
+          </p>
+          <div class="bg-gray-100 p-4 rounded-xl my-4 font-mono text-sm">
+            <p>a = sin²(Δφ/2) + cos(φ₁) · cos(φ₂) · sin²(Δλ/2)</p>
+            <p>c = 2 · atan2(√a, √(1−a))</p>
+            <p>Entfernung = R · c</p>
+          </div>
+          <p class="text-sm text-gray-500">
+            φ = Breitengrad, λ = Längengrad, R = Erdradius (6.371 km)
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fahrzeit-Schätzung</h3>
+          <p>
+            Die geschätzte Fahrzeit basiert auf durchschnittlichen Geschwindigkeiten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kurzstrecke (bis 50 km):</strong> Ø 50 km/h (Stadtverkehr)</li>
+            <li><strong>Mittelstrecke (50-150 km):</strong> Ø 70 km/h (gemischt)</li>
+            <li><strong>Langstrecke (150-300 km):</strong> Ø 90 km/h (überwiegend Autobahn)</li>
+            <li><strong>Fernstrecke (über 300 km):</strong> Ø 100 km/h (Autobahn)</li>
+          </ul>
+          <p>
+            <strong>Hinweis:</strong> Die tatsächliche Fahrzeit hängt von Verkehr, Baustellen, 
+            Wetter und gewählter Route ab. Planen Sie immer Pufferzeit ein!
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 20 größten deutschen Städte</h3>
+          <p>
+            Unser Rechner umfasst die bevölkerungsreichsten Städte Deutschlands:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1 grid grid-cols-2 gap-2">
+            <li>Berlin (3,7 Mio)</li>
+            <li>Hamburg (1,9 Mio)</li>
+            <li>München (1,5 Mio)</li>
+            <li>Köln (1,1 Mio)</li>
+            <li>Frankfurt (760.000)</li>
+            <li>Stuttgart (630.000)</li>
+            <li>Düsseldorf (620.000)</li>
+            <li>Leipzig (600.000)</li>
+            <li>Dortmund (590.000)</li>
+            <li>Essen (580.000)</li>
+            <li>Bremen (570.000)</li>
+            <li>Dresden (560.000)</li>
+            <li>Hannover (540.000)</li>
+            <li>Nürnberg (520.000)</li>
+            <li>Duisburg (500.000)</li>
+            <li>Bochum (360.000)</li>
+            <li>Wuppertal (355.000)</li>
+            <li>Bielefeld (335.000)</li>
+            <li>Bonn (330.000)</li>
+            <li>Münster (315.000)</li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Reisezeit-Vergleich: Auto, Bahn, Flug</h3>
+          <p>
+            Je nach Strecke und Verkehrsmittel variiert die Reisezeit erheblich:
+          </p>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm mt-4">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="text-left py-2 px-3">Strecke</th>
+                  <th class="text-center py-2 px-3">🚗 Auto</th>
+                  <th class="text-center py-2 px-3">🚆 ICE</th>
+                  <th class="text-center py-2 px-3">✈️ Flug*</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Berlin – München</td>
+                  <td class="text-center py-2 px-3">5-6 Std</td>
+                  <td class="text-center py-2 px-3">4 Std</td>
+                  <td class="text-center py-2 px-3">3 Std</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Hamburg – Frankfurt</td>
+                  <td class="text-center py-2 px-3">4-5 Std</td>
+                  <td class="text-center py-2 px-3">3,5 Std</td>
+                  <td class="text-center py-2 px-3">–</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Köln – Berlin</td>
+                  <td class="text-center py-2 px-3">5-6 Std</td>
+                  <td class="text-center py-2 px-3">4,5 Std</td>
+                  <td class="text-center py-2 px-3">3 Std</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">München – Stuttgart</td>
+                  <td class="text-center py-2 px-3">2-2,5 Std</td>
+                  <td class="text-center py-2 px-3">2 Std</td>
+                  <td class="text-center py-2 px-3">–</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-2">
+            * Flug: inklusive Anreise, Check-in, Sicherheitskontrolle (ca. 2 Stunden)
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für die Reiseplanung</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Spritkosten berechnen:</strong> Nutzen Sie unseren 
+              <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten-Rechner</a> 
+              für die genauen Fahrtkosten.
+            </li>
+            <li>
+              <strong>Bahn-Sparpreise:</strong> Bei früher Buchung ab 17,99 € innerhalb Deutschlands.
+            </li>
+            <li>
+              <strong>Fernbus:</strong> Oft die günstigste Option (z.B. FlixBus ab 5 €).
+            </li>
+            <li>
+              <strong>Flug lohnt sich:</strong> Erst ab ca. 400-500 km Luftlinie, da Flughafen-Zeiten hinzukommen.
+            </li>
+            <li>
+              <strong>Fahrgemeinschaften:</strong> Mitfahrgelegenheiten (z.B. BlaBlaCar) reduzieren Kosten und CO₂.
+            </li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zur Entfernungsberechnung</h3>
+          
+          <p class="font-semibold">Warum ist die Straßenentfernung länger als die Luftlinie?</p>
+          <p>
+            Straßen können nicht geradeaus durch Berge, Seen oder bebaute Gebiete führen. 
+            Sie müssen Umwege nehmen, weshalb die Straßenentfernung typischerweise 20-40% länger ist 
+            als die direkte Luftlinie.
+          </p>
+          
+          <p class="font-semibold">Wie genau ist die Fahrzeit-Schätzung?</p>
+          <p>
+            Die Schätzung basiert auf Durchschnittswerten bei normalem Verkehr. 
+            Bei Stau, schlechtem Wetter oder vielen Baustellen kann die reale Fahrzeit 
+            deutlich abweichen. Für exakte Angaben empfehlen wir Google Maps oder HERE.
+          </p>
+          
+          <p class="font-semibold">Wie weit ist Berlin von München entfernt?</p>
+          <p>
+            Die Luftlinie Berlin – München beträgt <strong>504 km</strong>. 
+            Die Straßenentfernung über die A9 ist etwa <strong>585 km</strong>, 
+            die Fahrzeit beträgt ca. 5-6 Stunden mit dem Auto.
+          </p>
+          
+          <p class="font-semibold">Welche ist die längste Entfernung zwischen deutschen Großstädten?</p>
+          <p>
+            Die größte Entfernung zwischen zwei deutschen Großstädten besteht zwischen 
+            <strong>München und Hamburg</strong> mit ca. 612 km Luftlinie (etwa 780 km Straße).
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Entfernungs-Rechner 2025",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/entfernung-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie weit ist Berlin von München entfernt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Luftlinie Berlin – München beträgt 504 km. Die Straßenentfernung über die A9 ist etwa 585 km, die Fahrzeit beträgt ca. 5-6 Stunden mit dem Auto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Luftlinie und Straßenentfernung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Luftlinie ist die kürzeste Verbindung zwischen zwei Punkten. Die Straßenentfernung ist etwa 30% länger, da Straßen Kurven, Umwege und Geländeformen folgen müssen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Entfernung zwischen zwei Städten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Luftlinie wird mit der Haversine-Formel berechnet, die die Erdkrümmung berücksichtigt. Die Straßenentfernung schätzt man als Luftlinie × 1,3 (Umwegfaktor)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche ist die längste Entfernung zwischen deutschen Großstädten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die größte Entfernung zwischen deutschen Großstädten besteht zwischen München und Hamburg mit ca. 612 km Luftlinie (etwa 780 km Straße)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann lohnt sich ein Flug innerhalb Deutschlands?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Flug lohnt sich meist erst ab 400-500 km Luftlinie, da Anreise zum Flughafen, Check-in und Sicherheitskontrolle ca. 2 Stunden zusätzlich kosten. Darunter ist die Bahn oft schneller."
+        }
+      }
+    ]
+  })} />
+</Layout>
