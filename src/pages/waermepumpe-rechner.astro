@@ -1,0 +1,413 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WaermepumpeRechner from '../components/rechner/WaermepumpeRechner';
+
+const title = "Wärmepumpe-Rechner 2026 – Kosten, Förderung & Vergleich | Deutschland-Rechner";
+const description = "Wärmepumpe Kosten berechnen 2026: Vergleich mit Gas & Öl, BAFA-Förderung bis 70%, Stromverbrauch & Amortisation. Kostenloser Rechner für Ihre Wärmepumpe.";
+const keywords = "Wärmepumpe Rechner, Wärmepumpe Kosten, Wärmepumpe Förderung, BAFA Förderung 2026, Wärmepumpe vs Gas, Wärmepumpe vs Öl, JAZ Rechner, COP Wärmepumpe, Wärmepumpe Stromverbrauch, Heizungstausch Förderung, Luftwärmepumpe Kosten, Erdwärmepumpe Kosten, BEG Förderung";
+
+// FAQ Schema für SEO
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie viel Förderung gibt es für eine Wärmepumpe 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die BAFA-Förderung für Wärmepumpen beträgt 2026 bis zu 70% der förderfähigen Kosten. Die Grundförderung liegt bei 30%, dazu kommen: Klimageschwindigkeitsbonus +20% (bei Austausch alter Heizungen), Einkommensbonus +30% (bei Haushaltseinkommen unter 40.000€) und Effizienzbonus +5% (natürliche Kältemittel). Maximum sind 70%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet eine Wärmepumpe mit Einbau?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Luft-Wasser-Wärmepumpe kostet inklusive Einbau ca. 20.000-28.000€, eine Erdwärmepumpe (Sole-Wasser) ca. 30.000-45.000€. Nach BAFA-Förderung (30-70%) bleiben bei einer Luft-Wasser-Wärmepumpe oft nur 6.000-15.000€ Eigenanteil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist eine Wärmepumpe günstiger als Gas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei den Betriebskosten ist die Wärmepumpe meist günstiger: Durch die Jahresarbeitszahl (JAZ) von 3-4 erzeugt sie aus 1 kWh Strom 3-4 kWh Wärme. Bei 32 ct/kWh Strom und JAZ 3,5 kostet eine kWh Wärme nur ~9 ct, während Gas bei 12 ct/kWh liegt. Über 20 Jahre spart eine Wärmepumpe oft 10.000-30.000€ gegenüber einer Gasheizung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist die Jahresarbeitszahl (JAZ)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Jahresarbeitszahl (JAZ) gibt an, wie effizient eine Wärmepumpe über ein Jahr arbeitet. Bei JAZ 3,5 erzeugt die Wärmepumpe aus 1 kWh Strom 3,5 kWh Wärme. Je höher die JAZ, desto effizienter und günstiger arbeitet die Anlage. Luft-Wasser-Wärmepumpen erreichen JAZ 2,5-4,0, Erdwärmepumpen 3,5-5,0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann lohnt sich eine Wärmepumpe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine Wärmepumpe lohnt sich besonders bei: gut gedämmten Gebäuden (niedriger Wärmebedarf), Fußbodenheizung oder großen Heizkörpern (niedrige Vorlauftemperatur), Nutzung von PV-Strom, und beim Austausch alter Öl-/Gasheizungen (hohe Förderung). Die Amortisation liegt meist bei 8-15 Jahren."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Strom verbraucht eine Wärmepumpe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Stromverbrauch hängt vom Wärmebedarf und der JAZ ab. Ein 120m²-Haus mit mittlerer Dämmung (130 kWh/m²) hat einen Wärmebedarf von 15.600 kWh. Bei JAZ 3,5 verbraucht die Wärmepumpe ca. 4.500 kWh Strom pro Jahr, was bei 32 ct/kWh etwa 1.440€ Stromkosten entspricht."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💚</span>
+          <div>
+            <h1 class="text-2xl font-bold">Wärmepumpe-Rechner 2026</h1>
+            <p class="text-green-100 text-sm">Kosten, BAFA-Förderung & Vergleich mit Gas/Öl</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WaermepumpeRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wärmepumpe 2026: Kosten, Förderung & Vergleich</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem kostenlosen <strong>Wärmepumpe-Rechner</strong> berechnen Sie die Kosten einer Wärmepumpe
+            inklusive <strong>BAFA-Förderung bis 70%</strong>. Vergleichen Sie die Betriebskosten mit Gasheizung und 
+            Ölheizung und erfahren Sie, wie viel Sie über 20 Jahre sparen können.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BAFA-Förderung 2026: Bis zu 70% Zuschuss</h3>
+          
+          <p>
+            Die <strong>Bundesförderung für effiziente Gebäude (BEG)</strong> macht Wärmepumpen 2026 
+            besonders attraktiv. Die Förderung setzt sich zusammen aus:
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-green-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Förderung</th>
+                  <th class="text-right p-3">Prozent</th>
+                  <th class="text-left p-3 rounded-tr-lg">Voraussetzung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-3 font-medium">Grundförderung</td>
+                  <td class="text-right p-3 text-green-600 font-bold">30%</td>
+                  <td class="p-3 text-gray-500">Für jede förderfähige Wärmepumpe</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3 font-medium">Klimageschwindigkeitsbonus</td>
+                  <td class="text-right p-3 text-green-600 font-bold">+20%</td>
+                  <td class="p-3 text-gray-500">Austausch Heizung ≥20 Jahre oder fossiler Heizung (bis Ende 2028)</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3 font-medium">Einkommensbonus</td>
+                  <td class="text-right p-3 text-green-600 font-bold">+30%</td>
+                  <td class="p-3 text-gray-500">Haushaltseinkommen unter 40.000 €/Jahr</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3 font-medium">Effizienzbonus</td>
+                  <td class="text-right p-3 text-green-600 font-bold">+5%</td>
+                  <td class="p-3 text-gray-500">Wärmepumpe mit natürlichem Kältemittel (z.B. Propan)</td>
+                </tr>
+                <tr class="bg-green-100">
+                  <td class="p-3 font-bold rounded-bl-lg">Maximum</td>
+                  <td class="text-right p-3 text-green-700 font-bold">70%</td>
+                  <td class="p-3 text-green-700 rounded-br-lg">Auf max. 30.000 € förderfähige Kosten</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-green-800">
+              <strong>💡 Beispiel:</strong> Eine Luft-Wasser-Wärmepumpe kostet 25.000 €. Mit Grundförderung (30%) 
+              und Klimabonus (20%) erhalten Sie 50% = <strong>12.500 € Förderung</strong>. Ihr Eigenanteil: 
+              nur 12.500 €!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was kostet eine Wärmepumpe 2026?</h3>
+          
+          <p>
+            Die <strong>Anschaffungskosten</strong> variieren je nach Wärmepumpentyp:
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-green-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Wärmepumpentyp</th>
+                  <th class="text-right p-3">Kosten inkl. Einbau</th>
+                  <th class="text-right p-3 rounded-tr-lg">Nach 50% Förderung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-3">💨 Luft-Wasser-Wärmepumpe</td>
+                  <td class="text-right p-3 font-medium">20.000 – 28.000 €</td>
+                  <td class="text-right p-3 text-green-600">10.000 – 14.000 €</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">🌍 Sole-Wasser (Erdwärme)</td>
+                  <td class="text-right p-3 font-medium">30.000 – 45.000 €</td>
+                  <td class="text-right p-3 text-green-600">15.000 – 22.500 €</td>
+                </tr>
+                <tr>
+                  <td class="p-3 rounded-bl-lg">💧 Wasser-Wasser (Grundwasser)</td>
+                  <td class="text-right p-3 font-medium">25.000 – 35.000 €</td>
+                  <td class="text-right p-3 text-green-600 rounded-br-lg">12.500 – 17.500 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wärmepumpe vs. Gas vs. Öl: Betriebskosten</h3>
+          
+          <p>
+            Trotz höherer Anschaffungskosten ist die Wärmepumpe bei den <strong>Betriebskosten oft günstiger</strong>.
+            Der Grund: Die Jahresarbeitszahl (JAZ) von 3-4 bedeutet, dass aus 1 kWh Strom 3-4 kWh Wärme entstehen.
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-green-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Heizung</th>
+                  <th class="text-right p-3">Energiepreis</th>
+                  <th class="text-right p-3">Wärmekosten/kWh</th>
+                  <th class="text-right p-3 rounded-tr-lg">120m²-Haus/Jahr</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b bg-green-50">
+                  <td class="p-3 font-medium">💚 Wärmepumpe (JAZ 3,5)</td>
+                  <td class="text-right p-3">32 ct/kWh Strom</td>
+                  <td class="text-right p-3 text-green-600 font-bold">~9 ct/kWh</td>
+                  <td class="text-right p-3 font-medium">~1.600 €</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3">🔵 Gasheizung</td>
+                  <td class="text-right p-3">12 ct/kWh Gas</td>
+                  <td class="text-right p-3">~13 ct/kWh</td>
+                  <td class="text-right p-3 font-medium">~2.300 €</td>
+                </tr>
+                <tr>
+                  <td class="p-3 rounded-bl-lg">🟤 Ölheizung</td>
+                  <td class="text-right p-3">11 ct/kWh Öl</td>
+                  <td class="text-right p-3">~13 ct/kWh</td>
+                  <td class="text-right p-3 font-medium rounded-br-lg">~2.200 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-amber-800">
+              <strong>📈 CO₂-Steuer:</strong> Der CO₂-Preis steigt 2026 auf 55 €/t und verteuert Gas und Öl 
+              weiter. 2027 sind 65 €/t geplant. Die Wärmepumpe ist davon nicht betroffen – ein weiterer 
+              Vorteil für die Zukunft.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Jahresarbeitszahl (JAZ) verstehen</h3>
+          
+          <p>
+            Die <strong>Jahresarbeitszahl</strong> (auch COP für "Coefficient of Performance") ist der 
+            wichtigste Effizienzwert einer Wärmepumpe:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>JAZ 2,5:</strong> Aus 1 kWh Strom werden 2,5 kWh Wärme (unterdurchschnittlich)</li>
+            <li><strong>JAZ 3,5:</strong> Aus 1 kWh Strom werden 3,5 kWh Wärme (typisch für Luft-Wasser)</li>
+            <li><strong>JAZ 4,5:</strong> Aus 1 kWh Strom werden 4,5 kWh Wärme (sehr gut, Erdwärme)</li>
+          </ul>
+          
+          <p>
+            Die JAZ hängt ab von: <strong>Wärmequelle</strong> (Luft < Erde < Grundwasser), 
+            <strong>Vorlauftemperatur</strong> (Fußbodenheizung besser als Heizkörper) und 
+            <strong>Gebäudedämmung</strong> (weniger Wärmebedarf = bessere JAZ).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann lohnt sich eine Wärmepumpe?</h3>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <h4 class="font-medium text-green-900 mb-2">✅ Ideale Voraussetzungen:</h4>
+            <ul class="list-disc pl-5 space-y-1 text-green-800 text-sm">
+              <li><strong>Gut gedämmtes Haus:</strong> Niedriger Wärmebedarf ≤ 100 kWh/m²</li>
+              <li><strong>Flächenheizung:</strong> Fußboden- oder Wandheizung (niedrige Vorlauftemperatur)</li>
+              <li><strong>Photovoltaik:</strong> Eigenstrom für die Wärmepumpe senkt Kosten weiter</li>
+              <li><strong>Austausch alter Heizung:</strong> Hohe Förderung durch Klimabonus</li>
+              <li><strong>Neubau:</strong> Wärmepumpen sind hier oft Standard</li>
+            </ul>
+          </div>
+          
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <h4 class="font-medium text-amber-900 mb-2">⚠️ Herausforderungen:</h4>
+            <ul class="list-disc pl-5 space-y-1 text-amber-800 text-sm">
+              <li><strong>Unsanierter Altbau:</strong> Hoher Wärmebedarf senkt die Effizienz</li>
+              <li><strong>Kleine Heizkörper:</strong> Hohe Vorlauftemperatur nötig → niedrigere JAZ</li>
+              <li><strong>Keine Förderung möglich:</strong> Amortisation dauert dann länger</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verwandte Rechner</h3>
+          
+          <div class="grid grid-cols-2 gap-3 my-4">
+            <a href="/heizkosten-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">🔥</span>
+              <p class="font-medium text-gray-800 mt-1">Heizkosten-Rechner</p>
+              <p class="text-xs text-gray-500">Alle Heizungsarten vergleichen</p>
+            </a>
+            <a href="/photovoltaik-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">☀️</span>
+              <p class="font-medium text-gray-800 mt-1">Photovoltaik-Rechner</p>
+              <p class="text-xs text-gray-500">PV + Wärmepumpe kombinieren</p>
+            </a>
+            <a href="/stromkosten-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">⚡</span>
+              <p class="font-medium text-gray-800 mt-1">Stromkosten-Rechner</p>
+              <p class="text-xs text-gray-500">Stromverbrauch berechnen</p>
+            </a>
+            <a href="/gaskosten-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">🔵</span>
+              <p class="font-medium text-gray-800 mt-1">Gaskosten-Rechner</p>
+              <p class="text-xs text-gray-500">Gasverbrauch & Kosten</p>
+            </a>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zur Wärmepumpe</h3>
+          
+          <div class="space-y-4 mt-4">
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie viel Förderung gibt es für eine Wärmepumpe 2026?</summary>
+              <p class="mt-2 text-sm">
+                Die BAFA-Förderung für Wärmepumpen beträgt 2026 bis zu 70% der förderfähigen Kosten. Die 
+                Grundförderung liegt bei 30%, dazu kommen: Klimageschwindigkeitsbonus +20% (bei Austausch 
+                alter Heizungen), Einkommensbonus +30% (bei Haushaltseinkommen unter 40.000€) und 
+                Effizienzbonus +5% (natürliche Kältemittel). Maximum sind 70% auf max. 30.000 € förderfähige Kosten.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was kostet eine Wärmepumpe mit Einbau?</summary>
+              <p class="mt-2 text-sm">
+                Eine Luft-Wasser-Wärmepumpe kostet inklusive Einbau ca. 20.000-28.000€, eine Erdwärmepumpe 
+                (Sole-Wasser) ca. 30.000-45.000€. Nach BAFA-Förderung (30-70%) bleiben bei einer 
+                Luft-Wasser-Wärmepumpe oft nur 6.000-15.000€ Eigenanteil.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Ist eine Wärmepumpe günstiger als Gas?</summary>
+              <p class="mt-2 text-sm">
+                Bei den Betriebskosten ist die Wärmepumpe meist günstiger: Durch die Jahresarbeitszahl (JAZ) 
+                von 3-4 erzeugt sie aus 1 kWh Strom 3-4 kWh Wärme. Bei 32 ct/kWh Strom und JAZ 3,5 kostet 
+                eine kWh Wärme nur ~9 ct, während Gas bei 12 ct/kWh liegt. Über 20 Jahre spart eine 
+                Wärmepumpe oft 10.000-30.000€ gegenüber einer Gasheizung.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was ist die Jahresarbeitszahl (JAZ)?</summary>
+              <p class="mt-2 text-sm">
+                Die Jahresarbeitszahl (JAZ) gibt an, wie effizient eine Wärmepumpe über ein Jahr arbeitet. 
+                Bei JAZ 3,5 erzeugt die Wärmepumpe aus 1 kWh Strom 3,5 kWh Wärme. Je höher die JAZ, desto 
+                effizienter und günstiger arbeitet die Anlage. Luft-Wasser-Wärmepumpen erreichen JAZ 2,5-4,0, 
+                Erdwärmepumpen 3,5-5,0.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wann lohnt sich eine Wärmepumpe?</summary>
+              <p class="mt-2 text-sm">
+                Eine Wärmepumpe lohnt sich besonders bei: gut gedämmten Gebäuden (niedriger Wärmebedarf), 
+                Fußbodenheizung oder großen Heizkörpern (niedrige Vorlauftemperatur), Nutzung von PV-Strom, 
+                und beim Austausch alter Öl-/Gasheizungen (hohe Förderung). Die Amortisation liegt meist 
+                bei 8-15 Jahren.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie viel Strom verbraucht eine Wärmepumpe?</summary>
+              <p class="mt-2 text-sm">
+                Der Stromverbrauch hängt vom Wärmebedarf und der JAZ ab. Ein 120m²-Haus mit mittlerer 
+                Dämmung (130 kWh/m²) hat einen Wärmebedarf von 15.600 kWh. Bei JAZ 3,5 verbraucht die 
+                Wärmepumpe ca. 4.500 kWh Strom pro Jahr, was bei 32 ct/kWh etwa 1.440€ Stromkosten entspricht.
+              </p>
+            </details>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Quellen</h3>
+          
+          <ul class="text-sm text-gray-500 space-y-1">
+            <li>
+              <a href="https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html" target="_blank" rel="noopener" class="text-green-600 hover:underline">
+                BAFA – Bundesförderung für effiziente Gebäude (BEG)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Energieeffizient-sanieren/Heizung/" target="_blank" rel="noopener" class="text-green-600 hover:underline">
+                KfW – Heizungsförderung
+              </a>
+            </li>
+            <li>
+              <a href="https://www.waermepumpe.de" target="_blank" rel="noopener" class="text-green-600 hover:underline">
+                Bundesverband Wärmepumpe (BWP)
+              </a>
+            </li>
+            <li>
+              <a href="https://www.bdew.de" target="_blank" rel="noopener" class="text-green-600 hover:underline">
+                BDEW – Bundesverband der Energie- und Wasserwirtschaft
+              </a>
+            </li>
+            <li>
+              <a href="https://www.umweltbundesamt.de/themen/klima-energie/erneuerbare-energien/waermepumpen" target="_blank" rel="noopener" class="text-green-600 hover:underline">
+                Umweltbundesamt – Wärmepumpen
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

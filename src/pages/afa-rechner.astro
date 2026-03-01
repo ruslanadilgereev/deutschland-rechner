@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AfaRechner from '../components/rechner/AfaRechner';
+
+const title = "AfA-Rechner 2026 – Gebäude-Abschreibung berechnen (2%, 2,5%, 3%)";
+const description = "AfA-Rechner für Immobilien: Berechnen Sie die jährliche Gebäude-Abschreibung nach §7 EStG. Mit allen AfA-Sätzen (2%, 2,5%, 3%) je nach Baujahr. Kostenlos & ohne Anmeldung.";
+const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechnen, Immobilien Abschreibung, AfA-Satz 2026, Gebäude Abschreibung Rechner, §7 EStG, Vermietung AfA, Abschreibung vermietete Immobilie, AfA Baujahr, Nutzungsdauer Gebäude, lineare AfA";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📉</span>
+          <div>
+            <h1 class="text-2xl font-bold">AfA-Rechner für Gebäude</h1>
+            <p class="text-indigo-100 text-sm">Abschreibung für Immobilien 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AfaRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Gebäude-AfA 2026: Alles was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>AfA (Absetzung für Abnutzung)</strong> ist für Vermieter eines der wichtigsten 
+            Steuer-Instrumente. Mit unserem <strong>AfA-Rechner</strong> berechnen Sie schnell und 
+            einfach Ihre jährliche Gebäude-Abschreibung und die daraus resultierende Steuerersparnis.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Gebäude-AfA?</h3>
+          <p>
+            Die <strong>Gebäude-Abschreibung</strong> nach §7 Abs. 4 EStG ermöglicht es Vermietern, 
+            den Wertverzehr eines Gebäudes steuerlich geltend zu machen. Die AfA mindert die 
+            Einkünfte aus Vermietung und Verpachtung und damit die Steuerlast.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Nur der Gebäudewert</strong> ist abschreibbar – nicht das Grundstück</li>
+            <li><strong>Lineare Abschreibung:</strong> Gleichmäßige Verteilung über die Nutzungsdauer</li>
+            <li><strong>Pflicht:</strong> Die AfA muss zwingend in Anspruch genommen werden</li>
+            <li><strong>Vermietung erforderlich:</strong> Keine AfA bei Selbstnutzung</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">AfA-Sätze nach Baujahr (2026)</h3>
+          <p>
+            Der <strong>AfA-Satz</strong> richtet sich nach dem Baujahr des Gebäudes. Seit 2023 
+            gibt es einen neuen, erhöhten Satz für Neubauten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Baujahr vor 1925:</strong> 2,5% AfA-Satz (40 Jahre Nutzungsdauer)</li>
+            <li><strong>Baujahr 1925 – 2022:</strong> 2% AfA-Satz (50 Jahre Nutzungsdauer)</li>
+            <li><strong>Baujahr ab 2023:</strong> 3% AfA-Satz (33,33 Jahre Nutzungsdauer)</li>
+          </ul>
+          <p>
+            <strong>Neu seit 2023:</strong> Das Jahressteuergesetz 2022 hat den AfA-Satz für Neubauten 
+            auf 3% erhöht, um den Wohnungsbau attraktiver zu machen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Berechnung der Gebäude-AfA</h3>
+          <p>
+            Die <strong>jährliche AfA</strong> berechnet sich wie folgt:
+          </p>
+          <div class="bg-gray-100 rounded-xl p-4 text-center font-mono">
+            <p class="text-gray-800">Jährliche AfA = Gebäudewert × AfA-Satz</p>
+          </div>
+          <p><strong>Beispiel:</strong></p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Kaufpreis: 400.000 €</li>
+            <li>Grundstücksanteil (20%): 80.000 €</li>
+            <li>Gebäudewert: 320.000 €</li>
+            <li>Baujahr 2020 → AfA-Satz: 2%</li>
+            <li><strong>Jährliche AfA: 320.000 € × 2% = 6.400 €</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundstücksanteil richtig ermitteln</h3>
+          <p>
+            Der <strong>Grundstückswert ist nicht abschreibbar</strong>, da Grund und Boden 
+            keinem Wertverzehr unterliegen. Die Aufteilung des Kaufpreises ist daher entscheidend:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kaufvertrag:</strong> Wenn eine Aufteilung vereinbart wurde, gilt diese</li>
+            <li><strong>Bodenrichtwert:</strong> Grundstückswert = Bodenrichtwert × Fläche</li>
+            <li><strong>Sachwertverfahren:</strong> Gebäudewert aus Herstellungskosten ableiten</li>
+            <li><strong>Richtwerte:</strong> Eigentumswohnung ca. 5-15%, Einfamilienhaus ca. 15-30%</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">AfA bei Eigentumswohnungen</h3>
+          <p>
+            Bei <strong>Eigentumswohnungen</strong> gelten Besonderheiten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Der Miteigentumsanteil am Grundstück ist nicht abschreibbar</li>
+            <li>Der Grundstücksanteil liegt typischerweise bei 5-15%</li>
+            <li>Das Gebäude wird als Ganzes abgeschrieben, nicht die einzelne Wohnung</li>
+            <li>Sondereigentum (z.B. Einbauküche) kann separat abgeschrieben werden</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderabschreibung §7b EStG (Mietwohnungsneubau)</h3>
+          <p>
+            Zusätzlich zur linearen AfA gibt es die <strong>Sonder-AfA für Mietwohnungsneubau</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>5% Sonder-AfA</strong> für 4 Jahre (zusätzlich zur linearen AfA)</li>
+            <li><strong>Bauantrag:</strong> Zwischen 01.09.2018 und 31.12.2021 oder ab 01.01.2023</li>
+            <li><strong>Baukostenobergrenze:</strong> Max. 5.200 €/m² Wohnfläche</li>
+            <li><strong>Bemessungsgrundlage:</strong> Max. 4.000 €/m² Wohnfläche</li>
+            <li><strong>Bindung:</strong> 10 Jahre Vermietung zu Wohnzwecken</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Denkmal-AfA (§7i EStG)</h3>
+          <p>
+            Für <strong>denkmalgeschützte Gebäude</strong> gibt es erhöhte Abschreibungsmöglichkeiten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Vermietung:</strong> 8 Jahre je 9%, dann 4 Jahre je 7% (= 100% in 12 Jahren)</li>
+            <li><strong>Eigennutzung:</strong> 10 Jahre je 9% (= 90% der Sanierungskosten)</li>
+            <li><strong>Voraussetzung:</strong> Abstimmung mit der Denkmalbehörde</li>
+            <li><strong>Gilt nur für:</strong> Sanierungskosten, nicht für den Kaufpreis</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">AfA-Beginn und -Ende</h3>
+          <p>
+            Wichtige Zeitpunkte für die <strong>Gebäude-Abschreibung</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Beginn:</strong> Im Monat der Anschaffung oder Fertigstellung</li>
+            <li><strong>Anteilige AfA:</strong> Im ersten Jahr nur ab dem Kaufmonat</li>
+            <li><strong>Ende:</strong> Im Monat des Verkaufs oder der Nutzungsänderung</li>
+            <li><strong>Vollständig:</strong> Nach Ablauf der Nutzungsdauer</li>
+          </ul>
+          <p>
+            <strong>Beispiel:</strong> Kauf im August → Im ersten Jahr 5/12 der Jahres-AfA.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuerersparnis durch AfA</h3>
+          <p>
+            Die AfA mindert Ihre <strong>Einkünfte aus Vermietung</strong> und damit Ihre Steuerlast:
+          </p>
+          <div class="bg-green-50 rounded-xl p-4">
+            <p class="text-green-800 font-medium">Steuerersparnis = Jährliche AfA × Grenzsteuersatz</p>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Bei 6.400 € AfA und 42% Grenzsteuersatz sparen Sie 
+            <strong>2.688 € Steuern pro Jahr</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen (FAQ)</h3>
+          
+          <p><strong>Muss ich die AfA in Anspruch nehmen?</strong></p>
+          <p>
+            Ja! Die AfA ist <strong>zwingend vorzunehmen</strong>. Sie können nicht auf die 
+            Abschreibung verzichten, um sie später nachzuholen. Das Finanzamt rechnet die AfA 
+            automatisch an – auch wenn Sie sie nicht geltend machen.
+          </p>
+          
+          <p><strong>Kann ich die AfA bei Selbstnutzung absetzen?</strong></p>
+          <p>
+            Nein. Bei <strong>selbstgenutzten Immobilien</strong> gibt es keine AfA. Die Abschreibung 
+            setzt Einkünfteerzielungsabsicht voraus, d.h. die Immobilie muss vermietet sein.
+          </p>
+          
+          <p><strong>Was passiert bei Verkauf mit der AfA?</strong></p>
+          <p>
+            Die AfA endet im Verkaufsmonat. Bei Verkauf innerhalb der <strong>Spekulationsfrist 
+            (10 Jahre)</strong> wird der Veräußerungsgewinn versteuert. Die in Anspruch genommene 
+            AfA mindert dabei die Anschaffungskosten und erhöht den steuerpflichtigen Gewinn.
+          </p>
+          
+          <p><strong>Wie ermittle ich den Gebäudewert bei einer Erbschaft?</strong></p>
+          <p>
+            Bei <strong>geerbten Immobilien</strong> tritt der Erbe in die AfA des Erblassers ein 
+            (Fußstapfentheorie). Es wird mit den ursprünglichen Anschaffungskosten und der 
+            verbleibenden Nutzungsdauer weiter abgeschrieben.
+          </p>
+          
+          <p><strong>Gilt die 3%-AfA auch für gebrauchte Immobilien ab 2023?</strong></p>
+          <p>
+            Nein! Der <strong>erhöhte AfA-Satz von 3%</strong> gilt nur für Gebäude, deren 
+            Herstellung (Bauantrag) ab dem 01.01.2023 erfolgt. Beim Kauf einer Bestandsimmobilie 
+            gilt weiterhin 2% (Baujahr 1925-2022) bzw. 2,5% (vor 1925).
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AfA-Rechner für Gebäude 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/afa-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist die Gebäude-AfA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gebäude-AfA (Absetzung für Abnutzung) ist die steuerliche Abschreibung des Gebäudewerts bei vermieteten Immobilien. Sie mindert die Einkünfte aus Vermietung und damit die Steuerlast. Nur der Gebäudewert ist abschreibbar – nicht das Grundstück."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche AfA-Sätze gelten für Gebäude?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die AfA-Sätze richten sich nach dem Baujahr: Vor 1925 gilt 2,5% (40 Jahre Nutzungsdauer), von 1925-2022 gilt 2% (50 Jahre), ab 2023 gilt der erhöhte Satz von 3% (33,33 Jahre). Die erhöhte AfA ab 2023 wurde durch das Jahressteuergesetz 2022 eingeführt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die jährliche Gebäude-AfA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die jährliche AfA berechnet sich aus: Gebäudewert × AfA-Satz. Der Gebäudewert ist der Kaufpreis abzüglich des Grundstücksanteils. Beispiel: 320.000 € Gebäudewert × 2% = 6.400 € jährliche AfA."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist der Grundstückswert nicht abschreibbar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grund und Boden unterliegen keinem Wertverzehr – sie nutzen sich nicht ab. Daher ist nur der Gebäudewert abschreibbar. Der Grundstücksanteil muss vom Kaufpreis abgezogen werden und liegt typischerweise bei 15-30% für Einfamilienhäuser und 5-15% für Eigentumswohnungen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich die AfA zwingend in Anspruch nehmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, die AfA ist zwingend vorzunehmen. Sie können nicht auf die Abschreibung verzichten, um sie später nachzuholen. Das Finanzamt rechnet die AfA automatisch an – auch wenn Sie sie nicht in Ihrer Steuererklärung angeben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es zusätzliche Sonderabschreibungen für Gebäude?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, es gibt mehrere Sonderabschreibungen: Die §7b EStG-Sonder-AfA für Mietwohnungsneubau (5% für 4 Jahre), die Denkmal-AfA nach §7i EStG (erhöhte Abschreibung für Sanierungskosten) und die Sanierungsgebiet-AfA nach §7h EStG."
+        }
+      }
+    ]
+  })} />
+</Layout>
