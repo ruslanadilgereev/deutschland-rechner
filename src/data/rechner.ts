@@ -1691,15 +1691,6 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'waermepumpe',
-    name: 'Wärmepumpe-Rechner',
-    beschreibung: 'Wärmepumpen-Kosten & Ersparnis',
-    icon: '🌡️',
-    kategorie: 'wohnen',
-    fertig: true,
-    seoKeywords: 'Wärmepumpe Rechner, Wärmepumpe Kosten, Wärmepumpe berechnen',
-  },
-  {
     id: 'mietpreisbremse',
     name: 'Mietpreisbremse-Rechner',
     beschreibung: 'Zulässige Miete nach Mietpreisbremse (max. 10% über Mietspiegel)',
@@ -1748,15 +1739,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.bundesfinanzministerium.de',
       'https://www.bodenrichtwerte-boris.de',
     ],
-  },
-  {
-    id: 'verlustvortrag',
-    name: 'Verlustvortrag-Rechner',
-    beschreibung: 'Verlustvortrag bei der Steuer nutzen',
-    icon: '📊',
-    kategorie: 'steuern',
-    fertig: true,
-    seoKeywords: 'Verlustvortrag Rechner, Verluste absetzen, Steuerverlust vortragen',
   },
   {
     id: 'haushaltshilfe',
