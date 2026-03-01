@@ -1966,7 +1966,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Auto-Versicherung & SF-Klasse',
     icon: '🛡️',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Kfz Versicherung Rechner, Autoversicherung berechnen, SF Klasse',
   },
   {
@@ -1975,7 +1975,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'THG-Prämie für E-Autos',
     icon: '🔌',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'THG Quote Rechner, THG Prämie, E-Auto Prämie',
   },
 ];
