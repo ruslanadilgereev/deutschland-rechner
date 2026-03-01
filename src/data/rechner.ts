@@ -1882,7 +1882,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Bitcoin & Krypto-Gewinne versteuern',
     icon: '₿',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Krypto Steuer Rechner, Bitcoin Steuer, Kryptowährung versteuern',
   },
   {
@@ -1891,7 +1891,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Dividendenrendite & Netto-Dividende',
     icon: '💵',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Dividenden Rechner, Dividendenrendite berechnen, Netto Dividende',
   },
   {
@@ -1900,7 +1900,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Vermögenswirksame Leistungen berechnen',
     icon: '🏦',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'VL Rechner, vermögenswirksame Leistungen, VWL Rechner',
   },
   {
