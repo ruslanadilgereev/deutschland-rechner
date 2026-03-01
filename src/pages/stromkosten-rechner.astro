@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StromkostenRechner from '../components/rechner/StromkostenRechner';
+
+const title = "Stromkosten-Rechner 2026 – Verbrauch & Kosten berechnen";
+const description = "Stromkosten berechnen 2026: Verbrauch schätzen nach Haushaltsgröße, Preise vergleichen & Spartipps. Aktueller Durchschnitt: 37 ct/kWh. Kostenloser Rechner für Ihre jährlichen Stromkosten.";
+const keywords = "Stromkosten Rechner, Stromkosten berechnen, Stromverbrauch Rechner, Strompreis 2026, kWh Rechner, Stromkosten pro Jahr, Stromkosten Haushalt, Stromverbrauch schätzen, Strompreis Deutschland";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚡</span>
+          <div>
+            <h1 class="text-2xl font-bold">Stromkosten-Rechner 2026</h1>
+            <p class="text-emerald-100 text-sm">Verbrauch schätzen & Kosten berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <StromkostenRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Stromkosten 2026: Was kostet eine kWh Strom?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem kostenlosen <strong>Stromkosten-Rechner</strong> berechnen Sie Ihre jährlichen und monatlichen
+            Stromkosten für 2026. Schätzen Sie Ihren Verbrauch anhand Ihrer Haushaltsgröße oder geben Sie Ihren 
+            tatsächlichen kWh-Verbrauch ein.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittlicher Strompreis 2026</h3>
+          
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p class="font-medium text-gray-800">Arbeitspreis (Verbrauch)</p>
+                <p class="text-2xl font-bold text-emerald-600">~37 ct/kWh</p>
+                <p class="text-gray-500 text-xs">Ø Deutschland, Anfang 2026</p>
+              </div>
+              <div>
+                <p class="font-medium text-gray-800">Grundpreis (Pauschale)</p>
+                <p class="text-2xl font-bold text-emerald-600">~12 €/Monat</p>
+                <p class="text-gray-500 text-xs">Variiert je nach Anbieter</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stromverbrauch nach Haushaltsgröße</h3>
+          
+          <p>
+            Der durchschnittliche <strong>Stromverbrauch</strong> in Deutschland hängt stark von der Anzahl 
+            der Personen im Haushalt ab. Haushalte mit elektrischer Warmwasserbereitung verbrauchen 
+            deutlich mehr.
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-emerald-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Haushaltsgröße</th>
+                  <th class="text-right p-3">ohne Warmwasser</th>
+                  <th class="text-right p-3 rounded-tr-lg">mit Warmwasser</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-3">1 Person</td>
+                  <td class="text-right p-3 font-medium">1.500 kWh</td>
+                  <td class="text-right p-3 font-medium">2.000 kWh</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">2 Personen</td>
+                  <td class="text-right p-3 font-medium">2.400 kWh</td>
+                  <td class="text-right p-3 font-medium">3.200 kWh</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3">3 Personen</td>
+                  <td class="text-right p-3 font-medium">3.200 kWh</td>
+                  <td class="text-right p-3 font-medium">4.200 kWh</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">4 Personen</td>
+                  <td class="text-right p-3 font-medium">4.000 kWh</td>
+                  <td class="text-right p-3 font-medium">5.000 kWh</td>
+                </tr>
+                <tr>
+                  <td class="p-3 rounded-bl-lg">5+ Personen</td>
+                  <td class="text-right p-3 font-medium">4.600 kWh</td>
+                  <td class="text-right p-3 font-medium rounded-br-lg">5.800 kWh</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-green-800">
+              <strong>💡 Spartipp:</strong> Ein 2-Personen-Haushalt mit durchschnittlichem Verbrauch 
+              (2.400 kWh) zahlt bei 37 ct/kWh rund <strong>888 € pro Jahr</strong> für den Verbrauch 
+              plus Grundpreis. Mit effizienten Geräten und Verhaltensänderungen können Sie bis zu 
+              <strong>20-30%</strong> einsparen!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Strompreisentwicklung in Deutschland</h3>
+          
+          <p>
+            Der Strompreis in Deutschland hat sich seit der Energiekrise 2022/2023 wieder normalisiert:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2021:</strong> ~32 ct/kWh (vor der Energiekrise)</li>
+            <li><strong>2022:</strong> ~40 ct/kWh (Beginn der Energiekrise)</li>
+            <li><strong>2023:</strong> ~45 ct/kWh (Höchststand, Strompreisbremse bei 40 ct)</li>
+            <li><strong>2024:</strong> ~41 ct/kWh (nach Auslaufen der Strompreisbremse)</li>
+            <li><strong>2025/2026:</strong> ~37 ct/kWh (Stabilisierung auf niedrigerem Niveau)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitspreis vs. Grundpreis</h3>
+          
+          <p>
+            Ihre Stromrechnung besteht aus zwei Komponenten:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1">
+            <li>
+              <strong>Arbeitspreis:</strong> Kosten pro verbrauchter Kilowattstunde (kWh). 
+              Je mehr Strom Sie verbrauchen, desto höher diese Kosten.
+            </li>
+            <li>
+              <strong>Grundpreis:</strong> Monatliche Pauschale für Zählermiete, Netzentgelte 
+              und Servicekosten. Fällt unabhängig vom Verbrauch an.
+            </li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So senken Sie Ihre Stromkosten</h3>
+          
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <ul class="list-disc pl-5 space-y-2 text-amber-900 text-sm">
+              <li><strong>Stromanbieter wechseln:</strong> Vergleichen Sie regelmäßig Tarife auf Check24 oder Verivox</li>
+              <li><strong>Standby vermeiden:</strong> Geräte komplett ausschalten, spart bis zu 100 kWh/Jahr</li>
+              <li><strong>LED-Beleuchtung:</strong> LEDs verbrauchen 80% weniger als Glühbirnen</li>
+              <li><strong>Effiziente Geräte:</strong> Beim Neukauf auf Energieeffizienz achten (A+++)</li>
+              <li><strong>Kühlschrank-Temperatur:</strong> 7°C reicht aus, jedes Grad weniger kostet 6% mehr</li>
+              <li><strong>Wäsche bei 30°C:</strong> Senkt den Verbrauch pro Waschgang erheblich</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zu Stromkosten</h3>
+          
+          <div class="space-y-4 mt-4">
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was kostet 1 kWh Strom 2026?</summary>
+              <p class="mt-2 text-sm">
+                Der durchschnittliche Strompreis für Haushaltskunden liegt Anfang 2026 bei etwa 37 Cent 
+                pro Kilowattstunde (ct/kWh). Je nach Anbieter und Region kann der Preis zwischen 
+                30 und 45 ct/kWh variieren.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie viel Strom verbraucht ein 2-Personen-Haushalt?</summary>
+              <p class="mt-2 text-sm">
+                Ein durchschnittlicher 2-Personen-Haushalt verbraucht etwa 2.400 kWh pro Jahr ohne 
+                elektrische Warmwasserbereitung, bzw. 3.200 kWh mit Durchlauferhitzer oder Boiler.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie berechne ich meine Stromkosten?</summary>
+              <p class="mt-2 text-sm">
+                Formel: <strong>Stromkosten = (Verbrauch × Arbeitspreis) + (Grundpreis × 12)</strong>. 
+                Beispiel: 2.400 kWh × 0,37 € + 12 € × 12 = 888 € + 144 € = <strong>1.032 € pro Jahr</strong>.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Gibt es noch die Strompreisbremse?</summary>
+              <p class="mt-2 text-sm">
+                Nein, die Strompreisbremse ist zum 31. Dezember 2023 ausgelaufen. Sie hatte den 
+                Preis für 80% des Vorjahresverbrauchs auf 40 ct/kWh gedeckelt. Seitdem gelten 
+                wieder die regulären Marktpreise.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

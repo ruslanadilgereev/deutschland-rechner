@@ -698,11 +698,17 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'stromkosten',
     name: 'Stromkosten-Rechner',
-    beschreibung: 'Stromverbrauch & Kosten berechnen',
+    beschreibung: 'Stromkosten berechnen & Verbrauch schätzen',
     icon: '⚡',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Stromkosten Rechner, Stromverbrauch berechnen, Strompreis',
+    fertig: true,
+    seoKeywords: 'Stromkosten Rechner, Stromverbrauch berechnen, Strompreis 2026, kWh Preis, Stromkosten Haushalt, Stromverbrauch schätzen, Stromkosten pro Jahr',
+    quellen: [
+      'https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/',
+      'https://www.verivox.de/strom/strompreisentwicklung/',
+      'https://www.co2online.de/energie-sparen/strom-sparen/strom-sparen-stromspartipps/strompreis/',
+      'https://strom-report.com/strompreisentwicklung/',
+    ],
   },
   {
     id: 'heizkosten',
