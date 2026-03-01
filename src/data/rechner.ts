@@ -1161,6 +1161,21 @@ export const rechnerListe: Rechner[] = [
       'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
     ],
   },
+  {
+    id: 'restwert',
+    name: 'Restwert-Rechner',
+    beschreibung: 'Auto-Restwert nach Alter & Kilometerstand',
+    icon: '📉',
+    kategorie: 'auto',
+    fertig: true,
+    seoKeywords: 'Restwert Rechner, Auto Restwert berechnen, Fahrzeugbewertung, Wertverlust Auto, Auto Wert berechnen, Gebrauchtwagen Wert, DAT Schwacke Alternative, Autowert Rechner, Fahrzeug Restwert, Wertverlust Neuwagen',
+    quellen: [
+      'https://www.dat.de/',
+      'https://www.schwacke.de/',
+      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/',
+      'https://www.mobile.de/',
+    ],
+  },
 
   // ═══════════════════════════════════════════════════════════════
   // FINANZEN & KREDIT
