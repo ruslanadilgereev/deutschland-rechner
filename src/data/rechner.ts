@@ -1037,8 +1037,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Leasingrate & Gesamtkosten berechnen',
     icon: '🔑',
     kategorie: 'auto',
-    fertig: false,
-    seoKeywords: 'Auto Leasing Rechner, Leasingrate berechnen, Leasing Kosten',
+    fertig: true,
+    seoKeywords: 'Auto Leasing Rechner, Leasingrate berechnen, Leasing Kosten, Leasingfaktor, Restwert Leasing, Leasing oder Finanzierung, Kilometerleasing',
+    quellen: [
+      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autofinanzierung/leasing/',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/autoleasing-14061',
+      'https://www.bfh.de/',
+    ],
   },
   {
     id: 'autofinanzierung',
