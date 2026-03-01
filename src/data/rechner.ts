@@ -1944,22 +1944,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Bauspar Rechner, Bausparen berechnen, Bausparvertrag Rechner',
   },
 
-  // AUTO - Mega-Traffic
-  {
-    id: 'restwert',
-    name: 'Auto-Restwert-Rechner',
-    beschreibung: 'Fahrzeug-Restwert ermitteln',
-    icon: '🚗',
-    kategorie: 'auto',
-    fertig: true,
-    seoKeywords: 'Auto Restwert Rechner, Fahrzeugbewertung, Auto Wert ermitteln, Restwert berechnen, Gebrauchtwagen Wert, Wertverlust Auto, Kfz Bewertung, Was ist mein Auto wert, degressive Abschreibung Auto, Schwacke Alternative, DAT Fahrzeugbewertung',
-    quellen: [
-      'https://www.dat.de/fahrzeugbewertung/',
-      'https://www.schwacke.de/',
-      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/',
-      'https://www.kba.de/DE/Statistik/Fahrzeuge/fahrzeuge_node.html',
-    ],
-  },
   {
     id: 'versicherung-auto',
     name: 'Kfz-Versicherung-Rechner',
