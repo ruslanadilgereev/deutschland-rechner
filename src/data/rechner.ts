@@ -1085,8 +1085,14 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Bußgeld & Punkte bei Verkehrsverstößen',
     icon: '🚨',
     kategorie: 'auto',
-    fertig: false,
-    seoKeywords: 'Bußgeld Rechner, Bußgeldkatalog, Punkte Flensburg',
+    fertig: true,
+    seoKeywords: 'Bußgeld Rechner, Bußgeldkatalog 2024, Punkte Flensburg, Geschwindigkeitsüberschreitung, Rotlichtverstoß, Handy am Steuer, Abstandsverstoß, Fahrverbot, Verkehrsverstoß Strafe',
+    quellen: [
+      'https://www.gesetze-im-internet.de/stvo_2013/',
+      'https://www.gesetze-im-internet.de/bkatv_2013/',
+      'https://www.kba.de/DE/Themen/ZentraleRegister/FAER/faer_node.html',
+      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════
