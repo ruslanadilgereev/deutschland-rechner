@@ -1,0 +1,248 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RestwertRechner from '../components/rechner/RestwertRechner';
+
+const title = "Auto-Restwert-Rechner 2026 – Fahrzeugwert online ermitteln";
+const description = "Restwert-Rechner: Berechnen Sie den aktuellen Wert Ihres Autos online. Degressive Abschreibung, Kilometerstand & Zustand. Kostenlose Fahrzeugbewertung!";
+const keywords = "Restwert Rechner, Auto Restwert berechnen, Fahrzeugbewertung, Auto Wert ermitteln, Gebrauchtwagen Wert, Wertverlust Auto, Fahrzeug Restwert, Auto Wertverlust Rechner, Kfz Bewertung, Was ist mein Auto wert, Schwacke Alternative, DAT Alternative";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚗</span>
+          <div>
+            <h1 class="text-2xl font-bold">Auto-Restwert-Rechner</h1>
+            <p class="text-orange-100 text-sm">Fahrzeugwert online ermitteln</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RestwertRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Fahrzeug-Restwert berechnen: So funktioniert's</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Auto-Restwert-Rechner</strong> ermitteln Sie schnell und kostenlos den aktuellen 
+            Wert Ihres Fahrzeugs. Die Berechnung basiert auf der <strong>degressiven Abschreibung</strong> und 
+            berücksichtigt Fahrzeugalter, Kilometerstand und Zustand – die wichtigsten Faktoren für den 
+            Marktwert eines Gebrauchtwagens.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist degressive Abschreibung?</h3>
+          <p>
+            Bei der <strong>degressiven Abschreibung</strong> verliert ein Fahrzeug jedes Jahr einen 
+            prozentualen Anteil seines <em>aktuellen</em> Wertes – nicht des Neupreises. Das bedeutet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>1. Jahr:</strong> Höchster Wertverlust (ca. 20-30% vom Neupreis)</li>
+            <li><strong>Folgejahre:</strong> Wertverlust sinkt absolut, bleibt prozentual stabil (ca. 8-14%)</li>
+            <li><strong>Langfristig:</strong> Wert nähert sich asymptotisch einem Mindestwert</li>
+          </ul>
+          <p>
+            Diese Methode spiegelt die Realität wider: Ein Neuwagen verliert beim ersten Kilometer am 
+            meisten, während ältere Fahrzeuge ihren Wert besser halten.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faktoren für den Fahrzeugwert</h3>
+          <p>
+            Der Restwert Ihres Autos wird von mehreren Faktoren beeinflusst:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Fahrzeugtyp:</strong> Luxuswagen verlieren schneller, Kleinwagen und Transporter sind wertstabiler</li>
+            <li><strong>Alter:</strong> Der größte Wertverlust entsteht im ersten Jahr</li>
+            <li><strong>Kilometerstand:</strong> 12.000 km/Jahr gelten als Durchschnitt – mehr oder weniger beeinflusst den Wert</li>
+            <li><strong>Zustand:</strong> Scheckheftpflege, Unfallfreiheit und Optik sind entscheidend</li>
+            <li><strong>Sonderausstattung:</strong> Extras verlieren schneller an Wert als das Basisfahrzeug</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wertverlust nach Fahrzeugklasse</h3>
+          <p>
+            Nicht jedes Auto verliert gleich schnell an Wert. Hier die typischen Abschreibungsraten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kleinwagen:</strong> ~20% im 1. Jahr, dann ~8%/Jahr</li>
+            <li><strong>Kompaktklasse:</strong> ~22% im 1. Jahr, dann ~9%/Jahr</li>
+            <li><strong>Mittelklasse:</strong> ~24% im 1. Jahr, dann ~10%/Jahr</li>
+            <li><strong>Oberklasse:</strong> ~28% im 1. Jahr, dann ~12%/Jahr</li>
+            <li><strong>Luxusklasse:</strong> ~32% im 1. Jahr, dann ~14%/Jahr</li>
+            <li><strong>SUV:</strong> ~22% im 1. Jahr, dann ~9%/Jahr</li>
+            <li><strong>Elektroautos:</strong> ~26% im 1. Jahr, dann ~11%/Jahr (aber niedrigere km-Kosten)</li>
+            <li><strong>Sportwagen:</strong> ~18% im 1. Jahr, dann ~8%/Jahr (oft Liebhaberfahrzeuge)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kilometerstand und Wertverlust</h3>
+          <p>
+            Der <strong>Kilometerstand</strong> ist einer der wichtigsten Wertfaktoren. Als Faustregel gilt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Durchschnitt:</strong> 12.000 km pro Jahr</li>
+            <li><strong>Weniger km:</strong> Wertsteigerung (aber nur bei regelmäßiger Nutzung)</li>
+            <li><strong>Mehr km:</strong> Wertminderung, ca. 3-6% pro 10.000 km über Durchschnitt</li>
+          </ul>
+          <p>
+            Ein 3 Jahre altes Auto mit 60.000 km ist weniger wert als eines mit 30.000 km – aber auch 
+            Standschäden durch zu wenig Nutzung können den Wert mindern.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zustand: Sehr gut bis Mängel</h3>
+          <p>
+            Der Fahrzeugzustand beeinflusst den Restwert erheblich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Sehr gut (+5%):</strong> Wie neu, scheckheftgepflegt, keine Gebrauchsspuren</li>
+            <li><strong>Gut (±0%):</strong> Normale, altersgemäße Gebrauchsspuren</li>
+            <li><strong>Normal (-5%):</strong> Sichtbare Gebrauchsspuren, kleinere Kratzer</li>
+            <li><strong>Mängel (-15%):</strong> Reparaturbedarf, Unfallschäden, fehlende Wartung</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderausstattung: Lohnt sie sich?</h3>
+          <p>
+            <strong>Sonderausstattung verliert schneller an Wert</strong> als das Basisfahrzeug. Während 
+            das Auto nach 5 Jahren noch 40-50% wert sein kann, ist die Ausstattung oft nur noch 20-30% 
+            wert. Das bedeutet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Premium-Pakete lohnen sich eher beim Kauf als beim Verkauf</li>
+            <li>Beliebte Extras (Navi, Automatik) halten ihren Wert besser</li>
+            <li>Exotische Ausstattung findet weniger Käufer</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Händlerankauf vs. Privatverkauf</h3>
+          <p>
+            Der ermittelte <strong>Restwert entspricht dem Privatverkaufswert</strong>. Beim Verkauf 
+            an einen Händler sollten Sie mit Abschlägen rechnen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Händlerankauf:</strong> Meist 10-20% unter Privatverkaufspreis</li>
+            <li><strong>Inzahlungnahme:</strong> Oft bessere Konditionen als reiner Ankauf</li>
+            <li><strong>Privatverkauf:</strong> Höherer Preis, aber mehr Aufwand</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Professionelle Fahrzeugbewertung</h3>
+          <p>
+            Für eine verbindliche Bewertung (z.B. für Versicherung, Finanzamt, Verkauf) empfehlen wir:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>DAT (Deutsche Automobil Treuhand):</strong> Kostenlose Schätzung mit Fahrzeug-Identnummer</li>
+            <li><strong>Schwacke:</strong> Detaillierte Marktpreisanalyse (kostenpflichtig)</li>
+            <li><strong>DEKRA/TÜV:</strong> Wertgutachten mit Vor-Ort-Prüfung</li>
+            <li><strong>Online-Ankaufsportale:</strong> Schnelle Angebote (wemolo, mobile.de, AutoScout24)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann ist der beste Verkaufszeitpunkt?</h3>
+          <p>
+            Der <strong>optimale Verkaufszeitpunkt</strong> hängt von mehreren Faktoren ab:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Nach 1-3 Jahren:</strong> Hoher Restwert, aber auch hoher absoluter Verlust</li>
+            <li><strong>Nach 4-6 Jahren:</strong> Wertverlust verlangsamt sich, guter Kompromiss</li>
+            <li><strong>Vor HU/AU:</strong> Verkauf kurz vor fälliger Hauptuntersuchung vermeiden</li>
+            <li><strong>Saisonal:</strong> Cabrios im Frühjahr, SUV im Herbst verkaufen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für einen höheren Verkaufspreis</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Alle Wartungsbelege und Rechnungen sammeln</li>
+            <li>Professionelle Fahrzeugaufbereitung vor dem Verkauf</li>
+            <li>Gute Fotos mit sauberem Fahrzeug erstellen</li>
+            <li>Ehrliche Beschreibung – Mängel nicht verschweigen</li>
+            <li>Winterreifen und Zubehör separat anbieten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Auto-Restwert-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/restwert-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man den Restwert eines Autos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Restwert wird durch degressive Abschreibung berechnet: Im ersten Jahr verliert ein Auto ca. 20-30% seines Neuwertes, in den Folgejahren jeweils 8-14% des Vorjahreswertes. Hinzu kommen Anpassungen für Kilometerstand (12.000 km/Jahr = Durchschnitt) und Fahrzeugzustand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Wertverlust hat ein Auto nach 3 Jahren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach 3 Jahren hat ein durchschnittliches Auto etwa 40-50% seines Neuwertes verloren. Ein Kompaktwagen für 30.000 € ist dann noch ca. 15.000-18.000 € wert. Luxusfahrzeuge verlieren mehr (bis zu 60%), Kleinwagen weniger (ca. 35-40%)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Autos haben den geringsten Wertverlust?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Den geringsten Wertverlust haben: 1) Porsche und hochwertige Sportwagen, 2) Toyota und Lexus (Zuverlässigkeit), 3) VW Golf und BMW 3er (hohe Nachfrage), 4) Transporter und Nutzfahrzeuge. Elektroautos verlieren derzeit noch überdurchschnittlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist der Schwacke-Wert oder DAT-Wert genauer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beide Dienste liefern verlässliche Werte. DAT ist kostenlos und wird von Versicherungen genutzt. Schwacke ist kostenpflichtig, aber detaillierter. Für den Privatverkauf empfiehlt sich ein Vergleich beider Werte plus aktuelle Angebote auf mobile.de/AutoScout24."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wirkt sich der Kilometerstand auf den Restwert aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pro 10.000 km über dem Durchschnitt (12.000 km/Jahr) sinkt der Wert um ca. 3-6%, je nach Fahrzeugklasse. Ein 5 Jahre altes Auto mit 90.000 km statt 60.000 km ist etwa 10-15% weniger wert. Weniger Kilometer erhöhen den Wert entsprechend."
+        }
+      }
+    ]
+  })} />
+</Layout>
