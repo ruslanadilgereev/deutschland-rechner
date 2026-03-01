@@ -1,0 +1,291 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrundrenteRechner from '../components/rechner/GrundrenteRechner';
+
+const title = "Grundrente-Rechner 2026 – Grundrentenzuschlag berechnen";
+const description = "Grundrente-Rechner 2026: Berechne deinen Grundrentenzuschlag mit Einkommensprüfung. Voraussetzungen, Freibeträge (1.491€) und Entgeltpunkte-Aufwertung erklärt!";
+const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berechnen, Einkommensprüfung, Freibetrag Grundrente, 33 Jahre Grundrentenzeiten, Entgeltpunkte Aufwertung, Grundrente Voraussetzungen";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏆</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grundrente-Rechner 2026</h1>
+            <p class="text-purple-100 text-sm">Grundrentenzuschlag berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GrundrenteRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Grundrente 2026: Zuschlag für Geringverdiener</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Grundrente</strong> ist seit 2021 ein Zuschlag zur Altersrente für Menschen, 
+            die lange gearbeitet, aber wenig verdient haben. Mit unserem <strong>Grundrente-Rechner</strong> 
+            berechnen Sie Ihren möglichen Grundrentenzuschlag und sehen, wie die Einkommensprüfung wirkt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzungen für die Grundrente</h3>
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Mindestens 33 Grundrentenzeiten:</strong> Pflichtbeiträge, Kindererziehung, Pflege</li>
+              <li><strong>Verdienst in den Grundrentenzeiten:</strong> 30-80% des Durchschnitts</li>
+              <li><strong>2026:</strong> Ca. 1.299€ – 3.463€ brutto/Monat</li>
+              <li><strong>Kein Antrag nötig:</strong> Wird automatisch geprüft und ausgezahlt</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So wird der Grundrentenzuschlag berechnet</h3>
+          <p>
+            Die Berechnung erfolgt in mehreren Schritten:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Verdopplung:</strong> Ihre durchschnittlichen Entgeltpunkte werden verdoppelt</li>
+            <li><strong>Begrenzung:</strong> Maximal 0,8 EP (bei 35 Jahren) bzw. 0,4 EP (bei 33 Jahren)</li>
+            <li><strong>Aufwertung:</strong> Die Differenz zu Ihren eigenen EP ist die Aufwertung</li>
+            <li><strong>Abzug:</strong> 12,5% werden abgezogen (damit aufgewertete EP weniger wert sind als reguläre)</li>
+            <li><strong>Multiplikation:</strong> Mit Ihren Grundrentenzeiten (max. 35 Jahre)</li>
+          </ol>
+          
+          <div class="bg-gray-100 p-4 rounded-lg my-4 font-mono text-sm">
+            Beispiel: 0,4 EP × 2 = 0,8 EP → Aufwertung: 0,4 EP → −12,5% = 0,35 EP/Jahr<br/>
+            Bei 35 Jahren: 0,35 × 35 = 12,25 EP × 40,79€ = <strong>499,68€/Monat</strong>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibeträge bei der Einkommensprüfung 2026</h3>
+          <p>
+            Der Grundrentenzuschlag wird nach Einkommen gekürzt:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Alleinstehende:</strong> 1.491€/Monat zu versteuerndes Einkommen frei</li>
+              <li><strong>Paare:</strong> 2.326€/Monat zu versteuerndes Einkommen frei</li>
+              <li><strong>Stufe 1:</strong> 60% Anrechnung bis 417€ (Singles) bzw. 651€ (Paare) über Freibetrag</li>
+              <li><strong>Stufe 2:</strong> 100% Anrechnung darüber</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was zählt als Grundrentenzeit?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Pflichtbeitragszeiten</strong> aus Beschäftigung (30-80% Durchschnittsverdienst)</li>
+            <li><strong>Kindererziehungszeiten</strong> bis zum 10. Lebensjahr</li>
+            <li><strong>Pflegezeiten</strong> (nicht erwerbsmäßige Pflege von Angehörigen)</li>
+            <li><strong>Zeiten mit Krankengeld</strong> oder Übergangsgeld</li>
+            <li><strong>Berücksichtigungszeiten</strong> wegen Pflege oder Kindererziehung</li>
+          </ul>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-yellow-800">
+              <strong>Achtung:</strong> Die Grundrente wird jährlich überprüft! Das Finanzamt meldet 
+              der Rentenversicherung automatisch Ihre Einkommensdaten. Bei Einkommensänderungen 
+              kann sich der Zuschlag ändern.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Maximaler Grundrentenzuschlag 2026</h3>
+          <p>
+            Der höchste Zuschlag ist möglich bei:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>35 Jahren Grundrentenzeiten</li>
+            <li>0,4 durchschnittlichen Entgeltpunkten</li>
+            <li>Einkommen unter dem Freibetrag</li>
+          </ul>
+          <p>
+            Das ergibt <strong>ca. 500€/Monat</strong> Grundrentenzuschlag. Bei 0,3 EP sind es noch 
+            ca. 375€/Monat, bei 0,5 EP ca. 375€/Monat.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundrente vs. Grundsicherung</h3>
+          <p>
+            Nicht verwechseln:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundrente:</strong> Zuschlag zur eigenen Rente für langjährig Versicherte</li>
+            <li><strong>Grundsicherung im Alter:</strong> Bedarfsorientierte Sozialleistung bei geringem Einkommen</li>
+          </ul>
+          <p>
+            Die Grundrente wird bei der Grundsicherung nicht vollständig angerechnet – 
+            es gibt einen Freibetrag von bis zu 251€.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+          <a href="/witwenrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💔</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Witwenrente-Rechner</p>
+          </a>
+          <a href="/grundsicherung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsicherung-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/pflegegeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflegegeld-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Behörde
+        </h2>
+        
+        <div class="p-4 bg-purple-50 rounded-lg">
+          <h3 class="font-semibold text-purple-800 mb-2">Deutsche Rentenversicherung</h3>
+          <p class="text-purple-700 text-sm mb-2">
+            Die <strong>Deutsche Rentenversicherung</strong> prüft automatisch den Anspruch auf Grundrente. 
+            Sie müssen keinen Antrag stellen – die Auszahlung erfolgt automatisch bei Vorliegen der 
+            Voraussetzungen.
+          </p>
+          <p class="text-purple-700 text-sm">
+            <strong>Servicetelefon:</strong> 0800 1000 4800 (kostenlos)<br/>
+            <strong>Online:</strong> deutsche-rentenversicherung.de
+          </p>
+        </div>
+        
+        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">Quellen</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• <a href="https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Grundrente/grundrente_node.html" class="text-purple-600 hover:underline" target="_blank" rel="noopener">Deutsche Rentenversicherung: Grundrente</a></li>
+            <li>• <a href="https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/Grundrente/grundrente.html" class="text-purple-600 hover:underline" target="_blank" rel="noopener">BMAS: Grundrente</a></li>
+            <li>• Grundrentengesetz (GruReG) vom 12.08.2020</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grundrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/grundrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wer bekommt Grundrente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grundrente bekommen Rentner mit mindestens 33 Jahren Grundrentenzeiten (Pflichtbeiträge, Kindererziehung, Pflege), die in dieser Zeit zwischen 30% und 80% des Durchschnittslohns verdient haben. 2026 entspricht das etwa 1.299€ bis 3.463€ brutto im Monat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Grundrente 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der maximale Grundrentenzuschlag beträgt etwa 500€ pro Monat (bei 35 Jahren Grundrentenzeiten, 0,4 durchschnittlichen Entgeltpunkten und Einkommen unter dem Freibetrag). Bei höherem Einkommen oder anderen Entgeltpunkten fällt der Zuschlag geringer aus."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich Grundrente beantragen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, die Grundrente wird automatisch geprüft und ausgezahlt. Die Deutsche Rentenversicherung erhält die Einkommensdaten vom Finanzamt und berechnet den Zuschlag selbstständig. Wenn Sie Anspruch haben, wird er automatisch mit Ihrer Rente ausgezahlt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Freibetrag bei der Grundrente 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Freibetrag für die Einkommensprüfung liegt 2026 bei 1.491€ pro Monat für Alleinstehende und 2.326€ für Paare (zu versteuerndes Einkommen). Einkommen darüber wird zu 60% (bis zur nächsten Stufe) bzw. 100% auf den Grundrentenzuschlag angerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was sind Grundrentenzeiten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grundrentenzeiten sind Zeiten mit Pflichtbeiträgen (30-80% Durchschnittsverdienst), Kindererziehungszeiten bis zum 10. Lebensjahr, Pflegezeiten und Zeiten mit Kranken- oder Übergangsgeld. Mindestens 33 Jahre sind für den Grundrentenzuschlag erforderlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird der Grundrentenzuschlag berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die durchschnittlichen Entgeltpunkte werden verdoppelt (max. 0,8 EP bei 35 Jahren). Die Differenz zu den eigenen EP ist die Aufwertung. Davon werden 12,5% abgezogen und das Ergebnis mit den Grundrentenzeiten (max. 35) multipliziert. Die EP werden dann mit dem Rentenwert (40,79€) in Euro umgerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird die Grundrente jährlich überprüft?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, die Grundrente wird jährlich zum 1. Januar überprüft. Das Finanzamt übermittelt automatisch die Einkommensdaten des vorvergangenen Jahres an die Rentenversicherung. Bei Einkommensänderungen kann sich der Zuschlag erhöhen oder verringern."
+        }
+      }
+    ]
+  })} />
+</Layout>
