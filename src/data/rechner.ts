@@ -693,7 +693,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Zulässige Mieterhöhung prüfen (Kappungsgrenze)',
     icon: '📈',
     kategorie: 'wohnen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Mieterhöhung Rechner, Mieterhöhung zulässig, Kappungsgrenze Miete',
   },
   {
