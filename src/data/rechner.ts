@@ -463,7 +463,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Geschätzte Steuererstattung berechnen',
     icon: '💰',
     kategorie: 'steuern',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Steuererstattung Rechner, Steuererklärung Erstattung, Steuerrückzahlung',
   },
   {
@@ -793,7 +793,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Preis pro qm bei Kauf/Miete berechnen',
     icon: '📐',
     kategorie: 'wohnen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Quadratmeterpreis Rechner, Preis pro qm, Immobilienpreis berechnen',
   },
   {
@@ -871,7 +871,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Was lohnt sich mehr?',
     icon: '🤔',
     kategorie: 'wohnen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Mieten oder Kaufen Rechner, Miete vs Kaufen, lohnt sich Hauskauf',
   },
 
