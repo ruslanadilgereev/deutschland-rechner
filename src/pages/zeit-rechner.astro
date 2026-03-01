@@ -1,0 +1,396 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZeitRechner from '../components/rechner/ZeitRechner';
+
+const title = "Zeit-Rechner – Stunden, Minuten, Sekunden addieren & Zeitdifferenz (kostenlos)";
+const description = "Zeit-Rechner: Stunden, Minuten und Sekunden addieren oder subtrahieren. Zeitdifferenz berechnen & Dezimalstunden umrechnen. Perfekt für Arbeitszeit-Erfassung!";
+const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berechnen, Zeitdifferenz, Dezimalstunden, Stunden addieren, Minuten addieren, Arbeitszeit Rechner, Zeit subtrahieren, Stundenrechner";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⏰</span>
+          <div>
+            <h1 class="text-2xl font-bold">Zeit-Rechner</h1>
+            <p class="text-blue-100 text-sm">Stunden & Minuten addieren/subtrahieren</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ZeitRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zeiten berechnen – einfach erklärt</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem kostenlosen <strong>Zeit-Rechner</strong> berechnest du schnell und einfach 
+            Zeitsummen und Zeitdifferenzen. Perfekt für die <strong>Arbeitszeiterfassung</strong>, 
+            Projektplanung oder private Zeitberechnungen!
+          </p>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-blue-800 font-semibold mb-2">🔧 Die 2 Berechnungsmodi:</p>
+            <ul class="space-y-1 text-sm text-blue-700">
+              <li><strong>Zeit addieren/subtrahieren:</strong> Mehrere Zeitwerte zusammenrechnen</li>
+              <li><strong>Zeitdifferenz:</strong> Dauer zwischen zwei Uhrzeiten berechnen</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitszeit addieren – so geht's</h3>
+          <p>
+            Bei der <strong>Arbeitszeiterfassung</strong> müssen oft mehrere Zeitabschnitte addiert werden. 
+            Unser Rechner übernimmt das Umrechnen automatisch, auch wenn die Minuten oder Sekunden über 60 gehen.
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4 font-mono text-sm">
+            <p><strong>Beispiel: Wochenstunden</strong></p>
+            <p>Mo: 8:30 + Di: 7:45 + Mi: 9:00 + Do: 8:15 + Fr: 6:30</p>
+            <p class="mt-2 text-green-600"><strong>= 40:00 Stunden pro Woche</strong></p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zeitdifferenz berechnen</h3>
+          <p>
+            Die <strong>Zeitdifferenz</strong> zwischen zwei Uhrzeiten ist wichtig für:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Arbeitszeiten (z.B. 08:00 bis 17:30)</li>
+            <li>Schichtzeiten (auch über Mitternacht)</li>
+            <li>Reisezeiten und Fahrtdauer</li>
+            <li>Veranstaltungslängen</li>
+          </ul>
+          
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-purple-800 font-semibold mb-2">💡 Über Mitternacht rechnen:</p>
+            <p class="text-sm text-purple-700">
+              Für <strong>Nachtschichten</strong> (z.B. 22:00 bis 06:00) aktiviere die Option 
+              "Über Mitternacht". Der Rechner addiert dann automatisch 24 Stunden zur Endzeit.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind Dezimalstunden?</h3>
+          <p>
+            <strong>Dezimalstunden</strong> (auch Industriestunden) werden für die Lohnabrechnung verwendet. 
+            Dabei werden Minuten als Dezimalbruch einer Stunde dargestellt:
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <table class="text-sm w-full">
+              <tr class="border-b">
+                <th class="text-left py-1">Minuten</th>
+                <th class="text-left py-1">Dezimal</th>
+                <th class="text-left py-1 pl-4">Minuten</th>
+                <th class="text-left py-1">Dezimal</th>
+              </tr>
+              <tr><td>15 min</td><td>0,25 h</td><td class="pl-4">45 min</td><td>0,75 h</td></tr>
+              <tr><td>30 min</td><td>0,50 h</td><td class="pl-4">60 min</td><td>1,00 h</td></tr>
+            </table>
+          </div>
+          <p class="text-sm">
+            <strong>Umrechnung:</strong> Minuten ÷ 60 = Dezimalstunden<br/>
+            Beispiel: 45 min ÷ 60 = 0,75 h
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitszeitgesetz (ArbZG) – wichtige Regeln</h3>
+          <p>
+            Bei der Arbeitszeiterfassung gelten in Deutschland gesetzliche Vorschriften:
+          </p>
+          
+          <div class="space-y-3 mt-4">
+            <div class="p-3 bg-yellow-50 rounded-lg">
+              <p class="font-semibold text-yellow-800">⏱️ Tägliche Arbeitszeit</p>
+              <p class="text-sm text-yellow-700">
+                Maximal <strong>8 Stunden</strong> täglich, kann auf <strong>10 Stunden</strong> verlängert werden, 
+                wenn innerhalb von 6 Monaten im Schnitt 8 Stunden nicht überschritten werden.
+              </p>
+            </div>
+            
+            <div class="p-3 bg-green-50 rounded-lg">
+              <p class="font-semibold text-green-800">☕ Pausenregelung</p>
+              <p class="text-sm text-green-700">
+                Ab 6 Stunden: <strong>30 Minuten</strong> Pause<br/>
+                Ab 9 Stunden: <strong>45 Minuten</strong> Pause<br/>
+                Pausen können in 15-Minuten-Blöcke aufgeteilt werden.
+              </p>
+            </div>
+            
+            <div class="p-3 bg-blue-50 rounded-lg">
+              <p class="font-semibold text-blue-800">🌙 Ruhezeit</p>
+              <p class="text-sm text-blue-700">
+                Mindestens <strong>11 Stunden</strong> ununterbrochene Ruhezeit zwischen zwei Arbeitstagen.
+              </p>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Anwendungsbeispiele</h3>
+          <div class="space-y-3 mt-4">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="font-semibold text-gray-800">💼 Arbeitstag berechnen</p>
+              <p class="text-sm text-gray-600">
+                Arbeitsbeginn 08:00, Ende 17:30, Pause 45 Minuten<br/>
+                Brutto: 9:30 - Pause: 0:45 = <strong>Netto: 8:45 (8,75 h)</strong>
+              </p>
+            </div>
+            
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="font-semibold text-gray-800">🏭 Nachtschicht</p>
+              <p class="text-sm text-gray-600">
+                Schichtbeginn 22:00, Ende 06:00<br/>
+                Arbeitszeit: <strong>8:00 Stunden</strong>
+              </p>
+            </div>
+            
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="font-semibold text-gray-800">📊 Projektstunden</p>
+              <p class="text-sm text-gray-600">
+                Projekt A: 12:30 + Projekt B: 8:45 + Meetings: 3:15<br/>
+                Gesamtzeit: <strong>24:30 Stunden</strong>
+              </p>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Formeln für Zeitberechnungen</h3>
+          <div class="space-y-3 mt-4">
+            <div class="p-3 bg-blue-50 rounded-lg">
+              <p class="font-semibold text-blue-800 mb-1">Zeit in Sekunden umrechnen:</p>
+              <code class="text-sm text-blue-700">Sekunden = Stunden × 3600 + Minuten × 60 + Sek</code>
+            </div>
+            
+            <div class="p-3 bg-green-50 rounded-lg">
+              <p class="font-semibold text-green-800 mb-1">Dezimalstunden berechnen:</p>
+              <code class="text-sm text-green-700">Dezimal = Stunden + (Minuten ÷ 60)</code>
+            </div>
+            
+            <div class="p-3 bg-purple-50 rounded-lg">
+              <p class="font-semibold text-purple-800 mb-1">Zeitdifferenz:</p>
+              <code class="text-sm text-purple-700">Differenz = Endzeit - Startzeit</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/arbeitstage-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📆</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Arbeitstage-Rechner</p>
+          </a>
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⌛</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn-Rechner</p>
+          </a>
+          <a href="/ueberstunden-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Überstunden-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/dreisatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dreisatz-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">%</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Tipps -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🎓</span>
+          Tipps zur Zeiterfassung
+        </h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Dokumentationspflicht seit 2022</h3>
+            <p class="text-blue-700">
+              Seit dem BAG-Urteil von September 2022 sind Arbeitgeber verpflichtet, die 
+              Arbeitszeiten ihrer Mitarbeiter systematisch zu erfassen. Dies gilt für 
+              alle Branchen und Unternehmensgrößen.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Tipp: Zeiten runden</h3>
+            <p class="text-green-700">
+              Viele Arbeitgeber runden auf 15-Minuten-Intervalle:<br/>
+              7:53 → 8:00 | 17:22 → 17:15<br/>
+              <strong>Achtung:</strong> Systematisches Abrunden zu Ungunsten der Arbeitnehmer 
+              ist nicht zulässig!
+            </p>
+          </div>
+          
+          <div class="p-4 bg-yellow-50 rounded-lg">
+            <h3 class="font-semibold text-yellow-800 mb-2">Gleitzeit richtig berechnen</h3>
+            <p class="text-yellow-700">
+              Bei Gleitzeit sammeln sich Plus- oder Minusstunden an. 
+              Der Zeit-Rechner hilft dir, den aktuellen Stand deines Gleitzeitkontos zu berechnen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dezimalstunden-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📋 Dezimalstunden-Umrechnungstabelle</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Für Lohnabrechnungen und Zeiterfassungssysteme benötigte Dezimalwerte:
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-200">
+                <th class="text-left py-2 text-gray-600">Min</th>
+                <th class="text-left py-2 text-gray-600">Dez</th>
+                <th class="text-left py-2 text-gray-600">Min</th>
+                <th class="text-left py-2 text-gray-600">Dez</th>
+                <th class="text-left py-2 text-gray-600">Min</th>
+                <th class="text-left py-2 text-gray-600">Dez</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr><td>1</td><td>0,02</td><td>21</td><td>0,35</td><td>41</td><td>0,68</td></tr>
+              <tr><td>2</td><td>0,03</td><td>22</td><td>0,37</td><td>42</td><td>0,70</td></tr>
+              <tr><td>3</td><td>0,05</td><td>23</td><td>0,38</td><td>43</td><td>0,72</td></tr>
+              <tr><td>4</td><td>0,07</td><td>24</td><td>0,40</td><td>44</td><td>0,73</td></tr>
+              <tr><td>5</td><td>0,08</td><td>25</td><td>0,42</td><td>45</td><td>0,75</td></tr>
+              <tr><td>6</td><td>0,10</td><td>26</td><td>0,43</td><td>46</td><td>0,77</td></tr>
+              <tr><td>7</td><td>0,12</td><td>27</td><td>0,45</td><td>47</td><td>0,78</td></tr>
+              <tr><td>8</td><td>0,13</td><td>28</td><td>0,47</td><td>48</td><td>0,80</td></tr>
+              <tr><td>9</td><td>0,15</td><td>29</td><td>0,48</td><td>49</td><td>0,82</td></tr>
+              <tr><td>10</td><td>0,17</td><td>30</td><td>0,50</td><td>50</td><td>0,83</td></tr>
+              <tr><td>11</td><td>0,18</td><td>31</td><td>0,52</td><td>51</td><td>0,85</td></tr>
+              <tr><td>12</td><td>0,20</td><td>32</td><td>0,53</td><td>52</td><td>0,87</td></tr>
+              <tr><td>13</td><td>0,22</td><td>33</td><td>0,55</td><td>53</td><td>0,88</td></tr>
+              <tr><td>14</td><td>0,23</td><td>34</td><td>0,57</td><td>54</td><td>0,90</td></tr>
+              <tr><td>15</td><td>0,25</td><td>35</td><td>0,58</td><td>55</td><td>0,92</td></tr>
+              <tr><td>16</td><td>0,27</td><td>36</td><td>0,60</td><td>56</td><td>0,93</td></tr>
+              <tr><td>17</td><td>0,28</td><td>37</td><td>0,62</td><td>57</td><td>0,95</td></tr>
+              <tr><td>18</td><td>0,30</td><td>38</td><td>0,63</td><td>58</td><td>0,97</td></tr>
+              <tr><td>19</td><td>0,32</td><td>39</td><td>0,65</td><td>59</td><td>0,98</td></tr>
+              <tr><td>20</td><td>0,33</td><td>40</td><td>0,67</td><td>60</td><td>1,00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zeit-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/zeit-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    },
+    "featureList": [
+      "Stunden, Minuten und Sekunden addieren",
+      "Zeiten subtrahieren",
+      "Zeitdifferenz berechnen",
+      "Über Mitternacht rechnen",
+      "Dezimalstunden umrechnen",
+      "Kostenlos ohne Anmeldung"
+    ]
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie rechnet man Stunden und Minuten zusammen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um Zeiten zu addieren, rechne alle Werte in Minuten oder Sekunden um, addiere sie und wandle das Ergebnis zurück. Beispiel: 2:30 + 1:45 = 150 min + 105 min = 255 min = 4:15. Unser Zeit-Rechner macht das automatisch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was sind Dezimalstunden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dezimalstunden (Industriestunden) stellen Minuten als Dezimalbruch dar. 30 Minuten = 0,5 Stunden, 15 Minuten = 0,25 Stunden. Sie werden für Lohnabrechnungen verwendet. Formel: Dezimalstunden = Minuten ÷ 60."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Arbeitszeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Arbeitszeit = Endzeit - Startzeit - Pausen. Beispiel: 08:00 bis 17:30 = 9:30 Brutto. Abzüglich 45 Min Pause = 8:45 Netto (8,75 Dezimalstunden)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechnet man über Mitternacht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Nachtschichten (z.B. 22:00 bis 06:00) addiert man 24 Stunden zur Endzeit: 06:00 + 24:00 = 30:00. Dann: 30:00 - 22:00 = 8:00 Stunden Arbeitszeit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange darf man am Tag arbeiten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach dem Arbeitszeitgesetz (ArbZG) maximal 8 Stunden täglich. Eine Verlängerung auf 10 Stunden ist möglich, wenn innerhalb von 6 Monaten der Durchschnitt von 8 Stunden nicht überschritten wird."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Pause steht mir zu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei mehr als 6 Stunden Arbeitszeit: mindestens 30 Minuten Pause. Bei mehr als 9 Stunden: mindestens 45 Minuten. Pausen können in 15-Minuten-Blöcke aufgeteilt werden (§4 ArbZG)."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -229,7 +229,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Verdienst du über oder unter Durchschnitt?',
     icon: '📈',
     kategorie: 'arbeit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Gehaltsvergleich, Durchschnittsgehalt Deutschland, Gehalt vergleichen',
   },
   {
@@ -268,7 +268,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Überstunden-Vergütung berechnen',
     icon: '⏱️',
     kategorie: 'arbeit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Überstunden Rechner, Überstunden berechnen, Überstunden auszahlen',
   },
   {
@@ -277,7 +277,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Gehalt & Stunden bei Teilzeit',
     icon: '⚖️',
     kategorie: 'arbeit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Teilzeit Rechner, Teilzeitgehalt berechnen, Teilzeit Stunden',
   },
   {
@@ -979,7 +979,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Täglichen Kalorienbedarf berechnen',
     icon: '🍎',
     kategorie: 'gesundheit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Kalorienrechner, Kalorienbedarf berechnen, Grundumsatz',
   },
 
@@ -1188,8 +1188,12 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'EUR in andere Währungen umrechnen',
     icon: '💱',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'Währungsrechner, Euro umrechnen, Wechselkurs',
+    fertig: true,
+    seoKeywords: 'Währungsrechner, Euro umrechnen, Wechselkurs, Dollar Euro, Pfund Euro, Franken Euro, Euro Dollar Kurs',
+    quellen: [
+      'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.de.html',
+      'https://www.bundesbank.de/de/statistiken/wechselkurse',
+    ],
   },
   {
     id: 'privatinsolvenz',
@@ -1206,8 +1210,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Monatsbudget planen (50-30-20)',
     icon: '📋',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'Budget Rechner, Haushaltsbuch, 50 30 20 Regel',
+    fertig: true,
+    seoKeywords: 'Budget Rechner, Haushaltsbuch, 50 30 20 Regel, Budgetplanung, Monatsbudget, Elizabeth Warren',
+    quellen: [
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/haushaltsbuch-einnahmen-und-ausgaben-im-blick-44954',
+      'https://www.finanztip.de/haushaltsbuch/',
+      'https://www.sparkasse.de/pk/ratgeber/finanzen-im-griff/haushaltsbuch.html',
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════
@@ -1216,11 +1225,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'trinkgeld',
     name: 'Trinkgeld-Rechner',
-    beschreibung: 'Trinkgeld berechnen (5-15%)',
+    beschreibung: 'Trinkgeld berechnen (5-20%)',
     icon: '💶',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld',
+    fertig: true,
+    seoKeywords: 'Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Trinkgeld Restaurant, Trinkgeld Deutschland, Trinkgeld Prozent, aufrunden',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__3.html',
+      'https://www.verbraucherzentrale.de',
+      'https://www.dehoga-bundesverband.de',
+    ],
   },
   {
     id: 'prozent',
@@ -1290,8 +1304,8 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Genaues Alter in Jahren, Monaten, Tagen',
     icon: '🎂',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Alter Rechner, Alter berechnen, wie alt bin ich genau',
+    fertig: true,
+    seoKeywords: 'Alter Rechner, Alter berechnen, wie alt bin ich genau, Alter in Tagen, Tage bis Geburtstag, Geburtsdatum Rechner, Lebenszeit berechnen',
   },
   {
     id: 'tage-zwischen',
@@ -1299,8 +1313,12 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Tage zwischen zwei Daten zählen',
     icon: '📅',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Tage Rechner, Tage berechnen, wie viele Tage bis',
+    fertig: true,
+    seoKeywords: 'Tage Rechner, Tage berechnen, wie viele Tage bis, Tage dazwischen, Datumsrechner, Tage zählen, Countdown Rechner, Tage zwischen Daten',
+    quellen: [
+      'https://de.wikipedia.org/wiki/Zeitspanne',
+      'https://de.wikipedia.org/wiki/Gregorianischer_Kalender',
+    ],
   },
   {
     id: 'einheiten',
@@ -1423,7 +1441,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Dreisatz einfach berechnen',
     icon: '🔢',
     kategorie: 'alltag',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Dreisatz Rechner, Dreisatz berechnen, Dreisatzrechner online',
   },
   {
@@ -1470,8 +1488,12 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Stunden & Minuten addieren/subtrahieren',
     icon: '⏰',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berechnen',
+    fertig: true,
+    seoKeywords: 'Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berechnen, Zeitdifferenz, Dezimalstunden',
+    quellen: [
+      'https://www.gesetze-im-internet.de/arbzg/',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Arbeitszeit/arbeitszeit.html',
+    ],
   },
   {
     id: 'bruchrechner',
@@ -1479,8 +1501,12 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Brüche berechnen & kürzen',
     icon: '➗',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addieren',
+    fertig: true,
+    seoKeywords: 'Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addieren, Brüche subtrahieren, Brüche multiplizieren, Brüche dividieren, ggT, kgV, Bruch in Dezimalzahl',
+    quellen: [
+      'https://www.mathematik.de/',
+      'https://www.frustfrei-lernen.de/mathematik/bruchrechnung.html',
+    ],
   },
   {
     id: 'notendurchschnitt',
@@ -1488,8 +1514,12 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Schulnoten-Durchschnitt berechnen',
     icon: '📚',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Notendurchschnitt Rechner, Noten berechnen, Zeugnis Durchschnitt',
+    fertig: true,
+    seoKeywords: 'Notendurchschnitt Rechner, Noten berechnen, Zeugnis Durchschnitt, gewichteter Durchschnitt Noten, Zeugnisdurchschnitt berechnen, Notenschnitt, Schulnoten Rechner',
+    quellen: [
+      'https://www.kmk.org/themen/allgemeinbildende-schulen.html',
+      'https://www.schulministerium.nrw/schule-bildung/recht/schulrecht',
+    ],
   },
   {
     id: 'abi-schnitt',
