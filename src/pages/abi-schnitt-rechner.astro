@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AbiSchnittRechner from '../components/rechner/AbiSchnittRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Abitur-Schnitt-Rechner 2025/2026 – Abi-Durchschnitt & NC berechnen";
+const description = "Abitur Rechner: Berechnen Sie Ihren Abi-Schnitt aus Punkten. Mit Punkte-Tabelle (0-15 → Note), NC-Check für Studiengänge & Formel. Kostenlos & sofort.";
+const keywords = "Abi Rechner, Abitur Durchschnitt, Abi Schnitt berechnen, NC Rechner, Abitur Punkte Note, Abi-Schnitt 2025, Abiturnote berechnen, Oberstufe Punkte, Abitur Formel, 15 Punkte Note, Abi NC Check, Qualifikationsphase Punkte";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Abitur-Schnitt-Rechner", url: "/abi-schnitt-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎓</span>
+          <div>
+            <h1 class="text-2xl font-bold">Abitur-Schnitt-Rechner</h1>
+            <p class="text-indigo-100 text-sm">Abi-Durchschnitt & NC-Eignung berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AbiSchnittRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Abitur-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Abitur-Schnitt-Rechner</strong> können Sie Ihren Abi-Durchschnitt aus der 
+            Gesamtpunktzahl berechnen. Der Rechner zeigt Ihnen auch, für welche Studiengänge Ihr NC 
+            reicht – inklusive Punkte-Tabelle und offizieller Formel.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Abiturnote berechnet?</h3>
+          <p>
+            Die <strong>Abiturnote</strong> wird aus der Gesamtpunktzahl berechnet, die Sie in der 
+            Qualifikationsphase (Q1-Q4) und den Abiturprüfungen erreichen. Die offizielle Formel lautet:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
+            <strong>N = 17/3 − (P × 17) / (3 × Pmax)</strong>
+          </div>
+          <p>
+            Dabei ist N die Note, P die erreichten Punkte und Pmax die maximal erreichbaren Punkte 
+            (in der Regel 900).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Das Abitur-Punktesystem (0-15)</h3>
+          <p>
+            In der gymnasialen Oberstufe werden Noten als <strong>Punkte von 0-15</strong> vergeben. 
+            Diese entsprechen den klassischen Schulnoten 1-6:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>15-13 Punkte:</strong> Note 1 (sehr gut)</li>
+            <li><strong>12-10 Punkte:</strong> Note 2 (gut)</li>
+            <li><strong>9-7 Punkte:</strong> Note 3 (befriedigend)</li>
+            <li><strong>6-4 Punkte:</strong> Note 4 (ausreichend)</li>
+            <li><strong>3-1 Punkte:</strong> Note 5 (mangelhaft)</li>
+            <li><strong>0 Punkte:</strong> Note 6 (ungenügend)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aufbau der Abiturqualifikation</h3>
+          <p>
+            Die Abiturnote setzt sich aus zwei Blöcken zusammen:
+          </p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Block I (Kursblock):</strong> Bis zu 600 Punkte aus den Kursen der 
+              Qualifikationsphase. Leistungskurse werden doppelt gewertet.
+            </li>
+            <li>
+              <strong>Block II (Prüfungsblock):</strong> Bis zu 300 Punkte aus den 5 Abiturprüfungen. 
+              Jede Prüfung wird 4-fach gewertet (oder 5-fach je nach Bundesland).
+            </li>
+          </ul>
+          <p>
+            <strong>Maximum:</strong> 900 Punkte = Abiturnote 1,0<br/>
+            <strong>Minimum zum Bestehen:</strong> 300 Punkte = Abiturnote 4,0
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Punkte-Tabelle: Abiturpunkte → Note</h3>
+          <p>
+            Hier einige wichtige Umrechnungswerte (bei 900 max. Punkten):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>900 Punkte</strong> = Note 1,0</li>
+            <li><strong>823 Punkte</strong> = Note 1,5</li>
+            <li><strong>746 Punkte</strong> = Note 2,0</li>
+            <li><strong>669 Punkte</strong> = Note 2,5</li>
+            <li><strong>592 Punkte</strong> = Note 3,0</li>
+            <li><strong>515 Punkte</strong> = Note 3,5</li>
+            <li><strong>300 Punkte</strong> = Note 4,0 (gerade bestanden)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der NC (Numerus Clausus)?</h3>
+          <p>
+            Der <strong>NC (Numerus Clausus)</strong> ist die Zulassungsgrenze für bestimmte Studiengänge. 
+            Er gibt an, welche Abiturnote mindestens erforderlich war, um im letzten Semester einen 
+            Studienplatz zu bekommen.
+          </p>
+          <p>
+            Wichtig: Der NC ist <strong>kein fester Wert</strong>, sondern schwankt je nach:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Anzahl der Studienplätze</li>
+            <li>Anzahl der Bewerbungen</li>
+            <li>Universität und Semester</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">NC-Richtwerte für beliebte Studiengänge</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Medizin:</strong> NC ~1,0 (+ TMS, Auswahlgespräche)</li>
+            <li><strong>Zahnmedizin:</strong> NC ~1,2</li>
+            <li><strong>Tiermedizin:</strong> NC ~1,3</li>
+            <li><strong>Psychologie:</strong> NC ~1,4</li>
+            <li><strong>Pharmazie:</strong> NC ~1,5</li>
+            <li><strong>Rechtswissenschaft:</strong> NC ~1,8 (an Top-Unis strenger)</li>
+            <li><strong>BWL:</strong> NC ~2,0</li>
+            <li><strong>Informatik:</strong> oft zulassungsfrei</li>
+            <li><strong>Ingenieurwissenschaften:</strong> meist zulassungsfrei</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für einen besseren Abi-Schnitt</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Leistungskurse strategisch wählen:</strong> LK-Kurse zählen doppelt. 
+              Wählen Sie Fächer, in denen Sie konstant gute Leistungen bringen.
+            </li>
+            <li>
+              <strong>Kein Fach vernachlässigen:</strong> Auch Grundkurse mit wenigen Punkten 
+              können den Schnitt deutlich verschlechtern.
+            </li>
+            <li>
+              <strong>Prüfungen ernst nehmen:</strong> Die 5 Abiturprüfungen machen ca. 1/3 der 
+              Gesamtnote aus (4-fache Wertung!).
+            </li>
+            <li>
+              <strong>Einbringen optimieren:</strong> Je nach Bundesland können Sie bestimmte 
+              Kurse „streichen" und die besten Ergebnisse einbringen.
+            </li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestanforderungen zum Bestehen</h3>
+          <p>
+            Um das Abitur zu bestehen, müssen Sie:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Mindestens <strong>300 Punkte</strong> insgesamt erreichen</li>
+            <li>In <strong>Block I</strong> mindestens 200 Punkte erreichen</li>
+            <li>In <strong>Block II</strong> mindestens 100 Punkte erreichen</li>
+            <li>Keine <strong>0-Punkte-Kurse</strong> im Pflichtbereich haben</li>
+            <li>In mindestens <strong>zwei Prüfungsfächern</strong> jeweils 5 Punkte (einfach) erreichen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Unterschiede zwischen den Bundesländern</h3>
+          <p>
+            Das Abitur ist <strong>Ländersache</strong>. Die Regeln können variieren bei:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Anzahl der einzubringenden Kurse</li>
+            <li>Gewichtung der Prüfungen (4-fach oder 5-fach)</li>
+            <li>Maximal erreichbare Punktzahl</li>
+            <li>Pflicht- und Wahlkurse</li>
+          </ul>
+          <p>
+            Für verbindliche Informationen wenden Sie sich an Ihre Schule oder das zuständige 
+            Kultusministerium.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Tools -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Ähnliche Rechner
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <a href="/bafoeg-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+            <div class="text-2xl mb-2">🎓</div>
+            <div class="font-semibold text-gray-800">BAföG-Rechner</div>
+            <div class="text-sm text-gray-500">BAföG-Anspruch prüfen</div>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+            <div class="text-2xl mb-2">💵</div>
+            <div class="font-semibold text-gray-800">Brutto-Netto-Rechner</div>
+            <div class="text-sm text-gray-500">Gehalt berechnen</div>
+          </a>
+          <a href="/prozent-rechner" class="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+            <div class="text-2xl mb-2">%</div>
+            <div class="font-semibold text-gray-800">Prozent-Rechner</div>
+            <div class="text-sm text-gray-500">Prozente berechnen</div>
+          </a>
+          <a href="/dreisatz-rechner" class="p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
+            <div class="text-2xl mb-2">🔢</div>
+            <div class="font-semibold text-gray-800">Dreisatz-Rechner</div>
+            <div class="text-sm text-gray-500">Dreisatz berechnen</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Abitur-Schnitt-Rechner – Abi-Durchschnitt berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/abi-schnitt-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Abiturnote?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Abiturnote wird mit der Formel N = 17/3 − (P × 17) / (3 × Pmax) berechnet. Dabei ist P die erreichte Punktzahl und Pmax die maximal erreichbare Punktzahl (meist 900). Mit 680 Punkten von 900 ergibt sich beispielsweise eine Note von 1,4."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Punkte braucht man für welchen Abi-Schnitt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 900 maximal erreichbaren Punkten: 900 Punkte = 1,0; 823 Punkte = 1,5; 746 Punkte = 2,0; 669 Punkte = 2,5; 592 Punkte = 3,0; 515 Punkte = 3,5; 300 Punkte = 4,0 (Minimum zum Bestehen)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was entsprechen 15 Punkte für eine Note?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "15 Punkte entsprechen der Note 1+ (sehr gut plus), was einem Notenwert von etwa 0,7 entspricht. Die Punkteskala von 0-15 wird wie folgt in Noten umgerechnet: 15-13 Punkte = Note 1, 12-10 Punkte = Note 2, 9-7 Punkte = Note 3, 6-4 Punkte = Note 4, 3-1 Punkte = Note 5, 0 Punkte = Note 6."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der NC und wie funktioniert er?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der NC (Numerus Clausus) ist die Zulassungsgrenze für zulassungsbeschränkte Studiengänge. Er gibt an, welche Abiturnote mindestens erforderlich war, um im letzten Semester einen Studienplatz zu bekommen. Der NC ist kein fester Wert und schwankt je nach Studiengang, Hochschule und Bewerberzahl."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welchen Abi-Schnitt braucht man für Medizin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für das Medizinstudium liegt der NC bei etwa 1,0 bis 1,2. Zusätzlich werden oft der TMS (Test für Medizinische Studiengänge), Auswahlgespräche und andere Kriterien berücksichtigt. Der NC variiert je nach Universität und Semester."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Punkte braucht man mindestens zum Bestehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um das Abitur zu bestehen, benötigt man mindestens 300 Punkte insgesamt. Davon müssen mindestens 200 Punkte aus dem Kursblock (Block I) und mindestens 100 Punkte aus dem Prüfungsblock (Block II) stammen. Außerdem darf man keine 0-Punkte-Kurse im Pflichtbereich haben."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,270 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BruchRechner from '../components/rechner/BruchRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Bruchrechner – Brüche berechnen, kürzen & umwandeln | kostenlos";
+const description = "Bruchrechner: Brüche addieren, subtrahieren, multiplizieren & dividieren. Automatisch kürzen, als Dezimalzahl anzeigen. Mit Schritt-für-Schritt Lösung. Kostenlos & ohne Anmeldung.";
+const keywords = "Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addieren, Brüche subtrahieren, Brüche multiplizieren, Brüche dividieren, ggT, kgV, Bruch in Dezimalzahl, Bruchrechnung online, Brüche umwandeln, gemischte Zahlen";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bruch-Rechner", url: "/bruch-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">➗</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bruch-Rechner</h1>
+            <p class="text-indigo-100 text-sm">Brüche berechnen & kürzen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BruchRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bruchrechner: Alles über das Rechnen mit Brüchen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Unser <strong>Bruchrechner</strong> hilft Ihnen beim Rechnen mit Brüchen – ob Addieren, 
+            Subtrahieren, Multiplizieren oder Dividieren. Die Ergebnisse werden automatisch gekürzt 
+            und als Dezimalzahl, Prozent und gemischte Zahl angezeigt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist ein Bruch?</h3>
+          <p>
+            Ein <strong>Bruch</strong> besteht aus zwei Zahlen, die durch einen Bruchstrich getrennt sind:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Zähler:</strong> Die Zahl über dem Bruchstrich – gibt an, wie viele Teile gemeint sind</li>
+            <li><strong>Nenner:</strong> Die Zahl unter dem Bruchstrich – gibt an, in wie viele Teile das Ganze geteilt wurde</li>
+          </ul>
+          <p>
+            <strong>Beispiel:</strong> 3/4 bedeutet "drei von vier gleichen Teilen" oder "drei Viertel".
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brüche addieren und subtrahieren</h3>
+          <p>
+            Beim <strong>Addieren</strong> und <strong>Subtrahieren</strong> von Brüchen müssen die 
+            Nenner gleich sein. Sind sie unterschiedlich, muss zunächst ein <strong>gemeinsamer Nenner 
+            (Hauptnenner)</strong> gefunden werden:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>Hauptnenner finden (kleinstes gemeinsames Vielfaches der Nenner)</li>
+            <li>Beide Brüche auf den Hauptnenner erweitern</li>
+            <li>Zähler addieren oder subtrahieren</li>
+            <li>Ergebnis kürzen</li>
+          </ol>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">1/2 + 1/4 = 2/4 + 1/4 = 3/4</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brüche multiplizieren</h3>
+          <p>
+            Das <strong>Multiplizieren</strong> von Brüchen ist einfacher als das Addieren:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Zähler mit Zähler multiplizieren</li>
+            <li>Nenner mit Nenner multiplizieren</li>
+            <li>Ergebnis kürzen</li>
+          </ul>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">2/3 × 3/4 = (2×3) / (3×4) = 6/12 = 1/2</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brüche dividieren</h3>
+          <p>
+            Beim <strong>Dividieren</strong> von Brüchen wird mit dem <strong>Kehrwert</strong> 
+            multipliziert (Zähler und Nenner vertauschen):
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = 2</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brüche kürzen</h3>
+          <p>
+            Ein Bruch kann <strong>gekürzt</strong> werden, wenn Zähler und Nenner einen gemeinsamen 
+            Teiler haben. Dazu bestimmt man den <strong>größten gemeinsamen Teiler (ggT)</strong> 
+            und teilt beide Zahlen dadurch:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">12/18 → ggT(12,18) = 6 → 12÷6 / 18÷6 = 2/3</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bruch in Dezimalzahl umwandeln</h3>
+          <p>
+            Um einen Bruch in eine <strong>Dezimalzahl</strong> umzuwandeln, teilt man den Zähler 
+            durch den Nenner:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-mono text-sm">
+              3/4 = 3 ÷ 4 = 0,75<br/>
+              1/3 = 1 ÷ 3 = 0,333... (periodisch)
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gemischte Zahlen</h3>
+          <p>
+            Eine <strong>gemischte Zahl</strong> besteht aus einer ganzen Zahl und einem Bruch, 
+            z.B. "1 3/4". Um einen unechten Bruch (Zähler größer als Nenner) in eine gemischte 
+            Zahl umzuwandeln:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>Zähler durch Nenner teilen (ganze Zahl)</li>
+            <li>Rest als neuer Zähler, Nenner bleibt</li>
+          </ol>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">7/4 = 1 Rest 3 → 1 3/4</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wichtige Begriffe</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>ggT (größter gemeinsamer Teiler):</strong> Größte Zahl, durch die beide Zahlen teilbar sind</li>
+            <li><strong>kgV (kleinstes gemeinsames Vielfaches):</strong> Kleinste Zahl, die durch beide Zahlen teilbar ist</li>
+            <li><strong>Kehrwert:</strong> Bruch mit vertauschtem Zähler und Nenner (3/4 → 4/3)</li>
+            <li><strong>Erweitern:</strong> Zähler und Nenner mit derselben Zahl multiplizieren (Wert bleibt gleich)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Praktische Anwendungen</h3>
+          <p>
+            Bruchrechnung begegnet uns im Alltag häufiger als gedacht:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kochen:</strong> Rezeptmengen anpassen (1/2 Tasse × 3 = 1 1/2 Tassen)</li>
+            <li><strong>Handwerken:</strong> Maße berechnen (3/4 Meter + 1/8 Meter)</li>
+            <li><strong>Finanzen:</strong> Anteile berechnen (2/3 vom Gewinn)</li>
+            <li><strong>Zeit:</strong> Stunden als Brüche (1/4 Stunde = 15 Minuten)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">📚</span>
+          Weiterführende Ressourcen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Mathematik lernen</h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <a href="https://www.mathematik.de" class="underline" target="_blank" rel="noopener">Deutsche Mathematiker-Vereinigung</a></li>
+              <li>• <a href="https://www.frustfrei-lernen.de/mathematik/bruchrechnung.html" class="underline" target="_blank" rel="noopener">Frustfrei-Lernen – Bruchrechnung</a></li>
+              <li>• <a href="https://www.mathe-lexikon.at" class="underline" target="_blank" rel="noopener">Mathe-Lexikon</a></li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Nachhilfe & Übung</h3>
+            <p class="text-green-700 text-sm">
+              Bei Schwierigkeiten mit der Bruchrechnung helfen kostenlose Lernplattformen und 
+              Übungsblätter. Auch Volkshochschulen bieten Mathematik-Kurse an.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bruchrechner – Brüche berechnen & kürzen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bruch-rechner",
+    "applicationCategory": "EducationApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie addiert man Brüche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zum Addieren von Brüchen müssen die Nenner gleich sein. Dazu findet man den Hauptnenner (kgV), erweitert beide Brüche, addiert die Zähler und behält den Nenner bei. Beispiel: 1/2 + 1/4 = 2/4 + 1/4 = 3/4"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie multipliziert man Brüche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim Multiplizieren von Brüchen multipliziert man Zähler mit Zähler und Nenner mit Nenner. Beispiel: 2/3 × 3/4 = (2×3)/(3×4) = 6/12 = 1/2"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dividiert man Brüche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim Dividieren von Brüchen multipliziert man mit dem Kehrwert des zweiten Bruchs. Der Kehrwert entsteht durch Vertauschen von Zähler und Nenner. Beispiel: 1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = 2"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet Bruch kürzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kürzen bedeutet, Zähler und Nenner durch denselben Teiler zu dividieren. Ein Bruch ist vollständig gekürzt, wenn Zähler und Nenner keinen gemeinsamen Teiler außer 1 haben. Beispiel: 12/18 → ggT=6 → 2/3"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wandelt man einen Bruch in eine Dezimalzahl um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um einen Bruch in eine Dezimalzahl umzuwandeln, teilt man den Zähler durch den Nenner. Beispiel: 3/4 = 3÷4 = 0,75. Bei manchen Brüchen entstehen periodische Dezimalzahlen, z.B. 1/3 = 0,333..."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen ggT und kgV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der ggT (größter gemeinsamer Teiler) ist die größte Zahl, durch die beide Zahlen teilbar sind – wichtig zum Kürzen. Das kgV (kleinstes gemeinsames Vielfaches) ist die kleinste Zahl, die durch beide Zahlen teilbar ist – wichtig für den Hauptnenner."
+        }
+      }
+    ]
+  })} />
+</Layout>
