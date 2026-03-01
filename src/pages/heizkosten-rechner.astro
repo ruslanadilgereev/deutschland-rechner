@@ -1,0 +1,362 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeizkostenRechner from '../components/rechner/HeizkostenRechner';
+
+const title = "Heizkosten-Rechner 2026 – Heizkosten berechnen | Deutschland-Rechner";
+const description = "Heizkosten berechnen 2026: Gas, Öl, Fernwärme oder Wärmepumpe vergleichen. Verbrauch schätzen nach Wohnfläche & Dämmung. Kostenloser Rechner für Ihre jährlichen Heizkosten inkl. Spartipps.";
+const keywords = "Heizkosten Rechner, Heizkosten berechnen, Heizkosten pro qm, Heizkosten 2026, Gasheizung Kosten, Ölheizung Kosten, Wärmepumpe Kosten, Fernwärme Kosten, Heizkosten vergleichen, Heizkosten Wohnung, Heizkosten Haus, Heizspiegel";
+
+// FAQ Schema für SEO
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet Heizen pro Quadratmeter 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die durchschnittlichen Heizkosten 2026 liegen je nach Energieträger bei: Gasheizung ca. 15-20 €/m²/Jahr, Ölheizung ca. 14-18 €/m²/Jahr, Fernwärme ca. 16-22 €/m²/Jahr, Wärmepumpe ca. 10-14 €/m²/Jahr. Die genauen Kosten hängen vom Dämmstandard des Gebäudes ab."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist der durchschnittliche Heizenergieverbrauch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der durchschnittliche Heizenergieverbrauch in Deutschland liegt bei 100-150 kWh pro Quadratmeter und Jahr. Unsanierte Altbauten (vor 1978) verbrauchen oft 180 kWh/m² oder mehr, während gut gedämmte Neubauten nur 60-80 kWh/m² benötigen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist günstiger: Gas, Öl, Fernwärme oder Wärmepumpe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2026 ist die Wärmepumpe trotz höherer Strompreise oft am günstigsten, da sie aus 1 kWh Strom etwa 3-4 kWh Wärme erzeugt. Holzpellets sind ebenfalls günstig. Gas und Öl werden durch die CO₂-Steuer teurer, Fernwärme variiert stark nach Region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kann ich meine Heizkosten senken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die effektivsten Maßnahmen sind: Raumtemperatur um 1°C senken (spart 6%), Heizkörper entlüften, Stoßlüften statt Dauerlüften, Thermostatventile nutzen, Rollläden nachts schließen, hydraulischer Abgleich (spart bis 15%). Langfristig lohnt sich bessere Dämmung oder ein Heizungstausch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist die CO₂-Steuer auf Heizung 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der CO₂-Preis beträgt 2026 55 Euro pro Tonne. Bei einer Gasheizung mit 20.000 kWh Jahresverbrauch sind das etwa 220 Euro Mehrkosten pro Jahr. Bei Ölheizungen ist der Aufschlag noch höher (ca. 290 €), da Öl mehr CO₂ ausstößt."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Heizkosten-Rechner 2026</h1>
+            <p class="text-orange-100 text-sm">Gas, Öl, Fernwärme & Wärmepumpe vergleichen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <HeizkostenRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Heizkosten 2026: Was kostet Heizen pro m²?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem kostenlosen <strong>Heizkosten-Rechner</strong> berechnen Sie Ihre jährlichen und monatlichen
+            Heizkosten für 2026. Vergleichen Sie verschiedene Heizungsarten wie Gas, Öl, Fernwärme, Wärmepumpe 
+            und Pellets – und finden Sie heraus, wie Sie am günstigsten heizen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittliche Heizkosten nach Energieträger</h3>
+          
+          <p>
+            Der <strong>Heizspiegel 2025</strong> zeigt die durchschnittlichen Heizkosten für eine 70m²-Wohnung 
+            in einem Mehrfamilienhaus:
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-orange-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Heizungsart</th>
+                  <th class="text-right p-3">Preis/kWh</th>
+                  <th class="text-right p-3">Kosten 70m²</th>
+                  <th class="text-right p-3 rounded-tr-lg">€/m²</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-3">🔵 Erdgas</td>
+                  <td class="text-right p-3">~12 ct</td>
+                  <td class="text-right p-3 font-medium">1.180 €</td>
+                  <td class="text-right p-3">16,86 €</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">🟤 Heizöl</td>
+                  <td class="text-right p-3">~11 ct</td>
+                  <td class="text-right p-3 font-medium">1.055 €</td>
+                  <td class="text-right p-3">15,07 €</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3">🔴 Fernwärme</td>
+                  <td class="text-right p-3">~13 ct</td>
+                  <td class="text-right p-3 font-medium">1.245 €</td>
+                  <td class="text-right p-3">17,79 €</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">💚 Wärmepumpe</td>
+                  <td class="text-right p-3">~37 ct*</td>
+                  <td class="text-right p-3 font-medium">~850 €</td>
+                  <td class="text-right p-3">12,14 €</td>
+                </tr>
+                <tr>
+                  <td class="p-3 rounded-bl-lg">🟠 Holzpellets</td>
+                  <td class="text-right p-3">~7 ct</td>
+                  <td class="text-right p-3 font-medium">~720 €</td>
+                  <td class="text-right p-3 rounded-br-lg">10,29 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p class="text-sm text-gray-500 italic">
+            * Wärmepumpe: Strompreis 37 ct/kWh, aber durch Jahresarbeitszahl (JAZ) von 3,5 werden effektiv 
+            nur ~10,5 ct/kWh Wärme bezahlt.
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-green-800">
+              <strong>💡 Spartipp:</strong> Wärmepumpen und Pelletheizungen sind 2026 die günstigsten 
+              Heizungsarten. Beim Heizungstausch gibt es bis zu <strong>70% Förderung</strong> durch die 
+              Bundesförderung für effiziente Gebäude (BEG)!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Heizenergieverbrauch nach Gebäudetyp</h3>
+          
+          <p>
+            Der <strong>Heizenergieverbrauch</strong> hängt stark vom Dämmstandard ab. Hier die 
+            typischen Werte in kWh pro Quadratmeter und Jahr:
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-orange-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Gebäudetyp</th>
+                  <th class="text-right p-3">Verbrauch</th>
+                  <th class="text-right p-3 rounded-tr-lg">Einstufung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-3">Unsanierter Altbau (vor 1978)</td>
+                  <td class="text-right p-3 font-medium">150-200 kWh/m²</td>
+                  <td class="text-right p-3 text-red-600">Hoch</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">Teilsaniert (1979-2001)</td>
+                  <td class="text-right p-3 font-medium">100-150 kWh/m²</td>
+                  <td class="text-right p-3 text-yellow-600">Mittel</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3">Saniert/Neubau (ab 2002)</td>
+                  <td class="text-right p-3 font-medium">70-100 kWh/m²</td>
+                  <td class="text-right p-3 text-green-600">Niedrig</td>
+                </tr>
+                <tr>
+                  <td class="p-3 rounded-bl-lg">Effizienzhaus/Passivhaus</td>
+                  <td class="text-right p-3 font-medium rounded-br-lg">15-60 kWh/m²</td>
+                  <td class="text-right p-3 text-green-600">Sehr niedrig</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">CO₂-Steuer auf Heizkosten 2026</h3>
+          
+          <p>
+            Die <strong>CO₂-Abgabe</strong> verteuert fossile Brennstoffe wie Gas und Öl. Der Preis steigt 
+            von Jahr zu Jahr:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2024:</strong> 45 €/Tonne CO₂</li>
+            <li><strong>2025:</strong> 50 €/Tonne CO₂</li>
+            <li><strong>2026:</strong> 55 €/Tonne CO₂</li>
+            <li><strong>2027:</strong> 65 €/Tonne CO₂ (geplant)</li>
+          </ul>
+          
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-amber-800">
+              <strong>Beispielrechnung Gas:</strong> Bei 20.000 kWh Gasverbrauch entstehen ca. 4 Tonnen CO₂. 
+              Die CO₂-Steuer beträgt 2026 also 4 × 55 € = <strong>220 € Mehrkosten</strong> pro Jahr 
+              (bereits in den Gaspreisen enthalten).
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So senken Sie Ihre Heizkosten</h3>
+          
+          <div class="bg-orange-50 p-4 rounded-lg my-4">
+            <h4 class="font-medium text-orange-900 mb-2">Sofort-Maßnahmen (kostenlos):</h4>
+            <ul class="list-disc pl-5 space-y-1 text-orange-800 text-sm">
+              <li><strong>Temperatur senken:</strong> 1°C weniger spart 6% Heizkosten</li>
+              <li><strong>Heizkörper entlüften:</strong> Spart bis zu 5%</li>
+              <li><strong>Stoßlüften:</strong> 5-10 Minuten statt Dauerkippen spart 10%</li>
+              <li><strong>Rollläden schließen:</strong> Nachts bis zu 5% sparen</li>
+              <li><strong>Heizkörper freihalten:</strong> Keine Möbel oder Vorhänge davor</li>
+            </ul>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <h4 class="font-medium text-green-900 mb-2">Investitionen (lohnen sich langfristig):</h4>
+            <ul class="list-disc pl-5 space-y-1 text-green-800 text-sm">
+              <li><strong>Hydraulischer Abgleich:</strong> ~150-400 €, spart 10-15%</li>
+              <li><strong>Programmierbare Thermostate:</strong> ~30-100 €/Stück, spart 5-10%</li>
+              <li><strong>Heizungsrohre dämmen:</strong> ~5-10 €/m, spart 5-8%</li>
+              <li><strong>Fenster & Dämmung:</strong> Größte Ersparnis, aber hohe Investition</li>
+              <li><strong>Heizungstausch:</strong> Bis zu 70% Förderung durch BEG!</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verwandte Rechner</h3>
+          
+          <div class="grid grid-cols-2 gap-3 my-4">
+            <a href="/stromkosten-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">⚡</span>
+              <p class="font-medium text-gray-800 mt-1">Stromkosten-Rechner</p>
+              <p class="text-xs text-gray-500">Stromverbrauch & Kosten</p>
+            </a>
+            <a href="/nebenkosten-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">💡</span>
+              <p class="font-medium text-gray-800 mt-1">Nebenkosten-Rechner</p>
+              <p class="text-xs text-gray-500">Miet-Nebenkosten schätzen</p>
+            </a>
+            <a href="/wohngeld-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">🏘️</span>
+              <p class="font-medium text-gray-800 mt-1">Wohngeld-Rechner</p>
+              <p class="text-xs text-gray-500">Miet- & Heizkostenzuschuss</p>
+            </a>
+            <a href="/buergergeld-rechner" class="block p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+              <span class="text-2xl">🏦</span>
+              <p class="font-medium text-gray-800 mt-1">Bürgergeld-Rechner</p>
+              <p class="text-xs text-gray-500">Heizkosten werden übernommen</p>
+            </a>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zu Heizkosten</h3>
+          
+          <div class="space-y-4 mt-4">
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was kostet Heizen pro Quadratmeter 2026?</summary>
+              <p class="mt-2 text-sm">
+                Die durchschnittlichen Heizkosten 2026 liegen je nach Energieträger bei: Gasheizung ca. 
+                15-20 €/m²/Jahr, Ölheizung ca. 14-18 €/m²/Jahr, Fernwärme ca. 16-22 €/m²/Jahr, Wärmepumpe 
+                ca. 10-14 €/m²/Jahr. Die genauen Kosten hängen vom Dämmstandard des Gebäudes ab.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie hoch ist der durchschnittliche Heizenergieverbrauch?</summary>
+              <p class="mt-2 text-sm">
+                Der durchschnittliche Heizenergieverbrauch in Deutschland liegt bei 100-150 kWh pro 
+                Quadratmeter und Jahr. Unsanierte Altbauten (vor 1978) verbrauchen oft 180 kWh/m² oder 
+                mehr, während gut gedämmte Neubauten nur 60-80 kWh/m² benötigen.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was ist günstiger: Gas, Öl, Fernwärme oder Wärmepumpe?</summary>
+              <p class="mt-2 text-sm">
+                2026 ist die Wärmepumpe trotz höherer Strompreise oft am günstigsten, da sie aus 1 kWh 
+                Strom etwa 3-4 kWh Wärme erzeugt. Holzpellets sind ebenfalls günstig. Gas und Öl werden 
+                durch die CO₂-Steuer teurer, Fernwärme variiert stark nach Region.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie kann ich meine Heizkosten senken?</summary>
+              <p class="mt-2 text-sm">
+                Die effektivsten Maßnahmen sind: Raumtemperatur um 1°C senken (spart 6%), Heizkörper 
+                entlüften, Stoßlüften statt Dauerlüften, Thermostatventile nutzen, Rollläden nachts 
+                schließen, hydraulischer Abgleich (spart bis 15%). Langfristig lohnt sich bessere 
+                Dämmung oder ein Heizungstausch.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie hoch ist die CO₂-Steuer auf Heizung 2026?</summary>
+              <p class="mt-2 text-sm">
+                Der CO₂-Preis beträgt 2026 55 Euro pro Tonne. Bei einer Gasheizung mit 20.000 kWh 
+                Jahresverbrauch sind das etwa 220 Euro Mehrkosten pro Jahr. Bei Ölheizungen ist der 
+                Aufschlag noch höher (ca. 290 €), da Öl mehr CO₂ ausstößt.
+              </p>
+            </details>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Quellen</h3>
+          
+          <ul class="text-sm text-gray-500 space-y-1">
+            <li>
+              <a href="https://www.heizspiegel.de" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
+                Heizspiegel 2025 – co2online gGmbH
+              </a>
+            </li>
+            <li>
+              <a href="https://www.bdew.de" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
+                BDEW Bundesverband der Energie- und Wasserwirtschaft
+              </a>
+            </li>
+            <li>
+              <a href="https://www.umweltbundesamt.de" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
+                Umweltbundesamt – CO₂-Emissionsfaktoren
+              </a>
+            </li>
+            <li>
+              <a href="https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html" target="_blank" rel="noopener" class="text-orange-600 hover:underline">
+                BAFA – Bundesförderung für effiziente Gebäude (BEG)
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

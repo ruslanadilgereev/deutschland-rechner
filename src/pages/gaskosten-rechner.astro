@@ -1,0 +1,323 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GaskostenRechner from '../components/rechner/GaskostenRechner';
+
+const title = "Gaskosten-Rechner 2026 – Verbrauch & Kosten berechnen";
+const description = "Gaskosten berechnen 2026: Verbrauch schätzen nach Haushaltsgröße oder Wohnfläche, Preise vergleichen & Spartipps. Aktueller Durchschnitt: 11 ct/kWh. Kostenloser Rechner für Ihre jährlichen Heizkosten.";
+const keywords = "Gaskosten Rechner, Gaskosten berechnen, Gasverbrauch Rechner, Gaspreis 2026, kWh Rechner Gas, Gaskosten pro Jahr, Heizkosten Gas, Gasverbrauch schätzen, Gaspreis Deutschland, Gaspreisvergleich";
+
+// FAQ Schema für SEO
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was kostet 1 kWh Gas 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der durchschnittliche Gaspreis für Haushaltskunden liegt Anfang 2026 bei etwa 10-12 Cent pro Kilowattstunde (ct/kWh). Neukunden können bei Vergleichsportalen oft günstigere Tarife ab 8 ct/kWh finden. Die Preise variieren je nach Anbieter und Region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Gas verbraucht ein Einfamilienhaus pro Jahr?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein durchschnittliches Einfamilienhaus mit 140 m² verbraucht etwa 18.000-20.000 kWh Gas pro Jahr für Heizung und Warmwasser. Bei Altbauten kann der Verbrauch auf 25.000-30.000 kWh steigen, während gut gedämmte Neubauten nur 10.000-12.000 kWh benötigen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie berechne ich meine Gaskosten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formel: Gaskosten = (Verbrauch in kWh × Arbeitspreis) + (Grundpreis × 12 Monate). Beispiel: 20.000 kWh × 0,11 € + 12 € × 12 = 2.200 € + 144 € = 2.344 € pro Jahr. Den genauen Verbrauch finden Sie auf Ihrer letzten Gasrechnung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es noch die Gaspreisbremse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein, die Gaspreisbremse ist zum 31. Dezember 2023 ausgelaufen. Sie hatte den Preis für 80% des Vorjahresverbrauchs auf 12 ct/kWh gedeckelt. Seitdem gelten wieder die regulären Marktpreise, die sich inzwischen auf etwa 10-12 ct/kWh eingependelt haben."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Gas verbraucht ein 2-Personen-Haushalt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein 2-Personen-Haushalt in einer 70-80 m² Wohnung verbraucht durchschnittlich etwa 10.000-14.000 kWh Gas pro Jahr. Bei Gasheizung mit Warmwasserbereitung liegt der Durchschnitt bei etwa 12.000 kWh. Das entspricht Kosten von ca. 1.400-1.600 € pro Jahr."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Arbeitspreis und Grundpreis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Arbeitspreis wird pro verbrauchter Kilowattstunde berechnet (typisch 10-12 ct/kWh). Der Grundpreis ist eine monatliche Pauschale für Zählermiete, Netzentgelte und Servicekosten (typisch 10-15 €/Monat), unabhängig vom tatsächlichen Verbrauch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kann ich Gaskosten sparen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die effektivsten Maßnahmen: Heizung 1°C niedriger einstellen (spart ~6%), hydraulischen Abgleich durchführen lassen (spart ~7%), nachts die Heizung absenken (spart ~5%), Stoßlüften statt Dauerlüften (spart ~5%), und regelmäßig Gasanbieter vergleichen. Insgesamt können Sie 20-30% der Kosten einsparen."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Gaskosten-Rechner 2026</h1>
+            <p class="text-orange-100 text-sm">Verbrauch schätzen & Heizkosten berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GaskostenRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Gaskosten 2026: Was kostet eine kWh Gas?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem kostenlosen <strong>Gaskosten-Rechner</strong> berechnen Sie Ihre jährlichen und monatlichen
+            Heizkosten für 2026. Schätzen Sie Ihren Verbrauch anhand der Haushaltsgröße, Wohnfläche oder geben Sie 
+            Ihren tatsächlichen kWh-Verbrauch ein.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittlicher Gaspreis 2026</h3>
+          
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p class="font-medium text-gray-800">Arbeitspreis (Verbrauch)</p>
+                <p class="text-2xl font-bold text-orange-600">~11 ct/kWh</p>
+                <p class="text-gray-500 text-xs">Ø Deutschland, Anfang 2026</p>
+              </div>
+              <div>
+                <p class="font-medium text-gray-800">Grundpreis (Pauschale)</p>
+                <p class="text-2xl font-bold text-orange-600">~12 €/Monat</p>
+                <p class="text-gray-500 text-xs">Variiert je nach Anbieter</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gasverbrauch nach Haushaltsgröße</h3>
+          
+          <p>
+            Der durchschnittliche <strong>Gasverbrauch</strong> in Deutschland hängt stark von der Anzahl 
+            der Personen im Haushalt, der Wohnfläche und dem Gebäudezustand ab.
+          </p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm">
+              <thead class="bg-orange-50">
+                <tr>
+                  <th class="text-left p-3 rounded-tl-lg">Haushalt</th>
+                  <th class="text-right p-3">Ø Verbrauch</th>
+                  <th class="text-right p-3 rounded-tr-lg">Ø Kosten/Jahr</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-3">1 Person (45 m²)</td>
+                  <td class="text-right p-3 font-medium">5.000 kWh</td>
+                  <td class="text-right p-3 font-medium">~700 €</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">2 Personen (70 m²)</td>
+                  <td class="text-right p-3 font-medium">12.000 kWh</td>
+                  <td class="text-right p-3 font-medium">~1.450 €</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3">3 Personen (100 m²)</td>
+                  <td class="text-right p-3 font-medium">16.000 kWh</td>
+                  <td class="text-right p-3 font-medium">~1.900 €</td>
+                </tr>
+                <tr class="border-b bg-gray-50">
+                  <td class="p-3">4 Personen (130 m²)</td>
+                  <td class="text-right p-3 font-medium">20.000 kWh</td>
+                  <td class="text-right p-3 font-medium">~2.350 €</td>
+                </tr>
+                <tr>
+                  <td class="p-3 rounded-bl-lg">5+ Personen (160 m²)</td>
+                  <td class="text-right p-3 font-medium">24.000 kWh</td>
+                  <td class="text-right p-3 font-medium rounded-br-lg">~2.800 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-amber-800">
+              <strong>⚠️ Altbau-Zuschlag:</strong> Gebäude vor 1990 mit schlechter Dämmung 
+              verbrauchen durchschnittlich <strong>30-50% mehr Gas</strong> als gut gedämmte 
+              Neubauten. Ein Altbau mit 100 m² kann statt 14.000 kWh auch 20.000-25.000 kWh benötigen.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gaspreisentwicklung in Deutschland</h3>
+          
+          <p>
+            Der Gaspreis in Deutschland hat sich nach der Energiekrise 2022/2023 deutlich normalisiert:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2021:</strong> ~6-7 ct/kWh (vor der Energiekrise)</li>
+            <li><strong>2022:</strong> ~14-18 ct/kWh (Energiekrise, stark schwankend)</li>
+            <li><strong>2023:</strong> ~12-15 ct/kWh (Gaspreisbremse bei 12 ct für 80%)</li>
+            <li><strong>2024:</strong> ~10-13 ct/kWh (nach Auslaufen der Gaspreisbremse)</li>
+            <li><strong>2025/2026:</strong> ~10-12 ct/kWh (Stabilisierung auf niedrigerem Niveau)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitspreis vs. Grundpreis beim Gas</h3>
+          
+          <p>
+            Ihre Gasrechnung besteht aus zwei Komponenten:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1">
+            <li>
+              <strong>Arbeitspreis:</strong> Kosten pro verbrauchter Kilowattstunde (kWh). 
+              Bei Gas typischerweise 10-12 ct/kWh. Der Hauptkostentreiber bei hohem Verbrauch.
+            </li>
+            <li>
+              <strong>Grundpreis:</strong> Monatliche Pauschale für Gaszähler, Netzentgelte 
+              und Servicekosten. Fällt unabhängig vom Verbrauch an (typisch 10-15 €/Monat).
+            </li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So senken Sie Ihre Gaskosten</h3>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <ul class="list-disc pl-5 space-y-2 text-green-900 text-sm">
+              <li><strong>Heizung 1°C runter:</strong> Spart ca. 6% Heizkosten – das Effektivste!</li>
+              <li><strong>Hydraulischer Abgleich:</strong> Lassen Sie die Heizung vom Fachmann optimieren (bis 7% Ersparnis)</li>
+              <li><strong>Nachtabsenkung:</strong> Heizung nachts 2-3°C runter (spart ~5%)</li>
+              <li><strong>Stoßlüften:</strong> 5 Min. Fenster auf statt Dauerkippen (spart ~5%)</li>
+              <li><strong>Heizkörper freihalten:</strong> Keine Möbel vor Heizungen</li>
+              <li><strong>Rollläden schließen:</strong> Nachts geschlossene Rollläden dämmen zusätzlich</li>
+              <li><strong>Gasanbieter wechseln:</strong> Vergleichsportale zeigen bis zu 30% Ersparnis</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verwandte Rechner</h3>
+          
+          <div class="flex flex-wrap gap-2 my-4">
+            <a href="/stromkosten-rechner" class="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-emerald-200 transition-colors">
+              ⚡ Stromkosten-Rechner
+            </a>
+            <a href="/mietrechner" class="inline-flex items-center gap-1 bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-200 transition-colors">
+              🏠 Mietrechner
+            </a>
+            <a href="/nebenkostenrechner" class="inline-flex items-center gap-1 bg-purple-100 text-purple-800 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-purple-200 transition-colors">
+              📋 Nebenkosten-Rechner
+            </a>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zu Gaskosten</h3>
+          
+          <div class="space-y-4 mt-4">
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was kostet 1 kWh Gas 2026?</summary>
+              <p class="mt-2 text-sm">
+                Der durchschnittliche Gaspreis für Haushaltskunden liegt Anfang 2026 bei etwa 10-12 Cent 
+                pro Kilowattstunde (ct/kWh). Neukunden können bei Vergleichsportalen oft günstigere 
+                Tarife ab 8 ct/kWh finden. Die Preise variieren je nach Anbieter und Region.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie viel Gas verbraucht ein Einfamilienhaus pro Jahr?</summary>
+              <p class="mt-2 text-sm">
+                Ein durchschnittliches Einfamilienhaus mit 140 m² verbraucht etwa 18.000-20.000 kWh Gas 
+                pro Jahr für Heizung und Warmwasser. Bei Altbauten kann der Verbrauch auf 25.000-30.000 kWh 
+                steigen, während gut gedämmte Neubauten nur 10.000-12.000 kWh benötigen.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie berechne ich meine Gaskosten?</summary>
+              <p class="mt-2 text-sm">
+                Formel: <strong>Gaskosten = (Verbrauch × Arbeitspreis) + (Grundpreis × 12)</strong>. 
+                Beispiel: 20.000 kWh × 0,11 € + 12 € × 12 = 2.200 € + 144 € = <strong>2.344 € pro Jahr</strong>.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Gibt es noch die Gaspreisbremse?</summary>
+              <p class="mt-2 text-sm">
+                Nein, die Gaspreisbremse ist zum 31. Dezember 2023 ausgelaufen. Sie hatte den 
+                Preis für 80% des Vorjahresverbrauchs auf 12 ct/kWh gedeckelt. Seitdem gelten 
+                wieder die regulären Marktpreise, die sich inzwischen auf etwa 10-12 ct/kWh eingependelt haben.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Was ist der Unterschied zwischen Arbeitspreis und Grundpreis?</summary>
+              <p class="mt-2 text-sm">
+                Der <strong>Arbeitspreis</strong> wird pro verbrauchter Kilowattstunde berechnet (typisch 10-12 ct/kWh). 
+                Der <strong>Grundpreis</strong> ist eine monatliche Pauschale für Zählermiete, Netzentgelte und 
+                Servicekosten (typisch 10-15 €/Monat), unabhängig vom tatsächlichen Verbrauch.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie viel Gas verbraucht ein 2-Personen-Haushalt?</summary>
+              <p class="mt-2 text-sm">
+                Ein 2-Personen-Haushalt in einer 70-80 m² Wohnung verbraucht durchschnittlich etwa 
+                10.000-14.000 kWh Gas pro Jahr. Bei Gasheizung mit Warmwasserbereitung liegt der 
+                Durchschnitt bei etwa 12.000 kWh. Das entspricht Kosten von ca. 1.400-1.600 € pro Jahr.
+              </p>
+            </details>
+            
+            <details class="bg-gray-50 rounded-lg p-4">
+              <summary class="font-medium cursor-pointer">Wie kann ich Gaskosten sparen?</summary>
+              <p class="mt-2 text-sm">
+                Die effektivsten Maßnahmen: Heizung 1°C niedriger einstellen (spart ~6%), hydraulischen 
+                Abgleich durchführen lassen (spart ~7%), nachts die Heizung absenken (spart ~5%), 
+                Stoßlüften statt Dauerlüften (spart ~5%), und regelmäßig Gasanbieter vergleichen. 
+                Insgesamt können Sie 20-30% der Kosten einsparen.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
