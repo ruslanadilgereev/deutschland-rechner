@@ -649,11 +649,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'grundrente',
     name: 'Grundrente-Rechner',
-    beschreibung: 'Grundrentenzuschlag berechnen',
-    icon: '📊',
+    beschreibung: 'Grundrentenzuschlag & Einkommensprüfung berechnen',
+    icon: '🏆',
     kategorie: 'soziales',
-    fertig: false,
-    seoKeywords: 'Grundrente Rechner, Grundrentenzuschlag berechnen',
+    fertig: true,
+    seoKeywords: 'Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berechnen, Einkommensprüfung Grundrente, Freibetrag Grundrente, 33 Jahre Grundrentenzeiten, Entgeltpunkte Aufwertung',
+    quellen: [
+      'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Grundrente/grundrente_node.html',
+      'https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/Grundrente/grundrente.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__76g.html',
+    ],
   },
   {
     id: 'rentenabzuege',
