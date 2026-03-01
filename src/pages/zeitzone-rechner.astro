@@ -1,0 +1,246 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZeitzoneRechner from '../components/rechner/ZeitzoneRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Zeitzonen-Rechner 2026 – Uhrzeit weltweit umrechnen & vergleichen";
+const description = "Zeitzonen Rechner: Rechnen Sie Uhrzeiten zwischen verschiedenen Zeitzonen um. Aktuelle Uhrzeit weltweit, Zeitverschiebung berechnen. Kostenlos & sofort.";
+const keywords = "Zeitzonen Rechner, Zeitverschiebung, Uhrzeit umrechnen, Weltzeit, UTC, aktuelle Uhrzeit, Zeitzonen Deutschland, Zeitunterschied berechnen, Sommerzeit, Winterzeit, GMT";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Zeitzonen-Rechner", url: "/zeitzone-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🌍</span>
+          <div>
+            <h1 class="text-2xl font-bold">Zeitzonen-Rechner</h1>
+            <p class="text-indigo-100 text-sm">Weltzeit umrechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ZeitzoneRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zeitzonen-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Zeitzonen-Rechner</strong> können Sie Uhrzeiten zwischen verschiedenen 
+            Zeitzonen umrechnen. Ideal für internationale Geschäftstermine, Reiseplanung oder um 
+            Freunde und Familie in anderen Ländern zur richtigen Zeit anzurufen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind Zeitzonen?</h3>
+          <p>
+            Die Erde ist in <strong>24 Zeitzonen</strong> eingeteilt, die jeweils 15 Längengrade umfassen. 
+            Als Referenz dient die <strong>koordinierte Weltzeit (UTC)</strong>, früher auch Greenwich 
+            Mean Time (GMT) genannt. Von UTC aus werden alle anderen Zeitzonen berechnet.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zeitverschiebung zu Deutschland</h3>
+          <p>
+            Deutschland liegt in der Zeitzone <strong>MEZ (Mitteleuropäische Zeit)</strong> bzw. 
+            <strong>MESZ</strong> (Mitteleuropäische Sommerzeit):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>MEZ (Winterzeit):</strong> UTC+1</li>
+            <li><strong>MESZ (Sommerzeit):</strong> UTC+2</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zeitverschiebung wichtiger Städte</h3>
+          <p>
+            Zeitunterschied zu Deutschland (MEZ/UTC+1):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>New York:</strong> -6 Stunden (EST)</li>
+            <li><strong>Los Angeles:</strong> -9 Stunden (PST)</li>
+            <li><strong>London:</strong> -1 Stunde (GMT)</li>
+            <li><strong>Tokio:</strong> +8 Stunden (JST)</li>
+            <li><strong>Sydney:</strong> +10 Stunden (AEDT)</li>
+            <li><strong>Dubai:</strong> +3 Stunden (GST)</li>
+            <li><strong>Bangkok:</strong> +6 Stunden (ICT)</li>
+            <li><strong>Moskau:</strong> +2 Stunden (MSK)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sommerzeit und Winterzeit</h3>
+          <p>
+            In vielen Ländern wird die Uhr im Sommer umgestellt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Deutschland:</strong> Letzer Sonntag im März (vor) / Letzter Sonntag im Oktober (zurück)</li>
+            <li><strong>USA:</strong> Zweiter Sonntag im März / Erster Sonntag im November</li>
+            <li><strong>Australien:</strong> Erster Sonntag im Oktober / Erster Sonntag im April</li>
+          </ul>
+          <p>
+            <strong>Wichtig:</strong> Nicht alle Länder stellen um! Japan, China, Indien und viele 
+            andere Länder haben keine Sommerzeit.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Besondere Zeitzonen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Indien (IST):</strong> UTC+5:30 – eine halbe Stunde Versatz</li>
+            <li><strong>Nepal:</strong> UTC+5:45 – 45 Minuten Versatz</li>
+            <li><strong>China:</strong> Nur eine Zeitzone für das ganze Land (UTC+8)</li>
+            <li><strong>Russland:</strong> 11 verschiedene Zeitzonen</li>
+            <li><strong>Frankreich:</strong> Die meisten Zeitzonen weltweit (durch Überseegebiete)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Internationale Datumsgrenze</h3>
+          <p>
+            Die <strong>internationale Datumsgrenze</strong> verläuft durch den Pazifischen Ozean 
+            entlang des 180. Längengrades. Wer sie von West nach Ost überquert, springt einen Tag 
+            zurück; von Ost nach West einen Tag vor.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für internationale Termine</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>UTC verwenden:</strong> Für eindeutige Zeitangaben UTC + Zeitzone angeben</li>
+            <li><strong>Sommerzeit beachten:</strong> Prüfen Sie, ob beide Länder gerade Sommerzeit haben</li>
+            <li><strong>Kalender-Tools:</strong> Moderne Kalender rechnen Zeitzonen automatisch um</li>
+            <li><strong>Puffer einplanen:</strong> Bei Unsicherheit lieber etwas früher kalkulieren</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zur Zeitverschiebung</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Wie spät ist es jetzt in New York?</strong> 6 Stunden früher als in Deutschland</li>
+            <li><strong>Wie spät ist es in Japan?</strong> 8 Stunden später als in Deutschland (Winterzeit)</li>
+            <li><strong>Wann ist 9 Uhr morgens in Deutschland in den USA?</strong> 3 Uhr nachts (EST)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Tools -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Ähnliche Rechner
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <a href="/flugzeit-rechner" class="p-4 bg-sky-50 rounded-xl hover:bg-sky-100 transition-colors">
+            <div class="text-2xl mb-2">✈️</div>
+            <div class="font-semibold text-gray-800">Flugzeit-Rechner</div>
+            <div class="text-sm text-gray-500">Flugdauer berechnen</div>
+          </a>
+          <a href="/tage-rechner" class="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+            <div class="text-2xl mb-2">📅</div>
+            <div class="font-semibold text-gray-800">Tage-Rechner</div>
+            <div class="text-sm text-gray-500">Tage zwischen Daten</div>
+          </a>
+          <a href="/arbeitstage-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+            <div class="text-2xl mb-2">📆</div>
+            <div class="font-semibold text-gray-800">Arbeitstage-Rechner</div>
+            <div class="text-sm text-gray-500">Arbeitstage zählen</div>
+          </a>
+          <a href="/alter-rechner" class="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+            <div class="text-2xl mb-2">🎂</div>
+            <div class="font-semibold text-gray-800">Alter-Rechner</div>
+            <div class="text-sm text-gray-500">Alter berechnen</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zeitzonen-Rechner – Weltzeit umrechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/zeitzone-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Zeitzonen gibt es auf der Welt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es gibt 24 Haupt-Zeitzonen, die jeweils 15 Längengrade umfassen. Allerdings gibt es zusätzliche Zeitzonen mit halbstündigem oder 45-minütigem Versatz (z.B. Indien UTC+5:30), sodass es insgesamt über 38 verschiedene Zeitzonen gibt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "In welcher Zeitzone liegt Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Deutschland liegt in der Mitteleuropäischen Zeit (MEZ) mit UTC+1. Während der Sommerzeit gilt die Mitteleuropäische Sommerzeit (MESZ) mit UTC+2."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß ist der Zeitunterschied zwischen Deutschland und New York?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Zeitunterschied zwischen Deutschland und New York beträgt in der Regel 6 Stunden. New York ist 6 Stunden hinter der deutschen Zeit. Wenn es in Deutschland 15:00 Uhr ist, ist es in New York 9:00 Uhr morgens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist UTC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "UTC steht für 'Coordinated Universal Time' (Koordinierte Weltzeit) und ist der internationale Standard für Zeitmessung. UTC entspricht der Zeit am Nullmeridian (Greenwich, London) und dient als Referenz für alle anderen Zeitzonen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann wird in Deutschland die Uhr umgestellt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Deutschland wird am letzten Sonntag im März auf Sommerzeit umgestellt (2:00 Uhr → 3:00 Uhr) und am letzten Sonntag im Oktober auf Winterzeit zurückgestellt (3:00 Uhr → 2:00 Uhr)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welches Land hat die meisten Zeitzonen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Frankreich hat mit seinen Überseegebieten die meisten Zeitzonen (12). Russland folgt mit 11 Zeitzonen als flächenmäßig größtes Land der Welt."
+        }
+      }
+    ]
+  })} />
+</Layout>

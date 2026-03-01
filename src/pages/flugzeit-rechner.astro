@@ -1,0 +1,248 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FlugzeitRechner from '../components/rechner/FlugzeitRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Flugzeit-Rechner 2026 – Flugdauer & Entfernung zwischen Städten berechnen";
+const description = "Flugzeit Rechner: Berechnen Sie die Flugdauer zwischen beliebigen Städten weltweit. Inklusive Entfernung in km, Zeitverschiebung und Ankunftszeit. Kostenlos & sofort.";
+const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, Flugzeit Deutschland, Flugentfernung, Flugzeit nach Thailand, Flugzeit USA, Flugzeit Mallorca, Entfernung berechnen, Flugroute";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Flugzeit-Rechner", url: "/flugzeit-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-sky-500 to-blue-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-sky-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">✈️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Flugzeit-Rechner</h1>
+            <p class="text-sky-100 text-sm">Flugdauer & Entfernung berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <FlugzeitRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Flugzeit-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Flugzeit-Rechner</strong> können Sie die Flugdauer zwischen beliebigen 
+            Städten weltweit berechnen. Der Rechner zeigt Ihnen nicht nur die geschätzte Flugzeit, 
+            sondern auch die Entfernung in Kilometern und hilfreiche Informationen zur Zeitverschiebung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Flugzeit berechnet?</h3>
+          <p>
+            Die Berechnung der Flugzeit basiert auf mehreren Faktoren:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Entfernung:</strong> Die Luftlinie (Großkreis-Distanz) zwischen Start und Ziel</li>
+            <li><strong>Durchschnittsgeschwindigkeit:</strong> Passagierflugzeuge fliegen etwa 800-900 km/h</li>
+            <li><strong>Start und Landung:</strong> Zusätzliche Zeit für Start, Steigflug und Landeanflug</li>
+            <li><strong>Windverhältnisse:</strong> Rücken- oder Gegenwind können die Flugzeit beeinflussen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beliebte Flugrouten ab Deutschland</h3>
+          <p>
+            Hier finden Sie typische Flugzeiten von deutschen Flughäfen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Frankfurt → Mallorca:</strong> ca. 2 Stunden</li>
+            <li><strong>München → London:</strong> ca. 1 Stunde 50 Minuten</li>
+            <li><strong>Berlin → Paris:</strong> ca. 1 Stunde 45 Minuten</li>
+            <li><strong>Frankfurt → New York:</strong> ca. 8-9 Stunden</li>
+            <li><strong>München → Bangkok:</strong> ca. 10-11 Stunden</li>
+            <li><strong>Frankfurt → Dubai:</strong> ca. 6 Stunden</li>
+            <li><strong>Düsseldorf → Antalya:</strong> ca. 3 Stunden 30 Minuten</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Flugzeit nach Kontinenten</h3>
+          <p>
+            Ungefähre Flugzeiten ab Deutschland:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Innerhalb Europas:</strong> 1-4 Stunden</li>
+            <li><strong>Nordafrika/Naher Osten:</strong> 4-6 Stunden</li>
+            <li><strong>Nordamerika (Ostküste):</strong> 8-10 Stunden</li>
+            <li><strong>Nordamerika (Westküste):</strong> 11-13 Stunden</li>
+            <li><strong>Südamerika:</strong> 12-14 Stunden</li>
+            <li><strong>Südostasien:</strong> 10-12 Stunden</li>
+            <li><strong>Australien:</strong> 20-24 Stunden (mit Zwischenstopp)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was beeinflusst die tatsächliche Flugzeit?</h3>
+          <p>
+            Die reale Flugzeit kann von der berechneten abweichen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Jetstream:</strong> Starke Höhenwinde können Flüge nach Osten beschleunigen</li>
+            <li><strong>Flugroute:</strong> Nicht immer wird die kürzeste Strecke geflogen</li>
+            <li><strong>Wetterbedingungen:</strong> Umwege bei Gewittern oder Turbulenzen</li>
+            <li><strong>Flugzeugtyp:</strong> Unterschiedliche Reisegeschwindigkeiten</li>
+            <li><strong>Luftraumrestriktionen:</strong> Manche Gebiete dürfen nicht überflogen werden</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Langstreckenflüge planen</h3>
+          <p>
+            Tipps für lange Flüge:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Zeitverschiebung beachten:</strong> Planen Sie Zeit für die Akklimatisierung ein</li>
+            <li><strong>Zwischenstopps:</strong> Bei sehr langen Strecken kann ein Stopover sinnvoll sein</li>
+            <li><strong>Beste Reisezeit:</strong> Manche Routen sind saisonal günstiger</li>
+            <li><strong>Sitzplatzwahl:</strong> Bei Langstrecken ist der richtige Platz wichtig</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die längsten Nonstop-Flüge der Welt</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Singapur → New York:</strong> ca. 18,5 Stunden (15.300 km)</li>
+            <li><strong>Auckland → Dubai:</strong> ca. 17,5 Stunden (14.200 km)</li>
+            <li><strong>Perth → London:</strong> ca. 17 Stunden (14.500 km)</li>
+            <li><strong>Los Angeles → Singapur:</strong> ca. 17,5 Stunden (14.100 km)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufig gesuchte Flugzeiten</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Wie lange fliegt man nach Thailand?</strong> Ab Deutschland ca. 10-11 Stunden nonstop</li>
+            <li><strong>Wie lange fliegt man nach Mallorca?</strong> Ab Deutschland ca. 2-2,5 Stunden</li>
+            <li><strong>Wie lange fliegt man in die USA?</strong> 8-13 Stunden je nach Küste</li>
+            <li><strong>Wie lange fliegt man nach Ägypten?</strong> Ca. 4-5 Stunden</li>
+            <li><strong>Wie lange fliegt man auf die Kanaren?</strong> Ca. 4-5 Stunden</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Tools -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Ähnliche Rechner
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <a href="/zeitzone-rechner" class="p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
+            <div class="text-2xl mb-2">🌍</div>
+            <div class="font-semibold text-gray-800">Zeitzonen-Rechner</div>
+            <div class="text-sm text-gray-500">Zeitzonen umrechnen</div>
+          </a>
+          <a href="/tage-rechner" class="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+            <div class="text-2xl mb-2">📅</div>
+            <div class="font-semibold text-gray-800">Tage-Rechner</div>
+            <div class="text-sm text-gray-500">Tage zwischen Daten</div>
+          </a>
+          <a href="/spritkosten-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+            <div class="text-2xl mb-2">⛽</div>
+            <div class="font-semibold text-gray-800">Spritkosten-Rechner</div>
+            <div class="text-sm text-gray-500">Fahrtkosten berechnen</div>
+          </a>
+          <a href="/einheiten-rechner" class="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+            <div class="text-2xl mb-2">📐</div>
+            <div class="font-semibold text-gray-800">Einheiten-Rechner</div>
+            <div class="text-sm text-gray-500">Einheiten umrechnen</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Flugzeit-Rechner – Flugdauer berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/flugzeit-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man nach Thailand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Flugzeit von Deutschland nach Thailand (Bangkok) beträgt etwa 10-11 Stunden bei einem Nonstop-Flug. Mit Zwischenstopp kann die Reisezeit auf 14-18 Stunden ansteigen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man nach Mallorca?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Flugzeit von Deutschland nach Mallorca beträgt etwa 2 bis 2,5 Stunden, je nach Abflughafen. Von München sind es etwa 1 Stunde 45 Minuten, von Hamburg ca. 2 Stunden 30 Minuten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Flugzeit zwischen zwei Städten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Flugzeit wird anhand der Entfernung (Großkreis-Distanz) und der durchschnittlichen Reisegeschwindigkeit von Passagierflugzeugen (ca. 850 km/h) berechnet. Zusätzlich werden ca. 30 Minuten für Start und Landung eingerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man in die USA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Flugzeit von Deutschland in die USA variiert je nach Ziel: Zur Ostküste (New York) ca. 8-9 Stunden, zur Westküste (Los Angeles) ca. 11-12 Stunden. Rückflüge sind wegen des Jetstreams oft kürzer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist der Rückflug manchmal kürzer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Jetstream, ein starker Höhenwind, weht meist von West nach Ost. Flüge von Amerika nach Europa profitieren von diesem Rückenwind und sind daher oft 1-2 Stunden kürzer als der Hinflug."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der längste Nonstop-Flug der Welt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der längste Nonstop-Flug der Welt führt von Singapur nach New York und dauert etwa 18,5 Stunden bei einer Strecke von rund 15.300 Kilometern."
+        }
+      }
+    ]
+  })} />
+</Layout>

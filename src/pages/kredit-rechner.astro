@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import KreditRechner from '../components/rechner/KreditRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Kredit-Rechner 2025 – Kreditrate, Zinsen & Tilgungsplan berechnen";
-const description = "Kredit-Rechner 2025: Berechnen Sie Ihre monatliche Kreditrate, Zinskosten & Tilgungsplan. Kostenlos Ratenkredit, Autokredit & Dispoablösung vergleichen!";
-const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zinsen, Tilgungsrechner, Ratenkredit Rechner, Autokredit Rechner, Kredit berechnen, Darlehen Rechner, Annuitätenrechner, Kreditvergleich, effektiver Jahreszins, Monatsrate berechnen";
+const title = "Kreditrechner 2025 – Ratenkredit, Zinsen & Tilgungsplan berechnen";
+const description = "Kreditrechner für Deutschland: Berechnen Sie Monatsrate, Zinsen, Gesamtkosten und Tilgungsplan für Ihren Kredit. Ratenkredit & endfälliges Darlehen. Kostenlos & ohne Anmeldung.";
+const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate, Zinsen berechnen, Darlehensrechner, Effektivzins, Annuitätendarlehen, Kredit Vergleich, Monatsrate berechnen";
 ---
 
 <Layout 
@@ -12,13 +13,14 @@ const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zi
   description={description}
   keywords={keywords}
 >
+  <BreadcrumbSchema items={[{ name: "Kreditrechner", url: "/kredit-rechner" }]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
-    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
       <div class="max-w-2xl mx-auto">
         <a 
           href="/" 
-          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -28,8 +30,8 @@ const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zi
         <div class="flex items-center gap-3">
           <span class="text-4xl">💳</span>
           <div>
-            <h1 class="text-2xl font-bold">Kredit-Rechner</h1>
-            <p class="text-emerald-100 text-sm">Kreditrate & Zinskosten berechnen</p>
+            <h1 class="text-2xl font-bold">Kreditrechner</h1>
+            <p class="text-blue-100 text-sm">Rate, Zinsen & Tilgungsplan berechnen</p>
           </div>
         </div>
       </div>
@@ -43,105 +45,170 @@ const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zi
     <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Kredit-Rechner 2025: Kreditkosten einfach berechnen</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kreditrechner: Alles zur Kreditberechnung</h2>
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Kredit-Rechner</strong> berechnen Sie schnell und kostenlos Ihre monatliche 
-            Kreditrate, die gesamten Zinskosten und den Tilgungsplan. Egal ob <strong>Ratenkredit</strong>, 
-            <strong>Autokredit</strong> oder <strong>Umschuldung</strong> – unser Rechner zeigt Ihnen transparent, 
-            was der Kredit wirklich kostet.
+            Mit unserem <strong>Kreditrechner</strong> berechnen Sie schnell und kostenlos die monatliche 
+            Rate, Gesamtzinsen und einen detaillierten <strong>Tilgungsplan</strong> für Ihren Kredit. 
+            Egal ob Ratenkredit, Autokredit oder Konsumentenkredit – unser Rechner zeigt Ihnen 
+            transparent alle Kosten.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">So funktioniert die Kreditberechnung</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie funktioniert ein Ratenkredit?</h3>
           <p>
-            Bei einem klassischen <strong>Annuitätendarlehen</strong> (Ratenkredit) zahlen Sie jeden Monat 
-            die gleiche Rate. Diese setzt sich aus Zins und Tilgung zusammen:
+            Bei einem <strong>Ratenkredit</strong> (auch Annuitätendarlehen) zahlen Sie über die gesamte 
+            Laufzeit gleichbleibende monatliche Raten. Jede Rate besteht aus:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Zinsanteil:</strong> Wird auf die Restschuld berechnet – sinkt mit der Zeit</li>
-            <li><strong>Tilgungsanteil:</strong> Reduziert Ihre Schulden – steigt mit der Zeit</li>
-            <li><strong>Monatsrate:</strong> Bleibt konstant über die gesamte Laufzeit</li>
+            <li><strong>Zinsanteil:</strong> Wird auf die Restschuld berechnet, sinkt mit der Zeit</li>
+            <li><strong>Tilgungsanteil:</strong> Reduziert die Restschuld, steigt mit der Zeit</li>
           </ul>
           <p>
-            Die Formel für die monatliche Annuität lautet: <em>A = K × (q^n × (q-1)) / (q^n - 1)</em>, 
-            wobei K = Kreditsumme, q = 1 + Monatszins und n = Anzahl Monate.
+            Da die Restschuld mit jeder Rate sinkt, fallen weniger Zinsen an. Der Tilgungsanteil 
+            steigt entsprechend, während die Gesamtrate konstant bleibt.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sollzins vs. Effektivzins – Der Unterschied</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kreditrate berechnen: Die Formel</h3>
+          <p>
+            Die monatliche Rate für ein Annuitätendarlehen wird mit folgender Formel berechnet:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-sm font-mono">Rate = Kreditsumme × (Zins × (1 + Zins)^n) / ((1 + Zins)^n - 1)</code>
+          </div>
+          <p>
+            Dabei ist <em>n</em> die Anzahl der Monate und <em>Zins</em> der monatliche Zinssatz 
+            (Jahreszins ÷ 12).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Nominalzins vs. Effektivzins</h3>
           <p>
             Beim Kreditvergleich ist der <strong>effektive Jahreszins</strong> entscheidend:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Sollzinssatz:</strong> Der reine Zinssatz ohne Nebenkosten</li>
-            <li><strong>Effektiver Jahreszins:</strong> Enthält alle Kosten (Bearbeitungsgebühren, Kontoführung) 
-                und berücksichtigt die Zahlungsweise</li>
+            <li><strong>Nominalzins:</strong> Der reine Zinssatz ohne Nebenkosten</li>
+            <li><strong>Effektivzins:</strong> Enthält alle Kosten (Bearbeitungsgebühren, Kontoführung)</li>
           </ul>
           <p>
-            Nach <strong>§ 6 PAngV</strong> (Preisangabenverordnung) müssen Banken den effektiven Jahreszins 
-            bei Werbung immer angeben. Vergleichen Sie daher immer den Effektivzins!
+            Nach der <strong>Preisangabenverordnung (PAngV)</strong> müssen Banken den Effektivzins 
+            angeben. So können Sie Kreditangebote fair vergleichen.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Kreditzinsen 2025</h3>
           <p>
-            Die Zinsen variieren je nach Kreditart und Bonität erheblich:
+            Die Zinsen für Ratenkredite hängen von verschiedenen Faktoren ab:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Ratenkredit:</strong> 4,5 – 10% effektiv (bonitätsabhängig)</li>
-            <li><strong>Autokredit:</strong> 3,5 – 8% effektiv (Fahrzeug als Sicherheit)</li>
-            <li><strong>Baufinanzierung:</strong> 3,5 – 5% effektiv (Grundschuld als Sicherheit)</li>
-            <li><strong>Dispokredit:</strong> 10 – 15% effektiv (sehr teuer!)</li>
+            <li><strong>Bonität (Schufa-Score):</strong> Je besser, desto günstiger</li>
+            <li><strong>Kreditsumme:</strong> Höhere Summen oft günstiger</li>
+            <li><strong>Laufzeit:</strong> Längere Laufzeiten = mehr Zinskosten</li>
+            <li><strong>Verwendungszweck:</strong> Autokredite oft günstiger (Sicherheit)</li>
           </ul>
           <p>
-            <strong>Tipp:</strong> Lösen Sie teure Dispokredite durch einen günstigeren Ratenkredit ab – 
-            das spart oft mehrere Hundert Euro pro Jahr an Zinsen.
+            Aktuelle Richtwerte (Stand 2025): <strong>5-10%</strong> für Ratenkredite bei guter 
+            Bonität. Bei Verwendungszweck "Auto" oder "Haus" oft günstiger.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sondertilgung: So sparen Sie Zinskosten</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tilgungsplan verstehen</h3>
           <p>
-            Viele Kredite erlauben <strong>kostenlose Sondertilgungen</strong> – nutzen Sie diese Möglichkeit:
+            Der <strong>Tilgungsplan</strong> zeigt für jedes Jahr (oder jeden Monat):
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Typisch: 5-10% der Kreditsumme pro Jahr sondertilgungsfrei</li>
-            <li>Bei 10.000€ Kredit und 5% Sondertilgung: 500€/Jahr extra möglich</li>
-            <li>Jede Sondertilgung verkürzt die Laufzeit und spart Zinsen</li>
+            <li><strong>Restschuld:</strong> Noch offener Kreditbetrag</li>
+            <li><strong>Zinsen:</strong> In der Periode gezahlte Zinsen</li>
+            <li><strong>Tilgung:</strong> Rückgezahlter Kreditanteil</li>
+            <li><strong>Rate:</strong> Gesamtzahlung (Zinsen + Tilgung)</li>
+          </ul>
+          <p>
+            Unser Rechner erstellt einen Tilgungsplan auf Jahresbasis, damit Sie sehen, wie sich 
+            Ihre Schuld entwickelt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ratenkredit vs. endfälliges Darlehen</h3>
+          <p>
+            Unser Rechner unterstützt zwei Kreditarten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ratenkredit (Annuität):</strong> Gleichbleibende Raten aus Zins + Tilgung</li>
+            <li><strong>Endfälliges Darlehen:</strong> Nur Zinszahlung, Tilgung am Laufzeitende</li>
+          </ul>
+          <p>
+            Das endfällige Darlehen hat niedrigere Monatsraten, aber <strong>höhere Gesamtkosten</strong>, 
+            da die gesamte Kreditsumme bis zum Ende verzinst wird.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sondertilgung und vorzeitige Rückzahlung</h3>
+          <p>
+            Viele Kredite erlauben <strong>Sondertilgungen</strong> – zusätzliche Zahlungen zur 
+            schnelleren Entschuldung. Vorteile:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Reduziert die Restschuld und damit die Zinskosten</li>
+            <li>Verkürzt die Laufzeit oder senkt die Rate</li>
+            <li>Oft 5-10% der Kreditsumme pro Jahr kostenfrei möglich</li>
+          </ul>
+          <p>
+            <strong>Vorfälligkeitsentschädigung:</strong> Bei vorzeitiger Kündigung kann die Bank 
+            eine Entschädigung verlangen (max. 1% der Restschuld, bei unter 1 Jahr: 0,5%).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für die Kreditaufnahme</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Mehrere Angebote vergleichen:</strong> Effektivzins ist entscheidend</li>
+            <li><strong>Laufzeit wählen:</strong> Kürzer = weniger Zinsen, höhere Rate</li>
+            <li><strong>Schufa prüfen:</strong> Fehler können den Zinssatz erhöhen</li>
+            <li><strong>Verwendungszweck angeben:</strong> Kann günstigere Konditionen bringen</li>
+            <li><strong>Restschuldversicherung:</strong> Oft teuer und unnötig – prüfen Sie Alternativen</li>
           </ul>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ihre Rechte als Kreditnehmer</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Widerrufsrecht bei Krediten</h3>
           <p>
-            Das <strong>Verbraucherkreditrecht</strong> (§§ 491-515 BGB) schützt Sie:
+            Nach Vertragsabschluss haben Sie ein <strong>14-tägiges Widerrufsrecht</strong>. 
+            Innerhalb dieser Frist können Sie ohne Angabe von Gründen vom Vertrag zurücktreten. 
+            Die Frist beginnt mit Erhalt der Vertragsurkunde.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>14-Tage Widerrufsrecht:</strong> Sie können jeden Verbraucherkredit 
-                innerhalb von 14 Tagen ohne Angabe von Gründen widerrufen</li>
-            <li><strong>Vorzeitige Rückzahlung:</strong> Sie dürfen den Kredit jederzeit ablösen. 
-                Die Vorfälligkeitsentschädigung beträgt max. 1% (bei Restlaufzeit &gt;1 Jahr) bzw. 0,5%</li>
-            <li><strong>Transparenzpflicht:</strong> Alle Kosten müssen vor Vertragsschluss offengelegt werden</li>
-            <li><strong>Kein Kopplungsverbot:</strong> Der Kredit darf nicht an den Abschluss 
-                einer Restschuldversicherung geknüpft werden</li>
-          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Beratung & Verbraucherschutz
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Verbraucherzentrale</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Unabhängige Beratung zu Krediten und Finanzierung:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <a href="https://www.verbraucherzentrale.de" class="underline" target="_blank">www.verbraucherzentrale.de</a></li>
+              <li>• Persönliche Beratung vor Ort</li>
+            </ul>
+          </div>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kredit trotz SCHUFA?</h3>
-          <p>
-            Bei negativer SCHUFA sind die Möglichkeiten eingeschränkt, aber nicht unmöglich:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>SCHUFA-Selbstauskunft:</strong> Prüfen Sie zuerst kostenlos Ihren Score 
-                auf <a href="https://www.meineschufa.de" class="text-emerald-600 hover:underline">meineschufa.de</a></li>
-            <li><strong>Fehler korrigieren:</strong> Veraltete Einträge können gelöscht werden</li>
-            <li><strong>Bürgschaft:</strong> Ein Bürge mit guter Bonität verbessert die Chancen</li>
-            <li><strong>Vorsicht:</strong> Kredite ohne SCHUFA sind oft unseriös und sehr teuer!</li>
-          </ul>
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Schufa-Auskunft</h3>
+            <p class="text-green-700 text-sm mb-2">
+              Einmal jährlich kostenlose Selbstauskunft:
+            </p>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• <a href="https://www.schufa.de" class="underline" target="_blank">www.schufa.de</a> → "Datenkopie"</li>
+              <li>• Prüfen Sie Ihre Daten auf Fehler</li>
+            </ul>
+          </div>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Weitere Rechner</h3>
-          <p>
-            Planen Sie eine größere Anschaffung? Nutzen Sie auch unsere anderen Rechner:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><a href="/brutto-netto-rechner" class="text-emerald-600 hover:underline">Brutto-Netto-Rechner</a> – Was bleibt vom Gehalt?</li>
-            <li><a href="/einkommensteuer-rechner" class="text-emerald-600 hover:underline">Einkommensteuer-Rechner</a> – Steuerlast berechnen</li>
-            <li><a href="/buergergeld-rechner" class="text-emerald-600 hover:underline">Bürgergeld-Rechner</a> – Sozialleistungen prüfen</li>
-          </ul>
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Schuldnerberatung</h3>
+            <p class="text-amber-700 text-sm">
+              Bei Zahlungsschwierigkeiten: Kostenlose <strong>Schuldnerberatung</strong> bei 
+              Wohlfahrtsverbänden (Caritas, Diakonie, AWO) oder der Kommune.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -151,7 +218,7 @@ const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zi
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Kredit-Rechner 2025",
+    "name": "Kreditrechner – Rate, Zinsen & Tilgungsplan berechnen",
     "description": description,
     "url": "https://www.deutschland-rechner.de/kredit-rechner",
     "applicationCategory": "FinanceApplication",
@@ -174,26 +241,42 @@ const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zi
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wie berechne ich die monatliche Kreditrate?",
+        "name": "Wie berechnet man die monatliche Kreditrate?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die monatliche Rate eines Annuitätendarlehens berechnet sich nach der Formel: Rate = Kreditsumme × (Monatszins × (1 + Monatszins)^Monate) / ((1 + Monatszins)^Monate - 1). Unser Kredit-Rechner übernimmt diese Berechnung automatisch für Sie."
+          "text": "Die Kreditrate wird mit der Annuitätenformel berechnet: Rate = Kreditsumme × (Zins × (1 + Zins)^n) / ((1 + Zins)^n - 1). Beispiel: 10.000 € bei 6% über 48 Monate = ca. 235 € monatlich."
         }
       },
       {
         "@type": "Question",
-        "name": "Was ist der Unterschied zwischen Sollzins und Effektivzins?",
+        "name": "Was ist der Unterschied zwischen Nominalzins und Effektivzins?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Sollzinssatz ist der reine Zinssatz auf das Darlehen. Der effektive Jahreszins enthält zusätzlich alle Nebenkosten (Bearbeitungsgebühren, Kontoführung) und berücksichtigt die Zahlungsweise. Für den Kreditvergleich ist der Effektivzins entscheidend."
+          "text": "Der Nominalzins ist der reine Zinssatz. Der Effektivzins enthält alle Kreditkosten (Bearbeitungsgebühren, Kontoführung) und ist gesetzlich vorgeschrieben. Er ermöglicht einen fairen Vergleich verschiedener Kreditangebote."
         }
       },
       {
         "@type": "Question",
-        "name": "Kann ich meinen Kredit vorzeitig zurückzahlen?",
+        "name": "Wie viel Kredit kann ich mir leisten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, bei Verbraucherkrediten haben Sie das Recht auf vorzeitige Rückzahlung. Die Bank darf eine Vorfälligkeitsentschädigung von maximal 1% der Restschuld (bei Restlaufzeit über 12 Monate) bzw. 0,5% (bei kürzerer Restlaufzeit) verlangen."
+          "text": "Faustregel: Die Kreditrate sollte maximal 40% des Nettoeinkommens betragen. Berücksichtigen Sie bestehende Verpflichtungen (Miete, andere Kredite) und einen finanziellen Puffer für unvorhergesehene Ausgaben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein Tilgungsplan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Tilgungsplan zeigt die Entwicklung des Kredits über die Laufzeit: Restschuld, Zins- und Tilgungsanteil jeder Rate. So sehen Sie, wie schnell Sie den Kredit abbezahlen und wie viel Zinsen Sie insgesamt zahlen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich einen Kredit vorzeitig zurückzahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Ratenkredite können jederzeit gekündigt werden. Die Bank darf eine Vorfälligkeitsentschädigung verlangen: max. 1% der Restschuld (bei unter 12 Monaten Restlaufzeit: 0,5%). Viele Verträge erlauben kostenlose Sondertilgungen."
         }
       },
       {
@@ -201,15 +284,7 @@ const keywords = "Kredit Rechner, Kreditrechner, Kreditrate berechnen, Kredit Zi
         "name": "Welche Kreditzinsen sind aktuell üblich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "2025 liegen die Zinsen für Ratenkredite typischerweise bei 4,5-10% effektiv (bonitätsabhängig), Autokredite bei 3,5-8%, Baufinanzierungen bei 3,5-5% und Dispokredite bei 10-15%. Vergleichen Sie mehrere Angebote!"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie kann ich Kreditkosten sparen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "1) Vergleichen Sie mehrere Angebote und achten Sie auf den Effektivzins. 2) Wählen Sie eine kürzere Laufzeit, wenn möglich. 3) Nutzen Sie Sondertilgungen. 4) Lösen Sie teure Dispokredite durch günstigere Ratenkredite ab. 5) Verzichten Sie auf teure Restschuldversicherungen."
+          "text": "Ratenkredite kosten 2025 etwa 5-10% Effektivzins bei guter Bonität. Autokredite sind oft günstiger (3-6%), da das Fahrzeug als Sicherheit dient. Der individuelle Zinssatz hängt von Bonität, Laufzeit und Kreditsumme ab."
         }
       }
     ]

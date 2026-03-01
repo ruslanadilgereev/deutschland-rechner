@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DreisatzRechner from '../components/rechner/DreisatzRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Dreisatz-Rechner 2026 – Dreisatz einfach online berechnen";
+const description = "Dreisatz-Rechner: Berechnen Sie proportionale und antiproportionale Dreisätze kostenlos. Mit Rechenweg, Erklärung und Beispielen. Ideal für Schule, Studium und Alltag.";
+const keywords = "Dreisatz Rechner, Dreisatz berechnen, Dreisatz online, proportionaler Dreisatz, antiproportionaler Dreisatz, Dreisatz Formel, Dreisatz Aufgaben, Dreisatz Erklärung, Dreisatz Beispiele, Verhältnisrechnung, Schlussrechnung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Dreisatz-Rechner", url: "/dreisatz-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔢</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dreisatz-Rechner</h1>
+            <p class="text-indigo-100 text-sm">Dreisatz berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DreisatzRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Dreisatz-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Dreisatz</strong> (auch Schlussrechnung oder Verhältnisgleichung genannt) ist eine 
+            grundlegende Rechenmethode, um unbekannte Größen aus bekannten Verhältnissen zu berechnen. 
+            Mit unserem <strong>Dreisatz-Rechner</strong> lösen Sie Aufgaben schnell und sehen den vollständigen Rechenweg.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Dreisatz?</h3>
+          <p>
+            Der Dreisatz ist ein Verfahren, bei dem aus <strong>drei bekannten Werten</strong> ein 
+            <strong>vierter unbekannter Wert</strong> berechnet wird. Der Name kommt von den drei Rechenschritten:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>Ausgangssituation aufstellen (Menge A = Wert B)</li>
+            <li>Auf eine Einheit umrechnen (1 = B/A)</li>
+            <li>Auf die gesuchte Menge hochrechnen</li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Proportionaler Dreisatz</h3>
+          <p>
+            Beim <strong>proportionalen (geraden) Dreisatz</strong> gilt: <em>Je mehr, desto mehr</em> 
+            – die Größen verändern sich in die gleiche Richtung.
+          </p>
+          
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-semibold mb-2">Beispiel: Preisberechnung</p>
+            <p class="text-sm">3 Äpfel kosten 2,40 €. Was kosten 7 Äpfel?</p>
+            <div class="mt-2 font-mono text-sm">
+              3 Äpfel → 2,40 €<br/>
+              1 Apfel → 2,40 € ÷ 3 = 0,80 €<br/>
+              7 Äpfel → 0,80 € × 7 = <strong>5,60 €</strong>
+            </div>
+          </div>
+          
+          <p><strong>Formel:</strong></p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 text-center">
+            <code class="text-lg font-mono">x = (Wert₂ × Menge₂) ÷ Menge₁</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Antiproportionaler (umgekehrter) Dreisatz</h3>
+          <p>
+            Beim <strong>antiproportionalen (ungeraden) Dreisatz</strong> gilt: <em>Je mehr, desto weniger</em> 
+            – die Größen verändern sich gegenläufig.
+          </p>
+          
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-semibold mb-2">Beispiel: Arbeitszeit</p>
+            <p class="text-sm">4 Arbeiter brauchen 12 Stunden. Wie lange brauchen 6 Arbeiter?</p>
+            <div class="mt-2 font-mono text-sm">
+              4 Arbeiter → 12 Stunden<br/>
+              1 Arbeiter → 12 × 4 = 48 Stunden (Gesamtarbeit)<br/>
+              6 Arbeiter → 48 ÷ 6 = <strong>8 Stunden</strong>
+            </div>
+          </div>
+          
+          <p><strong>Formel:</strong></p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 text-center">
+            <code class="text-lg font-mono">x = (Wert₂ × Menge₁) ÷ Menge₂</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann proportional, wann antiproportional?</h3>
+          <p>So erkennen Sie den richtigen Typ:</p>
+          
+          <div class="overflow-x-auto my-4">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-4 py-2 text-left">Proportional</th>
+                  <th class="px-4 py-2 text-left">Antiproportional</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b"><td class="px-4 py-2">Mehr kaufen = mehr zahlen</td><td class="px-4 py-2">Mehr Arbeiter = weniger Zeit</td></tr>
+                <tr class="border-b"><td class="px-4 py-2">Längere Strecke = mehr Benzin</td><td class="px-4 py-2">Schneller fahren = kürzere Zeit</td></tr>
+                <tr class="border-b"><td class="px-4 py-2">Mehr Stunden arbeiten = mehr Lohn</td><td class="px-4 py-2">Mehr Personen teilen = kleinere Stücke</td></tr>
+                <tr><td class="px-4 py-2">Mehr Zutaten = größere Menge</td><td class="px-4 py-2">Größerer Tank = seltener tanken</td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Dreisatz im Alltag – Praktische Beispiele</h3>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">1. Rezepte umrechnen (proportional)</h4>
+          <p>
+            Ein Rezept für 4 Personen benötigt 300 g Mehl. Wie viel Mehl für 6 Personen?
+          </p>
+          <div class="bg-blue-50 p-3 rounded text-sm">
+            300 g ÷ 4 × 6 = <strong>450 g Mehl</strong>
+          </div>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">2. Kraftstoffverbrauch (proportional)</h4>
+          <p>
+            Auf 100 km verbraucht das Auto 7 Liter. Verbrauch auf 350 km?
+          </p>
+          <div class="bg-blue-50 p-3 rounded text-sm">
+            7 L ÷ 100 × 350 = <strong>24,5 Liter</strong>
+          </div>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">3. Renovierung (antiproportional)</h4>
+          <p>
+            3 Maler streichen ein Haus in 8 Tagen. Wie lange brauchen 4 Maler?
+          </p>
+          <div class="bg-blue-50 p-3 rounded text-sm">
+            (3 × 8) ÷ 4 = <strong>6 Tage</strong>
+          </div>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">4. Geschwindigkeit (antiproportional)</h4>
+          <p>
+            Mit 80 km/h dauert die Fahrt 3 Stunden. Wie lange mit 120 km/h?
+          </p>
+          <div class="bg-blue-50 p-3 rounded text-sm">
+            (80 × 3) ÷ 120 = <strong>2 Stunden</strong>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zusammengesetzter Dreisatz</h3>
+          <p>
+            Manchmal müssen mehrere Dreisätze hintereinander angewendet werden:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-semibold mb-2">Beispiel:</p>
+            <p class="text-sm">5 Maschinen produzieren in 8 Stunden 200 Teile.<br/>
+            Wie viele Teile produzieren 7 Maschinen in 6 Stunden?</p>
+            <div class="mt-2 font-mono text-sm">
+              Schritt 1: 1 Maschine → 200 ÷ 5 = 40 Teile<br/>
+              Schritt 2: 1 Maschine in 1 Stunde → 40 ÷ 8 = 5 Teile<br/>
+              Schritt 3: 7 Maschinen in 6 Stunden → 5 × 7 × 6 = <strong>210 Teile</strong>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Dreisatz mit Prozenten</h3>
+          <p>
+            Prozentrechnung ist ein Spezialfall des Dreisatzes:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="text-sm">100 € ist der Ausgangspreis. 19% MwSt berechnen:</p>
+            <div class="mt-2 font-mono text-sm">
+              100 % → 100 €<br/>
+              1 % → 1 €<br/>
+              19 % → <strong>19 €</strong>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für Dreisatz-Aufgaben</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Einheiten beachten:</strong> Alle Werte in gleichen Einheiten angeben</li>
+            <li><strong>Plausibilitätsprüfung:</strong> Ist das Ergebnis logisch?</li>
+            <li><strong>Fragestellung lesen:</strong> Was genau wird gesucht?</li>
+            <li><strong>Zwischenschritt:</strong> Immer erst auf 1 Einheit umrechnen</li>
+            <li><strong>Proportionalität prüfen:</strong> Werden beide Größen größer oder eine größer und eine kleiner?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Beratung & Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">📚</span>
+          Weitere Ressourcen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Für Schüler & Studenten</h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Der Dreisatz ist Grundlage für Prozentrechnung und Zinsrechnung</li>
+              <li>• Üben Sie mit verschiedenen Aufgabentypen</li>
+              <li>• Achten Sie auf Textaufgaben in Prüfungen</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Im Beruf</h3>
+            <p class="text-green-700 text-sm">
+              Der Dreisatz wird in vielen Bereichen verwendet: <strong>Einkauf</strong> (Mengenrabatte), 
+              <strong>Produktion</strong> (Kapazitätsplanung), <strong>Finanzen</strong> (Währungsumrechnung), 
+              <strong>Handwerk</strong> (Materialberechnung).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dreisatz-Rechner – Dreisatz online berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/dreisatz-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist der Dreisatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Dreisatz ist ein mathematisches Verfahren, bei dem aus drei bekannten Werten ein vierter unbekannter Wert berechnet wird. Man rechnet dabei in drei Schritten: Ausgangswert aufstellen, auf eine Einheit umrechnen, auf die gesuchte Menge hochrechnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen proportionalem und antiproportionalem Dreisatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim proportionalen Dreisatz gilt 'je mehr, desto mehr' - beide Größen verändern sich in die gleiche Richtung (z.B. mehr kaufen = mehr zahlen). Beim antiproportionalen Dreisatz gilt 'je mehr, desto weniger' - die Größen verändern sich gegenläufig (z.B. mehr Arbeiter = weniger Zeit)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie erkenne ich, ob ein Dreisatz proportional oder antiproportional ist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fragen Sie sich: Wenn die eine Größe steigt, steigt dann auch die andere (proportional) oder sinkt sie (antiproportional)? Beispiel: Mehr Äpfel kaufen = mehr zahlen (proportional). Mehr Arbeiter einsetzen = weniger Zeit benötigt (antiproportional)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lautet die Formel für den Dreisatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Proportionaler Dreisatz: x = (Wert₂ × Menge₂) ÷ Menge₁. Antiproportionaler Dreisatz: x = (Wert₂ × Menge₁) ÷ Menge₂. Die Formeln lassen sich durch das Schema 'erst durch, dann mal' (proportional) bzw. 'erst mal, dann durch' (antiproportional) merken."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo wird der Dreisatz im Alltag verwendet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Dreisatz wird vielfältig eingesetzt: Rezepte umrechnen (Zutaten für andere Personenzahl), Preise vergleichen (€ pro kg), Benzinverbrauch berechnen, Arbeitszeiten planen, Währungen umrechnen, Rabatte berechnen und vieles mehr."
+        }
+      }
+    ]
+  })} />
+</Layout>

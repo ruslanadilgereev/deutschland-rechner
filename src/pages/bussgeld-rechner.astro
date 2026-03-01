@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BussgeldRechner from '../components/rechner/BussgeldRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Bußgeldrechner 2025 – Bußgeld, Punkte & Fahrverbot berechnen";
+const description = "Bußgeldrechner für Deutschland: Berechnen Sie Bußgeld, Punkte in Flensburg und Fahrverbot bei Geschwindigkeitsüberschreitung, Rotlicht, Abstandsverstoß & Handy am Steuer. Aktueller Bußgeldkatalog 2025.";
+const keywords = "Bußgeldrechner, Bußgeldkatalog 2025, Geschwindigkeitsüberschreitung, Punkte Flensburg, Fahrverbot, Blitzer, Tempoverstoß, Rotlicht, Abstandsverstoß, Handy am Steuer, StVO, BKatV";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bußgeldrechner", url: "/bussgeld-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-red-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-red-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚨</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bußgeldrechner</h1>
+            <p class="text-red-100 text-sm">Bußgeld, Punkte & Fahrverbot nach Bußgeldkatalog 2025</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BussgeldRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bußgeldrechner: Alle Infos zu Bußgeldern in Deutschland</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Bußgeldrechner</strong> ermitteln Sie schnell und kostenlos, welche Konsequenzen 
+            ein Verkehrsverstoß hat. Ob <strong>Geschwindigkeitsüberschreitung</strong>, <strong>Rotlichtverstoß</strong>, 
+            <strong>Abstandsverstoß</strong> oder <strong>Handynutzung am Steuer</strong> – unser Rechner zeigt 
+            Ihnen Bußgeld, Punkte in Flensburg und mögliche Fahrverbote nach aktuellem Bußgeldkatalog 2025.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was regelt der Bußgeldkatalog?</h3>
+          <p>
+            Der <strong>Bußgeldkatalog (BKatV)</strong> ist die Anlage zur Bußgeldkatalog-Verordnung und legt 
+            fest, welche Sanktionen bei Verkehrsverstößen drohen. Er unterscheidet zwischen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Verwarnungsgeld:</strong> Bis 55 € – keine Punkte</li>
+            <li><strong>Bußgeld:</strong> Ab 60 € – häufig mit Punkten verbunden</li>
+            <li><strong>Fahrverbot:</strong> 1-3 Monate bei schweren Verstößen</li>
+            <li><strong>Punkte in Flensburg:</strong> Eintrag im Fahreignungsregister (FAER)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Geschwindigkeitsüberschreitung: Bußgelder 2025</h3>
+          <p>
+            Die Bußgelder für <strong>Tempoverstoße</strong> wurden mit der StVO-Novelle 2021 deutlich angehoben. 
+            Entscheidend ist, ob der Verstoß <strong>innerorts</strong> oder <strong>außerorts</strong> erfolgte:
+          </p>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">Innerorts (z.B. in der Stadt, 30er-Zone)</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bis 10 km/h zu schnell:</strong> 30 € – kein Punkt</li>
+            <li><strong>11-15 km/h zu schnell:</strong> 50 € – kein Punkt</li>
+            <li><strong>16-20 km/h zu schnell:</strong> 70 € – kein Punkt</li>
+            <li><strong>21-25 km/h zu schnell:</strong> 115-180 € – 1 Punkt</li>
+            <li><strong>26-30 km/h zu schnell:</strong> 180-260 € – 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>31-40 km/h zu schnell:</strong> 260-400 € – 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>Über 40 km/h zu schnell:</strong> Bis 800 € – 2 Punkte, 2-3 Monate Fahrverbot</li>
+          </ul>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">Außerorts (Landstraße, Autobahn)</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bis 10 km/h zu schnell:</strong> 20 € – kein Punkt</li>
+            <li><strong>11-15 km/h zu schnell:</strong> 40 € – kein Punkt</li>
+            <li><strong>21-40 km/h zu schnell:</strong> 100-200 € – 1 Punkt</li>
+            <li><strong>41-50 km/h zu schnell:</strong> 320-480 € – 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>Über 60 km/h zu schnell:</strong> Bis 700 € – 2 Punkte, 2-3 Monate Fahrverbot</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rotlichtverstoß: Was droht?</h3>
+          <p>
+            Ein <strong>Rotlichtverstoß</strong> wird besonders streng geahndet, da er andere Verkehrsteilnehmer 
+            gefährdet. Es wird unterschieden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Einfacher Rotlichtverstoß (unter 1 Sekunde rot):</strong> 90 € – 1 Punkt</li>
+            <li><strong>Qualifizierter Rotlichtverstoß (über 1 Sekunde rot):</strong> 200 € – 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>Mit Gefährdung:</strong> Bis 320 € – 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>Mit Sachschaden:</strong> Bis 360 € – 2 Punkte, 1 Monat Fahrverbot</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Abstandsverstoß: Bußgelder bei Drängeln</h3>
+          <p>
+            Zu geringer <strong>Sicherheitsabstand</strong> ist eine häufige Unfallursache. Die Sanktionen 
+            richten sich nach der gefahrenen Geschwindigkeit und dem Abstand zum Vorausfahrenden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bei über 80 km/h:</strong> 75-320 € – 1 Punkt</li>
+            <li><strong>Bei über 100 km/h:</strong> 75-400 € – 1-2 Punkte, ggf. Fahrverbot</li>
+            <li><strong>Bei über 130 km/h:</strong> 100-400 € – 1-2 Punkte, bis 3 Monate Fahrverbot</li>
+          </ul>
+          <p>
+            <strong>Faustregel:</strong> Der Abstand in Metern sollte mindestens dem halben Tacho entsprechen 
+            (bei 100 km/h = 50 Meter Abstand).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Handy am Steuer: 100 Euro und 1 Punkt</h3>
+          <p>
+            Die Nutzung eines Mobiltelefons während der Fahrt ist nach <strong>§ 23 StVO</strong> verboten, 
+            wenn das Gerät in die Hand genommen wird. Die Strafen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Handy in der Hand:</strong> 100 € – 1 Punkt</li>
+            <li><strong>Mit Gefährdung:</strong> 150 € – 2 Punkte, 1 Monat Fahrverbot</li>
+            <li><strong>Mit Sachschaden:</strong> 200 € – 2 Punkte, 1 Monat Fahrverbot</li>
+          </ul>
+          <p>
+            <strong>Wichtig:</strong> Das Verbot gilt auch für Tablets, Laptops und andere elektronische 
+            Geräte. Freisprecheinrichtungen sind erlaubt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Punkte in Flensburg: Das Fahreignungsregister</h3>
+          <p>
+            Punkte werden im <strong>Fahreignungsregister (FAER)</strong> beim Kraftfahrt-Bundesamt (KBA) 
+            in Flensburg gespeichert:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>1 Punkt:</strong> Tilgung nach 2,5 Jahren</li>
+            <li><strong>2 Punkte:</strong> Tilgung nach 5 Jahren</li>
+            <li><strong>3 Punkte (Straftat):</strong> Tilgung nach 10 Jahren</li>
+            <li><strong>4-5 Punkte:</strong> Schriftliche Ermahnung</li>
+            <li><strong>6-7 Punkte:</strong> Verwarnung</li>
+            <li><strong>8+ Punkte:</strong> Entzug der Fahrerlaubnis</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Toleranzabzug bei Blitzern</h3>
+          <p>
+            Bei Geschwindigkeitsmessungen wird ein <strong>Toleranzabzug</strong> vorgenommen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Unter 100 km/h:</strong> 3 km/h Abzug</li>
+            <li><strong>Ab 100 km/h:</strong> 3% der gemessenen Geschwindigkeit</li>
+          </ul>
+          <p>
+            Unser Rechner berücksichtigt den Toleranzabzug automatisch und zeigt die vorwerfbare 
+            Überschreitung an.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einspruch gegen Bußgeldbescheid</h3>
+          <p>
+            Gegen einen <strong>Bußgeldbescheid</strong> können Sie innerhalb von <strong>2 Wochen</strong> 
+            Einspruch einlegen. Gründe können sein:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Messfehler oder nicht geeichtes Gerät</li>
+            <li>Falsche Fahreridentifizierung</li>
+            <li>Formfehler im Bescheid</li>
+            <li>Verjährung (3 Monate bei Ordnungswidrigkeiten)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">⚖️</span>
+          Rechtliche Informationen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Kraftfahrt-Bundesamt (KBA)</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Zuständig für das Fahreignungsregister (Punkte in Flensburg):
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <strong>Punkte abfragen:</strong> <a href="https://www.kba.de/DE/Themen/ZentraleRegister/FAER/faer_node.html" class="underline" target="_blank">Online über kba.de</a></li>
+              <li>• <strong>Telefon:</strong> 0461 316-0</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Rechtliche Grundlagen</h3>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• <strong>StVO:</strong> Straßenverkehrs-Ordnung</li>
+              <li>• <strong>BKatV:</strong> Bußgeldkatalog-Verordnung</li>
+              <li>• <strong>StVG:</strong> Straßenverkehrsgesetz</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Hilfe bei Einspruch</h3>
+            <p class="text-amber-700 text-sm">
+              Bei Zweifeln an der Rechtmäßigkeit eines Bußgeldbescheids kann ein <strong>Fachanwalt 
+              für Verkehrsrecht</strong> oder der <strong>ADAC</strong> (für Mitglieder) beraten.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bußgeldrechner – Bußgeld, Punkte & Fahrverbot berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bussgeld-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Bußgeld bei 20 km/h zu schnell innerorts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Geschwindigkeitsüberschreitung von 20 km/h innerorts drohen nach Bußgeldkatalog 2025 ein Bußgeld von 70 Euro. Punkte oder ein Fahrverbot gibt es bei diesem Verstoß nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann gibt es Punkte in Flensburg?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Punkte im Fahreignungsregister gibt es ab einem Bußgeld von 60 Euro. Bei Geschwindigkeitsverstößen innerorts ab 21 km/h (1 Punkt), ab 26 km/h (2 Punkte). Außerorts ab 21 km/h (1 Punkt), ab 41 km/h (2 Punkte)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann droht ein Fahrverbot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Fahrverbot droht innerorts ab 26 km/h zu schnell (1 Monat), außerorts ab 41 km/h zu schnell. Auch bei qualifizierten Rotlichtverstößen (über 1 Sekunde rot) und schweren Abstandsverstößen bei hoher Geschwindigkeit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange bleiben Punkte in Flensburg?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1 Punkt verfällt nach 2,5 Jahren, 2 Punkte nach 5 Jahren, 3 Punkte (bei Straftaten) nach 10 Jahren. Die Tilgung erfolgt automatisch, unabhängig von neuen Verstößen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet Handy am Steuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Nutzung des Handys während der Fahrt kostet 100 Euro und 1 Punkt. Mit Gefährdung: 150 Euro, 2 Punkte und 1 Monat Fahrverbot. Mit Sachschaden: 200 Euro, 2 Punkte und 1 Monat Fahrverbot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird der Toleranzabzug bei Blitzern berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Geschwindigkeiten unter 100 km/h werden 3 km/h Toleranz abgezogen. Ab 100 km/h werden 3% der gemessenen Geschwindigkeit abgezogen. Die vorwerfbare Überschreitung ist entsprechend geringer."
+        }
+      }
+    ]
+  })} />
+</Layout>

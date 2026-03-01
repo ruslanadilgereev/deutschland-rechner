@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import InflationsRechner from '../components/rechner/InflationsRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Inflationsrechner 2025 – Kaufkraftverlust berechnen (kostenlos)";
-const description = "Inflationsrechner 2025: Berechnen Sie den Kaufkraftverlust Ihres Geldes durch Inflation. Mit historischen Daten seit 1992, Zinseszins-Effekt & Grafik. Kostenlos & ohne Anmeldung.";
-const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechner, Kaufkraft Rechner, Geldwert Rechner, Inflation Deutschland, Teuerungsrate Rechner, Preissteigerung Rechner, Kaufkraft Euro, Inflation berechnen, Was war der Euro wert, historische Inflation, Geldentwertung Rechner, Realwert Rechner";
+const title = "Inflationsrechner 2025 – Kaufkraftverlust & Inflation berechnen";
+const description = "Inflationsrechner für Deutschland: Berechnen Sie Kaufkraftverlust, historische Inflation und zukünftige Geldwertentwicklung. Mit Daten des Statistischen Bundesamts seit 1992.";
+const keywords = "Inflationsrechner, Inflation berechnen, Kaufkraftverlust, Geldentwertung, Inflationsrate Deutschland, Teuerungsrate, Verbraucherpreisindex, Kaufkraft, Statistisches Bundesamt";
 ---
 
 <Layout 
@@ -12,13 +13,14 @@ const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechn
   description={description}
   keywords={keywords}
 >
+  <BreadcrumbSchema items={[{ name: "Inflationsrechner", url: "/inflations-rechner" }]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
-    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
       <div class="max-w-2xl mx-auto">
         <a 
           href="/" 
-          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -29,7 +31,7 @@ const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechn
           <span class="text-4xl">📉</span>
           <div>
             <h1 class="text-2xl font-bold">Inflationsrechner</h1>
-            <p class="text-orange-100 text-sm">Kaufkraftverlust durch Inflation berechnen</p>
+            <p class="text-amber-100 text-sm">Kaufkraftverlust & Geldentwertung berechnen</p>
           </div>
         </div>
       </div>
@@ -43,163 +45,186 @@ const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechn
     <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Inflation verstehen: Der stille Wertverlust Ihres Geldes</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Inflationsrechner: Was ist Inflation und wie wirkt sie?</h2>
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            <strong>Inflation</strong> bezeichnet den anhaltenden Anstieg des allgemeinen Preisniveaus. 
-            Das bedeutet: Mit der gleichen Geldmenge können Sie über die Zeit immer weniger kaufen. 
-            Unser <strong>Inflationsrechner</strong> zeigt Ihnen, wie stark Ihr Geld an Kaufkraft verliert – 
-            oder was ein heutiger Betrag früher wert war.
+            Mit unserem <strong>Inflationsrechner</strong> berechnen Sie, wie die <strong>Inflation</strong> 
+            die Kaufkraft Ihres Geldes beeinflusst. Ob Ersparnisse, Gehalt oder zukünftige Ausgaben – 
+            der Rechner zeigt transparent, wie viel Ihr Geld heute wert ist und wie viel es in 
+            Zukunft wert sein wird.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist Kaufkraft?</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist Inflation?</h3>
           <p>
-            Die <strong>Kaufkraft</strong> beschreibt, wie viele Güter und Dienstleistungen Sie für 
-            eine bestimmte Geldmenge erwerben können. Bei steigenden Preisen (Inflation) sinkt die 
-            Kaufkraft – Ihr Geld ist real weniger wert, auch wenn der nominale Betrag gleich bleibt.
+            <strong>Inflation</strong> beschreibt den allgemeinen Anstieg des Preisniveaus über die Zeit. 
+            Wenn die Preise steigen, kann man für dieselbe Geldmenge weniger kaufen – die 
+            <strong>Kaufkraft</strong> sinkt.
           </p>
           <p>
-            <strong>Beispiel:</strong> 1.000€ auf dem Sparkonto haben nach 10 Jahren bei 2% Inflation 
-            nur noch eine Kaufkraft von etwa 820€. Die 1.000€ sind zwar noch da, aber Sie können sich 
-            damit deutlich weniger leisten.
+            Gemessen wird die Inflation am <strong>Verbraucherpreisindex (VPI)</strong>. Das 
+            Statistische Bundesamt ermittelt monatlich die Preisentwicklung eines Warenkorbs mit 
+            rund 700 Gütern und Dienstleistungen.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Inflation berechnet?</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflationsrate Deutschland – Historische Entwicklung</h3>
           <p>
-            Der Kaufkraftverlust durch Inflation folgt dem <strong>Zinseszins-Prinzip</strong>. 
-            Die Formel lautet:
+            Die Inflationsraten der letzten Jahre in Deutschland:
           </p>
-          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
-            Kaufkraft = Betrag ÷ (1 + Inflationsrate)^Jahre
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2024:</strong> 2,2%</li>
+            <li><strong>2023:</strong> 5,9%</li>
+            <li><strong>2022:</strong> 6,9% (höchster Wert seit 1973)</li>
+            <li><strong>2021:</strong> 3,1%</li>
+            <li><strong>2020:</strong> 0,5% (Corona-Pandemie)</li>
+            <li><strong>2010-2019:</strong> Durchschnittlich 1,3%</li>
+          </ul>
+          <p>
+            Unser Rechner verwendet die offiziellen Daten des <strong>Statistischen Bundesamts</strong> 
+            seit 1992.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Kaufkraft berechnet?</h3>
+          <p>
+            Die Kaufkraft in der Zukunft berechnet sich mit der Formel:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-sm font-mono">Kaufkraft = Betrag ÷ (1 + Inflationsrate)^Jahre</code>
           </div>
           <p>
-            Bei 2% jährlicher Inflation wird Ihr Geld nicht nur um 2% weniger wert – der Effekt 
-            verstärkt sich über die Jahre, weil auch die "bereits entwerteten" Euros weiter an 
-            Wert verlieren.
+            <strong>Beispiel:</strong> 10.000 € heute bei 2% Inflation sind in 10 Jahren nur noch 
+            ca. 8.200 € wert (Kaufkraftverlust von 18%).
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflation in Deutschland: Historische Entwicklung</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kaufkraft in der Vergangenheit</h3>
           <p>
-            Die <strong>Inflationsrate in Deutschland</strong> schwankt erheblich. Nach Jahren 
-            niedriger Inflation (2015-2020: unter 2%) stiegen die Preise ab 2021 stark an:
+            Unser Rechner kann auch rückwärts rechnen: Was wären 1.000 € von 2010 heute wert?
+          </p>
+          <p>
+            Bei einer kumulierten Inflation von etwa 25% seit 2010 bräuchten Sie heute ca. 
+            <strong>1.250 €</strong>, um dieselbe Kaufkraft zu haben.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflation und Geldanlage</h3>
+          <p>
+            Die Inflation ist der "unsichtbare Feind" der Geldanlage. Um die Kaufkraft zu erhalten, 
+            muss die <strong>Rendite höher als die Inflation</strong> sein:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>2020:</strong> 0,5% (Corona-Pandemie, niedrige Nachfrage)</li>
-            <li><strong>2021:</strong> 3,1% (Beginn des Anstiegs)</li>
-            <li><strong>2022:</strong> 6,9% (Energiekrise, höchste Rate seit 1973)</li>
-            <li><strong>2023:</strong> 5,9% (weiterhin hoch)</li>
-            <li><strong>2024:</strong> 2,2% (Normalisierung)</li>
-            <li><strong>2025:</strong> 2,2% (EZB-Zielbereich)</li>
+            <li><strong>Sparbuch (0,5%):</strong> Verliert real bei 2% Inflation</li>
+            <li><strong>Tagesgeld (3%):</strong> Gerade so inflationsausgleichend</li>
+            <li><strong>Anleihen (4%):</strong> Leicht positive Realrendite</li>
+            <li><strong>Aktien (7% langfristig):</strong> Deutlich über Inflation</li>
           </ul>
           <p>
-            Im langfristigen Durchschnitt lag die Inflation in Deutschland bei etwa <strong>2% pro Jahr</strong>. 
-            Dies entspricht auch dem Ziel der Europäischen Zentralbank (EZB).
+            Die <strong>Realrendite</strong> (Rendite nach Inflation) ist der wahre Wertgewinn:
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Zinseszins-Effekt bei der Inflation</h3>
-          <p>
-            Viele unterschätzen, wie stark Inflation über lange Zeiträume wirkt. Der 
-            <strong>Zinseszins-Effekt</strong> bedeutet:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Bei 2% Inflation: Kaufkraft halbiert sich in etwa <strong>35 Jahren</strong></li>
-            <li>Bei 3% Inflation: Kaufkraft halbiert sich in etwa <strong>24 Jahren</strong></li>
-            <li>Bei 5% Inflation: Kaufkraft halbiert sich in etwa <strong>14 Jahren</strong></li>
-            <li>Bei 7% Inflation: Kaufkraft halbiert sich in etwa <strong>10 Jahren</strong></li>
-          </ul>
-          <p>
-            <strong>Faustregel (72er-Regel):</strong> Teilen Sie 72 durch die Inflationsrate, 
-            um die ungefähre Halbierungszeit der Kaufkraft zu berechnen.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie schütze ich mich vor Inflation?</h3>
-          <p>
-            Um den <strong>Kaufkraftverlust</strong> zu minimieren, sollte Ihr Geld eine Rendite 
-            erzielen, die über der Inflationsrate liegt:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Aktien & ETFs:</strong> Historisch 6-8% Rendite p.a., deutlich über Inflation</li>
-            <li><strong>Immobilien:</strong> Sachwerte steigen oft mit der Inflation</li>
-            <li><strong>Anleihen:</strong> Inflationsindexierte Anleihen bieten Schutz</li>
-            <li><strong>Gold:</strong> Traditioneller Inflationsschutz (langfristig)</li>
-            <li><strong>Tagesgeld/Festgeld:</strong> Nur sinnvoll, wenn Zins > Inflation</li>
-          </ul>
-          <p>
-            <strong>Achtung:</strong> Geld auf dem Girokonto oder unter dem Kopfkissen verliert 
-            garantiert an Kaufkraft!
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Realzins: Was bleibt nach der Inflation?</h3>
-          <p>
-            Der <strong>Realzins</strong> zeigt, was von Ihrer Rendite nach Abzug der Inflation übrig bleibt:
-          </p>
-          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
-            Realzins ≈ Nominalzins − Inflationsrate
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-sm font-mono">Realrendite ≈ Nominalrendite − Inflationsrate</code>
           </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflation und Gehalt</h3>
           <p>
-            <strong>Beispiel:</strong> Ihr Tagesgeld bringt 3% Zinsen, die Inflation liegt bei 2,5%. 
-            Ihr Realzins beträgt nur 0,5% – die tatsächliche Wertsteigerung ist minimal.
+            Wenn Ihr Gehalt nicht mindestens mit der Inflation steigt, haben Sie einen 
+            <strong>realen Einkommensverlust</strong>. Bei 3% Inflation und 2% Gehaltserhöhung 
+            sinkt Ihre Kaufkraft um 1%.
           </p>
           <p>
-            Bei einem <strong>negativen Realzins</strong> (z.B. 1% Zinsen bei 3% Inflation = -2% Realzins) 
-            verliert Ihr Geld trotz Verzinsung an Kaufkraft!
+            <strong>Tipp:</strong> Bei Gehaltsverhandlungen die Inflationsrate als Mindestforderung 
+            nennen – alles darunter ist faktisch eine Gehaltskürzung.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verbraucherpreisindex (VPI): So wird Inflation gemessen</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ursachen von Inflation</h3>
           <p>
-            Das <strong>Statistische Bundesamt</strong> berechnet monatlich den 
-            <strong>Verbraucherpreisindex (VPI)</strong>. Dafür wird ein "Warenkorb" aus rund 
-            700 Gütern und Dienstleistungen beobachtet:
+            Inflation kann verschiedene Ursachen haben:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Wohnen, Energie, Wasser (ca. 35% Gewichtung)</li>
-            <li>Verkehr (ca. 13%)</li>
-            <li>Nahrungsmittel (ca. 10%)</li>
-            <li>Freizeit, Kultur (ca. 11%)</li>
-            <li>Weitere Kategorien (Gesundheit, Bildung, etc.)</li>
+            <li><strong>Nachfrageinflation:</strong> Hohe Nachfrage treibt Preise (z.B. Bauboom)</li>
+            <li><strong>Angebotsinflation:</strong> Knappe Güter werden teurer (z.B. Ölkrise)</li>
+            <li><strong>Geldmengeninflation:</strong> Zu viel Geld im Umlauf (Zentralbankpolitik)</li>
+            <li><strong>Importierte Inflation:</strong> Steigende Importpreise (z.B. schwacher Euro)</li>
           </ul>
           <p>
-            Die <strong>Inflationsrate</strong> ist die prozentuale Veränderung des VPI gegenüber 
-            dem Vorjahr. Sie wird auch "Teuerungsrate" genannt.
+            Die hohe Inflation 2022/23 war vor allem durch <strong>Energiepreise</strong> und 
+            <strong>Lieferkettenprobleme</strong> nach Corona und Ukraine-Krieg verursacht.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen (FAQ)</h3>
-          
-          <p><strong>Was ist der Unterschied zwischen Inflation und Deflation?</strong></p>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">EZB-Inflationsziel: 2 Prozent</h3>
           <p>
-            <strong>Inflation</strong> = Preise steigen, Kaufkraft sinkt. 
-            <strong>Deflation</strong> = Preise fallen, Kaufkraft steigt. 
-            Deflation klingt gut, ist aber wirtschaftlich gefährlich (Konsumstopp, Schuldenspiralen).
+            Die <strong>Europäische Zentralbank (EZB)</strong> strebt mittelfristig eine 
+            Inflationsrate von <strong>2%</strong> an. Warum nicht 0%?
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Puffer gegen <strong>Deflation</strong> (fallende Preise, gefährlicher als Inflation)</li>
+            <li>Ermöglicht <strong>reale Lohnanpassungen</strong> auch ohne nominale Kürzungen</li>
+            <li>Berücksichtigt <strong>Messfehler</strong> im Preisindex</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflation vs. Deflation</h3>
+          <p>
+            Das Gegenteil von Inflation ist <strong>Deflation</strong> – sinkende Preise. 
+            Klingt gut? Ist aber wirtschaftlich gefährlich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Konsumenten warten mit Käufen (Preise könnten weiter fallen)</li>
+            <li>Unternehmen senken Produktion und entlassen Mitarbeiter</li>
+            <li>Schulden werden real teurer (Deflationsspirale)</li>
+          </ul>
+          <p>
+            Daher ist eine <strong>moderate Inflation</strong> wirtschaftlich erwünscht.
           </p>
           
-          <p><strong>Warum fühlt sich die Inflation höher an als die offizielle Rate?</strong></p>
-          <p>
-            Die <strong>gefühlte Inflation</strong> weicht oft ab, weil jeder einen anderen 
-            persönlichen "Warenkorb" hat. Wenn Sie viel Auto fahren, spüren Sie Benzinpreis-Steigerungen 
-            stärker als der Durchschnitt.
-          </p>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps gegen Kaufkraftverlust</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Geld investieren:</strong> Rendite über Inflationsrate anstreben</li>
+            <li><strong>Sachwerte:</strong> Immobilien, Aktien, Gold können Inflation ausgleichen</li>
+            <li><strong>Gehaltsverhandlungen:</strong> Mindestens Inflationsausgleich fordern</li>
+            <li><strong>Indexmieten:</strong> Bei Vermietung an Inflation koppeln</li>
+            <li><strong>Frühzeitig kaufen:</strong> Große Anschaffungen nicht aufschieben</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">📊</span>
+          Datenquellen & Informationen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Statistisches Bundesamt (Destatis)</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Offizielle Inflationsdaten für Deutschland:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <a href="https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html" class="underline" target="_blank">Verbraucherpreisindex (VPI)</a></li>
+              <li>• Monatliche Veröffentlichung der Inflationsrate</li>
+            </ul>
+          </div>
           
-          <p><strong>Wer profitiert von Inflation?</strong></p>
-          <p>
-            <strong>Schuldner</strong> profitieren: Ihre Schulden werden real weniger wert. 
-            <strong>Sparer</strong> verlieren, wenn die Zinsen unter der Inflation liegen. 
-            Der <strong>Staat</strong> profitiert als größter Schuldner ebenfalls.
-          </p>
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Europäische Zentralbank (EZB)</h3>
+            <p class="text-green-700 text-sm mb-2">
+              Geldpolitik und Inflationsziel im Euroraum:
+            </p>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• <a href="https://www.ecb.europa.eu" class="underline" target="_blank">www.ecb.europa.eu</a></li>
+              <li>• HVPI (Harmonisierter Verbraucherpreisindex)</li>
+            </ul>
+          </div>
           
-          <p><strong>Was ist die Kerninflation?</strong></p>
-          <p>
-            Die <strong>Kerninflation</strong> rechnet volatile Komponenten (Energie, Nahrungsmittel) 
-            heraus und zeigt den zugrundeliegenden Preistrend. Sie ist oft stabiler als die 
-            Gesamtinflation.
-          </p>
-          
-          <p><strong>Wie beeinflusst die EZB die Inflation?</strong></p>
-          <p>
-            Die <strong>Europäische Zentralbank</strong> steuert die Inflation primär über den 
-            Leitzins. Höhere Zinsen = weniger Kredite = weniger Nachfrage = sinkende Inflation 
-            (und umgekehrt). Das Inflationsziel der EZB liegt bei knapp unter 2%.
-          </p>
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Persönliche Inflationsrate</h3>
+            <p class="text-amber-700 text-sm">
+              Die offizielle Inflationsrate ist ein Durchschnitt. Ihre persönliche Rate kann 
+              höher oder niedriger sein, je nach Konsumverhalten (z.B. hohe Energiekosten, 
+              viel Fleischkonsum).
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -209,7 +234,7 @@ const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechn
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Inflationsrechner 2025",
+    "name": "Inflationsrechner – Kaufkraftverlust berechnen",
     "description": description,
     "url": "https://www.deutschland-rechner.de/inflations-rechner",
     "applicationCategory": "FinanceApplication",
@@ -232,34 +257,34 @@ const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechn
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wie berechnet man den Kaufkraftverlust durch Inflation?",
+        "name": "Wie hoch ist die aktuelle Inflation in Deutschland?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Kaufkraftverlust wird mit der Formel berechnet: Kaufkraft = Betrag ÷ (1 + Inflationsrate)^Jahre. Bei 1.000€ und 2% Inflation über 10 Jahre: 1.000 ÷ 1,02^10 = 820€ Kaufkraft."
+          "text": "Die Inflationsrate in Deutschland lag 2024 bei etwa 2,2%. Nach den hohen Werten von 6,9% (2022) und 5,9% (2023) hat sich die Inflation wieder dem EZB-Ziel von 2% angenähert."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie hoch ist die Inflation in Deutschland 2025?",
+        "name": "Wie berechnet man den Kaufkraftverlust?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Inflationsrate in Deutschland liegt 2025 bei etwa 2,2% (Jahresdurchschnitt). Nach den hohen Raten von 2022 (6,9%) und 2023 (5,9%) hat sich die Inflation wieder normalisiert."
+          "text": "Der Kaufkraftverlust wird mit der Formel berechnet: Zukünftige Kaufkraft = Betrag ÷ (1 + Inflationsrate)^Jahre. Bei 2% Inflation verlieren 10.000 € in 10 Jahren etwa 18% an Kaufkraft (nur noch 8.200 € Kaufkraft)."
         }
       },
       {
         "@type": "Question",
-        "name": "Wann halbiert sich die Kaufkraft bei 2% Inflation?",
+        "name": "Was ist der Unterschied zwischen Nominalwert und Realwert?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bei einer konstanten Inflationsrate von 2% halbiert sich die Kaufkraft in etwa 35 Jahren. Faustregel: 72 ÷ Inflationsrate = Jahre bis zur Halbierung (72 ÷ 2 = 36 Jahre)."
+          "text": "Der Nominalwert ist der Betrag in Euro. Der Realwert ist die tatsächliche Kaufkraft nach Berücksichtigung der Inflation. 100 € von 2010 haben heute nominal denselben Wert, aber die Kaufkraft (Realwert) ist gesunken."
         }
       },
       {
         "@type": "Question",
-        "name": "Was war der Euro vor 20 Jahren wert?",
+        "name": "Warum strebt die EZB 2% Inflation an?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Durch die kumulative Inflation von etwa 45% seit 2005 entsprechen 100€ heute der Kaufkraft von etwa 145€ vor 20 Jahren. Umgekehrt: 100€ von 2005 haben heute nur noch eine Kaufkraft von etwa 69€."
+          "text": "Eine moderate Inflation von 2% schützt vor Deflation (fallende Preise), ermöglicht reale Lohnanpassungen und berücksichtigt Messfehler im Preisindex. Deflation ist wirtschaftlich gefährlicher als moderate Inflation."
         }
       },
       {
@@ -267,15 +292,15 @@ const keywords = "Inflationsrechner, Kaufkraftverlust berechnen, Inflation Rechn
         "name": "Wie schütze ich mein Geld vor Inflation?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Um Kaufkraftverlust zu vermeiden, sollte Ihre Geldanlage eine Rendite über der Inflationsrate erzielen. Möglichkeiten: Aktien/ETFs (historisch 6-8% p.a.), Immobilien, inflationsindexierte Anleihen oder Gold. Geld auf dem Girokonto verliert garantiert an Kaufkraft."
+          "text": "Um Kaufkraftverlust zu vermeiden, sollte Geld in Anlagen investiert werden, die mehr Rendite als die Inflation bringen. Aktien, Immobilien und inflationsindexierte Anleihen gelten als Inflationsschutz. Bargeld und niedrig verzinste Konten verlieren real an Wert."
         }
       },
       {
         "@type": "Question",
-        "name": "Was ist der Unterschied zwischen nominaler und realer Rendite?",
+        "name": "Wer veröffentlicht die offiziellen Inflationsdaten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die nominale Rendite ist der ausgewiesene Zins/Gewinn. Die reale Rendite (Realzins) ergibt sich nach Abzug der Inflation: Realzins = Nominalzins − Inflation. Bei 3% Zinsen und 2% Inflation beträgt der Realzins nur 1%."
+          "text": "Das Statistische Bundesamt (Destatis) veröffentlicht monatlich den Verbraucherpreisindex (VPI) für Deutschland. Für den Euroraum ist Eurostat zuständig (HVPI). Die Daten werden jeweils Mitte des Folgemonats veröffentlicht."
         }
       }
     ]

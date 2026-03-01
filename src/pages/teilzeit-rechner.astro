@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TeilzeitRechner from '../components/rechner/TeilzeitRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Teilzeit-Rechner 2026 – Gehalt bei Teilzeit berechnen";
+const description = "Teilzeit-Rechner 2026: Berechnen Sie Ihr Gehalt bei reduzierter Arbeitszeit. Von Vollzeit auf Teilzeit wechseln? Stunden, Gehalt, Urlaubstage. Kostenlos & sofort.";
+const keywords = "Teilzeit Rechner, Teilzeitgehalt berechnen, Vollzeit auf Teilzeit, Arbeitszeitreduzierung, Teilzeit Stunden, Brückenteilzeit, Urlaubstage Teilzeit, Teilzeitantrag";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Teilzeit-Rechner", url: "/teilzeit-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-cyan-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🕐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Teilzeit-Rechner 2026</h1>
+            <p class="text-cyan-100 text-sm">Gehalt & Arbeitszeit bei Teilzeit berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TeilzeitRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Teilzeit-Rechner: Was verdienen Sie bei Teilzeit?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Teilzeit-Rechner</strong> berechnen Sie Ihr Gehalt bei reduzierter 
+            Arbeitszeit. Egal ob Sie von Vollzeit auf Teilzeit wechseln möchten oder verschiedene 
+            Teilzeitmodelle vergleichen wollen – hier sehen Sie alle Auswirkungen auf einen Blick.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Recht auf Teilzeit</h3>
+          <p>
+            In Deutschland haben Arbeitnehmer einen <strong>gesetzlichen Anspruch auf Teilzeit</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Betrieb mit mehr als 15 Mitarbeitern</li>
+            <li>Arbeitsverhältnis besteht länger als 6 Monate</li>
+            <li>Keine entgegenstehenden betrieblichen Gründe</li>
+            <li>Antrag mindestens 3 Monate vor gewünschtem Beginn</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brückenteilzeit (seit 2019)</h3>
+          <p>
+            Die <strong>Brückenteilzeit</strong> ermöglicht befristete Teilzeit mit Rückkehrrecht:
+          </p>
+          <div class="bg-cyan-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Dauer:</strong> 1 bis 5 Jahre</li>
+              <li><strong>Rückkehr:</strong> Automatisch zur alten Arbeitszeit</li>
+              <li><strong>Voraussetzung:</strong> Unternehmen mit mehr als 45 Mitarbeitern</li>
+              <li><strong>Quote:</strong> Pro 15 Mitarbeiter 1 Brückenteilzeit-Platz</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gängige Teilzeitmodelle</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>50%:</strong> 20 Stunden/Woche (z.B. halbe Tage oder 2,5 Tage)</li>
+            <li><strong>60%:</strong> 24 Stunden/Woche (z.B. 3 volle Tage)</li>
+            <li><strong>75%:</strong> 30 Stunden/Woche (z.B. 6-Stunden-Tage oder 4-Tage-Woche)</li>
+            <li><strong>80%:</strong> 32 Stunden/Woche (beliebte 4-Tage-Woche)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gehaltsberechnung bei Teilzeit</h3>
+          <p>
+            Das <strong>Teilzeitgehalt</strong> berechnet sich proportional:
+          </p>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="font-semibold mb-2">Beispiel: Vollzeit 4.000€ bei 40h/Woche</p>
+            <ul class="space-y-1 text-sm">
+              <li>80% (32h): 4.000€ × 0,8 = <strong>3.200€</strong></li>
+              <li>75% (30h): 4.000€ × 0,75 = <strong>3.000€</strong></li>
+              <li>60% (24h): 4.000€ × 0,6 = <strong>2.400€</strong></li>
+              <li>50% (20h): 4.000€ × 0,5 = <strong>2.000€</strong></li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Urlaubstage bei Teilzeit</h3>
+          <p>
+            Die <strong>Urlaubstage</strong> werden nach Arbeitstagen pro Woche berechnet:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm mb-2">Formel: Urlaubstage × (Arbeitstage TZ ÷ Arbeitstage VZ)</p>
+            <p class="font-semibold mt-2">Beispiel: 30 Urlaubstage bei 5-Tage-Woche:</p>
+            <ul class="space-y-1 text-sm">
+              <li>4-Tage-Woche: 30 × (4÷5) = <strong>24 Urlaubstage</strong></li>
+              <li>3-Tage-Woche: 30 × (3÷5) = <strong>18 Urlaubstage</strong></li>
+            </ul>
+            <p class="text-xs mt-2 text-gray-500">Der Erholungswert bleibt gleich – weniger Tage, aber auch weniger Arbeitstage!</p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Auswirkungen auf Sozialversicherung</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Krankenversicherung:</strong> Bleibt bestehen (Beiträge sinken proportional)</li>
+            <li><strong>Rentenversicherung:</strong> Weniger Entgeltpunkte = niedrigere Rente</li>
+            <li><strong>Arbeitslosengeld:</strong> Bemessung nach Teilzeit-Einkommen</li>
+            <li><strong>Minijob-Grenze:</strong> Bei unter 538€/Monat nur RV-Pflicht (optional)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuerliche Aspekte</h3>
+          <p>
+            <strong>Teilzeit kann steuerlich günstiger sein:</strong>
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Niedrigeres Einkommen → niedrigerer Steuersatz</li>
+            <li>Netto-Verlust oft geringer als Brutto-Verlust</li>
+            <li>Ehegattensplitting prüfen (Steuerklassenkombination)</li>
+            <li>Freibeträge und Progressionsvorbehalt beachten</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für den Teilzeit-Antrag</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Schriftlich beantragen:</strong> Mindestens 3 Monate vorher</li>
+            <li><strong>Gewünschte Verteilung angeben:</strong> Welche Tage/Uhrzeiten</li>
+            <li><strong>Begründung optional:</strong> Aber hilfreich für gute Lösung</li>
+            <li><strong>Schweigen = Zustimmung:</strong> AG muss innerhalb 1 Monat ablehnen</li>
+            <li><strong>Ablehnung nur mit Grund:</strong> Betriebliche Gründe müssen konkret sein</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto</p>
+          </a>
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn</p>
+          </a>
+          <a href="/urlaubstage-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Urlaubstage</p>
+          </a>
+          <a href="/elternzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Elternzeit</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Rechtliche Grundlagen & Hilfe
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Teilzeit- und Befristungsgesetz (TzBfG)</h3>
+            <p class="text-blue-700 text-sm">
+              Das <strong>TzBfG</strong> regelt den Anspruch auf Teilzeit (§8), die Brückenteilzeit (§9a) 
+              und das Diskriminierungsverbot für Teilzeitbeschäftigte. Bei Ablehnung können Sie das 
+              Arbeitsgericht anrufen.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Antidiskriminierungsstelle</h3>
+            <p class="text-green-700 text-sm">
+              Werden Sie wegen Teilzeit benachteiligt (z.B. bei Beförderungen)? Die 
+              <strong>Antidiskriminierungsstelle des Bundes</strong> berät kostenlos: 
+              Tel. 030 18555-1855.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Teilzeit-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/teilzeit-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich mein Teilzeitgehalt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie Ihr Vollzeitgehalt durch die Vollzeit-Stunden und multiplizieren Sie mit Ihren Teilzeit-Stunden. Beispiel: 4.000€ bei 40h Vollzeit, Teilzeit 30h: 4.000€ ÷ 40 × 30 = 3.000€ brutto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Habe ich einen Anspruch auf Teilzeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, wenn Sie mindestens 6 Monate im Unternehmen arbeiten und der Betrieb mehr als 15 Mitarbeiter hat. Der Arbeitgeber kann nur aus betrieblichen Gründen ablehnen. Antrag mindestens 3 Monate vor gewünschtem Beginn stellen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Brückenteilzeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Brückenteilzeit (§9a TzBfG) ermöglicht befristete Teilzeit (1-5 Jahre) mit garantierter Rückkehr zur ursprünglichen Arbeitszeit. Voraussetzung: Unternehmen mit mehr als 45 Mitarbeitern und mehr als 6 Monate Betriebszugehörigkeit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Urlaub steht mir bei Teilzeit zu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Urlaub wird nach Arbeitstagen pro Woche berechnet. Bei einer 4-Tage-Woche und 30 Tagen Vollzeit-Urlaub: 30 × (4÷5) = 24 Urlaubstage. Der Erholungswert bleibt gleich, da Sie auch weniger Arbeitstage pro Woche haben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wirkt sich Teilzeit auf die Rente aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Teilzeit sammeln Sie weniger Entgeltpunkte für die Rente, da weniger in die Rentenversicherung eingezahlt wird. Langfristige Teilzeit kann die Rente erheblich reduzieren. Prüfen Sie private Vorsorge oder freiwillige Zuzahlungen."
+        }
+      }
+    ]
+  })} />
+</Layout>

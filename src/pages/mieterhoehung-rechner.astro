@@ -1,0 +1,263 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MieterhoehungRechner from '../components/rechner/MieterhoehungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Mieterhöhung-Rechner 2026 – Mieterhöhung prüfen & berechnen";
+const description = "Mieterhöhung-Rechner 2026: Prüfen Sie, ob die Mieterhöhung Ihres Vermieters rechtmäßig ist. Kappungsgrenze, Vergleichsmiete, ortsübliche Miete. Kostenlos berechnen.";
+const keywords = "Mieterhöhung Rechner, Mieterhöhung prüfen, Kappungsgrenze, Vergleichsmiete, ortsübliche Miete, Mietspiegel, Mieterhöhung zulässig, Mietrecht, Miete erhöhen";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Mieterhöhung-Rechner", url: "/mieterhoehung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-2xl font-bold">Mieterhöhung-Rechner 2026</h1>
+            <p class="text-orange-100 text-sm">Ist die Mieterhöhung rechtmäßig? Jetzt prüfen!</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MieterhoehungRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Mieterhöhung prüfen: Ist die Erhöhung zulässig?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Mieterhöhung-Rechner</strong> prüfen Sie kostenlos, ob die 
+            geforderte Mieterhöhung Ihres Vermieters rechtmäßig ist. Viele Mieterhöhungen 
+            sind zu hoch oder formal fehlerhaft – das Gesetz schützt Mieter mit 
+            <strong>Kappungsgrenzen</strong> und <strong>Vergleichsmieten</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Kappungsgrenze erklärt</h3>
+          <p>
+            Die <strong>Kappungsgrenze</strong> begrenzt Mieterhöhungen auf maximal 
+            <strong>20%</strong> innerhalb von 3 Jahren. In Städten mit angespanntem 
+            Wohnungsmarkt gilt sogar nur <strong>15%</strong>:
+          </p>
+          <div class="bg-orange-50 p-4 rounded-lg my-4">
+            <p class="text-orange-800 font-semibold mb-2">Städte mit 15%-Kappungsgrenze (Auswahl):</p>
+            <p class="text-orange-700 text-sm">
+              Berlin, München, Hamburg, Frankfurt, Köln, Düsseldorf, Stuttgart, Hannover, 
+              Nürnberg, Dresden, Leipzig, Freiburg, Heidelberg, Potsdam, Rostock, Kiel...
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Vergleichsmiete als Obergrenze</h3>
+          <p>
+            Die Miete darf nicht über die <strong>ortsübliche Vergleichsmiete</strong> steigen. 
+            Diese wird im <strong>Mietspiegel</strong> Ihrer Stadt festgelegt. Selbst wenn die 
+            Kappungsgrenze eine höhere Erhöhung erlauben würde, ist die Vergleichsmiete das Maximum.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Formelle Anforderungen</h3>
+          <p>
+            Eine Mieterhöhung ist nur wirksam, wenn sie <strong>formal korrekt</strong> ist:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Schriftform:</strong> Brief oder E-Mail (wenn vereinbart)</li>
+            <li><strong>Begründung:</strong> Mietspiegel, Gutachten oder 3 Vergleichswohnungen</li>
+            <li><strong>Wartefrist:</strong> 15 Monate seit letzter Erhöhung/Mietbeginn</li>
+            <li><strong>Zustimmungsfrist:</strong> Mindestens 2 Monate zum Monatsende</li>
+            <li><strong>Überlegungsfrist:</strong> Sie haben 2 Monate zur Prüfung</li>
+          </ul>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg my-4 border-l-4 border-yellow-400">
+            <h4 class="font-semibold text-yellow-800 mb-2">⚠️ Wichtig für Mieter</h4>
+            <p class="text-yellow-700 text-sm">
+              Sie müssen einer Mieterhöhung <strong>nicht automatisch zustimmen</strong>. Prüfen 
+              Sie die Erhöhung sorgfältig. Stimmen Sie nicht zu, muss der Vermieter auf Zustimmung 
+              klagen – Sie haben bis zum Gerichtsurteil Zeit.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beispielrechnung</h3>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <ul class="space-y-1 text-sm text-green-700">
+              <li>Aktuelle Kaltmiete: 800€</li>
+              <li>Letzte Erhöhung: vor 18 Monaten</li>
+              <li>Kappungsgrenze 15% (3 Jahre): max. +120€</li>
+              <li>Vergleichsmiete laut Mietspiegel: 10€/m² × 70m² = 700€</li>
+              <li class="pt-2 border-t border-green-200 font-bold">
+                → Keine Erhöhung möglich! Die aktuelle Miete liegt bereits über der Vergleichsmiete.
+              </li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann darf der Vermieter erhöhen?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Anpassung an Vergleichsmiete:</strong> Nach § 558 BGB mit Begründung</li>
+            <li><strong>Modernisierung:</strong> 8% der Kosten auf Jahresmiete (gedeckelt)</li>
+            <li><strong>Indexmiete:</strong> Anpassung an Lebenshaltungskosten (vertraglich)</li>
+            <li><strong>Staffelmiete:</strong> Vorher festgelegte Erhöhungsstufen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So finden Sie die Vergleichsmiete</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Qualifizierter Mietspiegel:</strong> Offiziell von der Stadt erstellt</li>
+            <li><strong>Einfacher Mietspiegel:</strong> Von Verbänden erstellt (weniger Beweiskraft)</li>
+            <li><strong>Mieterverein:</strong> Berät zu Vergleichsmieten in Ihrer Region</li>
+            <li><strong>Online-Mietdatenbanken:</strong> Erste Orientierung (nicht rechtsverbindlich)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/mietrendite-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mietrendite-Rechner</p>
+          </a>
+          <a href="/kaufen-oder-mieten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufen oder Mieten</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Hilfe & Beratung
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Mieterverein</h3>
+            <p class="text-blue-700 text-sm">
+              Der <strong>Mieterverein</strong> in Ihrer Stadt berät Sie kompetent bei 
+              Mieterhöhungen. Die Mitgliedschaft kostet etwa 60-100€/Jahr und beinhaltet 
+              Rechtsberatung und -schutz. Oft lohnt sich die Mitgliedschaft schnell!
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Mietspiegel</h3>
+            <p class="text-green-700 text-sm">
+              Den <strong>Mietspiegel</strong> Ihrer Stadt finden Sie auf der Website 
+              Ihrer Kommune oder beim Amt für Wohnungswesen. Viele Städte bieten auch 
+              einen kostenlosen Online-Mietspiegelrechner an.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mieterhöhung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/mieterhoehung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch darf eine Mieterhöhung maximal sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Mieterhöhung darf maximal 20% innerhalb von 3 Jahren betragen (Kappungsgrenze). In Städten mit angespanntem Wohnungsmarkt wie Berlin, München oder Hamburg gilt eine Kappungsgrenze von nur 15%. Zusätzlich darf die neue Miete die ortsübliche Vergleichsmiete nicht übersteigen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die ortsübliche Vergleichsmiete?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die ortsübliche Vergleichsmiete ist der Durchschnitt der Mieten für vergleichbare Wohnungen in Ihrer Stadt. Sie wird im Mietspiegel festgelegt und berücksichtigt Lage, Größe, Ausstattung und Baujahr der Wohnung. Die Miete darf diesen Wert nicht überschreiten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich einer Mieterhöhung zustimmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, Sie müssen nicht automatisch zustimmen. Der Vermieter muss die Erhöhung begründen und Sie haben 2 Monate Überlegungsfrist. Stimmen Sie nicht zu, muss der Vermieter auf Zustimmung klagen. Bis zum Urteil zahlen Sie die alte Miete weiter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Fristen gelten bei Mieterhöhungen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die wichtigsten Fristen: 15 Monate Wartefrist seit letzter Erhöhung oder Mietbeginn, mindestens 2 Monate Ankündigung zum Monatsende, 2 Monate Überlegungsfrist für den Mieter zur Prüfung und Zustimmung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein qualifizierter Mietspiegel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein qualifizierter Mietspiegel wird nach wissenschaftlichen Grundsätzen von der Stadt erstellt und alle 2 Jahre aktualisiert. Er hat vor Gericht hohe Beweiskraft. Im Gegensatz dazu ist ein einfacher Mietspiegel weniger verbindlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt die Kappungsgrenze auch bei Modernisierung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, Modernisierungsumlagen sind von der Kappungsgrenze ausgenommen. Der Vermieter darf 8% der Modernisierungskosten auf die Jahresmiete umlegen, jedoch maximal 3€/m² in 6 Jahren (bei Mieten unter 7€/m² nur 2€/m²)."
+        }
+      }
+    ]
+  })} />
+</Layout>

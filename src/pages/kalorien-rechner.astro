@@ -1,0 +1,303 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KalorienRechner from '../components/rechner/KalorienRechner';
+
+const title = "Kalorienrechner 2026 – Kalorienbedarf berechnen (Grundumsatz + Leistungsumsatz)";
+const description = "Kalorienrechner 2026: Täglichen Kalorienbedarf berechnen mit Mifflin-St Jeor & Harris-Benedict Formel. Grundumsatz, Leistungsumsatz & Zielkalorien für Abnehmen/Zunehmen.";
+const keywords = "Kalorienrechner, Kalorienbedarf berechnen, Grundumsatz Rechner, Leistungsumsatz, TDEE Rechner, Kalorien zum Abnehmen, Kalorien Zunehmen, Mifflin St Jeor";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-500 to-emerald-500 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kalorienrechner 2026</h1>
+            <p class="text-green-100 text-sm">Grundumsatz & Kalorienbedarf berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KalorienRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kalorienbedarf verstehen: So funktioniert's</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wie viele <strong>Kalorien</strong> brauchen Sie täglich? Unser <strong>Kalorienrechner 2026</strong> 
+            berechnet Ihren individuellen Bedarf nach wissenschaftlich anerkannten Formeln – inklusive 
+            Empfehlungen zum Abnehmen oder Zunehmen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundumsatz vs. Leistungsumsatz</h3>
+          
+          <div class="bg-gray-50 p-4 rounded-lg my-4 space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-xl">🛏️</span>
+              <div>
+                <p class="font-semibold">Grundumsatz (BMR)</p>
+                <p class="text-sm text-gray-600">
+                  Kalorien, die Ihr Körper im Ruhezustand verbrennt – für Atmung, Herzschlag, 
+                  Gehirnfunktion und Stoffwechsel. Etwa 60-70% Ihres Gesamtverbrauchs.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl">🏃</span>
+              <div>
+                <p class="font-semibold">Leistungsumsatz / Gesamtumsatz (TDEE)</p>
+                <p class="text-sm text-gray-600">
+                  Grundumsatz plus alle Aktivitäten: Arbeit, Sport, Bewegung im Alltag. 
+                  Das ist Ihr tatsächlicher Kalorienbedarf.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formeln hinter dem Rechner</h3>
+          <p>
+            Unser Rechner nutzt zwei wissenschaftlich anerkannte Formeln:
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="font-semibold text-green-800 mb-2">Mifflin-St Jeor Formel (1990)</p>
+            <p class="text-sm text-green-700">
+              Die genaueste Formel laut aktueller Studien, von der DGE empfohlen.<br/>
+              <strong>Männer:</strong> (10 × Gewicht kg) + (6,25 × Größe cm) − (5 × Alter) + 5<br/>
+              <strong>Frauen:</strong> (10 × Gewicht kg) + (6,25 × Größe cm) − (5 × Alter) − 161
+            </p>
+          </div>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="font-semibold text-blue-800 mb-2">Harris-Benedict Formel (1984)</p>
+            <p class="text-sm text-blue-700">
+              Die klassische Formel, etwas höhere Werte als Mifflin-St Jeor.<br/>
+              <strong>Männer:</strong> 88,362 + (13,397 × Gewicht) + (4,799 × Größe) − (5,677 × Alter)<br/>
+              <strong>Frauen:</strong> 447,593 + (9,247 × Gewicht) + (3,098 × Größe) − (4,330 × Alter)
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">PAL-Faktor: Aktivitätslevel</h3>
+          <p>
+            Der <strong>PAL-Faktor</strong> (Physical Activity Level) multipliziert den Grundumsatz 
+            mit Ihrem Aktivitätsniveau:
+          </p>
+          
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1,2</strong> – Sitzend (Büroarbeit, kaum Bewegung)</li>
+              <li><strong>1,375</strong> – Leicht aktiv (1-3× Sport pro Woche)</li>
+              <li><strong>1,55</strong> – Mäßig aktiv (3-5× Sport pro Woche)</li>
+              <li><strong>1,725</strong> – Aktiv (6-7× intensiver Sport)</li>
+              <li><strong>1,9</strong> – Sehr aktiv (Leistungssport, körperliche Arbeit)</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kalorien zum Abnehmen</h3>
+          <p>
+            Um abzunehmen, müssen Sie ein <strong>Kaloriendefizit</strong> erzeugen – also weniger 
+            essen, als Sie verbrauchen.
+          </p>
+          
+          <div class="bg-yellow-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm text-yellow-800">
+              <li><strong>Moderates Defizit (300-500 kcal):</strong> ~0,3-0,5 kg pro Woche</li>
+              <li><strong>Stärkeres Defizit (500-750 kcal):</strong> ~0,5-0,75 kg pro Woche</li>
+              <li><strong>Aggressives Defizit (750-1000 kcal):</strong> ~0,75-1 kg pro Woche</li>
+            </ul>
+            <p class="text-sm mt-2 text-yellow-800">
+              <strong>💡 Wichtig:</strong> Gehen Sie nie unter den Grundumsatz! Das schadet dem 
+              Stoffwechsel und führt zum Jo-Jo-Effekt.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kalorien zum Zunehmen</h3>
+          <p>
+            Für <strong>Muskelaufbau</strong> oder gesunde Gewichtszunahme brauchen Sie einen Kalorienüberschuss:
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm text-green-800">
+              <li><strong>Leichter Überschuss (+200-300 kcal):</strong> Lean Bulk, minimale Fettzunahme</li>
+              <li><strong>Moderater Überschuss (+300-500 kcal):</strong> Klassischer Aufbau</li>
+              <li><strong>Aggressiv (+500+ kcal):</strong> Schneller Aufbau, mehr Fett</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faktoren, die den Kalorienbedarf beeinflussen</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li><strong>Alter:</strong> Der Grundumsatz sinkt mit dem Alter (~2% pro Jahrzehnt)</li>
+            <li><strong>Geschlecht:</strong> Männer haben mehr Muskelmasse → höherer Grundumsatz</li>
+            <li><strong>Muskelmasse:</strong> Muskeln verbrennen mehr Kalorien als Fett</li>
+            <li><strong>Körpergröße:</strong> Größere Menschen haben höheren Grundumsatz</li>
+            <li><strong>Hormone:</strong> Schilddrüse, Stresshormone beeinflussen den Stoffwechsel</li>
+            <li><strong>Genetik:</strong> ~10% Unterschied zwischen Menschen möglich</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für genaue Ergebnisse</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Wählen Sie den PAL-Faktor realistisch (die meisten überschätzen sich!)</li>
+            <li>Der Rechner gibt einen Richtwert – beobachten Sie Ihr Gewicht über 2-4 Wochen</li>
+            <li>Passen Sie die Kalorien an, wenn sich nichts tut (±100-200 kcal)</li>
+            <li>Nicht nur Kalorien zählen – Proteine, Fette und Kohlenhydrate beachten</li>
+          </ul>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-blue-800">
+              <strong>💡 Profi-Tipp:</strong> Tracken Sie Ihre Kalorien 1-2 Wochen mit einer App 
+              (z.B. MyFitnessPal, Yazio). So bekommen Sie ein Gefühl für Portionsgrößen und versteckte 
+              Kalorien – danach reicht oft das intuitive Einschätzen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/grundumsatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundumsatz-Rechner</p>
+          </a>
+          <a href="/idealgewicht-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎯</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Idealgewicht-Rechner</p>
+          </a>
+          <a href="/koerperfett-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Körperfett-Rechner</p>
+          </a>
+          <a href="/promille-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Promille-Rechner</p>
+          </a>
+          <a href="/trinkgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Trinkgeld-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Wissenschaftliche Grundlage -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔬</span>
+          Wissenschaftliche Grundlage
+        </h2>
+        
+        <div class="p-4 bg-blue-50 rounded-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">DGE-Referenzwerte & WHO-Empfehlungen</h3>
+          <p class="text-blue-700 text-sm mb-2">
+            Unser Rechner basiert auf den <strong>PAL-Faktoren der DGE</strong> (Deutsche Gesellschaft 
+            für Ernährung) und der <strong>Mifflin-St Jeor Formel</strong>, die 2005 von der ADA 
+            (American Dietetic Association) als genaueste Formel für den Grundumsatz empfohlen wurde.
+          </p>
+          <p class="text-blue-700 text-sm">
+            <strong>Studie:</strong> Mifflin et al. (1990): "A new predictive equation for resting 
+            energy expenditure in healthy individuals."
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kalorienrechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kalorien-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Kalorien brauche ich am Tag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der tägliche Kalorienbedarf hängt von Geschlecht, Alter, Gewicht, Größe und Aktivität ab. Frauen benötigen durchschnittlich 1800-2200 kcal, Männer 2200-3000 kcal. Nutzen Sie unseren Rechner für Ihren individuellen Wert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Grundumsatz und Gesamtumsatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Grundumsatz (BMR) ist die Kalorienmenge, die Ihr Körper im Ruhezustand verbrennt (Atmung, Herzschlag, Stoffwechsel). Der Gesamtumsatz (TDEE) addiert alle Aktivitäten hinzu und ist Ihr tatsächlicher Kalorienbedarf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Kalorien muss ich einsparen um abzunehmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Defizit von 500 kcal pro Tag führt zu ca. 0,5 kg Gewichtsverlust pro Woche (7000 kcal = 1 kg Fett). Gehen Sie nie unter Ihren Grundumsatz, um den Jo-Jo-Effekt zu vermeiden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kalorienformel ist am genauesten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Mifflin-St Jeor Formel gilt als genaueste Methode zur Berechnung des Grundumsatzes und wird von der American Dietetic Association empfohlen. Sie ist genauer als die ältere Harris-Benedict Formel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der PAL-Faktor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der PAL-Faktor (Physical Activity Level) beschreibt Ihr Aktivitätsniveau von 1,2 (sitzend) bis 1,9 (sehr aktiv). Er wird mit dem Grundumsatz multipliziert, um den Gesamtkalorienbedarf zu berechnen."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LebenserwartungRechner from '../components/rechner/LebenserwartungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Lebenserwartung Rechner – Wie alt werde ich? | Deutschland 2024";
+const description = "Lebenserwartung berechnen: Basierend auf Destatis-Sterbetafeln und Lebensstil-Faktoren. Erfahren Sie Ihre statistische Lebenserwartung für Deutschland. Kostenlos & anonym.";
+const keywords = "Lebenserwartung Rechner, wie alt werde ich, Lebenserwartung Deutschland, statistische Lebenserwartung, Sterbetafel, Lebensdauer berechnen, Lebenserwartung nach Alter, Destatis Lebenserwartung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Lebenserwartung-Rechner", url: "/lebenserwartung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Lebenserwartung-Rechner</h1>
+            <p class="text-emerald-100 text-sm">Statistische Schätzung basierend auf Destatis-Daten</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <LebenserwartungRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Lebenserwartung in Deutschland: Fakten & Statistik</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Unser <strong>Lebenserwartung-Rechner</strong> basiert auf den offiziellen Sterbetafeln 
+            des Statistischen Bundesamts (Destatis) und berücksichtigt Ihren Lebensstil, um eine 
+            individuelle Schätzung zu erstellen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Lebenserwartung in Deutschland (2024)</h3>
+          <p>
+            Die durchschnittliche <strong>Lebenserwartung bei Geburt</strong> beträgt in Deutschland:
+          </p>
+          
+          <div class="grid grid-cols-2 gap-4 my-4">
+            <div class="bg-blue-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-blue-700">78,3</div>
+              <div class="text-sm text-blue-600">Jahre (Männer)</div>
+            </div>
+            <div class="bg-pink-50 p-4 rounded-lg text-center">
+              <div class="text-3xl font-bold text-pink-700">83,2</div>
+              <div class="text-sm text-pink-600">Jahre (Frauen)</div>
+            </div>
+          </div>
+          
+          <p>
+            Die <strong>fernere Lebenserwartung</strong> gibt an, wie viele Jahre eine Person 
+            eines bestimmten Alters statistisch noch zu erwarten hat. Je älter man wird, 
+            desto höher liegt das erwartete Endalter.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fernere Lebenserwartung nach Alter</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="border p-2 text-left">Aktuelles Alter</th>
+                  <th class="border p-2 text-center">Männer (noch)</th>
+                  <th class="border p-2 text-center">Frauen (noch)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border p-2">30 Jahre</td><td class="border p-2 text-center">49,3 Jahre</td><td class="border p-2 text-center">53,8 Jahre</td></tr>
+                <tr><td class="border p-2">40 Jahre</td><td class="border p-2 text-center">39,8 Jahre</td><td class="border p-2 text-center">44,0 Jahre</td></tr>
+                <tr><td class="border p-2">50 Jahre</td><td class="border p-2 text-center">30,7 Jahre</td><td class="border p-2 text-center">34,5 Jahre</td></tr>
+                <tr><td class="border p-2">60 Jahre</td><td class="border p-2 text-center">22,2 Jahre</td><td class="border p-2 text-center">25,4 Jahre</td></tr>
+                <tr><td class="border p-2">70 Jahre</td><td class="border p-2 text-center">14,5 Jahre</td><td class="border p-2 text-center">17,0 Jahre</td></tr>
+                <tr><td class="border p-2">80 Jahre</td><td class="border p-2 text-center">8,3 Jahre</td><td class="border p-2 text-center">9,8 Jahre</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Quelle: Destatis Sterbetafeln 2021/2023</p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was beeinflusst die Lebenserwartung?</h3>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">Positive Faktoren (+Lebensjahre)</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Regelmäßige Bewegung:</strong> +2 bis +4 Jahre</li>
+            <li><strong>Gesunde Ernährung:</strong> +2 bis +3 Jahre</li>
+            <li><strong>Soziale Kontakte:</strong> +1 bis +3 Jahre</li>
+            <li><strong>Nie geraucht:</strong> +10 Jahre vs. Raucher</li>
+            <li><strong>Moderater Alkoholkonsum:</strong> +0,5 Jahre</li>
+            <li><strong>Guter Schlaf (7-8h):</strong> neutraler Faktor</li>
+          </ul>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">Negative Faktoren (-Lebensjahre)</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Rauchen (stark):</strong> -10 Jahre</li>
+            <li><strong>Starkes Übergewicht:</strong> -3 bis -5 Jahre</li>
+            <li><strong>Bewegungsmangel:</strong> -3 Jahre</li>
+            <li><strong>Starker Alkoholkonsum:</strong> -5 Jahre</li>
+            <li><strong>Chronischer Stress:</strong> -2 Jahre</li>
+            <li><strong>Soziale Isolation:</strong> -3 Jahre</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Entwicklung der Lebenserwartung</h3>
+          <p>
+            Die Lebenserwartung in Deutschland ist in den letzten 150 Jahren drastisch gestiegen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>1871:</strong> Männer 35,6 Jahre, Frauen 38,5 Jahre</li>
+            <li><strong>1950:</strong> Männer 64,6 Jahre, Frauen 68,5 Jahre</li>
+            <li><strong>2000:</strong> Männer 74,8 Jahre, Frauen 80,8 Jahre</li>
+            <li><strong>2024:</strong> Männer 78,3 Jahre, Frauen 83,2 Jahre</li>
+          </ul>
+          <p>
+            Gründe für den Anstieg: bessere medizinische Versorgung, Hygiene, Ernährung, 
+            sinkende Säuglingssterblichkeit und höherer Lebensstandard.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum leben Frauen länger?</h3>
+          <p>
+            Der Unterschied von etwa 5 Jahren zwischen Männern und Frauen hat mehrere Ursachen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Biologische Faktoren:</strong> Östrogen schützt vor Herzkrankheiten</li>
+            <li><strong>Riskanteres Verhalten:</strong> Männer rauchen mehr, trinken mehr, haben mehr Unfälle</li>
+            <li><strong>Gesundheitsvorsorge:</strong> Frauen gehen häufiger zum Arzt</li>
+            <li><strong>Berufliche Risiken:</strong> Mehr Männer in gefährlichen Berufen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Regionale Unterschiede in Deutschland</h3>
+          <p>
+            Die Lebenserwartung variiert je nach Bundesland um bis zu 3 Jahre:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Höchste:</strong> Baden-Württemberg, Bayern</li>
+            <li><strong>Niedrigste:</strong> Sachsen-Anhalt, Mecklenburg-Vorpommern</li>
+            <li><strong>Stadt/Land:</strong> Städte meist etwas höher</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Internationaler Vergleich</h3>
+          <p>
+            Deutschland liegt im europäischen Mittelfeld:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Japan:</strong> 84,3 Jahre (Weltspitze)</li>
+            <li><strong>Schweiz:</strong> 83,4 Jahre</li>
+            <li><strong>Spanien:</strong> 83,2 Jahre</li>
+            <li><strong>Deutschland:</strong> 80,8 Jahre</li>
+            <li><strong>USA:</strong> 76,4 Jahre</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hinweise und Ressourcen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">📚</span>
+          Quellen & weiterführende Informationen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-emerald-50 rounded-lg">
+            <h3 class="font-semibold text-emerald-800 mb-2">Offizielle Datenquellen</h3>
+            <ul class="text-emerald-700 text-sm space-y-1">
+              <li>• <a href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/_inhalt.html" class="underline" target="_blank" rel="noopener">Statistisches Bundesamt – Sterbetafeln</a></li>
+              <li>• <a href="https://www.rki.de" class="underline" target="_blank" rel="noopener">Robert Koch-Institut</a></li>
+              <li>• <a href="https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates" class="underline" target="_blank" rel="noopener">WHO – Global Health Observatory</a></li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Gesundheitsberatung</h3>
+            <p class="text-blue-700 text-sm">
+              Für individuelle Gesundheitsfragen und Vorsorgeuntersuchungen wenden Sie sich 
+              an Ihren Hausarzt. Krankenkassen bieten zudem Präventionsprogramme und Gesundheitskurse an.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Wichtiger Hinweis</h3>
+            <p class="text-amber-700 text-sm">
+              Dieser Rechner liefert eine <strong>statistische Schätzung</strong> und berücksichtigt 
+              keine individuellen Erkrankungen, genetischen Faktoren oder unvorhergesehene Ereignisse. 
+              Er ersetzt keine ärztliche Beratung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lebenserwartung-Rechner Deutschland",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/lebenserwartung-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die durchschnittliche Lebenserwartung in Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die durchschnittliche Lebenserwartung bei Geburt beträgt in Deutschland für Männer 78,3 Jahre und für Frauen 83,2 Jahre (Stand 2024, Quelle: Destatis). Frauen leben also durchschnittlich etwa 5 Jahre länger als Männer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich meine Lebenserwartung erhöhen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Studien zeigen, dass folgende Faktoren die Lebenserwartung erhöhen: regelmäßige Bewegung (+2-4 Jahre), gesunde Ernährung (+2-3 Jahre), Nichtrauchen (+10 Jahre vs. Raucher), soziale Kontakte (+1-3 Jahre), ausreichend Schlaf und Stressreduktion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die fernere Lebenserwartung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die fernere Lebenserwartung gibt an, wie viele weitere Lebensjahre eine Person eines bestimmten Alters statistisch noch erwarten kann. Ein 60-jähriger Mann hat z.B. noch 22,2 Jahre zu erwarten (Endalter: 82,2 Jahre), obwohl die Lebenserwartung bei Geburt nur 78,3 Jahre beträgt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum leben Frauen länger als Männer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Unterschied hat biologische und verhaltensbedingte Ursachen: Östrogen schützt Frauen vor Herzkrankheiten, Männer zeigen riskanteres Verhalten (Rauchen, Alkohol, Unfälle), Frauen gehen häufiger zur Vorsorge, und mehr Männer arbeiten in gefährlichen Berufen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird die Lebenserwartung berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Lebenserwartung wird aus Sterbetafeln berechnet, die auf den tatsächlichen Sterbefällen und Bevölkerungszahlen basieren. Das Statistische Bundesamt (Destatis) erstellt diese Tafeln jährlich. Unser Rechner nutzt diese Basisdaten und passt sie anhand wissenschaftlicher Studien zu Lebensstil-Faktoren an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "In welchem Bundesland ist die Lebenserwartung am höchsten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die höchste Lebenserwartung in Deutschland haben Baden-Württemberg und Bayern. Die niedrigsten Werte finden sich in Sachsen-Anhalt und Mecklenburg-Vorpommern. Der Unterschied beträgt bis zu 3 Jahre zwischen den Bundesländern."
+        }
+      }
+    ]
+  })} />
+</Layout>

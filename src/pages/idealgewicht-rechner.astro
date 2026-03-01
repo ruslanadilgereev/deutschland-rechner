@@ -1,0 +1,254 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IdealgewichtRechner from '../components/rechner/IdealgewichtRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Idealgewicht-Rechner 2026 – Optimales Körpergewicht berechnen";
+const description = "Idealgewicht Rechner: Berechnen Sie Ihr optimales Körpergewicht nach verschiedenen Formeln (Broca, Creff, Lorentz). Mit BMI-Vergleich, Gewichtsspanne & Gesundheitstipps. Kostenlos & sofort.";
+const keywords = "Idealgewicht Rechner, Idealgewicht berechnen, optimales Gewicht, Normalgewicht Rechner, Broca Formel, Creff Index, Lorentz Formel, Idealgewicht Frau, Idealgewicht Mann, Körpergewicht berechnen, gesundes Gewicht, Wunschgewicht berechnen";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Idealgewicht-Rechner", url: "/idealgewicht-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-pink-500 to-rose-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-pink-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎯</span>
+          <div>
+            <h1 class="text-2xl font-bold">Idealgewicht-Rechner</h1>
+            <p class="text-pink-100 text-sm">Optimales Körpergewicht berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <IdealgewichtRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Idealgewicht-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Das <strong>Idealgewicht</strong> ist das Körpergewicht, bei dem Sie sich wohl fühlen und 
+            das Risiko für gewichtsbedingte Erkrankungen minimal ist. Mit unserem <strong>Idealgewicht-Rechner</strong> 
+            ermitteln Sie Ihr optimales Gewicht nach verschiedenen wissenschaftlichen Formeln – kostenlos und ohne Anmeldung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird das Idealgewicht berechnet?</h3>
+          <p>
+            Es gibt verschiedene Formeln zur Berechnung des Idealgewichts. Jede hat ihre Berechtigung 
+            und Einschränkungen:
+          </p>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">1. Broca-Formel (klassisch)</h4>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <code class="text-lg font-mono">Normalgewicht = Körpergröße (cm) - 100</code><br/>
+            <code class="text-lg font-mono">Idealgewicht = Normalgewicht - 10% (Männer) bzw. 15% (Frauen)</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Bei 175 cm Körpergröße beträgt das Normalgewicht 75 kg. 
+            Das Idealgewicht für einen Mann wäre 67,5 kg, für eine Frau 63,75 kg.
+          </p>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">2. Creff-Formel (altersabhängig)</h4>
+          <p>
+            Die Creff-Formel berücksichtigt das <strong>Alter</strong> und die <strong>Körperkonstitution</strong>:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 text-sm">
+            <code class="font-mono">Idealgewicht = (Größe - 100 + Alter/10) × 0,9 × Konstitutionsfaktor</code>
+          </div>
+          <p>Der Konstitutionsfaktor: 0,9 (zierlich), 1,0 (normal), 1,1 (kräftig).</p>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">3. Lorentz-Formel</h4>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 text-sm">
+            <code class="font-mono">Männer: Größe - 100 - (Größe - 150) / 4</code><br/>
+            <code class="font-mono">Frauen: Größe - 100 - (Größe - 150) / 2</code>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Idealgewicht vs. Normalgewicht vs. BMI</h3>
+          <p>
+            Diese Begriffe werden oft verwechselt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Normalgewicht:</strong> Gewichtsbereich ohne erhöhtes Gesundheitsrisiko (BMI 18,5-25)</li>
+            <li><strong>Idealgewicht:</strong> Das „optimale" Gewicht innerhalb des Normalbereichs</li>
+            <li><strong>Wohlfühlgewicht:</strong> Subjektives Gewicht, bei dem Sie sich am besten fühlen</li>
+          </ul>
+          <p>
+            Das Idealgewicht ist ein <strong>Richtwert</strong>, kein starres Ziel. Ein Gewicht im Normalbereich 
+            ist gesundheitlich oft genauso gut.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Idealgewicht für Frauen und Männer</h3>
+          <p>
+            <strong>Geschlechtsunterschiede</strong> spielen beim Idealgewicht eine Rolle:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Frauen</strong> haben natürlicherweise mehr Körperfett (essentielles Fett: 10-13%)</li>
+            <li><strong>Männer</strong> haben mehr Muskelmasse und essentielles Fett von nur 2-5%</li>
+            <li>Bei gleicher Größe liegt das Idealgewicht für Frauen meist 5-10 kg unter dem für Männer</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Idealgewicht nach Alter</h3>
+          <p>
+            Mit zunehmendem Alter verändert sich der Körper:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>20-30 Jahre:</strong> BMI 20-23 oft optimal</li>
+            <li><strong>30-50 Jahre:</strong> BMI 21-24 häufig ideal</li>
+            <li><strong>50-65 Jahre:</strong> BMI 22-25 kann vorteilhaft sein</li>
+            <li><strong>Über 65:</strong> BMI 24-29 gilt als optimal (Reserven schützen bei Krankheit)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grenzen der Idealgewicht-Berechnung</h3>
+          <p>
+            Die Formeln haben <strong>Einschränkungen</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Keine Berücksichtigung von Muskelmasse (Sportler)</li>
+            <li>Körperbau und Knochendichte werden ignoriert</li>
+            <li>Ethnische Unterschiede werden nicht beachtet</li>
+            <li>Für Kinder und Jugendliche ungeeignet</li>
+            <li>In Schwangerschaft nicht anwendbar</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So erreichen Sie Ihr Idealgewicht</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Realistische Ziele:</strong> 0,5-1 kg pro Woche sind nachhaltig</li>
+            <li><strong>Ausgewogene Ernährung:</strong> Kaloriendefizit von max. 500 kcal/Tag</li>
+            <li><strong>Bewegung:</strong> Kombination aus Ausdauer und Krafttraining</li>
+            <li><strong>Geduld:</strong> Nachhaltiger Erfolg braucht Zeit</li>
+            <li><strong>Keine Crash-Diäten:</strong> Führen zum Jo-Jo-Effekt</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kalorien tracken für Ihr Idealgewicht</h3>
+          <p>
+            Um Ihr Idealgewicht zu erreichen und zu halten, hilft eine <strong>Kalorien-Tracking-App</strong>. 
+            Mit <a href="https://www.mahlzait.de/?ref=deutschland-rechner" class="text-pink-600 hover:underline font-medium" target="_blank" rel="noopener">Mahlzait</a> 
+            erfassen Sie Mahlzeiten per Foto, Text oder Barcode – die KI berechnet Kalorien und Makros automatisch.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Beratung & Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏥</span>
+          Beratung & Hilfe
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Professionelle Beratung</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Für eine individuelle Gewichtsberatung wenden Sie sich an:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Ihren <strong>Hausarzt/Hausärztin</strong></li>
+              <li>• Einen <strong>zertifizierten Ernährungsberater</strong></li>
+              <li>• Die <strong>Verbraucherzentrale</strong> (Ernährungsberatung)</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Krankenkassen-Leistungen</h3>
+            <p class="text-green-700 text-sm">
+              Viele Krankenkassen bezuschussen <strong>Ernährungsberatung</strong> und 
+              <strong>Präventionskurse</strong>. Fragen Sie nach dem § 20 SGB V Präventionsangebot!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Idealgewicht-Rechner – Optimales Körpergewicht berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/idealgewicht-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man das Idealgewicht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Idealgewicht kann mit verschiedenen Formeln berechnet werden. Die Broca-Formel lautet: Normalgewicht = Körpergröße (cm) - 100, dann minus 10% (Männer) oder 15% (Frauen) für das Idealgewicht. Alternativ nutzt man den BMI-Bereich von 20-22 als Idealwert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Normalgewicht und Idealgewicht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Normalgewicht bezeichnet den gesamten gesunden Gewichtsbereich (BMI 18,5-25), während das Idealgewicht das optimale Gewicht innerhalb dieses Bereichs darstellt, meist um BMI 21-22. Beide Werte sind gesundheitlich unbedenklich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel sollte ich bei meiner Größe wiegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von Größe, Geschlecht und Alter ab. Bei 170 cm liegt das Normalgewicht zwischen 53,5 und 72 kg. Das Idealgewicht für eine Frau wäre etwa 60-63 kg, für einen Mann 63-66 kg. Die genaue Zahl ermittelt unser Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Verändert sich das Idealgewicht mit dem Alter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, mit dem Alter steigt das optimale Gewicht leicht an. Für Menschen über 65 gilt ein BMI von 24-29 als ideal, da moderate Fettreserven im Krankheitsfall schützend wirken. Jüngere Menschen profitieren von einem niedrigeren BMI um 20-23."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist das Idealgewicht für Männer und Frauen unterschiedlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, bei gleicher Körpergröße liegt das Idealgewicht für Frauen meist 5-10 kg unter dem für Männer. Das liegt am unterschiedlichen Körperbau: Männer haben mehr Muskelmasse, Frauen natürlicherweise einen höheren Körperfettanteil."
+        }
+      }
+    ]
+  })} />
+</Layout>

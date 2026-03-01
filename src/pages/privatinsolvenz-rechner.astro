@@ -1,0 +1,336 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PrivatinsolvenzRechner from '../components/rechner/PrivatinsolvenzRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Privatinsolvenz-Rechner 2025 – Pfändungsfreigrenze & pfändbares Einkommen";
+const description = "Privatinsolvenz-Rechner: Berechnen Sie Ihre Pfändungsfreigrenze und den pfändbaren Betrag bei Privatinsolvenz. Mit aktuellen Pfändungsfreigrenzen ab Juli 2025 nach § 850c ZPO.";
+const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbares Einkommen, Verbraucherinsolvenz, Pfändungstabelle, § 850c ZPO, Restschuldbefreiung, Wohlverhaltensphase, Schuldnerberatung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Privatinsolvenz-Rechner", url: "/privatinsolvenz-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-slate-300 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Privatinsolvenz-Rechner</h1>
+            <p class="text-slate-300 text-sm">Pfändungsfreigrenze & pfändbares Einkommen berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PrivatinsolvenzRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Privatinsolvenz: Alles zu Pfändungsfreigrenzen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Privatinsolvenz-Rechner</strong> berechnen Sie, wie viel von Ihrem 
+            Einkommen gepfändet werden kann und wie viel Ihnen bleibt. Die Berechnung basiert auf 
+            den aktuellen <strong>Pfändungsfreigrenzen ab 01.07.2025</strong> nach § 850c ZPO.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist eine Privatinsolvenz?</h3>
+          <p>
+            Die <strong>Privatinsolvenz</strong> (offiziell: Verbraucherinsolvenzverfahren) ist ein 
+            gerichtliches Verfahren für überschuldete Privatpersonen. Das Ziel: Nach einer 
+            <strong>Wohlverhaltensphase</strong> werden die restlichen Schulden erlassen 
+            (<strong>Restschuldbefreiung</strong>).
+          </p>
+          <p>
+            Seit 2020 beträgt die Wohlverhaltensphase nur noch <strong>3 Jahre</strong> (statt 6 Jahre).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pfändungsfreigrenzen 2025/2026</h3>
+          <p>
+            Die <strong>Pfändungsfreigrenzen</strong> nach § 850c ZPO werden jährlich zum 1. Juli 
+            angepasst. Aktuell gelten (ab 01.07.2025):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundfreibetrag:</strong> 1.559,99 € (ohne Unterhaltspflichten)</li>
+            <li><strong>Mit 1 Unterhaltspflicht:</strong> 2.149,99 €</li>
+            <li><strong>Mit 2 Unterhaltspflichten:</strong> 2.469,99 €</li>
+            <li><strong>Mit 3 Unterhaltspflichten:</strong> 2.799,99 €</li>
+            <li><strong>Mit 4 Unterhaltspflichten:</strong> 3.119,99 €</li>
+            <li><strong>Mit 5+ Unterhaltspflichten:</strong> 3.449,99 €</li>
+          </ul>
+          <p>
+            Alles unterhalb dieser Grenzen ist <strong>unpfändbar</strong> und bleibt Ihnen für den 
+            Lebensunterhalt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der pfändbare Betrag berechnet?</h3>
+          <p>
+            Das Einkommen über der Pfändungsfreigrenze wird <strong>nicht vollständig gepfändet</strong>. 
+            Ein Teil bleibt unpfändbar (§ 850c Abs. 3 ZPO):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ohne Unterhaltspflichten:</strong> 30% des Mehrbetrags unpfändbar</li>
+            <li><strong>Mit 1 Unterhaltspflicht:</strong> 50% unpfändbar</li>
+            <li><strong>Mit 2 Unterhaltspflichten:</strong> 60% unpfändbar</li>
+            <li><strong>Mit 3 Unterhaltspflichten:</strong> 70% unpfändbar</li>
+            <li><strong>Mit 4 Unterhaltspflichten:</strong> 80% unpfändbar</li>
+            <li><strong>Mit 5+ Unterhaltspflichten:</strong> 90% unpfändbar</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beispielrechnung</h3>
+          <p>
+            <strong>Beispiel:</strong> Nettoeinkommen 2.500 €, 1 unterhaltsberechtigtes Kind
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Pfändungsfreigrenze: 2.149,99 €</li>
+            <li>Über Freigrenze: 2.500 € - 2.149,99 € = 350,01 €</li>
+            <li>Davon unpfändbar (50%): 175,01 €</li>
+            <li>Pfändbarer Betrag: 350,01 € - 175,01 € = <strong>175,00 €</strong></li>
+          </ul>
+          <p>
+            Ihnen bleiben also <strong>2.325 €</strong> (Freigrenze + unpfändbarer Mehrverdienst).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ablauf der Privatinsolvenz</h3>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li>
+              <strong>Außergerichtlicher Einigungsversuch:</strong> 
+              Mit Hilfe einer Schuldnerberatung wird versucht, sich mit den Gläubigern zu einigen
+            </li>
+            <li>
+              <strong>Insolvenzantrag:</strong> 
+              Scheitert die Einigung, wird beim Amtsgericht Insolvenz beantragt
+            </li>
+            <li>
+              <strong>Gerichtlicher Schuldenbereinigungsplan:</strong> 
+              Ein letzter Einigungsversuch über das Gericht
+            </li>
+            <li>
+              <strong>Eröffnung des Insolvenzverfahrens:</strong> 
+              Ein Treuhänder wird bestellt, Vermögen wird verwertet
+            </li>
+            <li>
+              <strong>Wohlverhaltensphase (3 Jahre):</strong> 
+              Pfändbares Einkommen wird an Treuhänder abgeführt
+            </li>
+            <li>
+              <strong>Restschuldbefreiung:</strong> 
+              Nach 3 Jahren werden restliche Schulden erlassen
+            </li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was zählt zum pfändbaren Einkommen?</h3>
+          <p>
+            Zum pfändbaren Arbeitseinkommen nach § 850 ZPO gehören:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Lohn und Gehalt (netto)</li>
+            <li>Überstundenvergütungen</li>
+            <li>Weihnachts- und Urlaubsgeld</li>
+            <li>Abfindungen</li>
+            <li>Renten und Pensionen</li>
+            <li>Arbeitslosengeld I und II (Bürgergeld)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist unpfändbar?</h3>
+          <p>
+            Bestimmte Einkünfte und Vermögensgegenstände sind <strong>vollständig unpfändbar</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kindergeld</strong> und <strong>Erziehungsgeld</strong></li>
+            <li><strong>Pflegegeld</strong> und <strong>Blindengeld</strong></li>
+            <li>Berufsunfähigkeits- und Unfallrenten (bis zur Hälfte)</li>
+            <li>Aufwandsentschädigungen und Spesen</li>
+            <li>Notwendige Arbeitsgeräte und Berufskleidung</li>
+            <li>Haushaltsgegenstände (soweit nötig)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">P-Konto: Kontopfändungsschutz</h3>
+          <p>
+            Ein <strong>Pfändungsschutzkonto (P-Konto)</strong> schützt Ihr Einkommen bis zur 
+            Pfändungsfreigrenze vor Kontopfändung. Jeder hat Anspruch auf Umwandlung seines 
+            Girokontos in ein P-Konto.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Grundfreibetrag: 1.559,99 € monatlich geschützt</li>
+            <li>Erhöhung durch Bescheinigung (z.B. bei Unterhaltspflichten)</li>
+            <li>Nur ein P-Konto pro Person erlaubt</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Obliegenheiten in der Wohlverhaltensphase</h3>
+          <p>
+            Während der 3-jährigen <strong>Wohlverhaltensphase</strong> müssen Sie bestimmte 
+            Pflichten erfüllen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Erwerbstätigkeit:</strong> Angemessene Arbeit ausüben oder sich um eine bewerben</li>
+            <li><strong>Pfändbares Einkommen abführen:</strong> An den Treuhänder</li>
+            <li><strong>Vermögenszuwächse melden:</strong> Erbschaft, Lottogewinn etc.</li>
+            <li><strong>Wohnsitzwechsel melden:</strong> Dem Gericht und Treuhänder</li>
+            <li><strong>Keine Bevorzugung einzelner Gläubiger</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kosten der Privatinsolvenz</h3>
+          <p>
+            Die Kosten des Verfahrens können bei Mittellosigkeit <strong>gestundet</strong> werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Gerichtskosten:</strong> ca. 900-2.000 €</li>
+            <li><strong>Treuhändervergütung:</strong> ca. 1.000-2.000 € (je nach Verwertung)</li>
+            <li><strong>Schuldnerberatung:</strong> Bei gemeinnützigen Stellen kostenlos</li>
+          </ul>
+          <p>
+            Bei Stundung werden die Kosten über 4 Jahre nach Restschuldbefreiung abgezahlt.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🆘</span>
+          Hilfe & Schuldnerberatung
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Kostenlose Schuldnerberatung</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Gemeinnützige Beratungsstellen helfen kostenlos:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <strong>Caritas:</strong> <a href="https://www.caritas.de/hilfeundberatung/onlineberatung/schuldnerberatung" class="underline" target="_blank">Online-Beratung</a></li>
+              <li>• <strong>Diakonie:</strong> Beratungsstellen vor Ort</li>
+              <li>• <strong>AWO, DRK, Paritätischer:</strong> Je nach Region</li>
+              <li>• <strong>Kommunale Schuldnerberatung:</strong> Stadt/Gemeinde</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Wichtige Anlaufstellen</h3>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• <strong>Insolvenzgericht:</strong> Zuständiges Amtsgericht (Wohnsitz)</li>
+              <li>• <strong>Bundesagentur für Arbeit:</strong> Bei Arbeitslosigkeit</li>
+              <li>• <strong>Sozialamt:</strong> Bei Existenznot</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Rechtsgrundlagen</h3>
+            <ul class="text-amber-700 text-sm space-y-1">
+              <li>• <strong>InsO:</strong> Insolvenzordnung (§§ 304-314)</li>
+              <li>• <strong>ZPO:</strong> Pfändungsschutz (§§ 850-850l)</li>
+              <li>• <strong>Pfändungsfreigrenzenbekanntmachung:</strong> Jährlich aktualisiert</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-red-50 rounded-lg">
+            <h3 class="font-semibold text-red-800 mb-2">Vorsicht vor unseriösen Anbietern</h3>
+            <p class="text-red-700 text-sm">
+              <strong>Achtung:</strong> Einige kommerzielle "Schuldenberater" verlangen hohe Gebühren. 
+              Nutzen Sie bevorzugt die kostenlosen Angebote gemeinnütziger Stellen!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Privatinsolvenz-Rechner – Pfändungsfreigrenze berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/privatinsolvenz-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Pfändungsfreigrenze 2025?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Pfändungsfreigrenze liegt ab 01.07.2025 bei 1.559,99 € monatlich für Personen ohne Unterhaltspflichten. Mit Unterhaltspflichten erhöht sich der Freibetrag: Mit 1 Person auf 2.149,99 €, mit 2 Personen auf 2.469,99 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert eine Privatinsolvenz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Privatinsolvenz dauert in der Regel 3 Jahre (Wohlverhaltensphase). Nach dieser Zeit erfolgt die Restschuldbefreiung, wenn alle Obliegenheiten erfüllt wurden. Seit der Reform 2020 wurde die Frist von 6 auf 3 Jahre verkürzt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert mit meinem Gehalt bei Privatinsolvenz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Gehalt bis zur Pfändungsfreigrenze bleibt Ihnen. Vom Mehrverdienst wird je nach Unterhaltspflichten ein Teil gepfändet (30-70%). Beispiel: Bei 2.500 € netto und 1 Kind werden etwa 175 € gepfändet, 2.325 € bleiben Ihnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein P-Konto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Pfändungsschutzkonto (P-Konto) schützt Ihr Guthaben bis zur Pfändungsfreigrenze vor Kontopfändung. Jeder hat Anspruch auf Umwandlung seines Girokontos. Der Grundfreibetrag von 1.559,99 € ist automatisch geschützt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo bekomme ich kostenlose Schuldnerberatung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kostenlose Schuldnerberatung bieten gemeinnützige Organisationen wie Caritas, Diakonie, AWO und DRK sowie kommunale Beratungsstellen. Diese helfen auch beim außergerichtlichen Einigungsversuch und der Antragstellung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Einkünfte sind unpfändbar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vollständig unpfändbar sind: Kindergeld, Erziehungsgeld, Pflegegeld, Blindengeld. Teilweise unpfändbar: Renten, Arbeitslosengeld. Auch bestimmte Sachgegenstände wie notwendige Arbeitsgeräte und Haushaltsausstattung sind geschützt."
+        }
+      }
+    ]
+  })} />
+</Layout>

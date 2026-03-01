@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TageRechner from '../components/rechner/TageRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Tage-Rechner 2026 – Tage zwischen zwei Daten berechnen";
+const description = "Tage Rechner: Berechnen Sie die Anzahl der Tage zwischen zwei Daten. Inklusive Wochen, Monate, Arbeitstage und Wochenenden. Kostenlos & sofort.";
+const keywords = "Tage Rechner, Tage berechnen, Tage zwischen Daten, Datum Differenz, wie viele Tage bis, Tage zählen, Datumsrechner, Countdown Tage, Arbeitstage berechnen, Kalenderrechner";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Tage-Rechner", url: "/tage-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📅</span>
+          <div>
+            <h1 class="text-2xl font-bold">Tage-Rechner</h1>
+            <p class="text-blue-100 text-sm">Tage zwischen Daten berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TageRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Tage-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Tage-Rechner</strong> können Sie die genaue Anzahl der Tage zwischen 
+            zwei beliebigen Daten berechnen. Der Rechner zeigt Ihnen außerdem Wochen, Monate und 
+            zusätzliche Details wie Arbeitstage und Wochenenden.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie berechnet man Tage zwischen zwei Daten?</h3>
+          <p>
+            Die Berechnung erfolgt durch einfache Subtraktion der beiden Daten. Der Rechner 
+            berücksichtigt dabei automatisch:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Unterschiedliche Monatslängen:</strong> 28-31 Tage je nach Monat</li>
+            <li><strong>Schaltjahre:</strong> Der 29. Februar wird korrekt einberechnet</li>
+            <li><strong>Jahrübergänge:</strong> Auch bei Daten über mehrere Jahre hinweg</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Anwendungsfälle</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Projektplanung:</strong> Wie viele Tage bis zur Deadline?</li>
+            <li><strong>Urlaubsplanung:</strong> Wie lange ist mein Urlaub?</li>
+            <li><strong>Countdown:</strong> Tage bis zum Geburtstag, Hochzeit oder Event</li>
+            <li><strong>Fristen:</strong> Kündigungsfristen, Liefertermine berechnen</li>
+            <li><strong>Verträge:</strong> Laufzeiten und Vertragsdauer ermitteln</li>
+            <li><strong>Schwangerschaft:</strong> Tage bis zum errechneten Geburtstermin</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tage zu einem Datum addieren</h3>
+          <p>
+            Sie können auch berechnen, welches Datum in X Tagen liegt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>In 30 Tagen:</strong> Wann ist der Termin?</li>
+            <li><strong>In 90 Tagen:</strong> Ende einer Probezeit</li>
+            <li><strong>In 14 Tagen:</strong> Zwei Wochen Kündigungsfrist</li>
+            <li><strong>In 365 Tagen:</strong> Ein Jahr ab heute</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitstage vs. Kalendertage</h3>
+          <p>
+            Bei der Berechnung ist wichtig zu unterscheiden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kalendertage:</strong> Alle Tage inklusive Wochenenden und Feiertage</li>
+            <li><strong>Arbeitstage:</strong> Nur Montag bis Freitag (ohne Feiertage)</li>
+            <li><strong>Werktage:</strong> Montag bis Samstag (ohne Sonntage und Feiertage)</li>
+          </ul>
+          <p>
+            <strong>Tipp:</strong> Für detaillierte Arbeitstage-Berechnungen nutzen Sie unseren 
+            <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage-Rechner</a>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wichtige Fristen in Deutschland</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kündigungsfrist Arbeitnehmer:</strong> In der Regel 4 Wochen (28 Tage)</li>
+            <li><strong>Widerrufsfrist Online-Kauf:</strong> 14 Tage</li>
+            <li><strong>Probezeit:</strong> Maximal 6 Monate (ca. 180 Tage)</li>
+            <li><strong>Mutterschutz vor Geburt:</strong> 6 Wochen (42 Tage)</li>
+            <li><strong>Mutterschutz nach Geburt:</strong> 8 Wochen (56 Tage)</li>
+            <li><strong>Elternzeit:</strong> Bis zu 3 Jahre (1.095 Tage)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ein Jahr in Zahlen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Normales Jahr:</strong> 365 Tage, 52 Wochen + 1 Tag</li>
+            <li><strong>Schaltjahr:</strong> 366 Tage (alle 4 Jahre, außer Jahrhundertwende)</li>
+            <li><strong>Arbeitstage:</strong> Ca. 250-253 Tage (je nach Feiertagen)</li>
+            <li><strong>Wochenendtage:</strong> 104 Tage (52 Samstage + 52 Sonntage)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann ist das nächste Schaltjahr?</h3>
+          <p>
+            Schaltjahre sind Jahre, die durch 4 teilbar sind (außer durch 100 teilbare, es sei denn 
+            auch durch 400 teilbar). Die nächsten Schaltjahre sind:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2024</strong> (bereits vergangen)</li>
+            <li><strong>2028</strong></li>
+            <li><strong>2032</strong></li>
+            <li><strong>2036</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tage-Rechner für Events</h3>
+          <p>
+            Beliebte Countdowns:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Tage bis Weihnachten:</strong> 25. Dezember</li>
+            <li><strong>Tage bis Silvester:</strong> 31. Dezember</li>
+            <li><strong>Tage bis Sommerferien:</strong> Je nach Bundesland</li>
+            <li><strong>Tage bis zur Hochzeit:</strong> Ihr persönlicher Termin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Tools -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Ähnliche Rechner
+        </h2>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <a href="/arbeitstage-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+            <div class="text-2xl mb-2">📆</div>
+            <div class="font-semibold text-gray-800">Arbeitstage-Rechner</div>
+            <div class="text-sm text-gray-500">Arbeitstage zählen</div>
+          </a>
+          <a href="/alter-rechner" class="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+            <div class="text-2xl mb-2">🎂</div>
+            <div class="font-semibold text-gray-800">Alter-Rechner</div>
+            <div class="text-sm text-gray-500">Exaktes Alter berechnen</div>
+          </a>
+          <a href="/geburtstag-rechner" class="p-4 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+            <div class="text-2xl mb-2">🎈</div>
+            <div class="font-semibold text-gray-800">Geburtstag-Rechner</div>
+            <div class="text-sm text-gray-500">Geburtstagsdaten</div>
+          </a>
+          <a href="/zeitzone-rechner" class="p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
+            <div class="text-2xl mb-2">🌍</div>
+            <div class="font-semibold text-gray-800">Zeitzonen-Rechner</div>
+            <div class="text-sm text-gray-500">Zeitzonen umrechnen</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tage-Rechner – Tage zwischen Daten berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/tage-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Tage zwischen zwei Daten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Geben Sie einfach Start- und Enddatum in den Tage-Rechner ein. Er berechnet automatisch die exakte Anzahl der Tage, Wochen und Monate zwischen beiden Daten unter Berücksichtigung von Schaltjahren und unterschiedlichen Monatslängen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Kalendertagen und Arbeitstagen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kalendertage umfassen alle Tage inklusive Wochenenden und Feiertage. Arbeitstage zählen nur Montag bis Freitag (ohne Feiertage). Werktage umfassen Montag bis Samstag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Tage hat ein Jahr?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein normales Jahr hat 365 Tage. Ein Schaltjahr (alle 4 Jahre) hat 366 Tage. Ein Jahr hat etwa 250-253 Arbeitstage, je nach Feiertagen, und 104 Wochenendtage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich ein Datum plus X Tage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wählen Sie im Tage-Rechner den Modus 'Datum berechnen', geben Sie das Startdatum und die Anzahl der Tage ein. Der Rechner zeigt Ihnen dann das resultierende Datum an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann ist das nächste Schaltjahr?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Schaltjahre sind durch 4 teilbar. Die nächsten Schaltjahre sind 2028, 2032 und 2036. Im Schaltjahr hat der Februar 29 statt 28 Tage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Wochen sind zwischen zwei Daten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Tage-Rechner zeigt neben den Tagen auch die Anzahl der vollen Wochen an. Teilen Sie die Tagesanzahl durch 7, um die Wochen zu erhalten. Beispiel: 30 Tage = 4 Wochen und 2 Tage."
+        }
+      }
+    ]
+  })} />
+</Layout>

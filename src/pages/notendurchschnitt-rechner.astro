@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NotendurchschnittRechner from '../components/rechner/NotendurchschnittRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Notendurchschnitt Rechner – Schnitt berechnen (Zeugnis, Abitur) | kostenlos";
+const description = "Notendurchschnitt berechnen: Schulnoten, Zeugnis, Abitur-Schnitt mit Gewichtung. Einfacher Durchschnitt oder gewichtet (Hauptfächer ×2). Kostenlos & sofort.";
+const keywords = "Notendurchschnitt berechnen, Zeugnisdurchschnitt, Abitur Schnitt Rechner, Notendurchschnitt Schule, gewichteter Durchschnitt Noten, Durchschnittsnote berechnen, Schulnoten Rechner, NC berechnen, Notenrechner";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Notendurchschnitt-Rechner", url: "/notendurchschnitt-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📊</span>
+          <div>
+            <h1 class="text-2xl font-bold">Notendurchschnitt-Rechner</h1>
+            <p class="text-indigo-100 text-sm">Zeugnis- & Abi-Schnitt berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <NotendurchschnittRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Notendurchschnitt berechnen: So funktioniert's</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Unser <strong>Notendurchschnitt-Rechner</strong> hilft Ihnen, den Durchschnitt Ihrer Schulnoten 
+            schnell und einfach zu berechnen. Ob für das Halbjahreszeugnis, Jahreszeugnis oder den 
+            Abiturschnitt – mit oder ohne Gewichtung.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Notendurchschnitt?</h3>
+          <p>
+            Der <strong>Notendurchschnitt</strong> (auch Durchschnittsnote oder Mittelwert) gibt an, 
+            wie gut die Gesamtleistung über alle Fächer hinweg ist. Er wird berechnet, indem man 
+            alle Noten addiert und durch die Anzahl der Fächer teilt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einfacher vs. gewichteter Durchschnitt</h3>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <h4 class="font-semibold text-blue-800">Einfacher Durchschnitt</h4>
+            <p class="text-blue-700 mt-1">
+              Alle Fächer zählen gleich viel. Formel: <code>(Note₁ + Note₂ + ... + Noteₙ) ÷ n</code>
+            </p>
+            <p class="text-blue-600 text-sm mt-2">
+              <strong>Beispiel:</strong> Mathe 2, Deutsch 3, Englisch 1 → (2+3+1) ÷ 3 = <strong>2,0</strong>
+            </p>
+          </div>
+          
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <h4 class="font-semibold text-purple-800">Gewichteter Durchschnitt</h4>
+            <p class="text-purple-700 mt-1">
+              Hauptfächer zählen stärker (z.B. ×2). Formel: <code>(Note₁×G₁ + Note₂×G₂ + ...) ÷ (G₁ + G₂ + ...)</code>
+            </p>
+            <p class="text-purple-600 text-sm mt-2">
+              <strong>Beispiel:</strong> Mathe 2 (×2), Deutsch 3 (×2), Sport 1 (×1) → (2×2 + 3×2 + 1×1) ÷ 5 = <strong>2,2</strong>
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Das deutsche Notensystem</h3>
+          <p>
+            In Deutschland werden Schulnoten von 1 (sehr gut) bis 6 (ungenügend) vergeben. 
+            In der gymnasialen Oberstufe werden zusätzlich Punkte von 0 bis 15 verwendet:
+          </p>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="border p-2 text-left">Note</th>
+                  <th class="border p-2 text-left">Bewertung</th>
+                  <th class="border p-2 text-center">Punkte (Oberstufe)</th>
+                  <th class="border p-2 text-center">Prozent (ca.)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border p-2 font-bold text-green-600">1</td><td class="border p-2">sehr gut</td><td class="border p-2 text-center">15-13</td><td class="border p-2 text-center">≥ 92%</td></tr>
+                <tr><td class="border p-2 font-bold text-lime-600">2</td><td class="border p-2">gut</td><td class="border p-2 text-center">12-10</td><td class="border p-2 text-center">81-91%</td></tr>
+                <tr><td class="border p-2 font-bold text-yellow-600">3</td><td class="border p-2">befriedigend</td><td class="border p-2 text-center">9-7</td><td class="border p-2 text-center">67-80%</td></tr>
+                <tr><td class="border p-2 font-bold text-orange-600">4</td><td class="border p-2">ausreichend</td><td class="border p-2 text-center">6-4</td><td class="border p-2 text-center">50-66%</td></tr>
+                <tr><td class="border p-2 font-bold text-red-500">5</td><td class="border p-2">mangelhaft</td><td class="border p-2 text-center">3-1</td><td class="border p-2 text-center">30-49%</td></tr>
+                <tr><td class="border p-2 font-bold text-red-700">6</td><td class="border p-2">ungenügend</td><td class="border p-2 text-center">0</td><td class="border p-2 text-center">< 30%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Abitur-Durchschnitt berechnen</h3>
+          <p>
+            Der <strong>Abiturdurchschnitt</strong> wird aus den Leistungen der Qualifikationsphase 
+            (Q1-Q4) und den Abiturprüfungen berechnet. Die genaue Berechnung variiert je nach Bundesland, 
+            folgt aber diesem Grundprinzip:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Block I: Kurse der Qualifikationsphase (max. 600 Punkte)</li>
+            <li>Block II: Abiturprüfungen (max. 300 Punkte)</li>
+            <li>Gesamtpunktzahl wird in Durchschnittsnote umgerechnet</li>
+          </ul>
+          
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <p class="font-semibold text-gray-800">Umrechnung Punkte → Abiturnote</p>
+            <p class="text-gray-600 text-sm mt-1">
+              Abiturnote = 17/3 - (Punktzahl / 180)<br/>
+              <span class="text-xs">Formel gilt für 300-900 Gesamtpunkte</span>
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Versetzung und Ausgleich</h3>
+          <p>
+            Für die Versetzung gelten in den meisten Bundesländern diese Regeln:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Eine <strong>5</strong> kann durch eine <strong>3</strong> oder besser ausgeglichen werden</li>
+            <li>Eine <strong>6</strong> erfordert zwei <strong>2en</strong> zum Ausgleich</li>
+            <li>Bei zwei oder mehr Fünfen ist die Versetzung gefährdet</li>
+            <li>In Hauptfächern (Deutsch, Mathe, Fremdsprache) wiegt eine 5 schwerer</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Numerus Clausus (NC)</h3>
+          <p>
+            Der <strong>Numerus Clausus</strong> ist die Abiturnote, mit der im Vorjahr der letzte 
+            Studienplatz vergeben wurde. Beliebte NC-Werte für 2024:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Medizin:</strong> 1,0 - 1,2</li>
+            <li><strong>Psychologie:</strong> 1,2 - 1,6</li>
+            <li><strong>Jura:</strong> 1,5 - 2,5 (je nach Uni)</li>
+            <li><strong>BWL:</strong> 1,8 - 2,8 (je nach Uni)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps zur Notenverbesserung</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li><strong>Mündliche Mitarbeit:</strong> In vielen Fächern zählt sie 30-50% der Note</li>
+            <li><strong>Hausaufgaben:</strong> Regelmäßig erledigen und abgeben</li>
+            <li><strong>Lerngruppen:</strong> Gemeinsam lernen fördert das Verständnis</li>
+            <li><strong>Nachhilfe:</strong> Bei Schwächen frühzeitig Hilfe holen</li>
+            <li><strong>Prüfungsvorbereitung:</strong> Alte Klausuren üben</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏫</span>
+          Weiterführende Ressourcen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Offizielle Stellen</h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <a href="https://www.kmk.org" class="underline" target="_blank" rel="noopener">Kultusministerkonferenz (KMK)</a></li>
+              <li>• <a href="https://www.bildungsserver.de" class="underline" target="_blank" rel="noopener">Deutscher Bildungsserver</a></li>
+              <li>• Schulbehörde Ihres Bundeslandes</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Hilfe bei Schulproblemen</h3>
+            <p class="text-green-700 text-sm">
+              Bei Versetzungsgefährdung oder Schulproblemen wenden Sie sich an die Beratungslehrer 
+              Ihrer Schule oder an die Schulpsychologische Beratungsstelle Ihrer Stadt.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-2">Studienplatzvergabe</h3>
+            <ul class="text-purple-700 text-sm space-y-1">
+              <li>• <a href="https://www.hochschulstart.de" class="underline" target="_blank" rel="noopener">Hochschulstart.de</a> – Zentrale Studienplatzvergabe</li>
+              <li>• <a href="https://www.studieren.de" class="underline" target="_blank" rel="noopener">Studieren.de</a> – NC-Übersicht</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Notendurchschnitt-Rechner – Zeugnis & Abitur",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/notendurchschnitt-rechner",
+    "applicationCategory": "EducationApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich meinen Notendurchschnitt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Addieren Sie alle Ihre Noten und teilen Sie durch die Anzahl der Fächer. Beispiel: Bei Noten 2, 3, 1, 2 lautet die Rechnung (2+3+1+2) ÷ 4 = 2,0. Mit Gewichtung multiplizieren Sie jede Note mit ihrem Gewichtungsfaktor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der gewichtete Notendurchschnitt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim gewichteten Durchschnitt zählen manche Fächer stärker als andere. Hauptfächer wie Mathe, Deutsch und Englisch werden oft doppelt gewichtet (×2). Die Formel lautet: Summe(Note × Gewicht) ÷ Summe(Gewichte)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird der Abiturdurchschnitt berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Abiturdurchschnitt setzt sich aus Block I (Kurse der Qualifikationsphase, max. 600 Punkte) und Block II (Abiturprüfungen, max. 300 Punkte) zusammen. Die Gesamtpunktzahl wird mit einer Formel in die Durchschnittsnote umgerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welchen Notendurchschnitt brauche ich für die Versetzung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In den meisten Bundesländern wird man versetzt, wenn man höchstens eine 5 hat (kann durch eine 3 ausgeglichen werden). Bei einer 6 braucht man zwei 2en zum Ausgleich. Bei zwei oder mehr Fünfen ist die Versetzung gefährdet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet NC (Numerus Clausus)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der NC ist die Abiturnote, mit der im Vorjahr der letzte Studienplatz in einem Studiengang vergeben wurde. Für Medizin liegt er bei etwa 1,0-1,2, für Psychologie bei 1,2-1,6. Der NC variiert je nach Universität und Jahr."
+        }
+      }
+    ]
+  })} />
+</Layout>

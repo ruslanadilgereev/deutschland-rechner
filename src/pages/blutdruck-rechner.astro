@@ -1,0 +1,299 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlutdruckRechner from '../components/rechner/BlutdruckRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Blutdruck-Rechner 2026 – Blutdruckwerte bewerten & verstehen";
+const description = "Blutdruck-Rechner: Bewerten Sie Ihre Blutdruckwerte nach WHO/ESH-Klassifikation. Mit Pulsdruckanalyse, Risikobewertung und Handlungsempfehlungen. Kostenlos & ohne Anmeldung.";
+const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle, systolisch diastolisch, normaler Blutdruck, Bluthochdruck Werte, Hypotonie, Hypertonie, Blutdruck messen, optimaler Blutdruck, Pulsdruck berechnen, Blutdruck Alter";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Blutdruck-Rechner", url: "/blutdruck-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-red-500 to-rose-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-red-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">❤️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Blutdruck-Rechner</h1>
+            <p class="text-red-100 text-sm">Blutdruckwerte bewerten – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BlutdruckRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Blutdruck-Rechner: Alles, was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Blutdruck</strong> ist einer der wichtigsten Vitalparameter und ein Schlüsselindikator 
+            für Ihre Herzgesundheit. Mit unserem <strong>Blutdruck-Rechner</strong> bewerten Sie Ihre Werte 
+            nach der offiziellen <strong>WHO/ESH-Klassifikation</strong> und erhalten Handlungsempfehlungen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeuten systolisch und diastolisch?</h3>
+          <p>
+            Der Blutdruck wird als zwei Zahlen angegeben (z.B. <strong>120/80 mmHg</strong>):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Systolisch (oberer Wert):</strong> Druck während des Herzschlags, wenn das Herz Blut pumpt</li>
+            <li><strong>Diastolisch (unterer Wert):</strong> Druck zwischen den Herzschlägen, wenn das Herz entspannt</li>
+            <li><strong>mmHg:</strong> Millimeter Quecksilbersäule – die Maßeinheit für Blutdruck</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Blutdruck-Tabelle: WHO/ESH-Klassifikation</h3>
+          <div class="overflow-x-auto my-4">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-4 py-2 text-left">Kategorie</th>
+                  <th class="px-4 py-2 text-left">Systolisch</th>
+                  <th class="px-4 py-2 text-left">Diastolisch</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b bg-green-50"><td class="px-4 py-2">Optimal</td><td class="px-4 py-2">&lt;120</td><td class="px-4 py-2">&lt;80</td></tr>
+                <tr class="border-b"><td class="px-4 py-2">Normal</td><td class="px-4 py-2">120-129</td><td class="px-4 py-2">80-84</td></tr>
+                <tr class="border-b bg-yellow-50"><td class="px-4 py-2">Hochnormal</td><td class="px-4 py-2">130-139</td><td class="px-4 py-2">85-89</td></tr>
+                <tr class="border-b bg-orange-50"><td class="px-4 py-2">Hypertonie Grad 1</td><td class="px-4 py-2">140-159</td><td class="px-4 py-2">90-99</td></tr>
+                <tr class="border-b bg-red-50"><td class="px-4 py-2">Hypertonie Grad 2</td><td class="px-4 py-2">160-179</td><td class="px-4 py-2">100-109</td></tr>
+                <tr class="bg-red-100"><td class="px-4 py-2">Hypertonie Grad 3</td><td class="px-4 py-2">≥180</td><td class="px-4 py-2">≥110</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-gray-500">
+            <strong>Hinweis:</strong> Es gilt der höhere Wert. Bei 145/85 mmHg liegt Hypertonie Grad 1 vor 
+            (wegen des systolischen Werts), obwohl der diastolische Wert normal ist.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist ein normaler Blutdruck?</h3>
+          <p>
+            Ein <strong>normaler Blutdruck</strong> liegt bei etwa <strong>120/80 mmHg</strong>. Optimal 
+            sind Werte unter 120/80 mmHg. Die Grenzwerte variieren leicht:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kinder:</strong> Niedrigere Normwerte je nach Alter</li>
+            <li><strong>Ältere Menschen (80+):</strong> Bis 150/90 mmHg kann akzeptabel sein</li>
+            <li><strong>Schwangere:</strong> Engmaschige Überwachung ab 140/90 mmHg</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Blutdruck nach Alter</h3>
+          <p>
+            Im Laufe des Lebens verändert sich der Blutdruck:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>20-30 Jahre:</strong> Durchschnitt etwa 120/80 mmHg</li>
+            <li><strong>40-50 Jahre:</strong> Leichter Anstieg auf ~125/85 mmHg normal</li>
+            <li><strong>60-70 Jahre:</strong> Häufig 130-140/85-90 mmHg</li>
+            <li><strong>Über 80:</strong> Zielwert unter 150/90 mmHg (individuell)</li>
+          </ul>
+          <p>
+            <strong>Wichtig:</strong> Auch bei älteren Menschen ist ein niedrigerer Blutdruck (wenn vertragen) 
+            meist vorteilhaft für die Herzgesundheit.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Pulsdruck?</h3>
+          <p>
+            Der <strong>Pulsdruck</strong> (auch Blutdruckamplitude) ist die Differenz zwischen systolischem 
+            und diastolischem Wert:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <code class="text-lg font-mono">Pulsdruck = Systolisch - Diastolisch</code>
+          </div>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Normal:</strong> 30-50 mmHg</li>
+            <li><strong>Erhöht (&gt;60 mmHg):</strong> Kann auf steife Arterien hindeuten (Arteriosklerose)</li>
+            <li><strong>Zu niedrig (&lt;25 mmHg):</strong> Kann auf Herzprobleme hinweisen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bluthochdruck (Hypertonie) – Risiken</h3>
+          <p>
+            Bluthochdruck ist ein „stiller Killer" – oft symptomlos, aber mit schweren Folgen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Herzinfarkt:</strong> 2-3x höheres Risiko</li>
+            <li><strong>Schlaganfall:</strong> Hauptrisikofaktor</li>
+            <li><strong>Herzinsuffizienz:</strong> Das Herz ermüdet</li>
+            <li><strong>Nierenschäden:</strong> Langsamer Funktionsverlust</li>
+            <li><strong>Augenschäden:</strong> Netzhautschäden (Retinopathie)</li>
+            <li><strong>Demenz:</strong> Erhöhtes Risiko durch Gefäßschäden</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Niedriger Blutdruck (Hypotonie)</h3>
+          <p>
+            Von Hypotonie spricht man bei Werten unter <strong>100/60 mmHg</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Symptome:</strong> Schwindel, Müdigkeit, kalte Hände/Füße, Konzentrationsprobleme</li>
+            <li><strong>Oft harmlos:</strong> Bei jungen, schlanken Menschen und Sportlern normal</li>
+            <li><strong>Maßnahmen:</strong> Viel trinken, langsam aufstehen, Wechselduschen, Bewegung</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Richtig Blutdruck messen</h3>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>5 Minuten Ruhe vor der Messung</li>
+            <li>Sitzen mit Rückenlehne, Füße flach auf dem Boden</li>
+            <li>Manschette auf Herzhöhe am nackten Oberarm</li>
+            <li>Nicht sprechen während der Messung</li>
+            <li>2-3 Messungen im Abstand von 1-2 Minuten, Durchschnitt bilden</li>
+            <li>Immer zur gleichen Tageszeit messen (morgens und abends)</li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Blutdruck natürlich senken</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Salzreduktion:</strong> Max. 5-6 g täglich (1 TL)</li>
+            <li><strong>DASH-Diät:</strong> Viel Gemüse, Obst, Vollkorn, wenig Fett</li>
+            <li><strong>Abnehmen:</strong> Pro kg weniger sinkt der Blutdruck um ~1 mmHg</li>
+            <li><strong>Bewegung:</strong> 150 Min. moderate Aktivität pro Woche</li>
+            <li><strong>Alkohol reduzieren:</strong> Max. 1 Glas/Tag (Frauen), 2 Gläser (Männer)</li>
+            <li><strong>Rauchstopp:</strong> Senkt Risiko für Herzinfarkt sofort</li>
+            <li><strong>Stress managen:</strong> Entspannungstechniken, Meditation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Beratung & Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏥</span>
+          Beratung & Hilfe
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-red-50 rounded-lg">
+            <h3 class="font-semibold text-red-800 mb-2">⚠️ Wann sofort zum Arzt?</h3>
+            <ul class="text-red-700 text-sm space-y-1">
+              <li>• Blutdruck über <strong>180/120 mmHg</strong></li>
+              <li>• Brustschmerzen, Atemnot, Sehstörungen</li>
+              <li>• Starke Kopfschmerzen, Übelkeit, Nasenbluten</li>
+              <li>• Verwirrtheit oder neurologische Symptome</li>
+            </ul>
+            <p class="text-red-700 text-sm mt-2 font-semibold">Bei diesen Symptomen: Notarzt rufen (112)!</p>
+          </div>
+          
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Ärztliche Beratung</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Bei dauerhaft erhöhten Werten (über 140/90 mmHg) sollten Sie:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Ihren <strong>Hausarzt/Hausärztin</strong> aufsuchen</li>
+              <li>• Eine <strong>24-Stunden-Blutdruckmessung</strong> durchführen lassen</li>
+              <li>• Ggf. einen <strong>Kardiologen</strong> konsultieren</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Selbsthilfe & Information</h3>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• <strong>Deutsche Hochdruckliga:</strong> <a href="https://www.hochdruckliga.de" class="underline" target="_blank">www.hochdruckliga.de</a></li>
+              <li>• <strong>Deutsche Herzstiftung:</strong> <a href="https://www.herzstiftung.de" class="underline" target="_blank">www.herzstiftung.de</a></li>
+              <li>• Viele Apotheken bieten <strong>kostenlose Blutdruckmessungen</strong> an</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Blutdruck-Rechner – Blutdruckwerte bewerten",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/blutdruck-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist ein normaler Blutdruck?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein normaler Blutdruck liegt bei etwa 120/80 mmHg. Optimal sind Werte unter 120/80 mmHg. Werte zwischen 120-129/80-84 mmHg gelten als normal, 130-139/85-89 mmHg als hochnormal. Ab 140/90 mmHg beginnt die Hypertonie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeuten systolisch und diastolisch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der systolische Wert (oben) misst den Druck, wenn das Herz Blut pumpt. Der diastolische Wert (unten) misst den Druck zwischen den Herzschlägen. Ein Blutdruck von 120/80 mmHg bedeutet: 120 mmHg systolisch, 80 mmHg diastolisch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann ist der Blutdruck zu hoch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab 140/90 mmHg spricht man von Bluthochdruck (Hypertonie Grad 1). Werte von 160/100 mmHg gelten als Hypertonie Grad 2, ab 180/110 mmHg als schwere Hypertonie (Grad 3). Werte über 180/120 mmHg sind ein medizinischer Notfall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann man den Blutdruck natürlich senken?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Blutdruck senken ohne Medikamente: Salz reduzieren (max. 5-6 g/Tag), abnehmen, regelmäßig bewegen (150 Min./Woche), Alkohol reduzieren, Rauchstopp, Stress managen. Die DASH-Diät (viel Gemüse, Obst, wenig Fett) ist besonders wirksam."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Pulsdruck und warum ist er wichtig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Pulsdruck ist die Differenz zwischen systolischem und diastolischem Wert (z.B. 120-80 = 40 mmHg). Normal sind 30-50 mmHg. Ein erhöhter Pulsdruck (>60 mmHg) kann auf steife Arterien (Arteriosklerose) hindeuten und ist ein Risikofaktor für Herz-Kreislauf-Erkrankungen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Verändert sich der Blutdruck mit dem Alter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, der Blutdruck steigt mit dem Alter tendenziell an, da die Gefäße weniger elastisch werden. Bei Menschen über 80 Jahren kann ein Zielwert unter 150/90 mmHg akzeptabel sein. Generell ist aber auch im Alter ein niedrigerer Blutdruck vorteilhaft."
+        }
+      }
+    ]
+  })} />
+</Layout>

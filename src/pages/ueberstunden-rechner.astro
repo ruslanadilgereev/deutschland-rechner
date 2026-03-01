@@ -1,0 +1,276 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UeberstundenRechner from '../components/rechner/UeberstundenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Überstunden-Rechner 2026 – Überstundenvergütung berechnen";
+const description = "Überstunden-Rechner 2026: Berechnen Sie Ihren Überstundenlohn mit Zuschlägen (25%, 50%, 100%). Überstunden auszahlen oder Freizeitausgleich. Kostenlos & sofort.";
+const keywords = "Überstunden Rechner, Überstundenvergütung, Überstundenzuschlag, Mehrarbeit berechnen, Überstunden auszahlen, Freizeitausgleich, Überstundenpauschale, Überstunden Steuern";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Überstunden-Rechner", url: "/ueberstunden-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⏰</span>
+          <div>
+            <h1 class="text-2xl font-bold">Überstunden-Rechner 2026</h1>
+            <p class="text-orange-100 text-sm">Überstundenvergütung & Zuschläge berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <UeberstundenRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Überstunden-Rechner: Was steht Ihnen zu?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Überstunden-Rechner</strong> berechnen Sie, wie viel Geld Ihnen für 
+            Ihre Mehrarbeit zusteht – inklusive <strong>Überstundenzuschläge</strong>. Alternativ 
+            können Sie auch den Wert eines Freizeitausgleichs ermitteln.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind Überstunden?</h3>
+          <p>
+            <strong>Überstunden</strong> (Mehrarbeit) liegt vor, wenn Sie mehr als die vertraglich 
+            vereinbarte Arbeitszeit arbeiten. Die gesetzliche Regelarbeitszeit beträgt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Werktäglich:</strong> max. 8 Stunden (§3 ArbZG)</li>
+            <li><strong>Ausnahmsweise:</strong> bis 10 Stunden (wenn Ausgleich innerhalb 6 Monaten)</li>
+            <li><strong>Wöchentlich:</strong> max. 48 Stunden (bei 6-Tage-Woche)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Überstundenzuschläge nach Tarifvertrag</h3>
+          <p>
+            Typische <strong>Überstundenzuschläge</strong> in Tarifverträgen:
+          </p>
+          <div class="bg-orange-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Normale Überstunden:</strong> 25% Zuschlag</li>
+              <li><strong>Samstagsarbeit:</strong> 25-50% Zuschlag</li>
+              <li><strong>Sonntagsarbeit:</strong> 50% Zuschlag (steuerfrei!)</li>
+              <li><strong>Feiertagsarbeit:</strong> 100-150% Zuschlag (steuerfrei!)</li>
+              <li><strong>Nachtarbeit (23-6 Uhr):</strong> 25-40% Zuschlag (steuerfrei!)</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuerfreie Zuschläge</h3>
+          <p>
+            Bestimmte Zuschläge sind <strong>steuer- und sozialversicherungsfrei</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Sonntagszuschlag:</strong> bis 50% steuerfrei</li>
+            <li><strong>Feiertagszuschlag:</strong> bis 125% steuerfrei (Weihnachten/1.Mai: 150%)</li>
+            <li><strong>Nachtzuschlag:</strong> bis 25% steuerfrei (0-4 Uhr: 40%)</li>
+          </ul>
+          <p class="text-sm mt-2">
+            Voraussetzung: Der Grundlohn darf 50€/Stunde nicht überschreiten (für Steuerfreiheit).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Überstunden auszahlen oder Freizeitausgleich?</h3>
+          <p>
+            Sie haben grundsätzlich zwei Optionen für den Ausgleich:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 space-y-3">
+            <div>
+              <p class="font-semibold">💰 Auszahlung:</p>
+              <ul class="list-disc pl-5 text-sm">
+                <li>Voll steuerpflichtig (außer steuerfreie Zuschläge)</li>
+                <li>Erhöht das zu versteuernde Einkommen</li>
+                <li>Sozialversicherungspflichtig</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold">🏖️ Freizeitausgleich:</p>
+              <ul class="list-disc pl-5 text-sm">
+                <li>Keine Steuern auf "mehr Freizeit"</li>
+                <li>Gleicher wirtschaftlicher Wert</li>
+                <li>Oft 1:1 oder mit Zuschlag (z.B. 1,25 Stunden frei pro Überstunde)</li>
+              </ul>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Berechnung Überstundenlohn</h3>
+          <p>
+            So berechnet sich Ihr <strong>Überstundenlohn</strong>:
+          </p>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <ol class="list-decimal pl-5 space-y-2 text-sm">
+              <li>Monatslohn ÷ Arbeitsstunden/Monat = Stundenlohn</li>
+              <li>Beispiel: 4.000€ ÷ 173,33 Std. = 23,08€/Std.</li>
+              <li>+ 25% Zuschlag = 28,85€ pro Überstunde</li>
+              <li>10 Überstunden × 28,85€ = <strong>288,50€ brutto</strong></li>
+            </ol>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechtliche Grundlagen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Anordnung:</strong> Arbeitgeber braucht Grund (betrieblicher Bedarf)</li>
+            <li><strong>Vergütungspflicht:</strong> Überstunden sind zu vergüten (§612 BGB)</li>
+            <li><strong>Dokumentation:</strong> Arbeitgeber muss Arbeitszeit erfassen (EuGH-Urteil)</li>
+            <li><strong>Verjährung:</strong> Ansprüche verjähren nach 3 Jahren</li>
+            <li><strong>Ausschlussfristen:</strong> Oft nur 3-6 Monate (Tarifvertrag beachten!)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Überstunden bei Teilzeit</h3>
+          <p>
+            Bei <strong>Teilzeitarbeit</strong> gelten Besonderheiten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Überstunden erst ab Überschreitung der Vollzeit-Grenze mit Zuschlag</li>
+            <li>Mehrarbeit bis zur Vollzeit: normaler Stundenlohn ohne Zuschlag</li>
+            <li>Ausnahme: Tarifvertrag oder Arbeitsvertrag regelt anderes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto</p>
+          </a>
+          <a href="/teilzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🕐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Teilzeit</p>
+          </a>
+          <a href="/nachtschicht-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌙</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nachtschicht</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Stellen & Hilfe
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Arbeitsgericht</h3>
+            <p class="text-blue-700 text-sm">
+              Bei Streit über Überstundenvergütung ist das <strong>Arbeitsgericht</strong> zuständig. 
+              Die erste Instanz ist für Arbeitnehmer kostenfrei (außer bei Anwalt). Güteverhandlung 
+              innerhalb weniger Wochen möglich.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Betriebsrat & Gewerkschaft</h3>
+            <p class="text-green-700 text-sm">
+              Der <strong>Betriebsrat</strong> hat Mitbestimmungsrecht bei Überstunden (§87 BetrVG). 
+              <strong>Gewerkschaftsmitglieder</strong> erhalten kostenlose Rechtsberatung und 
+              Rechtsschutz in arbeitsrechtlichen Fragen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Überstunden-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/ueberstunden-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Überstundenzuschlag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gesetzlich ist kein Überstundenzuschlag vorgeschrieben. Tarifverträge sehen meist 25% für normale Überstunden vor. Für Sonntagsarbeit sind 50%, für Feiertage 100-150% üblich. Diese Zuschläge sind oft steuerfrei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Müssen Überstunden bezahlt werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, grundsätzlich sind Überstunden zu vergüten (§612 BGB). Der Arbeitsvertrag kann aber Freizeitausgleich statt Bezahlung vorsehen. Eine Klausel 'Überstunden sind mit dem Gehalt abgegolten' ist nur bei sehr guten Gehältern wirksam."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Überstunden steuerfrei?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Grundlohn für Überstunden ist normal steuerpflichtig. Steuerfrei sind nur bestimmte Zuschläge: Sonntag bis 50%, Feiertag bis 125%, Nacht bis 25-40%. Diese Steuerfreiheit gilt nur bis zu einem Grundlohn von 50€/Stunde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich meinen Überstundenlohn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie Ihr Monatsgehalt durch Ihre monatlichen Arbeitsstunden (bei 40h/Woche ca. 173,33 Std.). Das ergibt Ihren Stundenlohn. Multiplizieren Sie diesen mit dem Zuschlagsfaktor (z.B. 1,25 für 25% Zuschlag) und der Anzahl der Überstunden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann verfallen Überstunden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Überstundenansprüche verjähren nach 3 Jahren (§195 BGB). Aber Vorsicht: Viele Tarifverträge haben kürzere Ausschlussfristen von nur 3-6 Monaten! Machen Sie Überstunden daher zeitnah schriftlich geltend."
+        }
+      }
+    ]
+  })} />
+</Layout>

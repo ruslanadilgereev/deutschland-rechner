@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SteuererstattungRechner from '../components/rechner/SteuererstattungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Steuererstattung-Rechner 2026 – Rückerstattung kostenlos berechnen";
+const description = "Steuererstattung-Rechner 2026: Berechnen Sie Ihre erwartete Steuererstattung. Werbungskosten, Fahrtkosten, Homeoffice-Pauschale. Durchschnitt 1.172€ Erstattung. Kostenlos & sofort.";
+const keywords = "Steuererstattung Rechner, Steuererklärung Rückerstattung, Steuererstattung berechnen, Werbungskosten absetzen, Entfernungspauschale, Homeoffice Pauschale, Steuern sparen, Lohnsteuer zurück";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Steuererstattung-Rechner", url: "/steuererstattung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💰</span>
+          <div>
+            <h1 class="text-2xl font-bold">Steuererstattung-Rechner 2026</h1>
+            <p class="text-green-100 text-sm">Wie viel Geld bekommen Sie vom Finanzamt zurück?</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SteuererstattungRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Steuererstattung berechnen: So holen Sie sich Ihr Geld zurück</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Steuererstattung-Rechner</strong> ermitteln Sie kostenlos, wie viel 
+            Geld Sie vom Finanzamt zurückbekommen können. Deutsche Arbeitnehmer erhalten im 
+            Durchschnitt <strong>1.172€ Erstattung</strong> pro Jahr – doch viele verschenken Geld, 
+            weil sie keine Steuererklärung abgeben.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum lohnt sich die Steuererklärung?</h3>
+          <p>
+            9 von 10 Arbeitnehmern bekommen Geld zurück! Der Grund: Ihr Arbeitgeber zieht jeden 
+            Monat Lohnsteuer ab, ohne Ihre persönlichen Ausgaben zu berücksichtigen. Erst mit 
+            der Steuererklärung können Sie diese <strong>Werbungskosten</strong> geltend machen.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Diese Kosten können Sie absetzen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Fahrtkosten:</strong> 38 Cent/km (Entfernungspauschale 2026)</li>
+            <li><strong>Homeoffice-Pauschale:</strong> 6€/Tag, max. 1.260€/Jahr</li>
+            <li><strong>Arbeitsmittel:</strong> Computer, Schreibtisch, Fachliteratur</li>
+            <li><strong>Fortbildungskosten:</strong> Kurse, Seminare, Fahrtkosten</li>
+            <li><strong>Berufskleidung:</strong> Arbeitsschuhe, Uniformen, Schutzausrüstung</li>
+            <li><strong>Kontoführungsgebühren:</strong> Pauschal 16€ ohne Nachweis</li>
+            <li><strong>Bewerbungskosten:</strong> Porto, Bewerbungsfotos, Fahrtkosten</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Werbungskostenpauschale 2026</h3>
+          <p>
+            Das Finanzamt gewährt automatisch eine <strong>Werbungskostenpauschale von 1.230€</strong>. 
+            Eine Erstattung erhalten Sie nur, wenn Ihre tatsächlichen Kosten höher sind. Unser 
+            Rechner zeigt Ihnen genau, ob sich das Absetzen für Sie lohnt.
+          </p>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <h4 class="font-semibold text-green-800 mb-2">Beispielrechnung</h4>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li>Fahrtkosten (20 km × 220 Tage × 0,38€): <strong>1.672€</strong></li>
+              <li>Homeoffice (100 Tage × 6€): <strong>600€</strong></li>
+              <li>Arbeitsmittel: <strong>200€</strong></li>
+              <li class="pt-2 border-t border-green-200">Werbungskosten gesamt: <strong>2.472€</strong></li>
+              <li>Abzgl. Pauschale: <strong>-1.230€</strong></li>
+              <li class="font-bold">= Steuerersparnis bei 35% Grenzsteuersatz: <strong>ca. 435€</strong></li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderausgaben nicht vergessen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Versicherungen:</strong> Haftpflicht, Unfall, Berufsunfähigkeit</li>
+            <li><strong>Riester-/Rürup-Rente:</strong> Bis zu 2.100€ Sonderausgabenabzug</li>
+            <li><strong>Spenden:</strong> An gemeinnützige Organisationen</li>
+            <li><strong>Kirchensteuer:</strong> Wird automatisch berücksichtigt</li>
+            <li><strong>Handwerkerleistungen:</strong> 20% von max. 6.000€ Lohn</li>
+            <li><strong>Haushaltsnahe Dienstleistungen:</strong> 20% von max. 20.000€</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Werte 2026</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Grundfreibetrag:</strong> 12.348€ (steuerfrei)</li>
+              <li><strong>Werbungskostenpauschale:</strong> 1.230€</li>
+              <li><strong>Entfernungspauschale:</strong> 0,38€/km ab km 1</li>
+              <li><strong>Homeoffice-Pauschale:</strong> 6€/Tag, max. 1.260€/Jahr</li>
+              <li><strong>Arbeitstage-Richtwert:</strong> 220-230 Tage/Jahr</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fristen für die Steuererklärung</h3>
+          <p>
+            Die <strong>freiwillige Steuererklärung</strong> können Sie bis zu 4 Jahre rückwirkend 
+            einreichen (bis 31.12.). Bei Pflichtveranlagung gilt: 31. Juli des Folgejahres 
+            (mit Steuerberater: Ende Februar des übernächsten Jahres).
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/lohnsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Lohnsteuer-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/pendlerpauschale-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pendlerpauschale-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Behörden & Hilfe
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Finanzamt</h3>
+            <p class="text-blue-700 text-sm">
+              Für Ihre Steuererklärung ist das <strong>Finanzamt Ihres Wohnorts</strong> zuständig. 
+              Die Abgabe erfolgt heute bequem online über <strong>ELSTER</strong> (elster.de). 
+              Die Bearbeitungszeit beträgt etwa 4-8 Wochen.
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Lohnsteuerhilfeverein</h3>
+            <p class="text-green-700 text-sm">
+              Mitglieder eines <strong>Lohnsteuerhilfevereins</strong> erhalten professionelle 
+              Hilfe bei der Steuererklärung für ca. 150-300€/Jahr. Eine günstige Alternative 
+              zum Steuerberater für Arbeitnehmer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Steuererstattung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/steuererstattung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Steuererstattung bekomme ich durchschnittlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Deutsche Arbeitnehmer erhalten im Durchschnitt etwa 1.172€ Steuererstattung pro Jahr. Die tatsächliche Erstattung hängt von Ihren individuellen Werbungskosten, Ihrem Einkommen und Ihrer Steuerklasse ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Werbungskostenpauschale 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Werbungskostenpauschale (Arbeitnehmer-Pauschbetrag) beträgt 2026 1.230€. Dieser Betrag wird automatisch bei der Lohnsteuerberechnung berücksichtigt. Nur wenn Ihre tatsächlichen Werbungskosten höher sind, erhalten Sie eine zusätzliche Erstattung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Entfernungspauschale 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Entfernungspauschale beträgt 2026 einheitlich 0,38€ pro Kilometer ab dem ersten Kilometer. Bei 20 km Arbeitsweg und 220 Arbeitstagen können Sie so 1.672€ Fahrtkosten absetzen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Homeoffice-Pauschale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Homeoffice-Pauschale beträgt 6€ pro Arbeitstag im Homeoffice, maximal 1.260€ pro Jahr (210 Tage). Sie kann auch dann geltend gemacht werden, wenn kein separates Arbeitszimmer vorhanden ist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich eine Steuererklärung für mich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Steuererklärung lohnt sich fast immer: 9 von 10 Arbeitnehmern bekommen Geld zurück. Besonders profitieren Pendler, Homeoffice-Arbeiter und alle mit hohen Werbungskosten. Die freiwillige Abgabe ist bis zu 4 Jahre rückwirkend möglich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bis wann muss ich die Steuererklärung abgeben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die freiwillige Steuererklärung können Sie bis zu 4 Jahre rückwirkend einreichen (bis 31.12.). Bei Pflichtveranlagung ist die Frist der 31. Juli des Folgejahres, mit Steuerberater der 28./29. Februar des übernächsten Jahres."
+        }
+      }
+    ]
+  })} />
+</Layout>
