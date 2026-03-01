@@ -1184,13 +1184,17 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld',
   },
   {
-    id: 'prozentrechner',
+    id: 'prozent',
     name: 'Prozent-Rechner',
-    beschreibung: 'Prozentrechnung aller Art',
+    beschreibung: 'Prozentwert, Prozentsatz & prozentuale Veränderung',
     icon: '%',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Prozentrechner, Prozent berechnen, Rabatt Prozent',
+    fertig: true,
+    seoKeywords: 'Prozent Rechner, Prozent berechnen, Prozentrechnung, Prozentwert berechnen, Prozentsatz berechnen, prozentuale Veränderung, Grundwert Prozentwert, Prozent ausrechnen',
+    quellen: [
+      'https://www.mathematik.de/',
+      'https://www.frustfrei-lernen.de/mathematik/prozentrechnung.html',
+    ],
   },
   {
     id: 'rabatt-rechner',
@@ -1609,11 +1613,16 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'fruehrente',
     name: 'Frührente-Rechner',
-    beschreibung: 'Rente mit 63 – Abzüge berechnen',
-    icon: '🏖️',
+    beschreibung: 'Rente mit 63 – Abschläge berechnen',
+    icon: '⏰',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Frührente Rechner, Rente mit 63, vorzeitige Rente Abschläge',
+    fertig: true,
+    seoKeywords: 'Frührente Rechner, Rente mit 63, vorzeitige Rente Abschläge, Rentenabschlag berechnen, 45 Beitragsjahre, Regelaltersgrenze, abschlagsfreie Rente',
+    quellen: [
+      'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Kurz-vor-der-Rente/Wann-kann-ich-in-Rente-gehen/Wann-kann-ich-in-Rente-gehen_detailseite.html',
+      'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Altersrente-fuer-langjaehrig-Versicherte/Altersrente_fuer_langjaehrig_Versicherte.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__77.html',
+    ],
   },
   {
     id: 'altersteilzeit',
