@@ -1818,11 +1818,17 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'sabbatical',
     name: 'Sabbatical-Rechner',
-    beschreibung: 'Sabbatical-Finanzierung planen',
+    beschreibung: 'Sabbatical planen mit Ansparmodell',
     icon: '🌴',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Sabbatical Rechner, Auszeit finanzieren, Sabbatjahr planen',
+    fertig: true,
+    seoKeywords: 'Sabbatical Rechner, Ansparmodell, Sabbatical berechnen, Auszeit finanzieren, Sabbatjahr planen, Langzeitarbeitskonto, Zeitwertkonto, Freistellung berechnen',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_4/__7b.html',
+      'https://www.gesetze-im-internet.de/sgb_4/__7c.html',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html',
+      'https://www.haufe.de/personal/arbeitsrecht/sabbatical-langzeiturlaub-und-berufliche-auszeit_76_458466.html',
+    ],
   },
   {
     id: 'fruehrente',
@@ -1841,22 +1847,34 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'altersteilzeit',
     name: 'Altersteilzeit-Rechner',
-    beschreibung: 'Altersteilzeit-Modell berechnen',
+    beschreibung: 'Blockmodell, Aufstockung & Rentenpunkte berechnen',
     icon: '⏳',
     kategorie: 'arbeit',
-    fertig: false,
-    seoKeywords: 'Altersteilzeit Rechner, Altersteilzeit berechnen, ATZ Rechner',
+    fertig: true,
+    seoKeywords: 'Altersteilzeit Rechner, Altersteilzeit berechnen, ATZ Rechner, Blockmodell, Altersteilzeit Aufstockung, Altersteilzeit Netto, ATZ Blockmodell, Altersteilzeit 80 Prozent, Altersteilzeit Rentenpunkte, Freistellungsphase, Arbeitsphase, TV ATZ',
+    quellen: [
+      'https://www.gesetze-im-internet.de/alttrzg/',
+      'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Familie-und-Kinder/Zeiten-fuer-die-Rente/Altersteilzeit/altersteilzeit_node.html',
+      'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Teilzeit-flexible-Arbeitszeit/altersteilzeit.html',
+    ],
   },
 
   // FINANZEN - Mega-Traffic
   {
     id: 'aktien-steuer',
     name: 'Aktien-Steuer-Rechner',
-    beschreibung: 'Steuer auf Aktiengewinne berechnen',
+    beschreibung: 'Steuer auf Aktiengewinne berechnen – Abgeltungsteuer 25% + Soli',
     icon: '📈',
     kategorie: 'finanzen',
-    fertig: false,
-    seoKeywords: 'Aktien Steuer Rechner, Aktiengewinn versteuern, Kapitalerträge Steuer',
+    fertig: true,
+    seoKeywords: 'Aktien Steuer Rechner, Aktiengewinn versteuern, Kapitalerträge Steuer, Abgeltungsteuer berechnen, Aktien Steuern 2026, Sparerpauschbetrag, Aktienverkauf Steuer, Veräußerungsgewinn Aktien',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__20.html',
+      'https://www.gesetze-im-internet.de/estg/__32d.html',
+      'https://www.gesetze-im-internet.de/estg/__43a.html',
+      'https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Kapitalertragsteuer/kapitalertragsteuer.html',
+      'https://www.bzst.de/DE/Privatpersonen/Kapitalertraege/kapitalertraege_node.html',
+    ],
   },
   {
     id: 'krypto-steuer',
