@@ -1,0 +1,303 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RabattRechner from '../components/rechner/RabattRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Rabatt-Rechner 2026 – Ersparnis & Endpreis kostenlos berechnen";
+const description = "Rabatt berechnen: Ermitteln Sie den Endpreis nach Rabatt und Ihre Ersparnis in Euro. Mit Staffelrabatten, doppelten Rabatten & Formel-Erklärung. Kostenlos & sofort!";
+const keywords = "Rabatt Rechner, Rabatt berechnen, Prozent ausrechnen, Preisnachlass berechnen, Ersparnis Rechner, Sale berechnen, Black Friday Rechner, Rabatt Formel, neuer Preis nach Rabatt, Prozentrechner Rabatt, Staffelrabatt, doppelter Rabatt";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Rabatt-Rechner", url: "/rabatt-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-rose-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏷️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rabatt-Rechner</h1>
+            <p class="text-rose-100 text-sm">Ersparnis & Endpreis berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RabattRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rabatt berechnen: So funktioniert's</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Rabatt-Rechner</strong> berechnen Sie in Sekunden, wie viel Sie bei einem 
+            Sale oder einer Rabattaktion sparen. Geben Sie einfach den Originalpreis und den Rabatt in Prozent 
+            ein – wir zeigen Ihnen den <strong>neuen Preis</strong> und Ihre <strong>Ersparnis in Euro</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Rabatt-Formel</h3>
+          <p>
+            Die Berechnung eines Rabatts basiert auf einfacher Prozentrechnung:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">Neuer Preis = Originalpreis × (1 - Rabatt/100)</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Ein Produkt kostet 100 € und ist um 20% reduziert. 
+            Der neue Preis beträgt: 100 € × (1 - 20/100) = 100 € × 0,8 = <strong>80 €</strong>. 
+            Sie sparen also 20 €.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ersparnis in Euro berechnen</h3>
+          <p>
+            Um die <strong>Ersparnis in Euro</strong> zu ermitteln, nutzen Sie diese Formel:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">Ersparnis = Originalpreis × (Rabatt/100)</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Bei 30% Rabatt auf 150 € sparen Sie: 150 € × 0,30 = <strong>45 €</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Doppelter Rabatt: Was passiert bei zwei Rabatten?</h3>
+          <p>
+            Viele denken, 20% + 10% = 30% Rabatt. <strong>Das stimmt nicht!</strong> Der zweite Rabatt 
+            wird auf den bereits reduzierten Preis angewendet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Originalpreis: 100 €</li>
+            <li>Nach 20% Rabatt: 100 € × 0,8 = <strong>80 €</strong></li>
+            <li>Nach weiteren 10%: 80 € × 0,9 = <strong>72 €</strong></li>
+            <li>Gesamtrabatt: nur <strong>28%</strong> (nicht 30%!)</li>
+          </ul>
+          <p>
+            Die kombinierte Formel lautet: <code class="bg-gray-100 px-2 py-1 rounded">Endpreis = Preis × (1 - R₁/100) × (1 - R₂/100)</code>
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Staffelrabatte verstehen</h3>
+          <p>
+            Viele Händler bieten <strong>Staffelrabatte</strong> an – je mehr Sie kaufen, desto höher der Rabatt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ab 50 €:</strong> 5% Rabatt</li>
+            <li><strong>Ab 100 €:</strong> 10% Rabatt</li>
+            <li><strong>Ab 200 €:</strong> 15% Rabatt</li>
+            <li><strong>Ab 500 €:</strong> 20% Rabatt</li>
+          </ul>
+          <p>
+            Unser Rechner zeigt Ihnen in der Staffelrabatt-Übersicht, wie viel Sie bei verschiedenen 
+            Rabattsätzen sparen würden.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Originalpreis zurückrechnen</h3>
+          <p>
+            Sie kennen den Rabattpreis und wollen wissen, was das Produkt original kostete? 
+            Nutzen Sie diese Formel:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">Originalpreis = Rabattpreis ÷ (1 - Rabatt/100)</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Ein Artikel kostet nach 25% Rabatt noch 75 €. 
+            Der Originalpreis war: 75 € ÷ 0,75 = <strong>100 €</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beliebte Rabattaktionen in Deutschland</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Black Friday:</strong> Letzter Freitag im November, 20-70% Rabatt</li>
+            <li><strong>Cyber Monday:</strong> Der Montag nach Black Friday</li>
+            <li><strong>Singles Day (11.11.):</strong> Ursprünglich aus China, nun auch in DE beliebt</li>
+            <li><strong>Winter-Sale:</strong> Januar/Februar, bis zu 70%</li>
+            <li><strong>Sommer-Sale:</strong> Juli/August, bis zu 70%</li>
+            <li><strong>Prime Day:</strong> Juli (nur Amazon-Mitglieder)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rabatt oder Skonto – der Unterschied</h3>
+          <p>
+            <strong>Rabatt</strong> ist ein allgemeiner Preisnachlass beim Kauf. 
+            <strong>Skonto</strong> ist ein Preisnachlass für schnelle Zahlung (z.B. "2% Skonto bei 
+            Zahlung innerhalb von 10 Tagen"). Beide werden prozentual berechnet, aber Skonto gilt 
+            nur im B2B-Bereich und bei Rechnungskauf.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps: Echte Schnäppchen erkennen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Preisvergleich nutzen:</strong> Idealo, Geizhals, Google Shopping zeigen den typischen Marktpreis</li>
+            <li><strong>UVP kritisch sehen:</strong> Die unverbindliche Preisempfehlung ist oft unrealistisch hoch</li>
+            <li><strong>Preisverlauf prüfen:</strong> Tools wie Keepa (Amazon) zeigen den historischen Preisverlauf</li>
+            <li><strong>Newsletter kombinieren:</strong> Oft gibt es zusätzlich 5-15% für Newsletter-Abonnenten</li>
+            <li><strong>Cashback nutzen:</strong> Portale wie Shoop oder iGraal bieten Extra-Prozente zurück</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Praktische Beispiele -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🧮</span>
+          Rechenbeispiele
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Einfacher Rabatt</h3>
+            <p class="text-sm text-gray-600">
+              Eine Jacke kostet 149 € und ist um 30% reduziert.<br/>
+              <strong>Ersparnis:</strong> 149 € × 0,30 = 44,70 €<br/>
+              <strong>Neuer Preis:</strong> 149 € - 44,70 € = <span class="text-green-600 font-bold">104,30 €</span>
+            </p>
+          </div>
+          
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Doppelter Rabatt (Sale + Gutschein)</h3>
+            <p class="text-sm text-gray-600">
+              Ein TV kostet 999 €. Im Sale -20%, plus 10% Newsletter-Gutschein.<br/>
+              <strong>Nach 20%:</strong> 999 € × 0,8 = 799,20 €<br/>
+              <strong>Nach weiteren 10%:</strong> 799,20 € × 0,9 = <span class="text-green-600 font-bold">719,28 €</span><br/>
+              <strong>Gesamtersparnis:</strong> 279,72 € (≈ 28%)
+            </p>
+          </div>
+          
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Originalpreis ermitteln</h3>
+            <p class="text-sm text-gray-600">
+              Sneaker kosten nach 40% Rabatt noch 89,99 €. Was war der Originalpreis?<br/>
+              <strong>Rechnung:</strong> 89,99 € ÷ 0,6 = <span class="text-blue-600 font-bold">149,98 €</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Verwandte Rechner
+        </h2>
+        
+        <div class="grid gap-3">
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-rose-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">📊</span>
+            <div>
+              <div class="font-semibold text-gray-800">Prozent-Rechner</div>
+              <div class="text-sm text-gray-500">Alle Prozentberechnungen: Grundwert, Prozentwert, Prozentsatz</div>
+            </div>
+          </a>
+          <a href="/mwst-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-rose-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🧾</span>
+            <div>
+              <div class="font-semibold text-gray-800">MwSt-Rechner</div>
+              <div class="text-sm text-gray-500">Mehrwertsteuer berechnen: Brutto ↔ Netto</div>
+            </div>
+          </a>
+          <a href="/zinsrechner" class="p-3 bg-gray-50 rounded-lg hover:bg-rose-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">💰</span>
+            <div>
+              <div class="font-semibold text-gray-800">Zinsrechner</div>
+              <div class="text-sm text-gray-500">Zinsen & Zinseszins berechnen</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rabatt-Rechner – Ersparnis & Endpreis berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/rabatt-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man einen Rabatt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um einen Rabatt zu berechnen, multiplizieren Sie den Originalpreis mit (1 - Rabatt/100). Beispiel: 100 € mit 20% Rabatt = 100 € × 0,8 = 80 €. Die Ersparnis ist der Originalpreis mal den Rabatt geteilt durch 100."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist 20% von 100 Euro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "20% von 100 Euro sind 20 Euro. Bei einem 20% Rabatt auf einen Artikel für 100 € beträgt der neue Preis 80 € und Sie sparen 20 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich zwei Rabatte zusammen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zwei Rabatte werden nacheinander berechnet, nicht addiert! Bei 20% + 10% Rabatt: Erst 20% abziehen (z.B. 100 € → 80 €), dann 10% vom reduzierten Preis (80 € → 72 €). Der Gesamtrabatt ist 28%, nicht 30%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich vom reduzierten Preis auf den Originalpreis zurück?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie den reduzierten Preis durch (1 - Rabatt/100). Beispiel: Ein Artikel kostet nach 25% Rabatt 75 €. Originalpreis: 75 € ÷ 0,75 = 100 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Rabatt und Skonto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rabatt ist ein allgemeiner Preisnachlass beim Kauf. Skonto ist ein Preisnachlass für schnelle Zahlung (z.B. 2% bei Zahlung innerhalb von 10 Tagen) und wird hauptsächlich im Geschäftsverkehr (B2B) gewährt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie erkenne ich echte Schnäppchen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vergleichen Sie Preise auf Idealo, Geizhals oder Google Shopping. Nutzen Sie Preisverlauf-Tools wie Keepa (Amazon). Seien Sie skeptisch bei der UVP – der typische Marktpreis ist oft niedriger als die unverbindliche Preisempfehlung."
+        }
+      }
+    ]
+  })} />
+</Layout>

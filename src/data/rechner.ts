@@ -1193,13 +1193,17 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Prozentrechner, Prozent berechnen, Rabatt Prozent',
   },
   {
-    id: 'rabatt',
+    id: 'rabatt-rechner',
     name: 'Rabatt-Rechner',
-    beschreibung: 'Rabatt & Endpreis berechnen',
+    beschreibung: 'Ersparnis & Endpreis nach Rabatt berechnen',
     icon: '🏷️',
     kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'Rabatt Rechner, Rabatt berechnen, Preisnachlass',
+    fertig: true,
+    seoKeywords: 'Rabatt Rechner, Rabatt berechnen, Preisnachlass, Ersparnis berechnen, Sale berechnen, Black Friday Rechner, Prozent Rabatt, Staffelrabatt, doppelter Rabatt, neuer Preis nach Rabatt',
+    quellen: [
+      'https://www.verbraucherzentrale.de',
+      'https://de.wikipedia.org/wiki/Rabatt',
+    ],
   },
   {
     id: 'umzugskosten',

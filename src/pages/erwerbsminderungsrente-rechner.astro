@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ErwerbsminderungsrenteRechner from '../components/rechner/ErwerbsminderungsrenteRechner.tsx';
+
+const title = 'Erwerbsminderungsrente-Rechner 2026 – EM-Rente berechnen | Rentenwert 40,79€';
+const description = 'Erwerbsminderungsrente 2026 berechnen: Volle & teilweise EM-Rente, Zurechnungszeit, Abschläge, Hinzuverdienstgrenzen. Aktueller Rentenwert 40,79€. Kostenloser Rechner mit DRV-Formel.';
+const keywords = 'Erwerbsminderungsrente Rechner, EM-Rente berechnen, Erwerbsminderungsrente 2026, volle Erwerbsminderungsrente, teilweise Erwerbsminderungsrente, Zurechnungszeit, Rentenwert 2026, Hinzuverdienstgrenze EM-Rente, Erwerbsminderung berechnen, EMI Rente';
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg mb-4">
+          <span class="text-4xl">🏥</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          Erwerbsminderungsrente-Rechner 2026
+        </h1>
+        <p class="text-gray-600 max-w-lg mx-auto">
+          Berechnen Sie Ihre EM-Rente: Volle oder teilweise Erwerbsminderung mit Zurechnungszeit und aktuellen Werten.
+        </p>
+      </div>
+
+      <!-- Calculator Component -->
+      <ErwerbsminderungsrenteRechner client:load />
+
+      <!-- SEO Content Section -->
+      <div class="mt-12 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📚 Alles Wichtige zur Erwerbsminderungsrente</h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Was ist die Erwerbsminderungsrente?</h3>
+            <p>
+              Die Erwerbsminderungsrente (EM-Rente) ist eine Leistung der gesetzlichen Rentenversicherung 
+              für Menschen, die aus gesundheitlichen Gründen nicht mehr oder nur noch eingeschränkt arbeiten können.
+              Sie hat 2001 die frühere Erwerbsunfähigkeitsrente (EU-Rente) und Berufsunfähigkeitsrente (BU-Rente) 
+              abgelöst.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Volle vs. teilweise Erwerbsminderung</h3>
+            <p>
+              Es gibt zwei Stufen der Erwerbsminderung:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+              <li><strong>Volle Erwerbsminderung:</strong> Sie können weniger als 3 Stunden täglich auf dem 
+              allgemeinen Arbeitsmarkt arbeiten. Die volle EM-Rente beträgt etwa doppelt so viel wie die teilweise.</li>
+              <li><strong>Teilweise Erwerbsminderung:</strong> Sie können 3 bis unter 6 Stunden täglich arbeiten. 
+              Der Rentenartfaktor beträgt hier nur 0,5 statt 1,0.</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie wird die EM-Rente berechnet?</h3>
+            <p>
+              Die Berechnung erfolgt nach der Rentenformel:
+            </p>
+            <div class="bg-blue-50 p-3 rounded-lg mt-2 font-mono text-xs">
+              Rente = Entgeltpunkte × Zugangsfaktor × Rentenartfaktor × Rentenwert
+            </div>
+            <ul class="list-disc pl-5 space-y-1 mt-3">
+              <li><strong>Entgeltpunkte:</strong> Ihre bisher erarbeiteten Punkte + Zurechnungszeit</li>
+              <li><strong>Zugangsfaktor:</strong> 1,0 oder weniger bei Abschlag (max. 10,8%)</li>
+              <li><strong>Rentenartfaktor:</strong> 1,0 (volle EM) oder 0,5 (teilweise EM)</li>
+              <li><strong>Rentenwert 2026:</strong> 40,79 € pro Entgeltpunkt</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Was ist die Zurechnungszeit?</h3>
+            <p>
+              Die Zurechnungszeit schützt Menschen, die früh erwerbsgemindert werden. Sie werden so gestellt, 
+              als hätten Sie bis zu einem bestimmten Alter (2026: 66 Jahre und 3 Monate, ab 2031: 67 Jahre) 
+              weitergearbeitet. Die fiktiven Entgeltpunkte werden zum Durchschnitt der bisherigen Erwerbsbiografie 
+              berechnet.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Welche Voraussetzungen gelten?</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+              <li><strong>Allgemeine Wartezeit:</strong> Mindestens 5 Jahre Versicherungszeit</li>
+              <li><strong>Pflichtbeiträge:</strong> 3 Jahre Pflichtbeiträge in den letzten 5 Jahren vor der EM</li>
+              <li><strong>Medizinisches Gutachten:</strong> Bestätigung der Erwerbsminderung durch die DRV</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Schema -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zur Erwerbsminderungsrente</h2>
+        
+        <div class="space-y-4">
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wie hoch ist die Erwerbsminderungsrente durchschnittlich?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Die durchschnittliche volle EM-Rente liegt bei etwa 950–1.100 € brutto monatlich. 
+              Die tatsächliche Höhe hängt stark von den bisher erworbenen Entgeltpunkten und dem 
+              Alter bei Eintritt der Erwerbsminderung ab. Nach Abzug von Kranken- und 
+              Pflegeversicherung (ca. 10%) verbleibt die Nettorente.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wie viel darf ich neben der EM-Rente hinzuverdienen?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Bei voller Erwerbsminderungsrente liegt die Hinzuverdienstgrenze 2026 bei 
+              <strong>20.963,75 € pro Jahr</strong> (ca. 1.747 € pro Monat). Bei teilweiser EM ist 
+              die Grenze deutlich höher und richtet sich nach dem individuellen Einkommen vor der 
+              Erwerbsminderung. Wird die Grenze überschritten, wird die Rente anteilig gekürzt.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Was ist der Abschlag bei vorzeitigem Bezug?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Wenn Sie vor der abschlagsfreien Altersgrenze (2026: 64 Jahre und 10 Monate) in 
+              EM-Rente gehen, wird für jeden Monat davor ein Abschlag von 0,3% berechnet – 
+              <strong>maximal 10,8%</strong> (36 Monate). Dieser Abschlag gilt dauerhaft, auch 
+              wenn die EM-Rente später zur Altersrente wird.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wird die EM-Rente befristet gewährt?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Ja, EM-Renten werden in der Regel für <strong>maximal 3 Jahre befristet</strong>. 
+              Vor Ablauf wird geprüft, ob die Erwerbsminderung weiterhin besteht. Eine 
+              unbefristete EM-Rente wird nur gewährt, wenn keine Verbesserung des 
+              Gesundheitszustands zu erwarten ist (z.B. bei schweren chronischen Erkrankungen).
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Was passiert mit der Regelaltersrente?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Mit Erreichen der Regelaltersgrenze (67 Jahre für ab 1964 Geborene) wird die 
+              EM-Rente automatisch in eine Altersrente umgewandelt. Ein neuer Antrag ist nicht 
+              erforderlich. Die Altersrente kann höher sein, wenn zwischenzeitlich weitere 
+              Versicherungszeiten (z.B. durch Pflege) hinzugekommen sind.
+            </p>
+          </details>
+          
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Kann ich zusätzlich Grundsicherung beantragen?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Ja, wenn Ihre EM-Rente sehr niedrig ist und Sie Ihren Lebensunterhalt nicht 
+              decken können, haben Sie Anspruch auf <strong>Grundsicherung bei Erwerbsminderung</strong> 
+              (§ 41 SGB XII). Diese wird vom Sozialamt gezahlt und ist nicht auf das Bürgergeld 
+              anzurechnen. Das Vermögen wird dabei geprüft, es gelten aber Freibeträge.
+            </p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Verwandte Rechner -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/rentenrechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rentenrechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/krankengeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Krankengeld-Rechner</p>
+          </a>
+          <a href="/buergergeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bürgergeld-Rechner</p>
+          </a>
+          <a href="/pflegegeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🩺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflegegeld-Rechner</p>
+          </a>
+          <a href="/schwerbehinderung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♿</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">GdB-Rechner</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="mt-8 text-center">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"
+        >
+          ← Alle Rechner anzeigen
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist die Erwerbsminderungsrente durchschnittlich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die durchschnittliche volle EM-Rente liegt bei etwa 950–1.100 € brutto monatlich. Die tatsächliche Höhe hängt von den Entgeltpunkten und dem Alter bei Eintritt der Erwerbsminderung ab. Nach Abzug von KV und PV (ca. 10%) verbleibt die Nettorente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel darf ich neben der EM-Rente hinzuverdienen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei voller Erwerbsminderungsrente liegt die Hinzuverdienstgrenze 2026 bei 20.963,75 € pro Jahr (ca. 1.747 € pro Monat). Bei teilweiser EM ist die Grenze höher und richtet sich nach dem individuellen Einkommen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Abschlag bei vorzeitigem Bezug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei EM-Rentenbeginn vor der abschlagsfreien Altersgrenze (2026: 64 Jahre und 10 Monate) beträgt der Abschlag 0,3% pro Monat – maximal 10,8%. Dieser gilt dauerhaft, auch bei späterer Umwandlung in Altersrente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird die EM-Rente befristet gewährt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, EM-Renten werden in der Regel für maximal 3 Jahre befristet. Vor Ablauf wird geprüft, ob die Erwerbsminderung weiterhin besteht. Unbefristete EM-Renten gibt es bei dauerhafter Gesundheitseinschränkung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist die Zurechnungszeit bei der EM-Rente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Zurechnungszeit ist eine fiktive Versicherungszeit vom Eintritt der Erwerbsminderung bis zu einem festgelegten Alter (2026: 66 Jahre 3 Monate, ab 2031: 67 Jahre). Sie erhöht die Entgeltpunkte und damit die Rente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie berechnet sich die Erwerbsminderungsrente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Formel lautet: Rente = Entgeltpunkte × Zugangsfaktor × Rentenartfaktor × Rentenwert. Bei voller EM ist der Rentenartfaktor 1,0, bei teilweiser EM 0,5. Der Rentenwert 2026 beträgt 40,79 €."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Erwerbsminderungsrente-Rechner 2026",
+  "description": "Kostenloser Online-Rechner zur Berechnung der Erwerbsminderungsrente nach aktuellen Werten 2026. Berechnet volle und teilweise EM-Rente inkl. Zurechnungszeit und Abschläge.",
+  "url": "https://deutschland-rechner.de/erwerbsminderungsrente-rechner",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "deutschland-rechner.de"
+  }
+}
+</script>
