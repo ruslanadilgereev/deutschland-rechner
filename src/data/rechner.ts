@@ -824,11 +824,18 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'maklerkosten',
     name: 'Maklerkosten-Rechner',
-    beschreibung: 'Maklergebühren nach Bundesland',
+    beschreibung: 'Maklerprovision 3,57-7,14% nach Bundesland berechnen',
     icon: '🤵',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Maklerkosten Rechner, Maklerprovision, Maklergebühren',
+    fertig: true,
+    seoKeywords: 'Maklerkosten Rechner, Maklerprovision berechnen, Maklergebühren 2025, Maklerkosten Hauskauf, Käufer Verkäufer Aufteilung, Maklerprovision Bundesland, 50 50 Regelung Makler, Maklergesetz 2020',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__656a.html',
+      'https://www.gesetze-im-internet.de/bgb/__656c.html',
+      'https://www.gesetze-im-internet.de/bgb/__656d.html',
+      'https://www.bmj.de/DE/themen/immobilien_baurecht/maklerrecht/maklerrecht_node.html',
+      'https://www.bundesregierung.de/breg-de/aktuelles/neue-regeln-fuer-maklerkosten-1806718',
+    ],
   },
   {
     id: 'baufinanzierung',
@@ -862,8 +869,13 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Wie viel Eigenkapital für Hauskauf?',
     icon: '💰',
     kategorie: 'wohnen',
-    fertig: false,
-    seoKeywords: 'Eigenkapital Hauskauf, Eigenkapital berechnen, wie viel Eigenkapital',
+    fertig: true,
+    seoKeywords: 'Eigenkapital Hauskauf, Eigenkapital berechnen, wie viel Eigenkapital, Eigenkapital Immobilie, 20 Prozent Eigenkapital, 30 Prozent Eigenkapital, Beleihungsauslauf, Finanzierung Hauskauf',
+    quellen: [
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung',
+      'https://www.kfw.de/inlandsfoerderung/Privatpersonen/',
+      'https://www.bundesfinanzministerium.de',
+    ],
   },
   {
     id: 'miete-oder-kaufen',
