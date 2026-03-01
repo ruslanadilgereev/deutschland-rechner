@@ -1,0 +1,327 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProzentRechner from '../components/rechner/ProzentRechner';
+
+const title = "Prozent-Rechner – Prozent berechnen einfach erklärt (kostenlos)";
+const description = "Prozent-Rechner: Prozentwert, Prozentsatz & prozentuale Veränderung berechnen. Einfache Erklärung für Schüler mit Formeln und Beispielen. Kostenlos & sofort!";
+const keywords = "Prozent Rechner, Prozent berechnen, Prozentrechnung, Prozentwert berechnen, Prozentsatz berechnen, prozentuale Veränderung, Grundwert Prozentwert, Prozent ausrechnen, Rabatt berechnen, Prozent Formel";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">%</span>
+          <div>
+            <h1 class="text-2xl font-bold">Prozent-Rechner</h1>
+            <p class="text-blue-100 text-sm">Prozentwert, Prozentsatz & Veränderung berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ProzentRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Prozentrechnung einfach erklärt</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem kostenlosen <strong>Prozent-Rechner</strong> berechnest du schnell und einfach 
+            alles rund um <strong>Prozente</strong>: Prozentwert, Prozentsatz und prozentuale Veränderung. 
+            Perfekt für Schule, Studium und Alltag!
+          </p>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-blue-800 font-semibold mb-2">📐 Die 3 Berechnungsarten:</p>
+            <ul class="space-y-1 text-sm text-blue-700">
+              <li><strong>Prozentwert berechnen:</strong> Wie viel ist X% von Y?</li>
+              <li><strong>Prozentsatz berechnen:</strong> X ist wieviel Prozent von Y?</li>
+              <li><strong>Veränderung berechnen:</strong> Um wieviel % hat sich etwas verändert?</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist Prozent?</h3>
+          <p>
+            Das Wort <strong>Prozent</strong> kommt vom lateinischen "pro centum" und bedeutet "von hundert". 
+            1 Prozent (1%) bedeutet also 1 von 100 oder der hundertste Teil von etwas.
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4 font-mono text-sm">
+            <p><strong>1% = 1/100 = 0,01</strong></p>
+            <p><strong>50% = 50/100 = 0,5 = die Hälfte</strong></p>
+            <p><strong>100% = 100/100 = 1 = das Ganze</strong></p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie berechnet man Prozent?</h3>
+          <p>
+            Die <strong>Prozentrechnung</strong> basiert auf drei Grundwerten, von denen immer zwei bekannt sein müssen:
+          </p>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">1. Prozentwert berechnen (W)</h4>
+          <div class="bg-blue-50 p-4 rounded-lg my-2">
+            <code class="text-blue-800">Prozentwert = Grundwert × (Prozentsatz ÷ 100)</code>
+            <p class="text-sm text-blue-700 mt-2"><strong>Beispiel:</strong> 15% von 200€ = 200 × 0,15 = 30€</p>
+          </div>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">2. Prozentsatz berechnen (p)</h4>
+          <div class="bg-green-50 p-4 rounded-lg my-2">
+            <code class="text-green-800">Prozentsatz = (Prozentwert ÷ Grundwert) × 100</code>
+            <p class="text-sm text-green-700 mt-2"><strong>Beispiel:</strong> 30 ist wieviel % von 200? = (30 ÷ 200) × 100 = 15%</p>
+          </div>
+          
+          <h4 class="font-semibold text-gray-700 mt-4">3. Grundwert berechnen (G)</h4>
+          <div class="bg-yellow-50 p-4 rounded-lg my-2">
+            <code class="text-yellow-800">Grundwert = Prozentwert × (100 ÷ Prozentsatz)</code>
+            <p class="text-sm text-yellow-700 mt-2"><strong>Beispiel:</strong> 30 sind 15% von was? = 30 × (100 ÷ 15) = 200</p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Grundwert?</h3>
+          <p>
+            Der <strong>Grundwert</strong> ist die Ausgangsgröße, von der aus gerechnet wird. Er entspricht 
+            immer 100%. In der Schule wird er oft mit "G" abgekürzt.
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <p class="text-sm"><strong>Beispiele für Grundwerte:</strong></p>
+            <ul class="text-sm mt-2 space-y-1">
+              <li>• Ursprünglicher Preis bei Rabatten</li>
+              <li>• Gesamtzahl der Schüler in einer Klasse</li>
+              <li>• Anfangswert bei Zinsberechnungen</li>
+              <li>• Maximale Punktzahl bei Tests</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Prozentuale Veränderung berechnen</h3>
+          <p>
+            Die <strong>prozentuale Veränderung</strong> (auch: prozentuale Zu- oder Abnahme) zeigt, um wieviel 
+            Prozent sich ein Wert verändert hat:
+          </p>
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <code class="text-purple-800">Veränderung in % = ((Neuer Wert - Alter Wert) ÷ Alter Wert) × 100</code>
+            <p class="text-sm text-purple-700 mt-2">
+              <strong>Beispiel:</strong> Miete steigt von 800€ auf 850€<br/>
+              = ((850 - 800) ÷ 800) × 100 = 6,25% Erhöhung
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Prozent im Alltag</h3>
+          <p>
+            <strong>Prozentrechnung</strong> begegnet uns täglich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Einkaufen:</strong> Rabatte (20% Nachlass), Mehrwertsteuer (19%)</li>
+            <li><strong>Finanzen:</strong> Zinsen, Renditen, Inflation</li>
+            <li><strong>Schule:</strong> Noten, Testergebnisse</li>
+            <li><strong>Statistik:</strong> Umfragen, Wahlergebnisse</li>
+            <li><strong>Gesundheit:</strong> Fettgehalt, Alkoholgehalt</li>
+            <li><strong>Technik:</strong> Akkustand, Ladebalken</li>
+          </ul>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-blue-800">
+              <strong>💡 Tipp:</strong> Beim Kopfrechnen hilft es, 10% als Basis zu nehmen 
+              (einfach Komma verschieben) und dann zu addieren oder zu halbieren.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Prozent vs. Prozentpunkte</h3>
+          <p>
+            Ein häufiger Fehler: <strong>Prozent</strong> und <strong>Prozentpunkte</strong> sind nicht dasselbe!
+          </p>
+          <div class="bg-yellow-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-yellow-800">
+              <strong>Beispiel:</strong> Ein Steuersatz steigt von 20% auf 25%.<br/>
+              ✅ Das sind <strong>5 Prozentpunkte</strong> mehr.<br/>
+              ✅ Das ist aber eine <strong>25% Erhöhung</strong> (5 ÷ 20 × 100)!
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Prozent zu Dezimalzahl umrechnen</h3>
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <p class="text-sm"><strong>Prozent → Dezimalzahl:</strong> Durch 100 teilen</p>
+            <p class="text-sm">25% = 25 ÷ 100 = 0,25</p>
+            <p class="text-sm mt-3"><strong>Dezimalzahl → Prozent:</strong> Mit 100 multiplizieren</p>
+            <p class="text-sm">0,25 = 0,25 × 100 = 25%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">MwSt-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/inflations-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💸</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Inflations-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rabatt-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weitere Tipps -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🎓</span>
+          Für Schüler: Merkhilfen
+        </h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Das Dreisatz-Verfahren</h3>
+            <p class="text-blue-700">
+              Prozentrechnung lässt sich auch mit dem Dreisatz lösen:<br/>
+              100% entsprechen dem Grundwert<br/>
+              1% entspricht dem Grundwert ÷ 100<br/>
+              p% entsprechen dem Grundwert ÷ 100 × p
+            </p>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Die Prozent-Pyramide</h3>
+            <p class="text-green-700">
+              <strong>G</strong> = Grundwert (oben)<br/>
+              <strong>p</strong> = Prozentsatz (links unten)<br/>
+              <strong>W</strong> = Prozentwert (rechts unten)<br/>
+              <br/>
+              Formel: G × p = W × 100
+            </p>
+          </div>
+          
+          <div class="p-4 bg-yellow-50 rounded-lg">
+            <h3 class="font-semibold text-yellow-800 mb-2">Eselsbrücke: "Pro Cent"</h3>
+            <p class="text-yellow-700">
+              "Pro Cent" = "von Hundert"<br/>
+              Also immer an 100 denken!<br/>
+              50% = 50 von 100 = die Hälfte
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Prozent-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/prozent-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    },
+    "featureList": [
+      "Prozentwert berechnen",
+      "Prozentsatz berechnen",
+      "Prozentuale Veränderung berechnen",
+      "Einfache Erklärungen mit Beispielen",
+      "Kostenlos ohne Anmeldung"
+    ]
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man Prozent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um einen Prozentsatz zu berechnen, teilt man den Teil durch das Ganze und multipliziert mit 100. Formel: Prozentsatz = (Teil ÷ Ganzes) × 100. Beispiel: 30 von 200 = (30 ÷ 200) × 100 = 15%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Grundwert in der Prozentrechnung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Grundwert (G) ist die Ausgangsgröße, von der aus gerechnet wird. Er entspricht immer 100%. Beispiele: Der Originalpreis bei Rabatten, die Gesamtzahl bei Anteilen oder der Anfangswert bei Zinsberechnungen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man Prozent von einer Zahl?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um X% von einer Zahl zu berechnen, multipliziert man die Zahl mit dem Prozentsatz und teilt durch 100. Formel: Prozentwert = Zahl × (Prozent ÷ 100). Beispiel: 15% von 200 = 200 × 0,15 = 30."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechnet man prozentuale Veränderung aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die prozentuale Veränderung berechnet man mit der Formel: ((Neuer Wert - Alter Wert) ÷ Alter Wert) × 100. Beispiel: Von 100 auf 120 = ((120-100) ÷ 100) × 100 = 20% Zunahme."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Prozent und Prozentpunkten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prozentpunkte beschreiben die absolute Differenz zwischen zwei Prozentwerten. Prozent beschreibt die relative Änderung. Beispiel: Eine Erhöhung von 20% auf 25% sind 5 Prozentpunkte, aber eine 25%ige Steigerung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechnet man Prozent im Kopf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trick: 10% berechnen (Komma verschieben), dann kombinieren. Für 15% von 200: 10% = 20, 5% = 10, also 15% = 30. Für 25% einfach durch 4 teilen. Für 50% halbieren."
+        }
+      }
+    ]
+  })} />
+</Layout>
