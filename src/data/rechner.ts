@@ -1937,7 +1937,13 @@ export const rechnerListe: Rechner[] = [
     icon: '🚗',
     kategorie: 'auto',
     fertig: true,
-    seoKeywords: 'Auto Restwert Rechner, Fahrzeugbewertung, Auto Wert ermitteln',
+    seoKeywords: 'Auto Restwert Rechner, Fahrzeugbewertung, Auto Wert ermitteln, Restwert berechnen, Gebrauchtwagen Wert, Wertverlust Auto, Kfz Bewertung, Was ist mein Auto wert, degressive Abschreibung Auto, Schwacke Alternative, DAT Fahrzeugbewertung',
+    quellen: [
+      'https://www.dat.de/fahrzeugbewertung/',
+      'https://www.schwacke.de/',
+      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/',
+      'https://www.kba.de/DE/Statistik/Fahrzeuge/fahrzeuge_node.html',
+    ],
   },
   {
     id: 'versicherung-auto',
