@@ -1936,7 +1936,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Fahrzeug-Restwert ermitteln',
     icon: '🚗',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Auto Restwert Rechner, Fahrzeugbewertung, Auto Wert ermitteln',
   },
   {
