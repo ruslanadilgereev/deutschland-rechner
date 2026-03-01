@@ -1438,11 +1438,17 @@ export const rechnerListe: Rechner[] = [
   {
     id: 'iban',
     name: 'IBAN-Rechner',
-    beschreibung: 'IBAN berechnen & prüfen',
+    beschreibung: 'IBAN generieren, prüfen & zerlegen',
     icon: '🏦',
-    kategorie: 'alltag',
-    fertig: false,
-    seoKeywords: 'IBAN Rechner, IBAN berechnen, IBAN prüfen, BIC ermitteln',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'IBAN Rechner, IBAN berechnen, IBAN generieren, IBAN prüfen, IBAN validieren, IBAN zerlegen, BLZ zu IBAN, Kontonummer zu IBAN, IBAN Prüfziffer, IBAN Deutschland, BIC ermitteln, SEPA IBAN',
+    quellen: [
+      'https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/bankleitzahlen',
+      'https://www.iso.org/standard/55667.html',
+      'https://www.europeanpaymentscouncil.eu/what-we-do/be-involved/sepa-schemes',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/zahlen-mit-iban-und-bic-5169',
+    ],
   },
   {
     id: 'rundfunkbeitrag',
