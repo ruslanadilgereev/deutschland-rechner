@@ -1967,16 +1967,29 @@ export const rechnerListe: Rechner[] = [
     icon: '🛡️',
     kategorie: 'auto',
     fertig: true,
-    seoKeywords: 'Kfz Versicherung Rechner, Autoversicherung berechnen, SF Klasse',
+    seoKeywords: 'Kfz Versicherung Rechner, Autoversicherung berechnen, SF Klasse, Typklasse, Regionalklasse, Haftpflicht Versicherung Auto, Teilkasko, Vollkasko, Autoversicherung 2026, Kfz Versicherung vergleichen',
+    quellen: [
+      'https://www.gdv.de/de/themen/news/typklassen-52118',
+      'https://www.gdv.de/de/themen/news/regionalklassen-52114',
+      'https://www.gesetze-im-internet.de/pflvg/',
+      'https://www.bafin.de/DE/Verbraucher/Versicherungen/versicherungen_node.html',
+    ],
   },
   {
     id: 'thg-quote',
     name: 'THG-Quoten-Rechner',
-    beschreibung: 'THG-Prämie für E-Autos',
+    beschreibung: 'THG-Prämie für E-Autos 2026 (bis 300€/Jahr)',
     icon: '🔌',
     kategorie: 'auto',
     fertig: true,
-    seoKeywords: 'THG Quote Rechner, THG Prämie, E-Auto Prämie',
+    seoKeywords: 'THG Quote Rechner, THG Prämie 2026, E-Auto Prämie, THG Quote Anbieter Vergleich, THG Prämie berechnen, Treibhausgasminderungsquote, THG Quote verkaufen, CO2 Einsparung E-Auto',
+    quellen: [
+      'https://www.umweltbundesamt.de/themen/verkehr-laerm/emissionsstandards/pkw-leichte-nutzfahrzeuge/treibhausgasquote',
+      'https://www.gesetze-im-internet.de/bimschv_38_2017/',
+      'https://www.gesetze-im-internet.de/bimschg/__37a.html',
+      'https://www.finanztip.de/thg-quote/',
+      'https://www.verivox.de/elektromobilitaet/thg-quote/',
+    ],
   },
 ];
 
