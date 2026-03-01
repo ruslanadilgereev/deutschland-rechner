@@ -926,7 +926,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Pflegegrad ermitteln (Selbsttest)',
     icon: '📋',
     kategorie: 'gesundheit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Pflegegrad Rechner, Pflegegrad ermitteln, Pflegegrad Test',
   },
   {
@@ -951,7 +951,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Private vs. gesetzliche Krankenversicherung',
     icon: '⚕️',
     kategorie: 'gesundheit',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'PKV GKV Vergleich, private Krankenversicherung Rechner',
   },
   {
@@ -1051,7 +1051,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Autokredit & Rate berechnen',
     icon: '💳',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Autofinanzierung Rechner, Autokredit berechnen, Auto Rate',
   },
   {
@@ -1075,7 +1075,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Strom vs. Benzin Vergleich',
     icon: '🔋',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'E-Auto Kosten Rechner, Elektroauto Kosten, Strom vs Benzin',
   },
   {
@@ -1084,7 +1084,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Ersparnis durch Radfahren berechnen',
     icon: '🚴',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Fahrrad Pendler Rechner, Fahrrad statt Auto, Pendeln Ersparnis',
   },
   {
