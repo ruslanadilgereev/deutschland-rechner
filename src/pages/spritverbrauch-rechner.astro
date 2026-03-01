@@ -1,0 +1,318 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SpritverbrauchRechner from '../components/rechner/SpritverbrauchRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Spritverbrauch-Rechner 2026 – l/100km berechnen & Verbrauch einordnen";
+const description = "Spritverbrauch berechnen: Ermitteln Sie Ihren echten Kraftstoffverbrauch in l/100km. Mit Einordnung (sparsam/normal/viel), Vergleich zur Herstellerangabe & Spartipps.";
+const keywords = "Spritverbrauch berechnen, Benzinverbrauch berechnen, Verbrauch Auto berechnen, l/100km Rechner, Kraftstoffverbrauch ermitteln, Dieselverbrauch berechnen, Auto Verbrauch ausrechnen, Durchschnittsverbrauch berechnen, realer Verbrauch Auto, Spritverbrauch Formel, Tankrechner, Verbrauch pro 100km";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Spritverbrauch-Rechner", url: "/spritverbrauch-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📊</span>
+          <div>
+            <h1 class="text-2xl font-bold">Spritverbrauch-Rechner</h1>
+            <p class="text-amber-100 text-sm">Kraftstoffverbrauch in l/100km berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SpritverbrauchRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Spritverbrauch berechnen: So geht's richtig</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Spritverbrauch-Rechner</strong> ermitteln Sie schnell und einfach Ihren tatsächlichen 
+            Kraftstoffverbrauch in <strong>Liter pro 100 Kilometer</strong>. Anders als die Bordcomputer-Anzeige 
+            liefert die Volltank-Methode den genauesten Wert für Ihren realen Verbrauch.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel: Spritverbrauch in l/100km berechnen</h3>
+          <p>
+            Die Berechnung des Spritverbrauchs ist mathematisch einfach:
+          </p>
+          <div class="bg-amber-50 p-4 rounded-xl my-4">
+            <p class="font-mono text-center text-amber-800 font-bold text-lg">
+              (Getankte Liter ÷ Gefahrene km) × 100 = Verbrauch l/100km
+            </p>
+          </div>
+          
+          <h4 class="font-semibold text-gray-800">Beispielrechnung:</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Getankt: <strong>45 Liter</strong></li>
+            <li>Gefahren: <strong>600 Kilometer</strong></li>
+            <li>Rechnung: (45 ÷ 600) × 100 = <strong>7,5 l/100km</strong></li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Volltank-Methode: Schritt für Schritt</h3>
+          <p>
+            Für ein genaues Ergebnis ist die <strong>Volltank-zu-Volltank-Methode</strong> ideal:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Volltanken:</strong> Tank komplett füllen, bis der Zapfhahn abschaltet</li>
+            <li><strong>Kilometerstand notieren:</strong> Tageskilometerzähler auf Null setzen oder Kilometerstand notieren</li>
+            <li><strong>Normal fahren:</strong> Mindestens 200-300 km fahren (je mehr, desto genauer)</li>
+            <li><strong>Wieder volltanken:</strong> An derselben Zapfsäule, bis der Hahn abschaltet</li>
+            <li><strong>Berechnen:</strong> Getankte Liter und gefahrene km in den Rechner eingeben</li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittsverbrauch nach Fahrzeugtyp</h3>
+          <p>
+            Der typische <strong>Verbrauch</strong> variiert je nach Fahrzeugklasse erheblich:
+          </p>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">Benziner:</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kleinwagen</strong> (VW Polo, Opel Corsa): 4,5 – 6,0 l/100km</li>
+            <li><strong>Kompaktklasse</strong> (VW Golf, Ford Focus): 5,5 – 7,5 l/100km</li>
+            <li><strong>Mittelklasse</strong> (VW Passat, BMW 3er): 6,5 – 8,5 l/100km</li>
+            <li><strong>SUV / Oberklasse</strong> (BMW X3, Mercedes E-Klasse): 8,0 – 12,0 l/100km</li>
+            <li><strong>Sportwagen</strong> (Porsche 911, Audi RS): 10,0 – 16,0 l/100km</li>
+          </ul>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">Diesel:</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kleinwagen:</strong> 4,0 – 5,5 l/100km</li>
+            <li><strong>Kompaktklasse:</strong> 4,5 – 6,5 l/100km</li>
+            <li><strong>Mittelklasse:</strong> 5,0 – 7,0 l/100km</li>
+            <li><strong>SUV / Oberklasse:</strong> 6,5 – 9,0 l/100km</li>
+          </ul>
+          <p>
+            Diesel-Fahrzeuge verbrauchen typischerweise <strong>15-20% weniger</strong> als vergleichbare Benziner, 
+            haben aber oft einen höheren Anschaffungspreis.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verbrauch Stadt vs. Autobahn</h3>
+          <p>
+            Der Kraftstoffverbrauch hängt stark vom <strong>Fahrprofil</strong> ab:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Stadtverkehr:</strong> +25-35% mehr Verbrauch durch Stop-and-Go, häufiges Anfahren</li>
+            <li><strong>Überland/Gemischt:</strong> Referenzwert (entspricht oft dem WLTP-Wert)</li>
+            <li><strong>Autobahn (120-130 km/h):</strong> Etwa wie gemischter Betrieb</li>
+            <li><strong>Autobahn (150+ km/h):</strong> +20-40% mehr Verbrauch durch Luftwiderstand</li>
+          </ul>
+          <p>
+            <strong>Faustregel:</strong> Der Luftwiderstand steigt mit dem Quadrat der Geschwindigkeit. 
+            Bei 200 km/h ist der Luftwiderstand viermal so hoch wie bei 100 km/h!
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Herstellerangabe vs. Realverbrauch</h3>
+          <p>
+            Die <strong>Herstellerangaben</strong> (WLTP seit 2018, früher NEFZ) werden unter standardisierten 
+            Laborbedingungen ermittelt. Im Alltag sind Abweichungen normal:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>0-10% mehr:</strong> Sehr guter, sparsamer Fahrstil</li>
+            <li><strong>10-20% mehr:</strong> Normal, durchschnittlicher Fahrer</li>
+            <li><strong>20-30% mehr:</strong> Viel Stadtverkehr oder sportliche Fahrweise</li>
+            <li><strong>Über 30% mehr:</strong> Technisches Problem möglich, Werkstatt aufsuchen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum ist mein Verbrauch so hoch?</h3>
+          <p>
+            Häufige Ursachen für erhöhten Spritverbrauch:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Reifendruck zu niedrig:</strong> 0,5 bar unter Soll = ca. 5% Mehrverbrauch</li>
+            <li><strong>Kurzstrecken:</strong> Kalter Motor verbraucht deutlich mehr</li>
+            <li><strong>Klimaanlage:</strong> +0,5 bis 1,5 l/100km im Sommer</li>
+            <li><strong>Dachbox/Fahrradträger:</strong> +0,5 bis 2 l/100km je nach Geschwindigkeit</li>
+            <li><strong>Übergewicht:</strong> 100 kg extra = ca. 0,5 l mehr Verbrauch</li>
+            <li><strong>Alter Luftfilter:</strong> Verschmutzter Filter erhöht Verbrauch</li>
+            <li><strong>Falsches Motoröl:</strong> Höhere innere Reibung</li>
+            <li><strong>Defekte Lambdasonde:</strong> Werkstatt-Check empfohlen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">10 Tipps für weniger Spritverbrauch</h3>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Vorausschauend fahren:</strong> Gleichmäßiges Tempo ohne starkes Beschleunigen und Bremsen spart bis zu 20%</li>
+            <li><strong>Früh hochschalten:</strong> Bei 2.000 U/min (Benzin) bzw. 1.500 U/min (Diesel) in den nächsten Gang</li>
+            <li><strong>Niedertourig fahren:</strong> Im höchstmöglichen Gang fahren, der noch ruckelfrei läuft</li>
+            <li><strong>Motor aus:</strong> Bei Stopps über 20 Sekunden Motor abstellen (falls kein Start-Stopp-System)</li>
+            <li><strong>Reifendruck regelmäßig prüfen:</strong> Alle 2-4 Wochen, immer bei kalten Reifen</li>
+            <li><strong>Unnötiges Gewicht entfernen:</strong> Kofferraum aufräumen, Dachträger abmontieren</li>
+            <li><strong>Klimaanlage sparsam nutzen:</strong> Fenster unter 50 km/h öffnen, darüber AC nutzen</li>
+            <li><strong>Kurzstrecken vermeiden:</strong> Motor erreicht nicht die optimale Betriebstemperatur</li>
+            <li><strong>Wartung einhalten:</strong> Regelmäßiger Öl- und Filterwechsel</li>
+            <li><strong>Leichtlauföl verwenden:</strong> Vom Hersteller empfohlene Viskosität nutzen</li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bordcomputer vs. echte Messung</h3>
+          <p>
+            Der <strong>Bordcomputer</strong> zeigt den Verbrauch in Echtzeit an – aber wie genau ist er?
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Bordcomputer können <strong>5-15% zu wenig</strong> anzeigen</li>
+            <li>Die Anzeige basiert auf Einspritzmenge, nicht auf tatsächlich verbrauchtem Kraftstoff</li>
+            <li>Die <strong>Volltank-Methode ist genauer</strong>, da sie den realen Verbrauch misst</li>
+            <li>Tipp: Über mehrere Tankfüllungen messen und Durchschnitt bilden</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">CO₂-Ausstoß berechnen</h3>
+          <p>
+            Aus dem Spritverbrauch lässt sich der <strong>CO₂-Ausstoß</strong> berechnen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Benzin:</strong> 1 Liter = ca. 2,37 kg CO₂</li>
+            <li><strong>Diesel:</strong> 1 Liter = ca. 2,65 kg CO₂</li>
+          </ul>
+          <p>
+            <strong>Beispiel:</strong> Bei 7 l/100km Benzinverbrauch entstehen 7 × 2,37 = <strong>16,6 kg CO₂ pro 100 km</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Zuständige Behörde / Hilfe -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔧</span>
+          Hilfe & Ressourcen
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Verbrauchsdatenbank</h3>
+            <p class="text-blue-700 text-sm mb-2">
+              Vergleichen Sie Ihren Verbrauch mit anderen Fahrern desselben Modells:
+            </p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• <a href="https://www.spritmonitor.de" target="_blank" rel="noopener noreferrer" class="underline">Spritmonitor.de</a> – Community-Datenbank mit Millionen Einträgen</li>
+              <li>• <a href="https://www.adac.de/infotestrat/tests/auto-test/" target="_blank" rel="noopener noreferrer" class="underline">ADAC Autotest</a> – Unabhängige Verbrauchsmessungen</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Weiterführende Rechner</h3>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• <a href="/spritkosten-rechner" class="underline">Spritkosten-Rechner</a> – Kosten für Ihre Fahrt berechnen</li>
+              <li>• <a href="/pendlerpauschale-rechner" class="underline">Pendlerpauschale-Rechner</a> – Steuerersparnis für Pendler</li>
+            </ul>
+          </div>
+          
+          <div class="p-4 bg-amber-50 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Bei ungewöhnlich hohem Verbrauch</h3>
+            <p class="text-amber-700 text-sm">
+              Wenn Ihr Verbrauch mehr als 25-30% über der Herstellerangabe liegt, könnte ein 
+              technisches Problem vorliegen. Lassen Sie Ihr Fahrzeug in einer <strong>Fachwerkstatt</strong> überprüfen – 
+              insbesondere Lambdasonde, Luftmassenmesser und Zündkerzen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Spritverbrauch-Rechner – Kraftstoffverbrauch berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/spritverbrauch-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man den Spritverbrauch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Spritverbrauch wird mit der Formel (Getankte Liter ÷ Gefahrene Kilometer) × 100 berechnet. Beispiel: 45 Liter getankt für 600 km ergibt (45 ÷ 600) × 100 = 7,5 l/100km."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein normaler Spritverbrauch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der normale Verbrauch hängt vom Fahrzeugtyp ab: Kleinwagen 4,5-6 l/100km, Kompaktklasse 5,5-7,5 l/100km, Mittelklasse 6,5-8,5 l/100km, SUV 8-12 l/100km. Diesel-Fahrzeuge verbrauchen etwa 15-20% weniger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum verbraucht mein Auto mehr als die Herstellerangabe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "10-20% Mehrverbrauch gegenüber der WLTP-Angabe ist normal, da Herstellerwerte unter Laborbedingungen ermittelt werden. Stadtverkehr, Kurzstrecken, Klimaanlage und sportliche Fahrweise erhöhen den Verbrauch zusätzlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist die Verbrauchsanzeige im Auto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bordcomputer zeigen oft 5-15% zu wenig Verbrauch an. Die genaueste Methode ist die Volltank-zu-Volltank-Messung: Volltanken, Kilometer notieren, fahren, wieder volltanken und getankte Liter durch gefahrene Kilometer rechnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich meinen Spritverbrauch senken?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vorausschauend fahren, früh hochschalten (bei 2.000 U/min), Reifendruck regelmäßig prüfen, unnötiges Gewicht entfernen, Klimaanlage sparsam nutzen und Kurzstrecken vermeiden. So sind bis zu 20% Ersparnis möglich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel CO₂ entsteht pro Liter Benzin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei der Verbrennung von 1 Liter Benzin entstehen ca. 2,37 kg CO₂, bei Diesel ca. 2,65 kg CO₂. Bei einem Verbrauch von 7 l/100km Benzin entspricht das etwa 16,6 kg CO₂ pro 100 Kilometer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Verbraucht man in der Stadt mehr Sprit als auf der Autobahn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, im Stadtverkehr liegt der Verbrauch etwa 25-35% höher als im gemischten Betrieb, weil häufiges Anfahren und Stop-and-Go viel Energie verbrauchen. Auf der Autobahn steigt der Verbrauch erst bei hohen Geschwindigkeiten (über 130 km/h) deutlich an."
+        }
+      }
+    ]
+  })} />
+</Layout>

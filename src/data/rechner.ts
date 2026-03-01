@@ -763,6 +763,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'umzugskosten',
+    name: 'Umzugskosten-Rechner',
+    beschreibung: 'Umzugskosten nach Entfernung & Wohnungsgröße',
+    icon: '📦',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Umzugskosten Rechner, Was kostet ein Umzug, Umzugskosten berechnen, Umzugsfirma Kosten, Selbstumzug Kosten, Umzug steuerlich absetzbar, Umzugskostenpauschale 2025, Umzugskosten Checkliste',
+    quellen: [
+      'https://www.finanztip.de/umzugskosten/',
+      'https://www.bundesfinanzministerium.de/Content/DE/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-12-28-umzugskostenpauschalen-ab-1-maerz-2024.html',
+      'https://www.gesetze-im-internet.de/bukg_1990/',
+      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/umzug-kosten-richtig-planen-5822',
+    ],
+  },
+  {
     id: 'quadratmeterpreis',
     name: 'Quadratmeterpreis-Rechner',
     beschreibung: 'Preis pro qm bei Kauf/Miete berechnen',
