@@ -588,7 +588,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Wie viel fehlt zur Wunschrente?',
     icon: '📉',
     kategorie: 'soziales',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Rentenlücke Rechner, Versorgungslücke berechnen, Rente Altersvorsorge',
   },
   {
@@ -628,7 +628,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'EM-Rente berechnen',
     icon: '♿',
     kategorie: 'soziales',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Erwerbsminderungsrente Rechner, EM Rente berechnen',
   },
   {
@@ -666,7 +666,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Abzüge bei vorzeitiger Rente',
     icon: '➖',
     kategorie: 'soziales',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Rentenabzüge Rechner, Rente mit 63, vorzeitige Rente Abzüge',
   },
   {
@@ -802,7 +802,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Alle Nebenkosten beim Immobilienkauf',
     icon: '🏠',
     kategorie: 'wohnen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Kaufnebenkosten Rechner, Nebenkosten Hauskauf, Notar Grundbuch Kosten',
   },
   {
@@ -853,7 +853,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Tilgungsplan für Immobiliendarlehen',
     icon: '📊',
     kategorie: 'wohnen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Tilgungsrechner, Tilgungsplan berechnen, Kredit Tilgung',
   },
   {
@@ -1007,7 +1007,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Benzin/Diesel-Kosten für Strecke berechnen',
     icon: '⛽',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Spritkosten Rechner, Benzinkosten berechnen, Fahrtkosten Auto',
   },
   {
@@ -1016,7 +1016,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Verbrauch in L/100km berechnen',
     icon: '📊',
     kategorie: 'auto',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Spritverbrauch Rechner, Verbrauch berechnen, L/100km',
   },
   {
@@ -1163,7 +1163,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Kaufkraftverlust berechnen',
     icon: '📉',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Inflationsrechner, Kaufkraftverlust berechnen, Inflation',
   },
   {
@@ -1713,7 +1713,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Bausparen Rendite & Zuteilung',
     icon: '🏠',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Bauspar Rechner, Bausparen berechnen, Bausparvertrag Rechner',
   },
 
