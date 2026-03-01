@@ -1,182 +1,125 @@
 import { useState, useMemo } from 'react';
 
-// SF-Klassen mit Beitragssätzen (in % des Grundbeitrags)
-// SF0 = 230%, SF1 = 145%, ... SF35 = 20%
-const SF_KLASSEN: { klasse: string; faktor: number; beschreibung: string }[] = [
-  { klasse: 'SF0', faktor: 2.30, beschreibung: '0 Jahre schadensfrei' },
-  { klasse: 'SF½', faktor: 1.00, beschreibung: '½ Jahr schadensfrei' },
-  { klasse: 'SF1', faktor: 1.45, beschreibung: '1 Jahr schadensfrei' },
-  { klasse: 'SF2', faktor: 0.85, beschreibung: '2 Jahre schadensfrei' },
-  { klasse: 'SF3', faktor: 0.70, beschreibung: '3 Jahre schadensfrei' },
-  { klasse: 'SF4', faktor: 0.60, beschreibung: '4 Jahre schadensfrei' },
-  { klasse: 'SF5', faktor: 0.55, beschreibung: '5 Jahre schadensfrei' },
-  { klasse: 'SF6', faktor: 0.50, beschreibung: '6 Jahre schadensfrei' },
-  { klasse: 'SF7', faktor: 0.47, beschreibung: '7 Jahre schadensfrei' },
-  { klasse: 'SF8', faktor: 0.44, beschreibung: '8 Jahre schadensfrei' },
-  { klasse: 'SF9', faktor: 0.41, beschreibung: '9 Jahre schadensfrei' },
-  { klasse: 'SF10', faktor: 0.38, beschreibung: '10 Jahre schadensfrei' },
-  { klasse: 'SF15', faktor: 0.32, beschreibung: '15 Jahre schadensfrei' },
-  { klasse: 'SF20', faktor: 0.27, beschreibung: '20 Jahre schadensfrei' },
-  { klasse: 'SF25', faktor: 0.24, beschreibung: '25 Jahre schadensfrei' },
-  { klasse: 'SF30', faktor: 0.22, beschreibung: '30 Jahre schadensfrei' },
-  { klasse: 'SF35', faktor: 0.20, beschreibung: '35 Jahre schadensfrei' },
-];
-
-// Sonderklassen
-const SONDER_KLASSEN = [
-  { klasse: 'M', faktor: 2.40, beschreibung: 'Malus (nach Schäden)' },
-  { klasse: 'S', faktor: 1.50, beschreibung: 'Anfänger ohne Vorerfahrung' },
-];
-
-// Typklassen - beeinflusst den Grundbeitrag
-// Niedrige Typklasse = günstiger, Hohe = teurer
-const TYPKLASSEN = {
-  haftpflicht: { min: 10, max: 25, basis: 14 },
-  teilkasko: { min: 10, max: 33, basis: 18 },
-  vollkasko: { min: 10, max: 34, basis: 20 },
+// SF-Klassen mit Beitragssätzen (prozentual zum Grundbeitrag)
+// Durchschnittswerte basierend auf GDV-Empfehlungen
+const SF_KLASSEN: Record<string, { name: string; beitragssatz: number; beschreibung: string }> = {
+  'SF0': { name: 'SF 0', beitragssatz: 230, beschreibung: 'Fahranfänger (0 Jahre)' },
+  'SF½': { name: 'SF ½', beitragssatz: 140, beschreibung: 'Nach 6 Monaten unfallfrei' },
+  'SF1': { name: 'SF 1', beitragssatz: 100, beschreibung: '1 Jahr unfallfrei' },
+  'SF2': { name: 'SF 2', beitragssatz: 85, beschreibung: '2 Jahre unfallfrei' },
+  'SF3': { name: 'SF 3', beitragssatz: 70, beschreibung: '3 Jahre unfallfrei' },
+  'SF4': { name: 'SF 4', beitragssatz: 60, beschreibung: '4 Jahre unfallfrei' },
+  'SF5': { name: 'SF 5', beitragssatz: 55, beschreibung: '5 Jahre unfallfrei' },
+  'SF6': { name: 'SF 6', beitragssatz: 50, beschreibung: '6 Jahre unfallfrei' },
+  'SF7': { name: 'SF 7', beitragssatz: 45, beschreibung: '7 Jahre unfallfrei' },
+  'SF8': { name: 'SF 8', beitragssatz: 40, beschreibung: '8 Jahre unfallfrei' },
+  'SF9': { name: 'SF 9', beitragssatz: 37, beschreibung: '9 Jahre unfallfrei' },
+  'SF10': { name: 'SF 10', beitragssatz: 35, beschreibung: '10 Jahre unfallfrei' },
+  'SF11': { name: 'SF 11', beitragssatz: 33, beschreibung: '11 Jahre unfallfrei' },
+  'SF12': { name: 'SF 12', beitragssatz: 32, beschreibung: '12 Jahre unfallfrei' },
+  'SF13': { name: 'SF 13', beitragssatz: 31, beschreibung: '13 Jahre unfallfrei' },
+  'SF14': { name: 'SF 14', beitragssatz: 30, beschreibung: '14 Jahre unfallfrei' },
+  'SF15': { name: 'SF 15', beitragssatz: 29, beschreibung: '15 Jahre unfallfrei' },
+  'SF16': { name: 'SF 16', beitragssatz: 28, beschreibung: '16 Jahre unfallfrei' },
+  'SF17': { name: 'SF 17', beitragssatz: 27, beschreibung: '17 Jahre unfallfrei' },
+  'SF18': { name: 'SF 18', beitragssatz: 27, beschreibung: '18 Jahre unfallfrei' },
+  'SF19': { name: 'SF 19', beitragssatz: 26, beschreibung: '19 Jahre unfallfrei' },
+  'SF20': { name: 'SF 20', beitragssatz: 26, beschreibung: '20 Jahre unfallfrei' },
+  'SF21': { name: 'SF 21', beitragssatz: 25, beschreibung: '21 Jahre unfallfrei' },
+  'SF22': { name: 'SF 22', beitragssatz: 25, beschreibung: '22 Jahre unfallfrei' },
+  'SF23': { name: 'SF 23', beitragssatz: 24, beschreibung: '23 Jahre unfallfrei' },
+  'SF24': { name: 'SF 24', beitragssatz: 24, beschreibung: '24 Jahre unfallfrei' },
+  'SF25': { name: 'SF 25', beitragssatz: 23, beschreibung: '25 Jahre unfallfrei' },
+  'SF26': { name: 'SF 26', beitragssatz: 23, beschreibung: '26 Jahre unfallfrei' },
+  'SF27': { name: 'SF 27', beitragssatz: 23, beschreibung: '27 Jahre unfallfrei' },
+  'SF28': { name: 'SF 28', beitragssatz: 23, beschreibung: '28 Jahre unfallfrei' },
+  'SF29': { name: 'SF 29', beitragssatz: 22, beschreibung: '29 Jahre unfallfrei' },
+  'SF30': { name: 'SF 30', beitragssatz: 22, beschreibung: '30 Jahre unfallfrei' },
+  'SF31': { name: 'SF 31', beitragssatz: 22, beschreibung: '31 Jahre unfallfrei' },
+  'SF32': { name: 'SF 32', beitragssatz: 22, beschreibung: '32 Jahre unfallfrei' },
+  'SF33': { name: 'SF 33', beitragssatz: 21, beschreibung: '33 Jahre unfallfrei' },
+  'SF34': { name: 'SF 34', beitragssatz: 21, beschreibung: '34 Jahre unfallfrei' },
+  'SF35': { name: 'SF 35', beitragssatz: 20, beschreibung: '35+ Jahre unfallfrei' },
+  'M': { name: 'M (Malusklasse)', beitragssatz: 260, beschreibung: 'Nach Schaden/Unfall' },
+  'S': { name: 'S (Sonderklasse)', beitragssatz: 200, beschreibung: 'Sonderklasse' },
 };
 
-// Regionalklassen (1-12 für Haftpflicht, 1-16 für Kasko)
-// Niedrige Regionalklasse = günstig, Hohe = teuer
-const REGIONALKLASSEN = {
-  haftpflicht: { min: 1, max: 12, mittel: 6 },
-  teilkasko: { min: 1, max: 16, mittel: 5 },
-  vollkasko: { min: 1, max: 9, mittel: 4 },
+// Durchschnittliche Typklassenzuschläge (10 = Durchschnitt = 100%)
+// Haftpflicht: 10-25, Teilkasko: 10-33, Vollkasko: 10-34
+const TYPKLASSE_FAKTOR = {
+  haftpflicht: (tk: number) => 0.7 + (tk - 10) * 0.03, // 10 = 100%, jede Klasse ±3%
+  teilkasko: (tk: number) => 0.6 + (tk - 10) * 0.04,
+  vollkasko: (tk: number) => 0.65 + (tk - 10) * 0.035,
 };
 
-// Beispiel-Regionen mit typischen Klassen
-const REGIONEN = [
-  { name: 'Ländliche Region (z.B. Schleswig-Holstein)', haftpflicht: 3, teilkasko: 4, vollkasko: 2 },
-  { name: 'Kleinstadt (z.B. Münsterland)', haftpflicht: 5, teilkasko: 6, vollkasko: 3 },
-  { name: 'Mittelstadt (z.B. Hannover)', haftpflicht: 7, teilkasko: 8, vollkasko: 5 },
-  { name: 'Großstadt (z.B. Hamburg, München)', haftpflicht: 10, teilkasko: 12, vollkasko: 7 },
-  { name: 'Problemregion (z.B. Berlin-Mitte)', haftpflicht: 12, teilkasko: 16, vollkasko: 9 },
-  { name: 'Eigene Angabe', haftpflicht: 6, teilkasko: 5, vollkasko: 4 },
-];
-
-// Fahrzeugtypen mit typischen Typklassen
-const FAHRZEUGTYPEN = [
-  { name: 'Kleinwagen (z.B. VW Polo, Opel Corsa)', emoji: '🚗', haftpflicht: 12, teilkasko: 15, vollkasko: 14 },
-  { name: 'Kompaktklasse (z.B. VW Golf, Opel Astra)', emoji: '🚙', haftpflicht: 14, teilkasko: 18, vollkasko: 18 },
-  { name: 'Mittelklasse (z.B. VW Passat, BMW 3er)', emoji: '🚘', haftpflicht: 16, teilkasko: 21, vollkasko: 22 },
-  { name: 'SUV (z.B. VW Tiguan, BMW X3)', emoji: '🚐', haftpflicht: 17, teilkasko: 22, vollkasko: 23 },
-  { name: 'Oberklasse (z.B. Mercedes E-Klasse)', emoji: '🏎️', haftpflicht: 19, teilkasko: 25, vollkasko: 27 },
-  { name: 'Sportwagen', emoji: '🏁', haftpflicht: 22, teilkasko: 30, vollkasko: 32 },
-  { name: 'Eigene Typklassen', emoji: '⚙️', haftpflicht: 14, teilkasko: 18, vollkasko: 20 },
-];
-
-// Versicherungsarten
-type VersicherungsArt = 'haftpflicht' | 'teilkasko' | 'vollkasko';
-
-// Durchschnittliche Grundbeiträge 2025/2026 (geschätzt)
-const GRUNDBEITRAG: Record<VersicherungsArt, number> = {
-  haftpflicht: 280, // € pro Jahr (Typklasse 14, Regionalklasse 6)
-  teilkasko: 120,   // € pro Jahr
-  vollkasko: 380,   // € pro Jahr (inkl. Teilkasko)
+// Regionalklassen-Faktor (Durchschnitt 6-8 für verschiedene Versicherungsarten)
+const REGIONALKLASSE_FAKTOR = {
+  haftpflicht: (rk: number) => 0.85 + (rk - 1) * 0.025, // 1-12, RK1 günstig, RK12 teuer
+  teilkasko: (rk: number) => 0.8 + (rk - 1) * 0.03,     // 1-16
+  vollkasko: (rk: number) => 0.85 + (rk - 1) * 0.02,    // 1-9
 };
+
+// Durchschnittliche Grundbeiträge (Basis für Schätzung)
+const GRUNDBEITRAG = {
+  haftpflicht: 450,  // Durchschnitt für Mittelklasse
+  teilkasko: 120,
+  vollkasko: 380,
+};
+
+type Versicherungsart = 'haftpflicht' | 'teilkasko' | 'vollkasko';
 
 export default function KfzVersicherungRechner() {
-  const [sfKlasseIndex, setSfKlasseIndex] = useState(4); // SF3
-  const [fahrzeugTypIndex, setFahrzeugTypIndex] = useState(1); // Kompaktklasse
-  const [regionIndex, setRegionIndex] = useState(2); // Mittelstadt
-  const [versicherungsArt, setVersicherungsArt] = useState<VersicherungsArt>('haftpflicht');
-  const [eigeneTypklassen, setEigeneTypklassen] = useState(false);
-  const [typklasseHaftpflicht, setTypklasseHaftpflicht] = useState(14);
-  const [typklasseTeilkasko, setTypklasseTeilkasko] = useState(18);
-  const [typklasseVollkasko, setTypklasseVollkasko] = useState(20);
-  const [eigeneRegionalklassen, setEigeneRegionalklassen] = useState(false);
-  const [regionalklasseHaftpflicht, setRegionalklasseHaftpflicht] = useState(6);
-  const [regionalklasseTeilkasko, setRegionalklasseTeilkasko] = useState(5);
-  const [regionalklasseVollkasko, setRegionalklasseVollkasko] = useState(4);
-  const [selbstbeteiligung, setSelbstbeteiligung] = useState(150); // TK: 150€, VK: 300€ üblich
-  const [jahresmitZusatzoptionen, setJahreskilometer] = useState(12000);
+  const [sfKlasse, setSfKlasse] = useState('SF10');
+  const [typklasseHP, setTypklasseHP] = useState(15);
+  const [typklasseTK, setTypklasseTK] = useState(18);
+  const [typklasseVK, setTypklasseVK] = useState(18);
+  const [regionalklasseHP, setRegionalklasseHP] = useState(6);
+  const [regionalklasseTK, setRegionalklasseTK] = useState(6);
+  const [regionalklasseVK, setRegionalklasseVK] = useState(4);
+  const [selbstbeteiligungTK, setSelbstbeteiligungTK] = useState(150);
+  const [selbstbeteiligungVK, setSelbstbeteiligungVK] = useState(500);
+  const [versicherungsart, setVersicherungsart] = useState<'haftpflicht' | 'teilkasko' | 'vollkasko'>('vollkasko');
 
-  const alleKlassen = [...SONDER_KLASSEN, ...SF_KLASSEN];
-  const sfKlasse = alleKlassen[sfKlasseIndex];
-  const fahrzeugTyp = FAHRZEUGTYPEN[fahrzeugTypIndex];
-  const region = REGIONEN[regionIndex];
-
-  // Berechnung
   const ergebnis = useMemo(() => {
-    // Typklassen ermitteln
-    const tkH = eigeneTypklassen ? typklasseHaftpflicht : fahrzeugTyp.haftpflicht;
-    const tkT = eigeneTypklassen ? typklasseTeilkasko : fahrzeugTyp.teilkasko;
-    const tkV = eigeneTypklassen ? typklasseVollkasko : fahrzeugTyp.vollkasko;
+    const sfData = SF_KLASSEN[sfKlasse];
+    const sfFaktor = sfData.beitragssatz / 100;
 
-    // Regionalklassen ermitteln
-    const rkH = eigeneRegionalklassen ? regionalklasseHaftpflicht : region.haftpflicht;
-    const rkT = eigeneRegionalklassen ? regionalklasseTeilkasko : region.teilkasko;
-    const rkV = eigeneRegionalklassen ? regionalklasseVollkasko : region.vollkasko;
+    // Haftpflicht berechnen
+    const hpTypFaktor = TYPKLASSE_FAKTOR.haftpflicht(typklasseHP);
+    const hpRegFaktor = REGIONALKLASSE_FAKTOR.haftpflicht(regionalklasseHP);
+    const haftpflicht = Math.round(GRUNDBEITRAG.haftpflicht * sfFaktor * hpTypFaktor * hpRegFaktor);
 
-    // Typklassen-Faktor: Abweichung von der Basis
-    const typFaktorH = 1 + (tkH - TYPKLASSEN.haftpflicht.basis) * 0.04;
-    const typFaktorT = 1 + (tkT - TYPKLASSEN.teilkasko.basis) * 0.035;
-    const typFaktorV = 1 + (tkV - TYPKLASSEN.vollkasko.basis) * 0.04;
+    // Teilkasko berechnen (SF-Klasse hat keinen Einfluss!)
+    const tkTypFaktor = TYPKLASSE_FAKTOR.teilkasko(typklasseTK);
+    const tkRegFaktor = REGIONALKLASSE_FAKTOR.teilkasko(regionalklasseTK);
+    const sbFaktorTK = selbstbeteiligungTK === 0 ? 1.15 : selbstbeteiligungTK === 150 ? 1.0 : 0.9;
+    const teilkasko = Math.round(GRUNDBEITRAG.teilkasko * tkTypFaktor * tkRegFaktor * sbFaktorTK);
 
-    // Regionalklassen-Faktor: Abweichung von der Mitte
-    const regFaktorH = 1 + (rkH - REGIONALKLASSEN.haftpflicht.mittel) * 0.08;
-    const regFaktorT = 1 + (rkT - REGIONALKLASSEN.teilkasko.mittel) * 0.06;
-    const regFaktorV = 1 + (rkV - REGIONALKLASSEN.vollkasko.mittel) * 0.10;
+    // Vollkasko berechnen
+    const vkTypFaktor = TYPKLASSE_FAKTOR.vollkasko(typklasseVK);
+    const vkRegFaktor = REGIONALKLASSE_FAKTOR.vollkasko(regionalklasseVK);
+    const sbFaktorVK = selbstbeteiligungVK === 150 ? 1.2 : selbstbeteiligungVK === 300 ? 1.1 : selbstbeteiligungVK === 500 ? 1.0 : 0.85;
+    const vollkasko = Math.round(GRUNDBEITRAG.vollkasko * sfFaktor * vkTypFaktor * vkRegFaktor * sbFaktorVK);
 
-    // SF-Klassen-Faktor
-    const sfFaktor = sfKlasse.faktor;
-
-    // Jahreskilometer-Faktor
-    let kmFaktor = 1.0;
-    if (jahresmitZusatzoptionen <= 6000) kmFaktor = 0.85;
-    else if (jahresmitZusatzoptionen <= 9000) kmFaktor = 0.90;
-    else if (jahresmitZusatzoptionen <= 12000) kmFaktor = 1.00;
-    else if (jahresmitZusatzoptionen <= 15000) kmFaktor = 1.05;
-    else if (jahresmitZusatzoptionen <= 20000) kmFaktor = 1.12;
-    else if (jahresmitZusatzoptionen <= 25000) kmFaktor = 1.20;
-    else kmFaktor = 1.30;
-
-    // Selbstbeteiligung-Rabatt
-    let sbRabattTK = 0;
-    let sbRabattVK = 0;
-    if (selbstbeteiligung >= 150) sbRabattTK = 0.10;
-    if (selbstbeteiligung >= 300) sbRabattTK = 0.15;
-    if (selbstbeteiligung >= 500) sbRabattVK = 0.15;
-    if (selbstbeteiligung >= 1000) sbRabattVK = 0.25;
-
-    // Berechnung der einzelnen Beiträge
-    const haftpflicht = GRUNDBEITRAG.haftpflicht * typFaktorH * regFaktorH * sfFaktor * kmFaktor;
-    const teilkasko = GRUNDBEITRAG.teilkasko * typFaktorT * regFaktorT * (1 - sbRabattTK) * kmFaktor;
-    const vollkaskoZusatz = GRUNDBEITRAG.vollkasko * typFaktorV * regFaktorV * sfFaktor * (1 - sbRabattVK) * kmFaktor;
-
-    // Je nach gewählter Versicherungsart
     let gesamt = haftpflicht;
-    if (versicherungsArt === 'teilkasko') {
+    if (versicherungsart === 'teilkasko') {
       gesamt = haftpflicht + teilkasko;
-    } else if (versicherungsArt === 'vollkasko') {
-      gesamt = haftpflicht + teilkasko + vollkaskoZusatz;
+    } else if (versicherungsart === 'vollkasko') {
+      gesamt = haftpflicht + vollkasko; // Vollkasko enthält bereits Teilkasko
     }
 
-    // Monatlich
-    const monatlich = gesamt / 12;
-
-    // Spanne (± 20%)
-    const minBeitrag = gesamt * 0.75;
-    const maxBeitrag = gesamt * 1.35;
-
     return {
-      haftpflicht: Math.round(haftpflicht),
-      teilkasko: Math.round(teilkasko),
-      vollkaskoZusatz: Math.round(vollkaskoZusatz),
-      gesamt: Math.round(gesamt),
-      monatlich: Math.round(monatlich * 100) / 100,
-      minBeitrag: Math.round(minBeitrag),
-      maxBeitrag: Math.round(maxBeitrag),
-      typklassen: { haftpflicht: tkH, teilkasko: tkT, vollkasko: tkV },
-      regionalklassen: { haftpflicht: rkH, teilkasko: rkT, vollkasko: rkV },
-      sfFaktor: Math.round(sfFaktor * 100),
+      haftpflicht,
+      teilkasko,
+      vollkasko,
+      gesamt,
+      monatlich: Math.round(gesamt / 12),
+      sfFaktor: sfData.beitragssatz,
+      sfBeschreibung: sfData.beschreibung,
     };
-  }, [sfKlasseIndex, fahrzeugTypIndex, regionIndex, versicherungsArt, 
-      eigeneTypklassen, typklasseHaftpflicht, typklasseTeilkasko, typklasseVollkasko,
-      eigeneRegionalklassen, regionalklasseHaftpflicht, regionalklasseTeilkasko, regionalklasseVollkasko,
-      selbstbeteiligung, jahresmitZusatzoptionen, sfKlasse, fahrzeugTyp, region]);
+  }, [sfKlasse, typklasseHP, typklasseTK, typklasseVK, regionalklasseHP, regionalklasseTK, regionalklasseVK, selbstbeteiligungTK, selbstbeteiligungVK, versicherungsart]);
 
-  const formatEuro = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €';
+  const formatEuro = (n: number) => n.toLocaleString('de-DE') + ' €';
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -185,12 +128,11 @@ export default function KfzVersicherungRechner() {
         <div className="flex gap-3">
           <span className="text-2xl">⚠️</span>
           <div>
-            <h3 className="font-bold text-amber-800 mb-1">Vereinfachte Schätzung</h3>
-            <p className="text-sm text-amber-700">
-              Dieser Rechner liefert eine <strong>grobe Orientierung</strong>. Der tatsächliche Beitrag 
-              hängt von vielen weiteren Faktoren ab (Alter, Garage, Nutzung, Vorschäden, etc.). 
-              Für ein verbindliches Angebot nutzen Sie bitte Vergleichsportale oder fragen Sie direkt 
-              bei Versicherern an.
+            <p className="font-semibold text-amber-800">Hinweis: Vereinfachte Schätzung</p>
+            <p className="text-sm text-amber-700 mt-1">
+              Diese Berechnung dient zur <strong>Orientierung</strong>. Der tatsächliche Beitrag hängt von vielen 
+              weiteren Faktoren ab (Alter, Fahrerkreis, Stellplatz, Kilometerleistung, Zahlweise etc.). 
+              Für <strong>verbindliche Angebote</strong> nutzen Sie bitte Vergleichsportale wie Check24, Verivox oder HUK24.
             </p>
           </div>
         </div>
@@ -198,574 +140,535 @@ export default function KfzVersicherungRechner() {
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        {/* SF-Klasse */}
-        <div className="mb-6">
-          <label className="block mb-2">
-            <span className="text-gray-700 font-medium">Schadenfreiheitsklasse (SF-Klasse)</span>
-            <span className="text-xs text-gray-500 block mt-1">
-              Je mehr Jahre unfallfrei, desto günstiger
-            </span>
-          </label>
-          <select
-            value={sfKlasseIndex}
-            onChange={(e) => setSfKlasseIndex(Number(e.target.value))}
-            className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all text-lg"
-          >
-            {alleKlassen.map((klasse, index) => (
-              <option key={index} value={index}>
-                {klasse.klasse} – {klasse.beschreibung} ({Math.round(klasse.faktor * 100)}%)
-              </option>
-            ))}
-          </select>
-          <div className="mt-2 text-sm text-gray-500">
-            <strong>Ihr SF-Beitragssatz:</strong> {ergebnis.sfFaktor}% des Grundbeitrags
-          </div>
-        </div>
-
         {/* Versicherungsart */}
         <div className="mb-6">
           <label className="block mb-2">
             <span className="text-gray-700 font-medium">Versicherungsart</span>
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2">
             {[
-              { id: 'haftpflicht', name: 'Haftpflicht', emoji: '🛡️', beschreibung: 'Pflicht' },
-              { id: 'teilkasko', name: 'Teilkasko', emoji: '🔒', beschreibung: '+ TK' },
-              { id: 'vollkasko', name: 'Vollkasko', emoji: '💎', beschreibung: '+ VK' },
-            ].map((art) => (
+              { value: 'haftpflicht', label: 'Haftpflicht', icon: '📋' },
+              { value: 'teilkasko', label: 'Teilkasko', icon: '🛡️' },
+              { value: 'vollkasko', label: 'Vollkasko', icon: '🛡️🛡️' },
+            ].map((opt) => (
               <button
-                key={art.id}
-                onClick={() => setVersicherungsArt(art.id as VersicherungsArt)}
-                className={`py-3 px-4 rounded-xl font-medium transition-all ${
-                  versicherungsArt === art.id
-                    ? 'bg-orange-500 text-white shadow-lg'
+                key={opt.value}
+                onClick={() => setVersicherungsart(opt.value as typeof versicherungsart)}
+                className={`py-3 px-3 rounded-xl font-medium transition-all text-sm ${
+                  versicherungsart === opt.value
+                    ? 'bg-orange-500 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                <span className="text-xl">{art.emoji}</span>
-                <span className="block text-sm mt-1">{art.name}</span>
-                <span className="block text-xs opacity-70">{art.beschreibung}</span>
+                <span className="mr-1">{opt.icon}</span>
+                {opt.label}
               </button>
             ))}
           </div>
+          <p className="text-xs text-gray-500 mt-2">
+            {versicherungsart === 'haftpflicht' && '✓ Nur Haftpflicht (gesetzlich vorgeschrieben)'}
+            {versicherungsart === 'teilkasko' && '✓ Haftpflicht + Teilkasko (Diebstahl, Glasbruch, Wildunfall...)'}
+            {versicherungsart === 'vollkasko' && '✓ Haftpflicht + Vollkasko inkl. Teilkasko (auch selbstverschuldete Schäden)'}
+          </p>
         </div>
 
-        {/* Fahrzeugtyp */}
+        {/* SF-Klasse */}
         <div className="mb-6">
           <label className="block mb-2">
-            <span className="text-gray-700 font-medium">Fahrzeugtyp / Typklasse</span>
+            <span className="text-gray-700 font-medium">Schadenfreiheitsklasse (SF-Klasse)</span>
             <span className="text-xs text-gray-500 block mt-1">
-              Bestimmt die Schadensstatistik des Fahrzeugmodells
+              Jahre ohne selbstverschuldeten Unfall
             </span>
           </label>
           <select
-            value={fahrzeugTypIndex}
-            onChange={(e) => {
-              const idx = Number(e.target.value);
-              setFahrzeugTypIndex(idx);
-              if (idx === FAHRZEUGTYPEN.length - 1) {
-                setEigeneTypklassen(true);
-              } else {
-                setEigeneTypklassen(false);
-              }
-            }}
-            className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-orange-500 text-lg"
+            value={sfKlasse}
+            onChange={(e) => setSfKlasse(e.target.value)}
+            className="w-full text-lg font-medium py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:ring-0 outline-none"
           >
-            {FAHRZEUGTYPEN.map((typ, index) => (
-              <option key={index} value={index}>
-                {typ.emoji} {typ.name}
-              </option>
-            ))}
+            <optgroup label="Schadenfreiheitsklassen">
+              {Object.entries(SF_KLASSEN).filter(([key]) => key.startsWith('SF')).map(([key, data]) => (
+                <option key={key} value={key}>
+                  {data.name} ({data.beitragssatz}%) – {data.beschreibung}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Sonderklassen">
+              <option value="M">M (260%) – Nach Schaden/Unfall</option>
+              <option value="S">S (200%) – Sonderklasse</option>
+            </optgroup>
           </select>
-          
-          {eigeneTypklassen && (
-            <div className="mt-4 p-4 bg-gray-50 rounded-xl space-y-3">
-              <p className="text-sm text-gray-600 mb-2">
-                Typklassen finden Sie in Ihrem Fahrzeugschein oder auf{' '}
-                <a href="https://www.gdv.de/gdv/service/typklassenabfrage" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                  gdv.de
-                </a>
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className="text-xs text-gray-500">TK Haftpflicht (10-25)</label>
-                  <input
-                    type="number"
-                    value={typklasseHaftpflicht}
-                    onChange={(e) => setTypklasseHaftpflicht(Math.min(25, Math.max(10, Number(e.target.value))))}
-                    className="w-full p-2 border rounded-lg text-center"
-                    min="10"
-                    max="25"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-500">TK Teilkasko (10-33)</label>
-                  <input
-                    type="number"
-                    value={typklasseTeilkasko}
-                    onChange={(e) => setTypklasseTeilkasko(Math.min(33, Math.max(10, Number(e.target.value))))}
-                    className="w-full p-2 border rounded-lg text-center"
-                    min="10"
-                    max="33"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-500">TK Vollkasko (10-34)</label>
-                  <input
-                    type="number"
-                    value={typklasseVollkasko}
-                    onChange={(e) => setTypklasseVollkasko(Math.min(34, Math.max(10, Number(e.target.value))))}
-                    className="w-full p-2 border rounded-lg text-center"
-                    min="10"
-                    max="34"
-                  />
-                </div>
-              </div>
+          <div className="mt-2 bg-gray-50 rounded-lg p-3">
+            <p className="text-sm text-gray-600">
+              <strong>Ihr Beitragssatz:</strong> {ergebnis.sfFaktor}% vom Grundbeitrag
+            </p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+              <div 
+                className={`h-2 rounded-full ${ergebnis.sfFaktor <= 50 ? 'bg-green-500' : ergebnis.sfFaktor <= 100 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                style={{ width: `${Math.min(ergebnis.sfFaktor / 2.6 * 100, 100)}%` }}
+              ></div>
             </div>
-          )}
-          
-          {!eigeneTypklassen && (
-            <div className="mt-2 text-sm text-gray-500">
-              Typklassen: HP {ergebnis.typklassen.haftpflicht} | TK {ergebnis.typklassen.teilkasko} | VK {ergebnis.typklassen.vollkasko}
-            </div>
-          )}
+            <p className="text-xs text-gray-500 mt-1">
+              20% (SF35 beste) ← → 260% (M schlechteste)
+            </p>
+          </div>
         </div>
 
-        {/* Region */}
+        {/* Typklassen */}
         <div className="mb-6">
           <label className="block mb-2">
-            <span className="text-gray-700 font-medium">Region / Regionalklasse</span>
+            <span className="text-gray-700 font-medium">Typklasse Haftpflicht</span>
             <span className="text-xs text-gray-500 block mt-1">
-              Basiert auf der Schadenshäufigkeit in Ihrem Zulassungsbezirk
+              Abhängig vom Fahrzeugmodell (10-25)
             </span>
           </label>
-          <select
-            value={regionIndex}
-            onChange={(e) => {
-              const idx = Number(e.target.value);
-              setRegionIndex(idx);
-              if (idx === REGIONEN.length - 1) {
-                setEigeneRegionalklassen(true);
-              } else {
-                setEigeneRegionalklassen(false);
-              }
-            }}
-            className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-orange-500 text-lg"
-          >
-            {REGIONEN.map((reg, index) => (
-              <option key={index} value={index}>
-                {reg.name}
-              </option>
-            ))}
-          </select>
-          
-          {eigeneRegionalklassen && (
-            <div className="mt-4 p-4 bg-gray-50 rounded-xl space-y-3">
-              <p className="text-sm text-gray-600 mb-2">
-                Regionalklassen finden Sie auf{' '}
-                <a href="https://www.gdv.de/gdv/service/regionalklassenabfrage" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                  gdv.de
-                </a>
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className="text-xs text-gray-500">RK Haftpflicht (1-12)</label>
-                  <input
-                    type="number"
-                    value={regionalklasseHaftpflicht}
-                    onChange={(e) => setRegionalklasseHaftpflicht(Math.min(12, Math.max(1, Number(e.target.value))))}
-                    className="w-full p-2 border rounded-lg text-center"
-                    min="1"
-                    max="12"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-500">RK Teilkasko (1-16)</label>
-                  <input
-                    type="number"
-                    value={regionalklasseTeilkasko}
-                    onChange={(e) => setRegionalklasseTeilkasko(Math.min(16, Math.max(1, Number(e.target.value))))}
-                    className="w-full p-2 border rounded-lg text-center"
-                    min="1"
-                    max="16"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-500">RK Vollkasko (1-9)</label>
-                  <input
-                    type="number"
-                    value={regionalklasseVollkasko}
-                    onChange={(e) => setRegionalklasseVollkasko(Math.min(9, Math.max(1, Number(e.target.value))))}
-                    className="w-full p-2 border rounded-lg text-center"
-                    min="1"
-                    max="9"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-          
-          {!eigeneRegionalklassen && (
-            <div className="mt-2 text-sm text-gray-500">
-              Regionalklassen: HP {ergebnis.regionalklassen.haftpflicht} | TK {ergebnis.regionalklassen.teilkasko} | VK {ergebnis.regionalklassen.vollkasko}
-            </div>
-          )}
+          <div className="flex items-center gap-4">
+            <input
+              type="range"
+              value={typklasseHP}
+              onChange={(e) => setTypklasseHP(Number(e.target.value))}
+              className="flex-1 accent-orange-500"
+              min="10"
+              max="25"
+              step="1"
+            />
+            <span className="text-xl font-bold text-orange-600 w-12 text-center">{typklasseHP}</span>
+          </div>
+          <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <span>10 (günstig)</span>
+            <span>18 (Ø)</span>
+            <span>25 (teuer)</span>
+          </div>
         </div>
 
-        {/* Jahreskilometer */}
-        <div className="mb-6">
-          <label className="block mb-2">
-            <span className="text-gray-700 font-medium">Jährliche Fahrleistung</span>
-          </label>
-          <select
-            value={jahresmitZusatzoptionen}
-            onChange={(e) => setJahreskilometer(Number(e.target.value))}
-            className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-orange-500 text-lg"
-          >
-            <option value={6000}>bis 6.000 km/Jahr</option>
-            <option value={9000}>bis 9.000 km/Jahr</option>
-            <option value={12000}>bis 12.000 km/Jahr</option>
-            <option value={15000}>bis 15.000 km/Jahr</option>
-            <option value={20000}>bis 20.000 km/Jahr</option>
-            <option value={25000}>bis 25.000 km/Jahr</option>
-            <option value={30000}>über 25.000 km/Jahr</option>
-          </select>
-        </div>
-
-        {/* Selbstbeteiligung (nur bei Kasko) */}
-        {versicherungsArt !== 'haftpflicht' && (
-          <div className="mb-4">
+        {versicherungsart !== 'haftpflicht' && (
+          <div className="mb-6">
             <label className="block mb-2">
-              <span className="text-gray-700 font-medium">Selbstbeteiligung (SB)</span>
+              <span className="text-gray-700 font-medium">
+                Typklasse {versicherungsart === 'teilkasko' ? 'Teilkasko' : 'Vollkasko'}
+              </span>
               <span className="text-xs text-gray-500 block mt-1">
-                Höhere SB = niedrigerer Beitrag
+                Abhängig vom Fahrzeugmodell ({versicherungsart === 'teilkasko' ? '10-33' : '10-34'})
+              </span>
+            </label>
+            <div className="flex items-center gap-4">
+              <input
+                type="range"
+                value={versicherungsart === 'teilkasko' ? typklasseTK : typklasseVK}
+                onChange={(e) => versicherungsart === 'teilkasko' 
+                  ? setTypklasseTK(Number(e.target.value)) 
+                  : setTypklasseVK(Number(e.target.value))
+                }
+                className="flex-1 accent-orange-500"
+                min="10"
+                max={versicherungsart === 'teilkasko' ? 33 : 34}
+                step="1"
+              />
+              <span className="text-xl font-bold text-orange-600 w-12 text-center">
+                {versicherungsart === 'teilkasko' ? typklasseTK : typklasseVK}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Regionalklassen */}
+        <div className="mb-6">
+          <label className="block mb-2">
+            <span className="text-gray-700 font-medium">Regionalklasse Haftpflicht</span>
+            <span className="text-xs text-gray-500 block mt-1">
+              Abhängig von Ihrem Zulassungsbezirk (1-12)
+            </span>
+          </label>
+          <div className="flex items-center gap-4">
+            <input
+              type="range"
+              value={regionalklasseHP}
+              onChange={(e) => setRegionalklasseHP(Number(e.target.value))}
+              className="flex-1 accent-orange-500"
+              min="1"
+              max="12"
+              step="1"
+            />
+            <span className="text-xl font-bold text-orange-600 w-12 text-center">{regionalklasseHP}</span>
+          </div>
+          <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <span>1 (günstig)</span>
+            <span>6 (Ø)</span>
+            <span>12 (teuer)</span>
+          </div>
+        </div>
+
+        {versicherungsart !== 'haftpflicht' && (
+          <div className="mb-6">
+            <label className="block mb-2">
+              <span className="text-gray-700 font-medium">
+                Regionalklasse {versicherungsart === 'teilkasko' ? 'Teilkasko' : 'Vollkasko'}
+              </span>
+            </label>
+            <div className="flex items-center gap-4">
+              <input
+                type="range"
+                value={versicherungsart === 'teilkasko' ? regionalklasseTK : regionalklasseVK}
+                onChange={(e) => versicherungsart === 'teilkasko' 
+                  ? setRegionalklasseTK(Number(e.target.value)) 
+                  : setRegionalklasseVK(Number(e.target.value))
+                }
+                className="flex-1 accent-orange-500"
+                min="1"
+                max={versicherungsart === 'teilkasko' ? 16 : 9}
+                step="1"
+              />
+              <span className="text-xl font-bold text-orange-600 w-12 text-center">
+                {versicherungsart === 'teilkasko' ? regionalklasseTK : regionalklasseVK}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Selbstbeteiligung */}
+        {versicherungsart !== 'haftpflicht' && (
+          <div className="mb-6">
+            <label className="block mb-2">
+              <span className="text-gray-700 font-medium">
+                Selbstbeteiligung {versicherungsart === 'teilkasko' ? 'Teilkasko' : 'Vollkasko'}
               </span>
             </label>
             <div className="grid grid-cols-4 gap-2">
-              {[0, 150, 300, 500, 1000].map((sb) => (
+              {(versicherungsart === 'teilkasko' 
+                ? [0, 150, 300] 
+                : [150, 300, 500, 1000]
+              ).map((sb) => (
                 <button
                   key={sb}
-                  onClick={() => setSelbstbeteiligung(sb)}
-                  className={`py-2 px-3 rounded-xl text-sm font-medium transition-all ${
-                    selbstbeteiligung === sb
-                      ? 'bg-orange-500 text-white shadow-lg'
+                  onClick={() => versicherungsart === 'teilkasko' 
+                    ? setSelbstbeteiligungTK(sb) 
+                    : setSelbstbeteiligungVK(sb)
+                  }
+                  className={`py-2 px-2 rounded-xl text-sm font-medium transition-all ${
+                    (versicherungsart === 'teilkasko' ? selbstbeteiligungTK : selbstbeteiligungVK) === sb
+                      ? 'bg-orange-500 text-white'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  {sb === 0 ? 'Keine' : formatEuro(sb)}
+                  {sb === 0 ? 'Keine' : `${sb} €`}
                 </button>
               ))}
             </div>
             <p className="text-xs text-gray-500 mt-2">
-              Üblich: Teilkasko 150 €, Vollkasko 300 € oder 500 €
+              💡 Höhere Selbstbeteiligung = niedrigerer Beitrag
             </p>
           </div>
         )}
+
+        {/* Beispielfahrzeuge */}
+        <div className="mb-4">
+          <label className="block mb-2">
+            <span className="text-gray-700 font-medium">Typische Fahrzeuge (Schnellauswahl)</span>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => { setTypklasseHP(12); setTypklasseTK(14); setTypklasseVK(14); }}
+              className="py-2 px-3 rounded-xl text-sm bg-gray-100 hover:bg-gray-200 transition-colors text-left"
+            >
+              🚗 Kleinwagen (VW Polo, Ford Fiesta)
+            </button>
+            <button
+              onClick={() => { setTypklasseHP(15); setTypklasseTK(17); setTypklasseVK(17); }}
+              className="py-2 px-3 rounded-xl text-sm bg-gray-100 hover:bg-gray-200 transition-colors text-left"
+            >
+              🚙 Kompakt (VW Golf, Audi A3)
+            </button>
+            <button
+              onClick={() => { setTypklasseHP(17); setTypklasseTK(19); setTypklasseVK(20); }}
+              className="py-2 px-3 rounded-xl text-sm bg-gray-100 hover:bg-gray-200 transition-colors text-left"
+            >
+              🚐 Mittelklasse (BMW 3er, Mercedes C)
+            </button>
+            <button
+              onClick={() => { setTypklasseHP(20); setTypklasseTK(24); setTypklasseVK(25); }}
+              className="py-2 px-3 rounded-xl text-sm bg-gray-100 hover:bg-gray-200 transition-colors text-left"
+            >
+              🏎️ SUV/Oberklasse (BMW X3, Audi Q5)
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Result Section */}
-      <div className="bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl shadow-lg p-6 text-white mb-6">
-        <h3 className="text-sm font-medium opacity-80 mb-1">🛡️ Geschätzte Kfz-Versicherung</h3>
-        
+      <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-lg p-6 text-white mb-6">
+        <h3 className="text-sm font-medium opacity-80 mb-1">🛡️ Geschätzter Jahresbeitrag</h3>
         <div className="mb-4">
           <div className="flex items-baseline gap-2">
-            <span className="text-5xl font-bold">ca. {formatEuro(ergebnis.gesamt)}</span>
-            <span className="text-xl opacity-80">/ Jahr</span>
+            <span className="text-5xl font-bold">~{formatEuro(ergebnis.gesamt)}</span>
+            <span className="text-xl opacity-80">pro Jahr</span>
           </div>
           <p className="text-orange-100 mt-2 text-sm">
-            entspricht ca. {formatEuro(ergebnis.monatlich)} / Monat
+            Das sind ca. <strong>{formatEuro(ergebnis.monatlich)}</strong> pro Monat
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="grid grid-cols-2 gap-3">
           <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
             <span className="text-sm opacity-80">Haftpflicht</span>
-            <div className="text-xl font-bold">{formatEuro(ergebnis.haftpflicht)}</div>
+            <div className="text-xl font-bold">~{formatEuro(ergebnis.haftpflicht)}</div>
           </div>
-          {versicherungsArt !== 'haftpflicht' && (
+          {versicherungsart === 'teilkasko' && (
             <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
               <span className="text-sm opacity-80">+ Teilkasko</span>
-              <div className="text-xl font-bold">{formatEuro(ergebnis.teilkasko)}</div>
+              <div className="text-xl font-bold">~{formatEuro(ergebnis.teilkasko)}</div>
             </div>
           )}
-          {versicherungsArt === 'vollkasko' && (
-            <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm col-span-2">
-              <span className="text-sm opacity-80">+ Vollkasko-Zusatz</span>
-              <div className="text-xl font-bold">{formatEuro(ergebnis.vollkaskoZusatz)}</div>
+          {versicherungsart === 'vollkasko' && (
+            <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+              <span className="text-sm opacity-80">+ Vollkasko</span>
+              <div className="text-xl font-bold">~{formatEuro(ergebnis.vollkasko)}</div>
             </div>
           )}
         </div>
 
-        <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-          <span className="text-sm opacity-80">Realistische Preisspanne</span>
-          <div className="text-lg font-bold">
-            {formatEuro(ergebnis.minBeitrag)} – {formatEuro(ergebnis.maxBeitrag)}
-          </div>
-          <p className="text-xs opacity-70 mt-1">
-            Je nach Versicherer und weiteren Faktoren
+        <div className="mt-4 pt-4 border-t border-white/20 text-sm text-orange-100">
+          <p className="flex items-center gap-2">
+            <span>📊</span>
+            <span>SF-Klasse {sfKlasse}: {ergebnis.sfFaktor}% Beitragssatz</span>
           </p>
         </div>
       </div>
 
-      {/* Vergleichsportale Empfehlung */}
+      {/* Vergleichsportale */}
       <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
-        <div className="flex gap-3">
-          <span className="text-3xl">💡</span>
-          <div>
-            <h3 className="font-bold text-blue-800 mb-2">Für verbindliche Angebote: Vergleichsportale nutzen</h3>
-            <p className="text-sm text-blue-700 mb-4">
-              Unser Rechner liefert nur eine Schätzung. Für echte Preise mit allen Ihren persönlichen 
-              Daten empfehlen wir einen Vergleich über:
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              <a 
-                href="https://www.check24.de/kfz-versicherung/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-all"
-              >
-                <span className="text-xl">✓</span>
-                <span className="font-medium text-gray-800">Check24</span>
-              </a>
-              <a 
-                href="https://www.verivox.de/kfz-versicherung/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-all"
-              >
-                <span className="text-xl">✓</span>
-                <span className="font-medium text-gray-800">Verivox</span>
-              </a>
-              <a 
-                href="https://www.huk24.de/kfz-versicherung" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-all"
-              >
-                <span className="text-xl">✓</span>
-                <span className="font-medium text-gray-800">HUK24</span>
-              </a>
-              <a 
-                href="https://www.cosmosdirekt.de/kfz-versicherung/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-all"
-              >
-                <span className="text-xl">✓</span>
-                <span className="font-medium text-gray-800">CosmosDirekt</span>
-              </a>
-            </div>
-            <p className="text-xs text-blue-600 mt-3">
-              💸 Durch Vergleichen können Sie oft <strong>100-300 € pro Jahr sparen!</strong>
-            </p>
-          </div>
+        <h3 className="font-bold text-blue-800 mb-3">🔍 Für exakte Tarife: Vergleichen Sie!</h3>
+        <p className="text-sm text-blue-700 mb-4">
+          Unser Rechner gibt eine <strong>grobe Schätzung</strong>. Die tatsächlichen Preise variieren stark 
+          je nach Versicherer, Alter, Beruf, Stellplatz und weiteren Faktoren. Nutzen Sie Vergleichsportale:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <a 
+            href="https://www.check24.de/kfz-versicherung/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
+          >
+            <span className="block text-lg mb-1">✓</span>
+            <span className="text-sm font-medium text-gray-800">Check24</span>
+          </a>
+          <a 
+            href="https://www.verivox.de/kfz-versicherung/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
+          >
+            <span className="block text-lg mb-1">✓</span>
+            <span className="text-sm font-medium text-gray-800">Verivox</span>
+          </a>
+          <a 
+            href="https://www.huk24.de/kfz-versicherung" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
+          >
+            <span className="block text-lg mb-1">✓</span>
+            <span className="text-sm font-medium text-gray-800">HUK24</span>
+          </a>
+          <a 
+            href="https://www.financescout24.de/kfz-versicherung" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
+          >
+            <span className="block text-lg mb-1">✓</span>
+            <span className="text-sm font-medium text-gray-800">FinanceScout</span>
+          </a>
         </div>
       </div>
 
       {/* SF-Klassen Tabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📊 SF-Klassen & Beitragssätze</h3>
-        
+        <h3 className="font-bold text-gray-800 mb-3">📊 SF-Klassen-Tabelle (Auszug)</h3>
+        <p className="text-sm text-gray-600 mb-4">
+          Die SF-Klasse (Schadenfreiheitsklasse) bestimmt maßgeblich Ihren Beitrag:
+        </p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-50">
-                <th className="text-left py-2 px-3 font-semibold text-gray-700">SF-Klasse</th>
-                <th className="text-center py-2 px-3 font-semibold text-gray-700">Beitragssatz</th>
-                <th className="text-left py-2 px-3 font-semibold text-gray-700">Bedeutung</th>
+                <th className="text-left py-2 px-3 rounded-tl-lg">SF-Klasse</th>
+                <th className="text-right py-2 px-3">Jahre unfallfrei</th>
+                <th className="text-right py-2 px-3 rounded-tr-lg">Beitragssatz</th>
               </tr>
             </thead>
             <tbody>
-              {[
-                { klasse: 'M', faktor: '240%', beschreibung: 'Nach mehreren Schäden' },
-                { klasse: 'SF0', faktor: '230%', beschreibung: 'Anfänger mit Vorfahrung' },
-                { klasse: 'SF½', faktor: '100%', beschreibung: '6 Monate schadensfrei' },
-                { klasse: 'SF1', faktor: '145%', beschreibung: '1 Jahr schadensfrei' },
-                { klasse: 'SF3', faktor: '70%', beschreibung: '3 Jahre schadensfrei' },
-                { klasse: 'SF5', faktor: '55%', beschreibung: '5 Jahre schadensfrei' },
-                { klasse: 'SF10', faktor: '38%', beschreibung: '10 Jahre schadensfrei' },
-                { klasse: 'SF20', faktor: '27%', beschreibung: '20 Jahre schadensfrei' },
-                { klasse: 'SF35', faktor: '20%', beschreibung: '35+ Jahre schadensfrei' },
-              ].map((row, i) => (
-                <tr key={i} className={`border-b border-gray-100 ${sfKlasse.klasse === row.klasse ? 'bg-orange-50' : ''}`}>
-                  <td className="py-2 px-3 font-medium">{row.klasse}</td>
-                  <td className="py-2 px-3 text-center font-bold">{row.faktor}</td>
-                  <td className="py-2 px-3 text-gray-600">{row.beschreibung}</td>
+              {['M', 'SF0', 'SF1', 'SF3', 'SF5', 'SF10', 'SF15', 'SF20', 'SF25', 'SF35'].map((key, idx, arr) => (
+                <tr key={key} className={`border-b border-gray-100 ${key === sfKlasse ? 'bg-orange-50' : ''}`}>
+                  <td className={`py-2 px-3 ${idx === arr.length - 1 ? 'rounded-bl-lg' : ''}`}>
+                    {SF_KLASSEN[key].name}
+                    {key === sfKlasse && <span className="ml-2 text-orange-500">← Sie</span>}
+                  </td>
+                  <td className="py-2 px-3 text-right text-gray-600">
+                    {key === 'M' ? 'Nach Unfall' : key === 'SF0' ? '0' : key.replace('SF', '')}
+                  </td>
+                  <td className={`py-2 px-3 text-right font-medium ${idx === arr.length - 1 ? 'rounded-br-lg' : ''} ${
+                    SF_KLASSEN[key].beitragssatz <= 30 ? 'text-green-600' : 
+                    SF_KLASSEN[key].beitragssatz <= 70 ? 'text-yellow-600' : 'text-red-600'
+                  }`}>
+                    {SF_KLASSEN[key].beitragssatz}%
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        
         <p className="text-xs text-gray-500 mt-3">
-          Die SF-Klasse gilt nur für die Haftpflicht und Vollkasko, nicht für die Teilkasko.
-          Nach einem Schaden werden Sie typischerweise zurückgestuft.
+          💡 Pro Jahr ohne Schaden steigen Sie eine SF-Klasse auf. Nach einem Unfall werden Sie zurückgestuft.
         </p>
       </div>
 
-      {/* Was beeinflusst den Beitrag? */}
+      {/* Typklasse erklärt */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">🎯 Was beeinflusst den Kfz-Versicherungsbeitrag?</h3>
-        
-        <div className="space-y-4 text-sm">
-          <div className="flex gap-3">
-            <span className="text-xl">📅</span>
-            <div>
-              <span className="font-semibold text-gray-800">SF-Klasse</span>
-              <p className="text-gray-600">Wichtigster Faktor! Je mehr Jahre unfallfrei, desto günstiger (SF35 zahlt nur 20% von SF0)</p>
+        <h3 className="font-bold text-gray-800 mb-3">🚗 Was ist die Typklasse?</h3>
+        <div className="space-y-3 text-sm text-gray-600">
+          <p>
+            Die <strong>Typklasse</strong> wird jährlich vom GDV (Gesamtverband der Deutschen 
+            Versicherungswirtschaft) anhand der Schadenstatistik jedes Fahrzeugmodells berechnet.
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Haftpflicht:</strong> Klasse 10-25 (basiert auf verursachten Schäden)</li>
+            <li><strong>Teilkasko:</strong> Klasse 10-33 (Diebstahl, Glasbruch, etc.)</li>
+            <li><strong>Vollkasko:</strong> Klasse 10-34 (inkl. selbstverschuldete Schäden)</li>
+          </ul>
+          <p>
+            <strong>Beispiele 2024:</strong> VW Golf (HP 14, TK 18, VK 17), Tesla Model 3 (HP 18, TK 24, VK 23), 
+            Porsche 911 (HP 24, TK 29, VK 31)
+          </p>
+        </div>
+        <div className="mt-4 p-3 bg-orange-50 rounded-lg">
+          <p className="text-sm text-orange-700">
+            📋 <strong>Typklasse Ihres Autos finden:</strong>{' '}
+            <a 
+              href="https://www.gdv.de/gdv/themen/versichern/typklassen" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-orange-900"
+            >
+              GDV Typklassenverzeichnis →
+            </a>
+          </p>
+        </div>
+      </div>
+
+      {/* Regionalklasse erklärt */}
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 className="font-bold text-gray-800 mb-3">📍 Was ist die Regionalklasse?</h3>
+        <div className="space-y-3 text-sm text-gray-600">
+          <p>
+            Die <strong>Regionalklasse</strong> richtet sich nach dem Zulassungsbezirk (Landkreis/Stadt). 
+            Sie basiert auf der Schadenstatistik der Region:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Haftpflicht:</strong> 12 Klassen – hohe Unfallzahlen = hohe Klasse</li>
+            <li><strong>Teilkasko:</strong> 16 Klassen – viele Wildunfälle/Diebstähle = teuer</li>
+            <li><strong>Vollkasko:</strong> 9 Klassen – Vandalismus, Unfälle etc.</li>
+          </ul>
+          <p>
+            <strong>Günstige Regionen:</strong> Ländliche Gebiete (z.B. Emsland, Elbe-Elster)<br />
+            <strong>Teure Regionen:</strong> Großstädte (z.B. Berlin, Offenbach, Duisburg)
+          </p>
+        </div>
+        <div className="mt-4 p-3 bg-orange-50 rounded-lg">
+          <p className="text-sm text-orange-700">
+            📋 <strong>Regionalklasse Ihres Wohnorts:</strong>{' '}
+            <a 
+              href="https://www.gdv.de/gdv/themen/versichern/regionalklassen" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-orange-900"
+            >
+              GDV Regionalklassen-Abfrage →
+            </a>
+          </p>
+        </div>
+      </div>
+
+      {/* Info Section */}
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 className="font-bold text-gray-800 mb-3">ℹ️ Weitere Einflussfaktoren</h3>
+        <p className="text-sm text-gray-600 mb-4">
+          Neben SF-, Typ- und Regionalklasse beeinflussen viele weitere Faktoren Ihren Beitrag:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {[
+            { icon: '👤', title: 'Alter & Führerschein', text: 'Junge Fahrer (unter 25) zahlen mehr' },
+            { icon: '👨‍👩‍👧', title: 'Fahrerkreis', text: 'Nur Sie oder auch Familie/alle?' },
+            { icon: '📍', title: 'Stellplatz', text: 'Garage günstiger als Straße' },
+            { icon: '🛣️', title: 'Jahresfahrleistung', text: 'Wenig km = weniger Risiko' },
+            { icon: '💳', title: 'Zahlweise', text: 'Jährlich zahlen spart ~5%' },
+            { icon: '💼', title: 'Beruf', text: 'Beamte/Öff. Dienst oft günstiger' },
+            { icon: '🚘', title: 'Zweitwagen', text: 'SF-Klasse vom Erstwagen übernehmen' },
+            { icon: '🏢', title: 'Werkstattbindung', text: 'Partnerwerkstatt = günstiger' },
+          ].map((item) => (
+            <div key={item.title} className="flex gap-3 p-3 bg-gray-50 rounded-xl">
+              <span className="text-xl">{item.icon}</span>
+              <div>
+                <p className="font-medium text-gray-800 text-sm">{item.title}</p>
+                <p className="text-xs text-gray-600">{item.text}</p>
+              </div>
             </div>
-          </div>
-          
-          <div className="flex gap-3">
-            <span className="text-xl">🚗</span>
-            <div>
-              <span className="font-semibold text-gray-800">Typklasse</span>
-              <p className="text-gray-600">Basiert auf Schadensstatistik des Fahrzeugmodells. Sportwagen teurer als Kleinwagen.</p>
-            </div>
-          </div>
-          
-          <div className="flex gap-3">
-            <span className="text-xl">📍</span>
-            <div>
-              <span className="font-semibold text-gray-800">Regionalklasse</span>
-              <p className="text-gray-600">Abhängig vom Zulassungsbezirk. Großstädte teurer als ländliche Regionen.</p>
-            </div>
-          </div>
-          
-          <div className="flex gap-3">
-            <span className="text-xl">🧑</span>
-            <div>
-              <span className="font-semibold text-gray-800">Alter des Fahrers</span>
-              <p className="text-gray-600">Unter 25 Jahre deutlich teurer. Ab 25-65 günstigste Tarife.</p>
-            </div>
-          </div>
-          
-          <div className="flex gap-3">
-            <span className="text-xl">🛣️</span>
-            <div>
-              <span className="font-semibold text-gray-800">Jährliche Fahrleistung</span>
-              <p className="text-gray-600">Weniger km/Jahr = günstiger. 6.000 km günstiger als 20.000 km.</p>
-            </div>
-          </div>
-          
-          <div className="flex gap-3">
-            <span className="text-xl">🏠</span>
-            <div>
-              <span className="font-semibold text-gray-800">Stellplatz</span>
-              <p className="text-gray-600">Garage oder Carport günstiger als Straßenparkplatz.</p>
-            </div>
-          </div>
-          
-          <div className="flex gap-3">
-            <span className="text-xl">💼</span>
-            <div>
-              <span className="font-semibold text-gray-800">Beruf & Nutzung</span>
-              <p className="text-gray-600">Nur Privatnutzung günstiger als dienstliche Nutzung.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
       {/* Spartipps */}
-      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-emerald-800 mb-3">💰 Spartipps für die Kfz-Versicherung</h3>
-        <ul className="space-y-2 text-sm text-emerald-700">
+      <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6">
+        <h3 className="font-bold text-green-800 mb-3">💡 Spartipps für die Kfz-Versicherung</h3>
+        <ul className="space-y-2 text-sm text-green-700">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Jährliche Zahlung:</strong> Spart bis zu 10% gegenüber Monatszahlung</span>
+            <span><strong>Jährliche Zahlung:</strong> Spart bis zu 5-10% gegenüber monatlicher Zahlung</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Werkstattbindung:</strong> Spart 10-20% (Reparatur nur in Partnerwerkstätten)</span>
+            <span><strong>Fahrerkreis einschränken:</strong> „Nur Versicherungsnehmer" ist am günstigsten</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Telematik-Tarif:</strong> Bis 30% Rabatt für vorausschauendes Fahren</span>
+            <span><strong>Höhere Selbstbeteiligung:</strong> 500€ statt 150€ senkt den Beitrag spürbar</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Fahrerkreis einschränken:</strong> Nur Fahrer über 25 spart deutlich</span>
+            <span><strong>Werkstattbindung:</strong> Reparatur in Partnerwerkstatt = günstigerer Tarif</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>Telematik-Tarif:</strong> Für vorsichtige Fahrer bis 30% Ersparnis möglich</span>
+          </li>
+          <li className="flex gap-2">
+            <span>✓</span>
+            <span><strong>Stichtag 30. November:</strong> Beste Zeit zum Wechseln (Kündigungsfrist)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
             <span><strong>SF-Klasse übertragen:</strong> Von Eltern oder Partner übernehmen</span>
           </li>
-          <li className="flex gap-2">
-            <span>✓</span>
-            <span><strong>November wechseln:</strong> Stichtag 30.11. – dann kündigen & vergleichen!</span>
-          </li>
-          <li className="flex gap-2">
-            <span>✓</span>
-            <span><strong>Rabatte nutzen:</strong> ADAC, Berufsgruppen, Zweitwagenrabatt</span>
-          </li>
         </ul>
-      </div>
-
-      {/* Haftpflicht vs. Kasko */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">🔒 Haftpflicht, Teilkasko oder Vollkasko?</h3>
-        
-        <div className="space-y-4">
-          <div className="p-4 bg-gray-50 rounded-xl">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">🛡️</span>
-              <span className="font-bold text-gray-800">Kfz-Haftpflicht (Pflicht!)</span>
-            </div>
-            <p className="text-sm text-gray-600">
-              Zahlt Schäden, die Sie anderen zufügen. <strong>Gesetzlich vorgeschrieben!</strong>
-            </p>
-            <p className="text-xs text-gray-500 mt-1">
-              Deckungssumme: mind. 7,5 Mio € Personenschäden, 1,22 Mio € Sachschäden
-            </p>
-          </div>
-          
-          <div className="p-4 bg-blue-50 rounded-xl">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">🔒</span>
-              <span className="font-bold text-blue-800">Teilkasko</span>
-            </div>
-            <p className="text-sm text-blue-700">
-              Zahlt zusätzlich: Diebstahl, Brand, Glasbruch, Wildunfall, Sturm, Hagel, Marderbiss
-            </p>
-            <p className="text-xs text-blue-600 mt-1">
-              <strong>Empfohlen für:</strong> Fahrzeuge bis ca. 10 Jahre
-            </p>
-          </div>
-          
-          <div className="p-4 bg-amber-50 rounded-xl">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">💎</span>
-              <span className="font-bold text-amber-800">Vollkasko</span>
-            </div>
-            <p className="text-sm text-amber-700">
-              Alles aus Teilkasko + selbstverschuldete Unfälle + Vandalismus
-            </p>
-            <p className="text-xs text-amber-600 mt-1">
-              <strong>Empfohlen für:</strong> Neuwagen, Leasing, wertvolle Fahrzeuge (bis ca. 5 Jahre)
-            </p>
-          </div>
-        </div>
       </div>
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Links</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.gdv.de/gdv/service/typklassenabfrage"
+            href="https://www.gdv.de/gdv/themen/versichern/typklassen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            GDV – Typklassenabfrage
+            GDV – Typklassenverzeichnis
           </a>
           <a 
-            href="https://www.gdv.de/gdv/service/regionalklassenabfrage"
+            href="https://www.gdv.de/gdv/themen/versichern/regionalklassen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            GDV – Regionalklassenabfrage
+            GDV – Regionalklassen-Abfrage
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/pflvg/"
@@ -776,12 +679,12 @@ export default function KfzVersicherungRechner() {
             Pflichtversicherungsgesetz (PflVG)
           </a>
           <a 
-            href="https://www.bafin.de/DE/Verbraucher/Versicherung/versicherung_node.html"
+            href="https://www.bafin.de/DE/Verbraucher/Versicherungen/versicherungen_node.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BaFin – Verbraucherinformationen Versicherung
+            BaFin – Versicherungsaufsicht
           </a>
         </div>
       </div>
