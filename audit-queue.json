@@ -1,10 +1,5 @@
 {
   "pending": [
-    "mieterhoehung-rechner",
-    "mietkaution-rechner",
-    "mietpreisbremse-rechner",
-    "mindestlohn-rechner",
-    "minijob-rechner",
     "muetterrente-rechner",
     "mutterschutz-rechner",
     "nachtschicht-rechner",
@@ -137,7 +132,12 @@
     "maklerkosten-rechner",
     "mehrwertsteuer-rechner",
     "midijob-rechner",
-    "mieten-oder-kaufen-rechner"
+    "mieten-oder-kaufen-rechner",
+    "mieterhoehung-rechner",
+    "mietkaution-rechner",
+    "mietpreisbremse-rechner",
+    "mindestlohn-rechner",
+    "minijob-rechner"
   ],
   "issues": [
     {
@@ -1258,6 +1258,118 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified: Annuity formula correct. Compound interest for alternative investment correct. Break-even detection correct. Instandhaltung % of rising Immobilienwert correctly modeled. Mietsteigerung compound growth correct. Simplified but reasonable comparison model.",
+      "fixed": false
+    },
+    {
+      "calculator": "mieterhoehung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Kappungsgrenze 20%/15% per §558 Abs.3 BGB correct. Vergleichsmiete cap correct. 12-month Sperrfrist correct. 3-month Zustimmungsfrist correct. Stadt-to-Kappungsgrenze mapping covers major cities.",
+      "fixed": false
+    },
+    {
+      "calculator": "mieterhoehung-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description shortened 165→119 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "mietkaution-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "All 2025 references updated to 2026 (title, heading, structured data). Added BreadcrumbSchema and Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "mietkaution-rechner",
+      "type": "calculation",
+      "severity": "low",
+      "description": "Added missing 2025/2026 historical interest rate data (0.5% each). Previous data only went to 2024.",
+      "fixed": true
+    },
+    {
+      "calculator": "mietkaution-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §551 BGB max 3 Kaltmieten correct. Ratenzahlung in 3 Raten per §551 Abs.2 correct. Zinseszins calculation correct. Historical Bundesbank rates reasonable. No calculation errors found.",
+      "fixed": false
+    },
+    {
+      "calculator": "mietpreisbremse-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "Sachsen gültig bis was 31.06.2027 (impossible date, June has 30 days). Corrected to 30.06.2027 per sachsen.de official source.",
+      "fixed": true
+    },
+    {
+      "calculator": "mietpreisbremse-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 76 chars → 54 chars. Description was 188 chars → 131 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "mietpreisbremse-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 10% cap over Vergleichsmiete per §556d BGB correct. Bundesland data checked against Mieterbund. Verlängerung bis 2029 per Bundestag 26.06.2025 correct. Ausnahmen (Neubau post 01.10.2014, Modernisierung, Vormiete) per §556f BGB correct. 13 of 16 Bundesländer (missing: SL, ST, SH) confirmed.",
+      "fixed": false
+    },
+    {
+      "calculator": "mindestlohn-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Mindestausbildungsvergütung 2026 was using 2025 values (682/805/921/955€). Corrected to 724/854/977/1014€ per BIBB Pressemitteilung 28/2025.",
+      "fixed": true
+    },
+    {
+      "calculator": "mindestlohn-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Minijob-Grenze 2027 was 657€ (wrong). Corrected to 633€ (14.60×130÷3=632.67→633). Confirmed by DRV Pressemitteilung.",
+      "fixed": true
+    },
+    {
+      "calculator": "mindestlohn-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "SEO text described Minijob-Grenze formula as \"45 Stunden × Mindestlohn\" which is incorrect. Corrected to \"Mindestlohn × 130 ÷ 3\" per §8 Abs.1a SGB IV.",
+      "fixed": true
+    },
+    {
+      "calculator": "mindestlohn-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description was 172 chars → 131 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "mindestlohn-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Mindestlohn 13.90€ (2026), 14.60€ (2027) per Mindestlohnkommission/BMAS correct. §22 MiLoG Ausnahmen list complete and correct. Monatsgehalt-Formel (Stundenlohn × Wochenstunden × 52/12) correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "minijob-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Durchschnittsentgelt for Rentenpunkte calculation was 48,314€ (wrong, no official source for this value). Corrected to 51,944€ per Bundesregierung/DRV (vorläufig 2026).",
+      "fixed": true
+    },
+    {
+      "calculator": "minijob-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 80 chars → 58 chars. Description shortened. Added BreadcrumbSchema, FAQPage structured data, and Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "minijob-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified all AG-Abgaben against Minijob-Zentrale 2026: KV 13%, RV 15%, Pauschsteuer 2%, UV ~1.6%, U1 0.8% (gesenkt von 1.1%), U2 0.22%, Insolvenzumlage 0.15% all correct. AN-RV-Eigenanteil 3.6% (gewerblich), 13.6% (Privathaushalt) correct. Minijob-Grenze 603€ (13.90×130÷3) correct. Haushaltsscheck KV/RV je 5% correct.",
       "fixed": false
     }
   ],
