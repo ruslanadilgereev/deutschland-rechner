@@ -2,10 +2,12 @@ import { useState, useMemo } from 'react';
 
 // Verpflegungspauschalen 2025/2026 (Inland)
 // Quelle: § 9 Abs. 4a EStG, BMF-Schreiben
+// Die Pauschalen betragen seit 2020 unverändert 28€/14€
+// Die geplante Erhöhung auf 32€/16€ wurde nie umgesetzt
 const PAUSCHALEN_INLAND = {
-  ab24Stunden: 32, // Abwesenheit von 24 Stunden
-  mehr8bisUnter24: 16, // Mehr als 8 Stunden, aber weniger als 24
-  anUndAbreise: 16, // An- und Abreisetag bei mehrtägiger Reise
+  ab24Stunden: 28, // Abwesenheit von 24 Stunden
+  mehr8bisUnter24: 14, // Mehr als 8 Stunden, aber weniger als 24
+  anUndAbreise: 14, // An- und Abreisetag bei mehrtägiger Reise
 };
 
 // Auslandspauschalen 2025/2026 (Auszug der wichtigsten Länder)

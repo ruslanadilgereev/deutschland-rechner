@@ -2,9 +2,10 @@ import { useState, useMemo } from 'react';
 
 // Verlustvortrag nach §10d EStG
 // Bis 1 Mio € = 100% verrechenbar
-// Über 1 Mio € = nur 60% verrechenbar (Mindestbesteuerung)
+// Über 1 Mio € = normalerweise nur 70% verrechenbar (Mindestbesteuerung)
+// ABER: Wachstumschancengesetz (27.03.2024): Für VZ 2024-2027 auf 70% erhöht!
 const VERLUSTVORTRAG_GRENZE = 1000000;
-const VERRECHNUNG_UEBER_GRENZE = 0.60;
+const VERRECHNUNG_UEBER_GRENZE = 0.70; // 70% für VZ 2024-2027 per Wachstumschancengesetz
 
 // Veranlagungsarten
 const VERANLAGUNGSARTEN = [
@@ -73,7 +74,7 @@ function berechneVerlustvortrag(
   const zvENach100 = zvE - verrechenbarbis1Mio;
   const verlustNach100 = verlustvortrag - verrechenbarbis1Mio;
   
-  // Über der Grenze: maximal 60% des übersteigenden zvE verrechenbar
+  // Über der Grenze: maximal 70% des übersteigenden zvE verrechenbar
   let verrechenbarueber1Mio = 0;
   if (zvENach100 > 0 && verlustNach100 > 0) {
     const maxVerrechenbar60 = zvENach100 * VERRECHNUNG_UEBER_GRENZE;
@@ -327,14 +328,14 @@ export default function VerlustvortragRechner() {
             <div className="bg-yellow-50 rounded-xl p-4">
               <div className="flex justify-between items-center mb-2">
                 <span className="font-medium text-yellow-800">
-                  Über {formatEuro(ergebnis.grenze)} (60% verrechenbar)
+                  Über {formatEuro(ergebnis.grenze)} (70% verrechenbar)
                 </span>
                 <span className="font-bold text-yellow-600">
                   − {formatEuro(ergebnis.verrechenbarueber1Mio)}
                 </span>
               </div>
               <p className="text-xs text-yellow-600">
-                Bei Einkommen über der Grenze können nur 60% des übersteigenden Betrags 
+                Bei Einkommen über der Grenze können nur 70% des übersteigenden Betrags 
                 mit Verlusten verrechnet werden (Mindestbesteuerung).
               </p>
             </div>
@@ -435,7 +436,7 @@ export default function VerlustvortragRechner() {
             restZvE = zvE − verrechenbar_1
           </p>
           <p className="mb-2">
-            verrechenbar_2 = min(restZvE × 60%, restlicher_Verlustvortrag)
+            verrechenbar_2 = min(restZvE × 70%, restlicher_Verlustvortrag)
           </p>
           <p className="mb-2">
             <span className="text-blue-600">// Ergebnis</span>
@@ -447,7 +448,7 @@ export default function VerlustvortragRechner() {
 
         <p className="text-sm text-blue-700">
           Die <strong>Mindestbesteuerung</strong> nach §10d Abs. 2 EStG stellt sicher, dass bei sehr 
-          hohen Einkommen mindestens 40% des Betrags über 1 Mio. € (bzw. 2 Mio. € bei Zusammenveranlagung) 
+          hohen Einkommen mindestens 30% des Betrags über 1 Mio. € (bzw. 2 Mio. € bei Zusammenveranlagung) 
           der Besteuerung unterliegen.
         </p>
       </div>
@@ -467,8 +468,8 @@ export default function VerlustvortragRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Mindestbesteuerung:</strong> Über der Grenze nur 60% verrechenbar 
-            (40% unterliegen der Mindestbesteuerung)</span>
+            <span><strong>Mindestbesteuerung:</strong> Über der Grenze nur 70% verrechenbar 
+            (30% unterliegen der Mindestbesteuerung, VZ 2024-2027)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>

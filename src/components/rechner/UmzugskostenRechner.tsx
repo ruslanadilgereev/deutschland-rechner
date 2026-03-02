@@ -192,8 +192,10 @@ export default function UmzugskostenRechner() {
     const nebenkostenGesamt = nebenkosten.reduce((sum, n) => sum + n.betrag, 0);
     
     // === STEUERERSPARNIS ===
-    const umzugspauschale2024 = 886; // Single, ab März 2024
-    const zuschlagProPerson = 193;
+    // Umzugskostenpauschale ab 1. März 2024 (BMF-Schreiben)
+    // 964€ für Berechtigte, 643€ pro weitere Person
+    const umzugspauschale2024 = 964; // Single, ab März 2024
+    const zuschlagProPerson = 643;
     const steuerlichePauschale = beruflichBedingt
       ? umzugspauschale2024 + Math.max(0, anzahlPersonen - 1) * zuschlagProPerson
       : 0;
@@ -603,12 +605,12 @@ export default function UmzugskostenRechner() {
           <div className="space-y-3 text-blue-700">
             <div className="flex justify-between items-center py-2">
               <span>Umzugskostenpauschale (ab März 2024)</span>
-              <span className="font-semibold">886 €</span>
+              <span className="font-semibold">964 €</span>
             </div>
             {anzahlPersonen > 1 && (
               <div className="flex justify-between items-center py-2">
-                <span>+ {anzahlPersonen - 1} weitere Person(en) × 193 €</span>
-                <span className="font-semibold">{formatEuro((anzahlPersonen - 1) * 193)}</span>
+                <span>+ {anzahlPersonen - 1} weitere Person(en) × 643 €</span>
+                <span className="font-semibold">{formatEuro((anzahlPersonen - 1) * 643)}</span>
               </div>
             )}
             <div className="flex justify-between items-center py-2 border-t border-blue-200 font-bold">

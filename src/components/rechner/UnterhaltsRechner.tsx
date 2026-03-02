@@ -13,24 +13,26 @@ interface EinkommensGruppe {
   prozent: number; // Prozentsatz zum Mindestunterhalt
 }
 
-// Düsseldorfer Tabelle 2026 - basierend auf den aktuellen Werten
-// Mindestunterhalt 2026: 482€ (0-5), 554€ (6-11), 649€ (12-17), 693€ (ab 18)
+// Düsseldorfer Tabelle 2026 - OLG Düsseldorf, gültig ab 01.01.2026
+// Quelle: https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/Tabelle-2026/index.php
+// Mindestunterhalt 2026: 486€ (0-5), 558€ (6-11), 653€ (12-17), 698€ (ab 18)
+// Volljährige 1. Gruppe = 125% des Mindestbedarfs der 2. Altersstufe
 const DUESSELDORFER_TABELLE_2026: EinkommensGruppe[] = [
-  { id: 1,  nettoVon: 0,     nettoBis: 2100,  betraege: [482, 554, 649, 693],  bedarfskontrollbetrag: 1200, prozent: 100 },
-  { id: 2,  nettoVon: 2101,  nettoBis: 2500,  betraege: [507, 583, 682, 728],  bedarfskontrollbetrag: 1650, prozent: 105 },
-  { id: 3,  nettoVon: 2501,  nettoBis: 2900,  betraege: [531, 611, 715, 764],  bedarfskontrollbetrag: 1750, prozent: 110 },
-  { id: 4,  nettoVon: 2901,  nettoBis: 3300,  betraege: [555, 639, 748, 799],  bedarfskontrollbetrag: 1850, prozent: 115 },
-  { id: 5,  nettoVon: 3301,  nettoBis: 3700,  betraege: [579, 666, 780, 834],  bedarfskontrollbetrag: 1950, prozent: 120 },
-  { id: 6,  nettoVon: 3701,  nettoBis: 4100,  betraege: [618, 711, 832, 889],  bedarfskontrollbetrag: 2050, prozent: 128 },
-  { id: 7,  nettoVon: 4101,  nettoBis: 4500,  betraege: [656, 755, 884, 944],  bedarfskontrollbetrag: 2150, prozent: 136 },
-  { id: 8,  nettoVon: 4501,  nettoBis: 4900,  betraege: [695, 799, 936, 999],  bedarfskontrollbetrag: 2250, prozent: 144 },
-  { id: 9,  nettoVon: 4901,  nettoBis: 5300,  betraege: [733, 844, 988, 1055], bedarfskontrollbetrag: 2350, prozent: 152 },
-  { id: 10, nettoVon: 5301,  nettoBis: 5700,  betraege: [772, 888, 1039, 1110], bedarfskontrollbetrag: 2450, prozent: 160 },
-  { id: 11, nettoVon: 5701,  nettoBis: 6400,  betraege: [810, 932, 1091, 1165], bedarfskontrollbetrag: 2650, prozent: 168 },
-  { id: 12, nettoVon: 6401,  nettoBis: 7200,  betraege: [849, 976, 1143, 1221], bedarfskontrollbetrag: 2950, prozent: 176 },
-  { id: 13, nettoVon: 7201,  nettoBis: 8200,  betraege: [887, 1020, 1195, 1276], bedarfskontrollbetrag: 3350, prozent: 184 },
-  { id: 14, nettoVon: 8201,  nettoBis: 9700,  betraege: [926, 1065, 1247, 1332], bedarfskontrollbetrag: 3950, prozent: 192 },
-  { id: 15, nettoVon: 9701,  nettoBis: null,  betraege: [964, 1109, 1298, 1387], bedarfskontrollbetrag: 4650, prozent: 200 },
+  { id: 1,  nettoVon: 0,     nettoBis: 2100,  betraege: [486, 558, 653, 698],  bedarfskontrollbetrag: 1200, prozent: 100 },
+  { id: 2,  nettoVon: 2101,  nettoBis: 2500,  betraege: [511, 586, 686, 733],  bedarfskontrollbetrag: 1750, prozent: 105 },
+  { id: 3,  nettoVon: 2501,  nettoBis: 2900,  betraege: [535, 614, 719, 768],  bedarfskontrollbetrag: 1850, prozent: 110 },
+  { id: 4,  nettoVon: 2901,  nettoBis: 3300,  betraege: [559, 642, 751, 803],  bedarfskontrollbetrag: 1950, prozent: 115 },
+  { id: 5,  nettoVon: 3301,  nettoBis: 3700,  betraege: [584, 670, 784, 838],  bedarfskontrollbetrag: 2050, prozent: 120 },
+  { id: 6,  nettoVon: 3701,  nettoBis: 4100,  betraege: [623, 715, 836, 894],  bedarfskontrollbetrag: 2150, prozent: 128 },
+  { id: 7,  nettoVon: 4101,  nettoBis: 4500,  betraege: [661, 759, 889, 950],  bedarfskontrollbetrag: 2250, prozent: 136 },
+  { id: 8,  nettoVon: 4501,  nettoBis: 4900,  betraege: [700, 804, 941, 1006], bedarfskontrollbetrag: 2350, prozent: 144 },
+  { id: 9,  nettoVon: 4901,  nettoBis: 5300,  betraege: [739, 849, 993, 1061], bedarfskontrollbetrag: 2450, prozent: 152 },
+  { id: 10, nettoVon: 5301,  nettoBis: 5700,  betraege: [778, 893, 1045, 1117], bedarfskontrollbetrag: 2550, prozent: 160 },
+  { id: 11, nettoVon: 5701,  nettoBis: 6400,  betraege: [817, 938, 1098, 1173], bedarfskontrollbetrag: 2850, prozent: 168 },
+  { id: 12, nettoVon: 6401,  nettoBis: 7200,  betraege: [856, 983, 1150, 1229], bedarfskontrollbetrag: 3250, prozent: 176 },
+  { id: 13, nettoVon: 7201,  nettoBis: 8200,  betraege: [895, 1027, 1202, 1285], bedarfskontrollbetrag: 3750, prozent: 184 },
+  { id: 14, nettoVon: 8201,  nettoBis: 9700,  betraege: [934, 1072, 1254, 1341], bedarfskontrollbetrag: 4350, prozent: 192 },
+  { id: 15, nettoVon: 9701,  nettoBis: null,  betraege: [972, 1116, 1306, 1396], bedarfskontrollbetrag: 5050, prozent: 200 },
 ];
 
 // Kindergeld 2026: 259€ pro Kind pro Monat
