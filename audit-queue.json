@@ -1,10 +1,5 @@
 {
   "pending": [
-    "rabatt-rechner",
-    "renten-rechner",
-    "rentenluecke-rechner",
-    "rentensteuer-rechner",
-    "restwert-rechner",
     "riester-rechner",
     "rundfunkbeitrag-rechner",
     "sabbatical-rechner",
@@ -137,7 +132,12 @@
     "privatinsolvenz-rechner",
     "promille-rechner",
     "prozent-rechner",
-    "quadratmeterpreis-rechner"
+    "quadratmeterpreis-rechner",
+    "rabatt-rechner",
+    "renten-rechner",
+    "rentenluecke-rechner",
+    "rentensteuer-rechner",
+    "restwert-rechner"
   ],
   "issues": [
     {
@@ -1615,6 +1615,104 @@
       "type": "calculation",
       "severity": "info",
       "description": "Simple division formula (Kaufpreis/Wohnfläche) correct. Stadtpreise sourced from Engel & Völkers/Statista are reasonable 2025/2026 approximations. Einordnung bands (60/85/115/150%) reasonable. Kauf-Miete-Verhältnis (Kaufpreis/qm ÷ Miete/qm ÷ 12) is standard Vervielfältiger metric.",
+      "fixed": false
+    },
+    {
+      "calculator": "renten-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "BBG was 8.050€/Monat (2025 value). Corrected to 8.450€/Monat (2026 per Bundesregierung). Affects max EP calculation (~2 EP/Jahr cap).",
+      "fixed": true
+    },
+    {
+      "calculator": "renten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Rentenformel EP×ZF×RAF×RW correct. Rentenwert 40,79€ confirmed (ab 01.07.2025). Durchschnittsentgelt 51.944€ (2026) correct. Regelaltersgrenze table matches §235 SGB VI exactly. Abschlag 0.3%/Monat max 14.4% correct. Rente-mit-63 table (§236b) correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "renten-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "BBG in SEO content was also 8.050€, corrected to 8.450€.",
+      "fixed": true
+    },
+    {
+      "calculator": "rentensteuer-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "KV Zusatzbeitrag AN-Anteil was 1.9% (wrong). Corrected to 1.45% (half of 2.9% Ø Zusatzbeitrag 2026 per GKV-Schätzerkreis). Total Rentner-KV was 9.2%, now correct 8.75%.",
+      "fixed": true
+    },
+    {
+      "calculator": "rentensteuer-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "Example calculation was wrong: subtracted Grundfreibetrag from Einkünfte instead of applying tariff. Fixed with correct calculation flow (Einkünfte → Abzüge → zvE → Tarif). ESt ~577€/year for 1.800€/month example.",
+      "fixed": true
+    },
+    {
+      "calculator": "rentensteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Besteuerungsanteil table matches §22 Nr.1a EStG after Wachstumschancengesetz (0.5pp/year from 2023, reaching 100% in 2058). ESt-Tarif §32a EStG 2026 correct (12.348/17.799/69.878/277.825). Soli-Freigrenzen correct. Ertragsanteil-Tabelle correct. PV 1.8%+0.6% kinderlos correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "rentensteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description shortened 170→139 chars. KV percentage in SEO text updated to reflect correct 8.75%.",
+      "fixed": true
+    },
+    {
+      "calculator": "rentenluecke-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Updated 2025→2026 throughout (title, H1, subtitle, SEO heading, structured data, keywords). Title shortened 65→52 chars. Description shortened 171→127 chars. Added BreadcrumbSchema. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "rentenluecke-rechner",
+      "type": "content",
+      "severity": "low",
+      "description": "\"Rentengarantie bis 2025\" updated to just \"Rentengarantie\" (Haltelinie). Component Stand updated to 2026.",
+      "fixed": true
+    },
+    {
+      "calculator": "rentenluecke-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Kapitalverzehr uses Rentenbarwertfaktor (1-(1+r)^-n)/r — correct annuity formula. Ewige Rente = Jahresluecke/r — correct. Sparrate uses vorschüssige Endwertformel ((1+r)^n-1)/r×(1+r) — correct. Inflation compound factor correct. Division-by-zero handled. All math verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "restwert-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Removed year from title (not date-sensitive for car valuation). Title shortened 61→55 chars. Description shortened 163→127 chars. Added BreadcrumbSchema. Added Verwandte Rechner section with 3 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "restwert-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Degressive depreciation model with category-specific annual rates. KM correction uses relative deviation from average (capped at ±15%). Zustand/Ausstattung factors as multiplicative adjustments. Händler-Einkauf 85%, Privatverkauf 108% are reasonable market spreads. No official formula exists — estimation model is reasonable for its purpose.",
+      "fixed": false
+    },
+    {
+      "calculator": "rabatt-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title shortened 63→57 chars (removed 2026, not date-sensitive). Description shortened 163→115 chars. Fixed broken internal links: /mwst-rechner→/mehrwertsteuer-rechner, /zinsrechner→/zinseszins-rechner.",
+      "fixed": true
+    },
+    {
+      "calculator": "rabatt-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Pure math calculator. Neuer Preis = Originalpreis × (1-R/100) correct. Double discount: Preis × (1-R1/100) × (1-R2/100) correctly not additive. Staffelrabatt display correct. Edge cases: min 0%, max 100%, non-negative price. All formulas verified.",
       "fixed": false
     }
   ],
