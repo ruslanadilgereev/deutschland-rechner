@@ -23,7 +23,7 @@ import { useState, useMemo } from 'react';
 // - Kinderlose ab 23 Jahre: +0,6% = 4,2%
 // - Abschlag bei 2-5 Kindern unter 25: -0,25% pro Kind
 // - Minimum (5+ Kinder): 2,4%
-// - Arbeitgeberanteil: immer 1,7% (seit 01.07.2023)
+// - Arbeitgeberanteil: 1,8% (Hälfte des Grundbeitragssatzes 3,6%)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const GKV_2026 = {
@@ -48,19 +48,19 @@ const GKV_2026 = {
   // Formel: (Bezugsgröße / 90) × 30 = (3955 / 90) × 30 = 1.318,33 €
   mindestbemessungsgrundlage: 1318.33,
   
-  // Pflegeversicherung 2026
+  // Pflegeversicherung 2026 (Quelle: AOK Beitragssätze 2026, §55 SGB XI)
   pflegeversicherung: {
     beitragssatz: 3.6,                  // Grundbeitragssatz
     zuschlagKinderlose: 0.6,            // Ab 23 Jahre ohne Kinder
     abschlagProKind: 0.25,              // Für Kinder 2-5 unter 25 Jahren
-    minimumBeitragssatz: 2.4,           // Bei 5+ Kindern
-    arbeitgeberanteil: 1.7,             // Fester AG-Anteil seit 01.07.2023
+    minimumBeitragssatz: 2.6,           // Bei 5+ Kindern (3,6% - 4×0,25% = 2,6%)
+    arbeitgeberanteil: 1.8,             // Hälfte des Grundbeitragssatzes (3,6% / 2)
   },
   
   // Arbeitgeber-Zuschüsse zur PKV (max. 50% der BBG-Beiträge)
   maxAGZuschussPKV: {
-    krankenversicherung: 508.59,        // 8,15% × 5.812,50 €
-    pflegeversicherung: 98.81,          // 1,7% × 5.812,50 €
+    krankenversicherung: 508.59,        // 8,75% × 5.812,50 € (halber Gesamtbeitrag inkl. ⌀ Zusatz)
+    pflegeversicherung: 104.63,         // 1,8% × 5.812,50 €
   },
 };
 
@@ -190,7 +190,7 @@ export default function KrankenkassenbeitragRechner() {
     let pvArbeitgeberanteil: number;
     
     if (versichertenart === 'arbeitnehmer') {
-      // AG zahlt festen Anteil von 1,7%
+      // AG zahlt paritätischen Anteil von 1,8% (Hälfte des Grundbeitragssatzes)
       pvArbeitgeberanteil = beitragspflichtigesEinkommen * (GKV_2026.pflegeversicherung.arbeitgeberanteil / 100);
       // AN zahlt Rest
       pvArbeitnehmeranteil = beitragspflichtigesEinkommen * (pvBeitragssatz / 100) - pvArbeitgeberanteil;
@@ -569,7 +569,7 @@ export default function KrankenkassenbeitragRechner() {
             </div>
             {ergebnis.pvArbeitgeberanteil > 0 && (
               <div className="flex justify-between text-gray-500">
-                <span>Arbeitgeberanteil (fest 1,7%)</span>
+                <span>Arbeitgeberanteil (1,8%)</span>
                 <span>{formatEuro(ergebnis.pvArbeitgeberanteil)}</span>
               </div>
             )}

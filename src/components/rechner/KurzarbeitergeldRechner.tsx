@@ -17,8 +17,9 @@ import { useState, useMemo } from 'react';
 // Quelle: https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kurzarbeit/kurzarbeit-artikel.html
 // ============================================================================
 
-// Beitragsbemessungsgrenze 2026 (monatlich) - bundesweit einheitlich
-const BEITRAGSBEMESSUNGSGRENZE = 8450; // 2026: 8.450€/Monat
+// Beitragsbemessungsgrenzen 2026 (monatlich) - bundesweit einheitlich
+const BBG_RV_AV = 8450; // RV/AV: 8.450€/Monat (101.400€/Jahr)
+const BBG_KV_PV = 5812.50; // KV/PV: 5.812,50€/Monat (69.750€/Jahr)
 
 // Lohnsteuerklassen
 const STEUERKLASSEN = [1, 2, 3, 4, 5, 6] as const;
@@ -29,8 +30,8 @@ const SOZIALABGABEN = {
   rentenversicherung: 0.093, // 9,3% AN-Anteil
   krankenversicherung: 0.073, // 7,3% AN-Anteil
   zusatzbeitrag_kv: 0.0145, // 1,45% AN-Anteil
-  pflegeversicherung: 0.018, // 1,8% AN-Anteil
-  pflegeversicherung_kinderlos: 0.024, // 2,4% AN-Anteil
+  pflegeversicherung: 0.018, // 1,8% AN-Anteil (3,6% / 2)
+  pflegeversicherung_kinderlos: 0.024, // 2,4% AN-Anteil (4,2% - 1,8% AG)
   arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil
 };
 
@@ -86,18 +87,19 @@ function berechneNetto(
   kirchensteuer: boolean,
   hatKinder: boolean
 ): { netto: number; details: any } {
-  const bemessungsbrutto = Math.min(brutto, BEITRAGSBEMESSUNGSGRENZE);
+  const bemessungRV = Math.min(brutto, BBG_RV_AV);
+  const bemessungKV = Math.min(brutto, BBG_KV_PV);
 
-  const rv = bemessungsbrutto * SOZIALABGABEN.rentenversicherung;
+  const rv = bemessungRV * SOZIALABGABEN.rentenversicherung;
   const kv =
-    bemessungsbrutto *
+    bemessungKV *
     (SOZIALABGABEN.krankenversicherung + SOZIALABGABEN.zusatzbeitrag_kv);
   const pv =
-    bemessungsbrutto *
+    bemessungKV *
     (hatKinder
       ? SOZIALABGABEN.pflegeversicherung
       : SOZIALABGABEN.pflegeversicherung_kinderlos);
-  const av = bemessungsbrutto * SOZIALABGABEN.arbeitslosenversicherung;
+  const av = bemessungRV * SOZIALABGABEN.arbeitslosenversicherung;
 
   const sozialabgaben = rv + kv + pv + av;
   const lohnsteuer = berechneUngefaehreLohnsteuer(
@@ -112,7 +114,8 @@ function berechneNetto(
     netto: Math.max(0, Math.round(netto)),
     details: {
       brutto,
-      bemessungsbrutto,
+      bemessungRV,
+      bemessungKV,
       rentenversicherung: Math.round(rv),
       krankenversicherung: Math.round(kv),
       pflegeversicherung: Math.round(pv),
@@ -207,7 +210,7 @@ export default function KurzarbeitergeldRechner() {
       agKosten: Math.round(agAnteilAusgefallen),
 
       // Sonstiges
-      beitragsbemessungsgrenze: BEITRAGSBEMESSUNGSGRENZE,
+      beitragsbemessungsgrenze: BBG_RV_AV,
     };
   }, [
     bruttogehalt,

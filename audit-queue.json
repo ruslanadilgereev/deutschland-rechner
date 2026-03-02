@@ -1,10 +1,5 @@
 {
   "pending": [
-    "krankenkassenbeitrag-rechner",
-    "kredit-rechner",
-    "krypto-steuer-rechner",
-    "kurzarbeitergeld-rechner",
-    "lebenserwartung-rechner",
     "lohnsteuer-rechner",
     "maklerkosten-rechner",
     "mehrwertsteuer-rechner",
@@ -137,7 +132,12 @@
     "kinderzuschlag-rechner",
     "kirchensteuer-rechner",
     "koerperfett-rechner",
-    "krankengeld-rechner"
+    "krankengeld-rechner",
+    "krankenkassenbeitrag-rechner",
+    "kredit-rechner",
+    "krypto-steuer-rechner",
+    "kurzarbeitergeld-rechner",
+    "lebenserwartung-rechner"
   ],
   "issues": [
     {
@@ -1041,6 +1041,104 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified: Navy/Hodgdon-Beckett 1984 formulas. Male: 495/(1.0324-0.19077×log10(waist-neck)+0.15456×log10(height))-450. Female: 495/(1.29579-0.35004×log10(waist+hip-neck)+0.22100×log10(height))-450. KFA categories match ACE reference ranges. All correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "krankenkassenbeitrag-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "PV Arbeitgeberanteil was 1.7%, corrected to 1.8% (paritätisch = Hälfte von 3.6%). Minimum PV Beitragssatz was 2.4%, corrected to 2.6% (3.6% - 4×0.25%). AG PKV-Zuschuss PV corrected from 98.81€ to 104.63€. Source: AOK Beitragssätze 2026.",
+      "fixed": true
+    },
+    {
+      "calculator": "krankenkassenbeitrag-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 72 chars → 59 chars. Description was 166 chars → 118 chars. Added BreadcrumbSchema. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "krankenkassenbeitrag-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Allgemeiner Beitragssatz 14.6%, Zusatzbeitrag ⌀ 2.9%, BBG 5.812,50€, PV 3.6%/4.2% kinderlos, Kassen-Zusatzbeiträge (hkk 1.68%, Barmer 2.99%, TK 2.45% etc.) all correct per BMG/GKV-Spitzenverband 2026. Note: Sachsen PV Sonderregel (AG 1.3%) not yet implemented.",
+      "fixed": false
+    },
+    {
+      "calculator": "kredit-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title had 2025, updated to 2026 (64 chars → 56 chars). Description was 174 chars → 136 chars. All 2025 references in content updated to 2026. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "kredit-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Annuitätenformel P×(r×(1+r)^n)/((1+r)^n-1) correct. Effektivzins (1+r)^12-1 correct. Tilgungsplan month-by-month iteration correct. Zero-interest edge case handled. Endfälliges Darlehen (interest-only) correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "krypto-steuer-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "ESt-Tarif 2026 had WRONG values throughout: Grundfreibetrag was 12.096€ (correct: 12.348€), Zone 2 boundary was 17.005€ (correct: 17.799€), Zone 3 boundary was 66.760€ (correct: 69.878€). All formula coefficients were wrong (922.98→914.51, 181.19→173.10, 1025.38→1034.87, 10636.31→11135.63, 18971.21→19470.38). Fixed to match §32a EStG 2026 per Steuerfortentwicklungsgesetz.",
+      "fixed": true
+    },
+    {
+      "calculator": "krypto-steuer-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "SEO content showed wrong Grundfreibetrag (12.096€ → 12.348€) and wrong zone boundaries. Staking info incorrectly stated 10-year holding period extension - corrected per BMF-Schreiben 2022 (no extension). Lending info corrected from 25% Abgeltungsteuer to §22 Nr.3 EStG (personal rate).",
+      "fixed": true
+    },
+    {
+      "calculator": "krypto-steuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 68 chars → 57 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "krypto-steuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified after fix: §23 EStG Freigrenze 1.000€ (since 2024) correct. FIFO principle mentioned. Haltefrist >1 Jahr steuerfrei correct. Verlustverrechnung nur mit privaten Veräußerungsgeschäften correct. Soli-Freigrenze 19.950€/39.900€ reasonable.",
+      "fixed": false
+    },
+    {
+      "calculator": "kurzarbeitergeld-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Sozialversicherungs-BBGs were using single BBG (8.450€ RV/AV) for all branches. KV/PV must use 5.812,50€ BBG. Fixed to use separate BBG_RV_AV (8.450€) and BBG_KV_PV (5.812,50€) for correct SV deductions.",
+      "fixed": true
+    },
+    {
+      "calculator": "kurzarbeitergeld-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 68 chars → 53 chars. Description was 164 chars → 122 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "kurzarbeitergeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: KuG = 60%/67% × Nettoentgeltdifferenz per §105 SGB III correct. Lohnsteuer-Näherung uses simplified Durchschnittssteuersätze (labeled as approximation). SV-Beitragssätze RV 9.3%, KV 7.3%+1.45%, PV 1.8%/2.4%, AV 1.3% all correct for 2026.",
+      "fixed": false
+    },
+    {
+      "calculator": "lebenserwartung-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 63 chars with \"2024\" → 57 chars with \"Destatis\". Description was 169 chars → 138 chars. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "lebenserwartung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Destatis 2021/2023 Periodensterbetafeln data (M: 78.3, F: 83.2 at birth; interpolation by age correct). Lebensstil-Faktoren (Rauchen -10Y, Sport +3Y, BMI, etc.) based on epidemiological meta-analyses – reasonable approximations. Interpolation logic correct.",
       "fixed": false
     }
   ],

@@ -4,30 +4,33 @@ import { useState, useMemo } from 'react';
 // Freigrenze erhöht auf 1.000€ ab 2024
 const FREIGRENZE = 1000;
 
-// Einkommensteuer-Tarif 2026 (vereinfacht nach §32a EStG)
-const GRUNDFREIBETRAG = 12096; // 2026
+// ═══════════════════════════════════════════════════════════════════════════
+// Einkommensteuer-Tarif 2026 nach §32a EStG
+// Quelle: Steuerfortentwicklungsgesetz, BGBl. 2024 Nr. 449
+// https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026
+// ═══════════════════════════════════════════════════════════════════════════
+const GRUNDFREIBETRAG = 12348; // 2026
 
 function berechneEinkommensteuer(zvE: number): number {
   if (zvE <= GRUNDFREIBETRAG) return 0;
   
-  // Vereinfachte Berechnung nach §32a EStG 2026
-  if (zvE <= 17005) {
-    const y = (zvE - GRUNDFREIBETRAG) / 10000;
-    return Math.round((922.98 * y + 1400) * y);
-  } else if (zvE <= 66760) {
-    const z = (zvE - 17005) / 10000;
-    return Math.round((181.19 * z + 2397) * z + 1025.38);
+  if (zvE <= 17799) {
+    const y = (zvE - 12348) / 10000;
+    return Math.floor((914.51 * y + 1400) * y);
+  } else if (zvE <= 69878) {
+    const z = (zvE - 17799) / 10000;
+    return Math.floor((173.10 * z + 2397) * z + 1034.87);
   } else if (zvE <= 277825) {
-    return Math.round(0.42 * zvE - 10636.31);
+    return Math.floor(0.42 * zvE - 11135.63);
   } else {
-    return Math.round(0.45 * zvE - 18971.21);
+    return Math.floor(0.45 * zvE - 19470.38);
   }
 }
 
 function berechneGrenzsteuersatz(zvE: number): number {
   if (zvE <= GRUNDFREIBETRAG) return 0;
-  if (zvE <= 17005) return 14 + ((zvE - GRUNDFREIBETRAG) / (17005 - GRUNDFREIBETRAG)) * (24 - 14);
-  if (zvE <= 66760) return 24 + ((zvE - 17005) / (66760 - 17005)) * (42 - 24);
+  if (zvE <= 17799) return 14 + ((zvE - GRUNDFREIBETRAG) / (17799 - GRUNDFREIBETRAG)) * (24 - 14);
+  if (zvE <= 69878) return 24 + ((zvE - 17799) / (69878 - 17799)) * (42 - 24);
   if (zvE <= 277825) return 42;
   return 45;
 }
@@ -691,7 +694,7 @@ export default function KryptoSteuerRechner() {
           <li className="flex gap-2">
             <span>✓</span>
             <span>
-              <strong>Staking & Lending:</strong> Diese Einnahmen können die Haltefrist auf 10 Jahre verlängern (umstritten – Steuerberater fragen!).
+              <strong>Staking & Lending:</strong> Laut BMF-Schreiben 2022 verlängert Staking die Haltefrist NICHT. Staking-Rewards sind bei Zufluss als sonstige Einkünfte steuerpflichtig.
             </span>
           </li>
           <li className="flex gap-2">
