@@ -43,8 +43,8 @@ const MINIJOB_PAUSCHALE_RV = 0.05; // 5% Rentenversicherung
 const MINIJOB_PAUSCHALE_KV = 0.05; // 5% Krankenversicherung
 const MINIJOB_PAUSCHALE_UV = 0.016; // 1,6% Unfallversicherung
 const MINIJOB_PAUSCHALE_STEUER = 0.02; // 2% Pauschalsteuer
-const MINIJOB_UMLAGE_U1 = 0.011; // 1,1% U1 (Krankheit)
-const MINIJOB_UMLAGE_U2 = 0.022; // 2,2% U2 (Mutterschaft) - ab 2025
+const MINIJOB_UMLAGE_U1 = 0.008; // 0,8% U1 (Krankheit) - Minijob-Zentrale
+const MINIJOB_UMLAGE_U2 = 0.0022; // 0,22% U2 (Mutterschaft) - Minijob-Zentrale
 
 // Typische Dienstleistungen
 const BEISPIEL_DIENSTLEISTUNGEN = [
@@ -420,7 +420,7 @@ export default function HaushaltshilfeRechner() {
               </div>
             </div>
             <p className="text-xs text-purple-600 mt-2">
-              Abgaben: 5% RV + 5% KV + 1,6% UV + 2% Pauschalsteuer + 1,1% U1 + 2,2% U2
+              Abgaben: 5% RV + 5% KV + 1,6% UV + 2% Pauschalsteuer + 0,8% U1 + 0,22% U2 = 14,62%
             </p>
           </div>
         </div>
@@ -752,7 +752,7 @@ export default function HaushaltshilfeRechner() {
             <div className="flex items-start gap-3">
               <span className="bg-purple-200 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">2</span>
               <p>
-                <strong>SEPA-Lastschrift:</strong> Die Abgaben (~14,9% vom Lohn) werden 
+                <strong>SEPA-Lastschrift:</strong> Die Abgaben (~14,62% vom Lohn) werden 
                 halbjährlich per Lastschrift eingezogen.
               </p>
             </div>

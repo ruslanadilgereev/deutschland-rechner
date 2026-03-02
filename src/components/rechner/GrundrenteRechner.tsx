@@ -14,13 +14,13 @@ const GRUNDRENTE_2026 = {
   maxVerdienst: 3463,          // € brutto/Monat (80% des Durchschnitts)
   
   // Freibeträge für Einkommensprüfung (2026)
-  freibetragAlleinstehend: 1491,  // € zu versteuerndes Einkommen/Monat
-  freibetragPaar: 2326,           // € zu versteuerndes Einkommen/Monat
+  freibetragAlleinstehend: 1492,  // € zu versteuerndes Einkommen/Monat (DRV 2026)
+  freibetragPaar: 2327,           // € zu versteuerndes Einkommen/Monat (DRV 2026)
   
   // Anrechnungsstufen
   anrechnungsstufe1: 0.60,        // 60% werden angerechnet bis zur 2. Grenze
-  stufe1Grenze: 417,              // € über Freibetrag (Alleinstehend)
-  stufe1GrenzePaar: 651,          // € über Freibetrag (Paare)
+  stufe1Grenze: 417,              // € über Freibetrag (Alleinstehend): 1.909 - 1.492 = 417
+  stufe1GrenzePaar: 417,          // € über Freibetrag (Paare): 2.744 - 2.327 = 417
 };
 
 interface GrundrenteErgebnis {

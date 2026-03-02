@@ -149,7 +149,7 @@ export default function GrundsteuerRechner() {
 
       berechnungsweg = [
         { label: 'Bodenrichtwert × Grundstücksfläche', wert: `${bodenrichtwert.toLocaleString('de-DE')} € × ${grundstuecksflaeche} m² = ${grundsteuerwert.toLocaleString('de-DE')} €` },
-        { label: `× Steuermesszahl (${istWohnen ? '0,91‰' : '1,26‰'})`, wert: `= ${grundsteuermessbetrag.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` },
+        { label: `× Steuermesszahl (${istWohnen ? '0,91‰' : '1,30‰'})`, wert: `= ${grundsteuermessbetrag.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` },
         { label: `× Hebesatz (${hebesatz}%)`, wert: `= ${grundsteuerJahr.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} € / Jahr` },
       ];
     } 

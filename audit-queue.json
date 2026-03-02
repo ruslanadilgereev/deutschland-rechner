@@ -1,10 +1,5 @@
 {
   "pending": [
-    "grundrente-rechner",
-    "grundsteuer-rechner",
-    "grundumsatz-rechner",
-    "handwerkerkosten-rechner",
-    "haushaltshilfe-rechner",
     "heizkosten-rechner",
     "hochzeit-rechner",
     "homeoffice-pauschale-rechner",
@@ -137,7 +132,12 @@
     "geburtstermin-rechner",
     "gehaltsvergleich-rechner",
     "gewerbesteuer-rechner",
-    "grunderwerbsteuer-rechner"
+    "grunderwerbsteuer-rechner",
+    "grundrente-rechner",
+    "grundsteuer-rechner",
+    "grundumsatz-rechner",
+    "handwerkerkosten-rechner",
+    "haushaltshilfe-rechner"
   ],
   "issues": [
     {
@@ -706,7 +706,98 @@
       "severity": "info",
       "description": "All 16 Bundesland GrESt rates verified against finanz-tools.de and GrEStG: BY 3.5%, BW/NI/RP/ST/TH 5.0%, HB/HH/SN 5.5%, BE/HE/MV 6.0%, BB/NW/SL/SH 6.5%. Bremen 5.5% since 01.07.2025 correctly noted. Simple percentage calculation - no edge cases.",
       "fixed": false
+    },
+    {
+      "calculator": "grundrente-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Freibetrag Alleinstehend was 1491€, corrected to 1492€ per DRV/BMAS 2026. Freibetrag Paar was 2326€, corrected to 2327€. Stufe1GrenzePaar was 651€, corrected to 417€ (=2744-2327, matching official DRV data).",
+      "fixed": true
+    },
+    {
+      "calculator": "grundrente-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Updated meta description freibetrag from 1.491€ to 1.492€. Updated Freibetrag values and Stufe 1 description in SEO content.",
+      "fixed": true
+    },
+    {
+      "calculator": "grundrente-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Aufwertung (verdoppeln, begrenzen auf Höchstwert, Differenz), 12.5% Abzug (Äquivalenzfaktor 0.875), max 35 Jahre, Rentenwert 40.79€ ab 01.07.2025, Höchstwert-Interpolation 33J=0.4 to 35J=0.8 - all correct per BMAS/DRV.",
+      "fixed": false
+    },
+    {
+      "calculator": "grundsteuer-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "Baden-Württemberg Bodenwertmodell: Display showed 1,26‰ for Gewerbe but calculation used correct 1,30‰. Fixed display to show 1,30‰.",
+      "fixed": true
+    },
+    {
+      "calculator": "grundsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: BW Bodenwertmodell 1.30‰ (Wohnen 0.91‰ = 1.30‰×0.7) per LGrStG BW. Bundesmodell 0.31‰/0.34‰ per §15 GrStG. Flächenmodell 0.04€/m² Grund + 0.50€/m² Gebäude (Wohnabschlag 30%→0.35€) per BayGrStG. All correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "grundsteuer-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description shortened from 171 to 135 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "grundumsatz-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Mifflin-St Jeor (1990) M:10w+6.25h-5a+5, F:10w+6.25h-5a-161 correct per original paper. Harris-Benedict revised (1984) correct. WHO formula correct for age groups. PAL factors match DGE/WHO. All formulas verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "grundumsatz-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 69 chars → 53 chars. Description was 164 chars → 142 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "handwerkerkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified §35a Abs.3 EStG: 20% Arbeitskosten, max 1.200€ (=6.000€ anrechenbar). §35a Abs.2: 20% max 4.000€. §35a Abs.1: 20% max 510€. All calculations correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "handwerkerkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was outdated (2024) and 68 chars → updated to 2026 and shortened to 56 chars. Description was 175 chars → 138 chars. Subtitle updated from 2024 to 2026.",
+      "fixed": true
+    },
+    {
+      "calculator": "haushaltshilfe-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Minijob-Haushalt Arbeitgeber-Abgaben U1 was 1.1%, corrected to 0.8%. U2 was 2.2%, corrected to 0.22%. Total was ~16.9%, now correct 14.62% per Minijob-Zentrale official rates.",
+      "fixed": true
+    },
+    {
+      "calculator": "haushaltshilfe-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §35a Abs.2 max 4.000€ (20% of 20.000€), §35a Abs.1 max 510€ (20% of 2.550€). Minijob-Grenze 603€/Monat 2026 correct. Pauschale RV 5%, KV 5%, UV 1.6%, Steuer 2% all correct per Minijob-Zentrale.",
+      "fixed": false
+    },
+    {
+      "calculator": "haushaltshilfe-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 73 chars → 56 chars. Description shortened. Updated 14.9% references to 14.62% in .astro and .tsx.",
+      "fixed": true
     }
   ],
-  "lastAuditDate": "2026-07-02"
+  "lastAuditDate": "2026-03-02"
 }
