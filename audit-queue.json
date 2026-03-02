@@ -1,10 +1,5 @@
 {
   "pending": [
-    "muetterrente-rechner",
-    "mutterschutz-rechner",
-    "nachtschicht-rechner",
-    "nebenkosten-rechner",
-    "notarkosten-rechner",
     "notendurchschnitt-rechner",
     "pendlerpauschale-rechner",
     "pflegegeld-rechner",
@@ -137,7 +132,12 @@
     "mietkaution-rechner",
     "mietpreisbremse-rechner",
     "mindestlohn-rechner",
-    "minijob-rechner"
+    "minijob-rechner",
+    "muetterrente-rechner",
+    "mutterschutz-rechner",
+    "nachtschicht-rechner",
+    "nebenkosten-rechner",
+    "notarkosten-rechner"
   ],
   "issues": [
     {
@@ -1370,6 +1370,90 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified all AG-Abgaben against Minijob-Zentrale 2026: KV 13%, RV 15%, Pauschsteuer 2%, UV ~1.6%, U1 0.8% (gesenkt von 1.1%), U2 0.22%, Insolvenzumlage 0.15% all correct. AN-RV-Eigenanteil 3.6% (gewerblich), 13.6% (Privathaushalt) correct. Minijob-Grenze 603€ (13.90×130÷3) correct. Haushaltsscheck KV/RV je 5% correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "muetterrente-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 66 chars → 50 chars. Description was 176 chars → 120 chars. Added BreadcrumbSchema. Fixed broken internal link (riester-rente-rechner → riester-rechner).",
+      "fixed": true
+    },
+    {
+      "calculator": "muetterrente-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 2.5 EP vor 1992, 3 EP ab 1992 per §§56, 249, 249a SGB VI. Mütterrente III ab 01.01.2027 (3 EP für alle Kinder) confirmed per DRV. Rentenwert 40.79€ ab 01.07.2025 correct. Simple EP×Rentenwert formula verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "mutterschutz-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Added missing BreadcrumbSchema. Title (58 chars) and description (160 chars) within limits.",
+      "fixed": true
+    },
+    {
+      "calculator": "mutterschutz-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §3 MuSchG Schutzfristen (6W vor, 8W nach, 12W bei Früh-/Mehrlingsgeburt). §24i SGB V max 13€/Tag Krankenkasse. §20 MuSchG AG-Zuschuss = Netto-13€. PKV 210€ einmalig §19 Abs.2 MuSchG. Netto/90 Tage Tagessatz correct. All calculations verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "nachtschicht-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 77 chars → 63 chars. Description was 180 chars → 142 chars. All 2025 references updated to 2026 (title, subtitle, SEO heading, structured data, keywords). Added BreadcrumbSchema and Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "nachtschicht-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "Minijob-Grenze in FAQ was 538€ (2024 value), corrected to 603€ (2026). Source: §8 Abs.1a SGB IV.",
+      "fixed": true
+    },
+    {
+      "calculator": "nachtschicht-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified §3b EStG: Nacht 25%, Nacht 0-4h 40% (bei Beginn vor 0 Uhr), Sonntag 50%, Feiertag 125%, besondere Feiertage 150% (24.12. ab 14h, 25./26.12., 1. Mai). Grundlohn max 50€/h. Kombinationen korrekt addiert. SV-Freiheit correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "nebenkosten-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Betriebskostenspiegel data was outdated. Updated from wrong 2.88€/m² average to correct 2.67€/m² per Betriebskostenspiegel Abrechnungsjahr 2024 (DMB, published Dez. 2025). Individual categories also updated: Grundsteuer 0.21→0.18€, Versicherungen 0.18→0.31€, Müllabfuhr 0.22→0.16€, Gartenpflege 0.11→0.15€, Straßenreinigung 0.06→0.04€, Sonstige 0.05→0.07€.",
+      "fixed": true
+    },
+    {
+      "calculator": "nebenkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description was 172 chars → 99 chars. SEO content table updated with correct 2024 Betriebskostenspiegel values. FAQ average updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "nebenkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified BetrKV §2 categories (17 umlagefähige Kostenarten). Regional factors reasonable. Heizkosten per Energieträger plausible. Baujahr-Faktoren reflect EnEV standards. Estimation model overall sound.",
+      "fixed": false
+    },
+    {
+      "calculator": "notarkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 73 chars → 54 chars. Added BreadcrumbSchema. Added Verwandte Rechner section with 6 internal links. Added kaufnebenkosten-rechner to inline links.",
+      "fixed": true
+    },
+    {
+      "calculator": "notarkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified GNotKG Tabelle B (Anlage 2 zu §34): All 5 reference values match official table exactly (500→15€, 10k→75€, 100k→273€, 500k→935€, 1M→1735€). Gebührenfaktoren correct: Beurkundung 2.0, Vollzug 0.5, Betreuung 0.5, Grundschuld 1.0. MwSt 19% on Notar only. Grundbuch MwSt-frei. All correct.",
       "fixed": false
     }
   ],
