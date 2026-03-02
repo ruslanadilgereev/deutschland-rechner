@@ -683,7 +683,7 @@ export default function KrankengeldRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Deutsche Rentenversicherung – Beitragssätze 2025
+            Deutsche Rentenversicherung – Beitragssätze 2026
           </a>
         </div>
       </div>

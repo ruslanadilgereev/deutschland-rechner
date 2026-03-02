@@ -1,13 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import KirchensteuerRechner from '../components/rechner/KirchensteuerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Kirchensteuer-Rechner 2026 – 8% oder 9% berechnen";
+const description = "Kirchensteuer berechnen 2026: 8% oder 9% inkl. Kappung nach Bundesland. Mit Kinderfreibetrag & Steuerersparnis. Jetzt kostenlos berechnen!";
+const keywords = "Kirchensteuer Rechner, Kirchensteuer berechnen, Kirchensteuer 8 Prozent, Kirchensteuer 9 Prozent, Kirchensteuer Kappung, Kirchensteuer Ersparnis, Kirchensteuer Bayern, Kirchensteuer NRW, Kirchensteuer absetzen, Kirchensteuer 2026";
 ---
 
 <Layout 
-  title="Kirchensteuer-Rechner 2026 | 8% oder 9% berechnen + Kappung" 
-  description="Kirchensteuer-Rechner 2026: Berechnen Sie Ihre Kirchensteuer (8% oder 9%) inkl. Kappungsgrenze. Mit Kinderfreibetrag, Steuerersparnis durch Absetzbarkeit. Kostenlos!"
-  keywords="Kirchensteuer Rechner, Kirchensteuer berechnen, Kirchensteuer 8 Prozent, Kirchensteuer 9 Prozent, Kirchensteuer Kappung, Kirchensteuer Ersparnis, Kirchensteuer Bayern, Kirchensteuer NRW, Kirchensteuer absetzen, Kirchensteuer 2025, Kirchensteuer 2026"
+  title={title}
+  description={description}
+  keywords={keywords}
 >
+  <BreadcrumbSchema items={[{ name: "Kirchensteuer-Rechner", url: "/kirchensteuer-rechner" }]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
@@ -34,6 +40,87 @@ import KirchensteuerRechner from '../components/rechner/KirchensteuerRechner';
     <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <KirchensteuerRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kirchensteuer 2026: Alles was Sie wissen müssen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Kirchensteuer</strong> ist eine Zuschlagsteuer auf die Einkommensteuer, die von 
+            Mitgliedern anerkannter Religionsgemeinschaften in Deutschland gezahlt wird. Mit unserem 
+            <strong>Kirchensteuer-Rechner</strong> berechnen Sie schnell Ihre genaue Kirchensteuer – 
+            inkl. Kappung und Steuerersparnis.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kirchensteuersätze in Deutschland</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>8%</strong> in Bayern und Baden-Württemberg</li>
+            <li><strong>9%</strong> in allen anderen 14 Bundesländern</li>
+          </ul>
+          <p>
+            Wichtig: Die Kirchensteuer wird <strong>auf die Einkommensteuer</strong> berechnet, nicht 
+            auf das Einkommen. Bei einer Einkommensteuer von 10.000€ zahlen Sie also 800€ bzw. 900€ 
+            Kirchensteuer.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kappung der Kirchensteuer</h3>
+          <p>
+            Die <strong>Kappung</strong> begrenzt die Kirchensteuer auf einen bestimmten Prozentsatz 
+            des zu versteuernden Einkommens (2,75% bis 4% je nach Bundesland und Konfession). 
+            In Bayern gibt es keine Kappung.
+          </p>
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-purple-800">
+              <strong>Tipp:</strong> In Baden-Württemberg, Hessen, NRW, Rheinland-Pfalz und dem 
+              Saarland muss die Kappung <strong>beantragt</strong> werden. In allen anderen 
+              Bundesländern (außer Bayern) erfolgt sie automatisch.
+            </p>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kirchensteuer als Sonderausgabe absetzen</h3>
+          <p>
+            Die gezahlte Kirchensteuer ist gemäß <strong>§10 Abs. 1 Nr. 4 EStG</strong> vollständig 
+            als Sonderausgabe absetzbar. Die effektive Belastung ist daher deutlich geringer als der 
+            nominale Betrag.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/lohnsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Lohnsteuer-Rechner</p>
+          </a>
+          <a href="/soli-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Soli-Rechner</p>
+          </a>
+          <a href="/steuerklassen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Steuerklassen-Rechner</p>
+          </a>
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+        </div>
+      </div>
     </div>
   </main>
 

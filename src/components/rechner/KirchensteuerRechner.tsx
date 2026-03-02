@@ -84,7 +84,7 @@ const KIRCHENSTEUER_DATEN: Record<string, KirchensteuerInfo> = {
   'Bremen': {
     satz: 0.09,
     kappungEvang: 0.035,
-    kappungKath: 0.035,
+    kappungKath: 0.03, // Kath. Bistum Osnabrück: 3,0% (Biallo/kirchenfinanzen.de)
     kappungAutomatisch: true,
     pauschalSatz: 0.07,
   },
@@ -104,9 +104,9 @@ const KIRCHENSTEUER_DATEN: Record<string, KirchensteuerInfo> = {
   },
   'Mecklenburg-Vorpommern': {
     satz: 0.09,
-    kappungEvang: 0.03,
+    kappungEvang: 0.035, // Nordkirche: 3,5% (Biallo 2025)
     kappungKath: 0.03,
-    kappungAutomatisch: true,
+    kappungAutomatisch: true, // teilweise je Kirche
     pauschalSatz: 0.05,
   },
   'Niedersachsen': {

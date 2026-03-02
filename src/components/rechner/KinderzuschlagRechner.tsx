@@ -17,7 +17,7 @@ const KINDERZUSCHLAG_2026 = {
   maxProKind: 297,          // Maximaler KiZ pro Kind seit 01.01.2025 (§ 6a Abs. 2 BKGG)
   mindesteinkommenAlleinerziehend: 600, // Mindestbrutto Alleinerziehende (§ 6a Abs. 1 Nr. 2 BKGG)
   mindesteinkommenPaar: 900,             // Mindestbrutto Paare (§ 6a Abs. 1 Nr. 2 BKGG)
-  kindergeld2026: 255,      // Kindergeld pro Kind seit 2025 (§ 6 BKGG)
+  kindergeld2026: 259,      // Kindergeld pro Kind seit 2026 (§ 6 BKGG) – erhöht von 255€ (2025)
 };
 
 /**

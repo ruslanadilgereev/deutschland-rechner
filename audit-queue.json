@@ -1,10 +1,5 @@
 {
   "pending": [
-    "kindergeld-rechner",
-    "kinderzuschlag-rechner",
-    "kirchensteuer-rechner",
-    "koerperfett-rechner",
-    "krankengeld-rechner",
     "krankenkassenbeitrag-rechner",
     "kredit-rechner",
     "krypto-steuer-rechner",
@@ -137,7 +132,12 @@
     "kalorien-rechner",
     "kapitalertragsteuer-rechner",
     "kaufnebenkosten-rechner",
-    "kfz-steuer-rechner"
+    "kfz-steuer-rechner",
+    "kindergeld-rechner",
+    "kinderzuschlag-rechner",
+    "kirchensteuer-rechner",
+    "koerperfett-rechner",
+    "krankengeld-rechner"
   ],
   "issues": [
     {
@@ -957,6 +957,90 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified against §9 KraftStG and Zoll.de: Hubraum Benzin 2€/100cm³, Diesel 9.50€/100cm³ correct. CO₂ progressive Staffelung (0-95: 0€, 96-115: 2€, 116-135: 2.20€, 136-155: 2.50€, 156-175: 2.90€, 176-195: 3.40€, >195: 4€) all correct per §9 Abs.1 Nr.2b KraftStG. Elektro-Befreiung max 10 Jahre bis 31.12.2030 (§3d KraftStG) correct. Oldtimer 191.73€ correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "kinderzuschlag-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Astro page showed 292€ (2024 value) instead of correct 297€ (since 01.01.2025) in header, SEO text, FAQ, structured data. Fixed.",
+      "fixed": true
+    },
+    {
+      "calculator": "kinderzuschlag-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Kindergeld in component was 255€ (2025 value) instead of correct 259€ (2026 value). Fixed.",
+      "fixed": true
+    },
+    {
+      "calculator": "kinderzuschlag-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 74 chars → 51 chars. Description was 165 chars → 148 chars. Added BreadcrumbSchema. Added Verwandte Rechner section. Added FAQ structured data.",
+      "fixed": true
+    },
+    {
+      "calculator": "kirchensteuer-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "Bremen kath. Kappung was 3.5% → corrected to 3.0% (Bistum Osnabrück). MV evang. Kappung was 3.0% → corrected to 3.5% (Nordkirche). Source: Biallo/kirchenfinanzen.de.",
+      "fixed": true
+    },
+    {
+      "calculator": "kirchensteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 57 chars → 51 chars. Description was 166 chars → 138 chars. Added BreadcrumbSchema. Added SEO content section. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "kirchensteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified §32a EStG 2026 Tarif, KiSt 8/9%, Kappungssätze, Kinderfreibetrag 9.756€, Splittingtarif, Absetzbarkeit §10 EStG. All correct (after kappung fixes).",
+      "fixed": false
+    },
+    {
+      "calculator": "krankengeld-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Entire page still referenced 2025. Updated title, subtitle, SEO headings, BBG (5.512,50→5.812,50€), FAQ, structured data to 2026. Added BreadcrumbSchema and Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "krankengeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified §47 SGB V: 70% Brutto/90% Netto, BBG-KV 5.812,50€/Monat correct. SV-Abzüge: RV 9.3%, AV 1.3%, PV 1.8% base + 0.6% kinderlos + 0.25% multi-child abschlag all correct. 78-Wochen-Bezugsdauer correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "kindergeld-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description was 178 chars → 140 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "kindergeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 259€ pro Kind seit 01.01.2026 (Steuerfortentwicklungsgesetz). Kinderfreibetrag 9.756€. Simple multiplication – all correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "koerperfett-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description was 176 chars → 127 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "koerperfett-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Navy/Hodgdon-Beckett 1984 formulas. Male: 495/(1.0324-0.19077×log10(waist-neck)+0.15456×log10(height))-450. Female: 495/(1.29579-0.35004×log10(waist+hip-neck)+0.22100×log10(height))-450. KFA categories match ACE reference ranges. All correct.",
       "fixed": false
     }
   ],
