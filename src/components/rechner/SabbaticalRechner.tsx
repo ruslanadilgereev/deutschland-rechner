@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 
 // Sozialversicherungsbeiträge 2026 (Arbeitnehmer + Arbeitgeber gesamt)
 const SV_BEITRAEGE = {
-  krankenversicherung: 0.146 + 0.017, // 14,6% + ~1,7% Zusatzbeitrag durchschnitt
+  krankenversicherung: 0.146 + 0.029, // 14,6% + 2,9% Ø Zusatzbeitrag 2026 (GKV-Schätzerkreis)
   rentenversicherung: 0.186,
   arbeitslosenversicherung: 0.026,
   pflegeversicherung: 0.036,
@@ -10,8 +10,8 @@ const SV_BEITRAEGE = {
 
 // Beitragsbemessungsgrenzen 2026
 const BBG_2026 = {
-  krankenversicherung: 69750, // Jahres-BBG KV/PV
-  rentenversicherung: 96600, // Jahres-BBG RV/AV West
+  krankenversicherung: 69750, // Jahres-BBG KV/PV (5.812,50€ × 12)
+  rentenversicherung: 101400, // Jahres-BBG RV/AV (8.450€ × 12, einheitlich seit 2025)
 };
 
 export default function SabbaticalRechner() {
@@ -73,15 +73,15 @@ export default function SabbaticalRechner() {
     const nettoVerlust = nettoVorher - nettoNachher;
     
     // === 7. Rentenanspruch (Entgeltpunkte) ===
-    // Durchschnittsentgelt 2026 (geschätzt)
-    const durchschnittsentgelt = 47450; // ca. Wert für 2026
+    // Durchschnittsentgelt 2026 (vorläufig, per SV-Rechengrößenverordnung 2026)
+    const durchschnittsentgelt = 51944; // 51.944€ per Bundesregierung/DRV
     const entgeltpunkteVorher = bruttoJahr / durchschnittsentgelt;
     const entgeltpunkteNachher = reduziertesJahr / durchschnittsentgelt;
     const entgeltpunkteVerlust = entgeltpunkteVorher - entgeltpunkteNachher;
     const entgeltpunkteVerlustGesamt = entgeltpunkteVerlust * (gesamtMonate / 12);
     
-    // Aktueller Rentenwert 2026 (geschätzt)
-    const rentenwert = 40.32; // €/EP/Monat
+    // Aktueller Rentenwert (seit 01.07.2025)
+    const rentenwert = 40.79; // €/EP/Monat
     const rentenVerlustMonatlich = entgeltpunkteVerlustGesamt * rentenwert;
     
     // === 8. Zeitangaben formatieren ===
@@ -507,7 +507,7 @@ export default function SabbaticalRechner() {
         </div>
         
         <p className="text-xs text-gray-500 mt-4">
-          Berechnung basiert auf Durchschnittsentgelt ~47.450€ und aktuellem Rentenwert ~40,32€ (Stand 2026, geschätzt).
+          Berechnung basiert auf Durchschnittsentgelt 51.944€ (vorläufig 2026) und aktuellem Rentenwert 40,79€ (seit 01.07.2025).
           Die tatsächliche Auswirkung hängt von vielen Faktoren ab.
         </p>
       </div>

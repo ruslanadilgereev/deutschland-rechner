@@ -612,7 +612,7 @@ export default function SchenkungsteuerRechner() {
 
       {/* Steuertabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📋 Schenkungsteuer-Tabelle 2025/2026</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📋 Schenkungsteuer-Tabelle 2026</h3>
         
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -683,7 +683,7 @@ export default function SchenkungsteuerRechner() {
 
       {/* Freibeträge Übersicht */}
       <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-pink-800 mb-3">💰 Freibeträge bei Schenkung 2025/2026</h3>
+        <h3 className="font-bold text-pink-800 mb-3">💰 Freibeträge bei Schenkung 2026</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
           <div className="bg-white rounded-xl p-3">
             <span className="text-green-600 font-medium">Ehepartner/Lebenspartner</span>

@@ -1,10 +1,5 @@
 {
   "pending": [
-    "riester-rechner",
-    "rundfunkbeitrag-rechner",
-    "sabbatical-rechner",
-    "scheidungskosten-rechner",
-    "schenkungsteuer-rechner",
     "soli-rechner",
     "spar-rechner",
     "spritkosten-rechner",
@@ -137,7 +132,12 @@
     "renten-rechner",
     "rentenluecke-rechner",
     "rentensteuer-rechner",
-    "restwert-rechner"
+    "restwert-rechner",
+    "riester-rechner",
+    "rundfunkbeitrag-rechner",
+    "sabbatical-rechner",
+    "scheidungskosten-rechner",
+    "schenkungsteuer-rechner"
   ],
   "issues": [
     {
@@ -1713,6 +1713,111 @@
       "type": "calculation",
       "severity": "info",
       "description": "Pure math calculator. Neuer Preis = Originalpreis × (1-R/100) correct. Double discount: Preis × (1-R1/100) × (1-R2/100) correctly not additive. Staffelrabatt display correct. Edge cases: min 0%, max 100%, non-negative price. All formulas verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "riester-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 74 chars → 51 chars. Description was 167 chars → 126 chars. All year references updated 2025→2026. Added BreadcrumbSchema. Added Riester-Reform 2027 info box.",
+      "fixed": true
+    },
+    {
+      "calculator": "riester-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Grundzulage 175€, Kinderzulage 185/300€, Berufseinsteigerbonus 200€, Mindesteigenbeitrag 4% abzgl. Zulagen min 60€, Höchstbeitrag 2.100€, Sockelbeitrag 60€ – all correct per §10a/§79ff EStG. Reform ab 2027 (beitragsproportional) noted but not yet in effect for 2026.",
+      "fixed": false
+    },
+    {
+      "calculator": "rundfunkbeitrag-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 69 chars → 54 chars. Description was 179 chars → 119 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "rundfunkbeitrag-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 18,36€/Monat (since Jan 2024, unchanged). Ermäßigung 6,12€ (1/3) per §4 Abs.2 RBStV correct. Befreiungsgründe §4 RBStV complete (Bürgergeld, Grundsicherung, BAföG, Asylbewerber, Hilfe zur Pflege, TBl, Pflegeheim, Sonderfürsorge). BVerfG Verfassungsbeschwerde 1 BvR 2524/24 correctly noted. No calculation errors.",
+      "fixed": false
+    },
+    {
+      "calculator": "sabbatical-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Durchschnittsentgelt was 47.450€ (wrong, no official source for this value). Corrected to 51.944€ per SV-Rechengrößenverordnung 2026.",
+      "fixed": true
+    },
+    {
+      "calculator": "sabbatical-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Rentenwert was 40,32€ (wrong). Corrected to 40,79€ (since 01.07.2025 per Bundesregierung).",
+      "fixed": true
+    },
+    {
+      "calculator": "sabbatical-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "KV Zusatzbeitrag was 1,7% (2024 value). Corrected to 2,9% (Ø 2026 per GKV-Schätzerkreis).",
+      "fixed": true
+    },
+    {
+      "calculator": "sabbatical-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "BBG RV/AV was 96.600€ (8.050×12, 2025 value). Corrected to 101.400€ (8.450×12, 2026).",
+      "fixed": true
+    },
+    {
+      "calculator": "sabbatical-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Added BreadcrumbSchema. Added Verwandte Rechner section with 5 internal links. Title (56 chars) and description (150 chars) within limits.",
+      "fixed": true
+    },
+    {
+      "calculator": "sabbatical-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified Ansparmodell formula: Gehalt% = Arbeitsmonate/Gesamtmonate correct. Netto-Schätzung uses simplified Steuerklassen-Quoten (labeled as approximation). AG-Kostenberechnung reasonable. No legal entitlement in Germany confirmed.",
+      "fixed": false
+    },
+    {
+      "calculator": "scheidungskosten-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "BOTH RVG and GKG/FamGKG fee tables were using pre-KostBRÄG 2025 values (pre-June 2025). Updated to KostBRÄG 2025 tables (since 01.06.2025, ~6% higher). E.g. RVG bis 10.000€: 614→652€, bis 22.000€: 822→872€. GKG bis 10.000€: 266→283€, bis 22.000€: 382→405€.",
+      "fixed": true
+    },
+    {
+      "calculator": "scheidungskosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 68 chars → 57 chars. Description was 176 chars → 118 chars. Added BreadcrumbSchema. Fixed typo \"ratenzahlung\" → \"Ratenzahlung\".",
+      "fixed": true
+    },
+    {
+      "calculator": "scheidungskosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Verfahrenswert per §43 FamGKG (3×Netto + Vermögenszuschlag + VA). Mindestverfahrenswert 3.000€ correct. RVG: Verfahrensgebühr 1,3×, Terminsgebühr 1,2×, Einigungsgebühr 1,0× per VV RVG Nr. 3100/3104/1000. Auslagenpauschale 20€ per Nr. 7002 VV RVG. MwSt 19% correct. Gerichtskosten 2× Gebühr for Familienverfahren correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "schenkungsteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 73 chars → 54 chars. Description was 168 chars → 100 chars. Updated all 2025/2026 dual-year refs to just 2026. Added BreadcrumbSchema. Added Verwandte Rechner section with 4 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "schenkungsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified all values against §16, §19 ErbStG: Freibeträge (500k Ehepartner, 400k Kinder, 200k Enkel, 100k Urenkel, 20k Eltern/Geschwister/Sonstige) correct. Steuersätze Kl.I 7-30%, Kl.II 15-43%, Kl.III 30-50% correct. Eltern/Großeltern correctly shown as Steuerklasse II for Schenkung (vs Kl.I for Erbschaft). 10-Jahres-Regel §14 ErbStG correctly implemented. Nießbrauch-Abzug and Vorschenkungen logic correct. Steuerübernahme durch Schenker (Grossing-up) correctly calculated.",
       "fixed": false
     }
   ],
