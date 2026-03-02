@@ -1,10 +1,5 @@
 {
   "pending": [
-    "inflations-rechner",
-    "kalorien-rechner",
-    "kapitalertragsteuer-rechner",
-    "kaufnebenkosten-rechner",
-    "kfz-steuer-rechner",
     "kindergeld-rechner",
     "kinderzuschlag-rechner",
     "kirchensteuer-rechner",
@@ -137,7 +132,12 @@
     "hochzeit-rechner",
     "homeoffice-pauschale-rechner",
     "iban-rechner",
-    "idealgewicht-rechner"
+    "idealgewicht-rechner",
+    "inflations-rechner",
+    "kalorien-rechner",
+    "kapitalertragsteuer-rechner",
+    "kaufnebenkosten-rechner",
+    "kfz-steuer-rechner"
   ],
   "issues": [
     {
@@ -880,6 +880,83 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified all formulas: Broca (Größe-100, ×0.9 Männer/×0.85 Frauen) matches original 1871 formula. Creff (Größe-100+Alter/10)×0.9×Konstitutionsfaktor correct. Lorentz (Größe-100)-(Größe-150)/4 Männer, /2 Frauen correct. BMI range 18.5-25 correct per WHO. ±10% range for Broca/Lorentz, ±5% for Creff reasonable.",
+      "fixed": false
+    }
+    {
+      "calculator": "inflations-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was '2025' → updated to '2026' (53 chars). Description was 172 chars → 142 chars. Added Verwandte Rechner section with internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "inflations-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Historical inflation rates match Destatis data (2024: 2.2%, 2023: 5.9%, 2022: 6.9%, 2025: 2.2%). Kaufkraft formula Betrag/(1+r)^n correct. Vergangenheit mode Betrag*(1+r)^n correct. Historical data lookup correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "kalorien-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 81 chars → 59 chars. Description was 168 chars → 131 chars. Missing BreadcrumbSchema added.",
+      "fixed": true
+    },
+    {
+      "calculator": "kalorien-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Mifflin-St Jeor (M: 10w+6.25h-5a+5, F: 10w+6.25h-5a-161) matches 1990 paper. Harris-Benedict revised (1984) coefficients correct. Katch-McArdle (370+21.6×LBM) correct. PAL factors 1.2-1.9 match DGE/WHO. Macro recommendations reasonable. Min calorie floor at BMR correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "kapitalertragsteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 68 chars → 62 chars. Description was 163 chars → 149 chars. Missing BreadcrumbSchema added.",
+      "fixed": true
+    },
+    {
+      "calculator": "kapitalertragsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Abgeltungsteuer 25% (§32d EStG), Soli 5.5% = 26.375% total correct. Sparerpauschbetrag 1000/2000€ (§20 Abs.9 EStG) correct. Kirchensteuer ermäßigter Satz 25%/(1+KiSt) per §32d Abs.1 S.3 EStG correct. Teilfreistellung 30%/15%/60%/80% per InvStG correct. Krypto >1 Jahr steuerfrei (§23 EStG) correct. Günstigerprüfung implementation correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "kaufnebenkosten-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Bremen GrESt was 5.0% → corrected to 5.5% (since 01.07.2025). Sachsen GrESt was 3.5% → corrected to 5.5% (since 01.01.2023). Already flagged in eigenkapital-rechner audit. Fixed in both .tsx component and .astro SEO content.",
+      "fixed": true
+    },
+    {
+      "calculator": "kaufnebenkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was '2025' 75 chars → '2026' 59 chars. Description was 185 chars → 157 chars. All year references updated 2025→2026. Missing BreadcrumbSchema added. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "kaufnebenkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified remaining GrESt rates against finanz-tools.de 2026: BY 3.5%, BW/NI/RP/ST/TH 5.0%, HB/HH/SN 5.5%, BE/HE/MV 6.0%, BB/NW/SL/SH 6.5%. Notarkosten 1.5%, Grundbuchkosten 0.5% are reasonable approximations per GNotKG. Maklergesetz 50/50 since 12/2020 correctly implemented.",
+      "fixed": false
+    },
+    {
+      "calculator": "kfz-steuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was '2025' 63 chars → '2026' 57 chars. Description was 159 chars → 127 chars. All '2025' references updated to '2026'. Missing BreadcrumbSchema added. Added Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "kfz-steuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against §9 KraftStG and Zoll.de: Hubraum Benzin 2€/100cm³, Diesel 9.50€/100cm³ correct. CO₂ progressive Staffelung (0-95: 0€, 96-115: 2€, 116-135: 2.20€, 136-155: 2.50€, 156-175: 2.90€, 176-195: 3.40€, >195: 4€) all correct per §9 Abs.1 Nr.2b KraftStG. Elektro-Befreiung max 10 Jahre bis 31.12.2030 (§3d KraftStG) correct. Oldtimer 191.73€ correct.",
       "fixed": false
     }
   ],

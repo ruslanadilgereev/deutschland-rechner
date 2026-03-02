@@ -437,7 +437,7 @@ export default function KfzSteuerRechner() {
 
       {/* CO2-Staffelung Tabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">📈 CO₂-Staffelung 2025</h3>
+        <h3 className="font-bold text-gray-800 mb-3">📈 CO₂-Staffelung 2026</h3>
         <p className="text-sm text-gray-600 mb-4">
           Die CO₂-Komponente wird seit 2021 progressiv berechnet. Je höher der CO₂-Wert, 
           desto mehr zahlen Sie pro Gramm:

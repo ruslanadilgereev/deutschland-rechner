@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-// Grunderwerbsteuer nach Bundesland (Stand 2024/2025)
+// Grunderwerbsteuer nach Bundesland (Stand 2026)
 // Quelle: §11 GrEStG, Ländersteuersätze
 interface Bundesland {
   id: string;
@@ -15,7 +15,7 @@ const BUNDESLAENDER: Bundesland[] = [
   { id: 'by', name: 'Bayern', grunderwerbsteuer: 3.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'be', name: 'Berlin', grunderwerbsteuer: 6.0, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'bb', name: 'Brandenburg', grunderwerbsteuer: 6.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
-  { id: 'hb', name: 'Bremen', grunderwerbsteuer: 5.0, maklerKaeuferAnteil: 2.975, maklerGesamt: 5.95 },
+  { id: 'hb', name: 'Bremen', grunderwerbsteuer: 5.5, maklerKaeuferAnteil: 2.975, maklerGesamt: 5.95 },
   { id: 'hh', name: 'Hamburg', grunderwerbsteuer: 5.5, maklerKaeuferAnteil: 3.125, maklerGesamt: 6.25 },
   { id: 'he', name: 'Hessen', grunderwerbsteuer: 6.0, maklerKaeuferAnteil: 2.975, maklerGesamt: 5.95 },
   { id: 'mv', name: 'Mecklenburg-Vorpommern', grunderwerbsteuer: 6.0, maklerKaeuferAnteil: 2.975, maklerGesamt: 5.95 },
@@ -23,7 +23,7 @@ const BUNDESLAENDER: Bundesland[] = [
   { id: 'nw', name: 'Nordrhein-Westfalen', grunderwerbsteuer: 6.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'rp', name: 'Rheinland-Pfalz', grunderwerbsteuer: 5.0, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'sl', name: 'Saarland', grunderwerbsteuer: 6.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
-  { id: 'sn', name: 'Sachsen', grunderwerbsteuer: 3.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
+  { id: 'sn', name: 'Sachsen', grunderwerbsteuer: 5.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'st', name: 'Sachsen-Anhalt', grunderwerbsteuer: 5.0, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'sh', name: 'Schleswig-Holstein', grunderwerbsteuer: 6.5, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
   { id: 'th', name: 'Thüringen', grunderwerbsteuer: 5.0, maklerKaeuferAnteil: 3.57, maklerGesamt: 7.14 },
@@ -508,7 +508,7 @@ export default function KaufnebenkostenRechner() {
 
       {/* Grunderwerbsteuer-Tabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📋 Grunderwerbsteuer nach Bundesland 2024/2025</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📋 Grunderwerbsteuer nach Bundesland 2026</h3>
         
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -542,7 +542,7 @@ export default function KaufnebenkostenRechner() {
         </div>
         
         <p className="text-xs text-gray-500 mt-3">
-          Günstigste Grunderwerbsteuer: <strong>Bayern und Sachsen</strong> (3,5%). 
+          Günstigste Grunderwerbsteuer: <strong>Bayern</strong> (3,5%). 
           Teuerste: <strong>Brandenburg, NRW, Saarland, Schleswig-Holstein</strong> (6,5%).
         </p>
       </div>
