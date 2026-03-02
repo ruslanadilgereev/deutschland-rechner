@@ -16,7 +16,7 @@ const SONDERAUSGABEN_PAUSCHBETRAG_VERHEIRATET = 72;
 
 // Kranken-/Pflegeversicherung auf Rente (ca. AN-Anteil)
 const KV_BEITRAG = 0.073; // 7,3% + Zusatzbeitrag
-const KV_ZUSATZBEITRAG = 0.019; // Durchschnitt ~1,9%
+const KV_ZUSATZBEITRAG = 0.0145; // Ø Zusatzbeitrag 2,9% / 2 (Rentner zahlt Hälfte, seit 2019)
 const PV_BEITRAG = 0.018; // 1,8% AN-Anteil (2024/2025)
 const PV_ZUSCHLAG_KINDERLOS = 0.006; // +0,6% für Kinderlose ab 23
 
@@ -707,7 +707,7 @@ export default function RentensteuerRechner() {
           </div>
           
           <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
-            <span>− Krankenversicherung (ca. {((KV_BEITRAG + KV_ZUSATZBEITRAG) * 100).toFixed(1)}%)</span>
+            <span>− Krankenversicherung (ca. {((KV_BEITRAG + KV_ZUSATZBEITRAG) * 100).toFixed(2)}%)</span>
             <span>{formatEuro(ergebnis.kvMonatlich)}</span>
           </div>
           

@@ -787,7 +787,7 @@ export default function RentenlueckeRechner() {
           </li>
         </ul>
         <p className="text-xs text-gray-500 mt-3">
-          Stand: Januar 2025. Alle Angaben ohne Gewähr. 
+          Stand: Januar 2026. Alle Angaben ohne Gewähr. 
           Keine Anlageberatung – Ergebnisse dienen nur der Orientierung.
         </p>
       </div>

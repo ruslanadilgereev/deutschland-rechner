@@ -6,7 +6,7 @@ const RENTEN_2026 = {
   rentenwert: 40.79,           // € pro Entgeltpunkt (ab 01.07.2025)
   durchschnittsentgelt: 51944, // € pro Jahr für 1 Entgeltpunkt (2026)
   beitragssatz: 18.6,          // % vom Bruttolohn (Arbeitnehmer + Arbeitgeber)
-  beitragsbemessungsgrenze: 8050, // € pro Monat (West, 2026)
+  beitragsbemessungsgrenze: 8450, // € pro Monat (bundeseinheitlich, 2026)
   rentenniveau: 48,            // % (Haltelinie)
   abschlagProMonat: 0.3,       // % Abzug pro Monat vor Regelaltersgrenze
   maxAbschlag: 14.4,           // % maximaler Abschlag (48 Monate × 0,3%)
