@@ -1,10 +1,5 @@
 {
   "pending": [
-    "soli-rechner",
-    "spar-rechner",
-    "spritkosten-rechner",
-    "spritverbrauch-rechner",
-    "ssw-rechner",
     "steuererstattung-rechner",
     "steuerklassen-rechner",
     "steuerklassenwechsel-rechner",
@@ -137,7 +132,12 @@
     "rundfunkbeitrag-rechner",
     "sabbatical-rechner",
     "scheidungskosten-rechner",
-    "schenkungsteuer-rechner"
+    "schenkungsteuer-rechner",
+    "soli-rechner",
+    "spar-rechner",
+    "spritkosten-rechner",
+    "spritverbrauch-rechner",
+    "ssw-rechner"
   ],
   "issues": [
     {
@@ -1819,6 +1819,83 @@
       "severity": "info",
       "description": "Verified all values against §16, §19 ErbStG: Freibeträge (500k Ehepartner, 400k Kinder, 200k Enkel, 100k Urenkel, 20k Eltern/Geschwister/Sonstige) correct. Steuersätze Kl.I 7-30%, Kl.II 15-43%, Kl.III 30-50% correct. Eltern/Großeltern correctly shown as Steuerklasse II for Schenkung (vs Kl.I for Erbschaft). 10-Jahres-Regel §14 ErbStG correctly implemented. Nießbrauch-Abzug and Vorschenkungen logic correct. Steuerübernahme durch Schenker (Grossing-up) correctly calculated.",
       "fixed": false
+    },
+    {
+      "calculator": "soli-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Freigrenzen 20.350€/40.700€ (2026) match §3 Abs.3 SolzG per Steuerfortentwicklungsgesetz. Soli-Satz 5,5% (§4 SolzG). Milderungszone 11,9% der Differenz zur Freigrenze correct. ESt-Tarif §32a EStG 2026 (12.348/17.799/69.878/277.825€, coefficients 914.51/173.10 etc.) all match official law. Kinderfreibetrag 9.756€ correct. Milderungszone-Ende formula (Freigrenze×0.119/0.064) mathematically correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "soli-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 82 chars → 51 chars. Description was 157 chars → 113 chars (within limits). Added BreadcrumbSchema. Added Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "spar-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Compound interest formula with monthly compounding correct. Monthly deposit at start of period, then interest applied. Zinseszins FV = PV×(1+r)^n + PMT×((1+r)^n-1)/r correct (iterative monthly implementation). Vergleichsberechnung for different rates correct. No edge case issues (handles 0% interest).",
+      "fixed": false
+    },
+    {
+      "calculator": "spar-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was '2025' 72 chars → '2026' 57 chars. Description was 182 chars → 103 chars. All year references updated 2025→2026 (subtitle, H2, Sparerpauschbetrag, Sparmöglichkeiten heading, FAQ, structured data name, component Stand). Added BreadcrumbSchema. Added Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "spritkosten-rechner",
+      "type": "content",
+      "severity": "critical",
+      "description": "Pendlerpauschale section showed '30 Cent pro km' and 'Ab dem 21. km: 38 Cent pro km' — WRONG for 2026! Since 01.01.2026: 0,38€/km ab dem 1. Kilometer (Steuerfortentwicklungsgesetz, §9 Abs.1 S.3 EStG). Fixed to show correct 2026 values.",
+      "fixed": true
+    },
+    {
+      "calculator": "spritkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Formula (Strecke/100×Verbrauch×Preis) correct. CO2-Emissionsfaktoren (Benzin 2.37 kg/l, Diesel 2.65 kg/l, LPG 1.64 kg/l) match UBA values. CO2-Steuer 55€/t (2025), 55-65€/t Preiskorridor (2026) per BEHG/UBA confirmed. Bahn/Bus comparison uses reasonable averages.",
+      "fixed": false
+    },
+    {
+      "calculator": "spritkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was '2025' 63 chars → '2026' 49 chars. Year references updated throughout (subtitle, headings, structured data, FAQ). Added BreadcrumbSchema. Added Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "spritverbrauch-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Formula (Liter/km×100) correct. Verbrauchsreferenzen match ADAC/Spritmonitor data. CO2 factors (Benzin 2.37, Diesel 2.65 kg/l) match UBA. Fahrmodus-Faktoren (Stadt +30%, Autobahn -15%) reasonable per ADAC. Einordnungskategorien match Spritmonitor community averages. Volltank-Methode correctly described.",
+      "fixed": false
+    },
+    {
+      "calculator": "spritverbrauch-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 68 chars → 54 chars. Description was 165 chars → 120 chars. BreadcrumbSchema already present. Internal links present.",
+      "fixed": true
+    },
+    {
+      "calculator": "ssw-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 280 days (40 weeks) from LMP correct per medical standard (Naegele-Regel). Trimester boundaries (1-12, 13-27, 28-40) match WHO/ACOG standards. Mutterschutz 42 days (6 weeks) before ET per §3 MuSchG correct. Baby development data (sizes, weights) matches BZgA familienplanung.de. SSW+Tage notation correct. Empfängnis LMP+14 days is standard assumption for 28-day cycle.",
+      "fixed": false
+    },
+    {
+      "calculator": "ssw-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description was 162 chars → 111 chars. Added missing BreadcrumbSchema. Verwandte Rechner section already present with 6 internal links. Title 50 chars (OK).",
+      "fixed": true
     }
   ],
   "lastAuditDate": "2026-03-02"
