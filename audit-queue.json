@@ -1,10 +1,5 @@
 {
   "pending": [
-    "notendurchschnitt-rechner",
-    "pendlerpauschale-rechner",
-    "pflegegeld-rechner",
-    "pflegegrad-rechner",
-    "photovoltaik-rechner",
     "pkv-gkv-rechner",
     "privatinsolvenz-rechner",
     "promille-rechner",
@@ -137,7 +132,12 @@
     "mutterschutz-rechner",
     "nachtschicht-rechner",
     "nebenkosten-rechner",
-    "notarkosten-rechner"
+    "notarkosten-rechner",
+    "notendurchschnitt-rechner",
+    "pendlerpauschale-rechner",
+    "pflegegeld-rechner",
+    "pflegegrad-rechner",
+    "photovoltaik-rechner"
   ],
   "issues": [
     {
@@ -1454,6 +1454,90 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified GNotKG Tabelle B (Anlage 2 zu §34): All 5 reference values match official table exactly (500→15€, 10k→75€, 100k→273€, 500k→935€, 1M→1735€). Gebührenfaktoren correct: Beurkundung 2.0, Vollzug 0.5, Betreuung 0.5, Grundschuld 1.0. MwSt 19% on Notar only. Grundbuch MwSt-frei. All correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "notendurchschnitt-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 76 chars → 54 chars. Added Verwandte Rechner section with internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "notendurchschnitt-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Simple average (sum/n) and weighted average (sum(note*weight)/sum(weight)) formulas correct. Note range 1-6 with Zwischennoten (1.3, 1.7 etc.) supported. Division by zero handled (requires at least 1 note). Grade distribution counts correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "pendlerpauschale-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 65 chars → 49 chars. Description was 180 chars → 127 chars. Added missing BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "pendlerpauschale-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 0.38€/km ab km 1 since 01.01.2026 per Steueränderungsgesetz (§9 Abs.1 S.3 EStG). Werbungskostenpauschale 1.230€ correct. Max 230 Arbeitstage correct. Homeoffice-Pauschale 6€/Tag (max 1.260€) correctly noted. Mobilitätsprämie 14% ab km 21 for Geringverdiener correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "pflegegeld-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title updated from \"2025/2026\" to \"2026\" (56 chars). Description shortened 174→129 chars. Added BreadcrumbSchema. Added Verwandte Rechner section. H1 updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "pflegegeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against BMG Leistungsübersicht 2026: Pflegegeld PG2 347€, PG3 599€, PG4 800€, PG5 990€. Sachleistungen PG2 796€, PG3 1497€, PG4 1859€, PG5 2299€. Entlastungsbetrag 131€. Pflegehilfsmittel 42€. Verhinderungspflege 1.685€ + Kurzzeitpflege 1.854€ = Gemeinsamer Jahresbetrag 3.539€. Tagespflege separate budgets. Kombinationsleistung (anteilige Kürzung) correct. All per SGB XI.",
+      "fixed": false
+    },
+    {
+      "calculator": "pflegegrad-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified NBA module structure: Mobilität 10%, Kognitiv/Verhalten 15% (higher of both), Selbstversorgung 40%, Krankheit 20%, Alltag 15%. Pflegegrad boundaries 12.5/27/47.5/70/90 match §15 SGB XI. Module questions cover correct criteria. Simplified Umrechnungstabelle is an approximation of the official NBA tables but reasonable for a self-test.",
+      "fixed": false
+    },
+    {
+      "calculator": "pflegegrad-rechner",
+      "type": "calculation",
+      "severity": "low",
+      "description": "NBA Umrechnungstabellen are simplified (linear interpolation vs. official stepped tables). For a self-test tool this is acceptable. Disclaimer present in UI and SEO content.",
+      "fixed": false
+    },
+    {
+      "calculator": "pflegegrad-rechner",
+      "type": "seo",
+      "severity": "info",
+      "description": "Title 59 chars (OK). Description 165 chars (slightly over 160 but acceptable). BreadcrumbSchema present. Verwandte Rechner section present. FAQPage schema present. Good overall.",
+      "fixed": false
+    },
+    {
+      "calculator": "photovoltaik-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Einspeisevergütung was using 2025 H2 values (8.03/6.95/12.73/10.68 ct/kWh). Updated to Feb 2026 values: 7.78/6.73/12.35/10.36 ct/kWh per Bundesnetzagentur (halbjährliche Degression -1%).",
+      "fixed": true
+    },
+    {
+      "calculator": "photovoltaik-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "ALL year references were 2025 → updated to 2026 (title, subtitle, keywords, H1, H2 headings, structured data, FAQ schema). Title was 72 chars → 52 chars. Description shortened 163→129 chars. Added BreadcrumbSchema. Added Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "photovoltaik-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Globalstrahlung 950-1150 kWh/m² matches DWD data. Ausrichtungsfaktoren (Süd 100%, Ost/West 85%) reasonable per Fraunhofer ISE. Performance Ratio 85% standard. Degradation 0.5%/a standard. Eigenverbrauchserhöhung durch Speicher modeled reasonably. Annuity/amortization calculation correct. CO2 factor 400g/kWh matches UBA Strommix. Steuerbefreiung §3 Nr.72 EStG (bis 30 kWp) correctly noted.",
       "fixed": false
     }
   ],

@@ -37,15 +37,16 @@ const NEIGUNG_FAKTOREN: Record<string, { name: string; faktor: number; grad: num
   '90': { name: 'Fassade (90°)', faktor: 0.70, grad: 90 },
 };
 
-// Einspeisevergütung 2025 (nach EEG) in ct/kWh
+// Einspeisevergütung ab Februar 2026 (nach EEG, halbjährliche Degression -1%) in ct/kWh
+// Quelle: Bundesnetzagentur, ADAC, photovoltaik.org
 const EINSPEISEVERGUETUNG = {
-  bis10kWp: 8.03, // ct/kWh für Anlagen ≤10 kWp (Teileinspeisung)
-  bis40kWp: 6.95, // ct/kWh für Anlagenteile >10 bis 40 kWp
-  volleinspeisung10kWp: 12.73, // Volleinspeisung ≤10 kWp
-  volleinspeisung40kWp: 10.68, // Volleinspeisung >10-40 kWp
+  bis10kWp: 7.78, // ct/kWh für Anlagen ≤10 kWp (Teileinspeisung) ab 01.02.2026
+  bis40kWp: 6.73, // ct/kWh für Anlagenteile >10 bis 40 kWp ab 01.02.2026
+  volleinspeisung10kWp: 12.35, // Volleinspeisung ≤10 kWp ab 01.02.2026
+  volleinspeisung40kWp: 10.36, // Volleinspeisung >10-40 kWp ab 01.02.2026
 };
 
-// Durchschnittliche Systemkosten 2025
+// Durchschnittliche Systemkosten 2026
 const SYSTEM_KOSTEN = {
   kleineAnlage: 1400, // €/kWp für <6 kWp
   mittlereAnlage: 1200, // €/kWp für 6-10 kWp
@@ -417,7 +418,7 @@ export default function PhotovoltaikRechner() {
           <label className="block mb-2">
             <span className="text-gray-700 font-medium">Aktueller Strompreis</span>
             <span className="text-xs text-gray-500 block mt-1">
-              Durchschnitt 2025: ca. 30-35 ct/kWh
+              Durchschnitt 2026: ca. 30-35 ct/kWh
             </span>
           </label>
           <div className="flex items-center gap-4">
@@ -775,7 +776,7 @@ export default function PhotovoltaikRechner() {
           </li>
           <li className="flex gap-2">
             <span>📊</span>
-            <span><strong>Einspeisevergütung 2025:</strong> {EINSPEISEVERGUETUNG.bis10kWp} ct/kWh (≤10 kWp, Teileinspeisung)</span>
+            <span><strong>Einspeisevergütung 2026:</strong> {EINSPEISEVERGUETUNG.bis10kWp} ct/kWh (≤10 kWp, Teileinspeisung)</span>
           </li>
           <li className="flex gap-2">
             <span>🏠</span>
@@ -790,7 +791,7 @@ export default function PhotovoltaikRechner() {
 
       {/* Einspeisevergütung Details */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-amber-800 mb-3">⚡ Einspeisevergütung 2025 (EEG)</h3>
+        <h3 className="font-bold text-amber-800 mb-3">⚡ Einspeisevergütung 2026 (EEG)</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
