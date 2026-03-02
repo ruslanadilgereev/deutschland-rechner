@@ -1,10 +1,5 @@
 {
   "pending": [
-    "pkv-gkv-rechner",
-    "privatinsolvenz-rechner",
-    "promille-rechner",
-    "prozent-rechner",
-    "quadratmeterpreis-rechner",
     "rabatt-rechner",
     "renten-rechner",
     "rentenluecke-rechner",
@@ -137,7 +132,12 @@
     "pendlerpauschale-rechner",
     "pflegegeld-rechner",
     "pflegegrad-rechner",
-    "photovoltaik-rechner"
+    "photovoltaik-rechner",
+    "pkv-gkv-rechner",
+    "privatinsolvenz-rechner",
+    "promille-rechner",
+    "prozent-rechner",
+    "quadratmeterpreis-rechner"
   ],
   "issues": [
     {
@@ -1538,6 +1538,84 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified: Globalstrahlung 950-1150 kWh/m² matches DWD data. Ausrichtungsfaktoren (Süd 100%, Ost/West 85%) reasonable per Fraunhofer ISE. Performance Ratio 85% standard. Degradation 0.5%/a standard. Eigenverbrauchserhöhung durch Speicher modeled reasonably. Annuity/amortization calculation correct. CO2 factor 400g/kWh matches UBA Strommix. Steuerbefreiung §3 Nr.72 EStG (bis 30 kWp) correctly noted.",
+      "fixed": false
+    }
+  ],
+    {
+      "calculator": "pkv-gkv-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "PV Arbeitgeberanteil was 1.7% → corrected to 1.8% (paritätisch = 3.6%/2). PKV AG-Zuschuss PV was 98.81€ → corrected to 104.63€. Source: PKV-Verband/privat-patienten.de official 2026 values.",
+      "fixed": true
+    },
+    {
+      "calculator": "pkv-gkv-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 77 chars → 51 chars. Description was 171 chars → 121 chars. Added BreadcrumbSchema and Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "pkv-gkv-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: BBG KV 5.812,50€, VPFG 6.450€/77.400€, GKV 14.6%+Ø2.9%, PV 3.6%/4.2%, PKV AG-Zuschuss KV 508.59€ all correct per Bundesregierung/BMG 2026. PKV Richtwerte are plausible approximations. Langfristvergleich uses reasonable assumptions (2% salary growth, 3.5% PKV increase, 48% Rente).",
+      "fixed": false
+    },
+    {
+      "calculator": "privatinsolvenz-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 76 chars → 54 chars. Description was 173 chars → 106 chars. Updated year references. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "privatinsolvenz-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against Pfändungsfreigrenzenbekanntmachung 2025 (BGBl. I Nr. 110): Grundfreibetrag 1.559,99€, Erhöhung 1. Person 585,23€, weitere 326,04€, Höchstbetrag 4.766,99€ all correct. Unpfändbar-Prozentsätze (30/50/60/70/80/90%) per §850c Abs.3 ZPO correct. Freigrenzen table matches official Pfändungstabelle exactly. Calculation uses continuous formula (slightly different from 10€-step official table but mathematically equivalent).",
+      "fixed": false
+    },
+    {
+      "calculator": "promille-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title had '2025' → removed year (not date-sensitive). Title shortened 62→56 chars. Description shortened. Added BreadcrumbSchema. Structured data name updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "promille-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified Widmark-Formel: BAK = A/(r×m), Reduktionsfaktor Männer 0.68, Frauen 0.55 correct per original Widmark (1932) and Wikipedia/forensic science consensus. Alkoholdichte 0.8 g/ml correct. Resorptionsdefizit 20% (10-30%) reasonable. Abbaurate 0.15‰/h (range 0.1-0.2) matches medical literature. Promillegrenzen 0.0/0.3/0.5/1.1/1.6 per StVG/StGB correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "prozent-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title shortened 63→55 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "prozent-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Pure math calculator. Prozentwert (G×p/100), Prozentsatz (W/G×100), Veränderung ((neu-alt)/alt×100) all mathematically correct. Division-by-zero handled (returns 0). No edge case issues.",
+      "fixed": false
+    },
+    {
+      "calculator": "quadratmeterpreis-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description was 170 chars → 107 chars. Fixed broken internal links: mietrendite-rechner→kaufnebenkosten-rechner, kaufen-oder-mieten-rechner→mieten-oder-kaufen-rechner.",
+      "fixed": true
+    },
+    {
+      "calculator": "quadratmeterpreis-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Simple division formula (Kaufpreis/Wohnfläche) correct. Stadtpreise sourced from Engel & Völkers/Statista are reasonable 2025/2026 approximations. Einordnung bands (60/85/115/150%) reasonable. Kauf-Miete-Verhältnis (Kaufpreis/qm ÷ Miete/qm ÷ 12) is standard Vervielfältiger metric.",
       "fixed": false
     }
   ],
