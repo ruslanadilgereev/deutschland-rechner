@@ -472,7 +472,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'steuererklarung',
+    id: 'steuererstattung',
     name: 'Steuererstattungs-Rechner',
     beschreibung: 'Geschätzte Steuererstattung berechnen',
     icon: '💰',
@@ -597,7 +597,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'rente',
+    id: 'renten',
     name: 'Renten-Rechner',
     beschreibung: 'Gesetzliche Rente berechnen',
     icon: '👴',
@@ -689,7 +689,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'rentenabzuege',
+    id: 'rentensteuer',
     name: 'Rentenabzüge-Rechner',
     beschreibung: 'Abzüge bei vorzeitiger Rente',
     icon: '➖',
@@ -899,7 +899,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'tilgung',
+    id: 'tilgungsplan',
     name: 'Tilgungsplan-Rechner',
     beschreibung: 'Tilgungsplan für Immobiliendarlehen',
     icon: '📊',
@@ -922,7 +922,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'miete-oder-kaufen',
+    id: 'mieten-oder-kaufen',
     name: 'Mieten-oder-Kaufen-Rechner',
     beschreibung: 'Was lohnt sich mehr?',
     icon: '🤔',
@@ -1030,7 +1030,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'kalorienrechner',
+    id: 'kalorien',
     name: 'Kalorien-Rechner',
     beschreibung: 'Täglichen Kalorienbedarf berechnen',
     icon: '🍎',
@@ -1181,7 +1181,7 @@ export const rechnerListe: Rechner[] = [
   // FINANZEN & KREDIT
   // ═══════════════════════════════════════════════════════════════
   {
-    id: 'kreditrechner',
+    id: 'kredit',
     name: 'Kredit-Rechner',
     beschreibung: 'Kreditrate & Zinsen berechnen',
     icon: '💳',
@@ -1246,7 +1246,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'inflation',
+    id: 'inflations',
     name: 'Inflations-Rechner',
     beschreibung: 'Kaufkraftverlust berechnen',
     icon: '📉',
@@ -1271,7 +1271,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'währungsrechner',
+    id: 'waehrungs',
     name: 'Währungs-Rechner',
     beschreibung: 'EUR in andere Währungen umrechnen',
     icon: '💱',
@@ -1304,7 +1304,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Monatsbudget planen (50-30-20)',
     icon: '📋',
     kategorie: 'finanzen',
-    fertig: true,
+    fertig: false,
     seoKeywords: 'Budget Rechner, Haushaltsbuch, 50 30 20 Regel, Budgetplanung, Monatsbudget, Elizabeth Warren',
     quellen: [
       'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/haushaltsbuch-einnahmen-und-ausgaben-im-blick-44954',
@@ -1322,7 +1322,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Trinkgeld berechnen (5-20%)',
     icon: '💶',
     kategorie: 'alltag',
-    fertig: true,
+    fertig: false,
     seoKeywords: 'Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Trinkgeld Restaurant, Trinkgeld Deutschland, Trinkgeld Prozent, aufrunden',
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__3.html',
@@ -1344,7 +1344,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'rabatt-rechner',
+    id: 'rabatt',
     name: 'Rabatt-Rechner',
     beschreibung: 'Ersparnis & Endpreis nach Rabatt berechnen',
     icon: '🏷️',
@@ -1362,7 +1362,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Hundesteuer nach Stadt berechnen',
     icon: '🐕',
     kategorie: 'alltag',
-    fertig: true,
+    fertig: false,
     seoKeywords: 'Hundesteuer Rechner, Hundesteuer berechnen, Hundesteuer Stadt, Hundesteuer 2025, Listenhund Steuer, Kampfhund Steuer, Hundesteuer Berlin, Hundesteuer München',
     quellen: [
       'https://www.destatis.de/DE/Themen/Staat/Steuern/Steuern-Gemeinden/_inhalt.html',
@@ -1376,7 +1376,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'ROI & Rendite p.a. berechnen',
     icon: '📈',
     kategorie: 'alltag',
-    fertig: true,
+    fertig: false,
     seoKeywords: 'Rentabilität Rechner, ROI berechnen, Return on Investment, Rendite berechnen, Investition Rentabilität, ROI Formel, Kapitalrendite, Amortisation',
     quellen: [
       'https://www.ihk.de/themen/gruendung-foerderung/unternehmensgruendung',
@@ -1422,7 +1422,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Alter Rechner, Alter berechnen, wie alt bin ich genau, Alter in Tagen, Tage bis Geburtstag, Geburtsdatum Rechner, Lebenszeit berechnen',
   },
   {
-    id: 'tage-zwischen',
+    id: 'tage',
     name: 'Tage-Rechner',
     beschreibung: 'Tage zwischen zwei Daten zählen',
     icon: '📅',
@@ -1636,7 +1636,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'zeitrechner',
+    id: 'zeit',
     name: 'Zeit-Rechner',
     beschreibung: 'Stunden & Minuten addieren/subtrahieren',
     icon: '⏰',
@@ -1649,7 +1649,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'bruchrechner',
+    id: 'bruch',
     name: 'Bruch-Rechner',
     beschreibung: 'Brüche berechnen & kürzen',
     icon: '➗',
@@ -1737,7 +1737,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'vorfaelligkeit',
+    id: 'vorfaelligkeitsentschaedigung',
     name: 'Vorfälligkeitsentschädigung-Rechner',
     beschreibung: 'Vorfälligkeitsentschädigung bei Kreditablösung',
     icon: '💸',
@@ -1785,7 +1785,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'handwerker',
+    id: 'handwerkerkosten',
     name: 'Handwerkerkosten-Rechner',
     beschreibung: 'Handwerkerleistungen steuerlich absetzen (bis 1.200€)',
     icon: '🔧',
@@ -1926,7 +1926,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'VL & Arbeitnehmersparzulage berechnen',
     icon: '🏦',
     kategorie: 'finanzen',
-    fertig: true,
+    fertig: false,
     seoKeywords: 'VL Rechner, vermögenswirksame Leistungen, VWL Rechner, Arbeitnehmersparzulage, VL Bauspar, VL Aktienfonds, 9 Prozent Zulage, 20 Prozent Zulage, VL 2026, Einkommensgrenze VL 17900 20000',
     quellen: [
       'https://www.gesetze-im-internet.de/vermbildg/',
@@ -1940,7 +1940,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Bausparen Rendite & Zuteilung',
     icon: '🏠',
     kategorie: 'finanzen',
-    fertig: true,
+    fertig: false,
     seoKeywords: 'Bauspar Rechner, Bausparen berechnen, Bausparvertrag Rechner',
   },
 
