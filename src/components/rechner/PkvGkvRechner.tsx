@@ -45,13 +45,13 @@ const SOZIALVERSICHERUNG_2026 = {
     zuschlagKinderlose: 0.6,              // Ab 23 Jahre
     abschlagProKind: 0.25,                // Ab 2. Kind unter 25
     minimum: 2.4,                          // Bei 5+ Kindern
-    arbeitgeberanteil: 1.7,               // Fester AG-Anteil
+    arbeitgeberanteil: 1.8,               // Fester AG-Anteil (paritätisch = 3,6% / 2)
   },
   
   // PKV-Arbeitgeberzuschuss (max 50% der Höchstbeiträge)
   pkvArbeitgeberzuschussMax: {
     krankenversicherung: 508.59,          // 8,75% × 5.812,50 €
-    pflegeversicherung: 98.81,            // 1,7% × 5.812,50 €
+    pflegeversicherung: 104.63,           // 1,8% × 5.812,50 €
   },
 };
 
