@@ -1,10 +1,5 @@
 {
   "pending": [
-    "dividende-rechner",
-    "doppelte-haushaltsfuehrung-rechner",
-    "dreisatz-rechner",
-    "ehegattenunterhalt-rechner",
-    "eigenkapital-rechner",
     "einheiten-rechner",
     "einkommensteuer-rechner",
     "eisprung-rechner",
@@ -137,7 +132,12 @@
     "buergergeld-rechner",
     "bussgeld-rechner",
     "co2-steuer-rechner",
-    "dispo-rechner"
+    "dispo-rechner",
+    "dividende-rechner",
+    "doppelte-haushaltsfuehrung-rechner",
+    "dreisatz-rechner",
+    "ehegattenunterhalt-rechner",
+    "eigenkapital-rechner"
   ],
   "issues": [
     {
@@ -307,6 +307,83 @@
       "severity": "low",
       "description": "Description shortened (167 → 155 chars). Added BreadcrumbSchema.",
       "fixed": true
+    },
+    {
+      "calculator": "doppelte-haushaltsfuehrung-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Verpflegungspauschalen were 32€/16€ (never enacted increase). Corrected to 28€/14€ per §9 Abs.4a EStG. Fixed in .tsx component AND .astro page (texts, example calculation, FAQ).",
+      "fixed": true
+    },
+    {
+      "calculator": "eigenkapital-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Grunderwerbsteuer Bremen was 5.0% → corrected to 5.5% (since 01.07.2025). Sachsen was 3.5% → corrected to 5.5% (since 01.01.2023).",
+      "fixed": true
+    },
+    {
+      "calculator": "eigenkapital-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "RELATED: KaufnebenkostenRechner.tsx also has same wrong GrESt rates for Bremen (5.0%) and Sachsen (3.5%). Needs fix in next batch.",
+      "fixed": false
+    },
+    {
+      "calculator": "dividende-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 67 chars → shortened to 53 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "doppelte-haushaltsfuehrung-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 73 chars → 57 chars. Description was 192 chars → 155 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "dreisatz-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description was 167 chars → shortened to ~155 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "ehegattenunterhalt-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 62 chars → 55 chars. Description was 165 chars → ~150 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "eigenkapital-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 79 chars → 61 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "dividende-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Abgeltungsteuer 25%+5.5% Soli=26.375%, KiSt ermäßigter Satz per §32d, 15% max QSt-Anrechnung, Sparerpauschbetrag 1000/2000€ – all correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "dreisatz-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Pure math calculator. Proportional (wertA/mengeA×mengeB) and antiproportional (mengeA×wertA/mengeB) formulas verified. Division-by-zero check present.",
+      "fixed": false
+    },
+    {
+      "calculator": "ehegattenunterhalt-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "3/7-Methode, berufsbedingte Aufwendungen 5%/max 150€, Selbstbehalt 1600€/1475€ – all confirmed against Düsseldorfer Tabelle 2025 Unterhaltsleitlinien.",
+      "fixed": false
     }
   ],
   "lastAuditDate": "2026-03-02"

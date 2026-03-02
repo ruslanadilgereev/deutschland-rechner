@@ -27,8 +27,8 @@ import { useState, useMemo } from 'react';
 // Konstanten 2026
 const UNTERKUNFT_MAX_MONAT = 1000; // Max. 1.000 €/Monat für Unterkunft
 const PENDLERPAUSCHALE_KM = 0.38; // 38 Cent/km (einheitlich ab 2026)
-const VERPFLEGUNG_TAG_VOLL = 32; // Abwesenheit > 24h (ab 2024: 32€)
-const VERPFLEGUNG_TAG_TEIL = 16; // Abwesenheit > 8h (ab 2024: 16€)
+const VERPFLEGUNG_TAG_VOLL = 28; // Abwesenheit > 24h (§ 9 Abs. 4a EStG – seit 2020 unverändert)
+const VERPFLEGUNG_TAG_TEIL = 14; // Abwesenheit > 8h (§ 9 Abs. 4a EStG – seit 2020 unverändert)
 const VERPFLEGUNG_MONATE = 3; // Verpflegungsmehraufwand nur erste 3 Monate
 const WERBUNGSKOSTEN_PAUSCHALE = 1230; // Werbungskostenpauschale 2026
 
@@ -373,7 +373,7 @@ export default function DoppelteHaushaltsführungRechner() {
             <span>{verpflegungsmehraufwand ? '✓ Ja' : '✗ Nein'}</span>
           </button>
           <p className="text-xs text-gray-500 mt-2">
-            ℹ️ Pauschalen: 32€/Tag (über 24h) bzw. 16€/Tag (über 8h) – nur in den ersten 3 Monaten
+            ℹ️ Pauschalen: 28€/Tag (über 24h) bzw. 14€/Tag (über 8h) – nur in den ersten 3 Monaten
           </p>
         </div>
       </div>
@@ -638,8 +638,8 @@ export default function DoppelteHaushaltsführungRechner() {
           <div className="p-4 bg-orange-50 rounded-xl">
             <h4 className="font-semibold text-orange-900 mb-2">🍽️ Verpflegungsmehraufwand (3 Monate)</h4>
             <ul className="text-sm text-orange-800 space-y-1">
-              <li>• 32€/Tag bei Abwesenheit über 24 Stunden</li>
-              <li>• 16€/Tag bei Abwesenheit über 8 Stunden</li>
+              <li>• 28€/Tag bei Abwesenheit über 24 Stunden</li>
+              <li>• 14€/Tag bei Abwesenheit über 8 Stunden</li>
               <li>• Nur in den ersten 3 Monaten nach Beginn</li>
             </ul>
           </div>
