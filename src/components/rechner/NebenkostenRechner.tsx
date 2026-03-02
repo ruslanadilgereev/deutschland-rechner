@@ -8,7 +8,7 @@ import { useState, useMemo } from 'react';
  * 
  * Datenquellen:
  * - Betriebskostenverordnung (BetrKV) §2: Umlagefähige Betriebskosten
- * - Deutscher Mieterbund: Betriebskostenspiegel 2024 (aktuellste Daten)
+ * - Deutscher Mieterbund: Betriebskostenspiegel Abrechnungsjahr 2024 (veröffentlicht Dez. 2025)
  * - Heizspiegelkampagne: Heizkosten nach Energieträger
  * 
  * Quellen:
@@ -41,8 +41,8 @@ const BETRIEBSKOSTEN_KATEGORIEN: Kostenkategorie[] = [
     id: 'grundsteuer',
     name: 'Grundsteuer',
     beschreibung: 'Kommunale Grundsteuer B auf das Grundstück',
-    durchschnitt: 0.21,
-    minimum: 0.10,
+    durchschnitt: 0.18,
+    minimum: 0.08,
     maximum: 0.40,
     betrKVNr: '1',
     verbrauchsabhaengig: false,
@@ -104,9 +104,9 @@ const BETRIEBSKOSTEN_KATEGORIEN: Kostenkategorie[] = [
     id: 'strassenreinigung',
     name: 'Straßenreinigung',
     beschreibung: 'Öffentliche und private Straßenreinigung',
-    durchschnitt: 0.06,
-    minimum: 0.02,
-    maximum: 0.15,
+    durchschnitt: 0.04,
+    minimum: 0.01,
+    maximum: 0.12,
     betrKVNr: '8a',
     verbrauchsabhaengig: false,
   },
@@ -114,9 +114,9 @@ const BETRIEBSKOSTEN_KATEGORIEN: Kostenkategorie[] = [
     id: 'muellabfuhr',
     name: 'Müllabfuhr',
     beschreibung: 'Müllbeseitigung, Bioabfall, Sperrmüll',
-    durchschnitt: 0.22,
-    minimum: 0.12,
-    maximum: 0.40,
+    durchschnitt: 0.16,
+    minimum: 0.08,
+    maximum: 0.35,
     betrKVNr: '8b',
     verbrauchsabhaengig: true,
   },
@@ -134,9 +134,9 @@ const BETRIEBSKOSTEN_KATEGORIEN: Kostenkategorie[] = [
     id: 'gartenpflege',
     name: 'Gartenpflege',
     beschreibung: 'Pflege von Grünanlagen, Rasen, Spielplätzen',
-    durchschnitt: 0.11,
-    minimum: 0.03,
-    maximum: 0.25,
+    durchschnitt: 0.15,
+    minimum: 0.05,
+    maximum: 0.30,
     betrKVNr: '10',
     verbrauchsabhaengig: false,
     wohnungsSpezifisch: true,
@@ -165,9 +165,9 @@ const BETRIEBSKOSTEN_KATEGORIEN: Kostenkategorie[] = [
     id: 'versicherungen',
     name: 'Versicherungen',
     beschreibung: 'Gebäude-, Haftpflicht-, Glasversicherung',
-    durchschnitt: 0.18,
-    minimum: 0.10,
-    maximum: 0.35,
+    durchschnitt: 0.31,
+    minimum: 0.15,
+    maximum: 0.50,
     betrKVNr: '13',
     verbrauchsabhaengig: false,
   },
@@ -186,17 +186,18 @@ const BETRIEBSKOSTEN_KATEGORIEN: Kostenkategorie[] = [
     id: 'sonstige',
     name: 'Sonstige Betriebskosten',
     beschreibung: 'Dachrinnenreinigung, Rauchwarnmelder, etc.',
-    durchschnitt: 0.05,
+    durchschnitt: 0.07,
     minimum: 0.00,
-    maximum: 0.15,
+    maximum: 0.20,
     betrKVNr: '17',
     verbrauchsabhaengig: false,
   },
 ];
 
-// Durchschnitt gesamt nach Betriebskostenspiegel: ca. 2.88€/m²/Monat (ohne Heizung: ~1.50€)
-const DURCHSCHNITT_GESAMT_KALT = 1.50;
-const DURCHSCHNITT_GESAMT_WARM = 2.88;
+// Durchschnitt gesamt nach Betriebskostenspiegel 2024 (Mieterbund, Dez. 2025): 2,67€/m²/Monat
+// Mit allen denkbaren Kostenarten: bis zu 3,68€/m²/Monat
+const DURCHSCHNITT_GESAMT_KALT = 1.35;
+const DURCHSCHNITT_GESAMT_WARM = 2.67;
 
 // ============================================================================
 // HEIZKOSTEN-FAKTOREN NACH ENERGIETRÄGER
@@ -645,7 +646,7 @@ export default function NebenkostenRechner() {
               <div className="text-xs opacity-75">Pro Quadratmeter/Monat</div>
               <div className="text-xl font-semibold">{formatEuro(ergebnis.proQmMonat)}/m²</div>
               <div className="text-xs opacity-75 mt-1">
-                Bundesdurchschnitt: ca. 2,88€/m² (mit Heizung)
+                Bundesdurchschnitt: ca. 2,67€/m² (Betriebskostenspiegel 2024)
               </div>
             </div>
           </div>

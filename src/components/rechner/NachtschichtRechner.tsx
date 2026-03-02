@@ -714,7 +714,7 @@ export default function NachtschichtRechner() {
         </ul>
         
         <p className="text-xs text-gray-500 mt-4">
-          Stand: Februar 2025. Alle Angaben ohne Gewähr. Bei komplexen Sachverhalten empfehlen wir 
+          Stand: März 2026. Alle Angaben ohne Gewähr. Bei komplexen Sachverhalten empfehlen wir 
           die Beratung durch einen Steuerberater oder Lohnsteuerhilfeverein.
         </p>
       </div>
