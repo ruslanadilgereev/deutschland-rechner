@@ -17,12 +17,14 @@ interface THGQuoteErgebnis {
 }
 
 // THG-Quoten-Preise schwanken stark je nach Markt und Anbieter
-// 2024/2025: ca. 50-85€ für PKW, 2026: voraussichtlich 50-250€
-// Wir verwenden realistische Marktschätzungen
+// 2026: ca. 80-300€ für PKW (ADAC: 120-200€ typisch, autobild: bis 300€+ mit Bonus)
+// E-Motorräder (zulassungspflichtig ab L3e-A2) erhalten GLEICHE Prämie wie PKW
+// (gleicher Schätzwert 2.000 kWh, da keine eigene Fahrzeugklasse in 38. BImSchV)
+// Quelle: ADAC, motorradonline.de, emobility.energy
 const THG_PRAEMIEN_2026: Record<Fahrzeugklasse, { min: number; max: number; strom: number }> = {
-  'pkw-m1': { min: 50, max: 250, strom: 2000 },
-  'motorrad': { min: 15, max: 75, strom: 600 },
-  'nutzfahrzeug-n1': { min: 75, max: 350, strom: 3000 },
+  'pkw-m1': { min: 80, max: 300, strom: 2000 },
+  'motorrad': { min: 80, max: 300, strom: 2000 },
+  'nutzfahrzeug-n1': { min: 100, max: 400, strom: 3000 },
 };
 
 // CO2-Faktor: ca. 0,4 kg CO2 pro kWh (Strommix) vs. fossiler Kraftstoff
@@ -35,8 +37,8 @@ const FAHRZEUGKLASSEN_INFO: Record<Fahrzeugklasse, { name: string; beschreibung:
     icon: '🚗',
   },
   'motorrad': {
-    name: 'Elektromotorrad',
-    beschreibung: 'E-Motorräder, E-Roller (Klasse L3e-L7e)',
+    name: 'E-Motorrad (ab L3e-A2)',
+    beschreibung: 'Zulassungspflichtige E-Motorräder, E-Quads (L3e-A2/A3, L4e, L5e, L7e)',
     icon: '🏍️',
   },
   'nutzfahrzeug-n1': {
@@ -62,9 +64,9 @@ export default function THGQuoteRechner() {
     
     let hinweis = '';
     if (fahrzeugklasse === 'pkw-m1') {
-      hinweis = 'Tipp: Vergleichen Sie mehrere THG-Anbieter – die Prämien können stark variieren!';
+      hinweis = 'Tipp: Vergleichen Sie mehrere THG-Anbieter – die Prämien können stark variieren! ADAC nennt 120-200€ als typische Spanne 2026.';
     } else if (fahrzeugklasse === 'motorrad') {
-      hinweis = 'Hinweis: E-Motorräder erhalten eine geringere Prämie aufgrund der niedrigeren pauschalen Strommenge.';
+      hinweis = 'Zulassungspflichtige E-Motorräder (ab L3e-A2) erhalten die gleiche Prämie wie PKW, da sie denselben Schätzwert (2.000 kWh) nutzen. Achtung: Zulassungsfreie E-Roller (L1e, L2e, L3e-A1) sind NICHT berechtigt!';
     } else {
       hinweis = 'Für Flotten mit mehreren Fahrzeugen bieten einige Anbieter Mengenrabatte oder höhere Prämien.';
     }

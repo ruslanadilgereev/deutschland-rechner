@@ -6,8 +6,8 @@ const WOCHEN_PRO_JAHR = 52;
 const VOLLZEIT_STUNDEN_DEFAULT = 40;
 const TEILZEIT_STUNDEN_DEFAULT = 20;
 
-// Mindestlohn 2025
-const MINDESTLOHN_2025 = 12.82;
+// Mindestlohn 2026
+const MINDESTLOHN_2026 = 13.90;
 
 // Typische Teilzeit-Modelle
 const TEILZEIT_MODELLE = [
@@ -70,7 +70,7 @@ export default function TeilzeitRechner() {
     const gesparteStundenJahr = vollzeitStundenJahr - teilzeitStundenJahr;
     
     // Mindestlohn-Check
-    const ueberMindestlohn = stundenlohn >= MINDESTLOHN_2025;
+    const ueberMindestlohn = stundenlohn >= MINDESTLOHN_2026;
     
     return {
       // Arbeitszeitanteil
@@ -538,7 +538,7 @@ export default function TeilzeitRechner() {
           <h3 className="font-bold text-red-800 mb-3">⚠️ Achtung: Mindestlohn</h3>
           <p className="text-sm text-red-700">
             Ihr Stundenlohn von <strong>{formatEuro(ergebnis.stundenlohn)}</strong> liegt unter dem gesetzlichen 
-            Mindestlohn von <strong>{formatEuro(MINDESTLOHN_2025)}</strong> (2025).
+            Mindestlohn von <strong>{formatEuro(MINDESTLOHN_2026)}</strong> (2026).
           </p>
         </div>
       )}

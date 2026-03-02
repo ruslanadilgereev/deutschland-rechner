@@ -8,8 +8,8 @@ const ZUSCHLAEGE = {
   zuschlag100: { label: 'Feiertagszuschlag (100%)', prozent: 100 },
 };
 
-// Mindestlohn 2025
-const MINDESTLOHN_2025 = 12.82;
+// Mindestlohn 2026
+const MINDESTLOHN_2026 = 13.90;
 
 export default function UeberstundenRechner() {
   // Eingabewerte
@@ -125,13 +125,13 @@ export default function UeberstundenRechner() {
         />
         <div className="flex justify-between text-xs text-gray-400 mt-1">
           <span>10 €</span>
-          <span>Mindestlohn: {formatEuro(MINDESTLOHN_2025)}</span>
+          <span>Mindestlohn: {formatEuro(MINDESTLOHN_2026)}</span>
           <span>80 €</span>
         </div>
 
-        {stundenlohn < MINDESTLOHN_2025 && (
+        {stundenlohn < MINDESTLOHN_2026 && (
           <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
-            ⚠️ Dieser Stundenlohn liegt unter dem gesetzlichen Mindestlohn von {formatEuro(MINDESTLOHN_2025)}.
+            ⚠️ Dieser Stundenlohn liegt unter dem gesetzlichen Mindestlohn von {formatEuro(MINDESTLOHN_2026)}.
           </div>
         )}
       </div>
