@@ -124,8 +124,8 @@ const SONDERAUSGABENPAUSCHALE = 36;       // §10c EStG
 const ENTLASTUNGSBETRAG_ALLEINERZ = 4260; // §24b EStG (Grundbetrag)
 const ENTLASTUNGSBETRAG_WEITERE_KINDER = 240; // pro weiterem Kind
 
-// Kinderfreibetrag 2025 (§32 Abs. 6 EStG)
-const KINDERFREIBETRAG = 6672; // 3.192€ (Kind) + 1.464€ (BEA) × 2 Elternteile
+// Kinderfreibetrag 2026 (§32 Abs. 6 EStG - Steuerfortentwicklungsgesetz)
+const KINDERFREIBETRAG = 9756; // 4.878€ (Kind: 3.306€ + BEA: 1.572€) × 2 Elternteile
 
 /**
  * EINKOMMENSTEUERTARIF nach §32a EStG
@@ -180,9 +180,9 @@ function berechneEinkommensteuer(zvE: number): number {
  * (Vereinfacht - vollständige Berechnung erfordert BMF-PAP)
  */
 function berechneVorsorgepauschale(brutto: number, steuerklasse: number): number {
-  // Beitragsbemessungsgrenzen 2025
-  const BBG_RV = 8050 * 12;  // RV/AV West: 96.600€/Jahr
-  const BBG_KV = 5512.50 * 12; // KV/PV: 66.150€/Jahr
+  // Beitragsbemessungsgrenzen 2026
+  const BBG_RV = 8450 * 12;  // RV/AV West: 101.400€/Jahr
+  const BBG_KV = 5812.50 * 12; // KV/PV: 69.750€/Jahr
   
   const jahresBrutto = brutto * 12;
   

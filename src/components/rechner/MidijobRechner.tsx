@@ -27,32 +27,32 @@ import { useState, useMemo } from 'react';
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const MIDIJOB = {
-  // Grenzen 2025 (01.01.2025 - 31.12.2025)
-  untergrenze: 556.01,                  // Geringfügigkeitsgrenze + 1 Cent (Mindestlohn 12,82€/h × 43,33h)
+  // Grenzen 2026 (01.01.2026 - 31.12.2026)
+  untergrenze: 603.01,                  // Geringfügigkeitsgrenze + 1 Cent (Mindestlohn 13,90€/h × 43,33h = 603€)
   obergrenze: 2000.00,                  // Obergrenze seit 01.01.2023
   
-  // OFFIZIELLER Faktor F 2025 (vom BMAS festgelegt, NICHT selbst berechnen!)
-  // F = 28% / durchschnittlicher Gesamtsozialversicherungsbeitragssatz
-  // Quelle: DAK, veröffentlicht jährlich
-  faktorF_2025: 0.6683,                 // Gültig 01.01.2025 - 31.12.2025
+  // OFFIZIELLER Faktor F 2026 (vom BMAS festgelegt, NICHT selbst berechnen!)
+  // F = 28% / durchschnittlicher Gesamtsozialversicherungsbeitragssatz (42,3%)
+  // Quelle: Haufe/DAK, veröffentlicht jährlich
+  faktorF_2026: 0.6619,                 // Gültig 01.01.2026 - 31.12.2026
   
-  // Vereinfachte Formeln 2025 (aus DAK-Dokumentation)
+  // Vereinfachte Formeln 2026 (aus Haufe/DAK-Dokumentation)
   // Diese Koeffizienten sind EXAKT und sollten nicht gerundet werden
   formelGesamtbeitrag: {
-    faktor: 1.1277183,
-    offset: 255.4365651,
+    faktor: 1.145937223,
+    offset: 291.8744452,
   },
   formelANAnteil: {
-    faktor: 1.3850416,
-    offset: 770.0831025,
+    faktor: 1.431639227,
+    offset: 863.2784538,
   },
   
-  // Beitragssätze 2025
+  // Beitragssätze 2026
   krankenversicherung: 14.6,            // Allgemeiner Beitragssatz
-  zusatzbeitragKV: 2.5,                 // Durchschnittlicher Zusatzbeitrag 2025
+  zusatzbeitragKV: 2.9,                 // Durchschnittlicher Zusatzbeitrag 2026
   rentenversicherung: 18.6,             // RV-Beitrag
   arbeitslosenversicherung: 2.6,        // AV-Beitrag
-  pflegeversicherung: 3.4,              // PV Basis-Satz
+  pflegeversicherung: 3.6,              // PV Basis-Satz (2026: 3,6%)
   pvZuschlagKinderlos: 0.6,             // Zuschlag ab 23 ohne Kinder
   pvAbschlagKinder: [0, 0.25, 0.25, 0.25, 0.25], // Abschläge pro Kind (2-5+)
 };
@@ -64,14 +64,14 @@ export default function MidijobRechner() {
   const [kinderlos, setKinderlos] = useState(false);
   const [alter, setAlter] = useState(30);
   const [kinderanzahl, setKinderanzahl] = useState(0);
-  const [zusatzbeitragKV, setZusatzbeitragKV] = useState(2.5);
+  const [zusatzbeitragKV, setZusatzbeitragKV] = useState(2.9);
   const [kirchensteuer, setKirchensteuer] = useState(false);
   const [bundesland, setBundesland] = useState<'west' | 'ost'>('west');
 
   const ergebnis = useMemo(() => {
     // Prüfe ob im Übergangsbereich
     const istMidijob = bruttolohn >= MIDIJOB.untergrenze && bruttolohn <= MIDIJOB.obergrenze;
-    const istMinijob = bruttolohn <= 556;
+    const istMinijob = bruttolohn <= 603;
     const istVolljob = bruttolohn > MIDIJOB.obergrenze;
 
     // ═══════════════════════════════════════════════════════════════
@@ -88,7 +88,7 @@ export default function MidijobRechner() {
       MIDIJOB.pflegeversicherung;
     
     // OFFIZIELLER Faktor F (vom BMAS vorgegeben, NICHT selbst berechnen!)
-    const F = MIDIJOB.faktorF_2025;
+    const F = MIDIJOB.faktorF_2026;
     
     // ═══════════════════════════════════════════════════════════════
     // SCHRITT 1: Beitragspflichtige Einnahme (BE) für GESAMTBEITRAG
@@ -253,10 +253,10 @@ export default function MidijobRechner() {
     
     // Rentenpunkte werden auf BASIS der beitragspflichtigen Einnahme berechnet
     // ABER: Mindestregel - AN erwirbt Punkte auf vollem Brutto (seit 2022)
-    const durchschnittsentgelt2025 = 47084; // Durchschnittsentgelt 2025
-    const rentenpunkteJahr = (bruttolohn * 12) / durchschnittsentgelt2025;
-    const rentenwert2025 = 39.32; // Aktueller Rentenwert (einheitlich seit Juli 2024)
-    const renteProMonat = rentenpunkteJahr * rentenwert2025;
+    const durchschnittsentgelt2026 = 50493; // Vorläufiges Durchschnittsentgelt 2026
+    const rentenpunkteJahr = (bruttolohn * 12) / durchschnittsentgelt2026;
+    const rentenwert2026 = 40.79; // Aktueller Rentenwert (seit Juli 2025)
+    const renteProMonat = rentenpunkteJahr * rentenwert2026;
 
     return {
       // Status
@@ -335,8 +335,8 @@ export default function MidijobRechner() {
           />
           <div className="flex justify-between text-xs text-gray-400 mt-1">
             <span>500 €</span>
-            <span className={bruttolohn >= 556.01 && bruttolohn <= 2000 ? 'text-purple-500 font-bold' : 'text-gray-500'}>
-              Übergangsbereich: 556,01 € – 2.000 €
+            <span className={bruttolohn >= 603.01 && bruttolohn <= 2000 ? 'text-purple-500 font-bold' : 'text-gray-500'}>
+              Übergangsbereich: 603,01 € – 2.000 €
             </span>
             <span>2.500 €</span>
           </div>
@@ -348,14 +348,14 @@ export default function MidijobRechner() {
             <div className="bg-green-100 border border-green-300 rounded-xl p-4 text-center">
               <span className="text-2xl">⏰</span>
               <p className="font-bold text-green-800 mt-1">Das ist ein Minijob</p>
-              <p className="text-sm text-green-600">Bis 556 € – nutze den Minijob-Rechner!</p>
+              <p className="text-sm text-green-600">Bis 603 € – nutze den Minijob-Rechner!</p>
             </div>
           )}
           {ergebnis.istMidijob && (
             <div className="bg-purple-100 border border-purple-300 rounded-xl p-4 text-center">
               <span className="text-2xl">📊</span>
               <p className="font-bold text-purple-800 mt-1">Übergangsbereich (Midijob)</p>
-              <p className="text-sm text-purple-600">556,01 € – 2.000 € → Reduzierte AN-Beiträge!</p>
+              <p className="text-sm text-purple-600">603,01 € – 2.000 € → Reduzierte AN-Beiträge!</p>
             </div>
           )}
           {ergebnis.istVolljob && (
@@ -450,7 +450,7 @@ export default function MidijobRechner() {
         <div>
           <label className="block mb-2">
             <span className="text-gray-700 font-medium">Zusatzbeitrag Krankenkasse</span>
-            <span className="text-gray-400 text-sm ml-2">(Durchschnitt: 2,5%)</span>
+            <span className="text-gray-400 text-sm ml-2">(Durchschnitt: 2,9%)</span>
           </label>
           <div className="flex items-center gap-4">
             <input
@@ -664,7 +664,7 @@ export default function MidijobRechner() {
             </div>
           </div>
           <p className="text-xs text-blue-600">
-            Berechnung: ({formatEuro(bruttolohn)} × 12) ÷ 47.084€ = {ergebnis.rentenpunkteJahr.toFixed(3)} Punkte × 39,32€ Rentenwert
+            Berechnung: ({formatEuro(bruttolohn)} × 12) ÷ 50.493€ = {ergebnis.rentenpunkteJahr.toFixed(3)} Punkte × 40,79€ Rentenwert
           </p>
         </div>
       </div>
@@ -675,7 +675,7 @@ export default function MidijobRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Wer profitiert:</strong> Arbeitnehmer mit Bruttolohn zwischen 556,01€ und 2.000€ (2025)</span>
+            <span><strong>Wer profitiert:</strong> Arbeitnehmer mit Bruttolohn zwischen 603,01€ und 2.000€ (2026)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -702,7 +702,7 @@ export default function MidijobRechner() {
 
       {/* Wichtige Hinweise */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise 2025</h3>
+        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise 2026</h3>
         <ul className="space-y-2 text-sm text-amber-700">
           <li className="flex gap-2">
             <span>•</span>
@@ -710,7 +710,7 @@ export default function MidijobRechner() {
           </li>
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Untergrenze dynamisch:</strong> Gekoppelt an Mindestlohn (12,82€/h) → 556,01€ ab 2025</span>
+            <span><strong>Untergrenze dynamisch:</strong> Gekoppelt an Mindestlohn (13,90€/h) → 603,01€ ab 2026</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>
@@ -747,8 +747,8 @@ export default function MidijobRechner() {
           <tbody>
             <tr className="border-b border-gray-100">
               <td className="py-3 px-2 text-gray-700">Verdienstgrenze</td>
-              <td className="py-3 px-2 text-center">≤ 556 €</td>
-              <td className="py-3 px-2 text-center">556,01 – 2.000 €</td>
+              <td className="py-3 px-2 text-center">≤ 603 €</td>
+              <td className="py-3 px-2 text-center">603,01 – 2.000 €</td>
               <td className="py-3 px-2 text-center">&gt; 2.000 €</td>
             </tr>
             <tr className="border-b border-gray-100">
@@ -784,7 +784,7 @@ export default function MidijobRechner() {
           </tbody>
         </table>
         <p className="text-xs text-gray-500 mt-3">
-          * Minijobber zahlen optional 3,6% RV-Eigenanteil für volle Rentenansprüche
+          * Minijobber zahlen optional 3,6% RV-Eigenanteil (seit 10/2022) für volle Rentenansprüche
         </p>
       </div>
 
@@ -839,7 +839,7 @@ export default function MidijobRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline font-medium"
           >
-            ★ DAK – Offizielle Formeln Übergangsbereich 2025
+            ★ Haufe/DAK – Offizielle Formeln Übergangsbereich 2026
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/sgb_4/__20.html"
@@ -867,10 +867,10 @@ export default function MidijobRechner() {
           </a>
         </div>
         <p className="text-xs text-gray-500 mt-3">
-          <strong>Berechnungsformel 2025:</strong><br/>
-          BE = 1,1277183 × Brutto − 255,4365651 (Gesamtbeitrag)<br/>
-          RBE = 1,3850416 × Brutto − 770,0831025 (AN-Anteil)<br/>
-          Faktor F = 0,6683 (offiziell vom BMAS)
+          <strong>Berechnungsformel 2026:</strong><br/>
+          BE = 1,145937223 × Brutto − 291,8744452 (Gesamtbeitrag)<br/>
+          RBE = 1,431639227 × Brutto − 863,2784538 (AN-Anteil)<br/>
+          Faktor F = 0,6619 (offiziell vom BMAS)
         </p>
       </div>
     </div>

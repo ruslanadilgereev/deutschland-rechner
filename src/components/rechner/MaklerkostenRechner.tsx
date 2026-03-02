@@ -155,7 +155,7 @@ export default function MaklerkostenRechner() {
         <div className="flex items-start gap-4">
           <span className="text-4xl">🤵</span>
           <div>
-            <h3 className="font-bold text-purple-900 mb-2">Maklerkosten-Rechner 2025</h3>
+            <h3 className="font-bold text-purple-900 mb-2">Maklerkosten-Rechner 2026</h3>
             <p className="text-sm text-purple-700">
               Seit <strong>Dezember 2020</strong> gilt das neue Maklerrecht: Bei Wohnungen und Einfamilienhäusern 
               zahlt der Käufer <strong>maximal 50%</strong> der Maklerprovision. Berechnen Sie hier Ihre Kosten 
@@ -519,7 +519,7 @@ export default function MaklerkostenRechner() {
 
       {/* Bundesland-Übersicht */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📋 Maklerprovisionen nach Bundesland 2025</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📋 Maklerprovisionen nach Bundesland 2026</h3>
         
         <div className="overflow-x-auto">
           <table className="w-full text-sm">

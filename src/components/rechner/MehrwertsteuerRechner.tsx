@@ -281,7 +281,7 @@ export default function MehrwertsteuerRechner() {
             <span className="text-xl">🏪</span>
             <div>
               <p className="font-medium text-blue-800">Kleinunternehmerregelung</p>
-              <p className="text-blue-700">Bei Umsatz unter 25.000 € (2025+) kannst du dich von der USt befreien lassen (§19 UStG).</p>
+              <p className="text-blue-700">Bei Vorjahresumsatz unter 25.000 € (laufendes Jahr unter 100.000 €) kannst du dich von der USt befreien lassen (§19 UStG).</p>
             </div>
           </div>
           <div className="flex gap-3 p-3 bg-purple-50 rounded-xl">

@@ -1,10 +1,5 @@
 {
   "pending": [
-    "lohnsteuer-rechner",
-    "maklerkosten-rechner",
-    "mehrwertsteuer-rechner",
-    "midijob-rechner",
-    "mieten-oder-kaufen-rechner",
     "mieterhoehung-rechner",
     "mietkaution-rechner",
     "mietpreisbremse-rechner",
@@ -137,7 +132,12 @@
     "kredit-rechner",
     "krypto-steuer-rechner",
     "kurzarbeitergeld-rechner",
-    "lebenserwartung-rechner"
+    "lebenserwartung-rechner",
+    "lohnsteuer-rechner",
+    "maklerkosten-rechner",
+    "mehrwertsteuer-rechner",
+    "midijob-rechner",
+    "mieten-oder-kaufen-rechner"
   ],
   "issues": [
     {
@@ -1139,6 +1139,125 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified: Destatis 2021/2023 Periodensterbetafeln data (M: 78.3, F: 83.2 at birth; interpolation by age correct). Lebensstil-Faktoren (Rauchen -10Y, Sport +3Y, BMI, etc.) based on epidemiological meta-analyses – reasonable approximations. Interpolation logic correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "lohnsteuer-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "SEO content showed wrong 2026 Grundfreibetrag (12.096€ → 12.348€) and Spitzensteuersatz-Grenze (68.480€ → 69.879€). Component code was correct, only .astro text wrong. Fixed.",
+      "fixed": true
+    },
+    {
+      "calculator": "lohnsteuer-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "BBG_RV was 8.050€/month (2025 value), corrected to 8.450€/month (2026). BBG_KV was 5.512,50€/month, corrected to 5.812,50€/month (2026).",
+      "fixed": true
+    },
+    {
+      "calculator": "lohnsteuer-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Kinderfreibetrag was 6.672€ (2025 value), corrected to 9.756€ (2026, Steuerfortentwicklungsgesetz: 4.878€ × 2 Elternteile).",
+      "fixed": true
+    },
+    {
+      "calculator": "lohnsteuer-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "Minijob threshold was 538€ (pre-2024 value), corrected to 603€ (2026). Midijob range also updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "lohnsteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 80 chars → 52 chars. Added BreadcrumbSchema and Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "lohnsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §32a EStG 2026 tariff in component is correct (12.348€, 17.799€, 69.878€, 277.825€). Zone coefficients 914.51/1400, 173.10/2397/1034.87, 0.42-11135.63, 0.45-19470.38 all match official law.",
+      "fixed": false
+    },
+    {
+      "calculator": "maklerkosten-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "Component intro text said \"2025\" instead of \"2026\". Bundesland table header also said \"2025\". Fixed.",
+      "fixed": true
+    },
+    {
+      "calculator": "maklerkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 70 chars → 55 chars. Description was 169 chars → 111 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "maklerkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §656a-d BGB Halbteilung correctly implemented. Provision rates (7.14%, 6.25%, 5.95%) match market data. MwSt 19% correctly applied. No calculation errors.",
+      "fixed": false
+    },
+    {
+      "calculator": "mehrwertsteuer-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "Kleinunternehmergrenze in .astro was 22.000€ (pre-2025 value). Corrected to 25.000€ Vorjahr / 100.000€ laufendes Jahr per §19 UStG (since 2025).",
+      "fixed": true
+    },
+    {
+      "calculator": "mehrwertsteuer-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Added BreadcrumbSchema. Title (56 chars) and description (152 chars) were within limits.",
+      "fixed": true
+    },
+    {
+      "calculator": "mehrwertsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Netto×(1+MwSt)=Brutto and Brutto/(1+MwSt)=Netto formulas correct. 19%/7%/0% rates correct per UStG. Division-by-zero not possible (min rate is 0%, formula uses 1+0=1).",
+      "fixed": false
+    },
+    {
+      "calculator": "midijob-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "ALL 2025 values still used instead of 2026: Untergrenze 556.01→603.01€, Faktor F 0.6683→0.6619, PV 3.4%→3.6%, Zusatzbeitrag 2.5%→2.9%, BE-Formel coefficients updated (1.145937223×AE-291.8744452), RBE-Formel updated (1.431639227×AE-863.2784538). Source: Haufe.de official 2026 formulas.",
+      "fixed": true
+    },
+    {
+      "calculator": "midijob-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Durchschnittsentgelt was 47.084€ (2025), updated to 50.493€ (2026). Rentenwert was 39,32€, updated to 40,79€ (since July 2025).",
+      "fixed": true
+    },
+    {
+      "calculator": "midijob-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 74 chars → 48 chars. Added BreadcrumbSchema. Updated all 556€ references to 603€ and 2025 to 2026 in both .astro and .tsx.",
+      "fixed": true
+    },
+    {
+      "calculator": "mieten-oder-kaufen-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 67 chars → 54 chars. Description was 170 chars → 109 chars. Added BreadcrumbSchema. Fixed broken internal link (mieterhohung → mieterhoehung).",
+      "fixed": true
+    },
+    {
+      "calculator": "mieten-oder-kaufen-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Annuity formula correct. Compound interest for alternative investment correct. Break-even detection correct. Instandhaltung % of rising Immobilienwert correctly modeled. Mietsteigerung compound growth correct. Simplified but reasonable comparison model.",
       "fixed": false
     }
   ],
