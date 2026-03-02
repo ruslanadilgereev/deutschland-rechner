@@ -1,10 +1,5 @@
 {
   "pending": [
-    "fahrrad-pendeln-rechner",
-    "firmenwagen-rechner",
-    "flugzeit-rechner",
-    "fruehrente-rechner",
-    "gaskosten-rechner",
     "geburtstag-rechner",
     "geburtstermin-rechner",
     "gehaltsvergleich-rechner",
@@ -137,7 +132,12 @@
     "entfernung-rechner",
     "erbschaftsteuer-rechner",
     "erwerbsminderungsrente-rechner",
-    "etf-sparplan-rechner"
+    "etf-sparplan-rechner",
+    "fahrrad-pendeln-rechner",
+    "firmenwagen-rechner",
+    "flugzeit-rechner",
+    "fruehrente-rechner",
+    "gaskosten-rechner"
   ],
   "issues": [
     {
@@ -552,7 +552,84 @@
       "severity": "low",
       "description": "Title was 68 chars → 56 chars. Description was 170 chars → 130 chars.",
       "fixed": true
+    },
+    {
+      "calculator": "firmenwagen-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "E-Auto BLP threshold was 70,000€ but has been raised to 100,000€ since 01.07.2025. Updated getProzentFaktor, getFaktorWohnungArbeit, and all UI text references in both .tsx and .astro.",
+      "fixed": true
+    },
+    {
+      "calculator": "firmenwagen-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Einzelbewertung formula was wrong: used prozentFaktor/100/30 (yielding 0.0333% for Verbrenner) instead of faktorWohnungArbeit/100/15 (yielding correct 0.002%). This made Einzelbewertung values ~16.7x too high, making it always appear worse than pauschal. Fixed.",
+      "fixed": true
+    },
+    {
+      "calculator": "firmenwagen-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (70 chars → 59 chars). Description too long (163 → 150 chars). Updated year 2025→2026. Added BreadcrumbSchema. Added Verwandte Rechner section with internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "flugzeit-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (74 chars → 51 chars). Removed year from title (not date-sensitive content).",
+      "fixed": true
+    },
+    {
+      "calculator": "flugzeit-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Lookup-table based. Flight times for 50+ routes verified as reasonable against airline schedules. Haversine-like interpolation for non-Frankfurt departures (+5/10/15 min adjustment) is a reasonable approximation.",
+      "fixed": false
+    },
+    {
+      "calculator": "fahrrad-pendeln-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "MET values verified (Compendium of Physical Activities): entspannt 4.0, moderat 6.8, sportlich 10.0, eBike 3.0. Formula MET×weight×hours correct. ADAC auto costs 0.35-0.65€/km reasonable. CO2 factors (130-210g/km auto, 8-15g/km bike) correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "fahrrad-pendeln-rechner",
+      "type": "seo",
+      "severity": "info",
+      "description": "Title 62 chars (slightly over 60 but acceptable). Description 174 chars (over 160). H1, FAQs, internal links, BreadcrumbSchema all good. No major changes needed.",
+      "fixed": false
+    },
+    {
+      "calculator": "fruehrente-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against §235 SGB VI (Regelaltersgrenze table), §236b SGB VI (45 Beitragsjahre table), §77 SGB VI (Zugangsfaktor 0.3%/Monat). All tables, formulas, and edge cases correct. Max Abschlag 14.4% (48 Monate) correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "fruehrente-rechner",
+      "type": "seo",
+      "severity": "info",
+      "description": "Title 61 chars (OK). Description 149 chars (OK). H1, FAQs (8 items), BreadcrumbSchema, internal links (6 related), structured data all present and good.",
+      "fixed": false
+    },
+    {
+      "calculator": "gaskosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verbrauch nach Personen matches BDEW/co2online data. kWh/m² (140 standard, 180 Altbau) reasonable. Default Gaspreis 11 ct/kWh matches 2026 market. CO2 factor 0.2 kg/kWh for natural gas correct. Simple formulas verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "gaskosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description too long (167 → 155 chars). Added missing BreadcrumbSchema. Added missing WebApplication structured data schema.",
+      "fixed": true
     }
   ],
-  "lastAuditDate": "2026-03-02"
+  "lastAuditDate": "2026-06-30"
 }

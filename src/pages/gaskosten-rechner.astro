@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GaskostenRechner from '../components/rechner/GaskostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
 const title = "Gaskosten-Rechner 2026 – Verbrauch & Kosten berechnen";
-const description = "Gaskosten berechnen 2026: Verbrauch schätzen nach Haushaltsgröße oder Wohnfläche, Preise vergleichen & Spartipps. Aktueller Durchschnitt: 11 ct/kWh. Kostenloser Rechner für Ihre jährlichen Heizkosten.";
+const description = "Gaskosten-Rechner 2026: Verbrauch schätzen nach Haushaltsgröße oder Wohnfläche. Aktueller Ø-Preis: 11 ct/kWh. Jetzt Heizkosten berechnen & Spartipps erhalten!";
 const keywords = "Gaskosten Rechner, Gaskosten berechnen, Gasverbrauch Rechner, Gaspreis 2026, kWh Rechner Gas, Gaskosten pro Jahr, Heizkosten Gas, Gasverbrauch schätzen, Gaspreis Deutschland, Gaspreisvergleich";
 
 // FAQ Schema für SEO
@@ -79,6 +80,7 @@ const faqSchema = {
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
+  <BreadcrumbSchema items={[{ name: "Gaskosten-Rechner", url: "/gaskosten-rechner" }]} />
 
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
@@ -320,4 +322,24 @@ const faqSchema = {
       </div>
     </div>
   </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gaskosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/gaskosten-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
 </Layout>

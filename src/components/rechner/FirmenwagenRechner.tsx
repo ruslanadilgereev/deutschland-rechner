@@ -3,15 +3,15 @@ import { useState, useMemo } from 'react';
 // Antriebsart für unterschiedliche Besteuerung
 type Antriebsart = 'verbrenner' | 'hybrid' | 'elektro';
 
-// 1%-Regelung Faktoren 2025
+// 1%-Regelung Faktoren 2025/2026
 // - Verbrenner: 1% des Bruttolistenpreises
 // - Plug-in-Hybrid (>60km E-Reichweite oder <50g CO2/km): 0,5%
-// - Elektro bis 70.000€ BLP: 0,25%
-// - Elektro über 70.000€ BLP: 0,5%
+// - Elektro bis 100.000€ BLP: 0,25% (Grenze ab 01.07.2025 von 70.000€ auf 100.000€ angehoben)
+// - Elektro über 100.000€ BLP: 0,5%
 const getProzentFaktor = (antrieb: Antriebsart, bruttolistenpreis: number): number => {
   switch (antrieb) {
     case 'elektro':
-      return bruttolistenpreis <= 70000 ? 0.25 : 0.5;
+      return bruttolistenpreis <= 100000 ? 0.25 : 0.5;
     case 'hybrid':
       return 0.5;
     case 'verbrenner':
@@ -22,13 +22,13 @@ const getProzentFaktor = (antrieb: Antriebsart, bruttolistenpreis: number): numb
 
 // Faktor für Fahrten Wohnung-Arbeit
 const FAKTOR_WOHNUNG_ARBEIT = 0.03; // 0,03% pro km einfache Strecke
-const FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_GUENSTIG = 0.0075; // 0,0075% für E-Autos bis 70k
-const FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_HYBRID = 0.015; // 0,015% für Hybrid/E-Auto >70k
+const FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_GUENSTIG = 0.0075; // 0,0075% für E-Autos bis 100k
+const FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_HYBRID = 0.015; // 0,015% für Hybrid/E-Auto >100k
 
 const getFaktorWohnungArbeit = (antrieb: Antriebsart, bruttolistenpreis: number): number => {
   switch (antrieb) {
     case 'elektro':
-      return bruttolistenpreis <= 70000 ? FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_GUENSTIG : FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_HYBRID;
+      return bruttolistenpreis <= 100000 ? FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_GUENSTIG : FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_HYBRID;
     case 'hybrid':
       return FAKTOR_WOHNUNG_ARBEIT_ELEKTRO_HYBRID;
     case 'verbrenner':
@@ -77,9 +77,10 @@ export default function FirmenwagenRechner() {
     // 0,03%-Regelung: Geldwerter Vorteil für Fahrten Wohnung-Arbeit
     const geldwerterVorteilWohnungArbeit = blpGerundet * (faktorWohnungArbeit / 100) * entfernungKm;
     
-    // Einzelbewertung als Alternative (0,002% pro km pro Fahrt)
+    // Einzelbewertung als Alternative (0,002% pro km pro Fahrt für Verbrenner)
+    // Berechnung: faktorWohnungArbeit / 15 (da 0,03% / 15 = 0,002%)
     // Günstiger wenn <15 Fahrten pro Monat
-    const einzelbewertungProFahrt = blpGerundet * (prozentFaktor / 100 / 30) * entfernungKm;
+    const einzelbewertungProFahrt = blpGerundet * (faktorWohnungArbeit / 100 / 15) * entfernungKm;
     const einzelbewertungMonat = einzelbewertungProFahrt * fahrtenProMonat;
     
     // Welche Methode ist günstiger?
@@ -265,13 +266,13 @@ export default function FirmenwagenRechner() {
             >
               <span className="text-xl">⚡</span>
               <span className="block text-sm mt-1">Elektro</span>
-              <span className="block text-xs opacity-70">{bruttolistenpreis + sonderausstattung <= 70000 ? '0,25%' : '0,5%'}</span>
+              <span className="block text-xs opacity-70">{bruttolistenpreis + sonderausstattung <= 100000 ? '0,25%' : '0,5%'}</span>
             </button>
           </div>
           
-          {antrieb === 'elektro' && bruttolistenpreis + sonderausstattung > 70000 && (
+          {antrieb === 'elektro' && bruttolistenpreis + sonderausstattung > 100000 && (
             <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-700">
-              💡 Bei BLP über 70.000€ gilt 0,5% statt 0,25%
+              💡 Bei BLP über 100.000€ gilt 0,5% statt 0,25%
             </div>
           )}
         </div>
@@ -597,7 +598,7 @@ export default function FirmenwagenRechner() {
           <h3 className="font-bold text-emerald-800 mb-3">⚡ Tipp: Elektroauto-Vorteil</h3>
           <div className="text-sm text-emerald-700">
             <p className="mb-3">
-              Mit einem <strong>Elektroauto bis 70.000€ BLP</strong> würden Sie nur 0,25% statt 1% versteuern:
+              Mit einem <strong>Elektroauto bis 100.000€ BLP</strong> würden Sie nur 0,25% statt 1% versteuern:
             </p>
             <div className="bg-white/50 rounded-xl p-4 grid grid-cols-2 gap-4">
               <div>
@@ -674,15 +675,15 @@ export default function FirmenwagenRechner() {
                 <td className="py-3 px-4 text-center font-bold text-green-600">0,5%</td>
                 <td className="py-3 px-4 text-center text-green-600">0,015%/km</td>
               </tr>
-              <tr className={`border-b border-gray-100 ${antrieb === 'elektro' && bruttolistenpreis + sonderausstattung <= 70000 ? 'bg-blue-50' : ''}`}>
+              <tr className={`border-b border-gray-100 ${antrieb === 'elektro' && bruttolistenpreis + sonderausstattung <= 100000 ? 'bg-blue-50' : ''}`}>
                 <td className="py-3 px-4 text-gray-600">
-                  ⚡ Elektro bis 70.000€
+                  ⚡ Elektro bis 100.000€
                 </td>
                 <td className="py-3 px-4 text-center font-bold text-green-600">0,25%</td>
                 <td className="py-3 px-4 text-center text-green-600">0,0075%/km</td>
               </tr>
-              <tr className={`${antrieb === 'elektro' && bruttolistenpreis + sonderausstattung > 70000 ? 'bg-blue-50' : ''}`}>
-                <td className="py-3 px-4 text-gray-600">⚡ Elektro über 70.000€</td>
+              <tr className={`${antrieb === 'elektro' && bruttolistenpreis + sonderausstattung > 100000 ? 'bg-blue-50' : ''}`}>
+                <td className="py-3 px-4 text-gray-600">⚡ Elektro über 100.000€</td>
                 <td className="py-3 px-4 text-center font-bold text-green-600">0,5%</td>
                 <td className="py-3 px-4 text-center text-green-600">0,015%/km</td>
               </tr>
@@ -691,7 +692,7 @@ export default function FirmenwagenRechner() {
         </div>
         
         <p className="text-xs text-gray-500 mt-3">
-          Stand: 2025. Die 70.000€-Grenze für E-Autos wurde Ende 2023 von 60.000€ angehoben.
+          Stand: 2025/2026. Die Grenze für E-Autos wurde zum 01.07.2025 von 70.000€ auf 100.000€ angehoben.
         </p>
       </div>
 
