@@ -1376,7 +1376,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'ROI & Rendite p.a. berechnen',
     icon: '📈',
     kategorie: 'alltag',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Rentabilität Rechner, ROI berechnen, Return on Investment, Rendite berechnen, Investition Rentabilität, ROI Formel, Kapitalrendite, Amortisation',
     quellen: [
       'https://www.ihk.de/themen/gruendung-foerderung/unternehmensgruendung',
@@ -1940,7 +1940,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Bausparen Rendite & Zuteilung',
     icon: '🏠',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Bauspar Rechner, Bausparen berechnen, Bausparvertrag Rechner',
   },
 

@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BausparRechner from '../components/rechner/BausparRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Bauspar-Rechner – Bausparen Rendite & Zuteilung berechnen";
+const description = "Bausparvertrag berechnen: Ansparphase, Zuteilung, Darlehensphase & Wohnungsbauprämie. Kostenlos & sofort online!";
+const keywords = "Bauspar Rechner, Bausparen berechnen, Bausparvertrag Rechner, Bausparsumme, Zuteilung, Wohnungsbauprämie, Bauspar Darlehen, LBS, Schwäbisch Hall, Bauspar 2026";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bauspar-Rechner", url: "/bauspar-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-teal-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bauspar-Rechner</h1>
+            <p class="text-teal-100 text-sm">Bausparen berechnen – Ansparphase, Zuteilung & Darlehen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BausparRechner client:load />
+    </div>
+    
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bausparen: So funktioniert's</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Ein <strong>Bausparvertrag</strong> kombiniert einen Sparplan mit einem zinsgünstigen Darlehen. 
+            Sie sparen zunächst einen Teil der Bausparsumme an und erhalten dann ein Darlehen 
+            über den Rest – zu einem bei Vertragsabschluss festgelegten Zinssatz.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Phasen des Bausparens</h3>
+          
+          <h4 class="font-semibold text-gray-700">1. Ansparphase</h4>
+          <p>
+            Sie zahlen monatlich einen Sparbeitrag ein (Regelsparbeitrag: ca. 3-7‰ der Bausparsumme). 
+            Auf Ihr Guthaben erhalten Sie einen Guthabenzins (aktuell 0,01-0,25%). 
+            Ziel: mindestens <strong>40-50% der Bausparsumme</strong> ansparen.
+          </p>
+          
+          <h4 class="font-semibold text-gray-700">2. Zuteilung</h4>
+          <p>
+            Wenn das Mindestguthaben erreicht und die Bewertungszahl ausreichend ist, 
+            wird Ihr Vertrag <strong>zuteilungsreif</strong>. Sie können nun das Bauspardarlehen abrufen.
+          </p>
+          
+          <h4 class="font-semibold text-gray-700">3. Darlehensphase</h4>
+          <p>
+            Sie erhalten ein Darlehen in Höhe der Differenz zwischen Bausparsumme und Guthaben. 
+            Der große Vorteil: Der <strong>Darlehenszins</strong> wurde bereits bei Vertragsabschluss 
+            festgelegt (aktuell 1,5-2,5%).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wohnungsbauprämie 2026</h3>
+          <p>
+            Der Staat fördert Bausparen mit der <strong>Wohnungsbauprämie</strong> (§§ 1-12 WoPG):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Prämie:</strong> 10% auf Sparleistungen bis 700 € (ledig) / 1.400 € (verheiratet)</li>
+            <li><strong>Maximale Prämie:</strong> 70 € (ledig) / 140 € (verheiratet) pro Jahr</li>
+            <li><strong>Einkommensgrenze:</strong> 35.000 € (ledig) / 70.000 € (verheiratet) zu versteuerndes Einkommen</li>
+            <li><strong>Voraussetzung:</strong> Wohnwirtschaftliche Verwendung nach 7 Jahren Sperrfrist</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitnehmersparzulage für VL</h3>
+          <p>
+            Fließen <strong>vermögenswirksame Leistungen (VL)</strong> in den Bausparvertrag, 
+            gibt es zusätzlich die Arbeitnehmersparzulage:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Zulage:</strong> 9% auf max. 470 € VL pro Jahr = bis zu 43 € Zulage</li>
+            <li><strong>Einkommensgrenze:</strong> 40.000 € (ledig) / 80.000 € (verheiratet) zvE</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann lohnt sich Bausparen?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Zinssicherheit:</strong> Sie sichern sich den heutigen Darlehenszins für die Zukunft</li>
+            <li><strong>Staatliche Förderung:</strong> Wohnungsbauprämie + Arbeitnehmersparzulage</li>
+            <li><strong>Planungssicherheit:</strong> Feste Raten über die gesamte Laufzeit</li>
+            <li><strong>Modernisierung:</strong> Auch für Renovierung/Modernisierung nutzbar</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Nachteile beachten</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Niedrige Guthabenzinsen:</strong> In der Ansparphase verdienen Sie kaum Zinsen</li>
+            <li><strong>Abschlussgebühr:</strong> 1,0-1,6% der Bausparsumme werden sofort fällig</li>
+            <li><strong>Bindung:</strong> Lange Laufzeit, Kündigung oft nur mit Verlusten</li>
+            <li><strong>Inflexibel:</strong> Bausparsumme und Konditionen sind fix</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die größten Bausparkassen in Deutschland</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Schwäbisch Hall</strong> – Größte private Bausparkasse</li>
+            <li><strong>LBS</strong> – Landesbausparkassen (Sparkassen-Gruppe)</li>
+            <li><strong>Wüstenrot</strong> – Älteste Bausparkasse Deutschlands (seit 1921)</li>
+            <li><strong>BHW</strong> – Zur Postbank/Deutsche Bank gehörend</li>
+            <li><strong>Debeka</strong> – Beamtenorientiert</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🧮</span>
+          Rechenbeispiel
+        </h2>
+        
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">Bausparsumme 50.000 €, Sparrate 200 €/Monat</h3>
+          <p class="text-sm text-gray-600 space-y-1">
+            <strong>Ansparphase:</strong> ca. 8,5 Jahre bis 40% (20.000 €) erreicht<br/>
+            <strong>Abschlussgebühr:</strong> 500 € (1,0%)<br/>
+            <strong>Darlehen:</strong> ca. 30.000 € zu 1,95% Zins<br/>
+            <strong>Darlehensrate:</strong> ca. 300 €/Monat<br/>
+            <strong>Darlehensphase:</strong> ca. 9 Jahre<br/>
+            <strong>Gesamtlaufzeit:</strong> ca. 17-18 Jahre
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Verwandte Rechner
+        </h2>
+        
+        <div class="grid gap-3">
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">💰</span>
+            <div>
+              <div class="font-semibold text-gray-800">Zinseszins-Rechner</div>
+              <div class="text-sm text-gray-500">Zinsen & Zinseszins berechnen</div>
+            </div>
+          </a>
+          <a href="/vl-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏦</span>
+            <div>
+              <div class="font-semibold text-gray-800">VL-Rechner</div>
+              <div class="text-sm text-gray-500">Vermögenswirksame Leistungen & Arbeitnehmersparzulage</div>
+            </div>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏡</span>
+            <div>
+              <div class="font-semibold text-gray-800">Eigenkapital-Rechner</div>
+              <div class="text-sm text-gray-500">Eigenkapital für den Immobilienkauf berechnen</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bauspar-Rechner – Bausparen berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bauspar-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist ein Bausparvertrag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Bausparvertrag kombiniert Sparen und Darlehen: Sie sparen zunächst mindestens 40% der Bausparsumme an und erhalten dann ein zinsgünstiges Darlehen über den Rest. Der Darlehenszins wird bei Vertragsabschluss festgelegt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Wohnungsbauprämie 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Wohnungsbauprämie beträgt 10% auf Sparleistungen bis 700 € (ledig) bzw. 1.400 € (verheiratet) pro Jahr. Das sind maximal 70 € bzw. 140 € jährlich. Die Einkommensgrenze liegt bei 35.000 € (ledig) bzw. 70.000 € (verheiratet) zu versteuerndem Einkommen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann wird ein Bausparvertrag zuteilungsreif?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Bausparvertrag wird zuteilungsreif, wenn das Mindestsparguthaben (meist 40-50% der Bausparsumme) erreicht ist und die erforderliche Bewertungszahl vorliegt. Die Ansparphase dauert typischerweise 7-10 Jahre."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich Bausparen noch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bausparen kann sich lohnen, wenn Sie die staatliche Förderung (Wohnungsbauprämie, Arbeitnehmersparzulage) nutzen können und sich gegen steigende Zinsen absichern wollen. Die niedrigen Guthabenzinsen und die Abschlussgebühr sind Nachteile, die man abwägen sollte."
+        }
+      }
+    ]
+  })} />
+</Layout>

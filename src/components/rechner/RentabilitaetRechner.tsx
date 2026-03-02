@@ -1,736 +1,530 @@
 import { useState, useMemo } from 'react';
 
-type BerechnungsArt = 'roi' | 'gewinn' | 'investition';
+type Modus = 'gewinn' | 'endwert';
+
+const BENCHMARKS = [
+  { name: 'DAX (Ø 30 Jahre)', rendite: 7.5, color: 'bg-blue-100 text-blue-800' },
+  { name: 'MSCI World (Ø 30 Jahre)', rendite: 8.0, color: 'bg-indigo-100 text-indigo-800' },
+  { name: 'Tagesgeld (aktuell)', rendite: 3.0, color: 'bg-green-100 text-green-800' },
+  { name: 'Festgeld 1 Jahr', rendite: 3.5, color: 'bg-emerald-100 text-emerald-800' },
+  { name: 'Inflation (Ø)', rendite: 2.0, color: 'bg-amber-100 text-amber-800' },
+  { name: 'Immobilien (Ø)', rendite: 4.5, color: 'bg-purple-100 text-purple-800' },
+];
 
 export default function RentabilitaetRechner() {
-  // Eingabewerte
-  const [investition, setInvestition] = useState(10000);
-  const [gewinn, setGewinn] = useState(2500);
-  const [zeitraum, setZeitraum] = useState(1);
-  const [zeitraumEinheit, setZeitraumEinheit] = useState<'jahre' | 'monate'>('jahre');
-  const [berechnungsArt, setBerechnungsArt] = useState<BerechnungsArt>('roi');
-  const [zielRoi, setZielRoi] = useState(10);
-  const [zeigeDetails, setZeigeDetails] = useState(false);
+  const [investition, setInvestition] = useState<number>(10000);
+  const [modus, setModus] = useState<Modus>('gewinn');
+  const [gewinn, setGewinn] = useState<number>(2500);
+  const [endwert, setEndwert] = useState<number>(12500);
+  const [laufzeit, setLaufzeit] = useState<number>(1);
+  const [jaehrlicheEinnahmen, setJaehrlicheEinnahmen] = useState<number>(0);
+  const [eigenkapital, setEigenkapital] = useState<number>(0);
+  const [berechnet, setBerechnet] = useState(false);
 
   const ergebnis = useMemo(() => {
-    // Zeitraum in Jahren normalisieren
-    const zeitraumInJahren = zeitraumEinheit === 'monate' ? zeitraum / 12 : zeitraum;
+    if (!investition || investition <= 0) return null;
+
+    // Gewinn berechnen je nach Modus
+    const effektiverGewinn = modus === 'gewinn' ? gewinn : (endwert - investition);
     
-    let berechneterGewinn = gewinn;
-    let berechneteInvestition = investition;
-    let berechneterRoi = 0;
-    
-    if (berechnungsArt === 'roi') {
-      // ROI berechnen: (Gewinn / Investition) * 100
-      berechneterRoi = investition > 0 ? (gewinn / investition) * 100 : 0;
-    } else if (berechnungsArt === 'gewinn') {
-      // Gewinn berechnen: (Ziel-ROI / 100) * Investition
-      berechneterGewinn = (zielRoi / 100) * investition;
-      berechneterRoi = zielRoi;
-    } else if (berechnungsArt === 'investition') {
-      // Investition berechnen: Gewinn / (Ziel-ROI / 100)
-      berechneteInvestition = zielRoi > 0 ? gewinn / (zielRoi / 100) : 0;
-      berechneterRoi = zielRoi;
+    // ROI = Gewinn / Investition
+    const roi = (effektiverGewinn / investition) * 100;
+
+    // Annualisierter ROI (CAGR)
+    let roiPA: number | null = null;
+    if (laufzeit && laufzeit > 0) {
+      const gesamtfaktor = 1 + effektiverGewinn / investition;
+      if (gesamtfaktor > 0) {
+        roiPA = (Math.pow(gesamtfaktor, 1 / laufzeit) - 1) * 100;
+      }
     }
-    
-    // Rendite p.a. (annualisiert)
-    // Formel: ((Endwert / Anfangswert) ^ (1/Jahre)) - 1
-    // Vereinfacht für ROI: ROI / Zeitraum (linear) oder komplexer für Compound
-    const endwert = berechneteInvestition + berechneterGewinn;
-    const renditePA = zeitraumInJahren > 0 
-      ? berechneteInvestition > 0 
-        ? (Math.pow(endwert / berechneteInvestition, 1 / zeitraumInJahren) - 1) * 100
-        : 0
-      : berechneterRoi;
-    
-    // Einfache lineare Rendite p.a.
-    const linearRenditePA = zeitraumInJahren > 0 ? berechneterRoi / zeitraumInJahren : berechneterRoi;
-    
-    // Kapitalumschlag
-    const kapitalumschlag = berechneteInvestition > 0 
-      ? berechneterGewinn / berechneteInvestition 
-      : 0;
-    
-    // Amortisationszeit (Break-Even)
-    const jahresgewinn = zeitraumInJahren > 0 ? berechneterGewinn / zeitraumInJahren : berechneterGewinn;
-    const amortisationszeit = jahresgewinn > 0 ? berechneteInvestition / jahresgewinn : Infinity;
-    
-    // Gewinnmarge
-    const umsatz = berechneteInvestition + berechneterGewinn; // Vereinfacht
-    const gewinnmarge = umsatz > 0 ? (berechneterGewinn / umsatz) * 100 : 0;
-    
-    // ROI-Bewertung
-    let bewertung: { text: string; farbe: string; emoji: string };
-    if (renditePA >= 15) {
-      bewertung = { text: 'Exzellent', farbe: 'text-green-600', emoji: '🚀' };
-    } else if (renditePA >= 10) {
-      bewertung = { text: 'Sehr gut', farbe: 'text-green-500', emoji: '✨' };
-    } else if (renditePA >= 5) {
-      bewertung = { text: 'Gut', farbe: 'text-blue-500', emoji: '👍' };
-    } else if (renditePA >= 2) {
-      bewertung = { text: 'Moderat', farbe: 'text-yellow-500', emoji: '📊' };
-    } else if (renditePA >= 0) {
-      bewertung = { text: 'Niedrig', farbe: 'text-orange-500', emoji: '⚠️' };
-    } else {
-      bewertung = { text: 'Verlust', farbe: 'text-red-500', emoji: '❌' };
+
+    // Kapitalrendite (Gesamtkapitalrendite)
+    const kapitalrendite = roi;
+
+    // Eigenkapitalrendite (wenn EK angegeben)
+    let eigenkapitalrendite: number | null = null;
+    if (eigenkapital > 0 && eigenkapital <= investition) {
+      eigenkapitalrendite = (effektiverGewinn / eigenkapital) * 100;
     }
-    
+
+    // Amortisationszeit
+    let amortisation: number | null = null;
+    if (jaehrlicheEinnahmen > 0) {
+      amortisation = investition / jaehrlicheEinnahmen;
+    }
+
+    // Effektiver Endwert
+    const effektiverEndwert = modus === 'endwert' ? endwert : (investition + gewinn);
+
+    // Verdopplungszeit (bei positivem ROI p.a.)
+    let verdopplungszeit: number | null = null;
+    if (roiPA && roiPA > 0) {
+      verdopplungszeit = Math.log(2) / Math.log(1 + roiPA / 100);
+    }
+
     return {
-      investition: berechneteInvestition,
-      gewinn: berechneterGewinn,
-      zeitraumInJahren,
-      roi: berechneterRoi,
-      renditePA,
-      linearRenditePA,
-      kapitalumschlag,
-      amortisationszeit,
-      gewinnmarge,
-      endwert,
-      bewertung,
+      effektiverGewinn,
+      roi,
+      roiPA,
+      kapitalrendite,
+      eigenkapitalrendite,
+      amortisation,
+      effektiverEndwert,
+      verdopplungszeit,
+      istPositiv: roi >= 0,
     };
-  }, [investition, gewinn, zeitraum, zeitraumEinheit, berechnungsArt, zielRoi]);
+  }, [investition, modus, gewinn, endwert, laufzeit, jaehrlicheEinnahmen, eigenkapital]);
 
-  const formatEuro = (n: number) =>
-    n.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €';
-  const formatEuroExact = (n: number) =>
-    n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-  const formatProzent = (n: number) =>
+  const formatCurrency = (n: number) =>
+    n.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+
+  const formatPercent = (n: number) =>
     n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %';
-  const formatZahl = (n: number) =>
-    n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-  // Visualisierung: Investition vs Gewinn
-  const investitionAnteil = ergebnis.endwert > 0 ? (ergebnis.investition / ergebnis.endwert) * 100 : 50;
-  const gewinnAnteil = 100 - investitionAnteil;
+  const formatJahre = (n: number) =>
+    n.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' Jahre';
+
+  const handleBerechnen = () => {
+    setBerechnet(true);
+  };
 
   return (
     <div className="max-w-2xl mx-auto">
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        
-        {/* Berechnungsart */}
-        <div className="mb-6">
-          <label className="block mb-3">
-            <span className="text-gray-700 font-medium">Was möchtest du berechnen?</span>
-          </label>
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              onClick={() => setBerechnungsArt('roi')}
-              className={`py-3 px-3 rounded-xl transition-all text-sm ${
-                berechnungsArt === 'roi'
-                  ? 'bg-emerald-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              <span className="font-bold block">📈 ROI</span>
-              <span className="text-xs opacity-80">Rendite ermitteln</span>
-            </button>
-            <button
-              onClick={() => setBerechnungsArt('gewinn')}
-              className={`py-3 px-3 rounded-xl transition-all text-sm ${
-                berechnungsArt === 'gewinn'
-                  ? 'bg-emerald-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              <span className="font-bold block">💰 Gewinn</span>
-              <span className="text-xs opacity-80">Nötiger Gewinn</span>
-            </button>
-            <button
-              onClick={() => setBerechnungsArt('investition')}
-              className={`py-3 px-3 rounded-xl transition-all text-sm ${
-                berechnungsArt === 'investition'
-                  ? 'bg-emerald-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              <span className="font-bold block">🎯 Investition</span>
-              <span className="text-xs opacity-80">Nötiges Kapital</span>
-            </button>
-          </div>
-        </div>
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <span className="text-2xl">📈</span>
+          Rentabilität berechnen
+        </h2>
 
-        {/* Investition */}
-        {berechnungsArt !== 'investition' && (
-          <div className="mb-6">
-            <label className="block mb-2">
-              <span className="text-gray-700 font-medium">Investitionssumme</span>
-              <span className="text-xs text-gray-500 block mt-1">Eingesetztes Kapital</span>
+        <div className="space-y-6">
+          {/* Investitionssumme */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Investitionssumme (€)
             </label>
-            <div className="relative">
-              <input
-                type="number"
-                value={investition}
-                onChange={(e) => setInvestition(Math.max(0, Number(e.target.value)))}
-                className="w-full text-3xl font-bold text-center py-4 px-4 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-0 outline-none"
-                min="0"
-                step="1000"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">€</span>
-            </div>
             <input
-              type="range"
+              type="number"
               value={investition}
               onChange={(e) => setInvestition(Number(e.target.value))}
-              className="w-full mt-3 accent-emerald-500"
-              min="0"
-              max="100000"
-              step="1000"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-lg"
+              placeholder="z.B. 10.000"
+              min={0}
+              step={100}
             />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
-              <span>0 €</span>
-              <span>50.000 €</span>
-              <span>100.000 €</span>
+          </div>
+
+          {/* Modus-Toggle */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Berechnungsmodus
+            </label>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setModus('gewinn')}
+                className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
+                  modus === 'gewinn'
+                    ? 'bg-purple-500 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                }`}
+              >
+                💰 Gewinn eingeben
+              </button>
+              <button
+                onClick={() => setModus('endwert')}
+                className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
+                  modus === 'endwert'
+                    ? 'bg-purple-500 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-700'
+                }`}
+              >
+                🏦 Endwert eingeben
+              </button>
             </div>
           </div>
-        )}
 
-        {/* Gewinn */}
-        {berechnungsArt !== 'gewinn' && (
-          <div className="mb-6">
-            <label className="block mb-2">
-              <span className="text-gray-700 font-medium">Gewinn / Ertrag</span>
-              <span className="text-xs text-gray-500 block mt-1">Nettogewinn aus der Investition</span>
-            </label>
-            <div className="relative">
+          {/* Gewinn oder Endwert */}
+          {modus === 'gewinn' ? (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Gewinn / Erlös (€)
+              </label>
               <input
                 type="number"
                 value={gewinn}
                 onChange={(e) => setGewinn(Number(e.target.value))}
-                className="w-full text-3xl font-bold text-center py-4 px-4 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-0 outline-none"
-                step="100"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-lg"
+                placeholder="z.B. 2.500"
+                step={100}
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">€</span>
+              <p className="text-xs text-gray-500 mt-1">
+                Nettogewinn nach Abzug aller Kosten. Negative Werte möglich (Verlust).
+              </p>
             </div>
-            <input
-              type="range"
-              value={gewinn}
-              onChange={(e) => setGewinn(Number(e.target.value))}
-              className="w-full mt-3 accent-emerald-500"
-              min="-10000"
-              max="50000"
-              step="500"
-            />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
-              <span className="text-red-400">-10.000 €</span>
-              <span>20.000 €</span>
-              <span className="text-green-500">50.000 €</span>
+          ) : (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Endwert / Rückfluss (€)
+              </label>
+              <input
+                type="number"
+                value={endwert}
+                onChange={(e) => setEndwert(Number(e.target.value))}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-lg"
+                placeholder="z.B. 12.500"
+                min={0}
+                step={100}
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Gesamtwert am Ende der Investition (inkl. Anfangskapital).
+              </p>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Ziel-ROI für Rückwärtsrechnung */}
-        {(berechnungsArt === 'gewinn' || berechnungsArt === 'investition') && (
-          <div className="mb-6">
-            <label className="block mb-2">
-              <span className="text-gray-700 font-medium">Ziel-ROI</span>
-              <span className="text-xs text-gray-500 block mt-1">Gewünschte Rendite</span>
+          {/* Laufzeit */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Laufzeit (Jahre)
             </label>
-            <div className="relative">
-              <input
-                type="number"
-                value={zielRoi}
-                onChange={(e) => setZielRoi(Math.max(-100, Number(e.target.value)))}
-                className="w-full text-2xl font-bold text-center py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-0 outline-none"
-                min="-100"
-                max="500"
-                step="1"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">%</span>
-            </div>
             <input
-              type="range"
-              value={zielRoi}
-              onChange={(e) => setZielRoi(Number(e.target.value))}
-              className="w-full mt-3 accent-emerald-500"
-              min="0"
-              max="100"
-              step="1"
+              type="number"
+              value={laufzeit}
+              onChange={(e) => setLaufzeit(Number(e.target.value))}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-lg"
+              placeholder="z.B. 5"
+              min={0.1}
+              step={0.5}
             />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
-              <span>0%</span>
-              <span>50%</span>
-              <span>100%</span>
+            <p className="text-xs text-gray-500 mt-1">
+              Für die Berechnung der annualisierten Rendite (CAGR / ROI p.a.)
+            </p>
+          </div>
+
+          {/* Erweiterte Optionen */}
+          <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+            <h3 className="text-sm font-semibold text-purple-800 mb-3">
+              ⚙️ Erweiterte Optionen (optional)
+            </h3>
+
+            <div className="space-y-4">
+              {/* Jährliche Einnahmen für Amortisation */}
+              <div>
+                <label className="block text-sm font-medium text-purple-700 mb-1">
+                  Jährliche Einnahmen (€) – für Amortisationszeit
+                </label>
+                <input
+                  type="number"
+                  value={jaehrlicheEinnahmen || ''}
+                  onChange={(e) => setJaehrlicheEinnahmen(Number(e.target.value))}
+                  className="w-full px-3 py-2 rounded-lg border border-purple-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  placeholder="z.B. 2.000"
+                  min={0}
+                  step={100}
+                />
+              </div>
+
+              {/* Eigenkapital */}
+              <div>
+                <label className="block text-sm font-medium text-purple-700 mb-1">
+                  Eigenkapital (€) – für Eigenkapitalrendite
+                </label>
+                <input
+                  type="number"
+                  value={eigenkapital || ''}
+                  onChange={(e) => setEigenkapital(Number(e.target.value))}
+                  className="w-full px-3 py-2 rounded-lg border border-purple-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  placeholder="z.B. 5.000"
+                  min={0}
+                  step={100}
+                />
+                <p className="text-xs text-purple-600 mt-1">
+                  Bei Fremdfinanzierung: nur Ihr eingesetztes Kapital (Leverage-Effekt).
+                </p>
+              </div>
             </div>
           </div>
-        )}
 
-        {/* Zeitraum */}
-        <div className="mb-6">
-          <label className="block mb-2">
-            <span className="text-gray-700 font-medium">Zeitraum der Investition</span>
-          </label>
-          <div className="flex gap-3">
-            <div className="flex-1 relative">
-              <input
-                type="number"
-                value={zeitraum}
-                onChange={(e) => setZeitraum(Math.max(0.1, Number(e.target.value)))}
-                className="w-full text-2xl font-bold text-center py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-0 outline-none"
-                min="0.1"
-                max="50"
-                step="0.5"
-              />
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setZeitraumEinheit('jahre')}
-                className={`py-3 px-4 rounded-xl transition-all ${
-                  zeitraumEinheit === 'jahre'
-                    ? 'bg-emerald-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                Jahre
-              </button>
-              <button
-                onClick={() => setZeitraumEinheit('monate')}
-                className={`py-3 px-4 rounded-xl transition-all ${
-                  zeitraumEinheit === 'monate'
-                    ? 'bg-emerald-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                Monate
-              </button>
-            </div>
-          </div>
-          <input
-            type="range"
-            value={zeitraum}
-            onChange={(e) => setZeitraum(Number(e.target.value))}
-            className="w-full mt-3 accent-emerald-500"
-            min={zeitraumEinheit === 'monate' ? 1 : 0.5}
-            max={zeitraumEinheit === 'monate' ? 60 : 10}
-            step={zeitraumEinheit === 'monate' ? 1 : 0.5}
-          />
-        </div>
-      </div>
-
-      {/* Result Section */}
-      <div className={`rounded-2xl shadow-lg p-6 text-white mb-6 ${
-        ergebnis.roi >= 0 
-          ? 'bg-gradient-to-br from-emerald-500 to-teal-600' 
-          : 'bg-gradient-to-br from-red-500 to-orange-600'
-      }`}>
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium opacity-80">
-            {berechnungsArt === 'roi' && '📈 Return on Investment (ROI)'}
-            {berechnungsArt === 'gewinn' && '💰 Benötigter Gewinn'}
-            {berechnungsArt === 'investition' && '🎯 Benötigte Investition'}
-          </h3>
-          <span className={`text-sm px-3 py-1 rounded-full bg-white/20 ${ergebnis.bewertung.farbe}`}>
-            {ergebnis.bewertung.emoji} {ergebnis.bewertung.text}
-          </span>
-        </div>
-
-        <div className="mb-4">
-          {berechnungsArt === 'roi' && (
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-bold">{formatProzent(ergebnis.roi)}</span>
-            </div>
-          )}
-          {berechnungsArt === 'gewinn' && (
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-bold">{formatEuro(ergebnis.gewinn)}</span>
-            </div>
-          )}
-          {berechnungsArt === 'investition' && (
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-bold">{formatEuro(ergebnis.investition)}</span>
-            </div>
-          )}
-          <p className="text-emerald-100 mt-2 text-sm">
-            📅 Rendite p.a.: <strong>{formatProzent(ergebnis.renditePA)}</strong>
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-            <span className="text-sm opacity-80">Investition</span>
-            <div className="text-xl font-bold">{formatEuro(ergebnis.investition)}</div>
-          </div>
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-            <span className="text-sm opacity-80">Gewinn</span>
-            <div className={`text-xl font-bold ${ergebnis.gewinn < 0 ? 'text-red-200' : ''}`}>
-              {ergebnis.gewinn >= 0 ? '+' : ''}{formatEuro(ergebnis.gewinn)}
-            </div>
-          </div>
-        </div>
-
-        {/* Balkendiagramm Investition vs. Gewinn */}
-        {ergebnis.gewinn >= 0 && (
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-            <div className="flex justify-between text-sm mb-2">
-              <span>Investition: {formatEuro(ergebnis.investition)}</span>
-              <span>Gewinn: {formatEuro(ergebnis.gewinn)}</span>
-            </div>
-            <div className="h-4 rounded-full overflow-hidden bg-white/20 flex">
-              <div
-                className="bg-white h-full transition-all duration-500"
-                style={{ width: `${investitionAnteil}%` }}
-              ></div>
-              <div
-                className="bg-green-300 h-full transition-all duration-500"
-                style={{ width: `${gewinnAnteil}%` }}
-              ></div>
-            </div>
-            <div className="flex justify-between text-xs mt-1 opacity-70">
-              <span>{investitionAnteil.toFixed(1)}% Kapital</span>
-              <span>{gewinnAnteil.toFixed(1)}% Rendite</span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Kennzahlen */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="font-bold text-gray-800">📊 Wichtige Kennzahlen</h3>
           <button
-            onClick={() => setZeigeDetails(!zeigeDetails)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-              zeigeDetails
-                ? 'bg-emerald-500 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
+            onClick={handleBerechnen}
+            className="w-full bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold py-4 px-6 rounded-xl hover:from-purple-600 hover:to-violet-700 transition-all shadow-lg hover:shadow-xl"
           >
-            {zeigeDetails ? '▲ Weniger' : '▼ Mehr Details'}
+            📈 Rentabilität berechnen
           </button>
         </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-emerald-50 rounded-xl p-4">
-            <span className="text-sm text-emerald-600">ROI (Gesamt)</span>
-            <div className={`text-2xl font-bold ${ergebnis.roi >= 0 ? 'text-emerald-900' : 'text-red-600'}`}>
-              {formatProzent(ergebnis.roi)}
-            </div>
-          </div>
-          <div className="bg-blue-50 rounded-xl p-4">
-            <span className="text-sm text-blue-600">Rendite p.a.</span>
-            <div className={`text-2xl font-bold ${ergebnis.renditePA >= 0 ? 'text-blue-900' : 'text-red-600'}`}>
-              {formatProzent(ergebnis.renditePA)}
-            </div>
-          </div>
-          <div className="bg-purple-50 rounded-xl p-4">
-            <span className="text-sm text-purple-600">Endkapital</span>
-            <div className="text-2xl font-bold text-purple-900">
-              {formatEuro(ergebnis.endwert)}
-            </div>
-          </div>
-          <div className="bg-orange-50 rounded-xl p-4">
-            <span className="text-sm text-orange-600">Amortisation</span>
-            <div className="text-2xl font-bold text-orange-900">
-              {ergebnis.amortisationszeit === Infinity 
-                ? '∞' 
-                : `${formatZahl(ergebnis.amortisationszeit)} J.`}
-            </div>
-          </div>
-        </div>
-
-        {zeigeDetails && (
-          <div className="mt-4 space-y-3 text-sm border-t pt-4">
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">Investitionssumme</span>
-              <span className="font-bold text-gray-900">{formatEuroExact(ergebnis.investition)}</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">Gewinn (netto)</span>
-              <span className={`font-bold ${ergebnis.gewinn >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                {ergebnis.gewinn >= 0 ? '+' : ''}{formatEuroExact(ergebnis.gewinn)}
-              </span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">Zeitraum</span>
-              <span className="text-gray-900">
-                {ergebnis.zeitraumInJahren.toFixed(2)} Jahre ({(ergebnis.zeitraumInJahren * 12).toFixed(0)} Monate)
-              </span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">Kapitalumschlag</span>
-              <span className="text-gray-900">{formatZahl(ergebnis.kapitalumschlag)}x</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">Lineare Rendite p.a.</span>
-              <span className="text-gray-900">{formatProzent(ergebnis.linearRenditePA)}</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-gray-100">
-              <span className="text-gray-600">Gewinnmarge</span>
-              <span className="text-gray-900">{formatProzent(ergebnis.gewinnmarge)}</span>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* ROI-Formel */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">🧮 Die ROI-Formel</h3>
-        
-        <div className="bg-gray-50 rounded-xl p-4 mb-4 font-mono text-center">
-          <div className="text-lg">
-            ROI = <span className="text-green-600">(Gewinn / Investition)</span> × 100
-          </div>
-          <div className="text-sm text-gray-500 mt-2">
-            = ({formatEuro(ergebnis.gewinn)} / {formatEuro(ergebnis.investition)}) × 100 = <strong>{formatProzent(ergebnis.roi)}</strong>
-          </div>
-        </div>
+      {/* Ergebnis */}
+      {berechnet && ergebnis && (
+        <>
+          {/* Haupt-Ergebnis */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">✨</span>
+              Ihr Ergebnis
+            </h2>
 
-        <div className="bg-blue-50 rounded-xl p-4 font-mono text-center">
-          <div className="text-lg">
-            Rendite p.a. = <span className="text-blue-600">((Endwert / Anfangswert)^(1/Jahre) - 1)</span> × 100
-          </div>
-          <div className="text-sm text-gray-500 mt-2">
-            = (({formatEuro(ergebnis.endwert)} / {formatEuro(ergebnis.investition)})^(1/{formatZahl(ergebnis.zeitraumInJahren)}) - 1) × 100 = <strong>{formatProzent(ergebnis.renditePA)}</strong>
-          </div>
-        </div>
-      </div>
+            {/* ROI Großanzeige */}
+            <div className="text-center mb-6">
+              <div className="text-gray-500 text-sm mb-1">Return on Investment (ROI)</div>
+              <div className={`inline-block px-8 py-4 rounded-2xl ${
+                ergebnis.istPositiv
+                  ? 'bg-gradient-to-r from-green-500 to-emerald-500'
+                  : 'bg-gradient-to-r from-red-500 to-rose-500'
+              } text-white`}>
+                <div className="text-4xl font-bold">
+                  {ergebnis.roi >= 0 ? '+' : ''}{formatPercent(ergebnis.roi)}
+                </div>
+              </div>
+              {ergebnis.roiPA !== null && (
+                <div className="mt-3">
+                  <span className={`inline-block px-4 py-2 rounded-lg text-sm font-semibold ${
+                    ergebnis.roiPA >= 0
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-800'
+                  }`}>
+                    📅 {ergebnis.roiPA >= 0 ? '+' : ''}{formatPercent(ergebnis.roiPA)} p.a. (annualisiert)
+                  </span>
+                </div>
+              )}
+            </div>
 
-      {/* Vergleichstabelle */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📊 ROI-Vergleich: Typische Renditen</h3>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b-2 border-gray-200">
-                <th className="text-left py-2 text-gray-600">Anlageform</th>
-                <th className="text-right py-2 text-gray-600">Typ. ROI p.a.</th>
-                <th className="text-right py-2 text-gray-600">Risiko</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className={`border-b border-gray-100 ${ergebnis.renditePA >= 1 && ergebnis.renditePA < 3 ? 'bg-yellow-50' : ''}`}>
-                <td className="py-2">💰 Tagesgeld</td>
-                <td className="text-right py-2">1-3%</td>
-                <td className="text-right py-2 text-green-600">Niedrig</td>
-              </tr>
-              <tr className={`border-b border-gray-100 ${ergebnis.renditePA >= 3 && ergebnis.renditePA < 5 ? 'bg-yellow-50' : ''}`}>
-                <td className="py-2">📜 Staatsanleihen</td>
-                <td className="text-right py-2">3-5%</td>
-                <td className="text-right py-2 text-green-600">Niedrig</td>
-              </tr>
-              <tr className={`border-b border-gray-100 ${ergebnis.renditePA >= 5 && ergebnis.renditePA < 8 ? 'bg-yellow-50' : ''}`}>
-                <td className="py-2">📈 ETF (Welt-Index)</td>
-                <td className="text-right py-2">5-8%</td>
-                <td className="text-right py-2 text-yellow-600">Mittel</td>
-              </tr>
-              <tr className={`border-b border-gray-100 ${ergebnis.renditePA >= 4 && ergebnis.renditePA < 7 ? 'bg-yellow-50' : ''}`}>
-                <td className="py-2">🏠 Immobilien</td>
-                <td className="text-right py-2">4-7%</td>
-                <td className="text-right py-2 text-yellow-600">Mittel</td>
-              </tr>
-              <tr className={`border-b border-gray-100 ${ergebnis.renditePA >= 7 && ergebnis.renditePA < 12 ? 'bg-yellow-50' : ''}`}>
-                <td className="py-2">📊 Aktien (Einzelwerte)</td>
-                <td className="text-right py-2">7-12%</td>
-                <td className="text-right py-2 text-orange-600">Hoch</td>
-              </tr>
-              <tr className={`border-b border-gray-100 ${ergebnis.renditePA >= 15 ? 'bg-yellow-50' : ''}`}>
-                <td className="py-2">🚀 Startups / VC</td>
-                <td className="text-right py-2">15-30%+</td>
-                <td className="text-right py-2 text-red-600">Sehr hoch</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <p className="text-xs text-gray-500 mt-3">
-          * Durchschnittswerte, tatsächliche Renditen können stark abweichen. Vergangene Performance ist keine Garantie für zukünftige Ergebnisse.
-        </p>
-      </div>
+            {/* Gewinn/Verlust + Endwert */}
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className={`text-center p-4 rounded-xl ${ergebnis.istPositiv ? 'bg-green-50' : 'bg-red-50'}`}>
+                <div className="text-sm text-gray-500 mb-1">
+                  {ergebnis.istPositiv ? 'Gewinn' : 'Verlust'}
+                </div>
+                <div className={`text-2xl font-bold ${ergebnis.istPositiv ? 'text-green-700' : 'text-red-700'}`}>
+                  {ergebnis.effektiverGewinn >= 0 ? '+' : ''}{formatCurrency(ergebnis.effektiverGewinn)}
+                </div>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-purple-50">
+                <div className="text-sm text-gray-500 mb-1">Endwert</div>
+                <div className="text-2xl font-bold text-purple-700">
+                  {formatCurrency(ergebnis.effektiverEndwert)}
+                </div>
+              </div>
+            </div>
 
-      {/* Info Section */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">ℹ️ Was ist der ROI?</h3>
-        <ul className="space-y-2 text-sm text-gray-600">
-          <li className="flex gap-2">
-            <span>📈</span>
-            <span>
-              <strong>Return on Investment (ROI):</strong> Eine Kennzahl, die das Verhältnis zwischen Gewinn 
-              und eingesetztem Kapital misst. Sie zeigt, wie profitabel eine Investition ist.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>📅</span>
-            <span>
-              <strong>Rendite p.a.:</strong> Die annualisierte Rendite berücksichtigt den Zeitraum und macht 
-              unterschiedlich lange Investitionen vergleichbar.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>⏱️</span>
-            <span>
-              <strong>Amortisationszeit:</strong> Die Zeit, bis die Investition durch die Gewinne wieder 
-              eingespielt ist (Break-Even-Point).
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>💡</span>
-            <span>
-              <strong>Kapitalumschlag:</strong> Zeigt, wie oft das eingesetzte Kapital durch den Gewinn 
-              „umgeschlagen" wird.
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      {/* Anwendungsbeispiele */}
-      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-emerald-800 mb-3">💡 Anwendungsbeispiele</h3>
-        <ul className="space-y-3 text-sm text-emerald-700">
-          <li className="flex gap-2">
-            <span>🏪</span>
-            <span>
-              <strong>Geschäftsinvestition:</strong> Ein Café investiert 50.000€ in eine neue Espressomaschine 
-              und erzielt dadurch 8.000€ mehr Gewinn pro Jahr → ROI p.a. = 16%
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>📱</span>
-            <span>
-              <strong>Marketing-Kampagne:</strong> 5.000€ Werbebudget bringt 12.000€ zusätzlichen Umsatz 
-              (7.000€ Gewinn nach Kosten) → ROI = 140%
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>🎓</span>
-            <span>
-              <strong>Weiterbildung:</strong> 3.000€ Kursgebühren führen zu 500€ höherem Monatsgehalt 
-              → Amortisation nach 6 Monaten, dann ROI steigt unbegrenzt
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>🏠</span>
-            <span>
-              <strong>Immobilien:</strong> 200.000€ Kaufpreis, 12.000€ Jahresmiete (nach Kosten) 
-              → ROI = 6% p.a. (ohne Wertsteigerung)
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      {/* Wichtige Hinweise */}
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-amber-800 mb-3">⚠️ Wichtige Hinweise</h3>
-        <ul className="space-y-2 text-sm text-amber-700">
-          <li className="flex gap-2">
-            <span>•</span>
-            <span>
-              <strong>Steuern beachten:</strong> Der ROI zeigt die Bruttorendite. Nach Abzug von 
-              Kapitalertragsteuer (25% + Soli) ist die Nettorendite geringer.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>•</span>
-            <span>
-              <strong>Inflation:</strong> Bei 2% Inflation ist eine 2%-Rendite real ein Nullsummenspiel. 
-              Real-ROI = Nominal-ROI - Inflation.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>•</span>
-            <span>
-              <strong>Risiko vs. Rendite:</strong> Höhere erwartete Renditen gehen meist mit höherem 
-              Risiko einher. Diversifikation reduziert Risiken.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>•</span>
-            <span>
-              <strong>Opportunitätskosten:</strong> Vergleiche den ROI mit alternativen Anlagemöglichkeiten. 
-              Was bringt das Geld anderswo?
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span>•</span>
-            <span>
-              <strong>Nicht-monetäre Faktoren:</strong> Manche Investitionen (Gesundheit, Bildung, Zeit) 
-              haben Werte, die sich nicht in ROI messen lassen.
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      {/* Erweiterte Kennzahlen */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">📚 Verwandte Kennzahlen</h3>
-        <div className="space-y-4">
-          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">📊</span>
-            <div>
-              <p className="font-medium text-gray-800">ROCE (Return on Capital Employed)</p>
-              <p className="text-sm text-gray-600">
-                EBIT geteilt durch das eingesetzte Kapital – zeigt die operative Rentabilität.
-              </p>
+            {/* Detail-Tabelle */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">Investitionssumme</span>
+                <span className="font-medium text-gray-800">{formatCurrency(investition)}</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">
+                  {ergebnis.istPositiv ? 'Gewinn' : 'Verlust'}
+                </span>
+                <span className={`font-medium ${ergebnis.istPositiv ? 'text-green-600' : 'text-red-600'}`}>
+                  {ergebnis.effektiverGewinn >= 0 ? '+' : ''}{formatCurrency(ergebnis.effektiverGewinn)}
+                </span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">Gesamtkapitalrendite (ROI)</span>
+                <span className={`font-bold ${ergebnis.istPositiv ? 'text-green-600' : 'text-red-600'}`}>
+                  {ergebnis.roi >= 0 ? '+' : ''}{formatPercent(ergebnis.roi)}
+                </span>
+              </div>
+              {ergebnis.roiPA !== null && (
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Rendite p.a. (CAGR)</span>
+                  <span className={`font-bold ${(ergebnis.roiPA ?? 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {(ergebnis.roiPA ?? 0) >= 0 ? '+' : ''}{formatPercent(ergebnis.roiPA ?? 0)}
+                  </span>
+                </div>
+              )}
+              {ergebnis.eigenkapitalrendite !== null && (
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Eigenkapitalrendite</span>
+                  <span className={`font-bold ${(ergebnis.eigenkapitalrendite ?? 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {(ergebnis.eigenkapitalrendite ?? 0) >= 0 ? '+' : ''}{formatPercent(ergebnis.eigenkapitalrendite ?? 0)}
+                  </span>
+                </div>
+              )}
+              {ergebnis.amortisation !== null && (
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Amortisationszeit</span>
+                  <span className="font-bold text-purple-700">
+                    {formatJahre(ergebnis.amortisation ?? 0)}
+                  </span>
+                </div>
+              )}
+              {ergebnis.verdopplungszeit !== null && (
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-600">Verdopplungszeit (72er-Regel)</span>
+                  <span className="font-medium text-gray-800">
+                    ≈ {formatJahre(ergebnis.verdopplungszeit ?? 0)}
+                  </span>
+                </div>
+              )}
+              <div className="flex justify-between items-center py-3 bg-purple-50 -mx-2 px-4 rounded-lg">
+                <span className="font-bold text-purple-800">Endwert</span>
+                <span className="font-bold text-purple-800 text-xl">{formatCurrency(ergebnis.effektiverEndwert)}</span>
+              </div>
             </div>
           </div>
-          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">💵</span>
-            <div>
-              <p className="font-medium text-gray-800">ROE (Return on Equity)</p>
-              <p className="text-sm text-gray-600">
-                Eigenkapitalrendite – Gewinn geteilt durch Eigenkapital. Wichtig für Aktionäre.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">🏦</span>
-            <div>
-              <p className="font-medium text-gray-800">ROA (Return on Assets)</p>
-              <p className="text-sm text-gray-600">
-                Gesamtkapitalrendite – Gewinn geteilt durch Gesamtvermögen.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">📈</span>
-            <div>
-              <p className="font-medium text-gray-800">IRR (Internal Rate of Return)</p>
-              <p className="text-sm text-gray-600">
-                Interner Zinsfuß – berücksichtigt Zeitpunkt von Cashflows. Komplexer, aber präziser.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Quellen */}
-      <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Informationen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://www.investopedia.com/terms/r/returnoninvestment.asp"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Investopedia – Return on Investment (ROI)
-          </a>
-          <a
-            href="https://www.ihk.de/blueprint/servlet/resource/blob/5434424/fa1e169e5e0b3b9d3d07c5c48a9a5d18/kennzahlen-im-unternehmen-data.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            IHK – Kennzahlen im Unternehmen
-          </a>
-          <a
-            href="https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Bundesbank – Aktuelle Zinssätze und Renditen
-          </a>
-          <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Geldanlage
-          </a>
-        </div>
-      </div>
+          {/* Visueller ROI-Vergleich */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📊</span>
+              Vergleich: Ihre Rendite vs. Benchmarks
+            </h2>
+
+            <div className="space-y-3">
+              {/* Eigenes Ergebnis */}
+              <div className="relative">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-sm font-bold text-purple-700">🎯 Ihre Rendite p.a.</span>
+                  <span className={`text-sm font-bold ${
+                    (ergebnis.roiPA ?? ergebnis.roi) >= 0 ? 'text-green-700' : 'text-red-700'
+                  }`}>
+                    {formatPercent(ergebnis.roiPA ?? ergebnis.roi)}
+                  </span>
+                </div>
+                <div className="h-6 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all ${
+                      (ergebnis.roiPA ?? ergebnis.roi) >= 0
+                        ? 'bg-gradient-to-r from-purple-500 to-violet-500'
+                        : 'bg-gradient-to-r from-red-400 to-red-500'
+                    }`}
+                    style={{
+                      width: `${Math.min(Math.max(Math.abs(ergebnis.roiPA ?? ergebnis.roi) / 15 * 100, 2), 100)}%`
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Benchmarks */}
+              {BENCHMARKS.map((b) => (
+                <div key={b.name} className="relative">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm text-gray-600">{b.name}</span>
+                    <span className="text-sm font-medium text-gray-700">
+                      {formatPercent(b.rendite)}
+                    </span>
+                  </div>
+                  <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gray-300 rounded-full"
+                      style={{ width: `${Math.min(b.rendite / 15 * 100, 100)}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {ergebnis.roiPA !== null && (
+              <div className={`mt-4 p-3 rounded-lg text-sm ${
+                (ergebnis.roiPA ?? 0) > 7.5
+                  ? 'bg-green-50 text-green-800'
+                  : (ergebnis.roiPA ?? 0) > 2
+                    ? 'bg-blue-50 text-blue-800'
+                    : 'bg-amber-50 text-amber-800'
+              }`}>
+                {(ergebnis.roiPA ?? 0) > 7.5
+                  ? '🚀 Ihre Rendite liegt über dem langfristigen DAX-Durchschnitt – eine überdurchschnittliche Investition!'
+                  : (ergebnis.roiPA ?? 0) > 2
+                    ? '✅ Ihre Rendite liegt über der Inflationsrate – Ihre Kaufkraft wächst real.'
+                    : (ergebnis.roiPA ?? 0) > 0
+                      ? '⚠️ Ihre Rendite liegt unter der Inflationsrate – real verlieren Sie Kaufkraft.'
+                      : '❌ Diese Investition ist defizitär – Sie machen Verlust.'}
+              </div>
+            )}
+          </div>
+
+          {/* Formel-Box */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📐</span>
+              Ihre Berechnung im Detail
+            </h2>
+
+            <div className="space-y-4 text-sm">
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <h3 className="font-semibold text-gray-800 mb-2">ROI-Formel:</h3>
+                <div className="bg-white p-3 rounded border border-gray-200 font-mono text-center">
+                  ROI = (Gewinn ÷ Investition) × 100
+                </div>
+                <p className="mt-2 text-gray-600">
+                  = ({formatCurrency(ergebnis.effektiverGewinn)} ÷ {formatCurrency(investition)}) × 100 = <strong>{formatPercent(ergebnis.roi)}</strong>
+                </p>
+              </div>
+
+              {ergebnis.roiPA !== null && laufzeit > 0 && (
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <h3 className="font-semibold text-gray-800 mb-2">CAGR (annualisierte Rendite):</h3>
+                  <div className="bg-white p-3 rounded border border-gray-200 font-mono text-center text-xs">
+                    CAGR = ((Endwert ÷ Anfangswert)^(1÷Jahre) - 1) × 100
+                  </div>
+                  <p className="mt-2 text-gray-600">
+                    = (({formatCurrency(ergebnis.effektiverEndwert)} ÷ {formatCurrency(investition)})^(1÷{laufzeit}) - 1) × 100 = <strong>{formatPercent(ergebnis.roiPA ?? 0)}</strong>
+                  </p>
+                </div>
+              )}
+
+              {ergebnis.eigenkapitalrendite !== null && eigenkapital > 0 && (
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <h3 className="font-semibold text-gray-800 mb-2">Eigenkapitalrendite (Leverage):</h3>
+                  <div className="bg-white p-3 rounded border border-gray-200 font-mono text-center">
+                    EK-Rendite = (Gewinn ÷ Eigenkapital) × 100
+                  </div>
+                  <p className="mt-2 text-gray-600">
+                    = ({formatCurrency(ergebnis.effektiverGewinn)} ÷ {formatCurrency(eigenkapital)}) × 100 = <strong>{formatPercent(ergebnis.eigenkapitalrendite ?? 0)}</strong>
+                  </p>
+                  {eigenkapital < investition && (
+                    <p className="mt-2 text-purple-600">
+                      💡 Durch Fremdfinanzierung von {formatCurrency(investition - eigenkapital)} steigt Ihre EK-Rendite von {formatPercent(ergebnis.roi)} auf {formatPercent(ergebnis.eigenkapitalrendite ?? 0)} (Leverage-Effekt).
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Hinweise */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">💡</span>
+              Tipps zur Rentabilitätsberechnung
+            </h2>
+
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                <span className="text-xl">✅</span>
+                <p className="text-green-800">
+                  <strong>Alle Kosten einrechnen:</strong> Berücksichtigen Sie Nebenkosten,
+                  Steuern, Inflation und Opportunitätskosten für ein realistisches Bild.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                <span className="text-xl">📅</span>
+                <p className="text-blue-800">
+                  <strong>ROI p.a. vergleichen:</strong> Nur die annualisierte Rendite (CAGR) macht
+                  Investitionen mit unterschiedlicher Laufzeit vergleichbar.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg">
+                <span className="text-xl">⚠️</span>
+                <p className="text-amber-800">
+                  <strong>Risiko beachten:</strong> Höhere Rendite bedeutet meist höheres Risiko.
+                  Vergleichen Sie risikoadjustiert (Sharpe Ratio).
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                <span className="text-xl">🏠</span>
+                <p className="text-purple-800">
+                  <strong>Eigenkapitalrendite:</strong> Durch Fremdfinanzierung (z.B. Immobilienkredit)
+                  kann die EK-Rendite deutlich über der Gesamtrendite liegen – aber das Risiko steigt.
+                </p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

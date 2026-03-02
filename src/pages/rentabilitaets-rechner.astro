@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RentabilitaetRechner from '../components/rechner/RentabilitaetRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Rentabilitäts-Rechner – ROI & Rendite p.a. berechnen";
+const description = "ROI berechnen: Return on Investment, Rendite p.a. & Amortisation kostenlos ermitteln. Mit Benchmarks & Vergleich. Sofort online!";
+const keywords = "Rentabilität Rechner, ROI berechnen, Return on Investment, Rendite berechnen, Investition Rentabilität, ROI Formel, Kapitalrendite, Rendite p.a., CAGR Rechner, Amortisation berechnen";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Rentabilitäts-Rechner", url: "/rentabilitaets-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-purple-500 to-violet-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rentabilitäts-Rechner</h1>
+            <p class="text-purple-100 text-sm">ROI & Rendite p.a. berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RentabilitaetRechner client:load />
+    </div>
+    
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">ROI berechnen: So funktioniert's</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Return on Investment (ROI)</strong> ist die wichtigste Kennzahl zur Bewertung von Investitionen. 
+            Er zeigt, wie viel Gewinn eine Investition im Verhältnis zum eingesetzten Kapital erwirtschaftet hat.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die ROI-Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">ROI = (Gewinn / Investition) × 100%</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Sie investieren 10.000 € und erzielen 2.500 € Gewinn. 
+            ROI = (2.500 / 10.000) × 100 = <strong>25%</strong>.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rendite p.a. (CAGR)</h3>
+          <p>
+            Die <strong>annualisierte Rendite</strong> (CAGR = Compound Annual Growth Rate) 
+            macht Investitionen mit unterschiedlicher Laufzeit vergleichbar:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">Rendite p.a. = ((1 + ROI)^(1/Jahre) - 1) × 100%</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> 50% Gesamtrendite über 5 Jahre entspricht einer 
+            annualisierten Rendite von ca. <strong>8,45% p.a.</strong>
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arten der Rentabilität</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Eigenkapitalrentabilität:</strong> Gewinn / Eigenkapital × 100% – wie effizient arbeitet Ihr eigenes Kapital?</li>
+            <li><strong>Gesamtkapitalrentabilität:</strong> (Gewinn + Fremdkapitalzinsen) / Gesamtkapital × 100%</li>
+            <li><strong>Umsatzrentabilität:</strong> Gewinn / Umsatz × 100% – wie profitabel ist Ihr Geschäft?</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">ROI vs. IRR vs. CAGR</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>ROI:</strong> Einfache Gesamtrendite – ideal für schnelle Vergleiche</li>
+            <li><strong>CAGR:</strong> Annualisierte Rendite – berücksichtigt Zinseszins-Effekt</li>
+            <li><strong>IRR (Interner Zinsfuß):</strong> Berücksichtigt unterschiedliche Cashflow-Zeitpunkte – ideal für komplexe Investitionen</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Typische Rendite-Benchmarks (2026)</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>DAX (Ø 30 Jahre):</strong> ca. 7,5% p.a.</li>
+            <li><strong>MSCI World (Ø 30 Jahre):</strong> ca. 8% p.a.</li>
+            <li><strong>Tagesgeld:</strong> ca. 2,5-3,0% p.a.</li>
+            <li><strong>Immobilien (Mietrendite):</strong> ca. 3-5% p.a.</li>
+            <li><strong>Inflation (Ziel EZB):</strong> 2% p.a.</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Praktische Beispiele</h3>
+          <div class="space-y-3">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <strong>Aktieninvestition:</strong> 5.000 € in ETF investiert, nach 3 Jahren 6.800 € wert. 
+              ROI = 36%, Rendite p.a. = 10,8%.
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <strong>Immobilie:</strong> Kaufpreis 200.000 €, jährliche Mieteinnahmen 8.400 € (nach Kosten). 
+              Mietrendite = 4,2% p.a.
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <strong>Unternehmensinvestition:</strong> 50.000 € in neue Maschine, 15.000 € Mehrgewinn/Jahr. 
+              Amortisation nach 3,3 Jahren, ROI nach 5 Jahren = 50%.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Verwandte Rechner
+        </h2>
+        
+        <div class="grid gap-3">
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">💰</span>
+            <div>
+              <div class="font-semibold text-gray-800">Zinseszins-Rechner</div>
+              <div class="text-sm text-gray-500">Zinsen & Zinseszins berechnen</div>
+            </div>
+          </a>
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">📊</span>
+            <div>
+              <div class="font-semibold text-gray-800">ETF-Sparplan-Rechner</div>
+              <div class="text-sm text-gray-500">Sparplan-Rendite & Endvermögen berechnen</div>
+            </div>
+          </a>
+          <a href="/vl-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏦</span>
+            <div>
+              <div class="font-semibold text-gray-800">VL-Rechner</div>
+              <div class="text-sm text-gray-500">Vermögenswirksame Leistungen & Arbeitnehmersparzulage</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rentabilitäts-Rechner – ROI & Rendite p.a. berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/rentabilitaets-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist der ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Return on Investment (ROI) misst die Rentabilität einer Investition. Er wird berechnet als: ROI = (Gewinn / Investition) × 100%. Ein ROI von 25% bedeutet, dass Sie für jeden investierten Euro 25 Cent Gewinn erzielt haben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Rendite p.a.?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die annualisierte Rendite (CAGR) wird berechnet als: Rendite p.a. = ((Endwert/Anfangswert)^(1/Jahre) - 1) × 100%. Sie macht Investitionen mit unterschiedlicher Laufzeit vergleichbar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist eine gute Rendite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Anlagetyp ab. Aktien (DAX/MSCI World) erzielen historisch ca. 7-8% p.a., Immobilien 3-5% Mietrendite, Tagesgeld aktuell ca. 2,5-3%. Jede Rendite über der Inflation (ca. 2%) bedeutet realen Vermögensaufbau."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen ROI und CAGR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der ROI zeigt die Gesamtrendite über den gesamten Zeitraum. Die CAGR (Compound Annual Growth Rate) rechnet diese auf ein Jahr um und berücksichtigt den Zinseszins-Effekt. Beispiel: 50% ROI über 5 Jahre = ca. 8,45% CAGR p.a."
+        }
+      }
+    ]
+  })} />
+</Layout>
