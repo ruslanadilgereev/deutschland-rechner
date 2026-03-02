@@ -324,7 +324,7 @@ export default function HomeofficeRechner() {
       {/* Result Section */}
       <div className="rounded-2xl shadow-lg p-6 text-white mb-6 bg-gradient-to-br from-teal-500 to-emerald-600">
         <h3 className="text-sm font-medium opacity-80 mb-1">
-          🏡 Ihre Homeoffice-Pauschale 2025
+          🏡 Ihre Homeoffice-Pauschale 2026
         </h3>
 
         <div className="mb-4">
@@ -577,9 +577,9 @@ export default function HomeofficeRechner() {
         </ul>
       </div>
 
-      {/* Regelungen 2025 */}
+      {/* Regelungen 2026 */}
       <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-blue-800 mb-3">🆕 Regelungen 2025</h3>
+        <h3 className="font-bold text-blue-800 mb-3">🆕 Regelungen 2026</h3>
         <ul className="space-y-2 text-sm text-blue-700">
           <li className="flex gap-2">
             <span>✓</span>
@@ -603,8 +603,8 @@ export default function HomeofficeRechner() {
           <li className="flex gap-2">
             <span>✓</span>
             <span>
-              <strong>Pendlerpauschale:</strong> 0,30€/km (ab 21. km: 0,38€/km) – 
-              nicht für Homeoffice-Tage
+              <strong>Pendlerpauschale:</strong> 0,38€/km ab dem 1. Kilometer 
+              (Steueränderungsgesetz 2025) – nicht für Homeoffice-Tage
             </span>
           </li>
         </ul>
@@ -624,13 +624,13 @@ export default function HomeofficeRechner() {
                 <span className="font-medium">828€</span>
               </div>
               <div className="flex justify-between">
-                <span>Pendeln: 2 Tage × 46 Wochen × 30km × 0,30€ × 2</span>
-                <span className="font-medium">1.656€</span>
+                <span>Pendeln: 2 Tage × 46 Wochen × 30km × 0,38€</span>
+                <span className="font-medium">1.049€</span>
               </div>
               <hr className="my-2" />
               <div className="flex justify-between font-bold text-gray-800">
                 <span>Gesamte Werbungskosten</span>
-                <span>2.484€</span>
+                <span>1.877€</span>
               </div>
               <div className="flex justify-between text-green-700">
                 <span>- Werbungskostenpauschale</span>
@@ -638,7 +638,7 @@ export default function HomeofficeRechner() {
               </div>
               <div className="flex justify-between font-bold text-green-800">
                 <span>= Zusätzlicher Steuervorteil</span>
-                <span>1.254€</span>
+                <span>647€</span>
               </div>
             </div>
           </div>

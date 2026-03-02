@@ -1,10 +1,5 @@
 {
   "pending": [
-    "heizkosten-rechner",
-    "hochzeit-rechner",
-    "homeoffice-pauschale-rechner",
-    "iban-rechner",
-    "idealgewicht-rechner",
     "inflations-rechner",
     "kalorien-rechner",
     "kapitalertragsteuer-rechner",
@@ -137,7 +132,12 @@
     "grundsteuer-rechner",
     "grundumsatz-rechner",
     "handwerkerkosten-rechner",
-    "haushaltshilfe-rechner"
+    "haushaltshilfe-rechner",
+    "heizkosten-rechner",
+    "hochzeit-rechner",
+    "homeoffice-pauschale-rechner",
+    "iban-rechner",
+    "idealgewicht-rechner"
   ],
   "issues": [
     {
@@ -797,6 +797,90 @@
       "severity": "medium",
       "description": "Title was 73 chars → 56 chars. Description shortened. Updated 14.9% references to 14.62% in .astro and .tsx.",
       "fixed": true
+    },
+    {
+      "calculator": "heizkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (68 chars → 58 chars). Description too long (187 chars → 142 chars). Missing BreadcrumbSchema - added.",
+      "fixed": true
+    },
+    {
+      "calculator": "heizkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Gas 12ct/kWh, Öl 11ct, Fernwärme 13ct, WP 37ct Strom with JAZ 3.5, Pellets 7ct. CO2 emissions: Gas 201g, Öl 266g, Fernwärme 150g, WP 120g (Strommix), Pellets 23g. Wirkungsgrade Gas/Öl/Pellets 85-90%, Fernwärme 98%, WP JAZ 3.5 – all reasonable per Heizspiegel 2025/BDEW. Verbrauch pro qm by building type matches co2online data.",
+      "fixed": false
+    },
+    {
+      "calculator": "hochzeit-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (64 chars → 56 chars). Year updated 2025→2026 in title, SEO heading, keywords, structured data. Missing BreadcrumbSchema - added.",
+      "fixed": true
+    },
+    {
+      "calculator": "hochzeit-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Budget calculator using German average values. Cost categories, per-guest costs, and location type multipliers are reasonable approximations based on Statista/Hochzeitsportal24 data. No official formula - estimation tool.",
+      "fixed": false
+    },
+    {
+      "calculator": "homeoffice-pauschale-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Pendlerpauschale was shown as '0,30€/km (ab 21. km: 0,38€/km)' — WRONG for 2026! Since 01.01.2026: 0,38€/km ab dem 1. Kilometer (Steueränderungsgesetz 2025). Fixed in component and example calculation.",
+      "fixed": true
+    },
+    {
+      "calculator": "homeoffice-pauschale-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "Example calculation used Pendlerpauschale ×2 (Hin+Rück) but Entfernungspauschale is only for einfache Entfernung. Fixed: 2 Tage × 46 Wochen × 30km × 0,38€ = 1.049€.",
+      "fixed": true
+    },
+    {
+      "calculator": "homeoffice-pauschale-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 81 chars → 55 chars. Multiple '2025' references updated to '2026' in component header, structured data, FAQ schema, and Regelungen section.",
+      "fixed": true
+    },
+    {
+      "calculator": "homeoffice-pauschale-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: 6€/Tag, max 210 Tage = 1.260€ per §4 Abs.5 Nr.6c EStG (since 2023 permanent). Werbungskostenpauschale 1.230€ confirmed for 2026. Soli 5.5%, KiSt ~8.5% multipliers correct. Grenzsteuersätze 14/30/42/45% correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "iban-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (65 chars → 49 chars). Description too long (193 chars → 134 chars). Removed year from title (not date-sensitive content).",
+      "fixed": true
+    },
+    {
+      "calculator": "iban-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: IBAN Prüfziffer calculation per ISO 7064 Modulo 97 correct. BLZ+Konto+'131400' mod 97, Prüfziffer=98-Rest. DE country code = D(13)E(14). BLZ→BIC mapping covers major German banks. Validation checks length (22 for DE), format, and checksum.",
+      "fixed": false
+    },
+    {
+      "calculator": "idealgewicht-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 61 chars → 55 chars. Description too long (186 chars → 125 chars). Removed year from title (not date-sensitive for health formulas).",
+      "fixed": true
+    },
+    {
+      "calculator": "idealgewicht-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified all formulas: Broca (Größe-100, ×0.9 Männer/×0.85 Frauen) matches original 1871 formula. Creff (Größe-100+Alter/10)×0.9×Konstitutionsfaktor correct. Lorentz (Größe-100)-(Größe-150)/4 Männer, /2 Frauen correct. BMI range 18.5-25 correct per WHO. ±10% range for Broca/Lorentz, ±5% for Creff reasonable.",
+      "fixed": false
     }
   ],
   "lastAuditDate": "2026-03-02"
