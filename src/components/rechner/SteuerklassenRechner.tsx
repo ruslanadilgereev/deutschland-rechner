@@ -82,7 +82,7 @@ const SOLI_FREIGRENZE_SPLITTING = 36260; // Splittingtarif
 const SOLI_MILDERUNGSZONE_FAKTOR = 0.119;
 
 // ============================================================================
-// PAUSCHALEN & FREIBETRÄGE 2025
+// PAUSCHALEN & FREIBETRÄGE 2026
 // ============================================================================
 const WERBUNGSKOSTENPAUSCHALE = 1230;    // §9a Nr. 1 EStG
 const SONDERAUSGABENPAUSCHALE = 36;       // §10c EStG
@@ -131,9 +131,9 @@ const STEUERKLASSEN = [
 
 /**
  * EINKOMMENSTEUERTARIF nach §32a EStG
- * Exakte Formel aus dem Gesetz für das Steuerjahr 2025
+ * Exakte Formel aus dem Gesetz für das Steuerjahr 2026
  * 
- * Quelle: https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html
+ * Quelle: https://lsth.bundesfinanzministerium.de/lsth/2026/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html
  */
 function berechneEStTarif(zvE: number): number {
   // Auf volle Euro abrunden (§32a Abs. 1 Satz 1 EStG)
@@ -236,9 +236,8 @@ function berechneLohnsteuerJahr(
     case 4:
       break;
     case 5:
-      grundfreibetrag = 0; // Kein Grundfreibetrag
-      arbeitnehmerPauschbetrag = 0;
-      sonderausgabenPauschbetrag = 0;
+      grundfreibetrag = 0; // Kein Grundfreibetrag (wird in SK III berücksichtigt)
+      // Werbungskostenpauschale und Sonderausgabenpauschale gelten weiterhin in SK V
       break;
     case 6:
       grundfreibetrag = 0;
@@ -956,7 +955,7 @@ export default function SteuerklassenRechner() {
             §39 EStG – Lohnsteuerabzugsmerkmale
           </a>
           <a 
-            href="https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html"
+            href="https://lsth.bundesfinanzministerium.de/lsth/2026/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -972,7 +971,7 @@ export default function SteuerklassenRechner() {
             BMF – Offizieller Lohnsteuerrechner
           </a>
           <a 
-            href="https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025"
+            href="https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

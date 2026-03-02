@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import StromkostenRechner from '../components/rechner/StromkostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
 const title = "Stromkosten-Rechner 2026 – Verbrauch & Kosten berechnen";
-const description = "Stromkosten berechnen 2026: Verbrauch schätzen nach Haushaltsgröße, Preise vergleichen & Spartipps. Aktueller Durchschnitt: 37 ct/kWh. Kostenloser Rechner für Ihre jährlichen Stromkosten.";
+const description = "Stromkosten-Rechner 2026: Verbrauch nach Haushaltsgröße schätzen & Kosten berechnen. Ø 37 ct/kWh. Mit Spartipps & Preisvergleich.";
 const keywords = "Stromkosten Rechner, Stromkosten berechnen, Stromverbrauch Rechner, Strompreis 2026, kWh Rechner, Stromkosten pro Jahr, Stromkosten Haushalt, Stromverbrauch schätzen, Strompreis Deutschland";
 ---
 
@@ -12,6 +13,7 @@ const keywords = "Stromkosten Rechner, Stromkosten berechnen, Stromverbrauch Rec
   description={description}
   keywords={keywords}
 >
+  <BreadcrumbSchema items={[{ name: "Stromkosten-Rechner", url: "/stromkosten-rechner" }]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
@@ -209,5 +211,90 @@ const keywords = "Stromkosten Rechner, Stromkosten berechnen, Stromverbrauch Rec
         </div>
       </div>
     </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/gaskosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gaskosten-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
   </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Stromkosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/stromkosten-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet 1 kWh Strom 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der durchschnittliche Strompreis für Haushaltskunden liegt 2026 laut BDEW bei etwa 37 Cent pro Kilowattstunde (ct/kWh). Je nach Anbieter und Region variiert der Preis zwischen 30 und 45 ct/kWh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Strom verbraucht ein 2-Personen-Haushalt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein durchschnittlicher 2-Personen-Haushalt verbraucht etwa 2.400 kWh pro Jahr ohne elektrische Warmwasserbereitung, bzw. 3.200 kWh mit Durchlauferhitzer oder Boiler."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich meine Stromkosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Formel: Stromkosten = (Verbrauch in kWh × Arbeitspreis) + (Grundpreis × 12 Monate). Beispiel: 2.400 kWh × 0,37 € + 12 € × 12 = 888 € + 144 € = 1.032 € pro Jahr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es noch die Strompreisbremse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, die Strompreisbremse ist zum 31. Dezember 2023 ausgelaufen. Sie hatte den Preis für 80% des Vorjahresverbrauchs auf 40 ct/kWh gedeckelt. Seitdem gelten wieder die regulären Marktpreise."
+        }
+      }
+    ]
+  })} />
 </Layout>

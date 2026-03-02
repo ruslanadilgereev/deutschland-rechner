@@ -1,10 +1,5 @@
 {
   "pending": [
-    "steuererstattung-rechner",
-    "steuerklassen-rechner",
-    "steuerklassenwechsel-rechner",
-    "stromkosten-rechner",
-    "stundenlohn-rechner",
     "tage-rechner",
     "teilzeit-rechner",
     "thg-quote-rechner",
@@ -137,7 +132,12 @@
     "spar-rechner",
     "spritkosten-rechner",
     "spritverbrauch-rechner",
-    "ssw-rechner"
+    "ssw-rechner",
+    "steuererstattung-rechner",
+    "steuerklassen-rechner",
+    "steuerklassenwechsel-rechner",
+    "stromkosten-rechner",
+    "stundenlohn-rechner"
   ],
   "issues": [
     {
@@ -1896,6 +1896,111 @@
       "severity": "low",
       "description": "Description was 162 chars → 111 chars. Added missing BreadcrumbSchema. Verwandte Rechner section already present with 6 internal links. Title 50 chars (OK).",
       "fixed": true
+    },
+    {
+      "calculator": "steuererstattung-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 67 chars → 59 chars. Description was 179 chars → 138 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "steuererstattung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §32a EStG 2026 tariff correct (12.348/17.799/69.878/277.825), coefficients 914.51/173.10 match. Entfernungspauschale 0.38€/km correct. Homeoffice 6€/Tag max 1.260€ correct. WK-Pauschale 1.230€ correct. Simplified estimation tool with appropriate disclaimer.",
+      "fixed": false
+    },
+    {
+      "calculator": "steuerklassen-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Steuerklasse V: Werbungskostenpauschale and Sonderausgabenpauschale were incorrectly set to 0. Per §38b EStG and BMF PAP, SK V does not get Grundfreibetrag (correct) but DOES get WK-Pauschale (1.230€) and SA-Pauschale (36€). Fixed.",
+      "fixed": true
+    },
+    {
+      "calculator": "steuerklassen-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Missing BreadcrumbSchema. Added import and usage.",
+      "fixed": true
+    },
+    {
+      "calculator": "steuerklassen-rechner",
+      "type": "content",
+      "severity": "low",
+      "description": "Several source URLs referenced 2025 instead of 2026. Updated Finanz-Tools and BMF LStH links to /2026/.",
+      "fixed": true
+    },
+    {
+      "calculator": "steuerklassen-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §32a EStG 2026 tariff, SV rates (RV 18.6%, KV 14.6%+2.9%, PV 3.6%, AV 2.6%), BBG (RV 8.450, KV 5.812,50), Soli-Freigrenzen 18.130/36.260, Entlastungsbetrag 4.260€ all correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "steuerklassenwechsel-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Uses same SteuerklassenRechner component — SK V fix applies here too.",
+      "fixed": true
+    },
+    {
+      "calculator": "steuerklassenwechsel-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 64 chars → 54 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "steuerklassenwechsel-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Uses SteuerklassenRechner component. All combinations (III/V, IV/IV, V/III) calculated correctly after SK V fix. Zusammenveranlagung Splittingtarif correct. Nachzahlung/Erstattung estimation correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "stromkosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description was 186 chars → 133 chars. Missing BreadcrumbSchema — added. Missing WebApplication and FAQPage structured data — added. Added Verwandte Rechner section with 4 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "stromkosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Default 37 ct/kWh matches BDEW 2026 data (37.2 ct/kWh). Consumption values per household size match BDEW/co2online averages. Formula (kWh × Arbeitspreis + Grundpreis × 12) correct. Spartipps kWh savings reasonable. Vorjahr comparison at 41 ct/kWh correct for 2024.",
+      "fixed": false
+    },
+    {
+      "calculator": "stundenlohn-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "MINDESTLOHN_2025 and MINDESTLOHN_2026 both set to 12.82€ (2025 value). Correct 2026 value is 13.90€/h (BMAS, since 01.01.2026). Fixed both constants and all 15+ references throughout component. Also added MINDESTLOHN_2027 = 14.60€.",
+      "fixed": true
+    },
+    {
+      "calculator": "stundenlohn-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "All Mindestlohn UI text referenced \"2025\" throughout (section headers, info boxes, comparison labels). Updated to \"2026\". Updated Bundesregierung link to correct 2026 URL.",
+      "fixed": true
+    },
+    {
+      "calculator": "stundenlohn-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Added Verwandte Rechner section with 4 internal links (brutto-netto, mindestlohn, teilzeit, überstunden). FAQ Durchschnittsstundenlohn updated from \"2024\" to \"2025\".",
+      "fixed": true
+    },
+    {
+      "calculator": "stundenlohn-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Stundenlohn-Formel Monatsgehalt/(Wochenstunden×4.33) correct (4.33=52/12). Sonderzahlungen correctly add to Jahresgehalt. Effektiver Stundenlohn divides by 52×Wochenstunden (correct). Edge cases handled (min 0).",
+      "fixed": false
     }
   ],
   "lastAuditDate": "2026-03-02"

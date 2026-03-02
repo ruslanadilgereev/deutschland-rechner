@@ -7,10 +7,10 @@ const WOCHEN_PRO_JAHR = 52;
 const URLAUBSTAGE_DEFAULT = 30;
 const FEIERTAGE_DEFAULT = 10;
 
-// Mindestlohn 2025
-const MINDESTLOHN_2025 = 12.82;
-// Mindestlohn 2026 (geplant)
-const MINDESTLOHN_2026 = 12.82; // Noch nicht festgelegt
+// Mindestlohn 2026 (seit 01.01.2026, Quelle: BMAS/Bundesregierung)
+const MINDESTLOHN_2026 = 13.90;
+// Mindestlohn 2027 (ab 01.01.2027)
+const MINDESTLOHN_2027 = 14.60;
 
 export default function StundenlohnRechner() {
   // Berechnungsrichtung
@@ -61,9 +61,9 @@ export default function StundenlohnRechner() {
       const stundenlohnEffektiv = gesamtJahresgehalt / effektiveArbeitsstundenProJahr;
       
       // Vergleich zum Mindestlohn
-      const ueberMindestlohn = stundenlohnBrutto >= MINDESTLOHN_2025;
-      const differenzZumMindestlohn = stundenlohnBrutto - MINDESTLOHN_2025;
-      const prozentUeberMindestlohn = ((stundenlohnBrutto / MINDESTLOHN_2025) - 1) * 100;
+      const ueberMindestlohn = stundenlohnBrutto >= MINDESTLOHN_2026;
+      const differenzZumMindestlohn = stundenlohnBrutto - MINDESTLOHN_2026;
+      const prozentUeberMindestlohn = ((stundenlohnBrutto / MINDESTLOHN_2026) - 1) * 100;
       
       return {
         richtung,
@@ -101,9 +101,9 @@ export default function StundenlohnRechner() {
       }
       
       // Vergleich zum Mindestlohn
-      const ueberMindestlohn = stundenlohn >= MINDESTLOHN_2025;
-      const differenzZumMindestlohn = stundenlohn - MINDESTLOHN_2025;
-      const prozentUeberMindestlohn = ((stundenlohn / MINDESTLOHN_2025) - 1) * 100;
+      const ueberMindestlohn = stundenlohn >= MINDESTLOHN_2026;
+      const differenzZumMindestlohn = stundenlohn - MINDESTLOHN_2026;
+      const prozentUeberMindestlohn = ((stundenlohn / MINDESTLOHN_2026) - 1) * 100;
       
       return {
         richtung,
@@ -277,7 +277,7 @@ export default function StundenlohnRechner() {
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
                 <span>10 €</span>
-                <span>Mindestlohn: {formatEuro(MINDESTLOHN_2025)}</span>
+                <span>Mindestlohn: {formatEuro(MINDESTLOHN_2026)}</span>
                 <span>100 €</span>
               </div>
             </div>
@@ -491,12 +491,12 @@ export default function StundenlohnRechner() {
           : 'bg-red-50 border border-red-200'
       }`}>
         <h3 className={`font-bold mb-3 ${ergebnis.ueberMindestlohn ? 'text-green-800' : 'text-red-800'}`}>
-          {ergebnis.ueberMindestlohn ? '✅' : '⚠️'} Mindestlohn-Vergleich 2025
+          {ergebnis.ueberMindestlohn ? '✅' : '⚠️'} Mindestlohn-Vergleich 2026
         </h3>
         <div className="flex items-center justify-between">
           <div>
             <p className={`text-sm ${ergebnis.ueberMindestlohn ? 'text-green-700' : 'text-red-700'}`}>
-              Gesetzlicher Mindestlohn: <strong>{formatEuro(MINDESTLOHN_2025)}</strong>
+              Gesetzlicher Mindestlohn: <strong>{formatEuro(MINDESTLOHN_2026)}</strong>
             </p>
             <p className={`text-sm mt-1 ${ergebnis.ueberMindestlohn ? 'text-green-700' : 'text-red-700'}`}>
               {richtung === 'gehaltZuStunde' 
@@ -626,7 +626,7 @@ export default function StundenlohnRechner() {
             <tbody>
               {[2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000].map((gehalt) => {
                 const stunde = gehalt / (40 * 4.33);
-                const unterMindestlohn = stunde < MINDESTLOHN_2025;
+                const unterMindestlohn = stunde < MINDESTLOHN_2026;
                 return (
                   <tr 
                     key={gehalt} 
@@ -650,7 +650,7 @@ export default function StundenlohnRechner() {
           </table>
         </div>
         <p className="text-xs text-gray-500 mt-3">
-          * Werte unter {formatEuro(MINDESTLOHN_2025)} liegen unter dem gesetzlichen Mindestlohn
+          * Werte unter {formatEuro(MINDESTLOHN_2026)} liegen unter dem gesetzlichen Mindestlohn
         </p>
       </div>
 
@@ -660,7 +660,7 @@ export default function StundenlohnRechner() {
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Mindestlohn 2025:</strong> Der gesetzliche Mindestlohn beträgt {formatEuro(MINDESTLOHN_2025)} pro Stunde</span>
+            <span><strong>Mindestlohn 2026:</strong> Der gesetzliche Mindestlohn beträgt {formatEuro(MINDESTLOHN_2026)} pro Stunde</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -683,16 +683,16 @@ export default function StundenlohnRechner() {
 
       {/* Mindestlohn-Info */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-amber-800 mb-3">⚠️ Mindestlohn in Deutschland 2025</h3>
+        <h3 className="font-bold text-amber-800 mb-3">⚠️ Mindestlohn in Deutschland 2026</h3>
         <div className="space-y-2 text-sm text-amber-700">
           <p>
-            Der <strong>gesetzliche Mindestlohn</strong> beträgt seit 1. Januar 2025 <strong>{formatEuro(MINDESTLOHN_2025)}</strong> pro Stunde.
+            Der <strong>gesetzliche Mindestlohn</strong> beträgt seit 1. Januar 2026 <strong>{formatEuro(MINDESTLOHN_2026)}</strong> pro Stunde.
           </p>
           <p>Das entspricht bei einer 40-Stunden-Woche:</p>
           <ul className="space-y-1 pl-4">
-            <li>• <strong>{formatEuro(MINDESTLOHN_2025 * 40)}</strong> pro Woche</li>
-            <li>• <strong>{formatEuro(MINDESTLOHN_2025 * 173.33)}</strong> pro Monat</li>
-            <li>• <strong>{formatEuroRund(MINDESTLOHN_2025 * 2080)}</strong> pro Jahr</li>
+            <li>• <strong>{formatEuro(MINDESTLOHN_2026 * 40)}</strong> pro Woche</li>
+            <li>• <strong>{formatEuro(MINDESTLOHN_2026 * 173.33)}</strong> pro Monat</li>
+            <li>• <strong>{formatEuroRund(MINDESTLOHN_2026 * 2080)}</strong> pro Jahr</li>
           </ul>
           <p className="mt-3">
             <strong>Ausnahmen:</strong> Auszubildende, Praktikanten unter bestimmten Bedingungen, 
@@ -805,12 +805,12 @@ export default function StundenlohnRechner() {
             Bundesministerium für Arbeit und Soziales – Mindestlohn
           </a>
           <a 
-            href="https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-2025"
+            href="https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-steigt-2391010"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Bundesregierung – Mindestlohn 2025
+            Bundesregierung – Mindestlohn 2026
           </a>
           <a 
             href="https://www.destatis.de/DE/Themen/Arbeit/Verdienste/Verdienste-Verdienstunterschiede/_inhalt.html"
