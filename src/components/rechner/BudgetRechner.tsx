@@ -1,651 +1,436 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 
-interface BudgetResult {
-  beduerfnisse: number;
-  wuensche: number;
-  sparen: number;
-}
-
-interface KategoriePosten {
-  name: string;
-  icon: string;
-  empfohlen: number; // Prozent vom jeweiligen Budget
-}
-
-const BEDUERFNISSE_KATEGORIEN: KategoriePosten[] = [
-  { name: 'Miete & Nebenkosten', icon: '🏠', empfohlen: 50 },
-  { name: 'Lebensmittel', icon: '🛒', empfohlen: 20 },
-  { name: 'Versicherungen', icon: '🛡️', empfohlen: 10 },
-  { name: 'Mobilität', icon: '🚗', empfohlen: 10 },
-  { name: 'Internet & Handy', icon: '📱', empfohlen: 5 },
-  { name: 'Sonstiges', icon: '📦', empfohlen: 5 },
-];
-
-const WUENSCHE_KATEGORIEN: KategoriePosten[] = [
-  { name: 'Freizeit & Hobbys', icon: '🎮', empfohlen: 30 },
-  { name: 'Restaurant & Café', icon: '🍽️', empfohlen: 20 },
-  { name: 'Shopping & Kleidung', icon: '👕', empfohlen: 20 },
-  { name: 'Streaming & Abos', icon: '📺', empfohlen: 10 },
-  { name: 'Urlaub', icon: '✈️', empfohlen: 15 },
-  { name: 'Sonstiges', icon: '🎁', empfohlen: 5 },
-];
-
-const SPAREN_KATEGORIEN: KategoriePosten[] = [
-  { name: 'Notgroschen', icon: '🏦', empfohlen: 30 },
-  { name: 'ETF-Sparplan', icon: '📈', empfohlen: 40 },
-  { name: 'Altersvorsorge', icon: '👴', empfohlen: 20 },
-  { name: 'Rücklagen (Auto, Urlaub)', icon: '🎯', empfohlen: 10 },
-];
-
-const formatCurrency = (value: number): string => {
-  return value.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-};
-
-const formatPercent = (value: number): string => {
-  return value.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' %';
-};
+const DEFAULT_PROZENTE = { beduerfnisse: 50, wuensche: 30, sparen: 20 };
 
 export default function BudgetRechner() {
-  // Input State
   const [nettoeinkommen, setNettoeinkommen] = useState<number>(2500);
-  const [beduerfnisseAnteil, setBeduerfnisseAnteil] = useState<number>(50);
-  const [wuenscheAnteil, setWuenscheAnteil] = useState<number>(30);
-  const [sparenAnteil, setSparenAnteil] = useState<number>(20);
-  
-  // Result State
-  const [result, setResult] = useState<BudgetResult | null>(null);
-  const [showDetails, setShowDetails] = useState(false);
-  const [showTipps, setShowTipps] = useState(false);
+  const [berechnet, setBerechnet] = useState(false);
+  const [customMode, setCustomMode] = useState(false);
+  const [beduerfnisseProzent, setBeduerfnisseProzent] = useState(50);
+  const [wuenscheProzent, setWuenscheProzent] = useState(30);
+  const [sparenProzent, setSparenProzent] = useState(20);
 
-  // Berechnung
-  const berechne = useCallback(() => {
-    const beduerfnisse = (nettoeinkommen * beduerfnisseAnteil) / 100;
-    const wuensche = (nettoeinkommen * wuenscheAnteil) / 100;
-    const sparen = (nettoeinkommen * sparenAnteil) / 100;
-    
-    setResult({
+  const prozentSumme = beduerfnisseProzent + wuenscheProzent + sparenProzent;
+
+  const ergebnis = useMemo(() => {
+    if (!nettoeinkommen || nettoeinkommen <= 0) return null;
+
+    const bP = customMode ? beduerfnisseProzent : DEFAULT_PROZENTE.beduerfnisse;
+    const wP = customMode ? wuenscheProzent : DEFAULT_PROZENTE.wuensche;
+    const sP = customMode ? sparenProzent : DEFAULT_PROZENTE.sparen;
+
+    const beduerfnisse = nettoeinkommen * (bP / 100);
+    const wuensche = nettoeinkommen * (wP / 100);
+    const sparen = nettoeinkommen * (sP / 100);
+
+    return {
       beduerfnisse,
       wuensche,
       sparen,
-    });
-  }, [nettoeinkommen, beduerfnisseAnteil, wuenscheAnteil, sparenAnteil]);
+      beduerfnisseProzent: bP,
+      wuenscheProzent: wP,
+      sparenProzent: sP,
+      jahresSparen: sparen * 12,
+      jahresWuensche: wuensche * 12,
+      jahresBeduerfnisse: beduerfnisse * 12,
+    };
+  }, [nettoeinkommen, customMode, beduerfnisseProzent, wuenscheProzent, sparenProzent]);
 
-  useEffect(() => {
-    berechne();
-  }, [berechne]);
+  const formatCurrency = (n: number) =>
+    n.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 
-  // Gesamtanteil berechnen
-  const gesamtAnteil = beduerfnisseAnteil + wuenscheAnteil + sparenAnteil;
+  const handleBerechnen = () => {
+    setBerechnet(true);
+  };
 
-  // Schnellauswahl-Presets
-  const presets = [
-    { name: '50-30-20 (Standard)', beduerfnisse: 50, wuensche: 30, sparen: 20 },
-    { name: '50-20-30 (Sparfokus)', beduerfnisse: 50, wuensche: 20, sparen: 30 },
-    { name: '60-30-10 (Hohe Kosten)', beduerfnisse: 60, wuensche: 30, sparen: 10 },
-    { name: '40-30-30 (Niedrige Fixkosten)', beduerfnisse: 40, wuensche: 30, sparen: 30 },
-  ];
-
-  // Beispiel-Einkommen für Vergleich
-  const beispielEinkommen = [1500, 2000, 2500, 3000, 4000, 5000];
+  // Schnell-Buttons für typische Einkommen
+  const schnellEinkommen = [1500, 2000, 2500, 3000, 3500, 4000, 5000];
 
   return (
-    <div className="space-y-6">
-      {/* Eingabebereich */}
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Deine Budget-Daten</h2>
-        
-        <div className="space-y-4">
+    <div className="max-w-2xl mx-auto">
+      {/* Input Section */}
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <span className="text-2xl">📋</span>
+          Budget berechnen
+        </h2>
+
+        <div className="space-y-6">
           {/* Nettoeinkommen */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Monatliches Nettoeinkommen *
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Monatliches Nettoeinkommen (€)
             </label>
-            <div className="relative">
-              <input
-                type="number"
-                value={nettoeinkommen || ''}
-                onChange={(e) => setNettoeinkommen(Math.max(0, Number(e.target.value)))}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-                placeholder="2500"
-                min="0"
-                step="100"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">€</span>
+            <input
+              type="number"
+              value={nettoeinkommen}
+              onChange={(e) => setNettoeinkommen(Number(e.target.value))}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+              placeholder="z.B. 2.500"
+              min={0}
+              step={100}
+            />
+            {/* Schnellauswahl */}
+            <div className="flex flex-wrap gap-2 mt-3">
+              {schnellEinkommen.map((e) => (
+                <button
+                  key={e}
+                  onClick={() => setNettoeinkommen(e)}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    nettoeinkommen === e
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-700'
+                  }`}
+                >
+                  {e.toLocaleString('de-DE')} €
+                </button>
+              ))}
             </div>
-            <p className="text-xs text-gray-500 mt-1">Dein Gehalt nach Abzug von Steuern und Sozialabgaben</p>
           </div>
 
-          {/* Schnellauswahl */}
-          <div className="flex flex-wrap gap-2">
-            {beispielEinkommen.map((betrag) => (
+          {/* Custom Prozente Toggle */}
+          <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-sm font-medium text-indigo-800">
+                ⚙️ Eigene Aufteilung verwenden
+              </label>
               <button
-                key={betrag}
-                onClick={() => setNettoeinkommen(betrag)}
-                className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-                  nettoeinkommen === betrag
-                    ? 'bg-amber-500 text-white border-amber-500'
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-amber-400'
+                onClick={() => {
+                  if (!customMode) {
+                    setBeduerfnisseProzent(50);
+                    setWuenscheProzent(30);
+                    setSparenProzent(20);
+                  }
+                  setCustomMode(!customMode);
+                }}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  customMode ? 'bg-indigo-600' : 'bg-gray-300'
                 }`}
               >
-                {betrag.toLocaleString('de-DE')} €
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    customMode ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
               </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Budget-Aufteilung */}
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Budget-Aufteilung anpassen</h2>
-        
-        {/* Presets */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {presets.map((preset) => (
-            <button
-              key={preset.name}
-              onClick={() => {
-                setBeduerfnisseAnteil(preset.beduerfnisse);
-                setWuenscheAnteil(preset.wuensche);
-                setSparenAnteil(preset.sparen);
-              }}
-              className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-                beduerfnisseAnteil === preset.beduerfnisse && 
-                wuenscheAnteil === preset.wuensche && 
-                sparenAnteil === preset.sparen
-                  ? 'bg-amber-500 text-white border-amber-500'
-                  : 'bg-white text-gray-700 border-gray-300 hover:border-amber-400'
-              }`}
-            >
-              {preset.name}
-            </button>
-          ))}
-        </div>
-
-        <div className="space-y-4">
-          {/* Bedürfnisse Slider */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              🏠 Bedürfnisse: <span className="font-bold text-blue-600">{formatPercent(beduerfnisseAnteil)}</span>
-              {result && <span className="text-gray-500 ml-2">= {formatCurrency(result.beduerfnisse)}</span>}
-            </label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={beduerfnisseAnteil}
-              onChange={(e) => setBeduerfnisseAnteil(Number(e.target.value))}
-              className="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer accent-blue-500"
-            />
-            <p className="text-xs text-gray-500 mt-1">Miete, Lebensmittel, Versicherungen, Mobilität</p>
-          </div>
-
-          {/* Wünsche Slider */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              🎉 Wünsche: <span className="font-bold text-purple-600">{formatPercent(wuenscheAnteil)}</span>
-              {result && <span className="text-gray-500 ml-2">= {formatCurrency(result.wuensche)}</span>}
-            </label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={wuenscheAnteil}
-              onChange={(e) => setWuenscheAnteil(Number(e.target.value))}
-              className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-500"
-            />
-            <p className="text-xs text-gray-500 mt-1">Freizeit, Restaurant, Shopping, Streaming</p>
-          </div>
-
-          {/* Sparen Slider */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              💰 Sparen: <span className="font-bold text-emerald-600">{formatPercent(sparenAnteil)}</span>
-              {result && <span className="text-gray-500 ml-2">= {formatCurrency(result.sparen)}</span>}
-            </label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={sparenAnteil}
-              onChange={(e) => setSparenAnteil(Number(e.target.value))}
-              className="w-full h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-            />
-            <p className="text-xs text-gray-500 mt-1">Notgroschen, ETF-Sparplan, Altersvorsorge</p>
-          </div>
-
-          {/* Warnung bei falscher Aufteilung */}
-          {gesamtAnteil !== 100 && (
-            <div className={`p-3 rounded-lg ${gesamtAnteil > 100 ? 'bg-red-50 border border-red-200' : 'bg-yellow-50 border border-yellow-200'}`}>
-              <p className={`text-sm ${gesamtAnteil > 100 ? 'text-red-700' : 'text-yellow-700'}`}>
-                ⚠️ Die Summe der Anteile beträgt <strong>{formatPercent(gesamtAnteil)}</strong> statt 100%.
-                {gesamtAnteil > 100 && ' Du gibst mehr aus, als du verdienst!'}
-                {gesamtAnteil < 100 && ` Dir fehlen noch ${formatPercent(100 - gesamtAnteil)} zur Verteilung.`}
-              </p>
             </div>
-          )}
+
+            {customMode && (
+              <div className="space-y-3 mt-4">
+                <div>
+                  <label className="text-sm text-indigo-700">Grundbedürfnisse (%)</label>
+                  <input
+                    type="number"
+                    value={beduerfnisseProzent}
+                    onChange={(e) => setBeduerfnisseProzent(Number(e.target.value))}
+                    className="w-full px-3 py-2 rounded-lg border border-indigo-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    min={0}
+                    max={100}
+                    step={5}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm text-indigo-700">Wünsche (%)</label>
+                  <input
+                    type="number"
+                    value={wuenscheProzent}
+                    onChange={(e) => setWuenscheProzent(Number(e.target.value))}
+                    className="w-full px-3 py-2 rounded-lg border border-indigo-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    min={0}
+                    max={100}
+                    step={5}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm text-indigo-700">Sparen & Schulden (%)</label>
+                  <input
+                    type="number"
+                    value={sparenProzent}
+                    onChange={(e) => setSparenProzent(Number(e.target.value))}
+                    className="w-full px-3 py-2 rounded-lg border border-indigo-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    min={0}
+                    max={100}
+                    step={5}
+                  />
+                </div>
+                {prozentSumme !== 100 && (
+                  <p className={`text-sm font-medium ${prozentSumme > 100 ? 'text-red-600' : 'text-amber-600'}`}>
+                    ⚠️ Summe: {prozentSumme}% (sollte 100% ergeben)
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={handleBerechnen}
+            disabled={customMode && prozentSumme !== 100}
+            className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold py-4 px-6 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            📊 Budget berechnen
+          </button>
         </div>
       </div>
 
       {/* Ergebnis */}
-      {result && (
-        <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl shadow-lg p-6 text-white">
-          <h3 className="text-lg font-medium text-amber-100 mb-2">Dein Monatsbudget</h3>
-          
-          <div className="text-center py-4">
-            <div className="text-4xl font-bold mb-1">
-              {formatCurrency(nettoeinkommen)}
+      {berechnet && ergebnis && (
+        <>
+          {/* Haupt-Ergebnis */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">✨</span>
+              Ihre Budgetaufteilung
+            </h2>
+
+            {/* Großes Einkommen */}
+            <div className="text-center mb-6">
+              <div className="text-gray-500 text-sm mb-1">Monatliches Nettoeinkommen</div>
+              <div className="text-3xl font-bold text-gray-800">{formatCurrency(nettoeinkommen)}</div>
             </div>
-            <div className="text-amber-200 text-sm">
-              Nettoeinkommen pro Monat
+
+            {/* Visuelle Balken */}
+            <div className="relative h-12 rounded-xl overflow-hidden mb-6 flex">
+              <div
+                className="bg-gradient-to-r from-blue-400 to-blue-500 flex items-center justify-center"
+                style={{ width: `${ergebnis.beduerfnisseProzent}%` }}
+              >
+                <span className="text-white text-xs font-bold">{ergebnis.beduerfnisseProzent}%</span>
+              </div>
+              <div
+                className="bg-gradient-to-r from-purple-400 to-purple-500 flex items-center justify-center"
+                style={{ width: `${ergebnis.wuenscheProzent}%` }}
+              >
+                <span className="text-white text-xs font-bold">{ergebnis.wuenscheProzent}%</span>
+              </div>
+              <div
+                className="bg-gradient-to-r from-green-400 to-green-500 flex items-center justify-center"
+                style={{ width: `${ergebnis.sparenProzent}%` }}
+              >
+                <span className="text-white text-xs font-bold">{ergebnis.sparenProzent}%</span>
+              </div>
+            </div>
+
+            {/* Drei Karten */}
+            <div className="grid gap-4">
+              {/* Grundbedürfnisse */}
+              <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🏠</span>
+                    <div>
+                      <div className="font-bold text-blue-800">Grundbedürfnisse</div>
+                      <div className="text-xs text-blue-600">{ergebnis.beduerfnisseProzent}% – Miete, Lebensmittel, Versicherungen</div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-blue-700">{formatCurrency(ergebnis.beduerfnisse)}</div>
+                    <div className="text-xs text-blue-500">pro Monat</div>
+                  </div>
+                </div>
+                <div className="w-full bg-blue-200 rounded-full h-2 mt-2">
+                  <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${ergebnis.beduerfnisseProzent}%` }}></div>
+                </div>
+              </div>
+
+              {/* Wünsche */}
+              <div className="p-4 bg-purple-50 rounded-xl border border-purple-200">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🎉</span>
+                    <div>
+                      <div className="font-bold text-purple-800">Wünsche</div>
+                      <div className="text-xs text-purple-600">{ergebnis.wuenscheProzent}% – Freizeit, Hobbys, Essen gehen</div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-purple-700">{formatCurrency(ergebnis.wuensche)}</div>
+                    <div className="text-xs text-purple-500">pro Monat</div>
+                  </div>
+                </div>
+                <div className="w-full bg-purple-200 rounded-full h-2 mt-2">
+                  <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${ergebnis.wuenscheProzent}%` }}></div>
+                </div>
+              </div>
+
+              {/* Sparen & Schulden */}
+              <div className="p-4 bg-green-50 rounded-xl border border-green-200">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">💰</span>
+                    <div>
+                      <div className="font-bold text-green-800">Sparen & Schulden</div>
+                      <div className="text-xs text-green-600">{ergebnis.sparenProzent}% – Notgroschen, Investitionen, Tilgung</div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-green-700">{formatCurrency(ergebnis.sparen)}</div>
+                    <div className="text-xs text-green-500">pro Monat</div>
+                  </div>
+                </div>
+                <div className="w-full bg-green-200 rounded-full h-2 mt-2">
+                  <div className="bg-green-500 h-2 rounded-full" style={{ width: `${ergebnis.sparenProzent}%` }}></div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 mt-4">
-            <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-              <div className="text-2xl mb-1">🏠</div>
-              <div className="text-xl font-bold">{formatCurrency(result.beduerfnisse)}</div>
-              <div className="text-amber-200 text-sm">Bedürfnisse</div>
-              <div className="text-amber-100 text-xs">{formatPercent(beduerfnisseAnteil)}</div>
+          {/* Jahresübersicht */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📅</span>
+              Jahresübersicht
+            </h2>
+
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">🏠 Grundbedürfnisse / Jahr</span>
+                <span className="font-medium text-blue-700">{formatCurrency(ergebnis.jahresBeduerfnisse)}</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">🎉 Wünsche / Jahr</span>
+                <span className="font-medium text-purple-700">{formatCurrency(ergebnis.jahresWuensche)}</span>
+              </div>
+              <div className="flex justify-between items-center py-3 bg-green-50 -mx-2 px-4 rounded-lg">
+                <span className="font-bold text-green-800">💰 Sparen / Jahr</span>
+                <span className="font-bold text-green-800 text-xl">{formatCurrency(ergebnis.jahresSparen)}</span>
+              </div>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-              <div className="text-2xl mb-1">🎉</div>
-              <div className="text-xl font-bold">{formatCurrency(result.wuensche)}</div>
-              <div className="text-amber-200 text-sm">Wünsche</div>
-              <div className="text-amber-100 text-xs">{formatPercent(wuenscheAnteil)}</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
-              <div className="text-2xl mb-1">💰</div>
-              <div className="text-xl font-bold">{formatCurrency(result.sparen)}</div>
-              <div className="text-amber-200 text-sm">Sparen</div>
-              <div className="text-amber-100 text-xs">{formatPercent(sparenAnteil)}</div>
+
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm text-blue-800">
+              <strong>💡 Tipp:</strong> Bei {formatCurrency(ergebnis.sparen)} monatlichem Sparen haben Sie in 5 Jahren {formatCurrency(ergebnis.sparen * 60)} angespart – ohne Zinsen! Mit einem ETF-Sparplan (Ø 7% p.a.) könnten es ca. {formatCurrency(ergebnis.sparen * 60 * 1.19)} sein.
             </div>
           </div>
 
-          {/* Visualisierung als Balken */}
-          <div className="mt-6">
-            <div className="h-6 rounded-full overflow-hidden flex">
-              <div 
-                className="bg-blue-500 transition-all duration-500"
-                style={{ width: `${beduerfnisseAnteil}%` }}
-              ></div>
-              <div 
-                className="bg-purple-500 transition-all duration-500"
-                style={{ width: `${wuenscheAnteil}%` }}
-              ></div>
-              <div 
-                className="bg-emerald-500 transition-all duration-500"
-                style={{ width: `${sparenAnteil}%` }}
-              ></div>
-            </div>
-            <div className="flex justify-between mt-2 text-xs text-amber-200">
-              <span>🏠 Bedürfnisse</span>
-              <span>🎉 Wünsche</span>
-              <span>💰 Sparen</span>
-            </div>
-          </div>
-        </div>
-      )}
+          {/* Beispiel-Aufschlüsselung */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📝</span>
+              Beispiel-Aufteilung
+            </h2>
 
-      {/* Detail-Aufschlüsselung */}
-      {result && (
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <button
-            onClick={() => setShowDetails(!showDetails)}
-            className="w-full px-6 py-4 flex items-center justify-between bg-amber-50 hover:bg-amber-100 transition-colors"
-          >
-            <span className="font-medium text-amber-800">📊 Detaillierte Aufschlüsselung anzeigen</span>
-            <svg 
-              className={`w-5 h-5 text-amber-600 transition-transform ${showDetails ? 'rotate-180' : ''}`} 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          
-          {showDetails && (
-            <div className="p-6 space-y-6">
-              {/* Bedürfnisse Details */}
+            <div className="space-y-4">
+              {/* Grundbedürfnisse Details */}
               <div>
-                <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">🏠</span>
-                  Bedürfnisse ({formatCurrency(result.beduerfnisse)})
-                </h4>
-                <div className="space-y-2">
-                  {BEDUERFNISSE_KATEGORIEN.map((kat) => {
-                    const betrag = (result.beduerfnisse * kat.empfohlen) / 100;
-                    return (
-                      <div key={kat.name} className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span>{kat.icon}</span>
-                          <span className="text-gray-700">{kat.name}</span>
-                        </div>
-                        <div className="text-right">
-                          <span className="font-medium text-gray-800">{formatCurrency(betrag)}</span>
-                          <span className="text-gray-500 text-sm ml-2">({kat.empfohlen}%)</span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <h3 className="font-semibold text-blue-800 mb-2">🏠 Grundbedürfnisse ({formatCurrency(ergebnis.beduerfnisse)})</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="p-2 bg-gray-50 rounded">Warmmiete: ~{formatCurrency(ergebnis.beduerfnisse * 0.55)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Lebensmittel: ~{formatCurrency(ergebnis.beduerfnisse * 0.25)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Versicherungen: ~{formatCurrency(ergebnis.beduerfnisse * 0.10)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Transport: ~{formatCurrency(ergebnis.beduerfnisse * 0.10)}</div>
                 </div>
               </div>
 
               {/* Wünsche Details */}
               <div>
-                <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <span className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">🎉</span>
-                  Wünsche ({formatCurrency(result.wuensche)})
-                </h4>
-                <div className="space-y-2">
-                  {WUENSCHE_KATEGORIEN.map((kat) => {
-                    const betrag = (result.wuensche * kat.empfohlen) / 100;
-                    return (
-                      <div key={kat.name} className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span>{kat.icon}</span>
-                          <span className="text-gray-700">{kat.name}</span>
-                        </div>
-                        <div className="text-right">
-                          <span className="font-medium text-gray-800">{formatCurrency(betrag)}</span>
-                          <span className="text-gray-500 text-sm ml-2">({kat.empfohlen}%)</span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <h3 className="font-semibold text-purple-800 mb-2">🎉 Wünsche ({formatCurrency(ergebnis.wuensche)})</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="p-2 bg-gray-50 rounded">Freizeit: ~{formatCurrency(ergebnis.wuensche * 0.30)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Essen gehen: ~{formatCurrency(ergebnis.wuensche * 0.25)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Shopping: ~{formatCurrency(ergebnis.wuensche * 0.25)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Hobbys: ~{formatCurrency(ergebnis.wuensche * 0.20)}</div>
                 </div>
               </div>
 
               {/* Sparen Details */}
               <div>
-                <h4 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <span className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">💰</span>
-                  Sparen ({formatCurrency(result.sparen)})
-                </h4>
-                <div className="space-y-2">
-                  {SPAREN_KATEGORIEN.map((kat) => {
-                    const betrag = (result.sparen * kat.empfohlen) / 100;
-                    return (
-                      <div key={kat.name} className="flex items-center justify-between p-3 bg-emerald-50 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span>{kat.icon}</span>
-                          <span className="text-gray-700">{kat.name}</span>
-                        </div>
-                        <div className="text-right">
-                          <span className="font-medium text-gray-800">{formatCurrency(betrag)}</span>
-                          <span className="text-gray-500 text-sm ml-2">({kat.empfohlen}%)</span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <h3 className="font-semibold text-green-800 mb-2">💰 Sparen & Schulden ({formatCurrency(ergebnis.sparen)})</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="p-2 bg-gray-50 rounded">Notgroschen: ~{formatCurrency(ergebnis.sparen * 0.30)}</div>
+                  <div className="p-2 bg-gray-50 rounded">ETF-Sparplan: ~{formatCurrency(ergebnis.sparen * 0.40)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Altersvorsorge: ~{formatCurrency(ergebnis.sparen * 0.20)}</div>
+                  <div className="p-2 bg-gray-50 rounded">Tilgung: ~{formatCurrency(ergebnis.sparen * 0.10)}</div>
                 </div>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+
+          {/* Vergleichstabelle */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📊</span>
+              Vergleich: Verschiedene Einkommen
+            </h2>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-2 px-2">Netto</th>
+                    <th className="text-right py-2 px-2">Bedürfnisse</th>
+                    <th className="text-right py-2 px-2">Wünsche</th>
+                    <th className="text-right py-2 px-2">Sparen</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[1500, 2000, 2500, 3000, 3500, 4000, 5000].map((eink) => {
+                    const istAktuell = eink === nettoeinkommen;
+                    const bP = customMode ? beduerfnisseProzent : 50;
+                    const wP = customMode ? wuenscheProzent : 30;
+                    const sP = customMode ? sparenProzent : 20;
+                    return (
+                      <tr
+                        key={eink}
+                        className={`border-b border-gray-100 ${istAktuell ? 'bg-blue-50' : ''}`}
+                      >
+                        <td className="py-2 px-2">
+                          <span className={`font-medium ${istAktuell ? 'text-blue-700' : ''}`}>
+                            {formatCurrency(eink)}
+                            {istAktuell && <span className="ml-1 text-xs text-blue-500">← Sie</span>}
+                          </span>
+                        </td>
+                        <td className="text-right py-2 px-2 text-blue-600">{formatCurrency(eink * bP / 100)}</td>
+                        <td className="text-right py-2 px-2 text-purple-600">{formatCurrency(eink * wP / 100)}</td>
+                        <td className="text-right py-2 px-2 text-green-600 font-medium">{formatCurrency(eink * sP / 100)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Tipps */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">💡</span>
+              Budget-Tipps für Deutschland
+            </h2>
+
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                <span className="text-xl">🏠</span>
+                <p className="text-blue-800">
+                  <strong>Mietregel:</strong> Die Warmmiete sollte max. 30-33% des Nettoeinkommens betragen. Bei {formatCurrency(nettoeinkommen)} wären das max. {formatCurrency(nettoeinkommen * 0.33)}.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                <span className="text-xl">🏦</span>
+                <p className="text-green-800">
+                  <strong>Notgroschen:</strong> 3-6 Netto-Monatsgehälter auf einem Tagesgeldkonto anlegen. Für Sie: {formatCurrency(nettoeinkommen * 3)} bis {formatCurrency(nettoeinkommen * 6)}.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                <span className="text-xl">📊</span>
+                <p className="text-purple-800">
+                  <strong>ETF-Sparplan:</strong> Langfristig in günstige ETFs investieren (z.B. MSCI World). Viele Neobroker bieten kostenlose Sparpläne ab 1 € an.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg">
+                <span className="text-xl">📱</span>
+                <p className="text-amber-800">
+                  <strong>Haushaltsbuch:</strong> Nutzen Sie Apps wie Finanzguru, MoneyMoney oder ein einfaches Excel-Sheet. Die Verbraucherzentrale bietet kostenlose Vorlagen an.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-indigo-50 rounded-lg">
+                <span className="text-xl">🎯</span>
+                <p className="text-indigo-800">
+                  <strong>Arbeitnehmersparzulage:</strong> Nutzen Sie vermögenswirksame Leistungen (VL) – bis zu 40 € monatlich vom Arbeitgeber geschenkt!
+                </p>
+              </div>
+            </div>
+          </div>
+        </>
       )}
-
-      {/* Vergleichstabelle verschiedene Einkommen */}
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
-          📊 Beispiel: 50-30-20 bei verschiedenen Einkommen
-        </h3>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-200">
-                <th className="text-left py-2 font-medium text-gray-600">Netto</th>
-                <th className="text-right py-2 font-medium text-blue-600">🏠 Bedürfnisse</th>
-                <th className="text-right py-2 font-medium text-purple-600">🎉 Wünsche</th>
-                <th className="text-right py-2 font-medium text-emerald-600">💰 Sparen</th>
-              </tr>
-            </thead>
-            <tbody>
-              {beispielEinkommen.map((einkommen) => (
-                <tr 
-                  key={einkommen} 
-                  className={`border-b border-gray-100 hover:bg-gray-50 ${einkommen === nettoeinkommen ? 'bg-amber-50' : ''}`}
-                >
-                  <td className="py-3 font-medium">{einkommen.toLocaleString('de-DE')} €</td>
-                  <td className="text-right py-3 text-blue-600">{formatCurrency(einkommen * 0.5)}</td>
-                  <td className="text-right py-3 text-purple-600">{formatCurrency(einkommen * 0.3)}</td>
-                  <td className="text-right py-3 text-emerald-600">{formatCurrency(einkommen * 0.2)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        
-        <p className="text-xs text-gray-500 mt-4">
-          💡 Bei niedrigerem Einkommen kann es sinnvoll sein, den Bedürfnisse-Anteil zu erhöhen (z.B. 60-25-15).
-        </p>
-      </div>
-
-      {/* 50-30-20 Regel erklärt */}
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-        <h3 className="font-semibold text-amber-800 mb-3">💡 Was ist die 50-30-20-Regel?</h3>
-        <div className="space-y-3 text-sm text-amber-700">
-          <p>
-            Die <strong>50-30-20-Regel</strong> ist eine einfache Budgetformel, die 2005 von der 
-            US-Senatorin <strong>Elizabeth Warren</strong> populär gemacht wurde.
-          </p>
-          
-          <div className="grid gap-3">
-            <div className="bg-white/50 rounded-lg p-4">
-              <div className="font-medium text-blue-700 mb-1">🏠 50% Bedürfnisse (Needs)</div>
-              <p className="text-amber-600">
-                Unvermeidbare Ausgaben: Miete, Nebenkosten, Lebensmittel, Versicherungen, 
-                Gesundheit, Mobilität, Telefon & Internet.
-              </p>
-            </div>
-            
-            <div className="bg-white/50 rounded-lg p-4">
-              <div className="font-medium text-purple-700 mb-1">🎉 30% Wünsche (Wants)</div>
-              <p className="text-amber-600">
-                Alles, was das Leben angenehmer macht: Restaurant, Streaming, Shopping, 
-                Hobbys, Urlaub, Fitness, Konzerte.
-              </p>
-            </div>
-            
-            <div className="bg-white/50 rounded-lg p-4">
-              <div className="font-medium text-emerald-700 mb-1">💰 20% Sparen (Savings)</div>
-              <p className="text-amber-600">
-                Für die Zukunft: Notgroschen, Altersvorsorge, ETF-Sparplan, Schuldenabbau, 
-                Rücklagen für größere Anschaffungen.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Tipps */}
-      <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-        <button
-          onClick={() => setShowTipps(!showTipps)}
-          className="w-full px-6 py-4 flex items-center justify-between bg-emerald-50 hover:bg-emerald-100 transition-colors"
-        >
-          <span className="font-medium text-emerald-800">💰 Budget-Tipps für Einsteiger</span>
-          <svg 
-            className={`w-5 h-5 text-emerald-600 transition-transform ${showTipps ? 'rotate-180' : ''}`} 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        
-        {showTipps && (
-          <div className="p-6">
-            <ul className="space-y-3 text-sm text-gray-700">
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">✓</span>
-                <span><strong>Notgroschen first:</strong> Mindestens 3 Monatsgehälter auf einem Tagesgeldkonto für Notfälle.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">✓</span>
-                <span><strong>Automatisieren:</strong> Richte Daueraufträge ein, damit Sparen automatisch passiert.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">✓</span>
-                <span><strong>Separate Konten:</strong> Ein Konto für Fixkosten, eins für Freizeit, eins zum Sparen.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">✓</span>
-                <span><strong>Schulden zuerst:</strong> Teure Schulden (Dispo, Kreditkarte) sollten vor dem Sparen getilgt werden.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">✓</span>
-                <span><strong>Anpassen erlaubt:</strong> Die 50-30-20-Regel ist ein Richtwert – passe sie an deine Situation an.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-emerald-500 mt-0.5">✓</span>
-                <span><strong>Tracking hilft:</strong> Nutze ein Haushaltsbuch oder eine App, um deine Ausgaben zu verfolgen.</span>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
-
-      {/* Wann die Regel anpassen? */}
-      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-        <h3 className="font-semibold text-gray-700 mb-3">⚖️ Wann sollte ich die Regel anpassen?</h3>
-        <div className="space-y-3 text-sm text-gray-600">
-          <div className="flex items-start gap-2">
-            <span className="text-gray-400 mt-0.5">•</span>
-            <span><strong>Hohe Miete (z.B. München):</strong> 60-25-15 kann realistischer sein.</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-gray-400 mt-0.5">•</span>
-            <span><strong>Schulden abbauen:</strong> Reduziere "Wünsche" und erhöhe "Sparen" für schnellere Tilgung.</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-gray-400 mt-0.5">•</span>
-            <span><strong>Hohes Einkommen:</strong> Du kannst mehr sparen (z.B. 40-30-30).</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-gray-400 mt-0.5">•</span>
-            <span><strong>Berufseinsteiger:</strong> Starte mit weniger Sparen und steigere dich langsam.</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-gray-400 mt-0.5">•</span>
-            <span><strong>Familie mit Kindern:</strong> "Bedürfnisse" werden naturgemäß höher ausfallen.</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Jährliche Übersicht */}
-      {result && (
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">📅 Hochrechnung aufs Jahr</h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-gray-50 rounded-xl">
-              <div className="text-2xl font-bold text-gray-800">{formatCurrency(nettoeinkommen * 12)}</div>
-              <div className="text-sm text-gray-500">Jahres-Netto</div>
-            </div>
-            <div className="text-center p-4 bg-blue-50 rounded-xl">
-              <div className="text-2xl font-bold text-blue-600">{formatCurrency(result.beduerfnisse * 12)}</div>
-              <div className="text-sm text-gray-500">🏠 Bedürfnisse/Jahr</div>
-            </div>
-            <div className="text-center p-4 bg-purple-50 rounded-xl">
-              <div className="text-2xl font-bold text-purple-600">{formatCurrency(result.wuensche * 12)}</div>
-              <div className="text-sm text-gray-500">🎉 Wünsche/Jahr</div>
-            </div>
-            <div className="text-center p-4 bg-emerald-50 rounded-xl">
-              <div className="text-2xl font-bold text-emerald-600">{formatCurrency(result.sparen * 12)}</div>
-              <div className="text-sm text-gray-500">💰 Sparen/Jahr</div>
-            </div>
-          </div>
-          
-          <p className="text-sm text-gray-600 mt-4 p-3 bg-emerald-50 rounded-lg">
-            🎯 Mit <strong>{formatCurrency(result.sparen * 12)}</strong> pro Jahr baust du in 10 Jahren 
-            (ohne Zinsen) ein Vermögen von <strong>{formatCurrency(result.sparen * 12 * 10)}</strong> auf!
-          </p>
-        </div>
-      )}
-
-      {/* Anlaufstellen */}
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h3 className="font-semibold text-gray-800 mb-4">📞 Wichtige Anlaufstellen</h3>
-        
-        <div className="space-y-4">
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🛡️</span>
-            <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale – Budgetberatung</div>
-              <div className="text-sm text-gray-600">Kostenlose Beratung zu Haushaltsgeld & Schulden</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/beratung" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-amber-600 hover:underline text-sm"
-              >
-                verbraucherzentrale.de/beratung →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">📊</span>
-            <div>
-              <div className="font-medium text-gray-800">Finanztip – Budget & Sparen</div>
-              <div className="text-sm text-gray-600">Gemeinnützige Finanzbildung</div>
-              <a 
-                href="https://www.finanztip.de/haushaltsbuch/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-amber-600 hover:underline text-sm"
-              >
-                finanztip.de/haushaltsbuch →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🏦</span>
-            <div>
-              <div className="font-medium text-gray-800">Sparkasse – Budgetplaner</div>
-              <div className="text-sm text-gray-600">Haushaltsbuch & Finanzplanung</div>
-              <a 
-                href="https://www.sparkasse.de/pk/ratgeber/finanzen-im-griff/haushaltsbuch.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-amber-600 hover:underline text-sm"
-              >
-                sparkasse.de/haushaltsbuch →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quellen */}
-      <div className="bg-gray-50 rounded-2xl p-6">
-        <h3 className="font-semibold text-gray-700 mb-3">📚 Quellen & Weiterlesen</h3>
-        <ul className="space-y-1 text-sm text-gray-600">
-          <li>
-            <a href="https://en.wikipedia.org/wiki/Elizabeth_Warren" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">
-              Elizabeth Warren – "All Your Worth: The Ultimate Lifetime Money Plan" (2005)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/haushaltsbuch-einnahmen-und-ausgaben-im-blick-44954" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">
-              Verbraucherzentrale – Haushaltsbuch führen
-            </a>
-          </li>
-          <li>
-            <a href="https://www.finanztip.de/sparen/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">
-              Finanztip – Richtig Sparen
-            </a>
-          </li>
-        </ul>
-        <p className="text-xs text-gray-500 mt-3">
-          Stand: Januar 2025. Alle Angaben ohne Gewähr. 
-          Die 50-30-20-Regel ist ein Richtwert – individuelle Anpassungen sind empfohlen.
-        </p>
-      </div>
     </div>
   );
 }

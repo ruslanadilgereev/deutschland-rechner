@@ -1,410 +1,438 @@
 import { useState, useMemo } from 'react';
 
-// Trinkgeld-Prozentsätze mit Beschreibung
-const TRINKGELD_STUFEN = [
-  { prozent: 5, label: '5%', beschreibung: 'Minimal', bewertung: 'Service war okay' },
-  { prozent: 10, label: '10%', beschreibung: 'Standard', bewertung: 'Guter Service' },
-  { prozent: 15, label: '15%', beschreibung: 'Großzügig', bewertung: 'Sehr guter Service' },
-  { prozent: 20, label: '20%', beschreibung: 'Hervorragend', bewertung: 'Exzellenter Service' },
-];
-
-// Service-Qualität Optionen
-const SERVICE_QUALITAET = [
-  { wert: 'schlecht', label: '😐 Okay', empfohlen: 5, beschreibung: 'Service war in Ordnung' },
-  { wert: 'gut', label: '🙂 Gut', empfohlen: 10, beschreibung: 'Freundlich & aufmerksam' },
-  { wert: 'sehr-gut', label: '😊 Sehr gut', empfohlen: 15, beschreibung: 'Besonders zuvorkommend' },
-  { wert: 'exzellent', label: '🤩 Exzellent', empfohlen: 20, beschreibung: 'Außergewöhnlicher Service' },
-];
-
-// Trinkgeld-Empfehlungen nach Branche
-const BRANCHEN_TIPPS = [
-  { branche: 'Restaurant', emoji: '🍽️', empfehlung: '5-10%', hinweis: 'In Deutschland üblich, aber freiwillig' },
-  { branche: 'Café/Bar', emoji: '☕', empfehlung: '5-10%', hinweis: 'Aufrunden oder kleine Beträge' },
-  { branche: 'Lieferdienst', emoji: '🛵', empfehlung: '1-3 €', hinweis: 'Besonders bei schlechtem Wetter' },
-  { branche: 'Taxi', emoji: '🚕', empfehlung: '5-10%', hinweis: 'Aufrunden ist üblich' },
-  { branche: 'Friseur', emoji: '💇', empfehlung: '5-15%', hinweis: 'Je nach Zufriedenheit' },
-  { branche: 'Hotel', emoji: '🏨', empfehlung: '1-5 €', hinweis: 'Pro Tag für Zimmermädchen' },
-];
+type Rundungsmodus = 'keine' | 'auf50cent' | 'auf1euro';
 
 export default function TrinkgeldRechner() {
-  const [rechnungsbetrag, setRechnungsbetrag] = useState(50);
-  const [serviceQualitaet, setServiceQualitaet] = useState('gut');
-  const [aufrundenAufVolleEuro, setAufrundenAufVolleEuro] = useState(false);
-  const [ausgewaehlterProzent, setAusgewaehlterProzent] = useState<number | null>(null);
+  const [rechnungsbetrag, setRechnungsbetrag] = useState<number>(50);
+  const [prozent, setProzent] = useState<number>(10);
+  const [customProzent, setCustomProzent] = useState<string>('');
+  const [rundung, setRundung] = useState<Rundungsmodus>('keine');
+  const [teilen, setTeilen] = useState(false);
+  const [anzahlPersonen, setAnzahlPersonen] = useState<number>(2);
+  const [berechnet, setBerechnet] = useState(false);
 
-  const ergebnisse = useMemo(() => {
-    const empfohlenerService = SERVICE_QUALITAET.find(s => s.wert === serviceQualitaet);
-    const empfohlenProzent = empfohlenerService?.empfohlen || 10;
+  const aktiverProzent = customProzent !== '' ? Number(customProzent) : prozent;
 
-    return TRINKGELD_STUFEN.map((stufe) => {
-      const trinkgeld = rechnungsbetrag * (stufe.prozent / 100);
-      let gesamt = rechnungsbetrag + trinkgeld;
-      
-      let aufgerundet = false;
-      let originalGesamt = gesamt;
-      
-      if (aufrundenAufVolleEuro) {
-        gesamt = Math.ceil(gesamt);
-        aufgerundet = gesamt !== originalGesamt;
-      }
-      
-      const effektiverTrinkgeldBetrag = gesamt - rechnungsbetrag;
-      const effektiverProzent = (effektiverTrinkgeldBetrag / rechnungsbetrag) * 100;
+  const ergebnis = useMemo(() => {
+    if (!rechnungsbetrag || rechnungsbetrag <= 0 || aktiverProzent < 0 || aktiverProzent > 100) {
+      return null;
+    }
 
-      return {
-        ...stufe,
-        trinkgeld: effektiverTrinkgeldBetrag,
-        gesamt,
-        istEmpfohlen: stufe.prozent === empfohlenProzent,
-        aufgerundet,
-        originalTrinkgeld: trinkgeld,
-        effektiverProzent,
-      };
-    });
-  }, [rechnungsbetrag, serviceQualitaet, aufrundenAufVolleEuro]);
+    let trinkgeld = rechnungsbetrag * (aktiverProzent / 100);
+    let gesamt = rechnungsbetrag + trinkgeld;
 
-  const empfohlenerService = SERVICE_QUALITAET.find(s => s.wert === serviceQualitaet);
-  const empfohlenesErgebnis = ergebnisse.find(e => e.istEmpfohlen);
-  const ausgewaehltesErgebnis = ausgewaehlterProzent !== null 
-    ? ergebnisse.find(e => e.prozent === ausgewaehlterProzent) 
-    : empfohlenesErgebnis;
+    // Aufrunden
+    if (rundung === 'auf50cent') {
+      gesamt = Math.ceil(gesamt * 2) / 2; // auf nächste 0,50 €
+      trinkgeld = gesamt - rechnungsbetrag;
+    } else if (rundung === 'auf1euro') {
+      gesamt = Math.ceil(gesamt); // auf nächsten vollen Euro
+      trinkgeld = gesamt - rechnungsbetrag;
+    }
 
-  const formatEuro = (n: number) => n.toLocaleString('de-DE', { 
-    minimumFractionDigits: 2, 
-    maximumFractionDigits: 2 
-  }) + ' €';
+    const effektiverProzentsatz = (trinkgeld / rechnungsbetrag) * 100;
+    const proPersonGesamt = teilen && anzahlPersonen > 0 ? gesamt / anzahlPersonen : null;
+    const proPersonTrinkgeld = teilen && anzahlPersonen > 0 ? trinkgeld / anzahlPersonen : null;
+
+    return {
+      rechnungsbetrag,
+      trinkgeld,
+      gesamt,
+      effektiverProzentsatz,
+      proPersonGesamt,
+      proPersonTrinkgeld,
+      anzahlPersonen: teilen ? anzahlPersonen : 1,
+      hatTeilung: teilen && anzahlPersonen > 1,
+    };
+  }, [rechnungsbetrag, aktiverProzent, rundung, teilen, anzahlPersonen]);
+
+  const formatCurrency = (n: number) =>
+    n.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+
+  const formatPercent = (n: number) =>
+    n.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + ' %';
+
+  const handleBerechnen = () => {
+    setBerechnet(true);
+  };
+
+  const schnellProzente = [5, 10, 15, 20];
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-2xl mx-auto">
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        {/* Rechnungsbetrag */}
-        <label className="block mb-6">
-          <span className="text-gray-700 font-medium">Rechnungsbetrag (€)</span>
-          <div className="mt-2 relative">
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+          <span className="text-2xl">💶</span>
+          Trinkgeld berechnen
+        </h2>
+
+        <div className="space-y-6">
+          {/* Rechnungsbetrag */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Rechnungsbetrag (€)
+            </label>
             <input
               type="number"
               value={rechnungsbetrag}
-              onChange={(e) => {
-                setRechnungsbetrag(Math.max(0, parseFloat(e.target.value) || 0));
-                setAusgewaehlterProzent(null);
-              }}
-              className="w-full px-4 py-3 text-2xl font-bold text-center border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:outline-none"
-              step="0.01"
-              min="0"
-              placeholder="50,00"
+              onChange={(e) => setRechnungsbetrag(Number(e.target.value))}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-lg"
+              placeholder="z.B. 50,00"
+              min={0}
+              step={0.01}
             />
           </div>
-          <div className="flex justify-center gap-2 mt-2">
-            {[20, 50, 100, 150].map((betrag) => (
-              <button
-                key={betrag}
-                onClick={() => {
-                  setRechnungsbetrag(betrag);
-                  setAusgewaehlterProzent(null);
-                }}
-                className={`px-3 py-1 text-sm rounded-lg transition-all ${
-                  rechnungsbetrag === betrag
-                    ? 'bg-indigo-100 text-indigo-700 font-medium'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {betrag} €
-              </button>
-            ))}
-          </div>
-        </label>
 
-        {/* Service-Qualität */}
-        <div className="mb-6">
-          <label className="block text-gray-700 font-medium mb-3">Wie war der Service?</label>
-          <div className="grid grid-cols-2 gap-3">
-            {SERVICE_QUALITAET.map((service) => (
-              <button
-                key={service.wert}
-                onClick={() => {
-                  setServiceQualitaet(service.wert);
-                  setAusgewaehlterProzent(null);
-                }}
-                className={`p-3 rounded-xl border-2 text-left transition-all ${
-                  serviceQualitaet === service.wert
-                    ? 'border-indigo-500 bg-indigo-50'
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
-                <div className="text-lg mb-1">{service.label}</div>
-                <div className={`text-xs ${serviceQualitaet === service.wert ? 'text-indigo-600' : 'text-gray-500'}`}>
-                  → {service.empfohlen}% empfohlen
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Aufrunden Option */}
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+          {/* Trinkgeld in % */}
           <div>
-            <span className="font-medium text-gray-700">Auf volle Euro aufrunden</span>
-            <p className="text-xs text-gray-500 mt-1">Praktisch beim Bezahlen mit Bargeld</p>
-          </div>
-          <button
-            onClick={() => setAufrundenAufVolleEuro(!aufrundenAufVolleEuro)}
-            className={`relative w-14 h-8 rounded-full transition-colors ${
-              aufrundenAufVolleEuro ? 'bg-indigo-500' : 'bg-gray-300'
-            }`}
-          >
-            <span
-              className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow transition-transform ${
-                aufrundenAufVolleEuro ? 'translate-x-7' : 'translate-x-1'
-              }`}
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Trinkgeld (%)
+            </label>
+            {/* Schnellauswahl */}
+            <div className="flex flex-wrap gap-2 mb-3">
+              {schnellProzente.map((p) => (
+                <button
+                  key={p}
+                  onClick={() => {
+                    setProzent(p);
+                    setCustomProzent('');
+                  }}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    customProzent === '' && prozent === p
+                      ? 'bg-emerald-500 text-white shadow-md'
+                      : 'bg-gray-100 text-gray-600 hover:bg-emerald-100 hover:text-emerald-700'
+                  }`}
+                >
+                  {p}%
+                </button>
+              ))}
+            </div>
+            <input
+              type="number"
+              value={customProzent}
+              onChange={(e) => setCustomProzent(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-lg"
+              placeholder="Eigener Prozentsatz (optional)"
+              min={0}
+              max={100}
+              step={0.5}
             />
+          </div>
+
+          {/* Aufrunden */}
+          <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+            <label className="text-sm font-medium text-emerald-800 mb-3 block">
+              🔄 Aufrunden (optional)
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {([
+                ['keine', 'Nicht aufrunden'],
+                ['auf50cent', 'Auf 0,50 €'],
+                ['auf1euro', 'Auf 1,00 €'],
+              ] as [Rundungsmodus, string][]).map(([wert, label]) => (
+                <button
+                  key={wert}
+                  onClick={() => setRundung(wert)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    rundung === wert
+                      ? 'bg-emerald-500 text-white shadow-md'
+                      : 'bg-white text-gray-600 hover:bg-emerald-100 hover:text-emerald-700 border border-emerald-200'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Rechnung teilen */}
+          <div className="p-4 bg-teal-50 rounded-lg border border-teal-200">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-sm font-medium text-teal-800">
+                👥 Rechnung teilen
+              </label>
+              <button
+                onClick={() => setTeilen(!teilen)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  teilen ? 'bg-teal-500' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    teilen ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            {teilen && (
+              <div>
+                <label className="block text-xs text-teal-600 mb-1">Anzahl Personen</label>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setAnzahlPersonen(Math.max(2, anzahlPersonen - 1))}
+                    className="w-10 h-10 rounded-full bg-white border border-teal-300 text-teal-700 font-bold hover:bg-teal-100 transition-colors"
+                  >
+                    −
+                  </button>
+                  <input
+                    type="number"
+                    value={anzahlPersonen}
+                    onChange={(e) => setAnzahlPersonen(Math.max(2, Number(e.target.value)))}
+                    className="w-20 text-center px-2 py-2 rounded-lg border border-teal-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-lg font-bold"
+                    min={2}
+                  />
+                  <button
+                    onClick={() => setAnzahlPersonen(anzahlPersonen + 1)}
+                    className="w-10 h-10 rounded-full bg-white border border-teal-300 text-teal-700 font-bold hover:bg-teal-100 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={handleBerechnen}
+            className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold py-4 px-6 rounded-xl hover:from-emerald-600 hover:to-teal-600 transition-all shadow-lg hover:shadow-xl"
+          >
+            💶 Trinkgeld berechnen
           </button>
         </div>
       </div>
 
-      {/* Empfohlenes Ergebnis */}
-      {ausgewaehltesErgebnis && (
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-lg p-6 text-white mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-indigo-100">
-              {ausgewaehlterProzent !== null ? 'Gewähltes Trinkgeld' : '✨ Empfohlenes Trinkgeld'}
-            </h3>
-            <span className="px-3 py-1 bg-white/20 rounded-full text-sm">
-              {ausgewaehltesErgebnis.label} {ausgewaehltesErgebnis.beschreibung}
-            </span>
-          </div>
-          
-          {/* Trinkgeld */}
-          <div className="mb-4">
-            <div className="text-indigo-100 text-sm mb-1">Trinkgeld</div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-bold">
-                {formatEuro(ausgewaehltesErgebnis.trinkgeld)}
-              </span>
-              {ausgewaehltesErgebnis.aufgerundet && aufrundenAufVolleEuro && (
-                <span className="text-indigo-200 text-sm">
-                  (aufgerundet)
+      {/* Ergebnis */}
+      {berechnet && ergebnis && (
+        <>
+          {/* Haupt-Ergebnis */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">✨</span>
+              Ihr Ergebnis
+            </h2>
+
+            {/* Großes Ergebnis */}
+            <div className="text-center mb-6">
+              <div className="text-gray-500 text-sm mb-1">Gesamtbetrag</div>
+              <div className="inline-block px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                <div className="text-4xl font-bold">{formatCurrency(ergebnis.gesamt)}</div>
+              </div>
+              <div className="mt-4 flex justify-center items-center gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-emerald-600">
+                    {formatCurrency(ergebnis.trinkgeld)}
+                  </div>
+                  <div className="text-sm text-gray-500">Trinkgeld</div>
+                </div>
+                <div className="w-px h-10 bg-gray-200"></div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-emerald-600">
+                    {formatPercent(ergebnis.effektiverProzentsatz)}
+                  </div>
+                  <div className="text-sm text-gray-500">effektiver Satz</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Details */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">Rechnungsbetrag</span>
+                <span className="font-medium text-gray-800">{formatCurrency(ergebnis.rechnungsbetrag)}</span>
+              </div>
+
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">
+                  Trinkgeld ({formatPercent(ergebnis.effektiverProzentsatz)})
                 </span>
+                <span className="font-medium text-emerald-600">+ {formatCurrency(ergebnis.trinkgeld)}</span>
+              </div>
+
+              <div className="flex justify-between items-center py-3 bg-emerald-50 -mx-2 px-4 rounded-lg">
+                <span className="font-bold text-emerald-800">Gesamtbetrag</span>
+                <span className="font-bold text-emerald-800 text-xl">{formatCurrency(ergebnis.gesamt)}</span>
+              </div>
+
+              {ergebnis.hatTeilung && ergebnis.proPersonGesamt && ergebnis.proPersonTrinkgeld && (
+                <div className="mt-4 p-4 bg-teal-50 rounded-lg border border-teal-200">
+                  <h3 className="font-semibold text-teal-800 mb-3 flex items-center gap-2">
+                    <span>👥</span>
+                    Pro Person ({ergebnis.anzahlPersonen} Personen)
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-teal-700">Anteil pro Person</span>
+                      <span className="font-bold text-teal-800 text-lg">{formatCurrency(ergebnis.proPersonGesamt)}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-teal-600 text-sm">davon Trinkgeld</span>
+                      <span className="font-medium text-teal-700">{formatCurrency(ergebnis.proPersonTrinkgeld)}</span>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
           </div>
 
-          {/* Gesamtbetrag */}
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-indigo-100">Rechnung</span>
-              <span className="font-semibold">{formatEuro(rechnungsbetrag)}</span>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-indigo-100">+ Trinkgeld ({ausgewaehltesErgebnis.effektiverProzent.toFixed(1)}%)</span>
-              <span className="font-semibold">{formatEuro(ausgewaehltesErgebnis.trinkgeld)}</span>
-            </div>
-            <div className="border-t border-white/20 pt-2 flex justify-between items-center">
-              <span className="text-indigo-100 font-medium">= Gesamt zu zahlen</span>
-              <span className="text-2xl font-bold">{formatEuro(ausgewaehltesErgebnis.gesamt)}</span>
+          {/* Trinkgeld-Vergleich */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📊</span>
+              Trinkgeld-Vergleich
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              Was würden Sie bei verschiedenen Prozentsätzen zahlen?
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-2 px-2">Prozent</th>
+                    <th className="text-right py-2 px-2">Trinkgeld</th>
+                    <th className="text-right py-2 px-2">Gesamt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[5, 10, 15, 20, 25].map((p) => {
+                    const tg = ergebnis.rechnungsbetrag * (p / 100);
+                    const gs = ergebnis.rechnungsbetrag + tg;
+                    const istAktuell = Math.abs(p - ergebnis.effektiverProzentsatz) < 0.5;
+                    return (
+                      <tr
+                        key={p}
+                        className={`border-b border-gray-100 ${istAktuell ? 'bg-emerald-50' : ''}`}
+                      >
+                        <td className="py-2 px-2">
+                          <span className={`font-medium ${istAktuell ? 'text-emerald-700' : ''}`}>
+                            {p}%
+                            {istAktuell && <span className="ml-2 text-xs text-emerald-500">← Ihre Wahl</span>}
+                          </span>
+                        </td>
+                        <td className="text-right py-2 px-2 text-emerald-600 font-medium">
+                          + {formatCurrency(tg)}
+                        </td>
+                        <td className="text-right py-2 px-2 font-bold text-gray-800">
+                          {formatCurrency(gs)}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
-        </div>
-      )}
 
-      {/* Alle Trinkgeld-Optionen */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">💶 Alle Trinkgeld-Optionen</h3>
-        <div className="space-y-3">
-          {ergebnisse.map((ergebnis) => (
-            <button
-              key={ergebnis.prozent}
-              onClick={() => setAusgewaehlterProzent(ergebnis.prozent)}
-              className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
-                (ausgewaehlterProzent === ergebnis.prozent) || (ausgewaehlterProzent === null && ergebnis.istEmpfohlen)
-                  ? 'border-indigo-500 bg-indigo-50'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-3">
-                  <span className={`text-2xl font-bold ${
-                    (ausgewaehlterProzent === ergebnis.prozent) || (ausgewaehlterProzent === null && ergebnis.istEmpfohlen)
-                      ? 'text-indigo-600'
-                      : 'text-gray-700'
-                  }`}>
-                    {ergebnis.label}
-                  </span>
+          {/* Trinkgeld-Guide */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">📋</span>
+              Trinkgeld-Empfehlungen
+            </h2>
+
+            <div className="space-y-3">
+              <div className="p-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg text-white">
+                <div className="flex justify-between items-center">
                   <div>
-                    <span className={`text-sm font-medium ${
-                      (ausgewaehlterProzent === ergebnis.prozent) || (ausgewaehlterProzent === null && ergebnis.istEmpfohlen)
-                        ? 'text-indigo-700'
-                        : 'text-gray-600'
-                    }`}>
-                      {ergebnis.beschreibung}
-                    </span>
-                    {ergebnis.istEmpfohlen && ausgewaehlterProzent === null && (
-                      <span className="ml-2 px-2 py-0.5 bg-indigo-100 text-indigo-600 text-xs rounded-full">
-                        Empfohlen
-                      </span>
-                    )}
-                    <p className="text-xs text-gray-500">{ergebnis.bewertung}</p>
+                    <div className="font-bold">🍽️ Restaurant</div>
+                    <div className="text-sm opacity-80">Üblich in Deutschland</div>
                   </div>
-                </div>
-                <div className="text-right">
-                  <div className={`font-bold ${
-                    (ausgewaehlterProzent === ergebnis.prozent) || (ausgewaehlterProzent === null && ergebnis.istEmpfohlen)
-                      ? 'text-indigo-600'
-                      : 'text-gray-800'
-                  }`}>
-                    {formatEuro(ergebnis.trinkgeld)}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    Gesamt: {formatEuro(ergebnis.gesamt)}
+                  <div className="text-right">
+                    <div className="font-bold text-lg">5–10 %</div>
                   </div>
                 </div>
               </div>
-            </button>
-          ))}
-        </div>
-      </div>
 
-      {/* Branchen-Tipps */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📊 Trinkgeld nach Branche</h3>
-        <div className="grid grid-cols-2 gap-3">
-          {BRANCHEN_TIPPS.map((branche) => (
-            <div key={branche.branche} className="p-3 bg-gray-50 rounded-xl">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xl">{branche.emoji}</span>
-                <span className="font-medium text-gray-800">{branche.branche}</span>
+              <div className="p-3 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg text-white">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-bold">🚕 Taxi</div>
+                    <div className="text-sm opacity-80">Fahrbetrag aufrunden</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-lg">5–10 %</div>
+                  </div>
+                </div>
               </div>
-              <div className="text-indigo-600 font-bold">{branche.empfehlung}</div>
-              <p className="text-xs text-gray-500 mt-1">{branche.hinweis}</p>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Schnellrechner */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">⚡ Schnellübersicht</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-200">
-                <th className="text-left py-2 text-gray-600">Rechnung</th>
-                <th className="text-right py-2 text-gray-600">5%</th>
-                <th className="text-right py-2 text-gray-600">10%</th>
-                <th className="text-right py-2 text-gray-600">15%</th>
-                <th className="text-right py-2 text-gray-600">20%</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {[20, 30, 50, 75, 100].map((betrag) => (
-                <tr key={betrag} className="hover:bg-gray-50">
-                  <td className="py-2 font-medium">{betrag} €</td>
-                  <td className="py-2 text-right text-gray-600">{(betrag * 0.05).toFixed(2)} €</td>
-                  <td className="py-2 text-right text-gray-600">{(betrag * 0.10).toFixed(2)} €</td>
-                  <td className="py-2 text-right text-gray-600">{(betrag * 0.15).toFixed(2)} €</td>
-                  <td className="py-2 text-right font-semibold text-indigo-600">{(betrag * 0.20).toFixed(2)} €</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+              <div className="p-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg text-white">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-bold">💇 Friseur</div>
+                    <div className="text-sm opacity-80">Je nach Zufriedenheit</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-lg">5–15 %</div>
+                  </div>
+                </div>
+              </div>
 
-      {/* Info Section */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">ℹ️ Trinkgeld in Deutschland</h3>
-        <div className="space-y-4 text-sm text-gray-600">
-          <div className="p-4 bg-green-50 rounded-xl">
-            <p className="font-semibold text-green-800 mb-2">✅ Trinkgeld ist freiwillig</p>
-            <p className="text-green-700">
-              In Deutschland gibt es keine Pflicht zum Trinkgeld. Der Service ist bereits 
-              im Preis enthalten. Trinkgeld ist eine persönliche Anerkennung für guten Service.
-            </p>
-          </div>
-          <div className="p-4 bg-blue-50 rounded-xl">
-            <p className="font-semibold text-blue-800 mb-2">💰 Übliche Höhe</p>
-            <p className="text-blue-700">
-              5-10% sind in Deutschland üblich. Bei sehr gutem Service oder in gehobenen 
-              Restaurants werden auch 15% gegeben. Mehr als 15% ist eher selten.
-            </p>
-          </div>
-          <div className="p-4 bg-yellow-50 rounded-xl">
-            <p className="font-semibold text-yellow-800 mb-2">🗣️ Wie gibt man Trinkgeld?</p>
-            <ul className="text-yellow-700 space-y-1">
-              <li>• <strong>„Stimmt so"</strong> – Kellner behält das Wechselgeld</li>
-              <li>• <strong>„Machen Sie 50"</strong> – Aufrunden auf gewünschten Betrag</li>
-              <li>• Bei Kartenzahlung: Betrag vor dem Bezahlen nennen</li>
-            </ul>
-          </div>
-          <div className="p-4 bg-purple-50 rounded-xl">
-            <p className="font-semibold text-purple-800 mb-2">🌍 Unterschied zu anderen Ländern</p>
-            <p className="text-purple-700">
-              In den USA sind 15-25% üblich (Grundgehalt niedriger). In Deutschland 
-              verdienen Servicekräfte einen festen Lohn, daher ist Trinkgeld hier 
-              ein Bonus, keine Notwendigkeit.
-            </p>
-          </div>
-        </div>
-      </div>
+              <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg text-white">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-bold">🏨 Hotel</div>
+                    <div className="text-sm opacity-80">Zimmermädchen, Gepäckträger</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-lg">1–5 €</div>
+                  </div>
+                </div>
+              </div>
 
-      {/* Steuerliche Hinweise */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">📋 Gut zu wissen</h3>
-        <div className="space-y-3 text-sm text-gray-600">
-          <div className="flex gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">💡</span>
-            <div>
-              <p className="font-medium text-gray-800">Trinkgeld ist steuerfrei</p>
-              <p className="text-gray-600">Für Arbeitnehmer ist Trinkgeld nach §3 Nr. 51 EStG steuerfrei, wenn es direkt vom Gast an den Mitarbeiter gegeben wird.</p>
+              <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-bold">🛵 Lieferdienst</div>
+                    <div className="text-sm opacity-80">Pizza, Essen, Pakete</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-lg">1–3 €</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">💳</span>
-            <div>
-              <p className="font-medium text-gray-800">Kartenzahlung</p>
-              <p className="text-gray-600">Bei Kartenzahlung Trinkgeld vorher ansagen oder bar geben. So kommt es direkt beim Personal an.</p>
-            </div>
-          </div>
-          <div className="flex gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">🧾</span>
-            <div>
-              <p className="font-medium text-gray-800">Trinkgeld auf der Rechnung</p>
-              <p className="text-gray-600">In manchen Ländern wird Trinkgeld automatisch aufgeschlagen. In Deutschland ist das unüblich.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a 
-            href="https://www.gesetze-im-internet.de/estg/__3.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            §3 Nr. 51 EStG – Steuerfreies Trinkgeld
-          </a>
-          <a 
-            href="https://www.verbraucherzentrale.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Trinkgeld-Empfehlungen
-          </a>
-          <a 
-            href="https://www.dehoga-bundesverband.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            DEHOGA Bundesverband – Gastronomie Deutschland
-          </a>
-        </div>
-      </div>
+          {/* Hinweise */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">💡</span>
+              Gut zu wissen
+            </h2>
+
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                <span className="text-xl">✅</span>
+                <p className="text-green-800">
+                  <strong>Steuerfrei:</strong> Trinkgeld ist für Arbeitnehmer nach §3 Nr. 51 EStG 
+                  vollständig steuerfrei – egal wie hoch.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                <span className="text-xl">💳</span>
+                <p className="text-blue-800">
+                  <strong>Kartenzahlung:</strong> Bei Kartenzahlung sagen Sie dem Personal einfach den 
+                  Gesamtbetrag inkl. Trinkgeld oder geben bar dazu.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg">
+                <span className="text-xl">🌍</span>
+                <p className="text-amber-800">
+                  <strong>International:</strong> In den USA sind 15–20% üblich, in Japan ist Trinkgeld 
+                  verpönt. In Deutschland reichen meist 5–10%.
+                </p>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                <span className="text-xl">💬</span>
+                <p className="text-purple-800">
+                  <strong>Typisch deutsch:</strong> Sagen Sie „Stimmt so" oder nennen Sie den 
+                  aufgerundeten Betrag direkt beim Bezahlen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

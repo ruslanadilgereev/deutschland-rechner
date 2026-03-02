@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BudgetRechner from '../components/rechner/BudgetRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Budget-Rechner – 50-30-20 Regel kostenlos berechnen";
+const description = "Budget berechnen mit der 50-30-20 Regel: Grundbedürfnisse, Wünsche & Sparen optimal aufteilen. Kostenloser Budget-Rechner für Ihr Nettoeinkommen.";
+const keywords = "Budget Rechner, 50 30 20 Regel, Budgetplanung, Haushaltsbuch, Monatsbudget, Elizabeth Warren, Budget berechnen, Nettoeinkommen aufteilen, Sparquote, Budgetierung, Haushaltsgeld, Finanzplanung";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Budget-Rechner", url: "/budget-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Budget-Rechner</h1>
+            <p class="text-blue-100 text-sm">50-30-20 Regel – Monatsbudget optimal aufteilen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BudgetRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Die 50-30-20 Regel: So funktioniert Budgetplanung</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>50-30-20 Regel</strong> ist eine einfache, aber wirkungsvolle Methode zur Budgetplanung. 
+            Entwickelt wurde sie von <strong>Elizabeth Warren</strong> (US-Senatorin und Harvard-Professorin) 
+            und ihrer Tochter Amelia Warren Tyagi im Buch „All Your Worth" (2005).
+          </p>
+          <p>
+            Die Idee ist simpel: Teilen Sie Ihr <strong>monatliches Nettoeinkommen</strong> in drei Kategorien auf:
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">🏠 50% – Grundbedürfnisse (Needs)</h3>
+          <p>
+            Die Hälfte Ihres Einkommens sollte für <strong>lebensnotwendige Ausgaben</strong> reserviert sein:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Miete & Nebenkosten</strong> (Warmmiete)</li>
+            <li><strong>Lebensmittel</strong> & Haushaltswaren</li>
+            <li><strong>Versicherungen</strong> (Kranken-, Haftpflicht-, Hausratversicherung)</li>
+            <li><strong>Transport</strong> (ÖPNV, Auto-Grundkosten, Sprit)</li>
+            <li><strong>Strom, Wasser, Internet, Telefon</strong></li>
+            <li><strong>Medikamente & Gesundheitskosten</strong></li>
+          </ul>
+          <p>
+            <strong>Wichtig:</strong> Wenn die Grundbedürfnisse mehr als 50% ausmachen, sollten Sie prüfen, 
+            ob die Miete angemessen ist oder ob Versicherungen optimiert werden können.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">🎉 30% – Wünsche (Wants)</h3>
+          <p>
+            30% dürfen für <strong>Dinge ausgegeben werden, die Spaß machen</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Freizeit & Unterhaltung</strong> (Kino, Konzerte, Streaming)</li>
+            <li><strong>Essen gehen</strong> & Café-Besuche</li>
+            <li><strong>Hobbys & Sport</strong> (Fitnessstudio, Vereinsbeiträge)</li>
+            <li><strong>Shopping</strong> (Kleidung, Technik, Dekoration)</li>
+            <li><strong>Urlaub & Reisen</strong></li>
+            <li><strong>Abonnements</strong> (Netflix, Spotify, Zeitschriften)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">💰 20% – Sparen & Schulden (Savings)</h3>
+          <p>
+            Die letzten 20% sind für Ihre <strong>finanzielle Zukunft</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Notgroschen</strong> aufbauen (3-6 Monatsgehälter)</li>
+            <li><strong>ETF-Sparplan</strong> oder andere Geldanlagen</li>
+            <li><strong>Altersvorsorge</strong> (Riester, betriebliche Altersvorsorge)</li>
+            <li><strong>Schulden tilgen</strong> (Kreditraten, Bafög-Rückzahlung)</li>
+            <li><strong>Vermögenswirksame Leistungen</strong> (VL)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 50-30-20 Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-lg font-mono">Grundbedürfnisse = Nettoeinkommen × 0,50</code><br/>
+            <code class="text-lg font-mono">Wünsche = Nettoeinkommen × 0,30</code><br/>
+            <code class="text-lg font-mono">Sparen = Nettoeinkommen × 0,20</code>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Bei 2.500 € netto ergibt sich: 1.250 € für Grundbedürfnisse, 
+            750 € für Wünsche und 500 € zum Sparen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittliches Budget in Deutschland</h3>
+          <p>
+            Laut Statistischem Bundesamt (Destatis) geben deutsche Haushalte im Schnitt so aus:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Wohnen:</strong> ~35% des Einkommens</li>
+            <li><strong>Ernährung:</strong> ~15%</li>
+            <li><strong>Transport:</strong> ~14%</li>
+            <li><strong>Freizeit & Kultur:</strong> ~11%</li>
+            <li><strong>Sparquote:</strong> ~11% (Durchschnitt 2024)</li>
+          </ul>
+          <p>
+            Die 50-30-20 Regel liegt mit 20% Sparquote deutlich über dem deutschen Durchschnitt – 
+            ein guter Ansporn für mehr finanzielle Sicherheit!
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Anpassungen für Deutschland</h3>
+          <p>
+            Die Regel stammt aus den USA und muss für Deutschland angepasst werden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Steuern & Sozialabgaben:</strong> In Deutschland werden diese bereits vom Brutto abgezogen – die Regel gilt für das <strong>Nettoeinkommen</strong></li>
+            <li><strong>Miete:</strong> In Großstädten wie München, Frankfurt oder Hamburg kann die Miete allein 30-40% ausmachen</li>
+            <li><strong>Krankenversicherung:</strong> Bereits über den Arbeitgeber abgedeckt (GKV-Beitrag)</li>
+            <li><strong>Rundfunkbeitrag:</strong> 18,36 €/Monat gehört zu den Grundbedürfnissen</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Alternative Budgetregeln</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>70-20-10 Regel:</strong> 70% Ausgaben, 20% Sparen, 10% Spenden/Investieren</li>
+            <li><strong>80-20 Regel:</strong> 80% für alles, 20% sparen – noch einfacher</li>
+            <li><strong>60-20-20 Regel:</strong> Wenn Sie in einer teuren Stadt wohnen</li>
+            <li><strong>Kakeibo:</strong> Japanische Haushaltsbuch-Methode mit vier Kategorien</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Praktische Beispiele -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🧮</span>
+          Rechenbeispiele
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Berufseinsteiger (1.800 € netto)</h3>
+            <p class="text-sm text-gray-600">
+              <strong>Grundbedürfnisse (50%):</strong> 900 € → Miete 550 €, Lebensmittel 200 €, Rest 150 €<br/>
+              <strong>Wünsche (30%):</strong> 540 € → Freizeit, Shopping, Essen gehen<br/>
+              <strong>Sparen (20%):</strong> <span class="text-green-600 font-bold">360 €</span> → ETF-Sparplan + Notgroschen
+            </p>
+          </div>
+          
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Familie mit 2 Einkommen (4.500 € netto)</h3>
+            <p class="text-sm text-gray-600">
+              <strong>Grundbedürfnisse (50%):</strong> 2.250 € → Miete 1.200 €, Lebensmittel 600 €, Rest 450 €<br/>
+              <strong>Wünsche (30%):</strong> 1.350 € → Familienausflüge, Hobbys, Urlaub<br/>
+              <strong>Sparen (20%):</strong> <span class="text-green-600 font-bold">900 €</span> → Bausparen + ETF + Kindervorsorge
+            </p>
+          </div>
+          
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: München (3.000 € netto, hohe Miete)</h3>
+            <p class="text-sm text-gray-600">
+              Problem: Miete 1.200 € = 40% → Anpassung auf <strong>60-20-20</strong><br/>
+              <strong>Grundbedürfnisse (60%):</strong> 1.800 € → Miete 1.200 €, Rest 600 €<br/>
+              <strong>Wünsche (20%):</strong> 600 €<br/>
+              <strong>Sparen (20%):</strong> <span class="text-green-600 font-bold">600 €</span> → Sparquote gehalten!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Verwandte Rechner
+        </h2>
+        
+        <div class="grid gap-3">
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">💵</span>
+            <div>
+              <div class="font-semibold text-gray-800">Brutto-Netto-Rechner</div>
+              <div class="text-sm text-gray-500">Was bleibt vom Gehalt übrig?</div>
+            </div>
+          </a>
+          <a href="/spar-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">💰</span>
+            <div>
+              <div class="font-semibold text-gray-800">Spar-Rechner</div>
+              <div class="text-sm text-gray-500">Zinseszins & Vermögensaufbau berechnen</div>
+            </div>
+          </a>
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">📊</span>
+            <div>
+              <div class="font-semibold text-gray-800">ETF-Sparplan-Rechner</div>
+              <div class="text-sm text-gray-500">ETF-Rendite & Vermögen berechnen</div>
+            </div>
+          </a>
+          <a href="/privatinsolvenz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">⚠️</span>
+            <div>
+              <div class="font-semibold text-gray-800">Privatinsolvenz-Rechner</div>
+              <div class="text-sm text-gray-500">Pfändungsfreies Einkommen berechnen</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Budget-Rechner – 50-30-20 Regel",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/budget-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist die 50-30-20 Regel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die 50-30-20 Regel ist eine Budgetmethode von Elizabeth Warren: 50% des Nettoeinkommens für Grundbedürfnisse (Miete, Essen, Versicherungen), 30% für Wünsche (Freizeit, Hobbys) und 20% zum Sparen und Schulden tilgen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich mein Budget nach der 50-30-20 Regel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nehmen Sie Ihr monatliches Nettoeinkommen und teilen Sie es: 50% für Grundbedürfnisse, 30% für Wünsche, 20% zum Sparen. Bei 2.500 € netto sind das 1.250 € Bedürfnisse, 750 € Wünsche und 500 € Sparen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch sollte die Sparquote sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die 50-30-20 Regel empfiehlt mindestens 20% Sparquote. Der deutsche Durchschnitt liegt bei ca. 11%. Finanzexperten empfehlen 15-20% für eine gute Altersvorsorge. Wer Schulden hat, sollte zunächst diese priorisieren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was mache ich, wenn meine Miete mehr als 50% kostet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In teuren Städten wie München oder Frankfurt kann die 50-30-20 Regel angepasst werden, z.B. auf 60-20-20 oder 55-25-20. Wichtig ist, die Sparquote von 20% möglichst beizubehalten und bei den Wünschen zu kürzen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß sollte mein Notgroschen sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Finanzexperten empfehlen 3-6 Netto-Monatsgehälter als Notgroschen auf einem Tagesgeldkonto. Bei 2.500 € netto wären das 7.500 bis 15.000 €. Familien sollten eher am oberen Ende ansetzen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer hat die 50-30-20 Regel erfunden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die 50-30-20 Regel wurde von Elizabeth Warren (US-Senatorin und Harvard-Professorin) und ihrer Tochter Amelia Warren Tyagi im Buch 'All Your Worth: The Ultimate Lifetime Money Plan' (2005) vorgestellt."
+        }
+      }
+    ]
+  })} />
+</Layout>

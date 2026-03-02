@@ -1,0 +1,281 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TrinkgeldRechner from '../components/rechner/TrinkgeldRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Trinkgeld-Rechner – Trinkgeld in Deutschland berechnen";
+const description = "Trinkgeld berechnen: Empfohlenes Trinkgeld für Restaurant, Taxi, Friseur & Hotel. Mit Aufrunden, Rechnung teilen & Tipps. Kostenlos!";
+const keywords = "Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Trinkgeld Restaurant, Trinkgeld Deutschland, Trinkgeld Prozent, aufrunden, Rechnung teilen, Trinkgeld steuerfrei, Trinkgeld Taxi, Trinkgeld Friseur";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Trinkgeld-Rechner", url: "/trinkgeld-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💶</span>
+          <div>
+            <h1 class="text-2xl font-bold">Trinkgeld-Rechner</h1>
+            <p class="text-emerald-100 text-sm">Trinkgeld berechnen – mit Aufrunden & Rechnung teilen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TrinkgeldRechner client:load />
+    </div>
+    
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Trinkgeld in Deutschland: So viel ist angemessen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Trinkgeld-Rechner</strong> berechnen Sie schnell das passende Trinkgeld für 
+            jede Situation. In Deutschland ist Trinkgeld freiwillig – aber ein wichtiger Teil der 
+            Dienstleistungskultur. Üblich sind <strong>5–10 % des Rechnungsbetrags</strong> in Restaurants.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Trinkgeld gibt man in Deutschland?</h3>
+          <p>
+            Im Gegensatz zu den USA, wo 15–20 % Standard sind, ist das Trinkgeld in Deutschland 
+            deutlich moderater. Die Faustregel lautet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Restaurant/Café:</strong> 5–10 % des Rechnungsbetrags</li>
+            <li><strong>Taxi:</strong> 5–10 % oder auf den nächsten vollen Euro aufrunden</li>
+            <li><strong>Friseur:</strong> 5–15 %, je nach Zufriedenheit</li>
+            <li><strong>Hotel (Zimmermädchen):</strong> 1–2 € pro Tag/Nacht</li>
+            <li><strong>Hotel (Gepäckträger):</strong> 1–2 € pro Gepäckstück</li>
+            <li><strong>Lieferdienst:</strong> 1–3 € pro Lieferung</li>
+            <li><strong>Umzugshelfer:</strong> 5–10 € pro Helfer</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Trinkgeld ist steuerfrei (§3 Nr. 51 EStG)</h3>
+          <p>
+            Gute Nachricht für alle Servicekräfte: <strong>Trinkgeld ist in Deutschland steuerfrei</strong>. 
+            Nach <strong>§3 Nr. 51 EStG</strong> sind Trinkgelder, die ein Arbeitnehmer von Dritten 
+            (z. B. Gästen) freiwillig und ohne Rechtsanspruch erhält, vollständig von der Einkommensteuer befreit.
+          </p>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4 border border-emerald-200">
+            <p class="text-emerald-800 font-medium">
+              💡 Das gilt unabhängig von der Höhe – ob 1 € oder 100 €, Trinkgeld bleibt für den 
+              Arbeitnehmer immer steuerfrei und sozialversicherungsfrei.
+            </p>
+          </div>
+          <p>
+            <strong>Wichtig:</strong> Diese Steuerfreiheit gilt nur, wenn das Trinkgeld <em>freiwillig</em> 
+            vom Kunden gegeben wird. Wird ein „Service Charge" verpflichtend auf die Rechnung gesetzt, 
+            handelt es sich nicht um steuerfreies Trinkgeld, sondern um normalen Arbeitslohn.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Deutschland vs. andere Länder</h3>
+          <p>
+            Die Trinkgeld-Kultur unterscheidet sich weltweit erheblich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>USA:</strong> 15–20 % sind Pflicht (Kellner leben davon)</li>
+            <li><strong>Großbritannien:</strong> 10–15 %, oft als „Service Charge" auf der Rechnung</li>
+            <li><strong>Frankreich/Italien:</strong> „Service compris" – Trinkgeld ist im Preis enthalten, 1–2 € zusätzlich sind nett</li>
+            <li><strong>Japan/China:</strong> Trinkgeld gilt als unhöflich und wird abgelehnt</li>
+            <li><strong>Skandinavien:</strong> Nicht üblich, da Servicekräfte gut bezahlt werden</li>
+            <li><strong>Deutschland:</strong> 5–10 %, freiwillig, aber erwartet</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann sollte man kein Trinkgeld geben?</h3>
+          <p>
+            Trinkgeld ist freiwillig. Es ist absolut in Ordnung, <strong>kein Trinkgeld zu geben</strong>, wenn:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Der Service schlecht war (unhöflich, extrem langsam)</li>
+            <li>Das Essen mangelhaft war und keine Lösung angeboten wurde</li>
+            <li>Bereits ein „Service Charge" auf der Rechnung steht</li>
+          </ul>
+          <p>
+            Umgekehrt dürfen Sie bei <strong>exzellentem Service</strong> natürlich auch mehr als 10 % geben – 
+            das wird immer geschätzt.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Trinkgeld bei Kartenzahlung</h3>
+          <p>
+            Auch bei Kartenzahlung können Sie Trinkgeld geben. Die gängigen Methoden:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Gesamtbetrag nennen:</strong> Sagen Sie z. B. „Machen Sie 55 Euro" bei 49,80 € Rechnung</li>
+            <li><strong>Bar dazulegen:</strong> Kartenzahlung für die Rechnung, Trinkgeld in bar daneben</li>
+            <li><strong>Trinkgeld-Option am Terminal:</strong> Immer mehr Kartengeräte bieten eine Trinkgeld-Funktion</li>
+          </ul>
+          <p>
+            <strong>Tipp:</strong> Bargeld-Trinkgeld kommt am sichersten direkt beim Servicepersonal an.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">„Stimmt so" – Die deutsche Art</h3>
+          <p>
+            Der Klassiker beim Trinkgeldgeben in Deutschland: Sie sagen <strong>„Stimmt so"</strong> 
+            beim Überreichen des Geldes, wenn kein Wechselgeld zurückkommen soll. Alternativ nennen 
+            Sie den gewünschten Betrag: „Auf 50 Euro bitte" oder „Machen Sie 45".
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Praktische Beispiele -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🧮</span>
+          Rechenbeispiele
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Restaurant-Besuch</h3>
+            <p class="text-sm text-gray-600">
+              Die Rechnung beträgt 78,40 €. Sie geben 10 % Trinkgeld.<br/>
+              <strong>Trinkgeld:</strong> 78,40 € × 0,10 = 7,84 €<br/>
+              <strong>Aufgerundet auf 1 €:</strong> <span class="text-emerald-600 font-bold">87,00 €</span> (8,60 € Trinkgeld = 11 %)
+            </p>
+          </div>
+          
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Taxi-Fahrt</h3>
+            <p class="text-sm text-gray-600">
+              Taxameter zeigt 14,60 €. Sie runden auf.<br/>
+              <strong>Sie sagen:</strong> „Machen Sie 16 Euro"<br/>
+              <strong>Trinkgeld:</strong> 1,40 € = <span class="text-emerald-600 font-bold">ca. 10 %</span>
+            </p>
+          </div>
+          
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Rechnung teilen (4 Personen)</h3>
+            <p class="text-sm text-gray-600">
+              Gesamtrechnung: 120 € + 10 % Trinkgeld = 132 €<br/>
+              <strong>Pro Person:</strong> 132 € ÷ 4 = <span class="text-emerald-600 font-bold">33,00 €</span><br/>
+              <strong>Davon Trinkgeld:</strong> 3,00 € pro Person
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Verwandte Rechner
+        </h2>
+        
+        <div class="grid gap-3">
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">📊</span>
+            <div>
+              <div class="font-semibold text-gray-800">Prozent-Rechner</div>
+              <div class="text-sm text-gray-500">Alle Prozentberechnungen: Grundwert, Prozentwert, Prozentsatz</div>
+            </div>
+          </a>
+          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏷️</span>
+            <div>
+              <div class="font-semibold text-gray-800">Rabatt-Rechner</div>
+              <div class="text-sm text-gray-500">Ersparnis & Endpreis nach Rabatt berechnen</div>
+            </div>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🧾</span>
+            <div>
+              <div class="font-semibold text-gray-800">Mehrwertsteuer-Rechner</div>
+              <div class="text-sm text-gray-500">Mehrwertsteuer berechnen: Brutto ↔ Netto</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Trinkgeld-Rechner – Trinkgeld in Deutschland berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/trinkgeld-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Trinkgeld gibt man in Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Deutschland sind 5–10 % des Rechnungsbetrags als Trinkgeld üblich. In Restaurants und beim Friseur gibt man typischerweise 5–10 %, bei Taxi-Fahrten rundet man auf den nächsten vollen Euro auf. Im Hotel sind 1–2 € pro Nacht für das Zimmermädchen angemessen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist Trinkgeld in Deutschland steuerfrei?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Trinkgeld ist in Deutschland vollständig steuerfrei. Nach §3 Nr. 51 EStG sind freiwillige Trinkgelder von Dritten (z. B. Restaurantgästen) für Arbeitnehmer von der Einkommensteuer und Sozialversicherung befreit – unabhängig von der Höhe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann man Trinkgeld auch bei Kartenzahlung geben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, bei Kartenzahlung können Sie den gewünschten Gesamtbetrag inklusive Trinkgeld nennen. Alternativ können Sie die Rechnung per Karte bezahlen und das Trinkgeld bar daneben legen. Immer mehr Kartengeräte bieten auch eine separate Trinkgeld-Option."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet 'Stimmt so' beim Bezahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "'Stimmt so' ist die typisch deutsche Art, Trinkgeld zu geben. Sie überreichen dem Personal einen Betrag, der höher als die Rechnung ist, und sagen 'Stimmt so' – das bedeutet, dass kein Wechselgeld zurückkommen soll. Die Differenz ist das Trinkgeld."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Trinkgeld gibt man in den USA im Vergleich zu Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In den USA sind 15–20 % Trinkgeld Standard und quasi Pflicht, da Servicekräfte oft nur den Mindestlohn erhalten. In Deutschland sind 5–10 % üblich und freiwillig. In Japan und China ist Trinkgeld sogar verpönt und wird abgelehnt."
+        }
+      }
+    ]
+  })} />
+</Layout>

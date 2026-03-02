@@ -1304,7 +1304,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Monatsbudget planen (50-30-20)',
     icon: '📋',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Budget Rechner, Haushaltsbuch, 50 30 20 Regel, Budgetplanung, Monatsbudget, Elizabeth Warren',
     quellen: [
       'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/haushaltsbuch-einnahmen-und-ausgaben-im-blick-44954',
@@ -1322,7 +1322,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Trinkgeld berechnen (5-20%)',
     icon: '💶',
     kategorie: 'alltag',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Trinkgeld Restaurant, Trinkgeld Deutschland, Trinkgeld Prozent, aufrunden',
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__3.html',
@@ -1362,7 +1362,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'Hundesteuer nach Stadt berechnen',
     icon: '🐕',
     kategorie: 'alltag',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'Hundesteuer Rechner, Hundesteuer berechnen, Hundesteuer Stadt, Hundesteuer 2025, Listenhund Steuer, Kampfhund Steuer, Hundesteuer Berlin, Hundesteuer München',
     quellen: [
       'https://www.destatis.de/DE/Themen/Staat/Steuern/Steuern-Gemeinden/_inhalt.html',
@@ -1926,7 +1926,7 @@ export const rechnerListe: Rechner[] = [
     beschreibung: 'VL & Arbeitnehmersparzulage berechnen',
     icon: '🏦',
     kategorie: 'finanzen',
-    fertig: false,
+    fertig: true,
     seoKeywords: 'VL Rechner, vermögenswirksame Leistungen, VWL Rechner, Arbeitnehmersparzulage, VL Bauspar, VL Aktienfonds, 9 Prozent Zulage, 20 Prozent Zulage, VL 2026, Einkommensgrenze VL 17900 20000',
     quellen: [
       'https://www.gesetze-im-internet.de/vermbildg/',
