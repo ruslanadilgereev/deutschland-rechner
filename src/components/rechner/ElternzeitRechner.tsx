@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 const ELTERNZEIT_2026 = {
   maxMonateGesamt: 36,           // Max. 36 Monate pro Elternteil
   maxMonateVorDrittemGeburtstag: 24, // 24 Monate müssen vor dem 3. Geburtstag genommen werden
-  maxMonateNachDrittemGeburtstag: 12, // 12 Monate können zwischen 3. und 8. Geburtstag genommen werden
+  maxMonateNachDrittemGeburtstag: 24, // Bis zu 24 Monate können zwischen 3. und 8. Geburtstag genommen werden (§ 15 Abs. 2 BEEG)
   maxTeilzeitStunden: 32,        // Max. 32 Stunden/Woche Teilzeit während Elternzeit (seit Sept 2021)
   minTeilzeitBetrieb: 15,        // Betrieb muss mind. 15 Mitarbeiter haben für Teilzeit-Anspruch
   kuendigungsschutzVorher: 8,    // Wochen Kündigungsschutz vor Beginn (ab 8 Wochen vor Beginn)
@@ -106,10 +106,10 @@ export default function ElternzeitRechner() {
       warnungen.push('Der Vater plant mehr als 24 Monate vor dem 3. Geburtstag – nur 24 Monate sind in diesem Zeitraum möglich.');
     }
     if (mutterNach3 > ELTERNZEIT_2026.maxMonateNachDrittemGeburtstag) {
-      warnungen.push('Die Mutter plant mehr als 12 Monate nach dem 3. Geburtstag – nur 12 Monate sind übertragbar.');
+      warnungen.push('Die Mutter plant mehr als 24 Monate nach dem 3. Geburtstag – nur 24 Monate können übertragen werden (§ 15 Abs. 2 BEEG).');
     }
     if (vaterNach3 > ELTERNZEIT_2026.maxMonateNachDrittemGeburtstag) {
-      warnungen.push('Der Vater plant mehr als 12 Monate nach dem 3. Geburtstag – nur 12 Monate sind übertragbar.');
+      warnungen.push('Der Vater plant mehr als 24 Monate nach dem 3. Geburtstag – nur 24 Monate können übertragen werden (§ 15 Abs. 2 BEEG).');
     }
     if (mutterGenutzt > ELTERNZEIT_2026.maxMonateGesamt) {
       warnungen.push(`Die Mutter überschreitet die maximalen 36 Monate Elternzeit.`);
@@ -230,15 +230,15 @@ export default function ElternzeitRechner() {
             <input
               type="range"
               min="0"
-              max="12"
+              max="24"
               value={mutterNach3}
               onChange={(e) => setMutterNach3(Number(e.target.value))}
               className="w-full h-2 bg-pink-200 rounded-lg appearance-none cursor-pointer accent-pink-500"
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
               <span>0</span>
-              <span>6</span>
-              <span>12 (max)</span>
+              <span>12</span>
+              <span>24 (max)</span>
             </div>
           </div>
         </div>
@@ -276,15 +276,15 @@ export default function ElternzeitRechner() {
             <input
               type="range"
               min="0"
-              max="12"
+              max="24"
               value={vaterNach3}
               onChange={(e) => setVaterNach3(Number(e.target.value))}
               className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
               <span>0</span>
-              <span>6</span>
-              <span>12 (max)</span>
+              <span>12</span>
+              <span>24 (max)</span>
             </div>
           </div>
         </div>
@@ -545,11 +545,11 @@ export default function ElternzeitRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>24 Monate</strong> müssen vor dem 3. Geburtstag genommen werden</span>
+            <span><strong>Bis zu 24 Monate</strong> können vor dem 3. Geburtstag genommen werden</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>12 Monate</strong> können zwischen dem 3. und 8. Geburtstag übertragen werden</span>
+            <span><strong>Bis zu 24 Monate</strong> können zwischen dem 3. und 8. Geburtstag übertragen werden (§ 15 Abs. 2 BEEG)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>
@@ -561,7 +561,7 @@ export default function ElternzeitRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Anmeldung</strong> mindestens 7 Wochen vor Beginn beim Arbeitgeber</span>
+            <span><strong>Anmeldung</strong> mindestens 7 Wochen vor Beginn beim Arbeitgeber (in Textform, E-Mail genügt)</span>
           </li>
         </ul>
       </div>
@@ -573,7 +573,7 @@ export default function ElternzeitRechner() {
           <div className="bg-pink-50 rounded-xl p-4">
             <p className="font-semibold text-pink-900">Elternzeit beantragen bei:</p>
             <p className="text-sm text-pink-700 mt-2">
-              Die Elternzeit muss <strong>schriftlich beim Arbeitgeber</strong> angemeldet werden – nicht bei einer Behörde.
+              Die Elternzeit muss <strong>in Textform beim Arbeitgeber</strong> angemeldet werden – nicht bei einer Behörde. Seit Mai 2025 reicht eine E-Mail (Textform statt Schriftform).
             </p>
           </div>
           
@@ -581,9 +581,9 @@ export default function ElternzeitRechner() {
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
               <span className="text-xl">📝</span>
               <div>
-                <p className="font-medium text-gray-800">Schriftliche Anmeldung</p>
+                <p className="font-medium text-gray-800">Anmeldung in Textform</p>
                 <p className="text-gray-600">7 Wochen vor Beginn beim Arbeitgeber</p>
-                <p className="text-xs text-gray-500 mt-1">Mit Unterschrift, kein E-Mail!</p>
+                <p className="text-xs text-gray-500 mt-1">Seit Mai 2025: E-Mail genügt!</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
@@ -621,8 +621,8 @@ export default function ElternzeitRechner() {
           <div className="flex gap-3 p-3 bg-yellow-50 rounded-xl">
             <span className="text-xl">⚠️</span>
             <div>
-              <p className="font-medium text-yellow-800">Schriftform erforderlich!</p>
-              <p className="text-yellow-700">Die Anmeldung muss schriftlich mit Unterschrift erfolgen. E-Mail oder Fax genügen nicht.</p>
+              <p className="font-medium text-yellow-800">Textform erforderlich!</p>
+              <p className="text-yellow-700">Seit Mai 2025 genügt die Textform (z.B. E-Mail). Eine handschriftliche Unterschrift ist nicht mehr nötig.</p>
             </div>
           </div>
           <div className="flex gap-3 p-3 bg-blue-50 rounded-xl">
@@ -669,9 +669,9 @@ export default function ElternzeitRechner() {
         <div className="space-y-2 text-sm">
           {[
             'Elternzeit-Zeitraum festlegen (wann, wie lange)',
-            'Anmeldung schriftlich vorbereiten',
+            'Anmeldung in Textform vorbereiten (E-Mail reicht seit Mai 2025)',
             'Mind. 7 Wochen vorher beim Arbeitgeber einreichen',
-            'Kopie für eigene Unterlagen behalten',
+            'Kopie/Screenshot für eigene Unterlagen behalten',
             'Empfangsbestätigung vom Arbeitgeber einholen',
             'Elterngeld separat bei der Elterngeldstelle beantragen',
             'Krankenversicherung während Elternzeit klären',

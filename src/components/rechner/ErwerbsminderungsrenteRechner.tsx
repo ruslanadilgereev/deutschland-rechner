@@ -71,10 +71,11 @@ const ABSCHLAGSFREIES_ALTER: Record<number, { jahre: number; monate: number }> =
 };
 
 // Hinzuverdienstgrenzen 2026 (§ 96a SGB VI)
-// Bei voller EM: 3/8 der jährlichen Bezugsgröße × 14
-// Bezugsgröße 2026: 3.990€/Monat → 47.880€/Jahr
-// Volle EM: 3/8 × 47.880 × 14 ÷ 12 ≈ 20.963,75€/Jahr
-const HINZUVERDIENSTGRENZE_VOLL_2026 = 20963.75; // Euro pro Jahr
+// Bei voller EM: 3/8 der monatlichen Bezugsgröße × 14
+// Bezugsgröße 2026: 3.955€/Monat
+// Volle EM: 3/8 × 3.955 × 14 = 20.763,75€/Jahr
+// Quelle: Deutsche Rentenversicherung, Änderungen zum 1.1.2026
+const HINZUVERDIENSTGRENZE_VOLL_2026 = 20763.75; // Euro pro Jahr
 const HINZUVERDIENSTGRENZE_VOLL_MONAT = Math.round(HINZUVERDIENSTGRENZE_VOLL_2026 / 12);
 
 // Sozialabgaben auf EM-Rente (Rentner zahlen halben Beitrag)
@@ -156,12 +157,13 @@ function berechneAbschlag(aktuelles_alter: number, jahr: number): number {
 
 // Hinzuverdienstgrenze für teilweise EM berechnen
 // Bei teilweiser EM: Höhere Grenze basierend auf individuellem Einkommen
+// Mindest-Hinzuverdienstgrenze = 2x volle EM-Grenze (Quelle: rentenfuchs.info, DRV)
 function berechneHinzuverdienstgrenzeTeilweise(monatsbrutto: number): number {
-  // Vereinfachte Berechnung: höchstes Einkommen der letzten 15 Jahre × 0,81
-  // Wir nutzen das aktuelle Brutto als Annäherung
+  // Individuelle Berechnung: höchster EP-Wert der letzten 15 Jahre × Bezugsgröße × 9,72
+  // Vereinfachung: höchstes Einkommen der letzten 15 Jahre × 0,81
   const jahresbrutto = monatsbrutto * 12;
-  // Mindestens das Dreifache der vollen EM-Grenze
-  return Math.max(HINZUVERDIENSTGRENZE_VOLL_2026 * 3, jahresbrutto * 0.81);
+  // Mindestens das Doppelte der vollen EM-Grenze (= 41.527,50 € in 2026)
+  return Math.max(HINZUVERDIENSTGRENZE_VOLL_2026 * 2, jahresbrutto * 0.81);
 }
 
 function berechneEM(eingaben: Eingaben): Berechnung {

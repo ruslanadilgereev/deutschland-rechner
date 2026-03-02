@@ -1,10 +1,5 @@
 {
   "pending": [
-    "elternzeit-rechner",
-    "entfernung-rechner",
-    "erbschaftsteuer-rechner",
-    "erwerbsminderungsrente-rechner",
-    "etf-sparplan-rechner",
     "fahrrad-pendeln-rechner",
     "firmenwagen-rechner",
     "flugzeit-rechner",
@@ -137,7 +132,12 @@
     "einkommensteuer-rechner",
     "eisprung-rechner",
     "elektroauto-rechner",
-    "elterngeld-rechner"
+    "elterngeld-rechner",
+    "elternzeit-rechner",
+    "entfernung-rechner",
+    "erbschaftsteuer-rechner",
+    "erwerbsminderungsrente-rechner",
+    "etf-sparplan-rechner"
   ],
   "issues": [
     {
@@ -461,6 +461,97 @@
       "severity": "info",
       "description": "Verified against §2 BEEG: Ersatzraten-Staffelung (under 1000€: 67%+0.1pp/2€, 1000-1200€: 67%, 1200-1240€: abschmelzend, over 1240€: 65%) correct. Min/Max 300/1800€ Basis, 150/900€ Plus correct. Einkommensgrenze 175.000€ since April 2025 correct.",
       "fixed": false
+    },
+    {
+      "calculator": "elternzeit-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "maxMonateNachDrittemGeburtstag was 12 but must be 24 per § 15 Abs. 2 BEEG. Slider max and warnings fixed. SEO content also corrected.",
+      "fixed": true
+    },
+    {
+      "calculator": "elternzeit-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "Since May 2025, Elternzeit can be requested in Textform (email) - Schriftform no longer required. Updated all references from Schriftform to Textform.",
+      "fixed": true
+    },
+    {
+      "calculator": "elternzeit-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description too long (168 → 136 chars).",
+      "fixed": true
+    },
+    {
+      "calculator": "entfernung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Haversine formula verified correct. City coordinates checked for Berlin/Munich/Hamburg. Straßenfaktor 1.3x and speed tiers reasonable.",
+      "fixed": false
+    },
+    {
+      "calculator": "entfernung-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 64 chars → shortened to 56 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "erbschaftsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified all values against § 16, § 17, § 19 ErbStG: Freibeträge (500k Ehepartner, 400k Kinder, 200k Enkel, 100k Eltern, 20k Sonstige), Versorgungsfreibeträge, Steuersätze, Steuerklassen all correct. Bestattungspauschale 10.300€ correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "erbschaftsteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 81 chars → 61 chars. Description was 181 chars → 132 chars. Added Verwandte Rechner section with internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "erwerbsminderungsrente-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Hinzuverdienstgrenze volle EM was 20.963,75€ (based on wrong Bezugsgröße 3.990€). Corrected to 20.763,75€ (Bezugsgröße 3.955€ × 3/8 × 14). Source: DRV Pressemitteilung 18.12.2025.",
+      "fixed": true
+    },
+    {
+      "calculator": "erwerbsminderungsrente-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "Teilweise EM Mindest-Hinzuverdienstgrenze was 3x volle Grenze, corrected to 2x (= 41.527,50€). Source: rentenfuchs.info, DRV.",
+      "fixed": true
+    },
+    {
+      "calculator": "erwerbsminderungsrente-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Rentenformel (EP × ZF × RAF × RW) correct. Rentenwert 40,79€ confirmed. Zurechnungszeit-Ende 2026: 66J3M confirmed. Abschlagsfreies Alter 64J10M confirmed. Abschlag 0,3%/Monat max 10,8% correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "erwerbsminderungsrente-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 73 chars → 56 chars. Description was 175 chars → 134 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "etf-sparplan-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Zinseszins-Formel verified: compound interest per interval correct. Teilfreistellung 30% for Aktienfonds, Abgeltungssteuer 26,375%, Sparerpauschbetrag 1000/2000€ all correct per InvStG/§20 EStG. Steuer is simplified (end-of-period lump sum).",
+      "fixed": false
+    },
+    {
+      "calculator": "etf-sparplan-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 68 chars → 56 chars. Description was 170 chars → 130 chars.",
+      "fixed": true
     }
   ],
   "lastAuditDate": "2026-03-02"
