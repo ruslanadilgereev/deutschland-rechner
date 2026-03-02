@@ -1,10 +1,5 @@
 {
   "pending": [
-    "einheiten-rechner",
-    "einkommensteuer-rechner",
-    "eisprung-rechner",
-    "elektroauto-rechner",
-    "elterngeld-rechner",
     "elternzeit-rechner",
     "entfernung-rechner",
     "erbschaftsteuer-rechner",
@@ -137,7 +132,12 @@
     "doppelte-haushaltsfuehrung-rechner",
     "dreisatz-rechner",
     "ehegattenunterhalt-rechner",
-    "eigenkapital-rechner"
+    "eigenkapital-rechner",
+    "einheiten-rechner",
+    "einkommensteuer-rechner",
+    "eisprung-rechner",
+    "elektroauto-rechner",
+    "elterngeld-rechner"
   ],
   "issues": [
     {
@@ -383,6 +383,83 @@
       "type": "calculation",
       "severity": "info",
       "description": "3/7-Methode, berufsbedingte Aufwendungen 5%/max 150€, Selbstbehalt 1600€/1475€ – all confirmed against Düsseldorfer Tabelle 2025 Unterhaltsleitlinien.",
+      "fixed": false
+    },
+    {
+      "calculator": "einkommensteuer-rechner",
+      "type": "content",
+      "severity": "critical",
+      "description": "SEO content had wrong 2026 Tarifzonen (showed 2025 values: 17.005€/68.430€ instead of correct 17.799€/69.878€). Fixed to match §32a EStG 2026.",
+      "fixed": true
+    },
+    {
+      "calculator": "einkommensteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Meta description too long (171 chars → 137 chars). FAQ Spitzensteuersatz boundary corrected from 68.430€ to 69.879€.",
+      "fixed": true
+    },
+    {
+      "calculator": "einheiten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (72 chars → 56 chars).",
+      "fixed": true
+    },
+    {
+      "calculator": "einheiten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "All conversion factors verified against NIST/BIPM standards. Temperature formulas correct. Factor-based conversion logic correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "einkommensteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against §32a EStG 2026: Grundfreibetrag 12.348€, Zone boundaries 17.799/69.878/277.825€, formulas (914.51·y+1400)·y, (173.10·z+2397)·z+1034.87, 0.42·x-11135.63, 0.45·x-19470.38 all match official law. Splitting, Soli, Kindergeld 259€/Kinderfreibetrag 9.756€, Pendlerpauschale 0.38€/km all correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "eisprung-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Updated year from 2025 to 2026 in title, subtitle, structured data. Added missing BreadcrumbSchema. Added Verwandte Rechner section with internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "eisprung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Ovulation calculation (cycle length - luteal phase) medically correct. Fertile window 5 days before to 1 day after ovulation matches medical consensus. Calendar rendering correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "elektroauto-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Updated year from 2025 to 2026 in title, keywords, subtitle, structured data, SEO content headings. Title shortened (66 → 56 chars). Added BreadcrumbSchema. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "elektroauto-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "TCO calculation covers Wertverlust, Energie, KFZ-Steuer, Versicherung, Wartung. CO2 values (0.38 kg/kWh Strommix DE, 2.37 kg/l Benzin, 2.65 kg/l Diesel) are reasonable. Weighted avg Strompreis for home/public mix correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "elterngeld-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Meta description too long (170 → 142 chars). Added missing BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "elterngeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against §2 BEEG: Ersatzraten-Staffelung (under 1000€: 67%+0.1pp/2€, 1000-1200€: 67%, 1200-1240€: abschmelzend, over 1240€: 65%) correct. Min/Max 300/1800€ Basis, 150/900€ Plus correct. Einkommensgrenze 175.000€ since April 2025 correct.",
       "fixed": false
     }
   ],
