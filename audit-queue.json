@@ -1,10 +1,5 @@
 {
   "pending": [
-    "tage-rechner",
-    "teilzeit-rechner",
-    "thg-quote-rechner",
-    "tilgungsplan-rechner",
-    "ueberstunden-rechner",
     "umzugskosten-rechner",
     "unterhalt-rechner",
     "urlaubstage-rechner",
@@ -137,7 +132,12 @@
     "steuerklassen-rechner",
     "steuerklassenwechsel-rechner",
     "stromkosten-rechner",
-    "stundenlohn-rechner"
+    "stundenlohn-rechner",
+    "tage-rechner",
+    "teilzeit-rechner",
+    "thg-quote-rechner",
+    "tilgungsplan-rechner",
+    "ueberstunden-rechner"
   ],
   "issues": [
     {
@@ -2000,6 +2000,118 @@
       "type": "calculation",
       "severity": "info",
       "description": "Verified: Stundenlohn-Formel Monatsgehalt/(Wochenstunden×4.33) correct (4.33=52/12). Sonderzahlungen correctly add to Jahresgehalt. Effektiver Stundenlohn divides by 52×Wochenstunden (correct). Edge cases handled (min 0).",
+      "fixed": false
+    },
+    {
+      "calculator": "thg-quote-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "E-Motorräder (L3e-A2+) were shown with LOWER Prämie (15-75€, 600 kWh Schätzwert) than PKW. Per ADAC/38. BImSchV §7, zulassungspflichtige E-Motorräder get the SAME Schätzwert (2.000 kWh) and same Prämie as PKW. Fixed to 80-300€ = same as PKW.",
+      "fixed": true
+    },
+    {
+      "calculator": "thg-quote-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "PKW Prämienrange was 50-250€ (too low). Updated to 80-300€ based on ADAC (120-200€ typisch) and autobild (bis 300€+ mit Neukundenbonus). Nutzfahrzeuge updated 75-350€ → 100-400€.",
+      "fixed": true
+    },
+    {
+      "calculator": "thg-quote-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "THG-Minderungsquote 2026 was listed as '12%'. Per Finanztip 12.1%, ADAC 11.3%, EnBW 11.3-12%. Updated to '12,1%' with note on range.",
+      "fixed": true
+    },
+    {
+      "calculator": "thg-quote-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Missing BreadcrumbSchema - added. Missing Verwandte Rechner section - added with 4 links. Title shortened 56→49 chars. Description updated with correct ranges.",
+      "fixed": true
+    },
+    {
+      "calculator": "thg-quote-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: THG-Prämie steuerfrei für Privatpersonen per BMF/Haufe (nicht steuerbare Leistung). CO2-Einsparung display (0.4 kg/kWh) is informational estimate. Quotenjahr-Logik correct. Anbietervergleich-Hinweis present.",
+      "fixed": false
+    },
+    {
+      "calculator": "teilzeit-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Mindestlohn was 12.82€ (2025 value). Corrected to 13.90€ (2026 per BMAS/Bundesregierung). Affects Mindestlohn-Check display.",
+      "fixed": true
+    },
+    {
+      "calculator": "teilzeit-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "Minijob-Grenze in SEO content was 538€ (2024 value). Corrected to 603€ (2026, 13.90×130÷3).",
+      "fixed": true
+    },
+    {
+      "calculator": "teilzeit-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description was 162 chars → shortened to 130 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "teilzeit-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Proportionale Gehaltsberechnung (Teilzeit-Stunden/Vollzeit-Stunden × Gehalt) correct. Urlaubstage-Formel (Urlaubstage × TZ-Tage/VZ-Tage) correctly described in SEO content. Sonderzahlungen correctly scaled. TzBfG §8 (Teilzeitanspruch), §9a (Brückenteilzeit) correctly referenced.",
+      "fixed": false
+    },
+    {
+      "calculator": "ueberstunden-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Mindestlohn was 12.82€ (2025 value). Corrected to 13.90€ (2026 per BMAS/Bundesregierung).",
+      "fixed": true
+    },
+    {
+      "calculator": "ueberstunden-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Title was 62 chars → 54 chars. Description was 164 chars → 140 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "ueberstunden-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Formel Stunden × Stundenlohn × (1 + Zuschlag%) correct. Mehrstufenberechnung correct. Steuerfreie Zuschläge per §3b EStG (Nacht 25%, Sonntag 50%, Feiertag 125%, Grundlohn max 50€/h) correctly described. ArbZG §3 max 8h/10h, §5 Ruhezeit 11h, §4 Pausen correctly cited. No gesetzlicher Anspruch auf Zuschlag - correctly noted.",
+      "fixed": false
+    },
+    {
+      "calculator": "tilgungsplan-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 80 chars → 58 chars. Description was 159 chars → 130 chars. Missing BreadcrumbSchema - added.",
+      "fixed": true
+    },
+    {
+      "calculator": "tilgungsplan-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Iterative monthly calculation correct. Zinsanteil = Restschuld × Monatszins. Tilgungsanteil = Rate - Zinsanteil. Sondertilgung in Dezember reduces Restschuld. Mindestrate check (must exceed interest) present. Last-rate adjustment handles fractional amounts. Zinsbindung tracking correct. CSV export correct. §489 BGB Sonderkündigungsrecht after 10 years correctly noted in SEO content.",
+      "fixed": false
+    },
+    {
+      "calculator": "tage-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Date difference via (end.getTime() - start.getTime()) / msProTag correct. Inclusive/exclusive end date option correct. Negative dates handled. Weeks (÷7), months (÷30.44), years (÷365.25) are reasonable approximations. Schaltjahr-Logik described correctly (÷4 except ÷100 except ÷400). No issues found.",
+      "fixed": false
+    },
+    {
+      "calculator": "tage-rechner",
+      "type": "seo",
+      "severity": "info",
+      "description": "Title 56 chars (OK). Description 143 chars (OK). BreadcrumbSchema present. Verwandte Rechner section present. FAQPage schema present. Good overall.",
       "fixed": false
     }
   ],
