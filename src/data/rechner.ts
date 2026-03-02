@@ -1799,7 +1799,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'doppelhaushalt',
+    id: 'doppelte-haushaltsfuehrung',
     name: 'Doppelte-Haushaltsführung-Rechner',
     beschreibung: 'Zweitwohnung steuerlich absetzen (max. 1.000€/Monat)',
     icon: '🏠',

@@ -1,12 +1,5 @@
 {
-  "pending": [
-    "witwenrente-rechner",
-    "wohngeld-rechner",
-    "zeit-rechner",
-    "zeitzone-rechner",
-    "zinseszins-rechner",
-    "zuzahlung-rechner"
-  ],
+  "pending": [],
   "completed": [
     "abfindung-rechner",
     "abi-schnitt-rechner",
@@ -137,7 +130,13 @@
     "vl-rechner",
     "vorfaelligkeitsentschaedigung-rechner",
     "waehrungs-rechner",
-    "waermepumpe-rechner"
+    "waermepumpe-rechner",
+    "witwenrente-rechner",
+    "wohngeld-rechner",
+    "zeit-rechner",
+    "zeitzone-rechner",
+    "zinseszins-rechner",
+    "zuzahlung-rechner"
   ],
   "issues": [
     {
@@ -2316,7 +2315,98 @@
       "severity": "info",
       "description": "Verified all BUrlG references: §3 (24 Werktage/20 Arbeitstage correct), §4 (6 months Wartezeit correct), §5 (1/12 per month correct), §6 (Urlaubsbescheinigung correctly noted), §7 Abs.3 (Übertragung bis 31.3. correct), §7 Abs.4 (Urlaubsabgeltung correct), §9 (Krankheit im Urlaub correctly noted). After June 30 full entitlement correct. Teilzeit formula (VZ-Urlaub/5×TZ-Tage) correct per BAG.",
       "fixed": false
+    },
+    {
+      "calculator": "witwenrente-rechner",
+      "type": "calculation",
+      "severity": "medium",
+      "description": "KV_ZUSATZBEITRAG was 1.9% (full rate). Rentner pay half of Zusatzbeitrag since 2019 (GKV-Betriebsrentenfreibetragsgesetz). Corrected to 1.45% (half of 2.9% Ø 2026). Total KV AN-Anteil now correct: 7.3% + 1.45% = 8.75%.",
+      "fixed": true
+    },
+    {
+      "calculator": "witwenrente-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 71 chars → 53 chars. Description was 168 chars → 132 chars.",
+      "fixed": true
+    },
+    {
+      "calculator": "witwenrente-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Rentenwert 40.79€ (ab 01.07.2025) correct. Freibetrag 26.4×40.79=1.076,86€ correct. Kinderzuschlag 5.6×40.79=228,42€ correct. Altersgrenze 2026: 46J6M per §242a SGB VI correct. Rentenartfaktoren 55%/60%/25% per §67 SGB VI correct. Pauschalabzüge 40%/14%/13% per §18b SGB IV correct. Anrechnung 40% per §97 SGB VI correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "wohngeld-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 68 chars → 55 chars. Description was 181 chars → 131 chars. Added missing BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "wohngeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: All Höchstbeträge match official wohngeld.org/§12 WoGG Anlage 1 exactly (e.g. MS I/1P: 490.60€, MS VII/5P: 1566.60€). Koeffizienten a,b,c from Anlage 2 zu §19 WoGG verified against wohngeld.org. Formel 1.15×(M-(a+b×M+c×Y)×Y) correct. Freibeträge §17 WoGG (WK 1230€, Erwerbstätige 10% max 1200€, SB 1800/2100€, AE 1320€/Kind) correct. Aufrundung auf vollen Euro per Anlage 3 Nr. 3 correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "zeit-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 79 chars → 56 chars. Added missing BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "zeit-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Pure math calculator. Time→seconds (h×3600+m×60+s) correct. Seconds→time (division/modulo) correct. Midnight crossing (+24h) correct. Dezimalstunden (min÷60) correct. Negative time handling correct. No edge case issues.",
+      "fixed": false
+    },
+    {
+      "calculator": "zeitzone-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 72 chars → 46 chars (removed year, not date-sensitive). Structured data name updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "zeitzone-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: UTC offsets for 30 timezones correct (CET +60, EST -300, JST +540, IST +330, etc.). Sommerzeit detection logic for MEZ (last Sunday March/October) correct. Day-shift calculation correct. Fractional timezone support (IST +5:30, ACST +9:30) correctly handled via minutes. Swap functionality correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "zinseszins-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "ALL year references were 2025 → updated to 2026 (title, H2 heading, structured data name). Title shortened 64→57 chars. Added BreadcrumbSchema. Added Verwandte Rechner section with 6 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "zinseszins-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Compound interest formula iterative monthly: value+=sparrate, then value+=value×(r/12). Correct order (deposit first, then interest on full amount). Einfacher Zins: P×r×n correct. 72er-Regel (72/r) correctly displayed. CAGR calculation correct. Sparerpauschbetrag 1000/2000€ correctly noted in SEO. Abgeltungssteuer 26.375% correctly noted.",
+      "fixed": false
+    },
+    {
+      "calculator": "zuzahlung-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 72 chars → 55 chars. Description was 176 chars → 140 chars. Added BreadcrumbSchema. Added Verwandte Rechner section with 4 internal links.",
+      "fixed": true
+    },
+    {
+      "calculator": "zuzahlung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Bezugsgröße 47.460€ (2026) correct per SV-Rechengrößenverordnung. Partner-Freibetrag 15%×47.460=7.119€ per §62 Abs.2 SGB V correct. Kinderfreibetrag 9.756€ per §32 Abs.6 EStG 2026 correct. 2%/1% Belastungsgrenzen per §62 SGB V correct. Regelsatz 563€×12=6.756€ for Bürgergeld-Empfänger correct. Zuzahlungsbeträge (10€/Tag KH max 28 Tage, 10% Arzneimittel 5-10€, 10€/Rezept Heilmittel) all match §61 SGB V.",
+      "fixed": false
     }
   ],
-  "lastAuditDate": "2026-03-02T13:05:00Z"
+  "lastAuditDate": "2026-03-02T13:35:00Z"
 }
