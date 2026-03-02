@@ -24,7 +24,7 @@ const BUNDESLAENDER: Bundesland[] = [
   { id: 'nw', name: 'Nordrhein-Westfalen', hatMietpreisbremse: true, gueltigBis: '31.12.2029', beispielStaedte: ['Köln', 'Düsseldorf', 'Münster', 'Bonn', 'Aachen'], anzahlGebiete: 57 },
   { id: 'rp', name: 'Rheinland-Pfalz', hatMietpreisbremse: true, gueltigBis: '31.12.2029', beispielStaedte: ['Mainz', 'Landau', 'Speyer', 'Worms', 'Ludwigshafen'], anzahlGebiete: 7 },
   { id: 'sl', name: 'Saarland', hatMietpreisbremse: false, gueltigBis: '-', beispielStaedte: [], anzahlGebiete: 0 },
-  { id: 'sn', name: 'Sachsen', hatMietpreisbremse: true, gueltigBis: '31.06.2027', beispielStaedte: ['Dresden', 'Leipzig'], anzahlGebiete: 2 },
+  { id: 'sn', name: 'Sachsen', hatMietpreisbremse: true, gueltigBis: '30.06.2027', beispielStaedte: ['Dresden', 'Leipzig'], anzahlGebiete: 2 },
   { id: 'st', name: 'Sachsen-Anhalt', hatMietpreisbremse: false, gueltigBis: '-', beispielStaedte: [], anzahlGebiete: 0 },
   { id: 'sh', name: 'Schleswig-Holstein', hatMietpreisbremse: false, gueltigBis: '-', beispielStaedte: [], anzahlGebiete: 0 },
   { id: 'th', name: 'Thüringen', hatMietpreisbremse: true, gueltigBis: '31.12.2027', beispielStaedte: ['Erfurt', 'Jena'], anzahlGebiete: 2 },

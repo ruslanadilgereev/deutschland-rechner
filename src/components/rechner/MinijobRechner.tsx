@@ -89,9 +89,9 @@ export default function MinijobRechner() {
     const jahresverdienst = bruttolohn * 12;
 
     // === Rentenauswirkung ===
-    // Bei RV-Pflicht: ca. 0.16 Rentenpunkte pro Jahr bei 603€/Monat
+    // Bei RV-Pflicht: Rentenpunkte = Jahresverdienst / Durchschnittsentgelt
     const rentenPunkteJahr = rentenversicherungspflicht 
-      ? (bruttolohn * 12 / 48314) // Durchschnittsentgelt 2026 ca. 48.314€ (vorläufig)
+      ? (bruttolohn * 12 / 51944) // Durchschnittsentgelt 2026: 51.944€ (vorläufig, Bundesregierung)
       : 0;
     const rentenProMonat = rentenPunkteJahr * 40.79; // Rentenwert 2026: 40,79€ (einheitlich seit 01.07.2025)
 

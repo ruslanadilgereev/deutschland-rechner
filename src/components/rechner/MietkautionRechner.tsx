@@ -8,6 +8,8 @@ interface ZinsJahr {
 // Historische Zinssätze für Spareinlagen mit 3-monatiger Kündigungsfrist
 // Quelle: Deutsche Bundesbank
 const historischeZinsen: ZinsJahr[] = [
+  { jahr: 2026, zinssatz: 0.5 },
+  { jahr: 2025, zinssatz: 0.5 },
   { jahr: 2024, zinssatz: 0.5 },
   { jahr: 2023, zinssatz: 0.4 },
   { jahr: 2022, zinssatz: 0.1 },
@@ -267,7 +269,7 @@ export default function MietkautionRechner() {
                 step="0.1"
               />
               <p className="text-sm text-gray-500 mt-2">
-                💡 Aktueller Durchschnitt 2024/2025: ca. 0,5% p.a.
+                💡 Aktueller Durchschnitt 2025/2026: ca. 0,5% p.a.
               </p>
             </>
           ) : (

@@ -8,11 +8,11 @@ const MINDESTLOHN = {
   2027: 14.60, // Ab 01.01.2027
 };
 
-// Minijob-Grenzen entsprechend dem Mindestlohn (45 Stunden × Mindestlohn)
+// Minijob-Grenzen: Mindestlohn × 130 ÷ 3, aufgerundet (§ 8 Abs. 1a SGB IV)
 const MINIJOB_GRENZEN = {
   2025: 556,
   2026: 603,
-  2027: 657,
+  2027: 633,  // 14,60 × 130 / 3 = 632,67 → 633€ (DRV bestätigt)
 };
 
 // Ausnahmen vom Mindestlohn (§ 22 MiLoG)
@@ -69,11 +69,12 @@ const AUSNAHMEN = [
 ];
 
 // Aktuelle Mindestausbildungsvergütung (§ 17 BBiG)
+// Quelle: BIBB Pressemitteilung 28/2025 vom 13.10.2025
 const MINDESTAUSBILDUNGSVERGUETUNG_2026 = {
-  1: 682,  // 1. Ausbildungsjahr
-  2: 805,  // 2. Ausbildungsjahr  
-  3: 921,  // 3. Ausbildungsjahr
-  4: 955,  // 4. Ausbildungsjahr
+  1: 724,  // 1. Ausbildungsjahr (2025: 682€, +6,2%)
+  2: 854,  // 2. Ausbildungsjahr (+18% von 724€)
+  3: 977,  // 3. Ausbildungsjahr (+35% von 724€)
+  4: 1014, // 4. Ausbildungsjahr (+40% von 724€)
 };
 
 export default function MindestlohnRechner() {

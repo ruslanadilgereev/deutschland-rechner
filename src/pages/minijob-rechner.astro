@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MinijobRechner from '../components/rechner/MinijobRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Minijob-Rechner 2026 – 603€ Job Abgaben & Netto berechnen | 13,90€ Mindestlohn";
-const description = "Minijob Rechner 2026: Berechne Nettolohn, Arbeitgeber-Abgaben & Rentenversicherung für 603€ Jobs. Neue Grenze ab Januar 2026, Mindestlohn 13,90€, Haushaltsscheck.";
+const title = "Minijob-Rechner 2026 – 603€ Job Abgaben & Netto berechnen";
+const description = "Minijob-Rechner 2026: Nettolohn, Arbeitgeber-Abgaben & RV für 603€-Jobs berechnen. Neue Grenze, Mindestlohn 13,90€. Kostenlos!";
 const keywords = "Minijob Rechner, 603 Euro Job, Minijob Abgaben 2026, geringfügige Beschäftigung, Minijob Steuern, Minijob Rentenversicherung, 603€ Grenze, Minijob Arbeitgeber Kosten, Haushaltsscheck, Minijob 2026, Mindestlohn 13,90";
 ---
 
@@ -12,6 +13,7 @@ const keywords = "Minijob Rechner, 603 Euro Job, Minijob Abgaben 2026, geringfü
   description={description}
   keywords={keywords}
 >
+  <BreadcrumbSchema items={[{ name: "Minijob-Rechner", url: "/minijob-rechner" }]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-6 px-4">
@@ -55,9 +57,9 @@ const keywords = "Minijob Rechner, 603 Euro Job, Minijob Abgaben 2026, geringfü
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 603€-Grenze 2026</h3>
           <p>
-            Die Verdienstgrenze für Minijobs ist an den <strong>Mindestlohn</strong> gekoppelt. 
-            Bei einem Mindestlohn von 13,90€ (2026) ergibt sich die Grenze aus: 
-            13,90€ × 130 ÷ 3 = 602,33€ → aufgerundet <strong>603€</strong>.
+            Die Verdienstgrenze für Minijobs ist an den <strong>Mindestlohn</strong> gekoppelt 
+            (§ 8 Abs. 1a SGB IV). Die Formel lautet: Mindestlohn × 130 ÷ 3, aufgerundet auf volle Euro. 
+            Bei einem Mindestlohn von 13,90€ (2026): 13,90€ × 130 ÷ 3 = 602,33€ → aufgerundet <strong>603€</strong>.
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>Monatlich:</strong> Maximal 603€ Verdienst</li>
@@ -106,6 +108,31 @@ const keywords = "Minijob Rechner, 603 Euro Job, Minijob Abgaben 2026, geringfü
         </div>
       </div>
     </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mindestlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mindestlohn-Rechner</p>
+          </a>
+          <a href="/midijob-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Midijob-Rechner</p>
+          </a>
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn-Rechner</p>
+          </a>
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
   </main>
   
   <!-- Structured Data for SEO -->
@@ -126,5 +153,53 @@ const keywords = "Minijob Rechner, 603 Euro Job, Minijob Abgaben 2026, geringfü
       "@type": "Organization",
       "name": "Deutschland-Rechner"
     }
+  })} />
+  
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Minijob-Grenze 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Minijob-Grenze liegt ab dem 1. Januar 2026 bei 603 Euro monatlich (7.236 Euro jährlich). Sie ist dynamisch an den Mindestlohn gekoppelt: 13,90€ × 130 ÷ 3 = 602,33€, aufgerundet auf 603€."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Abgaben zahlt der Arbeitgeber beim Minijob 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Arbeitgeber zahlt pauschale Abgaben von ca. 31,77% des Bruttolohns: Krankenversicherung 13%, Rentenversicherung 15%, Pauschsteuer 2%, Unfallversicherung ~1,6%, Umlagen U1 0,8%, U2 0,22% und Insolvenzumlage 0,15%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist man als Minijobber rentenversicherungspflichtig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, seit 2013 sind Minijobber automatisch rentenversicherungspflichtig. Der Eigenanteil beträgt 3,6% des Bruttolohns (bei 603€ = 21,71€/Monat). Sie können sich schriftlich befreien lassen, verzichten dann aber auf eigene Rentenansprüche."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Stunden darf man im Minijob arbeiten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Stundenzahl hängt vom Stundenlohn ab. Bei Mindestlohn (13,90€) darf man maximal ca. 43,4 Stunden pro Monat arbeiten (603€ ÷ 13,90€). Es gibt keine feste Stundengrenze – entscheidend ist die 603€-Verdienstgrenze."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann man einen Minijob neben einer Hauptbeschäftigung haben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, ein Minijob neben einer sozialversicherungspflichtigen Hauptbeschäftigung ist abgabenfrei für den Arbeitnehmer. Erst ab dem zweiten Minijob werden die Verdienste mit dem Hauptjob zusammengerechnet."
+        }
+      }
+    ]
   })} />
 </Layout>
