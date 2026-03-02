@@ -1,10 +1,5 @@
 {
   "pending": [
-    "brutto-netto-rechner",
-    "buergergeld-rechner",
-    "bussgeld-rechner",
-    "co2-steuer-rechner",
-    "dispo-rechner",
     "dividende-rechner",
     "doppelte-haushaltsfuehrung-rechner",
     "dreisatz-rechner",
@@ -137,7 +132,12 @@
     "baufinanzierung-rechner",
     "blutdruck-rechner",
     "bmi-rechner",
-    "bruch-rechner"
+    "bruch-rechner",
+    "brutto-netto-rechner",
+    "buergergeld-rechner",
+    "bussgeld-rechner",
+    "co2-steuer-rechner",
+    "dispo-rechner"
   ],
   "issues": [
     {
@@ -223,7 +223,91 @@
       "severity": "low",
       "description": "Description too long (179 chars → 126 chars).",
       "fixed": true
+    },
+    {
+      "calculator": "bussgeld-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Innerorts 26-30 km/h was showing 260€/2 Punkte/1 Monat Fahrverbot. Corrected to 180€/1 Punkt/kein Fahrverbot (nur bei Wiederholung). Official BKatV verified.",
+      "fixed": true
+    },
+    {
+      "calculator": "bussgeld-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Außerorts data had overlapping/incorrect ranges. Corrected all values to match BKatV 2024/2025/2026 exactly (verified against bussgeldkatalog.org).",
+      "fixed": true
+    },
+    {
+      "calculator": "bussgeld-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title/description updated from 2025 to 2026. Description was too long (172 chars → 160 chars).",
+      "fixed": true
+    },
+    {
+      "calculator": "bussgeld-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "SEO content innerorts/außerorts tables had wrong Bußgeld values. Fixed to match corrected BKatV data.",
+      "fixed": true
+    },
+    {
+      "calculator": "co2-steuer-rechner",
+      "type": "calculation",
+      "severity": "low",
+      "description": "CO2 price 2026 noted as fixed 55€/t but is actually a price corridor 55-65€/t (emissions trading). Added comment; calculator uses floor price as conservative estimate.",
+      "fixed": true
+    },
+    {
+      "calculator": "co2-steuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was too long (74 chars → 56 chars). Added BreadcrumbSchema. Added Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "dispo-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was too long (75 chars → 52 chars). Description was too long (168 chars → 153 chars). Added BreadcrumbSchema and Verwandte Rechner section.",
+      "fixed": true
+    },
+    {
+      "calculator": "dispo-rechner",
+      "type": "content",
+      "severity": "low",
+      "description": "Typo fixed: \"Schuldenproblmen\" → \"Schuldenproblemen\".",
+      "fixed": true
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against BMF PAP 2026. Grundfreibetrag 12.348€, Tarif, Vorsorgepauschale, Sozialversicherung all correct. PV 3.6% base rate confirmed.",
+      "fixed": false
+    },
+    {
+      "calculator": "brutto-netto-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description slightly too long (166 chars → 150 chars). Adjusted.",
+      "fixed": true
+    },
+    {
+      "calculator": "buergergeld-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Regelsätze 2026 confirmed: Nullrunde, unchanged from 2024/2025. 563€ Alleinstehend. Freibetragsberechnung nach §11b SGB II verified.",
+      "fixed": false
+    },
+    {
+      "calculator": "buergergeld-rechner",
+      "type": "seo",
+      "severity": "low",
+      "description": "Description shortened (167 → 155 chars). Added BreadcrumbSchema.",
+      "fixed": true
     }
   ],
-  "lastAuditDate": "2025-07-30"
+  "lastAuditDate": "2026-03-02"
 }

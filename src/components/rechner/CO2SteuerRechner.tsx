@@ -1,13 +1,15 @@
 import { useState, useMemo } from 'react';
 
 // CO2-Steuer Entwicklung in €/Tonne
+// Ab 2026: Preiskorridor 55-65 €/Tonne (Emissionshandel statt Festpreis)
+// Quelle: BMUV, Finanztip, BEHG
 const CO2_STEUER_ENTWICKLUNG = [
   { jahr: 2021, preis: 25 },
   { jahr: 2022, preis: 30 },
   { jahr: 2023, preis: 30 },
   { jahr: 2024, preis: 45 },
   { jahr: 2025, preis: 55 },
-  { jahr: 2026, preis: 55 }, // Stand laut Beschluss
+  { jahr: 2026, preis: 55 }, // Mindestpreis im Korridor 55-65 €/Tonne
 ];
 
 // Kraftstofftypen mit CO2-Emissionen pro Einheit

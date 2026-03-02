@@ -17,32 +17,39 @@ interface BussgeldErgebnis {
 
 // Geschwindigkeitsüberschreitungen nach StVO/BKatV 2024
 // Bußgelder wurden 2021 angehoben (StVO-Novelle)
+// Bußgeldkatalog PKW innerorts nach BKatV (Stand 2024/2025/2026)
+// Quelle: https://www.bussgeldkatalog.org/geschwindigkeitsueberschreitung/
+// WICHTIG: 26-30 km/h = 180€, 1 Punkt, Fahrverbot NUR bei Wiederholung
+//          Fahrverbot ab 31 km/h innerorts
 const GESCHWINDIGKEIT_INNERORTS: { bis: number; bussgeld: number; punkte: number; fahrverbot: number }[] = [
   { bis: 10, bussgeld: 30, punkte: 0, fahrverbot: 0 },
   { bis: 15, bussgeld: 50, punkte: 0, fahrverbot: 0 },
   { bis: 20, bussgeld: 70, punkte: 0, fahrverbot: 0 },
-  { bis: 21, bussgeld: 115, punkte: 1, fahrverbot: 0 }, // ab 21 km/h: 1 Punkt
-  { bis: 25, bussgeld: 180, punkte: 1, fahrverbot: 0 },
-  { bis: 30, bussgeld: 260, punkte: 2, fahrverbot: 1 }, // ab 26 km/h: 2 Punkte, 1 Monat
-  { bis: 40, bussgeld: 400, punkte: 2, fahrverbot: 1 },
-  { bis: 50, bussgeld: 560, punkte: 2, fahrverbot: 2 },
-  { bis: 60, bussgeld: 700, punkte: 2, fahrverbot: 3 },
-  { bis: 70, bussgeld: 800, punkte: 2, fahrverbot: 3 },
-  { bis: Infinity, bussgeld: 800, punkte: 2, fahrverbot: 3 }, // über 70 km/h
+  { bis: 25, bussgeld: 115, punkte: 1, fahrverbot: 0 }, // 21-25 km/h: 115€, 1 Punkt
+  { bis: 30, bussgeld: 180, punkte: 1, fahrverbot: 0 }, // 26-30 km/h: 180€, 1 Punkt (Fahrverbot nur bei Wiederholung)
+  { bis: 40, bussgeld: 260, punkte: 2, fahrverbot: 1 }, // 31-40 km/h: 260€, 2 Punkte, 1 Monat
+  { bis: 50, bussgeld: 400, punkte: 2, fahrverbot: 1 }, // 41-50 km/h: 400€, 2 Punkte, 1 Monat
+  { bis: 60, bussgeld: 560, punkte: 2, fahrverbot: 2 }, // 51-60 km/h: 560€, 2 Punkte, 2 Monate
+  { bis: 70, bussgeld: 700, punkte: 2, fahrverbot: 3 }, // 61-70 km/h: 700€, 2 Punkte, 3 Monate
+  { bis: Infinity, bussgeld: 800, punkte: 2, fahrverbot: 3 }, // über 70 km/h: 800€
 ];
 
+// Bußgeldkatalog PKW außerorts nach BKatV (Stand 2024/2025/2026)
+// Quelle: https://www.bussgeldkatalog.org/geschwindigkeitsueberschreitung/
+// WICHTIG: 26-30 km/h = 150€, 1 Punkt, Fahrverbot NUR bei Wiederholung
+//          31-40 km/h = 200€, 1 Punkt, Fahrverbot NUR bei Wiederholung
+//          Fahrverbot ab 41 km/h außerorts
 const GESCHWINDIGKEIT_AUSSERORTS: { bis: number; bussgeld: number; punkte: number; fahrverbot: number }[] = [
   { bis: 10, bussgeld: 20, punkte: 0, fahrverbot: 0 },
   { bis: 15, bussgeld: 40, punkte: 0, fahrverbot: 0 },
   { bis: 20, bussgeld: 60, punkte: 0, fahrverbot: 0 },
-  { bis: 25, bussgeld: 100, punkte: 1, fahrverbot: 0 },
-  { bis: 30, bussgeld: 150, punkte: 1, fahrverbot: 0 },
-  { bis: 40, bussgeld: 200, punkte: 1, fahrverbot: 0 },
-  { bis: 41, bussgeld: 320, punkte: 2, fahrverbot: 1 }, // ab 41 km/h: Fahrverbot
-  { bis: 50, bussgeld: 480, punkte: 2, fahrverbot: 1 },
-  { bis: 60, bussgeld: 600, punkte: 2, fahrverbot: 2 },
-  { bis: 70, bussgeld: 700, punkte: 2, fahrverbot: 3 },
-  { bis: Infinity, bussgeld: 700, punkte: 2, fahrverbot: 3 },
+  { bis: 25, bussgeld: 100, punkte: 1, fahrverbot: 0 }, // 21-25 km/h: 100€, 1 Punkt
+  { bis: 30, bussgeld: 150, punkte: 1, fahrverbot: 0 }, // 26-30 km/h: 150€, 1 Punkt (Fahrverbot nur bei Wiederholung)
+  { bis: 40, bussgeld: 200, punkte: 1, fahrverbot: 0 }, // 31-40 km/h: 200€, 1 Punkt (Fahrverbot nur bei Wiederholung)
+  { bis: 50, bussgeld: 320, punkte: 2, fahrverbot: 1 }, // 41-50 km/h: 320€, 2 Punkte, 1 Monat
+  { bis: 60, bussgeld: 480, punkte: 2, fahrverbot: 1 }, // 51-60 km/h: 480€, 2 Punkte, 1 Monat
+  { bis: 70, bussgeld: 600, punkte: 2, fahrverbot: 2 }, // 61-70 km/h: 600€, 2 Punkte, 2 Monate
+  { bis: Infinity, bussgeld: 700, punkte: 2, fahrverbot: 3 }, // über 70 km/h: 700€, 3 Monate
 ];
 
 // Rotlichtverstöße nach BKatV
@@ -128,10 +135,14 @@ export default function BussgeldRechner() {
           punkte: eintrag.punkte,
           fahrverbot: eintrag.fahrverbot,
           beschreibung,
-          hinweis: ueberschreitung >= 26 && ortTyp === 'innerorts' 
-            ? 'Ab 26 km/h innerorts droht bereits ein Fahrverbot!'
+          hinweis: ueberschreitung >= 31 && ortTyp === 'innerorts' 
+            ? 'Ab 31 km/h innerorts droht ein Fahrverbot!'
+            : ueberschreitung >= 26 && ueberschreitung <= 30 && ortTyp === 'innerorts'
+            ? 'Bei Wiederholung innerhalb eines Jahres droht auch hier ein Fahrverbot!'
             : ueberschreitung >= 41 && ortTyp !== 'innerorts'
             ? 'Ab 41 km/h außerorts droht ein Fahrverbot!'
+            : ueberschreitung >= 26 && ueberschreitung <= 40 && ortTyp !== 'innerorts'
+            ? 'Bei Wiederholung innerhalb eines Jahres droht auch hier ein Fahrverbot!'
             : undefined,
         };
       }
@@ -666,11 +677,12 @@ export default function BussgeldRechner() {
                   { km: 'bis 10', b: 30, p: 0, f: '-' },
                   { km: '11-15', b: 50, p: 0, f: '-' },
                   { km: '16-20', b: 70, p: 0, f: '-' },
-                  { km: '21-25', b: '115-180', p: 1, f: '-' },
-                  { km: '26-30', b: 260, p: 2, f: '1 Mon.' },
-                  { km: '31-40', b: 400, p: 2, f: '1 Mon.' },
-                  { km: '41-50', b: 560, p: 2, f: '2 Mon.' },
-                  { km: '51-60', b: 700, p: 2, f: '3 Mon.' },
+                  { km: '21-25', b: 115, p: 1, f: '-' },
+                  { km: '26-30', b: 180, p: 1, f: '(Wdh.)*' },
+                  { km: '31-40', b: 260, p: 2, f: '1 Mon.' },
+                  { km: '41-50', b: 400, p: 2, f: '1 Mon.' },
+                  { km: '51-60', b: 560, p: 2, f: '2 Mon.' },
+                  { km: '61-70', b: 700, p: 2, f: '3 Mon.' },
                   { km: 'über 70', b: 800, p: 2, f: '3 Mon.' },
                 ].map((row, idx) => (
                   <tr key={idx} className="border-b border-gray-100">
