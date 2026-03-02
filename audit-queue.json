@@ -1,10 +1,5 @@
 {
   "pending": [
-    "geburtstag-rechner",
-    "geburtstermin-rechner",
-    "gehaltsvergleich-rechner",
-    "gewerbesteuer-rechner",
-    "grunderwerbsteuer-rechner",
     "grundrente-rechner",
     "grundsteuer-rechner",
     "grundumsatz-rechner",
@@ -137,7 +132,12 @@
     "firmenwagen-rechner",
     "flugzeit-rechner",
     "fruehrente-rechner",
-    "gaskosten-rechner"
+    "gaskosten-rechner",
+    "geburtstag-rechner",
+    "geburtstermin-rechner",
+    "gehaltsvergleich-rechner",
+    "gewerbesteuer-rechner",
+    "grunderwerbsteuer-rechner"
   ],
   "issues": [
     {
@@ -629,7 +629,84 @@
       "severity": "medium",
       "description": "Description too long (167 → 155 chars). Added missing BreadcrumbSchema. Added missing WebApplication structured data schema.",
       "fixed": true
+    },
+    {
+      "calculator": "geburtstag-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (71 chars → 55 chars). Description too long (166 chars → 148 chars).",
+      "fixed": true
+    },
+    {
+      "calculator": "geburtstag-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Wochentag via JS Date.getDay(), Sternzeichen-Grenzen match standard zodiac dates, Chinese zodiac uses correct 1900 base offset (Metall-Ratte). Age calculation handles month/day edge case correctly.",
+      "fixed": false
+    },
+    {
+      "calculator": "geburtstermin-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (62 chars → 47 chars). Missing BreadcrumbSchema - added.",
+      "fixed": true
+    },
+    {
+      "calculator": "geburtstermin-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified Naegele-Regel: LMP + 280 days = ET. Cycle adjustment (zyklusLaenge - 28) correctly applied to both ET and empfaengnis. Empfaengnis mode: ET = empfaengnis + 266 days (correct). Mutterschutz 6w before/8w after ET per MuSchG correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "gehaltsvergleich-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "SEO page listed wrong Durchschnittsgehalt (52.000€) and Median (44.000€). Corrected to match Destatis 2024 data used in component: Durchschnitt 62.235€, Median 52.159€.",
+      "fixed": true
+    },
+    {
+      "calculator": "gehaltsvergleich-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Destatis 2024 data properly sourced. Perzentil interpolation logic correct. Branchendaten with Ost/West split and Bundesland-Faktor is a reasonable approximation. Sonderzahlungen factor 1.5x monthly is industry standard.",
+      "fixed": false
+    },
+    {
+      "calculator": "gewerbesteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (67 chars → 50 chars). Description too long (193 chars → 146 chars). Missing BreadcrumbSchema - added.",
+      "fixed": true
+    },
+    {
+      "calculator": "gewerbesteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified against GewStG: Steuermesszahl 3.5% (§11 GewStG), Freibetrag 24.500€ for Personenunternehmen (§11 Abs.1 GewStG), ESt-Anrechnung 4.0x Messbetrag (§35 EStG, since VZ 2020 per 2. Corona-Hilfegesetz). Abrundung auf volle 100€ correct (§11 Abs.1 S.3 GewStG). GewSt not deductible as Betriebsausgabe since 2008 correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "SEO text falsely claimed Bayern AND Sachsen both have 3.5%. Sachsen has 5.5% since 01.01.2023. Corrected to Bayern only.",
+      "fixed": true
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title too long (66 chars → 55 chars). Description too long (178 chars → 143 chars). Missing BreadcrumbSchema - added.",
+      "fixed": true
+    },
+    {
+      "calculator": "grunderwerbsteuer-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "All 16 Bundesland GrESt rates verified against finanz-tools.de and GrEStG: BY 3.5%, BW/NI/RP/ST/TH 5.0%, HB/HH/SN 5.5%, BE/HE/MV 6.0%, BB/NW/SL/SH 6.5%. Bremen 5.5% since 01.07.2025 correctly noted. Simple percentage calculation - no edge cases.",
+      "fixed": false
     }
   ],
-  "lastAuditDate": "2026-06-30"
+  "lastAuditDate": "2026-07-02"
 }
