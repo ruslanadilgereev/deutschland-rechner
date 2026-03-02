@@ -18,6 +18,7 @@ export default function VorfaelligkeitsentschaedigungRechner() {
   const [marktzins, setMarktzins] = useState(3.0);
   const [tilgungssatz, setTilgungssatz] = useState(2.0);
   const [berechnungsmethode, setBerechnungsmethode] = useState<'aktiv-passiv' | 'vereinfacht'>('aktiv-passiv');
+  const [kreditart, setKreditart] = useState<'immobilien' | 'verbraucher'>('immobilien');
   const [zeigeDetails, setZeigeDetails] = useState(false);
 
   const ergebnis = useMemo(() => {
@@ -71,17 +72,21 @@ export default function VorfaelligkeitsentschaedigungRechner() {
     }
 
     // === Gesetzliche Obergrenzen nach §502 BGB ===
-    // Max 1% bei Restlaufzeit > 12 Monate
-    // Max 0,5% bei Restlaufzeit ≤ 12 Monate
+    // ACHTUNG: §502 BGB gilt NUR für Verbraucherdarlehen OHNE Grundpfandrecht!
+    // Bei Immobilienkrediten (mit Grundschuld) gilt der volle Zinsmargenschaden.
     const maxProzent = n > 12 ? 1.0 : 0.5;
     const gesetzlicheObergrenze = P * (maxProzent / 100);
+    const istImmobilienkredit = kreditart === 'immobilien';
 
     // === Bearbeitungsgebühr (ca. 100-300€ üblich) ===
     const bearbeitungsgebuehr = 300;
 
     // === Vorfälligkeitsentschädigung ===
-    // VFE = Zinsmargenschaden (gedeckelt) + Bearbeitungsgebühr
-    const zinsmargenschadenGedeckelt = Math.min(gesamtZinsmargenschaden, gesetzlicheObergrenze);
+    // Immobilienkredit: Voller Zinsmargenschaden (keine §502-Deckelung)
+    // Verbraucherkredit: Gedeckelt nach §502 BGB
+    const zinsmargenschadenGedeckelt = istImmobilienkredit
+      ? gesamtZinsmargenschaden
+      : Math.min(gesamtZinsmargenschaden, gesetzlicheObergrenze);
     
     // Bei negativer Zinsdifferenz (Marktzins > Vertragszins) = keine VFE
     const vorfaelligkeitsentschaedigung = zinsmargenschadenGedeckelt > 0 
@@ -125,9 +130,10 @@ export default function VorfaelligkeitsentschaedigungRechner() {
       nettoErsparnis,
       abloeseEmpfehlung,
       berechnungszeilen,
-      istGedeckelt: gesamtZinsmargenschaden > gesetzlicheObergrenze,
+      istGedeckelt: !istImmobilienkredit && gesamtZinsmargenschaden > gesetzlicheObergrenze,
+      istImmobilienkredit,
     };
-  }, [restschuld, vertragszins, restlaufzeitMonate, marktzins, tilgungssatz, berechnungsmethode]);
+  }, [restschuld, vertragszins, restlaufzeitMonate, marktzins, tilgungssatz, berechnungsmethode, kreditart]);
 
   const formatEuro = (n: number) =>
     n.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €';
@@ -140,6 +146,45 @@ export default function VorfaelligkeitsentschaedigungRechner() {
     <div className="max-w-2xl mx-auto">
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        {/* Kreditart */}
+        <div className="mb-6">
+          <label className="block mb-2">
+            <span className="text-gray-700 font-medium">Kreditart</span>
+            <span className="text-xs text-gray-500 block mt-1">Bestimmt ob §502 BGB-Deckelung gilt</span>
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={() => setKreditart('immobilien')}
+              className={`p-3 rounded-xl text-center transition-all text-sm ${
+                kreditart === 'immobilien'
+                  ? 'bg-purple-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <div className="text-xl">🏠</div>
+              <div className="font-medium">Immobilienkredit</div>
+              <div className="text-xs opacity-80 mt-1">Voller Zinsmargenschaden</div>
+            </button>
+            <button
+              onClick={() => setKreditart('verbraucher')}
+              className={`p-3 rounded-xl text-center transition-all text-sm ${
+                kreditart === 'verbraucher'
+                  ? 'bg-purple-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <div className="text-xl">💳</div>
+              <div className="font-medium">Verbraucherkredit</div>
+              <div className="text-xs opacity-80 mt-1">§502 BGB (max 1%/0,5%)</div>
+            </button>
+          </div>
+          {kreditart === 'immobilien' && (
+            <p className="text-xs text-amber-700 bg-amber-50 p-2 rounded-lg mt-2">
+              ⚠️ Bei Immobilienkrediten mit Grundschuld gilt §502 BGB <strong>nicht</strong>. Die Bank kann den vollen Zinsmargenschaden berechnen.
+            </p>
+          )}
+        </div>
+
         {/* Restschuld */}
         <div className="mb-6">
           <label className="block mb-2">
@@ -241,7 +286,7 @@ export default function VorfaelligkeitsentschaedigungRechner() {
             <span>8%</span>
           </div>
           <p className="text-sm text-gray-500 mt-2">
-            💡 Aktuell (2024/2025): Pfandbriefrendite ca. 2,5-3,5% je nach Laufzeit
+            💡 Aktuell (2025/2026): Pfandbriefrendite ca. 2,5-3,5% je nach Laufzeit
           </p>
         </div>
 
@@ -332,7 +377,9 @@ export default function VorfaelligkeitsentschaedigungRechner() {
           </div>
           <p className="text-purple-100 mt-2 text-sm">
             {ergebnis.istGedeckelt ? (
-              <span>⚠️ Gedeckelt auf gesetzliches Maximum ({ergebnis.maxProzent}% der Restschuld)</span>
+              <span>⚠️ Gedeckelt auf gesetzliches Maximum ({ergebnis.maxProzent}% der Restschuld) nach §502 BGB</span>
+            ) : ergebnis.istImmobilienkredit ? (
+              <span>ℹ️ Immobilienkredit: Voller Zinsmargenschaden (§502 BGB gilt nicht)</span>
             ) : (
               <span>ℹ️ Barwertmethode nach Aktiv-Passiv-Verfahren</span>
             )}

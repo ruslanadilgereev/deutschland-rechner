@@ -4,12 +4,14 @@ import { useState, useMemo } from 'react';
 // Quelle: §13 VermBG, §19a EStG
 
 // Arbeitnehmersparzulage für Bausparen
+// Seit 2024: Einheitliche Einkommensgrenzen 40.000/80.000€ für ALLE Anlageformen
+// Quelle: Zukunftsfinanzierungsgesetz (ZuFinG), §13 VermBG
 const BAUSPAR = {
   maxBeitrag: 470, // €/Jahr für Zulage
   zulageProz: 9, // 9% Sparzulage
   maxZulage: 43, // €/Jahr (gerundet: 470 * 0.09 = 42,30€)
-  einkommensgrenzeSingle: 17_900, // € zvE
-  einkommensgrenzeVerheiratet: 35_800, // € zvE
+  einkommensgrenzeSingle: 40_000, // € zvE (seit 2024, vorher 17.900€)
+  einkommensgrenzeVerheiratet: 80_000, // € zvE (seit 2024, vorher 35.800€)
 };
 
 // Arbeitnehmersparzulage für Aktienfonds/Beteiligungen
@@ -17,8 +19,8 @@ const AKTIENFONDS = {
   maxBeitrag: 400, // €/Jahr für Zulage
   zulageProz: 20, // 20% Sparzulage
   maxZulage: 80, // €/Jahr
-  einkommensgrenzeSingle: 20_000, // € zvE
-  einkommensgrenzeVerheiratet: 40_000, // € zvE
+  einkommensgrenzeSingle: 40_000, // € zvE (seit 2024, vorher 20.000€)
+  einkommensgrenzeVerheiratet: 80_000, // € zvE (seit 2024, vorher 40.000€)
 };
 
 // Allgemeine VL-Konstanten

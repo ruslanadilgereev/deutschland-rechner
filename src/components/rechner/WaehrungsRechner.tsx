@@ -1,17 +1,18 @@
 import { useState, useMemo } from 'react';
 
-// Hardcodierte Wechselkurse (EUR als Basis) - Stand: März 2025
+// Hardcodierte Wechselkurse (EUR als Basis) - Stand: Februar 2026
+// Quelle: EZB-Referenzkurse (27.02.2026)
 // Hinweis: Nur Richtwerte, aktuelle Kurse bei der EZB prüfen
 const WAEHRUNGEN = [
-  { code: 'USD', name: 'US-Dollar', symbol: '$', kurs: 1.08, flagge: '🇺🇸' },
-  { code: 'GBP', name: 'Britisches Pfund', symbol: '£', kurs: 0.84, flagge: '🇬🇧' },
-  { code: 'CHF', name: 'Schweizer Franken', symbol: 'CHF', kurs: 0.95, flagge: '🇨🇭' },
-  { code: 'JPY', name: 'Japanischer Yen', symbol: '¥', kurs: 162.50, flagge: '🇯🇵' },
-  { code: 'PLN', name: 'Polnischer Złoty', symbol: 'zł', kurs: 4.18, flagge: '🇵🇱' },
-  { code: 'CZK', name: 'Tschechische Krone', symbol: 'Kč', kurs: 25.10, flagge: '🇨🇿' },
-  { code: 'SEK', name: 'Schwedische Krone', symbol: 'kr', kurs: 11.20, flagge: '🇸🇪' },
-  { code: 'NOK', name: 'Norwegische Krone', symbol: 'kr', kurs: 11.80, flagge: '🇳🇴' },
-  { code: 'DKK', name: 'Dänische Krone', symbol: 'kr', kurs: 7.46, flagge: '🇩🇰' },
+  { code: 'USD', name: 'US-Dollar', symbol: '$', kurs: 1.18, flagge: '🇺🇸' },
+  { code: 'GBP', name: 'Britisches Pfund', symbol: '£', kurs: 0.88, flagge: '🇬🇧' },
+  { code: 'CHF', name: 'Schweizer Franken', symbol: 'CHF', kurs: 0.91, flagge: '🇨🇭' },
+  { code: 'JPY', name: 'Japanischer Yen', symbol: '¥', kurs: 184.00, flagge: '🇯🇵' },
+  { code: 'PLN', name: 'Polnischer Złoty', symbol: 'zł', kurs: 4.22, flagge: '🇵🇱' },
+  { code: 'CZK', name: 'Tschechische Krone', symbol: 'Kč', kurs: 24.24, flagge: '🇨🇿' },
+  { code: 'SEK', name: 'Schwedische Krone', symbol: 'kr', kurs: 10.66, flagge: '🇸🇪' },
+  { code: 'NOK', name: 'Norwegische Krone', symbol: 'kr', kurs: 11.21, flagge: '🇳🇴' },
+  { code: 'DKK', name: 'Dänische Krone', symbol: 'kr', kurs: 7.47, flagge: '🇩🇰' },
 ];
 
 type Richtung = 'eur-zu-fremd' | 'fremd-zu-eur';

@@ -1,15 +1,5 @@
 {
   "pending": [
-    "umzugskosten-rechner",
-    "unterhalt-rechner",
-    "urlaubstage-rechner",
-    "verlustvortrag-rechner",
-    "verpflegungsmehraufwand-rechner",
-    "versicherung-auto-rechner",
-    "vl-rechner",
-    "vorfaelligkeitsentschaedigung-rechner",
-    "waehrungs-rechner",
-    "waermepumpe-rechner",
     "witwenrente-rechner",
     "wohngeld-rechner",
     "zeit-rechner",
@@ -137,7 +127,17 @@
     "teilzeit-rechner",
     "thg-quote-rechner",
     "tilgungsplan-rechner",
-    "ueberstunden-rechner"
+    "ueberstunden-rechner",
+    "umzugskosten-rechner",
+    "unterhalt-rechner",
+    "urlaubstage-rechner",
+    "verlustvortrag-rechner",
+    "verpflegungsmehraufwand-rechner",
+    "versicherung-auto-rechner",
+    "vl-rechner",
+    "vorfaelligkeitsentschaedigung-rechner",
+    "waehrungs-rechner",
+    "waermepumpe-rechner"
   ],
   "issues": [
     {
@@ -2113,7 +2113,210 @@
       "severity": "info",
       "description": "Title 56 chars (OK). Description 143 chars (OK). BreadcrumbSchema present. Verwandte Rechner section present. FAQPage schema present. Good overall.",
       "fixed": false
+    },
+    {
+      "calculator": "unterhalt-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Düsseldorfer Tabelle had 2025 values throughout (482/554/649/693). Corrected to 2026 values per OLG Düsseldorf: 486/558/653/698. All 15 groups, Bedarfskontrollbeträge, and percentage steps updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "unterhalt-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "Kindergeld in SEO text showed 255€ instead of correct 259€ (2026). Example calculation used wrong Tabellenbetrag 621€ (correct: 614€) and wrong Kindergeld 127.50€ (correct: 129.50€).",
+      "fixed": true
+    },
+    {
+      "calculator": "unterhalt-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 73 chars → 51 chars. FAQ Mindestunterhalt values corrected to 486/558/653/698.",
+      "fixed": true
+    },
+    {
+      "calculator": "unterhalt-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Selbstbehalt 1.450€/1.200€ unchanged for 2026 per OLG Düsseldorf. Kindergeld-Anrechnung 50% minderjährig/100% volljährig correct. Einkommensgruppenzuordnung logic correct. Mangelfallhinweis correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "verpflegungsmehraufwand-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Inland-Pauschalen were 32€/16€ (never enacted increase!). Correct values since 2020: 28€/14€ per §9 Abs.4a EStG. Kürzungsbeträge also wrong: 6.40/12.80/12.80 → corrected to 5.60/11.20/11.20€. Fixed in component AND .astro SEO text AND FAQ structured data.",
+      "fixed": true
+    },
+    {
+      "calculator": "verpflegungsmehraufwand-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was dual-year \"2025/2026\" 76 chars → \"2026\" 57 chars. Description updated with correct 28€/14€. All FAQ structured data corrected.",
+      "fixed": true
+    },
+    {
+      "calculator": "verpflegungsmehraufwand-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Kürzungslogik 20/40/40% per §9 Abs.4a S.8-10 EStG correct. Auslandspauschalen spot-checked against BMF-Schreiben. Dreimonatsfrist correctly noted. An-/Abreisetag-Logik correct. Übernachtungspauschale 20€ correct.",
+      "fixed": false
+    },
+    {
+      "calculator": "verlustvortrag-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Mindestbesteuerung used 60% but per Wachstumschancengesetz (27.03.2024), the rate is 70% for VZ 2024-2027. Fixed VERRECHNUNG_UEBER_GRENZE from 0.60 to 0.70. All display text updated from 60/40% to 70/30%.",
+      "fixed": true
+    },
+    {
+      "calculator": "verlustvortrag-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Description was too long (193 chars → 136 chars). All 60% references in SEO text corrected to 70% with Wachstumschancengesetz note.",
+      "fixed": true
+    },
+    {
+      "calculator": "verlustvortrag-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §32a EStG 2026 tariff (12.348/17.799/69.878/277.825, coefficients 914.51/173.10 etc.) all correct. Splittingtarif correct. Verlustrücktrag max 1M/2M correctly noted. Verlustfeststellung §10d Abs.4 correct. Sonderregeln for Kapitalverluste correctly described.",
+      "fixed": false
+    },
+    {
+      "calculator": "umzugskosten-rechner",
+      "type": "calculation",
+      "severity": "high",
+      "description": "Umzugskostenpauschale was 886€ (pre-March 2024 value). Corrected to 964€ per BMF-Schreiben ab 01.03.2024. Zuschlag pro Person was 193€, corrected to 643€.",
+      "fixed": true
+    },
+    {
+      "calculator": "umzugskosten-rechner",
+      "type": "content",
+      "severity": "medium",
+      "description": "Pendlerpauschale reference was 0.30€/km. Updated to 0.38€/km for 2026. Beispielrechnung in SEO text corrected (1.465€ → 2.893€).",
+      "fixed": true
+    },
+    {
+      "calculator": "umzugskosten-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title shortened and updated 2025→2026. Added BreadcrumbSchema. Keywords updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "umzugskosten-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: PLZ-based distance estimation uses Haversine formula with 1.3x road factor (reasonable). Volume estimation 0.4 m³/m² is standard. Price ranges for Umzugsfirma (25-55€/m³) and Selbstumzug costs are plausible market values. Estimation tool with appropriate disclaimer.",
+      "fixed": false
+    },
+    {
+      "calculator": "versicherung-auto-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 80 chars → 58 chars. Description was 191 chars → 127 chars. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "versicherung-auto-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Estimation calculator using SF-Klassen (SF0 230% to SF35 20%, M 260%), Typ-/Regionalklassen-Faktoren, and average Grundbeiträge. SF-Klasse Beitragssätze match GDV averages. Teilkasko correctly ignores SF-Klasse. Vollkasko includes Teilkasko. Disclaimer clearly states this is a rough estimate. No official formula exists — estimation model is reasonable.",
+      "fixed": false
+    },
+    {
+      "calculator": "vl-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "Einkommensgrenzen were using pre-2024 values (Bauspar: 17.900/35.800€, Aktienfonds: 20.000/40.000€). Since 2024 per Zukunftsfinanzierungsgesetz (ZuFinG), unified to 40.000€ (ledig) / 80.000€ (verheiratet) for BOTH anlageformen. Fixed in component AND .astro SEO text.",
+      "fixed": true
+    },
+    {
+      "calculator": "vl-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 70 chars → 49 chars. Description was 197 chars → 146 chars. Old Einkommensgrenzen in description also corrected. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "vl-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: §13 VermBG Zulagensätze correct (9% Bauspar auf 470€ = 43€, 20% Aktienfonds auf 400€ = 80€). Kombi max 123€. 7-Jahre Sperrfrist correct. Renditeberechnung uses simple annual compounding (slightly simplified but reasonable). Steuererklärung-Pflicht correctly noted.",
+      "fixed": false
+    },
+    {
+      "calculator": "vorfaelligkeitsentschaedigung-rechner",
+      "type": "calculation",
+      "severity": "critical",
+      "description": "§502 BGB 1%/0.5% Deckelung was applied to ALL loans including Immobilienkredite. §502 BGB gilt NICHT für Immobiliendarlehen mit Grundpfandrecht (only Verbraucherdarlehen). Added Kreditart selector (Immobilien/Verbraucher) and conditionally apply cap only for Verbraucherkredite. SEO text already correctly stated this but code was wrong.",
+      "fixed": true
+    },
+    {
+      "calculator": "vorfaelligkeitsentschaedigung-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 85 chars → 54 chars. Description was 184 chars → 145 chars. Added BreadcrumbSchema. Updated Pfandbriefrendite reference from 2024/2025 to 2025/2026.",
+      "fixed": true
+    },
+    {
+      "calculator": "vorfaelligkeitsentschaedigung-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Aktiv-Passiv-Methode (Barwertmethode) correctly implemented. Monthly Zinsmargenschaden = (Restschuld × VertragsZins/12) - (Restschuld × MarktZins/12). Diskontierung with Marktzins correct. Tilgungsplan-Fortschreibung correct. §489 BGB 10-Jahres-Recht and §490 BGB correctly described in SEO content. BGH-Urteile referenced.",
+      "fixed": false
+    },
+    {
+      "calculator": "waehrungs-rechner",
+      "type": "content",
+      "severity": "high",
+      "description": "All exchange rates were March 2025 values. Updated to EZB-Referenzkurse from 27.02.2026: USD 1.08→1.18, GBP 0.84→0.88, CHF 0.95→0.91, JPY 162.50→184.00, PLN 4.18→4.22, CZK 25.10→24.24, SEK 11.20→10.66, NOK 11.80→11.21, DKK 7.46→7.47.",
+      "fixed": true
+    },
+    {
+      "calculator": "waehrungs-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title had '2025' → removed year (exchange rates change frequently, year in title misleading). SEO content EUR/USD reference updated from 1,08 to 1,18. Historical section updated with 2026 data. FAQ EUR/USD updated.",
+      "fixed": true
+    },
+    {
+      "calculator": "waehrungs-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: Simple multiplication/division formulas correct. EUR→Fremd = EUR×Kurs, Fremd→EUR = Fremd÷Kurs. JPY special handling (no decimals) correct. DKK ERM II peg correctly noted. Disclaimer about hardcoded rates (not real-time) prominently displayed. Links to EZB official rates provided.",
+      "fixed": false
+    },
+    {
+      "calculator": "waermepumpe-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title was 74 chars → 56 chars (removed '| Deutschland-Rechner'). Added BreadcrumbSchema. FAQPage schema, WebApplication schema, and Verwandte Rechner section already present.",
+      "fixed": true
+    },
+    {
+      "calculator": "waermepumpe-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified: BAFA BEG 2026 Förderung: Grundförderung 30%, Klimabonus +20% (bis Ende 2028), Einkommensbonus +30% (<40k€), Effizienzbonus +5% (natürliche Kältemittel), max 70%, förderfähig max 30.000€ – all correct per KfW/BAFA. JAZ/COP-basierte Wärmekostenberechnung (Wärmebedarf/COP × Strompreis) correct. Gas/Öl Wirkungsgrade 90%/85% reasonable. CO2-Faktoren (Strom 380g, Gas 201g, Öl 266g) match UBA/BDEW. Amortisation simplified (without discounting) but labeled as such.",
+      "fixed": false
+    },
+    {
+      "calculator": "urlaubstage-rechner",
+      "type": "seo",
+      "severity": "medium",
+      "description": "Title updated 2025→2026 (shortened 80→59 chars). Description shortened 164→150 chars. WebApplication structured data updated to 2026. Added BreadcrumbSchema.",
+      "fixed": true
+    },
+    {
+      "calculator": "urlaubstage-rechner",
+      "type": "calculation",
+      "severity": "info",
+      "description": "Verified all BUrlG references: §3 (24 Werktage/20 Arbeitstage correct), §4 (6 months Wartezeit correct), §5 (1/12 per month correct), §6 (Urlaubsbescheinigung correctly noted), §7 Abs.3 (Übertragung bis 31.3. correct), §7 Abs.4 (Urlaubsabgeltung correct), §9 (Krankheit im Urlaub correctly noted). After June 30 full entitlement correct. Teilzeit formula (VZ-Urlaub/5×TZ-Tage) correct per BAG.",
+      "fixed": false
     }
   ],
-  "lastAuditDate": "2026-03-02"
+  "lastAuditDate": "2026-03-02T13:05:00Z"
 }
