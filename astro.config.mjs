@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.deutschland-rechner.de',
+  trailingSlash: 'never',
   integrations: [
     react(), 
     tailwind(),
