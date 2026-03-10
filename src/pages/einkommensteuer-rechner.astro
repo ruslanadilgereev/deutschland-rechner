@@ -37,6 +37,21 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
       </div>
     </header>
 
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 10.03.2026</p>
+            <p class="mb-1"><strong>Geprüft nach:</strong> §32a EStG, Steueränderungsgesetz 2025/2026, Programmablaufplan (PAP) 2026 des BMF</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Grundfreibetrag 2026 (12.348€), alle Tarifzonen inkl. Reichensteuer, Grund- und Splittingtarif, Solidaritätszuschlag mit Freigrenze 2026</p>
+            <p><strong>Nicht berücksichtigt:</strong> Kirchensteuer, individuelle Freibeträge, Werbungskosten, Sonderausgaben, außergewöhnliche Belastungen – der Rechner berechnet die Steuer auf das <em>zu versteuernde Einkommen (zvE)</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <EinkommensteuerRechner client:load />
@@ -51,29 +66,39 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
           <p>
             Die <strong>Einkommensteuer</strong> ist die wichtigste Steuer in Deutschland und betrifft 
             nahezu jeden Arbeitnehmer und Selbstständigen. Mit unserem <strong>Einkommensteuer-Rechner 2026</strong> 
-            berechnen Sie Ihre Steuerlast auf Basis des aktuellen Einkommensteuertarifs nach §32a EStG.
+            berechnen Sie Ihre Steuerlast auf Basis des aktuellen Einkommensteuertarifs nach §32a EStG. 
+            Die Einkommensteuer bildet auch die Grundlage für die <a href="/lohnsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Lohnsteuer</a>, 
+            die Ihr Arbeitgeber monatlich direkt vom Gehalt abführt.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Werte 2026</h3>
+          <p>
+            Durch das Steueränderungsgesetz 2025/2026 wurden die Eckwerte des Einkommensteuertarifs 
+            zum Ausgleich der kalten Progression angehoben. Auch der <a href="/kindergeld-rechner" class="text-blue-600 hover:text-blue-800 underline">Kinderfreibetrag</a> 
+            und der Grundfreibetrag steigen:
+          </p>
           <div class="bg-blue-50 p-4 rounded-lg my-4">
             <ul class="space-y-2 text-sm">
-              <li><strong>Grundfreibetrag:</strong> 12.348€ (steuerfrei)</li>
+              <li><strong>Grundfreibetrag:</strong> 12.348€ (steuerfrei, +252€ vs. 2025)</li>
               <li><strong>Eingangssteuersatz:</strong> 14%</li>
-              <li><strong>Spitzensteuersatz:</strong> 42% (ab 69.879€)</li>
-              <li><strong>Reichensteuer:</strong> 45% (ab 277.826€)</li>
-              <li><strong>Kinderfreibetrag:</strong> 9.756€ pro Kind</li>
+              <li><strong>Spitzensteuersatz:</strong> 42% (ab 69.879€ zvE)</li>
+              <li><strong>Reichensteuer:</strong> 45% (ab 277.826€ zvE)</li>
+              <li><strong>Kinderfreibetrag:</strong> 9.756€ pro Kind (+156€ vs. 2025)</li>
+              <li><strong>Soli-Freigrenze:</strong> 20.350€ ESt (Single) / 40.700€ (Verheiratete)</li>
             </ul>
           </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Einkommensteuertarif 2026 (Tarifzonen)</h3>
           <p>
-            Der Einkommensteuertarif ist progressiv aufgebaut – der Steuersatz steigt mit dem Einkommen:
+            Der Einkommensteuertarif ist progressiv aufgebaut – der Steuersatz steigt mit dem Einkommen. 
+            Dabei wird nur der Teil besteuert, der über den Grundfreibetrag hinausgeht. 
+            Wie sich die Steuer auf Ihr Nettoeinkommen auswirkt, zeigt unser <a href="/brutto-netto-rechner" class="text-blue-600 hover:text-blue-800 underline">Brutto-Netto-Rechner</a>:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>0€ - 12.348€:</strong> 0% (Grundfreibetrag, steuerfrei)</li>
-            <li><strong>12.349€ - 17.799€:</strong> 14% - ca. 24% (erste Progressionszone)</li>
-            <li><strong>17.800€ - 69.878€:</strong> ca. 24% - 42% (zweite Progressionszone)</li>
-            <li><strong>69.879€ - 277.825€:</strong> 42% (Proportionalzone 1)</li>
+            <li><strong>0€ – 12.348€:</strong> 0% (Grundfreibetrag, steuerfrei)</li>
+            <li><strong>12.349€ – 17.799€:</strong> 14% – ca. 24% (erste Progressionszone)</li>
+            <li><strong>17.800€ – 69.878€:</strong> ca. 24% – 42% (zweite Progressionszone)</li>
+            <li><strong>69.879€ – 277.825€:</strong> 42% (Proportionalzone)</li>
             <li><strong>ab 277.826€:</strong> 45% (Reichensteuer)</li>
           </ul>
           
@@ -83,21 +108,16 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>Grenzsteuersatz:</strong> Der Steuersatz für jeden zusätzlich verdienten Euro. 
-            Relevant für die Frage: "Wie viel Steuern zahle ich auf 100€ mehr Gehalt?"</li>
+            Relevant für die Frage: „Wie viel Steuern zahle ich auf 100€ mehr Gehalt?"</li>
             <li><strong>Durchschnittssteuersatz:</strong> Gesamtsteuerlast geteilt durch Gesamteinkommen. 
             Zeigt, welchen Anteil Ihres Einkommens Sie tatsächlich an Steuern zahlen.</li>
           </ul>
           
-          <div class="bg-yellow-50 p-4 rounded-lg my-4">
-            <p class="text-sm text-yellow-800">
-              <strong>Beispiel:</strong> Bei einem zu versteuernden Einkommen von 50.000€ beträgt der 
-              Grenzsteuersatz ca. 38%, aber der Durchschnittssteuersatz nur ca. 22%.
-            </p>
-          </div>
-          
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Splittingtarif für Ehepaare</h3>
           <p>
-            Verheiratete können den <strong>Splittingtarif</strong> nutzen (Zusammenveranlagung):
+            Verheiratete können den <strong>Splittingtarif</strong> nutzen (Zusammenveranlagung). 
+            Welche <a href="/steuerklassen-rechner" class="text-blue-600 hover:text-blue-800 underline">Steuerklassenkombination</a> 
+            dabei optimal ist, hängt vom Einkommensverhältnis ab:
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li>Das gemeinsame Einkommen wird halbiert</li>
@@ -112,19 +132,270 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
             Einkommensteuer. Es errechnet sich aus:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Summe der Einkünfte (Gehalt, Mieten, Kapital, etc.)</li>
-            <li>− Werbungskosten (z.B. Pendlerpauschale, Arbeitsmittel)</li>
+            <li>Summe der Einkünfte (Gehalt, Mieten, <a href="/kapitalertragsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Kapitalerträge</a>, etc.)</li>
+            <li>− Werbungskosten (z.B. <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:text-blue-800 underline">Pendlerpauschale</a>, Arbeitsmittel)</li>
             <li>− Sonderausgaben (z.B. Versicherungen, Spenden)</li>
             <li>− außergewöhnliche Belastungen (z.B. Krankheitskosten)</li>
-            <li>− Kinderfreibeträge (wenn günstiger als Kindergeld)</li>
+            <li>− Kinderfreibeträge (wenn günstiger als <a href="/kindergeld-rechner" class="text-blue-600 hover:text-blue-800 underline">Kindergeld</a>)</li>
           </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Solidaritätszuschlag</h3>
           <p>
-            Seit 2021 zahlen die meisten Steuerzahler keinen <strong>Solidaritätszuschlag</strong> mehr. 
-            Er wird erst fällig bei einer Einkommensteuer über ca. 18.130€/Jahr (Single) bzw. 36.260€ (Verheiratete). 
+            Nutzen Sie die <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:text-blue-800 underline">Homeoffice-Pauschale</a> (6€/Tag, max. 1.260€/Jahr), 
+            um Ihr zvE zu senken – das wirkt sich direkt auf Ihre Einkommensteuer aus.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Solidaritätszuschlag 2026</h3>
+          <p>
+            Seit 2021 zahlen die meisten Steuerzahler keinen <a href="/soli-rechner" class="text-blue-600 hover:text-blue-800 underline">Solidaritätszuschlag</a> mehr. 
+            Die Freigrenze wurde für 2026 erneut angehoben: Der Soli wird erst fällig bei einer 
+            festgesetzten Einkommensteuer über <strong>20.350€/Jahr</strong> (Single) bzw. <strong>40.700€</strong> (Verheiratete). 
             Darüber beträgt er 5,5% der Einkommensteuer.
           </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: Einkommensteuer 2026</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So viel Einkommensteuer zahlen Sie bei verschiedenen Einkommenshöhen (Grundtarif, ledig):
+        </p>
+        
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Berufseinsteiger – 30.000€ zvE</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Zu versteuerndes Einkommen:</div>
+              <div class="font-medium text-gray-800">30.000€</div>
+              <div class="text-gray-600">Einkommensteuer (ca.):</div>
+              <div class="font-medium text-gray-800">~4.400€</div>
+              <div class="text-gray-600">Durchschnittssteuersatz:</div>
+              <div class="font-medium text-gray-800">~14,7%</div>
+              <div class="text-gray-600">Grenzsteuersatz:</div>
+              <div class="font-medium text-gray-800">~29%</div>
+              <div class="text-gray-600">Solidaritätszuschlag:</div>
+              <div class="font-medium text-green-700">0€ (unter Freigrenze)</div>
+            </div>
+          </div>
+          
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Durchschnittsverdiener – 45.000€ zvE</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Zu versteuerndes Einkommen:</div>
+              <div class="font-medium text-gray-800">45.000€</div>
+              <div class="text-gray-600">Einkommensteuer (ca.):</div>
+              <div class="font-medium text-gray-800">~8.100€</div>
+              <div class="text-gray-600">Durchschnittssteuersatz:</div>
+              <div class="font-medium text-gray-800">~18%</div>
+              <div class="text-gray-600">Grenzsteuersatz:</div>
+              <div class="font-medium text-gray-800">~36%</div>
+              <div class="text-gray-600">Solidaritätszuschlag:</div>
+              <div class="font-medium text-green-700">0€ (unter Freigrenze)</div>
+            </div>
+          </div>
+          
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Gutverdiener – 80.000€ zvE</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Zu versteuerndes Einkommen:</div>
+              <div class="font-medium text-gray-800">80.000€</div>
+              <div class="text-gray-600">Einkommensteuer (ca.):</div>
+              <div class="font-medium text-gray-800">~20.800€</div>
+              <div class="text-gray-600">Durchschnittssteuersatz:</div>
+              <div class="font-medium text-gray-800">~26%</div>
+              <div class="text-gray-600">Grenzsteuersatz:</div>
+              <div class="font-medium text-gray-800">42% (Spitzensteuersatz)</div>
+              <div class="text-gray-600">Solidaritätszuschlag:</div>
+              <div class="font-medium text-orange-700">~26€ (knapp über Freigrenze)</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Nutzen Sie den Rechner oben für Ihre exakte Berechnung. 
+          Die Beispiele zeigen nur Richtwerte für den Grundtarif (ledig). 
+          Mit dem <a href="/brutto-netto-rechner" class="text-blue-700 underline">Brutto-Netto-Rechner</a> sehen Sie, 
+          wie viel nach allen Abzügen übrig bleibt.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Bruttoeinkommen mit zvE verwechseln</h3>
+            <p>Das zu versteuernde Einkommen ist <strong>nicht</strong> Ihr Bruttogehalt! 
+            Vom Brutto werden Werbungskosten, Sonderausgaben und Freibeträge abgezogen. 
+            Bei 50.000€ Brutto liegt das zvE oft nur bei 40.000–43.000€.</p>
+          </div>
+          
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Grenzsteuersatz für das gesamte Einkommen anwenden</h3>
+            <p>„Ich zahle 42% Steuern" – stimmt fast nie. Der Spitzensteuersatz gilt nur für den 
+            Teil über 69.879€. Darunter liegende Einkommensanteile werden mit niedrigeren Sätzen besteuert. 
+            Der tatsächliche <strong>Durchschnittssteuersatz</strong> liegt deutlich niedriger.</p>
+          </div>
+          
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Splittingvorteil überschätzen</h3>
+            <p>Der Splittingtarif bringt nur Vorteile, wenn die Einkommen unterschiedlich hoch sind. 
+            Verdienen beide Partner gleich viel, ist der Vorteil null. Prüfen Sie mit dem 
+            <a href="/steuerklassen-rechner" class="text-blue-600 underline">Steuerklassen-Rechner</a>, 
+            ob ein Wechsel sinnvoll ist.</p>
+          </div>
+          
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Abfindungen</h3>
+            <p>Abfindungen unterliegen der Einkommensteuer, profitieren aber von der 
+            <strong>Fünftelregelung</strong> (§34 EStG). Berechnen Sie Ihre Steuerbelastung mit dem 
+            <a href="/abfindung-rechner" class="text-blue-600 underline">Abfindungsrechner</a>.</p>
+          </div>
+          
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Firmenwagen</h3>
+            <p>Der geldwerte Vorteil aus einem <a href="/firmenwagen-rechner" class="text-blue-600 underline">Firmenwagen</a> 
+            erhöht Ihr zu versteuerndes Einkommen. Ob sich ein Dienstwagen steuerlich lohnt, 
+            hängt vom Listenpreis und Ihrem persönlichen Grenzsteuersatz ab.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Was bedeutet das für dich? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Ihr Einkommensteuer-Ergebnis zeigt die <strong>jährliche Steuerlast</strong> auf Ihr 
+            zu versteuerndes Einkommen. So nutzen Sie die Werte:
+          </p>
+          
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Steuerlast senken</p>
+              <p>Jeder Euro, den Sie als Werbungskosten oder Sonderausgaben absetzen, senkt Ihr zvE. 
+              Die Ersparnis beträgt dabei Ihren <strong>persönlichen Grenzsteuersatz</strong>. 
+              Bei 36% Grenzsteuersatz sparen 1.000€ mehr Werbungskosten also 360€ Steuern.</p>
+            </div>
+            
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Für Selbstständige</p>
+              <p>Nutzen Sie den Rechner für Ihre <strong>Steuervorauszahlungen</strong>. 
+              Schätzen Sie Ihr zvE für das Jahr und berechnen Sie die quartalsmäßigen Vorauszahlungen. 
+              Zusätzlich prüfen Sie mit dem <a href="/gewerbesteuer-rechner" class="text-blue-600 underline">Gewerbesteuer-Rechner</a>, 
+              ob eine Gewerbesteuer-Anrechnung möglich ist.</p>
+            </div>
+            
+            <div class="bg-yellow-50 rounded-lg p-3">
+              <p class="font-semibold text-yellow-800 mb-1">💰 Gehaltsverhandlung planen</p>
+              <p>Berechnen Sie, wie viel Netto von einer Gehaltserhöhung übrig bleibt. 
+              Bei einem Grenzsteuersatz von 38% bleiben von 5.000€ Brutto-Erhöhung nur 
+              ca. 3.100€ vor Sozialabgaben. Manchmal lohnt sich ein 
+              <a href="/firmenwagen-rechner" class="text-blue-600 underline">Firmenwagen</a> oder 
+              andere Sachleistungen mehr.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Einkommensteuer</h2>
+        
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Grundfreibetrag 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Grundfreibetrag beträgt 2026 <strong>12.348€</strong> pro Person (+252€ gegenüber 2025). 
+              Einkommen bis zu dieser Höhe bleibt komplett steuerfrei. Bei Zusammenveranlagung (Ehepaare) 
+              verdoppelt sich der Betrag auf <strong>24.696€</strong>. Der Grundfreibetrag sichert das steuerliche Existenzminimum.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet sich die Einkommensteuer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Einkommensteuer wird auf das <strong>zu versteuernde Einkommen (zvE)</strong> angewendet. 
+              Der Tarif ist progressiv: Er startet bei 14% und steigt bis auf 45% (Reichensteuer). 
+              Die genaue Berechnung folgt der Formel aus §32a EStG, die jährlich angepasst wird. 
+              Das zvE ergibt sich aus Ihrem Bruttoeinkommen abzüglich Werbungskosten, 
+              Sonderausgaben und Freibeträge.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab welchem Einkommen zahlt man den Spitzensteuersatz?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Spitzensteuersatz von <strong>42%</strong> wird 2026 ab einem zu versteuernden Einkommen von 
+              <strong>69.879€</strong> fällig. Die Reichensteuer von 45% greift ab 277.826€. 
+              Bei Zusammenveranlagung verdoppeln sich diese Grenzen. Wichtig: Der Spitzensteuersatz gilt 
+              nur für den Teil des Einkommens, der über der Grenze liegt – nicht für das gesamte Einkommen.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist der Einkommensteuer-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Unser Rechner verwendet die <strong>offizielle Steuerformel nach §32a EStG</strong> mit den 
+              Tarifwerten für 2026. Die Berechnung ist auf den Cent genau – identisch mit der Berechnung 
+              des Finanzamts. Allerdings berechnet der Rechner die Steuer auf das von Ihnen eingegebene zvE. 
+              Ob Ihre Schätzung des zvE korrekt ist, hängt von Ihren individuellen Abzügen ab.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann lohnt sich der Splittingtarif?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Splittingtarif lohnt sich besonders, wenn die Einkommen der Ehepartner 
+              <strong>unterschiedlich hoch</strong> sind. Je größer der Unterschied, desto höher der 
+              Steuervorteil. Bei gleich hohen Einkommen bringt das Splitting keinen Vorteil. 
+              Nutzen Sie unseren <a href="/steuerklassen-rechner" class="text-blue-600 underline">Steuerklassen-Rechner</a>, 
+              um die optimale Kombination zu finden.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich noch Solidaritätszuschlag zahlen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die meisten Steuerzahler sind seit 2021 vom <a href="/soli-rechner" class="text-blue-600 underline">Solidaritätszuschlag</a> befreit. 
+              2026 wurde die Freigrenze auf <strong>20.350€</strong> festgesetzte Einkommensteuer (Single) bzw. 
+              <strong>40.700€</strong> (Verheiratete) angehoben. Das entspricht einem zvE von ca. 70.000€ (Single). 
+              Erst darüber wird der Soli von 5,5% auf die Einkommensteuer fällig.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt der Rechner für 2025 oder 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner verwendet die <strong>Werte für das Steuerjahr 2026</strong> (Grundfreibetrag 12.348€, 
+              angepasste Tarifeckwerte). Für die Steuererklärung 2025, die Sie bis Juli 2026 abgeben, 
+              gelten andere Werte (Grundfreibetrag 2025: 12.096€). Achten Sie darauf, das richtige Jahr 
+              für Ihre Berechnung zu wählen.</p>
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Daten brauche ich für die Berechnung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Sie benötigen Ihr <strong>zu versteuerndes Einkommen (zvE)</strong>. Angestellte finden dies 
+              im letzten Steuerbescheid oder schätzen es: Bruttojahresgehalt minus Werbungskosten-Pauschbetrag 
+              (1.230€) minus Sonderausgaben-Pauschbetrag (36€). Genauer wird es, wenn Sie tatsächliche 
+              Werbungskosten (z.B. <a href="/pendlerpauschale-rechner" class="text-blue-600 underline">Pendlerpauschale</a>) 
+              und Vorsorgeaufwendungen abziehen.</p>
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -146,13 +417,21 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
             <span class="text-2xl">💑</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Steuerklassen-Rechner</p>
           </a>
-          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">📈</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          <a href="/soli-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Soli-Rechner</p>
           </a>
           <a href="/pendlerpauschale-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">🚗</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Pendlerpauschale-Rechner</p>
+          </a>
+          <a href="/kirchensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kirchensteuer-Rechner</p>
+          </a>
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
           </a>
           <a href="/homeoffice-pauschale-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">🏠</span>
@@ -175,6 +454,9 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
           <p class="text-blue-700 text-sm mb-2">
             Für die <strong>Einkommensteuererklärung</strong> ist Ihr örtliches Finanzamt zuständig. 
             Die Steuererklärung können Sie online über ELSTER einreichen.
+          </p>
+          <p class="text-blue-700 text-sm mb-2">
+            <strong>Abgabefrist Steuerjahr 2025:</strong> 31. Juli 2026 (mit Steuerberater: 28. Februar 2027)
           </p>
           <p class="text-blue-700 text-sm">
             <strong>ELSTER:</strong> elster.de<br/>
@@ -215,7 +497,7 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
         "name": "Wie hoch ist der Grundfreibetrag 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Grundfreibetrag beträgt 2026 12.348€ pro Person. Einkommen bis zu dieser Höhe bleibt steuerfrei. Bei Zusammenveranlagung verdoppelt sich der Betrag auf 24.696€."
+          "text": "Der Grundfreibetrag beträgt 2026 12.348€ pro Person (+252€ gegenüber 2025). Einkommen bis zu dieser Höhe bleibt komplett steuerfrei. Bei Zusammenveranlagung (Ehepaare) verdoppelt sich der Betrag auf 24.696€."
         }
       },
       {
@@ -223,7 +505,7 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
         "name": "Wie berechnet sich die Einkommensteuer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Einkommensteuer wird auf das zu versteuernde Einkommen (zvE) angewendet. Der Tarif ist progressiv: Er startet bei 14% und steigt bis auf 45% (Reichensteuer). Die genaue Berechnung folgt der Formel aus §32a EStG."
+          "text": "Die Einkommensteuer wird auf das zu versteuernde Einkommen (zvE) angewendet. Der Tarif ist progressiv: Er startet bei 14% und steigt bis auf 45% (Reichensteuer). Die genaue Berechnung folgt der Formel aus §32a EStG. Das zvE ergibt sich aus dem Bruttoeinkommen abzüglich Werbungskosten, Sonderausgaben und Freibeträge."
         }
       },
       {
@@ -236,10 +518,10 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
       },
       {
         "@type": "Question",
-        "name": "Was ist der Unterschied zwischen Grenz- und Durchschnittssteuersatz?",
+        "name": "Wie genau ist der Einkommensteuer-Rechner?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Grenzsteuersatz zeigt, wie viel Steuern auf jeden zusätzlich verdienten Euro anfallen. Der Durchschnittssteuersatz gibt an, welchen Anteil des gesamten Einkommens Sie an Steuern zahlen. Er ist immer niedriger als der Grenzsteuersatz."
+          "text": "Der Rechner verwendet die offizielle Steuerformel nach §32a EStG mit den Tarifwerten für 2026. Die Berechnung ist auf den Cent genau – identisch mit der Berechnung des Finanzamts. Allerdings berechnet der Rechner die Steuer auf das eingegebene zvE. Ob die Schätzung des zvE korrekt ist, hängt von den individuellen Abzügen ab."
         }
       },
       {
@@ -255,7 +537,23 @@ const keywords = "Einkommensteuer Rechner, Einkommensteuer 2026, Steuerlast bere
         "name": "Muss ich noch Solidaritätszuschlag zahlen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die meisten Steuerzahler sind seit 2021 vom Solidaritätszuschlag befreit. Er wird erst ab einer Einkommensteuer von ca. 18.130€ (Single) bzw. 36.260€ (Verheiratete) fällig – das entspricht etwa einem Bruttoeinkommen von 75.000€ bzw. 150.000€."
+          "text": "Die meisten Steuerzahler sind seit 2021 vom Solidaritätszuschlag befreit. 2026 wurde die Freigrenze auf 20.350€ festgesetzte Einkommensteuer (Single) bzw. 40.700€ (Verheiratete) angehoben. Das entspricht einem zvE von ca. 70.000€ (Single). Erst darüber wird der Soli von 5,5% auf die Einkommensteuer fällig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt der Rechner für 2025 oder 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner verwendet die Werte für das Steuerjahr 2026 (Grundfreibetrag 12.348€, angepasste Tarifeckwerte). Für die Steuererklärung 2025, die bis Juli 2026 abgegeben wird, gelten andere Werte (Grundfreibetrag 2025: 12.096€)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Daten brauche ich für die Berechnung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sie benötigen Ihr zu versteuerndes Einkommen (zvE). Angestellte finden dies im letzten Steuerbescheid oder schätzen es: Bruttojahresgehalt minus Werbungskosten-Pauschbetrag (1.230€) minus Sonderausgaben-Pauschbetrag (36€). Genauer wird es mit tatsächlichen Werbungskosten wie der Pendlerpauschale."
         }
       }
     ]
