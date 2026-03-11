@@ -5,7 +5,7 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
 const title = 'Arbeitstage-Rechner 2026 – Werktage & Feiertage nach Bundesland';
 const description = 'Arbeitstage 2026 berechnen: Werktage zwischen zwei Daten mit allen Feiertagen nach Bundesland. Für 5- oder 6-Tage-Woche. Kostenlos & sofort.';
-const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, Arbeitstage zwischen zwei Daten, Werktage Rechner, Arbeitstage im Jahr, Arbeitstage 2025, Arbeitstage 2026, Feiertage Deutschland, gesetzliche Feiertage, Arbeitstage Bundesland, Werktage berechnen, Kalendertage in Arbeitstage';
+const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, Arbeitstage zwischen zwei Daten, Werktage Rechner, Arbeitstage im Jahr, Arbeitstage 2025, Arbeitstage 2026, Feiertage Deutschland, gesetzliche Feiertage, Arbeitstage Bundesland, Werktage berechnen, Kalendertage in Arbeitstage, Arbeitstage Steuererklärung, Pendlerpauschale Arbeitstage';
 ---
 
 <Layout 
@@ -25,34 +25,93 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
           Arbeitstage-Rechner 2026
         </h1>
         <p class="text-gray-600 max-w-lg mx-auto">
-          Berechnen Sie die Anzahl der Arbeitstage zwischen zwei Daten – mit Feiertagen nach Bundesland.
+          Berechnen Sie die Anzahl der Arbeitstage zwischen zwei Daten – mit Feiertagen nach Bundesland. Ideal für Ihre <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> und <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Steuererklärung</a>.
         </p>
+      </div>
+
+      <!-- Trust-Block -->
+      <div class="mb-6 bg-white border border-green-200 rounded-2xl p-4">
+        <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+          <span class="inline-flex items-center gap-1">
+            <span class="text-green-600">✅</span>
+            <strong>Zuletzt aktualisiert:</strong> 11.03.2026
+          </span>
+          <span class="text-gray-300">|</span>
+          <span class="inline-flex items-center gap-1">
+            <span>📜</span>
+            <strong>Grundlage:</strong> Feiertagsgesetze der Länder, ArbZG, BUrlG
+          </span>
+        </div>
+        <div class="mt-2 text-xs text-gray-500 grid grid-cols-1 md:grid-cols-2 gap-1">
+          <div>✔ Alle 16 Bundesländer mit regionalen Feiertagen</div>
+          <div>✔ 5-Tage- und 6-Tage-Woche</div>
+          <div>✘ Kein Abzug von Urlaub/Krankheit/Homeoffice</div>
+          <div>✘ Keine Brückentage oder Betriebsferien</div>
+        </div>
       </div>
 
       <!-- Calculator Component -->
       <ArbeitstageRechner client:load />
 
-      <!-- SEO Content Section -->
+      <!-- Beispielrechnungen -->
       <div class="mt-12 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧮 Beispielrechnungen für 2026</h2>
+        
+        <div class="space-y-5 text-sm text-gray-600">
+          <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Ganzes Jahr 2026 in NRW (5-Tage-Woche)</h3>
+            <div class="space-y-1">
+              <p>365 Kalendertage − 104 Wochenendtage − 8 Feiertage auf Werktage = <strong>253 Arbeitstage</strong></p>
+              <p class="text-xs text-gray-500">Feiertage 2026 auf Werktage: Neujahr (Do), Karfreitag (Fr), Ostermontag (Mo), Tag der Arbeit (Fr), Christi Himmelfahrt (Do), Pfingstmontag (Mo), Fronleichnam (Do), 1. Weihnachtsfeiertag (Fr). Allerheiligen fällt 2026 auf einen Sonntag.</p>
+              <p class="mt-2">→ Für die <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> bei 30 km einfacher Strecke: 253 × 30 × 0,38 € = <strong>2.884,20 €</strong> Werbungskosten (vor Abzug von Urlaub/Krankheit).</p>
+            </div>
+          </div>
+
+          <div class="bg-green-50 border border-green-100 rounded-xl p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Ganzes Jahr 2026 in Bayern (5-Tage-Woche)</h3>
+            <div class="space-y-1">
+              <p>365 − 104 − 9 Feiertage = <strong>252 Arbeitstage</strong></p>
+              <p class="text-xs text-gray-500">Bayern hat 2026 einen zusätzlichen Feiertag auf einem Werktag: Heilige Drei Könige (Di, 6. Jan.). Mariä Himmelfahrt (Sa) und Allerheiligen (So) entfallen auf Wochenenden.</p>
+            </div>
+          </div>
+
+          <div class="bg-purple-50 border border-purple-100 rounded-xl p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Projektplanung Q2 2026 (April–Juni, Berlin)</h3>
+            <div class="space-y-1">
+              <p>01.04.–30.06.2026 = 91 Kalendertage − 26 Wochenendtage − 4 Feiertage = <strong>61 Arbeitstage</strong></p>
+              <p class="text-xs text-gray-500">Feiertage im Q2: Karfreitag (3.4.), Ostermontag (6.4.), Tag der Arbeit (1.5.), Christi Himmelfahrt (14.5.), Pfingstmontag (25.5.). Da Berlin kein Fronleichnam hat, sind es 5 Feiertage – wobei der Frauentag (8.3.) außerhalb des Zeitraums liegt.</p>
+              <p class="mt-2">→ Bei einem <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Stundenlohn</a> von 25 €/h und 8 Stunden/Tag: 61 × 8 × 25 € = <strong>12.200 €</strong> Bruttolohn für das Quartal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO Content Section -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">📚 Alles Wichtige zu Arbeitstagen in Deutschland</h2>
         
         <div class="space-y-4 text-sm text-gray-600">
           <div>
-            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Arbeitstage hat ein Jahr?</h3>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Arbeitstage hat 2026?</h3>
             <p>
-              Ein Jahr hat <strong>365 Tage</strong> (366 im Schaltjahr). Nach Abzug von Wochenenden 
-              (104 Tage) und bundesweiten Feiertagen (9 Tage) bleiben etwa <strong>250-252 Arbeitstage</strong>. 
-              Je nach Bundesland können es durch regionale Feiertage 2-4 Tage weniger sein. 
-              In Bayern mit den meisten Feiertagen sind es nur etwa <strong>248 Arbeitstage</strong>.
+              Das Jahr 2026 hat <strong>365 Tage</strong>. Nach Abzug von 104 Wochenendtagen 
+              und den bundesweiten Feiertagen bleiben je nach Bundesland <strong>252–254 Arbeitstage</strong> 
+              bei einer 5-Tage-Woche. In <strong>Bayern</strong> mit den meisten regionalen Feiertagen 
+              sind es nur <strong>252 Arbeitstage</strong>, in <strong>Berlin</strong> und <strong>Hamburg</strong> 
+              hingegen <strong>254</strong>. Eine genaue Aufschlüsselung liefert unser 
+              <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>, 
+              wenn Sie wissen möchten, was die Arbeitstage für Ihr Nettogehalt bedeuten.
             </p>
           </div>
           
           <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-            <h3 class="font-semibold text-gray-800 mb-2">📋 Arbeitstage für die Steuererklärung (Anlage N)</h3>
+            <h3 class="font-semibold text-gray-800 mb-2">📋 Arbeitstage für die Steuererklärung 2026 (Anlage N)</h3>
             <p>
-              Die Anzahl der Arbeitstage ist entscheidend für die <strong>Pendlerpauschale</strong> in der 
-              <strong>Anlage N</strong> Ihrer Steuererklärung. Das Finanzamt akzeptiert in der Regel folgende 
-              <strong>Nichtaufgriffsgrenzen</strong> ohne Nachweise:
+              Die Anzahl der Arbeitstage ist entscheidend für die <strong>Entfernungspauschale</strong> in der 
+              <strong>Anlage N</strong> Ihrer <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuererklärung</a>. 
+              <strong>Neu ab 2026:</strong> Die Pendlerpauschale beträgt einheitlich <strong>0,38 € pro Kilometer</strong> ab dem ersten Kilometer 
+              (keine Staffelung mehr). Das Finanzamt akzeptiert folgende 
+              <strong>Nichtaufgriffsgrenzen</strong> in der Regel ohne Nachweise:
             </p>
             <ul class="list-disc pl-5 mt-2 space-y-1">
               <li><strong>4-Tage-Woche:</strong> 180 Arbeitstage</li>
@@ -61,18 +120,22 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
             </ul>
             <p class="mt-2 text-sm">
               <strong>Wichtig:</strong> Bei mehr Arbeitstagen sollten Sie Nachweise führen (z.B. Arbeitgeberbescheinigung).
-              Urlaub und Krankheitstage müssen abgezogen werden!
+              Urlaub, Krankheit und <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice-Tage</a> 
+              müssen abgezogen werden! Nutzen Sie unseren 
+              <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale-Rechner</a> 
+              für die genaue Berechnung.
             </p>
           </div>
           
           <div>
             <h3 class="font-semibold text-gray-800 mb-2">Welche Bundesländer haben die meisten Feiertage?</h3>
             <p>
-              <strong>Bayern und Baden-Württemberg</strong> haben mit 12-13 gesetzlichen Feiertagen die meisten. 
+              <strong>Bayern und Baden-Württemberg</strong> haben mit 12–13 gesetzlichen Feiertagen die meisten. 
               <strong>Berlin</strong> hatte lange die wenigsten (9), hat aber seit 2019 den 
               Internationalen Frauentag (8. März). 
               <strong>Mecklenburg-Vorpommern</strong> hat seit 2023 ebenfalls den Frauentag.
-              Generell haben süddeutsche, katholisch geprägte Bundesländer mehr Feiertage.
+              Generell haben süddeutsche, katholisch geprägte Bundesländer mehr Feiertage — was sich direkt 
+              auf Ihren <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">effektiven Stundenlohn</a> auswirkt.
             </p>
           </div>
           
@@ -90,35 +153,213 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
           <div>
             <h3 class="font-semibold text-gray-800 mb-2">Wie berechne ich Arbeitstage bei Teilzeit?</h3>
             <p>
-              Die Anzahl der Arbeitstage im Jahr bleibt gleich – nur Ihre <strong>Arbeitsstunden</strong> 
-              ändern sich. Wenn Sie z.B. nur Montag, Dienstag und Mittwoch arbeiten, haben Sie 
-              trotzdem denselben Kalender. Für die Urlaubsberechnung werden die Arbeitstage dann 
-              auf Ihre Wochentage umgerechnet.
+              Bei <a href="/teilzeit-rechner" class="text-blue-600 hover:underline">Teilzeit</a> kommt es darauf an, ob Sie weniger 
+              <strong>Stunden pro Tag</strong> oder weniger <strong>Tage pro Woche</strong> arbeiten. Bei weniger Stunden 
+              pro Tag bleibt die Anzahl der Arbeitstage gleich. Bei einer 3-Tage-Woche haben Sie entsprechend 
+              weniger Arbeitstage. Für die <a href="/urlaubstage-rechner" class="text-blue-600 hover:underline">Urlaubsberechnung</a> gilt: 
+              Mindesturlaub × Ihre Wochentage ÷ betriebsübliche Wochentage (§ 3 BUrlG).
             </p>
           </div>
           
           <div>
             <h3 class="font-semibold text-gray-800 mb-2">Muss ich an Feiertagen arbeiten?</h3>
             <p>
-              An gesetzlichen Feiertagen darf <strong>nicht gearbeitet werden</strong> 
+              An gesetzlichen Feiertagen darf grundsätzlich <strong>nicht gearbeitet werden</strong> 
               (§ 9 Arbeitszeitgesetz). Ausnahmen gelten für bestimmte Branchen wie 
               Gastronomie, Gesundheitswesen, Polizei, Feuerwehr und öffentliche Verkehrsmittel.
-              Für Feiertagsarbeit gibt es oft <strong>Zuschläge</strong> oder Freizeitausgleich.
+              Für Feiertagsarbeit gibt es oft <strong>Zuschläge</strong> oder Freizeitausgleich — 
+              prüfen Sie die Auswirkungen mit unserem 
+              <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Arbeitstage und Homeoffice: Was zählt 2026?</h3>
+            <p>
+              Seit 2023 gibt es die <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice-Pauschale</a> 
+              von <strong>6 € pro Tag</strong> (max. 1.260 € pro Jahr für 210 Tage). Wichtig: An Homeoffice-Tagen 
+              dürfen Sie <strong>keine Pendlerpauschale</strong> geltend machen. Sie müssen daher genau aufteilen: 
+              Wie viele Tage Büro (→ <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a>) und 
+              wie viele Homeoffice (→ Homeoffice-Pauschale)?
             </p>
           </div>
         </div>
       </div>
 
+      <!-- Typische Fehler -->
+      <div class="mt-8 bg-red-50 border border-red-200 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-red-800 mb-4">⚠️ Typische Fehler bei der Arbeitstage-Berechnung</h2>
+        <div class="space-y-3 text-sm text-red-700">
+          <div class="flex gap-2">
+            <span class="text-red-500 font-bold mt-0.5">1.</span>
+            <div>
+              <strong>Urlaub und Krankheit nicht abgezogen.</strong> Das Finanzamt erwartet die <em>tatsächlichen</em> 
+              Fahrttage, nicht die theoretischen Arbeitstage. Bei 30 Urlaubstagen und 10 Krankheitstagen 
+              sinkt die Zahl von z.B. 253 auf nur noch 213 Tage.
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-red-500 font-bold mt-0.5">2.</span>
+            <div>
+              <strong>Homeoffice-Tage doppelt angesetzt.</strong> Wer an 2 Tagen pro Woche im Homeoffice arbeitet, 
+              darf für diese Tage <em>entweder</em> die Homeoffice-Pauschale <em>oder</em> die Pendlerpauschale 
+              ansetzen — nicht beides.
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-red-500 font-bold mt-0.5">3.</span>
+            <div>
+              <strong>Falsches Bundesland gewählt.</strong> Regionale Feiertage (z.B. Fronleichnam in NRW, 
+              Reformationstag in Sachsen) machen 1–4 Arbeitstage Unterschied. Der Arbeitsort zählt, 
+              nicht der Wohnort.
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-red-500 font-bold mt-0.5">4.</span>
+            <div>
+              <strong>Werktage und Arbeitstage verwechselt.</strong> Werktage = Mo–Sa (relevant für 
+              <a href="/urlaubstage-rechner" class="text-red-700 underline">Urlaubsanspruch</a> nach BUrlG). 
+              Arbeitstage = Mo–Fr bei einer 5-Tage-Woche. Das sind etwa 50 Tage Unterschied pro Jahr!
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-red-500 font-bold mt-0.5">5.</span>
+            <div>
+              <strong>Nichtaufgriffsgrenze als Freibetrag verstanden.</strong> Die 230-Tage-Grenze ist <em>kein 
+              Rechtsanspruch</em>, sondern eine interne Prüfgrenze. Das Finanzamt kann trotzdem Nachweise fordern.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arbeitstage 2026 nach Bundesland -->
+      <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Arbeitstage 2026 nach Bundesland (5-Tage-Woche)</h2>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-2 font-semibold text-gray-700">Bundesland</th>
+                <th class="text-center py-2 font-semibold text-gray-700">Feiertage gesamt</th>
+                <th class="text-center py-2 font-semibold text-gray-700">davon auf Werktag</th>
+                <th class="text-center py-2 font-semibold text-gray-700">Arbeitstage 2026</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Baden-Württemberg</td>
+                <td class="text-center py-2">12</td>
+                <td class="text-center py-2">9</td>
+                <td class="text-center py-2 font-semibold">252</td>
+              </tr>
+              <tr class="border-b border-gray-100 bg-yellow-50">
+                <td class="py-2">Bayern*</td>
+                <td class="text-center py-2">13</td>
+                <td class="text-center py-2">9</td>
+                <td class="text-center py-2 font-semibold">252</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Berlin</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Brandenburg</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Bremen</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Hamburg</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Hessen</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">8</td>
+                <td class="text-center py-2 font-semibold">253</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Mecklenburg-Vorpommern</td>
+                <td class="text-center py-2">11</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Niedersachsen</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Nordrhein-Westfalen</td>
+                <td class="text-center py-2">11</td>
+                <td class="text-center py-2">8</td>
+                <td class="text-center py-2 font-semibold">253</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Rheinland-Pfalz</td>
+                <td class="text-center py-2">11</td>
+                <td class="text-center py-2">8</td>
+                <td class="text-center py-2 font-semibold">253</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Saarland</td>
+                <td class="text-center py-2">12</td>
+                <td class="text-center py-2">8</td>
+                <td class="text-center py-2 font-semibold">253</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Sachsen</td>
+                <td class="text-center py-2">12</td>
+                <td class="text-center py-2">8</td>
+                <td class="text-center py-2 font-semibold">253</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Sachsen-Anhalt</td>
+                <td class="text-center py-2">11</td>
+                <td class="text-center py-2">8</td>
+                <td class="text-center py-2 font-semibold">253</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Schleswig-Holstein</td>
+                <td class="text-center py-2">10</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Thüringen</td>
+                <td class="text-center py-2">11</td>
+                <td class="text-center py-2">7</td>
+                <td class="text-center py-2 font-semibold">254</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-500 mt-2">* Bayern: Mariä Himmelfahrt nur in Gemeinden mit überwiegend katholischer Bevölkerung. Fronleichnam fällt 2026 auf einen Werktag (Do, 4. Juni).</p>
+        </div>
+      </div>
+
       <!-- Feiertage-Übersicht -->
       <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">📅 Gesetzliche Feiertage nach Bundesland</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📅 Gesetzliche Feiertage 2026 nach Bundesland</h2>
         
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
             <thead>
               <tr class="border-b border-gray-200">
                 <th class="text-left py-2 font-semibold text-gray-700">Feiertag</th>
-                <th class="text-left py-2 font-semibold text-gray-700">Datum</th>
+                <th class="text-left py-2 font-semibold text-gray-700">Datum 2026</th>
+                <th class="text-left py-2 font-semibold text-gray-700">Wochentag</th>
                 <th class="text-left py-2 font-semibold text-gray-700">Bundesländer</th>
               </tr>
             </thead>
@@ -126,107 +367,158 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
               <tr class="border-b border-gray-100">
                 <td class="py-2">Neujahr</td>
                 <td class="py-2">1. Januar</td>
+                <td class="py-2">Donnerstag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Heilige Drei Könige</td>
                 <td class="py-2">6. Januar</td>
+                <td class="py-2">Dienstag</td>
                 <td class="py-2">BW, BY, ST</td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">Internationaler Frauentag</td>
                 <td class="py-2">8. März</td>
+                <td class="py-2 text-orange-600">Sonntag ⚡</td>
                 <td class="py-2">BE, MV</td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Karfreitag</td>
-                <td class="py-2">variabel</td>
+                <td class="py-2">3. April</td>
+                <td class="py-2">Freitag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Ostermontag</td>
-                <td class="py-2">variabel</td>
+                <td class="py-2">6. April</td>
+                <td class="py-2">Montag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Tag der Arbeit</td>
                 <td class="py-2">1. Mai</td>
+                <td class="py-2">Freitag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Christi Himmelfahrt</td>
-                <td class="py-2">variabel</td>
+                <td class="py-2">14. Mai</td>
+                <td class="py-2">Donnerstag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Pfingstmontag</td>
-                <td class="py-2">variabel</td>
+                <td class="py-2">25. Mai</td>
+                <td class="py-2">Montag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Fronleichnam</td>
-                <td class="py-2">variabel</td>
+                <td class="py-2">4. Juni</td>
+                <td class="py-2">Donnerstag</td>
                 <td class="py-2">BW, BY, HE, NW, RP, SL</td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">Mariä Himmelfahrt</td>
                 <td class="py-2">15. August</td>
+                <td class="py-2 text-orange-600">Samstag ⚡</td>
                 <td class="py-2">BY*, SL</td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">Weltkindertag</td>
                 <td class="py-2">20. September</td>
+                <td class="py-2 text-orange-600">Sonntag ⚡</td>
                 <td class="py-2">TH</td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">Tag der Deutschen Einheit</td>
                 <td class="py-2">3. Oktober</td>
+                <td class="py-2 text-orange-600">Samstag ⚡</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">Reformationstag</td>
                 <td class="py-2">31. Oktober</td>
+                <td class="py-2 text-orange-600">Samstag ⚡</td>
                 <td class="py-2">BB, HB, HH, MV, NI, SN, ST, SH, TH</td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">Allerheiligen</td>
                 <td class="py-2">1. November</td>
+                <td class="py-2 text-orange-600">Sonntag ⚡</td>
                 <td class="py-2">BW, BY, NW, RP, SL</td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">Buß- und Bettag</td>
-                <td class="py-2">variabel (Nov.)</td>
+                <td class="py-2">18. November</td>
+                <td class="py-2">Mittwoch</td>
                 <td class="py-2">SN</td>
               </tr>
               <tr class="border-b border-gray-100">
                 <td class="py-2">1. Weihnachtsfeiertag</td>
                 <td class="py-2">25. Dezember</td>
+                <td class="py-2">Freitag</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
-              <tr class="border-b border-gray-100">
+              <tr class="border-b border-gray-100 bg-gray-50">
                 <td class="py-2">2. Weihnachtsfeiertag</td>
                 <td class="py-2">26. Dezember</td>
+                <td class="py-2 text-orange-600">Samstag ⚡</td>
                 <td class="py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs">Alle</span></td>
               </tr>
             </tbody>
           </table>
-          <p class="text-xs text-gray-500 mt-2">* In Bayern nur in Gemeinden mit überwiegend katholischer Bevölkerung</p>
+          <p class="text-xs text-gray-500 mt-2">* In Bayern nur in Gemeinden mit überwiegend katholischer Bevölkerung. ⚡ = fällt 2026 auf ein Wochenende (kein zusätzlicher freier Tag).</p>
         </div>
       </div>
 
-      <!-- FAQ Schema -->
+      <!-- Was bedeutet das für dich? -->
+      <div class="mt-8 bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-green-800 mb-4">💡 Was bedeutet das konkret für dich?</h2>
+        <div class="space-y-3 text-sm text-green-700">
+          <div>
+            <strong>Steuererklärung 2025 (Abgabe 2026):</strong> Zählen Sie Ihre tatsächlichen Fahrttage 
+            für das Steuerjahr 2025. Mit der neuen einheitlichen Pauschale von 0,38 €/km ab 2026 
+            profitieren besonders Kurzpendler. Nutzen Sie den 
+            <a href="/steuererstattung-rechner" class="text-green-700 underline font-medium">Steuererstattung-Rechner</a>, 
+            um Ihre voraussichtliche Rückzahlung zu berechnen.
+          </div>
+          <div>
+            <strong>Urlaubsplanung:</strong> 2026 fallen viele Feiertage auf Wochenenden 
+            (3. Oktober = Sa, Reformationstag = Sa, Allerheiligen = So, 2. Weihnachtsfeiertag = Sa). 
+            Das bedeutet: weniger „geschenkte" freie Tage. Planen Sie Ihren 
+            <a href="/urlaubstage-rechner" class="text-green-700 underline font-medium">Urlaub</a> strategisch 
+            um Brückentage (z.B. nach Christi Himmelfahrt am 14. Mai oder nach Neujahr am 1. Januar).
+          </div>
+          <div>
+            <strong>Gehaltsverhandlung:</strong> Wer in Bayern arbeitet, hat rein rechnerisch 2 Arbeitstage 
+            weniger als Kollegen in Berlin — bei gleichem Jahresgehalt ergibt sich ein leicht höherer 
+            <a href="/stundenlohn-rechner" class="text-green-700 underline font-medium">Stundenlohn</a>. 
+            Auch relevant für <a href="/teilzeit-rechner" class="text-green-700 underline font-medium">Teilzeit-Verhandlungen</a>.
+          </div>
+          <div>
+            <strong>Projektplanung:</strong> Für realistische Deadlines müssen Sie Arbeitstage statt 
+            Kalendertage rechnen. Ein „3-Monats-Projekt" im Q2 2026 hat je nach Bundesland nur 
+            60–62 tatsächliche Arbeitstage.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
       <div class="mt-8 bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zu Arbeitstagen</h2>
         
         <div class="space-y-4">
           <details class="group">
             <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
-              Wie viele Arbeitstage hat das Jahr 2025?
+              Wie viele Arbeitstage hat das Jahr 2026?
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
-              Das Jahr 2025 hat <strong>250-253 Arbeitstage</strong>, je nach Bundesland. 
-              Das Jahr hat 365 Tage, davon sind 104 Wochenendtage. Die verbleibenden 261 Werktage werden durch 
-              9 bundesweite und 2-4 regionale Feiertage reduziert.
+              Das Jahr 2026 hat <strong>252–254 Arbeitstage</strong> bei einer 5-Tage-Woche, je nach Bundesland. 
+              Die meisten Arbeitstage haben Berlin, Hamburg, Brandenburg, Bremen, Niedersachsen, Mecklenburg-Vorpommern, 
+              Schleswig-Holstein und Thüringen mit <strong>254 Tagen</strong>. Bayern und Baden-Württemberg haben 
+              mit <strong>252 Tagen</strong> die wenigsten. Besonderheit 2026: Viele Feiertage fallen auf Wochenenden 
+              (u.a. Tag der Deutschen Einheit, Reformationstag, Allerheiligen, 2. Weihnachtsfeiertag).
             </p>
           </details>
           
@@ -235,8 +527,10 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
               Wie viele Arbeitstage hat ein Monat durchschnittlich?
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
-              Ein Monat hat durchschnittlich etwa <strong>21-22 Arbeitstage</strong>. Bei der Gehaltsberechnung 
-              wird oft mit 21,75 Arbeitstagen pro Monat gerechnet (52 Wochen × 5 Tage ÷ 12 Monate).
+              Ein Monat hat durchschnittlich etwa <strong>21–22 Arbeitstage</strong>. Bei der Gehaltsberechnung 
+              wird oft mit 21,75 Arbeitstagen pro Monat gerechnet (52 Wochen × 5 Tage ÷ 12 Monate). 
+              Dieser Wert ist wichtig für die Berechnung des Stundenlohns aus dem Monatsgehalt und 
+              für anteilige Gehaltsberechnungen bei Teilmonaten.
             </p>
           </details>
           
@@ -245,22 +539,22 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
               Was ist der Unterschied zwischen Arbeitstagen und Werktagen?
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
-              <strong>Werktage</strong> sind alle Tage außer Sonntagen und Feiertagen – also Montag bis Samstag. 
-              <strong>Arbeitstage</strong> sind die Tage, an denen tatsächlich gearbeitet wird (meist Montag bis Freitag). 
-              Bei einer 5-Tage-Woche sind Arbeitstage = Werktage minus Samstage.
+              <strong>Werktage</strong> sind alle Tage außer Sonntagen und Feiertagen – also Montag bis Samstag (ca. 303 pro Jahr). 
+              <strong>Arbeitstage</strong> sind die Tage, an denen tatsächlich gearbeitet wird (bei 5-Tage-Woche: Mo–Fr, ca. 252 pro Jahr). 
+              Die Unterscheidung ist rechtlich relevant: Das Bundesurlaubsgesetz (BUrlG) rechnet in <strong>Werktagen</strong> 
+              (24 Werktage Mindestanspruch = 20 Arbeitstage bei 5-Tage-Woche). Kündigungsfristen laufen ebenfalls in Werktagen.
             </p>
           </details>
-          
+
           <details class="group">
             <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
-              Warum brauche ich die Arbeitstage-Berechnung?
+              Wie viele Arbeitstage kann ich in der Steuererklärung angeben?
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
-              Die Berechnung ist wichtig für: <strong>Steuererklärung</strong> (Pendlerpauschale in Anlage N), 
-              <strong>Urlaubsplanung</strong> (anteiliger Urlaub), 
-              <strong>Projektplanung</strong> (realistische Zeitplanung), 
-              <strong>Gehaltsberechnung</strong> (z.B. bei Teilmonaten) und 
-              <strong>Fristen</strong> (manche Fristen gelten in Arbeitstagen).
+              Sie dürfen nur die <strong>tatsächlichen Fahrttage</strong> zur Arbeitsstätte angeben — also nach Abzug 
+              von Urlaub, Krankheit, Homeoffice und Dienstreisen. Das Finanzamt prüft erfahrungsgemäß ab 
+              <strong>230 Tagen</strong> (5-Tage-Woche) genauer (sog. Nichtaufgriffsgrenze). 
+              Ab 2026 gilt die Entfernungspauschale einheitlich mit <strong>0,38 €/km ab dem ersten Kilometer</strong>.
             </p>
           </details>
           
@@ -270,8 +564,9 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
               Die Arbeitstage werden in der <strong>Anlage N</strong> (Einkünfte aus nichtselbstständiger Arbeit) 
-              eingetragen. Sie sind Grundlage für die <strong>Entfernungspauschale</strong> (Pendlerpauschale) 
-              von 0,38€ pro Kilometer. Multiplizieren Sie: Arbeitstage × einfache Entfernung × 0,38€.
+              eingetragen. Sie sind Grundlage für die <strong>Entfernungspauschale</strong> (Pendlerpauschale). 
+              Berechnung: Arbeitstage × einfache Entfernung in km × 0,38 €. 
+              Wichtig: Homeoffice-Tage separat in der Homeoffice-Pauschale angeben (6 €/Tag, max. 210 Tage).
             </p>
           </details>
           
@@ -280,9 +575,38 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
               Zählt der Samstag als Arbeitstag?
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
-              In der Regel <strong>nicht</strong>. Die meisten Arbeitnehmer haben eine 5-Tage-Woche (Mo-Fr). 
-              Samstag zählt aber als <strong>Werktag</strong> (wichtig für Kündigungsfristen, Urlaubsanspruch nach BUrlG). 
-              In manchen Branchen (Einzelhandel, Gastronomie) ist Samstag ein regulärer Arbeitstag.
+              Bei einer <strong>5-Tage-Woche</strong> (Standard): Nein. Samstag zählt aber als <strong>Werktag</strong> — 
+              das ist wichtig für Kündigungsfristen, Urlaubsanspruch (BUrlG) und Zustellungsfristen. 
+              Bei einer <strong>6-Tage-Woche</strong> (z.B. Einzelhandel, Gastronomie, Handwerk) ist Samstag 
+              ein regulärer Arbeitstag. Unser Rechner unterstützt beide Modelle.
+            </p>
+          </details>
+
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Warum brauche ich die genaue Zahl der Arbeitstage?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Die genaue Arbeitstage-Berechnung ist in mehreren Situationen wichtig: 
+              <strong>Steuererklärung</strong> (Pendlerpauschale in Anlage N), 
+              <strong>Urlaubsplanung</strong> (anteiliger Urlaub bei unterjährigem Eintritt/Austritt), 
+              <strong>Projektplanung</strong> (realistische Deadlines setzen), 
+              <strong>Gehaltsberechnung</strong> (Stundenlohn, Teilmonat, Abfindung), 
+              <strong>Elternzeit/Teilzeit</strong> (anteiliger Anspruch berechnen) und 
+              <strong>Kurzarbeit</strong> (Soll-Entgelt ermitteln).
+            </p>
+          </details>
+
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Gilt die Homeoffice-Pauschale zusätzlich zur Pendlerpauschale?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              <strong>Nicht für denselben Tag.</strong> Pro Arbeitstag können Sie entweder die 
+              <strong>Pendlerpauschale</strong> (0,38 €/km einfache Strecke, wenn Sie zum Büro gefahren sind) 
+              oder die <strong>Homeoffice-Pauschale</strong> (6 €/Tag, max. 1.260 €/Jahr) ansetzen. 
+              Die beiden Pauschalen können sich aber über das Jahr ergänzen: z.B. 180 Bürotage (Pendlerpauschale) + 
+              70 Homeoffice-Tage (Homeoffice-Pauschale) = Werbungskosten aus beiden Töpfen.
             </p>
           </details>
         </div>
@@ -290,8 +614,15 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
 
       <!-- Vergleichsrechner -->
       <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-6">
-        <h3 class="font-bold text-blue-800 mb-3">📱 Weitere nützliche Rechner</h3>
-        <div class="grid grid-cols-2 gap-3">
+        <h3 class="font-bold text-blue-800 mb-3">📱 Verwandte Rechner</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <a 
+            href="/pendlerpauschale-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">🛣️</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Pendlerpauschale</span>
+          </a>
           <a 
             href="/urlaubstage-rechner"
             class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
@@ -314,13 +645,65 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
             <span class="block text-sm font-medium text-gray-800 mt-1">Brutto-Netto</span>
           </a>
           <a 
-            href="/pendlerpauschale-rechner"
+            href="/homeoffice-pauschale-rechner"
             class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
           >
-            <span class="text-2xl">🛣️</span>
-            <span class="block text-sm font-medium text-gray-800 mt-1">Pendlerpauschale</span>
+            <span class="text-2xl">🏠</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Homeoffice-Pauschale</span>
+          </a>
+          <a 
+            href="/einkommensteuer-rechner"
+            class="bg-white p-4 rounded-xl hover:shadow-md transition-shadow"
+          >
+            <span class="text-2xl">📊</span>
+            <span class="block text-sm font-medium text-gray-800 mt-1">Einkommensteuer</span>
           </a>
         </div>
+      </div>
+
+      <!-- Wichtige Hinweise -->
+      <div class="mt-8 bg-amber-50 border border-amber-200 rounded-2xl p-6">
+        <h3 class="font-bold text-amber-800 mb-3">📌 Wichtige Hinweise für 2026</h3>
+        <ul class="text-sm text-amber-700 space-y-2">
+          <li>• <strong>Mariä Himmelfahrt (15.08.)</strong> gilt in Bayern nur in Gemeinden mit überwiegend katholischer Bevölkerung — fällt 2026 auf einen Samstag</li>
+          <li>• <strong>Augsburger Friedensfest (08.08.)</strong> gilt nur in der Stadt Augsburg (hier nicht berücksichtigt)</li>
+          <li>• <strong>Fronleichnam</strong> gilt in Sachsen und Thüringen nur in bestimmten Gemeinden</li>
+          <li>• <strong>Urlaub</strong>, <strong>Krankheitstage</strong> und <strong>Homeoffice-Tage</strong> werden hier nicht abgezogen</li>
+          <li>• <strong>Pendlerpauschale 2026:</strong> Einheitlich 0,38 €/km ab dem 1. Kilometer (keine Staffelung mehr)</li>
+          <li>• Für arbeitsrechtliche Berechnungen konsultieren Sie bitte einen Rechtsanwalt oder Steuerberater</li>
+        </ul>
+      </div>
+
+      <!-- Quellen / Zuständige Stellen -->
+      <div class="mt-8 bg-gray-50 rounded-2xl p-6">
+        <h3 class="font-bold text-gray-700 mb-3">📚 Quellen & zuständige Stellen</h3>
+        <ul class="text-sm text-gray-600 space-y-1">
+          <li>
+            <a href="https://www.gesetze-im-internet.de/arbzg/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              Arbeitszeitgesetz (ArbZG) – Regelungen zu Feiertagen und Arbeitszeit
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gesetze-im-internet.de/burlg/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              Bundesurlaubsgesetz (BUrlG) – Urlaubsanspruch und Werktage-Definition
+            </a>
+          </li>
+          <li>
+            <a href="https://www.bmi.bund.de/DE/themen/verfassung/staatliche-symbole/nationale-feiertage/nationale-feiertage-node.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              Bundesministerium des Innern – Nationale Feiertage
+            </a>
+          </li>
+          <li>
+            <a href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              BMAS – Arbeitszeitregelungen und Arbeitnehmerrechte
+            </a>
+          </li>
+          <li>
+            <a href="https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+              BMF – Steuerliche Änderungen 2026 (Pendlerpauschale)
+            </a>
+          </li>
+        </ul>
       </div>
 
       <!-- Back Link -->
@@ -343,10 +726,10 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Wie viele Arbeitstage hat das Jahr 2025?",
+      "name": "Wie viele Arbeitstage hat das Jahr 2026?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Das Jahr 2025 hat 250-253 Arbeitstage, je nach Bundesland. Das Jahr hat 365 Tage, davon sind 104 Wochenendtage. Die verbleibenden 261 Werktage werden durch 9 bundesweite und 2-4 regionale Feiertage reduziert."
+        "text": "Das Jahr 2026 hat 252–254 Arbeitstage bei einer 5-Tage-Woche, je nach Bundesland. Berlin, Hamburg und weitere norddeutsche Länder haben mit 254 Tagen die meisten, Bayern und Baden-Württemberg mit 252 Tagen die wenigsten. Besonderheit 2026: Viele Feiertage fallen auf Wochenenden (Tag der Deutschen Einheit, Reformationstag, Allerheiligen, 2. Weihnachtsfeiertag)."
       }
     },
     {
@@ -354,7 +737,7 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
       "name": "Wie viele Arbeitstage hat ein Monat durchschnittlich?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ein Monat hat durchschnittlich etwa 21-22 Arbeitstage. Bei der Gehaltsberechnung wird oft mit 21,75 Arbeitstagen pro Monat gerechnet (52 Wochen × 5 Tage ÷ 12 Monate)."
+        "text": "Ein Monat hat durchschnittlich etwa 21–22 Arbeitstage. Bei der Gehaltsberechnung wird oft mit 21,75 Arbeitstagen pro Monat gerechnet (52 Wochen × 5 Tage ÷ 12 Monate). Dieser Wert ist wichtig für die Berechnung des Stundenlohns und für anteilige Gehaltsberechnungen bei Teilmonaten."
       }
     },
     {
@@ -362,15 +745,15 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
       "name": "Was ist der Unterschied zwischen Arbeitstagen und Werktagen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Werktage sind alle Tage außer Sonntagen und Feiertagen – also Montag bis Samstag. Arbeitstage sind die Tage, an denen tatsächlich gearbeitet wird (meist Montag bis Freitag). Bei einer 5-Tage-Woche sind Arbeitstage = Werktage minus Samstage."
+        "text": "Werktage sind alle Tage außer Sonntagen und Feiertagen (Montag bis Samstag, ca. 303 pro Jahr). Arbeitstage sind die Tage, an denen tatsächlich gearbeitet wird (bei 5-Tage-Woche: Mo–Fr, ca. 252 pro Jahr). Das Bundesurlaubsgesetz rechnet in Werktagen: 24 Werktage Mindestanspruch entsprechen 20 Arbeitstagen bei 5-Tage-Woche."
       }
     },
     {
       "@type": "Question",
-      "name": "Zählt der Samstag als Arbeitstag?",
+      "name": "Wie viele Arbeitstage kann ich in der Steuererklärung angeben?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In der Regel nicht. Die meisten Arbeitnehmer haben eine 5-Tage-Woche (Mo-Fr). Samstag zählt aber als Werktag, was für Kündigungsfristen und Urlaubsanspruch nach BUrlG wichtig ist. In manchen Branchen wie Einzelhandel oder Gastronomie ist Samstag ein regulärer Arbeitstag."
+        "text": "Sie dürfen nur die tatsächlichen Fahrttage zur Arbeitsstätte angeben — nach Abzug von Urlaub, Krankheit, Homeoffice und Dienstreisen. Das Finanzamt prüft erfahrungsgemäß ab 230 Tagen (5-Tage-Woche) genauer (Nichtaufgriffsgrenze). Ab 2026 gilt die Entfernungspauschale einheitlich mit 0,38 €/km ab dem ersten Kilometer."
       }
     },
     {
@@ -378,7 +761,31 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
       "name": "Wo trage ich die Arbeitstage in der Steuererklärung ein?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Die Arbeitstage werden in der Anlage N (Einkünfte aus nichtselbstständiger Arbeit) eingetragen. Sie sind Grundlage für die Entfernungspauschale (Pendlerpauschale) von 0,38€ pro Kilometer. Das Finanzamt akzeptiert ohne Nachweise: 180 Tage (4-Tage-Woche), 230 Tage (5-Tage-Woche), 280 Tage (6-Tage-Woche)."
+        "text": "Die Arbeitstage werden in der Anlage N (Einkünfte aus nichtselbstständiger Arbeit) eingetragen. Sie sind Grundlage für die Entfernungspauschale (Pendlerpauschale). Berechnung: Arbeitstage × einfache Entfernung in km × 0,38 €. Homeoffice-Tage werden separat in der Homeoffice-Pauschale angeben (6 €/Tag, max. 1.260 €/Jahr)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zählt der Samstag als Arbeitstag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei einer 5-Tage-Woche (Standard): Nein. Samstag zählt aber als Werktag — das ist wichtig für Kündigungsfristen und Urlaubsanspruch nach BUrlG. Bei einer 6-Tage-Woche (z.B. Einzelhandel, Gastronomie) ist Samstag ein regulärer Arbeitstag."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum brauche ich die genaue Zahl der Arbeitstage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die genaue Arbeitstage-Berechnung ist wichtig für: Steuererklärung (Pendlerpauschale), Urlaubsplanung (anteiliger Urlaub bei unterjährigem Eintritt/Austritt), Projektplanung (realistische Deadlines), Gehaltsberechnung (Stundenlohn, Teilmonat, Abfindung), Elternzeit/Teilzeit (anteiliger Anspruch) und Kurzarbeit (Soll-Entgelt)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt die Homeoffice-Pauschale zusätzlich zur Pendlerpauschale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nicht für denselben Tag. Pro Arbeitstag können Sie entweder die Pendlerpauschale (0,38 €/km, wenn Sie ins Büro gefahren sind) oder die Homeoffice-Pauschale (6 €/Tag, max. 1.260 €/Jahr) ansetzen. Über das Jahr können sich beide ergänzen: z.B. 180 Bürotage plus 70 Homeoffice-Tage."
       }
     }
   ]
