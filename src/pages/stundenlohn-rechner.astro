@@ -6,6 +6,41 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 const title = "Stundenlohn-Rechner 2026 – Gehalt in Stundenlohn umrechnen";
 const description = "Stundenlohn sofort berechnen: Monatsgehalt in Stundenlohn umrechnen oder umgekehrt. Mindestlohn 13,90€, Sonderzahlungen & Formel. Kostenlos!";
 const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenlohn, Stundenlohn aus Monatsgehalt, Stundenlohn Formel, Stundenlohn berechnen Formel, Brutto Stundenlohn, Stundenlohn 2026, Mindestlohn Rechner, Stundenlohn ausrechnen, was verdiene ich pro Stunde, Monatsgehalt in Stundenlohn, Stundenlohn Tabelle, Stundenlohn 40 Stunden Woche";
+
+const faqData = [
+  {
+    question: "Wie berechne ich meinen Stundenlohn aus dem Monatsgehalt?",
+    answer: "Die Formel lautet: Stundenlohn = Monatsgehalt ÷ (Wochenstunden × 4,33). Der Faktor 4,33 ergibt sich aus 52 Wochen ÷ 12 Monate. Bei 3.500 € Monatsgehalt und 40 Wochenstunden ergibt sich: 3.500 € ÷ 173,2 = 20,21 € brutto pro Stunde."
+  },
+  {
+    question: "Wie hoch ist der Mindestlohn 2026 in Deutschland?",
+    answer: "Der gesetzliche Mindestlohn beträgt seit dem 1. Januar 2026 genau 13,90 € brutto pro Stunde. Bei einer 40-Stunden-Woche entspricht das einem Brutto-Monatsgehalt von ca. 2.409 €. Ab dem 1. Januar 2027 steigt er auf 14,60 € pro Stunde."
+  },
+  {
+    question: "Wie viele Arbeitsstunden hat ein Monat durchschnittlich?",
+    answer: "Bei einer 40-Stunden-Woche hat ein Monat durchschnittlich 173,33 Arbeitsstunden (40 × 52 ÷ 12). Bei 35 Stunden/Woche sind es 151,67 Stunden, bei 30 Stunden/Woche 130 Stunden und bei 20 Stunden/Woche 86,67 Stunden pro Monat."
+  },
+  {
+    question: "Ist der Stundenlohn bei Teilzeit niedriger als bei Vollzeit?",
+    answer: "Nein, grundsätzlich bleibt der Stundenlohn bei Teilzeit gleich. Das Teilzeit- und Befristungsgesetz (TzBfG) verbietet eine Benachteiligung von Teilzeitbeschäftigten. Nur die Anzahl der gearbeiteten Stunden und damit das monatliche Gesamtgehalt ist niedriger."
+  },
+  {
+    question: "Wie hoch ist der durchschnittliche Stundenlohn in Deutschland 2025/2026?",
+    answer: "Der durchschnittliche Bruttostundenlohn in Deutschland liegt bei ca. 24–26 € pro Stunde (Destatis). Die Unterschiede sind nach Branche groß: Finanz- und Versicherungsbranche ca. 36 €, IT ca. 34 €, Verarbeitendes Gewerbe ca. 27 €, Handel ca. 21 €, Gastgewerbe ca. 15 € pro Stunde."
+  },
+  {
+    question: "Muss Urlaubs- und Weihnachtsgeld beim Stundenlohn berücksichtigt werden?",
+    answer: "Für den effektiven Stundenlohn sollten Sonderzahlungen berücksichtigt werden. Rechnen Sie das gesamte Jahresgehalt inkl. Urlaubs- und Weihnachtsgeld zusammen und teilen Sie durch die Jahresarbeitsstunden (z. B. 2.080 bei 40 Std./Woche). So erhalten Sie den realistischen Stundenverdienst."
+  },
+  {
+    question: "Gibt es Branchenmindestlöhne über 13,90 € in 2026?",
+    answer: "Ja, in vielen Branchen liegen die tariflichen Mindestlöhne deutlich über dem gesetzlichen Mindestlohn. Beispiele 2026: Gebäudereinigung 15,00 €, Elektrohandwerk 14,93 €, Dachdecker 14,96–16,60 €, Pflege 16,52–21,03 €, Bauhauptgewerbe ab 14,98 €."
+  },
+  {
+    question: "Wie berechne ich meinen Stundenlohn als Selbstständiger?",
+    answer: "Als Selbstständiger müssen Sie neben dem gewünschten Nettoeinkommen auch Betriebskosten, Krankenversicherung, Altersvorsorge, Steuern, Urlaub und Krankheitstage einkalkulieren. Realistisch sind nur ca. 70–80 % der Arbeitszeit abrechenbar. Der Stundensatz liegt dadurch deutlich über dem eines vergleichbaren Angestellten."
+  }
+];
 ---
 
 <Layout 
@@ -41,18 +76,21 @@ const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenl
     <div class="max-w-2xl mx-auto px-4 py-6">
       <StundenlohnRechner client:load />
     </div>
-    
-    <!-- Trust Block -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-green-50 border border-green-200 rounded-2xl p-4 flex items-start gap-3">
-        <span class="text-2xl mt-0.5">✅</span>
-        <div class="text-sm text-green-900">
-          <p class="font-semibold">Geprüfte Berechnung nach aktuellen Werten 2026</p>
-          <p class="mt-1">Basiert auf dem gesetzlichen <a href="/mindestlohn-rechner" class="text-green-700 underline">Mindestlohn von 13,90 €/Stunde</a> (gültig ab 01.01.2026) und den offiziellen Formeln des Statistischen Bundesamts. Zuletzt aktualisiert: März 2026.</p>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">✅</span>
+          <div class="text-sm text-emerald-900 space-y-2">
+            <p><strong>Zuletzt aktualisiert am 14.03.2026</strong> — Alle Werte geprüft nach Mindestlohngesetz (MiLoG), Arbeitszeitgesetz (ArbZG) und den aktuellen Empfehlungen der Mindestlohnkommission.</p>
+            <p><strong>Was der Rechner berücksichtigt:</strong> Brutto-Monatsgehalt, Wochenstunden, Sonderzahlungen (Urlaubs-/Weihnachtsgeld), Umrechnung Monatsgehalt ↔ Stundenlohn, Mindestlohn-Prüfung 2026.</p>
+            <p><strong>Was der Rechner nicht berücksichtigt:</strong> Individuelle Steuerbelastung (→ <a href="/brutto-netto-rechner" class="text-emerald-700 underline hover:text-emerald-900">Brutto-Netto-Rechner</a>), tarifliche Zuschläge, Schichtarbeit, geldwerte Vorteile und branchenspezifische Regelungen.</p>
+          </div>
         </div>
       </div>
     </div>
-
+    
     <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -62,8 +100,8 @@ const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenl
           <p>
             Mit unserem <strong>Stundenlohn-Rechner</strong> können Sie ganz einfach Ihren 
             <strong>Brutto-Stundenlohn aus dem Monatsgehalt berechnen</strong> – oder umgekehrt. 
-            Egal ob für Gehaltsverhandlungen, <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstunden-Abrechnung</a> oder den Vergleich von 
-            Jobangeboten: Der Stundenlohn ist eine der wichtigsten Kennzahlen im deutschen Arbeitsrecht.
+            Egal ob für Gehaltsverhandlungen, die Abrechnung von <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstunden</a> oder den Vergleich von 
+            Jobangeboten mit dem <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:underline">Gehaltsvergleich-Rechner</a>: Der Stundenlohn ist eine zentrale Kennzahl im Arbeitsleben.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundenlohn berechnen: Die Formel</h3>
@@ -77,70 +115,70 @@ const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenl
           </div>
           <p>
             Der Faktor <strong>4,33</strong> ergibt sich aus der durchschnittlichen Anzahl von 
-            Wochen pro Monat (52 Wochen ÷ 12 Monate = 4,33). Diese Zahl ist entscheidend, um die 
-            monatlichen <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage</a> korrekt in Stunden umzurechnen.
+            Wochen pro Monat (52 Wochen ÷ 12 Monate = 4,33). Wie viele <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage</a> ein Monat tatsächlich hat, schwankt je nach Bundesland und Feiertagen.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">3 Beispielrechnungen für verschiedene Gehälter</h3>
           
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Beispiel 1: Berufseinsteiger mit 2.800 € brutto</h4>
-          <p>
-            Bei einem <strong>Bruttogehalt von 2.800 €</strong> und einer 40-Stunden-Woche:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Monatliche Arbeitsstunden: 40 × 4,33 = <strong>173,2 Stunden</strong></li>
-            <li>Brutto-Stundenlohn: 2.800 € ÷ 173,2 = <strong>16,17 € pro Stunde</strong></li>
-            <li>Liegt über dem <a href="/mindestlohn-rechner" class="text-blue-600 hover:underline">Mindestlohn 2026</a> von 13,90 €</li>
-          </ul>
-          
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Beispiel 2: Fachkraft mit 3.500 € brutto</h4>
-          <p>
-            Bei einem <strong>Bruttogehalt von 3.500 €</strong> und einer 38,5-Stunden-Woche (Tarifvertrag):
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Monatliche Arbeitsstunden: 38,5 × 4,33 = <strong>166,7 Stunden</strong></li>
-            <li>Brutto-Stundenlohn: 3.500 € ÷ 166,7 = <strong>21,00 € pro Stunde</strong></li>
-            <li>Netto-Stundenlohn (Steuerklasse I): ca. 14,20 € – berechnen Sie ihn mit dem <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a></li>
-          </ul>
-          
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Beispiel 3: Führungskraft mit 5.500 € brutto</h4>
-          <p>
-            Bei einem <strong>Bruttogehalt von 5.500 €</strong> und einer 40-Stunden-Woche:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Monatliche Arbeitsstunden: 40 × 4,33 = <strong>173,2 Stunden</strong></li>
-            <li>Brutto-Stundenlohn: 5.500 € ÷ 173,2 = <strong>31,76 € pro Stunde</strong></li>
-            <li>Mit Weihnachtsgeld (13. Gehalt): effektiv <strong>34,41 € pro Stunde</strong></li>
-          </ul>
+          <h4 class="font-semibold text-gray-700 mt-4">Beispiel 1: Mindestlohn-Job (40 Stunden/Woche)</h4>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Mindestlohn 2026: <strong>13,90 € pro Stunde</strong></li>
+              <li>Monatliche Arbeitsstunden: 40 × 4,33 = <strong>173,2 Stunden</strong></li>
+              <li>Brutto-Monatsgehalt: 13,90 € × 173,2 = <strong>ca. 2.408 €</strong></li>
+              <li>Netto ca. 1.700–1.850 € (abhängig von <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklasse</a>)</li>
+            </ul>
+          </div>
+
+          <h4 class="font-semibold text-gray-700 mt-4">Beispiel 2: Durchschnittsgehalt (40 Stunden/Woche)</h4>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Monatsgehalt: <strong>3.500 € brutto</strong></li>
+              <li>Monatliche Arbeitsstunden: 40 × 4,33 = <strong>173,2 Stunden</strong></li>
+              <li>Stundenlohn: 3.500 € ÷ 173,2 = <strong>20,21 € pro Stunde</strong></li>
+              <li>Mit Weihnachtsgeld (13. Gehalt): effektiv <strong>21,89 €/Std.</strong></li>
+            </ul>
+          </div>
+
+          <h4 class="font-semibold text-gray-700 mt-4">Beispiel 3: Teilzeit (25 Stunden/Woche)</h4>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Monatsgehalt: <strong>2.100 € brutto</strong></li>
+              <li>Monatliche Arbeitsstunden: 25 × 4,33 = <strong>108,25 Stunden</strong></li>
+              <li>Stundenlohn: 2.100 € ÷ 108,25 = <strong>19,40 € pro Stunde</strong></li>
+              <li>→ Nutzen Sie den <a href="/teilzeit-rechner" class="text-blue-600 hover:underline">Teilzeit-Rechner</a> für genaue Teilzeit-Berechnungen</li>
+            </ul>
+          </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestlohn 2026 in Deutschland</h3>
           <p>
             Der <strong>gesetzliche Mindestlohn</strong> beträgt seit dem 1. Januar 2026 
-            <strong>13,90 € pro Stunde</strong>. Bei einer Vollzeitstelle (40 Stunden/Woche) 
-            entspricht dies einem Mindest-Bruttogehalt von etwa <strong>2.409 € im Monat</strong>. 
-            Für 2027 ist eine Erhöhung auf 14,60 € geplant.
+            <strong>13,90 € pro Stunde</strong> (Erhöhung um 8,42 % gegenüber 2025). Ab dem 
+            1. Januar 2027 steigt er auf <strong>14,60 € pro Stunde</strong>. Nutzen Sie unseren 
+            <a href="/mindestlohn-rechner" class="text-blue-600 hover:underline">Mindestlohn-Rechner</a>, um Ihr Gehalt auf Einhaltung zu prüfen.
           </p>
           <p>
-            Der Mindestlohn gilt für fast alle Arbeitnehmer in Deutschland. Ausnahmen gibt es für:
+            Von der Anhebung auf 13,90 € sind schätzungsweise bis zu <strong>6,6 Millionen Arbeitsplätze</strong> in Deutschland betroffen. Der Mindestlohn gilt für fast alle Arbeitnehmer. Ausnahmen:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Auszubildende (eigene <a href="/mindestlohn-rechner" class="text-blue-600 hover:underline">Mindestausbildungsvergütung</a>)</li>
+            <li>Auszubildende (eigene Mindestausbildungsvergütung)</li>
             <li>Pflichtpraktikanten im Studium</li>
             <li>Langzeitarbeitslose in den ersten 6 Monaten</li>
             <li>Jugendliche unter 18 ohne abgeschlossene Berufsausbildung</li>
           </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundenlohn bei Teilzeit</h3>
-          <p>
-            Der <strong>Stundenlohn bleibt bei Teilzeit gleich</strong> – nur die Anzahl der 
-            gearbeiteten Stunden ändert sich. Nutzen Sie den <a href="/teilzeit-rechner" class="text-blue-600 hover:underline">Teilzeit-Rechner</a>, um Ihr 
-            Gehalt bei reduzierter Arbeitszeit zu berechnen. Bei einem Stundenlohn von 20 € ergibt sich:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>20 Stunden/Woche:</strong> 20 × 4,33 × 20 € = 1.732 € brutto/Monat</li>
-            <li><strong>30 Stunden/Woche:</strong> 30 × 4,33 × 20 € = 2.598 € brutto/Monat</li>
-            <li><strong>40 Stunden/Woche:</strong> 40 × 4,33 × 20 € = 3.464 € brutto/Monat</li>
-          </ul>
+
+          <h4 class="font-semibold text-gray-700 mt-4">Branchenmindestlöhne 2026 (Auswahl)</h4>
+          <p>In vielen Branchen gelten <strong>tarifliche Mindestlöhne</strong>, die über den gesetzlichen 13,90 € liegen:</p>
+          <div class="bg-amber-50 p-4 rounded-lg">
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>Gebäudereinigung:</strong> 15,00 € (Innenreinigung), 18,40 € (Glas-/Fassade)</li>
+              <li><strong>Elektrohandwerk:</strong> 14,93 €</li>
+              <li><strong>Dachdecker:</strong> 14,96 € (ungelernt), 16,60 € (gelernt)</li>
+              <li><strong>Bauhauptgewerbe:</strong> ab 14,98 €</li>
+              <li><strong>Altenpflege (ab Juli 2026):</strong> 16,52 € (Hilfskraft), 17,80 € (qualifiziert), 21,03 € (Fachkraft)</li>
+              <li><strong>Maler & Lackierer:</strong> 16,13 € (ab Juni 2026)</li>
+            </ul>
+          </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderzahlungen berücksichtigen</h3>
           <p>
@@ -154,203 +192,132 @@ const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenl
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li>Jahresgehalt: 3.500 € × 13,5 = 47.250 €</li>
-            <li>Effektiver Stundenlohn: 47.250 € ÷ 2.080 Std. = <strong>22,72 € / Stunde</strong></li>
+            <li>Jahresarbeitsstunden: 40 × 52 = 2.080 Stunden</li>
+            <li>Effektiver Stundenlohn: 47.250 € ÷ 2.080 = <strong>22,72 € / Stunde</strong></li>
           </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Überstunden und Stundenlohn 2026</h3>
-          <p>
-            Überstunden werden auf Basis Ihres regulären Stundenlohns berechnet. Nutzen Sie den 
-            <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstunden-Rechner</a>, um Ihre Vergütung für Mehrarbeit zu berechnen.
-          </p>
-          <p>
-            <strong>Neu ab 2026:</strong> Überstundenzuschläge bis 25 % des Grundlohns können 
-            steuerfrei sein (Arbeitsmarktstärkungsgesetz). Dies gilt für Arbeit über der tariflichen 
-            Wochenarbeitszeit (mind. 34 Stunden) bzw. über 40 Stunden ohne Tarifvertrag. Der 
-            Grundlohn für Überstunden bleibt steuer- und abgabenpflichtig – berechnen Sie Ihre 
-            <a href="/lohnsteuer-rechner" class="text-blue-600 hover:underline">Lohnsteuer</a> entsprechend.
-          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Brutto vs. Netto Stundenlohn</h3>
           <p>
             Der in diesem Rechner berechnete Stundenlohn ist der <strong>Brutto-Stundenlohn</strong> 
-            – also vor Abzug von <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer</a>, 
-            <a href="/soli-rechner" class="text-blue-600 hover:underline">Solidaritätszuschlag</a> und Sozialabgaben. 
-            Der tatsächliche Netto-Stundenlohn hängt von Ihrer <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklasse</a>, 
-            Kinderfreibeträgen und Sozialabgaben ab.
+            – also vor Abzug von <a href="/lohnsteuer-rechner" class="text-blue-600 hover:underline">Lohnsteuer</a>, <a href="/soli-rechner" class="text-blue-600 hover:underline">Solidaritätszuschlag</a> und Sozialabgaben. Der tatsächliche Netto-Stundenlohn 
+            hängt von Ihrer <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklasse</a>, Kinderfreibeträgen, Kirchensteuer und <a href="/krankenkassenbeitrag-rechner" class="text-blue-600 hover:underline">Krankenkassenbeiträgen</a> ab.
           </p>
           <p>
             Für die Berechnung Ihres Nettogehalts nutzen Sie unseren 
             <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>.
           </p>
           
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundenlohn bei Teilzeit &amp; Minijob</h3>
+          <p>
+            Der <strong>Stundenlohn bleibt bei Teilzeit grundsätzlich gleich</strong> – nur die Anzahl der 
+            gearbeiteten Stunden ändert sich. Das ist gesetzlich durch das Teilzeit- und Befristungsgesetz (TzBfG) geschützt. Bei einem Stundenlohn von 20 € ergibt sich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>20 Stunden/Woche:</strong> 20 × 4,33 × 20 € = 1.732 € brutto/Monat</li>
+            <li><strong>30 Stunden/Woche:</strong> 30 × 4,33 × 20 € = 2.598 € brutto/Monat</li>
+            <li><strong>40 Stunden/Woche:</strong> 40 × 4,33 × 20 € = 3.464 € brutto/Monat</li>
+          </ul>
+          <p>
+            Beim <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> (556-Euro-Grenze 2026) ergibt sich bei Mindestlohn eine maximale Arbeitszeit von ca. 40 Stunden/Monat. Bei einem <a href="/midijob-rechner" class="text-blue-600 hover:underline">Midijob</a> (556,01–2.000 €) fallen reduzierte Sozialabgaben an.
+          </p>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">5 typische Fehler bei der Stundenlohn-Berechnung</h3>
-          <ol class="list-decimal pl-5 space-y-2">
-            <li><strong>Faktor 4 statt 4,33 verwenden:</strong> Viele rechnen mit 4 Wochen pro Monat. Das ergibt einen zu hohen Stundenlohn, denn ein Monat hat im Schnitt 4,33 Wochen (52 ÷ 12).</li>
-            <li><strong>Netto mit Brutto verwechseln:</strong> Der Stundenlohn wird immer auf Brutto-Basis berechnet. Der Netto-Stundenlohn ist je nach <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklasse</a> 30–50 % niedriger.</li>
-            <li><strong>Sonderzahlungen vergessen:</strong> Wer Urlaubs- oder Weihnachtsgeld erhält, hat einen höheren effektiven Stundenlohn als die einfache Formel ergibt.</li>
-            <li><strong>Minijob-Grenze ignorieren:</strong> Bei einem <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> liegt die Verdienstgrenze 2026 bei 603 €/Monat. Bei 13,90 € Mindestlohn sind das maximal ~43 Stunden/Monat.</li>
-            <li><strong>Überstunden nicht einrechnen:</strong> Wer regelmäßig unbezahlte Überstunden leistet, hat einen niedrigeren effektiven Stundenlohn. Berechnen Sie Ihre tatsächliche Arbeitszeit mit dem <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage-Rechner</a>.</li>
-          </ol>
-          
+          <div class="bg-red-50 border border-red-100 rounded-lg p-4">
+            <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+              <li>
+                <strong>Falsche Monatsstunden verwenden:</strong> Viele rechnen mit 160 Stunden (4 Wochen × 40 Std.), aber korrekt sind <strong>173,33 Stunden</strong> (4,33 Wochen × 40 Std.). Dieser Fehler führt zu einem um ca. 8 % zu hohen Stundenlohn.
+              </li>
+              <li>
+                <strong>Sonderzahlungen vergessen:</strong> Wer Urlaubs- und Weihnachtsgeld nicht einrechnet, unterschätzt den effektiven Stundenlohn. Umgekehrt darf man Sonderzahlungen <em>nicht</em> auf den Mindestlohn anrechnen.
+              </li>
+              <li>
+                <strong>Brutto und Netto verwechseln:</strong> Der berechnete Stundenlohn ist immer der <strong>Bruttowert</strong>. Der Nettolohn hängt von der <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer</a> und Sozialabgaben ab und kann je nach Steuerklasse 30–45 % niedriger sein.
+              </li>
+              <li>
+                <strong>Zuschläge nicht berücksichtigen:</strong> Überstunden-, Nacht-, Sonntags- und Feiertagszuschläge erhöhen den tatsächlichen Stundenverdienst, werden aber bei der einfachen Formel nicht erfasst.
+              </li>
+              <li>
+                <strong>Selbstständige: Nur abrechenbare Stunden kalkulieren:</strong> Freelancer vergessen oft Akquise, Buchhaltung, Urlaub und Krankheit. Realistisch sind nur 70–80 % der Arbeitszeit abrechenbar – der Stundensatz muss entsprechend höher angesetzt werden.
+              </li>
+            </ol>
+          </div>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderfälle beim Stundenlohn</h3>
+          <div class="space-y-4">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-800 mb-2">🔄 Stundenlohn bei Überstunden</h4>
+              <p>Überstunden werden mindestens mit dem regulären Stundenlohn vergütet. Tarifverträge sehen häufig <strong>Zuschläge von 25–50 %</strong> vor. Nutzen Sie den <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstunden-Rechner</a>, um Ihre Überstundenvergütung zu berechnen.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-800 mb-2">🚗 Stundenlohn und Pendlerkosten</h4>
+              <p>Wer lange Arbeitswege hat, sollte den „effektiven Stundenlohn" inklusive Pendelzeit betrachten. Immerhin können Sie die <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> von 0,30 € (ab dem 21. km: 0,38 €) pro Entfernungskilometer steuerlich absetzen.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-800 mb-2">🏠 Stundenlohn bei Homeoffice</h4>
+              <p>Im Homeoffice entfallen Pendelzeiten und -kosten, was den effektiven Stundenlohn erhöht. Zusätzlich können Sie die <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice-Pauschale</a> von bis zu 6 € pro Tag (max. 1.260 €/Jahr) steuerlich geltend machen.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-800 mb-2">🚘 Stundenlohn mit Firmenwagen</h4>
+              <p>Ein <a href="/firmenwagen-rechner" class="text-blue-600 hover:underline">Firmenwagen</a> ist ein geldwerter Vorteil, der den effektiven Stundenlohn erhöht. Je nach Fahrzeug kann der geldwerte Vorteil mehrere hundert Euro pro Monat betragen – muss aber versteuert werden.</p>
+            </div>
+          </div>
           
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Minijob (geringfügige Beschäftigung)</h4>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittliche Stundenlöhne in Deutschland</h3>
           <p>
-            Die <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob-Grenze</a> liegt 2026 bei 
-            <strong>603 € pro Monat</strong> (7.236 €/Jahr). Bei einem Stundenlohn von 13,90 € (Mindestlohn) 
-            können Sie maximal ca. 43 Stunden monatlich arbeiten. Wichtig: Mehrere Minijobs werden zusammengerechnet – 
-            überschreiten Sie die Grenze, werden alle Jobs sozialversicherungspflichtig.
-          </p>
-          
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Midijob (Übergangsbereich)</h4>
-          <p>
-            Im <a href="/midijob-rechner" class="text-blue-600 hover:underline">Midijob</a> (603,01 € bis 2.000 €/Monat) 
-            zahlen Sie reduzierte Sozialabgaben. Bei 15 €/Stunde und 30 Stunden/Woche verdienen Sie ca. 1.949 € brutto – 
-            ideal im Übergangsbereich.
-          </p>
-          
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Kurzarbeit</h4>
-          <p>
-            Bei <a href="/kurzarbeitergeld-rechner" class="text-blue-600 hover:underline">Kurzarbeit</a> bleibt Ihr vertraglich 
-            vereinbarter Stundenlohn gleich – Sie arbeiten nur weniger Stunden. Das Kurzarbeitergeld (60–67 % des 
-            Netto-Entgeltausfalls) kompensiert einen Teil des Verdienstausfalls.
-          </p>
-          
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Abfindung und effektiver Stundenlohn</h4>
-          <p>
-            Bei einer <a href="/abfindung-rechner" class="text-blue-600 hover:underline">Abfindung</a> wird diese nicht auf den 
-            Stundenlohn angerechnet. Sie ist eine einmalige Entschädigung für den Verlust des Arbeitsplatzes und wird 
-            nach der Fünftelregelung versteuert.
-          </p>
-          
-          <h4 class="text-base font-semibold text-gray-700 mt-4">Pendlerpauschale und realer Stundenlohn</h4>
-          <p>
-            Lange Pendelzeiten senken Ihren effektiven Stundenlohn erheblich. Prüfen Sie mit dem 
-            <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale-Rechner</a>, ob sich 
-            Ihr Arbeitsweg steuerlich lohnt. Ab dem 21. Kilometer können Sie 38 Cent pro Kilometer absetzen.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittliche Stundenlöhne in Deutschland 2026</h3>
-          <p>
-            Nach Angaben des Statistischen Bundesamts lag der durchschnittliche Brutto-Stundenverdienst 
-            in Deutschland bei etwa <strong>26 €</strong>. Die Unterschiede nach Branchen sind groß:
+            Nach Angaben des Statistischen Bundesamts lag der durchschnittliche Bruttostundenverdienst 
+            in Deutschland 2025 bei etwa <strong>24–26 €</strong>. Die Unterschiede nach Branchen sind erheblich:
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>Finanz- und Versicherungsbranche:</strong> ca. 36 €/Stunde</li>
             <li><strong>IT und Kommunikation:</strong> ca. 34 €/Stunde</li>
+            <li><strong>Freiberufliche/wissenschaftliche Dienste:</strong> ca. 32 €/Stunde</li>
             <li><strong>Verarbeitendes Gewerbe:</strong> ca. 27 €/Stunde</li>
+            <li><strong>Baugewerbe:</strong> ca. 21 €/Stunde</li>
             <li><strong>Handel:</strong> ca. 21 €/Stunde</li>
             <li><strong>Gastgewerbe:</strong> ca. 15 €/Stunde</li>
           </ul>
           <p>
-            Vergleichen Sie Ihr Gehalt mit dem Branchendurchschnitt mithilfe unseres 
-            <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:underline">Gehaltsvergleich-Rechners</a>.
+            Wie Ihr persönliches Gehalt im Vergleich abschneidet, können Sie mit unserem <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:underline">Gehaltsvergleich-Rechner</a> prüfen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum der Stundenlohn wichtig ist</h3>
-          <p>
-            Der Stundenlohn ist eine wichtige Kennzahl für verschiedene Situationen:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Gehaltsverhandlung:</strong> Vergleichen Sie Ihr Gehalt über den <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:underline">Gehaltsvergleich</a></li>
-            <li><strong>Jobwechsel:</strong> Vergleichen Sie Angebote mit unterschiedlichen Arbeitszeiten</li>
-            <li><strong>Überstunden:</strong> Basis für <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstundenvergütung</a> und Zuschläge</li>
-            <li><strong>Freelancing:</strong> Kalkulieren Sie Ihren Stundensatz für Aufträge</li>
-            <li><strong>Nebenjob:</strong> Prüfen Sie, ob der <a href="/minijob-rechner" class="text-blue-600 hover:underline">Nebenjob</a> fair bezahlt wird</li>
-            <li><strong>Elternzeit:</strong> Basis für die Berechnung des <a href="/elterngeld-rechner" class="text-blue-600 hover:underline">Elterngelds</a></li>
-            <li><strong>Rente:</strong> Höherer Stundenlohn = höhere <a href="/renten-rechner" class="text-blue-600 hover:underline">Rentenpunkte</a></li>
-          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">💡 Was bedeutet das für dich?</h3>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <p class="text-gray-700 mb-3">
+              Der Stundenlohn macht <strong>Jobangebote vergleichbar</strong>. Ein Gehalt von 4.000 € bei 40 Stunden/Woche (23,09 €/Std.) ist weniger wert als 3.600 € bei 35 Stunden (19,16 €/Std.) – denn Sie haben 5 Stunden mehr Freizeit pro Woche. Rechnen Sie immer in Stundenlohn um, bevor Sie sich entscheiden.
+            </p>
+            <p class="text-gray-700 mb-3">
+              <strong>Für Gehaltsverhandlungen:</strong> Kennen Sie Ihren Stundenlohn, können Sie gezielt argumentieren. „Mein Stundenlohn liegt bei 18 €, der Branchendurchschnitt bei 24 €" ist überzeugender als nur das Monatsgehalt zu nennen.
+            </p>
+            <p class="text-gray-700">
+              <strong>Tipp:</strong> Berechnen Sie auch Ihren <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Nettolohn</a>, um zu sehen, was tatsächlich auf Ihrem Konto ankommt. Berücksichtigen Sie dabei Ihre <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklasse</a> und mögliche <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    
-    <!-- FAQ Section (Collapsible) -->
+
+    <!-- FAQ-Sektion (collapsible) -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Stundenlohn</h2>
         <div class="space-y-3">
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Wie berechne ich meinen Stundenlohn aus dem Monatsgehalt?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Teilen Sie Ihr Brutto-Monatsgehalt durch die monatlichen Arbeitsstunden: <strong>Stundenlohn = Monatsgehalt ÷ (Wochenstunden × 4,33)</strong>. Bei 3.500 € und 40 Stunden/Woche: 3.500 ÷ 173,2 = 20,21 €/Stunde.</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Wie hoch ist der Mindestlohn 2026 in Deutschland?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Seit dem 1. Januar 2026 beträgt der gesetzliche <a href="/mindestlohn-rechner" class="text-blue-600 hover:underline">Mindestlohn 13,90 € pro Stunde</a>. Bei Vollzeit (40 Std./Woche) entspricht das ca. 2.409 € brutto/Monat. Für 2027 ist eine Erhöhung auf 14,60 € geplant.</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Wie viele Stunden darf ich im Minijob arbeiten?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Die <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob-Grenze</a> liegt 2026 bei 603 €/Monat. Beim Mindestlohn von 13,90 € können Sie maximal ca. 43 Stunden pro Monat arbeiten (603 ÷ 13,90 ≈ 43,4). Verdienen Sie mehr pro Stunde, sind entsprechend weniger Stunden möglich.</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Sind Überstundenzuschläge ab 2026 steuerfrei?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Ja, teilweise: Überstundenzuschläge bis 25 % des Grundlohns können ab 2026 steuerfrei sein (Arbeitsmarktstärkungsgesetz). Voraussetzung: Die Arbeitszeit übersteigt die tarifliche Wochenarbeitszeit (mind. 34 Std.) bzw. 40 Stunden ohne Tarifvertrag. Berechnen Sie Ihre <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstundenvergütung</a> hier.</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Ist der Stundenlohn bei Teilzeit niedriger als bei Vollzeit?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Nein, der Stundenlohn bleibt bei <a href="/teilzeit-rechner" class="text-blue-600 hover:underline">Teilzeit</a> gleich – nur das Monatsgehalt sinkt proportional. Bei fairem Teilzeit-Verhältnis muss der gleiche Stundenlohn wie bei Vollzeit gezahlt werden (Diskriminierungsverbot).</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Wie rechne ich Urlaubs- und Weihnachtsgeld in den Stundenlohn ein?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Addieren Sie alle Sonderzahlungen zum Jahresgehalt und teilen Sie durch die jährlichen Arbeitsstunden: (Monatsgehalt × 12 + Sonderzahlungen) ÷ (Wochenstunden × 52). Beispiel: 3.500 € × 13,5 Gehälter ÷ 2.080 Std. = 22,72 €/Stunde effektiv.</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Was ist der Unterschied zwischen Brutto- und Netto-Stundenlohn?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Der Brutto-Stundenlohn ist Ihr Verdienst vor Abzügen. Davon gehen <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer</a>, <a href="/soli-rechner" class="text-blue-600 hover:underline">Solidaritätszuschlag</a>, ggf. Kirchensteuer und Sozialversicherungsbeiträge ab. Der Netto-Stundenlohn ist je nach <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklasse</a> 30–50 % niedriger.</p>
-            </div>
-          </details>
-          
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
-              Wie hoch ist der durchschnittliche Stundenlohn in Deutschland?
-              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Der durchschnittliche Brutto-Stundenverdienst liegt bei ca. 26 €/Stunde. Branchen-Unterschiede: IT ~34 €, Finanzen ~36 €, Gastgewerbe ~15 €. Vergleichen Sie Ihr Gehalt mit dem <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:underline">Gehaltsvergleich-Rechner</a>.</p>
-            </div>
-          </details>
+          {faqData.map((faq) => (
+            <details class="group border border-gray-200 rounded-lg">
+              <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span class="font-medium text-gray-800 text-sm pr-4">{faq.question}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </div>
+
     <!-- Verwandte Rechner -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -371,6 +338,22 @@ const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenl
           <a href="/ueberstunden-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">⏱️</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Überstunden-Rechner</p>
+          </a>
+          <a href="/arbeitstage-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📅</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Arbeitstage-Rechner</p>
+          </a>
+          <a href="/gehaltsvergleich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gehaltsvergleich-Rechner</p>
+          </a>
+          <a href="/steuerklassen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Steuerklassen-Rechner</p>
+          </a>
+          <a href="/minijob-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Minijob-Rechner</p>
           </a>
         </div>
       </div>
@@ -401,72 +384,14 @@ const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenl
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Wie berechne ich meinen Stundenlohn aus dem Monatsgehalt?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Teilen Sie Ihr Brutto-Monatsgehalt durch die monatlichen Arbeitsstunden: Stundenlohn = Monatsgehalt ÷ (Wochenstunden × 4,33). Bei 3.500 € und 40 Stunden/Woche: 3.500 ÷ 173,2 = 20,21 €/Stunde."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie hoch ist der Mindestlohn 2026 in Deutschland?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Seit dem 1. Januar 2026 beträgt der gesetzliche Mindestlohn 13,90 € pro Stunde. Bei Vollzeit (40 Std./Woche) entspricht das ca. 2.409 € brutto/Monat. Für 2027 ist eine Erhöhung auf 14,60 € geplant."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie viele Stunden darf ich im Minijob arbeiten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Minijob-Grenze liegt 2026 bei 603 €/Monat. Beim Mindestlohn von 13,90 € können Sie maximal ca. 43 Stunden pro Monat arbeiten (603 ÷ 13,90 ≈ 43,4). Verdienen Sie mehr pro Stunde, sind entsprechend weniger Stunden möglich."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Sind Überstundenzuschläge ab 2026 steuerfrei?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Teilweise: Überstundenzuschläge bis 25 % des Grundlohns können ab 2026 steuerfrei sein (Arbeitsmarktstärkungsgesetz). Voraussetzung: Die Arbeitszeit übersteigt die tarifliche Wochenarbeitszeit (mind. 34 Std.) bzw. 40 Stunden ohne Tarifvertrag."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ist der Stundenlohn bei Teilzeit niedriger als bei Vollzeit?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nein, der Stundenlohn bleibt bei Teilzeit gleich – nur das Monatsgehalt sinkt proportional. Bei fairem Teilzeit-Verhältnis muss der gleiche Stundenlohn wie bei Vollzeit gezahlt werden (Diskriminierungsverbot)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie rechne ich Urlaubs- und Weihnachtsgeld in den Stundenlohn ein?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Addieren Sie alle Sonderzahlungen zum Jahresgehalt und teilen Sie durch die jährlichen Arbeitsstunden: (Monatsgehalt × 12 + Sonderzahlungen) ÷ (Wochenstunden × 52). Beispiel: 3.500 € × 13,5 Gehälter ÷ 2.080 Std. = 22,72 €/Stunde effektiv."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Was ist der Unterschied zwischen Brutto- und Netto-Stundenlohn?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Der Brutto-Stundenlohn ist Ihr Verdienst vor Abzügen. Davon gehen Einkommensteuer, Solidaritätszuschlag, ggf. Kirchensteuer und Sozialversicherungsbeiträge ab. Der Netto-Stundenlohn ist je nach Steuerklasse 30–50 % niedriger."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie hoch ist der durchschnittliche Stundenlohn in Deutschland?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Der durchschnittliche Brutto-Stundenverdienst in Deutschland liegt bei ca. 26 € pro Stunde. Branchen-Unterschiede: IT ca. 34 €, Finanzen ca. 36 €, Gastgewerbe ca. 15 €. Vergleichen Sie Ihr Gehalt mit dem Gehaltsvergleich-Rechner."
-        }
+    "mainEntity": faqData.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
       }
-    ]
+    }))
   })} />
 
   <!-- HowTo Structured Data -->
