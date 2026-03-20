@@ -4,8 +4,8 @@ import RentenRechner from '../components/rechner/RentenRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
 const title = "Renten-Rechner 2025 & 2026 – Gesetzliche Rente kostenlos berechnen";
-const description = "Renten-Rechner 2026: Berechnen Sie Ihre gesetzliche Rente. Entgeltpunkte, Regelaltersgrenze, Rente mit 63. Aktueller Rentenwert 40,79€. Kostenlos & sofort.";
-const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpunkte, Rentenhöhe berechnen, Regelaltersgrenze, Rente mit 63, Rentenformel, Deutsche Rentenversicherung";
+const description = "Renten-Rechner 2026: Berechnen Sie Ihre gesetzliche Rente. Entgeltpunkte, Regelaltersgrenze, Rente mit 63. Aktueller Rentenwert 40,79€ (ab Juli 2026: 42,52€). Kostenlos & sofort.";
+const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpunkte, Rentenhöhe berechnen, Regelaltersgrenze, Rente mit 63, Rentenformel, Deutsche Rentenversicherung, Rentenwert 2026, Rentenerhöhung";
 ---
 
 <Layout 
@@ -37,6 +37,18 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
       </div>
     </header>
 
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-900">
+        <div class="flex flex-wrap gap-x-4 gap-y-1">
+          <span>📅 Zuletzt aktualisiert: 20.03.2026</span>
+          <span>📖 Rechtsgrundlage: SGB VI (§§ 63–68, 77, 255e), RV-Leistungsverbesserungs- und -Stabilisierungsgesetz</span>
+        </div>
+        <p class="mt-2"><strong>✅ Berücksichtigt:</strong> Rentenformel (Entgeltpunkte × Zugangsfaktor × Rentenartfaktor × Rentenwert), Regelaltersgrenze nach Geburtsjahr, Abschläge bei Frühverrentung, aktueller Rentenwert 40,79 € (ab 01.07.2026: 42,52 €), Durchschnittsentgelt 51.944 €</p>
+        <p class="mt-1"><strong>⚠️ Nicht berücksichtigt:</strong> Betriebsrente, <a href="/riester-rechner" class="underline hover:text-blue-700">Riester-Rente</a>, private Vorsorge, individuelle Kindererziehungs-/Pflegezeiten, Zurechnungszeiten bei <a href="/erwerbsminderungsrente-rechner" class="underline hover:text-blue-700">Erwerbsminderung</a>, steuerliche Belastung der Rente (→ <a href="/rentensteuer-rechner" class="underline hover:text-blue-700">Rentensteuer-Rechner</a>)</p>
+      </div>
+    </div>
+
     <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <RentenRechner client:load />
@@ -51,7 +63,9 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
           <p>
             Mit unserem <strong>Renten-Rechner</strong> berechnen Sie kostenlos Ihre voraussichtliche 
             gesetzliche Rente. Die Berechnung basiert auf der offiziellen <strong>Rentenformel</strong> 
-            der Deutschen Rentenversicherung mit dem aktuellen Rentenwert von <strong>40,79€</strong>.
+            der Deutschen Rentenversicherung. Der aktuelle Rentenwert beträgt <strong>40,79 €</strong> — ab dem 
+            1. Juli 2026 steigt er auf <strong>42,52 €</strong> (+4,24 %). Wer zusätzlich wissen möchte, wie viel 
+            Netto von der Bruttorente übrig bleibt, nutzt unseren <a href="/rentensteuer-rechner" class="text-blue-600 hover:underline">Rentensteuer-Rechner</a>.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Rentenformel erklärt</h3>
@@ -63,38 +77,82 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
               <strong>Rente = Entgeltpunkte × Zugangsfaktor × Rentenartfaktor × Rentenwert</strong>
             </p>
           </div>
+          <p>
+            Jeder Faktor hat eine konkrete Bedeutung: Die <strong>Entgeltpunkte</strong> spiegeln Ihre Beitragsleistung wider, 
+            der <strong>Zugangsfaktor</strong> berücksichtigt Abschläge oder Zuschläge bei vorzeitigem bzw. späterem Rentenbeginn, 
+            der <strong>Rentenartfaktor</strong> unterscheidet zwischen Altersrente (1,0) und z. B. 
+            <a href="/erwerbsminderungsrente-rechner" class="text-blue-600 hover:underline">Erwerbsminderungsrente</a> (0,5 bei teilweiser EM), 
+            und der <strong>Rentenwert</strong> wird jährlich an die Lohnentwicklung angepasst.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind Entgeltpunkte?</h3>
           <p>
-            <strong>Entgeltpunkte</strong> sind das Herzstück der Rentenberechnung. Sie spiegeln 
+            <strong>Entgeltpunkte</strong> (auch Rentenpunkte) sind das Herzstück der Rentenberechnung. Sie spiegeln 
             wider, wie viel Sie im Vergleich zum Durchschnittsverdiener eingezahlt haben:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>1 Entgeltpunkt</strong> = Durchschnittsverdienst eines Jahres (2026: 51.944€)</li>
-            <li>Verdienen Sie mehr, erhalten Sie mehr als 1 Punkt</li>
+            <li><strong>1 Entgeltpunkt</strong> = Durchschnittsverdienst eines Jahres (2026: vorläufig 51.944 €)</li>
+            <li>Verdienen Sie mehr, erhalten Sie mehr als 1 Punkt pro Jahr</li>
             <li>Verdienen Sie weniger, erhalten Sie entsprechend weniger</li>
-            <li>Maximum durch Beitragsbemessungsgrenze: ca. 2 Punkte/Jahr</li>
+            <li>Maximum durch <strong>Beitragsbemessungsgrenze</strong>: ca. 1,95 Punkte/Jahr (BBG 2026: 8.450 €/Monat = 101.400 €/Jahr)</li>
           </ul>
+          <p>
+            Tipp: Wie sich die Entgeltpunkte auf Ihr monatliches Netto auswirken, sehen Sie im 
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>. Den tatsächlichen 
+            <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Stundenlohn</a> Ihres Gehalts können Sie ebenfalls ermitteln.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">3 Beispielrechnungen</h3>
           
           <div class="bg-green-50 p-4 rounded-lg my-4">
-            <h4 class="font-semibold text-green-800 mb-2">Beispielrechnung</h4>
+            <h4 class="font-semibold text-green-800 mb-2">Beispiel 1: Durchschnittsverdiener (45 Beitragsjahre)</h4>
             <ul class="space-y-1 text-sm text-green-700">
-              <li>Bruttolohn: 4.000€/Monat = 48.000€/Jahr</li>
-              <li>Entgeltpunkte pro Jahr: 48.000€ ÷ 51.944€ = <strong>0,92 EP</strong></li>
-              <li>Bei 40 Beitragsjahren: 40 × 0,92 = <strong>36,8 EP</strong></li>
-              <li>Monatsrente: 36,8 × 40,79€ = <strong>ca. 1.501€</strong></li>
+              <li>Bruttolohn: 4.329 €/Monat = 51.944 €/Jahr (= Durchschnittsentgelt)</li>
+              <li>Entgeltpunkte pro Jahr: 51.944 € ÷ 51.944 € = <strong>1,00 EP</strong></li>
+              <li>Bei 45 Beitragsjahren: 45 × 1,00 = <strong>45,00 EP</strong></li>
+              <li>Monatsrente (bis 06/2026): 45,00 × 40,79 € = <strong>1.835,55 € brutto</strong></li>
+              <li>Monatsrente (ab 07/2026): 45,00 × 42,52 € = <strong>1.913,40 € brutto</strong></li>
+              <li>→ Die <a href="/rentensteuer-rechner" class="text-green-800 underline">Rentensteuer</a> und Krankenversicherung werden noch abgezogen</li>
+            </ul>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <h4 class="font-semibold text-green-800 mb-2">Beispiel 2: Gutverdiener (40 Beitragsjahre)</h4>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li>Bruttolohn: 6.500 €/Monat = 78.000 €/Jahr</li>
+              <li>Entgeltpunkte pro Jahr: 78.000 € ÷ 51.944 € = <strong>1,50 EP</strong></li>
+              <li>Bei 40 Beitragsjahren: 40 × 1,50 = <strong>60,00 EP</strong></li>
+              <li>Monatsrente (bis 06/2026): 60,00 × 40,79 € = <strong>2.447,40 € brutto</strong></li>
+              <li>→ Netto deutlich weniger: <a href="/einkommensteuer-rechner" class="text-green-800 underline">Einkommensteuer</a> + KV/PV beachten!</li>
+            </ul>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <h4 class="font-semibold text-green-800 mb-2">Beispiel 3: Teilzeitkraft mit Kindererziehung (30 + 6 Jahre)</h4>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li>Bruttolohn: 2.500 €/Monat = 30.000 €/Jahr (Teilzeit)</li>
+              <li>Entgeltpunkte pro Jahr: 30.000 € ÷ 51.944 € = <strong>0,58 EP</strong></li>
+              <li>30 Beitragsjahre Teilzeit: 30 × 0,58 = <strong>17,40 EP</strong></li>
+              <li>Kindererziehungszeit (2 Kinder ab 1992): 2 × 3 Jahre × ~1 EP = <strong>+6,00 EP</strong></li>
+              <li>Gesamt: 23,40 EP → Monatsrente: 23,40 × 40,79 € = <strong>954,49 € brutto</strong></li>
+              <li>→ Prüfen Sie den Anspruch auf <a href="/grundrente-rechner" class="text-green-800 underline">Grundrente</a> (Aufstockung bei mind. 33 Jahren)</li>
             </ul>
           </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Regelaltersgrenze nach Geburtsjahr</h3>
           <p>
-            Die <strong>Regelaltersgrenze</strong> steigt schrittweise auf 67 Jahre an:
+            Die <strong>Regelaltersgrenze</strong> steigt schrittweise auf 67 Jahre an. Wer vor Erreichen in Rente 
+            gehen möchte, muss mit Abschlägen rechnen — oder nutzt den <a href="/fruehrente-rechner" class="text-blue-600 hover:underline">Frührente-Rechner</a>, 
+            um das genaue Eintrittsalter zu berechnen:
           </p>
           <div class="bg-gray-100 p-4 rounded-lg my-4">
             <ul class="space-y-1 text-sm">
               <li><strong>1958:</strong> 66 Jahre</li>
+              <li><strong>1959:</strong> 66 Jahre + 2 Monate</li>
               <li><strong>1960:</strong> 66 Jahre + 4 Monate</li>
+              <li><strong>1961:</strong> 66 Jahre + 6 Monate</li>
               <li><strong>1962:</strong> 66 Jahre + 8 Monate</li>
+              <li><strong>1963:</strong> 66 Jahre + 10 Monate</li>
               <li><strong>ab 1964:</strong> 67 Jahre</li>
             </ul>
           </div>
@@ -108,31 +166,250 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
             <li><strong>Jahrgang 1960:</strong> Abschlagsfrei ab 64 Jahren + 4 Monate</li>
             <li><strong>Jahrgang 1964+:</strong> Abschlagsfrei ab 65 Jahren</li>
           </ul>
+          <p>
+            Alternativ können Sie mit der <a href="/altersteilzeit-rechner" class="text-blue-600 hover:underline">Altersteilzeit</a> den 
+            Übergang in den Ruhestand gleitend gestalten.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Abschläge bei Frühverrentung</h3>
           <p>
             Ohne 45 Beitragsjahre können Sie frühestens mit 63 in Rente, jedoch mit 
-            <strong>Abschlägen von 0,3% pro Monat</strong> (maximal 14,4% = 48 Monate). 
-            Diese Abzüge gelten lebenslang!
+            <strong>Abschlägen von 0,3 % pro Monat</strong> (maximal 14,4 % = 48 Monate). 
+            Diese Abzüge gelten <strong>lebenslang</strong>! Bei einer Rente von 1.500 € brutto bedeutet das 
+            z. B. 216 € weniger pro Monat — für den Rest des Lebens.
+          </p>
+          <p>
+            Gut zu wissen: Sie können Abschläge durch <strong>freiwillige Sonderzahlungen</strong> an die Deutsche 
+            Rentenversicherung ausgleichen (ab 50 Jahren möglich). Das kostet 2026 ca. 9.700 € pro Entgeltpunkt. 
+            Ob sich das lohnt, hängt von Ihrer Lebenserwartung und Ihrem 
+            <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">persönlichen Steuersatz</a> ab — 
+            denn die Beiträge sind als Sonderausgaben voll absetzbar.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kindererziehungszeiten und Rente</h3>
+          <p>
+            Eltern erhalten für die Erziehung von Kindern <strong>Entgeltpunkte gutgeschrieben</strong>, 
+            als hätten sie ein Durchschnittsgehalt verdient:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kinder ab 1992:</strong> 3 Jahre = ca. 3 Entgeltpunkte = <strong>+122,37 €/Monat</strong> Rente</li>
+            <li><strong>Kinder vor 1992:</strong> 2,5 Jahre = ca. 2,5 Entgeltpunkte (Mütterrente II) = <strong>+101,98 €/Monat</strong></li>
+          </ul>
+          <p>
+            Die Kindererziehungszeiten müssen per Formular V0800 beantragt werden! Details zu Mütterrente und 
+            Berücksichtigungszeiten finden Sie im <a href="/muetterrente-rechner" class="text-blue-600 hover:underline">Mütterrente-Rechner</a>. 
+            Für die Planung der Elternzeit empfehlen wir den <a href="/elterngeld-rechner" class="text-blue-600 hover:underline">Elterngeld-Rechner</a>.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Werte 2026</h3>
           <div class="bg-gray-100 p-4 rounded-lg my-4">
             <ul class="space-y-2 text-sm">
-              <li><strong>Rentenwert:</strong> 40,79€ pro Entgeltpunkt</li>
-              <li><strong>Durchschnittsentgelt:</strong> 51.944€/Jahr</li>
-              <li><strong>Beitragssatz:</strong> 18,6% (je Hälfte AG/AN)</li>
-              <li><strong>Beitragsbemessungsgrenze:</strong> 8.450€/Monat</li>
-              <li><strong>Rentenniveau:</strong> 48% (Haltelinie)</li>
+              <li><strong>Rentenwert (bis 30.06.2026):</strong> 40,79 € pro Entgeltpunkt</li>
+              <li><strong>Rentenwert (ab 01.07.2026):</strong> 42,52 € pro Entgeltpunkt (+4,24 %)</li>
+              <li><strong>Durchschnittsentgelt (vorläufig):</strong> 51.944 €/Jahr</li>
+              <li><strong>Beitragssatz:</strong> 18,6 % (je Hälfte AG/AN = 9,3 %)</li>
+              <li><strong>Beitragsbemessungsgrenze:</strong> 8.450 €/Monat (101.400 €/Jahr)</li>
+              <li><strong>Rentenniveau:</strong> 48 % (gesetzliche Haltelinie)</li>
+              <li><strong>Rentenanpassung 01.07.2026:</strong> +4,24 %</li>
             </ul>
           </div>
+          <p>
+            Wie sich Beitragssatz und BBG auf Ihr Nettogehalt auswirken, zeigt der 
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>. Die gesamte 
+            <a href="/lohnsteuer-rechner" class="text-blue-600 hover:underline">Lohnsteuer</a> und Sozialabgaben-Berechnung 
+            können Sie dort nachvollziehen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rentenlücke: So groß ist die Differenz</h3>
+          <p>
+            Die Differenz zwischen Ihrem letzten Nettoeinkommen und der zu erwartenden Rente wird als 
+            <strong>Rentenlücke</strong> bezeichnet. Faustregel: Sie brauchen im Ruhestand ca. 80 % Ihres letzten 
+            Nettoeinkommens. Im <a href="/rentenluecke-rechner" class="text-blue-600 hover:underline">Rentenlücke-Rechner</a> 
+            sehen Sie genau, wie viel Ihnen fehlt — und ob eine <a href="/riester-rechner" class="text-blue-600 hover:underline">Riester-Rente</a>, 
+            ein <a href="/etf-sparplan-rechner" class="text-blue-600 hover:underline">ETF-Sparplan</a> oder freiwillige Beiträge 
+            die Lücke schließen können.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">5 typische Fehler bei der Rentenplanung</h3>
+          <div class="bg-red-50 p-4 rounded-lg my-4">
+            <ol class="list-decimal pl-5 space-y-2 text-sm text-red-800">
+              <li><strong>Bruttorente = Nettorente?</strong> Nein! Von der Bruttorente gehen Kranken- und Pflegeversicherung (~12 %) sowie <a href="/rentensteuer-rechner" class="text-red-900 underline">Steuern</a> ab. 2026 sind 86 % der Rente steuerpflichtig — bei Rentenbeginn 2040 sogar 100 %.</li>
+              <li><strong>Inflation ignorieren.</strong> 1.500 € Rente in 30 Jahren haben bei 2 % Inflation nur noch eine Kaufkraft von ca. 830 € heute. Nutzen Sie den <a href="/inflations-rechner" class="text-red-900 underline">Inflations-Rechner</a> zur Visualisierung.</li>
+              <li><strong>Renteninformation für bare Münze nehmen.</strong> Die Hochrechnung unterstellt konstantes Gehalt und keine Unterbrechungen — das ist selten realistisch.</li>
+              <li><strong>Versicherungskonto nicht prüfen.</strong> Fehlende Ausbildungszeiten, Kindererziehung oder Pflege können nachträglich eingetragen werden und erhöhen die Rente.</li>
+              <li><strong>Nur auf die gesetzliche Rente verlassen.</strong> Das Rentenniveau von 48 % bedeutet: Ein Durchschnittsverdiener erhält nach 45 Jahren nur knapp die Hälfte seines letzten Bruttos. Berechnen Sie Ihre <a href="/rentenluecke-rechner" class="text-red-900 underline">Rentenlücke</a>!</li>
+            </ol>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderfälle in der Rentenberechnung</h3>
+          
+          <div class="space-y-4 my-4">
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-800 mb-2">🔹 Rente und Hinzuverdienst</h4>
+              <p class="text-sm text-yellow-700">
+                Seit 2023 gibt es bei der Altersrente ab Regelaltersgrenze <strong>keine Hinzuverdienstgrenze</strong> mehr — 
+                Sie dürfen unbegrenzt dazuverdienen. Bei vorgezogener Altersrente gilt seit 2023 ebenfalls keine starre 
+                Grenze mehr: Einkünfte werden individuell angerechnet. Die Versteuerung des Hinzuverdienstes berechnen Sie 
+                mit dem <a href="/einkommensteuer-rechner" class="text-yellow-800 underline">Einkommensteuer-Rechner</a>.
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-800 mb-2">🔹 Erwerbsminderungsrente</h4>
+              <p class="text-sm text-yellow-700">
+                Wer aus gesundheitlichen Gründen nicht mehr arbeiten kann, hat Anspruch auf volle oder teilweise 
+                <a href="/erwerbsminderungsrente-rechner" class="text-yellow-800 underline">Erwerbsminderungsrente</a>. 
+                Seit 2024 wird die Zurechnungszeit bis zum vollendeten 67. Lebensjahr berechnet, was die Rente erhöht.
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-800 mb-2">🔹 Grundrente bei niedrigem Einkommen</h4>
+              <p class="text-sm text-yellow-700">
+                Wer mindestens 33 Jahre Grundrentenzeiten hat, aber unterdurchschnittlich verdient hat (max. 80 % 
+                des Durchschnittsentgelts), kann den <strong>Grundrentenzuschlag</strong> erhalten. Das sind bis zu 
+                0,5 Entgeltpunkte pro Jahr Aufstockung. Details im <a href="/grundrente-rechner" class="text-yellow-800 underline">Grundrente-Rechner</a>.
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-800 mb-2">🔹 Minijob und Rente</h4>
+              <p class="text-sm text-yellow-700">
+                Auch <a href="/minijob-rechner" class="text-yellow-800 underline">Minijobber</a> sammeln Entgeltpunkte — 
+                allerdings sehr wenige: Bei 538 € monatlich nur ca. 0,12 EP/Jahr. Die Beitragszeit zählt aber für 
+                die Wartezeit (z. B. für die Altersrente nach 35 Jahren). Der Eigenanteil beträgt 3,6 % (19,36 €/Monat).
+              </p>
+            </div>
+
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-yellow-800 mb-2">🔹 Witwenrente und Hinterbliebene</h4>
+              <p class="text-sm text-yellow-700">
+                Im Todesfall des Partners besteht Anspruch auf <a href="/witwenrente-rechner" class="text-yellow-800 underline">Witwenrente</a>: 
+                Große Witwenrente = 55 % der Rente des Verstorbenen (bei Eheschließung nach 2001), kleine Witwenrente = 25 %. 
+                Eigenes Einkommen wird teilweise angerechnet.
+              </p>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rentenerhöhung 2026: +4,24 % ab Juli</h3>
+          <p>
+            Zum <strong>1. Juli 2026</strong> steigen die Renten bundesweit um <strong>4,24 %</strong>. Der aktuelle 
+            Rentenwert erhöht sich von 40,79 € auf 42,52 €. Für die rund 21 Millionen Rentner bedeutet das 
+            pro 1.000 € Rente eine Erhöhung um 42,40 €. Die Anpassung ist eine Folge der positiven 
+            Lohnentwicklung 2025. Seit 2024 gibt es keine Unterscheidung mehr zwischen Ost und West.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Renteninformation verstehen</h3>
           <p>
-            Jährlich erhalten Sie ab 27 Jahren (mit 5 Beitragsjahren) eine 
-            <strong>Renteninformation</strong> per Post. Diese zeigt Ihre bisher erworbenen 
-            Ansprüche und eine Hochrechnung auf Basis Ihres aktuellen Verdienstes.
+            Ab 27 Jahren (mit 5 Beitragsjahren) erhalten Sie jährlich eine <strong>Renteninformation</strong> per Post. 
+            Ab 55 Jahren wird sie alle drei Jahre durch die ausführlichere <strong>Rentenauskunft</strong> ersetzt. 
+            Wichtig: Die Hochrechnung in der Renteninformation unterstellt ein konstantes Gehalt bis zur Rente — 
+            die Realität sieht oft anders aus.
           </p>
+          <p>
+            <strong>Tipp:</strong> Fordern Sie eine <strong>Kontenklärung</strong> an, um fehlende Zeiten 
+            (Ausbildung, Studium, Kindererziehung, Pflege, Wehr-/Zivildienst) nachtragen zu lassen. 
+            Das erhöht Ihre spätere Rente und kostet nichts!
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeutet das für dich?</h3>
+          <div class="bg-indigo-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm text-indigo-800">
+              <li>📊 <strong>Unter 40?</strong> Sie haben noch Zeit — aber fangen Sie jetzt an! Jedes Jahr Beitragszeit zählt. Prüfen Sie, ob ein <a href="/etf-sparplan-rechner" class="text-indigo-900 underline">ETF-Sparplan</a> als Ergänzung sinnvoll ist.</li>
+              <li>📊 <strong>40–55?</strong> Lassen Sie eine Kontenklärung machen und berechnen Sie Ihre <a href="/rentenluecke-rechner" class="text-indigo-900 underline">Rentenlücke</a>. Prüfen Sie <a href="/riester-rechner" class="text-indigo-900 underline">Riester</a> oder freiwillige Beiträge als Steueroptimierung.</li>
+              <li>📊 <strong>Über 55?</strong> Nutzen Sie den <a href="/fruehrente-rechner" class="text-indigo-900 underline">Frührente-Rechner</a>, um den optimalen Zeitpunkt zu finden. Prüfen Sie Ausgleichszahlungen zur Vermeidung von Abschlägen.</li>
+              <li>📊 <strong>Teilzeit oder Minijob?</strong> Ihre Rente wird niedriger als gedacht! Nutzen Sie den <a href="/midijob-rechner" class="text-indigo-900 underline">Midijob-Rechner</a>, um die Auswirkungen auf die Sozialversicherung zu sehen.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Rente</h2>
+        
+        <div class="space-y-3">
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Wie genau ist der Renten-Rechner?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Der Rechner nutzt die offizielle Rentenformel der Deutschen Rentenversicherung mit den aktuellen Werten 2026 (Rentenwert 40,79 €, Durchschnittsentgelt 51.944 €). Er liefert eine gute Schätzung Ihrer gesetzlichen Altersrente. Nicht berücksichtigt werden individuelle Sonderzeiten (Kindererziehung, Pflege, Arbeitslosigkeit), die Ihre Rente erhöhen oder senken können. Für eine verbindliche Auskunft wenden Sie sich an die Deutsche Rentenversicherung.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Wann kann ich in Rente gehen?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Die Regelaltersgrenze liegt bei 67 Jahren (ab Jahrgang 1964). Frühere Jahrgänge gehen stufenweise früher. Mit 45 Beitragsjahren ist ein abschlagsfreier Renteneintritt ab 65 möglich (Jahrgang 1964+). Ohne 45 Jahre können Sie frühestens mit 63 in Rente — allerdings mit 0,3 % Abschlag pro vorgezogenem Monat (max. 14,4 %). Nutzen Sie den <a href="/fruehrente-rechner" class="text-blue-600 underline">Frührente-Rechner</a> für Ihr persönliches Ergebnis.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Zählen die letzten Jahre vor der Rente mehr?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Nein — jedes Beitragsjahr zählt gleich viel. Es gibt keinen „Endspurt-Bonus". Da viele kurz vor der Rente am meisten verdienen, sammeln sie in diesen Jahren oft mehr Entgeltpunkte. Aber der Mechanismus ist derselbe wie in jedem anderen Jahr: Ihr Gehalt wird durch das Durchschnittsentgelt geteilt. Wer sein Gehalt kennen möchte, kann den <a href="/gehaltsvergleich-rechner" class="text-blue-600 underline">Gehaltsvergleich</a> nutzen.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Kann ich Rentenpunkte kaufen?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Ja, durch freiwillige Beiträge können Sie Entgeltpunkte erwerben. Ab 50 Jahren können Sie gezielt Abschläge bei Frühverrentung ausgleichen. Ein Entgeltpunkt kostet 2026 etwa 9.700 € und bringt 40,79 € (bzw. ab Juli 42,52 €) monatliche Rente. Das lohnt sich besonders, wenn Sie die Beiträge steuerlich absetzen können — prüfen Sie das mit dem <a href="/einkommensteuer-rechner" class="text-blue-600 underline">Einkommensteuer-Rechner</a>.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Was bringt die Rentenerhöhung 2026?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Zum 1. Juli 2026 steigen die Renten um 4,24 %. Der Rentenwert erhöht sich von 40,79 € auf 42,52 €. Eine Rente von 1.500 € brutto steigt auf ca. 1.563,60 €. Achtung: Die Rentenerhöhung ist brutto — durch die Steuerpflicht (2026: 86 % steuerpflichtig) und Krankenversicherung fällt die Netto-Erhöhung geringer aus. Berechnen Sie die genaue Steuerbelastung mit dem <a href="/rentensteuer-rechner" class="text-blue-600 underline">Rentensteuer-Rechner</a>.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Wie wird die Rente versteuert?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Die gesetzliche Rente unterliegt der nachgelagerten Besteuerung. Der steuerpflichtige Anteil hängt vom Jahr des Renteneintritts ab: Rentenbeginn 2026 → 86 % steuerpflichtig, 2040 → 100 %. Das heißt: Wer 2026 in Rente geht, hat 14 % Freibetrag — lebenslang. Die genaue Steuerlast berechnen Sie im <a href="/rentensteuer-rechner" class="text-blue-600 underline">Rentensteuer-Rechner</a>. Den <a href="/kirchensteuer-rechner" class="text-blue-600 underline">Kirchensteuer-Anteil</a> sollten Kirchenmitglieder zusätzlich einkalkulieren.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Was ist das Rentenniveau von 48 %?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Das Rentenniveau von 48 % (Haltelinie) bedeutet: Ein Durchschnittsverdiener mit 45 Beitragsjahren erhält eine Standardrente, die vor Steuern 48 % des aktuellen Durchschnittseinkommens entspricht. Das Rentenpaket II sichert diese Haltelinie bis mindestens 2039 gesetzlich ab. Zusätzlich wird ein „Generationenkapital" als Kapitalstock aufgebaut, dessen Erträge ab Mitte der 2030er-Jahre den Beitragssatzanstieg dämpfen sollen.
+            </div>
+          </details>
+          
+          <details class="group bg-gray-50 rounded-lg">
+            <summary class="flex items-center justify-between p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-100 rounded-lg">
+              Was bringen Kindererziehungszeiten für die Rente?
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Für Kinder ab 1992 werden 3 Jahre Kindererziehungszeit gutgeschrieben — das entspricht ca. 3 Entgeltpunkten und derzeit 122,37 € Monatsrente pro Kind. Für Kinder vor 1992 gibt es 2,5 Jahre (Mütterrente II). Die Zeiten werden auf Antrag im Versicherungskonto gespeichert (Formular V0800). Zusätzlich gibt es Berücksichtigungszeiten bis zum 10. Geburtstag des Kindes, die für die Wartezeit (Mindestversicherungszeit) zählen. Mehr dazu im <a href="/muetterrente-rechner" class="text-blue-600 underline">Mütterrente-Rechner</a>.
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -154,9 +431,33 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
             <span class="text-2xl">🏦</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Riester-Rechner</p>
           </a>
-          <a href="/altersteilzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+          <a href="/erwerbsminderungsrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🩺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Erwerbsminderungsrente</p>
+          </a>
+          <a href="/fruehrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">⏰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Frührente-Rechner</p>
+          </a>
+          <a href="/grundrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundrente-Rechner</p>
+          </a>
+          <a href="/muetterrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mütterrente-Rechner</p>
+          </a>
+          <a href="/witwenrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Witwenrente-Rechner</p>
+          </a>
+          <a href="/altersteilzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔄</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Altersteilzeit-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
           </a>
         </div>
       </div>
@@ -184,8 +485,8 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
             <h3 class="font-semibold text-green-800 mb-2">Versicherungskonto klären</h3>
             <p class="text-green-700 text-sm">
               Überprüfen Sie regelmäßig Ihr <strong>Versicherungskonto</strong> auf Vollständigkeit. 
-              Fehlende Zeiten (Ausbildung, Kindererziehung, Pflege) können nachgetragen werden – 
-              das erhöht Ihre spätere Rente!
+              Fehlende Zeiten (Ausbildung, Studium, Kindererziehung, Pflege, Wehr-/Zivildienst) können nachgetragen werden – 
+              das erhöht Ihre spätere Rente! Den Antrag stellen Sie kostenlos über Formular V0100 bei der DRV.
             </p>
           </div>
         </div>
@@ -220,10 +521,10 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wie berechnet sich meine gesetzliche Rente?",
+        "name": "Wie genau ist der Renten-Rechner?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Rente berechnet sich nach der Formel: Entgeltpunkte × Zugangsfaktor × Rentenartfaktor × Rentenwert. 2026 beträgt der Rentenwert 40,79€ pro Entgeltpunkt. Ein Entgeltpunkt entspricht einem Jahr Arbeit zum Durchschnittslohn (51.944€)."
+          "text": "Der Rechner nutzt die offizielle Rentenformel der Deutschen Rentenversicherung mit den aktuellen Werten 2026 (Rentenwert 40,79 €, Durchschnittsentgelt 51.944 €). Er liefert eine gute Schätzung Ihrer gesetzlichen Altersrente. Nicht berücksichtigt werden individuelle Sonderzeiten (Kindererziehung, Pflege, Arbeitslosigkeit), die Ihre Rente erhöhen oder senken können."
         }
       },
       {
@@ -231,39 +532,55 @@ const keywords = "Renten Rechner, Rentenberechnung, gesetzliche Rente, Entgeltpu
         "name": "Wann kann ich in Rente gehen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Regelaltersgrenze liegt je nach Geburtsjahr zwischen 65 und 67 Jahren. Ab Jahrgang 1964 gilt einheitlich 67 Jahre. Mit 45 Beitragsjahren können Sie bis zu 2 Jahre früher abschlagsfrei in Rente gehen."
+          "text": "Die Regelaltersgrenze liegt bei 67 Jahren (ab Jahrgang 1964). Mit 45 Beitragsjahren ist ein abschlagsfreier Renteneintritt ab 65 möglich. Ohne 45 Jahre können Sie frühestens mit 63 in Rente — allerdings mit 0,3 % Abschlag pro vorgezogenem Monat (max. 14,4 %)."
         }
       },
       {
         "@type": "Question",
-        "name": "Was ist ein Entgeltpunkt?",
+        "name": "Zählen die letzten Jahre vor der Rente mehr?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ein Entgeltpunkt entspricht einem Jahr Arbeit zum Durchschnittslohn (2026: 51.944€). Verdienen Sie 60.000€, erhalten Sie 60.000 ÷ 51.944 = 1,16 Entgeltpunkte. Die Punkte werden über Ihr gesamtes Berufsleben addiert."
+          "text": "Nein — jedes Beitragsjahr zählt gleich viel. Es gibt keinen Endspurt-Bonus. Da viele kurz vor der Rente am meisten verdienen, sammeln sie in diesen Jahren oft mehr Entgeltpunkte. Aber der Mechanismus ist derselbe wie in jedem anderen Jahr."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie hoch sind die Abschläge bei Frühverrentung?",
+        "name": "Kann ich Rentenpunkte kaufen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pro Monat vorzeitiger Rente werden 0,3% Abschlag berechnet, maximal 14,4% (48 Monate). Bei 3 Jahren früher bedeutet das: 36 × 0,3% = 10,8% weniger Rente – und zwar lebenslang."
+          "text": "Ja, durch freiwillige Beiträge können Sie Entgeltpunkte erwerben. Ab 50 Jahren können Sie gezielt Abschläge bei Frühverrentung ausgleichen. Ein Entgeltpunkt kostet 2026 etwa 9.700 € und bringt 40,79 € (bzw. ab Juli 42,52 €) monatliche Rente."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie hoch ist der aktuelle Rentenwert?",
+        "name": "Was bringt die Rentenerhöhung 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der aktuelle Rentenwert beträgt seit Juli 2025 bundeseinheitlich 40,79€ pro Entgeltpunkt. Er wird jährlich angepasst und bestimmt, wie viel Rente Sie pro gesammeltem Entgeltpunkt erhalten."
+          "text": "Zum 1. Juli 2026 steigen die Renten um 4,24 %. Der Rentenwert erhöht sich von 40,79 € auf 42,52 €. Eine Rente von 1.500 € brutto steigt auf ca. 1.563,60 €. Die Rentenerhöhung ist brutto — durch Steuerpflicht (86 % bei Rentenbeginn 2026) und Krankenversicherung fällt die Netto-Erhöhung geringer aus."
         }
       },
       {
         "@type": "Question",
-        "name": "Kann ich meine Rente durch freiwillige Beiträge erhöhen?",
+        "name": "Wie wird die Rente versteuert?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, Sie können freiwillige Beiträge zur Rentenversicherung zahlen. Der Mindestbeitrag beträgt ca. 100€/Monat, der Höchstbeitrag orientiert sich an der Beitragsbemessungsgrenze. Auch Lücken im Versicherungskonto können Sie so schließen."
+          "text": "Die gesetzliche Rente unterliegt der nachgelagerten Besteuerung. Der steuerpflichtige Anteil hängt vom Jahr des Renteneintritts ab: Rentenbeginn 2026 → 86 % steuerpflichtig, 2040 → 100 %. Von der Bruttorente werden zusätzlich Kranken- und Pflegeversicherungsbeiträge von ca. 12 % abgezogen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist das Rentenniveau von 48 %?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Rentenniveau von 48 % (Haltelinie) bedeutet: Ein Durchschnittsverdiener mit 45 Beitragsjahren erhält eine Standardrente, die vor Steuern 48 % des aktuellen Durchschnittseinkommens entspricht. Das Rentenpaket II sichert diese Haltelinie bis mindestens 2039 gesetzlich ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bringen Kindererziehungszeiten für die Rente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Kinder ab 1992 werden 3 Jahre Kindererziehungszeit gutgeschrieben — das entspricht ca. 3 Entgeltpunkten und derzeit 122,37 € Monatsrente pro Kind. Für Kinder vor 1992 gibt es 2,5 Jahre (Mütterrente II). Die Zeiten werden auf Antrag im Versicherungskonto gespeichert (Formular V0800)."
         }
       }
     ]
