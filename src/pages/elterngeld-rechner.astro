@@ -3,9 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import ElterngeldRechner from '../components/rechner/ElterngeldRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Elterngeld-Rechner 2025 & 2026 – Basiselterngeld & ElterngeldPlus";
-const description = "Elterngeld-Rechner 2026: Basiselterngeld 300-1800€, ElterngeldPlus 150-900€. Einkommensgrenze 175.000€, Partnermonate & Bezugsdauer berechnen.";
-const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Basiselterngeld, ElterngeldPlus, Elterngeld Höhe, Elterngeld Antrag, Partnermonate, Elterngeld Einkommensgrenze";
+const title = "Elterngeld-Rechner 2026 – Basiselterngeld, ElterngeldPlus & Partnerschaftsbonus berechnen";
+const description = "Elterngeld-Rechner 2026: Basiselterngeld 300–1.800€, ElterngeldPlus 150–900€. Einkommensgrenze 175.000€, Partnermonate, Geschwisterbonus & Mehrlingsbonus berechnen. Mit Beispielrechnungen.";
+const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Basiselterngeld, ElterngeldPlus, Elterngeld Höhe, Elterngeld Antrag, Partnermonate, Elterngeld Einkommensgrenze, Partnerschaftsbonus, Geschwisterbonus, Elterngeld Selbständige, Elterngeld Teilzeit";
 ---
 
 <Layout 
@@ -42,6 +42,17 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
       <ElterngeldRechner client:load />
     </div>
     
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-pink-50 border border-pink-200 rounded-2xl p-4">
+        <p class="text-sm text-pink-800">
+          <strong>📋 Rechtsgrundlage:</strong> Dieser Rechner basiert auf dem <strong>Bundeselterngeld- und Elternzeitgesetz (BEEG)</strong>, 
+          insbesondere §§ 1–4 (Anspruch & Höhe), § 4a–4d (ElterngeldPlus & Partnerschaftsbonus), § 2 (Berechnung), 
+          § 2b (Bemessungszeitraum) und § 1 Abs. 8 (Einkommensgrenze). Alle Werte entsprechen dem Stand <strong>März 2026</strong>.
+        </p>
+      </div>
+    </div>
+
     <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -49,84 +60,371 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit dem <strong>Elterngeld</strong> unterstützt der Staat Eltern nach der Geburt ihres Kindes. 
-            Unser <strong>Elterngeld-Rechner 2026</strong> berechnet Ihr individuelles Elterngeld basierend 
-            auf Ihrem Nettoeinkommen vor der Geburt.
+            Mit dem <strong>Elterngeld</strong> unterstützt der Staat Eltern nach der Geburt ihres Kindes finanziell. 
+            Unser <strong>Elterngeld-Rechner 2026</strong> berechnet Ihr individuelles <strong>Basiselterngeld</strong>, 
+            <strong>ElterngeldPlus</strong> und den <strong>Partnerschaftsbonus</strong> basierend auf Ihrem 
+            Nettoeinkommen vor der Geburt. Zusätzlich berücksichtigt der Rechner den 
+            <a href="/kindergeld-rechner" class="text-pink-600 hover:text-pink-800">Kindergeld</a>-Anspruch und 
+            den <a href="/kinderzuschlag-rechner" class="text-pink-600 hover:text-pink-800">Kinderzuschlag</a>, 
+            die ergänzend zum Elterngeld gezahlt werden.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Elterngeld Höhe 2026</h3>
           <p>
-            Das Elterngeld ersetzt 65-67% des wegfallenden Nettoeinkommens:
+            Das Elterngeld ersetzt 65–67 % des wegfallenden Nettoeinkommens. Wer vorher nur wenig verdient hat, 
+            erhält dank der Geringverdiener-Regelung sogar bis zu 100 % Ersatz. Der <a href="/brutto-netto-rechner" class="text-pink-600 hover:text-pink-800">Brutto-Netto-Rechner</a> 
+            hilft Ihnen, Ihr relevantes Nettoeinkommen vor der Geburt zu ermitteln.
           </p>
           <div class="bg-pink-50 p-4 rounded-lg my-4">
             <ul class="space-y-2 text-sm">
-              <li><strong>Basiselterngeld:</strong> 300€ - 1.800€ pro Monat</li>
-              <li><strong>ElterngeldPlus:</strong> 150€ - 900€ pro Monat (doppelte Bezugsdauer)</li>
-              <li><strong>Partnerschaftsbonus:</strong> Zusätzliche ElterngeldPlus-Monate bei Teilzeitarbeit</li>
-              <li><strong>Mindestbetrag:</strong> 300€ auch ohne vorheriges Einkommen</li>
+              <li><strong>Basiselterngeld:</strong> 300 € – 1.800 € pro Monat</li>
+              <li><strong>ElterngeldPlus:</strong> 150 € – 900 € pro Monat (doppelte Bezugsdauer)</li>
+              <li><strong>Partnerschaftsbonus:</strong> Zusätzliche ElterngeldPlus-Monate bei <a href="/teilzeit-rechner" class="text-pink-600 hover:text-pink-800">Teilzeitarbeit</a> (24–32 Std./Woche)</li>
+              <li><strong>Mindestbetrag:</strong> 300 € auch ohne vorheriges Einkommen</li>
+              <li><strong>Geschwisterbonus:</strong> +10 % (mind. 75 €) bei Kindern unter 3 bzw. 6 Jahren</li>
+              <li><strong>Mehrlingsbonus:</strong> +300 € pro weiterem Mehrling</li>
             </ul>
           </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Berechnung des Elterngelds</h3>
           <p>
-            Das Elterngeld wird aus dem <strong>durchschnittlichen Nettoeinkommen der letzten 12 Monate</strong> 
-            vor der Geburt berechnet:
+            Das Elterngeld wird aus dem sogenannten <strong>Elterngeld-Netto</strong> berechnet — das ist nicht identisch 
+            mit dem Netto auf Ihrer Gehaltsabrechnung. Es basiert auf dem Durchschnitt der letzten 12 Kalendermonate 
+            vor Geburt (bzw. vor dem <a href="/mutterschutz-rechner" class="text-pink-600 hover:text-pink-800">Mutterschutz</a>). 
+            Monate mit <a href="/arbeitslosengeld-rechner" class="text-pink-600 hover:text-pink-800">Arbeitslosengeld</a>, 
+            Krankengeld oder <a href="/elternzeit-rechner" class="text-pink-600 hover:text-pink-800">Elternzeit</a> eines älteren Kindes 
+            können ausgeklammert werden.
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Einkommen über 1.240€:</strong> 65% Ersatzrate</li>
-            <li><strong>Einkommen 1.200€ - 1.240€:</strong> 67% → 65% (Abschmelzzone)</li>
-            <li><strong>Einkommen 1.000€ - 1.200€:</strong> 67% Ersatzrate</li>
-            <li><strong>Einkommen unter 1.000€:</strong> 67% + Geringverdiener-Zuschlag bis 100%</li>
-            <li><strong>Geschwisterbonus:</strong> +10% (mind. 75€) bei weiteren Kindern unter 3 bzw. 6 Jahren</li>
-            <li><strong>Mehrlingsbonus:</strong> +300€ pro weiterem Mehrling</li>
+            <li><strong>Einkommen über 1.240 €:</strong> 65 % Ersatzrate</li>
+            <li><strong>Einkommen 1.200 € – 1.240 €:</strong> 67 % → 65 % (Abschmelzzone, je 2 € weniger = 0,1 % weniger)</li>
+            <li><strong>Einkommen 1.000 € – 1.200 €:</strong> 67 % Ersatzrate</li>
+            <li><strong>Einkommen unter 1.000 €:</strong> 67 % + Geringverdiener-Zuschlag (je 2 € weniger = 0,1 % mehr, bis 100 %)</li>
           </ul>
+          <p>
+            Die <a href="/lohnsteuer-rechner" class="text-pink-600 hover:text-pink-800">Lohnsteuer</a>, 
+            <a href="/kirchensteuer-rechner" class="text-pink-600 hover:text-pink-800">Kirchensteuer</a> und 
+            Sozialabgaben werden pauschal abgezogen — die tatsächliche <a href="/steuerklassen-rechner" class="text-pink-600 hover:text-pink-800">Steuerklasse</a> 
+            spielt dabei keine Rolle, da das BEEG eigene Pauschalen verwendet.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Bezugsdauer des Elterngelds</h3>
           <p>
-            Die <strong>Bezugsdauer</strong> hängt von der gewählten Variante ab:
+            Die <strong>Bezugsdauer</strong> hängt von der gewählten Variante ab. Seit 2024 ist der gleichzeitige Bezug 
+            von Basiselterngeld durch beide Elternteile auf maximal einen Monat innerhalb der ersten 12 Lebensmonate beschränkt.
           </p>
           <div class="bg-blue-50 p-4 rounded-lg my-4">
             <ul class="space-y-2 text-sm">
               <li><strong>Basiselterngeld:</strong> 12 Monate (+ 2 Partnermonate = 14 Monate)</li>
-              <li><strong>ElterngeldPlus:</strong> 24 Monate (+ 4 Partnermonate = 28 Monate)</li>
+              <li><strong>ElterngeldPlus:</strong> bis 28 Monate (+ Partnerschaftsbonus = bis 32 Monate)</li>
               <li><strong>Kombination:</strong> 1 Monat Basiselterngeld = 2 Monate ElterngeldPlus</li>
+              <li><strong>Alleinerziehende:</strong> Volle 14 Monate allein beziehbar</li>
             </ul>
           </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Einkommensgrenze 2026</h3>
           <p>
-            <strong>Wichtige Änderung:</strong> Seit April 2025 gilt eine einheitliche Einkommensgrenze:
+            <strong>Wichtige Änderung:</strong> Seit April 2025 gilt eine abgesenkte Einkommensgrenze für alle Familien.
+            Wer mehr als die Grenze verdient, hat keinen Anspruch auf Elterngeld — unabhängig von der gewählten Variante.
+            Prüfen Sie mit dem <a href="/einkommensteuer-rechner" class="text-pink-600 hover:text-pink-800">Einkommensteuer-Rechner</a>, 
+            ob Ihr zu versteuerndes Einkommen unter der Grenze liegt.
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Paare:</strong> 175.000€ zu versteuerndes Jahreseinkommen</li>
-            <li><strong>Alleinerziehende:</strong> 175.000€ zu versteuerndes Jahreseinkommen</li>
-            <li>Bei Überschreitung: Kein Anspruch auf Elterngeld</li>
+            <li><strong>Paare:</strong> 175.000 € zu versteuerndes Jahreseinkommen</li>
+            <li><strong>Alleinerziehende:</strong> 150.000 € zu versteuerndes Jahreseinkommen</li>
+            <li><strong>Ausnahmen:</strong> Mehrlingsgeburten, Frühchen und Kinder mit Behinderung</li>
           </ul>
           
           <div class="bg-yellow-50 p-4 rounded-lg my-4">
             <p class="text-sm text-yellow-800">
-              <strong>Achtung:</strong> Die Einkommensgrenze wurde schrittweise gesenkt: April 2024 von 
-              300.000€/250.000€ auf 200.000€, April 2025 auf 175.000€ für alle. Prüfen Sie Ihren Anspruch!
+              <strong>⚠️ Absenkungsverlauf:</strong> April 2024: 300.000 €/250.000 € → 200.000 €. April 2025: → 175.000 €/150.000 €. 
+              Eine geplante Elterngeldreform mit möglicher weiterer Anpassung wird für 2027 erwartet. Prüfen Sie Ihren Anspruch rechtzeitig!
             </p>
           </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Elterngeld mit Teilzeitarbeit</h3>
           <p>
-            Sie können während des Elterngeldbezugs in <strong>Teilzeit arbeiten</strong> 
-            (max. 32 Stunden/Woche). Das Einkommen wird anteilig angerechnet. Bei ElterngeldPlus 
-            ist Teilzeit besonders vorteilhaft.
+            Sie dürfen während des Elterngeldbezugs in <a href="/teilzeit-rechner" class="text-pink-600 hover:text-pink-800">Teilzeit</a> 
+            arbeiten — maximal <strong>32 Stunden pro Woche</strong>. Das Teilzeit-Einkommen wird anteilig vom Elterngeld 
+            abgezogen. ElterngeldPlus ist dabei oft vorteilhafter als Basiselterngeld, weil das Teilzeit-Einkommen 
+            den Höchstbetrag von 900 € nicht so schnell aufzehrt. Nutzen Sie den <a href="/stundenlohn-rechner" class="text-pink-600 hover:text-pink-800">Stundenlohn-Rechner</a>, 
+            um Ihre optimale Teilzeit-Stundenzahl zu ermitteln.
+          </p>
+          <p>
+            Beim <strong>Partnerschaftsbonus</strong> erhalten beide Elternteile je 4 zusätzliche ElterngeldPlus-Monate, 
+            wenn sie gleichzeitig zwischen 24 und 32 Stunden pro Woche arbeiten. Auch ein 
+            <a href="/minijob-rechner" class="text-pink-600 hover:text-pink-800">Minijob</a> oder 
+            <a href="/midijob-rechner" class="text-pink-600 hover:text-pink-800">Midijob</a> ist während des 
+            Elterngeldbezugs erlaubt — das Einkommen wird jedoch angerechnet.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Elterngeld beantragen</h3>
           <p>
-            Der Antrag muss <strong>innerhalb der ersten 3 Lebensmonate</strong> des Kindes gestellt 
-            werden (rückwirkende Zahlung max. 3 Monate). Zuständig ist die Elterngeldstelle Ihres 
-            Bundeslandes.
+            Der Antrag muss <strong>nach der Geburt</strong> des Kindes gestellt werden. Elterngeld wird rückwirkend 
+            für maximal 3 Monate gezahlt — beantragen Sie also möglichst früh. Zuständig ist die 
+            <strong>Elterngeldstelle Ihres Bundeslandes</strong>. Der Antrag ist online möglich über 
+            <em>ElterngeldDigital</em> (elterngeld-digital.de).
+          </p>
+          <p>
+            Benötigte Unterlagen: Geburtsurkunde, Einkommensnachweise (Gehaltsabrechnungen der letzten 12 Monate), 
+            Bescheinigung über Mutterschaftsgeld der Krankenkasse, Arbeitgeberbescheinigung über Zuschuss zum 
+            Mutterschaftsgeld. Für die <a href="/einkommensteuer-rechner" class="text-pink-600 hover:text-pink-800">Steuererklärung</a> 
+            ist das Elterngeld übrigens steuerfrei — unterliegt aber dem <strong>Progressionsvorbehalt</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 3 Beispielrechnungen</h2>
+        <div class="space-y-4">
+          <div class="bg-pink-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-pink-800 mb-2">Beispiel 1: Angestellte, 2.800 € netto, 12 Monate Basiselterngeld</h3>
+            <ul class="text-sm text-pink-700 space-y-1">
+              <li>Elterngeld-Netto (nach BEEG-Pauschalen): ~2.650 €</li>
+              <li>Ersatzrate: 65 % (Einkommen > 1.240 €)</li>
+              <li>Basiselterngeld: <strong>2.650 € × 65 % = 1.722,50 €/Monat</strong></li>
+              <li>Bezugsdauer: 12 + 2 Partnermonate = 14 Monate</li>
+              <li>Gesamt: ~24.115 € (12 Monate) + Partner ~3.445 € (2 Monate)</li>
+              <li>Zusätzlich: <a href="/kindergeld-rechner" class="text-pink-600 hover:text-pink-800">259 €/Monat Kindergeld</a></li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Beispiel 2: Teilzeit-Mutter, 1.500 € netto, ElterngeldPlus + Partnerschaftsbonus</h3>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>Elterngeld-Netto: ~1.420 €</li>
+              <li>Ersatzrate: 65 % → Basiselterngeld wäre 923 €/Monat</li>
+              <li>ElterngeldPlus: <strong>923 € ÷ 2 = 461,50 €/Monat</strong></li>
+              <li>Teilzeiteinkommen 800 € (<a href="/teilzeit-rechner" class="text-pink-600 hover:text-pink-800">20 Std./Woche</a>): Anrechnung reduziert auf ~290 €</li>
+              <li>Bezugsdauer: 24 + 4 Bonusmonate = bis 28 Monate</li>
+              <li>Vorteil: Über die Laufzeit mehr Geld als reines Basiselterngeld</li>
+            </ul>
+          </div>
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Beispiel 3: Geringverdienerin, 800 € netto, mit Geschwisterbonus</h3>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>Elterngeld-Netto: ~780 € (unter 1.000 €-Schwelle)</li>
+              <li>Geringverdiener-Zuschlag: 67 % + 11 % = 78 % Ersatzrate</li>
+              <li>Basiselterngeld: <strong>780 € × 78 % = 608,40 €/Monat</strong></li>
+              <li>Geschwisterbonus (Kind unter 3): +10 % = +60,84 € (mind. 75 €) → <strong>+75 €</strong></li>
+              <li>Gesamt: <strong>683,40 €/Monat</strong> + <a href="/kindergeld-rechner" class="text-pink-600 hover:text-pink-800">259 € Kindergeld</a> + ggf. <a href="/kinderzuschlag-rechner" class="text-pink-600 hover:text-pink-800">Kinderzuschlag</a></li>
+              <li>Ergänzend prüfen: <a href="/wohngeld-rechner" class="text-pink-600 hover:text-pink-800">Wohngeld</a> und <a href="/buergergeld-rechner" class="text-pink-600 hover:text-pink-800">Bürgergeld</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ 5 typische Fehler beim Elterngeld</h2>
+        <div class="space-y-3">
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">1</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Steuerklassenwechsel zu spät</p>
+              <p class="text-gray-600 text-xs">Ein Wechsel der <a href="/steuerklassen-rechner" class="text-pink-600 hover:text-pink-800">Steuerklasse</a> (z. B. von V auf III) muss spätestens 7 Monate vor dem Mutterschutz wirksam sein, um das Elterngeld-Netto zu erhöhen. Viele Paare verpassen die Frist und verschenken mehrere Hundert Euro pro Monat.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">2</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Partnermonate nicht beantragt</p>
+              <p class="text-gray-600 text-xs">Viele Familien nutzen nur 12 statt 14 Monate, weil der zweite Elternteil keine Partnermonate beantragt. Schon 2 Monate <a href="/elternzeit-rechner" class="text-pink-600 hover:text-pink-800">Elternzeit</a> des Partners reichen — das sind bei mittlerem Einkommen ca. 3.000 € Extra.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">3</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Mutterschaftsgeld nicht berücksichtigt</p>
+              <p class="text-gray-600 text-xs">Das Mutterschaftsgeld (13 €/Tag von der Krankenkasse + Arbeitgeberzuschuss) wird auf das Basiselterngeld angerechnet. Die <a href="/mutterschutz-rechner" class="text-pink-600 hover:text-pink-800">Mutterschutzfrist</a> zählt automatisch als erster Elterngeld-Monat — ein „Doppelbezug" ist nicht möglich.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">4</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">ElterngeldPlus-Vorteil bei Teilzeit übersehen</p>
+              <p class="text-gray-600 text-xs">Wer in <a href="/teilzeit-rechner" class="text-pink-600 hover:text-pink-800">Teilzeit</a> arbeiten will, fährt mit ElterngeldPlus oft besser — weil der Deckel (900 €) langsamer erreicht wird. Viele wählen Basiselterngeld und erhalten weniger als nötig.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">5</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Einkommensgrenze knapp überschritten</p>
+              <p class="text-gray-600 text-xs">Bei 175.000 € (Paare) bzw. 150.000 € (Alleinerziehende) zu versteuerndem Einkommen entfällt der Anspruch komplett — es gibt keine anteilige Kürzung. Durch gezielte <a href="/einkommensteuer-rechner" class="text-pink-600 hover:text-pink-800">Steueroptimierung</a> (z. B. Vorsorgeaufwendungen, Spenden) kann das zvE gesenkt werden.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔍 5 Sonderfälle beim Elterngeld</h2>
+        <div class="space-y-3">
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 text-sm mb-1">🏢 Selbständige & Freiberufler</h3>
+            <p class="text-xs text-purple-700">
+              Für Selbständige gilt als Bemessungszeitraum das <strong>letzte abgeschlossene Wirtschaftsjahr</strong> vor der Geburt (nicht die letzten 12 Monate). 
+              Haben Sie gleichzeitig nichtselbständiges Einkommen (gemischte Einkünfte), werden beide Einkommensarten zusammengerechnet. 
+              Während des Bezugs dürfen Sie bis zu 32 Stunden arbeiten — das Einkommen wird angerechnet. Tipp: Gewinn im Bemessungsjahr 
+              durch Vorauszahlungen oder Investitionen optimieren. Nutzen Sie den <a href="/einkommensteuer-rechner" class="text-pink-600 hover:text-pink-800">Einkommensteuer-Rechner</a> für die Planung.
+            </p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 text-sm mb-1">👶👶 Zwillinge & Mehrlinge</h3>
+            <p class="text-xs text-purple-700">
+              Bei Mehrlingsgeburten erhalten Sie den <strong>Mehrlingszuschlag</strong>: +300 € Basiselterngeld (bzw. +150 € ElterngeldPlus) pro weiterem Kind. 
+              Wichtig: Seit 2015 gibt es keinen doppelten Elterngeldanspruch mehr — nur den Zuschlag. Ausnahme von der Parallelbezugs-Beschränkung: 
+              Bei Zwillingen dürfen beide Elternteile weiterhin gleichzeitig Basiselterngeld beziehen. Prüfen Sie auch den <a href="/kinderzuschlag-rechner" class="text-pink-600 hover:text-pink-800">Kinderzuschlag</a>.
+            </p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 text-sm mb-1">📋 Adoption & Pflegekinder</h3>
+            <p class="text-xs text-purple-700">
+              Adoptiv- und Pflegeeltern (mit Adoptionsabsicht) haben <strong>vollen Elterngeld-Anspruch</strong>. Der Bezug beginnt mit dem Tag der 
+              Aufnahme in den Haushalt — nicht mit dem Geburtsdatum. Die Bezugsfrist läuft bis zum 8. Geburtstag des Kindes. 
+              Alle Varianten (Basiselterngeld, ElterngeldPlus, Partnerschaftsbonus) gelten wie für leibliche Eltern. Mutterschutz entfällt.
+            </p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 text-sm mb-1">🏥 Frühgeburten</h3>
+            <p class="text-xs text-purple-700">
+              Bei Geburten <strong>mindestens 6 Wochen vor dem errechneten Termin</strong> erhalten Sie zusätzliche Basiselterngeld-Monate: 
+              6 Wochen früh = +1 Monat, 8 Wochen = +2, 12 Wochen = +3, 16 Wochen = +4 Monate extra. Außerdem gilt die Ausnahme 
+              vom Parallelbezugs-Verbot — beide Elternteile dürfen gleichzeitig Basiselterngeld beziehen. 
+              Den <a href="/mutterschutz-rechner" class="text-pink-600 hover:text-pink-800">Mutterschutz</a> bei Frühgeburt berechnen Sie separat.
+            </p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 text-sm mb-1">💼 Minijob & Bürgergeld-Aufstockung</h3>
+            <p class="text-xs text-purple-700">
+              Auch mit <a href="/minijob-rechner" class="text-pink-600 hover:text-pink-800">Minijob</a> (bis 556 €/Monat) haben Sie Anspruch auf Elterngeld — 
+              mindestens den Mindestbetrag von 300 €. Das Minijob-Einkommen im Bemessungszeitraum erhöht Ihr Elterngeld, 
+              Einkommen während des Bezugs wird angerechnet. Empfänger von <a href="/buergergeld-rechner" class="text-pink-600 hover:text-pink-800">Bürgergeld</a> 
+              erhalten Elterngeld zusätzlich — allerdings wird es bis auf 300 € als Einkommen angerechnet. Der 300-€-Freibetrag 
+              bleibt anrechnungsfrei. Prüfen Sie auch <a href="/wohngeld-rechner" class="text-pink-600 hover:text-pink-800">Wohngeld</a> als Alternative.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für dich -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">💡 Was bedeutet das für Sie?</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Das Elterngeld ist eine der wichtigsten Familienleistungen in Deutschland. Zusammen mit dem 
+            <a href="/kindergeld-rechner" class="text-pink-600 hover:text-pink-800">Kindergeld</a> (259 €/Monat ab 2026), 
+            dem <a href="/kinderzuschlag-rechner" class="text-pink-600 hover:text-pink-800">Kinderzuschlag</a> (bis 292 €/Monat) 
+            und ggf. <a href="/wohngeld-rechner" class="text-pink-600 hover:text-pink-800">Wohngeld</a> können Familien erhebliche 
+            finanzielle Unterstützung erhalten.
+          </p>
+          <p>
+            <strong>Optimierungstipps:</strong> Prüfen Sie rechtzeitig einen <a href="/steuerklassenwechsel-rechner" class="text-pink-600 hover:text-pink-800">Steuerklassenwechsel</a> 
+            (7 Monate vor Mutterschutz), nutzen Sie die Partnermonate und überlegen Sie, ob ElterngeldPlus bei geplanter 
+            <a href="/teilzeit-rechner" class="text-pink-600 hover:text-pink-800">Teilzeit</a> nicht vorteilhafter ist. 
+            Nach der <a href="/elternzeit-rechner" class="text-pink-600 hover:text-pink-800">Elternzeit</a> hilft Ihnen der 
+            <a href="/brutto-netto-rechner" class="text-pink-600 hover:text-pink-800">Brutto-Netto-Rechner</a> bei der 
+            Gehaltsplanung für den Wiedereinstieg.
+          </p>
+          <p>
+            Langfristig sollten Sie auch die <a href="/rentenluecke-rechner" class="text-pink-600 hover:text-pink-800">Rentenlücke</a> 
+            im Blick behalten: Elternzeit-Jahre werden bei der <a href="/renten-rechner" class="text-pink-600 hover:text-pink-800">Rente</a> 
+            als Kindererziehungszeiten angerechnet (ca. 1 Entgeltpunkt pro Kind für 3 Jahre, 
+            siehe auch <a href="/muetterrente-rechner" class="text-pink-600 hover:text-pink-800">Mütterrente</a>).
           </p>
         </div>
       </div>
     </div>
     
+    <!-- Häufige Fragen (collapsible) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zum Elterngeld</h2>
+        <div class="space-y-2">
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Wie hoch ist das Elterngeld 2026?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Das Basiselterngeld beträgt 65–67 % des vorherigen Nettoeinkommens, mindestens 300 € und höchstens 1.800 € pro Monat. ElterngeldPlus liegt zwischen 150 € und 900 €. Bei Einkommen unter 1.000 € netto steigt die Ersatzrate auf bis zu 100 % (Geringverdiener-Zuschlag).
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Wie lange bekommt man Elterngeld?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Basiselterngeld: 12 Monate + 2 Partnermonate = 14 Monate. ElterngeldPlus: bis 28 Monate (+ 4 Partnerschaftsbonus-Monate = 32 Monate). Ein Monat Basiselterngeld kann in zwei Monate ElterngeldPlus umgewandelt werden. Alleinerziehende erhalten die vollen 14 Monate allein.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Was ist der Unterschied zwischen Basiselterngeld und ElterngeldPlus?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Basiselterngeld ist höher (bis 1.800 €), wird aber maximal 14 Monate gezahlt. ElterngeldPlus ist halb so hoch (bis 900 €), kann aber doppelt so lang bezogen werden. Bei geplanter <a href="/teilzeit-rechner" class="text-pink-600">Teilzeitarbeit</a> ist ElterngeldPlus meist vorteilhafter, weil das Teilzeit-Einkommen den geringeren Höchstbetrag weniger stark aufzehrt.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Wie hoch ist die Einkommensgrenze 2026?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Seit April 2025 liegt die Einkommensgrenze bei 175.000 € (Paare) bzw. 150.000 € (Alleinerziehende) zu versteuerndem Jahreseinkommen. Bei Überschreitung entfällt der Anspruch komplett. Ausnahmen gelten für Mehrlingsgeburten, Frühchen und Kinder mit Behinderung. Prüfen Sie Ihr zvE mit dem <a href="/einkommensteuer-rechner" class="text-pink-600">Einkommensteuer-Rechner</a>.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Kann ich während des Elterngeldbezugs arbeiten?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Ja, bis maximal 32 Stunden pro Woche. Das Teilzeit-Einkommen wird anteilig angerechnet. Beim Partnerschaftsbonus müssen beide Eltern 24–32 Stunden arbeiten. Auch ein <a href="/minijob-rechner" class="text-pink-600">Minijob</a> ist erlaubt, Einkommen wird aber angerechnet. Der Mindestbetrag (300 €/150 €) bleibt immer erhalten.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Wann muss ich Elterngeld beantragen?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Der Antrag wird nach der Geburt bei der Elterngeldstelle Ihres Bundeslandes gestellt. Elterngeld wird rückwirkend für maximal 3 Lebensmonate gezahlt — beantragen Sie daher möglichst innerhalb der ersten 3 Monate. Online-Antrag: elterngeld-digital.de. Benötigt werden Geburtsurkunde, 12 Gehaltsabrechnungen und die Mutterschaftsgeld-Bescheinigung.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Wird das Elterngeld versteuert?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Elterngeld ist steuerfrei, unterliegt aber dem <strong>Progressionsvorbehalt</strong> (§ 32b EStG). Das bedeutet: Es erhöht den Steuersatz auf Ihr übriges Einkommen. Bei der <a href="/einkommensteuer-rechner" class="text-pink-600">Steuererklärung</a> müssen Sie das Elterngeld angeben. Die Nachzahlung beträgt je nach Einkommen typischerweise 500–2.000 € im Folgejahr.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+              <span class="font-medium text-gray-800 text-sm">Lohnt sich ein Steuerklassenwechsel vor der Geburt?</span>
+              <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Ja, ein Wechsel zur günstigeren <a href="/steuerklassen-rechner" class="text-pink-600">Steuerklasse III</a> erhöht das Netto und damit das Elterngeld. Wichtig: Der Wechsel muss mindestens 7 Monate vor dem <a href="/mutterschutz-rechner" class="text-pink-600">Mutterschutz</a> wirksam sein, damit genügend Monate mit der neuen Steuerklasse in den Bemessungszeitraum fallen. Nutzen Sie den <a href="/steuerklassenwechsel-rechner" class="text-pink-600">Steuerklassenwechsel-Rechner</a>.
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
     <!-- Verwandte Rechner -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -151,6 +449,22 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
           <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">💵</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/steuerklassen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Steuerklassen-Rechner</p>
+          </a>
+          <a href="/teilzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Teilzeit-Rechner</p>
+          </a>
+          <a href="/wohngeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohngeld-Rechner</p>
+          </a>
+          <a href="/unterhalt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Unterhalt-Rechner</p>
           </a>
           <a href="/geburtstermin-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">📆</span>
@@ -213,7 +527,7 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         "name": "Wie hoch ist das Elterngeld 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Das Elterngeld beträgt 65-67% des vorherigen Nettoeinkommens. Basiselterngeld liegt zwischen 300€ und 1.800€ monatlich, ElterngeldPlus zwischen 150€ und 900€. Auch ohne vorheriges Einkommen erhalten Sie den Mindestbetrag von 300€."
+          "text": "Das Basiselterngeld beträgt 65–67 % des vorherigen Nettoeinkommens, mindestens 300 € und höchstens 1.800 € pro Monat. ElterngeldPlus liegt zwischen 150 € und 900 €. Bei Einkommen unter 1.000 € netto steigt die Ersatzrate auf bis zu 100 % (Geringverdiener-Zuschlag)."
         }
       },
       {
@@ -221,7 +535,7 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         "name": "Wie lange bekommt man Elterngeld?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Basiselterngeld gibt es 12 Monate für ein Elternteil, plus 2 Partnermonate wenn beide Eltern Elterngeld nehmen (= 14 Monate). ElterngeldPlus kann bis zu 28 Monate bezogen werden. Die Monate sind frei aufteilbar."
+          "text": "Basiselterngeld: 12 Monate + 2 Partnermonate = 14 Monate. ElterngeldPlus: bis 28 Monate (+ 4 Partnerschaftsbonus-Monate = 32 Monate). Ein Monat Basiselterngeld kann in zwei Monate ElterngeldPlus umgewandelt werden. Alleinerziehende erhalten die vollen 14 Monate allein."
         }
       },
       {
@@ -229,7 +543,7 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         "name": "Was ist der Unterschied zwischen Basiselterngeld und ElterngeldPlus?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Basiselterngeld ist höher (bis 1.800€), wird aber kürzer gezahlt. ElterngeldPlus ist halb so hoch (bis 900€), kann aber doppelt so lange bezogen werden. Besonders bei Teilzeitarbeit ist ElterngeldPlus oft vorteilhafter."
+          "text": "Basiselterngeld ist höher (bis 1.800 €), wird aber maximal 14 Monate gezahlt. ElterngeldPlus ist halb so hoch (bis 900 €), kann aber doppelt so lang bezogen werden. Bei geplanter Teilzeitarbeit ist ElterngeldPlus meist vorteilhafter, weil das Teilzeit-Einkommen den geringeren Höchstbetrag weniger stark aufzehrt."
         }
       },
       {
@@ -237,7 +551,7 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         "name": "Wie hoch ist die Einkommensgrenze beim Elterngeld 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Einkommensgrenze liegt bei 175.000€ zu versteuerndem Jahreseinkommen für Paare und Alleinerziehende. Bei Überschreitung besteht kein Anspruch auf Elterngeld. Diese Grenze wurde 2024 von 300.000€ gesenkt."
+          "text": "Seit April 2025 liegt die Einkommensgrenze bei 175.000 € (Paare) bzw. 150.000 € (Alleinerziehende) zu versteuerndem Jahreseinkommen. Bei Überschreitung entfällt der Anspruch komplett. Ausnahmen gelten für Mehrlingsgeburten, Frühchen und Kinder mit Behinderung."
         }
       },
       {
@@ -245,7 +559,7 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         "name": "Kann ich während des Elterngeldbezugs arbeiten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, Sie können in Teilzeit arbeiten (maximal 32 Stunden/Woche). Das Einkommen wird anteilig vom Elterngeld abgezogen. Bei ElterngeldPlus mit Partnerschaftsbonus erhalten Sie Zusatzmonate, wenn beide Eltern 24-32 Stunden arbeiten."
+          "text": "Ja, bis maximal 32 Stunden pro Woche. Das Teilzeit-Einkommen wird anteilig angerechnet. Beim Partnerschaftsbonus müssen beide Eltern 24–32 Stunden arbeiten. Auch ein Minijob ist erlaubt, Einkommen wird aber angerechnet. Der Mindestbetrag (300 €/150 €) bleibt immer erhalten."
         }
       },
       {
@@ -253,7 +567,23 @@ const keywords = "Elterngeld Rechner, Elterngeld 2026, Elterngeld berechnen, Bas
         "name": "Wann muss ich Elterngeld beantragen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Elterngeld wird maximal 3 Monate rückwirkend gezahlt. Stellen Sie den Antrag daher innerhalb der ersten 3 Lebensmonate des Kindes bei der Elterngeldstelle Ihres Bundeslandes. Online geht das über ElterngeldDigital."
+          "text": "Der Antrag wird nach der Geburt bei der Elterngeldstelle Ihres Bundeslandes gestellt. Elterngeld wird rückwirkend für maximal 3 Lebensmonate gezahlt — beantragen Sie daher möglichst innerhalb der ersten 3 Monate. Online-Antrag über elterngeld-digital.de."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird das Elterngeld versteuert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Elterngeld ist steuerfrei, unterliegt aber dem Progressionsvorbehalt (§ 32b EStG). Es erhöht den Steuersatz auf Ihr übriges Einkommen. Bei der Steuererklärung müssen Sie das Elterngeld angeben. Die Nachzahlung beträgt je nach Einkommen typischerweise 500–2.000 € im Folgejahr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich ein Steuerklassenwechsel vor der Geburt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, ein Wechsel zur günstigeren Steuerklasse III erhöht das Netto und damit das Elterngeld. Der Wechsel muss mindestens 7 Monate vor dem Mutterschutz wirksam sein, damit genügend Monate mit der neuen Steuerklasse in den Bemessungszeitraum fallen."
         }
       }
     ]
