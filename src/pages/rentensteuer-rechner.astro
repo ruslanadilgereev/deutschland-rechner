@@ -4,8 +4,8 @@ import RentensteuerRechner from '../components/rechner/RentensteuerRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
 const title = "Rentensteuer-Rechner 2025 & 2026 – Netto-Rente nach Abzügen berechnen";
-const description = "Rentensteuer-Rechner 2026: Berechnen Sie Ihre Netto-Rente nach Steuern & Sozialabgaben. Besteuerungsanteil, KV, PV. Kostenlos & sofort.";
-const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Rentenbesteuerung, Besteuerungsanteil, Krankenversicherung Rentner, Steuern auf Rente, Rente Abzüge";
+const description = "Rentensteuer-Rechner 2026: Berechnen Sie Ihre Netto-Rente nach Steuern & Sozialabgaben. Besteuerungsanteil 84%, KV 8,75%, PV 3,6%. Aktivrente, Betriebsrente, Witwenrente – kostenlos & sofort.";
+const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Rentenbesteuerung 2026, Besteuerungsanteil, Krankenversicherung Rentner, Steuern auf Rente, Rente Abzüge, Rentenfreibetrag, Aktivrente 2026, Betriebsrente Steuer, Witwenrente Steuer, Grundfreibetrag Rentner";
 ---
 
 <Layout 
@@ -42,99 +42,436 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
       <RentensteuerRechner client:load />
     </div>
     
+    <!-- Trust Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-xs text-purple-800">
+        <p class="font-semibold mb-1">📋 Rechtsgrundlagen dieses Rechners</p>
+        <p>Berechnung nach <strong>§22 Nr. 1 Satz 3 Buchst. a Doppelbuchst. aa EStG</strong> (Besteuerungsanteil), <strong>§10 Abs. 1 Nr. 3 EStG</strong> (Vorsorgeaufwendungen), <strong>§32a EStG</strong> (Einkommensteuertarif) und <strong>§226 SGB V / §55 SGB XI</strong> (KV-/PV-Beiträge Rentner). Werte aktualisiert für 2026: Grundfreibetrag 12.348 €, Besteuerungsanteil Neurentner 84 %, KV-Zusatzbeitrag Ø 2,9 %, PV 3,6 %. Was der Rechner <strong>berücksichtigt:</strong> Einkommensteuer, KV, PV, Soli, KiSt, Freibeträge. <strong>Nicht berücksichtigt:</strong> individuelle außergewöhnliche Belastungen, Einkünfte aus Vermietung/Kapital, individuelle Krankenkassenwahl. Zuletzt aktualisiert: März 2026.</p>
+      </div>
+    </div>
+
     <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Rentenbesteuerung: So viel bleibt netto von Ihrer Rente</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rentenbesteuerung 2026: So viel bleibt netto von Ihrer Rente</h2>
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
             Mit unserem <strong>Rentensteuer-Rechner</strong> berechnen Sie kostenlos, wie viel 
             von Ihrer Brutto-Rente nach <strong>Steuern und Sozialabgaben</strong> übrig bleibt. 
-            Seit 2005 werden Renten schrittweise stärker besteuert – der Besteuerungsanteil 
-            steigt mit jedem Rentenjahrgang.
+            Seit dem Alterseinkünftegesetz 2005 werden Renten schrittweise stärker besteuert — der 
+            <strong>Besteuerungsanteil</strong> steigt mit jedem Rentenjahrgang. Durch das 
+            <strong>Wachstumschancengesetz</strong> wächst er seit 2023 nur noch um 0,5 Prozentpunkte 
+            pro Jahr statt zuvor um einen vollen Punkt. Die volle Besteuerung (100 %) wird damit 
+            erst <strong>2058</strong> statt 2040 erreicht. Ergänzend können Sie mit unserem 
+            <a href="/renten-rechner" class="text-purple-600 hover:underline">Renten-Rechner</a> 
+            Ihre gesetzliche Brutto-Rente berechnen und so die Differenz zur Netto-Rente sehen.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Besteuerungsanteil nach Rentenbeginn</h3>
           <p>
-            Der <strong>Besteuerungsanteil</strong> Ihrer Rente hängt vom Jahr Ihres Rentenbeginns ab:
+            Der <strong>Besteuerungsanteil</strong> Ihrer Rente hängt vom Jahr Ihres Rentenbeginns ab. 
+            Je später Sie in Rente gehen, desto höher der steuerpflichtige Anteil — und desto 
+            wichtiger wird eine vorherige <a href="/rentenluecke-rechner" class="text-purple-600 hover:underline">Rentenlücken-Berechnung</a>:
           </p>
           <div class="bg-gray-100 p-4 rounded-lg my-4">
             <ul class="space-y-1 text-sm">
-              <li><strong>Rentenbeginn 2024:</strong> 83% steuerpflichtig</li>
-              <li><strong>Rentenbeginn 2025:</strong> 83,5% steuerpflichtig</li>
-              <li><strong>Rentenbeginn 2026:</strong> 84% steuerpflichtig</li>
-              <li><strong>Rentenbeginn 2040:</strong> 100% steuerpflichtig</li>
+              <li><strong>Rentenbeginn 2005:</strong> 50 % steuerpflichtig (Rentenfreibetrag: 50 %)</li>
+              <li><strong>Rentenbeginn 2020:</strong> 80 % steuerpflichtig</li>
+              <li><strong>Rentenbeginn 2024:</strong> 83 % steuerpflichtig</li>
+              <li><strong>Rentenbeginn 2025:</strong> 83,5 % steuerpflichtig</li>
+              <li><strong>Rentenbeginn 2026:</strong> 84 % steuerpflichtig (Freibetrag: 16 %)</li>
+              <li><strong>Rentenbeginn 2030:</strong> 86 % steuerpflichtig</li>
+              <li><strong>Rentenbeginn 2040:</strong> 90 % steuerpflichtig</li>
+              <li><strong>Rentenbeginn 2058:</strong> 100 % steuerpflichtig</li>
             </ul>
           </div>
           <p>
             Der <strong>Rentenfreibetrag</strong> (der steuerfreie Teil) wird im ersten vollen 
-            Rentenjahr festgeschrieben und gilt dann lebenslang – auch bei Rentenerhöhungen.
+            Rentenjahr als <strong>fester Euro-Betrag</strong> festgeschrieben und gilt dann 
+            lebenslang — auch bei Rentenerhöhungen. Das bedeutet: Jede 
+            <strong>Rentenanpassung</strong> ist zu 100 % steuerpflichtig und kann Sie in die 
+            Steuerpflicht drücken, selbst wenn Sie bisher steuerfrei waren. Ihre 
+            <a href="/einkommensteuer-rechner" class="text-purple-600 hover:underline">Einkommensteuer</a> 
+            sollten Sie daher regelmäßig prüfen.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Abzüge von der Brutto-Rente</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Alle Abzüge von der Brutto-Rente im Überblick</h3>
+          <p>
+            Von Ihrer Brutto-Rente werden verschiedene Beiträge und Steuern einbehalten. Die Höhe 
+            hängt unter anderem davon ab, ob Sie in der 
+            <a href="/krankenkassenbeitrag-rechner" class="text-purple-600 hover:underline">gesetzlichen Krankenversicherung</a> 
+            pflicht- oder freiwillig versichert sind:
+          </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Krankenversicherung:</strong> ca. 7,3% + halber Zusatzbeitrag (ca. 8,75% gesamt bei Ø 2,9% ZB)</li>
-            <li><strong>Pflegeversicherung:</strong> 1,8% (Kinderlose ab 23: +0,6%)</li>
-            <li><strong>Einkommensteuer:</strong> Je nach Höhe und Besteuerungsanteil</li>
-            <li><strong>Solidaritätszuschlag:</strong> Nur bei hohen Renten (ab ca. 18.000€ Steuer)</li>
-            <li><strong>Kirchensteuer:</strong> 8-9% der Einkommensteuer (wenn Mitglied)</li>
+            <li><strong>Krankenversicherung (KVdR):</strong> 7,3 % + halber Zusatzbeitrag (Ø 1,45 %) = ca. <strong>8,75 %</strong> vom Brutto — die andere Hälfte übernimmt die Rentenversicherung</li>
+            <li><strong>Pflegeversicherung:</strong> <strong>3,6 %</strong> (Kinderlose ab 23 J.: 4,2 %) — Rentner tragen den PV-Beitrag <strong>allein</strong></li>
+            <li><strong>Einkommensteuer:</strong> Je nach Besteuerungsanteil und Gesamteinkünften (nach Abzug des Grundfreibetrags von <strong>12.348 €</strong> in 2026)</li>
+            <li><strong><a href="/soli-rechner" class="text-purple-600 hover:underline">Solidaritätszuschlag</a>:</strong> 5,5 % der ESt — Freigrenze 2026: 19.950 € (Ledige) / 39.900 € (Verheiratete)</li>
+            <li><strong><a href="/kirchensteuer-rechner" class="text-purple-600 hover:underline">Kirchensteuer</a>:</strong> 8 % (Bayern/BaWü) oder 9 % der ESt (wenn Kirchenmitglied)</li>
           </ul>
-          
-          <div class="bg-green-50 p-4 rounded-lg my-4">
-            <h4 class="font-semibold text-green-800 mb-2">Beispielrechnung (Rentenbeginn 2026, alleinstehend)</h4>
-            <ul class="space-y-1 text-sm text-green-700">
-              <li>Brutto-Rente: 1.800€/Monat = 21.600€/Jahr</li>
-              <li>Besteuerungsanteil: 84% = 18.144€ steuerpflichtig</li>
-              <li>Abzgl. Werbungskosten-Pauschale: −102€</li>
-              <li>Abzgl. KV/PV-Vorsorgeaufwendungen: −2.279€</li>
-              <li>Abzgl. Sonderausgaben-Pauschbetrag: −36€</li>
-              <li>Zu versteuerndes Einkommen: ca. 15.727€</li>
-              <li>Einkommensteuer: ca. 577€/Jahr (Grundfreibetrag 12.348€)</li>
-              <li>Krankenversicherung: ca. 159€/Monat (8,75%)</li>
-              <li>Pflegeversicherung: ca. 32€/Monat (1,8%)</li>
-              <li class="pt-2 border-t border-green-200 font-bold">Netto-Rente: ca. 1.561€/Monat</li>
-            </ul>
-          </div>
+          <p>
+            <strong>Wichtig:</strong> Freiwillig gesetzlich versicherte Rentner zahlen den 
+            <strong>vollen KV-Beitragssatz</strong> (14,6 % + Zusatzbeitrag) auf alle Einkünfte — 
+            auch auf Mieteinnahmen und Kapitalerträge. Die Rentenversicherung zahlt dann einen 
+            Zuschuss statt der Hälfte.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann müssen Rentner Steuern zahlen?</h3>
           <p>
             Steuern fallen erst an, wenn Ihre <strong>steuerpflichtigen Einkünfte</strong> den 
-            <strong>Grundfreibetrag von 12.348€</strong> (2026) übersteigen. Bei Ehepaaren 
-            verdoppelt sich dieser Betrag auf 24.696€.
+            <strong>Grundfreibetrag von 12.348 €</strong> (2026, Ledige) bzw. 24.696 € (Verheiratete) 
+            übersteigen. Dabei werden Werbungskosten-Pauschale (102 €), Sonderausgaben-Pauschbetrag (36 €) 
+            und absetzbare Vorsorgeaufwendungen (KV/PV-Beiträge) vorher abgezogen.
           </p>
           <p>
-            Bei einer Rente mit Rentenbeginn 2026 (84% Besteuerungsanteil) liegt die 
-            ungefähre <strong>Steuerschwelle</strong> bei etwa 1.250€ Monatsrente für 
-            Alleinstehende (nach Abzug von Werbungskosten und Vorsorgeaufwendungen).
+            Bei einer Rente mit Rentenbeginn 2026 (84 % Besteuerungsanteil) liegt die 
+            ungefähre <strong>Steuerschwelle</strong> bei etwa <strong>1.250 €</strong> Monatsrente für 
+            Alleinstehende ohne weitere Einkünfte. Liegen Sie darüber, lohnt sich eine genaue 
+            Berechnung mit unserem <a href="/steuererstattung-rechner" class="text-purple-600 hover:underline">Steuererstattung-Rechner</a>.
           </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 3 Beispielrechnungen: Netto-Rente 2026</h2>
+        
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-green-800 mb-2">Beispiel 1: Durchschnittsrentner, alleinstehend (Rentenbeginn 2026)</h3>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li>Brutto-Rente: <strong>1.800 €/Monat</strong> = 21.600 €/Jahr</li>
+              <li>Besteuerungsanteil (84 %): 18.144 € steuerpflichtig</li>
+              <li>Rentenfreibetrag: 3.456 € (lebenslang fest)</li>
+              <li>Abzgl. Werbungskosten-Pauschale: −102 €</li>
+              <li>Abzgl. Vorsorgeaufwendungen (KV/PV): ca. −2.673 €</li>
+              <li>Abzgl. Sonderausgaben-Pauschbetrag: −36 €</li>
+              <li>Zu versteuerndes Einkommen: ca. <strong>15.333 €</strong></li>
+              <li>Einkommensteuer: ca. <strong>502 €/Jahr</strong> (42 €/Monat)</li>
+              <li>Krankenversicherung: 158 €/Monat (8,75 %)</li>
+              <li>Pflegeversicherung: 65 €/Monat (3,6 %)</li>
+              <li class="pt-2 border-t border-green-200 font-bold">➜ Netto-Rente: ca. 1.535 €/Monat (85,3 % vom Brutto)</li>
+            </ul>
+          </div>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Krankenversicherung der Rentner (KVdR)</h3>
-          <p>
-            Als <strong>pflichtversicherter Rentner</strong> zahlen Sie auf Ihre gesetzliche 
-            Rente den halben Beitragssatz – die andere Hälfte übernimmt die Rentenversicherung. 
-            Auf Betriebsrenten und andere Einkünfte zahlen Sie jedoch den vollen Satz.
-          </p>
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Beispiel 2: Ehepaar, beide Rente (Rentenbeginn 2020/2026)</h3>
+            <ul class="space-y-1 text-sm text-blue-700">
+              <li>Rente Partner 1 (Beginn 2020): <strong>1.600 €/Monat</strong>, BA 80 %</li>
+              <li>Rente Partner 2 (Beginn 2026): <strong>1.200 €/Monat</strong>, BA 84 %</li>
+              <li>Steuerpflichtig Partner 1: 15.360 € + Partner 2: 12.096 € = 27.456 €</li>
+              <li>Abzgl. 2 × Werbungskosten + Sonderausgaben + Vorsorge: ca. −5.740 €</li>
+              <li>Gemeinsames zvE: ca. <strong>21.716 €</strong></li>
+              <li><a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Zusammenveranlagung</a>: Grundfreibetrag 24.696 €</li>
+              <li class="pt-2 border-t border-blue-200 font-bold">➜ Keine Einkommensteuer fällig! Nur KV + PV = ca. 2.570 €/Monat netto</li>
+            </ul>
+          </div>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuererklärung für Rentner</h3>
+          <!-- Beispiel 3 -->
+          <div class="bg-amber-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-amber-800 mb-2">Beispiel 3: Gutverdiener mit Betriebsrente (Rentenbeginn 2026)</h3>
+            <ul class="space-y-1 text-sm text-amber-700">
+              <li>Gesetzliche Rente: <strong>2.500 €/Monat</strong> = 30.000 €/Jahr (BA 84 %)</li>
+              <li>Betriebsrente: <strong>600 €/Monat</strong> = 7.200 €/Jahr (100 % steuerpflichtig)</li>
+              <li>Steuerpflichtig gesetzl. Rente: 25.200 € + Betriebsrente: 7.200 € = 32.400 €</li>
+              <li>Abzgl. Freibeträge und Vorsorge: ca. −4.280 €</li>
+              <li>Zu versteuerndes Einkommen: ca. <strong>28.120 €</strong></li>
+              <li>Einkommensteuer: ca. <strong>3.542 €/Jahr</strong> (295 €/Monat)</li>
+              <li>KV auf Betriebsrente: voller Satz (14,6 % + 2,9 % ZB) abzgl. <a href="/brutto-netto-rechner" class="text-amber-600 hover:underline">Freibetrag 197,75 €</a></li>
+              <li class="pt-2 border-t border-amber-200 font-bold">➜ Netto gesamt: ca. 2.483 €/Monat (80 % vom Brutto)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Aktivrente 2026 NEU -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🆕 Aktivrente 2026: Steuerfrei dazuverdienen</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Eine <strong>Steuererklärung</strong> ist Pflicht, wenn:
+            Seit dem <strong>1. Januar 2026</strong> gilt die neue <strong>Aktivrente</strong>: 
+            Wer die <strong>Regelaltersgrenze</strong> erreicht hat und sozialversicherungspflichtig 
+            weiterarbeitet, kann bis zu <strong>2.000 €/Monat</strong> (24.000 €/Jahr) 
+            <strong>steuerfrei</strong> hinzuverdienen. Dieser Freibetrag unterliegt nicht dem 
+            <strong>Progressionsvorbehalt</strong> — er erhöht also nicht Ihren Steuersatz auf die Rente.
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Sie Nebeneinkünfte über 410€/Jahr haben</li>
-            <li>Sie eine Betriebsrente oder Riester-Rente beziehen</li>
-            <li>Das Finanzamt Sie zur Abgabe auffordert</li>
-            <li>Ihre Einkünfte über dem Grundfreibetrag liegen</li>
+            <li>Gilt nur für <strong>sozialversicherungspflichtige Beschäftigung</strong></li>
+            <li><strong>Nicht</strong> für Selbstständige, Beamte oder reine <a href="/minijob-rechner" class="text-purple-600 hover:underline">Minijobber</a></li>
+            <li>Der Arbeitgeber berücksichtigt den Freibetrag <strong>automatisch</strong></li>
+            <li>KV- und PV-Beiträge auf den Hinzuverdienst fallen weiterhin an</li>
           </ul>
+          <p>
+            <strong>Praxisbeispiel:</strong> Ein Rentner (Rente 1.500 €/Monat) arbeitet 15 Stunden/Woche 
+            für 1.800 €/Monat. Der Hinzuverdienst bleibt <strong>komplett steuerfrei</strong>. Sein 
+            <a href="/stundenlohn-rechner" class="text-purple-600 hover:underline">Stundenlohn</a> 
+            ist damit steuerlich besonders attraktiv. Nur auf die Rente selbst fällt ggf. 
+            Einkommensteuer an.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ 5 typische Fehler bei der Rentensteuer</h2>
+        
+        <div class="space-y-3 text-sm text-gray-600">
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-base">1</span>
+            <div>
+              <p class="font-semibold text-red-800">„Ich bin Rentner, ich muss keine Steuererklärung machen"</p>
+              <p class="text-red-700 mt-1">Falsch! Sobald Ihre Einkünfte den Grundfreibetrag (12.348 € in 2026) übersteigen, besteht <strong>Abgabepflicht</strong>. Durch Rentenerhöhungen rutschen jährlich Hunderttausende Rentner neu in die Steuerpflicht.</p>
+            </div>
+          </div>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Absetzbare Kosten für Rentner</h3>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-base">2</span>
+            <div>
+              <p class="font-semibold text-red-800">Absetzbare Kosten nicht geltend machen</p>
+              <p class="text-red-700 mt-1">Viele Rentner verschenken Geld, weil sie <strong>Krankheitskosten</strong> (Zuzahlungen, Brillen, Zahnersatz), <a href="/handwerkerkosten-rechner" class="text-purple-600 hover:underline">Handwerkerkosten</a> oder <strong>haushaltsnahe Dienstleistungen</strong> nicht angeben. Bis zu 1.200 € bzw. 4.000 € Steuerersparnis sind möglich!</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-base">3</span>
+            <div>
+              <p class="font-semibold text-red-800">Betriebsrente mit gesetzlicher Rente verwechseln</p>
+              <p class="text-red-700 mt-1">Gesetzliche Rente hat einen Rentenfreibetrag. <strong>Betriebsrenten</strong> werden zu <strong>100 %</strong> besteuert (§22 Nr. 5 EStG) — und auf den Betrag über 197,75 €/Monat fallen zusätzlich volle KV-Beiträge an.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-base">4</span>
+            <div>
+              <p class="font-semibold text-red-800">Steuerbescheid nicht prüfen</p>
+              <p class="text-red-700 mt-1">Schätzungsweise <strong>jeder dritte Steuerbescheid</strong> enthält Fehler — oft nicht zugunsten des Steuerpflichtigen. Innerhalb eines Monats können Sie Einspruch einlegen. Prüfen Sie besonders den Besteuerungsanteil und die angerechneten Vorsorgeaufwendungen.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-base">5</span>
+            <div>
+              <p class="font-semibold text-red-800">Barzahlung bei Handwerkern und Haushaltshilfen</p>
+              <p class="text-red-700 mt-1">Nur Zahlungen per <strong>Überweisung</strong> sind steuerlich absetzbar. Barzahlung = kein Steuerabzug. Lassen Sie sich immer eine Rechnung ausstellen und überweisen Sie den Betrag. Das gilt auch für die <a href="/haushaltshilfe-rechner" class="text-purple-600 hover:underline">Haushaltshilfe</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔍 Sonderfälle bei der Rentenbesteuerung</h2>
+        
+        <div class="space-y-4 text-sm text-gray-600">
+          <!-- Sonderfall 1: Betriebsrente -->
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
+              <span>💼 Betriebsrente: Volle Besteuerung + KV-Beiträge</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="p-3 pt-0 text-gray-600">
+              <p>Betriebsrenten werden zu <strong>100 %</strong> als „sonstige Einkünfte" versteuert — es gibt keinen Rentenfreibetrag wie bei der gesetzlichen Rente. Zusätzlich fallen <strong>volle KV-Beiträge</strong> (14,6 % + Zusatzbeitrag) an, allerdings erst auf den Betrag über dem <strong>Freibetrag von 197,75 €/Monat</strong> (2026). Für den PV-Beitrag gibt es keinen Freibetrag. Bei einer Betriebsrente von 800 €/Monat werden also 602,25 € mit dem vollen KV-Satz verbeitragt.</p>
+            </div>
+          </details>
+          
+          <!-- Sonderfall 2: Witwenrente -->
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
+              <span>🖤 <a href="/witwenrente-rechner" class="text-purple-600 hover:underline">Witwenrente</a>: Eigener Besteuerungsanteil + Einkommensanrechnung</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="p-3 pt-0 text-gray-600">
+              <p>Die Witwenrente hat einen <strong>eigenen Besteuerungsanteil</strong> — maßgeblich ist das Todesjahr des Partners, nicht Ihr eigener Rentenbeginn. Bei der <strong>großen Witwenrente</strong> (55 % der Rente des Verstorbenen) wird eigenes Einkommen über einem Freibetrag (ca. 1.077 €/Monat ab Juli 2025) zu 40 % angerechnet. Im <strong>Sterbevierteljahr</strong> (3 Monate nach Tod) erhalten Sie die volle Rente ohne Anrechnung.</p>
+            </div>
+          </details>
+          
+          <!-- Sonderfall 3: Erwerbsminderungsrente -->
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
+              <span>🏥 <a href="/erwerbsminderungsrente-rechner" class="text-purple-600 hover:underline">Erwerbsminderungsrente</a>: Besondere Regeln</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="p-3 pt-0 text-gray-600">
+              <p>Die EM-Rente wird steuerlich wie eine Altersrente behandelt — der Besteuerungsanteil richtet sich nach dem <strong>Beginn der EM-Rente</strong>. Bei Umwandlung in eine Altersrente bleibt der ursprüngliche Freibetrag erhalten. <strong>Hinzuverdienstgrenzen</strong> gelten weiterhin: Bei voller EM-Rente max. 18.558,75 €/Jahr (2026), bei teilweiser EM-Rente max. 37.117,50 €/Jahr. Überschreiten führt zur anteiligen Kürzung.</p>
+            </div>
+          </details>
+          
+          <!-- Sonderfall 4: Doppelbesteuerung -->
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
+              <span>⚖️ Doppelbesteuerung: Wann liegt sie vor?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="p-3 pt-0 text-gray-600">
+              <p>Eine <strong>Doppelbesteuerung</strong> liegt nach BFH-Rechtsprechung vor, wenn die aus versteuertem Einkommen geleisteten Rentenbeiträge die voraussichtlich steuerfrei bleibenden Rentenzuflüsse <strong>übersteigen</strong>. Betroffen sind vor allem Rentner mit <strong>Rentenbeginn vor 2015</strong> und langer Beitragszeit. Durch die vorgezogene volle Absetzbarkeit der Vorsorgeaufwendungen ab 2023 wurde das Risiko für künftige Rentner deutlich reduziert. Im Zweifelsfall: <strong>Einspruch</strong> gegen den Steuerbescheid einlegen und auf BFH-Verfahren verweisen.</p>
+            </div>
+          </details>
+          
+          <!-- Sonderfall 5: Riester-/Rürup-Rente -->
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
+              <span>🏛️ <a href="/riester-rechner" class="text-purple-600 hover:underline">Riester</a>-/Rürup-Rente: Unterschiedliche Besteuerung</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div class="p-3 pt-0 text-gray-600">
+              <p><strong>Riester-Rente:</strong> Wird in der Auszahlungsphase zu <strong>100 %</strong> als sonstige Einkünfte besteuert (§22 Nr. 5 EStG), da Beiträge und Zulagen steuerfrei waren. <strong>Rürup-/Basisrente:</strong> Wird wie die gesetzliche Rente mit dem <strong>Besteuerungsanteil</strong> nach Rentenbeginn besteuert. In beiden Fällen fallen KV- und PV-Beiträge an. Die <a href="/kapitalertragsteuer-rechner" class="text-purple-600 hover:underline">Kapitalertragsteuer</a> greift hier nicht — es gilt der persönliche Einkommensteuersatz.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Absetzbare Kosten & Steuertipps -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">💡 Steuertipps: So senken Rentner ihre Steuerlast</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Auch als Rentner können Sie Ihre Steuerlast durch verschiedene Abzüge senken. 
+            Viele dieser Posten werden in der Steuererklärung vergessen:
+          </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Krankheitskosten:</strong> Zuzahlungen, Brillen, Zahnersatz</li>
-            <li><strong>Pflegekosten:</strong> Zuzahlungen zur Pflege</li>
-            <li><strong>Haushaltsnahe Dienstleistungen:</strong> Putzhilfe, Gärtner</li>
-            <li><strong>Handwerkerleistungen:</strong> Reparaturen in der Wohnung</li>
-            <li><strong>Spenden:</strong> An gemeinnützige Organisationen</li>
+            <li><strong>KV-/PV-Beiträge:</strong> Automatisch als Vorsorgeaufwendungen absetzbar</li>
+            <li><strong>Krankheitskosten:</strong> Zuzahlungen, Brillen, Zahnersatz, Hörgeräte (als außergewöhnliche Belastung, abzgl. zumutbarer Eigenanteil)</li>
+            <li><strong>Pflegekosten:</strong> Eigene Pflege oder Pflege Angehöriger (auch <a href="/pflegegeld-rechner" class="text-purple-600 hover:underline">Pflegegeld</a>-Empfänger)</li>
+            <li><strong><a href="/handwerkerkosten-rechner" class="text-purple-600 hover:underline">Handwerkerleistungen</a>:</strong> 20 % der Arbeitskosten, max. 1.200 €/Jahr Steuerermäßigung</li>
+            <li><strong>Haushaltsnahe Dienstleistungen:</strong> Putzhilfe, Gärtner, Pflegedienst — 20 %, max. 4.000 €/Jahr</li>
+            <li><strong>Spenden:</strong> An gemeinnützige Organisationen (bis 20 % des Gesamtbetrags der Einkünfte)</li>
+            <li><strong><a href="/homeoffice-pauschale-rechner" class="text-purple-600 hover:underline">Behindertenpauschbetrag</a>:</strong> Bei GdB ab 20 — von 384 € (GdB 20) bis 7.400 € (GdB 100 + hilflos/blind)</li>
           </ul>
+          <p>
+            <strong>Tipp Zusammenveranlagung:</strong> Verheiratete Rentner sollten immer prüfen, ob die 
+            <a href="/steuerklassen-rechner" class="text-purple-600 hover:underline">Zusammenveranlagung</a> 
+            (Splittingtarif) günstiger ist als die Einzelveranlagung — besonders wenn ein Partner 
+            deutlich weniger Rente bezieht.
+          </p>
+          <p>
+            <strong>Abgabefrist 2025:</strong> Die Steuererklärung für 2025 muss bis zum 
+            <strong>31. Juli 2026</strong> beim Finanzamt sein. Bei Steuerberater oder Lohnsteuerhilfeverein: 
+            <strong>28. Februar 2027</strong>. Eine freiwillige Abgabe ist rückwirkend bis zu <strong>4 Jahre</strong> möglich.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Was bedeutet das für Sie -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das konkret für Sie?</h2>
+        
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <p class="font-semibold text-purple-800 mb-2">Sie gehen 2026 in Rente?</p>
+            <p class="text-purple-700">Ihr Besteuerungsanteil beträgt <strong>84 %</strong>. Der Rentenfreibetrag (16 % der Jahresrente) wird im ersten vollen Rentenjahr fixiert und gilt lebenslang. Prüfen Sie mit unserem <a href="/renten-rechner" class="text-purple-600 hover:underline">Renten-Rechner</a>, wie hoch Ihre Brutto-Rente ausfällt.</p>
+          </div>
+          
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <p class="font-semibold text-blue-800 mb-2">Sie sind bereits Rentner und Ihre Rente wurde erhöht?</p>
+            <p class="text-blue-700">Rentenanpassungen sind zu <strong>100 % steuerpflichtig</strong>. Die Rentenerhöhung zum <strong>1. Juli 2026</strong> (voraussichtlich +4,24 %) kann Sie über die Steuerschwelle bringen. Rechnen Sie nach!</p>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg">
+            <p class="font-semibold text-green-800 mb-2">Sie beziehen mehrere Renten?</p>
+            <p class="text-green-700">Gesetzliche Rente + Betriebsrente + Riester = unterschiedliche Besteuerung! Die gesetzliche Rente hat einen Freibetrag, Betriebsrente und Riester werden zu <strong>100 % besteuert</strong>. Alle Renten zusammen bestimmen Ihren <a href="/einkommensteuer-rechner" class="text-purple-600 hover:underline">Grenzsteuersatz</a>.</p>
+          </div>
+          
+          <div class="bg-amber-50 p-4 rounded-lg">
+            <p class="font-semibold text-amber-800 mb-2">Sie möchten als Rentner weiterarbeiten?</p>
+            <p class="text-amber-700">Nutzen Sie die <strong>Aktivrente</strong>: Bis 2.000 €/Monat steuerfrei bei sozialversicherungspflichtiger Beschäftigung nach Erreichen der Regelaltersgrenze. Alternativ ist ein steuerfreier <a href="/minijob-rechner" class="text-purple-600 hover:underline">Minijob</a> (556 €/Monat) möglich.</p>
+          </div>
+          
+          <p>
+            <strong>Unser Tipp:</strong> Berechnen Sie Ihre <a href="/rentenluecke-rechner" class="text-purple-600 hover:underline">Rentenlücke</a> 
+            und prüfen Sie, ob eine zusätzliche <a href="/riester-rechner" class="text-purple-600 hover:underline">Riester-Rente</a> 
+            oder <a href="/etf-sparplan-rechner" class="text-purple-600 hover:underline">ETF-Sparplan</a> 
+            die Differenz zwischen Brutto- und Netto-Rente ausgleichen kann.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ Section (Collapsible) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zur Rentensteuer</h2>
+        
+        <div class="space-y-2">
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Wie viel Steuern muss ich 2026 auf meine Rente zahlen?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Die Steuerhöhe hängt vom Jahr Ihres Rentenbeginns ab. Bei Rentenbeginn 2026 sind <strong>84 %</strong> der Brutto-Rente steuerpflichtig. Steuern fallen aber erst an, wenn Ihre Einkünfte nach Abzug der Freibeträge über dem <strong>Grundfreibetrag von 12.348 €</strong> (Ledige) liegen. Bei einer Monatsrente unter ca. 1.250 € zahlen Alleinstehende in der Regel keine Einkommensteuer.</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Was ist der Unterschied zwischen Besteuerungsanteil und Steuersatz?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Der <strong>Besteuerungsanteil</strong> (z. B. 84 % bei Rentenbeginn 2026) bestimmt, welcher Teil der Rente als steuerpflichtiges Einkommen gilt. Der <strong>Steuersatz</strong> (14–45 %) bestimmt, wie viel Steuer auf dieses Einkommen anfällt. Bei 1.800 €/Monat Rente und 84 % Besteuerungsanteil sind 18.144 € steuerpflichtig — darauf fallen nach Abzügen z. B. nur 502 €/Jahr Steuer an (effektiver Steuersatz: ca. 2,3 %).</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Muss ich als Rentner eine Steuererklärung abgeben?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Ja, eine Steuererklärung ist <strong>Pflicht</strong>, wenn: Ihre steuerpflichtigen Einkünfte den Grundfreibetrag (12.348 €) übersteigen, Sie Nebeneinkünfte über 410 €/Jahr haben, eine Betriebsrente oder <a href="/riester-rechner" class="text-purple-600 hover:underline">Riester-Rente</a> beziehen, oder das Finanzamt Sie auffordert. Auch freiwillige Abgabe kann sich lohnen — z. B. wenn Sie hohe Krankheitskosten oder <a href="/handwerkerkosten-rechner" class="text-purple-600 hover:underline">Handwerkerkosten</a> hatten.</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Wie hoch sind Kranken- und Pflegeversicherung für Rentner 2026?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Pflichtversicherte Rentner zahlen <strong>7,3 % + halber Zusatzbeitrag</strong> (Ø 1,45 % in 2026) = ca. <strong>8,75 %</strong> KV-Beitrag. Die andere Hälfte übernimmt die Rentenversicherung. Die <strong>Pflegeversicherung</strong> tragen Rentner allein: <strong>3,6 %</strong> (Kinderlose ab 23: 4,2 %). Insgesamt gehen also <strong>ca. 12,35 %</strong> der Brutto-Rente für KV + PV ab — unabhängig davon, ob Steuern anfallen.</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Wird die Betriebsrente anders besteuert als die gesetzliche Rente?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Ja, erheblich. Betriebsrenten aus Direktzusage, Pensionskasse oder Pensionsfonds werden zu <strong>100 %</strong> besteuert (nachgelagerte Besteuerung). Es gibt keinen Rentenfreibetrag. Zusätzlich fallen <strong>volle KV-Beiträge</strong> (14,6 % + Zusatzbeitrag) auf den Betrag über dem Freibetrag von <strong>197,75 €/Monat</strong> (2026) an. Ältere Direktversicherungsverträge (vor 2005) können günstig mit dem <strong>Ertragsanteil</strong> besteuert werden.</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Was ist die Aktivrente und wie wirkt sie sich steuerlich aus?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Seit dem 1. Januar 2026 können Rentner, die die Regelaltersgrenze erreicht haben und sozialversicherungspflichtig weiterarbeiten, bis zu <strong>2.000 €/Monat steuerfrei</strong> hinzuverdienen. Dieser Freibetrag unterliegt nicht dem Progressionsvorbehalt — er erhöht weder das zvE noch den Steuersatz auf die Rente. KV- und PV-Beiträge fallen auf den Hinzuverdienst dennoch an.</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Ab wann werden Renten zu 100 % besteuert?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Durch das <strong>Wachstumschancengesetz</strong> wurde der Anstieg des Besteuerungsanteils ab 2023 auf <strong>0,5 Prozentpunkte</strong> pro Jahr verlangsamt (statt zuvor 1 Prozentpunkt). Die volle Besteuerung (100 %) wird damit erst bei Rentenbeginn <strong>2058</strong> erreicht — nicht mehr 2040 wie ursprünglich geplant. Wer heute in Rente geht (2026), hat einen Besteuerungsanteil von 84 % und einen lebenslangen Freibetrag von 16 %.</p>
+          </details>
+          
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Wie genau ist dieser Rentensteuer-Rechner?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Der Rechner liefert eine <strong>zuverlässige Schätzung</strong> auf Basis der aktuellen Steuerformel (§32a EStG), des offiziellen Besteuerungsanteils und der gültigen Sozialversicherungssätze 2026. Er berücksichtigt Grundfreibetrag, Werbungskosten-Pauschale, Sonderausgaben-Pauschbetrag und Vorsorgeaufwendungen. <strong>Nicht erfasst</strong> werden individuelle außergewöhnliche Belastungen, weitere Einkünfte (Miete, Kapital) und kassenspezifische Zusatzbeiträge. Für eine verbindliche Berechnung wenden Sie sich an einen Steuerberater oder <a href="/lohnsteuer-rechner" class="text-purple-600 hover:underline">Lohnsteuerhilfeverein</a>.</p>
+          </details>
         </div>
       </div>
     </div>
@@ -152,13 +489,37 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
             <span class="text-2xl">📉</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Rentenlücke-Rechner</p>
           </a>
-          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🧾</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          <a href="/riester-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Riester-Rechner</p>
           </a>
           <a href="/witwenrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">🖤</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Witwenrente-Rechner</p>
+          </a>
+          <a href="/erwerbsminderungsrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Erwerbsminderungsrente</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/steuerklassen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Steuerklassen-Rechner</p>
+          </a>
+          <a href="/kirchensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kirchensteuer-Rechner</p>
+          </a>
+          <a href="/grundrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🤝</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundrente-Rechner</p>
           </a>
         </div>
       </div>
@@ -177,8 +538,9 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
             <h3 class="font-semibold text-blue-800 mb-2">Finanzamt</h3>
             <p class="text-blue-700 text-sm">
               Für Fragen zur <strong>Rentenbesteuerung</strong> ist Ihr Finanzamt zuständig. 
-              Die Steuererklärung erfolgt über ELSTER oder in Papierform. Viele Finanzämter 
-              bieten spezielle Beratung für Senioren an.
+              Die Steuererklärung erfolgt über <strong>ELSTER</strong> (elster.de) oder in Papierform. 
+              Viele Finanzämter bieten spezielle Beratung für Senioren an. Alternativ: 
+              <strong>Lohnsteuerhilfeverein</strong> (ab ca. 150 €/Jahr).
             </p>
           </div>
           
@@ -186,8 +548,10 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
             <h3 class="font-semibold text-green-800 mb-2">Deutsche Rentenversicherung</h3>
             <p class="text-green-700 text-sm">
               <strong>Kostenlose Hotline:</strong> 0800 1000 4800<br/>
-              Bei Fragen zu Kranken- und Pflegeversicherungsbeiträgen auf Ihre Rente 
-              hilft die Deutsche Rentenversicherung weiter.
+              Bei Fragen zu KV-/PV-Beiträgen auf Ihre Rente, zur Rentenbezugsmitteilung 
+              (für die Steuererklärung) oder zur <strong>Aktivrente</strong> hilft die 
+              Deutsche Rentenversicherung weiter. Die Rentenbezugsmitteilung wird auch 
+              <strong>automatisch</strong> an das Finanzamt übermittelt.
             </p>
           </div>
         </div>
@@ -222,34 +586,18 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wie viel Steuern muss ich auf meine Rente zahlen?",
+        "name": "Wie viel Steuern muss ich 2026 auf meine Rente zahlen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Steuer hängt vom Jahr Ihres Rentenbeginns ab. Bei Rentenbeginn 2026 sind 84% der Rente steuerpflichtig. Steuern fallen aber nur an, wenn Ihre Einkünfte über dem Grundfreibetrag von 12.348€ liegen."
+          "text": "Die Steuerhöhe hängt vom Jahr Ihres Rentenbeginns ab. Bei Rentenbeginn 2026 sind 84 % der Brutto-Rente steuerpflichtig. Steuern fallen aber erst an, wenn Ihre Einkünfte nach Abzug der Freibeträge über dem Grundfreibetrag von 12.348 € (Ledige) liegen. Bei einer Monatsrente unter ca. 1.250 € zahlen Alleinstehende in der Regel keine Einkommensteuer."
         }
       },
       {
         "@type": "Question",
-        "name": "Was ist der Besteuerungsanteil bei der Rente?",
+        "name": "Was ist der Unterschied zwischen Besteuerungsanteil und Steuersatz?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Besteuerungsanteil gibt an, welcher Teil Ihrer Rente versteuert werden muss. Er hängt vom Jahr des Rentenbeginns ab: 2026 sind 84% steuerpflichtig, ab 2040 werden 100% versteuert. Der steuerfreie Rentenfreibetrag wird im ersten Rentenjahr festgeschrieben und gilt lebenslang."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Welche Abzüge gibt es von der Brutto-Rente?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Von der Brutto-Rente werden abgezogen: Krankenversicherung (ca. 8,5%), Pflegeversicherung (1,8-2,4%), Einkommensteuer (je nach Höhe) und ggf. Kirchensteuer. Die Rentenversicherung übernimmt die Hälfte der KV- und PV-Beiträge."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ab welcher Rente muss ich Steuern zahlen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Steuern fallen an, wenn Ihre steuerpflichtigen Einkünfte den Grundfreibetrag (2026: 12.348€) übersteigen. Bei Rentenbeginn 2026 (84% Besteuerungsanteil) liegt die Steuerschwelle bei etwa 1.200€ Monatsrente für Alleinstehende."
+          "text": "Der Besteuerungsanteil (z. B. 84 % bei Rentenbeginn 2026) bestimmt, welcher Teil der Rente als steuerpflichtiges Einkommen gilt. Der Steuersatz (14–45 %) bestimmt, wie viel Steuer auf dieses Einkommen anfällt. Bei 1.800 €/Monat Rente und 84 % Besteuerungsanteil sind 18.144 € steuerpflichtig — darauf fallen nach Abzügen z. B. nur 502 €/Jahr Steuer an (effektiver Steuersatz: ca. 2,3 %)."
         }
       },
       {
@@ -257,15 +605,47 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
         "name": "Muss ich als Rentner eine Steuererklärung abgeben?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Eine Steuererklärung ist Pflicht bei: Nebeneinkünften über 410€/Jahr, Bezug von Betriebsrente/Riester-Rente, Aufforderung durch das Finanzamt, oder wenn Ihre Einkünfte über dem Grundfreibetrag liegen."
+          "text": "Ja, eine Steuererklärung ist Pflicht, wenn: Ihre steuerpflichtigen Einkünfte den Grundfreibetrag (12.348 €) übersteigen, Sie Nebeneinkünfte über 410 €/Jahr haben, eine Betriebsrente oder Riester-Rente beziehen, oder das Finanzamt Sie auffordert. Auch freiwillige Abgabe kann sich lohnen — z. B. wenn Sie hohe Krankheitskosten oder Handwerkerkosten hatten."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie hoch ist die Krankenversicherung für Rentner?",
+        "name": "Wie hoch sind Kranken- und Pflegeversicherung für Rentner 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pflichtversicherte Rentner zahlen auf ihre gesetzliche Rente den halben KV-Beitragssatz (ca. 7,3% + halber Zusatzbeitrag). Die andere Hälfte übernimmt die Rentenversicherung. Auf Betriebsrenten gilt der volle Beitragssatz."
+          "text": "Pflichtversicherte Rentner zahlen 7,3 % + halber Zusatzbeitrag (Ø 1,45 % in 2026) = ca. 8,75 % KV-Beitrag. Die andere Hälfte übernimmt die Rentenversicherung. Die Pflegeversicherung tragen Rentner allein: 3,6 % (Kinderlose ab 23: 4,2 %). Insgesamt gehen also ca. 12,35 % der Brutto-Rente für KV + PV ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird die Betriebsrente anders besteuert als die gesetzliche Rente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, erheblich. Betriebsrenten werden zu 100 % besteuert (nachgelagerte Besteuerung). Es gibt keinen Rentenfreibetrag. Zusätzlich fallen volle KV-Beiträge (14,6 % + Zusatzbeitrag) auf den Betrag über dem Freibetrag von 197,75 €/Monat (2026) an. Ältere Direktversicherungsverträge (vor 2005) können günstig mit dem Ertragsanteil besteuert werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Aktivrente und wie wirkt sie sich steuerlich aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seit dem 1. Januar 2026 können Rentner, die die Regelaltersgrenze erreicht haben und sozialversicherungspflichtig weiterarbeiten, bis zu 2.000 €/Monat steuerfrei hinzuverdienen. Dieser Freibetrag unterliegt nicht dem Progressionsvorbehalt — er erhöht weder das zvE noch den Steuersatz auf die Rente. KV- und PV-Beiträge fallen auf den Hinzuverdienst dennoch an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann werden Renten zu 100 % besteuert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Durch das Wachstumschancengesetz wurde der Anstieg des Besteuerungsanteils ab 2023 auf 0,5 Prozentpunkte pro Jahr verlangsamt. Die volle Besteuerung (100 %) wird damit erst bei Rentenbeginn 2058 erreicht — nicht mehr 2040 wie ursprünglich geplant. Wer 2026 in Rente geht, hat einen Besteuerungsanteil von 84 % und einen lebenslangen Freibetrag von 16 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist dieser Rentensteuer-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner liefert eine zuverlässige Schätzung auf Basis der aktuellen Steuerformel (§32a EStG), des offiziellen Besteuerungsanteils und der gültigen Sozialversicherungssätze 2026. Er berücksichtigt Grundfreibetrag, Werbungskosten-Pauschale, Sonderausgaben-Pauschbetrag und Vorsorgeaufwendungen. Nicht erfasst werden individuelle außergewöhnliche Belastungen, weitere Einkünfte und kassenspezifische Zusatzbeiträge."
         }
       }
     ]
