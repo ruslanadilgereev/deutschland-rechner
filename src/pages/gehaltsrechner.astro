@@ -1,0 +1,471 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Alle Gehalts- & Arbeitsrechner 2026 – Kostenlose Online-Rechner für Deutschland";
+const description = "19 kostenlose Gehaltsrechner für Deutschland 2026: Brutto-Netto, Stundenlohn, Minijob, Midijob, Teilzeit, Überstunden, Abfindung & mehr. Mit aktuellen Werten – Mindestlohn 13,90 €, Minijob-Grenze 603 €.";
+const keywords = "Gehaltsrechner 2026, Brutto Netto Rechner, Stundenlohn Rechner, Minijob Rechner 2026, Midijob Rechner, Teilzeit Rechner, Mindestlohn 2026, Arbeitstage Rechner, Überstunden Rechner, Kurzarbeitergeld Rechner, Abfindung Rechner, Gehaltsrechner Deutschland";
+
+const arbeitsRechner = [
+  {
+    gruppe: "Gehalt & Nettolohn",
+    icon: "💰",
+    rechner: [
+      { name: "Brutto-Netto-Rechner", url: "/brutto-netto-rechner", desc: "Was bleibt vom Gehalt? Nettolohn mit allen Abzügen berechnen", icon: "🧮" },
+      { name: "Lohnsteuer-Rechner", url: "/lohnsteuer-rechner", desc: "Monatliche Lohnsteuer nach Steuerklasse, Kinderfreibeträgen & Kirchensteuer", icon: "💵" },
+      { name: "Steuerklassen-Rechner", url: "/steuerklassen-rechner", desc: "Optimale Steuerklassen-Kombination für Ehepaare finden", icon: "💍" },
+      { name: "Stundenlohn-Rechner", url: "/stundenlohn-rechner", desc: "Stundenlohn aus Monatsgehalt berechnen – oder umgekehrt", icon: "⏱️" },
+      { name: "Gehaltsvergleich-Rechner", url: "/gehaltsvergleich-rechner", desc: "Gehalt nach Branche, Region und Berufserfahrung vergleichen", icon: "📊" },
+      { name: "Mindestlohn-Rechner", url: "/mindestlohn-rechner", desc: "Gesetzlichen Mindestlohn prüfen – 13,90 € brutto/Stunde ab 2026", icon: "📏" },
+    ]
+  },
+  {
+    gruppe: "Beschäftigungsformen",
+    icon: "📋",
+    rechner: [
+      { name: "Minijob-Rechner", url: "/minijob-rechner", desc: "Minijob-Abgaben für Arbeitnehmer & Arbeitgeber – Grenze 603 €/Monat", icon: "🪙" },
+      { name: "Midijob-Rechner", url: "/midijob-rechner", desc: "Beiträge im Übergangsbereich 603,01 – 2.000 € berechnen", icon: "📈" },
+      { name: "Teilzeit-Rechner", url: "/teilzeit-rechner", desc: "Teilzeitgehalt, Urlaubstage und Auswirkungen auf Rente berechnen", icon: "⏰" },
+      { name: "Altersteilzeit-Rechner", url: "/altersteilzeit-rechner", desc: "Block- oder Gleichverteilungsmodell mit Aufstockungsbetrag", icon: "🏖️" },
+    ]
+  },
+  {
+    gruppe: "Arbeitszeit & Pendeln",
+    icon: "🚗",
+    rechner: [
+      { name: "Arbeitstage-Rechner", url: "/arbeitstage-rechner", desc: "Arbeitstage pro Monat oder Jahr nach Bundesland berechnen", icon: "📅" },
+      { name: "Überstunden-Rechner", url: "/ueberstunden-rechner", desc: "Überstundenvergütung, Zuschläge und Freizeitausgleich berechnen", icon: "⏳" },
+      { name: "Pendlerpauschale-Rechner", url: "/pendlerpauschale-rechner", desc: "Entfernungspauschale 2026: 0,38 €/km ab dem ersten Kilometer", icon: "🚗" },
+      { name: "Homeoffice-Pauschale-Rechner", url: "/homeoffice-pauschale-rechner", desc: "Bis 1.260 € pro Jahr – 6 € pro Homeoffice-Tag absetzen", icon: "🏠" },
+    ]
+  },
+  {
+    gruppe: "Firmenwagen & Arbeitgeber-Benefits",
+    icon: "🚘",
+    rechner: [
+      { name: "Firmenwagen-Rechner", url: "/firmenwagen-rechner", desc: "1-%-Regel oder Fahrtenbuch – geldwerten Vorteil berechnen", icon: "🚘" },
+      { name: "Doppelte-Haushaltsführung-Rechner", url: "/doppelte-haushaltsfuehrung-rechner", desc: "Werbungskosten bei beruflich bedingtem Zweitwohnsitz", icon: "🏘️" },
+    ]
+  },
+  {
+    gruppe: "Jobverlust & Sonderfälle",
+    icon: "🔄",
+    rechner: [
+      { name: "Arbeitslosengeld-Rechner", url: "/arbeitslosengeld-rechner", desc: "ALG-I-Anspruch nach Gehalt, Steuerklasse und Kindern berechnen", icon: "📋" },
+      { name: "Kurzarbeitergeld-Rechner", url: "/kurzarbeitergeld-rechner", desc: "60 % oder 67 % vom Nettoentgeltausfall – Bezugsdauer bis 24 Monate", icon: "⚙️" },
+      { name: "Abfindung-Rechner", url: "/abfindung-rechner", desc: "Abfindungshöhe und Steuerlast mit Fünftelregelung berechnen", icon: "💼" },
+    ]
+  }
+];
+
+const faqs = [
+  {
+    frage: "Wie viel Netto bleibt vom Brutto 2026?",
+    antwort: "Wie viel Netto vom Bruttogehalt übrig bleibt, hängt von Steuerklasse, Kirchensteuerpflicht, Kinderfreibeträgen, Krankenversicherung und Bundesland ab. Als Faustregel: Bei einem Bruttogehalt von 3.500 € in Steuerklasse I bleiben ca. 2.300–2.400 € netto. Der Grundfreibetrag liegt 2026 bei 12.348 €, der Arbeitnehmer-Pauschbetrag bei 1.230 €. Mit unserem Brutto-Netto-Rechner berechnen Sie Ihr individuelles Nettogehalt mit allen Abzügen für 2026."
+  },
+  {
+    frage: "Wie hoch ist der Mindestlohn 2026 in Deutschland?",
+    antwort: "Der gesetzliche Mindestlohn beträgt ab dem 1. Januar 2026 13,90 Euro brutto pro Stunde. Bei einer 40-Stunden-Woche entspricht das einem Bruttomonatsgehalt von ca. 2.410 €. Zum 1. Januar 2027 ist eine weitere Erhöhung auf 14,60 € geplant. In einigen Branchen gelten höhere Branchenmindestlöhne, z. B. im Bauhauptgewerbe (15,40 €/Stunde), in der Gebäudereinigung (14,25 €) oder in der Pflege (bis 20,50 € für Fachkräfte). Unser Mindestlohn-Rechner prüft, ob Ihr Stundenlohn den gesetzlichen Vorgaben entspricht."
+  },
+  {
+    frage: "Was ist die Minijob-Grenze 2026?",
+    antwort: "Die Minijob-Verdienstgrenze liegt ab dem 1. Januar 2026 bei 603 Euro pro Monat (7.236 € pro Jahr). Sie ist dynamisch an den Mindestlohn gekoppelt: 13,90 € × 10 Stunden × 52 Wochen ÷ 12 Monate = 602,67 €, aufgerundet 603 €. Im Minijob zahlen Arbeitnehmer keine Sozialversicherungsbeiträge (Befreiung von der Rentenversicherung möglich) und keine Lohnsteuer bei pauschaler Versteuerung durch den Arbeitgeber. Verdienen Sie regelmäßig mehr als 603 €, liegt ein Midijob vor."
+  },
+  {
+    frage: "Was ist der Unterschied zwischen Minijob und Midijob?",
+    antwort: "Beim Minijob (bis 603 €/Monat) zahlt der Arbeitnehmer keine Sozialabgaben und keine Lohnsteuer – der Arbeitgeber trägt pauschale Abgaben von ca. 28 %. Beim Midijob (603,01 – 2.000 €/Monat, auch Übergangsbereich genannt) zahlt der Arbeitnehmer reduzierte Sozialversicherungsbeiträge, die mit steigendem Verdienst ansteigen. Der Arbeitgeber zahlt stets den vollen Beitrag. Vorteil des Midijobs: voller Sozialversicherungsschutz (Kranken-, Pflege-, Renten-, Arbeitslosenversicherung) bei geringeren Abgaben."
+  },
+  {
+    frage: "Wie hoch ist die Pendlerpauschale 2026?",
+    antwort: "Ab 2026 beträgt die Pendlerpauschale einheitlich 0,38 € pro Entfernungskilometer ab dem ersten Kilometer. Die bisherige Staffelung (0,30 € für die ersten 20 km, 0,38 € ab dem 21. km) entfällt. Bei 30 km einfacher Strecke und 220 Arbeitstagen ergibt das 2.508 € Werbungskosten – deutlich über dem Arbeitnehmer-Pauschbetrag von 1.230 €. Alternativ können Arbeitnehmer im Homeoffice die Homeoffice-Pauschale von 6 €/Tag (max. 1.260 €/Jahr) nutzen."
+  },
+  {
+    frage: "Wie wird eine Abfindung 2026 versteuert?",
+    antwort: "Abfindungen unterliegen der vollen Einkommensteuer, sind aber sozialversicherungsfrei. Die Fünftelregelung (§ 34 EStG) mildert die Steuerprogression: Die Abfindung wird rechnerisch auf fünf Jahre verteilt. Wichtig seit 2025: Der Arbeitgeber darf die Fünftelregelung nicht mehr beim Lohnsteuerabzug anwenden. Sie müssen den Steuervorteil selbst über Ihre Einkommensteuererklärung beantragen. Tipp: Verschieben Sie die Auszahlung in ein Jahr mit niedrigem Einkommen (z. B. Arbeitslosigkeit), um zusätzlich Steuern zu sparen."
+  },
+  {
+    frage: "Wie viel Kurzarbeitergeld bekomme ich 2026?",
+    antwort: "Kurzarbeitergeld beträgt 60 % des ausgefallenen pauschalierten Nettoentgelts (67 % mit mindestens einem Kind). Die maximale Bezugsdauer wurde bis Ende 2026 auf 24 Monate verlängert. Die Beitragsbemessungsgrenze liegt 2026 bei 8.450 €/Monat, das KUG ist somit auf maximal 5.661,50 € (67 %) gedeckelt. Kurzarbeitergeld ist steuerfrei, unterliegt aber dem Progressionsvorbehalt – Sie müssen eine Steuererklärung abgeben, wenn Sie mehr als 410 € KUG erhalten haben."
+  },
+  {
+    frage: "Kann ich Homeoffice-Pauschale und Pendlerpauschale gleichzeitig nutzen?",
+    antwort: "Ja, aber nicht für denselben Tag. An Tagen, an denen Sie ins Büro fahren, setzen Sie die Pendlerpauschale (0,38 €/km ab dem 1. km) an. An reinen Homeoffice-Tagen nutzen Sie die Homeoffice-Pauschale (6 €/Tag, max. 210 Tage = 1.260 €/Jahr). Beide zusammen können Ihre Werbungskosten deutlich über den Arbeitnehmer-Pauschbetrag von 1.230 € heben. Beispiel: 3 Tage Büro (25 km) + 2 Tage Homeoffice × 44 Wochen = 1.254 € Pendler + 528 € Homeoffice = 1.782 € Werbungskosten."
+  }
+];
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Gehaltsrechner", url: "/gehaltsrechner" }]} />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.antwort
+      }
+    }))
+  })} />
+
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-10 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-5xl">💼</span>
+          <div>
+            <h1 class="text-3xl font-bold">Alle Gehalts- & Arbeitsrechner 2026</h1>
+            <p class="text-blue-200 mt-1">19 kostenlose Rechner für Gehalt, Stundenlohn, Minijob, Pendlerpauschale & mehr</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+
+      <!-- Trust-Block -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 text-sm text-blue-900">
+        <div class="flex flex-wrap gap-x-6 gap-y-1">
+          <span>📅 Zuletzt aktualisiert: 25.03.2026</span>
+          <span>📋 Geprüft nach: MiLoG, ArbZG, TzBfG, SGB IV, EStG §§ 9, 19, 34, 40a</span>
+        </div>
+        <p class="mt-2"><strong>Was diese Rechner berücksichtigen:</strong> Aktuelle Werte 2026 für Mindestlohn (13,90 €), Minijob-Grenze (603 €), Midijob-Übergangsbereich (bis 2.000 €), Sozialversicherungsbeiträge, Lohnsteuer nach Steuerklasse, Pendlerpauschale (0,38 €/km) und Homeoffice-Pauschale (6 €/Tag).</p>
+        <p class="mt-1"><strong>Nicht berücksichtigt:</strong> Individuelle Tarifverträge, Zulagen, Sachbezüge (außer Firmenwagen), betriebliche Altersvorsorge mit individuellen Arbeitgeberzuschüssen, regionale Besonderheiten einzelner Finanzämter.</p>
+      </div>
+
+      <!-- Intro mit internen Links -->
+      <div class="prose max-w-none mb-10">
+        <p class="text-lg text-gray-700">
+          Was bleibt 2026 wirklich vom Gehalt übrig? Unsere <strong>kostenlosen Gehalts- und Arbeitsrechner</strong> berechnen alles rund um Ihr Einkommen: vom 
+          <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a> über den 
+          <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Stundenlohn-Rechner</a> bis zum 
+          <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob-Rechner</a>. 
+          Ob Sie Ihren <a href="/arbeitslosengeld-rechner" class="text-blue-600 hover:underline">ALG-I-Anspruch</a> prüfen, die 
+          <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">neue Pendlerpauschale</a> berechnen oder Ihren 
+          <a href="/firmenwagen-rechner" class="text-blue-600 hover:underline">Firmenwagen-Vorteil</a> ermitteln möchten — alle Rechner nutzen die <strong>aktuellen Werte 2026</strong> 
+          (Mindestlohn 13,90 €, Minijob-Grenze 603 €, Pendlerpauschale 0,38 €/km ab dem 1. km).
+        </p>
+        <p class="text-gray-600 mt-3">
+          Für Steuerberechnungen wie <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer</a>, 
+          <a href="/kirchensteuer-rechner" class="text-blue-600 hover:underline">Kirchensteuer</a> oder 
+          <a href="/soli-rechner" class="text-blue-600 hover:underline">Solidaritätszuschlag</a> finden Sie alle Rechner auf unserer 
+          <a href="/steuerrechner" class="text-blue-600 hover:underline">Steuerrechner-Übersicht</a>. 
+          Bei Sozialleistungen hilft unser <a href="/buergergeld-rechner" class="text-blue-600 hover:underline">Bürgergeld-Rechner</a> oder der 
+          <a href="/wohngeld-rechner" class="text-blue-600 hover:underline">Wohngeld-Rechner</a>.
+        </p>
+      </div>
+
+      <!-- Quick Links / Sprungmarken -->
+      <div class="bg-gray-50 rounded-2xl p-6 mb-10">
+        <h2 class="text-lg font-bold text-gray-800 mb-3">⚡ Schnellzugriff</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {arbeitsRechner.map(g => (
+            <a href={`#${g.gruppe.toLowerCase().replace(/[^a-z0-9äöü]/g, '-').replace(/-+/g, '-')}`} class="text-blue-600 hover:text-blue-800 text-sm hover:underline">
+              {g.icon} {g.gruppe}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Wichtige Änderungen 2026 Highlight -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-6 mb-10">
+        <h2 class="text-xl font-bold text-indigo-900 mb-3">📢 Arbeit & Gehalt – Das ändert sich 2026</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-indigo-900">
+          <div>
+            <p><strong>Mindestlohn:</strong> 13,90 €/Stunde (+0,78 € vs. 2025)</p>
+            <p><strong>Minijob-Grenze:</strong> 603 €/Monat (dynamisch an Mindestlohn)</p>
+            <p><strong>Midijob-Obergrenze:</strong> 2.000 €/Monat (unverändert)</p>
+            <p><strong>Arbeitnehmer-Pauschbetrag:</strong> 1.230 € (unverändert)</p>
+          </div>
+          <div>
+            <p><strong>Pendlerpauschale:</strong> 0,38 €/km ab dem 1. km (vereinheitlicht!)</p>
+            <p><strong>Homeoffice-Pauschale:</strong> 6 €/Tag, max. 1.260 €/Jahr</p>
+            <p><strong>Kurzarbeitergeld:</strong> Bezugsdauer bis 24 Monate verlängert</p>
+            <p><strong>Gewerkschaftsbeiträge:</strong> Neu zusätzlich zum Pauschbetrag absetzbar</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rechner-Gruppen -->
+      {arbeitsRechner.map(gruppe => (
+        <section id={gruppe.gruppe.toLowerCase().replace(/[^a-z0-9äöü]/g, '-').replace(/-+/g, '-')} class="mb-10">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>{gruppe.icon}</span> {gruppe.gruppe}
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {gruppe.rechner.map(r => (
+              <a href={r.url} class="block bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-blue-300 transition-all group">
+                <div class="flex items-start gap-3">
+                  <span class="text-2xl">{r.icon}</span>
+                  <div>
+                    <h3 class="font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{r.name}</h3>
+                    <p class="text-sm text-gray-500 mt-1">{r.desc}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- Mindestlohn-Entwicklung Tabelle -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Mindestlohn & Minijob-Grenze – Entwicklung</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="text-left p-3 border">Jahr</th>
+                <th class="text-left p-3 border">Mindestlohn (€/Std.)</th>
+                <th class="text-left p-3 border">Minijob-Grenze (€/Monat)</th>
+                <th class="text-left p-3 border">Midijob bis (€/Monat)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-gray-50"><td class="p-3 border">2023</td><td class="p-3 border">12,00 €</td><td class="p-3 border">520 €</td><td class="p-3 border">2.000 €</td></tr>
+              <tr><td class="p-3 border">2024</td><td class="p-3 border">12,41 €</td><td class="p-3 border">538 €</td><td class="p-3 border">2.000 €</td></tr>
+              <tr class="bg-gray-50"><td class="p-3 border">2025</td><td class="p-3 border">12,82 € → 13,12 €</td><td class="p-3 border">556 € → 570 €</td><td class="p-3 border">2.000 €</td></tr>
+              <tr class="bg-blue-50 font-semibold"><td class="p-3 border">2026</td><td class="p-3 border text-blue-700">13,90 €</td><td class="p-3 border text-blue-700">603 €</td><td class="p-3 border text-blue-700">2.000 €</td></tr>
+              <tr class="text-gray-400"><td class="p-3 border">2027 (geplant)</td><td class="p-3 border">14,60 €</td><td class="p-3 border">~634 €</td><td class="p-3 border">2.000 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">Die Minijob-Grenze ist seit Oktober 2022 dynamisch an den Mindestlohn gekoppelt (Formel: Mindestlohn × 10 × 52 ÷ 12). Berechnen Sie Ihren Stundenlohn mit dem <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Stundenlohn-Rechner</a>.</p>
+      </section>
+
+      <!-- Wichtige Werte 2026 Karten -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Wichtige Werte für Arbeitnehmer 2026</h2>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div class="bg-blue-50 rounded-xl p-4">
+            <p class="font-bold text-blue-900">Mindestlohn</p>
+            <p class="text-2xl font-bold text-blue-700">13,90 €/Std.</p>
+            <p class="text-xs text-blue-600">≈ 2.410 €/Monat bei 40 Std./Woche</p>
+          </div>
+          <div class="bg-green-50 rounded-xl p-4">
+            <p class="font-bold text-green-900">Minijob-Grenze</p>
+            <p class="text-2xl font-bold text-green-700">603 €/Monat</p>
+            <p class="text-xs text-green-600">≈ 43 Stunden/Monat bei Mindestlohn</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-4">
+            <p class="font-bold text-purple-900">Pendlerpauschale</p>
+            <p class="text-2xl font-bold text-purple-700">0,38 €/km</p>
+            <p class="text-xs text-purple-600">Ab dem 1. km (vereinheitlicht!)</p>
+          </div>
+          <div class="bg-orange-50 rounded-xl p-4">
+            <p class="font-bold text-orange-900">Homeoffice-Pauschale</p>
+            <p class="text-2xl font-bold text-orange-700">6 €/Tag</p>
+            <p class="text-xs text-orange-600">Max. 210 Tage = 1.260 €/Jahr</p>
+          </div>
+          <div class="bg-teal-50 rounded-xl p-4">
+            <p class="font-bold text-teal-900">BBG Rente (West)</p>
+            <p class="text-2xl font-bold text-teal-700">8.450 €/Monat</p>
+            <p class="text-xs text-teal-600">Beitragsbemessungsgrenze allgemeine RV</p>
+          </div>
+          <div class="bg-rose-50 rounded-xl p-4">
+            <p class="font-bold text-rose-900">JAEG (KV-Pflichtgrenze)</p>
+            <p class="text-2xl font-bold text-rose-700">77.400 €/Jahr</p>
+            <p class="text-xs text-rose-600">6.450 €/Monat – Ab hier PKV möglich</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gehalts-Beispielrechnungen -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">💡 Typische Gehaltsbeispiele 2026</h2>
+        <p class="text-gray-600 mb-4">Wie viel Netto bleibt bei verschiedenen Bruttogehältern? Hier drei typische Beispiele (Steuerklasse I, keine Kinder, gesetzlich versichert, NRW, evangelisch):</p>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-sm font-semibold text-gray-500 mb-1">Berufseinsteiger</p>
+            <p class="text-lg font-bold text-gray-800">2.500 € brutto</p>
+            <div class="mt-3 text-sm space-y-1">
+              <p class="flex justify-between"><span>Lohnsteuer:</span><span class="font-mono">–233 €</span></p>
+              <p class="flex justify-between"><span>Sozialabgaben:</span><span class="font-mono">–521 €</span></p>
+              <p class="flex justify-between border-t pt-1 font-bold text-green-700"><span>≈ Netto:</span><span>1.746 €</span></p>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">→ <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Genau berechnen</a></p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-sm font-semibold text-gray-500 mb-1">Fachkraft</p>
+            <p class="text-lg font-bold text-gray-800">4.000 € brutto</p>
+            <div class="mt-3 text-sm space-y-1">
+              <p class="flex justify-between"><span>Lohnsteuer:</span><span class="font-mono">–554 €</span></p>
+              <p class="flex justify-between"><span>Sozialabgaben:</span><span class="font-mono">–834 €</span></p>
+              <p class="flex justify-between border-t pt-1 font-bold text-green-700"><span>≈ Netto:</span><span>2.612 €</span></p>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">→ <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Genau berechnen</a></p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <p class="text-sm font-semibold text-gray-500 mb-1">Gutverdiener</p>
+            <p class="text-lg font-bold text-gray-800">6.500 € brutto</p>
+            <div class="mt-3 text-sm space-y-1">
+              <p class="flex justify-between"><span>Lohnsteuer:</span><span class="font-mono">–1.389 €</span></p>
+              <p class="flex justify-between"><span>Sozialabgaben:</span><span class="font-mono">–1.317 €</span></p>
+              <p class="flex justify-between border-t pt-1 font-bold text-green-700"><span>≈ Netto:</span><span>3.794 €</span></p>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">→ <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Genau berechnen</a></p>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Hinweis: Werte sind Näherungen. Ihr exaktes Nettogehalt hängt von Ihrer individuellen Situation ab. Die <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">optimale Steuerklasse</a> kann das Netto erheblich verändern.</p>
+      </section>
+
+      <!-- Typische Fehler -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">⚠️ 5 typische Fehler bei Gehalt & Steuern</h2>
+        <div class="space-y-3">
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
+            <p class="font-semibold text-red-800">1. Minijob-Grenze überschreiten, ohne es zu merken</p>
+            <p class="text-sm text-red-700 mt-1">Einmalzahlungen (Weihnachtsgeld, Urlaubsgeld) zählen mit! Wer die 603-€-Grenze regelmäßig überschreitet, rutscht in den <a href="/midijob-rechner" class="text-blue-600 hover:underline">Midijob</a> und zahlt plötzlich Sozialabgaben.</p>
+          </div>
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
+            <p class="font-semibold text-red-800">2. Pendlerpauschale und Homeoffice nicht kombinieren</p>
+            <p class="text-sm text-red-700 mt-1">Viele verschenken Geld, weil sie nur eine Pauschale nutzen. 2026 ist die Kombination besonders lukrativ: <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">0,38 €/km</a> für Bürotage + <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">6 €/Tag</a> für Homeoffice-Tage.</p>
+          </div>
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
+            <p class="font-semibold text-red-800">3. Steuerklasse III/V statt IV/IV mit Faktor</p>
+            <p class="text-sm text-red-700 mt-1">Steuerklasse III/V kann bei Elterngeld, Kurzarbeitergeld oder ALG I zum Nachteil werden. Prüfen Sie mit dem <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">Steuerklassen-Rechner</a>, ob IV/IV mit Faktor günstiger wäre.</p>
+          </div>
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
+            <p class="font-semibold text-red-800">4. Fünftelregelung bei Abfindung vergessen</p>
+            <p class="text-sm text-red-700 mt-1">Seit 2025 wird die Fünftelregelung nicht mehr automatisch vom Arbeitgeber angewandt. Sie müssen sie aktiv in Ihrer Steuererklärung beantragen — sonst zahlen Sie bis zu 45 % Steuern auf Ihre <a href="/abfindung-rechner" class="text-blue-600 hover:underline">Abfindung</a>.</p>
+          </div>
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-xl">
+            <p class="font-semibold text-red-800">5. Überstunden nicht korrekt abrechnen</p>
+            <p class="text-sm text-red-700 mt-1">Überstundenzuschläge sind nur unter bestimmten Voraussetzungen steuerfrei (Sonntags-, Feiertags-, Nachtarbeit). Reguläre Überstunden werden voll versteuert. Nutzen Sie den <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstunden-Rechner</a> für die korrekte Berechnung.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sonderfälle -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">🔍 Sonderfälle & Wissenswertes</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <h3 class="font-bold text-gray-800 mb-2">👨‍🎓 Studenten & Werkstudenten</h3>
+            <p class="text-sm text-gray-600">Werkstudenten zahlen keine KV/PV/ALV-Beiträge, wenn sie max. 20 Stunden/Woche arbeiten. In den Semesterferien darf unbegrenzt gearbeitet werden. Ein <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> neben dem Studium ist sozialversicherungsfrei. Verdienen Sie mehr als 603 €, greift der <a href="/midijob-rechner" class="text-blue-600 hover:underline">Übergangsbereich</a>.</p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <h3 class="font-bold text-gray-800 mb-2">👶 Elternzeit & Wiedereinstieg</h3>
+            <p class="text-sm text-gray-600">Während der <a href="/elternzeit-rechner" class="text-blue-600 hover:underline">Elternzeit</a> können Sie bis zu 32 Stunden/Woche arbeiten. Ein <a href="/teilzeit-rechner" class="text-blue-600 hover:underline">Teilzeit-Antrag</a> nach § 15 BEEG kann der Arbeitgeber nur aus dringenden betrieblichen Gründen ablehnen. Prüfen Sie vorab die <a href="/elterngeld-rechner" class="text-blue-600 hover:underline">Elterngeld-Auswirkungen</a>.</p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <h3 class="font-bold text-gray-800 mb-2">👴 Aktivrente 2026</h3>
+            <p class="text-sm text-gray-600">Seit 2026 können Rentner bis zu 2.000 €/Monat steuerfrei hinzuverdienen (Aktivrente). Für die Berechnung Ihrer Gesamteinkünfte nutzen Sie den <a href="/renten-rechner" class="text-blue-600 hover:underline">Renten-Rechner</a> und den <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>. Achtung: KV-Beiträge fallen auf den Hinzuverdienst an.</p>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-xl p-5">
+            <h3 class="font-bold text-gray-800 mb-2">🏢 Mehrere Jobs gleichzeitig</h3>
+            <p class="text-sm text-gray-600">Beim Zweitjob gilt Steuerklasse VI (höchste Abzüge). Ein <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> neben der Hauptbeschäftigung bleibt steuerfrei (nur ein Minijob!). Jeder weitere Minijob wird dem Hauptjob zugerechnet. Prüfen Sie die Auswirkungen mit dem <a href="/lohnsteuer-rechner" class="text-blue-600 hover:underline">Lohnsteuer-Rechner</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Was bedeutet das für dich -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">💬 Was bedeutet das für Sie?</h2>
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6">
+          <div class="space-y-4 text-gray-700">
+            <div>
+              <p class="font-semibold">🎓 Berufseinsteiger (bis 30.000 € brutto)</p>
+              <p class="text-sm">Prüfen Sie, ob ein <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> neben dem Studium oder der Ausbildung lohnt. Nutzen Sie den <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Stundenlohn-Rechner</a>, um Ihren tatsächlichen Stundenlohn zu kennen — er sollte über dem <a href="/mindestlohn-rechner" class="text-blue-600 hover:underline">Mindestlohn von 13,90 €</a> liegen.</p>
+            </div>
+            <div>
+              <p class="font-semibold">👩‍💼 Angestellte (30.000–60.000 € brutto)</p>
+              <p class="text-sm">Optimieren Sie Ihre Werbungskosten: <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> + <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice-Pauschale</a> bringen Sie schnell über die 1.230 €-Pauschale. Verheiratete sollten die <a href="/steuerklassen-rechner" class="text-blue-600 hover:underline">optimale Steuerklasse</a> prüfen.</p>
+            </div>
+            <div>
+              <p class="font-semibold">💰 Gutverdiener (über 60.000 € brutto)</p>
+              <p class="text-sm">Ab 68.430 € greift der Spitzensteuersatz von 42 %. Prüfen Sie den <a href="/firmenwagen-rechner" class="text-blue-600 hover:underline">Firmenwagen</a> als steueroptimierte Gehaltskomponente und nutzen Sie die <a href="/doppelte-haushaltsfuehrung-rechner" class="text-blue-600 hover:underline">doppelte Haushaltsführung</a>, falls Sie beruflich umziehen mussten.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">❓ Häufige Fragen zu Gehalt & Arbeit 2026</h2>
+        <div class="space-y-4">
+          {faqs.map((faq, i) => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span class="font-semibold text-gray-800 pr-4">{faq.frage}</span>
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                {faq.antwort}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Verwandte Hub-Seiten -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">🔗 Verwandte Themenseiten</h2>
+        <div class="grid md:grid-cols-2 gap-3">
+          <a href="/steuerrechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🏛️</span>
+            <div>
+              <p class="font-semibold text-gray-800">Steuern & Abgaben</p>
+              <p class="text-sm text-gray-500">Einkommensteuer, Lohnsteuer, Kirchensteuer & mehr</p>
+            </div>
+          </a>
+          <a href="/renten-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🏖️</span>
+            <div>
+              <p class="font-semibold text-gray-800">Rente & Vorsorge</p>
+              <p class="text-sm text-gray-500">Rente, Riester, Rentensteuer & Rentenlücke</p>
+            </div>
+          </a>
+          <a href="/buergergeld-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🤝</span>
+            <div>
+              <p class="font-semibold text-gray-800">Sozialleistungen</p>
+              <p class="text-sm text-gray-500">Bürgergeld, Wohngeld, Kindergeld & Kinderzuschlag</p>
+            </div>
+          </a>
+          <a href="/grundsteuer-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🏠</span>
+            <div>
+              <p class="font-semibold text-gray-800">Wohnen & Immobilien</p>
+              <p class="text-sm text-gray-500">Grundsteuer, Nebenkosten, Kaufnebenkosten & mehr</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Disclaimer -->
+      <div class="bg-gray-50 rounded-xl p-5 text-xs text-gray-500">
+        <p><strong>Hinweis:</strong> Alle Berechnungen und Informationen auf dieser Seite dienen der allgemeinen Information und ersetzen keine professionelle Steuer- oder Rechtsberatung. 
+        Werte basieren auf dem Mindestlohngesetz (MiLoG), Arbeitszeitgesetz (ArbZG), Teilzeit- und Befristungsgesetz (TzBfG), SGB IV, EStG und den geltenden Verordnungen für das Jahr 2026 (Stand: März 2026). 
+        Für verbindliche Auskünfte wenden Sie sich bitte an Ihr zuständiges Finanzamt, die Agentur für Arbeit oder einen Steuerberater.</p>
+        <p class="mt-2">Zuletzt aktualisiert: 25.03.2026</p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-400 text-sm">
+      <p>© 2026 Deutschlandrechner</p>
+      <p class="mt-1">Alle Berechnungen ohne Gewähr</p>
+    </footer>
+  </main>
+</Layout>
