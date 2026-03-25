@@ -1,0 +1,336 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Alle Steuerrechner 2026 – Kostenlose Online-Rechner für Deutschland";
+const description = "18 kostenlose Steuerrechner für Deutschland 2026: Einkommensteuer, Lohnsteuer, Kirchensteuer, Grundsteuer, Erbschaftsteuer und mehr. Mit aktuellen Werten, Freibeträgen & Steuertipps.";
+const keywords = "Steuerrechner 2026, Steuerrechner Deutschland, Einkommensteuer Rechner, Lohnsteuer Rechner, alle Steuern berechnen, Steuer Übersicht, kostenlose Steuerrechner, Steuern 2026, Grundfreibetrag 2026, Steueränderungen 2026";
+
+const steuerRechner = [
+  {
+    gruppe: "Einkommensteuer & Lohn",
+    icon: "💰",
+    rechner: [
+      { name: "Einkommensteuer-Rechner", url: "/einkommensteuer-rechner", desc: "Jährliche Einkommensteuer nach Grund- oder Splittingtarif berechnen", icon: "📊" },
+      { name: "Lohnsteuer-Rechner", url: "/lohnsteuer-rechner", desc: "Monatliche Lohnsteuer inkl. Steuerklasse, Kinderfreibeträge & Kirchensteuer", icon: "💵" },
+      { name: "Brutto-Netto-Rechner", url: "/brutto-netto-rechner", desc: "Was bleibt vom Gehalt? Nettolohn mit allen Abzügen berechnen", icon: "🧮" },
+      { name: "Steuerklassen-Rechner", url: "/steuerklassen-rechner", desc: "Optimale Steuerklassen-Kombination für Ehepaare finden", icon: "💍" },
+      { name: "Solidaritätszuschlag-Rechner", url: "/soli-rechner", desc: "Soli 2026 berechnen – Freigrenze 20.350 € für die meisten", icon: "🏛️" },
+      { name: "Steuererstattungs-Rechner", url: "/steuererstattung-rechner", desc: "Wie viel Steuererstattung gibt es bei der Steuererklärung?", icon: "🎉" },
+    ]
+  },
+  {
+    gruppe: "Kirche & Sonderabgaben",
+    icon: "⛪",
+    rechner: [
+      { name: "Kirchensteuer-Rechner", url: "/kirchensteuer-rechner", desc: "8 % oder 9 % Kirchensteuer inkl. Kappungsregelung berechnen", icon: "⛪" },
+    ]
+  },
+  {
+    gruppe: "Immobilien & Grundbesitz",
+    icon: "🏠",
+    rechner: [
+      { name: "Grundsteuer-Rechner", url: "/grundsteuer-rechner", desc: "Grundsteuer A, B und C nach Bundesmodell oder Landesmodell", icon: "🏡" },
+      { name: "Grunderwerbsteuer-Rechner", url: "/grunderwerbsteuer-rechner", desc: "Grunderwerbsteuer nach Bundesland – 3,5 % bis 6,5 %", icon: "🏗️" },
+    ]
+  },
+  {
+    gruppe: "Kapital & Vermögen",
+    icon: "📈",
+    rechner: [
+      { name: "Kapitalertragsteuer-Rechner", url: "/kapitalertragsteuer-rechner", desc: "Abgeltungsteuer auf Zinsen, Dividenden & Kursgewinne", icon: "📈" },
+      { name: "Erbschaftsteuer-Rechner", url: "/erbschaftsteuer-rechner", desc: "Erbschaftsteuer nach Steuerklasse, Freibeträgen & Verwandtschaftsgrad", icon: "📜" },
+      { name: "Schenkungsteuer-Rechner", url: "/schenkungsteuer-rechner", desc: "Steuer auf Schenkungen – gleiche Freibeträge wie Erbschaftsteuer", icon: "🎁" },
+    ]
+  },
+  {
+    gruppe: "Selbstständige & Gewerbe",
+    icon: "🏢",
+    rechner: [
+      { name: "Gewerbesteuer-Rechner", url: "/gewerbesteuer-rechner", desc: "Gewerbesteuer mit Hebesatz, Freibetrag & Anrechnung berechnen", icon: "🏢" },
+      { name: "Mehrwertsteuer-Rechner", url: "/mehrwertsteuer-rechner", desc: "19 % oder 7 % MwSt – Brutto ↔ Netto umrechnen", icon: "🧾" },
+    ]
+  },
+  {
+    gruppe: "Arbeitnehmer-Steuertipps",
+    icon: "💼",
+    rechner: [
+      { name: "AfA-Rechner", url: "/afa-rechner", desc: "Abschreibung für Abnutzung – lineare & degressive AfA berechnen", icon: "📉" },
+      { name: "Firmenwagen-Rechner", url: "/firmenwagen-rechner", desc: "1-%-Regel oder Fahrtenbuch – geldwerten Vorteil berechnen", icon: "🚗" },
+      { name: "Haushaltshilfe-Rechner", url: "/haushaltshilfe-rechner", desc: "Steuerersparnis bei haushaltsnahen Dienstleistungen", icon: "🏠" },
+      { name: "Handwerkerkosten-Rechner", url: "/handwerkerkosten-rechner", desc: "Bis 1.200 € Steuerbonus für Handwerkerleistungen", icon: "🔧" },
+      { name: "Doppelte-Haushaltsführung-Rechner", url: "/doppelte-haushaltsfuehrung-rechner", desc: "Werbungskosten bei doppelter Haushaltsführung", icon: "🏘️" },
+    ]
+  }
+];
+
+const faqs = [
+  {
+    frage: "Welche Steuern zahlt man in Deutschland?",
+    antwort: "In Deutschland gibt es über 40 verschiedene Steuerarten. Die wichtigsten für Privatpersonen sind: Einkommensteuer (inkl. Lohnsteuer), Solidaritätszuschlag, Kirchensteuer, Mehrwertsteuer (19 % bzw. 7 %), Grundsteuer, Grunderwerbsteuer beim Immobilienkauf, Kapitalertragsteuer auf Zinsen und Dividenden, Kfz-Steuer sowie Erbschaft- und Schenkungsteuer. Selbstständige zahlen zusätzlich Gewerbesteuer."
+  },
+  {
+    frage: "Wie hoch ist der Grundfreibetrag 2026?",
+    antwort: "Der Grundfreibetrag liegt 2026 bei 12.348 Euro pro Person (24.696 Euro für zusammen veranlagte Ehepaare). Einkommen bis zu dieser Grenze bleibt steuerfrei. Darüber beginnt der progressive Steuersatz bei 14 % und steigt auf bis zu 42 % (ab 68.430 Euro) bzw. 45 % Reichensteuer (ab 277.826 Euro)."
+  },
+  {
+    frage: "Welche Steueränderungen gibt es 2026?",
+    antwort: "Die wichtigsten Steueränderungen 2026: Der Grundfreibetrag steigt auf 12.348 Euro. Die Pendlerpauschale wird auf 0,38 Euro ab dem ersten Kilometer vereinheitlicht. Die Aktivrente erlaubt bis zu 2.000 Euro steuerfreien Hinzuverdienst im Rentenalter. Der CO₂-Preis liegt im Korridor von 55–65 Euro pro Tonne. Der Kinderfreibetrag beträgt 6.828 Euro. Kindergeld steigt auf 259 Euro pro Kind."
+  },
+  {
+    frage: "Wer muss 2026 eine Steuererklärung abgeben?",
+    antwort: "Zur Abgabe verpflichtet sind Arbeitnehmer mit Steuerklasse V oder VI, mit Lohnersatzleistungen (Elterngeld, Kurzarbeitergeld, ALG I) über 410 Euro, mit Nebeneinkünften über 410 Euro, mit eingetragenen Freibeträgen oder mit Einkünften aus mehreren Arbeitsverhältnissen. Auch Selbstständige und Gewerbetreibende müssen abgeben. Freiwillig lohnt es sich oft: Die durchschnittliche Erstattung beträgt rund 1.095 Euro."
+  },
+  {
+    frage: "Wie funktioniert der progressive Steuersatz?",
+    antwort: "Deutschland hat einen progressiven Einkommensteuertarif: Einkommen bis 12.348 Euro ist steuerfrei (Grundfreibetrag). Von 12.349 bis 68.430 Euro steigt der Grenzsteuersatz linear von 14 % auf 42 %. Von 68.431 bis 277.825 Euro gilt ein Spitzensteuersatz von 42 %. Ab 277.826 Euro greift die Reichensteuer von 45 %. Wichtig: Der höhere Satz gilt nur für den Betrag über der jeweiligen Grenze."
+  },
+  {
+    frage: "Welche Freibeträge kann ich 2026 nutzen?",
+    antwort: "Die wichtigsten Freibeträge 2026: Grundfreibetrag 12.348 Euro, Arbeitnehmer-Pauschbetrag 1.230 Euro (Werbungskosten), Sparerpauschbetrag 1.000 Euro (2.000 Euro für Ehepaare), Kinderfreibetrag 6.828 Euro pro Kind, Sonderausgaben-Pauschbetrag 36 Euro (72 Euro für Ehepaare), Entlastungsbetrag für Alleinerziehende 4.260 Euro plus 240 Euro pro weiterem Kind, Versorgungsfreibetrag und Altersentlastungsbetrag (abhängig vom Renteneintritt)."
+  },
+  {
+    frage: "Einkommensteuer oder Lohnsteuer – was ist der Unterschied?",
+    antwort: "Die Lohnsteuer ist eine besondere Erhebungsform der Einkommensteuer, die der Arbeitgeber monatlich vom Gehalt einbehält und ans Finanzamt abführt. Die Einkommensteuer ist die Jahressteuer auf alle Einkünfte (Gehalt, Selbstständigkeit, Kapitalerträge, Vermietung etc.). Arbeitnehmer zahlen also beides – die Lohnsteuer wird bei der jährlichen Einkommensteuererklärung angerechnet. Zu viel gezahlte Lohnsteuer wird erstattet."
+  },
+  {
+    frage: "Wie spare ich am meisten Steuern?",
+    antwort: "Die effektivsten Steuerspartipps für Arbeitnehmer: Werbungskosten über 1.230 Euro angeben (Homeoffice-Pauschale, Fahrtkosten, Fortbildung), Handwerkerkosten absetzen (bis 1.200 Euro Steuerbonus), haushaltsnahe Dienstleistungen (bis 4.000 Euro Steuerbonus), Riester- oder Rürup-Rente nutzen, Kirchensteuer als Sonderausgabe absetzen, Steuerklassenwechsel für Ehepaare prüfen und die Steuererklärung pünktlich abgeben. Nutzen Sie unsere Rechner, um Ihr Sparpotenzial zu berechnen."
+  }
+];
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Steuerrechner", url: "/steuerrechner" }]} />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.antwort
+      }
+    }))
+  })} />
+
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-yellow-500 to-orange-600 text-white py-10 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 text-yellow-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-5xl">🏛️</span>
+          <div>
+            <h1 class="text-3xl font-bold">Alle Steuerrechner 2026</h1>
+            <p class="text-yellow-100 mt-1">18 kostenlose Rechner für Einkommensteuer, Lohnsteuer, Grundsteuer & mehr</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+
+      <!-- Intro -->
+      <div class="prose max-w-none mb-10">
+        <p class="text-lg text-gray-700">
+          Sie möchten wissen, wie viel Steuern Sie 2026 zahlen? Unsere <strong>kostenlosen Steuerrechner</strong> berechnen 
+          <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer</a>, 
+          <a href="/lohnsteuer-rechner" class="text-blue-600 hover:underline">Lohnsteuer</a>, 
+          <a href="/kirchensteuer-rechner" class="text-blue-600 hover:underline">Kirchensteuer</a>, 
+          <a href="/grundsteuer-rechner" class="text-blue-600 hover:underline">Grundsteuer</a> und 
+          viele weitere Steuerarten — mit den <strong>aktuellen Werten für 2026</strong> (Grundfreibetrag 12.348 €, Kinderfreibetrag 6.828 €, neue Pendlerpauschale 0,38 €/km).
+        </p>
+      </div>
+
+      <!-- Quick Links / Sprungmarken -->
+      <div class="bg-gray-50 rounded-2xl p-6 mb-10">
+        <h2 class="text-lg font-bold text-gray-800 mb-3">⚡ Schnellzugriff</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {steuerRechner.map(g => (
+            <a href={`#${g.gruppe.toLowerCase().replace(/[^a-z0-9äöü]/g, '-')}`} class="text-blue-600 hover:text-blue-800 text-sm hover:underline">
+              {g.icon} {g.gruppe}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Steueränderungen 2026 Highlight -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-10">
+        <h2 class="text-xl font-bold text-amber-900 mb-3">📢 Steueränderungen 2026 im Überblick</h2>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-amber-900">
+          <div>
+            <p><strong>Grundfreibetrag:</strong> 12.348 € (+252 € vs. 2025)</p>
+            <p><strong>Kinderfreibetrag:</strong> 6.828 € pro Kind</p>
+            <p><strong>Kindergeld:</strong> 259 €/Monat pro Kind</p>
+            <p><strong>Pendlerpauschale:</strong> 0,38 €/km ab dem 1. km</p>
+          </div>
+          <div>
+            <p><strong>Aktivrente:</strong> bis 2.000 € steuerfrei hinzuverdienen</p>
+            <p><strong>CO₂-Steuer:</strong> 55–65 €/Tonne</p>
+            <p><strong>Gastronomie-MwSt:</strong> dauerhaft 7 % auf Speisen</p>
+            <p><strong>Soli-Freigrenze:</strong> 20.350 € (unverändert)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rechner-Gruppen -->
+      {steuerRechner.map(gruppe => (
+        <section id={gruppe.gruppe.toLowerCase().replace(/[^a-z0-9äöü]/g, '-')} class="mb-10">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>{gruppe.icon}</span> {gruppe.gruppe}
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {gruppe.rechner.map(r => (
+              <a href={r.url} class="block bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-blue-300 transition-all group">
+                <div class="flex items-start gap-3">
+                  <span class="text-2xl">{r.icon}</span>
+                  <div>
+                    <h3 class="font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{r.name}</h3>
+                    <p class="text-sm text-gray-500 mt-1">{r.desc}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- Einkommensteuer-Tabelle 2026 -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Einkommensteuer-Tarif 2026</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="text-left p-3 border">Zone</th>
+                <th class="text-left p-3 border">Zu versteuerndes Einkommen</th>
+                <th class="text-left p-3 border">Grenzsteuersatz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-3 border">Grundfreibetrag</td><td class="p-3 border">0 – 12.348 €</td><td class="p-3 border font-semibold text-green-700">0 %</td></tr>
+              <tr class="bg-gray-50"><td class="p-3 border">Progressionszone 1</td><td class="p-3 border">12.349 – 17.005 €</td><td class="p-3 border">14 % → 24 %</td></tr>
+              <tr><td class="p-3 border">Progressionszone 2</td><td class="p-3 border">17.006 – 68.430 €</td><td class="p-3 border">24 % → 42 %</td></tr>
+              <tr class="bg-gray-50"><td class="p-3 border">Spitzensteuersatz</td><td class="p-3 border">68.431 – 277.825 €</td><td class="p-3 border font-semibold text-orange-700">42 %</td></tr>
+              <tr><td class="p-3 border">Reichensteuer</td><td class="p-3 border">ab 277.826 €</td><td class="p-3 border font-semibold text-red-700">45 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">Berechnen Sie Ihre individuelle Steuerlast mit dem <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer-Rechner</a>.</p>
+      </section>
+
+      <!-- Wichtige Freibeträge 2026 -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Wichtige Freibeträge & Pauschalen 2026</h2>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div class="bg-green-50 rounded-xl p-4">
+            <p class="font-bold text-green-900">Grundfreibetrag</p>
+            <p class="text-2xl font-bold text-green-700">12.348 €</p>
+            <p class="text-xs text-green-600">24.696 € bei Zusammenveranlagung</p>
+          </div>
+          <div class="bg-blue-50 rounded-xl p-4">
+            <p class="font-bold text-blue-900">Arbeitnehmer-Pauschbetrag</p>
+            <p class="text-2xl font-bold text-blue-700">1.230 €</p>
+            <p class="text-xs text-blue-600">Werbungskosten-Pauschale</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-4">
+            <p class="font-bold text-purple-900">Kinderfreibetrag</p>
+            <p class="text-2xl font-bold text-purple-700">6.828 €</p>
+            <p class="text-xs text-purple-600">3.414 € pro Elternteil</p>
+          </div>
+          <div class="bg-orange-50 rounded-xl p-4">
+            <p class="font-bold text-orange-900">Sparerpauschbetrag</p>
+            <p class="text-2xl font-bold text-orange-700">1.000 €</p>
+            <p class="text-xs text-orange-600">2.000 € bei Zusammenveranlagung</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">❓ Häufige Fragen zu Steuern in Deutschland 2026</h2>
+        <div class="space-y-4">
+          {faqs.map((faq, i) => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span class="font-semibold text-gray-800 pr-4">{faq.frage}</span>
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                {faq.antwort}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Verwandte Hub-Seiten -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">🔗 Verwandte Themenseiten</h2>
+        <div class="grid md:grid-cols-2 gap-3">
+          <a href="/arbeitstage-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">💼</span>
+            <div>
+              <p class="font-semibold text-gray-800">Arbeit & Gehalt</p>
+              <p class="text-sm text-gray-500">Brutto-Netto, Minijob, Teilzeit & mehr</p>
+            </div>
+          </a>
+          <a href="/renten-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🏖️</span>
+            <div>
+              <p class="font-semibold text-gray-800">Rente & Vorsorge</p>
+              <p class="text-sm text-gray-500">Rente, Riester, Rentensteuer & Rentenlücke</p>
+            </div>
+          </a>
+          <a href="/grundsteuer-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🏠</span>
+            <div>
+              <p class="font-semibold text-gray-800">Wohnen & Immobilien</p>
+              <p class="text-sm text-gray-500">Grundsteuer, Nebenkosten, Kaufnebenkosten & mehr</p>
+            </div>
+          </a>
+          <a href="/buergergeld-rechner" class="flex items-center gap-3 bg-white border rounded-xl p-4 hover:shadow-md transition-shadow">
+            <span class="text-2xl">🤝</span>
+            <div>
+              <p class="font-semibold text-gray-800">Sozialleistungen</p>
+              <p class="text-sm text-gray-500">Bürgergeld, Wohngeld, Kindergeld & Kinderzuschlag</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Disclaimer -->
+      <div class="bg-gray-50 rounded-xl p-5 text-xs text-gray-500">
+        <p><strong>Hinweis:</strong> Alle Berechnungen und Informationen auf dieser Seite dienen der allgemeinen Information und ersetzen keine professionelle Steuerberatung. 
+        Werte basieren auf den geltenden Steuergesetzen und Verordnungen für das Steuerjahr 2026 (Stand: März 2026). 
+        Für verbindliche Auskünfte wenden Sie sich bitte an Ihr zuständiges Finanzamt oder einen Steuerberater.</p>
+        <p class="mt-2">Zuletzt aktualisiert: 25.03.2026</p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-400 text-sm">
+      <p>© 2026 Deutschlandrechner</p>
+      <p class="mt-1">Alle Berechnungen ohne Gewähr</p>
+    </footer>
+  </main>
+</Layout>
