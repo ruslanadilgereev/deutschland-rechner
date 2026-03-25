@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import EntfernungRechner from '../components/rechner/EntfernungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Entfernungs-Rechner – Distanz zwischen deutschen Städten";
-const description = "Entfernungs-Rechner: Berechnen Sie die Luftlinie und Fahrzeit zwischen deutschen Großstädten. Mit Entfernungstabelle der Top 20 Städte und Reisezeit-Vergleich.";
-const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten, Luftlinie Rechner, Fahrzeit berechnen, deutsche Städte Entfernung, Berlin München Entfernung, Hamburg Frankfurt km, Entfernungstabelle Deutschland, Kilometerrechner";
+const title = "Entfernungs-Rechner 2026 – Distanz, Fahrzeit & Pendlerpauschale";
+const description = "Entfernungs-Rechner: Luftlinie & Fahrzeit zwischen deutschen Städten berechnen. Mit Pendlerpauschale 2026 (38 Ct/km ab km 1), Reisezeit-Vergleich Auto/Bahn/Flug & Entfernungstabelle.";
+const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten, Luftlinie Rechner, Fahrzeit berechnen, deutsche Städte Entfernung, Berlin München Entfernung, Hamburg Frankfurt km, Entfernungstabelle Deutschland, Kilometerrechner, Pendlerpauschale 2026, Entfernungspauschale, Entfernungskilometer";
 ---
 
 <Layout 
@@ -12,6 +13,7 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
   description={description}
   keywords={keywords}
 >
+  <BreadcrumbSchema items={[{ name: "Entfernungs-Rechner", url: "/entfernung-rechner" }]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
@@ -28,12 +30,28 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         <div class="flex items-center gap-3">
           <span class="text-4xl">📍</span>
           <div>
-            <h1 class="text-2xl font-bold">Entfernungs-Rechner</h1>
-            <p class="text-blue-100 text-sm">Luftlinie & Fahrzeit zwischen deutschen Städten</p>
+            <h1 class="text-2xl font-bold">Entfernungs-Rechner 2026</h1>
+            <p class="text-blue-100 text-sm">Luftlinie, Fahrzeit & Pendlerpauschale berechnen</p>
           </div>
         </div>
       </div>
     </header>
+
+    <!-- Trust Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <strong>✅ Berechnungsgrundlage:</strong> Haversine-Formel (Großkreisentfernung) für exakte Luftlinie. 
+        Straßenentfernung ≈ Luftlinie × 1,3 (Umwegfaktor). Pendlerpauschale 2026: <strong>0,38 €/km</strong> ab dem 
+        1. Kilometer (§ 9 Abs. 1 Nr. 4 EStG, Steueränderungsgesetz 2025). Koordinaten: amtliche Daten der 20 größten deutschen Städte.
+        <div class="mt-2 text-xs text-blue-600">
+          <strong>Was der Rechner berechnet:</strong> Luftlinie (km), geschätzte Straßenentfernung, Fahrzeit nach Streckenkategorie, 
+          Pendlerpauschale für die <a href="/einkommensteuer-rechner" class="text-blue-700 hover:underline">Steuererklärung</a>.<br/>
+          <strong>Was der Rechner nicht berücksichtigt:</strong> Echtzeit-Verkehrslage, Baustellen, individuelle Routenwahl, 
+          <a href="/spritkosten-rechner" class="text-blue-700 hover:underline">Spritkosten</a> (→ separater Rechner), 
+          Mautgebühren, Fährverbindungen.
+        </div>
+      </div>
+    </div>
 
     <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
@@ -47,52 +65,63 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Entfernungs-Rechner</strong> berechnen Sie schnell die Luftlinie und geschätzte 
-            Fahrzeit zwischen den 20 größten deutschen Städten. Ideal für die <strong>Reiseplanung</strong>, 
-            Kostenabschätzung oder wenn Sie wissen möchten, wie weit zwei Städte auseinander liegen.
+            Mit unserem <strong>Entfernungs-Rechner 2026</strong> berechnen Sie die Luftlinie, geschätzte 
+            Straßenentfernung und Fahrzeit zwischen den 20 größten deutschen Städten. Ideal für die 
+            <strong>Reiseplanung</strong>, <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a>-Berechnung, 
+            <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten</a>-Kalkulation 
+            oder wenn Sie schnell wissen möchten, wie weit zwei Städte auseinander liegen. 
+            Die Entfernungsberechnung ist auch relevant für die 
+            <a href="/umzugskosten-rechner" class="text-blue-600 hover:underline">Umzugskosten</a>-Schätzung 
+            und <a href="/verpflegungsmehraufwand-rechner" class="text-blue-600 hover:underline">Verpflegungsmehraufwand</a> bei Dienstreisen.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Unterschied zwischen Luftlinie und Straßenentfernung?</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Luftlinie vs. Straßenentfernung: Der Unterschied</h3>
           <p>
-            Die <strong>Luftlinie</strong> ist die kürzeste Verbindung zwischen zwei Punkten – als würde man 
-            direkt durch die Luft fliegen. Die <strong>Straßenentfernung</strong> ist länger, da Straßen 
-            Kurven, Umwege und Geländeformen folgen.
+            Die <strong>Luftlinie</strong> (auch Großkreisentfernung) ist die kürzeste Verbindung zwischen zwei 
+            Punkten auf der Erdoberfläche – als würde man direkt durch die Luft fliegen. Die 
+            <strong>Straßenentfernung</strong> ist länger, da Straßen Kurven, Umwege und Geländeformen folgen müssen.
           </p>
           <div class="bg-blue-50 p-4 rounded-xl my-4">
-            <p class="font-semibold text-blue-800 mb-2">Faustregel:</p>
+            <p class="font-semibold text-blue-800 mb-2">📏 Faustregel:</p>
             <p class="text-blue-700">
-              Straßenentfernung ≈ Luftlinie × 1,3 (etwa 30% länger)
+              Straßenentfernung ≈ Luftlinie × 1,3 (etwa 30 % länger)<br/>
+              In bergigem Gelände (z. B. Bayern, Schwarzwald): Faktor 1,4–1,5
             </p>
           </div>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Entfernungen zwischen deutschen Großstädten</h3>
           <p>
-            Deutschland hat über 80 Städte mit mehr als 100.000 Einwohnern. Hier die wichtigsten Entfernungen:
+            <strong>Für die Steuererklärung</strong> zählt die kürzeste Straßenverbindung — nicht die Luftlinie. 
+            Eine längere Strecke wird nur anerkannt, wenn sie nachweislich verkehrsgünstiger ist und regelmäßig 
+            genutzt wird. Details dazu in unserem 
+            <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale-Rechner</a>.
           </p>
           
-          <h4 class="font-semibold text-gray-800">Von Berlin (Luftlinie):</h4>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Berlin – Hamburg: <strong>256 km</strong></li>
-            <li>Berlin – München: <strong>504 km</strong></li>
-            <li>Berlin – Köln: <strong>477 km</strong></li>
-            <li>Berlin – Frankfurt: <strong>423 km</strong></li>
-            <li>Berlin – Stuttgart: <strong>512 km</strong></li>
-          </ul>
-          
-          <h4 class="font-semibold text-gray-800 mt-4">Von München (Luftlinie):</h4>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>München – Stuttgart: <strong>191 km</strong></li>
-            <li>München – Frankfurt: <strong>304 km</strong></li>
-            <li>München – Hamburg: <strong>612 km</strong></li>
-            <li>München – Köln: <strong>456 km</strong></li>
-            <li>München – Nürnberg: <strong>151 km</strong></li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">So berechnen wir die Entfernung</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pendlerpauschale 2026: 38 Cent ab Kilometer 1</h3>
           <p>
-            Die Luftlinie wird mit der <strong>Haversine-Formel</strong> berechnet. Diese mathematische 
-            Formel berücksichtigt die Erdkrümmung und berechnet die kürzeste Distanz auf einer Kugeloberfläche 
-            (Großkreisentfernung):
+            Seit dem 1. Januar 2026 gilt die neue <strong>Entfernungspauschale von 0,38 €/km</strong> ab dem 
+            ersten Kilometer (§ 9 Abs. 1 Nr. 4 EStG). Die bisherige Staffelung (30 Ct für km 1–20, 
+            38 Ct ab km 21) entfällt. So berechnen Sie Ihre steuerliche Ersparnis:
+          </p>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="text-sm font-semibold text-green-800 mb-2">Beispielrechnung Pendlerpauschale 2026:</p>
+            <ul class="space-y-1 text-sm text-green-700">
+              <li><strong>Einfache Strecke:</strong> 30 km</li>
+              <li><strong>Arbeitstage:</strong> 220 (→ berechnen mit dem <a href="/arbeitstage-rechner" class="text-green-700 hover:underline">Arbeitstage-Rechner</a>)</li>
+              <li><strong>Pendlerpauschale:</strong> 220 × 30 × 0,38 € = <strong>2.508 €</strong></li>
+              <li><strong>Steuerersparnis</strong> (bei 35 % <a href="/einkommensteuer-rechner" class="text-green-700 hover:underline">Grenzsteuersatz</a>): ca. <strong>878 €</strong></li>
+            </ul>
+          </div>
+          <p>
+            <strong>Wichtig:</strong> Die Pauschale gilt unabhängig vom Verkehrsmittel — ob Auto, 
+            <a href="/fahrrad-pendeln-rechner" class="text-blue-600 hover:underline">Fahrrad</a>, 
+            Bahn oder zu Fuß. An <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice</a>-Tagen 
+            gibt es stattdessen die Homeoffice-Pauschale (6 €/Tag, max. 1.260 €/Jahr).
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So berechnen wir die Entfernung (Haversine-Formel)</h3>
+          <p>
+            Die Luftlinie wird mit der <strong>Haversine-Formel</strong> berechnet — einer mathematischen 
+            Formel, die die Erdkrümmung berücksichtigt und die kürzeste Distanz auf einer Kugeloberfläche 
+            (Großkreisentfernung) ermittelt:
           </p>
           <div class="bg-gray-100 p-4 rounded-xl my-4 font-mono text-sm">
             <p>a = sin²(Δφ/2) + cos(φ₁) · cos(φ₂) · sin²(Δλ/2)</p>
@@ -100,27 +129,263 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
             <p>Entfernung = R · c</p>
           </div>
           <p class="text-sm text-gray-500">
-            φ = Breitengrad, λ = Längengrad, R = Erdradius (6.371 km)
+            φ = Breitengrad, λ = Längengrad, R = Erdradius (6.371 km). Genauigkeit: ±0,5 % für Entfernungen innerhalb Deutschlands.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fahrzeit-Schätzung</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Entfernungen zwischen deutschen Großstädten</h3>
           <p>
-            Die geschätzte Fahrzeit basiert auf durchschnittlichen Geschwindigkeiten:
+            Deutschland hat über 80 Städte mit mehr als 100.000 Einwohnern. Hier die wichtigsten Entfernungen 
+            (Luftlinie / geschätzte Straße):
+          </p>
+          
+          <h4 class="font-semibold text-gray-800">Von Berlin:</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Berlin – Hamburg: <strong>256 km</strong> (Straße: ~290 km, ~3 Std)</li>
+            <li>Berlin – München: <strong>504 km</strong> (Straße: ~585 km, ~5,5 Std)</li>
+            <li>Berlin – Köln: <strong>477 km</strong> (Straße: ~575 km, ~5,5 Std)</li>
+            <li>Berlin – Frankfurt: <strong>423 km</strong> (Straße: ~550 km, ~5 Std)</li>
+            <li>Berlin – Dresden: <strong>166 km</strong> (Straße: ~190 km, ~2 Std)</li>
+            <li>Berlin – Leipzig: <strong>150 km</strong> (Straße: ~190 km, ~2 Std)</li>
+          </ul>
+          
+          <h4 class="font-semibold text-gray-800 mt-4">Von München:</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>München – Stuttgart: <strong>191 km</strong> (Straße: ~230 km, ~2,5 Std)</li>
+            <li>München – Frankfurt: <strong>304 km</strong> (Straße: ~390 km, ~3,5 Std)</li>
+            <li>München – Hamburg: <strong>612 km</strong> (Straße: ~790 km, ~7 Std)</li>
+            <li>München – Köln: <strong>456 km</strong> (Straße: ~575 km, ~5,5 Std)</li>
+            <li>München – Nürnberg: <strong>151 km</strong> (Straße: ~170 km, ~1,5 Std)</li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fahrzeit-Schätzung nach Streckenkategorie</h3>
+          <p>
+            Die geschätzte Fahrzeit basiert auf durchschnittlichen Geschwindigkeiten bei normalem Verkehr:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Kurzstrecke (bis 50 km):</strong> Ø 50 km/h (Stadtverkehr)</li>
-            <li><strong>Mittelstrecke (50-150 km):</strong> Ø 70 km/h (gemischt)</li>
-            <li><strong>Langstrecke (150-300 km):</strong> Ø 90 km/h (überwiegend Autobahn)</li>
-            <li><strong>Fernstrecke (über 300 km):</strong> Ø 100 km/h (Autobahn)</li>
+            <li><strong>Kurzstrecke (bis 50 km):</strong> Ø 50 km/h (Stadtverkehr, Landstraße)</li>
+            <li><strong>Mittelstrecke (50–150 km):</strong> Ø 70 km/h (gemischt Stadt/Autobahn)</li>
+            <li><strong>Langstrecke (150–300 km):</strong> Ø 90 km/h (überwiegend Autobahn)</li>
+            <li><strong>Fernstrecke (über 300 km):</strong> Ø 100 km/h (Autobahn mit Pausen)</li>
           </ul>
           <p>
-            <strong>Hinweis:</strong> Die tatsächliche Fahrzeit hängt von Verkehr, Baustellen, 
-            Wetter und gewählter Route ab. Planen Sie immer Pufferzeit ein!
+            <strong>Tipp:</strong> Planen Sie bei Strecken über 300 km mindestens 30 Minuten Pufferzeit ein. 
+            Für exakte <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten</a> 
+            nutzen Sie unseren separaten Rechner — mit aktuellem Benzin-/Dieselpreis und Ihrem Verbrauch. 
+            Den <a href="/spritverbrauch-rechner" class="text-blue-600 hover:underline">Spritverbrauch</a> 
+            können Sie ebenfalls berechnen.
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 20 größten deutschen Städte</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Reisezeit-Vergleich: Auto, Bahn, Flug</h3>
           <p>
-            Unser Rechner umfasst die bevölkerungsreichsten Städte Deutschlands:
+            Je nach Strecke und Verkehrsmittel variiert die Reisezeit erheblich. Für Pendler ist auch relevant, 
+            wie sich die Reisezeit auf die <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Stundenlohn</a>-Berechnung 
+            auswirkt, wenn man Pendelzeit einrechnet:
+          </p>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm mt-4">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="text-left py-2 px-3">Strecke</th>
+                  <th class="text-center py-2 px-3">🚗 Auto</th>
+                  <th class="text-center py-2 px-3">🚆 ICE</th>
+                  <th class="text-center py-2 px-3">✈️ Flug*</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Berlin – München</td>
+                  <td class="text-center py-2 px-3">5–6 Std</td>
+                  <td class="text-center py-2 px-3">4 Std</td>
+                  <td class="text-center py-2 px-3">3 Std</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Hamburg – Frankfurt</td>
+                  <td class="text-center py-2 px-3">4–5 Std</td>
+                  <td class="text-center py-2 px-3">3,5 Std</td>
+                  <td class="text-center py-2 px-3">–</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Köln – Berlin</td>
+                  <td class="text-center py-2 px-3">5–6 Std</td>
+                  <td class="text-center py-2 px-3">4,5 Std</td>
+                  <td class="text-center py-2 px-3">3 Std</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">München – Stuttgart</td>
+                  <td class="text-center py-2 px-3">2–2,5 Std</td>
+                  <td class="text-center py-2 px-3">2 Std</td>
+                  <td class="text-center py-2 px-3">–</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-2 px-3">Berlin – Dresden</td>
+                  <td class="text-center py-2 px-3">2 Std</td>
+                  <td class="text-center py-2 px-3">2 Std</td>
+                  <td class="text-center py-2 px-3">–</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-2">
+            * Flug: inklusive Anreise zum Flughafen, Check-in & Sicherheitskontrolle (ca. 2 Stunden extra)
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">3 Beispielrechnungen: Entfernung & Kosten</h3>
+          
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="font-semibold text-blue-800 mb-2">Beispiel 1: Täglicher Pendler Berlin → Potsdam</p>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>Entfernung: ~35 km einfach</li>
+              <li><a href="/arbeitstage-rechner" class="text-blue-700 hover:underline">Arbeitstage</a> 2026 (Berlin): ~249</li>
+              <li><strong>Pendlerpauschale:</strong> 249 × 35 × 0,38 € = <strong>3.312 €</strong></li>
+              <li><a href="/spritkosten-rechner" class="text-blue-700 hover:underline">Spritkosten</a> (7 l/100km, 1,75 €/l): ~612 €/Jahr</li>
+              <li>Steuerersparnis (30 % Grenzsteuersatz): ~994 € → <strong>deckt Spritkosten fast komplett</strong></li>
+            </ul>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <p class="font-semibold text-green-800 mb-2">Beispiel 2: Fernpendler Hamburg → Hannover</p>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>Entfernung: ~150 km einfach (Straße)</li>
+              <li>Fahrzeit: ~1,5 Std (Auto) / 1,5 Std (ICE)</li>
+              <li><strong>Pendlerpauschale:</strong> 220 × 150 × 0,38 € = <strong>12.540 €</strong></li>
+              <li>Deutschlandticket: 49 €/Monat = 588 €/Jahr → <strong>Bahn deutlich günstiger</strong></li>
+              <li>Auto-<a href="/spritkosten-rechner" class="text-blue-700 hover:underline">Spritkosten</a>: ~5.775 €/Jahr</li>
+            </ul>
+          </div>
+          
+          <div class="bg-purple-50 p-4 rounded-lg my-4">
+            <p class="font-semibold text-purple-800 mb-2">Beispiel 3: Umzug München → Berlin</p>
+            <ul class="text-sm text-purple-700 space-y-1">
+              <li>Entfernung: ~585 km (Straße)</li>
+              <li>Fahrzeit: ~5,5 Std</li>
+              <li><a href="/umzugskosten-rechner" class="text-purple-700 hover:underline">Umzugskosten</a> (2-Zimmer): ca. 2.000–4.000 €</li>
+              <li><a href="/mietkaution-rechner" class="text-purple-700 hover:underline">Mietkaution</a> Berlin (700 € Kaltmiete): 2.100 €</li>
+              <li>Umzugskostenpauschale (Steuererklärung 2026): 964 €</li>
+            </ul>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">5 typische Fehler bei der Entfernungsberechnung</h3>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li>
+              <strong>Luftlinie statt Straße für Steuer:</strong> Das Finanzamt akzeptiert nur die kürzeste 
+              Straßenverbindung — nicht die Luftlinie! Die Straße ist ca. 30 % länger.
+            </li>
+            <li>
+              <strong>Hin- und Rückweg doppelt rechnen:</strong> Die 
+              <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> gilt nur 
+              für die <strong>einfache</strong> Strecke — nicht Hin + Rück.
+            </li>
+            <li>
+              <strong>Zu viele Arbeitstage ansetzen:</strong> Urlaub, Krankheit und 
+              <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice</a>-Tage 
+              abziehen! Nutzen Sie den <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage-Rechner</a>.
+            </li>
+            <li>
+              <strong>Verkehrsmittel-Wechsel ignorieren:</strong> Wer Teil-Strecken mit dem 
+              <a href="/fahrrad-pendeln-rechner" class="text-blue-600 hover:underline">Fahrrad</a> fährt, 
+              kann trotzdem die volle Entfernungspauschale geltend machen.
+            </li>
+            <li>
+              <strong>Alte Pauschale verwenden:</strong> Seit 2026 gelten 0,38 €/km ab km 1 — nicht mehr die 
+              alte Staffelung (0,30 €/km für km 1–20).
+            </li>
+          </ol>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">5 Sonderfälle: Entfernung & Pendlerpauschale</h3>
+          
+          <div class="space-y-3">
+            <div class="bg-yellow-50 p-3 rounded-lg">
+              <p class="font-semibold text-yellow-800 text-sm">📌 Zweitwohnung / Doppelte Haushaltsführung</p>
+              <p class="text-sm text-yellow-700">
+                Bei <a href="/doppelte-haushaltsfuehrung-rechner" class="text-yellow-700 hover:underline">doppelter Haushaltsführung</a> 
+                können Sie Familienheimfahrten (1×/Woche) mit 0,38 €/km absetzen — zusätzlich zur 
+                Zweitwohnungsmiete (max. 1.000 €/Monat).
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-3 rounded-lg">
+              <p class="font-semibold text-yellow-800 text-sm">📌 Fahrgemeinschaft</p>
+              <p class="text-sm text-yellow-700">
+                <strong>Jeder Mitfahrer</strong> kann die volle Pendlerpauschale geltend machen — auch der Beifahrer! 
+                Der Fahrer kann allerdings nur einmal die Entfernung ansetzen, nicht pro Mitfahrer.
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-3 rounded-lg">
+              <p class="font-semibold text-yellow-800 text-sm">📌 Dienstreise vs. Arbeitsweg</p>
+              <p class="text-sm text-yellow-700">
+                Bei Dienstreisen gelten 0,30 €/km (tatsächliche Kosten absetzbar) plus 
+                <a href="/verpflegungsmehraufwand-rechner" class="text-yellow-700 hover:underline">Verpflegungsmehraufwand</a> 
+                (16 €/Tag ab 8 Std, 32 €/Tag ab 24 Std). Nicht mit der Pendlerpauschale verwechseln!
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-3 rounded-lg">
+              <p class="font-semibold text-yellow-800 text-sm">📌 Elektroauto / Dienstwagen</p>
+              <p class="text-sm text-yellow-700">
+                Auch mit <a href="/elektroauto-rechner" class="text-yellow-700 hover:underline">Elektroauto</a> 
+                oder <a href="/firmenwagen-rechner" class="text-yellow-700 hover:underline">Firmenwagen</a> gilt 
+                die Pendlerpauschale. Beim Firmenwagen wird der versteuerte geldwerte Vorteil (0,25 %/0,5 %/1 % Regelung) 
+                aber nicht zusätzlich abgesetzt.
+              </p>
+            </div>
+            
+            <div class="bg-yellow-50 p-3 rounded-lg">
+              <p class="font-semibold text-yellow-800 text-sm">📌 Mehrere Arbeitsorte</p>
+              <p class="text-sm text-yellow-700">
+                Wer mehrere Arbeitsorte hat, bekommt die Pendlerpauschale nur für die „erste Tätigkeitsstätte". 
+                Fahrten zu weiteren Einsatzorten zählen als Dienstreise (tatsächliche Kosten absetzbar).
+              </p>
+            </div>
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeutet das für Sie?</h3>
+          <p>
+            Die Entfernung zwischen Wohnort und Arbeitsplatz hat massive finanzielle Auswirkungen: 
+            Bei 30 km einfacher Strecke sparen Sie über die 
+            <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> 
+            knapp 1.000 € Steuern pro Jahr. Ab 50 km wird die Frage „Pendeln oder Umzug?" relevant — berechnen 
+            Sie die <a href="/umzugskosten-rechner" class="text-blue-600 hover:underline">Umzugskosten</a> 
+            und vergleichen Sie mit der jährlichen Steuerersparnis. Nutzen Sie den 
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>, 
+            um zu sehen, wie sich die Werbungskosten auf Ihr 
+            <a href="/stundenlohn-rechner" class="text-blue-600 hover:underline">Nettoeinkommen</a> auswirken.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für die Reiseplanung</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Spritkosten berechnen:</strong> Nutzen Sie unseren 
+              <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten-Rechner</a> 
+              für die genauen Fahrtkosten und den 
+              <a href="/spritverbrauch-rechner" class="text-blue-600 hover:underline">Spritverbrauch-Rechner</a> 
+              für Ihren realen Verbrauch.
+            </li>
+            <li>
+              <strong>Bahn-Sparpreise:</strong> Ab 17,99 € innerhalb Deutschlands (früh buchen). 
+              Deutschlandticket: 49 €/Monat für den ÖPNV/Regionalverkehr.
+            </li>
+            <li>
+              <strong>Flug lohnt sich</strong> erst ab ca. 400–500 km Luftlinie, da Flughafen-Zeiten hinzukommen.
+            </li>
+            <li>
+              <strong>Fahrgemeinschaften:</strong> Mitfahrgelegenheiten (BlaBlaCar) reduzieren 
+              <a href="/co2-steuer-rechner" class="text-blue-600 hover:underline">CO₂-Kosten</a> und Spritkosten.
+            </li>
+            <li>
+              <strong>E-Auto:</strong> <a href="/elektroauto-rechner" class="text-blue-600 hover:underline">Stromkosten 
+              für E-Autos</a> berechnen — oft 50–70 % günstiger als Benzin/Diesel.
+            </li>
+            <li>
+              <strong><a href="/kfz-steuer-rechner" class="text-blue-600 hover:underline">Kfz-Steuer</a>:</strong> 
+              Bei längeren Strecken lohnt sich ein verbrauchsarmes Fahrzeug auch steuerlich.
+            </li>
+          </ul>
+          
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 20 größten deutschen Städte im Überblick</h3>
+          <p>
+            Unser Rechner umfasst die bevölkerungsreichsten Städte Deutschlands (Statistisches Bundesamt 2024):
           </p>
           <ol class="list-decimal pl-5 space-y-1 grid grid-cols-2 gap-2">
             <li>Berlin (3,7 Mio)</li>
@@ -145,102 +410,121 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
             <li>Münster (315.000)</li>
           </ol>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Reisezeit-Vergleich: Auto, Bahn, Flug</h3>
-          <p>
-            Je nach Strecke und Verkehrsmittel variiert die Reisezeit erheblich:
-          </p>
+          <!-- Collapsible FAQs -->
+          <h3 class="text-lg font-semibold text-gray-800 mt-8 mb-4">Häufig gestellte Fragen (FAQ)</h3>
           
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm mt-4">
-              <thead class="bg-gray-100">
-                <tr>
-                  <th class="text-left py-2 px-3">Strecke</th>
-                  <th class="text-center py-2 px-3">🚗 Auto</th>
-                  <th class="text-center py-2 px-3">🚆 ICE</th>
-                  <th class="text-center py-2 px-3">✈️ Flug*</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="border-b">
-                  <td class="py-2 px-3">Berlin – München</td>
-                  <td class="text-center py-2 px-3">5-6 Std</td>
-                  <td class="text-center py-2 px-3">4 Std</td>
-                  <td class="text-center py-2 px-3">3 Std</td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-2 px-3">Hamburg – Frankfurt</td>
-                  <td class="text-center py-2 px-3">4-5 Std</td>
-                  <td class="text-center py-2 px-3">3,5 Std</td>
-                  <td class="text-center py-2 px-3">–</td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-2 px-3">Köln – Berlin</td>
-                  <td class="text-center py-2 px-3">5-6 Std</td>
-                  <td class="text-center py-2 px-3">4,5 Std</td>
-                  <td class="text-center py-2 px-3">3 Std</td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-2 px-3">München – Stuttgart</td>
-                  <td class="text-center py-2 px-3">2-2,5 Std</td>
-                  <td class="text-center py-2 px-3">2 Std</td>
-                  <td class="text-center py-2 px-3">–</td>
-                </tr>
-              </tbody>
-            </table>
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie weit ist Berlin von München entfernt?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Die Luftlinie Berlin – München beträgt <strong>504 km</strong>. Die Straßenentfernung über die 
+              A9 ist etwa <strong>585 km</strong>, die Fahrzeit beträgt ca. 5–6 Stunden mit dem Auto oder 
+              4 Stunden mit dem ICE. Die <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> 
+              für diese Strecke (bei täglichem Pendeln) wäre theoretisch 585 × 0,38 € = 222 €/Tag — 
+              in der Praxis ist hier eine <a href="/doppelte-haushaltsfuehrung-rechner" class="text-blue-600 hover:underline">doppelte Haushaltsführung</a> sinnvoller.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Was ist der Unterschied zwischen Luftlinie und Straßenentfernung?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Die <strong>Luftlinie</strong> ist die direkte Distanz zwischen zwei Punkten (Großkreisentfernung). 
+              Die <strong>Straßenentfernung</strong> folgt dem Straßennetz und ist ca. 30 % länger. 
+              Für die <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Steuererklärung</a> 
+              zählt nur die kürzeste Straßenverbindung, nicht die Luftlinie.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie hoch ist die Pendlerpauschale 2026?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Seit dem 1. Januar 2026 beträgt die Entfernungspauschale einheitlich <strong>0,38 €/km</strong> ab 
+              dem ersten Kilometer. Die alte Staffelung (0,30 €/km für km 1–20) entfällt. Das gilt unabhängig 
+              vom Verkehrsmittel. Berechnen Sie Ihre Ersparnis mit dem 
+              <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale-Rechner</a>.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Welche ist die längste Entfernung zwischen deutschen Großstädten?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Die größte Entfernung besteht zwischen <strong>München und Hamburg</strong> mit ca. 
+              612 km Luftlinie (etwa 790 km Straße). Die Fahrzeit beträgt ca. 7 Stunden mit dem Auto 
+              oder 5,5 Stunden mit dem ICE. Der Flug (inkl. Flughafenzeit) dauert ca. 3,5 Stunden.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wann lohnt sich ein Flug innerhalb Deutschlands?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Ein Flug lohnt sich meist erst ab <strong>400–500 km Luftlinie</strong>. Denn Anreise zum 
+              Flughafen, Check-in und Sicherheitskontrolle kosten ca. 2 Stunden extra. Für Strecken unter 
+              400 km ist der ICE oder sogar das Auto häufig schneller. Vergleichen Sie die 
+              <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten</a> mit dem Flugpreis.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Kann ich die Pendlerpauschale auch als Fahrradfahrer nutzen?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Ja! Die Pendlerpauschale ist <strong>verkehrsmittelunabhängig</strong>. Ob Auto, 
+              <a href="/fahrrad-pendeln-rechner" class="text-blue-600 hover:underline">Fahrrad</a>, 
+              E-Scooter, Bus oder zu Fuß — Sie erhalten 0,38 €/km. Fahrradfahrer profitieren besonders, 
+              da sie keine <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten</a> 
+              haben und die Pauschale vollständig als Steuerersparnis bleibt.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie berechne ich die Entfernung für die Steuererklärung?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Für die Steuererklärung nehmen Sie die <strong>kürzeste Straßenverbindung</strong> (nicht Luftlinie) 
+              und runden auf volle Kilometer ab. Multiplizieren Sie mit 0,38 € und der Anzahl tatsächlicher 
+              <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage</a> 
+              (abzüglich Urlaub, Krankheit, <a href="/homeoffice-pauschale-rechner" class="text-blue-600 hover:underline">Homeoffice</a>). 
+              Die Entfernung können Sie z. B. über Google Maps ermitteln lassen.
+            </div>
+          </details>
+          
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie genau ist die Fahrzeit-Schätzung?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Unsere Schätzung basiert auf Durchschnittswerten bei normalem Verkehr (±15–20 % Abweichung). 
+              Bei Stau, Baustellen oder schlechtem Wetter kann die reale Fahrzeit deutlich abweichen. 
+              Für exakte Echtzeit-Angaben empfehlen wir Google Maps oder HERE WeGo. Planen Sie bei 
+              Langstrecken immer 30 Minuten Pufferzeit ein.
+            </div>
+          </details>
+          
+          <!-- Verwandte Rechner -->
+          <h3 class="text-lg font-semibold text-gray-800 mt-8">Verwandte Rechner</h3>
+          <div class="grid grid-cols-2 gap-2 mt-3">
+            <a href="/pendlerpauschale-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">🚗 Pendlerpauschale</a>
+            <a href="/spritkosten-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">⛽ Spritkosten</a>
+            <a href="/spritverbrauch-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">📊 Spritverbrauch</a>
+            <a href="/arbeitstage-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">📅 Arbeitstage 2026</a>
+            <a href="/umzugskosten-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">📦 Umzugskosten</a>
+            <a href="/homeoffice-pauschale-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">🏠 Homeoffice-Pauschale</a>
+            <a href="/firmenwagen-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">🚘 Firmenwagen</a>
+            <a href="/verpflegungsmehraufwand-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">🍽️ Verpflegungsmehraufwand</a>
+            <a href="/kfz-steuer-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">🚙 Kfz-Steuer</a>
+            <a href="/co2-steuer-rechner" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition text-sm font-medium text-gray-700">🌍 CO₂-Steuer</a>
           </div>
-          <p class="text-xs text-gray-500 mt-2">
-            * Flug: inklusive Anreise, Check-in, Sicherheitskontrolle (ca. 2 Stunden)
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für die Reiseplanung</h3>
-          <ul class="list-disc pl-5 space-y-2">
-            <li>
-              <strong>Spritkosten berechnen:</strong> Nutzen Sie unseren 
-              <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten-Rechner</a> 
-              für die genauen Fahrtkosten.
-            </li>
-            <li>
-              <strong>Bahn-Sparpreise:</strong> Bei früher Buchung ab 17,99 € innerhalb Deutschlands.
-            </li>
-            <li>
-              <strong>Fernbus:</strong> Oft die günstigste Option (z.B. FlixBus ab 5 €).
-            </li>
-            <li>
-              <strong>Flug lohnt sich:</strong> Erst ab ca. 400-500 km Luftlinie, da Flughafen-Zeiten hinzukommen.
-            </li>
-            <li>
-              <strong>Fahrgemeinschaften:</strong> Mitfahrgelegenheiten (z.B. BlaBlaCar) reduzieren Kosten und CO₂.
-            </li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen zur Entfernungsberechnung</h3>
-          
-          <p class="font-semibold">Warum ist die Straßenentfernung länger als die Luftlinie?</p>
-          <p>
-            Straßen können nicht geradeaus durch Berge, Seen oder bebaute Gebiete führen. 
-            Sie müssen Umwege nehmen, weshalb die Straßenentfernung typischerweise 20-40% länger ist 
-            als die direkte Luftlinie.
-          </p>
-          
-          <p class="font-semibold">Wie genau ist die Fahrzeit-Schätzung?</p>
-          <p>
-            Die Schätzung basiert auf Durchschnittswerten bei normalem Verkehr. 
-            Bei Stau, schlechtem Wetter oder vielen Baustellen kann die reale Fahrzeit 
-            deutlich abweichen. Für exakte Angaben empfehlen wir Google Maps oder HERE.
-          </p>
-          
-          <p class="font-semibold">Wie weit ist Berlin von München entfernt?</p>
-          <p>
-            Die Luftlinie Berlin – München beträgt <strong>504 km</strong>. 
-            Die Straßenentfernung über die A9 ist etwa <strong>585 km</strong>, 
-            die Fahrzeit beträgt ca. 5-6 Stunden mit dem Auto.
-          </p>
-          
-          <p class="font-semibold">Welche ist die längste Entfernung zwischen deutschen Großstädten?</p>
-          <p>
-            Die größte Entfernung zwischen zwei deutschen Großstädten besteht zwischen 
-            <strong>München und Hamburg</strong> mit ca. 612 km Luftlinie (etwa 780 km Straße).
-          </p>
         </div>
       </div>
     </div>
@@ -250,7 +534,7 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Entfernungs-Rechner 2025",
+    "name": "Entfernungs-Rechner 2026",
     "description": description,
     "url": "https://www.deutschland-rechner.de/entfernung-rechner",
     "applicationCategory": "UtilityApplication",
@@ -262,7 +546,8 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
     },
     "author": {
       "@type": "Organization",
-      "name": "Deutschland-Rechner"
+      "name": "Deutschland-Rechner",
+      "url": "https://www.deutschland-rechner.de"
     }
   })} />
   
@@ -276,7 +561,7 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         "name": "Wie weit ist Berlin von München entfernt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Luftlinie Berlin – München beträgt 504 km. Die Straßenentfernung über die A9 ist etwa 585 km, die Fahrzeit beträgt ca. 5-6 Stunden mit dem Auto."
+          "text": "Die Luftlinie Berlin – München beträgt 504 km. Die Straßenentfernung über die A9 ist etwa 585 km, die Fahrzeit beträgt ca. 5–6 Stunden mit dem Auto oder 4 Stunden mit dem ICE."
         }
       },
       {
@@ -284,15 +569,15 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         "name": "Was ist der Unterschied zwischen Luftlinie und Straßenentfernung?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Luftlinie ist die kürzeste Verbindung zwischen zwei Punkten. Die Straßenentfernung ist etwa 30% länger, da Straßen Kurven, Umwege und Geländeformen folgen müssen."
+          "text": "Die Luftlinie ist die direkte Distanz zwischen zwei Punkten (Großkreisentfernung). Die Straßenentfernung folgt dem Straßennetz und ist ca. 30 % länger. Für die Steuererklärung zählt nur die kürzeste Straßenverbindung."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie berechnet man die Entfernung zwischen zwei Städten?",
+        "name": "Wie hoch ist die Pendlerpauschale 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Luftlinie wird mit der Haversine-Formel berechnet, die die Erdkrümmung berücksichtigt. Die Straßenentfernung schätzt man als Luftlinie × 1,3 (Umwegfaktor)."
+          "text": "Seit dem 1. Januar 2026 beträgt die Entfernungspauschale einheitlich 0,38 €/km ab dem ersten Kilometer. Die alte Staffelung (0,30 €/km für km 1–20) entfällt. Das gilt unabhängig vom Verkehrsmittel."
         }
       },
       {
@@ -300,7 +585,7 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         "name": "Welche ist die längste Entfernung zwischen deutschen Großstädten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die größte Entfernung zwischen deutschen Großstädten besteht zwischen München und Hamburg mit ca. 612 km Luftlinie (etwa 780 km Straße)."
+          "text": "Die größte Entfernung besteht zwischen München und Hamburg mit ca. 612 km Luftlinie (etwa 790 km Straße). Die Fahrzeit beträgt ca. 7 Stunden mit dem Auto oder 5,5 Stunden mit dem ICE."
         }
       },
       {
@@ -308,7 +593,31 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         "name": "Wann lohnt sich ein Flug innerhalb Deutschlands?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ein Flug lohnt sich meist erst ab 400-500 km Luftlinie, da Anreise zum Flughafen, Check-in und Sicherheitskontrolle ca. 2 Stunden zusätzlich kosten. Darunter ist die Bahn oft schneller."
+          "text": "Ein Flug lohnt sich meist erst ab 400–500 km Luftlinie. Denn Anreise zum Flughafen, Check-in und Sicherheitskontrolle kosten ca. 2 Stunden extra. Für Strecken unter 400 km ist der ICE oder das Auto häufig schneller."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich die Pendlerpauschale auch als Fahrradfahrer nutzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja! Die Pendlerpauschale ist verkehrsmittelunabhängig. Ob Auto, Fahrrad, E-Scooter, Bus oder zu Fuß – Sie erhalten 0,38 €/km ab dem ersten Kilometer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Entfernung für die Steuererklärung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für die Steuererklärung nehmen Sie die kürzeste Straßenverbindung (nicht Luftlinie), runden auf volle Kilometer ab und multiplizieren mit 0,38 € und der Anzahl tatsächlicher Arbeitstage (abzüglich Urlaub, Krankheit, Homeoffice)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist die Fahrzeit-Schätzung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unsere Schätzung basiert auf Durchschnittswerten bei normalem Verkehr (±15–20 % Abweichung). Bei Stau, Baustellen oder schlechtem Wetter kann die reale Fahrzeit deutlich abweichen. Für exakte Angaben empfehlen wir Google Maps."
         }
       }
     ]
