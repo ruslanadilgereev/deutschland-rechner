@@ -1,4 +1,4 @@
-const CACHE_NAME = 'deutschlandrechner-v2';
+const CACHE_NAME = 'deutschlandrechner-v3';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
