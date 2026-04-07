@@ -3,23 +3,57 @@ import Layout from '../layouts/Layout.astro';
 import NotarkostenRechner from '../components/rechner/NotarkostenRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Notarkosten-Rechner 2026 ▷ Notar + Grundbuch sofort berechnen";
-const description = "Notarkosten & Grundbuchgebühren für Ihren Hauskauf berechnen ✓ Nach GNotKG Tabelle B ✓ Inkl. Grundschuld & MwSt ✓ Detaillierte Aufstellung ✓ Spartipps. Jetzt kostenlos berechnen!";
-const keywords = "Notarkosten Rechner, Notargebühren berechnen, Notarkosten Hauskauf, GNotKG, Grundbuchkosten, Notarkosten Immobilienkauf, Notarkosten 2025, Notarkosten 2026, Notar Gebühren, Notarkosten Grundschuld, Notarkosten Wohnungskauf, Beurkundung Kosten, Tabelle B";
+const title = "▷ Notarkosten-Rechner 2026 – Notar- und Grundbuchkosten berechnen";
+const description = "Notarkosten beim Hauskauf berechnen: Notar, Grundbuch, Grundschuld und Kaufnebenkosten nach GNotKG. Mit Beispielen, FAQ und Spartipps.";
+const keywords = "Notarkosten Rechner, Notarkosten berechnen, Notargebühren Hauskauf, Notar und Grundbuchkosten, GNotKG Rechner, Grundschuld Kosten, Notarkosten Wohnungskauf, Notarkosten Hauskauf 2026, Grundbuchkosten berechnen, Kaufnebenkosten Notar";
+
+const faqData = [
+  {
+    question: "Wie hoch sind die Notarkosten beim Hauskauf?",
+    answer: "Für Notar und Grundbuch sollten Käufer meist mit rund 1,5 bis 2,0 Prozent des Kaufpreises rechnen. Bei 350.000 Euro Kaufpreis liegen die Gesamtkosten häufig bei etwa 4.500 bis 5.500 Euro, abhängig von Grundschuld, Vollzug und Eintragungen."
+  },
+  {
+    question: "Wer zahlt die Notarkosten beim Immobilienkauf?",
+    answer: "Üblicherweise trägt der Käufer die Kosten für Kaufvertrag, Eigentumsumschreibung und Auflassungsvormerkung. Kosten für die Löschung alter Belastungen des Verkäufers übernimmt meist der Verkäufer. Entscheidend ist am Ende die Regelung im Kaufvertrag."
+  },
+  {
+    question: "Kann man bei Notarkosten verhandeln oder sparen?",
+    answer: "Die Gebühren selbst sind im GNotKG bundeseinheitlich festgelegt und nicht verhandelbar. Sparen lässt sich nur indirekt, zum Beispiel durch Übernahme einer bestehenden Grundschuld, Verzicht auf ein Notaranderkonto oder saubere Vertragsvorbereitung ohne unnötige Zusatztermine."
+  },
+  {
+    question: "Sind Grundbuchkosten in den Notarkosten enthalten?",
+    answer: "Nein. Notarkosten und Grundbuchkosten hängen zusammen, werden aber getrennt berechnet. Der Notar stellt seine Gebühren inklusive Auslagen und Umsatzsteuer in Rechnung, das Grundbuchamt erhebt eigene staatliche Gebühren ohne Umsatzsteuer."
+  },
+  {
+    question: "Wie werden Notarkosten nach GNotKG berechnet?",
+    answer: "Die Berechnung richtet sich nach dem Geschäftswert, beim Immobilienkauf meist dem Kaufpreis. Auf Basis der Gebührentabelle B im GNotKG fallen für Kaufvertrag, Vollzug, Betreuung und gegebenenfalls Grundschuld bestimmte Gebührenfaktoren an. Der Rechner bildet diese typischen Positionen automatisiert ab."
+  },
+  {
+    question: "Wann werden Notarkosten und Grundbuchkosten fällig?",
+    answer: "Die Notarrechnung kommt meist wenige Tage bis zwei Wochen nach der Beurkundung. Die Grundbuchkosten folgen oft später, sobald Eigentumsumschreibung, Auflassungsvormerkung oder Grundschuld eingetragen wurden. Für die Finanzierungsplanung sollten Käufer beide Rechnungen früh einkalkulieren."
+  },
+  {
+    question: "Sind Notarkosten steuerlich absetzbar?",
+    answer: "Bei selbst genutzten Immobilien in der Regel nein. Bei vermieteten Objekten können Notarkosten für den Erwerb meist als Anschaffungsnebenkosten über die Abschreibung berücksichtigt werden. Finanzierungskosten rund um eine vermietete Immobilie können teilweise sofort als Werbungskosten relevant sein."
+  },
+  {
+    question: "Wie viel kosten Notar und Grundbuch bei 500.000 Euro Kaufpreis?",
+    answer: "Als grobe Orientierung liegen Notar und Grundbuch bei 500.000 Euro Kaufpreis oft im Bereich von etwa 7.000 bis 8.500 Euro, insbesondere wenn zusätzlich eine hohe Grundschuld eingetragen wird. Der genaue Betrag hängt von Kaufpreis, Darlehenshöhe und einzelnen Urkunden ab."
+  }
+];
 ---
 
-<Layout 
+<Layout
   title={title}
   description={description}
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Notarkosten-Rechner", url: "/notarkosten-rechner" }]} />
   <main class="min-h-screen pb-8">
-    <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
       <div class="max-w-2xl mx-auto">
-        <a 
-          href="/" 
+        <a
+          href="/"
           class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,263 +65,224 @@ const keywords = "Notarkosten Rechner, Notargebühren berechnen, Notarkosten Hau
           <span class="text-4xl">📝</span>
           <div>
             <h1 class="text-2xl font-bold">Notarkosten-Rechner 2026</h1>
-            <p class="text-purple-100 text-sm">Notar- & Grundbuchkosten nach GNotKG berechnen</p>
+            <p class="text-purple-100 text-sm">Notar, Grundbuch und Grundschuld beim Immobilienkauf berechnen</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <NotarkostenRechner client:load />
     </div>
 
-    <!-- Trust-Block -->
     <div class="max-w-2xl mx-auto px-4 mt-4">
       <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
         <div class="flex items-start gap-3">
           <span class="text-2xl">✅</span>
           <div class="text-sm text-emerald-900 space-y-2">
-            <p><strong>Zuletzt aktualisiert am 01.04.2026</strong> — Alle Gebühren geprüft nach Gerichts- und Notarkostengesetz (GNotKG), Tabelle B, und Kostenordnung des Grundbuchamts.</p>
-            <p><strong>Was der Rechner berücksichtigt:</strong> Beurkundungsgebühr (2,0-fach), Vollzugs- & Betreuungstätigkeit (je 0,5-fach), Grundschuldbestellung (1,0-fach), Grundbuchkosten (Eigentumsumschreibung, Vormerkung, Grundschuld), MwSt 19%.</p>
-            <p><strong>Was der Rechner nicht berücksichtigt:</strong> Individuelle Sonderwünsche (z. B. Notaranderkonto, Löschungsbewilligung), Beurkundung von Eheverträgen oder Testamenten. Für die Gesamtkosten nutzen Sie den <a href="/kaufnebenkosten-rechner" class="text-emerald-700 underline hover:text-emerald-900">Kaufnebenkosten-Rechner</a>.</p>
+            <p><strong>Zuletzt aktualisiert am 07.04.2026</strong>, geprüft nach GNotKG, BGB § 311b sowie typischen Kostenpositionen für Kaufvertrag, Vollzug, Betreuung, Auflassungsvormerkung und Grundschuld.</p>
+            <p><strong>Was der Rechner berücksichtigt:</strong> Kaufpreis, Notargebühren, Grundbuchkosten, Grundschuld, Auslagen und Umsatzsteuer auf notarielle Leistungen.</p>
+            <p><strong>Was der Rechner nicht berücksichtigt:</strong> Individuelle Sondervereinbarungen im Vertrag, Maklerkosten, <a href="/grunderwerbsteuer-rechner" class="text-emerald-700 underline hover:text-emerald-900">Grunderwerbsteuer</a>, Bankgebühren und regionale Zusatzkosten außerhalb des Standardfalls.</p>
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- SEO Content Section -->
+
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Notarkosten 2026: So berechnen sich Notar- und Grundbuchgebühren</h2>
-        
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Notarkosten beim Hauskauf 2026: So setzen sich Notar- und Grundbuchkosten zusammen</h2>
+
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Notarkosten-Rechner</strong> berechnen Sie schnell und kostenlos die Gebühren für 
-            Notar und Grundbuchamt bei Ihrem Immobilienkauf. Die Kosten basieren auf dem 
-            <strong>Gerichts- und Notarkostengesetz (GNotKG)</strong> und sind bundesweit einheitlich geregelt.
+            Mit unserem <strong>Notarkosten-Rechner</strong> berechnen Sie schnell, was beim Immobilienkauf zusätzlich zum Kaufpreis anfällt.
+            Gerade bei Wohnung, Haus oder Baugrundstück werden die <strong>Notar- und Grundbuchkosten</strong> oft zu niedrig angesetzt.
+            Wer nur mit Kaufpreis und Darlehen plant, hat beim Notartermin schnell eine Finanzierungslücke. Prüfen Sie deshalb immer auch die
+            <a href="/kaufnebenkosten-rechner" class="text-purple-600 hover:underline">gesamten Kaufnebenkosten</a>, die
+            <a href="/grunderwerbsteuer-rechner" class="text-purple-600 hover:underline">Grunderwerbsteuer</a> und Ihr nötiges
+            <a href="/eigenkapital-rechner" class="text-purple-600 hover:underline">Eigenkapital</a>.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum ist ein Notar beim Hauskauf Pflicht?</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum ein Notar beim Immobilienkauf Pflicht ist</h3>
           <p>
-            In Deutschland ist die Mitwirkung eines Notars beim Immobilienkauf nach <strong>§ 311b BGB</strong> gesetzlich 
-            vorgeschrieben. Ohne notarielle Beurkundung ist ein Kaufvertrag für Immobilien nicht rechtswirksam. 
-            Der Notar schützt beide Parteien vor Fehlentscheidungen und gewährleistet die Rechtssicherheit des Kaufs. 
-            Neben dem Notartermin sollten Sie auch die <a href="/grunderwerbsteuer-rechner" class="text-purple-600 hover:underline">Grunderwerbsteuer</a> 
-            und weitere <a href="/kaufnebenkosten-rechner" class="text-purple-600 hover:underline">Kaufnebenkosten</a> einplanen.
+            Immobilienkaufverträge müssen in Deutschland nach <strong>§ 311b BGB notariell beurkundet</strong> werden.
+            Ohne Notar ist der Kaufvertrag nicht wirksam. Der Notar erstellt den Entwurf, liest den Vertrag vor,
+            erklärt Risiken, kümmert sich um Fälligkeitsvoraussetzungen und veranlasst Eintragungen im Grundbuch.
+            Damit ist der Notar kein optionaler Service, sondern ein fester Bestandteil jeder Immobilientransaktion.
           </p>
 
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie werden Notarkosten berechnet?</h3>
           <p>
-            Die Notargebühren richten sich nach dem <strong>Geschäftswert</strong> (beim Immobilienkauf der Kaufpreis) 
-            und werden nach <strong>Tabelle B des GNotKG</strong> berechnet:
+            Die Gebühren richten sich nach dem <strong>Geschäftswert</strong>, beim Kauf meist dem Kaufpreis. Grundlage ist das
+            <strong>Gerichts- und Notarkostengesetz (GNotKG)</strong>. Typische Positionen sind:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Beurkundung Kaufvertrag:</strong> 2,0-fache Gebühr</li>
-            <li><strong>Vollzugstätigkeit:</strong> 0,5-fache Gebühr (z.B. Fälligkeitsmitteilung)</li>
-            <li><strong>Betreuungstätigkeit:</strong> 0,5-fache Gebühr</li>
-            <li><strong>Grundschuldbestellung:</strong> 1,0-fache Gebühr (bei Finanzierung)</li>
-            <li>Zusätzlich: <strong>19% MwSt</strong> auf Notarkosten + Auslagen</li>
+            <li><strong>Beurkundung des Kaufvertrags</strong>, meist mit 2,0 Gebühr</li>
+            <li><strong>Vollzugstätigkeiten</strong>, zum Beispiel Fälligkeitsmitteilung oder Einholung von Genehmigungen</li>
+            <li><strong>Betreuungstätigkeiten</strong>, etwa Kommunikation mit Beteiligten und Behörden</li>
+            <li><strong>Grundschuldbestellung</strong>, falls eine Finanzierung eingetragen wird</li>
+            <li><strong>Auslagen + 19 % Umsatzsteuer</strong> auf notarielle Leistungen</li>
           </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundbuchkosten – Staatliche Gebühren</h3>
           <p>
-            Die <strong>Grundbuchkosten</strong> werden vom Amtsgericht erhoben und sind nicht MwSt-pflichtig:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Eigentumsumschreibung:</strong> 1,0-fache Gebühr auf Kaufpreis</li>
-            <li><strong>Auflassungsvormerkung:</strong> 0,5-fache Gebühr auf Kaufpreis</li>
-            <li><strong>Grundschuldeintragung:</strong> 1,0-fache Gebühr auf Grundschuldbetrag</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beispielrechnung: Notarkosten bei 350.000 € Kaufpreis</h3>
-          <p>
-            Bei einem <strong>Hauskauf für 350.000 €</strong> mit <strong>280.000 € Grundschuld</strong> fallen 
-            ca. <strong>4.500–5.000 €</strong> an Notar- und Grundbuchkosten an. Prüfen Sie mit unserem 
-            <a href="/baufinanzierung-rechner" class="text-purple-600 hover:underline">Baufinanzierung-Rechner</a>, 
-            ob Ihr Budget für alle Nebenkosten ausreicht:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Notarkosten (brutto): ca. 2.700–2.900 €</li>
-            <li>Grundbuchkosten: ca. 1.700–1.900 €</li>
-            <li>Das entspricht etwa <strong>1,3–1,5% des Kaufpreises</strong></li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum sind Notarkosten überall gleich?</h3>
-          <p>
-            Anders als bei Maklern oder Handwerkern können <strong>Notarkosten nicht verhandelt werden</strong>. 
-            Das GNotKG schreibt die Gebühren verbindlich vor. Dies hat Vorteile:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Transparenz:</strong> Keine versteckten Kosten oder Preisunterschiede</li>
-            <li><strong>Unabhängigkeit:</strong> Der Notar arbeitet neutral für beide Parteien</li>
-            <li><strong>Planbarkeit:</strong> Die Kosten lassen sich vorab exakt berechnen</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer zahlt die Notarkosten beim Hauskauf?</h3>
-          <p>
-            In Deutschland trägt <strong>üblicherweise der Käufer</strong> die Notar- und Grundbuchkosten. 
-            Dies ist jedoch nicht gesetzlich vorgeschrieben und kann im Kaufvertrag anders geregelt werden.
-          </p>
-          <p>
-            <strong>Ausnahme:</strong> Kosten für die Löschung von Belastungen (z.B. alte Grundschuld des Verkäufers) 
-            trägt meist der Verkäufer.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann werden die Notarkosten fällig?</h3>
-          <p>
-            Die Notarkosten werden in der Regel <strong>ein bis zwei Wochen nach der Beurkundung</strong> des 
-            Kaufvertrags fällig. Der Notar stellt die Rechnung zusammen mit der beglaubigten Abschrift des 
-            Kaufvertrags zu. Die Grundbuchkosten werden separat vom Amtsgericht in Rechnung gestellt — meist 
-            einige Wochen später, nachdem die Eintragungen im <a href="/grundsteuer-rechner" class="text-purple-600 hover:underline">Grundbuch</a> 
-            abgeschlossen sind. Planen Sie die Kosten frühzeitig in Ihr 
-            <a href="/eigenkapital-rechner" class="text-purple-600 hover:underline">Eigenkapital</a> ein.
+            Die <strong>Grundbuchkosten</strong> kommen zusätzlich hinzu. Sie werden vom Grundbuchamt berechnet und betreffen zum Beispiel
+            die <strong>Auflassungsvormerkung</strong>, <strong>Eigentumsumschreibung</strong> und die Eintragung der
+            <strong>Grundschuld</strong> für Ihre <a href="/baufinanzierung-rechner" class="text-purple-600 hover:underline">Finanzierung</a>.
           </p>
 
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kann man bei Notarkosten sparen?</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faustregel: Wie viel Prozent vom Kaufpreis fallen an?</h3>
+          <div class="bg-purple-50 border border-purple-100 rounded-lg p-4">
+            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+              <li><strong>Notar + Grundbuch ohne Finanzierung:</strong> oft rund 1,3 bis 1,5 % des Kaufpreises</li>
+              <li><strong>Mit Grundschuld / Darlehen:</strong> häufig rund 1,5 bis 2,0 % des Kaufpreises</li>
+              <li><strong>Mit allen Nebenkosten:</strong> insgesamt oft 10 bis 15 % inklusive Steuer und ggf. Makler</li>
+            </ul>
+          </div>
           <p>
-            Da die Gebühren gesetzlich festgelegt sind, können Sie Notarkosten <strong>nicht direkt verhandeln</strong>. 
-            Es gibt jedoch indirekte Sparmöglichkeiten:
+            Wenn Sie die gesamte Finanzierung sauber planen wollen, kombinieren Sie diesen Rechner mit dem
+            <a href="/kredit-rechner" class="text-purple-600 hover:underline">Kredit-Rechner</a>, dem
+            <a href="/kaufnebenkosten-rechner" class="text-purple-600 hover:underline">Kaufnebenkosten-Rechner</a> und dem
+            <a href="/maklerkosten-rechner" class="text-purple-600 hover:underline">Maklerkosten-Rechner</a>.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Grundstück und Gebäude getrennt kaufen:</strong> Bei einem unbebauten Grundstück fallen 
-                Notarkosten nur auf den (niedrigeren) Grundstückspreis an</li>
-            <li><strong>Bestehende Grundschuld übernehmen:</strong> Eine Abtretung ist günstiger als eine Neueintragung</li>
-            <li><strong>Auf Notaranderkonto verzichten:</strong> Die direkte Kaufpreiszahlung spart Treuhändergebühren</li>
-          </ul>
+        </div>
+      </div>
+    </div>
 
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Notarkosten steuerlich absetzen?</h3>
-          <p>
-            Bei <strong>privat genutzten Immobilien</strong> sind Notarkosten <strong>nicht steuerlich absetzbar</strong>. 
-            Ausnahmen:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Vermietete Immobilien:</strong> Notarkosten können als Anschaffungsnebenkosten 
-                über die Nutzungsdauer abgeschrieben werden</li>
-            <li><strong>Grundschuld für Mietobjekt:</strong> Notarkosten für die Finanzierung können 
-                als Werbungskosten absetzbar sein</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">💡 Was bedeutet das für Ihren Hauskauf?</h3>
-          <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
-            <p class="text-gray-700 mb-3">
-              Die Notar- und Grundbuchkosten von <strong>1,5–2 % des Kaufpreises</strong> sind ein fester Bestandteil der <a href="/kaufnebenkosten-rechner" class="text-purple-700 underline hover:text-purple-900">Kaufnebenkosten</a> und können nicht vermieden oder verhandelt werden. Planen Sie diese Kosten von Anfang an in Ihr <a href="/eigenkapital-rechner" class="text-purple-700 underline hover:text-purple-900">Eigenkapital</a> ein.
-            </p>
-            <p class="text-gray-700 mb-3">
-              <strong>Rechenbeispiel Gesamtnebenkosten:</strong> Bei einem Kaufpreis von 400.000 € in NRW fallen ca. 26.000 € <a href="/grunderwerbsteuer-rechner" class="text-purple-700 underline hover:text-purple-900">Grunderwerbsteuer</a> (6,5 %), ca. 6.500 € Notar + Grundbuch (1,6 %), und ggf. ca. 14.300 € <a href="/maklerkosten-rechner" class="text-purple-700 underline hover:text-purple-900">Maklerkosten</a> (3,57 %) an — zusammen <strong>knapp 47.000 € Nebenkosten</strong>.
-            </p>
-            <p class="text-gray-700">
-              <strong>Tipp:</strong> Prüfen Sie mit dem <a href="/baufinanzierung-rechner" class="text-purple-700 underline hover:text-purple-900">Baufinanzierung-Rechner</a>, ob Ihr Budget für Kaufpreis plus Nebenkosten ausreicht. Und berechnen Sie mit dem <a href="/grundsteuer-rechner" class="text-purple-700 underline hover:text-purple-900">Grundsteuer-Rechner</a>, welche laufenden Kosten nach dem Kauf auf Sie zukommen.
-            </p>
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 3 Beispielrechnungen für typische Immobilienkäufer</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Eigentumswohnung für 250.000 € ohne hohe Grundschuld</h3>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Kaufpreis: <strong>250.000 €</strong></li>
+              <li>Notar + Grundbuch: grob <strong>3.300 bis 4.100 €</strong></li>
+              <li>Entspricht etwa <strong>1,3 bis 1,6 %</strong> des Kaufpreises</li>
+              <li>Zusätzlich prüfen: <a href="/wohngeld-rechner" class="text-purple-600 hover:underline">laufende Wohnkosten</a> und <a href="/grundsteuer-rechner" class="text-purple-600 hover:underline">Grundsteuer</a></li>
+            </ul>
           </div>
 
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zusätzliche Kaufnebenkosten beachten</h3>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Einfamilienhaus für 450.000 € mit 360.000 € Darlehen</h3>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Kaufpreis: <strong>450.000 €</strong></li>
+              <li>Grundschuld: <strong>360.000 €</strong></li>
+              <li>Notar + Grundbuch: oft <strong>6.800 bis 8.000 €</strong></li>
+              <li>Durch die Grundschuld steigen die Kosten im Vergleich zum Barkauf spürbar</li>
+            </ul>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Kapitalanlage für 600.000 € mit Vermietung</h3>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Kaufpreis: <strong>600.000 €</strong></li>
+              <li>Notar + Grundbuch: häufig <strong>8.500 bis 10.000 €</strong></li>
+              <li>Steuerlich interessant, weil Anschaffungsnebenkosten bei Vermietung relevant sein können</li>
+              <li>Zur Renditeplanung: <a href="/mieten-oder-kaufen-rechner" class="text-purple-600 hover:underline">Mieten-oder-Kaufen-Rechner</a> und <a href="/einkommensteuer-rechner" class="text-purple-600 hover:underline">Einkommensteuer-Rechner</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ 5 typische Fehler bei der Planung von Notarkosten</h2>
+
+        <div class="bg-red-50 border border-red-100 rounded-lg p-4">
+          <ol class="list-decimal pl-5 space-y-3 text-sm text-gray-700">
+            <li><strong>Nur mit 1 % rechnen:</strong> Das reicht in vielen Finanzierungsfällen nicht, vor allem wenn eine Grundschuld eingetragen wird.</li>
+            <li><strong>Grundbuchkosten vergessen:</strong> Viele Käufer schauen nur auf den Notar, aber das Grundbuchamt stellt eigene Gebühren in Rechnung.</li>
+            <li><strong>Kaufnebenkosten nicht mitfinanzieren:</strong> Wer zu wenig Eigenkapital hat, scheitert oft nicht am Kaufpreis, sondern an Nebenkosten und Reserve.</li>
+            <li><strong>Makler und Steuer nicht einplanen:</strong> Zusammen mit <a href="/grunderwerbsteuer-rechner" class="text-red-700 hover:underline">Grunderwerbsteuer</a> und Makler wächst die Gesamtlast schnell auf fünfstellige Beträge.</li>
+            <li><strong>Steuerliche Behandlung falsch einschätzen:</strong> Selbstnutzer können die Kosten meist nicht absetzen, Vermieter dagegen teilweise schon.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔍 Sonderfälle und Spartipps</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Bestehende Grundschuld übernehmen</h3>
+            <p>Wenn eine vorhandene Grundschuld abgetreten werden kann, ist das oft günstiger als eine komplette Neueintragung. Gerade bei Anschlussfinanzierung oder bestimmten Verkäuferkonstellationen kann das einige hundert Euro sparen.</p>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Kein Notaranderkonto, wenn es nicht nötig ist</h3>
+            <p>Ein Notaranderkonto verursacht Zusatzkosten und ist nur in speziellen Fällen sinnvoll. Bei Standardkäufen mit klarer Fälligkeitsmitteilung ist die direkte Zahlung meist günstiger.</p>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Scheidung, Schenkung oder Übertragung innerhalb der Familie</h3>
+            <p>Nicht jede Eigentumsübertragung folgt dem typischen Kaufmuster. Bei Übertragungen innerhalb der Familie spielen zusätzlich <a href="/schenkungsteuer-rechner" class="text-purple-600 hover:underline">Schenkungsteuer</a> oder <a href="/erbschaftsteuer-rechner" class="text-purple-600 hover:underline">Erbschaftsteuer</a> eine Rolle. Die Gebührenlogik bleibt ähnlich, der steuerliche Rahmen aber nicht.</p>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-800 mb-2">Neubau und Bauträgerverträge</h3>
+            <p>Bei Bauträgerfällen oder Kombinationen aus Grundstück + Bauvertrag wird es komplexer. Dann sollten Sie nicht nur Notarkosten, sondern die gesamten Zahlungsströme, Bauabschnitte und Sicherheiten mit der Bank abstimmen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Steuerlich absetzbar oder nicht?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Die Notarkosten sind nur ein Teil der <strong>Kaufnebenkosten</strong>. Planen Sie zusätzlich ein:
+            Für <strong>selbst genutzte Immobilien</strong> sind Notarkosten und Grundbuchkosten in der Regel <strong>nicht sofort steuerlich absetzbar</strong>.
+            Kaufen Sie jedoch eine <strong>vermietete Immobilie</strong>, zählen viele Erwerbskosten zu den Anschaffungsnebenkosten und wirken über die
+            Abschreibung. Finanzierungskosten können in bestimmten Fällen auch laufend relevant sein. Wer hier sauber rechnen will, sollte parallel die
+            Auswirkungen im <a href="/einkommensteuer-rechner" class="text-purple-600 hover:underline">Einkommensteuer-Rechner</a> mitdenken.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Grunderwerbsteuer:</strong> 3,5–6,5% je nach Bundesland</li>
-            <li><strong>Maklerkosten:</strong> 3,57–7,14% (falls Makler beteiligt)</li>
-            <li><strong>Notar + Grundbuch:</strong> ca. 1,5–2%</li>
-            <li><strong>Gesamt:</strong> Rechnen Sie mit <strong>10–15%</strong> Nebenkosten</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Weitere Rechner für Immobilienkäufer</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">💡 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Nutzen Sie auch unsere anderen Rechner für Ihren Immobilienkauf:
+            Wenn der Rechner Ihnen 6.000 € bis 8.000 € anzeigt, ist das kein Nebendetail, sondern ein echter
+            <strong>Finanzierungsbaustein</strong>. Für Käufer heißt das konkret:
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><a href="/grunderwerbsteuer-rechner" class="text-purple-600 hover:underline">Grunderwerbsteuer-Rechner</a> – Steuer nach Bundesland</li>
-            <li><a href="/kaufnebenkosten-rechner" class="text-purple-600 hover:underline">Kaufnebenkosten-Rechner</a> – Alle Nebenkosten im Überblick</li>
-            <li><a href="/kredit-rechner" class="text-purple-600 hover:underline">Kredit-Rechner</a> – Finanzierung berechnen</li>
-            <li><a href="/grundsteuer-rechner" class="text-purple-600 hover:underline">Grundsteuer-Rechner</a> – Jährliche Grundsteuer</li>
+          <ul class="list-disc pl-5 space-y-2">
+            <li><strong>Eigenkapitalpuffer einplanen:</strong> Nebenkosten sollten idealerweise nicht komplett über Konsumkredit oder Dispo aufgefangen werden.</li>
+            <li><strong>Gesamtkosten statt Kaufpreis vergleichen:</strong> Zwei Objekte mit gleichem Kaufpreis können wegen Makler, Steuer und Finanzierung sehr unterschiedliche Gesamtlasten haben.</li>
+            <li><strong>Vor der Reservierung rechnen:</strong> Spätestens vor Notartermin sollten Kaufpreis, Rate, Nebenkosten und monatliche Belastung sauber durchgerechnet sein.</li>
+            <li><strong>Immobilienkauf als Paket sehen:</strong> Nutzen Sie ergänzend den <a href="/kaufnebenkosten-rechner" class="text-purple-600 hover:underline">Kaufnebenkosten-Rechner</a>, den <a href="/baufinanzierung-rechner" class="text-purple-600 hover:underline">Baufinanzierung-Rechner</a> und den <a href="/eigenkapital-rechner" class="text-purple-600 hover:underline">Eigenkapital-Rechner</a>.</li>
           </ul>
         </div>
       </div>
     </div>
-    
-    <!-- FAQ-Sektion (collapsible) -->
+
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Notarkosten</h2>
         <div class="space-y-3">
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Wie hoch sind die Notarkosten beim Hauskauf?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Die Notarkosten beim Hauskauf betragen typischerweise <strong>1,5–2 % des Kaufpreises</strong>. Bei einem Kaufpreis von 350.000 € fallen etwa 4.500–5.000 € für Notar und Grundbuchamt an. Die genaue Höhe hängt vom Geschäftswert und der Grundschuldhöhe ab.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Warum ist ein Notar beim Hauskauf in Deutschland Pflicht?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>In Deutschland ist die Mitwirkung eines Notars beim Immobilienkauf nach <strong>§ 311b BGB</strong> gesetzlich vorgeschrieben. Ohne notarielle Beurkundung ist ein Kaufvertrag für Immobilien nicht rechtswirksam. Der Notar schützt beide Parteien und gewährleistet die Rechtssicherheit.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Kann man bei Notarkosten verhandeln?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Nein, Notarkosten können <strong>nicht verhandelt</strong> werden. Die Gebühren sind im GNotKG bundesweit verbindlich festgelegt. Jeder Notar berechnet die gleichen Gebühren nach Tabelle B. Es gibt aber indirekte Sparmöglichkeiten – z. B. bestehende Grundschuld übernehmen oder auf ein Notaranderkonto verzichten.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Wer zahlt die Notarkosten beim Immobilienkauf?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Üblicherweise trägt der <strong>Käufer</strong> die Notar- und Grundbuchkosten. Das ist jedoch keine gesetzliche Pflicht, sondern eine vertragliche Vereinbarung. Kosten für die Löschung alter Belastungen (z. B. Grundschuld des Verkäufers) trägt meist der Verkäufer.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Sind Notarkosten steuerlich absetzbar?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Bei <strong>privat genutzten Immobilien</strong> sind Notarkosten nicht absetzbar. Bei <strong>vermieteten Immobilien</strong> können sie als Anschaffungsnebenkosten über die Nutzungsdauer abgeschrieben werden. Notarkosten für die Grundschuldbestellung eines Mietobjekts können als Werbungskosten geltend gemacht werden.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Wie berechnet sich die Gebühr nach GNotKG Tabelle B?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Die Gebühr basiert auf dem <strong>Geschäftswert</strong> (= Kaufpreis) und steigt degressiv. Beispiel: Bei 100.000 € beträgt die einfache Gebühr 273 €, bei 500.000 € sind es 935 €. Für die Beurkundung eines Kaufvertrags wird die <strong>2,0-fache Gebühr</strong> berechnet, für Vollzug und Betreuung je 0,5-fach.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Wann werden die Notarkosten fällig?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Die Notarrechnung kommt in der Regel <strong>1–2 Wochen nach der Beurkundung</strong>. Die Grundbuchkosten werden separat vom Amtsgericht in Rechnung gestellt — meist einige Wochen später, nachdem die Eintragungen abgeschlossen sind.</p>
-            </div>
-          </details>
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
-              <span class="font-medium text-gray-800 text-sm pr-4">Was kostet eine Grundschuldbestellung beim Notar?</span>
-              <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Die Grundschuldbestellung kostet die <strong>1,0-fache Gebühr nach Tabelle B</strong> auf den Grundschuldbetrag. Bei 280.000 € Grundschuld sind das ca. 635 € Notargebühr (zzgl. MwSt) plus ca. 635 € Grundbuchgebühr für die Eintragung. Alternativ kann eine bestehende Grundschuld abgetreten werden — das ist deutlich günstiger.</p>
-            </div>
-          </details>
+          {faqData.map((faq) => (
+            <details class="group border border-gray-200 rounded-lg">
+              <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span class="font-medium text-gray-800 text-sm pr-4">{faq.question}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </div>
 
-    <!-- Verwandte Rechner -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
@@ -304,6 +299,10 @@ const keywords = "Notarkosten Rechner, Notargebühren berechnen, Notarkosten Hau
             <span class="text-2xl">🏗️</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
           </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
           <a href="/maklerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">🤝</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Maklerkosten-Rechner</p>
@@ -316,28 +315,23 @@ const keywords = "Notarkosten Rechner, Notargebühren berechnen, Notarkosten Hau
             <span class="text-2xl">💰</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
           </a>
-          <a href="/mietkaution-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🔑</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Mietkaution-Rechner</p>
-          </a>
-          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">📑</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
-          </a>
-          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🏦</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
-          </a>
           <a href="/mieten-oder-kaufen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🤔</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Mieten oder Kaufen?</p>
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mieten-oder-Kaufen-Rechner</p>
+          </a>
+          <a href="/schenkungsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎁</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Schenkungsteuer-Rechner</p>
+          </a>
+          <a href="/erbschaftsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Erbschaftsteuer-Rechner</p>
           </a>
         </div>
       </div>
     </div>
   </main>
-  
-  <!-- Structured Data for SEO -->
+
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -356,84 +350,17 @@ const keywords = "Notarkosten Rechner, Notargebühren berechnen, Notarkosten Hau
       "name": "Deutschland-Rechner"
     }
   })} />
-  
-  <!-- FAQ Structured Data -->
+
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Warum ist ein Notar beim Hauskauf in Deutschland Pflicht?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "In Deutschland ist die Mitwirkung eines Notars beim Immobilienkauf nach § 311b BGB gesetzlich vorgeschrieben. Ohne notarielle Beurkundung ist ein Immobilienkaufvertrag nicht rechtswirksam. Der Notar schützt beide Vertragsparteien vor Fehlentscheidungen und gewährleistet die Rechtssicherheit."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie hoch sind die Notarkosten beim Hauskauf?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Notarkosten beim Hauskauf betragen typischerweise 1,5-2% des Kaufpreises. Bei einem Kaufpreis von 350.000 € fallen etwa 4.500-5.000 € für Notar und Grundbuchamt an. Die genaue Höhe hängt vom Geschäftswert und der Grundschuldhöhe ab."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kann man bei Notarkosten verhandeln?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nein, Notarkosten können nicht verhandelt werden. Die Gebühren sind im Gerichts- und Notarkostengesetz (GNotKG) bundesweit verbindlich festgelegt. Jeder Notar in Deutschland berechnet die gleichen Gebühren nach Tabelle B des GNotKG."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wer zahlt die Notarkosten beim Immobilienkauf?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Beim Immobilienkauf trägt üblicherweise der Käufer die Notar- und Grundbuchkosten. Dies ist keine gesetzliche Pflicht, sondern eine Vereinbarung im Kaufvertrag. Kosten für die Löschung alter Belastungen trägt meist der Verkäufer."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Was sind Grundbuchkosten und wer erhebt sie?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Grundbuchkosten sind staatliche Gebühren, die vom Amtsgericht (Grundbuchamt) für Eintragungen im Grundbuch erhoben werden. Dazu gehören die Eigentumsumschreibung, die Auflassungsvormerkung und ggf. die Grundschuldeintragung. Sie sind nicht MwSt-pflichtig."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Sind Notarkosten steuerlich absetzbar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bei privat genutzten Immobilien sind Notarkosten nicht steuerlich absetzbar. Bei vermieteten Immobilien können sie als Anschaffungsnebenkosten über die Abschreibung geltend gemacht werden. Notarkosten für die Finanzierung eines Mietobjekts können als Werbungskosten absetzbar sein."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie berechnet sich die Gebühr nach GNotKG Tabelle B?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Gebühr nach GNotKG Tabelle B basiert auf dem Geschäftswert und steigt degressiv. Beispiel: Bei 100.000 € Geschäftswert beträgt die einfache Gebühr 273 €, bei 500.000 € sind es 935 €. Für die Beurkundung eines Kaufvertrags wird die 2-fache Gebühr berechnet."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wann werden die Notarkosten fällig?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Notarkosten werden in der Regel ein bis zwei Wochen nach der Beurkundung des Kaufvertrags fällig. Die Rechnung des Notars wird zusammen mit der beglaubigten Abschrift des Kaufvertrags zugestellt. Die Grundbuchkosten werden separat vom Amtsgericht berechnet."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kann man bei Notarkosten sparen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Direkt verhandeln lassen sich Notarkosten nicht, da sie im GNotKG festgelegt sind. Indirekte Sparmöglichkeiten: Grundstück und Gebäude getrennt kaufen (niedrigerer Geschäftswert), bestehende Grundschuld übernehmen statt neu eintragen lassen, und auf ein Notaranderkonto verzichten."
-        }
+    "mainEntity": faqData.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
       }
-    ]
+    }))
   })} />
 </Layout>
