@@ -3,25 +3,53 @@ import Layout from '../layouts/Layout.astro';
 import ZinseszinsRechner from '../components/rechner/ZinseszinsRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Zinseszins-Rechner 2026 – Vermögen berechnen mit Sparplan";
-const description = "Kostenloser Zinseszins-Rechner: Endvermögen mit Zinseszins, Sparrate & Anlagedauer berechnen. ETF-Sparplan, Tagesgeld, Festgeld. Jetzt berechnen!";
-const keywords = "Zinseszins Rechner, Zinseszins berechnen, Vermögensrechner, Sparplan Rechner, ETF Rechner, Zinseszinseffekt, Zinseszinsformel, Geldanlage Rechner, Sparrechner, Vermögenswachstum, Rendite berechnen, Kapitalwachstum, 72er Regel, Compound Interest";
+const title = "Zinseszins-Rechner 2026 ▷ Endkapital mit Sparrate, ETF und Rendite berechnen";
+const description = "Zinseszins online berechnen: Endkapital, Sparplan, ETF-Rendite, Inflation und Steuern besser verstehen. Mit 72er-Regel, Beispielen und FAQ.";
+const keywords = "Zinseszins Rechner, Zinseszins berechnen, Sparplan Rechner, ETF Rechner, Endkapital berechnen, Rendite Rechner, Vermögensaufbau Rechner, 72er Regel, Zinseszins Formel, Kapitalwachstum";
+
+const faqData = [
+  {
+    question: "Was ist Zinseszins einfach erklärt?",
+    answer: "Zinseszins bedeutet, dass bereits gutgeschriebene Zinsen erneut mitverzinst werden. Dadurch wächst Vermögen nicht linear, sondern über längere Zeit immer schneller. Genau dieser Effekt macht langfristiges Investieren so stark."
+  },
+  {
+    question: "Wie berechnet man den Zinseszins?",
+    answer: "Die Grundformel lautet: Endkapital = Startkapital mal (1 plus Zinssatz) hoch Anzahl der Jahre. Bei regelmäßigen Sparraten kommt zusätzlich der Aufzinsungseffekt jeder einzelnen Einzahlung hinzu. Ein Zinseszins-Rechner übernimmt diese Berechnung automatisch."
+  },
+  {
+    question: "Welche Rendite ist für ETFs langfristig realistisch?",
+    answer: "Für breit gestreute Aktien-ETFs werden langfristig oft 5 bis 8 Prozent pro Jahr vor Steuern und Inflation als grobe Planungsgröße verwendet. Kurzfristig sind aber starke Schwankungen möglich, deshalb sind Durchschnittswerte nie garantiert."
+  },
+  {
+    question: "Wie wirkt sich die Inflation auf den Zinseszins aus?",
+    answer: "Die Inflation reduziert Ihre reale Kaufkraft. 6 Prozent Rendite bei 2 Prozent Inflation entsprechen vereinfacht nur rund 4 Prozent realer Wertsteigerung. Für eine saubere Planung sollten nominale und reale Rendite getrennt betrachtet werden."
+  },
+  {
+    question: "Muss ich auf Zinsen und Gewinne Steuern zahlen?",
+    answer: "Ja. Auf Kapitalerträge fällt in Deutschland grundsätzlich Abgeltungsteuer plus Solidaritätszuschlag und gegebenenfalls Kirchensteuer an. Der Sparerpauschbetrag liegt bei 1.000 Euro pro Person und 2.000 Euro für zusammen veranlagte Ehepaare."
+  },
+  {
+    question: "Was ist die 72er-Regel?",
+    answer: "Die 72er-Regel ist eine Faustformel für die Verdopplungszeit. Teilen Sie 72 durch die jährliche Rendite in Prozent. Bei 6 Prozent dauert eine Verdopplung also ungefähr 12 Jahre. Die Regel ist nicht exakt, aber sehr praktisch."
+  },
+  {
+    question: "Ist monatliches Sparen besser als eine Einmalanlage?",
+    answer: "Beides hat Vorteile. Eine Einmalanlage profitiert länger vom Markt, ein monatlicher Sparplan reduziert das Timing-Risiko und passt besser zu regelmäßigem Einkommen. In der Praxis ist ein konsequenter Sparplan für viele Menschen der stabilere Weg."
+  },
+  {
+    question: "Welche Fehler machen Anleger beim Zinseszins am häufigsten?",
+    answer: "Die größten Fehler sind: zu spät anfangen, Renditen zu optimistisch ansetzen, Inflation und Steuern ignorieren, Kosten unterschätzen und in Krisen den Sparplan abbrechen. Kleine Verhaltensfehler vernichten oft mehr Rendite als die eigentliche Anlagestrategie."
+  }
+];
 ---
 
-<Layout 
-  title={title}
-  description={description}
-  keywords={keywords}
->
-  <BreadcrumbSchema items={[{ name: "Zinseszins-Rechner", url: "/zinseszins-rechner" }]} />
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: 'Zinseszins-Rechner', url: '/zinseszins-rechner' }]} />
+
   <main class="min-h-screen pb-8">
-    <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
       <div class="max-w-2xl mx-auto">
-        <a 
-          href="/" 
-          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
-        >
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
@@ -30,173 +58,281 @@ const keywords = "Zinseszins Rechner, Zinseszins berechnen, Vermögensrechner, S
         <div class="flex items-center gap-3">
           <span class="text-4xl">📈</span>
           <div>
-            <h1 class="text-2xl font-bold">Zinseszins-Rechner</h1>
-            <p class="text-emerald-100 text-sm">Vermögenswachstum berechnen</p>
+            <h1 class="text-2xl font-bold">Zinseszins-Rechner 2026</h1>
+            <p class="text-emerald-100 text-sm">Endkapital mit Sparrate, Rendite und Laufzeit berechnen</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <ZinseszinsRechner client:load />
     </div>
-    
-    <!-- SEO Content Section -->
+
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">✅</span>
+          <div class="text-sm text-emerald-900 space-y-2">
+            <p><strong>Zuletzt aktualisiert am 09.04.2026</strong>, Inhalte geprüft mit Fokus auf 72er-Regel, Sparerpauschbetrag, typische Renditeannahmen und langfristigen Vermögensaufbau.</p>
+            <p><strong>Was der Rechner berücksichtigt:</strong> Startkapital, Sparrate, Rendite und Laufzeit für nominales Endvermögen.</p>
+            <p><strong>Was Sie zusätzlich separat prüfen sollten:</strong> <a href="/inflations-rechner" class="text-emerald-700 underline hover:text-emerald-900">Inflation</a>, <a href="/kapitalertragsteuer-rechner" class="text-emerald-700 underline hover:text-emerald-900">Kapitalertragsteuer</a>, ETF-Kosten und Ihre persönliche Risikotoleranz.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Zinseszins-Rechner 2026: So funktioniert Vermögensaufbau</h2>
-        
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zinseszins 2026: Warum frühes Investieren so mächtig ist</h2>
+
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Zinseszins-Rechner</strong> berechnen Sie kostenlos, wie Ihr Vermögen über 
-            die Jahre wächst. Egal ob <strong>ETF-Sparplan</strong>, <strong>Festgeld</strong> oder 
-            <strong>Tagesgeld</strong> – der Rechner zeigt Ihnen den <strong>Zinseszins-Effekt</strong> 
-            und Ihr Endvermögen.
+            Der <strong>Zinseszins</strong> ist einer der stärksten Hebel im privaten Vermögensaufbau. Wer regelmäßig spart und die Erträge
+            investiert lässt, profitiert doppelt: vom ursprünglichen Kapital und von den bereits erwirtschafteten Gewinnen. Unser
+            <strong>Zinseszins-Rechner</strong> zeigt Ihnen, wie stark sich Startkapital, monatliche Sparrate und Laufzeit auf das Endvermögen auswirken.
+            Für die Gesamtplanung helfen zusätzlich der <a href="/etf-sparplan-rechner" class="text-emerald-700 hover:underline">ETF-Sparplan-Rechner</a>,
+            der <a href="/spar-rechner" class="text-emerald-700 hover:underline">Spar-Rechner</a>, der
+            <a href="/kapitalertragsteuer-rechner" class="text-emerald-700 hover:underline">Kapitalertragsteuer-Rechner</a> und der
+            <a href="/inflations-rechner" class="text-emerald-700 hover:underline">Inflations-Rechner</a>.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Zinseszins?</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist Zinseszins?</h3>
           <p>
-            Beim <strong>Zinseszins</strong> werden Ihre Zinsen nicht ausgezahlt, sondern dem Kapital 
-            hinzugefügt. Im nächsten Jahr erhalten Sie dann Zinsen auf das erhöhte Kapital – 
-            Ihre Zinsen verdienen also selbst Zinsen!
+            Beim Zinseszins werden Erträge nicht entnommen, sondern wieder angelegt. Dadurch erwirtschaftet nicht nur Ihr Startkapital,
+            sondern auch der bereits angesammelte Gewinn neue Rendite. Über 20, 30 oder 40 Jahre entsteht so ein exponentieller Effekt,
+            der weit größer ist als bei einfachem Sparen auf dem Konto.
           </p>
-          <p>
-            Albert Einstein soll den Zinseszins als das "achte Weltwunder" bezeichnet haben. Ob das 
-            stimmt, ist unklar – aber der Effekt ist tatsächlich beeindruckend, besonders über 
-            lange Zeiträume.
-          </p>
-          
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Zinseszins-Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <p class="font-mono text-sm text-gray-800">Endkapital = Startkapital × (1 + Rendite)<sup>Jahre</sup></p>
+          </div>
           <p>
-            Die mathematische Formel für den Zinseszins lautet:
+            Bei einem Sparplan wird jede monatliche Einzahlung zusätzlich verzinst. Deshalb steigt der Effekt mit jeder weiteren Rate.
+            Wenn Sie etwa 250 € monatlich investieren, ist nicht nur die Rendite wichtig, sondern auch, wie viele Jahre das Geld im Markt bleibt.
           </p>
-          <p class="bg-gray-100 p-3 rounded-lg font-mono text-center">
-            Endkapital = Startkapital × (1 + Zinssatz)<sup>Jahre</sup>
-          </p>
-          <p>
-            Beispiel: 10.000€ bei 5% Zinsen über 10 Jahre:<br/>
-            10.000 × (1,05)<sup>10</sup> = 10.000 × 1,6289 = <strong>16.289€</strong>
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 72er-Regel: Verdopplung berechnen</h3>
-          <p>
-            Mit der <strong>72er-Regel</strong> können Sie schnell im Kopf berechnen, wie lange es 
-            dauert, bis sich Ihr Geld verdoppelt:
-          </p>
-          <p class="bg-emerald-50 p-3 rounded-lg text-center">
-            <strong>Verdopplungszeit = 72 ÷ Zinssatz</strong>
-          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 72er-Regel: Verdopplungszeit im Kopf berechnen</h3>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <p class="text-center font-semibold text-emerald-900">Verdopplungszeit ≈ 72 ÷ Rendite in %</p>
+          </div>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Bei <strong>3% Zinsen</strong>: 72 ÷ 3 = 24 Jahre</li>
-            <li>Bei <strong>5% Zinsen</strong>: 72 ÷ 5 = 14,4 Jahre</li>
-            <li>Bei <strong>7% Zinsen</strong>: 72 ÷ 7 = 10,3 Jahre</li>
-            <li>Bei <strong>10% Zinsen</strong>: 72 ÷ 10 = 7,2 Jahre</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zinseszins vs. Einfacher Zins</h3>
-          <p>
-            Der Unterschied wird über die Zeit immer größer:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Einfacher Zins:</strong> 10.000€ bei 5% über 30 Jahre = 25.000€</li>
-            <li><strong>Zinseszins:</strong> 10.000€ bei 5% über 30 Jahre = <strong>43.219€</strong></li>
-            <li><strong>Unterschied:</strong> 18.219€ mehr durch den Zinseszins-Effekt!</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Realistische Renditen für Ihre Berechnung</h3>
-          <p>
-            Welchen Zinssatz sollten Sie für Ihre Berechnung verwenden?
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Tagesgeld:</strong> 2-3% (Stand 2025, variabel)</li>
-            <li><strong>Festgeld (1-2 Jahre):</strong> 2,5-3,5%</li>
-            <li><strong>Staatsanleihen:</strong> 2-4%</li>
-            <li><strong>Unternehmensanleihen:</strong> 3-6%</li>
-            <li><strong>Breit gestreute ETFs:</strong> 5-8% (langfristig historisch)</li>
-            <li><strong>Aktien (MSCI World):</strong> 7-10% (langfristig historisch, mit Schwankungen!)</li>
+            <li>Bei <strong>3 %</strong> Rendite dauert die Verdopplung etwa 24 Jahre.</li>
+            <li>Bei <strong>5 %</strong> Rendite etwa 14,4 Jahre.</li>
+            <li>Bei <strong>7 %</strong> Rendite etwa 10,3 Jahre.</li>
+            <li>Bei <strong>9 %</strong> Rendite etwa 8 Jahre.</li>
           </ul>
           <p>
-            <strong>Wichtig:</strong> Bei Aktien und ETFs sind diese Renditen Durchschnittswerte über 
-            lange Zeiträume. Kurzfristig können starke Schwankungen auftreten!
+            Die 72er-Regel ersetzt keinen exakten Rechner, ist aber ideal, um Sparziele schnell einzuordnen. Für konkrete Ziele wie
+            Altersvorsorge, Immobilienkapital oder Kinderdepot sollten Sie zusätzlich den <a href="/rentenluecke-rechner" class="text-emerald-700 hover:underline">Rentenlücke-Rechner</a>,
+            den <a href="/renten-rechner" class="text-emerald-700 hover:underline">Renten-Rechner</a> oder den
+            <a href="/baufinanzierung-rechner" class="text-emerald-700 hover:underline">Baufinanzierung-Rechner</a> nutzen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">ETF-Sparplan: Der Zinseszins automatisch</h3>
-          <p>
-            Bei einem <strong>ETF-Sparplan</strong> auf thesaurierende Fonds werden Dividenden automatisch 
-            reinvestiert – der Zinseszins-Effekt arbeitet also von selbst für Sie:
-          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Rendite ist realistisch?</h3>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>200€/Monat</strong> bei 7% über 30 Jahre = ca. <strong>243.000€</strong></li>
-            <li>Davon eingezahlt: 72.000€</li>
-            <li>Zinsen/Kursgewinne: <strong>171.000€</strong> (mehr als das Doppelte der Einzahlungen!)</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuern auf Kapitalerträge</h3>
-          <p>
-            Beachten Sie, dass auf Zinsen und Kursgewinne <strong>Abgeltungssteuer</strong> anfällt:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Abgeltungssteuer:</strong> 25% auf Kapitalerträge</li>
-            <li><strong>Solidaritätszuschlag:</strong> 5,5% auf die Steuer</li>
-            <li><strong>Ggf. Kirchensteuer:</strong> 8-9% auf die Steuer</li>
-            <li><strong>Effektiver Steuersatz:</strong> ca. 26,4% (ohne Kirchensteuer)</li>
+            <li><strong>Tagesgeld:</strong> oft etwa 2 bis 3 % nominal, aber schwankend</li>
+            <li><strong>Festgeld:</strong> je nach Laufzeit häufig 2,5 bis 3,5 %</li>
+            <li><strong>Breit gestreute Anleihen:</strong> oft 2 bis 5 %</li>
+            <li><strong>Breite Aktien-ETFs:</strong> langfristig häufig 5 bis 8 % als Planungsannahme</li>
+            <li><strong>Einzelaktien:</strong> Chancen auf mehr, aber deutlich höheres Risiko</li>
           </ul>
           <p>
-            Der <strong>Sparerpauschbetrag</strong> beträgt 1.000€ pro Person (2.000€ für Ehepaare) – 
-            bis zu diesem Betrag bleiben Kapitalerträge steuerfrei. Richten Sie einen 
-            <strong>Freistellungsauftrag</strong> bei Ihrer Bank ein!
+            Höhere Rendite bedeutet fast immer höhere Schwankung. Wer auf Sicherheit angewiesen ist oder in den nächsten Jahren über das
+            Geld verfügen muss, sollte nicht mit Aktienrenditen kalkulieren. Für die Vergleichsrechnung können Sie auch den
+            <a href="/dividende-rechner" class="text-emerald-700 hover:underline">Dividenden-Rechner</a> und den
+            <a href="/aktien-steuer-rechner" class="text-emerald-700 hover:underline">Aktien-Steuer-Rechner</a> heranziehen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflation: Die versteckte Gefahr</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Inflation und Steuern nicht vergessen</h3>
           <p>
-            Vergessen Sie nicht die <strong>Inflation</strong>! Bei durchschnittlich 2% Inflation 
-            verliert Ihr Geld jährlich an Kaufkraft:
+            Eine nominale Rendite von 6 % klingt stark. Wenn die Inflation aber 2 % beträgt und zusätzlich auf Teile des Gewinns
+            <a href="/kapitalertragsteuer-rechner" class="text-emerald-700 hover:underline">Abgeltungsteuer</a> anfällt, bleibt real deutlich weniger übrig.
+            Gerade bei sehr langen Laufzeiten unterschätzen viele den Unterschied zwischen nominalem Endvermögen und echter Kaufkraft.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Nominalrendite</strong> (z.B. 5%) minus <strong>Inflation</strong> (z.B. 2%)</li>
-            <li>= <strong>Realrendite</strong> (3%)</li>
-          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Monatlicher Sparplan vs. Einmalanlage</h3>
           <p>
-            Bei Tagesgeld mit 2,5% Zinsen und 2% Inflation erzielen Sie nur 0,5% reale Rendite!
+            Eine Einmalanlage hat mathematisch oft den Vorteil, weil das Kapital länger investiert ist. Ein monatlicher Sparplan passt aber
+            besser zu normalem Einkommen und reduziert das Risiko, alles zu einem schlechten Zeitpunkt einzuzahlen. Praktisch ist ein
+            stabiler Sparplan für viele Menschen der beste Weg, den Zinseszinseffekt konsequent auszunutzen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für den Vermögensaufbau</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wofür eignet sich der Zinseszins-Rechner besonders?</h3>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Früh anfangen:</strong> Der Zinseszins braucht Zeit. Je früher Sie starten, desto besser.</li>
-            <li><strong>Regelmäßig sparen:</strong> Ein monatlicher Sparplan nutzt den Cost-Average-Effekt.</li>
-            <li><strong>Kosten minimieren:</strong> Wählen Sie günstige ETFs (TER unter 0,3%).</li>
-            <li><strong>Diversifizieren:</strong> Verteilen Sie Risiken auf verschiedene Anlageklassen.</li>
-            <li><strong>Langfristig denken:</strong> Nicht bei Kurseinbrüchen verkaufen – aussitzen!</li>
-            <li><strong>Sparerpauschbetrag nutzen:</strong> Freistellungsauftrag nicht vergessen.</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Weitere Rechner</h3>
-          <p>
-            Planen Sie Ihre Finanzen mit unseren anderen Rechnern:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><a href="/kredit-rechner" class="text-emerald-600 hover:underline">Kredit-Rechner</a> – Kreditrate berechnen</li>
-            <li><a href="/kapitalertragsteuer-rechner" class="text-emerald-600 hover:underline">Kapitalertragsteuer-Rechner</a> – Steuern auf Gewinne</li>
-            <li><a href="/brutto-netto-rechner" class="text-emerald-600 hover:underline">Brutto-Netto-Rechner</a> – Was bleibt vom Gehalt?</li>
-            <li><a href="/einkommensteuer-rechner" class="text-emerald-600 hover:underline">Einkommensteuer-Rechner</a> – Steuerlast berechnen</li>
+            <li>Aufbau von ETF- und Aktienvermögen</li>
+            <li>Planung von Notgroschen, Rücklagen und Kinderdepots</li>
+            <li>Vergleich von Sparrate und Laufzeit</li>
+            <li>Abwägung zwischen <a href="/kredit-rechner" class="text-emerald-700 hover:underline">Kredit tilgen</a> oder investieren</li>
+            <li>Langfristige Planung für <a href="/riester-rechner" class="text-emerald-700 hover:underline">Altersvorsorge</a> und Kapitalaufbau</li>
           </ul>
         </div>
       </div>
     </div>
-    
-    <!-- Verwandte Rechner -->
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 3 Beispielrechnungen zum Zinseszins</h2>
+        <div class="space-y-4">
+          <div class="bg-emerald-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-emerald-800 mb-2">Beispiel 1: 10.000 € Einmalanlage, 6 % Rendite, 20 Jahre</h3>
+            <ul class="text-sm text-emerald-700 space-y-1">
+              <li>Startkapital: 10.000 €</li>
+              <li>Rendite: 6 % p.a.</li>
+              <li>Laufzeit: 20 Jahre</li>
+              <li><strong>Endkapital: rund 32.071 €</strong></li>
+              <li>Davon Gewinn: rund 22.071 €</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Beispiel 2: 250 € Sparrate, 7 % Rendite, 30 Jahre</h3>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>Monatliche Einzahlung: 250 €</li>
+              <li>Eigenes Geld: 90.000 €</li>
+              <li>Langfristige Renditeannahme: 7 % p.a.</li>
+              <li><strong>Endkapital: grob über 300.000 €</strong></li>
+              <li>Der Gewinn ist deutlich höher als die Einzahlungen selbst</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-2">Beispiel 3: 500 € Sparrate, 4 % Rendite, 15 Jahre</h3>
+            <ul class="text-sm text-purple-700 space-y-1">
+              <li>Monatliche Einzahlung: 500 €</li>
+              <li>Eigenes Geld: 90.000 €</li>
+              <li>Konservativere Rendite: 4 % p.a.</li>
+              <li><strong>Endkapital: grob etwa 123.000 bis 125.000 €</strong></li>
+              <li>Ideal für sicherheitsorientiertere Szenarien oder Mischportfolios</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ 5 typische Fehler beim Vermögensaufbau</h2>
+        <div class="space-y-3">
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">1</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Zu spät anfangen</p>
+              <p class="text-gray-600 text-xs">Beim Zinseszins ist Zeit oft wichtiger als die perfekte Strategie. 10 Jahre später zu starten kostet langfristig häufig mehr als 1 bis 2 Prozentpunkte Renditeunterschied.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">2</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Mit unrealistischen Renditen rechnen</p>
+              <p class="text-gray-600 text-xs">Viele kalkulieren dauerhaft mit 10 oder 12 Prozent pro Jahr. Für belastbare Planung sind konservative Annahmen deutlich sinnvoller als Wunschwerte.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">3</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Inflation und Steuern ignorieren</p>
+              <p class="text-gray-600 text-xs">Ein großes nominales Endvermögen klingt gut, sagt aber ohne Kaufkraft und Steuerbetrachtung nur die halbe Wahrheit. Prüfen Sie immer den realen Nettoeffekt.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">4</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Kosten unterschätzen</p>
+              <p class="text-gray-600 text-xs">1 bis 2 Prozent Produkt- oder Beratungskosten pro Jahr fressen bei langen Laufzeiten enorme Summen auf. Gerade bei 30 Jahren schlägt das massiv ins Endkapital durch.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">5</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">In Krisen aussteigen</p>
+              <p class="text-gray-600 text-xs">Wer nach Kursrückgängen verkauft oder den Sparplan stoppt, zerstört oft den langfristigen Effekt. Disziplin ist beim Zinseszins meist wichtiger als Markt-Timing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔍 5 Sonderfälle und Praxis-Tipps</h2>
+        <div class="space-y-3 text-sm text-gray-600">
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">👶 Kinderdepot und sehr lange Laufzeit</h3>
+            <p>Wenn 18 oder 25 Jahre Zeit vorhanden sind, wirkt der Zinseszins besonders stark. Schon kleine monatliche Sparraten können große Unterschiede machen. Für Entnahmeplanung später zusätzlich <a href="/kapitalertragsteuer-rechner" class="text-purple-900 underline">Steuern</a> mitdenken.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">🏠 Kredit tilgen oder investieren?</h3>
+            <p>Wenn Ihr Kredit 5 Prozent kostet und Ihr Depot langfristig 6 Prozent bringen könnte, ist die Entscheidung nicht trivial. Der sichere Zinsvorteil der Tilgung ist garantiert, die Marktrendite nicht. Nutzen Sie parallel den <a href="/kredit-rechner" class="text-purple-900 underline">Kredit-Rechner</a> und den <a href="/baufinanzierung-rechner" class="text-purple-900 underline">Baufinanzierungs-Rechner</a>.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">🧾 Entnahmephase statt Ansparphase</h3>
+            <p>Im Ruhestand kehrt sich die Logik um: Dann entscheiden Entnahmen und Steuern darüber, wie lange das Kapital hält. Für die Altersvorsorge reichen reine Anspar-Rechnungen deshalb oft nicht aus.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">📉 Seitwärtsphasen an der Börse</h3>
+            <p>Auch bei langfristig guten Märkten können 5 bis 10 Jahre schwach laufen. Wer in dieser Zeit weiter spart, profitiert später oft besonders stark, weil günstigere Kurse zusätzliche Anteile bringen.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">💶 Hohe Sparraten bei steigendem Einkommen</h3>
+            <p>Der größte Hebel ist häufig nicht die Rendite, sondern die Sparquote. Wer nach Gehaltserhöhungen mit dem <a href="/brutto-netto-rechner" class="text-purple-900 underline">Brutto-Netto-Rechner</a> plant und die Sparrate mitwachsen lässt, beschleunigt den Vermögensaufbau deutlich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">💡 Was bedeutet das Ergebnis für Sie?</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Der Rechner zeigt Ihnen vor allem eins: <strong>Zeit und Disziplin schlagen Perfektion</strong>. Ob Sie mit 5 oder 7 Prozent rechnen,
+            macht langfristig einen Unterschied. Noch wichtiger ist aber, ob Sie früh starten, dauerhaft investiert bleiben und Ihre Sparrate stabil halten.
+          </p>
+          <p>
+            Wenn Sie Vermögen für konkrete Ziele aufbauen, sollten Sie nicht nur das Endkapital betrachten. Fragen Sie zusätzlich: Wie viel davon bleibt
+            nach <a href="/kapitalertragsteuer-rechner" class="text-emerald-700 hover:underline">Steuern</a>? Wie viel Kaufkraft bleibt nach
+            <a href="/inflations-rechner" class="text-emerald-700 hover:underline">Inflation</a>? Und passt das Risiko noch zu Ihrer Lebenssituation?
+          </p>
+          <p>
+            Für maximale Hebelwirkung kombinieren Sie den Rechner mit einer klaren Sparquote, einem günstigen Produkt und automatisierten Einzahlungen.
+            Genau so wird aus Mathematik in der Praxis echter Vermögensaufbau.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zum Zinseszins</h2>
+        <div class="space-y-3">
+          {faqData.map((faq) => (
+            <details class="group border border-gray-200 rounded-lg">
+              <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span class="font-medium text-gray-800 text-sm pr-4">{faq.question}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
         <div class="grid grid-cols-2 gap-3">
-          <a href="/spar-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">💰</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Spar-Rechner</p>
-          </a>
           <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">📈</span>
             <p class="font-medium text-gray-800 text-sm mt-1">ETF-Sparplan-Rechner</p>
+          </a>
+          <a href="/spar-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spar-Rechner</p>
           </a>
           <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">🏦</span>
@@ -206,91 +342,97 @@ const keywords = "Zinseszins Rechner, Zinseszins berechnen, Vermögensrechner, S
             <span class="text-2xl">📉</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Inflations-Rechner</p>
           </a>
+          <a href="/dividende-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dividenden-Rechner</p>
+          </a>
+          <a href="/aktien-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Aktien-Steuer-Rechner</p>
+          </a>
           <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">💳</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
           </a>
-          <a href="/dividende-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">💵</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Dividende-Rechner</p>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/rentenluecke-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rentenlücke-Rechner</p>
+          </a>
+          <a href="/riester-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Riester-Rechner</p>
           </a>
         </div>
       </div>
     </div>
   </main>
-  
-  <!-- Structured Data for SEO -->
+
   <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Zinseszins-Rechner 2026",
-    "description": description,
-    "url": "https://www.deutschland-rechner.de/zinseszins-rechner",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Zinseszins-Rechner 2026',
+    description,
+    url: 'https://www.deutschland-rechner.de/zinseszins-rechner',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR'
     },
-    "author": {
-      "@type": "Organization",
-      "name": "Deutschland-Rechner"
+    author: {
+      '@type': 'Organization',
+      name: 'Deutschland-Rechner'
     }
   })} />
-  
-  <!-- FAQ Structured Data -->
+
   <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Zinseszins berechnen',
+    description: 'So berechnen Sie das Endkapital mit Startkapital, Sparrate, Rendite und Laufzeit.',
+    step: [
       {
-        "@type": "Question",
-        "name": "Was ist der Zinseszins?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Beim Zinseszins werden Ihre Zinsen nicht ausgezahlt, sondern dem Kapital hinzugefügt. Im nächsten Jahr erhalten Sie dann Zinsen auf das erhöhte Kapital – Ihre Zinsen verdienen also selbst Zinsen. Dies führt zu exponentiellem Wachstum über die Zeit."
-        }
+        '@type': 'HowToStep',
+        name: 'Startkapital festlegen',
+        text: 'Geben Sie ein, wie viel Geld bereits investiert ist oder einmalig angelegt werden soll.'
       },
       {
-        "@type": "Question",
-        "name": "Wie berechnet man den Zinseszins?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Zinseszins-Formel lautet: Endkapital = Startkapital × (1 + Zinssatz)^Jahre. Beispiel: 10.000€ bei 5% über 10 Jahre = 10.000 × 1,05^10 = 16.289€. Unser Rechner übernimmt diese Berechnung für Sie."
-        }
+        '@type': 'HowToStep',
+        name: 'Sparrate eintragen',
+        text: 'Bestimmen Sie die monatliche oder jährliche Sparleistung, die zusätzlich investiert werden soll.'
       },
       {
-        "@type": "Question",
-        "name": "Was ist die 72er-Regel?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mit der 72er-Regel berechnen Sie schnell die Verdopplungszeit: Teilen Sie 72 durch den Zinssatz. Bei 6% Zinsen: 72 ÷ 6 = 12 Jahre bis zur Verdopplung. Bei 8%: 72 ÷ 8 = 9 Jahre."
-        }
+        '@type': 'HowToStep',
+        name: 'Rendite realistisch schätzen',
+        text: 'Wählen Sie eine konservative Renditeannahme passend zu Ihrer Anlageform, zum Beispiel Tagesgeld, Mischportfolio oder ETF.'
       },
       {
-        "@type": "Question",
-        "name": "Welche Rendite ist bei ETFs realistisch?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Breit gestreute ETFs (wie MSCI World) haben historisch eine durchschnittliche Rendite von 7-8% pro Jahr erzielt. Diese Werte sind langfristige Durchschnitte – kurzfristig können starke Schwankungen auftreten."
-        }
+        '@type': 'HowToStep',
+        name: 'Laufzeit wählen',
+        text: 'Je länger das Geld investiert bleibt, desto stärker wirkt der Zinseszinseffekt.'
       },
       {
-        "@type": "Question",
-        "name": "Wie wirkt sich die Inflation auf den Zinseszins aus?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Inflation reduziert Ihre reale Rendite. Bei 5% Nominalrendite und 2% Inflation beträgt Ihre Realrendite nur 3%. Bei Tagesgeld mit 2,5% Zinsen und 2% Inflation erzielen Sie nur 0,5% reale Rendite."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie werden Kapitalerträge in Deutschland besteuert?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Auf Zinsen, Dividenden und Kursgewinne fällt 25% Abgeltungssteuer plus 5,5% Solidaritätszuschlag an (effektiv ca. 26,4%). Der Sparerpauschbetrag von 1.000€ pro Person (2.000€ für Paare) bleibt steuerfrei."
-        }
+        '@type': 'HowToStep',
+        name: 'Ergebnis um Inflation und Steuern ergänzen',
+        text: 'Prüfen Sie anschließend, wie viel Kaufkraft nach Inflation und wie viel Vermögen nach Steuern real übrig bleibt.'
       }
     ]
   })} />

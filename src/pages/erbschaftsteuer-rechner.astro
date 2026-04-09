@@ -1,25 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ErbschaftsteuerRechner from '../components/rechner/ErbschaftsteuerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Erbschaftsteuer-Rechner 2025 & 2026 – Freibeträge & Steuer berechnen";
-const description = "Erbschaftsteuer berechnen: Kostenloser Rechner mit Freibeträgen, Steuerklassen I-III & aktuellen Steuersätzen 2026. Sofort Ergebnis!";
-const keywords = "Erbschaftsteuer Rechner, Erbschaftsteuer berechnen, Erbschaftsteuer Freibetrag, Erbschaftsteuer 2026, Erbschaftsteuer 2026, Erbschaft versteuern, Erbschaftsteuer Tabelle, Erbschaftsteuer Steuerklasse, Erbschaftsteuer Kinder, Erbschaftsteuer Ehepartner, Erbschaft Freibetrag, Erbschaftsteuer Immobilien, Erbschaftsteuer Deutschland";
+const title = "Erbschaftsteuer-Rechner 2026 ▷ Freibetrag, Steuerklasse & Immobilien berechnen";
+const description = "Erbschaftsteuer berechnen 2026: Freibeträge für Ehepartner, Kinder, Immobilien und Familienheim prüfen. Mit Beispielen, FAQ und Spartipps.";
+const keywords = "Erbschaftsteuer Rechner, Erbschaftsteuer berechnen, Freibetrag Erbschaftsteuer, Erbschaftsteuer 2026, Erbschaftsteuer Kinder, Erbschaftsteuer Ehepartner, Erbschaftsteuer Immobilie, Familienheim Erbschaftsteuer, Erbschaft Steuerklasse, Erbschaftsteuer Tabelle";
+
+const faqData = [
+  {
+    question: "Wie hoch ist der Freibetrag bei der Erbschaftsteuer?",
+    answer: "Der Freibetrag hängt vom Verwandtschaftsgrad ab. Ehepartner und eingetragene Lebenspartner haben 500.000 Euro, Kinder 400.000 Euro, Enkel meist 200.000 Euro, Eltern und Großeltern bei Erwerben von Todes wegen 100.000 Euro. Geschwister, Nichten, Neffen und nicht verwandte Personen haben in der Regel 20.000 Euro Freibetrag."
+  },
+  {
+    question: "Wie viel Erbschaftsteuer zahlen Kinder?",
+    answer: "Kinder gehören zur Steuerklasse I. Nach Abzug des Freibetrags von 400.000 Euro gilt je nach Höhe des steuerpflichtigen Erwerbs ein Steuersatz von 7 bis 30 Prozent. Bei kleineren und mittleren Erbschaften liegt der Satz häufig zwischen 7 und 15 Prozent."
+  },
+  {
+    question: "Ist das Familienheim bei der Erbschaftsteuer steuerfrei?",
+    answer: "Ja, unter bestimmten Voraussetzungen. Ehepartner oder eingetragene Lebenspartner können das selbst genutzte Familienheim oft komplett steuerfrei erben. Kinder können das Familienheim bis 200 Quadratmeter steuerfrei übernehmen, wenn sie die Immobilie unverzüglich selbst nutzen und in der Regel 10 Jahre dort wohnen bleiben."
+  },
+  {
+    question: "Werden Schenkungen auf die Erbschaftsteuer angerechnet?",
+    answer: "Ja. Frühere Schenkungen derselben Person innerhalb von 10 Jahren werden mit dem Erbe zusammengerechnet. Dadurch kann ein bereits teilweise genutzter Freibetrag die spätere Erbschaftsteuer erhöhen. Deshalb ist die 10-Jahres-Regel für die Nachfolgeplanung entscheidend."
+  },
+  {
+    question: "Wann muss eine Erbschaft dem Finanzamt gemeldet werden?",
+    answer: "Eine Erbschaft muss grundsätzlich innerhalb von 3 Monaten nach Kenntnis des Erwerbs dem zuständigen Finanzamt angezeigt werden. Das Finanzamt entscheidet anschließend, ob zusätzlich eine Erbschaftsteuererklärung abgegeben werden muss."
+  },
+  {
+    question: "Wie werden Immobilien bei der Erbschaftsteuer bewertet?",
+    answer: "Immobilien werden nach den Regeln des Bewertungsgesetzes mit dem steuerlichen Grundbesitzwert bewertet. Je nach Objektart kommen Vergleichswert-, Ertragswert- oder Sachwertverfahren zum Einsatz. Der steuerliche Wert kann deutlich vom gefühlten Marktwert abweichen."
+  },
+  {
+    question: "Kann ich die Erbschaftsteuer in Raten zahlen?",
+    answer: "In bestimmten Fällen ja. Wenn die sofortige Zahlung unbillig wäre, kann eine Stundung beantragt werden, etwa bei geerbten Immobilien oder Betriebsvermögen. Das Finanzamt prüft dabei Liquidität, Zumutbarkeit und Sicherheiten."
+  },
+  {
+    question: "Was ist der Unterschied zwischen Erbschaftsteuer und Schenkungsteuer?",
+    answer: "Die Regeln sind sehr ähnlich. Erbschaftsteuer fällt bei Vermögensübertragungen von Todes wegen an, Schenkungsteuer bei lebzeitigen Übertragungen. Freibeträge und Steuersätze sind meist identisch, die 10-Jahres-Regel verbindet beide Bereiche eng miteinander."
+  }
+];
 ---
 
-<Layout 
-  title={title}
-  description={description}
-  keywords={keywords}
->
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: 'Erbschaftsteuer-Rechner', url: '/erbschaftsteuer-rechner' }]} />
+
   <main class="min-h-screen pb-8">
-    <!-- Header mit Zurück-Button -->
-    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
       <div class="max-w-2xl mx-auto">
-        <a 
-          href="/" 
-          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
-        >
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
@@ -28,233 +58,389 @@ const keywords = "Erbschaftsteuer Rechner, Erbschaftsteuer berechnen, Erbschafts
         <div class="flex items-center gap-3">
           <span class="text-4xl">📜</span>
           <div>
-            <h1 class="text-2xl font-bold">Erbschaftsteuer-Rechner</h1>
-            <p class="text-emerald-100 text-sm">Steuer auf Erbschaft & Freibeträge 2026/2026</p>
+            <h1 class="text-2xl font-bold">Erbschaftsteuer-Rechner 2026</h1>
+            <p class="text-emerald-100 text-sm">Freibeträge, Steuerklassen und Immobilienwerte schnell prüfen</p>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <ErbschaftsteuerRechner client:load />
     </div>
-    
-    <!-- SEO Content Section -->
+
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">✅</span>
+          <div class="text-sm text-emerald-900 space-y-2">
+            <p><strong>Zuletzt aktualisiert am 09.04.2026</strong>, geprüft nach ErbStG, BewG und den aktuell geltenden Freibeträgen, Steuerklassen und Steuersätzen.</p>
+            <p><strong>Was der Rechner berücksichtigt:</strong> Verwandtschaftsgrad, persönliche Freibeträge, Versorgungsfreibetrag, Steuerklasse I bis III, frühere Schenkungen und den steuerpflichtigen Erwerb.</p>
+            <p><strong>Was der Rechner nicht vollständig ersetzt:</strong> individuelle Bewertung von <a href="/grundsteuer-rechner" class="text-emerald-700 underline hover:text-emerald-900">Immobilien</a>, Sonderregeln für Betriebsvermögen, Pflichtteils- und Zugewinnausgleich, internationale Nachlässe und konkrete Gestaltungsberatung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Erbschaftsteuer in Deutschland: Das müssen Sie wissen</h2>
-        
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Erbschaftsteuer 2026: Freibeträge, Immobilien und 10-Jahres-Regel verständlich erklärt</h2>
+
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Die <strong>Erbschaftsteuer</strong> in Deutschland wird auf den Vermögensübergang von Todes wegen erhoben. 
-            Mit unserem <strong>Erbschaftsteuer-Rechner</strong> können Sie schnell und einfach berechnen, wie viel 
-            Steuer auf Ihre Erbschaft anfällt – unter Berücksichtigung aller Freibeträge und der aktuellen 
-            Steuersätze 2026/2026.
+            Mit unserem <strong>Erbschaftsteuer-Rechner</strong> können Sie schnell prüfen, wie hoch die Steuer auf einen Nachlass ausfällt.
+            Gerade bei Immobilien, Depots und größeren Geldvermögen wird die Steuerbelastung oft unterschätzt. Wer nur auf den
+            nominellen Nachlass schaut und Freibeträge nicht sauber gegenrechnet, plant schnell zu optimistisch. Prüfen Sie deshalb
+            auch angrenzende Themen wie <a href="/schenkungsteuer-rechner" class="text-emerald-700 hover:underline">Schenkungsteuer</a>,
+            <a href="/kapitalertragsteuer-rechner" class="text-emerald-700 hover:underline">Kapitalertragsteuer</a> auf spätere Erträge,
+            <a href="/notarkosten-rechner" class="text-emerald-700 hover:underline">Notarkosten</a> bei Immobilienübertragungen und
+            <a href="/einkommensteuer-rechner" class="text-emerald-700 hover:underline">Einkommensteuer</a> für laufende Mieteinnahmen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Erbschaftsteuer?</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer zahlt Erbschaftsteuer?</h3>
           <p>
-            Die Erbschaftsteuer ist eine Steuer auf den Erwerb von Vermögen durch Erbschaft oder Vermächtnis. 
-            Sie wird im <strong>Erbschaftsteuer- und Schenkungsteuergesetz (ErbStG)</strong> geregelt und ist eine 
-            der ältesten Steuerarten in Deutschland. Das Aufkommen fließt den Bundesländern zu.
+            Steuerpflichtig ist nicht der Nachlass selbst, sondern der <strong>Erwerb des einzelnen Erben</strong>. Entscheidend ist also,
+            wie viel eine Person erhält und in welchem Verhältnis sie zum Erblasser stand. Eine große Rolle spielen dabei die
+            <strong>Steuerklasse</strong>, persönliche Freibeträge und besondere Befreiungen, etwa für das Familienheim.
           </p>
-          
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 3 Steuerklassen bei der Erbschaftsteuer</h3>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm text-emerald-900">
+              <li><strong>Steuerklasse I:</strong> Ehepartner, eingetragene Lebenspartner, Kinder, Enkel und in bestimmten Fällen Eltern. Hier gelten die höchsten Freibeträge und die niedrigsten Steuersätze.</li>
+              <li><strong>Steuerklasse II:</strong> Geschwister, Nichten, Neffen, Schwiegerkinder, Schwiegereltern und Stiefeltern. Die Freibeträge sind deutlich niedriger.</li>
+              <li><strong>Steuerklasse III:</strong> Alle übrigen Personen, zum Beispiel unverheiratete Partner oder Freunde. Hier ist die Steuerbelastung meist am höchsten.</li>
+            </ul>
+          </div>
           <p>
-            Die Höhe der Erbschaftsteuer hängt maßgeblich von der <strong>Steuerklasse</strong> ab, die sich 
-            aus dem Verwandtschaftsverhältnis zum Erblasser ergibt:
+            Wer seine Nachfolge gestalten will, sollte diese Einordnung immer zusammen mit dem
+            <a href="/schenkungsteuer-rechner" class="text-emerald-700 hover:underline">Schenkungsteuer-Rechner</a> betrachten,
+            weil dieselben Freibeträge oft schon zu Lebzeiten genutzt werden können.
           </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibeträge 2026 im Überblick</h3>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Steuerklasse I (7-30%):</strong> Ehepartner, Kinder, Enkel, Eltern (bei Erbschaft)</li>
-            <li><strong>Steuerklasse II (15-43%):</strong> Geschwister, Nichten/Neffen, Stiefeltern, Schwiegerkinder</li>
-            <li><strong>Steuerklasse III (30-50%):</strong> Alle anderen Personen (Freunde, Lebensgefährten ohne Eintragung)</li>
+            <li><strong>Ehepartner oder eingetragene Lebenspartner:</strong> 500.000 € plus ggf. Versorgungsfreibetrag</li>
+            <li><strong>Kinder:</strong> 400.000 € pro Kind plus ggf. altersabhängiger Versorgungsfreibetrag</li>
+            <li><strong>Enkel:</strong> meist 200.000 €, teilweise 400.000 € bei vorverstorbenem Elternteil</li>
+            <li><strong>Eltern und Großeltern:</strong> 100.000 € bei Erwerb von Todes wegen</li>
+            <li><strong>Geschwister, Nichten, Neffen, sonstige Personen:</strong> regelmäßig 20.000 €</li>
           </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibeträge bei der Erbschaftsteuer 2026</h3>
           <p>
-            Jeder Erbe hat einen <strong>persönlichen Freibetrag</strong>, bis zu dem keine Erbschaftsteuer anfällt. 
-            Diese Freibeträge können alle 10 Jahre neu genutzt werden:
+            Gerade bei mehreren Kindern lässt sich Vermögen häufig effizient aufteilen. Wer dagegen eine Immobilie nur an ein Kind
+            überträgt, sollte parallel prüfen, wie sich spätere Ausgleichszahlungen oder ein Verkauf auf
+            <a href="/grunderwerbsteuer-rechner" class="text-emerald-700 hover:underline">Grunderwerbsteuer</a>,
+            <a href="/kaufnebenkosten-rechner" class="text-emerald-700 hover:underline">Kaufnebenkosten</a> und
+            <a href="/kredit-rechner" class="text-emerald-700 hover:underline">Finanzierung</a> auswirken.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Ehepartner/Lebenspartner:</strong> 500.000 € (+ Versorgungsfreibetrag bis 256.000 €)</li>
-            <li><strong>Kinder:</strong> 400.000 € pro Kind (+ altersabhängiger Versorgungsfreibetrag)</li>
-            <li><strong>Enkel:</strong> 200.000 € (400.000 € wenn Elternteil bereits verstorben)</li>
-            <li><strong>Eltern/Großeltern:</strong> 100.000 €</li>
-            <li><strong>Geschwister, Nichten, Neffen:</strong> 20.000 €</li>
-            <li><strong>Alle anderen:</strong> 20.000 €</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Versorgungsfreibetrag</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuersätze: Wie hoch ist die Erbschaftsteuer?</h3>
           <p>
-            Zusätzlich zum persönlichen Freibetrag gibt es den <strong>Versorgungsfreibetrag</strong> nach § 17 ErbStG:
+            Nach Abzug aller Freibeträge wird der <strong>steuerpflichtige Erwerb</strong> mit dem Steuersatz der jeweiligen Steuerklasse belastet.
+            In Steuerklasse I startet die Belastung bei 7 Prozent, in Steuerklasse III bei 30 Prozent. Anders als bei der
+            <a href="/einkommensteuer-rechner" class="text-emerald-700 hover:underline">Einkommensteuer</a> ist die Systematik nicht identisch,
+            aber auch hier steigt die Belastung bei höheren Erwerbswerten deutlich an.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Ehepartner:</strong> 256.000 € (wird um Versorgungsbezüge wie Witwenrente gekürzt)</li>
-            <li><strong>Kinder bis 5 Jahre:</strong> 52.000 €</li>
-            <li><strong>Kinder 6-10 Jahre:</strong> 41.000 €</li>
-            <li><strong>Kinder 11-15 Jahre:</strong> 30.700 €</li>
-            <li><strong>Kinder 16-20 Jahre:</strong> 20.500 €</li>
-            <li><strong>Kinder 21-27 Jahre:</strong> 10.300 €</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erbschaftsteuer-Tabelle: Die Steuersätze</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Immobilien und Familienheim: Hier steckt oft das meiste Risiko</h3>
           <p>
-            Der <strong>Steuersatz</strong> richtet sich nach dem steuerpflichtigen Erwerb und der Steuerklasse. 
-            Er liegt zwischen 7% (Steuerklasse I, bis 75.000 €) und 50% (Steuerklasse III, ab 13 Mio €). 
-            Wichtig: Der Steuersatz wird auf den gesamten steuerpflichtigen Betrag angewendet, nicht 
-            progressiv wie bei der Einkommensteuer.
+            Bei geerbten Häusern und Wohnungen ist nicht nur der Marktwert relevant, sondern der steuerliche Grundbesitzwert nach dem
+            Bewertungsgesetz. Dieser kann über oder unter Ihrer eigenen Erwartung liegen. Das selbst genutzte Familienheim ist ein
+            Sonderfall: Ehepartner können es häufig vollständig steuerfrei übernehmen, Kinder bis 200 Quadratmeter, wenn sie die
+            Immobilie unverzüglich selbst beziehen und meist mindestens 10 Jahre halten. Wer nach dem Erbfall modernisiert, verkauft
+            oder vermietet, sollte zusätzlich mit dem <a href="/grundsteuer-rechner" class="text-emerald-700 hover:underline">Grundsteuer-Rechner</a>,
+            <a href="/notarkosten-rechner" class="text-emerald-700 hover:underline">Notarkosten-Rechner</a> und
+            <a href="/zinseszins-rechner" class="text-emerald-700 hover:underline">Zinseszins-Rechner</a> die langfristige Liquidität planen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 10-Jahres-Regel bei Erbschaft und Schenkung</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 10-Jahres-Regel: Frühere Schenkungen zählen mit</h3>
           <p>
-            <strong>Vorsicht bei Schenkungen:</strong> Schenkungen innerhalb der letzten 10 Jahre vor dem 
-            Erbfall werden zusammengerechnet. Der Freibetrag gilt also für alle Übertragungen innerhalb 
-            von 10 Jahren – nicht für jede einzeln! Deshalb ist <strong>vorausschauende Schenkung</strong> 
-            eine beliebte Methode zur Erbschaftsteuer-Optimierung.
+            Einer der wichtigsten Punkte in der Nachfolgeplanung: <strong>Schenkungen innerhalb von 10 Jahren</strong> werden bei der Berechnung zusammengezählt.
+            Wer also bereits 300.000 € steuerfrei an ein Kind verschenkt hat, hat bei einem späteren Erbfall in der Regel nur noch 100.000 € Freibetrag übrig.
+            Deshalb lohnt es sich, frühzeitig mit dem <a href="/schenkungsteuer-rechner" class="text-emerald-700 hover:underline">Schenkungsteuer-Rechner</a>
+            und dem <a href="/erbschaftsteuer-rechner" class="text-emerald-700 hover:underline">Erbschaftsteuer-Rechner</a> zu planen.
           </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Steuerbefreiung für das Familienheim</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Betriebsvermögen und Unternehmensanteile</h3>
           <p>
-            Eine wichtige Ausnahme: <strong>Selbstgenutzte Immobilien</strong> (Familienheim) können unter 
-            bestimmten Voraussetzungen steuerfrei vererbt werden:
+            Für Betriebsvermögen gelten umfangreiche Verschonungsregeln, aber auch strenge Bedingungen zu Lohnsumme,
+            Behaltensfristen und Verwaltungsvermögen. Unser Rechner liefert hier nur eine erste Orientierung. Wenn Anteile an GmbHs,
+            Einzelunternehmen oder Personengesellschaften im Spiel sind, sollte die Berechnung immer mit professioneller Beratung kombiniert werden.
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>An Ehepartner:</strong> Vollständige Steuerbefreiung, unabhängig vom Wert</li>
-            <li><strong>An Kinder:</strong> Steuerbefreiung bis 200 qm Wohnfläche, wenn das Kind 10 Jahre selbst darin wohnt</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Immobilienbewertung bei der Erbschaftsteuer</h3>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fristen: Wann muss das Finanzamt informiert werden?</h3>
           <p>
-            Immobilien werden zum <strong>Verkehrswert (Marktwert)</strong> nach dem Bewertungsgesetz bewertet. 
-            Dies kann je nach Lage und Zustand der Immobilie zu deutlich höheren Bewertungen führen als 
-            in der Vergangenheit. Ein Verkehrswertgutachten kann sich lohnen, wenn der tatsächliche 
-            Marktwert niedriger liegt.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erbschaftsteuer vermeiden: Legale Wege</h3>
-          <p>
-            Es gibt verschiedene <strong>legale Strategien</strong> zur Minimierung der Erbschaftsteuer:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Frühzeitige Schenkungen:</strong> Freibeträge alle 10 Jahre nutzen</li>
-            <li><strong>Güterstandsschaukel:</strong> Wechsel zwischen Gütertrennung und Zugewinngemeinschaft</li>
-            <li><strong>Nießbrauch:</strong> Vermögensübertragung unter Vorbehalt des Nutzungsrechts</li>
-            <li><strong>Familienheim-Befreiung:</strong> Selbstgenutzte Immobilie steuerfrei übertragen</li>
-            <li><strong>Betriebsvermögen:</strong> Bis zu 100% Verschonungsabschlag möglich</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erbschaftsteuer anmelden: Fristen & Pflichten</h3>
-          <p>
-            <strong>Anzeigepflicht:</strong> Innerhalb von 3 Monaten nach dem Erbfall muss die Erbschaft 
-            dem Finanzamt angezeigt werden (§ 30 ErbStG). Das Finanzamt fordert dann ggf. eine 
-            Erbschaftsteuererklärung an.
-          </p>
-          <p>
-            <strong>Steuererklärung:</strong> Über das ELSTER-Portal kann die Erbschaftsteuererklärung 
-            elektronisch abgegeben werden. Bei größeren Erbschaften empfiehlt sich die Hinzuziehung 
-            eines Steuerberaters.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundung der Erbschaftsteuer</h3>
-          <p>
-            Wenn die Steuer aus dem Erbe nicht sofort bezahlt werden kann (z.B. bei Immobilien), 
-            kann eine <strong>Stundung über bis zu 10 Jahre</strong> beantragt werden. Dies ist 
-            besonders bei illiquiden Vermögenswerten wie Immobilien oder Unternehmensbeteiligungen relevant.
+            Die Erbschaft ist grundsätzlich <strong>innerhalb von 3 Monaten</strong> anzuzeigen. Notare, Gerichte und Banken melden viele Vorgänge ebenfalls,
+            trotzdem sollten Erben nicht darauf vertrauen, dass dadurch alles erledigt ist. Wer Wertpapiere übernimmt, kann direkt auch mit dem
+            <a href="/aktien-steuer-rechner" class="text-emerald-700 hover:underline">Aktien-Steuer-Rechner</a> und dem
+            <a href="/kapitalertragsteuer-rechner" class="text-emerald-700 hover:underline">Kapitalertragsteuer-Rechner</a> den späteren Exit sauber vorbereiten.
           </p>
         </div>
       </div>
     </div>
-    <!-- Verwandte Rechner -->
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 3 Beispielrechnungen zur Erbschaftsteuer</h2>
+        <div class="space-y-4">
+          <div class="bg-emerald-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-emerald-800 mb-2">Beispiel 1: Kind erbt 650.000 € Geldvermögen</h3>
+            <ul class="text-sm text-emerald-700 space-y-1">
+              <li>Persönlicher Freibetrag: 400.000 €</li>
+              <li>Steuerpflichtiger Erwerb: 250.000 €</li>
+              <li>Steuerklasse I, typischer Steuersatz in diesem Bereich: 11 %</li>
+              <li><strong>Grobe Steuerlast: rund 27.500 €</strong></li>
+              <li>Tipp: Frühere <a href="/schenkungsteuer-rechner" class="text-emerald-900 underline">Schenkungen</a> aus den letzten 10 Jahren mitprüfen</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">Beispiel 2: Ehepartner erbt Familienheim im Wert von 900.000 €</h3>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>Selbst genutztes Familienheim wird weiter bewohnt</li>
+              <li>Steuerbefreiung für das Familienheim greift in vielen Standardfällen vollständig</li>
+              <li>Zusätzlich besteht ein Freibetrag von 500.000 € für anderes Vermögen</li>
+              <li><strong>Ergebnis: häufig 0 € Steuer auf die Immobilie</strong></li>
+              <li>Trotzdem <a href="/grundsteuer-rechner" class="text-blue-900 underline">Grundsteuer</a>, Unterhaltung und spätere Verkaufskosten planen</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-2">Beispiel 3: Unverheirateter Partner erbt 300.000 €</h3>
+            <ul class="text-sm text-purple-700 space-y-1">
+              <li>Freibetrag in Steuerklasse III: 20.000 €</li>
+              <li>Steuerpflichtiger Erwerb: 280.000 €</li>
+              <li>Steuersatz in Steuerklasse III deutlich höher als bei Kindern oder Ehepartnern</li>
+              <li><strong>Steuerlast schnell im mittleren fünfstelligen Bereich</strong></li>
+              <li>Hier ist eine frühzeitige Planung über <a href="/schenkungsteuer-rechner" class="text-purple-900 underline">Schenkungen</a> besonders wichtig</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ 5 typische Fehler bei der Erbschaftsteuer</h2>
+        <div class="space-y-3">
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">1</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Frühere Schenkungen ignorieren</p>
+              <p class="text-gray-600 text-xs">Viele rechnen nur den aktuellen Nachlass und vergessen, dass frühere Übertragungen innerhalb von 10 Jahren angerechnet werden. Das kann den verfügbaren Freibetrag massiv reduzieren.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">2</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Immobilienwert zu niedrig ansetzen</p>
+              <p class="text-gray-600 text-xs">Der steuerliche Wert folgt dem Bewertungsgesetz und nicht Ihrem Bauchgefühl. Gerade bei vermieteten Objekten, Mehrfamilienhäusern oder guten Lagen kann das Ergebnis höher ausfallen als erwartet.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">3</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Familienheim-Befreiung falsch einschätzen</p>
+              <p class="text-gray-600 text-xs">Die Steuerfreiheit greift nicht automatisch. Wer die Immobilie nicht unverzüglich selbst nutzt oder vor Ablauf der Haltefrist auszieht, riskiert eine nachträgliche Steuerbelastung.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">4</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Liquidität für die Steuer nicht einplanen</p>
+              <p class="text-gray-600 text-xs">Bei geerbten Immobilien oder Unternehmensanteilen fehlt oft Bargeld für die Steuer. Prüfen Sie frühzeitig Verkauf, Beleihung oder Stundung statt erst nach dem Bescheid hektisch zu reagieren.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-3 bg-red-50 rounded-lg">
+            <span class="text-red-500 font-bold text-lg">5</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">Anzeigefrist versäumen</p>
+              <p class="text-gray-600 text-xs">Die 3-Monats-Frist klingt lang, ist aber schnell vorbei. Wer Konten, Wertpapiere, Versicherungen und Grundbuchdaten erst spät zusammenträgt, verliert unnötig Zeit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔍 5 Sonderfälle und Praxis-Tipps</h2>
+        <div class="space-y-3 text-sm text-gray-600">
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">🏠 Familienheim an Kinder</h3>
+            <p>Bei Kindern ist die Steuerbefreiung auf <strong>200 Quadratmeter Wohnfläche</strong> begrenzt. Übersteigt das Objekt diese Grenze, kann für den übersteigenden Teil dennoch Steuer anfallen. Prüfen Sie parallel <a href="/grundsteuer-rechner" class="text-purple-900 underline">Grundsteuer</a> und spätere Instandhaltung.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">🏢 Betriebsvermögen</h3>
+            <p>Für Unternehmen können 85 oder sogar 100 Prozent Verschonung möglich sein. Gleichzeitig gelten strenge Behaltens- und Lohnsummenregeln. Hier reicht ein Standardrechner nur für eine erste Größenordnung.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">🌍 Auslandsvermögen und internationales Erbrecht</h3>
+            <p>Bei Immobilien, Konten oder Depots im Ausland drohen Doppelbesteuerungsfragen, abweichende Bewertungsregeln und zusätzliche Nachweise. Internationale Nachlässe sollten immer separat geprüft werden.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">💍 Unverheiratete Paare</h3>
+            <p>Unverheiratete Partner haben nur 20.000 € Freibetrag. Schon mittlere Vermögenswerte führen dadurch zu hoher Steuer. Aus reiner Steuerperspektive ist diese Konstellation besonders nachteilig.</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-1">📈 Geerbte Depots und Wertpapiere</h3>
+            <p>Die Übertragung selbst löst nicht automatisch <a href="/kapitalertragsteuer-rechner" class="text-purple-900 underline">Kapitalertragsteuer</a> aus, aber spätere Verkäufe und Ausschüttungen schon. Für die langfristige Vermögensplanung helfen zusätzlich <a href="/zinseszins-rechner" class="text-purple-900 underline">Zinseszins</a> und <a href="/dividende-rechner" class="text-purple-900 underline">Dividenden</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">💡 Was bedeutet das Ergebnis für Sie?</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Der Rechner liefert Ihnen eine <strong>realistische Erstindikation</strong> für die mögliche Erbschaftsteuer. Für die Praxis zählt aber nicht nur die Steuerhöhe,
+            sondern vor allem die <strong>Liquidität</strong>: Können Sie die Steuer aus dem vorhandenen Cash zahlen oder bindet der Nachlass das Vermögen in Immobilien, Betrieben oder Depots?
+          </p>
+          <p>
+            Wenn Sie früh planen, lassen sich mit mehreren Freibeträgen, zeitlich gestaffelten <a href="/schenkungsteuer-rechner" class="text-emerald-700 hover:underline">Schenkungen</a>
+            und sauberer Vermögensaufteilung oft fünf- bis sechsstellige Steuerbeträge vermeiden. Wer erst nach dem Todesfall rechnet, kann meist nur noch Schadensbegrenzung betreiben.
+          </p>
+          <p>
+            Bei Immobilien sollten Sie zusätzlich die laufenden Kosten mit <a href="/grundsteuer-rechner" class="text-emerald-700 hover:underline">Grundsteuer</a>,
+            <a href="/kredit-rechner" class="text-emerald-700 hover:underline">Finanzierung</a> und <a href="/zinseszins-rechner" class="text-emerald-700 hover:underline">Vermögensentwicklung</a> modellieren.
+            So wird aus einem geerbten Vermögenswert kein Liquiditätsproblem.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zur Erbschaftsteuer</h2>
+        <div class="space-y-3">
+          {faqData.map((faq) => (
+            <details class="group border border-gray-200 rounded-lg">
+              <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span class="font-medium text-gray-800 text-sm pr-4">{faq.question}</span>
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
         <div class="grid grid-cols-2 gap-3">
+          <a href="/schenkungsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎁</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Schenkungsteuer-Rechner</p>
+          </a>
           <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">📋</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
           </a>
-          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🏠</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+          <a href="/notarkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📝</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Notarkosten-Rechner</p>
           </a>
           <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">🏡</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
           </a>
-          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">💵</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/steuererstattung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Steuererstattungs-Rechner</p>
           </a>
         </div>
       </div>
     </div>
   </main>
-  
-  <!-- Structured Data for SEO -->
+
   <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Erbschaftsteuer-Rechner 2026",
-    "description": description,
-    "url": "https://www.deutschland-rechner.de/erbschaftsteuer-rechner",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Erbschaftsteuer-Rechner 2026',
+    description,
+    url: 'https://www.deutschland-rechner.de/erbschaftsteuer-rechner',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR'
     },
-    "author": {
-      "@type": "Organization",
-      "name": "Deutschland-Rechner"
+    author: {
+      '@type': 'Organization',
+      name: 'Deutschland-Rechner'
     }
   })} />
-  
-  <!-- FAQ Structured Data -->
+
   <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Erbschaftsteuer grob berechnen',
+    description: 'So schätzen Sie die Erbschaftsteuer mit Freibetrag, Steuerklasse und Nachlasswert ab.',
+    step: [
       {
-        "@type": "Question",
-        "name": "Wie hoch ist der Freibetrag bei der Erbschaftsteuer?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Der Freibetrag hängt vom Verwandtschaftsgrad ab: Ehepartner 500.000€, Kinder 400.000€, Enkel 200.000€, Geschwister und andere 20.000€. Die Freibeträge können alle 10 Jahre neu genutzt werden."
-        }
+        '@type': 'HowToStep',
+        name: 'Nachlasswert ermitteln',
+        text: 'Addieren Sie Geldvermögen, Immobilien, Depots und sonstige Vermögenswerte, die auf Sie übergehen.'
       },
       {
-        "@type": "Question",
-        "name": "Wie viel Erbschaftsteuer muss ich zahlen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Die Erbschaftsteuer beträgt zwischen 7% und 50%, abhängig von Steuerklasse und Höhe des steuerpflichtigen Erwerbs. Steuerklasse I (nahe Verwandte) zahlt 7-30%, Steuerklasse III bis zu 50%."
-        }
+        '@type': 'HowToStep',
+        name: 'Verwandtschaftsgrad bestimmen',
+        text: 'Ordnen Sie sich der passenden Steuerklasse zu, denn davon hängen Freibeträge und Steuersätze ab.'
       },
       {
-        "@type": "Question",
-        "name": "Wann muss ich die Erbschaft dem Finanzamt melden?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Eine Erbschaft muss innerhalb von 3 Monaten nach dem Erbfall dem zuständigen Finanzamt angezeigt werden. Das Finanzamt prüft dann, ob eine Erbschaftsteuererklärung erforderlich ist."
-        }
+        '@type': 'HowToStep',
+        name: 'Freibeträge abziehen',
+        text: 'Ziehen Sie den persönlichen Freibetrag und gegebenenfalls Versorgungsfreibeträge oder Befreiungen für das Familienheim ab.'
       },
       {
-        "@type": "Question",
-        "name": "Kann ich ein Haus steuerfrei erben?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, unter bestimmten Voraussetzungen: Ehepartner können das Familienheim unbegrenzt steuerfrei erben. Kinder können bis zu 200 qm steuerfrei erben, wenn sie 10 Jahre selbst darin wohnen."
-        }
+        '@type': 'HowToStep',
+        name: 'Frühere Schenkungen einbeziehen',
+        text: 'Berücksichtigen Sie Schenkungen innerhalb der letzten 10 Jahre, weil diese für die Steuerberechnung relevant sein können.'
       },
       {
-        "@type": "Question",
-        "name": "Werden Schenkungen auf die Erbschaftsteuer angerechnet?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, Schenkungen der letzten 10 Jahre vor dem Erbfall werden zusammengerechnet. Der Freibetrag gilt für alle Übertragungen innerhalb von 10 Jahren zusammen."
-        }
+        '@type': 'HowToStep',
+        name: 'Steuersatz anwenden',
+        text: 'Wenden Sie den Steuersatz Ihrer Steuerklasse auf den steuerpflichtigen Erwerb an, um die grobe Steuerlast zu erhalten.'
       }
     ]
   })} />
