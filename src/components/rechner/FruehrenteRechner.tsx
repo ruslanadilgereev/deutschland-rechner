@@ -150,7 +150,9 @@ export default function FruehrenteRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Frührente-Rechner 2025 & 2026" rechnerSlug="fruehrente-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Geburtsjahr */}
         <div className="mb-6">
@@ -316,7 +318,7 @@ export default function FruehrenteRechner() {
                 </p>
               </div>
             </div>
-          ) : ergebnis.monateVorRegelalter > 0 ? (
+) : ergebnis.monateVorRegelalter > 0 ? (
             // Mit Abschlägen
             <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl shadow-lg p-6 text-white mb-6">
               <div className="flex items-center gap-2 mb-2">
@@ -691,10 +693,7 @@ export default function FruehrenteRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Frührente-Rechner 2025 & 2026" rechnerSlug="fruehrente-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

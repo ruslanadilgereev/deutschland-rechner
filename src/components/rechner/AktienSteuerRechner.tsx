@@ -180,7 +180,9 @@ export default function AktienSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Aktienverkauf eingeben */}
+      <RechnerFeedback rechnerName="Aktien-Steuer-Rechner 2025 & 2026" rechnerSlug="aktien-steuer-rechner" />
+
+{/* Aktienverkauf eingeben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-xl">📈</span> Aktienverkauf
@@ -499,7 +501,7 @@ export default function AktienSteuerRechner() {
             </p>
           </div>
         </div>
-      ) : (
+) : (
         // Gewinn-Anzeige
         <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg p-6 text-white mb-6">
           <h3 className="text-sm font-medium opacity-80 mb-1">📈 Steuer auf Aktiengewinn</h3>
@@ -742,10 +744,7 @@ export default function AktienSteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Aktien-Steuer-Rechner 2025 & 2026" rechnerSlug="aktien-steuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

@@ -237,7 +237,9 @@ export default function UmzugskostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Umzugskosten-Rechner" rechnerSlug="umzugskosten-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         
         {/* PLZ Eingabe */}
@@ -499,8 +501,7 @@ export default function UmzugskostenRechner() {
           </div>
         </div>
       </div>
-
-      {/* Vergleich */}
+{/* Vergleich */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="text-lg font-bold text-gray-800 mb-4">📊 Kostenvergleich</h3>
         
@@ -637,8 +638,7 @@ export default function UmzugskostenRechner() {
           Tatsächliche Preise können je nach Region, Saison und individuellen Anforderungen abweichen. 
           Holen Sie immer mehrere Angebote ein!
         </p>
-      <RechnerFeedback rechnerName="Umzugskosten-Rechner" rechnerSlug="umzugskosten-rechner" />
-      </div>
+</div>
     </div>
   );
 }

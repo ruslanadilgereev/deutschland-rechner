@@ -218,7 +218,9 @@ export default function AltersteilzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Altersteilzeit-Rechner 2025 & 2026" rechnerSlug="altersteilzeit-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Bruttogehalt */}
         <div className="mb-6">
@@ -359,8 +361,7 @@ export default function AltersteilzeitRechner() {
           </div>
         </div>
       </div>
-
-      {/* Blockmodell-Visualisierung */}
+{/* Blockmodell-Visualisierung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-xl">📊</span>
@@ -793,10 +794,7 @@ export default function AltersteilzeitRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Altersteilzeit-Rechner 2025 & 2026" rechnerSlug="altersteilzeit-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

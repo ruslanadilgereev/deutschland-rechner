@@ -91,7 +91,9 @@ export default function TageRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Tage-Rechner" rechnerSlug="tage-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">📅 Daten eingeben</h2>
         
@@ -403,10 +405,7 @@ export default function TageRechner() {
           <li>• <strong>Negative Werte:</strong> Wenn das Enddatum vor dem Startdatum liegt, wird die Differenz als negativ angezeigt</li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="Tage-Rechner" rechnerSlug="tage-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="font-bold text-gray-700 mb-3">📚 Weitere Informationen</h3>
         <ul className="text-sm text-gray-600 space-y-1">

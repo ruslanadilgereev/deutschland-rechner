@@ -244,7 +244,9 @@ export default function NotarkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="" rechnerSlug="notarkosten-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kaufpreis */}
         <div className="mb-6">
@@ -350,8 +352,7 @@ export default function NotarkostenRechner() {
           </div>
         </div>
       </div>
-
-      {/* Detaillierte Aufstellung */}
+{/* Detaillierte Aufstellung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📋 Detaillierte Kostenaufstellung</h3>
         
@@ -588,10 +589,7 @@ export default function NotarkostenRechner() {
           </li>
         </ol>
       </div>
-
-            <RechnerFeedback rechnerName="" rechnerSlug="notarkosten-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

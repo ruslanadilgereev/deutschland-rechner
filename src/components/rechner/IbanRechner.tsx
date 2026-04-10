@@ -284,7 +284,9 @@ export default function IbanRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Modus-Auswahl */}
+      <RechnerFeedback rechnerName="IBAN-Rechner" rechnerSlug="iban-rechner" />
+
+{/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-4">
         <div className="grid grid-cols-3 gap-2">
           <button
@@ -540,8 +542,7 @@ export default function IbanRechner() {
           <li>• Der BIC wird für SEPA-Überweisungen innerhalb der EU nicht mehr benötigt</li>
           <li>• Alte Kontonummern können durch Zusammenlegung ungültig werden</li>
         </ul>
-      <RechnerFeedback rechnerName="IBAN-Rechner" rechnerSlug="iban-rechner" />
-      </div>
+</div>
     </div>
   );
 }

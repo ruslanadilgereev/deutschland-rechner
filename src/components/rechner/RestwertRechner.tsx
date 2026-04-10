@@ -195,7 +195,9 @@ export default function RestwertRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Eingabe-Bereich */}
+      <RechnerFeedback rechnerName="Restwert-Rechner" rechnerSlug="restwert-rechner" />
+
+{/* Eingabe-Bereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Neupreis */}
         <div className="mb-6">
@@ -456,8 +458,7 @@ export default function RestwertRechner() {
           </div>
         </div>
       </div>
-
-      {/* Wertverlust-Balken */}
+{/* Wertverlust-Balken */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Wertentwicklung</h3>
         
@@ -682,10 +683,7 @@ export default function RestwertRechner() {
           professionelle Bewertungsdienste wie DAT oder Schwacke.
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Restwert-Rechner" rechnerSlug="restwert-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Weiterführende Links</h4>
         <div className="space-y-1">

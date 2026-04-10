@@ -321,7 +321,9 @@ export default function KirchensteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Kirchensteuer-Rechner 2025 & 2026" rechnerSlug="kirchensteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Jahresbruttoeinkommen */}
         <div className="mb-6">
@@ -522,8 +524,7 @@ export default function KirchensteuerRechner() {
           </div>
         )}
       </div>
-
-      {/* Absetzbarkeit */}
+{/* Absetzbarkeit */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">💡 Steuerersparnis durch Absetzbarkeit</h3>
         <p className="text-sm text-gray-600 mb-4">
@@ -764,10 +765,7 @@ export default function KirchensteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Kirchensteuer-Rechner 2025 & 2026" rechnerSlug="kirchensteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

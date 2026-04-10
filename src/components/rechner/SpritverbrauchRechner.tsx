@@ -149,7 +149,9 @@ export default function SpritverbrauchRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Spritverbrauch-Rechner" rechnerSlug="spritverbrauch-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-2xl">📊</span>
@@ -375,8 +377,7 @@ export default function SpritverbrauchRechner() {
               </div>
             </div>
           </div>
-
-          {/* Herstellervergleich */}
+{/* Herstellervergleich */}
           {ergebnis.herstellerVergleich && (
             <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
               <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
@@ -612,10 +613,7 @@ export default function SpritverbrauchRechner() {
           <span className="ml-auto text-green-600">→</span>
         </a>
       </div>
-
-            <RechnerFeedback rechnerName="Spritverbrauch-Rechner" rechnerSlug="spritverbrauch-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Referenzen</h4>
         <div className="space-y-1">

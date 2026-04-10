@@ -78,7 +78,9 @@ export default function HundesteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Hundesteuer-Rechner" rechnerSlug="hundesteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
           <span className="text-2xl">🐕</span>
@@ -296,8 +298,7 @@ export default function HundesteuerRechner() {
                 </p>
               </div>
             </div>
-          <RechnerFeedback rechnerName="Hundesteuer-Rechner" rechnerSlug="hundesteuer-rechner" />
-      </div>
+</div>
         </>
       )}
     </div>

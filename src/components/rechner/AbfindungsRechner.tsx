@@ -223,7 +223,9 @@ export default function AbfindungsRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Abfindungs-Eingabe */}
+      <RechnerFeedback rechnerName="Abfindung Rechner 2025 & 2026" rechnerSlug="abfindung-rechner" />
+
+{/* Abfindungs-Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">💰 Abfindungshöhe berechnen</h3>
         
@@ -513,8 +515,7 @@ export default function AbfindungsRechner() {
           </div>
         </div>
       </div>
-
-      {/* Fünftelregelung Erklärung */}
+{/* Fünftelregelung Erklärung */}
       {ergebnis.fuenftelregelungLohntSich && (
         <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6">
           <h3 className="font-bold text-green-800 mb-3">✅ Fünftelregelung spart Steuern!</h3>
@@ -745,10 +746,7 @@ export default function AbfindungsRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Abfindung Rechner 2025 & 2026" rechnerSlug="abfindung-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

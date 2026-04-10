@@ -118,7 +118,9 @@ export default function TeilzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Header Info */}
+      <RechnerFeedback rechnerName="Teilzeit-Rechner 2026" rechnerSlug="teilzeit-rechner" />
+
+{/* Header Info */}
       <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-6 mb-6 border border-purple-100">
         <div className="flex items-start gap-4">
           <div className="text-4xl">⚖️</div>
@@ -358,8 +360,7 @@ export default function TeilzeitRechner() {
           </div>
         )}
       </div>
-
-      {/* Vergleich Vollzeit vs. Teilzeit */}
+{/* Vergleich Vollzeit vs. Teilzeit */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Vergleich: Vollzeit vs. Teilzeit</h3>
         
@@ -696,10 +697,7 @@ export default function TeilzeitRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Teilzeit-Rechner 2026" rechnerSlug="teilzeit-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

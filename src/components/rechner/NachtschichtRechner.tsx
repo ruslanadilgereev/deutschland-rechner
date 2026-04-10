@@ -181,7 +181,9 @@ export default function NachtschichtRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Nachtschicht-Zuschlag-Rechner" rechnerSlug="nachtschicht-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">
           📝 Ihre Angaben
@@ -427,8 +429,7 @@ export default function NachtschichtRechner() {
           </div>
         </div>
       </div>
-
-      {/* Monatliche Hochrechnung */}
+{/* Monatliche Hochrechnung */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">
           📊 Monatliche Hochrechnung ({monatlicheStunden}h)
@@ -665,10 +666,7 @@ export default function NachtschichtRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Nachtschicht-Zuschlag-Rechner" rechnerSlug="nachtschicht-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">
           📚 Quellen & Rechtsgrundlagen

@@ -166,7 +166,9 @@ export default function ElternzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Elternzeit-Rechner 2025 & 2026" rechnerSlug="elternzeit-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Geburtsdatum */}
         <div className="mb-6">
@@ -377,8 +379,7 @@ export default function ElternzeitRechner() {
               </div>
             </div>
           </div>
-
-          {/* Warnungen */}
+{/* Warnungen */}
           {berechnung.warnungen.length > 0 && (
             <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-4 mb-6">
               <h4 className="text-red-800 font-bold flex items-center gap-2 mb-2">
@@ -685,10 +686,7 @@ export default function ElternzeitRechner() {
           ))}
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Elternzeit-Rechner 2025 & 2026" rechnerSlug="elternzeit-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

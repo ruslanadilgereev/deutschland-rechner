@@ -208,7 +208,9 @@ export default function MutterschutzRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Mutterschutz-Rechner 2025 & 2026" rechnerSlug="mutterschutz-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Netto-Einkommen */}
         <div className="mb-6">
@@ -358,8 +360,7 @@ export default function MutterschutzRechner() {
           </div>
         </div>
       </div>
-
-      {/* Fristen-Übersicht */}
+{/* Fristen-Übersicht */}
       {fristen && (
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <h3 className="font-bold text-gray-800 mb-4">📅 Deine Mutterschutzfristen</h3>
@@ -538,10 +539,7 @@ export default function MutterschutzRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Mutterschutz-Rechner 2025 & 2026" rechnerSlug="mutterschutz-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

@@ -169,7 +169,9 @@ export default function HeizkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Heizkosten-Rechner" rechnerSlug="heizkosten-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Energieträger-Auswahl */}
         <div className="mb-6">
@@ -442,8 +444,7 @@ export default function HeizkostenRechner() {
           </div>
         </div>
       </div>
-
-      {/* CO2 und Umwelt */}
+{/* CO2 und Umwelt */}
       <div className="bg-white rounded-2xl shadow-lg p-5 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">🌍 CO₂-Emissionen</h3>
         <div className="flex items-center gap-4">
@@ -572,8 +573,7 @@ export default function HeizkostenRechner() {
             (Bundesförderung für effiziente Gebäude).
           </li>
         </ul>
-      <RechnerFeedback rechnerName="Heizkosten-Rechner" rechnerSlug="heizkosten-rechner" />
-      </div>
+</div>
     </div>
   );
 }

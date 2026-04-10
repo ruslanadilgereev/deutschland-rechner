@@ -130,7 +130,9 @@ export default function KfzSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Kfz-Steuer-Rechner 2025 & 2026" rechnerSlug="kfz-steuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kraftstoffart */}
         <div className="mb-6">
@@ -326,7 +328,7 @@ export default function KfzSteuerRechner() {
             </p>
           </div>
         </div>
-      ) : (
+) : (
         <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-lg p-6 text-white mb-6">
           <h3 className="text-sm font-medium opacity-80 mb-1">🚗 Ihre Kfz-Steuer</h3>
           <div className="mb-4">
@@ -612,10 +614,7 @@ export default function KfzSteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Kfz-Steuer-Rechner 2025 & 2026" rechnerSlug="kfz-steuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

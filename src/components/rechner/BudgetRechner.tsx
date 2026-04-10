@@ -49,7 +49,9 @@ export default function BudgetRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Budget-Rechner" rechnerSlug="budget-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
           <span className="text-2xl">📋</span>
@@ -429,8 +431,7 @@ export default function BudgetRechner() {
                 </p>
               </div>
             </div>
-          <RechnerFeedback rechnerName="Budget-Rechner" rechnerSlug="budget-rechner" />
-      </div>
+</div>
         </>
       )}
     </div>

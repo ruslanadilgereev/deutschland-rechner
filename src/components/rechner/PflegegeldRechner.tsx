@@ -147,7 +147,9 @@ export default function PflegegeldRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Pflegegeld-Rechner 2025 & 2026" rechnerSlug="pflegegeld-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Pflegegrad Auswahl */}
         <div className="mb-6">
@@ -334,8 +336,7 @@ export default function PflegegeldRechner() {
           </div>
         </div>
       </div>
-
-      {/* Jahresübersicht */}
+{/* Jahresübersicht */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📅 Jahresübersicht Pflegegrad {pflegegrad}</h3>
         
@@ -627,10 +628,7 @@ export default function PflegegeldRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Pflegegeld-Rechner 2025 & 2026" rechnerSlug="pflegegeld-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

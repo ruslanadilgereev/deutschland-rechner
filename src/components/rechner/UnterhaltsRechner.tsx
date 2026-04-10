@@ -88,7 +88,9 @@ export default function UnterhaltsRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Unterhalt-Rechner 2025 & 2026" rechnerSlug="unterhalt-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Angaben zum Unterhalt</h3>
         
@@ -246,8 +248,7 @@ export default function UnterhaltsRechner() {
           </div>
         </div>
       </div>
-
-      {/* Einkommensgruppe Info */}
+{/* Einkommensgruppe Info */}
       <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
         <h3 className="font-bold text-gray-800 mb-3">📋 Einordnung Düsseldorfer Tabelle</h3>
         <div className="space-y-3">
@@ -423,10 +424,7 @@ export default function UnterhaltsRechner() {
           Vollständige Tabelle: 15 Einkommensgruppen bis 9.700 €+ Netto
         </p>
       </div>
-
-            <RechnerFeedback rechnerName="Unterhalt-Rechner 2025 & 2026" rechnerSlug="unterhalt-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

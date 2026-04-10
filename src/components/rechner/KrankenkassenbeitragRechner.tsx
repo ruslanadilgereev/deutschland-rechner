@@ -293,7 +293,9 @@ export default function KrankenkassenbeitragRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Krankenkassenbeitrag-Rechner 2025 & 2026" rechnerSlug="krankenkassenbeitrag-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Ihre Angaben</h2>
         
@@ -493,8 +495,7 @@ export default function KrankenkassenbeitragRechner() {
           </div>
         )}
       </div>
-      
-      {/* Aufschlüsselung */}
+{/* Aufschlüsselung */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">📊 Detaillierte Aufschlüsselung</h3>
         
@@ -714,10 +715,7 @@ export default function KrankenkassenbeitragRechner() {
           </div>
         </div>
       </div>
-      
-            <RechnerFeedback rechnerName="Krankenkassenbeitrag-Rechner 2025 & 2026" rechnerSlug="krankenkassenbeitrag-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-3">📚 Quellen & Rechtsgrundlagen</h3>
         <ul className="space-y-2 text-sm text-gray-600">

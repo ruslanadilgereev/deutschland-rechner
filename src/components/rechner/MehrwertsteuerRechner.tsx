@@ -40,7 +40,9 @@ export default function MehrwertsteuerRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Mehrwertsteuer-Rechner" rechnerSlug="mehrwertsteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Richtung wählen */}
         <div className="mb-6">
@@ -161,8 +163,7 @@ export default function MehrwertsteuerRechner() {
           </div>
         </div>
       </div>
-
-      {/* Formel-Box */}
+{/* Formel-Box */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">📐 Verwendete Formeln</h3>
         <div className="space-y-4 text-sm">
@@ -319,10 +320,7 @@ export default function MehrwertsteuerRechner() {
           </table>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Mehrwertsteuer-Rechner" rechnerSlug="mehrwertsteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

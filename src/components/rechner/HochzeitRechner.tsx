@@ -384,7 +384,9 @@ export default function HochzeitRechner() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Hauptergebnis */}
+      <RechnerFeedback rechnerName="Hochzeitskosten-Rechner" rechnerSlug="hochzeit-rechner" />
+
+{/* Hauptergebnis */}
       <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl shadow-xl p-6 mb-6 text-white">
         <div className="text-center mb-4">
           <div className="text-lg opacity-90">Geschätzte Gesamtkosten</div>
@@ -413,8 +415,7 @@ export default function HochzeitRechner() {
           </div>
         </div>
       </div>
-
-      {/* Input Section */}
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <span>👥</span> Grundeinstellungen
@@ -832,8 +833,7 @@ export default function HochzeitRechner() {
             </p>
           </div>
         </div>
-      <RechnerFeedback rechnerName="Hochzeitskosten-Rechner" rechnerSlug="hochzeit-rechner" />
-      </div>
+</div>
     </div>
   );
 }

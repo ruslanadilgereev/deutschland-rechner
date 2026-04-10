@@ -139,7 +139,9 @@ export default function SabbaticalRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Sabbatical-Rechner" rechnerSlug="sabbatical-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Ihre Angaben</h3>
         
@@ -352,8 +354,7 @@ export default function SabbaticalRechner() {
           </div>
         </div>
       </div>
-
-      {/* Visualisierung Timeline */}
+{/* Visualisierung Timeline */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📅 Zeitlicher Ablauf</h3>
         
@@ -777,10 +778,7 @@ export default function SabbaticalRechner() {
           </details>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Sabbatical-Rechner" rechnerSlug="sabbatical-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weitere Infos</h4>
         <div className="space-y-1">

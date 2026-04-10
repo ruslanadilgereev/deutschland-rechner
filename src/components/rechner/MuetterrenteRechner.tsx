@@ -89,7 +89,9 @@ export default function MuetterrenteRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Mütterrente-Rechner 2025 & 2026" rechnerSlug="muetterrente-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kinder vor 1992 */}
         <div className="mb-6">
@@ -189,8 +191,7 @@ export default function MuetterrenteRechner() {
               </div>
             </div>
           </div>
-
-          {/* Details */}
+{/* Details */}
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
             <h3 className="font-bold text-gray-800 mb-4">📊 Aufschlüsselung</h3>
             <div className="space-y-3">
@@ -378,10 +379,7 @@ export default function MuetterrenteRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Mütterrente-Rechner 2025 & 2026" rechnerSlug="muetterrente-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

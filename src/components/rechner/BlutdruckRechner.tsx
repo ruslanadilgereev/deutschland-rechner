@@ -155,7 +155,9 @@ export default function BlutdruckRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Blutdruck-Rechner" rechnerSlug="blutdruck-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
           <span className="text-2xl">📊</span>
@@ -548,10 +550,7 @@ export default function BlutdruckRechner() {
               </div>
             </div>
           </div>
-
-                <RechnerFeedback rechnerName="Blutdruck-Rechner" rechnerSlug="blutdruck-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span className="text-2xl">📚</span>

@@ -205,7 +205,9 @@ export default function WaermepumpeRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Eingabe-Bereich */}
+      <RechnerFeedback rechnerName="Wärmepumpe-Rechner 2025 & 2026" rechnerSlug="waermepumpe-rechner" />
+
+{/* Eingabe-Bereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         
         {/* Wohnfläche */}
@@ -533,8 +535,7 @@ export default function WaermepumpeRechner() {
           </div>
         </div>
       </div>
-
-      {/* Vergleich mit Gas/Öl */}
+{/* Vergleich mit Gas/Öl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Vergleich: Wärmepumpe vs. Gas vs. Öl</h3>
         
@@ -787,8 +788,7 @@ export default function WaermepumpeRechner() {
             für Wärmepumpen (ca. 25-35 ct/kWh statt 35-42 ct/kWh Haushaltsstrom).
           </li>
         </ul>
-      <RechnerFeedback rechnerName="Wärmepumpe-Rechner 2025 & 2026" rechnerSlug="waermepumpe-rechner" />
-      </div>
+</div>
     </div>
   );
 }

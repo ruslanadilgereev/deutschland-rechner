@@ -205,7 +205,9 @@ export default function KapitalertragsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Asset-Typ */}
+      <RechnerFeedback rechnerName="Kapitalertragsteuer-Rechner 2025 & 2026" rechnerSlug="kapitalertragsteuer-rechner" />
+
+{/* Asset-Typ */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-xl">📊</span> Art der Kapitalerträge
@@ -458,7 +460,7 @@ export default function KapitalertragsteuerRechner() {
             </div>
           </div>
         </div>
-      ) : (
+) : (
         <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-lg p-6 text-white mb-6">
           <h3 className="text-sm font-medium text-blue-200 mb-1">Kapitalertragsteuer</h3>
           
@@ -719,10 +721,7 @@ export default function KapitalertragsteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Kapitalertragsteuer-Rechner 2025 & 2026" rechnerSlug="kapitalertragsteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

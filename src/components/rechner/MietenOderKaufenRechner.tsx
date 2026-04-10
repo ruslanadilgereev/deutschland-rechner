@@ -199,7 +199,9 @@ export default function MietenOderKaufenRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich - Immobilie */}
+      <RechnerFeedback rechnerName="Mieten oder Kaufen Rechner" rechnerSlug="mieten-oder-kaufen-rechner" />
+
+{/* Eingabebereich - Immobilie */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">🏠 Immobilie kaufen</h2>
         
@@ -772,10 +774,7 @@ export default function MietenOderKaufenRechner() {
           </a>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Mieten oder Kaufen Rechner" rechnerSlug="mieten-oder-kaufen-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="font-semibold text-gray-700 mb-3">📚 Quellen & Methodik</h3>
         <ul className="space-y-1 text-sm text-gray-600">

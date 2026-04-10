@@ -257,7 +257,9 @@ export default function EinkommensteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Einkünfte */}
+      <RechnerFeedback rechnerName="Einkommensteuer-Rechner 2026" rechnerSlug="einkommensteuer-rechner" />
+
+{/* Einkünfte */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-xl">💰</span> Einkünfte (Jahresbetrag)
@@ -613,8 +615,7 @@ export default function EinkommensteuerRechner() {
           </div>
         </div>
       </div>
-
-      {/* Aufschlüsselung */}
+{/* Aufschlüsselung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Berechnung im Detail</h3>
         
@@ -848,10 +849,7 @@ export default function EinkommensteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Einkommensteuer-Rechner 2026" rechnerSlug="einkommensteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen (Stand: 2026)</h4>
         <div className="space-y-1">

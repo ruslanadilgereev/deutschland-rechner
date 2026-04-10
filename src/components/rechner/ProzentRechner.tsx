@@ -77,7 +77,9 @@ export default function ProzentRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Modus Auswahl */}
+      <RechnerFeedback rechnerName="Prozent-Rechner" rechnerSlug="prozent-rechner" />
+
+{/* Modus Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block text-gray-700 font-medium mb-3">Was möchtest du berechnen?</label>
         <div className="space-y-3">
@@ -296,8 +298,7 @@ export default function ProzentRechner() {
           </>
         )}
       </div>
-
-      {/* Formel-Box */}
+{/* Formel-Box */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">📐 Verwendete Formel</h3>
         <div className="space-y-4 text-sm">
@@ -466,10 +467,7 @@ export default function ProzentRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Prozent-Rechner" rechnerSlug="prozent-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Nützliche Ressourcen</h4>
         <div className="space-y-1">

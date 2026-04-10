@@ -98,7 +98,9 @@ export default function SpritkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Spritkosten-Rechner" rechnerSlug="spritkosten-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Strecke */}
         <div className="mb-6">
@@ -362,8 +364,7 @@ export default function SpritkostenRechner() {
           </div>
         </div>
       </div>
-
-      {/* Kostenaufschlüsselung */}
+{/* Kostenaufschlüsselung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Kostenaufschlüsselung</h3>
         
@@ -612,10 +613,7 @@ export default function SpritkostenRechner() {
           Durchschnittspreise Deutschland. Tagesaktuelle Preise schwanken je nach Region und Uhrzeit.
         </p>
       </div>
-
-            <RechnerFeedback rechnerName="Spritkosten-Rechner" rechnerSlug="spritkosten-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">

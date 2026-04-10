@@ -240,7 +240,9 @@ export default function TilgungsplanRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Tilgungsplan-Rechner" rechnerSlug="tilgungsplan-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kreditsumme */}
         <div className="mb-6">
@@ -486,8 +488,7 @@ export default function TilgungsplanRechner() {
               </div>
             </div>
           </div>
-
-          {/* Zinsbindung Info */}
+{/* Zinsbindung Info */}
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
             <h3 className="font-bold text-amber-800 mb-3">📅 Nach {zinsbindung} Jahren Zinsbindung</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -794,10 +795,7 @@ export default function TilgungsplanRechner() {
           </p>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Tilgungsplan-Rechner" rechnerSlug="tilgungsplan-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

@@ -136,7 +136,9 @@ export default function KrankengeldRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Krankengeld-Rechner 2025 & 2026" rechnerSlug="krankengeld-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Bruttogehalt */}
         <div className="mb-6">
@@ -361,8 +363,7 @@ export default function KrankengeldRechner() {
           </p>
         </div>
       </div>
-
-      {/* Zeitlicher Ablauf */}
+{/* Zeitlicher Ablauf */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📅 Zeitlicher Ablauf bei Krankheit</h3>
         
@@ -641,10 +642,7 @@ export default function KrankengeldRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Krankengeld-Rechner 2025 & 2026" rechnerSlug="krankengeld-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

@@ -221,7 +221,9 @@ export default function ArbeitstageRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Arbeitstage-Rechner 2026" rechnerSlug="arbeitstage-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">📅 Zeitraum wählen</h2>
         
@@ -357,8 +359,7 @@ export default function ArbeitstageRechner() {
               </div>
             </div>
           </div>
-          
-          {/* Detaillierte Aufstellung */}
+{/* Detaillierte Aufstellung */}
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
             <h3 className="font-semibold text-gray-800 mb-4">📊 Detaillierte Aufstellung</h3>
             
@@ -483,10 +484,7 @@ export default function ArbeitstageRechner() {
           <li>• Für arbeitsrechtliche Berechnungen konsultieren Sie bitte einen Rechtsanwalt</li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="Arbeitstage-Rechner 2026" rechnerSlug="arbeitstage-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="font-bold text-gray-700 mb-3">📚 Quellen</h3>
         <ul className="text-sm text-gray-600 space-y-1">

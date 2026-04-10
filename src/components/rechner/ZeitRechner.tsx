@@ -197,7 +197,9 @@ export default function ZeitRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Modus Auswahl */}
+      <RechnerFeedback rechnerName="Zeit-Rechner" rechnerSlug="zeit-rechner" />
+
+{/* Modus Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block text-gray-700 font-medium mb-3">Berechnungsart</label>
         <div className="space-y-3">
@@ -393,7 +395,7 @@ export default function ZeitRechner() {
             </div>
           </div>
         </div>
-      )}
+)}
 
       {/* Ergebnis: Differenz */}
       {modus === 'differenz' && (
@@ -603,10 +605,7 @@ export default function ZeitRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Zeit-Rechner" rechnerSlug="zeit-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Rechtliche Grundlagen</h4>
         <div className="space-y-1">

@@ -112,7 +112,9 @@ export default function DreisatzRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Proportionalität Auswahl */}
+      <RechnerFeedback rechnerName="Dreisatz-Rechner" rechnerSlug="dreisatz-rechner" />
+
+{/* Proportionalität Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block text-gray-700 font-medium mb-3">Art des Dreisatzes</label>
         <div className="space-y-3">
@@ -286,8 +288,7 @@ export default function DreisatzRechner() {
           </>
         )}
       </div>
-
-      {/* Schritt-für-Schritt Lösung */}
+{/* Schritt-für-Schritt Lösung */}
       {!ergebnis.fehler && (
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <h3 className="font-bold text-gray-800 mb-4">📐 Schritt-für-Schritt Lösung</h3>
@@ -462,10 +463,7 @@ export default function DreisatzRechner() {
           </table>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Dreisatz-Rechner" rechnerSlug="dreisatz-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Nützliche Ressourcen</h4>
         <div className="space-y-1">

@@ -170,7 +170,9 @@ export default function ScheidungskostenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Scheidungskosten-Rechner" rechnerSlug="scheidungskosten-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">💰 Finanzielle Situation</h3>
         
@@ -378,8 +380,7 @@ export default function ScheidungskostenRechner() {
           </div>
         </div>
       </div>
-
-      {/* Kostenaufschlüsselung */}
+{/* Kostenaufschlüsselung */}
       <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
         <h3 className="font-bold text-gray-800 mb-3">📋 Kostenaufschlüsselung</h3>
         
@@ -626,10 +627,7 @@ export default function ScheidungskostenRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Scheidungskosten-Rechner" rechnerSlug="scheidungskosten-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

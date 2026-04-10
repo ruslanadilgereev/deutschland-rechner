@@ -241,7 +241,9 @@ export default function BruchRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Operation Auswahl */}
+      <RechnerFeedback rechnerName="Bruchrechner" rechnerSlug="bruch-rechner" />
+
+{/* Operation Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block text-gray-700 font-medium mb-3">Rechenart</label>
         <div className="grid grid-cols-2 gap-3">
@@ -421,8 +423,7 @@ export default function BruchRechner() {
           </>
         )}
       </div>
-
-      {/* Schritt-für-Schritt Lösung */}
+{/* Schritt-für-Schritt Lösung */}
       {!ergebnis.fehler && (
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <h3 className="font-bold text-gray-800 mb-4">📐 Schritt-für-Schritt Lösung</h3>
@@ -716,10 +717,7 @@ export default function BruchRechner() {
           </table>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Bruchrechner" rechnerSlug="bruch-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Nützliche Ressourcen</h4>
         <div className="space-y-1">

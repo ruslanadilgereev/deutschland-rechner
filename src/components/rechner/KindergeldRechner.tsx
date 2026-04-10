@@ -13,7 +13,9 @@ export default function KindergeldRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Kindergeld-Rechner 2025 & 2026" rechnerSlug="kindergeld-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block mb-4">
           <span className="text-gray-700 font-medium">Anzahl Kinder</span>
@@ -56,8 +58,7 @@ export default function KindergeldRechner() {
           </div>
         </div>
       </div>
-
-      {/* Info Section */}
+{/* Info Section */}
       <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
         <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert's</h3>
         <ul className="space-y-2 text-sm text-gray-600">
@@ -160,10 +161,7 @@ export default function KindergeldRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Kindergeld-Rechner 2025 & 2026" rechnerSlug="kindergeld-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

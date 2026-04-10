@@ -161,7 +161,9 @@ export default function InflationsRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Inflationsrechner" rechnerSlug="inflations-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Ihre Eingaben</h2>
         
@@ -377,7 +379,7 @@ export default function InflationsRechner() {
             </div>
           )}
         </div>
-      )}
+)}
 
       {/* Grafik: Kaufkraftverlust über Zeit */}
       {result && result.jahreswerte.length > 0 && (
@@ -544,8 +546,7 @@ export default function InflationsRechner() {
             </p>
           </div>
         </div>
-      <RechnerFeedback rechnerName="Inflationsrechner" rechnerSlug="inflations-rechner" />
-      </div>
+</div>
     </div>
   );
 }

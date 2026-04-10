@@ -311,7 +311,9 @@ export default function FlugzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Schnellauswahl */}
+      <RechnerFeedback rechnerName="Flugzeit-Rechner" rechnerSlug="flugzeit-rechner" />
+
+{/* Schnellauswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">✈️ Beliebte Routen ab Deutschland</h3>
         <div className="grid grid-cols-4 gap-2">
@@ -480,8 +482,7 @@ export default function FlugzeitRechner() {
               </div>
             </div>
           </div>
-
-          {/* Detaillierte Infos */}
+{/* Detaillierte Infos */}
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
             <h3 className="font-bold text-gray-800 mb-4">⏰ Ankunftszeit-Berechnung</h3>
             
@@ -673,10 +674,7 @@ export default function FlugzeitRechner() {
           </li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="Flugzeit-Rechner" rechnerSlug="flugzeit-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Hinweise</h4>
         <div className="space-y-1 text-sm text-gray-600">

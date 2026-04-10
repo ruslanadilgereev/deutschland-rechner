@@ -325,7 +325,9 @@ export default function GeburtstagRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Geburtstag-Rechner" rechnerSlug="geburtstag-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
           <span className="text-2xl">🎉</span>
@@ -399,8 +401,7 @@ export default function GeburtstagRechner() {
               </div>
             </div>
           </div>
-
-          {/* Sternzeichen & Chinesisches Zeichen */}
+{/* Sternzeichen & Chinesisches Zeichen */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span>✨</span>
@@ -711,8 +712,7 @@ export default function GeburtstagRechner() {
             Erde, Metall, Wasser), die einen 60-Jahres-Zyklus bilden.
           </p>
         </div>
-      <RechnerFeedback rechnerName="Geburtstag-Rechner" rechnerSlug="geburtstag-rechner" />
-      </div>
+</div>
     </div>
   );
 }

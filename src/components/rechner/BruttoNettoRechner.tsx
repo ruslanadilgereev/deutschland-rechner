@@ -662,7 +662,9 @@ export default function BruttoNettoRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Brutto-Netto-Rechner 2025 & 2026" rechnerSlug="brutto-netto-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Brutto */}
         <div className="mb-6">
@@ -853,8 +855,7 @@ export default function BruttoNettoRechner() {
           </div>
         </div>
       </div>
-
-      {/* Aufschlüsselung */}
+{/* Aufschlüsselung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Abzüge im Detail</h3>
         
@@ -993,10 +994,7 @@ export default function BruttoNettoRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Brutto-Netto-Rechner 2025 & 2026" rechnerSlug="brutto-netto-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Rechtsgrundlagen & Quellen (Stand: 2026)</h4>
         <div className="space-y-1">

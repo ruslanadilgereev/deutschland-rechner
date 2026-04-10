@@ -243,7 +243,9 @@ export default function AbiSchnittRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Modus-Auswahl */}
+      <RechnerFeedback rechnerName="Abitur-Schnitt-Rechner 2025/2026" rechnerSlug="abi-schnitt-rechner" />
+
+{/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-4 mb-6">
         <div className="flex gap-2">
           <button
@@ -820,10 +822,7 @@ export default function AbiSchnittRechner() {
         </div>
         <p className="text-xs text-gray-500 mt-3 text-center">Bei 900 maximal erreichbaren Punkten</p>
       </div>
-
-            <RechnerFeedback rechnerName="Abitur-Schnitt-Rechner 2025/2026" rechnerSlug="abi-schnitt-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
@@ -849,5 +848,5 @@ export default function AbiSchnittRechner() {
         </div>
       </div>
     </div>
-  );
+);
 }

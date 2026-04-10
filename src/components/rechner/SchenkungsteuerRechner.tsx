@@ -186,7 +186,9 @@ export default function SchenkungsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Schenkungsteuer-Rechner 2025 & 2026" rechnerSlug="schenkungsteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Schenkungswert */}
         <div className="mb-6">
@@ -610,8 +612,7 @@ export default function SchenkungsteuerRechner() {
           </p>
         </div>
       </div>
-
-      {/* Steuertabelle */}
+{/* Steuertabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📋 Schenkungsteuer-Tabelle 2026</h3>
         
@@ -804,10 +805,7 @@ export default function SchenkungsteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Schenkungsteuer-Rechner 2025 & 2026" rechnerSlug="schenkungsteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

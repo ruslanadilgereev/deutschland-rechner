@@ -129,7 +129,9 @@ export default function QuadratmeterpreisRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Quadratmeterpreis-Rechner" rechnerSlug="quadratmeterpreis-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
           <span>📐</span> Ihre Immobiliendaten
@@ -262,7 +264,7 @@ export default function QuadratmeterpreisRechner() {
             </div>
           </div>
         </div>
-      )}
+)}
 
       {/* Vergleich Kauf vs. Miete */}
       {result && (
@@ -392,8 +394,7 @@ export default function QuadratmeterpreisRechner() {
             </div>
           </div>
         )}
-      <RechnerFeedback rechnerName="Quadratmeterpreis-Rechner" rechnerSlug="quadratmeterpreis-rechner" />
-      </div>
+</div>
     </div>
   );
 }

@@ -218,7 +218,9 @@ export default function ElektroautoRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Schnellvergleich oben */}
+      <RechnerFeedback rechnerName="E-Auto-Kosten-Rechner" rechnerSlug="elektroauto-rechner" />
+
+{/* Schnellvergleich oben */}
       <div className="bg-gradient-to-br from-blue-500 to-emerald-600 rounded-2xl shadow-lg p-6 text-white mb-6">
         <h3 className="text-sm font-medium opacity-80 mb-2">⚡ Kostenvergleich über {haltedauerJahre} Jahre / {formatNumber(ergebnis.gesamtKm, 0)} km</h3>
         
@@ -258,8 +260,7 @@ export default function ElektroautoRechner() {
           </div>
         </div>
       </div>
-
-      {/* Gemeinsame Parameter */}
+{/* Gemeinsame Parameter */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Nutzungsdaten</h3>
         
@@ -933,10 +934,7 @@ export default function ElektroautoRechner() {
           </li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="E-Auto-Kosten-Rechner" rechnerSlug="elektroauto-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Weiterführende Links</h4>
         <div className="space-y-1">

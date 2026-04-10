@@ -233,7 +233,9 @@ export default function BussgeldRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Kategorie-Auswahl */}
+      <RechnerFeedback rechnerName="Bußgeldrechner 2025 & 2026" rechnerSlug="bussgeld-rechner" />
+
+{/* Kategorie-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block mb-2">
           <span className="text-gray-700 font-medium">Art des Verstoßes</span>
@@ -784,10 +786,7 @@ export default function BussgeldRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Bußgeldrechner 2025 & 2026" rechnerSlug="bussgeld-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

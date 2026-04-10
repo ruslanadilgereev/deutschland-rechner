@@ -46,7 +46,9 @@ export default function GrunderwerbsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Grunderwerbsteuer-Rechner 2025 & 2026" rechnerSlug="grunderwerbsteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kaufpreis */}
         <div className="mb-6">
@@ -111,8 +113,7 @@ export default function GrunderwerbsteuerRechner() {
           </p>
         </div>
       </div>
-
-      {/* Vergleich alle Bundesländer */}
+{/* Vergleich alle Bundesländer */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">🗺️ Vergleich aller Bundesländer</h3>
         
@@ -268,10 +269,7 @@ export default function GrunderwerbsteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Grunderwerbsteuer-Rechner 2025 & 2026" rechnerSlug="grunderwerbsteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

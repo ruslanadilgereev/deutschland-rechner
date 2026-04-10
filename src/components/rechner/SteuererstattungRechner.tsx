@@ -276,7 +276,9 @@ export default function SteuererstattungRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Steuererstattung-Rechner 2025 & 2026" rechnerSlug="steuererstattung-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-2xl">📝</span>
@@ -441,8 +443,7 @@ export default function SteuererstattungRechner() {
           </p>
         </div>
       </div>
-      
-      {/* Aufschlüsselung */}
+{/* Aufschlüsselung */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-2xl">📊</span>
@@ -595,8 +596,7 @@ export default function SteuererstattungRechner() {
             </p>
           </div>
         </div>
-      <RechnerFeedback rechnerName="Steuererstattung-Rechner 2025 & 2026" rechnerSlug="steuererstattung-rechner" />
-      </div>
+</div>
     </div>
   );
 }

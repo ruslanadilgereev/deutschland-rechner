@@ -282,7 +282,9 @@ export default function ErwerbsminderungsrenteRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabeformular */}
+      <RechnerFeedback rechnerName="Erwerbsminderungsrente-Rechner 2026" rechnerSlug="erwerbsminderungsrente-rechner" />
+
+{/* Eingabeformular */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Persönliche Daten */}
@@ -509,8 +511,7 @@ export default function ErwerbsminderungsrenteRechner() {
                 {emTyp === 'voll' ? 'Volle' : 'Teilweise'} Erwerbsminderungsrente
               </p>
             </div>
-            
-            <div className="bg-gradient-to-br from-emerald-500 to-green-600 text-white rounded-2xl p-6">
+<div className="bg-gradient-to-br from-emerald-500 to-green-600 text-white rounded-2xl p-6">
               <p className="text-emerald-100 text-sm">Nettorente monatlich</p>
               <p className="text-3xl font-bold mt-1">{formatCurrency(ergebnis.nettorente)}</p>
               <p className="text-emerald-200 text-sm mt-2">
@@ -741,10 +742,7 @@ export default function ErwerbsminderungsrenteRechner() {
           </div>
         </div>
       </div>
-      
-            <RechnerFeedback rechnerName="Erwerbsminderungsrente-Rechner 2026" rechnerSlug="erwerbsminderungsrente-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

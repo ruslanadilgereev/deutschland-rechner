@@ -121,7 +121,9 @@ export default function EntfernungRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Entfernungs-Rechner 2026" rechnerSlug="entfernung-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Von Stadt */}
         <div className="mb-6">
@@ -240,8 +242,7 @@ export default function EntfernungRechner() {
               </div>
             </div>
           </div>
-
-          {/* Detaillierte Infos */}
+{/* Detaillierte Infos */}
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
             <h3 className="font-bold text-gray-800 mb-4">📊 Details zur Strecke</h3>
             
@@ -484,10 +485,7 @@ export default function EntfernungRechner() {
           Dabei ist R = 6.371 km (Erdradius), φ = Breitengrad, λ = Längengrad
         </p>
       </div>
-
-            <RechnerFeedback rechnerName="Entfernungs-Rechner 2026" rechnerSlug="entfernung-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">

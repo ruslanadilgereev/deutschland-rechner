@@ -131,7 +131,9 @@ export default function ZinseszinsRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Zinseszins-Rechner 2026" rechnerSlug="zinseszins-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         
         {/* Zinseszins Toggle */}
@@ -384,8 +386,7 @@ export default function ZinseszinsRechner() {
           </div>
         </div>
       </div>
-
-      {/* Berechnungsdetails */}
+{/* Berechnungsdetails */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Berechnungsdetails</h3>
 
@@ -664,10 +665,7 @@ export default function ZinseszinsRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Zinseszins-Rechner 2026" rechnerSlug="zinseszins-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

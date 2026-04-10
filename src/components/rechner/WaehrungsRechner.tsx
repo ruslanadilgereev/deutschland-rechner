@@ -56,7 +56,9 @@ export default function WaehrungsRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Hinweis-Banner */}
+      <RechnerFeedback rechnerName="Währungsrechner" rechnerSlug="waehrungs-rechner" />
+
+{/* Hinweis-Banner */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
         <div className="flex gap-3">
           <span className="text-xl">⚠️</span>
@@ -189,8 +191,7 @@ export default function WaehrungsRechner() {
           </div>
         </div>
       </div>
-
-      {/* Übersicht aller Kurse */}
+{/* Übersicht aller Kurse */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Alle Wechselkurse (1 EUR =)</h3>
         <div className="space-y-2">
@@ -379,10 +380,7 @@ export default function WaehrungsRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Währungsrechner" rechnerSlug="waehrungs-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

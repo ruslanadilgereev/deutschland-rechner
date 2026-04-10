@@ -227,7 +227,9 @@ export default function ErbschaftsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Erbschaftsteuer-Rechner 2026" rechnerSlug="erbschaftsteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Erbschaftswert */}
         <div className="mb-6">
@@ -845,10 +847,7 @@ export default function ErbschaftsteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Erbschaftsteuer-Rechner 2026" rechnerSlug="erbschaftsteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

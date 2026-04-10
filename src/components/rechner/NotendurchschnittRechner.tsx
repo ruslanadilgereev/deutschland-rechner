@@ -155,7 +155,9 @@ export default function NotendurchschnittRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Gewichtungs-Toggle */}
+      <RechnerFeedback rechnerName="Notendurchschnitt-Rechner" rechnerSlug="notendurchschnitt-rechner" />
+
+{/* Gewichtungs-Toggle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <div className="flex items-center justify-between">
           <div>
@@ -501,10 +503,7 @@ export default function NotendurchschnittRechner() {
           ))}
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Notendurchschnitt-Rechner" rechnerSlug="notendurchschnitt-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

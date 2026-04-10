@@ -151,7 +151,9 @@ export default function MaklerkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Einleitung */}
+      <RechnerFeedback rechnerName="Maklerkosten-Rechner" rechnerSlug="maklerkosten-rechner" />
+
+{/* Einleitung */}
       <div className="bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-2xl p-6 mb-6">
         <div className="flex items-start gap-4">
           <span className="text-4xl">🤵</span>
@@ -737,10 +739,7 @@ export default function MaklerkostenRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Maklerkosten-Rechner" rechnerSlug="maklerkosten-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

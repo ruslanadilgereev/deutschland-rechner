@@ -185,7 +185,9 @@ export default function GrundrenteRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Grundrente-Rechner 2025 & 2026" rechnerSlug="grundrente-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Grundrentenzeiten */}
         <div className="mb-6">
@@ -434,8 +436,7 @@ export default function GrundrenteRechner() {
         <p className="text-sm text-purple-600 mt-3">
           💡 Die Grundrente wird automatisch geprüft und ausgezahlt – kein Antrag nötig!
         </p>
-      <RechnerFeedback rechnerName="Grundrente-Rechner 2025 & 2026" rechnerSlug="grundrente-rechner" />
-      </div>
+</div>
     </div>
   );
 }

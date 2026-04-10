@@ -463,7 +463,9 @@ export default function NebenkostenRechner() {
   
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Nebenkosten-Rechner" rechnerSlug="nebenkosten-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-2xl">📝</span>
@@ -651,8 +653,7 @@ export default function NebenkostenRechner() {
               </div>
             </div>
           </div>
-          
-          {/* Aufschlüsselung */}
+{/* Aufschlüsselung */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <button
               onClick={() => setShowDetails(!showDetails)}
@@ -754,8 +755,7 @@ export default function NebenkostenRechner() {
             "zweite Miete" bilden.
           </p>
         </div>
-      <RechnerFeedback rechnerName="Nebenkosten-Rechner" rechnerSlug="nebenkosten-rechner" />
-      </div>
+</div>
     </div>
   );
 }

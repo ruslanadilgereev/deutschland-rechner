@@ -164,7 +164,9 @@ export default function EigenkapitalRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Eigenkapital-Rechner 2025 & 2026" rechnerSlug="eigenkapital-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kaufpreis */}
         <div className="mb-6">
@@ -657,10 +659,7 @@ export default function EigenkapitalRechner() {
           </li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="Eigenkapital-Rechner 2025 & 2026" rechnerSlug="eigenkapital-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Informationen</h4>
         <div className="space-y-1">

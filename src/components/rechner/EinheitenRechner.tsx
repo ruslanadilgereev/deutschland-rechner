@@ -233,7 +233,9 @@ export default function EinheitenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Kategorie-Auswahl */}
+      <RechnerFeedback rechnerName="Einheiten-Rechner" rechnerSlug="einheiten-rechner" />
+
+{/* Kategorie-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <label className="block text-gray-700 font-medium mb-3">Kategorie wählen</label>
         <div className="grid grid-cols-5 gap-2">
@@ -601,10 +603,7 @@ export default function EinheitenRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Einheiten-Rechner" rechnerSlug="einheiten-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

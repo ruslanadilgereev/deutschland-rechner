@@ -216,7 +216,9 @@ export default function ZeitzoneRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Schnellauswahl */}
+      <RechnerFeedback rechnerName="Zeitzonen-Rechner" rechnerSlug="zeitzone-rechner" />
+
+{/* Schnellauswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">⚡ Schnellauswahl</h3>
         <div className="flex flex-wrap gap-2">
@@ -422,8 +424,7 @@ export default function ZeitzoneRechner() {
           </div>
         </div>
       </div>
-
-      {/* Weltzeituhr */}
+{/* Weltzeituhr */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">🌍 Weltzeituhr</h3>
         <p className="text-sm text-gray-600 mb-4">
@@ -604,10 +605,7 @@ export default function ZeitzoneRechner() {
           </p>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Zeitzonen-Rechner" rechnerSlug="zeitzone-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Infos</h4>
         <div className="space-y-1">

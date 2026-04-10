@@ -226,7 +226,9 @@ export default function KryptoSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Transaktionen */}
+      <RechnerFeedback rechnerName="Krypto-Steuer-Rechner 2025 & 2026" rechnerSlug="krypto-steuer-rechner" />
+
+{/* Transaktionen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-xl">₿</span> Krypto-Verkäufe eingeben
@@ -476,7 +478,7 @@ export default function KryptoSteuerRechner() {
             </div>
           )}
         </div>
-      ) : ergebnis.gesamtGewinnBrutto <= 0 ? (
+) : ergebnis.gesamtGewinnBrutto <= 0 ? (
         <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl shadow-lg p-6 text-white mb-6">
           <div className="text-center">
             <span className="text-6xl mb-4 block">📉</span>
@@ -777,10 +779,7 @@ export default function KryptoSteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Krypto-Steuer-Rechner 2025 & 2026" rechnerSlug="krypto-steuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

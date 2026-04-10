@@ -210,7 +210,9 @@ export default function PromilleRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Warnung */}
+      <RechnerFeedback rechnerName="Promille-Rechner" rechnerSlug="promille-rechner" />
+
+{/* Warnung */}
       <div className="bg-red-50 border border-red-200 rounded-2xl p-4 mb-6">
         <div className="flex items-start gap-3">
           <span className="text-2xl">⚠️</span>
@@ -718,10 +720,7 @@ export default function PromilleRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Promille-Rechner" rechnerSlug="promille-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

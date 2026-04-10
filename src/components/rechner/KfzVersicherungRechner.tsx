@@ -124,7 +124,9 @@ export default function KfzVersicherungRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Wichtiger Hinweis */}
+      <RechnerFeedback rechnerName="Kfz-Versicherung-Rechner" rechnerSlug="versicherung-auto-rechner" />
+
+{/* Wichtiger Hinweis */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6">
         <div className="flex gap-3">
           <span className="text-2xl">⚠️</span>
@@ -433,8 +435,7 @@ export default function KfzVersicherungRechner() {
           </p>
         </div>
       </div>
-
-      {/* Vergleichsportale */}
+{/* Vergleichsportale */}
       <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
         <h3 className="font-bold text-blue-800 mb-3">🔍 Für exakte Tarife: Vergleichen Sie!</h3>
         <p className="text-sm text-blue-700 mb-4">
@@ -650,10 +651,7 @@ export default function KfzVersicherungRechner() {
           </li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="Kfz-Versicherung-Rechner" rechnerSlug="versicherung-auto-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Links</h4>
         <div className="space-y-1">

@@ -130,7 +130,9 @@ export default function VerlustvortragRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Eingabe: Zu versteuerndes Einkommen */}
+      <RechnerFeedback rechnerName="Verlustvortrag-Rechner 2025 & 2026" rechnerSlug="verlustvortrag-rechner" />
+
+{/* Eingabe: Zu versteuerndes Einkommen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-xl">💰</span> Zu versteuerndes Einkommen (zvE)
@@ -276,8 +278,7 @@ export default function VerlustvortragRechner() {
           </div>
         </div>
       </div>
-
-      {/* Restlicher Verlustvortrag */}
+{/* Restlicher Verlustvortrag */}
       {ergebnis.restlicherVerlustvortrag > 0 && (
         <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 mb-6">
           <h3 className="font-bold text-orange-800 mb-2 flex items-center gap-2">
@@ -557,10 +558,7 @@ export default function VerlustvortragRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Verlustvortrag-Rechner 2025 & 2026" rechnerSlug="verlustvortrag-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

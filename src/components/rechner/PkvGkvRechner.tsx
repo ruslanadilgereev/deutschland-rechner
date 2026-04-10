@@ -393,7 +393,9 @@ export default function PkvGkvRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="PKV-GKV-Vergleich-Rechner 2025 & 2026" rechnerSlug="pkv-gkv-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Ihre Angaben</h2>
         
@@ -672,8 +674,7 @@ export default function PkvGkvRechner() {
             <p className="text-xl font-bold">{formatEuro(ergebnis.gkvJahresbeitragAN)}</p>
           </div>
         </div>
-        
-        {/* PKV */}
+{/* PKV */}
         <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg p-6 text-white">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-2xl">🏛️</span>
@@ -1089,10 +1090,7 @@ export default function PkvGkvRechner() {
           </div>
         </div>
       </div>
-      
-            <RechnerFeedback rechnerName="PKV-GKV-Vergleich-Rechner 2025 & 2026" rechnerSlug="pkv-gkv-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-3">📚 Quellen & Rechtsgrundlagen</h3>
         <ul className="space-y-2 text-sm text-gray-600">

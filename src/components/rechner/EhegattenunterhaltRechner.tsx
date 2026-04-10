@@ -159,7 +159,9 @@ export default function EhegattenunterhaltRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Unterhaltsart Auswahl */}
+      <RechnerFeedback rechnerName="Ehegattenunterhalt-Rechner 2025 & 2026" rechnerSlug="ehegattenunterhalt-rechner" />
+
+{/* Unterhaltsart Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">💔 Art des Unterhalts</h3>
         <div className="grid grid-cols-2 gap-3">
@@ -404,8 +406,7 @@ export default function EhegattenunterhaltRechner() {
           </div>
         </div>
       </div>
-
-      {/* Berechnungsdetails */}
+{/* Berechnungsdetails */}
       <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
         <h3 className="font-bold text-gray-800 mb-3">📊 Berechnungsdetails</h3>
         <div className="space-y-3">
@@ -701,10 +702,7 @@ export default function EhegattenunterhaltRechner() {
           </table>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Ehegattenunterhalt-Rechner 2025 & 2026" rechnerSlug="ehegattenunterhalt-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

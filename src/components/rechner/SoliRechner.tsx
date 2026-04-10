@@ -213,7 +213,9 @@ export default function SoliRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Soli-Rechner 2026" rechnerSlug="soli-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Jahr */}
         <div className="mb-6">
@@ -792,10 +794,7 @@ export default function SoliRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Soli-Rechner 2026" rechnerSlug="soli-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

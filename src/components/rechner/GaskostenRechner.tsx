@@ -102,7 +102,9 @@ export default function GaskostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Gaskosten-Rechner" rechnerSlug="gaskosten-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Modus-Auswahl */}
         <div className="mb-6">
@@ -359,8 +361,7 @@ export default function GaskostenRechner() {
           </div>
         </div>
       </div>
-
-      {/* Vergleiche */}
+{/* Vergleiche */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {/* Vergleich zum Durchschnitt */}
         <div className="bg-white rounded-2xl shadow-lg p-5">
@@ -433,8 +434,7 @@ export default function GaskostenRechner() {
             kann mehrere Hundert Euro pro Jahr sparen.
           </li>
         </ul>
-      <RechnerFeedback rechnerName="Gaskosten-Rechner" rechnerSlug="gaskosten-rechner" />
-      </div>
+</div>
     </div>
   );
 }

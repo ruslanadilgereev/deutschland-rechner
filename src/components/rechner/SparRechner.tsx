@@ -131,7 +131,9 @@ export default function SparRechner() {
 
   return (
     <div className="space-y-6">
-      {/* Eingabebereich */}
+      <RechnerFeedback rechnerName="Spar-Rechner" rechnerSlug="spar-rechner" />
+
+{/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Deine Spar-Daten</h2>
         
@@ -301,7 +303,7 @@ export default function SparRechner() {
             </p>
           </div>
         </div>
-      )}
+)}
 
       {/* Vermögensentwicklung Balken */}
       {result && (
@@ -610,10 +612,7 @@ export default function SparRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Spar-Rechner" rechnerSlug="spar-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="font-semibold text-gray-700 mb-3">📚 Quellen & Rechtliche Grundlagen</h3>
         <ul className="space-y-1 text-sm text-gray-600">

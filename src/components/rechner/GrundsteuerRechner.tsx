@@ -200,7 +200,9 @@ export default function GrundsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Grundsteuer-Rechner 2026" rechnerSlug="grundsteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Bundesland */}
         <div className="mb-6">
@@ -462,8 +464,7 @@ export default function GrundsteuerRechner() {
           </p>
         </div>
       </div>
-
-      {/* Berechnungsdetails */}
+{/* Berechnungsdetails */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Berechnungsweg</h3>
         
@@ -656,10 +657,7 @@ export default function GrundsteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Grundsteuer-Rechner 2026" rechnerSlug="grundsteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

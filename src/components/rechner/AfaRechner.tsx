@@ -124,7 +124,9 @@ export default function AfaRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="AfA-Rechner 2025 & 2026" rechnerSlug="afa-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kaufpreis */}
         <div className="mb-6">
@@ -608,10 +610,7 @@ export default function AfaRechner() {
           </li>
         </ul>
       </div>
-
-            <RechnerFeedback rechnerName="AfA-Rechner 2025 & 2026" rechnerSlug="afa-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Rechtsgrundlagen</h4>
         <div className="space-y-1">

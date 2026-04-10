@@ -140,7 +140,9 @@ export default function PrivatinsolvenzRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Privatinsolvenz-Rechner" rechnerSlug="privatinsolvenz-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Nettoeinkommen */}
         <div className="mb-6">
@@ -220,8 +222,7 @@ export default function PrivatinsolvenzRechner() {
               : 'Kein pfändbares Einkommen'}
           </div>
         </div>
-
-        {/* Pfändbarer Betrag */}
+{/* Pfändbarer Betrag */}
         <div className={`rounded-2xl shadow-lg p-6 text-white ${
           ergebnis.pfaendbarerBetrag > 0
             ? 'bg-gradient-to-br from-red-500 to-rose-600'
@@ -519,10 +520,7 @@ export default function PrivatinsolvenzRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Privatinsolvenz-Rechner" rechnerSlug="privatinsolvenz-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

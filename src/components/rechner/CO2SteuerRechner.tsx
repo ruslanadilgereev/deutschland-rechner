@@ -155,7 +155,9 @@ export default function CO2SteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="CO2-Steuer-Rechner 2025 & 2026" rechnerSlug="co2-steuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Kraftstoffart */}
         <div className="mb-6">
@@ -326,8 +328,7 @@ export default function CO2SteuerRechner() {
           </div>
         </div>
       </div>
-
-      {/* CO2-Preis Entwicklung */}
+{/* CO2-Preis Entwicklung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-bold text-gray-800">📊 CO₂-Steuer Entwicklung</h3>
@@ -590,10 +591,7 @@ export default function CO2SteuerRechner() {
           <strong> Emissionszertifikate</strong> umgesetzt, die Unternehmen kaufen müssen.
         </p>
       </div>
-
-            <RechnerFeedback rechnerName="CO2-Steuer-Rechner 2025 & 2026" rechnerSlug="co2-steuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">

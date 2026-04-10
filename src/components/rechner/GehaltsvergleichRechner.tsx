@@ -193,7 +193,9 @@ export default function GehaltsvergleichRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Eingabe-Sektion */}
+      <RechnerFeedback rechnerName="Gehaltsvergleich-Rechner" rechnerSlug="gehaltsvergleich-rechner" />
+
+{/* Eingabe-Sektion */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">💰 Ihr Bruttogehalt</h3>
         
@@ -661,10 +663,7 @@ export default function GehaltsvergleichRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Gehaltsvergleich-Rechner" rechnerSlug="gehaltsvergleich-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

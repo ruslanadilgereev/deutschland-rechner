@@ -134,7 +134,9 @@ export default function GewerbesteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Input Section */}
+      <RechnerFeedback rechnerName="Gewerbesteuer-Rechner 2025 & 2026" rechnerSlug="gewerbesteuer-rechner" />
+
+{/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Rechtsform */}
         <div className="mb-6">
@@ -419,8 +421,7 @@ export default function GewerbesteuerRechner() {
           </div>
         )}
       </div>
-
-      {/* Berechnungsdetails */}
+{/* Berechnungsdetails */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Berechnungsdetails</h3>
         
@@ -692,10 +693,7 @@ export default function GewerbesteuerRechner() {
           </div>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Gewerbesteuer-Rechner 2025 & 2026" rechnerSlug="gewerbesteuer-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">

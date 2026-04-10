@@ -169,7 +169,9 @@ export default function HaushaltshilfeRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Art der Beschäftigung */}
+      <RechnerFeedback rechnerName="Haushaltshilfe-Rechner 2025 & 2026" rechnerSlug="haushaltshilfe-rechner" />
+
+{/* Art der Beschäftigung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span className="text-2xl">🏠</span>
@@ -874,10 +876,7 @@ export default function HaushaltshilfeRechner() {
           </a>
         </div>
       </div>
-
-            <RechnerFeedback rechnerName="Haushaltshilfe-Rechner 2025 & 2026" rechnerSlug="haushaltshilfe-rechner" />
-
-      {/* Quellen */}
+{/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">
           Quellen & Rechtsgrundlagen

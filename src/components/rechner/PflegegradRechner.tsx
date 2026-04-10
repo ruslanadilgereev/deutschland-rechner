@@ -626,7 +626,9 @@ export default function PflegegradRechner() {
     
     return (
       <div className="max-w-2xl mx-auto">
-        {/* Ergebnis */}
+      <RechnerFeedback rechnerName="Pflegegrad-Rechner 2025 & 2026" rechnerSlug="pflegegrad-rechner" />
+
+{/* Ergebnis */}
         <div className={`rounded-2xl shadow-lg p-6 mb-6 text-white bg-gradient-to-br ${gradColors[ergebnis.pflegegrad]}`}>
           <div className="text-center mb-4">
             <p className="text-sm opacity-90 mb-2">Ihr geschätzter Pflegegrad</p>
@@ -956,8 +958,7 @@ export default function PflegegradRechner() {
         <p className="text-sm text-gray-500">
           Geschätzter Pflegegrad: <strong>{ergebnis.pflegegradName}</strong>
         </p>
-      <RechnerFeedback rechnerName="Pflegegrad-Rechner 2025 & 2026" rechnerSlug="pflegegrad-rechner" />
-      </div>
+</div>
     </div>
   );
 }
