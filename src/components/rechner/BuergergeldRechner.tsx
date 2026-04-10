@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // Bürgergeld Berechnungsgrundlagen 2025/2026
@@ -458,6 +459,8 @@ export default function BuergergeldRechner() {
           <p className="text-xs mt-2">Quelle: Bundeskabinett-Beschluss vom 17.12.2025, Bundestag berät aktuell</p>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Bürgergeld-Rechner 2025 & 2026" rechnerSlug="buergergeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface Fach {
   id: string;
@@ -500,6 +501,8 @@ export default function NotendurchschnittRechner() {
           ))}
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Notendurchschnitt-Rechner" rechnerSlug="notendurchschnitt-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

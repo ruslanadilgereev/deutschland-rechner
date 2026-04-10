@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Mütterrente-Rechner 2025/2026
@@ -377,6 +378,8 @@ export default function MuetterrenteRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Mütterrente-Rechner 2025 & 2026" rechnerSlug="muetterrente-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

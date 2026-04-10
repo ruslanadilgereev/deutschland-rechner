@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface HundesteuerDaten {
   stadt: string;
@@ -295,7 +296,8 @@ export default function HundesteuerRechner() {
                 </p>
               </div>
             </div>
-          </div>
+          <RechnerFeedback rechnerName="Hundesteuer-Rechner" rechnerSlug="hundesteuer-rechner" />
+      </div>
         </>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Berechnung der Gebühr nach GNotKG § 34 Tabelle B
@@ -587,6 +588,8 @@ export default function NotarkostenRechner() {
           </li>
         </ol>
       </div>
+
+            <RechnerFeedback rechnerName="" rechnerSlug="notarkosten-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

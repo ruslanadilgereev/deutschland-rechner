@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Frührente-Rechner 2026 - Quellen: Deutsche Rentenversicherung
 // Stand: Aktuelle Regelaltersgrenzen nach SGB VI
@@ -690,6 +691,8 @@ export default function FruehrenteRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Frührente-Rechner 2025 & 2026" rechnerSlug="fruehrente-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

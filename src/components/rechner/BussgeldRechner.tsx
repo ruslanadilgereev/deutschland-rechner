@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // BUSSELDKATALOG 2024 - Aktuelle Werte
@@ -783,6 +784,8 @@ export default function BussgeldRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Bußgeldrechner 2025 & 2026" rechnerSlug="bussgeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

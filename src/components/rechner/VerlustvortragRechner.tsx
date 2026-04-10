@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Verlustvortrag nach §10d EStG
 // Bis 1 Mio € = 100% verrechenbar
@@ -556,6 +557,8 @@ export default function VerlustvortragRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Verlustvortrag-Rechner 2025 & 2026" rechnerSlug="verlustvortrag-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

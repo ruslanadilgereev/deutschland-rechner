@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Nebenkosten-Rechner 2026
@@ -753,6 +754,7 @@ export default function NebenkostenRechner() {
             "zweite Miete" bilden.
           </p>
         </div>
+      <RechnerFeedback rechnerName="Nebenkosten-Rechner" rechnerSlug="nebenkosten-rechner" />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Durchschnittsverbrauch in kWh/Jahr nach Haushaltsgröße
 // Quelle: BDEW, co2online (Stand 2025)
@@ -372,6 +373,7 @@ export default function StromkostenRechner() {
             dass ein Wechsel oft 100-300 € pro Jahr sparen kann.
           </li>
         </ul>
+      <RechnerFeedback rechnerName="Stromkosten-Rechner" rechnerSlug="stromkosten-rechner" />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * STEUERKLASSENRECHNER 2026
@@ -925,6 +926,8 @@ export default function SteuerklassenRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Steuerklassen-Rechner 2026" rechnerSlug="steuerklassen-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

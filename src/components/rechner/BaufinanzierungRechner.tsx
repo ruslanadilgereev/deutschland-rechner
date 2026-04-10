@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface BaufinanzierungResult {
   monatlicheRate: number;
@@ -574,6 +575,8 @@ export default function BaufinanzierungRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Baufinanzierung-Rechner" rechnerSlug="baufinanzierung-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Einkommensteuer 2026 – nach §32a EStG
 // Grundfreibetrag: 12.348 € (kalte Progression angepasst)
@@ -847,6 +848,8 @@ export default function EinkommensteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Einkommensteuer-Rechner 2026" rechnerSlug="einkommensteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Beispiel-Staffelrabatte
 const STAFFELRABATTE_BEISPIELE = [
@@ -471,7 +472,8 @@ export default function RabattRechner() {
                 </p>
               </div>
             </div>
-          </div>
+          <RechnerFeedback rechnerName="Rabatt-Rechner" rechnerSlug="rabatt-rechner" />
+      </div>
         </>
       )}
     </div>

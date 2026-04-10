@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface FruchtbarkeitTag {
   datum: Date;
@@ -687,6 +688,8 @@ export default function EisprungRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Eisprung-Rechner" rechnerSlug="eisprung-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

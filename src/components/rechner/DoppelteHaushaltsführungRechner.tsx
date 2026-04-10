@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Doppelte Haushaltsführung - Steuerliche Absetzbarkeit
@@ -720,6 +721,8 @@ export default function DoppelteHaushaltsführungRechner() {
           </a>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Doppelte Haushaltsführung Rechner 2025 & 2026" rechnerSlug="doppelte-haushaltsfuehrung-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

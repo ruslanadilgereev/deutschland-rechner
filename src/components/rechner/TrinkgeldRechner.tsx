@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 type Rundungsmodus = 'keine' | 'auf50cent' | 'auf1euro';
 
@@ -430,7 +431,8 @@ export default function TrinkgeldRechner() {
                 </p>
               </div>
             </div>
-          </div>
+          <RechnerFeedback rechnerName="Trinkgeld-Rechner" rechnerSlug="trinkgeld-rechner" />
+      </div>
         </>
       )}
     </div>

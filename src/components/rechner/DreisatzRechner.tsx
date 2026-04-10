@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 type Proportionalitaet = 'direkt' | 'indirekt';
 
@@ -461,6 +462,8 @@ export default function DreisatzRechner() {
           </table>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Dreisatz-Rechner" rechnerSlug="dreisatz-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

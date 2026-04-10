@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Gerichtskosten nach FamGKG § 28 (Anlage 2) - Stand KostBRÄG 2025 (seit 01.06.2025)
 // Einfache Gebühr (1,0) - Scheidungsverfahren: 2 Gebühren
@@ -625,6 +626,8 @@ export default function ScheidungskostenRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Scheidungskosten-Rechner" rechnerSlug="scheidungskosten-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

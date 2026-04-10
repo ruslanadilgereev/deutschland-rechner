@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // DESTATIS Daten 2024 - Bruttojahresverdienste Vollzeit
@@ -660,6 +661,8 @@ export default function GehaltsvergleichRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Gehaltsvergleich-Rechner" rechnerSlug="gehaltsvergleich-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

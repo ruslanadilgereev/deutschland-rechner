@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Bundesländer mit Mietpreisbremse-Verordnungen (Stand Januar 2026)
 interface Bundesland {
@@ -748,6 +749,8 @@ export default function MietpreisbremseRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Mietpreisbremse-Rechner" rechnerSlug="mietpreisbremse-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

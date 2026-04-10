@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // OFFIZIELLE WERTE 2026 nach §62 SGB V
@@ -788,6 +789,8 @@ export default function ZuzahlungRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Zuzahlungsbefreiung-Rechner 2026" rechnerSlug="zuzahlung-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

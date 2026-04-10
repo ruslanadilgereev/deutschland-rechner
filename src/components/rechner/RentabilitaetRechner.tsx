@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 type Modus = 'gewinn' | 'endwert';
 
@@ -522,7 +523,8 @@ export default function RentabilitaetRechner() {
                 </p>
               </div>
             </div>
-          </div>
+          <RechnerFeedback rechnerName="Rentabilitäts-Rechner" rechnerSlug="rentabilitaets-rechner" />
+      </div>
         </>
       )}
     </div>

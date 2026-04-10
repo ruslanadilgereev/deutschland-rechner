@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Maklerkosten-Rechner für Immobilien in Deutschland
@@ -736,6 +737,8 @@ export default function MaklerkostenRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Maklerkosten-Rechner" rechnerSlug="maklerkosten-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

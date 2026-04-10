@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Durchschnittsverbrauch in kWh/Jahr nach Haushaltsgröße (Gasheizung + Warmwasser)
 // Quelle: BDEW, co2online, Verivox (Stand 2025/2026)
@@ -432,6 +433,7 @@ export default function GaskostenRechner() {
             kann mehrere Hundert Euro pro Jahr sparen.
           </li>
         </ul>
+      <RechnerFeedback rechnerName="Gaskosten-Rechner" rechnerSlug="gaskosten-rechner" />
       </div>
     </div>
   );

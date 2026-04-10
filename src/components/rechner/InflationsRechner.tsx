@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Historische Inflationsraten Deutschland (Quelle: Statistisches Bundesamt)
 const HISTORISCHE_INFLATION: Record<number, number> = {
@@ -543,6 +544,7 @@ export default function InflationsRechner() {
             </p>
           </div>
         </div>
+      <RechnerFeedback rechnerName="Inflationsrechner" rechnerSlug="inflations-rechner" />
       </div>
     </div>
   );

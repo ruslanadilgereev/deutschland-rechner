@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Naegele-Regel: ET = LMP + 280 Tage (40 Wochen)
 const SCHWANGERSCHAFT_TAGE = 280;
@@ -559,6 +560,8 @@ export default function GeburtsterminRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Geburtstermin-Rechner" rechnerSlug="geburtstermin-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Pendlerpauschale 2026 - Neue einheitliche Pauschale ab 01.01.2026!
 // Quelle: https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html
@@ -276,6 +277,8 @@ export default function PendlerpauschaleRechner() {
           </p>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Pendlerpauschale-Rechner" rechnerSlug="pendlerpauschale-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // GKV-Krankenkassenbeitrag-Rechner 2026 - Offizielle Berechnungsformeln
@@ -714,6 +715,8 @@ export default function KrankenkassenbeitragRechner() {
         </div>
       </div>
       
+            <RechnerFeedback rechnerName="Krankenkassenbeitrag-Rechner 2025 & 2026" rechnerSlug="krankenkassenbeitrag-rechner" />
+
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-3">📚 Quellen & Rechtsgrundlagen</h3>

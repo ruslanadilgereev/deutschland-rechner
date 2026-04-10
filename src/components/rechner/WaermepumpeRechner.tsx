@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // BAFA-Förderung 2026 (Bundesförderung für effiziente Gebäude)
 // Quelle: BAFA, KfW, BMWi
@@ -786,6 +787,7 @@ export default function WaermepumpeRechner() {
             für Wärmepumpen (ca. 25-35 ct/kWh statt 35-42 ct/kWh Haushaltsstrom).
           </li>
         </ul>
+      <RechnerFeedback rechnerName="Wärmepumpe-Rechner 2025 & 2026" rechnerSlug="waermepumpe-rechner" />
       </div>
     </div>
   );

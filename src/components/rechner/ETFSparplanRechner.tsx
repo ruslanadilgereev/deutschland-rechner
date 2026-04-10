@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface SparplanResult {
   endkapital: number;
@@ -583,6 +584,8 @@ export default function ETFSparplanRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="ETF-Sparplan-Rechner" rechnerSlug="etf-sparplan-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

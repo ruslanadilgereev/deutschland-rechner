@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Überstundenzuschläge (branchenüblich, nicht gesetzlich vorgeschrieben)
 const ZUSCHLAEGE = {
@@ -693,6 +694,8 @@ export default function UeberstundenRechner() {
           </details>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Überstunden-Rechner 2025 & 2026" rechnerSlug="ueberstunden-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

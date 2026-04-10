@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // Kurzarbeitergeld Berechnungsgrundlagen 2026
@@ -859,6 +860,8 @@ export default function KurzarbeitergeldRechner() {
           </a>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Kurzarbeitergeld-Rechner 2025 & 2026" rechnerSlug="kurzarbeitergeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Midijob / Übergangsbereich - Offizielle Berechnungsformeln
@@ -828,6 +829,8 @@ export default function MidijobRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Midijob-Rechner 2026" rechnerSlug="midijob-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Verpflegungspauschalen 2025/2026 (Inland)
 // Quelle: § 9 Abs. 4a EStG, BMF-Schreiben
@@ -801,6 +802,8 @@ export default function VerpflegungsmehraufwandRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Verpflegungsmehraufwand-Rechner 2025 & 2026" rechnerSlug="verpflegungsmehraufwand-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Kalorienverbrauch pro Stunde beim Radfahren (nach Körpergewicht)
 const KALORIEN_PRO_KM = {
@@ -710,6 +711,8 @@ export default function FahrradPendelnRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Fahrrad-Pendler-Rechner" rechnerSlug="fahrrad-pendeln-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

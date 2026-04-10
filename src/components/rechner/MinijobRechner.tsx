@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Minijob-Grenzen und Abgaben 2026
 // Quelle: Minijob-Zentrale, BMAS, DRV
@@ -533,6 +534,8 @@ export default function MinijobRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Minijob-Rechner 2026" rechnerSlug="minijob-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Destatis Sterbetafel 2021/2023 - Fernere Lebenserwartung nach Alter und Geschlecht
 // Quelle: Statistisches Bundesamt, Periodensterbetafeln für Deutschland
@@ -634,7 +635,9 @@ export default function LebenserwartungRechner() {
             </div>
           </div>
 
-          {/* Quellen */}
+                <RechnerFeedback rechnerName="Lebenserwartung Rechner" rechnerSlug="lebenserwartung-rechner" />
+
+      {/* Quellen */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span className="text-2xl">📚</span>

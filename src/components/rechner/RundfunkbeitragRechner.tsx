@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Rundfunkbeitrag-Daten 2026
 // Stand: Der Beitrag bleibt 18,36€ - die geplante Erhöhung auf 18,94€ wurde von den
@@ -595,6 +596,8 @@ export default function RundfunkbeitragRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Rundfunkbeitrag-Rechner 2025 & 2026" rechnerSlug="rundfunkbeitrag-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

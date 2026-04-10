@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Abfindungsrechner mit Fünftelregelung (§ 34 EStG)
@@ -744,6 +745,8 @@ export default function AbfindungsRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Abfindung Rechner 2025 & 2026" rechnerSlug="abfindung-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

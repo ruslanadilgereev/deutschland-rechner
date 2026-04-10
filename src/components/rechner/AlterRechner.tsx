@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 export default function AlterRechner() {
   const [geburtsdatum, setGeburtsdatum] = useState<string>('');
@@ -498,6 +499,7 @@ export default function AlterRechner() {
             wie viele Tage es noch bis zu deinem nächsten Geburtstag sind und an welchem Wochentag er fällt.
           </p>
         </div>
+      <RechnerFeedback rechnerName="Alter-Rechner" rechnerSlug="alter-rechner" />
       </div>
     </div>
   );

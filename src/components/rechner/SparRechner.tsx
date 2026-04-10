@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface SparResult {
   endkapital: number;
@@ -609,6 +610,8 @@ export default function SparRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Spar-Rechner" rechnerSlug="spar-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

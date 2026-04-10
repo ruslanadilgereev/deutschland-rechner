@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Haushaltshilfe-Rechner (§35a EStG) - Offizielle Berechnung
@@ -873,6 +874,8 @@ export default function HaushaltshilfeRechner() {
           </a>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Haushaltshilfe-Rechner 2025 & 2026" rechnerSlug="haushaltshilfe-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

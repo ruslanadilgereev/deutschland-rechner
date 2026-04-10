@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Standard Werte
 const WOCHEN_PRO_MONAT = 4.33; // 52/12
@@ -695,6 +696,8 @@ export default function TeilzeitRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Teilzeit-Rechner 2026" rechnerSlug="teilzeit-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

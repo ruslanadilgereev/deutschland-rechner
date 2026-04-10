@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Kindergeld 2026 (ab Januar 2026)
 // Quelle: https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer
@@ -159,6 +160,8 @@ export default function KindergeldRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Kindergeld-Rechner 2025 & 2026" rechnerSlug="kindergeld-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

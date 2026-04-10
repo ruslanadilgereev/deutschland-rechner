@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Hardcodierte Wechselkurse (EUR als Basis) - Stand: Februar 2026
 // Quelle: EZB-Referenzkurse (27.02.2026)
@@ -378,6 +379,8 @@ export default function WaehrungsRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Währungsrechner" rechnerSlug="waehrungs-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

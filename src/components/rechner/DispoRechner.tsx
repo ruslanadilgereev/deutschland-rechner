@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface DispoResult {
   zinskosten: number;
@@ -535,6 +536,8 @@ export default function DispoRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Dispo-Rechner" rechnerSlug="dispo-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

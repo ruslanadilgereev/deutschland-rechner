@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Selbstbehalt 2026 beim Ehegattenunterhalt
 const SELBSTBEHALT = {
@@ -700,6 +701,8 @@ export default function EhegattenunterhaltRechner() {
           </table>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Ehegattenunterhalt-Rechner 2025 & 2026" rechnerSlug="ehegattenunterhalt-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

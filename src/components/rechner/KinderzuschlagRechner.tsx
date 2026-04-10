@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Kinderzuschlag 2025/2026 - EXAKTE offizielle Berechnung
@@ -683,6 +684,8 @@ export default function KinderzuschlagRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Kinderzuschlag-Rechner 2025 & 2026" rechnerSlug="kinderzuschlag-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

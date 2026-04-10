@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Globalstrahlung in kWh/m² pro Jahr nach Region (Durchschnittswerte Deutschland)
 const GLOBALSTRAHLUNG_REGIONEN: Record<string, { name: string; strahlung: number }> = {
@@ -912,6 +913,8 @@ export default function PhotovoltaikRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Photovoltaik-Rechner 2025 & 2026" rechnerSlug="photovoltaik-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

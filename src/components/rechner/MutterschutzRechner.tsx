@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Mutterschutz & Mutterschaftsgeld 2025/2026 - EXAKTE offizielle Berechnung
@@ -537,6 +538,8 @@ export default function MutterschutzRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Mutterschutz-Rechner 2025 & 2026" rechnerSlug="mutterschutz-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

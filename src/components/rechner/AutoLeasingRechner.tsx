@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface LeasingErgebnis {
   monatlicheRate: number;
@@ -611,6 +612,8 @@ export default function AutoLeasingRechner() {
           </label>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Auto-Leasing-Rechner" rechnerSlug="autoleasing-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

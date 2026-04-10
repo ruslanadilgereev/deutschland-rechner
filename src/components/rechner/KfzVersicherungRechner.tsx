@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // SF-Klassen mit Beitragssätzen (prozentual zum Grundbeitrag)
 // Durchschnittswerte basierend auf GDV-Empfehlungen
@@ -649,6 +650,8 @@ export default function KfzVersicherungRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Kfz-Versicherung-Rechner" rechnerSlug="versicherung-auto-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

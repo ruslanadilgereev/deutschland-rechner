@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Pflegegeld 2025/2026 (keine Erhöhung 2026 - "Nullrunde")
 const PFLEGEGELD = {
@@ -626,6 +627,8 @@ export default function PflegegeldRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Pflegegeld-Rechner 2025 & 2026" rechnerSlug="pflegegeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

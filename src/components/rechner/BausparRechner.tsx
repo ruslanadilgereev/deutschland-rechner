@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 export default function BausparRechner() {
   const [bausparsumme, setBausparsumme] = useState<number>(50000);
@@ -365,7 +366,8 @@ export default function BausparRechner() {
                 </p>
               </div>
             </div>
-          </div>
+          <RechnerFeedback rechnerName="Bauspar-Rechner" rechnerSlug="bauspar-rechner" />
+      </div>
         </>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 export default function GeburtstagRechner() {
   const [geburtsdatum, setGeburtsdatum] = useState<string>('');
@@ -710,6 +711,7 @@ export default function GeburtstagRechner() {
             Erde, Metall, Wasser), die einen 60-Jahres-Zyklus bilden.
           </p>
         </div>
+      <RechnerFeedback rechnerName="Geburtstag-Rechner" rechnerSlug="geburtstag-rechner" />
       </div>
     </div>
   );

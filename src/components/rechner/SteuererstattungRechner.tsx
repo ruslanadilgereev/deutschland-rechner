@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Steuererstattungs-Rechner 2026
@@ -594,6 +595,7 @@ export default function SteuererstattungRechner() {
             </p>
           </div>
         </div>
+      <RechnerFeedback rechnerName="Steuererstattung-Rechner 2025 & 2026" rechnerSlug="steuererstattung-rechner" />
       </div>
     </div>
   );

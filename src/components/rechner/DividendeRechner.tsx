@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Abgeltungsteuer 2026 – 25% + 5,5% Soli = 26,375%
 const ABGELTUNGSTEUER_SATZ = 0.25;
@@ -596,6 +597,8 @@ export default function DividendeRechner() {
           </tbody>
         </table>
       </div>
+
+            <RechnerFeedback rechnerName="Dividenden-Rechner 2025 & 2026" rechnerSlug="dividende-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

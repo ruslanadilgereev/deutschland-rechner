@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface QuadratmeterpreisResult {
   preisProQm: number;
@@ -391,6 +392,7 @@ export default function QuadratmeterpreisRechner() {
             </div>
           </div>
         )}
+      <RechnerFeedback rechnerName="Quadratmeterpreis-Rechner" rechnerSlug="quadratmeterpreis-rechner" />
       </div>
     </div>
   );

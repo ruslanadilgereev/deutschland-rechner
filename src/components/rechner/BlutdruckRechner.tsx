@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Blutdruck-Kategorien nach WHO/ESH (European Society of Hypertension)
 const BLUTDRUCK_KATEGORIEN = [
@@ -548,7 +549,9 @@ export default function BlutdruckRechner() {
             </div>
           </div>
 
-          {/* Quellen */}
+                <RechnerFeedback rechnerName="Blutdruck-Rechner" rechnerSlug="blutdruck-rechner" />
+
+      {/* Quellen */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
               <span className="text-2xl">📚</span>

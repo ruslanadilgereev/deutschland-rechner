@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Rentenlücke-Rechner 2025/2026
 // Quellen: Deutsche Rentenversicherung, Stiftung Warentest, BMAS
@@ -760,6 +761,8 @@ export default function RentenlueckeRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Rentenlücke-Rechner 2026" rechnerSlug="rentenluecke-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // VL & Arbeitnehmersparzulage 2026
 // Quelle: §13 VermBG, §19a EStG
@@ -599,6 +600,8 @@ export default function VLRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="VL-Rechner 2025 & 2026" rechnerSlug="vl-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

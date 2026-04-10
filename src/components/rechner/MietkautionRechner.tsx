@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface ZinsJahr {
   jahr: number;
@@ -601,6 +602,8 @@ export default function MietkautionRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Mietkaution-Rechner" rechnerSlug="mietkaution-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

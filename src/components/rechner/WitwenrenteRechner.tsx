@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // === OFFIZIELLE WERTE 2026 (Stand: 1. Juli 2025 - 30. Juni 2026) ===
 // Quelle: Deutsche Rentenversicherung, § 46 SGB VI, § 97 SGB VI
@@ -812,6 +813,8 @@ export default function WitwenrenteRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Witwenrente-Rechner 2026" rechnerSlug="witwenrente-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

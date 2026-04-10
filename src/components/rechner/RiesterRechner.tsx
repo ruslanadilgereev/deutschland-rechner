@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 export default function RiesterRechner() {
   // Eingabewerte
@@ -654,6 +655,8 @@ export default function RiesterRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Riester-Rechner 2025 & 2026" rechnerSlug="riester-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

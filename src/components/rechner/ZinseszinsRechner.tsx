@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface JahresWert {
   jahr: number;
@@ -663,6 +664,8 @@ export default function ZinseszinsRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Zinseszins-Rechner 2026" rechnerSlug="zinseszins-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

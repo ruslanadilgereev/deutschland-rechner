@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // NBA (Neues Begutachtungsassessment) - Vereinfachter Pflegegrad-Rechner
 // Quellen: MDK, BMG, SGB XI
@@ -955,6 +956,7 @@ export default function PflegegradRechner() {
         <p className="text-sm text-gray-500">
           Geschätzter Pflegegrad: <strong>{ergebnis.pflegegradName}</strong>
         </p>
+      <RechnerFeedback rechnerName="Pflegegrad-Rechner 2025 & 2026" rechnerSlug="pflegegrad-rechner" />
       </div>
     </div>
   );

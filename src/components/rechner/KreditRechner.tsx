@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Tilgungsplan-Zeile
 interface TilgungsPlanZeile {
@@ -601,6 +602,8 @@ export default function KreditRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Kreditrechner" rechnerSlug="kredit-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

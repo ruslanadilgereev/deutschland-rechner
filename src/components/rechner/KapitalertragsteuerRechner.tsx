@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Kapitalertragsteuer 2026 – Abgeltungsteuer + Soli + Kirchensteuer
 const ABGELTUNGSTEUER_SATZ = 0.25; // 25% Abgeltungsteuer
@@ -718,6 +719,8 @@ export default function KapitalertragsteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Kapitalertragsteuer-Rechner 2025 & 2026" rechnerSlug="kapitalertragsteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

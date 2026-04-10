@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Fahrzeugkategorien mit typischen Wertverlustraten (degressiv, pro Jahr)
 type FahrzeugKategorie = 'kleinwagen' | 'kompakt' | 'mittelklasse' | 'oberklasse' | 'suv' | 'sportwagen' | 'transporter' | 'elektro';
@@ -681,6 +682,8 @@ export default function RestwertRechner() {
           professionelle Bewertungsdienste wie DAT oder Schwacke.
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Restwert-Rechner" rechnerSlug="restwert-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

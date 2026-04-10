@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Deutsche Durchschnittswerte für Hochzeitskosten
 // Quellen: Statista, Hochzeitsportal24, diverse Hochzeitsplaner-Studien
@@ -831,6 +832,7 @@ export default function HochzeitRechner() {
             </p>
           </div>
         </div>
+      <RechnerFeedback rechnerName="Hochzeitskosten-Rechner" rechnerSlug="hochzeit-rechner" />
       </div>
     </div>
   );

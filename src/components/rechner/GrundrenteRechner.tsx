@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Grundrente-Rechner 2026 - Quellen: Deutsche Rentenversicherung, BMAS
 // Stand: Werte ab 01.01.2026
@@ -433,6 +434,7 @@ export default function GrundrenteRechner() {
         <p className="text-sm text-purple-600 mt-3">
           💡 Die Grundrente wird automatisch geprüft und ausgezahlt – kein Antrag nötig!
         </p>
+      <RechnerFeedback rechnerName="Grundrente-Rechner 2025 & 2026" rechnerSlug="grundrente-rechner" />
       </div>
     </div>
   );

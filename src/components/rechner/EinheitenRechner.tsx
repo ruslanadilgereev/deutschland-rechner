@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Kategorien mit ihren Einheiten
 const KATEGORIEN = {
@@ -600,6 +601,8 @@ export default function EinheitenRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Einheiten-Rechner" rechnerSlug="einheiten-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

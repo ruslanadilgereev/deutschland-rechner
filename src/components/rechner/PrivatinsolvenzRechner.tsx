@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // Pfändungsfreigrenzen 2025/2026 nach § 850c ZPO
@@ -518,6 +519,8 @@ export default function PrivatinsolvenzRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Privatinsolvenz-Rechner" rechnerSlug="privatinsolvenz-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

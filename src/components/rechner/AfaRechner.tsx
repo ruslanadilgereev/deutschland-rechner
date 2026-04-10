@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // AfA-Sätze nach Baujahr gemäß §7 Abs. 4 EStG
 // Quelle: https://www.gesetze-im-internet.de/estg/__7.html
@@ -607,6 +608,8 @@ export default function AfaRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="AfA-Rechner 2025 & 2026" rechnerSlug="afa-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

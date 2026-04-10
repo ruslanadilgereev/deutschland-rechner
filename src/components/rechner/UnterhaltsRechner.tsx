@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Düsseldorfer Tabelle 2026 (gültig ab 01.01.2026)
 // Quelle: OLG Düsseldorf, Unterhaltsleitlinien
@@ -422,6 +423,8 @@ export default function UnterhaltsRechner() {
           Vollständige Tabelle: 15 Einkommensgruppen bis 9.700 €+ Netto
         </p>
       </div>
+
+            <RechnerFeedback rechnerName="Unterhalt-Rechner 2025 & 2026" rechnerSlug="unterhalt-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // ALG I Berechnungsgrundlagen 2026
@@ -749,6 +750,8 @@ export default function ArbeitslosengeldRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Arbeitslosengeld-Rechner 2026" rechnerSlug="arbeitslosengeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

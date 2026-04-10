@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Grunderwerbsteuer nach Bundesland (Stand 2026)
 // Quelle: §11 GrEStG, Ländersteuersätze
@@ -650,6 +651,8 @@ export default function KaufnebenkostenRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Kaufnebenkosten-Rechner 2025 & 2026" rechnerSlug="kaufnebenkosten-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

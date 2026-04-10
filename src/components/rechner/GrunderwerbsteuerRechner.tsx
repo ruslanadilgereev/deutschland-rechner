@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Grunderwerbsteuer-Sätze nach Bundesland (Stand 2026)
 // Letzte Änderung: Bremen von 5,0% auf 5,5% erhöht (01.07.2025)
@@ -267,6 +268,8 @@ export default function GrunderwerbsteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Grunderwerbsteuer-Rechner 2025 & 2026" rechnerSlug="grunderwerbsteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

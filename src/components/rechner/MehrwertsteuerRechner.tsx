@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // MwSt-Sätze in Deutschland
 const MWST_SAETZE = [
@@ -318,6 +319,8 @@ export default function MehrwertsteuerRechner() {
           </table>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Mehrwertsteuer-Rechner" rechnerSlug="mehrwertsteuer-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

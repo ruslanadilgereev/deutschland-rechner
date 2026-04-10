@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Arbeitstage-Rechner: Zählt Arbeitstage zwischen zwei Daten
 // Berücksichtigt Wochenenden und gesetzliche Feiertage nach Bundesland
@@ -482,6 +483,8 @@ export default function ArbeitstageRechner() {
           <li>• Für arbeitsrechtliche Berechnungen konsultieren Sie bitte einen Rechtsanwalt</li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Arbeitstage-Rechner 2026" rechnerSlug="arbeitstage-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

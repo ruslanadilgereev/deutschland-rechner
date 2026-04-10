@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Offizielle Mindestlohn-Daten (Quelle: Mindestlohnkommission)
 const MINDESTLOHN = {
@@ -598,6 +599,8 @@ export default function MindestlohnRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Mindestlohn-Rechner 2025 & 2026" rechnerSlug="mindestlohn-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

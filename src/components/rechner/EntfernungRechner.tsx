@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Top 20 deutsche Großstädte mit Koordinaten (für Luftlinienberechnung)
 interface Stadt {
@@ -483,6 +484,8 @@ export default function EntfernungRechner() {
           Dabei ist R = 6.371 km (Erdradius), φ = Breitengrad, λ = Längengrad
         </p>
       </div>
+
+            <RechnerFeedback rechnerName="Entfernungs-Rechner 2026" rechnerSlug="entfernung-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

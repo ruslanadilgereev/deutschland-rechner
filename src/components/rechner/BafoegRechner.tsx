@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // BAföG Bedarfssätze 2026 (gültig seit WS 2024/25, unverändert für 2026)
 // Quelle: https://www.bafög.de
@@ -574,6 +575,8 @@ export default function BafoegRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="BAföG-Rechner 2026" rechnerSlug="bafoeg-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

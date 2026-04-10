@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Erbschaftsteuer-Klassen basierend auf Verwandtschaftsverhältnis
 // Quelle: § 15 ErbStG
@@ -844,6 +845,8 @@ export default function ErbschaftsteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Erbschaftsteuer-Rechner 2026" rechnerSlug="erbschaftsteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

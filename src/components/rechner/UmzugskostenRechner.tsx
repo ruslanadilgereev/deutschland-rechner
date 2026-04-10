@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // PLZ zu ungefähre Koordinaten (Mittelpunkte der PLZ-Regionen)
 const plzKoordinaten: Record<string, { lat: number; lon: number; name: string }> = {
@@ -636,6 +637,7 @@ export default function UmzugskostenRechner() {
           Tatsächliche Preise können je nach Region, Saison und individuellen Anforderungen abweichen. 
           Holen Sie immer mehrere Angebote ein!
         </p>
+      <RechnerFeedback rechnerName="Umzugskosten-Rechner" rechnerSlug="umzugskosten-rechner" />
       </div>
     </div>
   );

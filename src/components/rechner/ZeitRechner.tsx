@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 type Modus = 'addieren' | 'differenz';
 
@@ -602,6 +603,8 @@ export default function ZeitRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Zeit-Rechner" rechnerSlug="zeit-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

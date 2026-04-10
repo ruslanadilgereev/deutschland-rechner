@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Gewerbesteuer-Konstanten 2025/2026
 const STEUERMESSZAHL = 0.035; // 3,5% Steuermesszahl
@@ -691,6 +692,8 @@ export default function GewerbesteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Gewerbesteuer-Rechner 2025 & 2026" rechnerSlug="gewerbesteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

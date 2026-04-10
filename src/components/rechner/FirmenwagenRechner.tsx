@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Antriebsart für unterschiedliche Besteuerung
 type Antriebsart = 'verbrenner' | 'hybrid' | 'elektro';
@@ -764,6 +765,8 @@ export default function FirmenwagenRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Firmenwagen-Rechner 2026" rechnerSlug="firmenwagen-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

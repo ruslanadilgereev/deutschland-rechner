@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Durchschnittsverbrauch nach Fahrzeugtyp (für Einordnung)
 const VERBRAUCH_REFERENZ = {
@@ -611,6 +612,8 @@ export default function SpritverbrauchRechner() {
           <span className="ml-auto text-green-600">→</span>
         </a>
       </div>
+
+            <RechnerFeedback rechnerName="Spritverbrauch-Rechner" rechnerSlug="spritverbrauch-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

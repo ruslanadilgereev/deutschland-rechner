@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Grunderwerbsteuer nach Bundesland (Stand 2024/2025)
 interface Bundesland {
@@ -656,6 +657,8 @@ export default function EigenkapitalRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="Eigenkapital-Rechner 2025 & 2026" rechnerSlug="eigenkapital-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

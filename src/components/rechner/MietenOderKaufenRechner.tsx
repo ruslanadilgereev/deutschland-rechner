@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 interface JahresWert {
   jahr: number;
@@ -771,6 +772,8 @@ export default function MietenOderKaufenRechner() {
           </a>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Mieten oder Kaufen Rechner" rechnerSlug="mieten-oder-kaufen-rechner" />
 
       {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">

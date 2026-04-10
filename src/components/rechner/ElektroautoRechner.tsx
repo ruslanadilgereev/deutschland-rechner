@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Aktuelle Durchschnittswerte 2025/2026
 const DEFAULTS = {
@@ -932,6 +933,8 @@ export default function ElektroautoRechner() {
           </li>
         </ul>
       </div>
+
+            <RechnerFeedback rechnerName="E-Auto-Kosten-Rechner" rechnerSlug="elektroauto-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

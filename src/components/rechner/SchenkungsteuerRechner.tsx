@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Schenkungsteuer-Klassen basierend auf Verwandtschaftsverhältnis
 // Quelle: § 15 ErbStG (gilt für Schenkung und Erbschaft)
@@ -803,6 +804,8 @@ export default function SchenkungsteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Schenkungsteuer-Rechner 2025 & 2026" rechnerSlug="schenkungsteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

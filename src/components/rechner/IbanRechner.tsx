@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // BLZ → BIC Mapping (wichtigste deutsche Banken)
 const BLZ_BIC_MAP: Record<string, { bic: string; bank: string }> = {
@@ -539,6 +540,7 @@ export default function IbanRechner() {
           <li>• Der BIC wird für SEPA-Überweisungen innerhalb der EU nicht mehr benötigt</li>
           <li>• Alte Kontonummern können durch Zusammenlegung ungültig werden</li>
         </ul>
+      <RechnerFeedback rechnerName="IBAN-Rechner" rechnerSlug="iban-rechner" />
       </div>
     </div>
   );

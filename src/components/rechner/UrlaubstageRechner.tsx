@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Urlaubsanspruch-Berechnung nach Bundesurlaubsgesetz (BUrlG)
 // Quelle: https://www.gesetze-im-internet.de/burlg/
@@ -763,6 +764,8 @@ export default function UrlaubstageRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Urlaubstage-Rechner" rechnerSlug="urlaubstage-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

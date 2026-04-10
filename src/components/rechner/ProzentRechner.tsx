@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 type Modus = 'prozentwert' | 'prozentsatz' | 'veraenderung';
 
@@ -465,6 +466,8 @@ export default function ProzentRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Prozent-Rechner" rechnerSlug="prozent-rechner" />
 
       {/* Quellen */}
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Elterngeld 2025/2026 - EXAKTE offizielle Berechnung
@@ -387,6 +388,8 @@ export default function ElterngeldRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Elterngeld-Rechner 2026" rechnerSlug="elterngeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

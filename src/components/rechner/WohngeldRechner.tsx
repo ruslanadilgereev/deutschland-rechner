@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // Wohngeld-Berechnung 2025/2026 nach Wohngeldgesetz (WoGG)
@@ -825,6 +826,8 @@ export default function WohngeldRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Wohngeld-Rechner 2026" rechnerSlug="wohngeld-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">

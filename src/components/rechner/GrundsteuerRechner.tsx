@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Bundesländer mit ihren Grundsteuer-Modellen
 type Bundesland = typeof BUNDESLAENDER[number]['id'];
@@ -655,6 +656,8 @@ export default function GrundsteuerRechner() {
           </div>
         </div>
       </div>
+
+            <RechnerFeedback rechnerName="Grundsteuer-Rechner 2026" rechnerSlug="grundsteuer-rechner" />
 
       {/* Quellen */}
       <div className="p-4 bg-gray-50 rounded-xl">
