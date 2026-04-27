@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { rechnerListe, kategorien } from '../data/rechner';
+
+// Beliebte Rechner für die 404-Seite
+const beliebteIds = ['brutto-netto', 'kindergeld', 'elterngeld', 'einkommensteuer', 'baufinanzierung', 'mietpreisbremse'];
+const beliebteRechner = beliebteIds
+  .map((id) => rechnerListe.find((r) => r.id === id))
+  .filter((r): r is NonNullable<typeof r> => Boolean(r && r.fertig));
+
+// Kategorie-Hubs (Slugs müssen mit den Pages übereinstimmen)
+const kategorieHubs: { key: keyof typeof kategorien; slug: string }[] = [
+  { key: 'familie',    slug: '/familie-kinder' },
+  { key: 'arbeit',     slug: '/arbeit-gehalt' },
+  { key: 'steuern',    slug: '/steuern-abgaben' },
+  { key: 'soziales',   slug: '/sozialleistungen' },
+  { key: 'wohnen',     slug: '/wohnen-immobilien' },
+  { key: 'gesundheit', slug: '/gesundheit' },
+  { key: 'auto',       slug: '/auto-mobilitaet' },
+  { key: 'finanzen',   slug: '/finanzen-kredit' },
+  { key: 'alltag',     slug: '/alltag-lifestyle' },
+];
+---
+
+<Layout
+  title="Seite nicht gefunden — Deutschlandrechner"
+  description="Die gesuchte Seite existiert nicht. Hier findest du beliebte Rechner und alle Kategorien."
+>
+  <main class="min-h-[70vh]">
+    <!-- Hero -->
+    <section class="max-w-4xl mx-auto py-16 px-4 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+        Seite nicht gefunden 🤷
+      </h1>
+      <p class="text-lg text-gray-600 mb-8">
+        Diese Seite existiert nicht (mehr). Aber vielleicht ist eine der folgenden Seiten was für dich:
+      </p>
+
+      <!-- Suchfeld: GET-Form auf Index mit ?q=... -->
+      <form action="/" method="get" class="max-w-xl mx-auto">
+        <label for="q" class="sr-only">Rechner suchen</label>
+        <div class="flex gap-2">
+          <input
+            id="q"
+            name="q"
+            type="search"
+            placeholder="🔍 Rechner suchen..."
+            class="flex-1 px-4 py-3 rounded-xl border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
+          />
+          <button
+            type="submit"
+            class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+          >
+            Suchen
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Beliebte Rechner -->
+    <section class="max-w-5xl mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+        Beliebte Rechner
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {beliebteRechner.map((rechner) => (
+          <a
+            href={`/${rechner.id}-rechner`}
+            class="block p-4 rounded-2xl bg-white shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          >
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">{rechner.icon}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-gray-900 truncate">{rechner.name}</h3>
+                <p class="text-sm text-gray-500 truncate">{rechner.beschreibung}</p>
+              </div>
+              <svg class="w-6 h-6 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Alle Kategorien -->
+    <section class="max-w-5xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+        Alle Kategorien
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {kategorieHubs.map(({ key, slug }) => {
+          const kat = kategorien[key];
+          return (
+            <a
+              href={slug}
+              class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-200"
+            >
+              <span class="text-2xl">{kat.icon}</span>
+              <span class="font-medium text-gray-900">{kat.name}</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Kontakt-Hinweis -->
+    <section class="max-w-2xl mx-auto px-4 py-12 text-center">
+      <p class="text-gray-600 leading-relaxed">
+        Nichts gefunden? Schreib uns an
+        <a href="mailto:kontakt@mahlzait.de" class="text-blue-600 hover:underline">kontakt@mahlzait.de</a>
+        oder melde fehlerhafte Links als
+        <a
+          href="https://github.com/ruslanadilgereev/deutschland-rechner/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:underline"
+        >GitHub-Issue</a>.
+      </p>
+    </section>
+  </main>
+</Layout>

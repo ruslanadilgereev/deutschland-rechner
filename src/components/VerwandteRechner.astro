@@ -1,0 +1,75 @@
+---
+import { rechnerListe, type Rechner } from '../data/rechner';
+
+interface Props {
+  aktuellerSlug: string;
+  slugs?: string[];
+  kategorie?: string;
+  titel?: string;
+}
+
+const {
+  aktuellerSlug,
+  slugs,
+  kategorie,
+  titel = 'Verwandte Rechner',
+} = Astro.props;
+
+// Helper: Beschreibung auf ~80 Zeichen kürzen, an Wortgrenze
+function kuerzen(text: string, max = 80): string {
+  if (!text) return '';
+  if (text.length <= max) return text;
+  const slice = text.slice(0, max);
+  const lastSpace = slice.lastIndexOf(' ');
+  return (lastSpace > 40 ? slice.slice(0, lastSpace) : slice).trimEnd() + '…';
+}
+
+let auswahl: Rechner[] = [];
+
+if (slugs && slugs.length > 0) {
+  // explizite Slug-Liste — Reihenfolge beibehalten, fertige Rechner bevorzugt
+  auswahl = slugs
+    .map((s) => rechnerListe.find((r) => r.id === s))
+    .filter((r): r is Rechner => !!r && r.id !== aktuellerSlug);
+} else if (kategorie) {
+  // Kategorie-basierte Auswahl, deterministisch (erste 4 fertige)
+  auswahl = rechnerListe
+    .filter(
+      (r) =>
+        r.kategorie === kategorie &&
+        r.id !== aktuellerSlug &&
+        r.fertig,
+    )
+    .slice(0, 4);
+}
+---
+
+{
+  auswahl.length > 0 && (
+    <section class="max-w-7xl mx-auto mt-12 mb-8 px-4">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">{titel}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {auswahl.map((rechner) => (
+          <a
+            href={`/${rechner.id}-rechner`}
+            class="block border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all rounded-xl p-4 bg-white"
+          >
+            <div class="flex items-start gap-3">
+              <span class="text-3xl flex-shrink-0" aria-hidden="true">
+                {rechner.icon}
+              </span>
+              <div class="min-w-0">
+                <h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight mb-1">
+                  {rechner.name}
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-500 leading-snug">
+                  {kuerzen(rechner.beschreibung)}
+                </p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Arbeit & Gehalt 2026 — Brutto-Netto, Stundenlohn, Abfindung & mehr";
+const description = "Brutto-Netto-Vergleich, Stundenlohn-Rechner, Abfindung, Krankengeld, Mindestlohn, Kurzarbeitergeld — alle Arbeit- und Gehalts-Rechner für 2026.";
+const keywords = "Brutto Netto Rechner 2026, Stundenlohn, Abfindung Fünftelregelung, Mindestlohn 13,90, Kurzarbeitergeld, Pendlerpauschale, Lohnsteuerklasse, Gehalt Deutschland";
+
+const arbeitRechner = rechnerListe.filter(r => r.kategorie === 'arbeit');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Arbeit & Gehalt — Rechner für Arbeitnehmer in Deutschland",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/arbeit-gehalt",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Arbeit & Gehalt", url: "/arbeit-gehalt" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} is:inline />
+
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-8 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💼</span>
+          <div>
+            <h1 class="text-3xl font-bold">Arbeit & Gehalt — Rechner für Arbeitnehmer 2026</h1>
+            <p class="text-blue-100 text-sm mt-1">Brutto-Netto, Stundenlohn, Abfindung, Mindestlohn — kostenlos & aktuell</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Arbeit & Gehalt in Deutschland 2026</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Was bleibt am Monatsende wirklich vom Bruttogehalt übrig? Diese Frage ist 2026 komplexer denn je —
+            Sozialversicherungssätze, Steuerklassen, Pauschalen und Zuschläge greifen in jeder Lohnabrechnung
+            ineinander. Hier findest du alle Rechner rund um Lohn, Gehalt, Arbeitszeit und Lohnersatzleistungen
+            an einem Ort: <a href="/brutto-netto-rechner" class="text-blue-600 hover:text-blue-800 underline">Brutto-Netto</a>,
+            <a href="/stundenlohn-rechner" class="text-blue-600 hover:text-blue-800 underline">Stundenlohn</a>,
+            <a href="/abfindung-rechner" class="text-blue-600 hover:text-blue-800 underline">Abfindung</a>,
+            <a href="/kurzarbeitergeld-rechner" class="text-blue-600 hover:text-blue-800 underline">Kurzarbeitergeld</a>,
+            <a href="/mindestlohn-rechner" class="text-blue-600 hover:text-blue-800 underline">Mindestlohn</a> und
+            <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:text-blue-800 underline">Pendlerpauschale</a>.
+          </p>
+          <p>
+            <strong>Eckwerte 2026:</strong> Der gesetzliche Mindestlohn steigt auf <strong>13,90 € pro Stunde</strong>.
+            Die Minijob-Grenze passt sich auf 603 € pro Monat an. Die Pendlerpauschale beträgt 0,30 € pro
+            Entfernungskilometer für die ersten 20 km und 0,38 € ab dem 21. Kilometer. Kurzarbeitergeld liegt bei
+            <strong>60 % des Nettoentgeltausfalls</strong> (67 % mit Kind im Haushalt). Krankengeld der gesetzlichen
+            Krankenkasse beträgt 70 % des Bruttoentgelts, gedeckelt bei 90 % des Nettoeinkommens. Abfindungen werden
+            häufig nach der <strong>Fünftelregelung (§ 34 EStG)</strong> ermäßigt besteuert. Lohnsteuer wird in
+            sechs Klassen erhoben (I–VI) — die Wahl der Klasse hat unmittelbar Einfluss auf das Monatsnetto.
+          </p>
+          <p>
+            <strong>Welche Stellen sind zuständig?</strong> Lohnsteuer, Pauschalen und Werbungskosten regelt das
+            Einkommensteuergesetz (EStG); Anlaufstelle ist das Finanzamt. Für Arbeitslosengeld I, Kurzarbeitergeld
+            und Insolvenzgeld ist die <em>Bundesagentur für Arbeit</em> zuständig. Mindestlohn und Arbeitszeit fallen
+            unter die Aufsicht der Zollverwaltung (FKS) und der Arbeitsschutzbehörden der Länder.
+          </p>
+          <p>
+            Typische Fragen: <em>Wie viel netto bei 4.500 € brutto in Steuerklasse I?</em>,
+            <em>Wie hoch wäre meine Abfindung steuerlich?</em>, <em>Lohnt sich ein Wechsel von Steuerklasse V nach IV?</em>
+            oder <em>Was bringt mir die Pendlerpauschale wirklich?</em> — die Rechner unten liefern die Antworten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechner Grid -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <h2 class="sr-only">Alle Rechner für Arbeit & Gehalt</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {arbeitRechner.map(r => (
+          <a
+            href={r.fertig ? `/${r.id}-rechner` : '#'}
+            class={`bg-white rounded-xl shadow-md ${r.fertig ? 'hover:shadow-lg' : 'opacity-50 cursor-not-allowed'} transition-shadow p-4 flex items-start gap-3 group`}
+          >
+            <span class="text-2xl mt-0.5">{r.icon}</span>
+            <div>
+              <h3 class="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">{r.name}</h3>
+              <p class="text-gray-500 text-sm mt-1">{r.beschreibung}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tipps -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Worauf du bei Lohn und Gehalt achten solltest</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            <strong>Brutto-Netto ist nur die halbe Wahrheit:</strong> Viele Rechner ignorieren Sonderzahlungen,
+            geldwerte Vorteile (z. B. <a href="/firmenwagen-rechner" class="text-blue-600 hover:text-blue-800 underline">Firmenwagen</a>)
+            oder die individuelle Krankenkassen-Zusatzbeitragssatz. Vergleiche immer mit deiner Lohnabrechnung —
+            kleine Abweichungen (z. B. ±10 € durch den Zusatzbeitrag) sind normal.
+          </p>
+          <p>
+            <strong>Abfindung clever timen:</strong> Die Fünftelregelung wirkt am stärksten, wenn die Abfindung in
+            einem Jahr mit niedrigem Resteinkommen zufließt. Wer Ende Dezember kündigt und die Abfindung im
+            Januar erhält, kann steuerlich profitieren — ein häufiger Beratungsfall, der mit dem
+            <a href="/abfindung-rechner" class="text-blue-600 hover:text-blue-800 underline">Abfindungs-Rechner</a> gut durchsimulierbar ist.
+          </p>
+          <p>
+            <strong>Steuerklasse vor Familienzeit prüfen:</strong> Bei geplanter Elternzeit, Krankengeld oder ALG I
+            zählt das Netto — nicht das Brutto. Wer in der „falschen" Steuerklasse ist, verliert bei den
+            Lohnersatzleistungen Geld.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quellen -->
+    <div class="max-w-4xl mx-auto px-4 mt-6 mb-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Quellen & Behörden</h2>
+        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-600">
+          <li><a href="https://www.arbeitsagentur.de" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 underline">Bundesagentur für Arbeit (ALG I, Kurzarbeitergeld, Insolvenzgeld)</a></li>
+          <li><a href="https://www.bmas.de" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 underline">Bundesministerium für Arbeit und Soziales (BMAS)</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/estg/" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 underline">EStG — Einkommensteuergesetz (u. a. § 34 Fünftelregelung, § 9 Werbungskosten)</a></li>
+          <li><a href="https://www.bmf-steuerrechner.de" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 underline">BMF-Lohn- und Einkommensteuerrechner (offizielle Referenzwerte)</a></li>
+          <li><a href="https://www.zoll.de/DE/Fachthemen/Arbeit/Mindestlohn/" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 underline">Zoll/FKS — Mindestlohn-Kontrolle</a></li>
+          <li><a href="https://www.dguv.de" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 underline">DGUV — Deutsche Gesetzliche Unfallversicherung</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>

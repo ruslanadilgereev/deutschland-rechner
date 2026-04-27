@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerCard from '../components/RechnerCard';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Alltag & Lifestyle — Trinkgeld, Rabatt, Prozent & mehr";
+const description = "Praktische Rechner für den Alltag: Trinkgeld, Rabatt, Prozent, Einheiten, Tage, Bruch, Dreisatz — schnell und kostenlos rechnen ohne Anmeldung.";
+const keywords = "Alltag Rechner, Trinkgeld Rechner, Rabatt, Prozentrechnung, Dreisatz, Bruch Rechner, Einheiten umrechnen, Tage berechnen, BGB Fristen, SI Einheiten";
+
+const alltagRechner = rechnerListe.filter(r => r.kategorie === 'alltag');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Alltag & Lifestyle Rechner Deutschland 2026",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/alltag-lifestyle",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Alltag & Lifestyle", url: "/alltag-lifestyle" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+
+  <main class="min-h-screen pb-8 bg-gray-50">
+    <!-- Kompakter Hero mit Indigo als Akzent -->
+    <header class="bg-white border-b border-gray-200 py-8 px-4">
+      <div class="max-w-7xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-gray-500 hover:text-indigo-600 mb-4 transition-colors text-sm"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 text-3xl">🧮</span>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Alltag & Lifestyle in Deutschland 2026</h1>
+            <p class="text-gray-500 text-sm md:text-base mt-1">Praktische Rechner für Mathematik, Maße, Daten und Lifestyle</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro-Block -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Alltag & Lifestyle in Deutschland 2026</h2>
+        <p>
+          Im Alltag begegnet einem mehr Mathematik, als man denkt: 20 % Rabatt auf der Jeans, 15 % Trinkgeld im Restaurant,
+          ein Rezept für vier Personen auf sechs umrechnen. Die Werkzeuge sind einfach — <strong>Prozentrechnung</strong>,
+          <strong>Bruch</strong>, <strong>Dreisatz</strong> — aber im Kopf rechnet es sich oft leichter mit einer App, die
+          den Fall sauber durchspielt. Beim <strong>Trinkgeld</strong> sind in Deutschland 5–10 % gängig, wobei die Konvention
+          „aufrunden" für Bargeld weiterhin akzeptiert wird.
+        </p>
+        <p>
+          Bei <strong>Maßeinheiten</strong> gilt seit 1985 in Deutschland gesetzlich das <strong>Internationale Einheitensystem (SI)</strong>
+          — geregelt im <strong>Mess- und Eichgesetz (MessEG)</strong>. Das heißt: Meter, Kilogramm, Sekunde, Kelvin sind die
+          verbindlichen Größen, nicht Zoll, Pfund oder Fahrenheit. Die <strong>Physikalisch-Technische Bundesanstalt (PTB)</strong>
+          ist die nationale Hüterin der Einheiten — sie bewahrt das Urkilogramm-Erbe und stellt die Atomuhr für die
+          gesetzliche Zeit. <strong>DIN-Normen</strong> ergänzen das System für Industrie und Handwerk.
+        </p>
+        <p>
+          Beim <strong>Daten- und Fristen-Rechnen</strong> regelt das BGB (§§ 187–193) die Stolperfallen: Beginnt eine Frist
+          mit einem Ereignis, zählt der Ereignistag nicht mit. Endet eine Frist auf einem Sonntag oder Feiertag, verschiebt
+          sie sich auf den nächsten Werktag. Wer Vertragskündigungen, Widerrufsfristen oder Hochzeitstermine plant, sollte
+          das im Hinterkopf haben.
+        </p>
+        <p>
+          Auch typische Lifestyle-Fragen lassen sich rechnerisch greifen: <strong>Rezeptmengen</strong> umrechnen, eine
+          <strong>Restaurant-Rechnung</strong> mit Trinkgeld auf eine Gruppe verteilen, oder die <strong>Promille-Schätzung</strong>
+          nach einem Glas Wein. Gerade bei letzterem gilt: Rechner sind Schätzungen, nicht Freibriefe.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rechner-Grid -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Alle Alltag- & Lifestyle-Rechner</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {alltagRechner.map(rechner => (
+          <RechnerCard rechner={rechner} client:load />
+        ))}
+      </div>
+    </section>
+
+    <!-- Worauf zu achten -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Worauf bei Alltags-Rechnern zu achten ist</h2>
+        <p>
+          Bei <strong>Prozent-</strong> und <strong>Dreisatz-Rechnern</strong> muss man wissen, welcher Bezugswert zugrunde liegt.
+          „20 % Rabatt auf den Listenpreis" und „20 % Aufschlag auf den Nettopreis" rechnen sich unterschiedlich.
+          <strong>Mehrwertsteuer</strong> wird in Deutschland seit 2007 mit 19 % berechnet (7 % ermäßigt) — wer aus dem Brutto
+          das Netto zurückrechnen will, teilt durch 1,19, nicht durch 0,81.
+        </p>
+        <p>
+          Bei <strong>Einheiten-Rechnern</strong> sind vor allem Volumen und Temperatur tückisch: ein US-Gallon (3,785 l)
+          ist nicht der Imperial-Gallon (4,546 l), und Fahrenheit lässt sich nicht direkt skaliert rechnen
+          (°C = (°F − 32) × 5/9). Bei <strong>Datums-Rechnern</strong> entscheidet die Wahl der Zählweise — kalendarisch oder
+          „30/360" wie in Bankrechnungen — über Tage Unterschied.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quellen -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 !mt-0">Quellen</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><a href="https://www.ptb.de/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 underline">Physikalisch-Technische Bundesanstalt (PTB) — Mess-Standards</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/messeg/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 underline">Mess- und Eichgesetz (MessEG)</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/bgb/BJNR001950896.html#BJNR001950896BJNG000302301" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 underline">§§ 187–193 BGB — Fristen und Termine</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/pangv_2022/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 underline">Preisangabenverordnung (PAngV)</a></li>
+          <li><a href="https://www.din.de/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 underline">DIN — Deutsches Institut für Normung</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>

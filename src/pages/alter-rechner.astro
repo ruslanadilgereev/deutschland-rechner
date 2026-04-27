@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import AlterRechner from '../components/rechner/AlterRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Alter-Rechner – Exaktes Alter in Jahren, Monaten, Tagen berechnen";
 const description = "Alter Rechner: Exaktes Alter in Jahren, Monaten & Tagen berechnen. Tage bis Geburtstag, Sternzeichen, Generation. Kostenlos!";
@@ -14,6 +17,11 @@ const keywords = "Alter Rechner, Alter berechnen, wie alt bin ich genau, Alter i
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Alter-Rechner", url: "/alter-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Alter-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-purple-500 to-pink-600 text-white py-6 px-4">
@@ -41,6 +49,168 @@ const keywords = "Alter Rechner, Alter berechnen, wie alt bin ich genau, Alter i
     <div class="max-w-2xl mx-auto px-4 py-6">
       <AlterRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Alter-Rechner?</h2>
+        <p>
+          Auf den ersten Blick wirkt "Wie alt bin ich?" wie eine Frage, die man im Kopf
+          beantworten kann. Sobald aber Tage, Wochen oder Stichtage ins Spiel kommen, wird es
+          schnell hakelig. Der Alter-Rechner liefert <strong>auf den Tag genaue</strong> Werte — und
+          zwar für genau die Situationen, in denen es darauf ankommt:
+        </p>
+        <ul>
+          <li>
+            <strong>Kinderalter exakt:</strong> Eltern wollen oft das Alter ihres Kindes auf den
+            Tag genau wissen (z.B. zum 1.000. Lebenstag, zur U-Untersuchung, beim ersten Kita-Tag).
+          </li>
+          <li>
+            <strong>Versicherungs-Anträge mit Stichtag:</strong> Lebens-, Kranken- und
+            Berufsunfähigkeitsversicherungen rechnen oft mit einem konkreten Stichtag, z.B. dem
+            ersten des Monats. Dein "Versicherungsalter" weicht dann teils vom Personalausweis ab.
+          </li>
+          <li>
+            <strong>Renteneintritt planen:</strong> Wer 1962 oder später geboren ist, geht
+            gestaffelt mit 66 Jahren plus X Monaten in die Regelaltersrente. Mit dem Geburtsdatum
+            lässt sich der genaue Eintrittsmonat ermitteln. Genauer dafür ist unser
+            <a href="/renten-rechner">Renten-Rechner</a>.
+          </li>
+          <li>
+            <strong>Schul-Einschulung:</strong> Jedes Bundesland hat einen eigenen Stichtag (meist
+            30.06. oder 30.09.). Eltern wollen wissen, ob ihr Kind regulär oder als
+            "Kann-Kind" eingeschult wird.
+          </li>
+          <li>
+            <strong>Wartezeiten und Jubiläen:</strong> 5 Jahre verheiratet, 10 Jahre Mitarbeiter,
+            25-jähriges Vereinsjubiläum — der Rechner liefert sofort das Anspruchs- oder
+            Feierdatum.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Beispiele aus der Praxis</h2>
+
+        <h3>Beispiel 1: Genaues Alter heute</h3>
+        <p>
+          Geburtsdatum: <strong>15.03.1992</strong>. Heute ist der 27.04.2026.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Vollendete Jahre: 34 (letzter Geburtstag war 15.03.2026)<br/>
+          Plus volle Monate: 1 (15.03. → 15.04.)<br/>
+          Plus Tage: 12 (15.04. → 27.04.)<br/>
+          Gesamt in Tagen: <strong>12.461 Tage</strong> (≈ 1.780 Wochen)
+        </div>
+        <p>
+          Wichtig: das aktuelle (laufende) Lebensjahr zählt erst mit, wenn der Geburtstag im
+          aktuellen Jahr schon vorbei ist. Vorher wird das Vorjahr genommen.
+        </p>
+
+        <h3>Beispiel 2: Renteneintritt nach §35 SGB VI</h3>
+        <p>
+          Jahrgang 1962, Geburtstag am 15.12. → Regelaltersgrenze liegt bei
+          <strong>66 Jahren und 11 Monaten</strong>. Rechnerisch ergibt sich:
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Geburtsdatum: 15.12.1962<br/>
+          + 66 Jahre, 11 Monate<br/>
+          = <strong>Renteneintritt: 15.11.2029</strong> (Rentenbeginn dann 01.12.2029)
+        </div>
+
+        <h3>Beispiel 3: Versicherungs-Stichtagsalter</h3>
+        <p>
+          Eine private Krankenversicherung will das Alter zum Vertragsbeginn 01.01.2026 wissen.
+          Geburtsdatum: 14.07.1980.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Stichtag: 01.01.2026<br/>
+          Geburtstag 2025 lag am 14.07.2025 — bereits vorbei<br/>
+          Vollendetes Alter am Stichtag: <strong>45 Jahre</strong>
+        </div>
+        <p>
+          Manche Versicherer rechnen mit dem "halben Jahr": Wer am Stichtag in der zweiten
+          Jahreshälfte seinen Geburtstag noch vor sich hat, wird trotzdem bereits als 46-jährig
+          eingestuft. Das ist vertraglich geregelt und kann beim Beitrag den Unterschied machen.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen rund ums Alter</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie genau zählt man Lebensjahre?</summary>
+          <p class="mt-3">
+            In Deutschland zählen <strong>vollendete Lebensjahre</strong>, nicht das laufende
+            Lebensjahr. Wer am 14.07.1980 geboren ist und am 13.07. das 45. Lebensjahr "lebt", ist
+            rechtlich noch 44 Jahre alt — er vollendet erst am 14.07. das 45. Lebensjahr und ist ab
+            diesem Tag 45. Eine Ausnahme: § 187 BGB regelt, dass der Tag der Geburt nicht
+            mitgezählt wird, das Lebensalter aber bereits am Vortag des Geburtstags 24:00 Uhr
+            erreicht wird.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Warum stimmt das Alter bei Versicherungen manchmal nicht mit dem Personalausweis überein?</summary>
+          <p class="mt-3">
+            Versicherer arbeiten oft mit dem <strong>Stichtagsalter</strong> oder dem
+            <strong>Versicherungsalter</strong>. Beim Stichtagsalter zählt das vollendete Alter zum
+            Vertragsbeginn — ist der Geburtstag noch nicht erreicht, bist du laut Vertrag also ein
+            Jahr jünger als am Geburtstag selbst. Beim "näheren-Halbjahr"-Verfahren wird sogar das
+            Alter zum Stichtag aufgerundet, wenn der nächste Geburtstag binnen 6 Monaten anstünde.
+            Das steht meistens kleingedruckt in den AVB.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie wird der Renteneintritt berechnet?</summary>
+          <p class="mt-3">
+            Die Regelaltersrente steigt seit 2012 stufenweise von 65 auf 67 Jahre (§ 35 SGB VI).
+            Für jeden Jahrgang ab 1947 wird das Eintrittsalter um Monate angehoben:
+            <strong>Jahrgang 1962 = 66 Jahre + 11 Monate</strong>, ab Jahrgang 1964 dann
+            durchgehend 67. Daneben gibt es vorgezogene Renten (mit Abschlag) und besondere
+            Altersrenten für langjährig Versicherte oder Schwerbehinderte. Für Detail-Berechnungen
+            siehe <a href="/fruehrente-rechner">Frührente-Rechner</a>.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was bedeutet "Stichtagsalter" bei der Einschulung?</summary>
+          <p class="mt-3">
+            In Deutschland legt jedes Bundesland einen Stichtag fest, bis zu dem ein Kind sechs
+            Jahre alt geworden sein muss, um schulpflichtig zu werden. NRW und Bayern z.B. haben
+            den 30.09., Baden-Württemberg den 30.06. Wer kurz nach dem Stichtag geboren ist, kann
+            als "Kann-Kind" auf Antrag früher eingeschult werden — oder umgekehrt mit
+            Rückstellungsantrag erst ein Jahr später.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie zähle ich Lebensjahre bei Geburten am 29.02. (Schaltjahr)?</summary>
+          <p class="mt-3">
+            Rechtlich gilt: In Nicht-Schaltjahren tritt die nächste Altersstufe am
+            <strong>1. März</strong> ein. Die Volljährigkeit eines am 29.02. Geborenen beginnt also
+            am 01.03. des Jahres, in dem er 18 wird. Praktisch heißt das auch: zwischen Geburtstag
+            und nächstem Geburtstag liegen meist nicht 365, sondern 1.460 oder 1.461 Tage — der
+            "richtige" Geburtstag kommt nur alle vier Jahre.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen &amp; Methodik</h2>
+        <p>
+          Die Altersberechnung folgt den Vorgaben des deutschen Zivilrechts: <strong>§ 187 BGB</strong>
+          regelt den Fristbeginn, <strong>§ 188 BGB</strong> das Fristende für Lebensjahre. Für die
+          gesetzliche Rente gelten die <strong>§§ 35–37 SGB VI</strong>, die Schul-Stichtage
+          ergeben sich aus den jeweiligen Schulgesetzen der Länder. Schaltjahre werden nach
+          gregorianischem Kalender berücksichtigt (durch 4 teilbar, nicht durch 100, außer durch
+          400). Der Rechner kalkuliert tagesgenau — ohne Rundung — und berücksichtigt unterschiedliche
+          Monatslängen sowie Schaltjahre automatisch.
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="§ 187 BGB (Fristbeginn), §§ 35–37 SGB VI (Regelaltersrente), Schulgesetze der Länder" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="alter" slugs={['geburtstag', 'lebenserwartung', 'renten', 'fruehrente']} />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">

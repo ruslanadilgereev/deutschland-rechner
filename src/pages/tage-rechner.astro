@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import TageRechner from '../components/rechner/TageRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Tage-Rechner – Tage zwischen zwei Daten berechnen";
 const description = "Tage Rechner: Berechnen Sie die Anzahl der Tage zwischen zwei Daten. Inklusive Wochen, Monate, Arbeitstage und Wochenenden. Kostenlos & sofort.";
@@ -14,6 +17,11 @@ const keywords = "Tage Rechner, Tage berechnen, Tage zwischen Daten, Datum Diffe
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Tage-Rechner", url: "/tage-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Tage-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white py-6 px-4">
@@ -143,37 +151,103 @@ const keywords = "Tage Rechner, Tage berechnen, Tage zwischen Daten, Datum Diffe
       </div>
     </div>
     
-    <!-- Weitere Tools -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span class="text-2xl">🔗</span>
-          Ähnliche Rechner
-        </h2>
-        
-        <div class="grid grid-cols-2 gap-4">
-          <a href="/arbeitstage-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
-            <div class="text-2xl mb-2">📆</div>
-            <div class="font-semibold text-gray-800">Arbeitstage-Rechner</div>
-            <div class="text-sm text-gray-500">Arbeitstage zählen</div>
-          </a>
-          <a href="/alter-rechner" class="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
-            <div class="text-2xl mb-2">🎂</div>
-            <div class="font-semibold text-gray-800">Alter-Rechner</div>
-            <div class="text-sm text-gray-500">Exaktes Alter berechnen</div>
-          </a>
-          <a href="/geburtstag-rechner" class="p-4 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
-            <div class="text-2xl mb-2">🎈</div>
-            <div class="font-semibold text-gray-800">Geburtstag-Rechner</div>
-            <div class="text-sm text-gray-500">Geburtstagsdaten</div>
-          </a>
-          <a href="/zeitzone-rechner" class="p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-            <div class="text-2xl mb-2">🌍</div>
-            <div class="font-semibold text-gray-800">Zeitzonen-Rechner</div>
-            <div class="text-sm text-gray-500">Zeitzonen umrechnen</div>
-          </a>
+    <!-- Wann brauchst du den Tage-Rechner? -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Wann brauchst du den Tage-Rechner?</h2>
+        <p class="text-gray-700">
+          Der häufigste Anlass: <strong>Fristen rechtssicher berechnen</strong>. Eine Online-Bestellung kommt am 12. April an — bis wann läuft die 14-tägige Widerrufsfrist? Eine Mietkündigung soll zum nächsten möglichen Termin raus — was ist das frühestmögliche Vertragsende? Bei einer Reisestornierung kommt es manchmal auf einen einzigen Tag an (50 % oder 80 % Stornogebühr), und dann willst du nicht im Kopf zählen.
+        </p>
+        <p class="text-gray-700">
+          Weitere typische Anwendungsfälle: <strong>Karenzzeit bei Versicherungen</strong> (z. B. 3 Monate Wartezeit bei einer neuen Krankenzusatzversicherung), <strong>Schwangerschaftswoche</strong> ausgehend vom letzten Periodenbeginn, <strong>Lieferdatum + X Werktage</strong> beim Online-Shop, <strong>Probezeit-Ende</strong> nach 6 Monaten ab Vertragsbeginn, <strong>Garantiefrist</strong> (zwei Jahre ab Übergabe), <strong>Genehmigungsfrist</strong> bei Bauanträgen (oft 3 Monate), <strong>Countdown</strong> bis Hochzeit, Urlaub oder Geburtstag, sowie <strong>Vertragslaufzeiten</strong> in Tagen ausdrücken (z. B. wie lange ein Kredit oder eine Mitgliedschaft noch läuft). Für alle diese Fälle berechnet der Rechner Kalendertage; Werktage und Arbeitstage haben eigene Regeln, die wir unten erklären.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Beispiele aus der Praxis</h2>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 1: Widerrufsfrist nach Online-Bestellung</h3>
+        <p class="text-gray-700">
+          Du bestellst online am Sonntag, 12.04.2026, das Paket kommt am 15.04. Wann läuft deine 14-tägige Widerrufsfrist ab?
+        </p>
+        <div class="bg-cyan-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Maßgeblich ist der <strong>Tag des Erhalts</strong> der Ware (§ 356 BGB), nicht der Bestelltag.</p>
+          <p>Erhalt: 15.04.2026 → Frist beginnt am 16.04.2026 (Tag nach Erhalt, § 187 BGB)</p>
+          <p>14 Kalendertage später: <strong>29.04.2026</strong> (das ist ein Mittwoch — kein Sonntag, also kein Aufschub)</p>
+          <p>Bis Mitternacht des 29.04. muss der Widerruf <em>abgeschickt</em> sein (Eingang beim Händler nicht nötig).</p>
         </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 2: Mietvertrag kündigen mit 3 Monaten Frist zum Monatsende</h3>
+        <p class="text-gray-700">
+          Du willst aus deiner Wohnung raus, gesetzliche Kündigungsfrist sind 3 Monate zum Monatsende. Du wirfst die Kündigung am 15.05.2026 in den Briefkasten des Vermieters.
+        </p>
+        <div class="bg-cyan-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Eingang Kündigung: <strong>15.05.2026</strong> (muss bis spätestens zum 3. Werktag des Monats eingegangen sein, sonst zählt der Folgemonat)</p>
+          <p>Vertragsende: 31.05. + 3 volle Monate = <strong>31.08.2026</strong></p>
+          <p>Wäre die Kündigung erst am 04.05. zugegangen (3. Werktag verpasst), wäre Vertragsende der 30.09.2026.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 3: Bauantrag und Genehmigungsfrist</h3>
+        <p class="text-gray-700">
+          Du reichst am 01.03.2026 einen vereinfachten Bauantrag bei der Bauaufsichtsbehörde ein. Viele Landesbauordnungen sehen eine Bearbeitungsfrist von 3 Monaten vor, danach gilt die Genehmigungsfiktion (Antrag gilt als genehmigt).
+        </p>
+        <div class="bg-cyan-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Antragseingang: 01.03.2026</p>
+          <p>3 Monate Bearbeitungsfrist: bis spätestens <strong>01.06.2026</strong></p>
+          <p>Dazwischen: 92 Kalendertage — bei behördlicher Rückfrage kann sich die Frist verlängern (Hemmung).</p>
+          <p>Wichtig: Vorgaben variieren je Bundesland (LBO). Im Zweifel deine zuständige Bauaufsicht fragen.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zur Tage- und Fristberechnung</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie zähle ich Werktage statt Kalendertage?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Bei <strong>Werktagen</strong> zählst du Montag bis Samstag — Sonntage und gesetzliche Feiertage werden übersprungen. Bei <strong>Arbeitstagen</strong> zählst du nur Montag bis Freitag, ohne Feiertage. Der Unterschied ist je nach Vertrag und Gesetz wichtig: Die meisten Online-Shops liefern in „Werktagen", manche Behördenfristen rechnen in Kalendertagen, Arbeitsverträge meist in Arbeitstagen. Für die exakte Werktag-/Arbeitstag-Berechnung mit Feiertagen pro Bundesland nutze unseren <a href="/arbeitstage-rechner" class="text-blue-600 underline">Arbeitstage-Rechner</a>.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Sind Samstage Werktage?</summary>
+          <div class="mt-3 text-gray-700">
+            <p><strong>Rechtlich ja</strong> — der Bundesgerichtshof hat mehrfach klargestellt, dass Samstage Werktage sind (auch wenn die meisten Branchen samstags geschlossen haben). Bei Mietkündigungen, Postzustellung und gesetzlichen Fristen zählt der Samstag also mit. <strong>Praktisch nein</strong> — viele Verträge und Lieferversprechen meinen mit „Werktagen" Montag bis Freitag, weil das den Liefer- und Bürobetrieb widerspiegelt. Lies im Zweifel die Vertragsdefinition: Steht „Bankarbeitstag", sind Sa/So und Feiertage immer raus. Steht nur „Werktag", ist Samstag drin.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Was passiert, wenn die Frist auf einen Sonntag oder Feiertag fällt?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Hier greift <strong>§ 193 BGB</strong>: Fällt das Fristende auf einen Sonntag, gesetzlichen Feiertag oder Sonnabend (Samstag), endet die Frist am <strong>nächsten Werktag</strong>. Beispiel: Eine 14-tägige Widerrufsfrist endet rechnerisch am Sonntag, 26.04.2026 — tatsächlich hast du dann bis Montag, 27.04.2026 Zeit. Achtung: Das gilt nur bei rechtsgeschäftlichen Fristen, nicht bei rein faktischen (z. B. „die Pizza-Bestellung muss bis Mitternacht raus"). Auch im Steuerrecht (§ 108 AO) gilt eine identische Regel.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie wird das Startdatum bei der Fristberechnung mitgezählt?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Nach <strong>§ 187 Abs. 1 BGB</strong> wird der Tag des auslösenden Ereignisses <em>nicht</em> mitgezählt — die Frist beginnt am Tag <em>danach</em>. Beispiel: Du bekommst am 12.04. eine fristauslösende Erklärung, die Frist läuft 14 Tage. Erster Fristtag ist der 13.04., letzter Tag der 26.04. Anders bei Geburtstagen und Altersgrenzen (§ 187 Abs. 2): Der Tag der Geburt wird mitgezählt, du wirst also am Vortag deines Geburtstags um Mitternacht ein Jahr älter (juristisch). Unser Rechner zeigt dir auf Wunsch beide Varianten — mit und ohne Mitzählen des Startdatums.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welche Tage sind 2026 in Deutschland gesetzliche Feiertage?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Bundeseinheitlich gelten 9 Feiertage: <strong>Neujahr (01.01.)</strong>, <strong>Karfreitag (03.04.2026)</strong>, <strong>Ostermontag (06.04.2026)</strong>, <strong>Tag der Arbeit (01.05.)</strong>, <strong>Christi Himmelfahrt (14.05.2026)</strong>, <strong>Pfingstmontag (25.05.2026)</strong>, <strong>Tag der Deutschen Einheit (03.10.)</strong>, <strong>1. Weihnachtstag (25.12.)</strong>, <strong>2. Weihnachtstag (26.12.)</strong>. Hinzu kommen länderspezifische Feiertage: Heilige Drei Könige (BW, BY, ST), Fronleichnam (in katholisch geprägten Ländern), Mariä Himmelfahrt (BY teilw., SL), Reformationstag (mehrere Bundesländer), Allerheiligen (BW, BY, NRW, RLP, SL), Buß- und Bettag (SN). Für Fristberechnungen gilt immer das Recht des Ortes, an dem die Frist ablaufen soll — also meist Wohnort des Empfängers.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik & Quellen</h2>
+        <p class="text-gray-700">
+          Die Tage-Berechnung folgt den Regeln der <strong>Fristberechnung im BGB (§§ 187–193)</strong>: Beginn und Ende der Frist, Behandlung von Sonn- und Feiertagen, Mitzählen des Ereignistages bei Altersangaben. Schaltjahre werden korrekt nach gregorianischem Kalender berücksichtigt (durch 4 teilbar = Schaltjahr, außer durch 100 teilbar — es sei denn, durch 400 teilbar; nächstes Schaltjahr nach 2024 ist 2028). Gesetzliche Feiertage richten sich nach den <strong>Feiertagsgesetzen der Länder</strong>; die bundeseinheitlichen Feiertage sind in den jeweiligen Landesgesetzen einheitlich verankert. Berechnungen laufen vollständig im Browser — keine Daten verlassen dein Gerät. Zuletzt aktualisiert: April 2026.
+        </p>
       </div>
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="§§187–193 BGB (Fristberechnung), Feiertagsgesetze der Länder" aktualisiert="April 2026" />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="tage" slugs={['arbeitstage', 'urlaubstage', 'alter', 'geburtstermin']} kategorie="alltag" />
     </div>
 </main>
   

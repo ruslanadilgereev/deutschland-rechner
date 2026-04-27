@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Familie & Kinder 2026 — kostenlose Rechner für Eltern in Deutschland";
+const description = "Kindergeld, Elterngeld, Unterhalt, Kinderzuschlag und mehr — kostenlose Rechner für deutsche Familien, aktuell 2026.";
+const keywords = "Familie Rechner, Kindergeld 2026, Elterngeld Rechner, Unterhalt Düsseldorfer Tabelle, Kinderzuschlag, Mutterschutz, Elternzeit, Familienleistungen Deutschland";
+
+const familieRechner = rechnerListe.filter(r => r.kategorie === 'familie');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Familie & Kinder — Rechner für Eltern in Deutschland",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/familie-kinder",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Familie & Kinder", url: "/familie-kinder" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Familie & Kinder' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} is:inline />
+
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-pink-500 to-rose-500 text-white py-8 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-pink-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">👨‍👩‍👧‍👦</span>
+          <div>
+            <h1 class="text-3xl font-bold">Familie & Kinder — Rechner für Eltern in Deutschland</h1>
+            <p class="text-pink-100 text-sm mt-1">Alle Familienleistungen 2026 auf einen Blick — kostenlos & aktuell</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Familie & Kinder in Deutschland 2026</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Eltern in Deutschland haben Anspruch auf eine ganze Reihe staatlicher Familienleistungen — von der
+            Geburt über die Elternzeit bis hin zum Schul- und Ausbildungsstart der Kinder. Diese Hub-Seite bündelt
+            alle wichtigen Rechner für Familien: <a href="/kindergeld-rechner" class="text-pink-600 hover:text-pink-800 underline">Kindergeld</a>,
+            <a href="/elterngeld-rechner" class="text-pink-600 hover:text-pink-800 underline">Elterngeld</a>,
+            <a href="/kinderzuschlag-rechner" class="text-pink-600 hover:text-pink-800 underline">Kinderzuschlag</a>,
+            <a href="/unterhalt-rechner" class="text-pink-600 hover:text-pink-800 underline">Kindesunterhalt</a>,
+            <a href="/mutterschutz-rechner" class="text-pink-600 hover:text-pink-800 underline">Mutterschutz</a> und
+            <a href="/elternzeit-rechner" class="text-pink-600 hover:text-pink-800 underline">Elternzeit</a>.
+          </p>
+          <p>
+            <strong>Eckwerte 2026:</strong> Das Kindergeld beträgt 259 € pro Kind und Monat. Das Basis-Elterngeld
+            ersetzt rund 65 % des wegfallenden Nettoeinkommens — gedeckelt bei 1.800 € pro Monat, mit einem
+            Mindestbetrag von 300 €. Der Kinderzuschlag liegt bei bis zu 292 € pro Kind und Monat für Familien mit
+            kleinerem Einkommen. Der Kindesunterhalt richtet sich nach der vom OLG Düsseldorf herausgegebenen
+            <strong>Düsseldorfer Tabelle 2026</strong>, gestaffelt nach Nettoeinkommen des unterhaltspflichtigen
+            Elternteils und Alter des Kindes. Mutterschaftsgeld zahlt die gesetzliche Krankenkasse während der
+            Schutzfrist (6 Wochen vor und 8 Wochen nach der Geburt, bei Früh- oder Mehrlingsgeburten 12 Wochen).
+          </p>
+          <p>
+            <strong>Welche Behörden sind zuständig?</strong> Kindergeld und Kinderzuschlag laufen über die
+            <em>Familienkasse</em> der Bundesagentur für Arbeit. Elterngeld beantragst du bei der Elterngeldstelle
+            deines Bundeslandes. Für Mutterschaftsgeld ist die <em>gesetzliche Krankenkasse</em> Anlaufstelle, für
+            Unterhaltsfragen das <em>Jugendamt</em> (Beistandschaft) und im Streitfall das Familiengericht.
+            Rechtliche Grundlagen sind das Bundeselterngeld- und Elternzeitgesetz (BEEG), das Mutterschutzgesetz
+            (MuSchG) und das BGB (Unterhalt).
+          </p>
+          <p>
+            Typisch wollen Eltern wissen: <em>Wie viel Elterngeld bleibt mir konkret?</em>,
+            <em>Wann endet der Mutterschutz?</em>, <em>Wie hoch ist der Mindestunterhalt für mein Kind?</em> oder
+            <em>Habe ich Anspruch auf Kinderzuschlag zusätzlich zum Lohn?</em> Genau das beantworten die Rechner unten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechner Grid -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <h2 class="sr-only">Alle Rechner für Familie & Kinder</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {familieRechner.map(r => (
+          <a
+            href={r.fertig ? `/${r.id}-rechner` : '#'}
+            class={`bg-white rounded-xl shadow-md ${r.fertig ? 'hover:shadow-lg' : 'opacity-50 cursor-not-allowed'} transition-shadow p-4 flex items-start gap-3 group`}
+          >
+            <span class="text-2xl mt-0.5">{r.icon}</span>
+            <div>
+              <h3 class="font-semibold text-gray-800 group-hover:text-pink-600 transition-colors">{r.name}</h3>
+              <p class="text-gray-500 text-sm mt-1">{r.beschreibung}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tipps -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Worauf du bei Familienleistungen achten solltest</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            <strong>Anträge rechtzeitig stellen:</strong> Elterngeld wird rückwirkend nur für die letzten drei
+            Lebensmonate des Kindes gezahlt — wer später beantragt, verschenkt bares Geld. Auch der
+            Kinderzuschlag muss aktiv beantragt werden; er wird nicht automatisch ausgezahlt, selbst wenn schon
+            Kindergeld läuft.
+          </p>
+          <p>
+            <strong>Steuerklassenwechsel vor der Geburt prüfen:</strong> Beim Elterngeld zählt das Netto der
+            letzten zwölf Monate vor dem Mutterschutz. Wer vor der Schwangerschaft rechtzeitig in eine
+            günstigere Steuerklasse wechselt (z. B. III statt V), kann das Elterngeld spürbar erhöhen — der
+            Wechsel muss aber lange genug vor Beginn des Bemessungszeitraums erfolgen. Unser
+            <a href="/steuerklassenwechsel-rechner" class="text-pink-600 hover:text-pink-800 underline">Steuerklassenwechsel-Rechner</a>
+            zeigt den Effekt.
+          </p>
+          <p>
+            <strong>Düsseldorfer Tabelle korrekt anwenden:</strong> Vom Tabellenbetrag wird das halbe Kindergeld
+            (bei minderjährigen Kindern) abgezogen. Der so ermittelte Zahlbetrag ist das, was beim
+            betreuenden Elternteil tatsächlich ankommt.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quellen -->
+    <div class="max-w-4xl mx-auto px-4 mt-6 mb-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Quellen & Behörden</h2>
+        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-600">
+          <li><a href="https://www.arbeitsagentur.de/familie-und-kinder" target="_blank" rel="noopener" class="text-pink-600 hover:text-pink-800 underline">Bundesagentur für Arbeit — Familie und Kinder (Familienkasse)</a></li>
+          <li><a href="https://familienportal.de" target="_blank" rel="noopener" class="text-pink-600 hover:text-pink-800 underline">familienportal.de — Familienleistungen (BMFSFJ)</a></li>
+          <li><a href="https://www.bmfsfj.de" target="_blank" rel="noopener" class="text-pink-600 hover:text-pink-800 underline">Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ)</a></li>
+          <li><a href="https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/" target="_blank" rel="noopener" class="text-pink-600 hover:text-pink-800 underline">Düsseldorfer Tabelle (OLG Düsseldorf)</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/beeg/" target="_blank" rel="noopener" class="text-pink-600 hover:text-pink-800 underline">BEEG — Bundeselterngeld- und Elternzeitgesetz</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/muschg_2018/" target="_blank" rel="noopener" class="text-pink-600 hover:text-pink-800 underline">MuSchG — Mutterschutzgesetz</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>

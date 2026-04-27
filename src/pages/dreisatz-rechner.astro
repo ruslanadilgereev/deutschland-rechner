@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import DreisatzRechner from '../components/rechner/DreisatzRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Dreisatz-Rechner – Dreisatz einfach online berechnen";
 const description = "Dreisatz-Rechner: Proportionale & antiproportionale Dreisätze kostenlos online berechnen. Mit Schritt-für-Schritt Rechenweg und Beispielen – Schule & Alltag.";
@@ -14,6 +17,11 @@ const keywords = "Dreisatz Rechner, Dreisatz berechnen, Dreisatz online, proport
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Dreisatz-Rechner", url: "/dreisatz-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Dreisatz-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
@@ -41,6 +49,176 @@ const keywords = "Dreisatz Rechner, Dreisatz berechnen, Dreisatz online, proport
     <div class="max-w-2xl mx-auto px-4 py-6">
       <DreisatzRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Dreisatz-Rechner?</h2>
+        <p>
+          Der Dreisatz ist die wahrscheinlich nützlichste Rechentechnik aus der Schule, die du
+          tatsächlich täglich brauchst — meist ohne es zu merken. Immer wenn du ein Verhältnis
+          kennst und es auf eine andere Menge übertragen willst, ist Dreisatz die richtige Methode.
+          Typische Situationen aus dem Alltag:
+        </p>
+        <ul>
+          <li>
+            <strong>Einkaufen vergleichen:</strong> Ein Müsli kostet 4,20 € für 500 g, ein zweites
+            5,80 € für 750 g. Der Dreisatz rechnet beide auf den Preis pro 100 g hoch und macht den
+            Vergleich fair.
+          </li>
+          <li>
+            <strong>Mischungsverhältnisse beim Backen oder Kochen:</strong> Ein Rezept ist für 4
+            Personen, du kochst für 7. Statt nervig hin- und herzurechnen, einfach jede Zutat über
+            Dreisatz hochrechnen.
+          </li>
+          <li>
+            <strong>Lohn auf Stundenbasis:</strong> Wer das Monatsgehalt kennt, aber den
+            Stundenlohn wissen will (z.B. um Überstunden korrekt abzurechnen), nutzt Dreisatz.
+            Dafür haben wir auch den <a href="/stundenlohn-rechner">Stundenlohn-Rechner</a>.
+          </li>
+          <li>
+            <strong>Maßstab in Bauplänen oder Karten:</strong> 1 cm auf der Karte = 50.000 cm in
+            echt — wie weit sind 7,3 cm? Klassischer proportionaler Dreisatz.
+          </li>
+          <li>
+            <strong>Geschwindigkeit, Zeit, Strecke:</strong> Wie lange brauche ich für 240 km, wenn
+            60 km in 45 Minuten gefahren wurden? Auch das ist eine Dreisatz-Aufgabe.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Beispiele aus der Praxis</h2>
+
+        <h3>Beispiel 1: Mehlpreis hochrechnen (proportionaler Dreisatz)</h3>
+        <p>
+          5 kg Mehl kosten beim Bäcker 4,50 €. Wieviel kosten 12 kg zum gleichen Preis?
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          5 kg → 4,50 €<br/>
+          1 kg → 4,50 € ÷ 5 = 0,90 €<br/>
+          12 kg → 0,90 € × 12 = <strong>10,80 €</strong>
+        </div>
+        <p>
+          Hier gilt klar: mehr Mehl = mehr Geld. Beide Größen wachsen in dieselbe Richtung — also
+          proportionaler Dreisatz.
+        </p>
+
+        <h3>Beispiel 2: Fahrtzeit aus Geschwindigkeit ableiten (proportional)</h3>
+        <p>
+          Ein Auto fährt 60 km in 45 Minuten. Wie lange dauert die Fahrt für 100 km bei gleicher
+          Geschwindigkeit?
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          60 km → 45 min<br/>
+          1 km → 45 min ÷ 60 = 0,75 min<br/>
+          100 km → 0,75 min × 100 = <strong>75 min (1 Stunde 15 Minuten)</strong>
+        </div>
+
+        <h3>Beispiel 3: Arbeiter und Zeit (umgekehrter Dreisatz)</h3>
+        <p>
+          4 Maler streichen eine Wand in 6 Tagen. Wie lange brauchen 6 Maler für dieselbe Wand,
+          wenn alle gleich schnell arbeiten?
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Gesamtarbeit = 4 × 6 = 24 Mann-Tage<br/>
+          24 Mann-Tage ÷ 6 Maler = <strong>4 Tage</strong>
+        </div>
+        <p>
+          Achtung: hier wird mehr Personal eingesetzt — die Arbeit ist also schneller fertig. Mehr
+          von der einen Größe heißt weniger von der anderen. Das ist der typische
+          <strong>antiproportionale (umgekehrte) Dreisatz</strong>.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen zum Dreisatz</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen direktem und umgekehrtem Dreisatz?</summary>
+          <p class="mt-3">
+            Beim <strong>direkten (proportionalen) Dreisatz</strong> verändern sich beide Größen in
+            dieselbe Richtung: doppelt so viele Äpfel kosten doppelt so viel. Beim
+            <strong>umgekehrten (antiproportionalen) Dreisatz</strong> bewegen sie sich gegenläufig:
+            doppelt so viele Arbeiter brauchen halb so lange. Faustregel: Wenn dein Bauchgefühl sagt
+            "mehr A, mehr B" → proportional. Wenn es sagt "mehr A, weniger B" → antiproportional.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wann nutze ich Dreisatz statt Prozentrechnung?</summary>
+          <p class="mt-3">
+            Im Kern ist Prozentrechnung nur ein Spezialfall des Dreisatzes mit der Bezugsgröße 100.
+            Praktisch gilt: Wenn dein Bezugswert 100 ist (oder du ihn leicht darauf umrechnen
+            kannst), nimm den <a href="/prozent-rechner">Prozent-Rechner</a>. Wenn du aber ein
+            beliebiges Verhältnis hast (3 kg → 4,20 €), ist der Dreisatz schneller, weil du nicht
+            erst auf 100 normieren musst.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Warum heißt es Dreisatz, obwohl ich vier Werte habe?</summary>
+          <p class="mt-3">
+            Der Name kommt von den <strong>drei Rechenschritten</strong>, nicht von drei Zahlen: 1)
+            Ausgangsverhältnis aufstellen, 2) auf eine Einheit umrechnen, 3) auf die gesuchte Menge
+            hochrechnen. Du arbeitest tatsächlich mit drei bekannten Werten, der vierte ist das
+            Ergebnis. In Österreich heißt die Methode passender "Schlussrechnung".
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie erkenne ich Dreisatz-Aufgaben in Textaufgaben?</summary>
+          <p class="mt-3">
+            Suche nach Formulierungen wie "kosten / brauchen / verbrauchen / dauern / wiegen … pro
+            …". Sobald in der Aufgabe ein <strong>festes Verhältnis</strong> auftaucht ("X je Y")
+            und nach einem anderen Wert in derselben Beziehung gefragt wird, liegt fast immer ein
+            Dreisatz vor. Ein Hinweis ist auch das Wort "wenn" plus eine geänderte Menge.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Welche Aufgaben sind Dreisatz, welche brauchen Prozent oder Bruch?</summary>
+          <p class="mt-3">
+            <strong>Dreisatz:</strong> beliebige Verhältnisse, die auf eine andere Menge
+            hochgerechnet werden. <strong>Prozent:</strong> Anteile bezogen auf 100 (Rabatte,
+            Steuern, Wachstum). <strong>Bruch:</strong> exakte Anteile eines Ganzen ohne Bezug auf
+            Menge oder Hundert. Für klassische Schul-Textaufgaben gilt: erst Verhältnis erkennen,
+            dann passendes Werkzeug wählen — der <a href="/bruch-rechner">Bruch-Rechner</a> oder
+            der <a href="/rabatt-rechner">Rabatt-Rechner</a> sind Spezialfälle.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Funktioniert der Dreisatz auch mit Brüchen oder Dezimalzahlen?</summary>
+          <p class="mt-3">
+            Ja, ohne Einschränkung. Du kannst sowohl mit Brüchen (½ kg, ¾ Liter) als auch mit
+            Dezimalzahlen (0,75 h, 1,25 m) rechnen. Wichtig ist nur, dass <strong>alle Werte einer
+            Größe in derselben Einheit</strong> stehen — also z.B. nicht Stunden mit Minuten mischen,
+            sondern erst auf Minuten umrechnen.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen &amp; Methodik</h2>
+        <p>
+          Der Dreisatz gehört seit Jahrzehnten zum festen Stoff der Schulmathematik in Deutschland
+          und wird typischerweise in den <strong>Klassen 5 bis 7</strong> eingeführt. Methodisch
+          baut er auf dem Konzept der <strong>Proportionalität</strong> bzw. der
+          <strong>Verhältnisgleichheit</strong> auf — einer Grundlage, die später in der Linearen
+          Algebra, der Prozent- und Zinsrechnung sowie in der Physik (z.B. Hooke'sches Gesetz,
+          gleichförmige Bewegung) wieder auftaucht.
+        </p>
+        <p>
+          Unser Rechner setzt den Standard-Algorithmus 1:1 um: erst auf eine Einheit
+          herunterrechnen, dann auf die Zielmenge hochrechnen. Bei umgekehrt-proportionalen
+          Aufgaben wird stattdessen das Produkt der bekannten Größen gebildet (Mann-Tage-Prinzip)
+          und durch die neue Menge geteilt. Es werden keine externen Datenquellen benötigt — die
+          Berechnung ist rein arithmetisch und für beliebig große oder kleine Zahlen exakt.
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Standard-Schulmathematik Klasse 5–7, Verhältnisrechnung" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="dreisatz" slugs={['prozent', 'bruch', 'rabatt', 'einheiten']} />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">

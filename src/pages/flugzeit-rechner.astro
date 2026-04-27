@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import FlugzeitRechner from '../components/rechner/FlugzeitRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Flugzeit-Rechner – Flugdauer & Entfernung berechnen";
 const description = "Flugzeit Rechner: Berechnen Sie die Flugdauer zwischen beliebigen Städten weltweit. Inklusive Entfernung in km, Zeitverschiebung und Ankunftszeit. Kostenlos & sofort.";
@@ -14,6 +17,11 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Flugzeit-Rechner", url: "/flugzeit-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Flugzeit-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-sky-500 to-blue-600 text-white py-6 px-4">
@@ -41,6 +49,87 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
     <div class="max-w-2xl mx-auto px-4 py-6">
       <FlugzeitRechner client:load />
     </div>
+
+    <!-- Erweiterter SEO-Content: Use-Cases, Praxis, FAQ, Quellen -->
+    <article class="prose prose-lg max-w-3xl mx-auto px-4 mt-8">
+      <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Flugzeit-Rechner?</h2>
+      <p>
+        Bevor du einen Flug buchst, willst du oft wissen: Wie lange dauert das eigentlich? Genau dafür ist der Flugzeit-Rechner da. Der Klassiker: <strong>Reisezeit-Planung für Direktflüge</strong> — von Berlin nach Mallorca, von Frankfurt nach New York, von München nach Bali. Du kennst die Abflugzeit, willst die Ankunft kalkulieren, und brauchst den Anschluss am Zielort (Mietwagen, Hoteltransfer, Anschlussflug). Spannender wird es bei <strong>Stopover-Berechnungen mit Layover</strong>: Berlin → Doha → Bali ist nicht 14 Stunden, sondern 14 + 2 (Layover) + 8 — also 24 Stunden Tür-zu-Tür. Auch beruflich relevant: <strong>Flug-Schätzung für Privatflug-Anfragen</strong> (Charter, Privatjet) — Charter-Anbieter geben Stundenpreise an, eine grobe Flugzeit-Schätzung hilft beim Budget. Dazu kommt die persönliche Vorbereitung: <strong>Jet-Lag-Vorbereitung</strong> — wer von Frankfurt nach Tokio fliegt, hat 8 Stunden Zeitverschiebung und braucht 3–4 Tage zur Akklimatisierung; mit der konkreten Flugdauer kannst du Schlafrhythmus und Essenszeiten vorab anpassen. Und schließlich: <strong>CO₂-Bilanz für den Flug abschätzen</strong> — Faustregel etwa 250 g CO₂ pro Personenkilometer in Economy-Class auf Mittelstrecke.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 1: Frankfurt → New York — Hin & Rück sind nicht gleich</h3>
+      <p>
+        Die Großkreis-Distanz Frankfurt (FRA, 50,03° N, 8,57° O) → New York (JFK, 40,64° N, 73,78° W) beträgt <strong>6.207 km</strong>. Bei einer Reisegeschwindigkeit von ~840 km/h ergibt das eine reine Flugzeit von etwa 7 Stunden 24 Minuten. Realistisch geblockt: <strong>Hinflug ~8h 30min</strong> (mit Steig- und Sinkflug, plus Westwind-Gegenwind durch den Jetstream), <strong>Rückflug ~7h 45min</strong> (Rückenwind durch denselben Jetstream). Die Differenz von ~45 Minuten kommt fast ausschließlich vom Höhenwind in 10–12 km Höhe, der typisch mit 100–250 km/h von West nach Ost weht.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 2: Berlin → Bali mit Stopover Doha</h3>
+      <p>
+        Direktflüge gibt es nicht — du fliegst typisch Berlin (BER) → Doha (DOH) mit Qatar Airways, dann Doha → Denpasar (DPS). Die einzelnen Etappen: BER → DOH ist 4.700 km Großkreis, ~5h 45min Flug. Layover in Doha: meist 2 Stunden. DOH → DPS ist 7.000 km, ~9h 15min. <strong>Gesamtreisezeit: 5:45 + 2:00 + 9:15 = 17 Stunden</strong> reine Reisezeit ab BER. Plus Anreise zum Flughafen, 2h Vor-Check-in und Ankunfts-Buffer ergibt die typische Tür-zu-Tür-Zeit von 21–22 Stunden. Hinweis: Mit dem Zeitzonenwechsel (Bali ist UTC+8, Berlin UTC+1 in der Winterzeit) verschieben sich die Datums-/Uhrzeit-Anzeigen — der Flug kommt in Bali oft erst am nächsten Tag an, obwohl er „nur" 17 Stunden gedauert hat.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 3: München → Düsseldorf — Block-Time auf Kurzstrecke</h3>
+      <p>
+        Innerdeutsch: München (MUC) → Düsseldorf (DUS) ist <strong>480 km Luftlinie</strong>. Die reine Flugzeit auf Reiseflughöhe ist nur etwa <strong>1h 5min</strong> — aber dazu kommen ~30 Minuten für Steigflug auf FL360 (12 km Höhe) und ~30 Minuten Landeanflug. Macht zusammen <strong>~1h 30 min Block-Zeit</strong> (von Pushback am Gate München bis zum Stillstand am Gate Düsseldorf). In der Praxis liegt der Anteil reine Flugzeit auf solchen Kurzstrecken deshalb nur bei rund 50 % der Block-Zeit — bei Langstrecken ist das Verhältnis dramatisch besser (95 %+ reine Flugzeit). Das ist auch der Grund, warum Kurzstreckenflüge pro Personenkilometer mehr CO₂ verursachen als Langstrecken.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Erweiterte FAQ</h2>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie schnell fliegt ein Verkehrsflugzeug?</summary>
+        <p class="mt-2 text-gray-700">
+          Moderne Verkehrsflugzeuge wie der <strong>Boeing 737</strong> oder der <strong>Airbus A320</strong> fliegen typisch mit <strong>~840 km/h Reisegeschwindigkeit</strong> auf Reiseflughöhe (FL340–FL380, also etwa 10,5–11,5 km Höhe). In Mach-Zahlen: <strong>Mach 0.78 bis 0.85</strong>, also 78–85 % der Schallgeschwindigkeit. Größere Langstreckenflugzeuge wie der Boeing 747 oder Airbus A380 fliegen leicht schneller (~900 km/h). Die Concorde war mit Mach 2.04 (2.179 km/h) doppelt so schnell wie heutige Verkehrsmaschinen — aus Lärm- und Effizienzgründen wurden Überschall-Flüge 2003 eingestellt. Boom Supersonic plant ab 2029 wieder Mach-1.7-Verkehr (Overture).
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Warum dauert der Hinflug länger als der Rückflug?</summary>
+        <p class="mt-2 text-gray-700">
+          Schuld ist der <strong>Jetstream</strong> — ein starker Höhenwind, der typisch mit 100 bis 250 km/h von West nach Ost weht, in 8–12 km Höhe (genau die Reiseflughöhe der Verkehrsflugzeuge). Auf Flügen von Europa nach Nordamerika fliegst du gegen den Wind (Gegenwind), der Flug dauert länger. Auf dem Rückweg fliegst du mit dem Wind (Rückenwind), der Flug ist kürzer. Konkret: Frankfurt → New York braucht typisch 8h 30min, New York → Frankfurt nur 7h 30min — die ~1 Stunde Differenz erklärt sich fast komplett durch den Jetstream. Im Winter ist der Effekt stärker (Jetstream weht schneller).
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Was ist die Block-Zeit?</summary>
+        <p class="mt-2 text-gray-700">
+          Die <strong>Block-Zeit</strong> ist die Zeit von <em>Block-off</em> (Bremsklötze raus, Pushback am Gate) bis <em>Block-on</em> (Bremsklötze rein, Stillstand am Zielgate). Sie ist <em>länger</em> als die reine Flugzeit, weil Rollzeit am Boden, Warten auf Start-Freigabe, Holdings und das Rollen zum Gate enthalten sind. Typisch: 15–30 Minuten Bodenzeit pro Flug. Auf Kurzstrecken (München–Düsseldorf, 1h 30min Block) macht das 25–30 % aus, auf Langstrecken (Frankfurt–Bangkok, 11h Block) nur 5 %. In Tickets steht meist die Block-Zeit, nicht die reine Flugzeit. Crew-Dienstpläne und Wartungsintervalle werden ebenfalls in Block-Zeit gerechnet.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie viel CO₂ verursacht ein Flug?</summary>
+        <p class="mt-2 text-gray-700">
+          Faustregel: <strong>~250 g CO₂ pro Personenkilometer</strong> in Economy Class auf Mittelstrecke. Konkret: Frankfurt → Mallorca (1.300 km) verursacht ca. 325 kg CO₂ pro Person, Frankfurt → New York (6.200 km) ca. 1.550 kg pro Person — also rund eine Tonne. Business Class verursacht etwa das Dreifache, First Class das Vier- bis Fünffache (mehr Sitzplatz pro Person = weniger Effizienz). Kurzstrecken sind pro Personenkilometer ineffizienter als Langstrecken (Steig-/Sinkflug-Anteil hoch). Zur Einordnung: ein durchschnittlicher Deutscher verursacht pro Jahr ~10 t CO₂ insgesamt — ein Langstreckenflug ist also schon ein erheblicher Anteil davon.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie kompensiert man Jet-Lag am besten?</summary>
+        <p class="mt-2 text-gray-700">
+          Faustregel: pro Stunde Zeitverschiebung etwa ein Tag Akklimatisierung. Frankfurt → New York (6h Verschiebung) → 4–6 Tage. Frankfurt → Tokio (8h) → 6–8 Tage. <strong>Strategien:</strong> Schon 2–3 Tage vor Abflug den Schlafrhythmus Richtung Zielzeit verschieben (eine Stunde pro Tag). Im Flugzeug: viel Wasser, kein Alkohol, ggf. Melatonin (1–3 mg, ab Schlafzeit am Zielort). Am Zielort: sofort in den Lokal-Rhythmus einsteigen (auch wenn müde tagsüber wach bleiben), Tageslicht morgens, dunkel abends. Flüge nach Westen (Europa → USA) sind leichter zu verkraften als nach Osten (Europa → Asien) — biologisch ist es einfacher, wachzubleiben als früher zu schlafen.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Was ist der längste Nonstop-Flug der Welt?</summary>
+        <p class="mt-2 text-gray-700">
+          Aktuell ist <strong>Singapore Airlines SQ23 Singapur → New York (JFK)</strong> mit ca. <strong>15.300 km und 18:30 Stunden Flugzeit</strong> der längste planmäßige Nonstop-Flug, geflogen mit Airbus A350-900ULR. Auf den nächsten Plätzen: Auckland → Doha (17h 30min), Perth → London (17h 00min), Los Angeles → Singapur (17h 30min). Solche Ultralangstrecken sind nur mit speziellen, gewichtsoptimierten Flugzeugen möglich, die zusätzliche Treibstofftanks haben — denn jedes Kilo Treibstoff kostet selbst Treibstoff zum Mittransportieren.
+        </p>
+      </details>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
+      <p>
+        Die Flugzeit-Berechnung basiert auf der <strong>Großkreis-Distanz nach der Haversine-Formel</strong> (mittlerer Erdradius 6.371 km, WGS84-Koordinaten der Flughäfen). Die Reisegeschwindigkeit ist mit <strong>~840 km/h</strong> angesetzt — der typische Durchschnitt moderner Verkehrsflugzeuge wie Boeing 737 NG/MAX und Airbus A320/A321 (Mach 0.78–0.82). Für die Block-Time werden zusätzlich 30 Minuten für Steigflug und 30 Minuten für Landeanflug eingerechnet. Wind- und Routenfaktoren (Jetstream, vorgegebene Air Traffic Control Routen, Sperrgebiete wie aktuell Russland-Ukraine) werden in der Schätzung nicht berücksichtigt — die reale Block-Time kann je nach Tag um ±30 bis ±60 Minuten abweichen. CO₂-Schätzungen basieren auf Daten des Umweltbundesamts (UBA) und der ICAO (International Civil Aviation Organization).
+      </p>
+
+      <p class="text-sm text-gray-500 mt-6">Zuletzt aktualisiert: April 2026</p>
+    </article>
+
+    <RechnerTrust quellen="Haversine-Formel auf WGS84-Geoid, Reisegeschwindigkeit Boeing 737/Airbus A320 (~840 km/h), ICAO Annex, Umweltbundesamt CO₂-Faktoren" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="flugzeit" slugs={['entfernung', 'zeitzone', 'spritkosten', 'co2-steuer']} />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">

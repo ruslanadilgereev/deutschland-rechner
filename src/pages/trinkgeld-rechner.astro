@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import TrinkgeldRechner from '../components/rechner/TrinkgeldRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Trinkgeld-Rechner – Trinkgeld in Deutschland berechnen";
 const description = "Trinkgeld berechnen: Empfohlenes Trinkgeld für Restaurant, Taxi, Friseur & Hotel. Mit Aufrunden, Rechnung teilen & Tipps. Kostenlos!";
@@ -14,6 +17,11 @@ const keywords = "Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Tr
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Trinkgeld-Rechner", url: "/trinkgeld-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Trinkgeld-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
@@ -41,6 +49,186 @@ const keywords = "Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Tr
     <div class="max-w-2xl mx-auto px-4 py-6">
       <TrinkgeldRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Trinkgeld-Rechner?</h2>
+        <p>
+          Trinkgeld-Mathe ist eigentlich simpel — bis du in einer 8er-Gruppe sitzt, jemand will
+          aufrunden, jemand zahlt mit Karte, jemand bar, und am Ende fragt der Kellner nach einem
+          Gesamtbetrag. Oder du bist im USA-Urlaub und musst spontan 18 % von $137,40 ausrechnen.
+          Genau dafür ist der Rechner da:
+        </p>
+        <ul>
+          <li><strong>Restaurant-Rechnung in DE und Ausland aufrunden:</strong> 5–10 % Tipp in
+          Deutschland, glatter Endbetrag — der Rechner macht das in Sekunden.</li>
+          <li><strong>Trinkgeld-Aufteilung in der Gruppe:</strong> Wer zahlt wie viel inkl. Tipp,
+          ohne dass der Initiator nachträglich draufzahlt?</li>
+          <li><strong>USA-Reise mit 18–22 % Tip-Erwartung:</strong> Im Restaurant sind 20 %
+          Standard, im Diner 15–18 %, an der Bar $1–2 pro Drink.</li>
+          <li><strong>Friseur, Taxi, Hotel:</strong> Andere Branchen, andere Konventionen — der
+          Rechner hilft, schnell auf den passenden Betrag zu kommen.</li>
+          <li><strong>Reisekosten-Abrechnung mit Trinkgeld separat:</strong> Bei
+          Geschäftsreisen ist Trinkgeld bis zu einer üblichen Höhe absetzbar — wenn du es
+          getrennt ausweist.</li>
+        </ul>
+        <p>
+          Die Konvention ändert sich pro Land erheblich. Was in Deutschland großzügig wirkt, ist in
+          New York knapp am Skandal — und in Tokio sogar peinlich.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
+        <p>
+          Drei typische Tipp-Situationen — Restaurant in Deutschland, Diner in den USA, Gruppe in
+          Deutschland.
+        </p>
+
+        <h3>Beispiel 1: Restaurant in Deutschland mit Aufrundung</h3>
+        <p>
+          Rechnung <strong>87,40 €</strong>. Du willst rund 10 % Trinkgeld geben:
+        </p>
+        <ul>
+          <li>10 % × 87,40 € = <strong>8,74 €</strong></li>
+          <li>Aufgerundet auf einen glatten Endbetrag: 87,40 € + 8,74 € = 96,14 € → praktisch
+          aufrunden auf <strong>96 €</strong></li>
+          <li>Effektives Trinkgeld: 8,60 € (≈ 9,8 %)</li>
+        </ul>
+        <p>
+          In Deutschland nennst du beim Kellner direkt den Endbetrag: „Machen Sie 96 Euro" oder
+          beim Übergeben des Geldes „Stimmt so". Bei Kartenzahlung wird heute zunehmend ein
+          Trinkgeld-Feld auf dem Terminal angeboten — du kannst auch dort 96 € eintragen.
+        </p>
+
+        <h3>Beispiel 2: Diner in den USA</h3>
+        <p>
+          Diner-Bill <strong>$42</strong>, üblicher Tip <strong>20 %</strong> bei normalem Service:
+        </p>
+        <ul>
+          <li>20 % × $42 = <strong>$8,40</strong></li>
+          <li>Endbetrag: $50,40 — Tipp wird auf der Rechnung in das „Tip"-Feld eingetragen,
+          „Total" ergänzt, dann unterschrieben</li>
+        </ul>
+        <p>
+          In den USA ist Trinkgeld ein praktischer Pflichtbestandteil der Rechnung — Kellner
+          verdienen oft nur einen reduzierten Mindestlohn (in manchen Bundesstaaten unter $3/h)
+          und leben vom Tipp. 15 % gilt als unhöflich, 20 % ist die Norm, 22–25 % bei Top-Service.
+          Bei Bargeld einfach passend hinterlegen, bei Kartenzahlung in das Feld eintragen.
+        </p>
+
+        <h3>Beispiel 3: Gruppe von 6 Personen, Aufteilung</h3>
+        <p>
+          Restaurant-Rechnung <strong>134 €</strong>, Gruppe will <strong>15 % Trinkgeld</strong>
+          geben:
+        </p>
+        <ul>
+          <li>Gesamt inkl. Tipp: 134 € × 1,15 = <strong>154,10 €</strong> → aufrunden auf 154 €</li>
+          <li>Pro Person: 154 € ÷ 6 = <strong>25,67 €</strong></li>
+          <li>Praktischer Vorschlag: jeder zahlt <strong>26 €</strong> — der Initiator zieht alles
+          ein, hat zwei Euro Puffer und kann darüber entscheiden, ob das ein zusätzliches Trinkgeld
+          oder ein Pufferbetrag wird.</li>
+        </ul>
+        <p>
+          Der Trinkgeld-Rechner mit Personen-Aufteilung verhindert, dass am Ende jemand 50 Cent zu
+          wenig einsammelt — was bei Karten-Splittung über mehrere Konten sonst zum echten Problem
+          werden kann.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen</h2>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wie viel Trinkgeld ist in Deutschland üblich?</summary>
+          <p class="mt-2">
+            Faustregel: <strong>5–10 % im Restaurant</strong>, glatter Aufrundungsbetrag im
+            Café/Bar. Bei sehr günstigen Beträgen (Cappuccino 3,50 €) wird oft auf den nächsten
+            halben oder ganzen Euro aufgerundet — ein paar Cent Tipp wirken sonst seltsam. Beim
+            Friseur 5–10 %, beim Taxi 5–10 % oder Aufrundung auf den nächsten vollen Euro. Im Hotel
+            1–2 € pro Übernachtung für die Reinigungskraft (am Ende des Aufenthalts oder täglich),
+            1–2 € pro Gepäckstück für den Page.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was ist in den USA üblich?</summary>
+          <p class="mt-2">
+            <strong>Restaurant: 18–22 %</strong> (15 % wirkt knapp, 20 % ist Standard, 22–25 % bei
+            Top-Service). <strong>Bar: $1–2 pro Drink</strong> oder 20 % auf die Bill. <strong>Taxi/
+            Uber: 15–20 %</strong>. <strong>Hotel: $1–2 pro Gepäckstück</strong> für den Bellboy,
+            $2–5 pro Übernachtung für die Housekeeping (in einem Umschlag mit „Thank you"-Notiz auf
+            dem Bett). <strong>Friseur: 15–20 %</strong>. Wichtig: Tip wird auf das <em>Pre-Tax-Total</em>
+            berechnet, nicht auf den Endbetrag mit Sales Tax — das ist faires Verhalten.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Muss ich Trinkgeld geben?</summary>
+          <p class="mt-2">
+            Rechtlich nein — Trinkgeld ist in Deutschland immer freiwillig. Sozial ist es üblich,
+            bei normalem Service einen kleinen Tipp zu geben. Wenn auf der Rechnung bereits ein
+            verpflichtender <strong>„Service Charge"</strong> steht (z. B. bei Gruppen ab 8 Personen
+            in manchen Restaurants), ist kein zusätzliches Trinkgeld nötig. In Italien und
+            Österreich sind „Coperto" oder „Servicepauschale" oft im Preis — auch hier reicht ein
+            kleiner Aufrundungsbetrag. In Japan und China gilt Trinkgeld als unhöflich und sollte
+            nicht gegeben werden.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wird Trinkgeld in Deutschland versteuert?</summary>
+          <p class="mt-2">
+            <strong>Beim Empfänger ist Trinkgeld komplett steuerfrei</strong> — nach
+            <strong>§ 3 Nr. 51 EStG</strong>, sofern es freiwillig vom Gast gegeben wird und nicht
+            arbeitsvertraglich vereinbart ist. Die Steuerfreiheit gilt unabhängig von der Höhe.
+            Wird hingegen ein verpflichtender „Service Charge" auf die Rechnung gesetzt und vom
+            Arbeitgeber an die Mitarbeiter ausgezahlt, ist das normaler steuerpflichtiger
+            Arbeitslohn. Für den Gast ist Trinkgeld nicht absetzbar — außer im Rahmen einer
+            Geschäftsreise oder eines Arbeitsessens, wo es als Bewirtungs-Nebenkosten gilt.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Bekommt das Personal das Trinkgeld wirklich?</summary>
+          <p class="mt-2">
+            Bei <strong>Bar-Trinkgeld</strong> in der Regel ja — der Kellner steckt es direkt ein.
+            In manchen Betrieben gibt es ein Pool-System („Tronc"), wo Bar-Tipps gesammelt und am
+            Ende der Schicht aufgeteilt werden. Bei <strong>Karten-Trinkgeld</strong> hängt es vom
+            Betrieb ab: idealerweise wird der Tipp-Anteil als „steuerfreier Trinkgeldbetrag"
+            ausgezahlt, in der Praxis gibt es aber auch Restaurants, die das in den Lohn integrieren
+            (was rechtlich problematisch ist). Wenn du sicherstellen willst, dass dein Tipp wirklich
+            beim Personal landet: bar geben.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was bedeutet „Stimmt so"?</summary>
+          <p class="mt-2">
+            Die deutsche Standard-Formulierung beim Bezahlen mit Trinkgeld: du übergibst dem
+            Kellner einen Betrag, der größer ist als die Rechnung, und sagst „Stimmt so" — kein
+            Wechselgeld zurück, die Differenz ist Trinkgeld. Alternativen: „Machen Sie 50" oder
+            „Auf 50 bitte" — du nennst den Endbetrag, den der Kellner kassieren soll. Bei
+            Kartenzahlung sagst du dem Kellner den gewünschten Endbetrag, bevor er die Karte
+            durchzieht, oder trägst den Tipp am Terminal selbst ein.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
+        <p>
+          Die Steuerfreiheit von Trinkgeldern für Arbeitnehmer ist in
+          <strong>§ 3 Nr. 51 EStG</strong> (Einkommensteuergesetz) geregelt: Trinkgelder, die
+          freiwillig und ohne Rechtsanspruch von Dritten anlässlich einer Arbeitsleistung gegeben
+          werden, sind in voller Höhe steuerfrei. Voraussetzung: Trinkgeld muss freiwillig sein —
+          Pflicht-Servicepauschalen oder vereinbarte Bedienungsgelder sind kein steuerfreies
+          Trinkgeld. Die typischen Trinkgeld-Höhen pro Branche und Land sind <strong>kulturelle
+          Konventionen</strong>, keine gesetzlichen Vorgaben — sie ergeben sich aus üblicher Praxis
+          und werden u. a. von Tourismus-Verbänden, Reise-Ratgebern und nationalen Gastronomie-
+          Verbänden empfohlen. Der Rechner berücksichtigt keine landesspezifischen Service-Charges
+          oder Coperto-Beträge auf der Rechnung — diese musst du vor der Tipp-Berechnung abziehen.
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -175,39 +363,19 @@ const keywords = "Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Tr
       </div>
     </div>
     
-    <!-- Verwandte Rechner -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span class="text-2xl">🔗</span>
-          Verwandte Rechner
-        </h2>
-        
-        <div class="grid gap-3">
-          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-3">
-            <span class="text-2xl">📊</span>
-            <div>
-              <div class="font-semibold text-gray-800">Prozent-Rechner</div>
-              <div class="text-sm text-gray-500">Alle Prozentberechnungen: Grundwert, Prozentwert, Prozentsatz</div>
-            </div>
-          </a>
-          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-3">
-            <span class="text-2xl">🏷️</span>
-            <div>
-              <div class="font-semibold text-gray-800">Rabatt-Rechner</div>
-              <div class="text-sm text-gray-500">Ersparnis & Endpreis nach Rabatt berechnen</div>
-            </div>
-          </a>
-          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-3">
-            <span class="text-2xl">🧾</span>
-            <div>
-              <div class="font-semibold text-gray-800">Mehrwertsteuer-Rechner</div>
-              <div class="text-sm text-gray-500">Mehrwertsteuer berechnen: Brutto ↔ Netto</div>
-            </div>
-          </a>
-        </div>
-      </div>
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust
+        quellen="§ 3 Nr. 51 EStG (Steuerfreiheit Trinkgelder), kulturelle Konventionen pro Land"
+        aktualisiert="April 2026"
+      />
     </div>
+
+    <!-- Verwandte Rechner -->
+    <VerwandteRechner
+      aktuellerSlug="trinkgeld"
+      slugs={["rabatt", "mehrwertsteuer", "prozent", "verpflegungsmehraufwand"]}
+    />
 </main>
   
   <!-- Structured Data for SEO -->

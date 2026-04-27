@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerCard from '../components/RechnerCard';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Finanzen & Kredit — Zinsrechner, Tilgung, Sparrechner";
+const description = "Zinseszins-Rechner, Kredit- und Tilgungsplan, Baufinanzierung, ETF-Sparplan, Dividenden-Rechner — alle Finanz-Rechner kostenlos und transparent.";
+const keywords = "Finanzen Rechner, Zinsrechner, Zinseszins, Kreditrechner, Tilgungsplan, Baufinanzierung, ETF Sparplan, Dividenden Rechner, Effektivzins, PAngV, Tagesgeld, Festgeld, VL";
+
+const finanzenRechner = rechnerListe.filter(r => r.kategorie === 'finanzen');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Finanzen & Kredit Rechner Deutschland 2026",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/finanzen-kredit",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Finanzen & Kredit", url: "/finanzen-kredit" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+
+  <main class="min-h-screen pb-8 bg-gray-50">
+    <!-- Kompakter Hero mit Emerald als Akzent -->
+    <header class="bg-white border-b border-gray-200 py-8 px-4">
+      <div class="max-w-7xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-gray-500 hover:text-emerald-600 mb-4 transition-colors text-sm"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 text-3xl">💳</span>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Finanzen & Kredit in Deutschland 2026</h1>
+            <p class="text-gray-500 text-sm md:text-base mt-1">Rechner für Zinsen, Kredite, Sparpläne und Vermögensaufbau</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro-Block -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Finanzen & Kredit in Deutschland 2026</h2>
+        <p>
+          Wer in Deutschland Geld leiht, anlegt oder spart, bewegt sich in einem stark regulierten Markt. Die zentrale
+          Vergleichszahl bei Krediten ist der <strong>effektive Jahreszins</strong> — er muss nach
+          <strong>Preisangabenverordnung (PAngV)</strong> alle Kosten enthalten und macht Angebote überhaupt erst
+          vergleichbar. Beim klassischen Annuitätendarlehen bleibt die Rate konstant, der Tilgungsanteil wächst mit der Zeit.
+          Bei <strong>endfälligen Darlehen</strong> wird nur Zins gezahlt, die volle Tilgung am Schluss — relevant z. B. bei
+          Bauspardarlehen oder als Bausteine in der Baufinanzierung.
+        </p>
+        <p>
+          Sondertilgungen sind im Wohnimmobilienkredit oft kostenfrei bis 5 % p. a. möglich. Wer den Kredit komplett
+          ablöst, zahlt eine <strong>Vorfälligkeitsentschädigung</strong>; die BGH-Rechtsprechung hat dafür enge Grenzen
+          gezogen. Bei Verbraucherdarlehen kann nach 10 Jahren ohne Entschädigung gekündigt werden (§ 489 BGB).
+        </p>
+        <p>
+          Beim Sparen ist <strong>Tagesgeld</strong> jederzeit verfügbar, <strong>Festgeld</strong> verzinst höher gegen
+          Laufzeitbindung, das klassische <strong>Sparbuch</strong> ist heute selten konkurrenzfähig. <strong>ETF-Sparpläne</strong>
+          sind das beliebteste langfristige Werkzeug: entscheidend sind die <strong>TER (Total Expense Ratio)</strong> — meist 0,05 % bis 0,5 % p. a. —
+          und die Diversifikation. Die <strong>Dividendenrendite</strong> setzt die Ausschüttung ins Verhältnis zum Kurs;
+          attraktiv klingt nicht immer attraktiv, wenn der Kurs eingebrochen ist.
+        </p>
+        <p>
+          <strong>Vermögenswirksame Leistungen (VL)</strong> sind ein arbeitgeberfinanzierter Bonus — bis zu 480 €/Jahr,
+          oft kombinierbar mit Arbeitnehmer-Sparzulage (§ 13 5. VermBG). Die Aufsicht über Banken, Sparkassen und
+          Wertpapierhäuser hat die <strong>BaFin</strong>; die <strong>Deutsche Bundesbank</strong> liefert die Zinsdaten,
+          die <strong>Verbraucherzentrale</strong> berät unabhängig.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rechner-Grid -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Alle Finanz-Rechner</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {finanzenRechner.map(rechner => (
+          <RechnerCard rechner={rechner} client:load />
+        ))}
+      </div>
+    </section>
+
+    <!-- Worauf zu achten -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Worauf bei Finanz-Rechnern zu achten ist</h2>
+        <p>
+          Vorsicht beim Vergleich von <strong>Sollzins</strong> und <strong>Effektivzins</strong> — nur der Effektivzins
+          enthält Bearbeitungsgebühren, Vermittlungsprovisionen und unterjährige Verrechnungseffekte. Bei Baukrediten
+          spielt die <strong>Sollzinsbindung</strong> die zentrale Rolle: kurze Bindung ist günstiger, das Anschlusszinsrisiko
+          aber größer.
+        </p>
+        <p>
+          Beim <strong>ETF-Sparplan</strong> rechnen die meisten Tools mit konstanter Rendite — historisch 6–8 % p. a. beim
+          MSCI World, real schwankt das stark. Steuern (Vorabpauschale, Abgeltungsteuer 25 %, Sparer-Pauschbetrag 1.000 €)
+          und Inflation senken den Nettoertrag. <strong>Dividendenrechner</strong> rechnen meist brutto — bei deutschen Aktien
+          gehen 25 % Kapitalertragsteuer plus Solidaritätszuschlag ab. Und: vergangene Renditen sind keine Prognose.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quellen -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 !mt-0">Quellen</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><a href="https://www.bundesbank.de/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-800 underline">Deutsche Bundesbank — Zinsstatistiken</a></li>
+          <li><a href="https://www.bafin.de/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-800 underline">BaFin — Bundesanstalt für Finanzdienstleistungsaufsicht</a></li>
+          <li><a href="https://www.verbraucherzentrale.de/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-800 underline">Verbraucherzentrale — unabhängige Finanzberatung</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/pangv_2022/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-800 underline">Preisangabenverordnung (PAngV)</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/bgb/__489.html" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-800 underline">§ 489 BGB — Kreditkündigungsrecht</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/vermbg_5/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-800 underline">5. Vermögensbildungsgesetz — VL</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>

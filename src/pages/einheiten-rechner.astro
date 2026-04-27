@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import EinheitenRechner from '../components/rechner/EinheitenRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Einheiten-Rechner – Maßeinheiten einfach umrechnen";
 const description = "Einheiten Rechner: Rechnen Sie alle Maßeinheiten um – Länge, Gewicht, Fläche, Volumen, Temperatur, Zeit und mehr. Kostenlos & sofort.";
@@ -14,6 +17,11 @@ const keywords = "Einheiten Rechner, Maßeinheiten umrechnen, Einheiten umwandel
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Einheiten-Rechner", url: "/einheiten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Einheiten-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
@@ -149,37 +157,101 @@ const keywords = "Einheiten Rechner, Maßeinheiten umrechnen, Einheiten umwandel
       </div>
     </div>
     
-    <!-- Weitere Tools -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span class="text-2xl">🔗</span>
-          Ähnliche Rechner
-        </h2>
-        
-        <div class="grid grid-cols-2 gap-4">
-          <a href="/prozent-rechner" class="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
-            <div class="text-2xl mb-2">📊</div>
-            <div class="font-semibold text-gray-800">Prozent-Rechner</div>
-            <div class="text-sm text-gray-500">Prozent berechnen</div>
-          </a>
-          <a href="/flaechen-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
-            <div class="text-2xl mb-2">📏</div>
-            <div class="font-semibold text-gray-800">Flächen-Rechner</div>
-            <div class="text-sm text-gray-500">Flächen berechnen</div>
-          </a>
-          <a href="/flugzeit-rechner" class="p-4 bg-sky-50 rounded-xl hover:bg-sky-100 transition-colors">
-            <div class="text-2xl mb-2">✈️</div>
-            <div class="font-semibold text-gray-800">Flugzeit-Rechner</div>
-            <div class="text-sm text-gray-500">Entfernungen berechnen</div>
-          </a>
-          <a href="/spritkosten-rechner" class="p-4 bg-amber-50 rounded-xl hover:bg-amber-100 transition-colors">
-            <div class="text-2xl mb-2">⛽</div>
-            <div class="font-semibold text-gray-800">Spritkosten-Rechner</div>
-            <div class="text-sm text-gray-500">Verbrauch berechnen</div>
-          </a>
+    <!-- Wann brauchst du den Einheiten-Rechner? -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Wann brauchst du den Einheiten-Rechner?</h2>
+        <p class="text-gray-700">
+          Der häufigste Auslöser sind <strong>US-Cookbooks und englischsprachige Backrezepte</strong>: Wer schon mal versucht hat, „1 cup flour" einfach mit „eine Tasse Mehl" zu übersetzen, kennt das Drama mit zähem Teig. Ein US-Cup ist 236,6 ml, eine deutsche Tasse irgendwas zwischen 150 und 250 ml — der Rechner gibt dir genau die Gramm. Genauso bei Ounces (1 oz ≈ 28,35 g) und Teaspoons.
+        </p>
+        <p class="text-gray-700">
+          Weitere typische Use-Cases: <strong>Renovierungs- und Bodenbelag-Maße</strong> aus US-Datenblättern (sqft → m²), <strong>Reise-Planung in den USA oder UK</strong> (Meilen → Kilometer, Fahrenheit → Celsius — bei 75 °F brauchst du noch keine Strickjacke), <strong>internationale Versand-Pakete</strong> (lbs → kg, inches → cm für Paketmaße), <strong>Heimwerker-Projekte</strong> mit US-Bauplänen (1/2 inch ≈ 12,7 mm — entscheidend bei Schrauben und Bohrern), <strong>Datenmengen</strong> umrechnen (GB ↔ GiB — wichtig wenn die Festplatte „weniger" hat als beworben). Kurz: Immer dann, wenn deutsche SI-Einheiten auf das angelsächsische System treffen oder umgekehrt.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Beispiele aus der Praxis</h2>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 1: 1 Cup Butter aus einem US-Cookbook</h3>
+        <p class="text-gray-700">
+          Ein US-Rezept verlangt „1 cup butter, softened". 1 US-Cup sind 236,59 ml. Bei flüssigen Zutaten genügt das — bei festen wie Butter musst du mit der Dichte multiplizieren (Butter ≈ 0,96 g/ml).
+        </p>
+        <div class="bg-emerald-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>1 cup = 236,59 ml × 0,96 g/ml ≈ <strong>227 g Butter</strong></p>
+          <p>Daumenregel: 1 stick US-Butter (was im Original oft gemeint ist) = ½ cup = ca. 113 g.</p>
+          <p>Mehl: 1 cup ≈ 125 g, Zucker: 1 cup ≈ 200 g, Reis (ungekocht): 1 cup ≈ 185 g.</p>
         </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 2: 100 Quadratfuß Bodenbelag in m²</h3>
+        <p class="text-gray-700">
+          In einem US-Online-Shop steht „covers 100 sqft" auf dem Vinylboden, du brauchst aber Quadratmeter, um deinen 18-m²-Raum zu kalkulieren.
+        </p>
+        <div class="bg-emerald-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>1 sqft = 0,0929 m²</p>
+          <p>100 sqft × 0,0929 = <strong>9,29 m²</strong></p>
+          <p>Für deinen 18-m²-Raum brauchst du also rund 2 Pakete plus 10 % Verschnitt.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 3: 75 °F Wettervorhersage in Celsius</h3>
+        <p class="text-gray-700">
+          Du planst eine Reise nach Florida, die App zeigt 75 °F — was zieh' ich an?
+        </p>
+        <div class="bg-emerald-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Formel: T<sub>C</sub> = (T<sub>F</sub> − 32) × 5/9</p>
+          <p>(75 − 32) × 5/9 = 43 × 0,5556 = <strong>23,9 °C</strong></p>
+          <p>Faustregel: F − 30, dann durch 2 — gibt eine sehr gute Schätzung. (75 − 30) ÷ 2 = 22,5 °C.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zur Einheiten-Umrechnung</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Warum gibt es überhaupt verschiedene Maßeinheiten?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Historische Gründe. Bis ins 19. Jahrhundert hatte praktisch jede Region eigene Einheiten — eine Elle in Hamburg war anders lang als in München. Frankreich führte 1799 das metrische System ein, Deutschland folgte 1872 mit dem Maß- und Gewichtsgesetz, das Meter und Kilogramm als gesetzliche Einheiten festlegte. Die USA, UK und einige andere Länder behielten ihr <em>imperiales</em> System (basierend auf Fuß, Pfund, Gallone). Heute ist das <strong>Internationale Einheitensystem (SI)</strong> mit Meter, Kilogramm, Sekunde, Ampere, Kelvin, Mol und Candela weltweit Standard — auch in den USA wissenschaftlich.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Was ist der Unterschied zwischen US-Gallone und Imperial-Gallone?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Die beiden sind <em>nicht</em> gleich. <strong>1 US-Gallone</strong> = 3,785 Liter (in den USA verwendet), <strong>1 Imperial-Gallone</strong> (UK) = 4,546 Liter. Der Unterschied beträgt ca. 20 % — relevant z. B. bei Spritverbrauchsangaben: „30 mpg" in den USA sind etwa 7,84 l/100 km, „30 mpg" im UK aber 9,42 l/100 km. Bei Kochrezepten taucht der Unterschied selten auf, bei technischen Daten und Tank-Spezifikationen schon. Schau im Zweifel nach „US gal" oder „Imperial gal" / „UK gal".</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welche Einheit nutzt Deutschland für Wohnflächen?</summary>
+          <div class="mt-3 text-gray-700">
+            <p><strong>Quadratmeter (m²)</strong> — gesetzlich verbindlich seit 1872 (Mess- und Eichgesetz). Bei Wohnflächen kommt zusätzlich die <strong>Wohnflächenverordnung (WoFlV)</strong> zum Tragen, die regelt, wie Dachschrägen, Balkone und Terrassen anteilig gerechnet werden (z. B. Balkon meist nur zu 25–50 %). „Quadratfuß" oder „Acres" tauchen in deutschen Mietverträgen nicht auf — wer ein Haus aus den USA übernimmt oder ein US-Inserat liest, muss umrechnen: 1.500 sqft ≈ 139 m².</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Sind Inch und Zoll dasselbe?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Ja. Der deutsche „Zoll" und der englische „inch" sind heute exakt gleich definiert: <strong>1 inch = 1 Zoll = 2,54 cm</strong> (international vereinbart 1959). Das gilt auch für Bildschirmgrößen (ein 55-Zoll-TV hat 139,7 cm Diagonale) und Rohrdurchmesser (½ Zoll Wasserrohr = 12,7 mm). Achtung bei alten Quellen: Vor 1959 gab es leichte Abweichungen zwischen britischem und US-Inch (im Mikrometerbereich), und der historische deutsche Zoll variierte regional zwischen 23 und 30 mm.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie genau muss ich beim Umrechnen sein?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Hängt vom Anwendungsfall ab. Beim Backen reichen zwei Nachkommastellen — 113 statt 113,4 g Butter ändert nichts am Ergebnis. Bei <strong>Werkzeugen und Schrauben</strong> dagegen sind 0,1 mm wichtig: Eine ½-inch-Schraube (12,7 mm) passt nicht in ein 12-mm-Loch. Bei <strong>technischen Spezifikationen</strong> (z. B. Flugzeugbau, Medizintechnik) musst du die Genauigkeit der Originalquelle übernehmen. Faustregel: So viele Nachkommastellen wie der Eingabewert — wer „etwa 100 °F" sagt, braucht im Output keine 37,7778 °C.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik & Quellen</h2>
+        <p class="text-gray-700">
+          Alle Umrechnungsfaktoren entsprechen dem <strong>Internationalen Einheitensystem (SI)</strong> — der weltweit standardisierten Einheiten-Basis, in Deutschland geregelt durch das <strong>Mess- und Eichgesetz (MessEG)</strong> und die zugehörige Mess- und Eichverordnung (MessEV). Für angelsächsische Einheiten gelten die international vereinbarten Werte (z. B. 1 inch = 2,54 cm seit 1959, 1 lb = 453,59237 g). Temperatur-Umrechnungen folgen den exakten Definitionen der Skalen Celsius (°C), Fahrenheit (°F) und Kelvin (K). Die Berechnungen laufen vollständig im Browser. Zuletzt aktualisiert: April 2026.
+        </p>
       </div>
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="Internationales Einheitensystem (SI), MessEG/MessEV" aktualisiert="April 2026" />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="einheiten" slugs={['waehrungs', 'spritverbrauch', 'bmi']} kategorie="alltag" />
     </div>
 </main>
   

@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import ZeitRechner from '../components/rechner/ZeitRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Zeit-Rechner – Stunden & Minuten addieren, Zeitdifferenz";
 const description = "Zeit-Rechner: Stunden, Minuten und Sekunden addieren oder subtrahieren. Zeitdifferenz berechnen & Dezimalstunden umrechnen. Perfekt für Arbeitszeit-Erfassung!";
@@ -14,6 +17,11 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Zeit-Rechner", url: "/zeit-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Zeit-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
@@ -41,6 +49,170 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
     <div class="max-w-2xl mx-auto px-4 py-6">
       <ZeitRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Zeit-Rechner?</h2>
+        <p>
+          Stunden und Minuten zusammenzurechnen klingt einfach — bis 7:45 + 8:30 + 6:15 im Kopf
+          erledigt werden soll und der Übertrag von 60 Minuten alle paar Schritte ein
+          Rundungsfehler-Risiko ist. Der Zeit-Rechner nimmt dir das ab. Praxis-Szenarien:
+        </p>
+        <ul>
+          <li>
+            <strong>Wochenarbeitszeit addieren:</strong> Schichten, flexible Stunden,
+            unterschiedliche Wochentage — alles kommt am Ende auf eine Summe.
+          </li>
+          <li>
+            <strong>Pausen abziehen:</strong> Brutto-Anwesenheit minus 30 oder 45 min Pause =
+            tatsächliche Arbeitszeit (Netto). Wichtig für Stundenzettel und Lohnabrechnung.
+          </li>
+          <li>
+            <strong>Reise-Zeit mit Pausen kalkulieren:</strong> Fahrtzeit minus Tankstopps minus
+            Mittagessen = reine Fahrt. Hilfreich bei Routenplanung.
+          </li>
+          <li>
+            <strong>Stundenzettel manuell prüfen:</strong> Was hat der Arbeitgeber abgerechnet, was
+            steht im persönlichen Kalender? Differenzen schnell finden.
+          </li>
+          <li>
+            <strong>Zeit zwischen zwei Datums-Zeitpunkten:</strong> Wie viele Stunden zwischen
+            Donnerstag 9:15 und Samstag 17:00? Inklusive Tagen über Mitternacht.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Beispiele aus der Praxis</h2>
+
+        <h3>Beispiel 1: Schicht mit Pause (Netto-Arbeitszeit)</h3>
+        <p>
+          Schichtbeginn 06:00, Schichtende 14:00, dazwischen 30 min Pause.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Brutto-Anwesenheit: 14:00 − 06:00 = 8:00 h<br/>
+          minus Pause: 0:30 h<br/>
+          = <strong>Netto-Arbeitszeit: 7:30 h (= 7,5 h dezimal)</strong>
+        </div>
+        <p>
+          Pausen ab 6 Stunden Arbeitszeit sind in Deutschland Pflicht (§ 4 ArbZG). Sie zählen
+          rechtlich nicht als Arbeitszeit und werden bei der Lohnabrechnung abgezogen.
+        </p>
+
+        <h3>Beispiel 2: Wochensumme aus mehreren Schichten</h3>
+        <p>
+          Vier Schichten à 7,5 h plus drei Schichten à 8 h, alles in einer Woche.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          4 × 7:30 h = 30:00 h<br/>
+          3 × 8:00 h = 24:00 h<br/>
+          = <strong>Wochenarbeitszeit: 54:00 h</strong>
+        </div>
+        <p>
+          Achtung: 54 h pro Woche überschreitet die zulässige durchschnittliche Wochenarbeitszeit
+          nach § 3 ArbZG (max. 48 h im 6-Monats-Schnitt) und darf nur kurzfristig stehen.
+        </p>
+
+        <h3>Beispiel 3: Zeitspanne über mehrere Tage</h3>
+        <p>
+          Wie viel Zeit liegt zwischen dem 28.04.2026 um 09:15 Uhr und dem 30.04.2026 um 17:00 Uhr?
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Volle Tage: 2 Tage (28. → 30. April)<br/>
+          Plus 17:00 − 09:15 = 7:45 h<br/>
+          = <strong>2 Tage, 7 Stunden, 45 Minuten</strong><br/>
+          dezimal: 2 × 24 + 7,75 = <strong>55,75 h</strong>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen zur Zeitberechnung</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was zählt rechtlich als Arbeitszeit?</summary>
+          <p class="mt-3">
+            Nach <strong>§ 2 ArbZG</strong> ist Arbeitszeit "die Zeit vom Beginn bis zum Ende der
+            Arbeit ohne die Ruhepausen". Eingeschlossen sind also Tätigkeiten, Bereitschaft und
+            sonstige Arbeit auf Anweisung — nicht aber Pausen, Wegezeiten zur Arbeit oder reine
+            Rufbereitschaft. Bei Bereitschaftsdienst und Reisezeiten gilt die Vergütung
+            differenziert je nach Tarifvertrag oder individuellem Arbeitsvertrag.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Sind Wegezeiten zur Arbeit Arbeitszeit?</summary>
+          <p class="mt-3">
+            <strong>Grundsätzlich nein.</strong> Der normale Weg von der Wohnung zur ersten
+            Arbeitsstätte gilt nicht als Arbeitszeit und wird nicht vergütet. Anders sieht es aus
+            bei <strong>Außendienst-Mitarbeitern ohne festen Arbeitsort</strong>: Dort entschied
+            der EuGH 2015 (Tyco-Urteil C-266/14), dass die Fahrt vom Wohnsitz zum ersten Kunden und
+            vom letzten Kunden nach Hause Arbeitszeit ist. Bei Dienstreisen gilt die An- und
+            Abfahrt während der regulären Arbeitszeit i.d.R. als Arbeitszeit.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie werden Pausen rechtlich gehandhabt?</summary>
+          <p class="mt-3">
+            Nach <strong>§ 4 ArbZG</strong> gilt: ab mehr als <strong>6 Stunden</strong>
+            Arbeitszeit mindestens 30 Minuten Pause, ab mehr als <strong>9 Stunden</strong>
+            mindestens 45 Minuten. Die Pausen können in Blöcke von je mindestens 15 Minuten
+            geteilt werden. Pausen müssen <em>im Voraus festgelegt</em> sein — der Arbeitgeber kann
+            sie nicht spontan einfordern, der Arbeitnehmer sie nicht beliebig verschieben. Pausen
+            zählen nicht als Arbeitszeit.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie rechne ich Zeit in Dezimalstunden um?</summary>
+          <p class="mt-3">
+            Dezimalstunden sind Stunden mit Komma — was Lohnabrechnungs-Software meist verlangt.
+            Faustregel: <strong>15 min = 0,25 h, 30 min = 0,5 h, 45 min = 0,75 h</strong>.
+            Allgemein: Minuten geteilt durch 60. Beispiele: 12 min = 0,20 h; 20 min = 0,33 h; 40
+            min = 0,67 h. Eine vollständige Tabelle findest du weiter unten auf dieser Seite.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen Arbeitszeit und Anwesenheitszeit?</summary>
+          <p class="mt-3">
+            <strong>Anwesenheitszeit</strong> ist die Zeit, in der du physisch im Betrieb bist —
+            inklusive Pausen. <strong>Arbeitszeit</strong> ist die tatsächlich gearbeitete Zeit
+            ohne Pausen. Beispiel: 08:00–17:00 Anwesenheit = 9 Stunden, davon 1 Stunde Pause = 8
+            Stunden Arbeitszeit. Lohn und gesetzliche Höchstgrenzen beziehen sich immer auf die
+            Arbeitszeit, nicht auf die Anwesenheit.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Muss ich Arbeitszeiten dokumentieren?</summary>
+          <p class="mt-3">
+            Seit dem <strong>BAG-Urteil vom 13.09.2022</strong> (Az. 1 ABR 22/21) sind Arbeitgeber
+            in Deutschland verpflichtet, ein <strong>System zur Erfassung der Arbeitszeit</strong>
+            einzuführen. Das gilt für alle Branchen und Unternehmensgrößen. Eine konkrete
+            gesetzliche Regelung in einem novellierten ArbZG steht noch aus — die Pflicht ergibt
+            sich aber bereits aus § 3 Abs. 2 Nr. 1 ArbSchG i.V.m. der EU-Arbeitszeit-Richtlinie.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen &amp; Methodik</h2>
+        <p>
+          Die rechtlichen Vorgaben zur Arbeitszeit ergeben sich aus dem
+          <strong>Arbeitszeitgesetz (ArbZG)</strong>, insbesondere §§ 2 (Definitionen), 3
+          (Höchstarbeitszeit), 4 (Ruhepausen) und 5 (Ruhezeiten). Ergänzend gilt die
+          <strong>EU-Richtlinie 2003/88/EG</strong> über die Arbeitszeitgestaltung, das
+          <strong>Arbeitsschutzgesetz (ArbSchG)</strong> sowie tarifvertragliche Sonderregelungen.
+          Der Rechner berücksichtigt die übliche dezimale Umrechnung (Minuten / 60), kennt aber
+          keine branchenspezifischen Tarifregeln — die müssen ggf. zusätzlich geprüft werden.
+          Berechnungen über Mitternacht oder mehrere Tage werden korrekt aufaddiert (24 h
+          Übertrag).
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Arbeitszeitgesetz (ArbZG) §§ 2–4, EU-Richtlinie 2003/88/EG" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="zeit" slugs={['stundenlohn', 'ueberstunden', 'nachtschicht', 'arbeitstage']} />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
