@@ -1,0 +1,35 @@
+---
+interface Props {
+  quellen?: string;
+  aktualisiert?: string;
+}
+
+const {
+  quellen = "Offizielle Behörden-Quellen",
+  aktualisiert = "April 2026",
+} = Astro.props;
+---
+
+<aside class="border border-gray-200 rounded-xl p-4 my-8 bg-gray-50">
+  <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm text-gray-700">
+    <span class="flex items-center gap-2">
+      <span aria-hidden="true">📅</span>
+      <span>Aktualisiert: <strong>{aktualisiert}</strong></span>
+    </span>
+    <span class="flex items-center gap-2">
+      <span aria-hidden="true">📋</span>
+      <span>Quellen: {quellen}</span>
+    </span>
+    <span class="flex items-center gap-2">
+      <span aria-hidden="true">📂</span>
+      <a
+        href="https://github.com/ruslanadilgereev/deutschland-rechner"
+        target="_blank"
+        rel="noopener"
+        class="text-blue-600 hover:underline"
+      >
+        Open Source auf GitHub
+      </a>
+    </span>
+  </div>
+</aside>

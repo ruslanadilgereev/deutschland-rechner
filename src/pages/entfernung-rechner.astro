@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import EntfernungRechner from '../components/rechner/EntfernungRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Entfernungs-Rechner 2026 – Distanz, Fahrzeit & Pendlerpauschale";
 const description = "Entfernungs-Rechner: Luftlinie & Fahrzeit zwischen deutschen Städten berechnen. Mit Pendlerpauschale 2026 (38 Ct/km ab km 1), Reisezeit-Vergleich Auto/Bahn/Flug & Entfernungstabelle.";
@@ -14,6 +17,11 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Entfernungs-Rechner", url: "/entfernung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Entfernungs-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
@@ -57,6 +65,87 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
     <div class="max-w-2xl mx-auto px-4 py-6">
       <EntfernungRechner client:load />
     </div>
+
+    <!-- Erweiterter SEO-Content: Use-Cases, Praxis, FAQ, Quellen -->
+    <article class="prose prose-lg max-w-3xl mx-auto px-4 mt-8">
+      <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Entfernungs-Rechner?</h2>
+      <p>
+        Entfernungen zwischen zwei Orten interessieren dich aus ganz unterschiedlichen Gründen. Der Klassiker: <strong>Pendler-Pauschale berechnen</strong> — also die einfache Entfernung Wohnort → Arbeitsstelle, multipliziert mit Arbeitstagen und 0,38 €/km, ergibt die Werbungskosten in deiner Steuererklärung. Dazu kommt der <strong>private Reisekostenfall</strong>: Wer mit dem Auto unterwegs ist, will wissen, wie weit es zur Hochzeit, zur Beerdigung oder in den Urlaub ist, und was das an Sprit kostet. Auch <strong>Routenplanung mit Zwischenstopps</strong> ist häufig — Hannover → Hamburg → Kiel statt Direkt-Strecke, wie viel Umweg ist das eigentlich? Etwas exotischer, aber real: <strong>Luftlinien-Distanzen für Modellbahn-Maßstäbe</strong> (typisch H0 1:87 oder N 1:160) — wer eine reale Strecke nachbauen will, rechnet die Originaldistanz auf den Maßstab herunter. Und schließlich der technische Fall: <strong>Geo-Koordinaten zwischen zwei Punkten</strong> exakt vermessen — etwa für Geocaching, Vermessungs-Apps oder Drohnen-Flugplanung, bei denen die Haversine-Formel die kürzeste Großkreis-Strecke liefert.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 1: Berlin (52,52° N, 13,41° O) → München (48,14° N, 11,58° O)</h3>
+      <p>
+        Mit der <strong>Haversine-Formel</strong> und dem Erdradius 6.371 km ergibt sich für die Luftlinie Berlin–München <strong>504 km</strong>. Die Strecke per Auto über die A9 ist <strong>~585 km</strong> — also ein Umwegfaktor von ungefähr 1,16 (relativ wenig, weil die A9 fast schnurgerade verläuft). Der ICE braucht für die schnelle Neubaustrecke (Erfurt–Leipzig) etwa 4 Stunden bei einer Schienen-Distanz von ~620 km. Das Flugzeug fliegt 504 km Großkreis-Strecke in unter einer Stunde reiner Flugzeit, mit An-/Abreise zum Flughafen aber ähnlich lang wie der ICE.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 2: Pendler-Pauschale richtig rechnen — 35 km einfach</h3>
+      <p>
+        Du wohnst 35 km von der Arbeit weg, einfache Strecke. Bei 220 Arbeitstagen (typisch für Vollzeit minus Urlaub und Krankheit) und der Pendlerpauschale 2026 von 0,38 €/km ab dem 1. Kilometer ergibt das: <strong>220 × 35 × 0,38 € = 2.926 €</strong> Werbungskosten pro Jahr. Bei einem Grenzsteuersatz von 30 % macht das eine Steuerersparnis von rund <strong>878 €</strong> — fast die Tankrechnung für drei Monate. Wichtig: Das gilt nur für die <em>einfache</em> Strecke (nicht Hin + Rück verdoppeln) und nur für die kürzeste verkehrsübliche Straßenverbindung, nicht die Luftlinie. Wer nicht jeden Tag zur Arbeit fährt (Homeoffice), muss die tatsächlichen Bürotage zählen — Homeoffice-Tage zählen separat über die Homeoffice-Pauschale (6 €/Tag, max. 1.260 €/Jahr).
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 3: Hamburg → Frankfurt — Luftlinie vs. Schiene</h3>
+      <p>
+        Hamburg (53,55° N, 9,99° O) und Frankfurt am Main (50,11° N, 8,68° O) liegen <strong>393 km Luftlinie</strong> auseinander. Die ICE-Verbindung über die Schnellfahrstrecke Köln–Rhein/Main schlängelt sich auf <strong>~410 km Schiene</strong> — also nur leicht länger als die Luftlinie. Das Auto über die A7 fährt etwa <strong>495 km</strong>. Spannend: Hier zeigt sich, warum der ICE auf dieser Strecke konkurrenzfähig zum Flug ist — Hamburg-Frankfurt mit dem ICE in 3:45h, fast Tür-zu-Tür schneller als fliegen, sobald man Sicherheits-Check und Anfahrt zum Flughafen einrechnet.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Erweiterte FAQ</h2>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie berechnet man die Luftlinie?</summary>
+        <p class="mt-2 text-gray-700">
+          Die Luftlinie zwischen zwei Punkten auf der Erde wird mit der <strong>Haversine-Formel</strong> berechnet, die die Erdkrümmung berücksichtigt. Sie nutzt die Breitengrade (φ) und Längengrade (λ) beider Punkte sowie den mittleren <strong>Erdradius von 6.371 km</strong>. Das Ergebnis ist die Großkreis-Distanz — die kürzeste Verbindung auf einer Kugeloberfläche. Die Formel ist genauer als die einfache „Pythagoras"-Variante mit Längen- und Breitengrad-Differenzen, weil sie nicht annimmt, dass die Erde flach ist. Genauigkeit innerhalb Deutschlands: ±0,5 %.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie unterscheidet sich Luftlinie von Straßenkilometer?</summary>
+        <p class="mt-2 text-gray-700">
+          Die Straßenentfernung ist immer länger als die Luftlinie, weil Straßen Kurven, Geländeformen, Flüsse und besiedelte Gebiete umgehen. Faustregel: <strong>Straße ≈ Luftlinie × 1,3</strong> (in flachem Gelände wie Norddeutschland). In bergigem Gelände wie den Alpen, dem Schwarzwald oder dem Harz wird der Faktor schnell 1,4 bis 1,5. Beispiel: Berlin–München ist 504 km Luftlinie, aber 585 km Autobahn — Faktor 1,16. München–Innsbruck ist nur 130 km Luftlinie, aber 160 km Autobahn — Faktor 1,23. Für die Steuererklärung zählt immer die kürzeste Straße, nicht die Luftlinie.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Welche Entfernung gilt steuerlich für die Pendler-Pauschale?</summary>
+        <p class="mt-2 text-gray-700">
+          Steuerlich relevant ist die <strong>kürzeste verkehrsübliche Straßenverbindung</strong> zwischen Wohnung und erster Tätigkeitsstätte (§ 9 Abs. 1 Nr. 4 EStG). Eine längere Strecke darf nur angesetzt werden, wenn sie nachweislich verkehrsgünstiger ist (z. B. Autobahn statt Stau-anfälliger Landstraße) und regelmäßig genutzt wird. Die Strecke wird auf volle Kilometer abgerundet. Luftlinie wird vom Finanzamt nicht akzeptiert — auch wenn sie bei Internet-Routenplanern oft mit angegeben wird. Tipp: Mit Google Maps die Route festlegen, Screenshot machen, in den Steuerunterlagen archivieren — falls das Finanzamt nachfragt.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie genau sind Online-Karten?</summary>
+        <p class="mt-2 text-gray-700">
+          GPS-basierte Karten (Google Maps, Apple Maps, HERE) sind extrem genau — typisch <strong>±5 m</strong> beim Standort und <strong>±50 m</strong> bei Tile-basierten Distanzberechnungen. Für die meisten Anwendungen mehr als ausreichend. Die berechnete Fahrzeit hat dagegen eine Schwankung von ±15–20 % je nach Verkehrslage. OpenStreetMap-basierte Routing-Engines (Komoot, Brouter, Graphhopper) sind ähnlich präzise wie kommerzielle Anbieter, manchmal sogar besser für Fahrrad- und Wanderrouten, weil OSM detailliertere Wege-Daten enthält.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Werden Fähren oder Brücken in der Pendler-Pauschale anerkannt?</summary>
+        <p class="mt-2 text-gray-700">
+          Die Pendler-Pauschale deckt nur die <strong>Strecke</strong> ab, nicht zusätzliche Kosten wie Fährgebühren oder Mautgebühren. Heißt: Wenn deine kürzeste Strecke über eine Fähre führt (z. B. Hamburg–Cuxhaven, Föhr, Sylt-Auto-Zug), kannst du die gefahrenen Kilometer ansetzen, aber das Fährticket nicht zusätzlich absetzen. Ausnahme: Bei <strong>tatsächlichen Kosten</strong> (statt Pauschale) können behinderte Menschen mit GdB ≥ 70 oder Mobilitätsbehinderung GdB 50/Merkzeichen G die echten Kosten inkl. Fähre und Maut absetzen.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Was ist der Unterschied zwischen Großkreis und Loxodrome?</summary>
+        <p class="mt-2 text-gray-700">
+          Die <strong>Großkreis-Linie</strong> (Orthodrome) ist die kürzeste Verbindung zwischen zwei Punkten auf einer Kugel — sie ändert kontinuierlich den Kurs. Die <strong>Loxodrome</strong> (Kursgleiche) hält dagegen einen konstanten Kompasskurs, ist aber länger. Beispiel Frankfurt → New York: Großkreis 6.207 km mit Bogen über Grönland, Loxodrome konstant Westen-Südwesten 6.730 km. Schiffe und Flugzeuge fliegen meist Großkreis-Routen aus Effizienzgründen. Auf einer Mercator-Weltkarte sieht der Großkreis-Weg „gebogen" aus, ist aber tatsächlich der direkteste.
+        </p>
+      </details>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
+      <p>
+        Die Luftlinien-Berechnung basiert auf der <strong>Haversine-Formel</strong> mit dem mittleren Erdradius 6.371 km, angewandt auf die <strong>WGS84-Geoid-Koordinaten</strong> (World Geodetic System 1984, das Standard-Referenzsystem von GPS). Die Pendlerpauschale folgt <strong>§ 9 Abs. 1 Nr. 4 EStG</strong> in der Fassung des Steueränderungsgesetzes 2025: einheitlich 0,38 €/km ab dem 1. Kilometer ab Veranlagungszeitraum 2026. Straßendistanzen sind Schätzwerte auf Basis des durchschnittlichen Umwegfaktors 1,3 (flaches Gelände) bzw. 1,4–1,5 (Mittelgebirge/Alpen). Die Stadt-Koordinaten der 20 größten deutschen Städte stammen aus der Datenbank des <strong>Statistischen Bundesamts</strong> (Destatis). Fahrzeit-Schätzungen basieren auf Durchschnittsgeschwindigkeiten bei normalem Verkehr ohne Stau und können in der Praxis um ±15–20 % abweichen.
+      </p>
+
+      <p class="text-sm text-gray-500 mt-6">Zuletzt aktualisiert: April 2026</p>
+    </article>
+
+    <RechnerTrust quellen="§ 9 Abs. 1 Nr. 4 EStG (Pendlerpauschale 2026), Haversine-Formel auf WGS84-Geoid, Statistisches Bundesamt (Destatis)" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="entfernung" slugs={['pendlerpauschale', 'spritkosten', 'flugzeit', 'fahrrad-pendeln']} kategorie="auto" />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">

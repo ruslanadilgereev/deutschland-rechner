@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import BruchRechner from '../components/rechner/BruchRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Bruchrechner – Brüche berechnen, kürzen & umwandeln | kostenlos";
 const description = "Bruchrechner: Brüche addieren, subtrahieren, multiplizieren & dividieren. Automatisch kürzen mit Schritt-für-Schritt Lösung.";
@@ -14,6 +17,11 @@ const keywords = "Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addi
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Bruch-Rechner", url: "/bruch-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Bruch-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
@@ -161,33 +169,106 @@ const keywords = "Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addi
       </div>
     </div>
     
-    <!-- Zuständige Behörde / Hilfe -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span class="text-2xl">📚</span>
-          Weiterführende Ressourcen
-        </h2>
-        
-        <div class="space-y-4">
-          <div class="p-4 bg-blue-50 rounded-lg">
-            <h3 class="font-semibold text-blue-800 mb-2">Mathematik lernen</h3>
-            <ul class="text-blue-700 text-sm space-y-1">
-              <li>• <a href="https://www.mathematik.de" class="underline" target="_blank" rel="noopener">Deutsche Mathematiker-Vereinigung</a></li>
-              <li>• <a href="https://www.frustfrei-lernen.de/mathematik/bruchrechnung.html" class="underline" target="_blank" rel="noopener">Frustfrei-Lernen – Bruchrechnung</a></li>
-              <li>• <a href="https://www.mathe-lexikon.at" class="underline" target="_blank" rel="noopener">Mathe-Lexikon</a></li>
-            </ul>
-          </div>
-          
-          <div class="p-4 bg-green-50 rounded-lg">
-            <h3 class="font-semibold text-green-800 mb-2">Nachhilfe & Übung</h3>
-            <p class="text-green-700 text-sm">
-              Bei Schwierigkeiten mit der Bruchrechnung helfen kostenlose Lernplattformen und 
-              Übungsblätter. Auch Volkshochschulen bieten Mathematik-Kurse an.
-            </p>
-          </div>
+    <!-- Wann brauchst du den Bruch-Rechner? -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Wann brauchst du den Bruch-Rechner?</h2>
+        <p class="text-gray-700">
+          Der häufigste Anlass ist <strong>Schul-Mathematik in Klasse 5 bis 7</strong> — die Bruchrechnung ist für viele die erste Stelle, an der Mathe „nicht mehr automatisch" funktioniert. Eltern brauchen den Rechner zum Kontrollieren, Schüler zum Üben und Nachvollziehen, wo sie sich verrechnet haben. Wichtig: Der Rechner zeigt die Schritt-für-Schritt-Lösung, damit du die Logik verstehst — nicht nur das Endergebnis.
+        </p>
+        <p class="text-gray-700">
+          Im Alltag sind Brüche überall, wo amerikanische oder britische Formate ins Spiel kommen: <strong>Backrezepte halbieren oder verdoppeln</strong> (1/3 Cup × 2,5 = 5/6 Cup), <strong>Holz- und Stoff-Zuschnitte</strong> (3/4 Meter Stoff plus 1/8 Meter Nahtzugabe), <strong>US-Cookbooks</strong> mit „1/4 tsp salt" oder „2/3 cup sugar", <strong>Heimwerker-Maße</strong> bei Schrauben und Bohrern (1/2 inch ≈ 12,7 mm — die imperiale Welt rechnet praktisch alles in Brüchen). Auch in der <strong>Statistik und Wahrscheinlichkeitsrechnung</strong> tauchen Brüche auf (Würfelwurf 1/6, Karten-Wahrscheinlichkeit 13/52 = 1/4). Wer mit Aktien und Anleihen handelt, kennt sie aus US-Notierungen, wo Kurse historisch in 1/8- oder 1/16-Schritten angegeben wurden.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Beispiele aus der Praxis</h2>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 1: Brüche addieren mit unterschiedlichen Nennern</h3>
+        <p class="text-gray-700">
+          Klassische Schulaufgabe und Alltagsfall beim Backen — du hast ein halbes Glas Marmelade und möchtest noch ein Drittel dazugeben. Wie viel ist insgesamt im Glas?
+        </p>
+        <div class="bg-purple-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Aufgabe: 1/2 + 1/3</p>
+          <p>Hauptnenner finden (kgV von 2 und 3): <strong>6</strong></p>
+          <p>Erweitern: 1/2 = 3/6, 1/3 = 2/6</p>
+          <p>Addieren: 3/6 + 2/6 = <strong>5/6</strong></p>
+          <p>In Dezimal: 5 ÷ 6 = 0,8333... ≈ 83 % des Glases.</p>
         </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 2: Brüche multiplizieren</h3>
+        <p class="text-gray-700">
+          Du hast ein Rezept, das 2/3 Liter Milch verlangt, willst aber nur 3/4 der Menge zubereiten. Wie viel Milch brauchst du?
+        </p>
+        <div class="bg-purple-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Aufgabe: 3/4 × 2/3</p>
+          <p>Zähler × Zähler, Nenner × Nenner: (3 × 2) / (4 × 3) = 6/12</p>
+          <p>Kürzen mit ggT(6,12) = 6: <strong>1/2</strong></p>
+          <p>Du brauchst also genau einen halben Liter Milch (500 ml).</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 3: Unechten Bruch in gemischte Zahl umwandeln</h3>
+        <p class="text-gray-700">
+          Aus einer Multiplikation kommt das Ergebnis 7/4 raus. Das ist ein „unechter" Bruch (Zähler größer als Nenner) — schöner liest es sich als gemischte Zahl.
+        </p>
+        <div class="bg-purple-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Aufgabe: 7/4 in gemischte Zahl</p>
+          <p>Zähler durch Nenner teilen: 7 ÷ 4 = 1 Rest 3</p>
+          <p>Ganze Zahl: 1, Rest als neuer Zähler: 3, Nenner bleibt: 4</p>
+          <p>Ergebnis: <strong>1 3/4</strong> (gesprochen „eins drei Viertel")</p>
+          <p>Als Dezimalzahl: 1,75. Als Prozent: 175 %.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zur Bruchrechnung</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie kürzt man einen Bruch?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Man teilt Zähler und Nenner durch dieselbe Zahl — den <strong>größten gemeinsamen Teiler (ggT)</strong>. Beispiel: 12/18 — beide sind durch 6 teilbar (12÷6 = 2, 18÷6 = 3), also gekürzt 2/3. Wenn du den ggT nicht direkt siehst, kannst du auch in mehreren Schritten kürzen: 12/18 → durch 2 → 6/9 → durch 3 → 2/3. Ein Bruch ist <em>vollständig gekürzt</em>, wenn Zähler und Nenner keinen gemeinsamen Teiler außer 1 mehr haben (man sagt: sie sind „teilerfremd"). Faustregeln: Beide gerade → durch 2 teilen. Beide auf 0 oder 5 endend → durch 5 teilen. Quersumme beider durch 3 teilbar → durch 3 teilen.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Was ist der größte gemeinsame Teiler (ggT)?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Der ggT zweier Zahlen ist die <strong>größte Zahl, durch die beide ohne Rest teilbar sind</strong>. Beispiel: ggT(12, 18) = 6. Zwei Methoden, ihn zu finden: (1) <strong>Primfaktorzerlegung</strong> — 12 = 2·2·3, 18 = 2·3·3, gemeinsam: 2·3 = 6. (2) <strong>Euklidischer Algorithmus</strong> — größere Zahl durch kleinere teilen, mit dem Rest weitermachen, bis Rest 0: 18 ÷ 12 = 1 Rest 6, 12 ÷ 6 = 2 Rest 0 → ggT = 6. Der zweite Weg ist bei großen Zahlen schneller. Unser Rechner macht beides automatisch.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wann nutze ich gemeinsamen Nenner und wann kleinstes gemeinsames Vielfaches?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Beim <strong>Addieren und Subtrahieren</strong> von Brüchen brauchst du einen gemeinsamen Nenner — und der praktischste ist das <strong>kgV (kleinste gemeinsame Vielfache)</strong> der Nenner, weil das Ergebnis dann am wenigsten gekürzt werden muss. Beispiel: 1/4 + 1/6 — kgV(4,6) = 12, also 3/12 + 2/12 = 5/12. Theoretisch geht auch 4·6 = 24 als gemeinsamer Nenner (6/24 + 4/24 = 10/24 = 5/12), aber dann musst du mehr kürzen. Beim <strong>Multiplizieren und Dividieren</strong> brauchst du <em>keinen</em> gemeinsamen Nenner — du multiplizierst direkt Zähler mit Zähler und Nenner mit Nenner. Häufige Verwechslung: Beim Multiplizieren plötzlich Hauptnenner suchen — unnötig.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie wandle ich einen Bruch in eine Dezimalzahl um — und umgekehrt?</summary>
+          <div class="mt-3 text-gray-700">
+            <p><strong>Bruch → Dezimal:</strong> Zähler durch Nenner teilen. 3/4 = 0,75; 1/8 = 0,125; 2/5 = 0,4. Manche Brüche ergeben <em>periodische</em> Dezimalzahlen: 1/3 = 0,333... (gekennzeichnet als 0,3̄), 1/7 = 0,142857142857... <strong>Dezimal → Bruch:</strong> Bei endlichen Dezimalzahlen — Nachkommastellen zählen, das ergibt den Nenner als Zehnerpotenz. 0,75 = 75/100 = 3/4 (gekürzt). 0,125 = 125/1000 = 1/8. Bei periodischen Dezimalzahlen wird's tricky: 0,333... = 1/3, 0,1666... = 1/6 — hier hilft eine Tabelle oder der Rechner. Faustregel: Brüche mit Nennern 2, 4, 5, 8, 10, 16, 20, 25, 50, 100 ergeben endliche Dezimalzahlen.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Was ist der Unterschied zwischen echten und unechten Brüchen?</summary>
+          <div class="mt-3 text-gray-700">
+            <p><strong>Echter Bruch:</strong> Zähler kleiner als Nenner — Wert ist kleiner als 1. Beispiele: 3/4, 5/8, 1/3. <strong>Unechter Bruch:</strong> Zähler größer oder gleich Nenner — Wert ist 1 oder größer. Beispiele: 7/4, 9/3, 5/5 (= 1). Unechte Brüche kann man als <strong>gemischte Zahl</strong> schreiben: 7/4 = 1 3/4, 9/3 = 3, 11/4 = 2 3/4. In Schule und Alltag schreibt man Endergebnisse meist als gemischte Zahl (lesbarer), in der Algebra und beim Weiterrechnen sind unechte Brüche oft praktischer (weniger Umformungen nötig). Ein Bruch wie 5/5 ist mathematisch ein unechter Bruch, der den Wert 1 hat.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik & Quellen</h2>
+        <p class="text-gray-700">
+          Der Rechner basiert auf der <strong>Standard-Mathematik der Schulklassen 5–7</strong>, wie sie in den Bildungsstandards der Kultusministerkonferenz (KMK) und in den Lehrplänen aller Bundesländer verankert ist. Die zugrundeliegenden Algorithmen — <strong>Euklidischer Algorithmus</strong> für den ggT, <strong>Primfaktorzerlegung</strong> für das kgV, Standardregeln für Bruch-Arithmetik — sind seit der Antike bekannt und mathematisch eindeutig. Es gibt keinen Behördenrahmen, weil Bruchrechnung universell gilt. Alle Rechnungen passieren ausschließlich im Browser, deine Eingaben verlassen das Gerät nicht. Zuletzt aktualisiert: April 2026.
+        </p>
       </div>
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="Standard-Schulmathematik (Klasse 5–7), Euklidischer Algorithmus" aktualisiert="April 2026" />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="bruch" slugs={['prozent', 'dreisatz', 'einheiten']} kategorie="alltag" />
     </div>
 </main>
   

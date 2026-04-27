@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Sozialleistungen 2026 — Bürgergeld, Wohngeld, BAföG & mehr";
+const description = "Kostenlose Rechner für Bürgergeld 2026, Wohngeld, BAföG, Arbeitslosengeld I, Grundrente und weitere Sozialleistungen in Deutschland.";
+const keywords = "Bürgergeld 2026, Wohngeld Rechner, BAföG, Arbeitslosengeld I, Grundrente, Pflegegeld, Sozialleistungen Deutschland, Rentenrechner, EM-Rente";
+
+const sozialesRechner = rechnerListe.filter(r => r.kategorie === 'soziales');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Sozialleistungen — Rechner für staatliche Leistungen in Deutschland",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/sozialleistungen",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Sozialleistungen", url: "/sozialleistungen" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Sozialleistungen' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} is:inline />
+
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-8 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🤝</span>
+          <div>
+            <h1 class="text-3xl font-bold">Sozialleistungen — Rechner für staatliche Unterstützung 2026</h1>
+            <p class="text-green-100 text-sm mt-1">Bürgergeld, Wohngeld, BAföG, Renten — alle Leistungen auf einen Blick</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Sozialleistungen in Deutschland 2026</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Das deutsche Sozialstaatssystem deckt viele Lebenslagen ab — von Arbeitslosigkeit über Wohnen bis zur
+            Rente. Diese Hub-Seite bündelt alle Rechner für staatliche Leistungen:
+            <a href="/buergergeld-rechner" class="text-green-600 hover:text-green-800 underline">Bürgergeld</a>,
+            <a href="/wohngeld-rechner" class="text-green-600 hover:text-green-800 underline">Wohngeld</a>,
+            <a href="/bafoeg-rechner" class="text-green-600 hover:text-green-800 underline">BAföG</a>,
+            <a href="/arbeitslosengeld-rechner" class="text-green-600 hover:text-green-800 underline">Arbeitslosengeld I</a>,
+            <a href="/renten-rechner" class="text-green-600 hover:text-green-800 underline">gesetzliche Rente</a>,
+            <a href="/grundrente-rechner" class="text-green-600 hover:text-green-800 underline">Grundrente</a> und
+            <a href="/pflegegeld-rechner" class="text-green-600 hover:text-green-800 underline">Pflegegeld</a>.
+          </p>
+          <p>
+            <strong>Eckwerte 2026:</strong> Der Bürgergeld-Regelsatz für Alleinstehende beträgt 563 € pro Monat,
+            zusätzlich übernimmt das Jobcenter die angemessenen Kosten für Unterkunft und Heizung. Wohngeld wird
+            nach dem Wohngeldgesetz (WoGG) berechnet und hängt von Haushaltsgröße, Einkommen und Mietstufe der
+            Wohnortgemeinde ab — die Höhe variiert regional stark. Arbeitslosengeld I beträgt 60 % des
+            pauschalierten Nettoentgelts (67 % mit Kind). BAföG-Höchstsatz für Studierende mit eigener Wohnung liegt
+            bei 992 € im Monat (inkl. Wohnpauschale und KV-/PV-Zuschlag). Die Grundrente verlangt mindestens 33
+            Jahre Grundrentenzeiten (voller Zuschlag ab 35 Jahren). Pflegegeld der Pflegeversicherung gestaffelt
+            nach Pflegegrad: 332 € (PG 2) bis 947 € (PG 5) — Stand 2026.
+          </p>
+          <p>
+            <strong>Welche Behörden sind zuständig?</strong> Bürgergeld und ALG I laufen über die
+            <em>Bundesagentur für Arbeit</em> bzw. die örtlichen Jobcenter. Wohngeld bearbeiten die kommunalen
+            <em>Wohngeldstellen</em> (Stadt- oder Kreisverwaltung). Für BAföG sind die <em>BAföG-Ämter</em> der
+            Studierendenwerke und kommunalen Schulämter zuständig. Renten verwaltet die <em>Deutsche Rentenversicherung
+            (DRV)</em>. Pflegegeld zahlt die <em>Pflegekasse</em> deiner Krankenkasse.
+          </p>
+          <p>
+            Typische Fragen: <em>Habe ich Anspruch auf aufstockendes Bürgergeld?</em>,
+            <em>Wie viel Wohngeld steht mir zu?</em>, <em>Wie hoch ist mein BAföG-Satz konkret?</em>,
+            <em>Reicht meine Rente?</em> oder <em>Welcher Pflegegrad bringt mir wie viel Geld?</em> — die Rechner unten geben Klarheit.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechner Grid -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <h2 class="sr-only">Alle Rechner für Sozialleistungen</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sozialesRechner.map(r => (
+          <a
+            href={r.fertig ? `/${r.id}-rechner` : '#'}
+            class={`bg-white rounded-xl shadow-md ${r.fertig ? 'hover:shadow-lg' : 'opacity-50 cursor-not-allowed'} transition-shadow p-4 flex items-start gap-3 group`}
+          >
+            <span class="text-2xl mt-0.5">{r.icon}</span>
+            <div>
+              <h3 class="font-semibold text-gray-800 group-hover:text-green-600 transition-colors">{r.name}</h3>
+              <p class="text-gray-500 text-sm mt-1">{r.beschreibung}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tipps -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Worauf du bei Sozialleistungen achten solltest</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            <strong>Wohngeld vor Bürgergeld prüfen:</strong> Wohngeld (plus ggf.
+            <a href="/kinderzuschlag-rechner" class="text-green-600 hover:text-green-800 underline">Kinderzuschlag</a>) ist
+            häufig die bessere Wahl als Bürgergeld — es ist stigmafrei, ohne Vermögensprüfung und lässt das eigene
+            Erwerbseinkommen unberührt. Wer knapp über der Bürgergeld-Grenze liegt, sollte beide Wege gegenrechnen.
+          </p>
+          <p>
+            <strong>Anträge nicht zu spät stellen:</strong> Wohngeld wird ab dem Antragsmonat gezahlt — rückwirkend
+            gibt es nichts. Auch BAföG-Anträge sollte man am besten vor Semesterbeginn einreichen, sonst entstehen
+            Lücken. Bei der DRV lohnt sich frühzeitig der <em>Kontenklärungsantrag</em>, damit Rentenzeiten lückenlos
+            erfasst sind.
+          </p>
+          <p>
+            <strong>Pflegegrad realistisch einschätzen:</strong> Der Medizinische Dienst (MD) bewertet sechs
+            Lebensbereiche nach Punkten. Wer einen höheren Pflegegrad anstrebt, sollte ein Pflegetagebuch führen —
+            das verändert die Begutachtung oft deutlich.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quellen -->
+    <div class="max-w-4xl mx-auto px-4 mt-6 mb-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Quellen & Behörden</h2>
+        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-600">
+          <li><a href="https://www.arbeitsagentur.de" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">Bundesagentur für Arbeit — Bürgergeld & ALG I</a></li>
+          <li><a href="https://www.bmas.de" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">BMAS — Bundesministerium für Arbeit und Soziales</a></li>
+          <li><a href="https://www.bafög.de" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">BAföG — offizielle Informationsseite des BMBF</a></li>
+          <li><a href="https://www.deutsche-rentenversicherung.de" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">Deutsche Rentenversicherung (DRV)</a></li>
+          <li><a href="https://www.bundesgesundheitsministerium.de/themen/pflege" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">BMG — Pflegeversicherung & Pflegegrade</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/wogg/" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">WoGG — Wohngeldgesetz</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/sgb_2/" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800 underline">SGB II — Bürgergeld (Grundsicherung für Arbeitsuchende)</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import WaehrungsRechner from '../components/rechner/WaehrungsRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Währungsrechner – Euro Wechselkurs umrechnen";
 const description = "Währungsrechner für Euro: Umrechnung in Dollar, Pfund, Franken und mehr. Aktuelle Richtwerte basierend auf EZB-Referenzkursen. Kostenlos & ohne Anmeldung.";
@@ -14,6 +17,11 @@ const keywords = "Währungsrechner, Euro Wechselkurs, EUR USD umrechnen, Dollar 
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Währungsrechner", url: "/waehrungs-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Währungs-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-green-500 to-teal-600 text-white py-6 px-4">
@@ -41,6 +49,153 @@ const keywords = "Währungsrechner, Euro Wechselkurs, EUR USD umrechnen, Dollar 
     <div class="max-w-2xl mx-auto px-4 py-6">
       <WaehrungsRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Währungsrechner?</h2>
+        <p>
+          Der Währungsrechner hilft dir genau dann, wenn ein Betrag in einer Währung steckt und du
+          ihn in einer anderen brauchst — meistens unter Zeitdruck oder ohne Lust auf Kopfrechnen.
+          Typische Situationen aus dem Alltag:
+        </p>
+        <ul>
+          <li><strong>Reise-Budget vor dem Auslandsurlaub:</strong> Wie viel sind 1.500 € in Türkische Lira, Thai Baht oder Forint? Du brauchst eine grobe Vorstellung, bevor du das Bargeld holst oder das Tageslimit deiner Karte einstellst.</li>
+          <li><strong>Online-Shopping aus den USA:</strong> Eine Kamera für 899 USD klingt vielleicht günstig — aber inklusive Wechselkurs, Kreditkarten-Auslandsgebühr (~1,75 %) und Einfuhrumsatzsteuer landest du oft 25 % höher.</li>
+          <li><strong>Gehalt international vergleichen:</strong> Job-Angebot aus London über 55.000 GBP — was wäre das brutto in Euro, und wie hängt das mit deutschen Steuersätzen zusammen?</li>
+          <li><strong>Bargeld am Flughafen vs. Geldautomat im Ausland:</strong> Die Wechselstube am Gate vs. ATM in der Innenstadt — der Unterschied liegt schnell bei 5–10 % auf den Tausch.</li>
+          <li><strong>Aktien-Investments in Fremdwährung:</strong> US-ETFs, britische Einzelaktien, Schweizer Dividenden — du musst Brutto-Beträge und Steuerquellen-Effekte in Euro umrechnen.</li>
+        </ul>
+        <p>
+          Der Rechner liefert eine schnelle Orientierung mit Mid-Market-Kurs als Basis. Den
+          tatsächlichen Endbetrag bestimmen dann Bank, Kreditkartenanbieter oder Wechselstube — mit
+          ihrem eigenen Spread.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
+        <p>
+          Drei durchgerechnete Szenarien, wie du den Währungsrechner im Alltag einsetzt. Die Kurse
+          sind Richtwerte und ändern sich täglich — die Logik bleibt gleich.
+        </p>
+
+        <h3>Beispiel 1: Urlaub in der Türkei</h3>
+        <p>
+          Du planst zwei Wochen Antalya und willst 1.500 € in bar oder auf der Reisekarte haben.
+          Bei einem Kurs von etwa 35,50 TRY pro Euro entspricht das ungefähr <strong>53.250 TRY</strong>.
+          Wichtig: Die Lira ist eine sehr volatile Währung — der Kurs kann sich innerhalb von Wochen
+          deutlich verschieben. Wer früh tauscht, kann profitieren oder verlieren. Praktisch:
+          mehrere kleinere Tausch-Aktionen vor Ort am ATM, statt alles auf einmal vorab zu wechseln.
+        </p>
+
+        <h3>Beispiel 2: USA-Shopping mit Kreditkarte</h3>
+        <p>
+          Du bestellst Sneaker für 250 USD bei einem US-Shop. Bei einem Kurs von 1,08 USD/EUR
+          ergibt das einen Mid-Market-Wert von etwa <strong>232 €</strong>. Aber: Die meisten
+          deutschen Kreditkarten erheben rund <strong>1,75 % Auslandseinsatzgebühr</strong>, dazu
+          kommt manchmal ein leicht schlechterer Wechselkurs der Kartengesellschaft. Endpreis auf
+          der Kartenabrechnung typischerweise: ~<strong>236 €</strong>. Plus Versand, Zoll und
+          Einfuhrumsatzsteuer (19 %) — das wird schnell teuer.
+        </p>
+
+        <h3>Beispiel 3: Gehaltsvergleich UK vs. Deutschland</h3>
+        <p>
+          Eine Stelle in Manchester zahlt <strong>1.000 GBP/Monat brutto extra</strong> gegenüber
+          deinem aktuellen Job. Bei einem Kurs von 1,19 EUR/GBP wären das nominal
+          <strong>1.190 € brutto</strong>. Aber Achtung: UK-Steuer-/National-Insurance-Abzüge
+          funktionieren strukturell anders als in Deutschland. Brutto-Vergleich allein reicht
+          nicht — du musst auch Lebenshaltungskosten (Manchester ist günstiger als London, aber
+          Mieten ziehen an), Krankenversicherungs-Realität (NHS) und Rentenansprüche bedenken.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen</h2>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen Geldkurs und Briefkurs?</summary>
+          <p class="mt-2">
+            Der <strong>Geldkurs</strong> ist der Kurs, zu dem die Bank eine Währung von dir
+            <em>kauft</em>, der <strong>Briefkurs</strong> der, zu dem sie sie dir <em>verkauft</em>.
+            Die Differenz heißt <strong>Spread</strong> und ist die Marge der Bank — typischerweise
+            1–3 % bei großen Währungspaaren wie EUR/USD, deutlich mehr bei exotischen Währungen oder
+            am Flughafen-Wechselschalter (5–10 %). Der Mid-Market-Kurs liegt genau in der Mitte und
+            ist der Kurs, den Reuters, Bloomberg und die EZB als Referenz veröffentlichen — den
+            bekommst du als Privatperson aber praktisch nie 1:1.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wo bekomme ich den besten Wechselkurs?</summary>
+          <p class="mt-2">
+            Faustregel: Online-Anbieter wie Wise oder Revolut liegen am dichtesten am Mid-Market-Kurs.
+            Direkt am <strong>Geldautomat im Ausland mit Lokalwährung-Auswahl</strong> ist meist
+            günstiger als jede Wechselstube. <strong>Hausbank-Wechsel</strong> ist mittelmäßig
+            (1–3 % Aufschlag), <strong>Flughafen-Wechselstuben</strong> sind die teuerste Option.
+            Reisekreditkarten ohne Auslandseinsatzgebühr (z. B. DKB, Barclays) sind für Karten-Zahlungen
+            vor Ort die einfachste und meist günstigste Variante.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Sollte ich am Automaten in Euro oder Lokalwährung zahlen?</summary>
+          <p class="mt-2">
+            <strong>Immer in Lokalwährung.</strong> Wenn der Geldautomat oder das Kartenterminal
+            anbietet, „in Euro abzurechnen", aktivierst du <strong>Dynamic Currency Conversion (DCC)</strong>.
+            Der Wechselkurs des Terminal-Betreibers ist dabei typischerweise 5–7 % schlechter als
+            der deiner Bank. Wähle Lokalwährung — dann wird die Umrechnung von deiner Bank oder
+            Kreditkartengesellschaft mit ihrem (besseren) Tageskurs gemacht.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was ist Dynamic Currency Conversion (DCC)?</summary>
+          <p class="mt-2">
+            DCC ist ein Service, den ausländische Händler und Geldautomaten anbieten: statt in
+            Lokalwährung wird der Betrag direkt in deiner Heimatwährung (z. B. Euro) abgebucht.
+            Klingt bequem, ist aber praktisch immer teurer — der DCC-Anbieter setzt einen eigenen
+            Wechselkurs mit Aufschlag von oft 5–7 %. Du erkennst es an Hinweisen wie „Pay in EUR"
+            oder „Conversion fee included". Lehne DCC ab und wähle Lokalwährung.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wie aktuell sind Online-Wechselkurse?</summary>
+          <p class="mt-2">
+            Die <strong>Mid-Market-Rate</strong> auf Google, XE oder Wise wird im Sekundentakt aus
+            den Devisenmärkten (Reuters, Bloomberg) gefüttert — sie ist hochaktuell. Die
+            <strong>EZB-Referenzkurse</strong> dagegen sind tägliche Fixings (jeden Werktag um
+            14:15 Uhr MEZ) und gelten als offizielle Bewertungs-Grundlage für Bilanzen, Steuern und
+            staatliche Statistiken — sie sind also einen halben Tag „alt", wenn du sie nachmittags
+            abrufst. Für deine Reise- oder Shopping-Entscheidung reicht der Mid-Market-Kurs als
+            Orientierung; den finalen Kurs setzt aber dein Anbieter.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was bedeutet ISO 4217?</summary>
+          <p class="mt-2">
+            ISO 4217 ist der internationale Standard für <strong>Währungs-Codes</strong>: drei
+            Buchstaben, die jede Währung eindeutig identifizieren. EUR für Euro, USD für US-Dollar,
+            GBP für Britisches Pfund, CHF für Schweizer Franken, JPY für Japanischen Yen. Banken,
+            Buchhaltungssysteme und APIs nutzen diese Codes — wer EUR/USD oder USD/JPY in einer
+            Trading-App sieht, hat es mit ISO-4217-Codes zu tun.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
+        <p>
+          Die Wechselkurse in unserem Rechner basieren auf den <strong>Euro-Referenzkursen der
+          Europäischen Zentralbank (EZB)</strong>, die täglich an Werktagen um ca. 14:15 Uhr MEZ
+          veröffentlicht werden. Die Referenzkurse sind reine Statistik-Werte — keine handelbaren
+          Kurse — und dienen als offizielle Grundlage für Bilanzen, Steuererklärungen und EU-weite
+          Statistiken. Die Währungs-Codes folgen dem <strong>ISO-4217-Standard</strong>. Tatsächliche
+          Wechselgeschäfte (Bank, Kreditkarte, Wechselstube, Online-Anbieter) erfolgen zu marktüblichen
+          Kursen mit Spread und können um mehrere Prozent vom EZB-Referenzkurs abweichen — der
+          Rechner liefert daher Richtwerte, keine handelbaren Quotierungen.
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -195,14 +350,28 @@ const keywords = "Währungsrechner, Euro Wechselkurs, EUR USD umrechnen, Dollar 
           <div class="p-4 bg-amber-50 rounded-lg">
             <h3 class="font-semibold text-amber-800 mb-2">Achtung bei Kartenzahlung</h3>
             <p class="text-amber-700 text-sm">
-              Bei Kartenzahlung im Ausland werden Sie oft gefragt: "In Euro oder Landeswährung?" 
-              Wählen Sie <strong>immer die Landeswährung</strong> – die "Dynamic Currency Conversion" 
+              Bei Kartenzahlung im Ausland werden Sie oft gefragt: "In Euro oder Landeswährung?"
+              Wählen Sie <strong>immer die Landeswährung</strong> – die "Dynamic Currency Conversion"
               der Händler ist meist 3-5% teurer!
             </p>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust
+        quellen="EZB Euro-Referenzkurse, ISO 4217"
+        aktualisiert="April 2026"
+      />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <VerwandteRechner
+      aktuellerSlug="waehrungs"
+      slugs={["einheiten", "krypto-steuer", "rabatt"]}
+    />
 </main>
   
   <!-- Structured Data for SEO -->

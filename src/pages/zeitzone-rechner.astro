@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import ZeitzoneRechner from '../components/rechner/ZeitzoneRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Zeitzonen-Rechner – Uhrzeit weltweit umrechnen";
 const description = "Zeitzonen Rechner: Rechnen Sie Uhrzeiten zwischen verschiedenen Zeitzonen um. Aktuelle Uhrzeit weltweit, Zeitverschiebung berechnen. Kostenlos & sofort.";
@@ -14,6 +17,11 @@ const keywords = "Zeitzonen Rechner, Zeitverschiebung, Uhrzeit umrechnen, Weltze
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Zeitzonen-Rechner", url: "/zeitzone-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Zeitzonen-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
@@ -41,6 +49,87 @@ const keywords = "Zeitzonen Rechner, Zeitverschiebung, Uhrzeit umrechnen, Weltze
     <div class="max-w-2xl mx-auto px-4 py-6">
       <ZeitzoneRechner client:load />
     </div>
+
+    <!-- Erweiterter SEO-Content: Use-Cases, Praxis, FAQ, Quellen -->
+    <article class="prose prose-lg max-w-3xl mx-auto px-4 mt-8">
+      <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Zeitzonen-Rechner?</h2>
+      <p>
+        Die Welt rückt zusammen — Geschäftspartner sitzen in New York, das Entwicklungsteam in Bangalore, die Familie in Sydney. Und mit jedem internationalen Kontakt taucht dieselbe Frage auf: Wie spät ist es jetzt eigentlich dort? Genau da setzt der Zeitzonen-Rechner an. Du brauchst ihn, um <strong>Telefon-Termine über Zeitzonen hinweg zu planen</strong> (typisch: Kunde in NYC, du in Berlin — wann ist das für beide ein zivilisierter Moment?), um die <strong>Ankunftszeit eines Flugs in Lokalzeit</strong> umzurechnen und nicht um drei Uhr nachts in Tokio zu landen ohne es vorher zu wissen, oder um ein <strong>Online-Meeting mit dem Asien-Team</strong> so zu legen, dass niemand um 23:00 noch in den Call muss. Auch Hobby-Anwender nutzen den Rechner: Wer Live-Streams aus den USA verfolgt (NFL, NBA, Award-Shows), muss wissen, wann „heute 20:00 Eastern Time" auf der eigenen Couch in Berlin oder Wien stattfindet. Dazu kommt der zweimalige Drahtseilakt im Jahr — Sommer-/Winterzeit-Wechsel —, bei dem für ein paar Wochen die gewohnte Zeitverschiebung um eine Stunde verschoben ist.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 1: Berlin 14:00 — was ist gerade auf der Welt los?</h3>
+      <p>
+        Du sitzt in Berlin am Schreibtisch, es ist 14:00 Uhr MEZ (UTC+1, Winterzeit). In <strong>New York ist es 08:00 morgens (EST, UTC−5)</strong> — guter Zeitpunkt für einen Call mit der US-Ostküste, dort gerade die erste Kaffeerunde nach dem Standup. In <strong>Tokio ist es bereits 22:00 Uhr (JST, UTC+9)</strong> — fürs japanische Team also schon zu spät, klassischer Feierabend. In <strong>San Francisco ist es 05:00 morgens (PST, UTC−8)</strong> — vergiss es, da schläft alles. Dieses Beispiel zeigt das Grundproblem internationaler Teams: Es gibt selten ein Fenster, in dem alle gleichzeitig wach und produktiv sind. Die typische Lösung: rotierende Meeting-Zeiten oder asynchrone Arbeit per Slack/Loom.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 2: Sommerzeit-Umstellung 2026</h3>
+      <p>
+        2026 wird in Deutschland am <strong>29. März 2026</strong> die Uhr von 02:00 auf 03:00 vorgestellt — ab dann gilt MESZ (UTC+2). Am <strong>25. Oktober 2026</strong> springt sie zurück von 03:00 auf 02:00 (zurück zu MEZ, UTC+1). In den USA ist die Umstellung an anderen Tagen: dort beginnt die Sommerzeit (Daylight Saving Time, DST) bereits am 8. März 2026 und endet am 1. November 2026. Das heißt konkret: Zwischen <strong>8. und 28. März 2026</strong> beträgt die Zeitverschiebung Berlin–New York nur 5 Stunden statt der gewohnten 6 — eine kleine, aber tückische Phase, in der viele Kalender-Apps falsche Zeiten zeigen, wenn die Zeitzone nicht sauber gepflegt ist.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 3: Meeting Berlin Montag 09:00 — Pazifikküste?</h3>
+      <p>
+        Klassischer Fallstrick: Du planst ein Meeting Montag früh um 09:00 Berliner Zeit (MEZ, UTC+1) mit Kollegen in San Francisco. Die einfache Rechnung „minus 9 Stunden" ergibt 24:00 — also Sonntag Mitternacht. Tatsächlich: <strong>Sonntag, 23:00 Pacific Time</strong>. Niemand wird zum Sonntagabend einen Call annehmen. Verschiebt man das Berliner Meeting auf 17:00, landet es in San Francisco um 08:00 Uhr morgens — die typische „Overlap-Zone" zwischen Europa und US-Westküste. Wichtig: In der Sommerzeit-Phase (März–Oktober) verschiebt sich die Differenz von 9 auf 9 Stunden (beide Länder DST aktiv) bzw. zeitweise auf 10 oder 8 Stunden in den Übergangs-Wochen.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Erweiterte FAQ</h2>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Was ist der Unterschied zwischen MEZ, MESZ und UTC?</summary>
+        <p class="mt-2 text-gray-700">
+          <strong>UTC</strong> (Coordinated Universal Time) ist die weltweite Referenz-Zeit, basierend auf Atomuhren — sie wird nie umgestellt und ist die Grundlage für alle anderen Zeitzonen. <strong>MEZ</strong> (Mitteleuropäische Zeit) ist UTC+1 und gilt in Deutschland, Österreich, Schweiz und vielen weiteren EU-Ländern in der Winterzeit. <strong>MESZ</strong> (Mitteleuropäische Sommerzeit) ist UTC+2 und gilt von Ende März bis Ende Oktober. UTC bleibt das ganze Jahr über stabil — wer Server-Logs liest oder internationale Termine sauber dokumentieren will, sollte alles in UTC ablegen und erst zur Anzeige in Lokalzeit umrechnen.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wann wird in Deutschland die Uhr umgestellt?</summary>
+        <p class="mt-2 text-gray-700">
+          In Deutschland wird die Uhr immer am <strong>letzten Sonntag im März</strong> um 02:00 auf 03:00 vorgestellt (Beginn Sommerzeit) und am <strong>letzten Sonntag im Oktober</strong> um 03:00 auf 02:00 zurückgestellt (Ende Sommerzeit). Die EU hat 2019 zwar beschlossen, die Zeitumstellung abzuschaffen — bis heute ist die konkrete Umsetzung jedoch nicht erfolgt, weil sich die Mitgliedsstaaten nicht auf eine einheitliche Dauerzeit (MEZ oder MESZ) einigen können. Die nächsten Termine: 29. März 2026, 25. Oktober 2026, 28. März 2027.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Warum hat Indien eine halbe Zeitzone (UTC+5:30)?</summary>
+        <p class="mt-2 text-gray-700">
+          Indien hat sich 1947 nach der Unabhängigkeit für eine einheitliche nationale Zeitzone <strong>UTC+5:30 (Indian Standard Time, IST)</strong> entschieden — als geographischer Kompromiss zwischen dem Westen des Landes (näher an UTC+5) und dem Osten (näher an UTC+6). Indien ist nicht das einzige Land mit halber Zeitzone: <strong>Iran (UTC+3:30)</strong>, <strong>Afghanistan (UTC+4:30)</strong>, <strong>Myanmar (UTC+6:30)</strong> und Teile von Australien (Adelaide UTC+9:30) folgen demselben Muster. Nepal geht noch weiter — <strong>UTC+5:45</strong>, also 45-Minuten-Versatz. Insgesamt gibt es weltweit mehr als 38 verschiedene Zeitzonen-Ausprägungen, wenn man halbe und Viertelstunden-Versätze mitzählt.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Welche Länder schaffen die Sommerzeit ab?</summary>
+        <p class="mt-2 text-gray-700">
+          <strong>Russland</strong> hat die Zeitumstellung bereits 2011 abgeschafft (dauerhaft Winterzeit), <strong>Türkei</strong> 2016 (dauerhaft Sommerzeit), <strong>Japan, China, Indien</strong> haben nie umgestellt. In den USA gibt es Bundesstaaten ohne DST: <strong>Hawaii, Arizona</strong> (mit Ausnahme der Navajo Nation). Die EU plant die Abschaffung seit 2019, ohne dass es bisher zu einer einheitlichen Lösung kam. Argument der Befürworter: keine Schlafstörungen, weniger Verwirrung. Argument der Gegner: längere Tage im Sommer, Energieersparnis (umstritten). Realistisch wird die Umstellung in der EU vermutlich noch einige Jahre bleiben.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie viele Zeitzonen hat die Welt insgesamt?</summary>
+        <p class="mt-2 text-gray-700">
+          Theoretisch <strong>24 Haupt-Zeitzonen</strong> (eine pro 15 Längengrade, da die Erde sich in 24 Stunden um 360° dreht). In der Praxis gibt es jedoch über <strong>38 verschiedene Zeitzonen</strong>, weil viele Länder halbe (UTC+5:30) oder Viertelstunden-Versätze (UTC+5:45 Nepal, UTC+12:45 Chatham Islands) verwenden. Das flächenmäßig größte Land Russland hat 11 Zeitzonen, das bevölkerungsreichste Land China nur eine einzige (UTC+8) — von Kashgar bis Shanghai gilt dieselbe Zeit, was im Westen Chinas faktisch bedeutet, dass die Sonne erst um 10 Uhr aufgeht. Frankreich hat mit seinen Überseegebieten die meisten Zeitzonen (12), gefolgt von den USA (6 plus Außengebiete).
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Was ist die internationale Datumsgrenze?</summary>
+        <p class="mt-2 text-gray-700">
+          Die internationale Datumsgrenze verläuft entlang des <strong>180. Längengrades</strong> durch den Pazifischen Ozean. Wer sie von West nach Ost überquert, springt einen Tag zurück; von Ost nach West einen Tag vor. Praktisch heißt das: Wer am Montagmorgen von Tokio nach Honolulu fliegt, landet noch am Sonntag (zurück in der Zeit). Die Linie ist nicht ganz gerade — sie macht Bögen um Bewohnte Inseln herum, damit ein Land nicht in zwei verschiedenen Tagen liegt. Kiribati hat sich 1995 sogar entschieden, die Linie um die eigenen Inseln herumzulegen, um ganz östlich der Datumsgrenze zu liegen — und damit das Land zu sein, das das neue Jahr als erstes begrüßt.
+        </p>
+      </details>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
+      <p>
+        Der Zeitzonen-Rechner basiert auf der <strong>IANA Time Zone Database</strong> (auch tz database, „Olson-Datenbank") — der weltweit anerkannten Referenz für Zeitzonen-Daten, die in nahezu allen Betriebssystemen, Browsern und Programmiersprachen verwendet wird. Sie enthält alle historischen und aktuellen Zeitzonen-Regeln inklusive Sommerzeit-Umstellungen für jedes Land der Erde. Grundlage der Weltzeit ist <strong>UTC (Coordinated Universal Time)</strong>, abgeleitet aus der <strong>Internationalen Atomzeit (TAI)</strong> mit gelegentlichen Schaltsekunden-Korrekturen, koordiniert vom <strong>Bureau International des Poids et Mesures (BIPM)</strong>. Sommer-/Winterzeit-Termine in Deutschland nach <strong>Richtlinie 2000/84/EG</strong> der EU. Die genaue Umrechnung berücksichtigt die jeweils gültige DST-Regel des Quell- und Ziellands für das gewählte Datum.
+      </p>
+
+      <p class="text-sm text-gray-500 mt-6">Zuletzt aktualisiert: April 2026</p>
+    </article>
+
+    <RechnerTrust quellen="IANA Time Zone Database, BIPM (UTC/TAI), EU-Richtlinie 2000/84/EG" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="zeitzone" slugs={['flugzeit', 'entfernung', 'tage', 'zeit']} />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">

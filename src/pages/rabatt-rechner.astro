@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import RabattRechner from '../components/rechner/RabattRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Rabatt-Rechner – Ersparnis & Endpreis kostenlos berechnen";
 const description = "Rabatt berechnen: Endpreis nach Rabatt & Ersparnis in Euro ermitteln. Staffelrabatte, doppelte Rabatte & Formel. Kostenlos!";
@@ -14,6 +17,11 @@ const keywords = "Rabatt Rechner, Rabatt berechnen, Prozent ausrechnen, Preisnac
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Rabatt-Rechner", url: "/rabatt-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Rabatt-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-6 px-4">
@@ -41,6 +49,175 @@ const keywords = "Rabatt Rechner, Rabatt berechnen, Prozent ausrechnen, Preisnac
     <div class="max-w-2xl mx-auto px-4 py-6">
       <RabattRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Rabatt-Rechner?</h2>
+        <p>
+          Rabatte klingen einfach — bis du zwei davon kombinieren willst, einen Skonto auf eine
+          Brutto-Rechnung anwendest oder herausfinden musst, ob „minus 50 %" wirklich die Hälfte
+          spart oder der UVP nur kurz vorher erhöht wurde. Genau dafür ist der Rechner da:
+        </p>
+        <ul>
+          <li><strong>Black-Friday-Angebote prüfen:</strong> Echte Reduktion oder nur künstlich
+          aufgeblasener Listenpreis? Mit dem Rechner und einer Preis-Historie (idealo, Geizhals,
+          Keepa) erkennst du Fake-Sales sofort.</li>
+          <li><strong>Skonto bei Handwerker-Rechnung:</strong> 2 % Skonto bei Zahlung in 14 Tagen —
+          klingt klein, ist aufs Jahr hochgerechnet aber ein zweistelliger Zinssatz.</li>
+          <li><strong>Rabatt-Codes vergleichen:</strong> 15 % Newsletter-Code vs. 20 € Festbetrag —
+          welcher ist bei deinem Warenkorb günstiger?</li>
+          <li><strong>Mengenrabatte ab Schwellenwert:</strong> Lohnt es sich, einen weiteren
+          Artikel dazuzunehmen, um die nächste Rabattstufe zu erreichen?</li>
+          <li><strong>Ausverkauf vs. UVP bewerten:</strong> Die UVP (Unverbindliche Preisempfehlung)
+          ist oft frei gewählt — der Marktpreis liegt häufig 20–30 % darunter, der „Sale" ist also
+          gar keiner.</li>
+        </ul>
+        <p>
+          Kurz gesagt: überall, wo Prozent auf Preis trifft und du nicht im Kopf rechnen willst.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
+        <p>
+          Drei typische Szenarien — vom einfachen Rabatt bis zum gestapelten Mehrfachrabatt, der
+          die meisten Käufer überschätzen.
+        </p>
+
+        <h3>Beispiel 1: Schuhe im Sale</h3>
+        <p>
+          Schuhe mit UVP <strong>120 €</strong>, im Sale mit <strong>30 % Rabatt</strong>.
+          Endpreis: 120 € × 0,70 = <strong>84 €</strong>. Ersparnis: <strong>36 €</strong>.
+          Klassischer Single-Discount, einfache Multiplikation. Wichtig: prüfe, ob der UVP von 120 €
+          überhaupt der Marktpreis war — bei vielen Online-Shops liegt der echte Durchschnittspreis
+          die letzten 30 Tage näher an 95 €. Dann ist die echte Ersparnis nur ~11 €, nicht 36 €.
+        </p>
+
+        <h3>Beispiel 2: Handwerker-Rechnung mit Skonto</h3>
+        <p>
+          Eine Handwerker-Rechnung über <strong>4.500 € netto</strong> bietet
+          <strong>2 % Skonto bei Zahlung innerhalb von 14 Tagen</strong>. Rechnung:
+        </p>
+        <ul>
+          <li>Skonto: 4.500 € × 2 % = <strong>90 €</strong></li>
+          <li>Netto nach Skonto: 4.500 € − 90 € = <strong>4.410 €</strong></li>
+          <li>Plus 19 % Mehrwertsteuer: 4.410 € × 0,19 = <strong>837,90 €</strong></li>
+          <li>Endbetrag brutto: <strong>5.247,90 €</strong></li>
+        </ul>
+        <p>
+          Skonto wird in Deutschland immer auf den Netto-Betrag angewandt, danach kommt erst die
+          Mehrwertsteuer. Wer 14 Tage statt 30 Tage zahlt, gewinnt 2 % — das entspricht einem
+          effektiven Jahreszins von rund <strong>36 %</strong>. Skonto zu ziehen ist deshalb fast
+          immer sinnvoll, sogar wenn man dafür Dispo nutzen müsste.
+        </p>
+
+        <h3>Beispiel 3: Stapel-Rabatt – warum 20 % + 10 % nicht 30 % sind</h3>
+        <p>
+          Du siehst: <strong>20 % Sommer-Sale + 10 % Newsletter-Code</strong>. Klingt nach 30 %
+          Rabatt — ist es aber nicht. Rabatte werden <em>multiplikativ</em> kombiniert, nicht
+          additiv:
+        </p>
+        <ul>
+          <li>100 € × (1 − 0,20) = 80 € (nach Sale)</li>
+          <li>80 € × (1 − 0,10) = <strong>72 €</strong> (nach Newsletter-Code)</li>
+          <li>Effektiver Gesamtrabatt: <strong>28 %</strong>, nicht 30 %</li>
+        </ul>
+        <p>
+          Bei kleinen Beträgen sind die 2 Prozentpunkte Differenz egal — bei einem 1.500-€-Sofa
+          fehlen dir aber plötzlich 30 €, mit denen du gerechnet hast. Faustregel: gestapelte
+          Rabatte sind immer ein bisschen schlechter, als die Werbung suggeriert.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen</h2>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wie viel Rabatt ist „echt"? Wie erkenne ich Fake-Sales?</summary>
+          <p class="mt-2">
+            Achte auf den <strong>30-Tage-Tiefstpreis</strong>: Seit Mai 2022 schreibt die deutsche
+            Preisangabenverordnung (PAngV) §11 vor, dass bei Werbung mit Preisreduktionen der
+            <em>niedrigste Preis der letzten 30 Tage</em> als Referenz angegeben werden muss. Tools
+            wie idealo, Geizhals oder Keepa (für Amazon) zeigen den historischen Preisverlauf
+            transparent. Wenn der „UVP" einen Tag vor dem Sale erhöht wurde — ein klassischer Trick —
+            ist der echte Rabatt deutlich kleiner als beworben.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen Rabatt und Skonto?</summary>
+          <p class="mt-2">
+            <strong>Rabatt</strong> ist ein Preisnachlass, der <em>beim Kauf</em> gewährt wird —
+            unabhängig von der Zahlungsweise. Saison-Rabatt, Mengenrabatt, Treue-Rabatt: das alles
+            sind Rabatte. <strong>Skonto</strong> dagegen ist ein Nachlass <em>für schnelle Zahlung</em>,
+            typisch im B2B-Geschäft („2 % Skonto innerhalb 14 Tagen, ansonsten netto 30 Tage").
+            Skonto wird immer vom Rechnungs-Netto-Betrag berechnet, danach kommt die Mehrwertsteuer.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wann ist Skonto sinnvoll?</summary>
+          <p class="mt-2">
+            Praktisch immer. Rechne den <strong>effektiven Jahreszins</strong> aus: 2 % Skonto bei
+            14 statt 30 Tagen Zahlungsziel = 2 % für 16 Tage Zinsverzicht ≈
+            <strong>~36 % p. a.</strong>. Selbst wenn du den Rechnungsbetrag aus dem Dispo (10–13 %)
+            zahlen müsstest, lohnt sich Skonto. Faustregel: alles über 5 % effektivem Jahreszins ist
+            ein klares Signal, Skonto zu ziehen.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Wie kombiniere ich mehrere Rabatte richtig?</summary>
+          <p class="mt-2">
+            Multiplikativ, nicht additiv. Bei zwei Rabatten R₁ und R₂ ist der Endpreis:
+            <code>Preis × (1 − R₁) × (1 − R₂)</code>. 20 % + 10 % wird also zu 1 − 0,8 × 0,9 = 28 %
+            effektiv, nicht 30 %. Bei drei Rabatten gleich weiterrechnen. Bei einem festen
+            Euro-Betrag-Rabatt (z. B. „20 € geschenkt") muss erst geprüft werden, in welcher
+            Reihenfolge die Rabatte angewandt werden — manche Shops ziehen erst Prozent, dann den
+            Festbetrag, andere umgekehrt. Das macht im Zweifel mehrere Euro Unterschied.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Sind UVPs bei Online-Shops verlässlich?</summary>
+          <p class="mt-2">
+            Eher nicht. Die UVP (Unverbindliche Preisempfehlung) wird vom Hersteller festgelegt,
+            ist aber nicht bindend — und wird oft als <strong>Anker-Preis</strong> genutzt, um Sales
+            attraktiver erscheinen zu lassen. Der tatsächliche Marktpreis liegt häufig 15–30 %
+            unter der UVP, gerade bei Elektronik, Mode und Möbeln. Prüfe vor jedem größeren Kauf
+            den Preisverlauf auf <a href="https://www.idealo.de" target="_blank" rel="noopener" class="text-rose-600 underline">idealo</a>
+            oder <a href="https://geizhals.de" target="_blank" rel="noopener" class="text-rose-600 underline">Geizhals</a> — dort
+            siehst du den echten Marktpreis der letzten Monate.
+          </p>
+        </details>
+
+        <details class="mb-3 bg-gray-50 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">Was sagt die Preisangabenverordnung (PAngV) zu Rabatten?</summary>
+          <p class="mt-2">
+            <strong>§11 PAngV</strong> regelt seit Mai 2022, dass bei jeder Werbung mit
+            Preisermäßigungen der <em>niedrigste Gesamtpreis</em> angegeben werden muss, den der
+            Händler in den <em>letzten 30 Tagen</em> verlangt hat. Damit soll verhindert werden,
+            dass Shops kurz vor Sale-Aktionen die Preise erhöhen, um dann mit angeblichen Rabatten
+            zu werben. In der Praxis halten sich nicht alle Shops sauber daran — Verbraucherzentralen
+            mahnen regelmäßig ab.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
+        <p>
+          Die Rabatt- und Skonto-Berechnungen folgen der Standard-Prozentrechnung
+          (Endpreis = Originalpreis × (1 − Rabatt)). Skonto wird gemäß deutscher Handelspraxis auf
+          den <strong>Rechnungs-Netto-Betrag</strong> angewandt; die Mehrwertsteuer (i. d. R. 19 %,
+          ermäßigt 7 %) wird auf den um Skonto verminderten Netto-Betrag erhoben. Der Begriff
+          <strong>Skonto</strong> ist im deutschen Handelsrecht etabliert (HGB) und in den
+          handelsüblichen Zahlungsbedingungen geregelt. Für die Bewertung beworbener
+          Preisreduktionen gilt die <strong>Preisangabenverordnung (PAngV) §11</strong>: Pflicht zur
+          Angabe des 30-Tage-Tiefstpreises bei Werbung mit Preisermäßigungen. Der Rechner trifft
+          keine Aussage darüber, ob ein konkretes Angebot tatsächlich günstig ist — dafür den
+          Preisverlauf prüfen (idealo, Geizhals, Keepa).
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -189,39 +366,19 @@ const keywords = "Rabatt Rechner, Rabatt berechnen, Prozent ausrechnen, Preisnac
       </div>
     </div>
     
-    <!-- Weitere Rechner -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span class="text-2xl">🔗</span>
-          Verwandte Rechner
-        </h2>
-        
-        <div class="grid gap-3">
-          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-rose-50 transition-colors flex items-center gap-3">
-            <span class="text-2xl">📊</span>
-            <div>
-              <div class="font-semibold text-gray-800">Prozent-Rechner</div>
-              <div class="text-sm text-gray-500">Alle Prozentberechnungen: Grundwert, Prozentwert, Prozentsatz</div>
-            </div>
-          </a>
-          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-rose-50 transition-colors flex items-center gap-3">
-            <span class="text-2xl">🧾</span>
-            <div>
-              <div class="font-semibold text-gray-800">Mehrwertsteuer-Rechner</div>
-              <div class="text-sm text-gray-500">Mehrwertsteuer berechnen: Brutto ↔ Netto</div>
-            </div>
-          </a>
-          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-rose-50 transition-colors flex items-center gap-3">
-            <span class="text-2xl">💰</span>
-            <div>
-              <div class="font-semibold text-gray-800">Zinseszins-Rechner</div>
-              <div class="text-sm text-gray-500">Zinsen & Zinseszins berechnen</div>
-            </div>
-          </a>
-        </div>
-      </div>
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust
+        quellen="HGB (Skonto), Preisangabenverordnung (PAngV) §11"
+        aktualisiert="April 2026"
+      />
     </div>
+
+    <!-- Verwandte Rechner -->
+    <VerwandteRechner
+      aktuellerSlug="rabatt"
+      slugs={["prozent", "mehrwertsteuer", "kredit", "spritkosten"]}
+    />
 </main>
   
   <!-- Structured Data for SEO -->

@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Wohnen & Immobilien 2026 — Mietpreisbremse, Nebenkosten, Grundsteuer";
+const description = "Rechner für Mieter und Eigentümer: Mietpreisbremse, Nebenkostenabrechnung, Grundsteuer 2026, Heizkosten, Mieterhöhung — kostenlos und transparent.";
+const keywords = "Mietpreisbremse Rechner, Nebenkosten 2026, Grundsteuer Reform, Heizkosten, Mieterhöhung Kappungsgrenze, Baufinanzierung, Kaufnebenkosten, Wohnen Deutschland";
+
+const wohnenRechner = rechnerListe.filter(r => r.kategorie === 'wohnen');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Wohnen & Immobilien — Rechner für Mieter und Eigentümer",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/wohnen-immobilien",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Wohnen & Immobilien", url: "/wohnen-immobilien" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} is:inline />
+
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-violet-600 text-white py-8 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-3xl font-bold">Wohnen & Immobilien — Rechner für Mieter und Eigentümer</h1>
+            <p class="text-purple-100 text-sm mt-1">Mietpreisbremse, Nebenkosten, Grundsteuer, Baufinanzierung — alles auf einen Blick</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Wohnen & Immobilien in Deutschland 2026</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Wohnen ist der größte Posten im Haushaltsbudget — egal ob Miete oder Eigentum. Diese Hub-Seite bündelt
+            alle Rechner für Mieter, Eigentümer und Kaufinteressenten:
+            <a href="/mietpreisbremse-rechner" class="text-purple-600 hover:text-purple-800 underline">Mietpreisbremse</a>,
+            <a href="/mieterhoehung-rechner" class="text-purple-600 hover:text-purple-800 underline">Mieterhöhung</a>,
+            <a href="/nebenkosten-rechner" class="text-purple-600 hover:text-purple-800 underline">Nebenkosten</a>,
+            <a href="/heizkosten-rechner" class="text-purple-600 hover:text-purple-800 underline">Heizkosten</a>,
+            <a href="/grundsteuer-rechner" class="text-purple-600 hover:text-purple-800 underline">Grundsteuer</a>,
+            <a href="/baufinanzierung-rechner" class="text-purple-600 hover:text-purple-800 underline">Baufinanzierung</a> und
+            <a href="/kaufnebenkosten-rechner" class="text-purple-600 hover:text-purple-800 underline">Kaufnebenkosten</a>.
+          </p>
+          <p>
+            <strong>Eckwerte 2026:</strong> Die <strong>Grundsteuerreform</strong> ist seit 2025 in Kraft — die
+            Berechnung ist nun länderspezifisch. Während der Bund das sogenannte <em>Bundesmodell</em> (wertabhängig)
+            vorgibt, haben mehrere Länder über die Öffnungsklausel eigene Modelle eingeführt
+            (z. B. Bayern: Flächenmodell, Hamburg: Wohnlagenmodell, Niedersachsen: Flächen-Lage-Modell).
+            Die <strong>Mietpreisbremse</strong> gilt in über 300 Städten und Gemeinden mit angespanntem Wohnungsmarkt
+            — die genaue Liste legt jedes Bundesland per Verordnung fest. Bei Wiedervermietung darf die Miete dort
+            höchstens 10 % über der ortsüblichen Vergleichsmiete liegen.
+            <strong>Mieterhöhungen</strong> sind nach § 558 BGB innerhalb von drei Jahren auf maximal 20 % begrenzt
+            (Kappungsgrenze) — in Gebieten mit Wohnraummangel sogar nur 15 %.
+            <strong>Nebenkostenabrechnungen</strong> müssen laut § 556 Abs. 3 BGB innerhalb von 12 Monaten nach
+            Abrechnungszeitraum vorliegen — sonst sind Nachforderungen ausgeschlossen.
+            Heizkosten werden nach der Heizkostenverordnung zu mindestens 50 % bis maximal 70 % verbrauchsabhängig
+            verteilt.
+          </p>
+          <p>
+            <strong>Welche Stellen sind zuständig?</strong> Mietrecht regelt das BGB; im Streitfall entscheiden die
+            Amtsgerichte. Hilfe und Rechtsberatung bieten <em>Deutscher Mieterbund</em> (für Mieter) und
+            <em>Haus & Grund</em> (für Eigentümer). Die Grundsteuer setzen die <em>Finanzämter</em> fest, die
+            Hebesätze beschließen die <em>Gemeinden</em>. Förderprogramme rund ums Wohneigentum laufen über die
+            <em>KfW</em> und das BMWSB.
+          </p>
+          <p>
+            Typische Fragen: <em>Ist meine Mieterhöhung zulässig?</em>, <em>Wie hoch wird meine neue Grundsteuer?</em>,
+            <em>Was kostet mich die Wohnung wirklich (Warmmiete)?</em>, <em>Welche Rate kann ich mir bei einem
+            Hauskauf leisten?</em> — die Rechner unten liefern konkrete Zahlen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechner Grid -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <h2 class="sr-only">Alle Rechner für Wohnen & Immobilien</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {wohnenRechner.map(r => (
+          <a
+            href={r.fertig ? `/${r.id}-rechner` : '#'}
+            class={`bg-white rounded-xl shadow-md ${r.fertig ? 'hover:shadow-lg' : 'opacity-50 cursor-not-allowed'} transition-shadow p-4 flex items-start gap-3 group`}
+          >
+            <span class="text-2xl mt-0.5">{r.icon}</span>
+            <div>
+              <h3 class="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">{r.name}</h3>
+              <p class="text-gray-500 text-sm mt-1">{r.beschreibung}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tipps -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Worauf du bei Wohnen & Immobilien achten solltest</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            <strong>Nebenkosten kritisch prüfen:</strong> Nicht alle Posten dürfen umgelegt werden — Verwaltungs-
+            und Reparaturkosten z. B. nicht. Die Betriebskostenverordnung (BetrKV § 2) listet abschließend, was
+            zulässig ist. Wer eine Abrechnung bekommt, hat 12 Monate Zeit, Einwände zu erheben.
+          </p>
+          <p>
+            <strong>Kaufnebenkosten realistisch einplanen:</strong> Beim Immobilienkauf kommen je nach Bundesland
+            <a href="/grunderwerbsteuer-rechner" class="text-purple-600 hover:text-purple-800 underline">3,5 bis 6,5 % Grunderwerbsteuer</a>,
+            ca. 1,5 % <a href="/notarkosten-rechner" class="text-purple-600 hover:text-purple-800 underline">Notar- und Grundbuchkosten</a>
+            und ggf. <a href="/maklerkosten-rechner" class="text-purple-600 hover:text-purple-800 underline">Maklerprovision</a>
+            (3,57 %–7,14 % inkl. MwSt., seit 2020 hälftig zwischen Käufer und Verkäufer geteilt) hinzu.
+            Insgesamt sind 10–15 % Nebenkosten realistisch.
+          </p>
+          <p>
+            <strong>Mietpreisbremse aktiv nutzen:</strong> Wer in einer betroffenen Gemeinde eine Wohnung neu
+            mietet, sollte die ortsübliche Vergleichsmiete prüfen und bei Überschreitung schriftlich rügen — der
+            Vermieter muss dann zu viel gezahlte Miete zurückerstatten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quellen -->
+    <div class="max-w-4xl mx-auto px-4 mt-6 mb-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Quellen & Behörden</h2>
+        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-600">
+          <li><a href="https://www.bmwsb.bund.de" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">BMWSB — Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen</a></li>
+          <li><a href="https://www.bundesfinanzministerium.de" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">BMF — Bundesfinanzministerium (Grundsteuer)</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/bgb/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">BGB — §§ 535 ff. (Mietrecht), § 558 BGB (Mieterhöhung)</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/betrkv/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">BetrKV — Betriebskostenverordnung</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/heizkostenv/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">Heizkostenverordnung (HeizkostenV)</a></li>
+          <li><a href="https://www.mieterbund.de" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">Deutscher Mieterbund</a></li>
+          <li><a href="https://www.haus-und-grund.net" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">Haus & Grund (Eigentümerverband)</a></li>
+          <li><a href="https://www.kfw.de" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 underline">KfW — Förderbank (Wohneigentum, Sanierung)</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>

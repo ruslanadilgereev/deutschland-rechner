@@ -9,6 +9,53 @@ const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
   ...kat,
   rechner: rechnerListe.filter(r => r.kategorie === key),
 }));
+
+// Top-Rechner für "Beliebte Rechner"-Block
+const topRechnerIds = ['brutto-netto', 'kindergeld', 'elterngeld', 'einkommensteuer', 'baufinanzierung', 'mietpreisbremse'];
+const topRechner = topRechnerIds
+  .map(id => rechnerListe.find(r => r.id === id))
+  .filter((r): r is NonNullable<typeof r> => Boolean(r));
+
+// FAQ-Daten (auch für JSON-LD)
+const faqs = [
+  {
+    frage: 'Sind die Rechner wirklich kostenlos?',
+    antwort: 'Ja, alle 143+ Rechner sind komplett kostenlos. Keine Anmeldung, kein Login, keine Premium-Features. Die Site finanziert sich über Werbeanzeigen, die niemals die Berechnung beeinflussen.',
+  },
+  {
+    frage: 'Wie aktuell sind die Werte für 2026?',
+    antwort: 'Die wichtigsten Eckwerte (Grundfreibetrag, Beitragsbemessungsgrenzen, Kindergeld, Bürgergeld-Regelsätze, Mindestlohn) sind auf den Stand 2026 aktualisiert. Steuerberechnungen folgen dem offiziellen BMF-Programmablaufplan 2026. Werden Werte später angepasst (z. B. Mindestlohn-Erhöhung Ende des Jahres), aktualisieren wir die betroffenen Rechner.',
+  },
+  {
+    frage: 'Werden meine Eingaben gespeichert?',
+    antwort: 'Nein. Alle Berechnungen laufen direkt in deinem Browser per JavaScript — nichts wird an einen Server gesendet, nichts wird in einer Datenbank gespeichert. Wir nutzen Vercel Web Analytics, das keine personenbezogenen Daten sammelt. Details in der Datenschutzerklärung.',
+  },
+  {
+    frage: 'Wie genau sind die Ergebnisse?',
+    antwort: 'Bei Steuern und Sozialleistungen folgen wir den offiziellen Formeln (BMF-PAP, BAföG-Verordnung, BEEG für Elterngeld etc.). Die Ergebnisse stimmen typischerweise auf den Cent genau mit den Behörden-Rechnern überein. Bei komplexen Sonderfällen (z. B. mehrere Kinder mit unterschiedlichem Status, ausländisches Einkommen) gilt: Die Rechner ersetzen keine Steuer- oder Rechtsberatung.',
+  },
+  {
+    frage: 'Kann ich Fehler melden oder neue Rechner vorschlagen?',
+    antwort: 'Ja, gerne. Die Site ist Open Source — Fehler kannst du auf GitHub melden, oder per E-Mail an kontakt@mahlzait.de. Vorschläge für neue Rechner sind willkommen.',
+  },
+  {
+    frage: 'Wer steht hinter Deutschlandrechner?',
+    antwort: 'Die Site wird von Ruslan Adilgereev (Berlin) entwickelt — Solo-Projekt, hauptberuflich Software-Entwickler. Mehr Infos unter Über uns und im Impressum.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.frage,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.antwort,
+    },
+  })),
+};
 ---
 
 <Layout 
@@ -47,8 +94,82 @@ const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
       </div>
     </div>
 
+    <!-- Über Deutschlandrechner -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Kostenlose Rechner für Deutschland — transparent, aktuell, Open Source</h2>
+        <div class="prose prose-lg text-gray-700 max-w-none space-y-4">
+          <p>
+            Deutschlandrechner bündelt <strong>143+ Rechner</strong> für die Themen, bei denen man in Deutschland am häufigsten nachrechnen muss:
+            Steuern und Lohn, Sozialleistungen, Familie und Kinder, Wohnen und Immobilien, Auto, Gesundheit, Finanzen.
+            Vom <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Vergleich</a> nach einer Gehaltsverhandlung
+            über den <a href="/elterngeld-rechner" class="text-blue-600 hover:underline">Elterngeld-Antrag</a> bis zur Frage,
+            ob die <a href="/mietpreisbremse-rechner" class="text-blue-600 hover:underline">Mietpreisbremse</a> in deinem Fall greift —
+            jeder Rechner liefert in Sekunden ein Ergebnis, ohne Anmeldung, ohne Newsletter-Pflicht.
+          </p>
+          <p>
+            Alle Werte sind auf den Stand <strong>2026</strong> aktualisiert: Grundfreibetrag <strong>12.348 €</strong>,
+            Kindergeld <strong>259 € pro Kind</strong>, Bürgergeld-Regelsatz <strong>563 €</strong> für Alleinstehende,
+            Mindestlohn <strong>13,90 €/Stunde</strong>, Beitragsbemessungsgrenzen nach der aktuellen Sozialversicherungsrechengrößen-Verordnung.
+            Steuerberechnungen folgen dem offiziellen <strong>Programmablaufplan 2026</strong> des Bundesfinanzministeriums.
+          </p>
+          <p>
+            Die Site ist als Solo-Projekt aus Berlin entstanden, weil offizielle Behörden-Rechner oft entweder fehlen,
+            mobil schlecht funktionieren oder hinter umständlichen Formularen versteckt sind.
+            Hier sollst du in unter 30 Sekunden zu einem belastbaren Ergebnis kommen — und zwar so,
+            dass du die Rechnung nachvollziehen und im Zweifel im Quellcode überprüfen kannst.
+          </p>
+        </div>
+
+        <!-- Trust-Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <div class="text-3xl mb-3">📅</div>
+            <h3 class="font-bold text-gray-900 mb-2">Aktuell für 2026</h3>
+            <p class="text-sm text-gray-600">
+              Steuersätze nach BMF-PAP 2026, Kindergeld 259 € pro Kind, Bürgergeld-Regelsätze, Mindestlohn 13,90 €/Stunde.
+              Werte werden bei Gesetzesänderungen zeitnah angepasst.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <div class="text-3xl mb-3">📂</div>
+            <h3 class="font-bold text-gray-900 mb-2">Open Source</h3>
+            <p class="text-sm text-gray-600">
+              Quellcode auf <a href="https://github.com/ruslanadilgereev/deutschland-rechner" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub</a>,
+              MIT-Lizenz. Du kannst jede Berechnung nachprüfen und Fehler melden.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <div class="text-3xl mb-3">🔒</div>
+            <h3 class="font-bold text-gray-900 mb-2">Keine Datenspeicherung</h3>
+            <p class="text-sm text-gray-600">
+              Alle Berechnungen laufen direkt im Browser. Keine Server, keine Cookies für Berechnungen,
+              keine Eingaben werden gespeichert.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beliebte Rechner -->
+    <section class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Die meistgenutzten Rechner</h2>
+        <p class="text-lg text-gray-700">
+          Diese Rechner werden am häufigsten benötigt — vom Brutto-Netto-Vergleich nach einer Gehaltsverhandlung
+          bis zum Elterngeld-Antrag nach der Geburt. Wenn du nicht weißt, wo du anfangen sollst:
+          hier ist der schnellste Einstieg.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {topRechner.map((r) => (
+          <RechnerCard rechner={r} client:load />
+        ))}
+      </div>
+    </section>
+
     <!-- Rechner Liste - 3 Spalten Grid -->
-    <div class="max-w-7xl mx-auto px-4 py-8" id="rechner-liste">
+    <div class="max-w-7xl mx-auto px-4 py-8 border-t border-gray-200" id="rechner-liste">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {gruppiertNachKategorie.map(({ key, name, icon, color, rechner }) => (
           <section class="kategorie-section" data-kategorie={key}>
@@ -73,7 +194,134 @@ const gruppiertNachKategorie = Object.entries(kategorien).map(([key, kat]) => ({
       </div>
     </div>
 
+    <!-- Methodik & Quellen -->
+    <section class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">So rechnen wir</h2>
+        <div class="prose prose-lg text-gray-700 max-w-none space-y-4">
+          <p>
+            Jeder Rechner basiert auf offiziellen Berechnungsformeln und Werten.
+            Wir erfinden keine Faustformeln und nutzen keine Branchen-Schätzungen — wenn ein Wert auf der Site steht,
+            steht er in dieser Form auch in einem Gesetz, einer Verordnung oder einer offiziellen Behörden-Veröffentlichung.
+            Hier die wichtigsten Quellen pro Bereich:
+          </p>
+          <ul class="space-y-3">
+            <li>
+              <strong>Steuern &amp; Lohn:</strong> Programmablaufplan 2026 des Bundesfinanzministeriums (BMF) für die maschinelle
+              Lohnsteuer-Berechnung, §§ 32a, 39b EStG (Tarif und Lohnsteuer-Berechnung), Sozialversicherungsrechengrößen-Verordnung 2026.
+            </li>
+            <li>
+              <strong>Sozialleistungen:</strong> Bundesagentur für Arbeit (Bürgergeld, Arbeitslosengeld, Kindergeld),
+              Bundesfamilienministerium (Eltern-/Kindergeld), Deutsche Rentenversicherung (Rentenformel, Entgeltpunkte).
+            </li>
+            <li>
+              <strong>Gesundheit:</strong> WHO (BMI-Klassifikation), DGE (Grundumsatz und Kalorienbedarf nach Mifflin-St Jeor),
+              Deutsche Gesellschaft für Ernährung für Referenzwerte.
+            </li>
+            <li>
+              <strong>Wohnen &amp; Immobilien:</strong> §§ 558ff BGB (Mietrecht, Mieterhöhung, Mietpreisbremse),
+              Landesgesetze für Grunderwerbsteuer (3,5 % bis 6,5 % je nach Bundesland), Bundesnotarordnung und GNotKG für Notarkosten.
+            </li>
+            <li>
+              <strong>Auto:</strong> § 8 KraftStG (Kfz-Steuer-Berechnung nach Hubraum und CO₂-Ausstoß),
+              § 24a StVG und § 316 StGB (Promille-Grenzen), Anlage XII zur StVZO (Bußgeldkatalog).
+            </li>
+          </ul>
+          <p>
+            Werden Werte falsch berechnet? Open Source heißt: Du kannst es im
+            <a href="https://github.com/ruslanadilgereev/deutschland-rechner" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub-Repo</a>
+            prüfen und einen <a href="https://github.com/ruslanadilgereev/deutschland-rechner/issues" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Fehlerbericht stellen</a>.
+            Jeder belastbare Hinweis wird gefixt — meist innerhalb weniger Tage.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-7xl mx-auto px-4 py-12 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Häufige Fragen</h2>
+        <div class="space-y-3">
+          <details class="bg-white rounded-2xl shadow-sm p-5 group">
+            <summary class="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+              <span>Sind die Rechner wirklich kostenlos?</span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="mt-3 text-gray-700">
+              Ja, alle 143+ Rechner sind komplett kostenlos. Keine Anmeldung, kein Login, keine Premium-Features.
+              Die Site finanziert sich über Werbeanzeigen, die niemals die Berechnung beeinflussen.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-sm p-5 group">
+            <summary class="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+              <span>Wie aktuell sind die Werte für 2026?</span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="mt-3 text-gray-700">
+              Die wichtigsten Eckwerte (Grundfreibetrag, Beitragsbemessungsgrenzen, Kindergeld, Bürgergeld-Regelsätze, Mindestlohn)
+              sind auf den Stand 2026 aktualisiert. Steuerberechnungen folgen dem offiziellen BMF-Programmablaufplan 2026.
+              Werden Werte später angepasst (z. B. Mindestlohn-Erhöhung Ende des Jahres), aktualisieren wir die betroffenen Rechner.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-sm p-5 group">
+            <summary class="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+              <span>Werden meine Eingaben gespeichert?</span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="mt-3 text-gray-700">
+              Nein. Alle Berechnungen laufen direkt in deinem Browser per JavaScript — nichts wird an einen Server gesendet,
+              nichts wird in einer Datenbank gespeichert. Wir nutzen Vercel Web Analytics, das keine personenbezogenen Daten sammelt.
+              Details in der <a href="/datenschutz" class="text-blue-600 hover:underline">Datenschutzerklärung</a>.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-sm p-5 group">
+            <summary class="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+              <span>Wie genau sind die Ergebnisse?</span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="mt-3 text-gray-700">
+              Bei Steuern und Sozialleistungen folgen wir den offiziellen Formeln (BMF-PAP, BAföG-Verordnung, BEEG für Elterngeld etc.).
+              Die Ergebnisse stimmen typischerweise auf den Cent genau mit den Behörden-Rechnern überein.
+              Bei komplexen Sonderfällen (z. B. mehrere Kinder mit unterschiedlichem Status, ausländisches Einkommen) gilt:
+              Die Rechner ersetzen keine Steuer- oder Rechtsberatung.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-sm p-5 group">
+            <summary class="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+              <span>Kann ich Fehler melden oder neue Rechner vorschlagen?</span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="mt-3 text-gray-700">
+              Ja, gerne. Die Site ist Open Source — Fehler kannst du auf
+              <a href="https://github.com/ruslanadilgereev/deutschland-rechner/issues" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub</a>
+              melden, oder per E-Mail an <a href="mailto:kontakt@mahlzait.de" class="text-blue-600 hover:underline">kontakt@mahlzait.de</a>.
+              Vorschläge für neue Rechner sind willkommen.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-sm p-5 group">
+            <summary class="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between">
+              <span>Wer steht hinter Deutschlandrechner?</span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="mt-3 text-gray-700">
+              Die Site wird von Ruslan Adilgereev (Berlin) entwickelt — Solo-Projekt, hauptberuflich Software-Entwickler.
+              Mehr Infos im <a href="/impressum" class="text-blue-600 hover:underline">Impressum</a>
+              und unter <a href="/kontakt" class="text-blue-600 hover:underline">Kontakt</a>.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />
 </Layout>
 
 <script>

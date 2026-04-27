@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerCard from '../components/RechnerCard';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Auto & Mobilität — Kfz-Steuer, Spritkosten, Bußgelder";
+const description = "Kfz-Steuer-Rechner nach §8 KraftStG, Spritkosten, Spritverbrauch, Bußgelder, Promille, THG-Quote, E-Auto-Förderung — kostenlose Auto-Rechner.";
+const keywords = "Auto Rechner, Kfz-Steuer, Spritkosten, Spritverbrauch, Bußgeld, Promille, THG-Quote, E-Auto, KraftStG, Bußgeldkatalog 2025, CO2-Steuer";
+
+const autoRechner = rechnerListe.filter(r => r.kategorie === 'auto');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Auto & Mobilität Rechner Deutschland 2026",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/auto-mobilitaet",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Auto & Mobilität", url: "/auto-mobilitaet" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+
+  <main class="min-h-screen pb-8 bg-gray-50">
+    <!-- Kompakter Hero mit Orange als Akzent -->
+    <header class="bg-white border-b border-gray-200 py-8 px-4">
+      <div class="max-w-7xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-gray-500 hover:text-orange-600 mb-4 transition-colors text-sm"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-orange-50 border border-orange-100 text-3xl">🚗</span>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Auto & Mobilität in Deutschland 2026</h1>
+            <p class="text-gray-500 text-sm md:text-base mt-1">Rechner rund um Kfz-Steuer, Spritkosten, Bußgelder und E-Mobilität</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro-Block -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Auto & Mobilität in Deutschland 2026</h2>
+        <p>
+          Autofahren in Deutschland ist gut reguliert — und gut bepreist. Die <strong>Kfz-Steuer</strong> wird nach
+          <strong>§ 8 KraftStG</strong> berechnet: für Pkw aus einem Sockelbetrag pro 100 cm³ Hubraum (2 € Benziner, 9,50 € Diesel)
+          plus einem CO₂-Aufschlag, der ab 95 g/km in Stufen von 2 € bis 4 € pro Gramm gestaffelt ist.
+          Erhoben wird die Steuer seit 2014 vom <strong>Zoll</strong>, nicht mehr von den Bundesländern. Reine Elektroautos sind
+          bei Erstzulassung bis Ende 2025 noch zehn Jahre lang von der Kfz-Steuer befreit.
+        </p>
+        <p>
+          Der <strong>Bußgeldkatalog</strong> wurde 2021 deutlich verschärft und gilt unverändert weiter. Wer innerorts
+          21–25 km/h zu schnell fährt, zahlt 115 € und bekommt einen Punkt; bei 31–40 km/h sind es 260 € plus ein Monat
+          Fahrverbot. <strong>Promille-Grenzen:</strong> 0,5 ‰ als Ordnungswidrigkeit, ab 0,3 ‰ mit Auffälligkeiten als Straftat,
+          1,1 ‰ als absolute Fahruntüchtigkeit. Für Fahranfänger und unter 21-Jährige gilt die 0,0-Promille-Regel.
+        </p>
+        <p>
+          E-Auto-Halter können über die <strong>THG-Quote</strong> jährlich rund 70–100 € realisieren — der Markt ist
+          gegenüber den Hochzeiten 2022/2023 (300–400 €) eingebrochen, das Geschäftsmodell läuft aber weiter über zertifizierte
+          Anbieter. Die staatliche <strong>BAFA-Kaufprämie</strong> für E-Autos (Umweltbonus) ist seit Dezember 2023 ausgelaufen.
+          Der nationale <strong>CO₂-Preis</strong> für Verkehr und Wärme liegt 2026 bei 55 €/Tonne und schlägt direkt auf den
+          Spritpreis durch (ca. 15,4 Cent/Liter Benzin, 17,4 Cent/Liter Diesel).
+        </p>
+        <p>
+          Zentrale Behörden: das <strong>Kraftfahrt-Bundesamt (KBA)</strong> in Flensburg führt das Fahreignungsregister und
+          die Statistiken, der <strong>Zoll</strong> erhebt die Kfz-Steuer, das <strong>Umweltbundesamt</strong> liefert die
+          CO₂-Daten.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rechner-Grid -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Alle Auto- & Mobilitäts-Rechner</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {autoRechner.map(rechner => (
+          <RechnerCard rechner={rechner} client:load />
+        ))}
+      </div>
+    </section>
+
+    <!-- Worauf zu achten -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Worauf bei Auto-Rechnern zu achten ist</h2>
+        <p>
+          Die <strong>Kfz-Steuer</strong> hängt entscheidend vom Erstzulassungsdatum ab — bis 30.06.2009 zählten Hubraum und
+          Schadstoffklasse, danach Hubraum und CO₂. Wer einen Gebrauchtwagen umrüstet, ändert die Steuerlast nicht rückwirkend.
+          Bei <strong>Spritkosten-Rechnern</strong> sind die hinterlegten Verbrauchswerte oft die Werks-Norm (WLTP) — der reale
+          Verbrauch liegt typischerweise 10–25 % höher.
+        </p>
+        <p>
+          <strong>Bußgeld-Rechner</strong> bilden den aktuellen Bundes-Katalog ab; in einzelnen Bundesländern und Städten
+          gibt es Abweichungen, etwa bei kommunalen Halteverstößen. <strong>Promille-Rechner</strong> nach Widmark sind nur
+          Schätzungen — Geschlecht, Magenfüllung und Gewohnheit verändern den Wert. Im Zweifel gilt: nicht fahren.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quellen -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 !mt-0">Quellen</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><a href="https://www.kba.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 underline">Kraftfahrt-Bundesamt (KBA)</a></li>
+          <li><a href="https://www.zoll.de/DE/Privatpersonen/Kraftfahrzeugsteuer/kraftfahrzeugsteuer_node.html" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 underline">Zoll — Kraftfahrzeugsteuer</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/kraftstg/__8.html" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 underline">§ 8 KraftStG — Bemessungsgrundlage</a></li>
+          <li><a href="https://www.bgbl.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 underline">Bundesgesetzblatt — Bußgeldkatalog-Verordnung</a></li>
+          <li><a href="https://www.umweltbundesamt.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 underline">Umweltbundesamt — CO₂-Daten Verkehr</a></li>
+          <li><a href="https://www.bafa.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 underline">BAFA — E-Auto-Förderung (ausgelaufen)</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>

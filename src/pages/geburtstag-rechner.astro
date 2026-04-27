@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import GeburtstagRechner from '../components/rechner/GeburtstagRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Geburtstag-Rechner – Wochentag & Sternzeichen berechnen";
 const description = "Geburtstag-Rechner: An welchem Wochentag wurden Sie geboren? Countdown bis zum nächsten Geburtstag, Sternzeichen, chinesisches Tierzeichen & mehr!";
@@ -14,6 +17,11 @@ const keywords = "Geburtstag Rechner, Geburtstag berechnen, Wochentag Geburt, Ta
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Geburtstag-Rechner", url: "/geburtstag-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Geburtstags-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-pink-500 to-rose-600 text-white py-6 px-4">
@@ -41,6 +49,168 @@ const keywords = "Geburtstag Rechner, Geburtstag berechnen, Wochentag Geburt, Ta
     <div class="max-w-2xl mx-auto px-4 py-6">
       <GeburtstagRechner client:load />
     </div>
+
+    <!-- Use-Case-Block -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Geburtstag-Rechner?</h2>
+        <p>
+          Der Geburtstag-Rechner ist mehr als eine Spielerei: Er beantwortet ganz konkrete Fragen,
+          die im Alltag auftauchen — von der Geschenkplanung bis zum 10.000sten Lebenstag als
+          ungewöhnlichem Anlass für eine kleine Feier. Typische Anwendungsfälle:
+        </p>
+        <ul>
+          <li>
+            <strong>Wochentag des Geburtstags ermitteln:</strong> Fällt der nächste runde
+            Geburtstag auf einen Samstag oder mitten unter der Woche? Wichtig für Feier-,
+            Restaurant- und Reise-Planung.
+          </li>
+          <li>
+            <strong>Tage bis zum nächsten Geburtstag zählen:</strong> Countdown für Kinder, oder
+            Erinnerung für überforderte Geschwister, die das Geschenk noch besorgen müssen.
+          </li>
+          <li>
+            <strong>Geburtstag in einer beliebigen Woche/Jahr finden:</strong> "Wann wäre Opa 100?"
+            oder "An welchem Wochentag ist mein 50.?".
+          </li>
+          <li>
+            <strong>Sternzeichen + chinesisches Tierkreiszeichen anzeigen:</strong> Für Geschenke,
+            Karten, Geburtstags-Posts in sozialen Medien.
+          </li>
+          <li>
+            <strong>Runde Lebenstage berechnen:</strong> 10.000. Lebenstag, 1 Milliarde Sekunden,
+            5.000. Tag — ungewöhnliche, persönliche Anlässe, die den Standardgeburtstag aufpeppen.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Beispiele aus der Praxis</h2>
+
+        <h3>Beispiel 1: Nächster Geburtstag und Wochentag</h3>
+        <p>
+          Geburtsdatum: <strong>03.06.1990</strong>. Heute ist der 27.04.2026.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Nächster Geburtstag: 03.06.2026<br/>
+          Wochentag: <strong>Mittwoch</strong><br/>
+          Tage bis dahin: <strong>37 Tage</strong><br/>
+          Erreichtes Alter: 36 Jahre
+        </div>
+        <p>
+          Wer den Geburtstag mitten in der Woche hat und trotzdem groß feiern will, sollte das
+          Wochenende davor blockieren — der Wochentag ist also Planungsgröße Nummer eins.
+        </p>
+
+        <h3>Beispiel 2: Sternzeichen + chinesisches Tier</h3>
+        <p>
+          Geburtsdatum: <strong>12.11.1985</strong>.
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Westliches Sternzeichen: <strong>Skorpion</strong> (23.10. – 21.11.)<br/>
+          Chinesisches Tier: <strong>Büffel</strong> (Jahr 1985)<br/>
+          Generation: Millennials (Gen Y)
+        </div>
+
+        <h3>Beispiel 3: 10.000. Lebenstag</h3>
+        <p>
+          Geboren am <strong>01.01.2000</strong>. Wann ist der 10.000. Lebenstag?
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Tag 1: 01.01.2000<br/>
+          + 9.999 Tage<br/>
+          = <strong>10.000. Lebenstag: 19.05.2027</strong> (ein Mittwoch)
+        </div>
+        <p>
+          10.000 Tage entsprechen rund 27 Jahren und 4 Monaten. Ein guter, ungewöhnlicher Anlass
+          zwischen dem 25. und 30. Geburtstag.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen rund um Geburtstage</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Welcher Wochentag war der 1. Januar 2000?</summary>
+          <p class="mt-3">
+            Der 01.01.2000 war ein <strong>Samstag</strong>. Das ist ein beliebter
+            Referenz-Anker, weil viele Menschen heute diesen Termin als "Millennium-Geburtstag" im
+            Kopf haben. Auch Funktionen wie der Zeller-Algorithmus oder Doomsday-Trick nutzen das
+            Jahr 2000 gerne als Basis.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Warum hat das Jahr manchmal 366 Tage?</summary>
+          <p class="mt-3">
+            Schaltjahre gleichen die Differenz zwischen Kalenderjahr (365 Tage) und tatsächlichem
+            Sonnenjahr (≈ 365,2422 Tage) aus. Die <strong>gregorianische Schaltjahresregel</strong>
+            lautet: durch 4 teilbar = Schaltjahr, ABER nicht wenn durch 100 teilbar, AUSSER wenn durch
+            400 teilbar. Beispiele: 2000 war Schaltjahr (durch 400 teilbar), 1900 war keines (nur durch
+            100, aber nicht 400), 2024 war Schaltjahr (durch 4), 2100 wird keines sein.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wann feiern Schaltjahr-Babys (29.02.)?</summary>
+          <p class="mt-3">
+            In Nicht-Schaltjahren feiern die meisten Schaltjahres-Babys entweder am
+            <strong>28. Februar</strong> oder am <strong>1. März</strong>. Rechtlich (§ 187 BGB)
+            gilt in Deutschland: das nächste Lebensjahr beginnt am 1. März, weil der 29.02.
+            schlicht nicht existiert. Für die "richtige" Feier mit Datum kommt nur alle vier Jahre
+            ein 29.02. — der nächste fällt auf 2028.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was bedeutet ein "runder" Geburtstag rechtlich/gesellschaftlich?</summary>
+          <p class="mt-3">
+            Rechtlich gibt es nur wenige "runde" Geburtstage mit Wirkung: <strong>14, 16, 18 und
+            21</strong> sind in unterschiedlichen Gesetzen Schwellenwerte (Strafmündigkeit,
+            Religionsmündigkeit, Volljährigkeit, USA-Alkoholgrenze). Gesellschaftlich gelten 30, 40,
+            50, 60, 70, 80, 90, 100 als "runde" Anlässe. Ab 100 verschickt das Bundespräsidialamt
+            auf Antrag ein Glückwunschschreiben — auch zu jedem weiteren Geburtstag.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wann ist der nächste Freitag, der 13., in 2026?</summary>
+          <p class="mt-3">
+            2026 hat zwei Freitag-der-13.-Termine: <strong>13. Februar 2026</strong> und
+            <strong>13. März 2026</strong>. Diese ungewöhnliche Häufung in zwei aufeinanderfolgenden
+            Monaten kommt nur in Nicht-Schaltjahren mit bestimmtem Wochentagsanker vor. Für 2027
+            ist der nächste am 13. August.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Ist mein Sternzeichen wirklich "richtig" laut Astronomie?</summary>
+          <p class="mt-3">
+            Die in der Zeitung verbreiteten Sternzeichen folgen der <strong>tropischen
+            Astrologie</strong> mit festen Datumsbereichen. Astronomisch hat sich der Frühlingspunkt
+            durch die Erdpräzession seit der Antike um etwa 30° verschoben — wer also "Stier" ist,
+            steht astronomisch heute eher im Sternbild Widder. Für unseren Rechner gelten die
+            klassischen astrologischen Daten, weil sie das ist, was die meisten meinen.
+          </p>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Quellen &amp; Methodik</h2>
+        <p>
+          Wochentags- und Datumsberechnung folgen dem <strong>gregorianischen Kalender</strong>,
+          der 1582 durch Papst Gregor XIII. eingeführt und in Deutschland nach 1700 (in den
+          protestantischen Territorien) bzw. schon 1583/84 (in den katholischen) übernommen
+          wurde. Die <strong>Schaltjahresregel</strong> (durch 4 teilbar, außer durch 100, außer
+          durch 400) ist seitdem unverändert. Sternzeichen-Datumsbereiche entsprechen der
+          gängigen tropischen Astrologie. Das chinesische Tierkreiszeichen wird nach dem
+          Sonnenjahr (1.1.) zugeordnet — astrologisch korrekter wäre das chinesische Neujahr
+          (zwischen 21.01. und 20.02.), für die meisten Anwendungen reicht aber die
+          Jahresgrenze.
+        </p>
+
+        <p class="text-sm text-gray-500 mt-8">Zuletzt aktualisiert: April 2026</p>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Gregorianischer Kalender (1582), in Deutschland gültig seit 1700; tropische Astrologie" aktualisiert="April 2026" />
+
+    <VerwandteRechner aktuellerSlug="geburtstag" slugs={['alter', 'geburtstermin', 'tage', 'hochzeit']} />
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">

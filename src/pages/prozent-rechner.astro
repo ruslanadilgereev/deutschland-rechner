@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import ProzentRechner from '../components/rechner/ProzentRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
 const title = "Prozent-Rechner – Prozent berechnen einfach erklärt";
 const description = "Prozent-Rechner: Prozentwert, Prozentsatz & prozentuale Veränderung berechnen. Einfache Erklärung mit Formeln und Beispielen. Kostenlos!";
@@ -14,6 +17,11 @@ const keywords = "Prozent Rechner, Prozent berechnen, Prozentrechnung, Prozentwe
   keywords={keywords}
 >
   <BreadcrumbSchema items={[{ name: "Prozent-Rechner", url: "/prozent-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Prozent-Rechner' }
+  ]} />
   <main class="min-h-screen pb-8">
     <!-- Header mit Zurück-Button -->
     <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
@@ -167,37 +175,104 @@ const keywords = "Prozent Rechner, Prozent berechnen, Prozentrechnung, Prozentwe
       </div>
     </div>
     
-    <!-- Verwandte Rechner -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
-        <div class="grid grid-cols-2 gap-3">
-          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🧾</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">MwSt-Rechner</p>
-          </a>
-          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">📈</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
-          </a>
-          <a href="/inflations-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">💸</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Inflations-Rechner</p>
-          </a>
-          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">💵</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
-          </a>
-          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">🏷️</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Rabatt-Rechner</p>
-          </a>
-          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-            <span class="text-2xl">💳</span>
-            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
-          </a>
+    <!-- Wann brauchst du den Prozent-Rechner? -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Wann brauchst du den Prozent-Rechner?</h2>
+        <p class="text-gray-700">
+          Prozentrechnung ist eines der wenigen Mathe-Themen, das du wirklich jeden Tag brauchst — und trotzdem rutscht der Kopf bei genau der falschen Stelle ab. Klassisches Beispiel: Du willst aus einer Brutto-Rechnung von 119 € die <strong>Mehrwertsteuer herausrechnen</strong>, tippst aber „minus 19 %" in den Taschenrechner und liegst um knapp einen Euro daneben. Genau dafür gibt es diesen Rechner.
+        </p>
+        <p class="text-gray-700">
+          Typische Situationen, in denen du den Rechner aufrufst: <strong>Rabatt auf einen Listenpreis</strong> berechnen („20 % auf 250 € — was zahle ich am Ende?"), <strong>Trinkgeld-Anteil</strong> ermitteln (10 % Trinkgeld auf 47,50 € sind keine 5 €), eine <strong>Lohnerhöhung in Prozent vs. Euro</strong> vergleichen (sind 150 € mehr Brutto eigentlich viel oder wenig?), eine <strong>Aktien-Performance</strong> über mehrere Monate auswerten oder die <strong>prozentuale Veränderung</strong> einer Miete, eines Strompreises oder einer Versicherungsprämie über die Jahre ausrechnen. Auch im Schul- und Studiums-Alltag landet man hier: Notenpunkte aus erreichten Punkten in Prozent umrechnen, Skonto bei einer Eingangsrechnung korrekt abziehen, Wahlergebnisse in Prozentpunkten interpretieren.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Beispiele aus der Praxis</h2>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 1: 19 % Mehrwertsteuer aus einem Bruttobetrag herausrechnen</h3>
+        <p class="text-gray-700">
+          Auf der Rechnung stehen 119 € brutto und du brauchst Netto und MwSt-Anteil getrennt für die Buchhaltung. Wichtig: Du teilst <em>nicht</em> einfach durch 1,19 im Kopf und subtrahierst — du arbeitest mit dem korrekten Faktor.
+        </p>
+        <div class="bg-blue-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Brutto: <strong>119,00 €</strong></p>
+          <p>Netto = 119 ÷ 1,19 = <strong>100,00 €</strong></p>
+          <p>MwSt = 119 − 100 = <strong>19,00 €</strong></p>
+          <p class="text-gray-600 mt-2">Häufiger Fehler: 119 × 0,19 = 22,61 € — das wäre 19 % vom <em>Brutto</em>, nicht vom Netto. Immer durch 1,19 teilen, nicht „minus 19 %" rechnen.</p>
         </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 2: 20 % Rabatt auf 250 €</h3>
+        <p class="text-gray-700">
+          Im Online-Shop steht eine Jacke für 250 €, im Warenkorb wird ein 20 %-Gutschein eingelöst. Was zahlst du am Ende — und wie viel sparst du wirklich?
+        </p>
+        <div class="bg-blue-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Listenpreis: <strong>250,00 €</strong></p>
+          <p>Ersparnis: 250 × 0,20 = <strong>50,00 €</strong></p>
+          <p>Endpreis: 250 − 50 = <strong>200,00 €</strong></p>
+          <p>Schneller Weg: 250 × 0,80 = 200 € (du zahlst 80 % des Listenpreises).</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 3: Lohnerhöhung von 3.200 € auf 3.350 € — wie viel Prozent?</h3>
+        <p class="text-gray-700">
+          Du bekommst nach einem Mitarbeitergespräch 150 € mehr Brutto pro Monat. Klingt fair — aber wie viel ist das eigentlich in Prozent, gemessen an der Inflation?
+        </p>
+        <div class="bg-blue-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Alter Wert: <strong>3.200 €</strong>, neuer Wert: <strong>3.350 €</strong></p>
+          <p>Differenz: 3.350 − 3.200 = <strong>150 €</strong></p>
+          <p>Veränderung in %: (150 ÷ 3.200) × 100 = <strong>4,69 %</strong></p>
+          <p class="text-gray-600 mt-2">Liegt die Inflation bei 3 %, ist das eine reale Erhöhung von ca. 1,7 %. Liegt sie bei 5 %, hast du real Kaufkraft verloren — trotz mehr Brutto.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zur Prozentrechnung</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie rechnet man Prozent im Kopf?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Der schnellste Trick: Erst <strong>10 %</strong> berechnen (Komma eine Stelle nach links verschieben), dann zusammensetzen. Beispiel: 15 % von 240 € — 10 % sind 24 €, 5 % sind die Hälfte davon (12 €), zusammen also 36 €. Für 25 % einfach durch 4 teilen, für 50 % halbieren, für 75 % halbieren plus die Hälfte addieren. Mit ein bisschen Übung bist du in 90 % der Alltagsfälle ohne Taschenrechner schneller als mit.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Was ist der Unterschied zwischen Prozent und Prozentpunkten?</summary>
+          <div class="mt-3 text-gray-700">
+            <p><strong>Prozentpunkte</strong> sind die <em>absolute</em> Differenz zwischen zwei Prozentwerten. <strong>Prozent</strong> beschreibt eine <em>relative</em> Veränderung. Steigt ein Steuersatz von 20 % auf 25 %, sind das +5 Prozentpunkte — aber relativ eine Steigerung um 25 % (5 ÷ 20). In Wahlergebnissen, Zinsen und Statistik ist die Unterscheidung kein Detail, sondern entscheidend: „Die SPD hat 5 % verloren" und „die SPD hat 5 Prozentpunkte verloren" sind zwei völlig verschiedene Aussagen.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie berechne ich eine prozentuale Veränderung mit Vorzeichen?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Formel: ((neuer Wert − alter Wert) ÷ alter Wert) × 100. Wichtig ist der Bezugspunkt — immer der <em>alte</em> Wert im Nenner. Beispiel Aktie: Kurs steigt von 80 € auf 100 € → +25 %. Fällt der Kurs danach wieder auf 80 €, sind das aber <em>−20 %</em>, nicht −25 %. Der Bezugspunkt ist jetzt 100 €. Deshalb gleichen sich „+50 % und dann −50 %" auch nie aus: Aus 100 wird 150, dann 75. Ein häufiger Stolperstein bei Performance-Auswertungen.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Warum stimmt mein MwSt-Wert nicht beim Rückrechnen aus dem Brutto?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Der häufigste Fehler: 19 % vom Bruttobetrag abziehen statt durch 1,19 zu teilen. 119 € × 0,19 = 22,61 € — falsch. Richtig: 119 ÷ 1,19 = 100 € Netto, davon 19 % MwSt = 19 €. Die MwSt rechnet sich immer auf den <strong>Netto</strong>betrag, nicht auf das Brutto. Bei 7 % (ermäßigter Satz) entsprechend durch 1,07 teilen. Unser <a href="/mehrwertsteuer-rechner" class="text-blue-600 underline">Mehrwertsteuer-Rechner</a> macht beide Richtungen automatisch.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie ziehe ich einen Skonto-Prozentsatz korrekt ab?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Skonto wird <em>vom Bruttobetrag</em> der Rechnung abgezogen, bevor du überweist. Steht auf der Rechnung „2 % Skonto bei Zahlung innerhalb 10 Tagen" und der Betrag ist 1.190 € brutto, ziehst du 1.190 × 0,02 = 23,80 € ab und überweist 1.166,20 €. Achtung: Auf der buchhalterischen Seite reduziert Skonto sowohl den Netto- als auch den Vorsteuerbetrag anteilig — wichtig für die korrekte Verbuchung. Die Frist (oft 7, 10 oder 14 Tage) zählt ab Rechnungsdatum, nicht ab Erhalt.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik & Quellen</h2>
+        <p class="text-gray-700">
+          Der Prozent-Rechner basiert auf den Standardformeln der Schulmathematik (Klasse 5–7) — kein Behördenrahmen nötig, weil Prozentrechnung mathematisch eindeutig definiert ist. Die im Rechner verwendeten <strong>Mehrwertsteuersätze</strong> (19 % Regelsteuersatz, 7 % ermäßigter Steuersatz) folgen <strong>§ 12 UStG</strong> (Umsatzsteuergesetz). Der <strong>Skonto-Begriff</strong> ist im deutschen Handelsrecht (HGB) und in der kaufmännischen Praxis fest verankert. Alle Berechnungen werden vollständig im Browser ausgeführt — es werden keine Eingaben übertragen oder gespeichert. Zuletzt aktualisiert: April 2026.
+        </p>
       </div>
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="§12 UStG (Mehrwertsteuersätze), Standard-Schulmathematik" aktualisiert="April 2026" />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="prozent" slugs={['rabatt', 'mehrwertsteuer', 'dreisatz', 'bruch']} kategorie="alltag" />
     </div>
     
     <!-- Weitere Tipps -->

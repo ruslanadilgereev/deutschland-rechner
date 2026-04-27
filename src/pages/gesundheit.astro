@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerCard from '../components/RechnerCard';
+import { rechnerListe } from '../data/rechner';
+
+const title = "Gesundheit — BMI, Kalorien, Pflegegeld & mehr Rechner";
+const description = "BMI-Rechner mit WHO-Klassifikation, Kalorienbedarf nach Mifflin-St Jeor, Pflegegeld, Krankengeld, Körperfettanteil — kostenlose Gesundheits-Rechner.";
+const keywords = "Gesundheit Rechner, BMI Rechner, Kalorienbedarf, Grundumsatz, Pflegegeld, Krankengeld, Körperfettanteil, Idealgewicht, Promille, WHO BMI, Mifflin-St Jeor, Pflegegrad";
+
+const gesundheitsRechner = rechnerListe.filter(r => r.kategorie === 'gesundheit');
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Gesundheits-Rechner Deutschland 2026",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/gesundheit",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de"
+  }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Gesundheit", url: "/gesundheit" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Gesundheit' }
+  ]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+
+  <main class="min-h-screen pb-8 bg-gray-50">
+    <!-- Kompakter Hero mit Rot als Akzent -->
+    <header class="bg-white border-b border-gray-200 py-8 px-4">
+      <div class="max-w-7xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-gray-500 hover:text-red-600 mb-4 transition-colors text-sm"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-red-50 border border-red-100 text-3xl">❤️</span>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Gesundheit in Deutschland 2026</h1>
+            <p class="text-gray-500 text-sm md:text-base mt-1">Rechner für Körpergewicht, Energiebedarf, Pflege und Lohnersatz im Krankheitsfall</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro-Block -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Gesundheit in Deutschland 2026</h2>
+        <p>
+          Gesundheit ist mehr als ein Bauchgefühl — viele Werte lassen sich konkret berechnen. Der <strong>Body-Mass-Index (BMI)</strong>
+          ist der bekannteste Indikator für Körpergewicht im Verhältnis zur Körpergröße. Die <strong>Weltgesundheitsorganisation (WHO)</strong>
+          klassifiziert Erwachsene seit 1995 nach festen Grenzen: Untergewicht unter 18,5, Normalgewicht 18,5–24,9,
+          Übergewicht 25–29,9 und Adipositas ab einem BMI von 30. Die Klassifikation ist eine Orientierung, ersetzt aber keine ärztliche Diagnose.
+        </p>
+        <p>
+          Beim <strong>Energiebedarf</strong> gilt die <strong>Mifflin-St Jeor-Formel</strong> als aktueller Standard für die Berechnung des Grundumsatzes —
+          sie ersetzt die ältere Harris-Benedict-Formel. Multipliziert mit einem PAL-Faktor (Physical Activity Level) ergibt sich der Gesamtumsatz.
+          Die <strong>Deutsche Gesellschaft für Ernährung (DGE)</strong> liefert die Referenzwerte für Nährstoffe.
+        </p>
+        <p>
+          Wer pflegebedürftig wird, fällt unter das <strong>SGB XI</strong>. Der <strong>Medizinische Dienst (MD)</strong>
+          stuft in fünf <strong>Pflegegrade</strong> ein. Das ambulante Pflegegeld reicht 2025 von 347 € (Pflegegrad 2) bis 990 € (Pflegegrad 5);
+          ab 2026 steigt es nach dem Pflegestärkungsmechanismus erneut. Wer länger als sechs Wochen krank ist, bekommt <strong>Krankengeld</strong>:
+          70 % des Bruttoentgelts, gedeckelt bei 90 % des Nettoentgelts (§ 47 SGB V).
+        </p>
+        <p>
+          Auch ältere Faustformeln wie <strong>Broca</strong> (Körpergröße in cm minus 100) oder <strong>Devine</strong>
+          liefern grobe Richtwerte für das Idealgewicht. Für die Verkehrssicherheit relevant ist die <strong>Widmark-Formel</strong>
+          zur Promille-Schätzung. Behörden wie das <strong>Bundesgesundheitsministerium</strong> und die gesetzlichen Krankenkassen
+          stellen die rechtlichen Rahmen.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rechner-Grid -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Alle Gesundheits-Rechner</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {gesundheitsRechner.map(rechner => (
+          <RechnerCard rechner={rechner} client:load />
+        ))}
+      </div>
+    </section>
+
+    <!-- Worauf zu achten -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm md:prose-base max-w-none text-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 !mt-0">Worauf bei Gesundheits-Rechnern zu achten ist</h2>
+        <p>
+          Rechner liefern Schätzungen, keine Diagnosen. Der BMI berücksichtigt weder Körperbau noch Muskelmasse — bei Sportlern
+          kann er fälschlich Übergewicht anzeigen. Für Kinder und Jugendliche gelten eigene Perzentilenkurven, nicht die WHO-Erwachsenenklassen.
+          Beim Grundumsatz schwanken reale Werte um bis zu 10 % gegenüber der Mifflin-St Jeor-Formel; Krankheiten,
+          Medikamente und Schilddrüsenfunktion verändern den Bedarf.
+        </p>
+        <p>
+          Beim <strong>Pflegegrad</strong> entscheidet nicht der Rechner, sondern das MD-Gutachten — ein Selbsttest gibt nur eine Tendenz.
+          Beim <strong>Krankengeld</strong> ist die Beitragsbemessungsgrenze (2026: 5.812,50 €/Monat) der Deckel; wer mehr verdient,
+          bekommt nicht entsprechend mehr. <strong>Promille-Rechner</strong> nach Widmark sind Richtwerte — die individuelle
+          Resorption schwankt stark, und im Straßenverkehr zählt nur die polizeilich gemessene Atem- oder Blutalkoholkonzentration.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quellen -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-white rounded-2xl shadow-sm p-8 prose prose-sm max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 !mt-0">Quellen</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><a href="https://www.who.int/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 underline">WHO — BMI-Klassifikation Erwachsene</a></li>
+          <li><a href="https://www.dge.de/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 underline">Deutsche Gesellschaft für Ernährung (DGE) — Referenzwerte</a></li>
+          <li><a href="https://www.bundesgesundheitsministerium.de/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 underline">Bundesgesundheitsministerium — Pflege & Krankenversicherung</a></li>
+          <li><a href="https://www.md-bund.de/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 underline">Medizinischer Dienst Bund — Pflegegrad-Begutachtung</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/sgb_5/__47.html" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 underline">§ 47 SGB V — Krankengeld</a></li>
+          <li><a href="https://www.gesetze-im-internet.de/sgb_11/" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 underline">SGB XI — Soziale Pflegeversicherung</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>
