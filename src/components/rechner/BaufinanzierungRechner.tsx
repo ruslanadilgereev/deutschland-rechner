@@ -289,13 +289,23 @@ export default function BaufinanzierungRechner() {
               <span className="text-xl font-bold">{formatCurrencyShort(result.restschuldNachZinsbindung)}</span>
             </div>
             <div className="text-blue-200 text-xs mt-1">
-              {result.restschuldNachZinsbindung > 0 
+              {result.restschuldNachZinsbindung > 0
                 ? `Anschlussfinanzierung erforderlich (${Math.round((result.restschuldNachZinsbindung / darlehenssumme) * 100)}% des ursprünglichen Darlehens)`
                 : 'Vollständig getilgt innerhalb der Zinsbindung! 🎉'}
             </div>
           </div>
         </div>
 )}
+
+      {/* Affiliate-Banner direkt nach Result */}
+      {result && (
+        <aside className="-mt-2 mb-3 text-center">
+          <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-0.5 leading-tight">Anzeige</p>
+          <a href="https://a.partner-versicherung.de/click.php?partner_id=201880&ad_id=633&deep=baufinanzierung&tracking=baufinanzierungBaufiInline" target="_blank" rel="nofollow sponsored noopener noreferrer" className="inline-block max-w-full">
+            <img src="https://a.partner-versicherung.de/view.php?partner_id=201880&ad_id=633" width={728} height={90} alt="Baufinanzierung-Vergleich · Tarifcheck" loading="lazy" className="max-w-full h-auto block mx-auto" />
+          </a>
+        </aside>
+      )}
 
       {/* Visualisierung: Kostenanteile */}
       {result && (

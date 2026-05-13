@@ -397,11 +397,20 @@ export default function RiesterRechner() {
 
         {ergebnis.guenstigerSteuer && (
           <div className="bg-green-500/30 rounded-xl p-3 text-sm">
-            <span className="font-medium">💰 Günstigerprüfung:</span> Ihr Sonderausgabenabzug ist höher als die Zulagen. 
+            <span className="font-medium">💰 Günstigerprüfung:</span> Ihr Sonderausgabenabzug ist höher als die Zulagen.
             Sie erhalten zusätzlich {formatEuro(ergebnis.zusaetzlicheErstattung)} Steuererstattung!
           </div>
         )}
       </div>
+
+      {/* Affiliate-Banner direkt nach Result */}
+      <aside className="-mt-2 mb-3 text-center">
+        <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-0.5 leading-tight">Anzeige</p>
+        <a href="https://a.partner-versicherung.de/click.php?partner_id=201880&ad_id=857&deep=rentenversicherung&tracking=riesterRentenversInline" target="_blank" rel="nofollow sponsored noopener noreferrer" className="inline-block max-w-full">
+          <img src="https://a.partner-versicherung.de/view.php?partner_id=201880&ad_id=857" width={728} height={90} alt="Private Rentenversicherung-Vergleich · Tarifcheck" loading="lazy" className="max-w-full h-auto block mx-auto" />
+        </a>
+      </aside>
+
 {/* Zulagen-Aufschlüsselung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-4">📊 Zulagen-Aufschlüsselung</h3>

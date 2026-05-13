@@ -85,8 +85,34 @@ const canonicalUrl = canonical || Astro.url.pathname;
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     
-    <!-- Google AdSense -->
-    <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2882299135087632"></script>
+    <!-- Google Funding Choices CMP (IAB-TCF-v2.3, Reject-All-Pflicht ab Juli 2025) -->
+    <script is:inline async
+      src="https://fundingchoicesmessages.google.com/i/pub-2882299135087632?ers=1"
+    ></script>
+    <script is:inline>
+      (function() {
+        function signalGooglefcPresent() {
+          if (!window.frames['googlefcPresent']) {
+            if (document.body) {
+              const iframe = document.createElement('iframe');
+              iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
+              iframe.style.display = 'none';
+              iframe.name = 'googlefcPresent';
+              document.body.appendChild(iframe);
+            } else {
+              setTimeout(signalGooglefcPresent, 0);
+            }
+          }
+        }
+        signalGooglefcPresent();
+      })();
+    </script>
+
+    <!-- Google AdSense (Consent-Signal kommt automatisch via Funding Choices Consent Mode v2) -->
+    <script is:inline async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2882299135087632"
+      crossorigin="anonymous"
+    ></script>
     
     <!-- Vercel Web Analytics -->
     <Analytics />
