@@ -1,0 +1,56 @@
+---
+import AffiliateLink from './AffiliateLink.astro';
+import { getPageAffiliates, VERTICALS } from '../../data/affiliates';
+
+interface Props {
+  pagePath: string;
+  /** Optional: Override des automatischen Mappings aus PAGE_AFFILIATES */
+  primary?: import('../../data/affiliates').VerticalKey;
+  secondary?: import('../../data/affiliates').VerticalKey;
+  /** Optional: Custom CTAs pro Slot. Wenn nicht gesetzt: Default aus VerticalConfig */
+  primaryHook?: string;
+  primaryCta?: string;
+  primaryBullets?: string[];
+  secondaryHook?: string;
+  secondaryCta?: string;
+  secondaryBullets?: string[];
+}
+
+const {
+  pagePath,
+  primary: primaryOverride,
+  secondary: secondaryOverride,
+  primaryHook,
+  primaryCta,
+  primaryBullets,
+  secondaryHook,
+  secondaryCta,
+  secondaryBullets,
+} = Astro.props;
+
+const configured = getPageAffiliates(pagePath);
+const primary = primaryOverride ?? configured.primary;
+const secondary = secondaryOverride ?? configured.secondary;
+---
+
+{primary && (
+  <AffiliateLink
+    vertical={primary}
+    pagePath={pagePath}
+    slot="primary"
+    hook={primaryHook}
+    cta={primaryCta}
+    trustBullets={primaryBullets}
+  />
+)}
+
+{secondary && (
+  <AffiliateLink
+    vertical={secondary}
+    pagePath={pagePath}
+    slot="secondary"
+    hook={secondaryHook}
+    cta={secondaryCta}
+    trustBullets={secondaryBullets}
+  />
+)}
