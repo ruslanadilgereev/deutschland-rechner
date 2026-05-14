@@ -643,7 +643,7 @@ export default function NachtschichtRechner() {
             <h3 className="font-medium text-blue-800">Ihr Finanzamt</h3>
             <p className="text-blue-700">Zuständig für Einkommensteuer-Fragen</p>
             <a 
-              href="https://www.bzst.de/DE/Privatpersonen/Finanzamtsuche/finanzamtsuche_node.html" 
+              href="https://www.bzst.de/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"

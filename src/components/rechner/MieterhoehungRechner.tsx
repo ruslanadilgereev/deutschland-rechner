@@ -605,7 +605,7 @@ export default function MieterhoehungRechner() {
               <div className="font-medium text-gray-800">Verbraucherzentrale</div>
               <div className="text-sm text-gray-600">Unabhängige Beratung zu Mietrecht</div>
               <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/miete/mieterhoehung-wann-und-wie-viel-ist-erlaubt-5765" 
+                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline text-sm"

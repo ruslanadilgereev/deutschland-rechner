@@ -800,7 +800,7 @@ export default function AbfindungsRechner() {
             § 159 SGB III – Sperrzeit bei Arbeitslosengeld
           </a>
           <a 
-            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kuendigung-und-Aufhebungsvertrag/kuendigung-aufhebungsvertrag.html"
+            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -694,7 +694,7 @@ export default function RiesterRechner() {
             §79 EStG – Altersvorsorgezulage
           </a>
           <a
-            href="https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/Riester-Rente/riester-rente.html"
+            href="https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/rente-und-altersvorsorge.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -702,7 +702,7 @@ export default function RiesterRechner() {
             BMAS – Riester-Rente Informationen
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/riesterrente"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

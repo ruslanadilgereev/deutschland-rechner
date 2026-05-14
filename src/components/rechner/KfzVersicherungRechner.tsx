@@ -485,7 +485,7 @@ export default function KfzVersicherungRechner() {
             <span className="text-sm font-medium text-gray-800">Verivox</span>
           </a>
           <a 
-            href="https://www.huk24.de/kfz-versicherung" 
+            href="https://www.huk24.de/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
@@ -568,7 +568,7 @@ export default function KfzVersicherungRechner() {
           <p className="text-sm text-orange-700">
             📋 <strong>Typklasse Ihres Autos finden:</strong>{' '}
             <a 
-              href="https://www.gdv.de/gdv/themen/versichern/typklassen" 
+              href="https://www.gdv.de/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="underline hover:text-orange-900"
@@ -601,7 +601,7 @@ export default function KfzVersicherungRechner() {
           <p className="text-sm text-orange-700">
             📋 <strong>Regionalklasse Ihres Wohnorts:</strong>{' '}
             <a 
-              href="https://www.gdv.de/gdv/themen/versichern/regionalklassen" 
+              href="https://www.gdv.de/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="underline hover:text-orange-900"
@@ -679,7 +679,7 @@ export default function KfzVersicherungRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Links</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.gdv.de/gdv/themen/versichern/typklassen"
+            href="https://www.gdv.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -687,7 +687,7 @@ export default function KfzVersicherungRechner() {
             GDV – Typklassenverzeichnis
           </a>
           <a 
-            href="https://www.gdv.de/gdv/themen/versichern/regionalklassen"
+            href="https://www.gdv.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -703,7 +703,7 @@ export default function KfzVersicherungRechner() {
             Pflichtversicherungsgesetz (PflVG)
           </a>
           <a 
-            href="https://www.bafin.de/DE/Verbraucher/Versicherungen/versicherungen_node.html"
+            href="https://www.bafin.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -773,7 +773,7 @@ export default function StundenlohnRechner() {
               <div>
                 <p className="font-medium text-gray-800">Zoll – Kontrolle</p>
                 <a 
-                  href="https://www.zoll.de/DE/Fachthemen/Arbeit/Mindestlohn/mindestlohn_node.html"
+                  href="https://www.zoll.de/DE/Fachthemen/Arbeit/arbeit_node.htmlmindestlohn_node.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"

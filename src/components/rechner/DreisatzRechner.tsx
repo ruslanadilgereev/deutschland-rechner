@@ -484,7 +484,7 @@ export default function DreisatzRechner() {
             Frustfrei-Lernen – Dreisatz
           </a>
           <a 
-            href="https://www.mathe-lexikon.at/arithmetik/verhaeltnisse-proportionen/dreisatz.html"
+            href="https://www.mathe-lexikon.at/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

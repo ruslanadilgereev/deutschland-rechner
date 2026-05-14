@@ -750,7 +750,7 @@ export default function KapitalertragsteuerRechner() {
             InvStG – Investmentsteuergesetz (Teilfreistellung)
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Kapitalertragsteuer/kapitalertragsteuer.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

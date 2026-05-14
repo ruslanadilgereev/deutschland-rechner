@@ -611,7 +611,7 @@ export default function RundfunkbeitragRechner() {
             Rundfunkbeitrag.de – Offizielles Portal des Beitragsservice
           </a>
           <a 
-            href="https://www.gesetze-im-internet.de/rbstv/"
+            href="https://www.gesetze-im-internet.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

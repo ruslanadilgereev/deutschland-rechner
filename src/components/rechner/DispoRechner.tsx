@@ -558,7 +558,7 @@ export default function DispoRechner() {
             </a>
           </li>
           <li>
-            <a href="https://www.bafin.de/DE/PublikationenDaten/Statistiken/Zinsstatistik/zinsstatistik_node.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            <a href="https://www.bafin.de/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
               BaFin – Zinsstatistik Deutschland
             </a>
           </li>

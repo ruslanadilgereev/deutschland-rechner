@@ -672,7 +672,7 @@ export default function TeilzeitRechner() {
             <div>
               <p className="font-medium text-gray-800">BMAS Teilzeit</p>
               <a 
-                href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Teilzeit-Befristung/teilzeit-befristung.html"
+                href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
@@ -710,7 +710,7 @@ export default function TeilzeitRechner() {
             Teilzeit- und Befristungsgesetz (TzBfG) – Gesetze im Internet
           </a>
           <a 
-            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Teilzeit-Befristung/teilzeit-befristung.html"
+            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

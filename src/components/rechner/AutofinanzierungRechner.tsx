@@ -770,7 +770,7 @@ export default function AutofinanzierungRechner() {
               <div>
                 <p className="font-medium text-gray-800">ADAC Rechtsberatung</p>
                 <a
-                  href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autofinanzierung/"
+                  href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -784,7 +784,7 @@ export default function AutofinanzierungRechner() {
               <div>
                 <p className="font-medium text-gray-800">BaFin</p>
                 <a
-                  href="https://www.bafin.de/DE/Verbraucher/Finanzwissen/BA/Autofinanzierung/autofinanzierung_artikel.html"
+                  href="https://www.bafin.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -809,7 +809,7 @@ export default function AutofinanzierungRechner() {
             BGB § 491 – Verbraucherdarlehensvertrag
           </a>
           <a
-            href="https://www.gesetze-im-internet.de/preisabg/__6.html"
+            href="https://www.gesetze-im-internet.de/preisabg/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -817,7 +817,7 @@ export default function AutofinanzierungRechner() {
             PAngV § 6 – Effektiver Jahreszins
           </a>
           <a
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autofinanzierung/"
+            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -825,7 +825,7 @@ export default function AutofinanzierungRechner() {
             ADAC – Ratgeber Autofinanzierung
           </a>
           <a
-            href="https://www.bafin.de/DE/Verbraucher/Finanzwissen/BA/Autofinanzierung/autofinanzierung_artikel.html"
+            href="https://www.bafin.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -833,7 +833,7 @@ export default function AutofinanzierungRechner() {
             BaFin – Autofinanzierung erklärt
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -568,7 +568,7 @@ export default function SSWRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.familienplanung.de/schwangerschaft/schwangerschaftswochen-im-ueberblick/"
+            href="https://www.familienplanung.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -584,7 +584,7 @@ export default function SSWRechner() {
             Frauenärzte im Netz – Schwangerschaft
           </a>
           <a 
-            href="https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz"
+            href="https://www.bmfsfj.de/bmfsfj/themen/familie"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -437,7 +437,7 @@ export default function UnterhaltsRechner() {
             OLG Düsseldorf – Düsseldorfer Tabelle 2026
           </a>
           <a 
-            href="https://www.bmj.de/DE/themen/gesellschaft/familie-und-unterhalt/unterhalt/unterhalt-node.html"
+            href="https://www.bmj.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

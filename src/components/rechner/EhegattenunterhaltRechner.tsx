@@ -568,7 +568,7 @@ export default function EhegattenunterhaltRechner() {
               <div>
                 <p className="font-medium text-gray-800">Rechtsanwalt Familienrecht</p>
                 <a 
-                  href="https://anwaltauskunft.de/magazin/familie-vorsorge"
+                  href="https://anwaltauskunft.de/"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-purple-600 hover:underline"
@@ -600,7 +600,7 @@ export default function EhegattenunterhaltRechner() {
               <div>
                 <p className="font-medium text-gray-800">Mediation</p>
                 <a 
-                  href="https://www.bmj.de/DE/themen/gesellschaft-familie/mediation"
+                  href="https://www.bmj.de/"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-purple-600 hover:underline"
@@ -731,7 +731,7 @@ export default function EhegattenunterhaltRechner() {
             OLG Düsseldorf – Unterhaltsleitlinien
           </a>
           <a 
-            href="https://www.bmj.de/DE/themen/gesellschaft/familie-und-unterhalt/unterhalt/unterhalt-node.html"
+            href="https://www.bmj.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-purple-600 hover:underline"

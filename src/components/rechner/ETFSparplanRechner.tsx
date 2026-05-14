@@ -559,7 +559,7 @@ export default function ETFSparplanRechner() {
               <div className="font-medium text-gray-800">Verbraucherzentrale</div>
               <div className="text-sm text-gray-600">Unabhängige Beratung zu Geldanlage</div>
               <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage" 
+                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-emerald-600 hover:underline text-sm"

@@ -26,7 +26,7 @@ import RechnerFeedback from './RechnerFeedback';
 // QUELLEN:
 // - §35a EStG: https://www.gesetze-im-internet.de/estg/__35a.html
 // - BMF-Schreiben: 09.11.2016 (BStBl I S. 1213)
-// - Minijob-Zentrale: https://www.minijob-zentrale.de/DE/01_haushaltsjobs
+// - Minijob-Zentrale: https://www.minijob-zentrale.de/
 // ═══════════════════════════════════════════════════════════════════════════════
 
 // Offizielle Höchstbeträge nach §35a EStG
@@ -768,7 +768,7 @@ export default function HaushaltshilfeRechner() {
             </div>
           </div>
           <a
-            href="https://www.minijob-zentrale.de/DE/01_haushaltsjobs"
+            href="https://www.minijob-zentrale.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-3 text-purple-600 hover:underline font-medium"
@@ -891,7 +891,7 @@ export default function HaushaltshilfeRechner() {
             ★ § 35a EStG – Steuerermäßigung bei haushaltsnahen Aufwendungen
           </a>
           <a
-            href="https://www.minijob-zentrale.de/DE/01_haushaltsjobs"
+            href="https://www.minijob-zentrale.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

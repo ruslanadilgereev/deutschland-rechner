@@ -583,7 +583,7 @@ export default function GeburtsterminRechner() {
             Frauenärzte im Netz – Schwangerschaft & Geburt
           </a>
           <a 
-            href="https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz"
+            href="https://www.bmfsfj.de/bmfsfj/themen/familie"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

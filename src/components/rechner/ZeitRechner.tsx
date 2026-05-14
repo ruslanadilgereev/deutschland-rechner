@@ -618,7 +618,7 @@ export default function ZeitRechner() {
             Arbeitszeitgesetz (ArbZG)
           </a>
           <a
-            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Arbeitszeit/arbeitszeit.html"
+            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -626,7 +626,7 @@ export default function ZeitRechner() {
             BMAS – Arbeitszeit
           </a>
           <a
-            href="https://www.dgb.de/service/ratgeber/arbeitszeit/"
+            href="https://www.dgb.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

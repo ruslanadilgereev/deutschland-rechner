@@ -618,7 +618,7 @@ export default function SpritkostenRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.adac.de/verkehr/tanken-kraftstoff-antrieb/tipps-zum-tanken/aktuelle-kraftstoffpreise/"
+            href="https://www.adac.de/verkehr/tanken-kraftstoff-antrieb/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -642,7 +642,7 @@ export default function SpritkostenRechner() {
             Umweltbundesamt – CO₂-Emissionen
           </a>
           <a 
-            href="https://www.bundesregierung.de/breg-de/themen/klimaschutz/co2-bepreisung"
+            href="https://www.bundesregierung.de/breg-de/themen/klimaschutz"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

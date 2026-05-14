@@ -562,7 +562,7 @@ export default function BMIRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.rki.de/DE/Content/Gesundheitsmonitoring/Themen/Uebergewicht_Adipositas/Uebergewicht_Adipositas_node.html" 
+                  href="https://www.rki.de/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"
@@ -575,7 +575,7 @@ export default function BMIRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.bzfe.de/ernaehrung/ernaehrungswissen/gesundheit/bmi-rechner/" 
+                  href="https://www.bzfe.de/bmi-rechner/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"

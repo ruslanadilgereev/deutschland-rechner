@@ -546,7 +546,7 @@ export default function IdealgewichtRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.bzfe.de/ernaehrung/ernaehrungswissen/gesundheit/" 
+                  href="https://www.bzfe.de/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"
@@ -559,7 +559,7 @@ export default function IdealgewichtRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.rki.de/DE/Content/Gesundheitsmonitoring/Themen/Uebergewicht_Adipositas/Uebergewicht_Adipositas_node.html" 
+                  href="https://www.rki.de/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"

@@ -632,7 +632,7 @@ export default function KreditRechner() {
             BaFin – Verbraucherinformationen Kredite
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -779,7 +779,7 @@ export default function MietenOderKaufenRechner() {
         <h3 className="font-semibold text-gray-700 mb-3">📚 Quellen & Methodik</h3>
         <ul className="space-y-1 text-sm text-gray-600">
           <li>
-            <a href="https://www.immobilienscout24.de/wissen/kaufen/mieten-kaufen-rechner.html" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
+            <a href="https://www.immobilienscout24.de/wissen/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
               ImmobilienScout24 – Mieten oder Kaufen?
             </a>
           </li>

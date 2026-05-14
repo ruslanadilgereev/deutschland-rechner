@@ -681,7 +681,7 @@ export default function LebenserwartungRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.rki.de/DE/Content/Gesundheitsmonitoring/Themen/Lebensdauer/lebensdauer_node.html" 
+                  href="https://www.rki.de/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"

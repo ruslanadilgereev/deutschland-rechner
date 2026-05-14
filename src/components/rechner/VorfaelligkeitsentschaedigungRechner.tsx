@@ -798,7 +798,7 @@ export default function VorfaelligkeitsentschaedigungRechner() {
             Bundesbank – Aktuelle Pfandbriefrenditen
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung/vorfaelligkeitsentschaedigung-so-koennen-sie-die-hoehe-pruefen-5765"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

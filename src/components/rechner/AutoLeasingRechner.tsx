@@ -618,7 +618,7 @@ export default function AutoLeasingRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Informationen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autofinanzierung/leasing/"
+            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/leasing/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -626,7 +626,7 @@ export default function AutoLeasingRechner() {
             ADAC – Leasing: Vorteile, Nachteile, Tipps
           </a>
           <a 
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/kredit-schulden-insolvenz/autoleasing-14061"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen-schulden-insolvenz/autoleasing-14061"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

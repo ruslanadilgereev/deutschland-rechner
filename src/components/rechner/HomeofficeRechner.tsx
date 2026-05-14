@@ -682,7 +682,7 @@ export default function HomeofficeRechner() {
               <div>
                 <p className="font-medium text-gray-800">Finanzamt vor Ort</p>
                 <a
-                  href="https://www.bzst.de/DE/Service/Finanzamtsuche/finanzamtsuche_node.html"
+                  href="https://www.bzst.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -748,7 +748,7 @@ export default function HomeofficeRechner() {
             ★ § 4 Abs. 5 Nr. 6c EStG – Tagespauschale (Gesetzestext)
           </a>
           <a
-            href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Home-Office-Pauschale/faq-homeoffice-pauschale.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -756,7 +756,7 @@ export default function HomeofficeRechner() {
             BMF – FAQ Homeoffice-Pauschale
           </a>
           <a
-            href="https://www.vlh.de/arbeiten-pendeln/beruf/homeoffice-pauschale-so-setzen-sie-die-kosten-ab.html"
+            href="https://www.vlh.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -764,7 +764,7 @@ export default function HomeofficeRechner() {
             VLH – Homeoffice-Pauschale absetzen
           </a>
           <a
-            href="https://www.haufe.de/steuern/finanzverwaltung/homeoffice-pauschale-wird-dauerhaft-eingefuehrt_164_586644.html"
+            href="https://www.haufe.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

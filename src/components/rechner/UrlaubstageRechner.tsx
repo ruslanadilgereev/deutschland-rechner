@@ -741,7 +741,7 @@ export default function UrlaubstageRechner() {
               <div>
                 <p className="font-medium text-gray-800">BMAS Infos</p>
                 <a 
-                  href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Urlaub/urlaub.html"
+                  href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-green-600 hover:underline"
@@ -779,7 +779,7 @@ export default function UrlaubstageRechner() {
             Bundesurlaubsgesetz (BUrlG)
           </a>
           <a 
-            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Urlaub/urlaub.html"
+            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-green-600 hover:underline"
@@ -787,7 +787,7 @@ export default function UrlaubstageRechner() {
             BMAS – Urlaub
           </a>
           <a 
-            href="https://www.bag-urteil.com/urlaub/"
+            href="https://www.bundesarbeitsgericht.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-green-600 hover:underline"

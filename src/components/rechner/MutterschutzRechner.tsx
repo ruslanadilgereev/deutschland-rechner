@@ -11,7 +11,7 @@ import RechnerFeedback from './RechnerFeedback';
  * - § 24i SGB V - Mutterschaftsgeld der Krankenkasse
  * 
  * Quellen:
- * - BMFSFJ: https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz
+ * - BMFSFJ: https://www.bmfsfj.de/bmfsfj/themen/familie
  * - Bundesamt für Soziale Sicherung: https://www.bundesamtsozialesicherung.de/de/mutterschaftsgeld/
  * - Familienportal: https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen
  * - TK Firmenkunden: https://www.tk.de/firmenkunden/versicherung/versicherung-faq/mutterschaftsgeld/
@@ -544,7 +544,7 @@ export default function MutterschutzRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.bmfsfj.de/bmfsfj/themen/familie/familienleistungen/mutterschutz"
+            href="https://www.bmfsfj.de/bmfsfj/themen/familie"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

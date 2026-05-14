@@ -682,7 +682,7 @@ export default function KaufnebenkostenRechner() {
             § 656c BGB – Lohnanspruch bei Maklertätigkeit für beide Parteien
           </a>
           <a 
-            href="https://www.bmj.de/DE/themen/immobilien_baurecht/maklerrecht/maklerrecht_node.html"
+            href="https://www.bmj.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

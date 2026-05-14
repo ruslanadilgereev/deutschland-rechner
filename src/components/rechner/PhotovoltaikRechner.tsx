@@ -883,7 +883,7 @@ export default function PhotovoltaikRechner() {
               <div>
                 <p className="font-medium text-gray-800">KfW-Förderung</p>
                 <a 
-                  href="https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Förderprodukte/Erneuerbare-Energien-Standard-(270)/"
+                  href="https://www.kfw.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline text-xs"

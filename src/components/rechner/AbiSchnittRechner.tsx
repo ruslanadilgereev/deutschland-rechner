@@ -827,7 +827,7 @@ export default function AbiSchnittRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a
-            href="https://www.kmk.org/themen/allgemeinbildende-schulen/unterricht/gymnasiale-oberstufe.html"
+            href="https://www.kmk.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

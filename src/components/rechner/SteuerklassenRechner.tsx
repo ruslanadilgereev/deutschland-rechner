@@ -980,7 +980,7 @@ export default function SteuerklassenRechner() {
             Einkommensteuer-Formeln {STEUERJAHR} – Finanz-Tools.de
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/Steuern/Lohnsteuer/lohnsteuer.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -988,7 +988,7 @@ export default function SteuerklassenRechner() {
             BMF – FAQ Lohnsteuer & Steuerklassen
           </a>
           <a 
-            href="https://www.finanztip.de/steuerklassen/"
+            href="https://www.finanztip.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

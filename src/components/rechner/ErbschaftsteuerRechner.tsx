@@ -884,7 +884,7 @@ export default function ErbschaftsteuerRechner() {
             BMF – Erbschaft- und Schenkungsteuer
           </a>
           <a 
-            href="https://www.steuertipps.de/erbschaft-schenkung"
+            href="https://www.steuertipps.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

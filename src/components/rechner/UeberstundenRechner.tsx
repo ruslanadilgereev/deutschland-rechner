@@ -724,7 +724,7 @@ export default function UeberstundenRechner() {
             Bundesministerium für Arbeit und Soziales – Arbeitsrecht
           </a>
           <a 
-            href="https://www.dgb.de/themen/++co++085c1fd2-467a-11df-77e8-00188b4dc422"
+            href="https://www.dgb.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

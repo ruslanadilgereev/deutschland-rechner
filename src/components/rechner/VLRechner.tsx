@@ -615,7 +615,7 @@ export default function VLRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.gesetze-im-internet.de/vermbildg/"
+            href="https://www.gesetze-im-internet.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -623,7 +623,7 @@ export default function VLRechner() {
             5. Vermögensbildungsgesetz (VermBG)
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Einkommensteuer/Arbeitnehmer_Sparzulage/arbeitnehmer_sparzulage.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -631,7 +631,7 @@ export default function VLRechner() {
             BMF – Arbeitnehmer-Sparzulage
           </a>
           <a 
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/sparen-und-anlegen/vermoegenswirksame-leistungen-wann-sich-vl-lohnen-5765"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

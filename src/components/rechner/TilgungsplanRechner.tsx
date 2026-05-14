@@ -816,7 +816,7 @@ export default function TilgungsplanRechner() {
             Verbraucherzentrale – Baufinanzierung
           </a>
           <a
-            href="https://www.interhyp.de/ratgeber/was-muss-ich-wissen/tilgung/"
+            href="https://www.interhyp.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

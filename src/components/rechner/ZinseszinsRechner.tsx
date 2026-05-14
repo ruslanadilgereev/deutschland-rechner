@@ -626,7 +626,7 @@ export default function ZinseszinsRechner() {
               <div>
                 <p className="font-medium text-gray-800">Verbraucherzentrale</p>
                 <a
-                  href="https://www.verbraucherzentrale.de/geldanlage"
+                  href="https://www.verbraucherzentrale.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -694,7 +694,7 @@ export default function ZinseszinsRechner() {
             BaFin – Verbraucherinformationen
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

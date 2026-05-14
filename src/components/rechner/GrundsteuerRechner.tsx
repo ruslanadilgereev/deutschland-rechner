@@ -668,7 +668,7 @@ export default function GrundsteuerRechner() {
                 Bei Fragen zum Grundsteuerwertbescheid wenden Sie sich an Ihr zuständiges Finanzamt.
                 Telefonnummern finden Sie auf dem Bescheid oder unter{' '}
                 <a 
-                  href="https://www.bzst.de/DE/Behoerden/Finanzaemter/finanzaemter_node.html"
+                  href="https://www.bzst.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -701,7 +701,7 @@ export default function GrundsteuerRechner() {
             Bayern – Flächenmodell (Äquivalenzzahlen 0,04€/0,50€, 30% Wohnabschlag)
           </a>
           <a 
-            href="https://fm.baden-wuerttemberg.de/de/steuern/grundsteuer/"
+            href="https://fm.baden-wuerttemberg.de/de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -709,7 +709,7 @@ export default function GrundsteuerRechner() {
             Baden-Württemberg – Bodenwertmodell (1,30‰ / 0,91‰ für Wohnen)
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Grundsteuer/grundsteuer.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

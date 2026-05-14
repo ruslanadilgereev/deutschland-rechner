@@ -569,7 +569,7 @@ export default function SparRechner() {
               <div className="font-medium text-gray-800">Verbraucherzentrale</div>
               <div className="text-sm text-gray-600">Unabhängige Beratung zu Geldanlage & Sparen</div>
               <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/geldanlage" 
+                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-amber-600 hover:underline text-sm"
@@ -585,7 +585,7 @@ export default function SparRechner() {
               <div className="font-medium text-gray-800">Finanztip</div>
               <div className="text-sm text-gray-600">Gemeinnützige Finanzbildung</div>
               <a 
-                href="https://www.finanztip.de/sparen/" 
+                href="https://www.finanztip.de/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-amber-600 hover:underline text-sm"

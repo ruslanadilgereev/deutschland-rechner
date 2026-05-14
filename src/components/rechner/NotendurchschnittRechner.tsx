@@ -508,7 +508,7 @@ export default function NotendurchschnittRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a
-            href="https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/mathematik-naturwissenschaften-informatik.html"
+            href="https://www.kmk.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

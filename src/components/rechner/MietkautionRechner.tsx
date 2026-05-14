@@ -600,7 +600,7 @@ export default function MietkautionRechner() {
               <div>
                 <p className="font-medium text-gray-800">Verbraucherzentrale</p>
                 <a
-                  href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/wohnen-und-mieten"
+                  href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -663,7 +663,7 @@ export default function MietkautionRechner() {
             Deutscher Mieterbund – Mietrecht-Infos
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/wohnen-und-mieten"
+            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

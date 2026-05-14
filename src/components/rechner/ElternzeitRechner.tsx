@@ -724,7 +724,7 @@ export default function ElternzeitRechner() {
             BMFSFJ – Elternzeit
           </a>
           <a 
-            href="https://www.arbeitsagentur.de/familie-und-kinder/elternzeit"
+            href="https://www.arbeitsagentur.de/familie-und-kinder"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

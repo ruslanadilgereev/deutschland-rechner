@@ -8,7 +8,7 @@ import RechnerFeedback from './RechnerFeedback';
  * Quellen:
  * - Familienkasse: https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag
  * - Familienportal: https://familienportal.de/familienportal/familienleistungen/kinderzuschlag
- * - BMAS: https://www.bmas.de/DE/Soziales/Familie-und-Kinder/Familienleistungen/Kinderzuschlag/kinderzuschlag.html
+ * - BMAS: https://www.bmas.de/DE/Soziales/soziales.html
  * - DGB: https://www.dgb.de/service/ratgeber/kinderzuschlag-und-kindergrundsicherung/
  * 
  * Höchstbetrag seit 01.01.2025: 297€ pro Kind und Monat
@@ -624,7 +624,7 @@ export default function KinderzuschlagRechner() {
               <div>
                 <p className="font-medium text-gray-800">Antrag (PDF)</p>
                 <a 
-                  href="https://www.arbeitsagentur.de/datei/antrag-auf-kinderzuschlag_ba015380.pdf"
+                  href="https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag-anspruch-hoehe-dauer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -707,7 +707,7 @@ export default function KinderzuschlagRechner() {
             Familienportal – Kinderzuschlag
           </a>
           <a 
-            href="https://www.bmas.de/DE/Soziales/Familie-und-Kinder/Familienleistungen/Kinderzuschlag/kinderzuschlag.html"
+            href="https://www.bmas.de/DE/Soziales/soziales.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

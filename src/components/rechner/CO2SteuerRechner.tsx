@@ -605,7 +605,7 @@ export default function CO2SteuerRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.bundesregierung.de/breg-de/themen/klimaschutz/co2-bepreisung"
+            href="https://www.bundesregierung.de/breg-de/themen/klimaschutz"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -621,7 +621,7 @@ export default function CO2SteuerRechner() {
             BEHG – Brennstoffemissionshandelsgesetz
           </a>
           <a 
-            href="https://www.umweltbundesamt.de/themen/klima-energie/klimaschutz-energiepolitik-in-deutschland/nationaler-emissionshandel"
+            href="https://www.umweltbundesamt.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -629,7 +629,7 @@ export default function CO2SteuerRechner() {
             Umweltbundesamt – Nationaler Emissionshandel
           </a>
           <a 
-            href="https://www.dehst.de/DE/Nationaler-Emissionshandel/nationaler-emissionshandel_node.html"
+            href="https://www.dehst.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -791,7 +791,7 @@ export default function RentenlueckeRechner() {
             </a>
           </li>
           <li>
-            <a href="https://www.test.de/Rentenpunkte-berechnen-So-hoch-ist-Ihre-Rente-5903655-0/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+            <a href="https://www.test.de/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
               Stiftung Warentest – Rentenpunkte berechnen
             </a>
           </li>

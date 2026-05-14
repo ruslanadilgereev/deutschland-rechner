@@ -768,7 +768,7 @@ export default function KryptoSteuerRechner() {
               <p className="font-medium text-gray-800">BMF-Schreiben Krypto</p>
               <p className="text-gray-500">Offizielle Richtlinien</p>
               <a 
-                href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2022-05-09-einzelfragen-zur-ertragsteuerrechtlichen-behandlung-von-virtuellen-waehrungen-und-von-sonstigen-token.html"
+                href="https://www.bundesfinanzministerium.de/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-600 hover:underline"
@@ -808,7 +808,7 @@ export default function KryptoSteuerRechner() {
             §32a EStG – Einkommensteuertarif
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2022-05-09-einzelfragen-zur-ertragsteuerrechtlichen-behandlung-von-virtuellen-waehrungen-und-von-sonstigen-token.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-orange-600 hover:underline"

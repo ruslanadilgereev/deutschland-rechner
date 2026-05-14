@@ -901,7 +901,7 @@ export default function LohnsteuerRechner() {
             BMF Steuerrechner – Bundesfinanzministerium
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/programmablaufplan.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

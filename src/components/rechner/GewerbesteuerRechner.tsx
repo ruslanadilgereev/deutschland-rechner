@@ -722,7 +722,7 @@ export default function GewerbesteuerRechner() {
             Bundesfinanzministerium – Gewerbesteuer
           </a>
           <a 
-            href="https://www.ihk.de/themen/steuern/gewerbesteuer"
+            href="https://www.ihk.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -730,7 +730,7 @@ export default function GewerbesteuerRechner() {
             IHK – Informationen zur Gewerbesteuer
           </a>
           <a 
-            href="https://www.destatis.de/DE/Themen/Staat/Steuern/Gewerbesteuer/_inhalt.html"
+            href="https://www.destatis.de/DE/Themen/Staat/Steuern/_inhalt.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

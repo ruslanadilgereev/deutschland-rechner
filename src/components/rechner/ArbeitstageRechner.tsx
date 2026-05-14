@@ -490,7 +490,7 @@ export default function ArbeitstageRechner() {
         <ul className="text-sm text-gray-600 space-y-1">
           <li>
             <a 
-              href="https://www.bmi.bund.de/DE/themen/verfassung/staatliche-symbole/nationale-feiertage/nationale-feiertage-node.html"
+              href="https://www.bmi.bund.de/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"

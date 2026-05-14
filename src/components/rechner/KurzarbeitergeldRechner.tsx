@@ -15,7 +15,7 @@ import RechnerFeedback from './RechnerFeedback';
 //
 // Quelle: https://www.arbeitsagentur.de/unternehmen/finanziell/kurzarbeitergeld
 // Quelle: https://www.gesetze-im-internet.de/sgb_3/__105.html
-// Quelle: https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kurzarbeit/kurzarbeit-artikel.html
+// Quelle: https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html
 // ============================================================================
 
 // Beitragsbemessungsgrenzen 2026 (monatlich) - bundesweit einheitlich
@@ -885,7 +885,7 @@ export default function KurzarbeitergeldRechner() {
             SGB III §105 – Anspruch auf Kurzarbeitergeld
           </a>
           <a
-            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Kurzarbeit/kurzarbeit-artikel.html"
+            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -893,7 +893,7 @@ export default function KurzarbeitergeldRechner() {
             BMAS – Kurzarbeit und Kurzarbeitergeld
           </a>
           <a
-            href="https://www.haufe.de/personal/entgelt/kurzarbeitergeld-berechnung-hoehe-und-auszahlung_78_389810.html"
+            href="https://www.haufe.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

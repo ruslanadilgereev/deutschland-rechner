@@ -560,7 +560,7 @@ export default function BlutdruckRechner() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a 
-                  href="https://www.hochdruckliga.de/betroffene/blutdruck-werte" 
+                  href="https://www.hochdruckliga.de/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-red-600 hover:underline flex items-center gap-1"
@@ -586,7 +586,7 @@ export default function BlutdruckRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.herzstiftung.de/infos-zu-herzerkrankungen/bluthochdruck" 
+                  href="https://www.herzstiftung.de/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-red-600 hover:underline flex items-center gap-1"
@@ -599,7 +599,7 @@ export default function BlutdruckRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Arterial-Hypertension-Management-of" 
+                  href="https://www.escardio.org/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-red-600 hover:underline flex items-center gap-1"

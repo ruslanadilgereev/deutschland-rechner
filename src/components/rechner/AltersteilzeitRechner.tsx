@@ -838,7 +838,7 @@ export default function AltersteilzeitRechner() {
             Deutsche Rentenversicherung – Altersteilzeit
           </a>
           <a 
-            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Teilzeit/Altersteilzeit/altersteilzeit.html"
+            href="https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

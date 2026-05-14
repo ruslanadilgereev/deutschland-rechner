@@ -738,7 +738,7 @@ export default function BruchRechner() {
             Frustfrei-Lernen – Bruchrechnung
           </a>
           <a 
-            href="https://www.mathe-lexikon.at/arithmetik/bruchrechnen/grundlagen.html"
+            href="https://www.mathe-lexikon.at/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

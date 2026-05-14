@@ -791,7 +791,7 @@ export default function SabbaticalRechner() {
             Bundesministerium für Arbeit und Soziales – Arbeitsrecht
           </a>
           <a 
-            href="https://www.haufe.de/personal/arbeitsrecht/sabbatical-rechtliche-grundlagen_76_520432.html"
+            href="https://www.haufe.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

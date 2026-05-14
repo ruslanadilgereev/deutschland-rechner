@@ -681,7 +681,7 @@ export default function HandwerkerkostenRechner() {
               <div>
                 <p className="font-medium text-gray-800">Finanzamt vor Ort</p>
                 <a
-                  href="https://www.bzst.de/DE/Service/Finanzamtsuche/finanzamtsuche_node.html"
+                  href="https://www.bzst.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"

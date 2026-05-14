@@ -576,7 +576,7 @@ export default function BaufinanzierungRechner() {
               <div className="font-medium text-gray-800">Stiftung Warentest / Finanztest</div>
               <div className="text-sm text-gray-600">Baufinanzierung-Vergleiche & Tests</div>
               <a 
-                href="https://www.test.de/thema/baufinanzierung/" 
+                href="https://www.test.de/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline text-sm"
@@ -597,7 +597,7 @@ export default function BaufinanzierungRechner() {
             </a>
           </li>
           <li>
-            <a href="https://www.gesetze-im-internet.de/preisabg/__6.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            <a href="https://www.gesetze-im-internet.de/preisabg/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
               § 6 PAngV – Berechnung des effektiven Jahreszinses
             </a>
           </li>
@@ -607,7 +607,7 @@ export default function BaufinanzierungRechner() {
             </a>
           </li>
           <li>
-            <a href="https://www.bafin.de/DE/Verbraucher/Finanzwissen/BansichereGeldanlagen/Immobilienfinanzierung/immobilienfinanzierung_node.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            <a href="https://www.bafin.de/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
               BaFin – Verbraucherinformationen zur Immobilienfinanzierung
             </a>
           </li>

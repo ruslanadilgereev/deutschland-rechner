@@ -641,7 +641,7 @@ export default function PflegegeldRechner() {
             SGB XI – Soziale Pflegeversicherung – Gesetze im Internet
           </a>
           <a 
-            href="https://www.bundesgesundheitsministerium.de/themen/pflege/pflegeversicherung-leistungen"
+            href="https://www.bundesgesundheitsministerium.de/themen/pflege"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

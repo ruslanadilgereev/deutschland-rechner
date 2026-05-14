@@ -738,7 +738,7 @@ export default function DoppelteHaushaltsführungRechner() {
             ★ § 9 Abs. 1 Satz 3 Nr. 5 EStG – Doppelte Haushaltsführung (Gesetzestext)
           </a>
           <a
-            href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2020-11-25-steuerliche-behandlung-der-reisekosten-von-arbeitnehmern.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -754,7 +754,7 @@ export default function DoppelteHaushaltsführungRechner() {
             Haufe – Doppelte Haushaltsführung
           </a>
           <a
-            href="https://www.vlh.de/arbeiten-pendeln/beruf/doppelte-haushaltsfuehrung-das-koennen-sie-absetzen.html"
+            href="https://www.vlh.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

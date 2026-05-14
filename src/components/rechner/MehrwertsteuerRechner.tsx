@@ -341,7 +341,7 @@ export default function MehrwertsteuerRechner() {
             Bundesfinanzministerium – Umsatzsteuer
           </a>
           <a 
-            href="https://www.ihk.de/themen/steuern/umsatzsteuer"
+            href="https://www.ihk.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

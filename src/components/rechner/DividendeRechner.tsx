@@ -619,7 +619,7 @@ export default function DividendeRechner() {
             §43a EStG – Kapitalertragsteuer-Abzug
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Internationales_Steuerrecht/Staatenbezogene_Informationen/staatenbezogene_informationen.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -627,7 +627,7 @@ export default function DividendeRechner() {
             BMF – Doppelbesteuerungsabkommen (DBA)
           </a>
           <a 
-            href="https://www.bzst.de/DE/Privatpersonen/Kapitalertraege/AuslaendischeQuellensteuer/auslaendischequellensteuer_node.html"
+            href="https://www.bzst.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

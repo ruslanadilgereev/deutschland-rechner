@@ -596,7 +596,7 @@ export default function KoerperfettRechner() {
               </li>
               <li>
                 <a 
-                  href="https://www.acsm.org/all-blog-posts/acsm-blog/acsm-blog/2019/12/11/body-fat-percentage-fat-free-mass-endurance-athletes" 
+                  href="https://www.acsm.org/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"

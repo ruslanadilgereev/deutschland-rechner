@@ -792,7 +792,7 @@ export default function VerpflegungsmehraufwandRechner() {
               <div>
                 <p className="font-medium text-gray-800">Offizielle Pauschalen</p>
                 <a 
-                  href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-11-21-steuerliche-behandlung-reisekosten-reisekostenverguetungen.html"
+                  href="https://www.bundesfinanzministerium.de/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline text-xs"
@@ -817,7 +817,7 @@ export default function VerpflegungsmehraufwandRechner() {
             § 9 EStG – Werbungskosten
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-11-21-steuerliche-behandlung-reisekosten-reisekostenverguetungen.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -825,7 +825,7 @@ export default function VerpflegungsmehraufwandRechner() {
             BMF – Steuerliche Behandlung von Reisekosten
           </a>
           <a 
-            href="https://www.haufe.de/steuern/steuer-office-gold/verpflegungsmehraufwendungen_idesk_PI11525_HI1119281.html"
+            href="https://www.haufe.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

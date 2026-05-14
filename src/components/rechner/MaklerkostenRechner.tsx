@@ -768,7 +768,7 @@ export default function MaklerkostenRechner() {
             § 656d BGB – Vereinbarungen über die Maklerkosten
           </a>
           <a 
-            href="https://www.bmj.de/DE/themen/immobilien_baurecht/maklerrecht/maklerrecht_node.html"
+            href="https://www.bmj.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -776,7 +776,7 @@ export default function MaklerkostenRechner() {
             BMJ – Neues Maklerrecht für faire Verteilung der Maklerkosten
           </a>
           <a 
-            href="https://www.bundesregierung.de/breg-de/aktuelles/neue-regeln-fuer-maklerkosten-1806718"
+            href="https://www.bundesregierung.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

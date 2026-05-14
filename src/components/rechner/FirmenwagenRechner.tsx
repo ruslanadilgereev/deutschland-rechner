@@ -810,7 +810,7 @@ export default function FirmenwagenRechner() {
             § 8 EStG – Einnahmen (geldwerter Vorteil)
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Content/DE/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-12-15-steuerliche-behandlung-der-ueberlassung-eines-betrieblichen-kraftfahrzeugs.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -818,7 +818,7 @@ export default function FirmenwagenRechner() {
             BMF-Schreiben zur steuerlichen Behandlung von Firmenwagen
           </a>
           <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/firmenfahrzeuge/"
+            href="https://www.adac.de/rund-ums-fahrzeug/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -561,7 +561,7 @@ export default function ThgQuoteRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">
           <a 
-            href="https://www.umweltbundesamt.de/themen/verkehr-laerm/emissionsstandards/pkw-leichte-nutzfahrzeuge/treibhausgasquote"
+            href="https://www.umweltbundesamt.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

@@ -657,7 +657,7 @@ export default function KfzSteuerRechner() {
             Zoll – Kraftfahrzeugsteuer
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Zoll/Kraftfahrzeugsteuer/kraftfahrzeugsteuer.html"
+            href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

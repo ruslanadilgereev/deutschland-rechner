@@ -1055,7 +1055,7 @@ export default function PkvGkvRechner() {
           <div>
             <p className="font-medium text-blue-900">Bundesgesundheitsministerium</p>
             <a 
-              href="https://www.bundesgesundheitsministerium.de/krankenversicherung.html" 
+              href="https://www.bundesgesundheitsministerium.de/themen/krankenversicherung" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
@@ -1114,7 +1114,7 @@ export default function PkvGkvRechner() {
           </li>
           <li>
             <a 
-              href="https://www.gesetze-im-internet.de/vag/" 
+              href="https://www.gesetze-im-internet.de/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
@@ -1134,7 +1134,7 @@ export default function PkvGkvRechner() {
           </li>
           <li>
             <a 
-              href="https://www.pkv.de/verband/zahlen-und-fakten/" 
+              href="https://www.pkv.de/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
