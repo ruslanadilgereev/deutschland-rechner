@@ -461,7 +461,7 @@ export default function EntfernungRechner() {
           </li>
           <li className="flex gap-2">
             <span>⛽</span>
-            <span><strong>Sprit:</strong> Für Kosten nutzen Sie unseren <a href="/rechner/spritkosten" className="underline">Spritkosten-Rechner</a></span>
+            <span><strong>Sprit:</strong> Für Kosten nutzen Sie unseren <a href="/spritkosten-rechner" className="underline">Spritkosten-Rechner</a></span>
           </li>
           <li className="flex gap-2">
             <span>🗺️</span>

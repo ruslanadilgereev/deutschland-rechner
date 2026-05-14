@@ -1371,7 +1371,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'rentabilitaet',
+    id: 'rentabilitaets',
     name: 'Rentabilitäts-Rechner',
     beschreibung: 'ROI & Rendite p.a. berechnen',
     icon: '📈',
@@ -1921,7 +1921,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'vermoegenswirksam',
+    id: 'vl',
     name: 'VL-Rechner',
     beschreibung: 'VL & Arbeitnehmersparzulage berechnen',
     icon: '🏦',
@@ -1935,7 +1935,7 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'bausparvertrag',
+    id: 'bauspar',
     name: 'Bauspar-Rechner',
     beschreibung: 'Bausparen Rendite & Zuteilung',
     icon: '🏠',
