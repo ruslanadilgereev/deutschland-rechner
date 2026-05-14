@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EautoFoerderungRechner from '../components/rechner/EautoFoerderungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "E-Auto-Förderung 2026 Rechner – bis 6.000 € Kaufprämie berechnen";
+const description = "E-Auto-Förderung 2026 Rechner: Berechnen Sie BAFA-Kaufprämie (bis 6.000 €), KFZ-Steuer-Befreiung (10 Jahre), THG-Quote, Wallbox-Zuschuss & Turbo-AfA in Sekunden. Stand: rückwirkend ab 01.01.2026.";
+const keywords = "E-Auto Förderung 2026, BAFA Kaufprämie 2026 Rechner, Elektroauto Förderung berechnen, E-Auto Kaufprämie Einkommen, Kinderbonus E-Auto, Wallbox Förderung 2026, KFZ-Steuer E-Auto, Dienstwagen 0,25 Prozent, Turbo-AfA E-Auto, THG-Quote 2026";
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "E-Auto-Förderung-Rechner", url: "/e-auto-foerderung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'E-Auto-Förderung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚡</span>
+          <div>
+            <h1 class="text-2xl font-bold">E-Auto-Förderung 2026 Rechner</h1>
+            <p class="text-emerald-100 text-sm">Bis zu 6.000 € Kaufprämie + Steuervorteile in Sekunden berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <EautoFoerderungRechner client:load />
+    </div>
+
+    <!-- Trust Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-xs text-emerald-800">
+        <p class="font-semibold mb-1">📋 Rechtsgrundlagen dieses Rechners</p>
+        <p>
+          Berechnung nach <strong>BAFA-Richtlinie zur Förderung des Erwerbs umweltfreundlicher Fahrzeuge 2026</strong>
+          (rückwirkend ab 01.01.2026, beschlossen Bundestag 17.04.2026, Bundesrat 08.05.2026),
+          <strong>§3d KraftStG</strong> (KFZ-Steuer-Befreiung 10 Jahre bis 31.12.2035),
+          <strong>§6 Abs.1 Nr.4 EStG</strong> (0,25%-Dienstwagenregel bis 100k € BLP, seit 01.07.2025),
+          <strong>§7 Abs.2a EStG</strong> (Turbo-AfA 75% im Jahr 1, bis 31.12.2027),
+          <strong>§37a BImSchG</strong> (THG-Quote), <strong>KfW-Richtlinie 442</strong> (Wallbox Mehrparteienhäuser, seit 15.04.2026).
+          <strong>Berücksichtigt:</strong> Kaufprämie mit Einkommensstaffel + Kinderbonus, KFZ-Steuer, THG-Quote, Wallbox-Zuschuss, Turbo-AfA, Dienstwagen-Vorteil.
+          <strong>Nicht berücksichtigt:</strong> Topf-Begrenzung (3 Mrd. € bis 2029), individuelle Tarifkombinationen, Landesprogramme außer NRW/BW. Stand: Mai 2026.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">E-Auto-Förderung 2026: Was sich gegenüber 2023 geändert hat</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>alte BAFA-Umweltbonus</strong> ist Ende 2023 abrupt ausgelaufen — über zwei Jahre fehlte
+            jede staatliche Kaufförderung. Die Merz-Koalition hat zum <strong>1. Januar 2026 rückwirkend</strong>
+            eine komplett neue, <strong>einkommensabhängige</strong> Kaufprämie eingeführt. Anders als beim alten Programm
+            gibt es <strong>keine Listenpreis-Obergrenze</strong> mehr — entscheidend ist allein das zu versteuernde
+            Haushaltseinkommen (zvE) des Käufers.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kaufprämie 2026 — Wer bekommt wie viel?</h3>
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <p class="font-medium mb-2">Reine Elektroautos (BEV / FCEV):</p>
+            <ul class="space-y-1 text-sm list-disc list-inside">
+              <li><strong>5.000 €</strong> bei zvE bis 45.000 €</li>
+              <li><strong>4.000 €</strong> bei zvE 45.001–60.000 €</li>
+              <li><strong>3.000 €</strong> bei zvE 60.001–80.000 €</li>
+              <li><strong>0 €</strong> über 80.000 € zvE (Klippe!)</li>
+            </ul>
+            <p class="font-medium mt-3 mb-2">Plug-in-Hybride (PHEV): jeweils halbierte Beträge (1.500 / 2.000 / 2.500 €).</p>
+            <p class="font-medium">Plus <strong>+500 € Kinderbonus pro Kind unter 18</strong> (max. 2 Kinder).</p>
+            <p class="text-emerald-800 font-bold mt-2">→ Maximum BEV: 6.000 € · Maximum PHEV: 4.500 €</p>
+          </div>
+
+          <p>
+            Mit zwei Kindern verschiebt sich die Einkommensgrenze auf <strong>90.000 € zvE</strong>. Wichtig:
+            das <strong>zu versteuernde Einkommen</strong> aus dem Steuerbescheid ist <strong>nicht</strong> identisch
+            mit dem Brutto-Einkommen. Faustregel: zvE ≈ Brutto −20–25 % (nach Werbungskosten,
+            Vorsorgepauschale, Sonderausgaben).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">KFZ-Steuer-Befreiung: 10 Jahre 0 €</h3>
+          <p>
+            Reine E-Autos (BEV) bleiben nach <strong>§3d KraftStG</strong> für 10 Jahre ab Erstzulassung
+            komplett von der KFZ-Steuer befreit. Die Befreiung wurde 2025 bis zum <strong>31.12.2035</strong>
+            verlängert. Für Erstzulassungen bis 31.12.2030. Typische Ersparnis bei einem mittleren E-Auto:
+            100–200 €/Jahr × 10 Jahre = 1.000–2.000 €. Plug-in-Hybride bekommen diese Befreiung nicht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Dienstwagen-0,25-%-Regelung (bis 100.000 € BLP)</h3>
+          <p>
+            Wer ein E-Auto als Firmenwagen privat nutzt, versteuert nur <strong>0,25 %</strong> des
+            Bruttolistenpreises pro Monat als geldwerten Vorteil — statt 1,0 % bei einem Verbrenner.
+            Seit 01.07.2025 gilt die 0,25-%-Regel bei BEV bis 100.000 € BLP (vorher 70.000 €). Bei
+            einem 60.000-€-E-Auto und 35 % Grenzsteuer spart der Arbeitnehmer ca. 150–200 €/Monat netto.
+            Cross-Check: unser <a href="/firmenwagen-rechner" class="text-emerald-600 hover:underline">Firmenwagen-Rechner</a>
+            berechnet die genaue Versteuerung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Turbo-AfA für Gewerbliche: 75 % im Jahr 1</h3>
+          <p>
+            Selbstständige und Unternehmen sind zwar von der BAFA-Kaufprämie ausgeschlossen — sie können
+            aber den <strong>Investitionsbooster</strong> nach <strong>§7 Abs.2a EStG</strong> nutzen.
+            75 % der Anschaffungskosten werden direkt im Anschaffungsjahr abgeschrieben. Bei
+            60.000 € Brutto und 30 % Unternehmenssteuer ergibt das eine Liquiditätswirkung von rund
+            <strong>13.500 € im Jahr 1</strong>. Gilt für Erstzulassungen zwischen 01.07.2025 und 31.12.2027.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">THG-Quote 2026: 200–330 €/Jahr extra</h3>
+          <p>
+            E-Auto-Halter können ihre <strong>Treibhausgasminderungsquote</strong> nach §37a BImSchG
+            jährlich an Vermarkter verkaufen. 2026 liegt der Marktpreis bei 200–330 €/Jahr für BEV.
+            Plug-in-Hybride sind nicht berechtigt. Antragsfrist 2026 ist der 31. Oktober beim jeweiligen
+            Vermarkter. Mehr Details im <a href="/thg-quote-rechner" class="text-emerald-600 hover:underline">THG-Quoten-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wallbox-Förderung 2026 — nur noch für Mehrparteienhäuser</h3>
+          <p>
+            Seit dem 15.04.2026 fördert die <strong>KfW</strong> mit insgesamt 500 Mio. € Wallboxen
+            für Mehrparteienhäuser (WEG, Vermieter, kleinere Unternehmen): 1.300 €/Stellplatz
+            für Vorverkabelung, 1.500 € für installierte Wallbox, 2.000 € für bidirektionale Ladepunkte.
+            <strong>Für Einfamilienhäuser gibt es bundesweit keine Förderung</strong> — nur die
+            Landesprogramme NRW (Emissionsarme Mobilität) und BW (Charge@BW) zahlen noch.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">PV-Anlage + E-Auto: die effizienteste Kombination</h3>
+          <p>
+            Wer eine eigene <strong>Photovoltaik-Anlage</strong> betreibt, lädt das E-Auto effektiv für
+            6–10 ct/kWh statt 32–40 ct/kWh aus dem Netz. Bei 13.500 km Jahresfahrleistung spart das
+            500–800 €/Jahr zusätzlich gegenüber Netzstrom. Solar-Förderung über
+            <a href="/photovoltaik-rechner" class="text-emerald-600 hover:underline">Photovoltaik-Rechner</a> berechnen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So beantragen Sie die Kaufprämie 2026</h3>
+          <ol class="space-y-1 list-decimal list-inside text-sm">
+            <li>Fahrzeug kaufen oder leasen, Erstzulassung in Deutschland ab 01.01.2026</li>
+            <li>Warten bis BAFA-Antragsportal online (voraussichtlich ab Mai 2026)</li>
+            <li>BundID-Konto erstellen (ELSTER-Zertifikat oder eID)</li>
+            <li>Online-Antrag im Portal "Förderzentrale Deutschland" stellen</li>
+            <li>Unterlagen hochladen: 2 aktuelle Einkommensteuerbescheide, Zulassungsbescheinigung, ggf. Kindergeldnachweis, ggf. PHEV-Konformitätsbescheinigung</li>
+            <li>BAFA prüft und stellt Zuwendungsbescheid aus</li>
+            <li>Auszahlung innerhalb weniger Wochen nach Bescheid</li>
+            <li>36 Monate Mindesthaltedauer einhalten (sonst Rückforderung!)</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufige Fragen zur E-Auto-Förderung 2026</h2>
+        <div class="space-y-4 text-sm">
+          <div>
+            <p class="font-bold text-gray-800">Bekomme ich die Förderung rückwirkend für ein 2025 gekauftes Auto?</p>
+            <p class="text-gray-600 mt-1">Nein. Förderfähig sind nur Fahrzeuge mit Erstzulassung ab dem 01.01.2026. Für Käufe in 2024/2025 gibt es leider keine BAFA-Kaufprämie.</p>
+          </div>
+          <div>
+            <p class="font-bold text-gray-800">Kann ich Kaufprämie und Dienstwagen-Regelung kombinieren?</p>
+            <p class="text-gray-600 mt-1">Nein. Die BAFA-Kaufprämie gilt nur für Privatpersonen mit Privatvermögen. Wer das Auto als Firmenwagen nutzt, geht in den Gewerbe-Pfad mit Turbo-AfA + 0,25 %-Regelung — das ist oft sogar lukrativer.</p>
+          </div>
+          <div>
+            <p class="font-bold text-gray-800">Gilt die Förderung für gebrauchte E-Autos?</p>
+            <p class="text-gray-600 mt-1">Nein. Die BAFA-Kaufprämie 2026 fördert ausschließlich Neufahrzeuge mit Erstzulassung. Für Gebrauchte gibt es nur die KFZ-Steuer-Befreiung (sofern Erstzulassung bis 31.12.2030) und die THG-Quote.</p>
+          </div>
+          <div>
+            <p class="font-bold text-gray-800">Was passiert, wenn ich das Auto vor 36 Monaten verkaufe?</p>
+            <p class="text-gray-600 mt-1">Dann muss die Kaufprämie an die BAFA zurückgezahlt werden. Die Haltedauer wurde von 12 auf 36 Monate verdreifacht — besonders bei 24-Monats-Leasings problematisch.</p>
+          </div>
+          <div>
+            <p class="font-bold text-gray-800">Wie lange läuft das Programm?</p>
+            <p class="text-gray-600 mt-1">Bis 2029 oder bis der 3-Milliarden-€-Topf leer ist — was zuerst eintritt. Bei rund 800.000 förderfähigen Fahrzeugen kann das Programm bei starker Nachfrage früher enden. Frühe Antragsstellung lohnt sich.</p>
+          </div>
+          <div>
+            <p class="font-bold text-gray-800">Bekomme ich die THG-Quote zusätzlich zur Kaufprämie?</p>
+            <p class="text-gray-600 mt-1">Ja, alle Förderkomponenten (Kaufprämie + KFZ-Steuer + THG + ggf. Wallbox) sind kombinierbar. Das ist der Hauptgrund warum sich ein E-Auto-Kauf 2026 lohnen kann.</p>
+          </div>
+          <div>
+            <p class="font-bold text-gray-800">Wie genau ist diese Berechnung?</p>
+            <p class="text-gray-600 mt-1">Die Kaufprämien-Beträge entsprechen exakt der Richtlinie. KFZ-Steuer und THG-Quote sind Schätzwerte basierend auf Marktdurchschnitten. Für eine individuelle verbindliche Berechnung wenden Sie sich an die BAFA-Hotline 06196 908-1009.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cross-Links -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-gray-50 rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-gray-800 mb-3">Verwandte Rechner</h2>
+        <ul class="space-y-2 text-sm">
+          <li>📊 <a href="/elektroauto-rechner" class="text-emerald-600 hover:underline">Elektroauto-Kosten-Rechner</a> — laufende Betriebskosten BEV vs. Verbrenner</li>
+          <li>☀️ <a href="/photovoltaik-rechner" class="text-emerald-600 hover:underline">Photovoltaik-Rechner</a> — eigene PV-Anlage zur E-Auto-Versorgung</li>
+          <li>🚗 <a href="/firmenwagen-rechner" class="text-emerald-600 hover:underline">Firmenwagen-Rechner</a> — 0,25%-Regelung im Detail</li>
+          <li>🏛️ <a href="/kfz-steuer-rechner" class="text-emerald-600 hover:underline">KFZ-Steuer-Rechner</a> — Befreiung berechnen</li>
+          <li>🌱 <a href="/thg-quote-rechner" class="text-emerald-600 hover:underline">THG-Quoten-Rechner</a> — jährliche Prämie</li>
+          <li>⚡ <a href="/stromkosten-rechner" class="text-emerald-600 hover:underline">Stromkosten-Rechner</a> — Wallbox-Strom günstig vergleichen</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quellen -->
+    <div class="max-w-2xl mx-auto px-4 mt-8 mb-8">
+      <div class="bg-gray-50 rounded-xl p-4 text-xs text-gray-600">
+        <p class="font-semibold mb-2">📚 Quellen</p>
+        <ul class="space-y-1">
+          <li>• <a href="https://www.bundesregierung.de/breg-de/aktuelles/e-auto-kauffoerderung-2403088" target="_blank" rel="noopener noreferrer" class="hover:underline">Bundesregierung – E-Auto-Kaufförderung 2026</a></li>
+          <li>• <a href="https://www.bundesumweltministerium.de/foerderung/fragen-und-antworten-zur-e-auto-foerderung" target="_blank" rel="noopener noreferrer" class="hover:underline">BMUKN – Fragen und Antworten</a></li>
+          <li>• <a href="https://www.bafa.de/DE/Energie/Energieeffizienz/E-Auto_Foerderung_2026/E-Auto_Foerderung_2026_node.html" target="_blank" rel="noopener noreferrer" class="hover:underline">BAFA – E-Auto-Förderung 2026</a></li>
+          <li>• <a href="https://www.bundesfinanzministerium.de/Content/DE/Pressemitteilungen/Finanzpolitik/2025/10/2025-10-15-steuerbefreiung-fuer-elektroautos.html" target="_blank" rel="noopener noreferrer" class="hover:underline">BMF – KFZ-Steuer-Verlängerung bis 2035</a></li>
+          <li>• <a href="https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/elektroauto/foerderung-elektroautos/" target="_blank" rel="noopener noreferrer" class="hover:underline">ADAC – E-Auto-Förderung</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>
