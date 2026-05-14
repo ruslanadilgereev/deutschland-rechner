@@ -1123,6 +1123,21 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'E-Auto Kosten Rechner, Elektroauto Kosten, Strom vs Benzin',
   },
   {
+    id: 'e-auto-foerderung',
+    name: 'E-Auto-Förderung-Rechner 2026',
+    beschreibung: 'Neue BAFA-Kaufprämie + KFZ-Steuer + THG + Wallbox',
+    icon: '⚡',
+    kategorie: 'auto',
+    fertig: true,
+    seoKeywords: 'E-Auto Förderung 2026, BAFA Kaufprämie 2026, Elektroauto Förderung Rechner, E-Auto Prämie, Kaufprämie Elektroauto, Turbo-AfA E-Auto, THG-Quote, Wallbox-Förderung',
+    quellen: [
+      'https://www.bafa.de/',
+      'https://www.bundesregierung.de/',
+      'https://www.gesetze-im-internet.de/kraftstg/__3d.html',
+      'https://www.gesetze-im-internet.de/estg/__7.html',
+    ],
+  },
+  {
     id: 'fahrrad-pendeln',
     name: 'Fahrrad-Pendler-Rechner',
     beschreibung: 'Ersparnis durch Radfahren berechnen',
