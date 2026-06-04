@@ -814,6 +814,8 @@ export default function PflegegradRechner() {
   // Fragebogen
   return (
     <div className="max-w-2xl mx-auto">
+      <RechnerFeedback rechnerName="Pflegegrad-Rechner 2025 & 2026" rechnerSlug="pflegegrad-rechner" />
+
       {/* Progress */}
       <div className="bg-white rounded-2xl shadow-lg p-4 mb-6">
         <div className="flex justify-between items-center mb-2">

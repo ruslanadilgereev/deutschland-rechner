@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import RechnerFeedback from './RechnerFeedback';
 
 // Fahrzeugtypen mit THG-Prämien 2026
 type Fahrzeugtyp = 'pkw' | 'motorrad' | 'nutzfahrzeug' | 'bus';
@@ -129,6 +130,8 @@ export default function ThgQuoteRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
+      <RechnerFeedback rechnerName="THG-Quote-Rechner" rechnerSlug="thg-quote-rechner" />
+
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Fahrzeugtyp */}
