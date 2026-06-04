@@ -109,6 +109,46 @@ const faqSchema = {
     <div class="max-w-2xl mx-auto px-4 py-6">
       <GaskostenRechner client:load />
     </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 4. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Verbrauchswerte nach BDEW-Heizspiegel und co2online; Preisniveau ~11 ct/kWh (Arbeitspreis) zzgl. ~12 €/Monat Grundpreis auf Basis der BDEW-Gaspreisanalyse und der Erhebungen der Bundesnetzagentur. Im Arbeitspreis enthalten ist der CO₂-Preis nach BEHG: 2026 endet die Festpreisphase, die Zertifikate werden in einem Korridor von <strong>55 bis 65 €/t CO₂</strong> versteigert (2025 lag der feste Preis bei 55 €/t). Bei Erdgas macht das rund 1,2 bis 1,5 ct/kWh brutto aus.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Jahres- und Monatskosten aus Arbeitspreis × kWh-Verbrauch zzgl. monatlichem Grundpreis; Verbrauchsschätzung nach Personenzahl, Wohnfläche oder direkter kWh-Eingabe.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Tarifboni/Neukundenrabatte, regionale Netzentgelt-Unterschiede, Warmwasser-Anteile bei separater Erzeugung sowie spätere CO₂-Preis-Stufen ab 2027 (Übergang in den EU-Emissionshandel ETS 2, voller europaweiter Handel ab 2028).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">m³ mit kWh verwechselt</h3>
+            <p>Ihr Gaszähler zählt Kubikmeter (m³), Ihre Rechnung rechnet in Kilowattstunden (kWh) ab. Umrechnung: m³ × Brennwert (ca. 10,0–11,5 kWh/m³) × Zustandszahl (ca. 0,95). Faustregel: 1 m³ ≈ 10 kWh. Wer 2.000 m³ (≈ 20.000 kWh) einfach als 2.000 kWh in den Rechner tippt, unterschätzt seinen Verbrauch um den Faktor 10 – aus echten rund 2.344 € pro Jahr werden so scheinbar nur etwa 364 €.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">CO₂-Preis 2026 vergessen</h3>
+            <p>2026 wechselt der CO₂-Preis nach BEHG von der Festpreis- in die Versteigerungsphase: Die Zertifikate werden in einem Korridor von <strong>55 bis 65 €/t</strong> gehandelt (2025: fester Preis 55 €/t). Bei Erdgas sind das rund 1,2 bis 1,5 ct/kWh (inkl. MwSt.), die im Arbeitspreis bereits stecken. Für einen 20.000-kWh-Haushalt summiert sich allein der CO₂-Anteil so auf etwa 250 bis 300 € pro Jahr – ein Kostenblock, den viele beim Tarifvergleich übersehen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Grundpreis komplett ignoriert</h3>
+            <p>Ein vermeintlich günstiger Tarif mit niedrigem Arbeitspreis kann durch einen hohen Grundpreis teurer werden – besonders bei geringem Verbrauch. Bei einer Single-Wohnung mit 5.000 kWh machen 12 €/Monat Grundpreis (144 €/Jahr) bereits rund ein Fünftel der Gesamtkosten aus. Immer Arbeits- und Grundpreis zusammen vergleichen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Altbau mit Neubau-Kennwert gerechnet</h3>
+            <p>Die Wohnflächen-Schätzung geht von durchschnittlicher Dämmung aus. Ein unsanierter Altbau (Baujahr vor 1990) verbraucht laut Heizspiegel oft 160–200 kWh/m² statt der ~120 kWh/m² eines gut gedämmten Hauses. Für 100 m² heißt das: nicht 14.000, sondern 18.000–20.000 kWh – ein Mehrverbrauch von rund 440 bis 660 € pro Jahr (bei 11 ct/kWh).</p>
+          </div>
+        </div>
+      </div>
+    </div>
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -116,9 +156,13 @@ const faqSchema = {
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem kostenlosen <strong>Gaskosten-Rechner</strong> berechnen Sie Ihre jährlichen und monatlichen
-            Heizkosten für 2026. Schätzen Sie Ihren Verbrauch anhand der Haushaltsgröße, Wohnfläche oder geben Sie 
-            Ihren tatsächlichen kWh-Verbrauch ein.
+            Die Jahresabrechnung flattert ins Haus, und plötzlich stehen da 2.350 € für 20.000 kWh – so sieht es
+            Anfang 2026 für einen typischen 4-Personen-Haushalt bei einem Arbeitspreis von rund 11 ct/kWh aus.
+            Wer wissen will, ob die eigene Abschlagszahlung realistisch ist oder ob ein Anbieterwechsel lohnt, braucht
+            zwei Zahlen: den Jahresverbrauch in kWh und den Arbeitspreis. Beides verrechnet dieser
+            <strong>Gaskosten-Rechner</strong> mit dem monatlichen Grundpreis zu Ihren Jahres- und Monatskosten –
+            wahlweise aus Ihrem echten kWh-Wert von der letzten Rechnung oder per Schätzung nach Personenzahl bzw.
+            Wohnfläche, falls die Abrechnung gerade nicht zur Hand ist.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Durchschnittlicher Gaspreis 2026</h3>

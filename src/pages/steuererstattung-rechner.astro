@@ -41,6 +41,22 @@ const keywords = "Steuererstattung Rechner, Steuererklärung Rückerstattung, St
     <div class="max-w-2xl mx-auto px-4 py-6">
       <SteuererstattungRechner client:load />
     </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 4. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Einkommensteuergesetz (EStG), insbesondere § 9 EStG (Werbungskosten), § 9a EStG (Arbeitnehmer-Pauschbetrag 1.230 €) und § 46 EStG (Pflicht- bzw. Antragsveranlagung). Werte für den Veranlagungszeitraum 2026 nach den BMF-Programmablaufplänen; Durchschnittserstattung nach Statistischem Bundesamt (Destatis).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Werbungskosten oberhalb des Pauschbetrags von 1.230 € (Entfernungspauschale 0,38 €/km ab dem 1. Kilometer, Homeoffice-Pauschale 6 €/Tag bis 1.260 €, Arbeitsmittel), Vergleich mit der bereits einbehaltenen Lohnsteuer und Schätzung der Erstattung über den persönlichen Grenzsteuersatz.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Kirchensteuer-Erstattung, Soli (entfällt für die meisten Arbeitnehmer), individuelle Sonderausgaben oben drauf, außergewöhnliche Belastungen mit zumutbarer Eigenbelastung sowie Faktorverfahren bei Ehegatten. Der Wert ist eine Orientierung, kein verbindlicher Steuerbescheid.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -48,10 +64,15 @@ const keywords = "Steuererstattung Rechner, Steuererklärung Rückerstattung, St
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Steuererstattung-Rechner</strong> ermitteln Sie kostenlos, wie viel 
-            Geld Sie vom Finanzamt zurückbekommen können. Deutsche Arbeitnehmer erhalten im 
-            Durchschnitt <strong>1.172€ Erstattung</strong> pro Jahr – doch viele verschenken Geld, 
-            weil sie keine Steuererklärung abgeben.
+            Ein Pendler mit 25 km Arbeitsweg, der an 180 Tagen ins Büro fährt und an 40 Tagen im
+            Homeoffice arbeitet, kommt 2026 auf rund 1.950 € Werbungskosten (25 km × 180 Tage × 0,38 €
+            = 1.710 € plus 40 × 6 € = 240 €) – also etwa 720 € über dem Pauschbetrag von 1.230 €.
+            Bei einem Grenzsteuersatz von 30 % bleiben so gut 215 € Erstattung, die sonst beim
+            Finanzamt liegen bleiben. Genau diese Differenz rechnet das Tool oben aus: Es vergleicht
+            Ihre absetzbaren Kosten mit dem automatischen Pauschbetrag und schätzt über Ihren
+            Steuersatz, was zurückkommt. Über alle Arbeitnehmer hinweg lag die durchschnittliche
+            Erstattung laut Statistischem Bundesamt zuletzt bei rund <strong>1.172 €</strong> – wer
+            pendelt, im Homeoffice arbeitet oder größere Anschaffungen hatte, liegt oft deutlich darüber.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum lohnt sich die Steuererklärung?</h3>
@@ -122,6 +143,54 @@ const keywords = "Steuererstattung Rechner, Steuererklärung Rückerstattung, St
       </div>
     </div>
     
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Erstattung erwartet, obwohl Werbungskosten unter 1.230 € liegen</h3>
+            <p>
+              Der Arbeitnehmer-Pauschbetrag von 1.230 € ist bereits in Ihrem monatlichen Lohnsteuerabzug
+              eingerechnet. Wer nur 800 € echte Werbungskosten hat, bekommt daraus keinen Cent extra –
+              erst der Euro über 1.230 € wirkt sich aus. Eine Erstattung kommt dann meist aus anderen
+              Posten (Sonderausgaben, haushaltsnahe Dienstleistungen, zu viel einbehaltene Lohnsteuer
+              bei schwankendem Gehalt), nicht aus den Werbungskosten.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Entfernungspauschale doppelt mit Homeoffice angesetzt</h3>
+            <p>
+              Für denselben Tag gilt entweder die Entfernungspauschale (Fahrt ins Büro) oder die
+              Homeoffice-Pauschale – nicht beides. Wer an 220 Tagen pendelt, kann nicht zusätzlich
+              220 Homeoffice-Tage absetzen. Bei 0,38 €/km und 25 km zählt nur der einfache Weg, nicht
+              Hin- und Rückfahrt: 25 km × 220 Tage × 0,38 € = 2.090 €, nicht das Doppelte.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pflichtveranlagung verpasst (§ 46 EStG)</h3>
+            <p>
+              Wer Lohnersatzleistungen über 410 € (Eltern-, Kranken-, Kurzarbeitergeld), Nebeneinkünfte
+              über 410 €, die Steuerklassenkombination III/V oder das Faktorverfahren hatte, ist zur
+              Abgabe verpflichtet. Hier gilt nicht die 4-Jahres-Frist der freiwilligen Erklärung,
+              sondern der 31. Juli des Folgejahres – verspätete Abgabe kostet mindestens 25 € pro
+              angefangenem Monat Verspätungszuschlag (§ 152 AO).
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Häusliches Arbeitszimmer mit Homeoffice-Pauschale verwechselt</h3>
+            <p>
+              Die Homeoffice-Pauschale (6 €/Tag, max. 1.260 €) gibt es ohne separaten Raum. Ein echtes
+              häusliches Arbeitszimmer, das den Mittelpunkt der Tätigkeit bildet, lässt sich dagegen mit
+              den anteiligen tatsächlichen Kosten oder der Jahrespauschale von 1.260 € absetzen – aber
+              nur, wenn ein abgeschlossener, nahezu ausschließlich beruflich genutzter Raum vorhanden
+              ist. Eine Arbeitsecke im Wohnzimmer reicht dafür nicht.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Verwandte Rechner -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -176,7 +245,52 @@ const keywords = "Steuererstattung Rechner, Steuererklärung Rückerstattung, St
         </div>
       </div>
     </div>
-</main>
+
+    <!-- FAQ Section (sichtbar) - aus FAQ-Schema sichtbar gemacht -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Steuererstattung bekomme ich durchschnittlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Deutsche Arbeitnehmer erhalten im Durchschnitt etwa 1.172€ Steuererstattung pro Jahr. Die tatsächliche Erstattung hängt von Ihren individuellen Werbungskosten, Ihrem Einkommen und Ihrer Steuerklasse ab.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Werbungskostenpauschale 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Werbungskostenpauschale (Arbeitnehmer-Pauschbetrag) beträgt 2026 1.230€. Dieser Betrag wird automatisch bei der Lohnsteuerberechnung berücksichtigt. Nur wenn Ihre tatsächlichen Werbungskosten höher sind, erhalten Sie eine zusätzliche Erstattung.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Entfernungspauschale 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Entfernungspauschale beträgt 2026 einheitlich 0,38€ pro Kilometer ab dem ersten Kilometer. Bei 20 km Arbeitsweg und 220 Arbeitstagen können Sie so 1.672€ Fahrtkosten absetzen.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Homeoffice-Pauschale?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Homeoffice-Pauschale beträgt 6€ pro Arbeitstag im Homeoffice, maximal 1.260€ pro Jahr (210 Tage). Sie kann auch dann geltend gemacht werden, wenn kein separates Arbeitszimmer vorhanden ist.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich eine Steuererklärung für mich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Steuererklärung lohnt sich fast immer: 9 von 10 Arbeitnehmern bekommen Geld zurück. Besonders profitieren Pendler, Homeoffice-Arbeiter und alle mit hohen Werbungskosten. Die freiwillige Abgabe ist bis zu 4 Jahre rückwirkend möglich.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Bis wann muss ich die Steuererklärung abgeben?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die freiwillige Steuererklärung können Sie bis zu 4 Jahre rückwirkend einreichen (bis 31.12.). Bei Pflichtveranlagung ist die Frist der 31. Juli des Folgejahres, mit Steuerberater der 28./29. Februar des übernächsten Jahres.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
   
   <!-- Structured Data for SEO -->
   <script type="application/ld+json" set:html={JSON.stringify({

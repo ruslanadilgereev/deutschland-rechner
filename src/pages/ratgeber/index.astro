@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
+
+const title = "Ratgeber – Steuern, Familie, Wohnen & Rente einfach erklärt";
+const description = "Praxisnahe Ratgeber zu Steuern, Gehalt, Familienleistungen, Hauskauf und Rente – mit Rechenbeispielen, Fristen und Quellen. Passend zu den Rechnern von Deutschlandrechner.";
+const keywords = "Ratgeber Steuern, Ratgeber Finanzen, Steuerklasse wechseln, Elterngeld, Bürgergeld, Kaufnebenkosten, Rente, Minijob, Brutto Netto erklärt";
+
+const guides = [
+  { slug: 'steuerklasse-wechseln', icon: '🧾', titel: 'Steuerklasse wechseln 2026', text: 'Welche Kombination (IV/IV, III/V, Faktor) sich lohnt, Fristen, ELSTER-Antrag und der Hebel fürs Elterngeld – mit Rechenbeispiel.' },
+  { slug: 'brutto-netto-verstehen', icon: '💶', titel: 'Vom Brutto zum Netto 2026', text: 'Lohnsteuer, Soli, Kirchensteuer und alle Sozialabgaben Schritt für Schritt – warum vom Brutto so viel abgeht und wie viel netto bleibt.' },
+  { slug: 'minijob-midijob', icon: '💼', titel: 'Minijob & Midijob 2026', text: 'Verdienstgrenzen (603 € / 2.000 €), reduzierte Beiträge im Übergangsbereich, Rentenpflicht und was am Ende netto übrig bleibt.' },
+  { slug: 'elterngeld-beantragen', icon: '👶', titel: 'Elterngeld 2026 beantragen', text: 'Basiselterngeld, ElterngeldPlus und Partnerschaftsbonus, die Höhe nach Netto, Bemessungszeitraum, Antrag und der Steuerklassen-Trick.' },
+  { slug: 'buergergeld-anspruch', icon: '🤝', titel: 'Bürgergeld 2026: Anspruch & Regelsätze', text: 'Wer Anspruch hat, Regelsatz 563 €, Bedarfsgemeinschaft, Kosten der Unterkunft, Schonvermögen und der Vergleich zu Wohngeld.' },
+  { slug: 'hauskauf-nebenkosten', icon: '🏠', titel: 'Kaufnebenkosten beim Hauskauf 2026', text: 'Grunderwerbsteuer, Notar, Grundbuch und Makler – warum du 10 bis 15 % Nebenkosten einplanen musst, mit durchgerechnetem Beispiel.' },
+  { slug: 'rente-mit-63-65-67', icon: '👵', titel: 'Rente mit 63, 65 oder 67', text: 'Deine Regelaltersgrenze nach Jahrgang, abschlagsfreie Rente nach 45 Beitragsjahren, Abschläge von 0,3 % pro Monat und die Rentenlücke.' },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Ratgeber von Deutschlandrechner',
+  itemListElement: guides.map((g, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: g.titel,
+    url: `https://www.deutschland-rechner.de/ratgeber/${g.slug}`,
+  })),
+};
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Ratgeber", url: "/ratgeber" }]} />
+  <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Ratgeber' }]} />
+  <main class="min-h-screen pb-12">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-10 px-4">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold mb-3">Ratgeber</h1>
+        <p class="text-blue-100 text-lg">
+          Die Rechner liefern dir die Zahl – die Ratgeber erklären, wie sie zustande kommt und was du
+          mit ihr machst. Jeder Artikel ist mit Rechenbeispiel, Fristen und offiziellen Quellen geschrieben.
+        </p>
+      </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto px-4 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {guides.map((g) => (
+          <a
+            href={`/ratgeber/${g.slug}`}
+            class="block bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100"
+          >
+            <div class="flex items-start gap-4">
+              <span class="text-3xl shrink-0" aria-hidden="true">{g.icon}</span>
+              <div>
+                <h2 class="text-lg font-bold text-gray-900 mb-1">{g.titel}</h2>
+                <p class="text-sm text-gray-600 leading-relaxed">{g.text}</p>
+                <span class="inline-block mt-3 text-sm font-medium text-blue-600">Ratgeber lesen →</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-10 bg-gray-50 border border-gray-200 rounded-2xl p-6 text-sm text-gray-600">
+        <p class="mb-2">
+          <strong class="text-gray-800">Wie diese Ratgeber entstehen:</strong> Jeder Artikel wird anhand der
+          offiziellen Quellen recherchiert – Gesetzestexte (z. B. EStG, SGB), Veröffentlichungen des
+          Bundesfinanzministeriums, der Bundesagentur für Arbeit und der Deutschen Rentenversicherung –
+          und mit den passenden Rechnern verknüpft. Die genannten Euro-Beträge sind als Beispiele
+          gekennzeichnet; deinen konkreten Fall rechnest du mit dem jeweils verlinkten Rechner durch.
+        </p>
+        <p>
+          Mehr über die Methodik und die Person dahinter:
+          <a href="/ueber-uns" class="text-blue-600 hover:underline">Über uns</a>.
+          Die Ratgeber ersetzen keine individuelle Steuer- oder Rechtsberatung.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+</Layout>

@@ -39,14 +39,35 @@ const keywords = "Rentabilität Rechner, ROI berechnen, Return on Investment, Re
     <div class="max-w-2xl mx-auto px-4 py-6">
       <RentabilitaetRechner client:load />
     </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 4. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Betriebswirtschaftliche Standardformeln – ROI = Gewinn / eingesetztes Kapital × 100 % und CAGR = (Endwert / Anfangswert)<sup>1/Jahre</sup> − 1. Die Benchmark-Werte stammen aus dem Renditedreieck des Deutschen Aktieninstituts (DAX, rollierende 15- und 30-Jahres-Zeiträume) und den langfristigen MSCI-World-Renditen (Net Total Return, EUR).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Einmalige Investition, Gesamt-ROI über die Laufzeit, annualisierte Rendite (CAGR) mit Zinseszins-Effekt sowie der Vergleich gegen historische Anlageklassen-Renditen.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Inflation (Realrendite), Steuern (z. B. 25 % Abgeltungsteuer + 5,5 % Soli auf Kursgewinne), Kauf-/Verkaufsgebühren, laufende Kosten (ETF-TER, Hausgeld) sowie unterjährige Ein- und Auszahlungen – dafür ist der interne Zinsfuß (IRR) das passendere Maß.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">ROI berechnen: So funktioniert's</h2>
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Der <strong>Return on Investment (ROI)</strong> ist die wichtigste Kennzahl zur Bewertung von Investitionen. 
-            Er zeigt, wie viel Gewinn eine Investition im Verhältnis zum eingesetzten Kapital erwirtschaftet hat.
+            Angenommen, Sie haben vor vier Jahren 15.000 € in einen ETF gesteckt, der heute 21.300 € wert ist –
+            und parallel kam ein Kollege mit einer vermieteten Eigentumswohnung um die Ecke, die ihm 4,1 % Mietrendite
+            bringt. Welche der beiden Anlagen hat sich wirklich besser entwickelt? Genau hier setzt der <strong>Return on
+            Investment (ROI)</strong> an: Im Beispiel liegt der Gesamt-ROI des ETFs bei 42 %, umgerechnet auf das Jahr
+            sind das aber „nur“ 9,2 % p.a. (CAGR) – ein Wert, der sich direkt mit den 4,1 % Mietrendite vergleichen lässt.
+            Der ROI verdichtet Gewinn und eingesetztes Kapital auf eine einzige Prozentzahl; die annualisierte Rendite
+            (CAGR) macht daraus eine Größe, die über verschiedene Laufzeiten hinweg vergleichbar bleibt.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Die ROI-Formel</h3>
@@ -115,6 +136,50 @@ const keywords = "Rentabilität Rechner, ROI berechnen, Return on Investment, Re
     
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Gesamt-ROI mit Jahresrendite verwechseln</h3>
+            <p>
+              Ein ROI von 60 % über 8 Jahre klingt stark, sind aber nur rund 6,05 % p.a. (CAGR). Wer den Gesamt-ROI
+              unkommentiert durch die Jahre teilt (60 % / 8 = 7,5 %), überschätzt die Rendite systematisch, weil der
+              Zinseszins fehlt. Vergleichen Sie Anlagen immer auf p.a.-Basis, nie über die nackte Gesamtrendite.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Steuern und Kosten ausgeblendet</h3>
+            <p>
+              8 % Bruttorendite bleiben selten 8 % netto. Auf Kursgewinne fallen 25 % Abgeltungsteuer plus 5,5 %
+              Solidaritätszuschlag (effektiv 26,375 %, ggf. plus Kirchensteuer) an – nach Freistellungsauftrag bis 1.000 €
+              pro Person. Aus 8 % p.a. werden so rund 5,9 % nach Steuern, bei Immobilien drücken zusätzlich Hausgeld,
+              Instandhaltung und Verwaltung die ausgewiesene Bruttomietrendite oft um 1–2 Prozentpunkte.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Nominalrendite mit Realrendite gleichsetzen</h3>
+            <p>
+              Bei 7 % nominaler Rendite und 2 % Inflation (EZB-Ziel) liegt der reale Vermögenszuwachs nur bei rund 4,9 %
+              – nicht bei 5 % (genau: 1,07 / 1,02 − 1 = 4,90 %). Der Rechner zeigt die Nominalrendite; für die
+              tatsächliche Kaufkraft müssen Sie die Inflation noch herausrechnen.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Unregelmäßige Cashflows – hier versagt die CAGR</h3>
+            <p>
+              Die CAGR setzt eine einzige Einzahlung am Anfang und einen Endwert voraus. Sobald Sie laufend nachkaufen
+              (Sparplan) oder zwischendurch entnehmen, liefert sie ein falsches Bild: Wer 10 Jahre lang 300 €/Monat
+              spart (36.000 € eingezahlt) und am Ende 50.000 € im Depot hat, rechnet mit der CAGR-Formel über die
+              Gesamtsumme nur rund 3,3 % p.a. heraus – tatsächlich liegt die geldgewichtete Rendite bei rund 6,3 % p.a.,
+              weil die frühen Raten viel länger arbeiten als die letzten. Für solche Fälle ist der interne Zinsfuß
+              (IRR) bzw. die geldgewichtete Rendite das richtige Maß.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
           <span class="text-2xl">🔗</span>
           Verwandte Rechner
@@ -145,7 +210,40 @@ const keywords = "Rentabilität Rechner, ROI berechnen, Return on Investment, Re
         </div>
       </div>
     </div>
-</main>
+
+    <!-- FAQ Section (sichtbar) - aus FAQ-Schema sichtbar gemacht -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der ROI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Return on Investment (ROI) misst die Rentabilität einer Investition. Er wird berechnet als: ROI = (Gewinn / Investition) × 100%. Ein ROI von 25% bedeutet, dass Sie für jeden investierten Euro 25 Cent Gewinn erzielt haben.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Rendite p.a.?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die annualisierte Rendite (CAGR) wird berechnet als: Rendite p.a. = ((Endwert/Anfangswert)^(1/Jahre) - 1) × 100%. Sie macht Investitionen mit unterschiedlicher Laufzeit vergleichbar.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist eine gute Rendite?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Anlagetyp ab. Aktien (DAX/MSCI World) erzielen historisch ca. 7-8% p.a., Immobilien 3-5% Mietrendite, Tagesgeld aktuell ca. 2,5-3%. Jede Rendite über der Inflation (ca. 2%) bedeutet realen Vermögensaufbau.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen ROI und CAGR?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der ROI zeigt die Gesamtrendite über den gesamten Zeitraum. Die CAGR (Compound Annual Growth Rate) rechnet diese auf ein Jahr um und berücksichtigt den Zinseszins-Effekt. Beispiel: 50% ROI über 5 Jahre = ca. 8,45% CAGR p.a.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
   
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

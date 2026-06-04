@@ -47,6 +47,22 @@ const keywords = "BMI Rechner, BMI berechnen, Body Mass Index, BMI Tabelle, BMI 
     <div class="max-w-2xl mx-auto px-4 py-6">
       <BMIRechner client:load />
     </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 4. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> WHO-BMI-Klassifikation (Untergewicht &lt; 18,5 · Normalgewicht 18,5–24,9 · Übergewicht 25–29,9 · Adipositas Grad I 30–34,9 · Grad II 35–39,9 · Grad III ab 40). Grundumsatz nach der Mifflin-St Jeor-Formel (1990).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Körpergewicht, Körpergröße, Geschlecht und Alter für BMI, Normalgewichtsspanne und Grundumsatz; WHO-Kategorie mit Einordnung des Gesundheitsrisikos.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Körperfettanteil und Muskelmasse, Fettverteilung (Bauchumfang), Schwangerschaft sowie Kinder/Jugendliche unter 18 Jahren – für sie gelten alters- und geschlechtsabhängige Perzentilkurven (BMI-SDS), nicht die festen WHO-Grenzwerte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -54,10 +70,14 @@ const keywords = "BMI Rechner, BMI berechnen, Body Mass Index, BMI Tabelle, BMI 
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Der <strong>Body-Mass-Index (BMI)</strong> ist ein weltweit anerkannter Richtwert zur Einschätzung 
-            des Körpergewichts in Relation zur Körpergröße. Mit unserem <strong>BMI-Rechner</strong> berechnen 
-            Sie Ihren BMI schnell, kostenlos und ohne Anmeldung – inklusive detaillierter Auswertung nach 
-            WHO-Klassifikation.
+            Sie wiegen 82 kg bei 1,78 m – ist das noch im grünen Bereich? Eingesetzt in die BMI-Formel
+            ergibt das 82 ÷ (1,78 × 1,78) = <strong>25,9</strong>, also knapp über der WHO-Grenze von 25,
+            ab der Übergewicht beginnt. Genau diese Einordnung übernimmt unser <strong>BMI-Rechner</strong>:
+            Er ordnet Ihren Wert sofort einer der sechs WHO-Kategorien zu, zeigt die Normalgewichtsspanne für
+            Ihre Größe und schätzt zusätzlich Ihren Grundumsatz. Laut Mikrozensus 2021 (Statistisches
+            Bundesamt) waren in Deutschland <strong>52,7 % der Erwachsenen</strong> übergewichtig
+            (BMI ≥ 25) – mit einem Grenzwert sind Sie also in guter Gesellschaft. Wichtig vorweg:
+            Der BMI ist ein erster Anhaltspunkt, kein Diagnoseinstrument.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der BMI berechnet?</h3>
@@ -190,6 +210,49 @@ const keywords = "BMI Rechner, BMI berechnen, Body Mass Index, BMI Tabelle, BMI 
       </div>
     </div>
     
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Größe in Zentimetern statt Metern eingegeben</h3>
+            <p>Der häufigste Eingabefehler: Wer 175 (cm) statt 1,75 (m) verwendet, rechnet 75 ÷ (175 × 175)
+              und landet bei einem BMI von 0,0024 – Unsinn. In die Formel gehört die Größe in Metern zum
+              Quadrat. Unser Rechner erwartet die Größe in Zentimetern und rechnet intern korrekt um, aber
+              bei der manuellen Kontrolle ist das die klassische Stolperfalle.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Krafttrainierte mit „falschem" Übergewicht</h3>
+            <p>Ein 1,80 m großer Bodybuilder mit 95 kg kommt auf einen BMI von 29,3 – laut Tabelle
+              Übergewicht, obwohl der Körperfettanteil bei 10 % liegen kann. Der BMI misst nur Masse pro
+              Fläche, nicht deren Zusammensetzung. Wer regelmäßig Kraftsport macht, sollte zusätzlich
+              Körperfettanteil oder Taillenumfang heranziehen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Normalen BMI mit normalem Bauchumfang verwechselt</h3>
+            <p>Ein BMI von 23 gilt als Normalgewicht – trotzdem kann das viszerale Bauchfett zu hoch sein
+              („schlanke Dicke", TOFI). Ab einem Taillenumfang von 88 cm (Frauen) bzw. 102 cm (Männer)
+              steigt das Stoffwechsel- und Herz-Kreislauf-Risiko deutlich, unabhängig vom BMI. Das Maßband
+              ergänzt die Waage.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">BMI bei Kindern, Schwangeren und Senioren falsch angewendet</h3>
+            <p>Bei Kindern und Jugendlichen unter 18 gelten keine festen Grenzwerte, sondern
+              alters- und geschlechtsabhängige Perzentilkurven (BMI-SDS). In der Schwangerschaft ist der
+              BMI durch das natürliche Mehrgewicht nicht aussagekräftig. Bei Menschen ab 65 verschiebt sich
+              der günstigste Bereich nach oben (etwa 24–29), da leichte Reserven im Krankheitsfall
+              schützen können.</p>
+          </div>
+        </div>
+        <div class="mt-5 p-4 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800">
+          <strong>Hinweis:</strong> Dieser BMI-Rechner ersetzt keine ärztliche Diagnose. Der BMI ist ein
+          Orientierungswert. Für eine fundierte Einschätzung Ihres Gewichts und Gesundheitsrisikos wenden
+          Sie sich an Ihre Hausärztin oder Ihren Hausarzt.
+        </div>
+      </div>
+    </div>
+
     <!-- Zuständige Behörde / Hilfe -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -232,7 +295,52 @@ const keywords = "BMI Rechner, BMI berechnen, Body Mass Index, BMI Tabelle, BMI 
         </div>
       </div>
     </div>
-</main>
+
+    <!-- FAQ Section (sichtbar) - aus FAQ-Schema sichtbar gemacht -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man den BMI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der BMI wird berechnet, indem man das Körpergewicht in Kilogramm durch die Körpergröße in Metern zum Quadrat teilt. Formel: BMI = Gewicht (kg) ÷ Größe² (m²). Beispiel: 75 kg ÷ (1,75 m)² = 24,5.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein normaler BMI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach WHO-Definition liegt ein normaler BMI zwischen 18,5 und 24,9 kg/m². In diesem Bereich ist das Risiko für gewichtsbedingte Erkrankungen am geringsten. Für ältere Menschen (65+) kann ein etwas höherer BMI (24-29) optimal sein.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist der BMI für Männer und Frauen gleich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die WHO-Grenzwerte gelten für beide Geschlechter. Frauen haben jedoch natürlicherweise einen höheren Körperfettanteil, Männer mehr Muskelmasse. Der Taillenumfang (Frauen &lt; 88 cm, Männer &lt; 102 cm) ist eine hilfreiche Ergänzung zum BMI.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab welchem BMI ist man übergewichtig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ab einem BMI von 25 spricht man von Übergewicht (Präadipositas). Ab BMI 30 beginnt die Adipositas (Fettleibigkeit), die in drei Grade unterteilt wird: Grad I (30-34,9), Grad II (35-39,9) und Grad III (ab 40).</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist der BMI bei Sportlern oft falsch?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der BMI unterscheidet nicht zwischen Muskel- und Fettmasse. Sportler mit viel Muskelmasse haben oft einen erhöhten BMI, obwohl sie einen niedrigen Körperfettanteil haben. Für sie ist der Körperfettanteil oder der Taillenumfang aussagekräftiger.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man das Idealgewicht?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Idealgewicht liegt im BMI-Bereich von 18,5 bis 25. Für eine Person mit 1,75 m Größe ergibt sich ein Normalgewicht von 56,7 bis 76,6 kg. Die Mitte dieses Bereichs (ca. 66 kg) wird oft als Idealgewicht bezeichnet.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
   
   <!-- Structured Data for SEO -->
   <script type="application/ld+json" set:html={JSON.stringify({
