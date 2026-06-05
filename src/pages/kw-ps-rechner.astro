@@ -1,0 +1,367 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KwPsRechner from '../components/rechner/KwPsRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "kW-PS-Rechner 2026 – Kilowatt in PS umrechnen (und umgekehrt)";
+const description = "kW in PS umrechnen und PS in kW – sofort und exakt mit dem amtlichen Faktor 0,73549875. Kostenloser Rechner inklusive Umrechnungstabelle (50–200 PS/kW), Formel und Hinweis zur gesetzlichen Einheit kW.";
+const keywords = "kW PS Rechner, kW in PS umrechnen, PS in kW, Pferdestärke Kilowatt, Leistung umrechnen, kW PS Umrechnung, kW PS Tabelle, Motorleistung berechnen, 0,73549875, 1,35962";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "kW-PS-Rechner", url: "/kw-ps-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'kW-PS-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🐎</span>
+          <div>
+            <h1 class="text-2xl font-bold">kW-PS-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kilowatt in PS umrechnen – und umgekehrt</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Amtlicher Umrechnungsfaktor nach DIN 66036 – 1 PS = 0,73549875 kW (exakt)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> beide Richtungen (kW → PS und PS → kW), Umrechnungstabelle gängiger Werte, Faustregel und Hinweis zur gesetzlichen Einheit</p>
+            <p><strong>Nicht berücksichtigt:</strong> Wirkungsgrad, Nenn- vs. Spitzenleistung, abweichende Norm-PS (z. B. SAE/hp) – maßgeblich für Behörden bleibt der im Fahrzeugschein eingetragene kW-Wert</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KwPsRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">kW in PS umrechnen: Formel, Faktor & Bedeutung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Im Fahrzeugschein steht die Motorleistung in <strong>Kilowatt (kW)</strong> – im
+            Autohaus, in Anzeigen und im Alltag spricht aber fast jeder von
+            <strong> PS (Pferdestärken)</strong>. Mit unserem <strong>kW-PS-Rechner</strong>
+            rechnen Sie beide Einheiten in Sekunden exakt ineinander um, in beide Richtungen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Umrechnungsformel</h3>
+          <p>Der Rechner nutzt den amtlichen Faktor nach DIN 66036:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>PS in kW:</strong> Leistung (kW) = PS × 0,73549875</li>
+              <li><strong>kW in PS:</strong> Leistung (PS) = kW × 1,35962</li>
+            </ul>
+          </div>
+          <p>
+            Wer im Kopf überschlagen will, nutzt die <strong>Faustregel</strong>:
+            PS × 3/4 ergibt ungefähr kW, kW × 4/3 ergibt ungefähr PS. Für die exakte Angabe
+            zählt aber der genaue Faktor 0,73549875.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist eigentlich 1 PS?</h3>
+          <p>
+            Die Pferdestärke ist nach DIN 66036 definiert als die Leistung, die nötig ist, um eine
+            Masse von <strong>75 kg</strong> innerhalb einer Sekunde einen Meter hoch zu heben –
+            also gegen die Schwerkraft der Erde mit 1 m/s zu bewegen. Daraus ergeben sich exakt
+            <strong> 735,49875 Watt</strong> bzw. 0,73549875 kW. Die Einheit geht auf die von
+            James Watt eingeführte „Horsepower” zurück.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum kW die gesetzliche Einheit ist</h3>
+          <p>
+            Seit dem <strong>1. Januar 1978</strong> ist in Deutschland das Watt – und damit das
+            Kilowatt – die einzig gesetzlich vorgeschriebene Einheit für die Leistung von Motoren.
+            Die ausschließliche Angabe in PS ist im geschäftlichen und amtlichen Verkehr seither
+            nicht mehr zulässig. PS darf nur noch <strong>zusätzlich</strong> zur kW-Angabe genannt
+            werden, etwa in der Werbung. Im Fahrzeugschein (Zulassungsbescheinigung Teil I) finden
+            Sie die Leistung im Feld <strong>P.2</strong> in Kilowatt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wofür ist der kW-Wert wichtig?</h3>
+          <p>
+            Für nahezu alle amtlichen und finanziellen Belange zählt der kW-Wert: bei der Zulassung,
+            bei der Kfz-Versicherung (Typklasse) und bei der
+            <a href="/kfz-steuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Kfz-Steuer</a>.
+            Wer Einheiten generell ineinander umrechnen möchte, findet im
+            <a href="/einheiten-rechner" class="text-blue-600 hover:text-blue-800 underline">Einheiten-Rechner</a>
+            weitere Größen wie Länge, Gewicht und Geschwindigkeit.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich typische Motorleistungen aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Kompaktwagen mit 100 PS</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Eingabe:</div>
+              <div class="font-medium text-gray-800">100 PS</div>
+              <div class="text-gray-600">Rechnung:</div>
+              <div class="font-medium text-gray-800">100 × 0,73549875</div>
+              <div class="text-gray-600">Ergebnis:</div>
+              <div class="font-medium text-green-700">73,55 kW</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Fahrzeugschein zeigt 110 kW</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Eingabe:</div>
+              <div class="font-medium text-gray-800">110 kW</div>
+              <div class="text-gray-600">Rechnung:</div>
+              <div class="font-medium text-gray-800">110 × 1,35962</div>
+              <div class="text-gray-600">Ergebnis:</div>
+              <div class="font-medium text-green-700">149,56 PS (≈ 150 PS)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Gerundete „Marketing-PS” weichen oft leicht vom exakten Wert ab.
+          Ein als „150 PS” beworbenes Auto hat im Schein meist genau 110 kW – das sind rechnerisch
+          149,56 PS.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Falscher Faktor</h3>
+            <p>Häufig wird mit „0,735” oder „1,36” gerechnet. Für eine grobe Schätzung reicht das,
+            für die exakte Angabe gilt aber 0,73549875 bzw. 1,35962.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Richtung verwechselt</h3>
+            <p>kW ist die kleinere Zahl, PS die größere. Wer 100 kW mit 0,735 multipliziert, erhält
+            einen viel zu kleinen Wert. Merke: <strong>von PS zu kW wird die Zahl kleiner</strong>.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: PS ist nicht gleich „hp”</h3>
+            <p>Die metrische PS (735,5 W) unterscheidet sich leicht von der angelsächsischen
+            Horsepower (hp, 745,7 W). Bei US-Importen kann die hp-Angabe minimal abweichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Nenn- vs. Spitzenleistung</h3>
+            <p>Vor allem bei Elektroautos werden Dauer-, Nenn- und Spitzenleistung unterschieden.
+            Im Fahrzeugschein steht die maßgebliche Nennleistung in kW – die Umrechnung gilt für
+            jeden dieser Werte gleich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur kW-PS-Umrechnung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich kW in PS um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie den kW-Wert mit <strong>1,35962</strong>. Beispiel:
+              110 kW × 1,35962 = rund 149,56 PS. Als Faustregel können Sie kW auch mit 4/3
+              multiplizieren.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich PS in kW um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie den PS-Wert mit <strong>0,73549875</strong>. Beispiel:
+              100 PS × 0,73549875 = 73,55 kW. Als Faustregel können Sie PS auch mit 3/4
+              multiplizieren.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel kW hat 1 PS?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>1 PS entspricht exakt <strong>0,73549875 kW</strong> (735,49875 Watt). Dieser Wert
+              ist über die DIN 66036 definiert: die Leistung, um 75 kg in einer Sekunde einen Meter
+              hochzuheben.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel PS hat 1 kW?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>1 kW entspricht rund <strong>1,35962 PS</strong>. Der Wert ist der Kehrwert des
+              PS-Faktors (1 ÷ 0,73549875).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum steht im Fahrzeugschein nur kW?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Seit dem <strong>1. Januar 1978</strong> ist das Kilowatt in Deutschland die einzig
+              gesetzliche Einheit für Motorleistung. PS darf nur noch zusätzlich angegeben werden,
+              die kW-Angabe muss im Vordergrund stehen. Im Fahrzeugschein finden Sie die Leistung im
+              Feld P.2 in kW.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher Wert zählt für die Kfz-Steuer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Maßgeblich ist immer der eingetragene <strong>kW-Wert</strong> – nicht die PS-Angabe.
+              Für die genaue Berechnung der jährlichen Steuer nutzen Sie unseren
+              <a href="/kfz-steuer-rechner" class="text-blue-600 underline">Kfz-Steuer-Rechner</a>.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/einheiten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einheiten-Rechner</p>
+          </a>
+          <a href="/spritkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛽</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spritkosten-Rechner</p>
+          </a>
+          <a href="/autoleasing-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Autoleasing-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "kW-PS-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kw-ps-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich kW in PS um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie den kW-Wert mit 1,35962. Beispiel: 110 kW × 1,35962 = rund 149,56 PS. Als Faustregel können Sie kW auch mit 4/3 multiplizieren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich PS in kW um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie den PS-Wert mit 0,73549875. Beispiel: 100 PS × 0,73549875 = 73,55 kW. Als Faustregel können Sie PS auch mit 3/4 multiplizieren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel kW hat 1 PS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1 PS entspricht exakt 0,73549875 kW (735,49875 Watt). Dieser Wert ist über die DIN 66036 definiert: die Leistung, um 75 kg in einer Sekunde einen Meter hochzuheben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel PS hat 1 kW?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1 kW entspricht rund 1,35962 PS. Der Wert ist der Kehrwert des PS-Faktors (1 ÷ 0,73549875)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum steht im Fahrzeugschein nur kW?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seit dem 1. Januar 1978 ist das Kilowatt in Deutschland die einzig gesetzliche Einheit für Motorleistung. PS darf nur noch zusätzlich angegeben werden, die kW-Angabe muss im Vordergrund stehen. Im Fahrzeugschein finden Sie die Leistung im Feld P.2 in kW."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher Wert zählt für die Kfz-Steuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Maßgeblich ist immer der eingetragene kW-Wert – nicht die PS-Angabe. Für die genaue Berechnung der jährlichen Steuer nutzen Sie unseren Kfz-Steuer-Rechner."
+        }
+      }
+    ]
+  })} />
+</Layout>

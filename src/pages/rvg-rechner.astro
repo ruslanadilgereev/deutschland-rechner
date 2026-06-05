@@ -1,0 +1,434 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RvgRechner from '../components/rechner/RvgRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Anwaltskosten-Rechner (RVG) 2026 – Anwalts- & Gerichtskosten nach Streitwert";
+const description = "Anwaltskosten nach RVG berechnen: Geschäftsgebühr 1,3, Auslagenpauschale und 19 % USt. aus dem Gegenstandswert. Optional mit Gerichtsverfahren und Gerichtskosten. Kostenlos, Stand 2026, ohne Gewähr.";
+const keywords = "Anwaltskosten Rechner, RVG Rechner, Anwaltskosten berechnen, RVG Tabelle 2026, Geschäftsgebühr, Gegenstandswert, Streitwert, Gerichtskosten, Verfahrensgebühr, Anwaltsgebühren";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Anwaltskosten-Rechner (RVG)", url: "/rvg-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Anwaltskosten-Rechner (RVG)' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Anwaltskosten-Rechner (RVG) 2026</h1>
+            <p class="text-blue-200 text-sm">Anwalts- & Gerichtskosten nach Streitwert berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> RVG-Gebührentabelle (Anlage 2 zu § 13 Abs. 1 RVG) und GKG-Tabelle (Anlage 2 zu § 34 GKG) – Stand nach KostBRÄG 2025, unverändert gültig für 2026</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Geschäftsgebühr 1,3 (Nr. 2300 VV), Auslagenpauschale (Nr. 7002), 19 % Umsatzsteuer (Nr. 7008); optional Verfahrensgebühr 1,3, Terminsgebühr 1,2 und Gerichtskosten (3,0)</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Vergütungsvereinbarungen, abweichende Gebührenrahmen, Beweisaufnahme, mehrere Instanzen – der Rechner liefert eine Schätzung der Regelgebühren, ohne Gewähr</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RvgRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Anwaltskosten nach RVG: Gegenstandswert, Gebühren & Berechnung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wie viel kostet ein Anwalt? Die Antwort steckt im <strong>Rechtsanwaltsvergütungsgesetz
+            (RVG)</strong>. Die meisten Anwaltsgebühren sind <strong>Wertgebühren</strong> – sie
+            richten sich nach dem <strong>Gegenstandswert</strong> (umgangssprachlich „Streitwert").
+            Je höher der Wert, um den es geht, desto höher die Gebühr. Mit unserem
+            <strong> Anwaltskosten-Rechner</strong> schätzen Sie die typischen Kosten in Sekunden –
+            außergerichtlich und optional mit Gerichtsverfahren.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Gegenstandswert?</h3>
+          <p>
+            Der Gegenstandswert ist der wirtschaftliche Wert der Angelegenheit – etwa die geforderte
+            Geldsumme, der Wert eines umstrittenen Vertrags oder einer Forderung. Aus diesem Wert
+            liest das RVG in der <strong>Anlage 2 zu § 13 RVG</strong> die sogenannte
+            <strong> 1,0-Gebühr</strong> ab. Beispiele für die 1,0-Gebühr nach der aktuellen Tabelle:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-1 text-sm">
+              <li>Gegenstandswert bis 500 € → 1,0-Gebühr = <strong>51,50 €</strong></li>
+              <li>bis 1.000 € → <strong>93,00 €</strong></li>
+              <li>bis 5.000 € → <strong>354,50 €</strong></li>
+              <li>bis 10.000 € → <strong>652,00 €</strong></li>
+              <li>bis 50.000 € → <strong>1.357,00 €</strong></li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die wichtigsten Gebührensätze</h3>
+          <p>
+            Auf die 1,0-Gebühr werden je nach Tätigkeit Gebührensätze (Faktoren) angewendet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Geschäftsgebühr 1,3</strong> (Nr. 2300 VV RVG) – für die außergerichtliche Vertretung (Beratung, Schriftverkehr, Verhandlung). Der Satz von 1,3 ist der praxisübliche Regelfall.</li>
+            <li><strong>Verfahrensgebühr 1,3</strong> (Nr. 3100 VV RVG) – für die Vertretung im gerichtlichen Verfahren.</li>
+            <li><strong>Terminsgebühr 1,2</strong> (Nr. 3104 VV RVG) – wenn der Anwalt einen Gerichtstermin wahrnimmt.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Auslagen und Umsatzsteuer</h3>
+          <p>
+            Zu den Gebühren kommen die <strong>Auslagenpauschale</strong> für Post und Telekommunikation
+            (Nr. 7002 VV RVG: 20 % der Gebühren, höchstens 20 €) und die
+            <strong> Umsatzsteuer</strong> von 19 % (Nr. 7008 VV RVG). Privatpersonen zahlen die
+            Umsatzsteuer voll; vorsteuerabzugsberechtigte Unternehmen bekommen sie über die
+            <a href="/mehrwertsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Vorsteuer</a> erstattet.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was kommt im Gerichtsverfahren dazu?</h3>
+          <p>
+            Wird aus der außergerichtlichen Sache ein Prozess, entstehen für den Anwalt zusätzlich
+            Verfahrens- und Terminsgebühr. Dabei wird die bereits angefallene Geschäftsgebühr
+            <strong> zur Hälfte (höchstens 0,75) auf die Verfahrensgebühr angerechnet</strong>
+            (Vorbemerkung 3 Abs. 4 VV RVG) – das verhindert eine Doppelbelastung. Hinzu kommen die
+            <strong> Gerichtskosten</strong>: In erster Instanz fallen vor dem Zivilgericht 3,0
+            Gerichtsgebühren nach der GKG-Tabelle an (Anlage 2 zu § 34 GKG). Gerichtskosten sind
+            <strong> umsatzsteuerfrei</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer zahlt am Ende?</h3>
+          <p>
+            Im Zivilprozess gilt: Wer verliert, trägt grundsätzlich die gesamten Kosten – die eigenen
+            Anwaltskosten, die des Gegners und die Gerichtskosten (§ 91 ZPO). Deshalb ist das
+            Kostenrisiko vor einer Klage genau zu kalkulieren. Eine
+            <strong> Rechtsschutzversicherung</strong> kann diese Kosten je nach Tarif übernehmen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich verschiedene Gegenstandswerte aus (Privatperson, 19 % USt., Stand 2026):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Außergerichtlich, Gegenstandswert 5.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">1,0-Gebühr (Tabelle):</div>
+              <div class="font-medium text-gray-800">354,50 €</div>
+              <div class="text-gray-600">Geschäftsgebühr 1,3:</div>
+              <div class="font-medium text-gray-800">460,85 €</div>
+              <div class="text-gray-600">Auslagenpauschale:</div>
+              <div class="font-medium text-gray-800">20,00 €</div>
+              <div class="text-gray-600">+ 19 % USt.:</div>
+              <div class="font-medium text-gray-800">91,36 €</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">572,21 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Außergerichtlich, Gegenstandswert 1.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">1,0-Gebühr (Tabelle):</div>
+              <div class="font-medium text-gray-800">93,00 €</div>
+              <div class="text-gray-600">Geschäftsgebühr 1,3:</div>
+              <div class="font-medium text-gray-800">120,90 €</div>
+              <div class="text-gray-600">Auslagenpauschale (20 %):</div>
+              <div class="font-medium text-gray-800">20,00 €</div>
+              <div class="text-gray-600">+ 19 % USt.:</div>
+              <div class="font-medium text-gray-800">26,77 €</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">167,67 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Mit Gerichtsverfahren, Gegenstandswert 5.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Anwalt außergerichtlich:</div>
+              <div class="font-medium text-gray-800">572,21 €</div>
+              <div class="text-gray-600">Anwalt Gericht (nach Anrechnung):</div>
+              <div class="font-medium text-gray-800">ca. 804,23 €</div>
+              <div class="text-gray-600">Gerichtskosten (3,0):</div>
+              <div class="font-medium text-gray-800">511,50 €</div>
+              <div class="text-gray-600">Summe (nur eigene Seite):</div>
+              <div class="font-medium text-green-700">ca. 1.887,94 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Hinweis:</strong> Bei einem Prozess kommen in der Regel noch die Kosten des
+          gegnerischen Anwalts hinzu, die die unterlegene Partei trägt. Das gesamte Kostenrisiko
+          liegt damit deutlich höher als die reinen eigenen Anwaltskosten.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Gegenstandswert mit Anwaltskosten verwechseln</h3>
+            <p>Der Gegenstandswert ist <strong>nicht</strong> der Betrag, den der Anwalt kostet,
+            sondern der Wert der Streitsache. Aus ihm wird die Gebühr erst <em>abgeleitet</em>.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Umsatzsteuer und Auslagen vergessen</h3>
+            <p>Zur reinen Gebühr kommen immer noch 20 € Auslagenpauschale und 19 % Umsatzsteuer
+            obendrauf. Eine Schätzung „nur Gebühr" liegt deutlich zu niedrig.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Anrechnung der Geschäftsgebühr übersehen</h3>
+            <p>Wechselt die Sache von außergerichtlich zu Gericht, wird die Geschäftsgebühr
+            zur Hälfte (max. 0,75) auf die Verfahrensgebühr angerechnet – die Summe ist also
+            niedriger als beide Gebühren addiert.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Erstberatung für Verbraucher</h3>
+            <p>Für die erste Beratung von Verbrauchern ist die Gebühr gesetzlich gedeckelt
+            (§ 34 RVG: höchstens 190 € für die Erstberatung, zzgl. USt.). Anwälte vereinbaren
+            die Beratungsgebühr in der Praxis meist individuell.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Vergütungsvereinbarung</h3>
+            <p>Anwalt und Mandant können eine vom RVG abweichende Vergütung vereinbaren (z. B.
+            Stunden- oder Pauschalhonorar). Dann gelten die hier gezeigten Werte nicht – sie sind
+            aber meist die Untergrenze für eine gerichtliche Vertretung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sozial- und Strafrecht</h3>
+            <p>In Teilen des Sozialrechts und im Strafrecht gelten <strong>Betragsrahmengebühren</strong>
+            statt Wertgebühren. Dieser Rechner bildet die wertabhängigen Gebühren (z. B. Zivil-,
+            Arbeits-, Verwaltungsrecht) ab.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Anwaltskosten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie werden Anwaltskosten nach RVG berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die meisten Anwaltsgebühren sind Wertgebühren. Aus dem Gegenstandswert wird über
+              die Tabelle der Anlage 2 zu § 13 RVG die 1,0-Gebühr abgelesen. Außergerichtlich wird
+              darauf die Geschäftsgebühr von 1,3 angewendet, dann kommen die Auslagenpauschale
+              (max. 20 €) und 19 % Umsatzsteuer hinzu. Beispiel bei 5.000 € Gegenstandswert:
+              354,50 € × 1,3 = 460,85 € + 20 € + 19 % USt. = 572,21 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Gegenstandswert und Streitwert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beide Begriffe meinen im Kern dasselbe: den wirtschaftlichen Wert der Angelegenheit.
+              „Gegenstandswert" ist der Begriff aus dem RVG für die Anwaltsgebühren,
+              „Streitwert" wird vor allem für die Gerichtskosten verwendet. In den meisten Fällen
+              sind beide Werte identisch.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Anwalt im Gerichtsverfahren zusätzlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Im gerichtlichen Verfahren entstehen die Verfahrensgebühr (1,3, Nr. 3100 VV RVG)
+              und die Terminsgebühr (1,2, Nr. 3104 VV RVG). Eine zuvor angefallene Geschäftsgebühr
+              wird zur Hälfte (höchstens 0,75) auf die Verfahrensgebühr angerechnet. Zusätzlich
+              fallen Gerichtskosten an – in erster Instanz vor dem Zivilgericht 3,0 Gerichtsgebühren
+              nach der GKG-Tabelle, die umsatzsteuerfrei sind.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die RVG-Gebühren 2026 gestiegen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zum 1. Juni 2025 wurden die Anwaltsgebühren durch das KostBRÄG 2025 erstmals seit
+              2021 um rund 6 % erhöht. Diese Werte gelten unverändert auch für 2026. Bei einem
+              Gegenstandswert bis 500 € beträgt die 1,0-Gebühr seither 51,50 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich auf Anwaltskosten Umsatzsteuer zahlen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Auf Anwaltsgebühren und die Auslagenpauschale fallen 19 % Umsatzsteuer an
+              (Nr. 7008 VV RVG). Privatpersonen tragen diese voll. Unternehmen, die zum
+              Vorsteuerabzug berechtigt sind, bekommen die Umsatzsteuer über das Finanzamt
+              erstattet. Gerichtskosten sind dagegen umsatzsteuerfrei.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ersetzt dieser Rechner eine anwaltliche Kostennote?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert eine unverbindliche Schätzung der typischen Regelgebühren
+              nach RVG und ersetzt weder eine Rechtsberatung noch die verbindliche Kostenrechnung
+              Ihres Anwalts. Die tatsächlichen Kosten hängen vom Einzelfall und einer eventuellen
+              Vergütungsvereinbarung ab. Alle Angaben ohne Gewähr.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+          <a href="/abfindung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Abfindungs-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">➗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Anwaltskosten-Rechner (RVG) 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/rvg-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie werden Anwaltskosten nach RVG berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die meisten Anwaltsgebühren sind Wertgebühren. Aus dem Gegenstandswert wird über die Tabelle der Anlage 2 zu § 13 RVG die 1,0-Gebühr abgelesen. Außergerichtlich wird darauf die Geschäftsgebühr von 1,3 angewendet, dann kommen die Auslagenpauschale (max. 20 €) und 19 % Umsatzsteuer hinzu. Beispiel bei 5.000 € Gegenstandswert: 354,50 € × 1,3 = 460,85 € + 20 € + 19 % USt. = 572,21 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Gegenstandswert und Streitwert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beide Begriffe meinen im Kern dasselbe: den wirtschaftlichen Wert der Angelegenheit. „Gegenstandswert\" ist der Begriff aus dem RVG für die Anwaltsgebühren, „Streitwert\" wird vor allem für die Gerichtskosten verwendet. In den meisten Fällen sind beide Werte identisch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Anwalt im Gerichtsverfahren zusätzlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Im gerichtlichen Verfahren entstehen die Verfahrensgebühr (1,3, Nr. 3100 VV RVG) und die Terminsgebühr (1,2, Nr. 3104 VV RVG). Eine zuvor angefallene Geschäftsgebühr wird zur Hälfte (höchstens 0,75) auf die Verfahrensgebühr angerechnet. Zusätzlich fallen Gerichtskosten an – in erster Instanz vor dem Zivilgericht 3,0 Gerichtsgebühren nach der GKG-Tabelle, die umsatzsteuerfrei sind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind die RVG-Gebühren 2026 gestiegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zum 1. Juni 2025 wurden die Anwaltsgebühren durch das KostBRÄG 2025 erstmals seit 2021 um rund 6 % erhöht. Diese Werte gelten unverändert auch für 2026. Bei einem Gegenstandswert bis 500 € beträgt die 1,0-Gebühr seither 51,50 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich auf Anwaltskosten Umsatzsteuer zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Auf Anwaltsgebühren und die Auslagenpauschale fallen 19 % Umsatzsteuer an (Nr. 7008 VV RVG). Privatpersonen tragen diese voll. Unternehmen, die zum Vorsteuerabzug berechtigt sind, bekommen die Umsatzsteuer über das Finanzamt erstattet. Gerichtskosten sind dagegen umsatzsteuerfrei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ersetzt dieser Rechner eine anwaltliche Kostennote?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert eine unverbindliche Schätzung der typischen Regelgebühren nach RVG und ersetzt weder eine Rechtsberatung noch die verbindliche Kostenrechnung Ihres Anwalts. Die tatsächlichen Kosten hängen vom Einzelfall und einer eventuellen Vergütungsvereinbarung ab. Alle Angaben ohne Gewähr."
+        }
+      }
+    ]
+  })} />
+</Layout>

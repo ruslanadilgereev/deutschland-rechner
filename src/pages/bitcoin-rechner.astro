@@ -1,0 +1,393 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BitcoinRechner from '../components/rechner/BitcoinRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Bitcoin- & Krypto-Rechner 2026 – Live BTC, ETH, XRP in Euro umrechnen";
+const description = "Kryptowährungen live in Euro umrechnen: Bitcoin, Ethereum, XRP, Solana & mehr in beide Richtungen. Kostenloser Krypto-Rechner mit aktuellen Kursen von CoinGecko, Kurs-Zeitstempel und Steuer-Hinweis.";
+const keywords = "Bitcoin Rechner, Krypto Rechner, BTC in Euro, Bitcoin in Euro umrechnen, Ethereum Rechner, Krypto Umrechner, Kryptowährung Euro, Bitcoin Kurs Rechner, Krypto Live Kurs, BTC EUR";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bitcoin- & Krypto-Rechner", url: "/bitcoin-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Bitcoin- & Krypto-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">₿</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bitcoin- & Krypto-Rechner</h1>
+            <p class="text-orange-100 text-sm">Krypto live in Euro umrechnen – in beide Richtungen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Datenquelle:</strong> Live-Kurse der kostenlosen CoinGecko-API (direkt im Browser abgerufen) – mit Kurs-Zeitstempel und Aktualisieren-Funktion</p>
+            <p class="mb-1"><strong>Umfasst:</strong> 12 große Kryptowährungen (Bitcoin, Ethereum, XRP, Solana, BNB, Cardano, Dogecoin, TRON, Chainlink, Avalanche, Polkadot, Litecoin), Umrechnung Krypto ↔ Euro in beide Richtungen</p>
+            <p><strong>Nicht berücksichtigt:</strong> Handelsgebühren, Spreads einzelner Börsen, Steuern auf Gewinne – maßgeblich ist immer der reale Kurs Ihrer Börse zum Handelszeitpunkt</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BitcoinRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Krypto in Euro umrechnen: So funktioniert der Bitcoin-Rechner</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Bitcoin- &amp; Krypto-Rechner</strong> rechnen Sie Kryptowährungen in
+            Sekundenschnelle in Euro um – und umgekehrt. Wählen Sie eine der zwölf großen
+            Kryptowährungen aus, geben Sie eine Menge ein (z.&nbsp;B. 0,5 BTC) und sehen Sie sofort
+            den aktuellen Euro-Gegenwert. Oder Sie geben einen Euro-Betrag ein und erfahren, wie
+            viele Coins Sie dafür bekommen. Beide Richtungen funktionieren live.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Woher kommen die Kurse?</h3>
+          <p>
+            Die Kursdaten stammen aus der kostenlosen <strong>CoinGecko-API</strong>, einem der
+            größten unabhängigen Anbieter für Krypto-Marktdaten. Der Kurs wird direkt in Ihrem
+            Browser abgerufen, sobald Sie die Seite öffnen – inklusive eines Zeitstempels, der
+            anzeigt, wie aktuell der Kurs ist. Über die Schaltfläche „Aktualisieren" laden Sie
+            jederzeit den neuesten Stand nach.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum weicht der Kurs von meiner Börse ab?</h3>
+          <p>
+            Der angezeigte Kurs ist ein <strong>Durchschnitts- bzw. Referenzkurs</strong> über viele
+            Handelsplätze hinweg. Ihre konkrete Börse (z.&nbsp;B. Coinbase, Kraken oder Bitpanda)
+            kann leicht abweichen, weil dort eigene Angebots- und Nachfragekurse, ein
+            <em>Spread</em> sowie Handelsgebühren gelten. Für eine echte Order ist immer der Kurs
+            Ihrer Börse zum Zeitpunkt des Kaufs oder Verkaufs maßgeblich.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeutet „Satoshi"?</h3>
+          <p>
+            Ein Bitcoin lässt sich in 100 Millionen kleine Einheiten teilen. Die kleinste Einheit
+            heißt <strong>Satoshi</strong> (kurz: Sat) – benannt nach dem unbekannten Bitcoin-Erfinder
+            Satoshi Nakamoto. 1 Bitcoin = 100.000.000 Satoshi. Deshalb können Sie auch winzige
+            Bruchteile eines Coins kaufen und müssen nicht einen ganzen Bitcoin erwerben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Krypto-Gewinne und die Steuer in Deutschland</h3>
+          <p>
+            Kryptowährungen gelten in Deutschland als „sonstige Wirtschaftsgüter" und fallen unter
+            die privaten Veräußerungsgeschäfte nach <strong>§ 23 EStG</strong> – nicht unter die
+            Abgeltungsteuer. Entscheidend ist die <strong>Haltefrist</strong>: Verkaufen Sie Ihre
+            Coins nach mehr als einem Jahr, ist der Gewinn komplett <strong>steuerfrei</strong>.
+            Innerhalb des ersten Jahres bleibt der Gewinn nur bis zur <strong>Freigrenze von
+            1.000&nbsp;Euro</strong> pro Jahr steuerfrei. Wird diese Grenze auch nur um einen Euro
+            überschritten, ist der gesamte Gewinn mit Ihrem persönlichen Einkommensteuersatz zu
+            versteuern. Wie hoch Ihre Steuer konkret ausfällt, ermitteln Sie mit unserem
+            <a href="/krypto-steuer-rechner" class="text-orange-600 hover:text-orange-800 underline">Krypto-Steuer-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beispiele zur Veranschaulichung (Kurse stark gerundet, nur zur Illustration):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Bitcoin-Menge in Euro umrechnen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Kryptowährung:</div>
+              <div class="font-medium text-gray-800">Bitcoin (BTC)</div>
+              <div class="text-gray-600">Beispielkurs:</div>
+              <div class="font-medium text-gray-800">50.000 € / BTC</div>
+              <div class="text-gray-600">Menge:</div>
+              <div class="font-medium text-gray-800">0,25 BTC</div>
+              <div class="text-gray-600">Gegenwert:</div>
+              <div class="font-medium text-orange-700">12.500 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Euro-Betrag in Ethereum umrechnen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Kryptowährung:</div>
+              <div class="font-medium text-gray-800">Ethereum (ETH)</div>
+              <div class="text-gray-600">Beispielkurs:</div>
+              <div class="font-medium text-gray-800">1.350 € / ETH</div>
+              <div class="text-gray-600">Euro-Betrag:</div>
+              <div class="font-medium text-gray-800">1.000 €</div>
+              <div class="text-gray-600">Sie erhalten:</div>
+              <div class="font-medium text-orange-700">≈ 0,74074 ETH</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Die echten Kurse im Rechner oben sind live und weichen von diesen
+          gerundeten Beispielwerten ab. Geben Sie einfach Ihre Menge ein, um den aktuellen Gegenwert
+          zu sehen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Referenzkurs mit Börsenkurs verwechseln</h3>
+            <p>Der angezeigte Kurs ist ein marktweiter Durchschnitt. Auf Ihrer Börse zahlen Sie
+            zusätzlich Spread und Gebühren – der reale Kaufpreis liegt deshalb meist etwas höher
+            als hier angezeigt.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Freigrenze mit Freibetrag verwechseln</h3>
+            <p>Die 1.000-Euro-Grenze bei Krypto ist eine <strong>Freigrenze</strong>, kein
+            Freibetrag. Schon ein Euro darüber macht den <strong>kompletten</strong> Gewinn
+            steuerpflichtig – nicht nur den überschießenden Teil.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Tausch Coin-zu-Coin als steuerfrei ansehen</h3>
+            <p>Auch der Tausch einer Kryptowährung in eine andere (z.&nbsp;B. BTC in ETH) gilt
+            steuerlich als Verkauf und kann innerhalb der Haltefrist einen steuerpflichtigen Gewinn
+            auslösen – nicht nur der Verkauf in Euro.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kurs lädt nicht</h3>
+            <p>Wenn die CoinGecko-API kurzzeitig nicht erreichbar ist (z.&nbsp;B. bei sehr hoher
+            Last), zeigt der Rechner einen Hinweis und eine Schaltfläche „Erneut versuchen". Laden
+            Sie den Kurs dann einfach neu.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Geplante Reform der Haltefrist</h3>
+            <p>Es gibt politische Überlegungen, die einjährige Haltefrist für Krypto-Gewinne
+            abzuschaffen (frühestens ab 2027 denkbar). Bis ein Gesetz beschlossen ist, gilt
+            unverändert die einjährige Haltefrist nach § 23 EStG.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich Bitcoin in Euro um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Wählen Sie im Rechner oben Bitcoin (BTC) aus und geben Sie Ihre Menge ein – der
+              Euro-Gegenwert erscheint sofort. Umgekehrt können Sie auch einen Euro-Betrag eingeben,
+              dann zeigt der Rechner die entsprechende Bitcoin-Menge. Grundlage ist der aktuelle
+              Live-Kurs von CoinGecko.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die Kurse aktuell und live?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Die Kurse werden beim Öffnen der Seite direkt von der CoinGecko-API abgerufen.
+              Ein Zeitstempel zeigt an, wie aktuell der Kurs ist. Über die Schaltfläche
+              „Aktualisieren" laden Sie jederzeit den neuesten Stand nach. Krypto-Kurse sind sehr
+              volatil und können sich innerhalb von Minuten ändern.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum weicht der Kurs von meiner Börse ab?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der angezeigte Kurs ist ein marktweiter Referenzkurs. Einzelne Börsen wie Coinbase,
+              Kraken oder Bitpanda haben eigene Angebots- und Nachfragekurse, einen Spread und
+              Handelsgebühren. Für eine echte Order gilt immer der Kurs Ihrer Börse zum
+              Handelszeitpunkt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich Krypto-Gewinne in Deutschland versteuern?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Gewinne aus privaten Krypto-Verkäufen sind nach § 23 EStG steuerfrei, wenn die
+              Coins länger als ein Jahr gehalten wurden. Innerhalb der Haltefrist bleiben Gewinne
+              bis zur Freigrenze von 1.000 € pro Jahr steuerfrei – darüber wird der gesamte Gewinn
+              mit dem persönlichen Einkommensteuersatz versteuert. Konkret berechnen lässt sich das
+              mit dem Krypto-Steuer-Rechner.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Kryptowährungen kann ich umrechnen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Aktuell stehen zwölf große Kryptowährungen zur Auswahl: Bitcoin (BTC),
+              Ethereum (ETH), XRP, Solana (SOL), BNB, Cardano (ADA), Dogecoin (DOGE), TRON (TRX),
+              Chainlink (LINK), Avalanche (AVAX), Polkadot (DOT) und Litecoin (LTC) – jeweils in
+              Euro und zurück.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist dieser Rechner eine Anlageberatung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner dient ausschließlich der Umrechnung zu Informationszwecken und
+              stellt keine Anlageberatung dar. Kryptowährungen sind hochspekulativ; ein Totalverlust
+              ist möglich. Treffen Sie Anlageentscheidungen nicht allein auf Basis dieses Rechners.
+              Alle Angaben ohne Gewähr und ersetzen keine individuelle Steuer- oder Anlageberatung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/krypto-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪙</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Krypto-Steuer-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💹</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">ETF-Sparplan-Rechner</p>
+          </a>
+          <a href="/inflations-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💸</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Inflations-Rechner</p>
+          </a>
+          <a href="/spar-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spar-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">➗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bitcoin- & Krypto-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bitcoin-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich Bitcoin in Euro um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wählen Sie im Rechner Bitcoin (BTC) aus und geben Sie Ihre Menge ein – der Euro-Gegenwert erscheint sofort. Umgekehrt können Sie auch einen Euro-Betrag eingeben, dann zeigt der Rechner die entsprechende Bitcoin-Menge. Grundlage ist der aktuelle Live-Kurs von CoinGecko."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind die Kurse aktuell und live?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Die Kurse werden beim Öffnen der Seite direkt von der CoinGecko-API abgerufen. Ein Zeitstempel zeigt an, wie aktuell der Kurs ist. Über die Schaltfläche Aktualisieren laden Sie jederzeit den neuesten Stand nach. Krypto-Kurse sind sehr volatil und können sich innerhalb von Minuten ändern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum weicht der Kurs von meiner Börse ab?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der angezeigte Kurs ist ein marktweiter Referenzkurs. Einzelne Börsen wie Coinbase, Kraken oder Bitpanda haben eigene Angebots- und Nachfragekurse, einen Spread und Handelsgebühren. Für eine echte Order gilt immer der Kurs Ihrer Börse zum Handelszeitpunkt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich Krypto-Gewinne in Deutschland versteuern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gewinne aus privaten Krypto-Verkäufen sind nach § 23 EStG steuerfrei, wenn die Coins länger als ein Jahr gehalten wurden. Innerhalb der Haltefrist bleiben Gewinne bis zur Freigrenze von 1.000 € pro Jahr steuerfrei – darüber wird der gesamte Gewinn mit dem persönlichen Einkommensteuersatz versteuert. Konkret berechnen lässt sich das mit dem Krypto-Steuer-Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kryptowährungen kann ich umrechnen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aktuell stehen zwölf große Kryptowährungen zur Auswahl: Bitcoin (BTC), Ethereum (ETH), XRP, Solana (SOL), BNB, Cardano (ADA), Dogecoin (DOGE), TRON (TRX), Chainlink (LINK), Avalanche (AVAX), Polkadot (DOT) und Litecoin (LTC) – jeweils in Euro und zurück."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist dieser Rechner eine Anlageberatung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner dient ausschließlich der Umrechnung zu Informationszwecken und stellt keine Anlageberatung dar. Kryptowährungen sind hochspekulativ; ein Totalverlust ist möglich. Treffen Sie Anlageentscheidungen nicht allein auf Basis dieses Rechners. Alle Angaben ohne Gewähr und ersetzen keine individuelle Steuer- oder Anlageberatung."
+        }
+      }
+    ]
+  })} />
+</Layout>
