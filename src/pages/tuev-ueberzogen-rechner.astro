@@ -1,0 +1,427 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TuevUeberzogenRechner from '../components/rechner/TuevUeberzogenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "TÜV überzogen 2026 – Bußgeld & Kosten bei überfälliger HU";
+const description = "TÜV überzogen – Bußgeld berechnen: Welche Strafe droht bei überfälliger Hauptuntersuchung (HU)? Gebührenstufen nach 2, 4 und 8 Monaten, Punkt in Flensburg und die vertiefte HU mit 20 % Mehrkosten. Aktueller Bußgeldkatalog 2026.";
+const keywords = "TÜV überzogen Strafe, HU überzogen Bußgeld, TÜV abgelaufen Kosten, Hauptuntersuchung überfällig, TÜV vergessen Bußgeld, vertiefte HU, TÜV Punkt Flensburg";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "TÜV-überzogen-Rechner", url: "/tuev-ueberzogen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'TÜV-überzogen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔧</span>
+          <div>
+            <h1 class="text-2xl font-bold">TÜV-überzogen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Bußgeld & Mehrkosten bei überzogener Hauptuntersuchung</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 29 StVZO (Hauptuntersuchung) und die BKatV-Tatbestände zur HU; Anlage VIII StVZO (vertiefte HU bei Überziehung über 2 Monate, +20 % Gebühr).</p>
+            <p class="mb-1"><strong>Voreinstellung:</strong> Überziehung 2–4 Monate, reguläre HU-Gebühr 140 € – frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> versicherungsrechtliche Folgen bei einem Unfall, Stilllegung durch die Behörde, regionale Prüfgebühren (variieren je Prüforganisation und Bundesland), Sicherheitsprüfung (SP) bei Nutzfahrzeugen. Keine Rechtsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TuevUeberzogenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Was kostet ein überzogener TÜV 2026?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>TÜV-überzogen-Rechner</strong> ermitteln Sie, welche Strafe und welche
+            Mehrkosten anfallen, wenn die <strong>Hauptuntersuchung (HU)</strong> überfällig ist.
+            Umgangssprachlich heißt die HU „TÜV“, durchgeführt wird sie aber von verschiedenen
+            Prüforganisationen wie TÜV, DEKRA, GTÜ oder KÜS. Grundlage für die Sanktionen ist
+            <strong> § 29 der Straßenverkehrs-Zulassungs-Ordnung (StVZO)</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Gebührenstufen</h3>
+          <p>
+            Das Bußgeld steigt mit der Dauer der Überziehung. Maßgeblich ist der auf der Plakette
+            angegebene Fälligkeitsmonat:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Bis 2 Monate:</strong> kein Bußgeld</li>
+              <li><strong>Über 2 bis 4 Monate:</strong> 15 € Verwarnungsgeld</li>
+              <li><strong>Über 4 bis 8 Monate:</strong> 25 € Verwarnungsgeld</li>
+              <li><strong>Mehr als 8 Monate:</strong> 60 € Bußgeld + 1 Punkt in Flensburg</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die vertiefte HU?</h3>
+          <p>
+            Wird die HU um <strong>mehr als zwei Monate</strong> überzogen, schreibt die StVZO eine
+            <strong> vertiefte Hauptuntersuchung</strong> vor. Der Prüfer untersucht das Fahrzeug dann
+            intensiver, was die Prüfung verteuert – üblich sind rund <strong>20 % Aufschlag</strong> auf
+            die reguläre HU-Gebühr. Bei einer HU für 140 € sind das also etwa 28 € extra. Der Rechner
+            addiert diesen Aufschlag automatisch, sobald Sie eine Überziehung über zwei Monate wählen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gilt die alte Plakette weiter?</h3>
+          <p>
+            Nein. Mit Ablauf des auf der Plakette genannten Monats ist die HU fällig. Das Fahrzeug darf
+            zwar weiter gefahren werden, der Halter muss die HU aber <strong>unverzüglich nachholen</strong>.
+            Wichtig: Die Plakette wird <strong>nicht rückdatiert</strong> – nach bestandener HU gilt die
+            neue Frist trotzdem ab dem ursprünglichen Fälligkeitsmonat. Wer lange wartet, verschenkt also
+            keine Zeit, riskiert aber Bußgeld und vertiefte HU.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔧 Bußgeld bei überzogener HU – Überblick</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Sanktionen nach Überziehungsdauer der HU-Frist (§ 29 StVZO, PKW, Stand 2026).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Überziehung</th>
+                <th class="py-2 px-2 font-semibold text-right">Bußgeld</th>
+                <th class="py-2 px-2 font-semibold text-right">Punkte</th>
+                <th class="py-2 pl-2 font-semibold text-right">Vertiefte HU</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">bis 2 Monate</td><td class="py-2 px-2 text-right">–</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">nein</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 2 bis 4 Monate</td><td class="py-2 px-2 text-right">15 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">ja (≈ +20 %)</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 4 bis 8 Monate</td><td class="py-2 px-2 text-right">25 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">ja (≈ +20 %)</td></tr>
+              <tr><td class="py-2 pr-2">mehr als 8 Monate</td><td class="py-2 px-2 text-right text-red-600">60 €</td><td class="py-2 px-2 text-right text-red-600">1</td><td class="py-2 pl-2 text-right">ja (≈ +20 %)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: bussgeldkatalog.org, ADAC, StVZO § 29 / Anlage VIII (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich Bußgeld und Mehrkosten zusammen (reguläre HU-Gebühr beispielhaft 140 €):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 3 Monate überzogen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bußgeld:</div>
+              <div class="font-medium text-gray-800">15 € (Stufe 2–4 Monate)</div>
+              <div class="text-gray-600">HU-Gebühr:</div>
+              <div class="font-medium text-gray-800">140 €</div>
+              <div class="text-gray-600">+ vertiefte HU (20 %):</div>
+              <div class="font-medium text-gray-800">28 €</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">15 € + 140 € + 28 € = 183 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 6 Monate überzogen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bußgeld:</div>
+              <div class="font-medium text-gray-800">25 € (Stufe 4–8 Monate)</div>
+              <div class="text-gray-600">HU-Gebühr:</div>
+              <div class="font-medium text-gray-800">140 €</div>
+              <div class="text-gray-600">+ vertiefte HU (20 %):</div>
+              <div class="font-medium text-gray-800">28 €</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">25 € + 140 € + 28 € = 193 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 10 Monate überzogen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bußgeld:</div>
+              <div class="font-medium text-gray-800">60 € + 1 Punkt (über 8 Monate)</div>
+              <div class="text-gray-600">HU-Gebühr:</div>
+              <div class="font-medium text-gray-800">140 €</div>
+              <div class="text-gray-600">+ vertiefte HU (20 %):</div>
+              <div class="font-medium text-gray-800">28 €</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">60 € + 140 € + 28 € = 228 € + 1 Punkt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Wer die HU lange überzieht, zahlt nicht nur Bußgeld, sondern dauerhaft
+          die teurere vertiefte HU. Da die neue Frist trotzdem ab dem alten Fälligkeitsmonat zählt, lohnt
+          sich Warten nie – am günstigsten ist die HU pünktlich.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: „Bis 2 Monate ist alles erlaubt“</h3>
+            <p>In den ersten zwei Monaten gibt es zwar kein Bußgeld, die Plakette ist aber bereits
+            abgelaufen und die HU überfällig. Ab mehr als zwei Monaten wird zusätzlich die vertiefte HU
+            fällig – warten lohnt sich also nicht.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Plakette wird rückdatiert</h3>
+            <p>Ein Irrtum: Die neue Frist beginnt nach bestandener HU trotzdem mit dem ursprünglichen
+            Fälligkeitsmonat, nicht mit dem Prüfdatum. Wer überzieht, verschenkt damit faktisch
+            Restlaufzeit – ein Grund mehr, pünktlich zu sein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: TÜV und AU verwechseln</h3>
+            <p>Die HU prüft die Verkehrssicherheit, die Abgasuntersuchung (AU) die Emissionen. Beide
+            werden meist gemeinsam durchgeführt und in der HU-Gebühr abgerechnet. Überzogen wird in der
+            Regel die HU-Frist.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Punkt erst über 8 Monate</h3>
+            <p>Ein Punkt in Flensburg droht beim PKW erst, wenn die HU um mehr als acht Monate überzogen
+            ist. Bis dahin bleibt es bei einem Verwarnungs- bzw. Bußgeld ohne Punkte.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Versicherungsschutz</h3>
+            <p>Ein abgelaufener TÜV allein hebt den Versicherungsschutz nicht auf. Steht der überzogene
+            TÜV aber im Zusammenhang mit einem technischen Mangel, der einen Unfall mitverursacht, kann
+            die Versicherung Leistungen kürzen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum überzogenen TÜV</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet es, wenn der TÜV überzogen ist?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bis 2 Monate Überziehung gibt es kein Bußgeld. Über 2 bis 4 Monate sind es 15 €, über
+              4 bis 8 Monate 25 € und ab mehr als 8 Monaten 60 € plus 1 Punkt in Flensburg. Ab mehr als
+              2 Monaten kommt zusätzlich die teurere vertiefte HU (rund 20 % Aufschlag auf die HU-Gebühr) hinzu.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann gibt es einen Punkt in Flensburg wegen überzogener HU?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim PKW gibt es einen Punkt erst, wenn die Hauptuntersuchung um mehr als 8 Monate
+              überzogen ist. Dann werden 60 € Bußgeld und 1 Punkt fällig. Bis zu dieser Grenze bleibt es
+              bei einem Verwarnungs- bzw. Bußgeld ohne Punkte.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die vertiefte HU und was kostet sie extra?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Wird die HU um mehr als zwei Monate überzogen, schreibt die StVZO eine vertiefte
+              Hauptuntersuchung vor: Der Prüfer untersucht das Fahrzeug intensiver. Üblich ist ein
+              Aufschlag von rund 20 % auf die reguläre HU-Gebühr – bei 140 € HU also etwa 28 € extra.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie lange darf ich den TÜV überziehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Rechtlich muss die HU nach Ablauf des Fälligkeitsmonats unverzüglich nachgeholt werden –
+              eine offizielle „Schonfrist“ gibt es nicht. In den ersten 2 Monaten fällt kein Bußgeld an,
+              danach steigt es gestaffelt. Empfehlenswert ist, die HU vor oder spätestens im
+              Fälligkeitsmonat machen zu lassen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt die alte Plakette weiter, wenn der TÜV abgelaufen ist?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Mit Ablauf des auf der Plakette genannten Monats ist die HU fällig. Das Fahrzeug
+              darf zwar weiter bewegt werden, die HU muss aber nachgeholt werden. Nach bestandener Prüfung
+              gilt die neue Frist trotzdem ab dem ursprünglichen Fälligkeitsmonat – die Plakette wird
+              nicht rückdatiert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Bin ich mit abgelaufenem TÜV noch versichert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein abgelaufener TÜV allein hebt den Versicherungsschutz nicht auf. Steht der überzogene
+              TÜV aber im Zusammenhang mit einem technischen Mangel, der zu einem Unfall beiträgt, kann die
+              Versicherung Leistungen kürzen oder Regress nehmen. Im Zweifel sollte die HU vor der nächsten
+              Fahrt nachgeholt werden.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeldrechner</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/versicherung-auto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Versicherung</p>
+          </a>
+          <a href="/restwert-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Restwert-Rechner</p>
+          </a>
+          <a href="/geschwindigkeitsueberschreitung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Geschwindigkeitsüberschreitung</p>
+          </a>
+          <a href="/falschparken-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🅿️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Falschparken</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TÜV-überzogen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/tuev-ueberzogen-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet es, wenn der TÜV überzogen ist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bis 2 Monate Überziehung gibt es kein Bußgeld. Über 2 bis 4 Monate sind es 15 €, über 4 bis 8 Monate 25 € und ab mehr als 8 Monaten 60 € plus 1 Punkt in Flensburg. Ab mehr als 2 Monaten kommt zusätzlich die teurere vertiefte HU (rund 20 % Aufschlag auf die HU-Gebühr) hinzu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann gibt es einen Punkt in Flensburg wegen überzogener HU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim PKW gibt es einen Punkt erst, wenn die Hauptuntersuchung um mehr als 8 Monate überzogen ist. Dann werden 60 € Bußgeld und 1 Punkt fällig. Bis zu dieser Grenze bleibt es bei einem Verwarnungs- bzw. Bußgeld ohne Punkte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die vertiefte HU und was kostet sie extra?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wird die HU um mehr als zwei Monate überzogen, schreibt die StVZO eine vertiefte Hauptuntersuchung vor: Der Prüfer untersucht das Fahrzeug intensiver. Üblich ist ein Aufschlag von rund 20 % auf die reguläre HU-Gebühr – bei 140 € HU also etwa 28 € extra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange darf ich den TÜV überziehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rechtlich muss die HU nach Ablauf des Fälligkeitsmonats unverzüglich nachgeholt werden – eine offizielle „Schonfrist“ gibt es nicht. In den ersten 2 Monaten fällt kein Bußgeld an, danach steigt es gestaffelt. Empfehlenswert ist, die HU vor oder spätestens im Fälligkeitsmonat machen zu lassen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt die alte Plakette weiter, wenn der TÜV abgelaufen ist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Mit Ablauf des auf der Plakette genannten Monats ist die HU fällig. Das Fahrzeug darf zwar weiter bewegt werden, die HU muss aber nachgeholt werden. Nach bestandener Prüfung gilt die neue Frist trotzdem ab dem ursprünglichen Fälligkeitsmonat – die Plakette wird nicht rückdatiert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bin ich mit abgelaufenem TÜV noch versichert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein abgelaufener TÜV allein hebt den Versicherungsschutz nicht auf. Steht der überzogene TÜV aber im Zusammenhang mit einem technischen Mangel, der zu einem Unfall beiträgt, kann die Versicherung Leistungen kürzen oder Regress nehmen. Im Zweifel sollte die HU vor der nächsten Fahrt nachgeholt werden."
+        }
+      }
+    ]
+  })} />
+</Layout>

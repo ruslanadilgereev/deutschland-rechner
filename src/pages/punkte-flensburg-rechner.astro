@@ -1,0 +1,431 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PunkteFlensburgRechner from '../components/rechner/PunkteFlensburgRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Punkte in Flensburg 2026 – Punktestand & Maßnahmen berechnen";
+const description = "Punkte in Flensburg berechnen: Punktestand addieren, Maßnahme nach dem Fahreignungs-Bewertungssystem ermitteln (Ermahnung, Verwarnung, Entzug) und wissen, wann Punkte getilgt werden. Mit Tilgungsfristen 2,5 / 5 / 10 Jahre und Fahreignungsseminar. Stand 2026.";
+const keywords = "Punkte Flensburg Rechner, wie viele Punkte bis Führerschein weg, Punktestand abfragen, Fahreignungsregister, Punkte abbauen, Punkte Verfall, Ermahnung Verwarnung Entzug, Fahreignungsseminar";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Punkte-in-Flensburg-Rechner", url: "/punkte-flensburg-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'Punkte-in-Flensburg-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Punkte-in-Flensburg-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Punktestand, Maßnahmen &amp; Tilgung im Fahreignungsregister</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 4 StVG und Fahrerlaubnis-Verordnung (FeV): das Fahreignungs-Bewertungssystem des Kraftfahrt-Bundesamtes (KBA) mit dreistufigem Maßnahmensystem.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Punktwerte 1 / 2 / 3 je Verstoß, Maßnahmenstufen (Ermahnung ab 4, Verwarnung ab 6, Entzug ab 8 Punkten), Tilgungsfristen von 2,5 / 5 / 10 Jahren je Tat sowie der Punkteabbau durch ein Fahreignungsseminar (−1 Punkt bei Stand 1–5).</p>
+            <p><strong>Nicht berücksichtigt:</strong> einzelne Tilgungs-Sonderfälle, die einjährige Überliegefrist, Tateinheit bei einem Vorfall, Einzelfallentscheidungen der Behörde sowie Altpunkte aus der Zeit vor dem 1. Mai 2014. Keine Rechtsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PunkteFlensburgRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Punkte in Flensburg – das Fahreignungs-Bewertungssystem</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Punkte-in-Flensburg-Rechner</strong> ermitteln Sie Ihren aktuellen
+            <strong>Punktestand</strong>, sehen die fällige <strong>Maßnahme</strong> nach dem
+            Fahreignungs-Bewertungssystem und erkennen, <strong>wann einzelne Punkte getilgt</strong>
+            werden. Seit dem 1. Mai 2014 führt das <strong>Kraftfahrt-Bundesamt (KBA)</strong> in
+            Flensburg das Fahreignungsregister (FAER). Es löste das alte System mit bis zu 18 Punkten ab –
+            heute ist bei <strong>8 Punkten</strong> Schluss.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viele Punkte gibt es pro Verstoß?</h3>
+          <p>Jeder Verstoß bringt 1, 2 oder 3 Punkte:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1 Punkt</strong> – schwere Ordnungswidrigkeit (z. B. 21 km/h zu schnell innerorts)</li>
+              <li><strong>2 Punkte</strong> – besonders schwere Ordnungswidrigkeit (meist mit Fahrverbot) oder Straftat ohne Entzug</li>
+              <li><strong>3 Punkte</strong> – Straftat mit Entzug der Fahrerlaubnis (z. B. Trunkenheit im Verkehr)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Maßnahmenstufen</h3>
+          <p>
+            Der Gesamtpunktestand entscheidet über die Reaktion der Behörde. Bei <strong>1 bis 3
+            Punkten</strong> passiert nichts außer der Vormerkung. Ab <strong>4 Punkten</strong> folgt eine
+            schriftliche <strong>Ermahnung</strong> (Stufe 1), ab <strong>6 Punkten</strong> eine
+            <strong>Verwarnung</strong> (Stufe 2) mit dem deutlichen Hinweis, dass bei 8 Punkten Schluss
+            ist. Bei <strong>8 Punkten</strong> wird die Fahrerlaubnis <strong>entzogen</strong> (Stufe 3) –
+            mit einer Sperrfrist von mindestens 6 Monaten und einer MPU als Voraussetzung für die
+            Neuerteilung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann werden Punkte gelöscht?</h3>
+          <p>
+            Anders als früher verfällt heute jeder Eintrag <strong>einzeln</strong> – die Tilgung eines
+            Punktes wird nicht mehr durch neue Verstöße gehemmt. Die Frist beginnt mit der
+            <strong>Rechtskraft</strong> der Tat:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1 Punkt</strong> wird nach <strong>2,5 Jahren</strong> getilgt</li>
+              <li><strong>2 Punkte</strong> werden nach <strong>5 Jahren</strong> getilgt</li>
+              <li><strong>3 Punkte</strong> werden nach <strong>10 Jahren</strong> getilgt</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Punkte abbauen mit dem Fahreignungsseminar</h3>
+          <p>
+            Bei einem Stand von <strong>1 bis 5 Punkten</strong> können Sie freiwillig ein
+            <strong>Fahreignungsseminar</strong> besuchen und damit <strong>einen Punkt</strong> abbauen –
+            höchstens einmal innerhalb von 5 Jahren. Ab 6 Punkten ist der Abbau nicht mehr möglich; das
+            Seminar bleibt dann nur noch eine freiwillige Maßnahme ohne Punktegutschrift. Ihren genauen
+            Stand fragen Sie jederzeit kostenlos beim KBA ab.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚖️ Punktwerte typischer Verstöße</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte nach Bußgeldkatalog. Die genaue Punktzahl hängt vom Einzelfall ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Verstoß</th>
+                <th class="py-2 px-2 font-semibold text-right">Punkte</th>
+                <th class="py-2 pl-2 font-semibold text-right">Tilgung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">21–25 km/h zu schnell innerorts</td><td class="py-2 px-2 text-right">1</td><td class="py-2 pl-2 text-right">2,5 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Handy am Steuer</td><td class="py-2 px-2 text-right">1</td><td class="py-2 pl-2 text-right">2,5 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Rotlichtverstoß über 1 Sekunde</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">5 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,5 ‰ Alkohol am Steuer</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">5 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 40 km/h zu schnell</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">5 Jahre</td></tr>
+              <tr><td class="py-2 pr-2">Trunkenheit im Verkehr (ab 1,1 ‰)</td><td class="py-2 px-2 text-right">3</td><td class="py-2 pl-2 text-right">10 Jahre</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: bussgeldkatalog.org, ADAC, KBA, gesetze-im-internet.de (§ 4 StVG, FeV), Stand 2026.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispiele</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So summieren sich Punkte und so wirkt die Tilgung:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Drei aktive Einträge</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Einträge:</div>
+              <div class="font-medium text-gray-800">1 + 2 + 1 Punkte</div>
+              <div class="text-gray-600">Summe:</div>
+              <div class="font-medium text-gray-800">4 Punkte</div>
+              <div class="text-gray-600">Maßnahme:</div>
+              <div class="font-medium text-yellow-700">Stufe 1: Ermahnung</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Tilgung eines Punktes</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">1 Punkt rechtskräftig:</div>
+              <div class="font-medium text-gray-800">15.01.2023</div>
+              <div class="text-gray-600">Tilgungsfrist:</div>
+              <div class="font-medium text-gray-800">2,5 Jahre → 15.07.2025</div>
+              <div class="text-gray-600">Ab 16.07.2025:</div>
+              <div class="font-medium text-green-700">Punkt verfällt, zählt nicht mehr</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Seminar bei 5 Punkten</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Stand:</div>
+              <div class="font-medium text-gray-800">5 Punkte</div>
+              <div class="text-gray-600">Fahreignungsseminar:</div>
+              <div class="font-medium text-gray-800">−1 Punkt (zulässig bei 1–5)</div>
+              <div class="text-gray-600">Neuer Stand:</div>
+              <div class="font-medium text-green-700">4 Punkte (weiterhin Ermahnung)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Der Abbau lohnt sich am meisten bei genau 4 oder 5 Punkten – so
+          rutschen Sie zurück in die punktarme Zone, bevor eine Verwarnung droht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Irrtümer &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Irrtum 1: „Ein neuer Verstoß hemmt alte Punkte“</h3>
+            <p>Das galt nur im alten System bis 2014. Heute verfällt jeder Eintrag unabhängig nach seiner
+            eigenen Frist (2,5 / 5 / 10 Jahre) – ein neuer Punkt verlängert die alten nicht.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Irrtum 2: „Bei 8 Punkten bekomme ich noch eine Warnung“</h3>
+            <p>Nein. Die Warnung kommt mit der Verwarnung bei 6 bis 7 Punkten. Bei 8 Punkten wird die
+            Fahrerlaubnis ohne weitere Vorstufe entzogen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Überliegefrist</h3>
+            <p>Nach Ablauf der Tilgungsfrist bleibt ein Punkt noch ein Jahr lang in einer „Überliegefrist“
+            gespeichert – er zählt dann zwar nicht mehr für Maßnahmen, kann aber bei einem späteren
+            Streitfall noch relevant sein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Seminar nur bis 5 Punkte</h3>
+            <p>Den Punkterabatt durch das Fahreignungsseminar gibt es nur bei einem Stand von 1 bis 5
+            Punkten. Ab 6 Punkten ist kein Abbau mehr möglich.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Punktestand kostenlos abfragen</h3>
+            <p>Den verbindlichen Stand erfahren Sie nur beim KBA – online mit Personalausweis und
+            eID-Funktion, per Post oder direkt vor Ort in Flensburg. Die Auskunft ist kostenlos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zu Punkten in Flensburg</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Punkte bis der Führerschein weg ist?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei 8 Punkten im Fahreignungsregister wird die Fahrerlaubnis entzogen. Vorher gibt es
+              Vorstufen: ab 4 Punkten eine Ermahnung, ab 6 Punkten eine Verwarnung. Erst mit dem achten
+              Punkt ist der Führerschein weg – mit einer Sperrfrist von mindestens 6 Monaten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeuten 1, 2 oder 3 Punkte in Flensburg?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>1 Punkt gibt es für schwere Ordnungswidrigkeiten (z. B. 21 km/h zu schnell innerorts),
+              2 Punkte für besonders schwere Ordnungswidrigkeiten – meist mit Fahrverbot – oder Straftaten
+              ohne Entzug, und 3 Punkte für Straftaten mit Entzug der Fahrerlaubnis wie Trunkenheit im
+              Verkehr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann werden Punkte in Flensburg gelöscht?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Tilgung richtet sich nach dem Punktwert der Tat und läuft ab der Rechtskraft: 1 Punkt
+              verfällt nach 2,5 Jahren, 2 Punkte nach 5 Jahren und 3 Punkte nach 10 Jahren. Jeder Eintrag
+              wird einzeln getilgt – neue Verstöße hemmen die Frist alter Punkte nicht mehr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie kann ich Punkte in Flensburg abbauen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einem Stand von 1 bis 5 Punkten können Sie freiwillig ein Fahreignungsseminar
+              absolvieren und damit einen Punkt abbauen – höchstens einmal in 5 Jahren. Ab 6 Punkten ist
+              der Abbau über das Seminar nicht mehr möglich. Ansonsten verfallen Punkte automatisch nach
+              ihrer Tilgungsfrist.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert bei 4, 6 und 8 Punkten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei 4 bis 5 Punkten erhalten Sie eine schriftliche Ermahnung (Stufe 1), bei 6 bis 7
+              Punkten eine Verwarnung (Stufe 2) mit dem Hinweis auf den drohenden Entzug, und bei 8 Punkten
+              wird die Fahrerlaubnis entzogen (Stufe 3) – mit mindestens 6 Monaten Sperrfrist und MPU für
+              die Neuerteilung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie kann ich meinen Punktestand kostenlos abfragen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die verbindliche Auskunft erteilt nur das Kraftfahrt-Bundesamt (KBA) in Flensburg. Sie
+              können den Stand online mit Personalausweis und eID-Funktion, schriftlich per Post oder
+              persönlich vor Ort abfragen. Die Auskunft über den eigenen Punktestand ist kostenlos.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚓</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeldrechner</p>
+          </a>
+          <a href="/alkohol-am-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Alkohol am Steuer</p>
+          </a>
+          <a href="/promille-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍷</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Promille-Rechner</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/versicherung-auto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Versicherung</p>
+          </a>
+          <a href="/spritkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛽</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spritkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Punkte-in-Flensburg-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/punkte-flensburg-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Punkte bis der Führerschein weg ist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 8 Punkten im Fahreignungsregister wird die Fahrerlaubnis entzogen. Vorher gibt es Vorstufen: ab 4 Punkten eine Ermahnung, ab 6 Punkten eine Verwarnung. Erst mit dem achten Punkt ist der Führerschein weg – mit einer Sperrfrist von mindestens 6 Monaten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeuten 1, 2 oder 3 Punkte in Flensburg?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1 Punkt gibt es für schwere Ordnungswidrigkeiten (z. B. 21 km/h zu schnell innerorts), 2 Punkte für besonders schwere Ordnungswidrigkeiten – meist mit Fahrverbot – oder Straftaten ohne Entzug, und 3 Punkte für Straftaten mit Entzug der Fahrerlaubnis wie Trunkenheit im Verkehr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann werden Punkte in Flensburg gelöscht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Tilgung richtet sich nach dem Punktwert der Tat und läuft ab der Rechtskraft: 1 Punkt verfällt nach 2,5 Jahren, 2 Punkte nach 5 Jahren und 3 Punkte nach 10 Jahren. Jeder Eintrag wird einzeln getilgt – neue Verstöße hemmen die Frist alter Punkte nicht mehr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich Punkte in Flensburg abbauen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einem Stand von 1 bis 5 Punkten können Sie freiwillig ein Fahreignungsseminar absolvieren und damit einen Punkt abbauen – höchstens einmal in 5 Jahren. Ab 6 Punkten ist der Abbau über das Seminar nicht mehr möglich. Ansonsten verfallen Punkte automatisch nach ihrer Tilgungsfrist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert bei 4, 6 und 8 Punkten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 4 bis 5 Punkten erhalten Sie eine schriftliche Ermahnung (Stufe 1), bei 6 bis 7 Punkten eine Verwarnung (Stufe 2) mit dem Hinweis auf den drohenden Entzug, und bei 8 Punkten wird die Fahrerlaubnis entzogen (Stufe 3) – mit mindestens 6 Monaten Sperrfrist und MPU für die Neuerteilung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich meinen Punktestand kostenlos abfragen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die verbindliche Auskunft erteilt nur das Kraftfahrt-Bundesamt (KBA) in Flensburg. Sie können den Stand online mit Personalausweis und eID-Funktion, schriftlich per Post oder persönlich vor Ort abfragen. Die Auskunft über den eigenen Punktestand ist kostenlos."
+        }
+      }
+    ]
+  })} />
+</Layout>

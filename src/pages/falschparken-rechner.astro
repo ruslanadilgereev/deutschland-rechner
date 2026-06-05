@@ -1,0 +1,425 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FalschparkenRechner from '../components/rechner/FalschparkenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Falschparken-Bußgeldrechner 2026 – Strafzettel & Knöllchen";
+const description = "Falschparken-Bußgeld berechnen: Was kostet das Knöllchen bei abgelaufenem Parkschein, im Halteverbot, auf dem Gehweg, in zweiter Reihe oder auf dem Behindertenparkplatz? Aktueller Bußgeldkatalog 2026 für Halten und Parken (§ 12 StVO).";
+const keywords = "Falschparken Bußgeld, Strafzettel Kosten, Knöllchen Höhe, Parken Halteverbot Strafe, Gehweg parken Bußgeld, zweite Reihe parken, Behindertenparkplatz Strafe, Parken ohne Parkschein";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Falschparken-Bußgeldrechner", url: "/falschparken-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'Falschparken-Bußgeldrechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🅿️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Falschparken-Bußgeldrechner 2026</h1>
+            <p class="text-blue-200 text-sm">Strafzettel & Knöllchen für Halten und Parken</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Bußgeldkatalog für Halten und Parken (BKatV, Tatbestände § 12 StVO) in der seit 9. November 2021 geltenden Fassung. Verwarnungsgelder 10–55 €, Bußgelder bis 110 €.</p>
+            <p class="mb-1"><strong>Voreinstellung:</strong> Verstoß „Im Halteverbot geparkt“ (25 €), Abschleppkosten 150 € – frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Abschleppkosten (separat, je nach Stadt 100–300 €+), kommunale Parkgebühren, private Parkplätze und Vertragsstrafen, Erhöhungen durch Verwaltungsgebühr und Auslagen im Bescheid. Keine Rechtsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <FalschparkenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Was kostet Falschparken 2026?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Falschparken-Bußgeldrechner</strong> sehen Sie sofort, wie teuer ein
+            Knöllchen wird – vom abgelaufenen Parkschein bis zum unberechtigten Parken auf dem
+            Behindertenparkplatz. Die Sätze stammen aus dem <strong>bundesweit einheitlichen
+            Bußgeldkatalog für Halten und Parken</strong>, der seit der StVO-Novelle vom
+            9. November 2021 gilt und die Strafen fürs Falschparken deutlich angehoben hat.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verwarnungsgeld oder Bußgeld?</h3>
+          <p>
+            Die meisten Parkverstöße werden als <strong>Verwarnungsgeld</strong> geahndet – das sind
+            Beträge bis 55 €. Erst ab 60 € spricht man offiziell von einem <strong>Bußgeld</strong>,
+            das zusätzlich eine Verwaltungsgebühr (in der Regel mindestens 28,50 €) auslöst. Ein
+            Verwarnungsgeld bis 55 € kostet dagegen keine Zusatzgebühr, wenn Sie es fristgerecht
+            zahlen. Punkte in Flensburg gibt es beim Falschparken nur in wenigen, schweren Fällen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann gibt es Punkte in Flensburg?</h3>
+          <p>
+            Klassisches Falschparken bringt keine Punkte. Ein <strong>Punkt</strong> droht erst, wenn
+            Sie <strong>Rettungsfahrzeuge behindern</strong>, an besonders gefährlichen Stellen
+            parken (enge oder unübersichtliche Stellen, scharfe Kurven) oder auf der
+            <strong> Autobahn bzw. Kraftfahrstraße</strong> parken. Auch das Parken in zweiter Reihe
+            oder auf dem Gehweg kann bei Behinderung oder langer Dauer einen Punkt nach sich ziehen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann wird abgeschleppt?</h3>
+          <p>
+            Abgeschleppt werden darf, wenn Ihr Fahrzeug andere <strong>konkret behindert</strong> oder
+            eine Gefahr darstellt – etwa im absoluten Halteverbot, auf einem Behindertenparkplatz,
+            vor einer Feuerwehrzufahrt, auf einem Geh- oder Radweg mit Behinderung oder auf einem
+            E-Auto-Ladeplatz. Die <strong>Abschleppkosten</strong> trägt der Halter; sie liegen je
+            nach Stadt und Tageszeit meist zwischen 100 und 300 € und kommen zum Verwarnungsgeld
+            hinzu. Aktivieren Sie im Rechner das Feld „Abschleppkosten“, um die Gesamtkosten zu sehen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🅿️ Bußgeldkatalog Falschparken – Überblick</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Regelsätze nach dem bundesweiten Bußgeldkatalog für Halten und Parken (Stand seit 9.11.2021).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Verstoß</th>
+                <th class="py-2 px-2 font-semibold text-right">Bußgeld</th>
+                <th class="py-2 px-2 font-semibold text-right">Punkte</th>
+                <th class="py-2 pl-2 font-semibold text-right">Abschleppen</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🎫 Parkschein abgelaufen/fehlt</td><td class="py-2 px-2 text-right">20–40 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">nein</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚫 Unzulässig geparkt</td><td class="py-2 px-2 text-right">25–50 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">nein</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">⛔ Im Halteverbot geparkt</td><td class="py-2 px-2 text-right">25–40 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">möglich</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚶 Auf dem Gehweg geparkt</td><td class="py-2 px-2 text-right">55–80 €</td><td class="py-2 px-2 text-right">0–1</td><td class="py-2 pl-2 text-right">möglich</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">↔️ In zweiter Reihe geparkt</td><td class="py-2 px-2 text-right">55–85 €</td><td class="py-2 px-2 text-right">0–1</td><td class="py-2 pl-2 text-right">möglich</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">♿ Behindertenparkplatz</td><td class="py-2 px-2 text-right">55 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">Regel</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔌 E-Auto-Ladeplatz</td><td class="py-2 px-2 text-right">55 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">möglich</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚒 Feuerwehrzufahrt</td><td class="py-2 px-2 text-right">55–100 €</td><td class="py-2 px-2 text-right">0–1</td><td class="py-2 pl-2 text-right">Regel</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🛑 Enge/gefährliche Stelle</td><td class="py-2 px-2 text-right">100 €</td><td class="py-2 px-2 text-right">1</td><td class="py-2 pl-2 text-right">möglich</td></tr>
+              <tr><td class="py-2 pr-2">🛣️ Autobahn/Kraftfahrstraße</td><td class="py-2 px-2 text-right">70 €</td><td class="py-2 px-2 text-right">1</td><td class="py-2 pl-2 text-right">möglich</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: bussgeldkatalog.org, ADAC, BKatV (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich die Kosten in typischen Situationen zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Parkschein 45 Minuten überzogen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verstoß:</div>
+              <div class="font-medium text-gray-800">Parkschein abgelaufen (bis 1 Std)</div>
+              <div class="text-gray-600">Verwarnungsgeld:</div>
+              <div class="font-medium text-gray-800">25 €</div>
+              <div class="text-gray-600">Punkte / Abschleppen:</div>
+              <div class="font-medium text-gray-800">0 / nein</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">25 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Gehweg, mit Behinderung, plus Abschleppen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verstoß:</div>
+              <div class="font-medium text-gray-800">Auf dem Gehweg, mit Behinderung</div>
+              <div class="text-gray-600">Verwarnungsgeld:</div>
+              <div class="font-medium text-gray-800">70 €</div>
+              <div class="text-gray-600">Abschleppkosten:</div>
+              <div class="font-medium text-gray-800">150 €</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">70 € + 150 € = 220 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Behindertenparkplatz + Abschleppen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verstoß:</div>
+              <div class="font-medium text-gray-800">Behindertenparkplatz, unberechtigt</div>
+              <div class="text-gray-600">Verwarnungsgeld:</div>
+              <div class="font-medium text-gray-800">55 €</div>
+              <div class="text-gray-600">Abschleppkosten:</div>
+              <div class="font-medium text-gray-800">200 €</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">55 € + 200 € = 255 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Nicht das Bußgeld selbst, sondern die Abschleppkosten machen
+          Falschparken richtig teuer. Im Zweifel lieber etwas weiter weg legal parken.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: „Nur kurz halten“ unterschätzen</h3>
+            <p>Im absoluten Halteverbot ist schon das kurze Halten verboten (20 €). Wer dort sein Auto
+            abstellt und verlässt, parkt – und zahlt mehr. Warnblinker schützen nicht vor dem Knöllchen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Behindertenparkplatz mit „nur 5 Minuten“</h3>
+            <p>Ohne gültigen blauen EU-Parkausweis kostet jedes Parken auf einem Schwerbehindertenparkplatz
+            55 € – und Abschleppen ist hier der Regelfall, selbst bei kurzer Dauer.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: E-Auto-Ladeplatz ohne Laden</h3>
+            <p>Ein Elektroauto darf dort nur stehen, solange es lädt. Steht es ohne aktiven Ladevorgang
+            (oder ein Verbrenner blockiert den Platz), werden 55 € fällig und es kann abgeschleppt werden.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verwaltungsgebühr ab 60 €</h3>
+            <p>Bis 55 € ist es ein Verwarnungsgeld ohne Zusatzkosten. Ab 60 € wird daraus ein Bußgeld –
+            dann kommt eine Verwaltungsgebühr von mindestens 28,50 € plus Auslagen obendrauf.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Privatparkplatz</h3>
+            <p>Auf Supermarkt- oder Privatparkplätzen gilt kein staatliches Bußgeld, sondern eine
+            zivilrechtliche Vertragsstrafe des Betreibers (oft 20–40 €). Diese folgt eigenen Regeln und
+            ist hier nicht abgebildet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Falschparken</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet Falschparken im Halteverbot?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Im eingeschränkten oder absoluten Halteverbot kostet das Parken 25 €. Kommt eine
+              Behinderung anderer hinzu oder dauert es länger als eine Stunde, steigt das Verwarnungsgeld
+              auf 40 €. Nur kurz halten (statt parken) im absoluten Halteverbot kostet 20 €. Bei
+              Behinderung kann zusätzlich abgeschleppt werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie teuer ist Parken auf dem Gehweg?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Parken auf einem Geh- oder Radweg kostet 55 €. Mit Behinderung anderer oder bei einer
+              Dauer über einer Stunde sind es 70 €, mit beidem 80 €. In schweren Fällen kann zusätzlich
+              ein Punkt in Flensburg eingetragen werden, und das Fahrzeug darf abgeschleppt werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet das Parken auf einem Behindertenparkplatz?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Wer ohne gültigen blauen EU-Parkausweis auf einem Schwerbehindertenparkplatz parkt, zahlt
+              55 €. Abschleppen ist hier der Regelfall – mit Abschleppkosten von oft 150 bis 300 € werden
+              daraus schnell über 200 € Gesamtkosten. Die kurze Dauer spielt dabei keine Rolle.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Bekomme ich Punkte in Flensburg fürs Falschparken?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Klassisches Falschparken bringt keine Punkte. Ein Punkt droht erst bei besonders
+              gefährlichem Verhalten: Behinderung von Rettungsfahrzeugen, Parken an engen oder
+              unübersichtlichen Stellen (100 € + 1 Punkt), Parken in zweiter Reihe mit Behinderung
+              (85 € + 1 Punkt) oder Parken auf der Autobahn (70 € + 1 Punkt).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet abgelaufener Parkschein oder Parken ohne Parkschein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein fehlender oder abgelaufener Parkschein wird nach Dauer gestaffelt geahndet: bis
+              30 Minuten 20 €, bis 1 Stunde 25 €, bis 2 Stunden 30 €, bis 3 Stunden 35 € und über
+              3 Stunden 40 €. Punkte gibt es dafür keine, und abgeschleppt wird in der Regel ebenfalls nicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann darf mein Auto beim Falschparken abgeschleppt werden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Abgeschleppt werden darf, wenn das Fahrzeug andere konkret behindert oder eine Gefahr
+              darstellt – etwa im absoluten Halteverbot, auf einem Behindertenparkplatz, vor einer
+              Feuerwehrzufahrt, auf einem E-Auto-Ladeplatz oder auf einem Geh- bzw. Radweg mit Behinderung.
+              Die Abschleppkosten trägt der Halter; sie liegen je nach Stadt meist bei 100 bis 300 €.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeldrechner</p>
+          </a>
+          <a href="/geschwindigkeitsueberschreitung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Geschwindigkeitsüberschreitung</p>
+          </a>
+          <a href="/handy-am-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handy am Steuer</p>
+          </a>
+          <a href="/punkte-flensburg-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Punkte in Flensburg</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/versicherung-auto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Versicherung</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Falschparken-Bußgeldrechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/falschparken-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet Falschparken im Halteverbot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Im eingeschränkten oder absoluten Halteverbot kostet das Parken 25 €. Kommt eine Behinderung anderer hinzu oder dauert es länger als eine Stunde, steigt das Verwarnungsgeld auf 40 €. Nur kurz halten (statt parken) im absoluten Halteverbot kostet 20 €. Bei Behinderung kann zusätzlich abgeschleppt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie teuer ist Parken auf dem Gehweg?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Parken auf einem Geh- oder Radweg kostet 55 €. Mit Behinderung anderer oder bei einer Dauer über einer Stunde sind es 70 €, mit beidem 80 €. In schweren Fällen kann zusätzlich ein Punkt in Flensburg eingetragen werden, und das Fahrzeug darf abgeschleppt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet das Parken auf einem Behindertenparkplatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wer ohne gültigen blauen EU-Parkausweis auf einem Schwerbehindertenparkplatz parkt, zahlt 55 €. Abschleppen ist hier der Regelfall – mit Abschleppkosten von oft 150 bis 300 € werden daraus schnell über 200 € Gesamtkosten. Die kurze Dauer spielt dabei keine Rolle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bekomme ich Punkte in Flensburg fürs Falschparken?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Klassisches Falschparken bringt keine Punkte. Ein Punkt droht erst bei besonders gefährlichem Verhalten: Behinderung von Rettungsfahrzeugen, Parken an engen oder unübersichtlichen Stellen (100 € + 1 Punkt), Parken in zweiter Reihe mit Behinderung (85 € + 1 Punkt) oder Parken auf der Autobahn (70 € + 1 Punkt)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet abgelaufener Parkschein oder Parken ohne Parkschein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein fehlender oder abgelaufener Parkschein wird nach Dauer gestaffelt geahndet: bis 30 Minuten 20 €, bis 1 Stunde 25 €, bis 2 Stunden 30 €, bis 3 Stunden 35 € und über 3 Stunden 40 €. Punkte gibt es dafür keine, und abgeschleppt wird in der Regel ebenfalls nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann darf mein Auto beim Falschparken abgeschleppt werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Abgeschleppt werden darf, wenn das Fahrzeug andere konkret behindert oder eine Gefahr darstellt – etwa im absoluten Halteverbot, auf einem Behindertenparkplatz, vor einer Feuerwehrzufahrt, auf einem E-Auto-Ladeplatz oder auf einem Geh- bzw. Radweg mit Behinderung. Die Abschleppkosten trägt der Halter; sie liegen je nach Stadt meist bei 100 bis 300 €."
+        }
+      }
+    ]
+  })} />
+</Layout>

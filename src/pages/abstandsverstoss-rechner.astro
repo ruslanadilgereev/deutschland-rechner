@@ -1,0 +1,445 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AbstandsverstossRechner from '../components/rechner/AbstandsverstossRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Abstandsverstoß-Rechner 2026 – Bußgeld, Punkte & Fahrverbot";
+const description = "Bußgeld bei zu geringem Abstand berechnen: Geschwindigkeit und gefahrenen Abstand eingeben, Auswertung nach halbem Tacho, Bußgeld, Punkte und Fahrverbot nach Bußgeldkatalog 2026.";
+const keywords = "Abstandsverstoß Rechner, zu wenig Abstand Bußgeld, Abstand Autobahn Bußgeld, Drängeln Strafe, halber Tacho Abstand, Mindestabstand Bußgeld, Abstandsverstoß Punkte, Abstand Fahrverbot, Sicherheitsabstand Strafe";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Abstandsverstoß-Rechner", url: "/abstandsverstoss-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'Abstandsverstoß-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📏</span>
+          <div>
+            <h1 class="text-2xl font-bold">Abstandsverstoß-Rechner 2026</h1>
+            <p class="text-orange-100 text-sm">Bußgeld, Punkte & Fahrverbot bei zu geringem Abstand</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Bundeseinheitlicher Bußgeldkatalog (BKatV), Abstandsstaffeln für über 80, über 100 und über 130 km/h, Stand 2024/2025/2026. Bewertung als Anteil des halben Tachos (Mindestabstand).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Bußgeld, Punkte in Flensburg und Fahrverbot je nach Geschwindigkeit und Abstand.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Kurzzeitiges Unterschreiten (z. B. durch Einscheren), Probezeit und Sonderfälle. Maßgeblich ist der polizeilich gemessene Abstand. Keine Rechtsberatung. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AbstandsverstossRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bußgeld bei Abstandsverstoß 2026</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Abstandsverstoß-Rechner</strong> sehen Sie, welches <strong>Bußgeld</strong>,
+            wie viele <strong>Punkte</strong> und ob ein <strong>Fahrverbot</strong> droht, wenn Sie
+            den Sicherheitsabstand unterschritten haben. Entscheidend sind zwei Größen: Ihre
+            Geschwindigkeit und der Anteil des eingehaltenen Abstands am vorgeschriebenen
+            Mindestabstand.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Faustregel „halber Tacho“</h3>
+          <p>
+            Außerorts gilt als Mindestabstand der <strong>halbe Tacho in Metern</strong>: Bei
+            100 km/h sind das 50 Meter, bei 130 km/h 65 Meter. Der Bußgeldkatalog bewertet den
+            Verstoß danach, wie weit Sie diesen Mindestabstand unterschritten haben – ausgedrückt in
+            Zehnteln (z. B. „weniger als 3/10 des halben Tachos“).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum die Geschwindigkeit zählt</h3>
+          <p>
+            Geahndet wird ein zu geringer Abstand mit Punkten erst <strong>ab mehr als 80 km/h</strong>.
+            Je höher das Tempo, desto schwerer wiegt der Verstoß: Bei über 100 km/h gibt es schon
+            ab 3/10 zwei Punkte, bei über 130 km/h drohen bis zu <strong>3 Monate Fahrverbot</strong>.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Unter 80 km/h:</strong> in der Regel nur Verwarngeld, keine Punkte</li>
+            <li><strong>Über 80 km/h:</strong> 75–320 €, 1 Punkt</li>
+            <li><strong>Über 100 km/h:</strong> bis 400 €, 2 Punkte, bis 3 Monate Fahrverbot</li>
+            <li><strong>Über 130 km/h:</strong> bis 400 €, 2 Punkte, bis 3 Monate Fahrverbot</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie der Verstoß in Zehnteln bewertet wird</h3>
+          <p>
+            Der Bußgeldkatalog rechnet den eingehaltenen Abstand nicht in Metern, sondern als
+            <strong>Anteil des halben Tachos</strong> ab. Hielten Sie bei 100 km/h (Mindestabstand
+            50 m) nur 15 Meter ein, sind das genau <strong>3/10</strong> des vorgeschriebenen Werts.
+            Genau diese Zehntel entscheiden über die Höhe der Strafe: Je kleiner der Bruchteil, desto
+            schwerer der Verstoß. Der Rechner oben übernimmt diese Umrechnung automatisch – Sie geben
+            nur Geschwindigkeit und gefahrenen Abstand in Metern ein und sehen sofort, in welche
+            Staffel Sie fallen.
+          </p>
+          <p>
+            Die Staffeln reichen von „5/10 bis 4/10“ (also knapp die Hälfte des Mindestabstands) bis
+            „weniger als 1/10“. Wer den Mindestabstand komplett einhält oder überschreitet, begeht
+            keinen Verstoß. Sobald Sie aber unter die Hälfte des halben Tachos rutschen, greift der
+            Katalog mit den oben genannten Sätzen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Innerorts und außerorts: zwei Regeln</h3>
+          <p>
+            Die „halber Tacho“-Regel gilt vor allem <strong>außerorts und auf der Autobahn</strong>.
+            <strong>Innerorts</strong> bei Tempo 50 oder weniger nutzt die Rechtsprechung eher die
+            <strong>„Ein-Sekunden-Regel“</strong>: Der Abstand sollte mindestens der Strecke
+            entsprechen, die Sie in einer Sekunde zurücklegen. Bei 50 km/h sind das rund 14 Meter.
+            Da unterhalb von 80 km/h ohnehin nur ein Verwarngeld droht, spielt die exakte Staffelung
+            innerorts eine geringere Rolle – der Bußgeldkatalog zielt mit seinen Punkte- und
+            Fahrverbots­stufen klar auf das schnelle Drängeln auf Landstraße und Autobahn.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was passiert nach der Messung?</h3>
+          <p>
+            Stellt die Polizei einen Abstandsverstoß über eine <strong>Videobrücke</strong> oder aus
+            einem nachfahrenden Fahrzeug fest, folgt zunächst ein <strong>Anhörungsbogen</strong>.
+            Danach erlässt die Bußgeldstelle einen <strong>Bußgeldbescheid</strong> mit Bußgeld,
+            etwaigen Punkten und Fahrverbot. Gegen den Bescheid können Sie innerhalb von
+            <strong>zwei Wochen Einspruch</strong> einlegen. Entscheidend für die Ahndung ist immer
+            das <strong>dauerhafte, vorwerfbare Unterschreiten</strong> über eine relevante Strecke –
+            ein kurzes Unterschreiten, etwa weil jemand vor Ihnen einschert, ist kein Verstoß.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📋 Bußgeldkatalog Abstand – Übersicht</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte nach Bußgeldkatalog (BKatV), bewertet als Anteil des halben Tachos
+          (Mindestabstand). Die genaue Einstufung hängt vom polizeilich gemessenen Abstand ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Tempo &amp; Abstand (Anteil ½ Tacho)</th>
+                <th class="py-2 px-2 font-semibold text-right">Bußgeld</th>
+                <th class="py-2 px-2 font-semibold text-right">Punkte</th>
+                <th class="py-2 pl-2 font-semibold text-right">Fahrverbot</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">unter 80 km/h (alle Fälle)</td><td class="py-2 px-2 text-right">25 €</td><td class="py-2 px-2 text-right">0</td><td class="py-2 pl-2 text-right">–</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 80 km/h · weniger als 5/10</td><td class="py-2 px-2 text-right">75 €</td><td class="py-2 px-2 text-right">1</td><td class="py-2 pl-2 text-right">–</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 80 km/h · weniger als 1/10</td><td class="py-2 px-2 text-right">320 €</td><td class="py-2 px-2 text-right">1</td><td class="py-2 pl-2 text-right">–</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 100 km/h · weniger als 3/10</td><td class="py-2 px-2 text-right">240 €</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">1 Monat</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 100 km/h · weniger als 1/10</td><td class="py-2 px-2 text-right">400 €</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">3 Monate</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 130 km/h · weniger als 4/10</td><td class="py-2 px-2 text-right">180 €</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">1 Monat</td></tr>
+              <tr><td class="py-2 pr-2">über 130 km/h · weniger als 2/10</td><td class="py-2 px-2 text-right">400 €</td><td class="py-2 px-2 text-right">2</td><td class="py-2 pl-2 text-right">3 Monate</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Bußgeldkatalog-Verordnung (BKatV), ADAC, bussgeldkatalog.org, Stand 2026. Die
+          vollständige Staffelung je Geschwindigkeit zeigt der interaktive Rechner oben.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispiele</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle – Schritt für Schritt nach der Halber-Tacho-Regel durchgerechnet:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 100 km/h, nur 13 m Abstand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Mindestabstand (½ Tacho):</div>
+              <div class="font-medium text-gray-800">100 ÷ 2 = 50 m</div>
+              <div class="text-gray-600">Anteil:</div>
+              <div class="font-medium text-gray-800">13 ÷ 50 = 26 % (→ 3/10 bis 2/10)</div>
+              <div class="text-gray-600">Bußgeld:</div>
+              <div class="font-medium text-gray-800">240 €</div>
+              <div class="text-gray-600">Punkte / Fahrverbot:</div>
+              <div class="font-medium text-orange-700">2 Punkte · 1 Monat Fahrverbot</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 130 km/h, nur 10 m Abstand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Mindestabstand (½ Tacho):</div>
+              <div class="font-medium text-gray-800">130 ÷ 2 = 65 m</div>
+              <div class="text-gray-600">Anteil:</div>
+              <div class="font-medium text-gray-800">10 ÷ 65 = 15 % (→ 2/10 bis 1/10)</div>
+              <div class="text-gray-600">Bußgeld:</div>
+              <div class="font-medium text-gray-800">400 €</div>
+              <div class="text-gray-600">Punkte / Fahrverbot:</div>
+              <div class="font-medium text-red-700">2 Punkte · 3 Monate Fahrverbot</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 50 km/h, nur 10 m Abstand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Geschwindigkeit:</div>
+              <div class="font-medium text-gray-800">unter 80 km/h</div>
+              <div class="text-gray-600">Folge:</div>
+              <div class="font-medium text-gray-800">nur Verwarngeld, keine Staffelung</div>
+              <div class="text-gray-600">Bußgeld:</div>
+              <div class="font-medium text-gray-800">25 €</div>
+              <div class="text-gray-600">Punkte / Fahrverbot:</div>
+              <div class="font-medium text-green-700">0 Punkte · kein Fahrverbot</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-3 mt-4 text-sm text-orange-800">
+          <strong>💡 Faustregel:</strong> Unter 80 km/h bleibt es beim Verwarngeld. Ab Tempo 100 wird
+          es teuer – schon ein Abstand unter 3/10 des halben Tachos bringt 2 Punkte und Fahrverbot.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Irrtum: „Kurzes Drängeln ist egal“</h3>
+            <p>Geahndet wird nur ein dauerhaftes, vorwerfbares Unterschreiten über eine relevante
+            Strecke (Richtwert: mehrere Hundert Meter). Ein kurzer Moment zu dicht – etwa beim
+            Beschleunigen zum Überholen – reicht für eine Ahndung in der Regel nicht.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Irrtum: „Wenn jemand einschert, bin ich schuld“</h3>
+            <p>Schert ein anderes Fahrzeug knapp vor Ihnen ein, ist der dadurch entstandene zu geringe
+            Abstand <strong>nicht Ihr Verstoß</strong>. Vorwerfbar ist nur, wenn Sie den Abstand
+            danach nicht wieder vergrößern, obwohl es möglich wäre.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Probezeit und Fahranfänger</h3>
+            <p>Ein Abstandsverstoß mit Punkten gilt als A-Verstoß. In der Probezeit führt das zur
+            Verlängerung der Probezeit um zwei Jahre und zur Anordnung eines Aufbauseminars – zusätzlich
+            zu Bußgeld, Punkten und einem etwaigen Fahrverbot.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Lkw und Gespanne</h3>
+            <p>Für Lkw über 3,5 t und Busse gelten außerorts strengere Mindestabstände (z. B. 50 m bei
+            mehr als 50 km/h auf der Autobahn). Dieser Rechner bildet die allgemeine Halber-Tacho-Regel
+            für Pkw ab; für Nutzfahrzeuge können andere Sätze greifen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Tipp: Messung prüfen lassen</h3>
+            <p>Abstandsmessungen per Videobrücke sind fehleranfällig (Messstrecke, Eichung,
+            Auswertung). Bei einem hohen Bußgeld mit Fahrverbot lohnt sich oft die Prüfung des
+            Messprotokolls – ein Einspruch ist innerhalb von zwei Wochen nach dem Bescheid möglich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Abstand muss ich halten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Außerorts gilt die Faustregel „halber Tacho“: Der Mindestabstand in Metern entspricht der halben Geschwindigkeit. Bei 100 km/h sind das 50 Meter. Innerorts genügt in der Regel der Abstand von 1 Sekunde.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann gibt es Punkte für zu wenig Abstand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Punkte gibt es erst ab einer Geschwindigkeit von mehr als 80 km/h. Darunter wird ein zu geringer Abstand meist nur mit einem Verwarngeld von rund 25 € geahndet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann droht beim Drängeln ein Fahrverbot?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Fahrverbot droht, wenn Sie bei über 100 km/h weniger als 3/10 des halben Tachos einhalten, und besonders bei über 130 km/h. Dann sind bis zu 3 Monate Fahrverbot möglich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet 3/10 des halben Tachos?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Bußgeldkatalog drückt den eingehaltenen Abstand als Bruchteil des Mindestabstands aus. 3/10 bedeutet, dass Sie nur 30 % des vorgeschriebenen halben Tachos eingehalten haben – je kleiner der Bruchteil, desto höher die Strafe.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zählt kurzes Unterschreiten beim Einscheren als Abstandsverstoß?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Geahndet wird nur ein dauerhaftes, vorwerfbares Unterschreiten über eine relevante Strecke. Kurzzeitiges Unterschreiten, etwa weil ein anderes Fahrzeug einschert, ist in der Regel kein Verstoß.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird der Abstand überhaupt gemessen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Polizei misst den Abstand meist per Videobrücke über der Autobahn oder aus einem nachfahrenden Fahrzeug mit kalibrierter Technik. Erfasst werden Geschwindigkeit und der tatsächliche Abstand über eine relevante Strecke – nur ein dauerhaftes Unterschreiten wird geahndet, nicht ein kurzer Moment.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeld-Rechner</p>
+          </a>
+          <a href="/geschwindigkeitsueberschreitung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Geschwindigkeit-Rechner</p>
+          </a>
+          <a href="/rotlichtverstoss-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rotlichtverstoß-Rechner</p>
+          </a>
+          <a href="/bremsweg-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bremsweg-Rechner</p>
+          </a>
+          <a href="/promille-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Promille-Rechner</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Abstandsverstoß-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/abstandsverstoss-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Abstand muss ich halten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Außerorts gilt die Faustregel „halber Tacho“: Der Mindestabstand in Metern entspricht der halben Geschwindigkeit. Bei 100 km/h sind das 50 Meter. Innerorts genügt in der Regel der Abstand von 1 Sekunde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann gibt es Punkte für zu wenig Abstand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Punkte gibt es erst ab einer Geschwindigkeit von mehr als 80 km/h. Darunter wird ein zu geringer Abstand meist nur mit einem Verwarngeld von rund 25 € geahndet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann droht beim Drängeln ein Fahrverbot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Fahrverbot droht, wenn Sie bei über 100 km/h weniger als 3/10 des halben Tachos einhalten, und besonders bei über 130 km/h. Dann sind bis zu 3 Monate Fahrverbot möglich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet 3/10 des halben Tachos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Bußgeldkatalog drückt den eingehaltenen Abstand als Bruchteil des Mindestabstands aus. 3/10 bedeutet, dass Sie nur 30 % des vorgeschriebenen halben Tachos eingehalten haben – je kleiner der Bruchteil, desto höher die Strafe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Zählt kurzes Unterschreiten beim Einscheren als Abstandsverstoß?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Geahndet wird nur ein dauerhaftes, vorwerfbares Unterschreiten über eine relevante Strecke. Kurzzeitiges Unterschreiten, etwa weil ein anderes Fahrzeug einschert, ist in der Regel kein Verstoß."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird der Abstand überhaupt gemessen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Polizei misst den Abstand meist per Videobrücke über der Autobahn oder aus einem nachfahrenden Fahrzeug mit kalibrierter Technik. Erfasst werden Geschwindigkeit und der tatsächliche Abstand über eine relevante Strecke – nur ein dauerhaftes Unterschreiten wird geahndet, nicht ein kurzer Moment."
+        }
+      }
+    ]
+  })} />
+</Layout>

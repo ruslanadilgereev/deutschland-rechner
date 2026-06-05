@@ -1,0 +1,456 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AlkoholAmSteuerRechner from '../components/rechner/AlkoholAmSteuerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Alkohol am Steuer 2026 – Strafe & Bußgeld nach Promille";
+const description = "Alkohol am Steuer – Strafe berechnen: Bußgeld, Punkte in Flensburg, Fahrverbot und ab wann es eine Straftat ist. Promillegrenzen 0,3 / 0,5 / 1,1 / 1,6, Ersttäter und Wiederholung, Null-Promille in der Probezeit und unter 21. Aktueller Stand 2026.";
+const keywords = "Alkohol am Steuer Strafe, Promillegrenze Auto, 0,5 Promille Strafe, 1,1 Promille Straftat, Alkohol Fahrverbot, Trunkenheit im Verkehr, MPU Promille, Alkohol Probezeit";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Alkohol-am-Steuer-Rechner", url: "/alkohol-am-steuer-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'Alkohol-am-Steuer-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🍺</span>
+          <div>
+            <h1 class="text-2xl font-bold">Alkohol-am-Steuer-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Bußgeld, Punkte, Fahrverbot &amp; Straftat nach Promille</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 24a StVG (0,5-Promille-Grenze, Ordnungswidrigkeit), § 316 StGB (Trunkenheit im Verkehr ab 1,1 ‰ absolute Fahruntüchtigkeit), § 24c StVG (Alkoholverbot in Probezeit und unter 21 Jahren).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Promillegrenzen 0,0 / 0,3 / 0,5 / 1,1 / 1,6 ‰, Ersttäter und Wiederholung im 0,5-Bereich, relative Fahruntüchtigkeit bei Ausfallerscheinungen sowie Sonderregeln für Probezeit, Fahranfänger unter 21 und Fahrradfahrer.</p>
+            <p><strong>Nicht berücksichtigt:</strong> die individuelle Geld- oder Freiheitsstrafe (gerichtliches Ermessen), Drogen am Steuer, zivilrechtliche Folgen, exakte MPU-Kosten und die Restalkohol-Berechnung (siehe Promille-Rechner). Keine Rechtsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AlkoholAmSteuerRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Alkohol am Steuer – welche Strafe droht?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Alkohol-am-Steuer-Rechner</strong> sehen Sie auf einen Blick, welche Folgen
+            ein bestimmter <strong>Promillewert</strong> hat: ob es bei einer Geldbuße bleibt oder schon
+            eine <strong>Straftat</strong> vorliegt, wie viele Punkte in Flensburg fällig werden, wie lange
+            das Fahrverbot dauert und ab wann eine <strong>MPU</strong> droht. Anders als der
+            <a href="/promille-rechner" class="text-blue-600 hover:text-blue-800 underline">Promille-Rechner</a>,
+            der die Blutalkoholkonzentration aus Getränken und Körpergewicht schätzt, ordnet dieser Rechner
+            einen Promillewert seiner rechtlichen Folge zu.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die vier entscheidenden Promillegrenzen</h3>
+          <p>Im deutschen Verkehrsrecht zählen vor allem vier Schwellen:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>0,0 ‰</strong> – absolutes Alkoholverbot in der Probezeit und für Fahrer unter 21 (§ 24c StVG)</li>
+              <li><strong>0,3 ‰</strong> – relative Fahruntüchtigkeit: Straftat, wenn Ausfallerscheinungen oder ein Unfall hinzukommen</li>
+              <li><strong>0,5 ‰</strong> – Ordnungswidrigkeit nach § 24a StVG: Bußgeld, 2 Punkte und Fahrverbot</li>
+              <li><strong>1,1 ‰</strong> – absolute Fahruntüchtigkeit: in jedem Fall eine Straftat (§ 316 StGB)</li>
+            </ul>
+          </div>
+          <p>
+            Bei <strong>1,6 ‰</strong> kommt eine fünfte Schwelle hinzu: Ab diesem Wert ist für die
+            Wiedererteilung der Fahrerlaubnis grundsätzlich eine <strong>medizinisch-psychologische
+            Untersuchung (MPU)</strong> nötig – im Volksmund „Idiotentest“.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">0,5 Promille – die Ordnungswidrigkeit</h3>
+          <p>
+            Wer mit <strong>0,5 bis 1,09 ‰</strong> ohne Ausfallerscheinungen fährt, begeht eine
+            Ordnungswidrigkeit nach <strong>§ 24a StVG</strong>. Beim ersten Verstoß sind das
+            <strong>500 € Bußgeld, 2 Punkte und 1 Monat Fahrverbot</strong>. Im Wiederholungsfall steigen
+            die Sätze deutlich: 1.000 € und 3 Monate beim zweiten, 1.500 € und 3 Monate beim dritten
+            Verstoß. Die 2 Punkte gibt es dabei immer.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ab 1,1 Promille – die Straftat</h3>
+          <p>
+            Ab <strong>1,1 ‰</strong> gilt man unwiderlegbar als <strong>absolut fahruntüchtig</strong>.
+            Dann handelt es sich nicht mehr um eine Ordnungswidrigkeit, sondern um eine <strong>Straftat
+            nach § 316 StGB</strong> (Trunkenheit im Verkehr). Die Folgen: Geld- oder Freiheitsstrafe,
+            <strong>3 Punkte</strong>, <strong>Entzug der Fahrerlaubnis</strong> und eine Sperrfrist von
+            mindestens 6 Monaten, in der kein neuer Führerschein beantragt werden kann. Schon ab
+            <strong>0,3 ‰</strong> kann es zur Straftat werden, wenn alkoholbedingte Fahrfehler
+            (Schlangenlinien) oder ein Unfall hinzukommen – das nennt man relative Fahruntüchtigkeit.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderfälle: Probezeit, unter 21 und Fahrrad</h3>
+          <p>
+            Für <strong>Fahranfänger in der Probezeit und alle unter 21 Jahren</strong> gilt die
+            <strong>0,0-Promille-Grenze</strong>. Schon ein messbarer Wert kostet 250 € Bußgeld, 1 Punkt,
+            ein Aufbauseminar und verlängert die Probezeit auf 4 Jahre. <strong>Fahrradfahrer</strong>
+            wiederum gelten erst ab <strong>1,6 ‰</strong> als absolut fahruntüchtig – darunter wird es nur
+            bei Ausfallerscheinungen strafbar. Eine 0,5-Grenze wie beim Auto gibt es fürs Rad nicht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fahrverbot oder Entzug der Fahrerlaubnis?</h3>
+          <p>
+            Der wichtigste Unterschied: Ein <strong>Fahrverbot</strong> ist befristet (im Alkohol-Fall
+            1 bis 3 Monate). Danach bekommt man den Führerschein automatisch zurück – er wird während der
+            Zeit nur verwahrt. Beim <strong>Entzug der Fahrerlaubnis</strong> (ab 1,1 ‰ oder bei relativer
+            Fahruntüchtigkeit) ist die Fahrerlaubnis dagegen weg. Es folgt eine <strong>Sperrfrist von
+            mindestens 6 Monaten</strong>, und erst nach Ablauf kann man die Fahrerlaubnis neu beantragen –
+            ab 1,6 ‰ nur mit bestandener MPU. Das Bußgeld bei der 0,5-Ordnungswidrigkeit kommt obendrauf
+            zur Verwaltungsgebühr und zu möglichen Anwalts- und MPU-Kosten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">E-Scooter, Drogen und Restalkohol</h3>
+          <p>
+            <strong>E-Scooter</strong> gelten rechtlich als Kraftfahrzeug: Hier greifen dieselben 0,5- und
+            1,1-Promille-Grenzen wie beim Auto, in der Probezeit ebenfalls 0,0 ‰. Bei <strong>Drogen am
+            Steuer</strong> gilt dagegen keine Promillegrenze – schon ein Nachweis im Blut führt zur
+            Ordnungswidrigkeit nach § 24a StVG. Und wer denkt, der <strong>Restalkohol</strong> sei morgens
+            verflogen, unterschätzt häufig den Abbau: Der Körper baut nur rund 0,1 bis 0,15 ‰ pro Stunde ab.
+            Nach einer durchzechten Nacht kann der Wert am nächsten Morgen noch über 0,5 ‰ liegen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🍺 Promille &amp; Folgen im Überblick (PKW)</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Regelsätze nach Bußgeldkatalog und StGB für Kraftfahrer ohne Probezeit. Ausfallerscheinungen
+          oder ein Unfall können die Einstufung verschärfen.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Promille</th>
+                <th class="py-2 px-2 font-semibold">Einstufung</th>
+                <th class="py-2 px-2 font-semibold text-right">Bußgeld/Strafe</th>
+                <th class="py-2 pl-2 font-semibold text-right">Punkte / Fahrverbot</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">unter 0,5 ‰</td><td class="py-2 px-2">straffrei*</td><td class="py-2 px-2 text-right">–</td><td class="py-2 pl-2 text-right">0 / nein</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,5–1,09 ‰ (1. Mal)</td><td class="py-2 px-2">Ordnungswidrigkeit</td><td class="py-2 px-2 text-right">500 €</td><td class="py-2 pl-2 text-right">2 / 1 Monat</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,5–1,09 ‰ (2. Mal)</td><td class="py-2 px-2">Ordnungswidrigkeit</td><td class="py-2 px-2 text-right">1.000 €</td><td class="py-2 pl-2 text-right">2 / 3 Monate</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,5–1,09 ‰ (3. Mal)</td><td class="py-2 px-2">Ordnungswidrigkeit</td><td class="py-2 px-2 text-right">1.500 €</td><td class="py-2 pl-2 text-right">2 / 3 Monate</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">ab 0,3 ‰ mit Ausfall</td><td class="py-2 px-2">Straftat (relativ)</td><td class="py-2 px-2 text-right">Geldstrafe</td><td class="py-2 pl-2 text-right">3 / Entzug</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">ab 1,1 ‰</td><td class="py-2 px-2">Straftat (absolut)</td><td class="py-2 px-2 text-right">Geld-/Freiheitsstrafe</td><td class="py-2 pl-2 text-right">3 / Entzug</td></tr>
+              <tr><td class="py-2 pr-2">ab 1,6 ‰</td><td class="py-2 px-2">Straftat + MPU</td><td class="py-2 px-2 text-right">Geld-/Freiheitsstrafe</td><td class="py-2 pl-2 text-right">3 / Entzug</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          * In Probezeit und unter 21 gilt 0,0 ‰ (250 € / 1 Punkt / Aufbauseminar). Quellen: bussgeldkatalog.org, ADAC, gesetze-im-internet.de (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispiele</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So ordnet der Rechner typische Situationen ein:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 0,6 ‰, erster Verstoß, Auto</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Promille:</div>
+              <div class="font-medium text-gray-800">0,6 ‰ (zwischen 0,5 und 1,1)</div>
+              <div class="text-gray-600">Einstufung:</div>
+              <div class="font-medium text-gray-800">Ordnungswidrigkeit (§ 24a StVG)</div>
+              <div class="text-gray-600">Folge:</div>
+              <div class="font-medium text-orange-700">500 € · 2 Punkte · 1 Monat Fahrverbot</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 1,3 ‰ am Steuer</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Promille:</div>
+              <div class="font-medium text-gray-800">1,3 ‰ (über 1,1)</div>
+              <div class="text-gray-600">Einstufung:</div>
+              <div class="font-medium text-gray-800">Straftat (§ 316 StGB)</div>
+              <div class="text-gray-600">Folge:</div>
+              <div class="font-medium text-red-700">Geld-/Freiheitsstrafe · 3 Punkte · Entzug + Sperrfrist</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 0,3 ‰ in der Probezeit</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Promille:</div>
+              <div class="font-medium text-gray-800">0,3 ‰, Fahranfänger</div>
+              <div class="text-gray-600">Einstufung:</div>
+              <div class="font-medium text-gray-800">Ordnungswidrigkeit (§ 24c StVG, 0,0-Grenze)</div>
+              <div class="text-gray-600">Folge:</div>
+              <div class="font-medium text-orange-700">250 € · 1 Punkt · Aufbauseminar · Probezeit auf 4 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Wichtig:</strong> Schon 0,3 ‰ können zur Straftat werden, sobald alkoholbedingte
+          Fahrfehler oder ein Unfall hinzukommen – unabhängig davon, ob die 0,5-Grenze erreicht ist.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Irrtümer &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Irrtum 1: „Unter 0,5 ‰ kann nichts passieren“</h3>
+            <p>Falsch. Schon ab 0,3 ‰ wird das Fahren zur Straftat, wenn Ausfallerscheinungen oder ein
+            Unfall hinzukommen (relative Fahruntüchtigkeit). In der Probezeit und unter 21 gilt sogar
+            0,0 ‰.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Irrtum 2: „Restalkohol am Morgen ist harmlos“</h3>
+            <p>Der Körper baut Alkohol nur mit rund 0,1 bis 0,15 ‰ pro Stunde ab. Nach einer durchzechten
+            Nacht kann man morgens noch über 0,5 ‰ haben. Den Abbau schätzen Sie mit dem
+            <a href="/promille-rechner" class="text-blue-600 hover:underline">Promille-Rechner</a>.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Fahrrad &amp; E-Scooter</h3>
+            <p>Für Fahrräder gilt die absolute Fahruntüchtigkeit erst ab 1,6 ‰. E-Scooter zählen dagegen
+            als Kraftfahrzeug – hier greifen die 0,5- und 1,1-Promille-Grenzen wie beim Auto.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: MPU ab 1,6 ‰</h3>
+            <p>Wer mit 1,6 ‰ oder mehr erwischt wird, bekommt den Führerschein nur nach bestandener MPU
+            zurück. Auch bei wiederholten Alkoholfahrten kann die Behörde eine MPU anordnen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Versicherung</h3>
+            <p>Bei einer Alkoholfahrt mit Unfall kann die Kfz-Versicherung Leistungen kürzen und Regress
+            fordern – mitunter mehrere tausend Euro. Der Bußgeldbescheid ist dann nur ein Teil der Kosten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zu Alkohol am Steuer</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Promille darf ich am Steuer haben?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für erfahrene Autofahrer liegt die Grenze bei 0,5 ‰: Ab 0,5 ‰ ist das Fahren eine
+              Ordnungswidrigkeit. In der Probezeit und für alle unter 21 Jahren gilt jedoch 0,0 ‰.
+              Schon ab 0,3 ‰ wird es zur Straftat, wenn Ausfallerscheinungen oder ein Unfall hinzukommen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet 0,5 Promille am Steuer beim ersten Mal?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim ersten Verstoß im Bereich 0,5 bis 1,09 ‰ ohne Ausfallerscheinungen drohen 500 €
+              Bußgeld, 2 Punkte in Flensburg und 1 Monat Fahrverbot. Beim zweiten Mal sind es 1.000 €
+              und 3 Monate, beim dritten Mal 1.500 € und 3 Monate – jeweils mit 2 Punkten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann ist Alkohol am Steuer eine Straftat?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ab 1,1 ‰ gilt absolute Fahruntüchtigkeit – das ist immer eine Straftat nach § 316 StGB
+              mit Geld- oder Freiheitsstrafe, 3 Punkten, Entzug der Fahrerlaubnis und mindestens 6 Monaten
+              Sperrfrist. Schon ab 0,3 ‰ liegt eine Straftat vor, wenn alkoholbedingte Fahrfehler oder
+              ein Unfall hinzukommen (relative Fahruntüchtigkeit).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann muss ich zur MPU wegen Alkohol?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine medizinisch-psychologische Untersuchung (MPU) ist ab 1,6 ‰ Pflicht, um die
+              Fahrerlaubnis wiederzubekommen. Auch bei wiederholten Alkoholfahrten unterhalb dieser Grenze
+              kann die Fahrerlaubnisbehörde eine MPU anordnen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Promillegrenze gilt in der Probezeit und unter 21?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>In der zweijährigen Probezeit und für alle Fahrer unter 21 Jahren gilt ein absolutes
+              Alkoholverbot von 0,0 ‰ (§ 24c StVG). Ein Verstoß kostet 250 € Bußgeld, 1 Punkt, ein
+              kostenpflichtiges Aufbauseminar und verlängert die Probezeit auf 4 Jahre.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Promillegrenze gilt für Fahrradfahrer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für Fahrradfahrer gibt es keine 0,5-Promille-Grenze. Absolute Fahruntüchtigkeit beginnt
+              erst bei 1,6 ‰ – dann liegt eine Straftat vor, meist mit MPU. Unterhalb von 1,6 ‰ wird das
+              Radfahren nur strafbar, wenn Ausfallerscheinungen oder ein Unfall hinzukommen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/promille-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍷</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Promille-Rechner</p>
+          </a>
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚓</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeldrechner</p>
+          </a>
+          <a href="/punkte-flensburg-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Punkte in Flensburg</p>
+          </a>
+          <a href="/versicherung-auto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Versicherung</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/spritkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛽</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spritkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Alkohol-am-Steuer-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/alkohol-am-steuer-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Promille darf ich am Steuer haben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für erfahrene Autofahrer liegt die Grenze bei 0,5 ‰: Ab 0,5 ‰ ist das Fahren eine Ordnungswidrigkeit. In der Probezeit und für alle unter 21 Jahren gilt jedoch 0,0 ‰. Schon ab 0,3 ‰ wird es zur Straftat, wenn Ausfallerscheinungen oder ein Unfall hinzukommen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet 0,5 Promille am Steuer beim ersten Mal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim ersten Verstoß im Bereich 0,5 bis 1,09 ‰ ohne Ausfallerscheinungen drohen 500 € Bußgeld, 2 Punkte in Flensburg und 1 Monat Fahrverbot. Beim zweiten Mal sind es 1.000 € und 3 Monate, beim dritten Mal 1.500 € und 3 Monate – jeweils mit 2 Punkten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann ist Alkohol am Steuer eine Straftat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab 1,1 ‰ gilt absolute Fahruntüchtigkeit – das ist immer eine Straftat nach § 316 StGB mit Geld- oder Freiheitsstrafe, 3 Punkten, Entzug der Fahrerlaubnis und mindestens 6 Monaten Sperrfrist. Schon ab 0,3 ‰ liegt eine Straftat vor, wenn alkoholbedingte Fahrfehler oder ein Unfall hinzukommen (relative Fahruntüchtigkeit)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann muss ich zur MPU wegen Alkohol?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine medizinisch-psychologische Untersuchung (MPU) ist ab 1,6 ‰ Pflicht, um die Fahrerlaubnis wiederzubekommen. Auch bei wiederholten Alkoholfahrten unterhalb dieser Grenze kann die Fahrerlaubnisbehörde eine MPU anordnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Promillegrenze gilt in der Probezeit und unter 21?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In der zweijährigen Probezeit und für alle Fahrer unter 21 Jahren gilt ein absolutes Alkoholverbot von 0,0 ‰ (§ 24c StVG). Ein Verstoß kostet 250 € Bußgeld, 1 Punkt, ein kostenpflichtiges Aufbauseminar und verlängert die Probezeit auf 4 Jahre."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Promillegrenze gilt für Fahrradfahrer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Fahrradfahrer gibt es keine 0,5-Promille-Grenze. Absolute Fahruntüchtigkeit beginnt erst bei 1,6 ‰ – dann liegt eine Straftat vor, meist mit MPU. Unterhalb von 1,6 ‰ wird das Radfahren nur strafbar, wenn Ausfallerscheinungen oder ein Unfall hinzukommen."
+        }
+      }
+    ]
+  })} />
+</Layout>

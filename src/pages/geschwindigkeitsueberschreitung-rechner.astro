@@ -1,0 +1,383 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GeschwindigkeitsueberschreitungRechner from '../components/rechner/GeschwindigkeitsueberschreitungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Geschwindigkeitsüberschreitung-Rechner 2026 – Bußgeld, Punkte & Fahrverbot";
+const description = "Bußgeld bei zu schnellem Fahren berechnen: Gemessene Geschwindigkeit eingeben, automatischer Toleranzabzug, Bußgeld, Punkte und Fahrverbot nach Bußgeldkatalog 2026 – innerorts, außerorts, Pkw und Lkw.";
+const keywords = "Geschwindigkeitsüberschreitung Rechner, Bußgeld zu schnell gefahren, Tempo Bußgeld, Bußgeldkatalog Geschwindigkeit 2026, Blitzer Bußgeld, km/h zu schnell Strafe, Punkte Geschwindigkeit, Fahrverbot Geschwindigkeit, Toleranzabzug Blitzer";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Geschwindigkeitsüberschreitung-Rechner", url: "/geschwindigkeitsueberschreitung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'Geschwindigkeitsüberschreitung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚗</span>
+          <div>
+            <h1 class="text-2xl font-bold">Geschwindigkeitsüberschreitung-Rechner 2026</h1>
+            <p class="text-orange-100 text-sm">Bußgeld, Punkte & Fahrverbot bei zu schnellem Fahren</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Bundeseinheitlicher Bußgeldkatalog (§ 1 BKatV i. V. m. Nr. 11 der Anlage – Geschwindigkeitsüberschreitungen), Sätze nach der StVO-Novelle 2021, Stand 2024/2025/2026. Toleranzabzug 3 km/h bis 100 km/h, darüber 3 % vom Messwert.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Innerorts/außerorts, Pkw und Lkw über 3,5 t, Bußgeld, Punkte in Flensburg und Fahrverbot.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Probezeit, Wiederholungstäter-Verschärfungen, Gefährdung/Unfall sowie Sonderregelungen einzelner Bundesländer. Keine Rechtsberatung. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GeschwindigkeitsueberschreitungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bußgeld bei Geschwindigkeitsüberschreitung 2026</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Geschwindigkeitsüberschreitung-Rechner</strong> ermitteln Sie schnell,
+            welches <strong>Bußgeld</strong>, wie viele <strong>Punkte in Flensburg</strong> und ob
+            ein <strong>Fahrverbot</strong> droht, wenn Sie zu schnell gefahren sind. Geben Sie
+            einfach die erlaubte und die gemessene Geschwindigkeit ein – den Toleranzabzug nimmt der
+            Rechner automatisch vor.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Toleranzabzug</h3>
+          <p>
+            Messgeräte sind nicht perfekt. Deshalb wird vom gemessenen Wert eine Toleranz abgezogen,
+            bevor das Bußgeld bestimmt wird:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bis 100 km/h:</strong> 3 km/h Toleranz</li>
+            <li><strong>Über 100 km/h:</strong> 3 % vom gemessenen Wert</li>
+          </ul>
+          <p>
+            Beispiel: Sie werden mit 75 km/h in einer 50er-Zone geblitzt. Nach Abzug von 3 km/h
+            gelten 72 km/h, also 22 km/h zu schnell – das ergibt 115 € und 1 Punkt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ab wann gibt es Punkte und Fahrverbot?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ab 21 km/h zu schnell:</strong> 1 Punkt in Flensburg</li>
+            <li><strong>Ab 31 km/h innerorts</strong> bzw. <strong>41 km/h außerorts:</strong> 2 Punkte und 1 Monat Fahrverbot</li>
+            <li><strong>Wiederholungstäter:</strong> Schon ab 26 km/h kann bei wiederholtem Verstoß innerhalb eines Jahres ein Fahrverbot drohen</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pkw oder Lkw – warum es einen Unterschied macht</h3>
+          <p>
+            Für <strong>Lkw über 3,5 t</strong> und Fahrzeuge mit Anhänger sieht der Bußgeldkatalog
+            durchweg höhere Sätze vor, weil von größeren Fahrzeugen ein höheres Gefährdungspotenzial
+            ausgeht. Stellen Sie im Rechner daher das richtige Fahrzeug ein. Bereits bei einer
+            Überschreitung von 21–25 km/h zahlt ein Lkw-Fahrer mehr als ein Pkw-Fahrer, und Punkte
+            sowie Fahrverbote greifen häufig eine Stufe früher.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Innerorts oder außerorts – der entscheidende Unterschied</h3>
+          <p>
+            Der Bußgeldkatalog unterscheidet streng zwischen einem Verstoß <strong>innerorts</strong>
+            (also innerhalb geschlossener Ortschaften) und <strong>außerorts</strong> (Landstraße und
+            Autobahn). Innerorts fallen die Bußgelder höher aus und ein Fahrverbot droht schon ab
+            31 km/h Überschreitung. Außerorts beginnt das Fahrverbot dagegen erst ab 41 km/h. Der
+            Grund: Innerhalb von Ortschaften sind Fußgänger, Radfahrer und spielende Kinder unterwegs,
+            sodass überhöhte Geschwindigkeit hier ein deutlich höheres Risiko bedeutet.
+          </p>
+          <p>
+            Beispiel für den Unterschied: Wer mit 35 km/h zu viel innerorts erwischt wird, zahlt
+            260 €, bekommt 2 Punkte und 1 Monat Fahrverbot. Dieselbe Überschreitung außerorts kostet
+            nur 200 € und bringt lediglich 1 Punkt – ohne Fahrverbot. Stellen Sie deshalb im Rechner
+            immer korrekt ein, wo der Verstoß stattgefunden hat.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie der Toleranzabzug konkret funktioniert</h3>
+          <p>
+            Der Toleranzabzug ist kein Geschenk, sondern gleicht die Messungenauigkeit der Geräte aus.
+            Maßgeblich für die Höhe des Bußgeldes ist immer die Geschwindigkeit <em>nach</em> Abzug der
+            Toleranz – nie der rohe Messwert auf dem Foto. Bis zu einem Messwert von 100 km/h werden
+            pauschal 3 km/h abgezogen. Liegt der gemessene Wert höher, sind es 3 % vom Messwert. Bei
+            150 km/h gemessen wären das also 4,5 km/h Toleranz, sodass 145,5 km/h vorwerfbar bleiben.
+          </p>
+          <p>
+            Achtung: Manche Messverfahren erlauben einen höheren Toleranzabzug, etwa bei Messungen aus
+            einem nachfahrenden Fahrzeug oder bei ungeeichten Geräten. Der hier verwendete Standardwert
+            von 3 km/h bzw. 3 % entspricht der gängigen Praxis bei stationären und mobilen Blitzern.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Punkte in Flensburg und der Führerschein</h3>
+          <p>
+            Geschwindigkeitsverstöße ab 21 km/h bringen mindestens 1 Punkt im Fahreignungsregister in
+            Flensburg. Ab 8 Punkten wird die Fahrerlaubnis entzogen. Wichtig: Bereits ab 4 Punkten
+            erhalten Sie eine Ermahnung, ab 6 Punkten eine Verwarnung. Wer also schon Punkte gesammelt
+            hat, sollte besonders vorsichtig sein – ein einziger weiterer Verstoß mit 2 Punkten kann den
+            Unterschied zwischen Verwarnung und Führerscheinentzug ausmachen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderfall Probezeit und Fahranfänger</h3>
+          <p>
+            Befinden Sie sich noch in der zweijährigen <strong>Probezeit</strong>, gilt eine
+            Geschwindigkeitsüberschreitung ab 21 km/h als sogenannter A-Verstoß. Die Folge: Die
+            Probezeit wird um zwei Jahre verlängert und Sie müssen an einem kostenpflichtigen
+            Aufbauseminar teilnehmen. Das eigentliche Bußgeld bleibt zwar gleich, die zusätzlichen
+            Maßnahmen wiegen für Fahranfänger aber oft schwerer als die reine Geldbuße.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧮 Drei Beispiele durchgerechnet</h2>
+        <div class="space-y-5">
+          <div class="bg-orange-50 rounded-xl p-4">
+            <p class="font-semibold text-gray-800 mb-2">Beispiel 1: 75 km/h in der 50er-Zone (innerorts, Pkw)</p>
+            <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+              <li>Gemessen 75 km/h, Toleranz 3 km/h (bis 100 km/h) → 72 km/h vorwerfbar</li>
+              <li>Überschreitung: 72 − 50 = <strong>22 km/h</strong></li>
+              <li>Bereich 21–25 km/h innerorts → <strong>115 €, 1 Punkt</strong>, kein Fahrverbot</li>
+            </ul>
+          </div>
+          <div class="bg-orange-50 rounded-xl p-4">
+            <p class="font-semibold text-gray-800 mb-2">Beispiel 2: 130 km/h auf der Landstraße (außerorts, Pkw, Limit 100)</p>
+            <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+              <li>Gemessen 130 km/h, Toleranz 3 % = 3,9 km/h → 126,1 km/h vorwerfbar</li>
+              <li>Überschreitung: 126,1 − 100 = 26,1, gerundet <strong>26 km/h</strong></li>
+              <li>Bereich 26–30 km/h außerorts → <strong>150 €, 1 Punkt</strong>, kein Fahrverbot</li>
+            </ul>
+          </div>
+          <div class="bg-orange-50 rounded-xl p-4">
+            <p class="font-semibold text-gray-800 mb-2">Beispiel 3: 95 km/h in der 50er-Zone (innerorts, Pkw)</p>
+            <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+              <li>Gemessen 95 km/h, Toleranz 3 km/h (bis 100 km/h) → 92 km/h vorwerfbar</li>
+              <li>Überschreitung: 92 − 50 = <strong>42 km/h</strong></li>
+              <li>Bereich 41–50 km/h innerorts → <strong>400 €, 2 Punkte, 1 Monat Fahrverbot</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4">
+          <div class="border-l-4 border-orange-400 bg-orange-50 p-4 rounded-r-lg">
+            <p class="font-semibold text-gray-800 mb-1">Tachowert statt bereinigtem Wert benutzt</p>
+            <p class="text-sm text-gray-600">Maßgeblich ist nie der rohe Messwert, sondern die Geschwindigkeit nach Toleranzabzug. Wer den Tachowert direkt mit dem Limit vergleicht, kommt auf ein zu hohes Bußgeld.</p>
+          </div>
+          <div class="border-l-4 border-orange-400 bg-orange-50 p-4 rounded-r-lg">
+            <p class="font-semibold text-gray-800 mb-1">Probezeit unterschätzt</p>
+            <p class="text-sm text-gray-600">In der Probezeit zählt schon eine Überschreitung ab 21 km/h als A-Verstoß: Probezeitverlängerung um zwei Jahre plus Aufbauseminar – zusätzlich zum normalen Bußgeld.</p>
+          </div>
+          <div class="border-l-4 border-orange-400 bg-orange-50 p-4 rounded-r-lg">
+            <p class="font-semibold text-gray-800 mb-1">Wiederholungstäter-Regel übersehen</p>
+            <p class="text-sm text-gray-600">Wer innerhalb eines Jahres zweimal mit mindestens 26 km/h zu schnell geblitzt wird, riskiert ein Fahrverbot – obwohl die Einzelverstöße unter der regulären Fahrverbotsschwelle liegen.</p>
+          </div>
+          <div class="border-l-4 border-orange-400 bg-orange-50 p-4 rounded-r-lg">
+            <p class="font-semibold text-gray-800 mb-1">Innerorts und außerorts verwechselt</p>
+            <p class="text-sm text-gray-600">Innerorts sind die Sätze höher und das Fahrverbot beginnt bereits ab 31 km/h. Wer den falschen Ort einstellt, erhält ein verzerrtes Ergebnis – besonders an Ortseingangsschildern leicht zu verwechseln.</p>
+          </div>
+          <div class="border-l-4 border-orange-400 bg-orange-50 p-4 rounded-r-lg">
+            <p class="font-semibold text-gray-800 mb-1">Lkw-Sätze mit Pkw-Sätzen verwechselt</p>
+            <p class="text-sm text-gray-600">Für Lkw über 3,5 t und Gespanne gelten durchweg höhere Bußgelder. Wird der Pkw-Tarif angesetzt, fällt das Ergebnis zu niedrig aus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel kostet es, 20 km/h zu schnell zu fahren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Innerorts kostet eine Überschreitung von 16–20 km/h 70 €, außerorts 60 €. Punkte oder Fahrverbot gibt es in diesem Bereich noch nicht. Erst ab 21 km/h kommt 1 Punkt hinzu.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann gibt es ein Fahrverbot bei Geschwindigkeitsüberschreitung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei Pkw droht ab 31 km/h innerorts und ab 41 km/h außerorts ein Fahrverbot von einem Monat. Bei Wiederholung innerhalb eines Jahres kann bereits ab 26 km/h ein Fahrverbot verhängt werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Toleranz wird beim Blitzen abgezogen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Üblich sind 3 km/h bis zu einer gemessenen Geschwindigkeit von 100 km/h, darüber 3 % des Messwerts. Maßgeblich für das Bußgeld ist immer der Wert nach Toleranzabzug.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gelten für Lkw andere Bußgelder?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Für Lkw über 3,5 t und Fahrzeuge mit Anhänger gelten höhere Bußgelder und teils früher Punkte und Fahrverbote. Stellen Sie im Rechner das passende Fahrzeug ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Punkte führen zum Führerscheinentzug?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei 8 Punkten in Flensburg wird der Führerschein entzogen. Ab 4 Punkten gibt es eine Ermahnung, ab 6 Punkten eine Verwarnung. Punkte aus Geschwindigkeitsverstößen verjähren nach 2,5 bzw. 5 Jahren.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert bei einer Geschwindigkeitsüberschreitung in der Probezeit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Überschreitung ab 21 km/h gilt in der Probezeit als A-Verstoß. Die Folge ist eine Verlängerung der Probezeit um zwei Jahre sowie die Teilnahme an einem kostenpflichtigen Aufbauseminar. Das Bußgeld selbst bleibt unverändert, die zusätzlichen Maßnahmen kommen aber obendrauf.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeld-Rechner</p>
+          </a>
+          <a href="/abstandsverstoss-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Abstandsverstoß-Rechner</p>
+          </a>
+          <a href="/rotlichtverstoss-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rotlichtverstoß-Rechner</p>
+          </a>
+          <a href="/bremsweg-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bremsweg-Rechner</p>
+          </a>
+          <a href="/promille-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Promille-Rechner</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Geschwindigkeitsüberschreitung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/geschwindigkeitsueberschreitung-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel kostet es, 20 km/h zu schnell zu fahren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Innerorts kostet eine Überschreitung von 16–20 km/h 70 €, außerorts 60 €. Punkte oder Fahrverbot gibt es in diesem Bereich noch nicht. Erst ab 21 km/h kommt 1 Punkt hinzu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann gibt es ein Fahrverbot bei Geschwindigkeitsüberschreitung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Pkw droht ab 31 km/h innerorts und ab 41 km/h außerorts ein Fahrverbot von einem Monat. Bei Wiederholung innerhalb eines Jahres kann bereits ab 26 km/h ein Fahrverbot verhängt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Toleranz wird beim Blitzen abgezogen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Üblich sind 3 km/h bis zu einer gemessenen Geschwindigkeit von 100 km/h, darüber 3 % des Messwerts. Maßgeblich für das Bußgeld ist immer der Wert nach Toleranzabzug."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gelten für Lkw andere Bußgelder?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Für Lkw über 3,5 t und Fahrzeuge mit Anhänger gelten höhere Bußgelder und teils früher Punkte und Fahrverbote. Stellen Sie im Rechner das passende Fahrzeug ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Punkte führen zum Führerscheinentzug?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 8 Punkten in Flensburg wird der Führerschein entzogen. Ab 4 Punkten gibt es eine Ermahnung, ab 6 Punkten eine Verwarnung. Punkte aus Geschwindigkeitsverstößen verjähren nach 2,5 bzw. 5 Jahren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert bei einer Geschwindigkeitsüberschreitung in der Probezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Überschreitung ab 21 km/h gilt in der Probezeit als A-Verstoß. Die Folge ist eine Verlängerung der Probezeit um zwei Jahre sowie die Teilnahme an einem kostenpflichtigen Aufbauseminar. Das Bußgeld selbst bleibt unverändert, die zusätzlichen Maßnahmen kommen aber obendrauf."
+        }
+      }
+    ]
+  })} />
+</Layout>
