@@ -1,0 +1,417 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EinkommensteuerSelbststaendigeRechner from '../components/rechner/EinkommensteuerSelbststaendigeRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Einkommensteuer-Rechner für Selbstständige 2026 – Steuer & Vorauszahlung berechnen";
+const description = "Einkommensteuer für Selbstständige & Freiberufler 2026 berechnen: ESt nach §32a EStG, Soli mit neuer Freigrenze und die quartalsweise Vorauszahlung nach §37 EStG. Kostenlos und sofort.";
+const keywords = "Einkommensteuer Selbstständige Rechner, Einkommensteuer Freiberufler, Steuervorauszahlung Selbstständige, Vorauszahlung Einkommensteuer berechnen, ESt Vorauszahlung Quartal, §37 EStG, Steuer Selbstständige 2026, wie viel Steuern Selbstständige";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Einkommensteuer-Rechner für Selbstständige", url: "/einkommensteuer-selbststaendige-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Einkommensteuer für Selbstständige' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧑‍💼</span>
+          <div>
+            <h1 class="text-2xl font-bold">Einkommensteuer-Rechner für Selbstständige 2026</h1>
+            <p class="text-blue-200 text-sm">Steuerlast und Quartals-Vorauszahlung schätzen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Einkommensteuertarif § 32a EStG 2026 (Grundfreibetrag 12.348 €), Vorauszahlung § 37 EStG, Solidaritätszuschlag mit Freigrenze 2026 (20.350 € / 40.700 €), Quelle: <a href="https://www.gesetze-im-internet.de/estg/" target="_blank" rel="noopener noreferrer" class="underline">EStG (Gesetze im Internet)</a> und <a href="https://www.bundesfinanzministerium.de" target="_blank" rel="noopener noreferrer" class="underline">BMF</a></p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Grundtarif und Splittingtarif, abziehbare Vorsorgeaufwendungen, Soli mit Freigrenze, optionale Kirchensteuer und die quartalsweise Vorauszahlung</p>
+            <p><strong>Nicht berücksichtigt:</strong> Verlustverrechnung, Progressionsvorbehalt, Höchstbeträge bei Vorsorgeaufwendungen, Gewerbesteuer-Anrechnung (§ 35 EStG) sowie Sonderfälle – <strong>Schätzung ohne Gewähr, ersetzt keine Steuerberatung</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <EinkommensteuerSelbststaendigeRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Einkommensteuer für Selbstständige: So funktioniert die Berechnung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Selbstständige und Freiberufler zahlen ihre <strong>Einkommensteuer</strong> nach demselben
+            Tarif wie Angestellte – dem progressiven Tarif des <strong>§ 32a EStG</strong>. Der
+            entscheidende Unterschied: Bei Angestellten zieht der Arbeitgeber jeden Monat Lohnsteuer
+            ab. Selbstständige haben <strong>keinen Lohnsteuerabzug</strong> und müssen ihre Steuer
+            stattdessen über <strong>vierteljährliche Vorauszahlungen</strong> selbst leisten. Genau
+            darauf ist dieser Rechner ausgelegt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vom Gewinn zur Steuer</h3>
+          <p>Vereinfacht läuft die Berechnung in drei Schritten:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1. zu versteuerndes Einkommen (zvE)</strong> = Jahresgewinn − abziehbare Vorsorgeaufwendungen</li>
+              <li><strong>2. Einkommensteuer</strong> nach dem Tarif § 32a EStG 2026 (Grund- oder Splittingtarif)</li>
+              <li><strong>3. + Solidaritätszuschlag</strong> (nur bei hoher ESt) <strong>+ ggf. Kirchensteuer</strong></li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>Jahresgewinn</strong> ergibt sich bei den meisten Selbstständigen aus der
+            Einnahmenüberschussrechnung (EÜR): Betriebseinnahmen minus Betriebsausgaben. Dieser Gewinn
+            ist die Basis – nicht der Umsatz.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Tarif 2026 im Überblick</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundfreibetrag:</strong> 12.348 € bleiben steuerfrei</li>
+            <li><strong>Zone 1 (12.349–17.799 €):</strong> Einstiegssatz 14 %, progressiv steigend</li>
+            <li><strong>Zone 2 (17.800–69.878 €):</strong> progressiv bis zum Spitzensteuersatz</li>
+            <li><strong>Zone 3 (69.879–277.825 €):</strong> 42 % Spitzensteuersatz</li>
+            <li><strong>Zone 4 (ab 277.826 €):</strong> 45 % „Reichensteuer“</li>
+          </ul>
+          <p>
+            Bei <strong>Zusammenveranlagung</strong> von Ehegatten gilt der Splittingtarif: Das zvE
+            wird halbiert, die Steuer darauf berechnet und anschließend verdoppelt. Das senkt die
+            Belastung, wenn ein Partner deutlich mehr verdient.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Solidaritätszuschlag – Freigrenze 2026</h3>
+          <p>
+            Der <strong>Solidaritätszuschlag</strong> (5,5 % der Einkommensteuer) wird seit 2021 für
+            die meisten nicht mehr erhoben. 2026 steigt die Freigrenze erneut: Erst wenn die
+            Jahres-Einkommensteuer <strong>20.350 € (Einzelveranlagung)</strong> bzw.
+            <strong>40.700 € (Zusammenveranlagung)</strong> übersteigt, fällt überhaupt Soli an –
+            zunächst abgemildert in einer Übergangszone (max. 11,9 % der Differenz zur Freigrenze).
+            Für viele Selbstständige bedeutet das: <strong>kein Soli</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vorauszahlungen nach § 37 EStG</h3>
+          <p>
+            Das Finanzamt setzt nach dem ersten Steuerbescheid <strong>vierteljährliche
+            Vorauszahlungen</strong> fest – fällig jeweils zum <strong>10. März, 10. Juni,
+            10. September und 10. Dezember</strong>. Grundlage ist die voraussichtliche Jahressteuer,
+            geteilt durch vier. Vorauszahlungen werden nur festgesetzt, wenn sie mindestens
+            <strong>400 € im Jahr</strong> und <strong>100 € je Quartal</strong> erreichen
+            (§ 37 Abs. 5 EStG). Ändert sich Ihr Gewinn deutlich, können Sie die Vorauszahlungen beim
+            Finanzamt anpassen lassen.
+          </p>
+          <p>
+            Wer als Einzelunternehmer zusätzlich gewerblich tätig ist, sollte auch den
+            <a href="/gewerbesteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Gewerbesteuer-Rechner</a>
+            prüfen – die Gewerbesteuer wird über § 35 EStG teilweise auf die Einkommensteuer
+            angerechnet.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen 2026</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Zwei typische Fälle für Selbstständige – jeweils nach Tarif § 32a EStG 2026:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Freiberufler, ledig</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Jahresgewinn:</div>
+              <div class="font-medium text-gray-800">45.000 €</div>
+              <div class="text-gray-600">− Vorsorgeaufwendungen:</div>
+              <div class="font-medium text-gray-800">8.000 €</div>
+              <div class="text-gray-600">= zu versteuerndes Einkommen:</div>
+              <div class="font-medium text-gray-800">37.000 €</div>
+              <div class="text-gray-600">Einkommensteuer (§ 32a):</div>
+              <div class="font-medium text-gray-800">6.275 €</div>
+              <div class="text-gray-600">Solidaritätszuschlag:</div>
+              <div class="font-medium text-green-700">0 € (unter Freigrenze)</div>
+              <div class="text-gray-600">Quartals-Vorauszahlung:</div>
+              <div class="font-medium text-blue-700">1.568,75 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Selbstständig, verheiratet (Splittingtarif)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Jahresgewinn:</div>
+              <div class="font-medium text-gray-800">90.000 €</div>
+              <div class="text-gray-600">− Vorsorgeaufwendungen:</div>
+              <div class="font-medium text-gray-800">12.000 €</div>
+              <div class="text-gray-600">= zu versteuerndes Einkommen:</div>
+              <div class="font-medium text-gray-800">78.000 €</div>
+              <div class="text-gray-600">Einkommensteuer (Splitting):</div>
+              <div class="font-medium text-gray-800">13.788 €</div>
+              <div class="text-gray-600">Solidaritätszuschlag:</div>
+              <div class="font-medium text-green-700">0 € (unter Freigrenze)</div>
+              <div class="text-gray-600">Quartals-Vorauszahlung:</div>
+              <div class="font-medium text-blue-700">3.447,00 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Legen Sie die Quartalsrate konsequent zur Seite. Wer das Geld
+          monatlich auf ein separates Steuerkonto überweist, wird von den Terminen 10. März, 10. Juni,
+          10. September und 10. Dezember nie überrascht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler von Selbstständigen</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Umsatz statt Gewinn versteuern wollen</h3>
+            <p>Besteuert wird der <strong>Gewinn</strong> (Einnahmen minus Betriebsausgaben), nicht
+            der Umsatz. Wer mit dem Umsatz rechnet, überschätzt seine Steuerlast erheblich.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Vorauszahlungen vergessen einzuplanen</h3>
+            <p>Ohne Lohnsteuerabzug landet zunächst der volle Gewinn auf dem Konto – die Steuer kommt
+            quartalsweise hinterher. Wer nicht zurücklegt, gerät bei den Terminen in Liquiditätsnot.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Nachzahlung im ersten Jahr unterschätzen</h3>
+            <p>Im Gründungsjahr setzt das Finanzamt oft noch keine Vorauszahlungen fest. Mit dem ersten
+            Bescheid kommen dann <strong>Nachzahlung für das Vorjahr und Vorauszahlungen für das
+            laufende Jahr gleichzeitig</strong> – das kann das Doppelte sein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 4: Soli pauschal einplanen</h3>
+            <p>Viele rechnen reflexartig mit 5,5 % Soli. Dank der Freigrenze von 20.350 € (Einzel)
+            bzw. 40.700 € (Zusammenveranlagung) Einkommensteuer zahlen die meisten Selbstständigen
+            2026 <strong>gar keinen Soli</strong>.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 5: Vorauszahlung nicht anpassen lassen</h3>
+            <p>Brechen die Einnahmen ein, bleibt die Vorauszahlung trotzdem hoch. Ein formloser Antrag
+            beim Finanzamt auf <strong>Herabsetzung der Vorauszahlungen</strong> schafft Abhilfe –
+            umgekehrt vermeidet eine Anhebung spätere Nachzahlungen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufige Fragen zur Einkommensteuer für Selbstständige</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Einkommensteuer zahlen Selbstständige 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Selbstständige zahlen Einkommensteuer nach dem Tarif § 32a EStG 2026 – wie alle
+              Steuerpflichtigen. Bis zum Grundfreibetrag von 12.348 € fällt keine Steuer an, danach
+              steigt der Satz progressiv von 14 % bis 42 % (ab 277.826 € zvE 45 %). Beispiel: Bei
+              37.000 € zu versteuerndem Einkommen sind es 6.275 € Einkommensteuer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann muss ich Steuervorauszahlungen leisten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Vorauszahlungen sind nach § 37 EStG vierteljährlich fällig: am 10. März, 10. Juni,
+              10. September und 10. Dezember. Das Finanzamt setzt sie auf Basis Ihrer voraussichtlichen
+              Jahressteuer fest (geteilt durch vier) – aber nur, wenn sie mindestens 400 € im Jahr und
+              100 € je Quartal erreichen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet das Finanzamt die Vorauszahlung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Grundlage ist die zuletzt festgesetzte oder voraussichtliche Jahres-Einkommensteuer
+              (zzgl. Soli und ggf. Kirchensteuer). Dieser Betrag wird durch vier geteilt und ergibt die
+              Quartalsrate. Bei 6.275 € Jahressteuer sind das also rund 1.568,75 € je Quartal. Ändert
+              sich Ihr Gewinn, können Sie die Vorauszahlungen anpassen lassen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zahlen Selbstständige Solidaritätszuschlag?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Meist nicht. Der Solidaritätszuschlag (5,5 % der Einkommensteuer) fällt 2026 erst an,
+              wenn die Jahres-Einkommensteuer 20.350 € (Einzelveranlagung) bzw. 40.700 €
+              (Zusammenveranlagung) übersteigt. Direkt darüber gilt eine Milderungszone. Die meisten
+              Selbstständigen liegen darunter und zahlen keinen Soli.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kann ich vom Gewinn absetzen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Betriebsausgaben mindern bereits den Gewinn. Vom Gewinn abziehbar sind zusätzlich die
+              Vorsorgeaufwendungen als Sonderausgaben – also der abziehbare Anteil aus Kranken- und
+              Pflegeversicherung, der gesetzlichen oder freiwilligen Rentenversicherung sowie
+              Rürup-Beiträgen. In diesem Rechner tragen Sie diesen Betrag im Feld
+              „Vorsorgeaufwendungen“ ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was unterscheidet diesen Rechner vom normalen Einkommensteuer-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der allgemeine Einkommensteuer-Rechner ist auf Arbeitnehmer mit Bruttolohn und
+              Lohnsteuerabzug ausgelegt. Dieser Rechner geht vom Jahresgewinn aus, kennt keinen
+              Lohnsteuerabzug und stellt die vierteljährliche Vorauszahlung nach § 37 EStG in den
+              Mittelpunkt – also genau das, was Selbstständige und Freiberufler brauchen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/kleingewerbe-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleingewerbe-Steuer-Rechner</p>
+          </a>
+          <a href="/ustva-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Umsatzsteuer-Voranmeldung</p>
+          </a>
+          <a href="/kleinunternehmer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleinunternehmer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Einkommensteuer-Rechner für Selbstständige 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/einkommensteuer-selbststaendige-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Einkommensteuer zahlen Selbstständige 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Selbstständige zahlen Einkommensteuer nach dem Tarif § 32a EStG 2026 – wie alle Steuerpflichtigen. Bis zum Grundfreibetrag von 12.348 € fällt keine Steuer an, danach steigt der Satz progressiv von 14 % bis 42 % (ab 277.826 € zvE 45 %). Beispiel: Bei 37.000 € zu versteuerndem Einkommen sind es 6.275 € Einkommensteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann muss ich Steuervorauszahlungen leisten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vorauszahlungen sind nach § 37 EStG vierteljährlich fällig: am 10. März, 10. Juni, 10. September und 10. Dezember. Das Finanzamt setzt sie auf Basis Ihrer voraussichtlichen Jahressteuer fest (geteilt durch vier) – aber nur, wenn sie mindestens 400 € im Jahr und 100 € je Quartal erreichen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet das Finanzamt die Vorauszahlung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grundlage ist die zuletzt festgesetzte oder voraussichtliche Jahres-Einkommensteuer (zzgl. Soli und ggf. Kirchensteuer). Dieser Betrag wird durch vier geteilt und ergibt die Quartalsrate. Bei 6.275 € Jahressteuer sind das also rund 1.568,75 € je Quartal. Ändert sich Ihr Gewinn, können Sie die Vorauszahlungen anpassen lassen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Zahlen Selbstständige Solidaritätszuschlag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Meist nicht. Der Solidaritätszuschlag (5,5 % der Einkommensteuer) fällt 2026 erst an, wenn die Jahres-Einkommensteuer 20.350 € (Einzelveranlagung) bzw. 40.700 € (Zusammenveranlagung) übersteigt. Direkt darüber gilt eine Milderungszone. Die meisten Selbstständigen liegen darunter und zahlen keinen Soli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kann ich vom Gewinn absetzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Betriebsausgaben mindern bereits den Gewinn. Vom Gewinn abziehbar sind zusätzlich die Vorsorgeaufwendungen als Sonderausgaben – also der abziehbare Anteil aus Kranken- und Pflegeversicherung, der gesetzlichen oder freiwilligen Rentenversicherung sowie Rürup-Beiträgen. In diesem Rechner tragen Sie diesen Betrag im Feld Vorsorgeaufwendungen ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was unterscheidet diesen Rechner vom normalen Einkommensteuer-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der allgemeine Einkommensteuer-Rechner ist auf Arbeitnehmer mit Bruttolohn und Lohnsteuerabzug ausgelegt. Dieser Rechner geht vom Jahresgewinn aus, kennt keinen Lohnsteuerabzug und stellt die vierteljährliche Vorauszahlung nach § 37 EStG in den Mittelpunkt – also genau das, was Selbstständige und Freiberufler brauchen."
+        }
+      }
+    ]
+  })} />
+</Layout>

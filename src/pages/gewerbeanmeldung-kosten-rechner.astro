@@ -1,0 +1,421 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GewerbeanmeldungKostenRechner from '../components/rechner/GewerbeanmeldungKostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Gewerbeanmeldung-Kosten-Rechner 2026 – Was kostet die Gewerbeanmeldung?";
+const description = "Was kostet die Gewerbeanmeldung 2026? Kommunale Gebühren großer Städte (Berlin, München, Hamburg, Köln u. a.) im Überblick. Kostenlos berechnen: Gebühr × Anzahl Personen, online vs. persönlich.";
+const keywords = "Gewerbeanmeldung Kosten, Gewerbeanmeldung Gebühr, was kostet Gewerbe anmelden, Gewerbeschein Kosten, Gewerbeanmeldung Berlin München Hamburg Köln, Gewerbe anmelden Preis, Kosten Gewerbeanmeldung GbR";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Gewerbeanmeldung-Kosten-Rechner", url: "/gewerbeanmeldung-kosten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Gewerbeanmeldung-Kosten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📝</span>
+          <div>
+            <h1 class="text-2xl font-bold">Gewerbeanmeldung-Kosten-Rechner 2026</h1>
+            <p class="text-emerald-200 text-sm">Was kostet die Gewerbeanmeldung? Kommunale Gebühren im Überblick</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 14 Gewerbeordnung (GewO) – Anzeigepflicht bei Gewerbebeginn; die Gebührenhöhe regelt die jeweilige Kommune über ihre Gebührensatzung</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> kommunale Anmeldegebühren großer Städte (Stand 2026, Richtwerte), Online- vs. Vor-Ort-Gebühr, Anzahl anzeigepflichtiger Personen (z. B. GbR-Gesellschafter)</p>
+            <p><strong>Nicht berücksichtigt:</strong> Zusatzkosten wie Führungszeugnis, IHK-/HWK-Beitrag, Notar- und Handelsregisterkosten bei GmbH/UG. Schätzung ohne Gewähr, ersetzt keine Steuer- oder Rechtsberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GewerbeanmeldungKostenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Was kostet die Gewerbeanmeldung 2026?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer in Deutschland ein <strong>Gewerbe anmeldet</strong>, zahlt dafür eine einmalige
+            Verwaltungsgebühr beim Gewerbeamt. Diese Gebühr ist <strong>keine Steuer</strong> und
+            kein Prozentsatz vom Umsatz oder Gewinn, sondern eine feste kommunale Gebühr. Jede Stadt
+            beziehungsweise Gemeinde legt sie über ihre eigene <strong>Gebührensatzung</strong>
+            selbst fest. Deshalb gibt es keinen bundesweit einheitlichen Preis – die Spanne reicht
+            grob von <strong>15 € bis 65 €</strong>, der Bundesschnitt liegt bei rund 30 €.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt eine einfache, transparente Logik:</p>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Gesamtkosten</strong> = Anmeldegebühr (Stadt) × Anzahl anzeigepflichtiger Personen</li>
+            </ul>
+          </div>
+          <p>
+            Bei einem Einzelunternehmen ist die Anzahl der Personen 1. Bei einer
+            <strong> Gesellschaft bürgerlichen Rechts (GbR)</strong> meldet jeder Gesellschafter das
+            Gewerbe selbst an – entsprechend fällt die Gebühr je Person an. Wer also zu zweit eine GbR
+            gründet, zahlt die Gebühr zweimal.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beispiel-Gebühren großer Städte (2026)</h3>
+          <p>
+            Die folgenden Werte sind <strong>Richtwerte</strong> nach den kommunalen
+            Gebührensatzungen. Online-Anmeldungen sind in einigen Städten günstiger als der Gang zum
+            Amt:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse my-2">
+              <thead>
+                <tr class="border-b border-gray-200 text-left">
+                  <th class="py-2 pr-4 font-semibold text-gray-700">Stadt</th>
+                  <th class="py-2 px-2 font-semibold text-gray-700">Vor Ort</th>
+                  <th class="py-2 pl-2 font-semibold text-gray-700">Online</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600">
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Berlin</td><td class="py-1.5 px-2">26 €</td><td class="py-1.5 pl-2">15 €</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Hamburg</td><td class="py-1.5 px-2">20 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">München</td><td class="py-1.5 px-2">47 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Köln</td><td class="py-1.5 px-2">26 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Frankfurt am Main</td><td class="py-1.5 px-2">25 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Düsseldorf</td><td class="py-1.5 px-2">26 €</td><td class="py-1.5 pl-2">20 €</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Stuttgart</td><td class="py-1.5 px-2">54 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Hannover</td><td class="py-1.5 px-2">35 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 pr-4">Nürnberg</td><td class="py-1.5 px-2">40 €</td><td class="py-1.5 pl-2">–</td></tr>
+                <tr><td class="py-1.5 pr-4">Leipzig / Dresden / Essen / Bonn / Münster</td><td class="py-1.5 px-2">20 €</td><td class="py-1.5 pl-2">–</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">
+            Richtwerte Stand 2026 – maßgeblich ist stets die aktuelle Gebührensatzung der jeweiligen
+            Kommune. „–" bedeutet: kein gesonderter Online-Tarif bekannt; es gilt die reguläre Gebühr.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer muss ein Gewerbe anmelden?</h3>
+          <p>
+            Anzeigepflichtig ist nach <strong>§ 14 GewO</strong>, wer ein stehendes Gewerbe
+            selbstständig betreibt. Das gilt für Einzelunternehmer, Personengesellschaften (GbR, OHG,
+            KG) und Kapitalgesellschaften (GmbH, UG). <strong>Freiberufler</strong> – etwa Ärzte,
+            Anwälte, Architekten oder freischaffende Künstler – melden hingegen <em>kein</em> Gewerbe
+            an, sondern erfassen ihre Tätigkeit direkt beim Finanzamt. Für sie entfällt die
+            Gewerbeanmeldegebühr.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Anmeldegebühr ist nicht gleich Gesamtkosten</h3>
+          <p>
+            Die reine Anmeldegebühr ist nur der erste Posten. Je nach Tätigkeit kommen ein
+            <strong> Führungszeugnis</strong> oder eine Auskunft aus dem Gewerbezentralregister
+            (jeweils ca. 13 €) hinzu, bei zulassungspflichtigem Handwerk die Eintragung in die
+            Handwerksrolle. Wer eine <strong>GmbH oder UG</strong> gründet, zahlt zusätzlich Notar-
+            und Handelsregisterkosten – diese liegen deutlich über der Gewerbeanmeldegebühr und sind
+            hier bewusst nicht eingerechnet. Für die laufende Belastung sind außerdem die
+            <a href="/gewerbesteuer-rechner" class="text-emerald-600 hover:text-emerald-800 underline">Gewerbesteuer</a>
+            und – ab den gesetzlichen Grenzen – die
+            <a href="/mehrwertsteuer-rechner" class="text-emerald-600 hover:text-emerald-800 underline">Umsatzsteuer</a>
+            relevant.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich die Kosten in typischen Fällen zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Einzelunternehmer in Berlin (online)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Stadt:</div>
+              <div class="font-medium text-gray-800">Berlin (Online-Anmeldung)</div>
+              <div class="text-gray-600">Gebühr pro Person:</div>
+              <div class="font-medium text-gray-800">15 €</div>
+              <div class="text-gray-600">Anzahl Personen:</div>
+              <div class="font-medium text-gray-800">1</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-emerald-700">15 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Persönlich am Amt wären es in Berlin 26 € – die Online-Anmeldung spart hier 11 €.
+            </p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-emerald-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: GbR mit zwei Gesellschaftern in Stuttgart</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Stadt:</div>
+              <div class="font-medium text-gray-800">Stuttgart (vor Ort)</div>
+              <div class="text-gray-600">Gebühr pro Person:</div>
+              <div class="font-medium text-gray-800">54 €</div>
+              <div class="text-gray-600">Anzahl Personen:</div>
+              <div class="font-medium text-gray-800">2 (GbR)</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-emerald-700">108 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Bei der GbR meldet jeder Gesellschafter an: 54 € × 2 = 108 €.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mt-4 text-sm text-emerald-800">
+          <strong>💡 Tipp:</strong> Prüfen Sie vorab auf der Website Ihrer Stadt, ob eine
+          Online-Anmeldung möglich ist – sie ist häufig günstiger und schneller als der Termin vor Ort.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Gebühr für Steuer halten</h3>
+            <p>Die Anmeldegebühr ist eine einmalige kommunale Verwaltungsgebühr – sie hat nichts mit
+            Gewerbesteuer, Einkommensteuer oder Umsatzsteuer zu tun. Diese fallen separat und laufend an.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: GbR-Gebühr nur einmal einplanen</h3>
+            <p>Bei einer GbR meldet jeder Gesellschafter an. Die Gebühr fällt pro Person an – wer das
+            übersieht, unterschätzt die Kosten bei mehreren Gründern deutlich.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Zusatzkosten vergessen</h3>
+            <p>Führungszeugnis, IHK-/HWK-Beitrag, bei GmbH/UG zusätzlich Notar und Handelsregister:
+            Diese Posten übersteigen die reine Anmeldegebühr oft um ein Vielfaches.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 4: Pauschalpreis erwarten</h3>
+            <p>Es gibt keinen bundesweit einheitlichen Preis. Maßgeblich ist immer die Gebührensatzung
+            Ihrer Kommune – die hier hinterlegten Werte sind Richtwerte und können abweichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 5: Freiberufler melden ein Gewerbe an</h3>
+            <p>Freiberufler (z. B. Ärzte, Anwälte, Designer) brauchen keine Gewerbeanmeldung und zahlen
+            die Gebühr nicht – sie melden ihre Tätigkeit direkt beim Finanzamt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet eine Gewerbeanmeldung 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Gebühr ist kommunal geregelt und liegt grob zwischen 15 € und 65 €, im Schnitt
+              bei rund 30 €. Beispiele: Berlin 26 € (online 15 €), Hamburg 20 €, München 47 €,
+              Stuttgart 54 €. Maßgeblich ist die Gebührensatzung Ihrer Stadt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist die Gebühr in jeder Stadt anders?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Gewerbeanmeldung ist eine kommunale Verwaltungsleistung. Jede Stadt legt die Höhe
+              der Gebühr über ihre eigene Gebührensatzung fest. Deshalb gibt es keinen bundesweit
+              einheitlichen Preis, sondern eine Spanne je nach Kommune.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet die Gewerbeanmeldung bei einer GbR?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer Gesellschaft bürgerlichen Rechts meldet jeder Gesellschafter das Gewerbe
+              selbst an. Die Gebühr fällt also pro Person an. Bei zwei Gesellschaftern in Stuttgart
+              wären das beispielsweise 54 € × 2 = 108 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist die Online-Anmeldung günstiger?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>In einigen Städten ja. Berlin verlangt online 15 € statt 26 €, Düsseldorf 20 € statt
+              26 €. Nicht jede Kommune bietet einen reduzierten Online-Tarif – prüfen Sie das auf der
+              Website Ihres Gewerbeamts.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Zusatzkosten kommen auf mich zu?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Je nach Tätigkeit ein Führungszeugnis oder eine Auskunft aus dem
+              Gewerbezentralregister (je ca. 13 €), bei Handwerk die Handwerksrolle, der IHK-/HWK-Beitrag
+              sowie bei GmbH/UG Notar- und Handelsregisterkosten. Diese sind nicht in der reinen
+              Anmeldegebühr enthalten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Müssen Freiberufler ein Gewerbe anmelden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Freiberufler wie Ärzte, Anwälte, Architekten oder Designer melden kein Gewerbe
+              an und zahlen die Gewerbeanmeldegebühr nicht. Sie erfassen ihre selbstständige Tätigkeit
+              direkt beim Finanzamt und zahlen auch keine Gewerbesteuer.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/kleinunternehmer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleinunternehmer-Rechner</p>
+          </a>
+          <a href="/kleingewerbe-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleingewerbe-Steuer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧮</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gewerbeanmeldung-Kosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/gewerbeanmeldung-kosten-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet eine Gewerbeanmeldung 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gebühr ist kommunal geregelt und liegt grob zwischen 15 € und 65 €, im Schnitt bei rund 30 €. Beispiele: Berlin 26 € (online 15 €), Hamburg 20 €, München 47 €, Stuttgart 54 €. Maßgeblich ist die Gebührensatzung Ihrer Stadt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist die Gebühr in jeder Stadt anders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gewerbeanmeldung ist eine kommunale Verwaltungsleistung. Jede Stadt legt die Höhe der Gebühr über ihre eigene Gebührensatzung fest. Deshalb gibt es keinen bundesweit einheitlichen Preis, sondern eine Spanne je nach Kommune."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet die Gewerbeanmeldung bei einer GbR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Gesellschaft bürgerlichen Rechts meldet jeder Gesellschafter das Gewerbe selbst an. Die Gebühr fällt also pro Person an. Bei zwei Gesellschaftern in Stuttgart wären das beispielsweise 54 € × 2 = 108 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die Online-Anmeldung günstiger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In einigen Städten ja. Berlin verlangt online 15 € statt 26 €, Düsseldorf 20 € statt 26 €. Nicht jede Kommune bietet einen reduzierten Online-Tarif – prüfen Sie das auf der Website Ihres Gewerbeamts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Zusatzkosten kommen auf mich zu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Je nach Tätigkeit ein Führungszeugnis oder eine Auskunft aus dem Gewerbezentralregister (je ca. 13 €), bei Handwerk die Handwerksrolle, der IHK-/HWK-Beitrag sowie bei GmbH/UG Notar- und Handelsregisterkosten. Diese sind nicht in der reinen Anmeldegebühr enthalten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Müssen Freiberufler ein Gewerbe anmelden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Freiberufler wie Ärzte, Anwälte, Architekten oder Designer melden kein Gewerbe an und zahlen die Gewerbeanmeldegebühr nicht. Sie erfassen ihre selbstständige Tätigkeit direkt beim Finanzamt und zahlen auch keine Gewerbesteuer."
+        }
+      }
+    ]
+  })} />
+</Layout>

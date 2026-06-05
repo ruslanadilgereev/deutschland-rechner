@@ -1,0 +1,414 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IhkBeitragRechner from '../components/rechner/IhkBeitragRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "IHK-Beitrag-Rechner 2026 – Grundbeitrag & Umlage schätzen";
+const description = "IHK-Beitrag berechnen: Grundbeitrag plus Umlage auf den Gewerbeertrag – inklusive Freibetrag von 15.340 €, Freistellungsgrenze und Existenzgründer-Befreiung nach § 3 IHKG. Kostenloser Rechner mit editierbaren regionalen Werten.";
+const keywords = "IHK Beitrag Rechner, IHK Beitrag berechnen, IHK Grundbeitrag, IHK Umlage, IHK Freibetrag 15340, IHK Beitrag Existenzgründer, IHK Pflichtbeitrag, IHK Beitrag GmbH, IHK Beitrag Kleingewerbe, IHKG";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "IHK-Beitrag-Rechner", url: "/ihk-beitrag-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'IHK-Beitrag-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">IHK-Beitrag-Rechner 2026</h1>
+            <p class="text-emerald-100 text-sm">Grundbeitrag &amp; Umlage Ihrer IHK-Mitgliedschaft schätzen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 3 IHKG (Gesetz über die Industrie- und Handelskammern) sowie die Beitragsordnungen/Wirtschaftssatzungen der einzelnen IHKn</p>
+            <p class="mb-1"><strong>Bundeseinheitlich berücksichtigt:</strong> Umlage-Freibetrag 15.340 €, Freistellungsgrenze Grundbeitrag 5.200 €, Existenzgründer-Befreiung nach § 3 Abs. 3 IHKG</p>
+            <p><strong>Regional verschieden:</strong> Grundbeitrag und Umlagesatz legt jede IHK selbst fest – diese Werte sind im Rechner als editierbare Beispielwerte hinterlegt und müssen mit der Satzung Ihrer IHK abgeglichen werden</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="max-w-2xl mx-auto px-4 mt-3">
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-gray-600">
+        <strong>Hinweis:</strong> Dieser Rechner liefert eine Schätzung ohne Gewähr und ersetzt keine
+        Steuerberatung. Maßgeblich sind allein der Beitragsbescheid und die Wirtschaftssatzung Ihrer zuständigen IHK.
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <IhkBeitragRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">IHK-Beitrag berechnen: Grundbeitrag, Umlage &amp; Freibeträge</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>IHK-Beitrag</strong> ist der Pflichtbeitrag, den Gewerbetreibende an ihre
+            Industrie- und Handelskammer zahlen. Rechtsgrundlage ist das
+            <a href="https://www.gesetze-im-internet.de/ihkg/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">IHK-Gesetz (IHKG)</a>.
+            Jedes Unternehmen, das gewerbesteuerpflichtig ist, wird kraft Gesetzes Mitglied der für seinen
+            Standort zuständigen IHK (§ 2 IHKG). Mit unserem <strong>IHK-Beitrag-Rechner</strong> schätzen
+            Sie Ihren Jahresbeitrag in Sekunden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der IHK-Beitrag besteht aus zwei Bausteinen:</p>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>IHK-Beitrag</strong> = Grundbeitrag + Umlage</li>
+              <li><strong>Umlage</strong> = (Gewerbeertrag − Freibetrag) × Umlagesatz</li>
+              <li><strong>Freibetrag</strong> = 15.340 € (nur natürliche Personen &amp; Personengesellschaften, nicht im HR)</li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>Grundbeitrag</strong> ist ein fester Sockelbetrag, den jede IHK gestaffelt nach
+            Gewerbeertrag und Rechtsform festlegt (in der Praxis grob 30–300 € pro Jahr). Die
+            <strong>Umlage</strong> ist ein Prozentsatz, der auf den Gewerbeertrag nach Abzug des
+            Freibetrags erhoben wird (typischerweise zwischen 0,08 % und 0,30 %). Beide Werte sind
+            <strong>regional verschieden</strong> – im Rechner deshalb editierbar.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Freibetrag von 15.340 €</h3>
+          <p>
+            Natürliche Personen (z. B. Einzelunternehmer/Kleingewerbe) und Personengesellschaften (GbR, OHG, KG),
+            die <strong>nicht im Handelsregister eingetragen</strong> sind, erhalten bei der Umlage einen
+            bundeseinheitlichen Freibetrag von <strong>15.340 €</strong>. Erst der darüber hinausgehende
+            Gewerbeertrag wird mit dem Umlagesatz belastet. Für
+            <a href="/gewerbesteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Kapitalgesellschaften</a>
+            (GmbH, UG, AG) gilt dieser Freibetrag <strong>nicht</strong> – sie sind stets im Handelsregister
+            eingetragen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kleingewerbe &amp; Freistellungsgrenze 5.200 €</h3>
+          <p>
+            Liegt der Gewerbeertrag einer nicht im Handelsregister eingetragenen natürlichen Person
+            unter <strong>5.200 €</strong>, entfällt der Grundbeitrag – das schont gerade Kleingewerbe und
+            nebenberufliche Selbstständige. Mehr zu kleinen Betrieben im
+            <a href="/kleinunternehmer-rechner" class="text-blue-600 hover:text-blue-800 underline">Kleinunternehmer-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Existenzgründer-Befreiung (§ 3 Abs. 3 IHKG)</h3>
+          <p>
+            <strong>Natürliche Personen</strong>, die ein Unternehmen gründen und in den letzten fünf Jahren
+            nicht gewerblich oder selbstständig tätig waren, können als <strong>Existenzgründer</strong>
+            befreit werden – sofern der Gewerbeertrag <strong>25.000 € nicht übersteigt</strong> und keine
+            Eintragung im Handelsregister vorliegt. Für Personengesellschaften und Kapitalgesellschaften gilt
+            diese Gründerbefreiung nicht:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Jahr 1 und 2:</strong> komplett beitragsfrei (Grundbeitrag und Umlage)</li>
+            <li><strong>Jahr 3 und 4:</strong> nur der Grundbeitrag ist fällig, die Umlage entfällt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beide Beispiele nutzen die im Rechner hinterlegten Beispielwerte (Grundbeitrag 110 €, Umlagesatz 0,15 %).
+          Ihre IHK kann andere Werte ansetzen.
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Einzelunternehmer, nicht im Handelsregister</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gewerbeertrag:</div>
+              <div class="font-medium text-gray-800">40.000 €</div>
+              <div class="text-gray-600">Freibetrag (nicht im HR):</div>
+              <div class="font-medium text-gray-800">− 15.340 €</div>
+              <div class="text-gray-600">Umlage-Bemessungsgrundlage:</div>
+              <div class="font-medium text-gray-800">24.660 €</div>
+              <div class="text-gray-600">Umlage (0,15 %):</div>
+              <div class="font-medium text-gray-800">36,99 €</div>
+              <div class="text-gray-600">Grundbeitrag:</div>
+              <div class="font-medium text-gray-800">110,00 €</div>
+              <div class="text-gray-600">IHK-Beitrag gesamt:</div>
+              <div class="font-medium text-emerald-700">146,99 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-emerald-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: GmbH (Kapitalgesellschaft, kein Freibetrag)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gewerbeertrag:</div>
+              <div class="font-medium text-gray-800">40.000 €</div>
+              <div class="text-gray-600">Freibetrag:</div>
+              <div class="font-medium text-gray-800">0 € (KapGes)</div>
+              <div class="text-gray-600">Umlage-Bemessungsgrundlage:</div>
+              <div class="font-medium text-gray-800">40.000 €</div>
+              <div class="text-gray-600">Umlage (0,15 %):</div>
+              <div class="font-medium text-gray-800">60,00 €</div>
+              <div class="text-gray-600">Grundbeitrag:</div>
+              <div class="font-medium text-gray-800">110,00 €</div>
+              <div class="text-gray-600">IHK-Beitrag gesamt:</div>
+              <div class="font-medium text-emerald-700">170,00 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mt-4 text-sm text-emerald-800">
+          <strong>💡 Unterschied:</strong> Bei identischem Gewerbeertrag zahlt die GmbH mehr, weil ihr der
+          Umlage-Freibetrag von 15.340 € nicht zusteht. Den passenden Gewerbeertrag ermitteln Sie mit dem
+          <a href="/gewerbesteuer-rechner" class="text-emerald-700 underline">Gewerbesteuer-Rechner</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Freibetrag bei der GmbH ansetzen</h3>
+            <p>Der Freibetrag von 15.340 € gilt nur für natürliche Personen und Personengesellschaften, die
+            nicht im Handelsregister stehen. Kapitalgesellschaften (GmbH, UG, AG) haben <strong>keinen</strong>
+            Freibetrag.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Handelsregister-Eintrag übersehen</h3>
+            <p>Ein e. K. (eingetragener Kaufmann) ist eine natürliche Person – aber im Handelsregister
+            eingetragen. Damit entfällt der Freibetrag. Die HR-Eintragung ist entscheidend, nicht allein die
+            Rechtsform.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Bundeseinheitliche Grundbeiträge annehmen</h3>
+            <p>Grundbeitrag und Umlagesatz sind <strong>nicht</strong> bundesweit gleich. Jede IHK legt sie in
+            ihrer Wirtschaftssatzung fest. Die Werte im Rechner sind Beispielwerte – immer mit Ihrer IHK
+            abgleichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 4: Existenzgründer-Befreiung verschenken</h3>
+            <p>Natürliche Personen, die die Voraussetzungen erfüllen (Ertrag bis 25.000 €, nicht im HR), können
+            in Jahr 1–2 komplett und in Jahr 3–4 von der Umlage befreit sein – das muss aber geprüft und
+            beantragt bzw. von der IHK berücksichtigt werden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum IHK-Beitrag</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie setzt sich der IHK-Beitrag zusammen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der IHK-Beitrag besteht aus dem <strong>Grundbeitrag</strong> (fester Sockelbetrag) und der
+              <strong>Umlage</strong> (Prozentsatz auf den Gewerbeertrag). Beide Werte legt jede IHK in ihrer
+              Wirtschaftssatzung selbst fest. Die Umlage wird erst auf den Gewerbeertrag nach Abzug des
+              Freibetrags von 15.340 € berechnet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der IHK-Freibetrag?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Umlage-Freibetrag beträgt bundeseinheitlich <strong>15.340 €</strong>. Er gilt nur für
+              natürliche Personen und Personengesellschaften, die nicht im Handelsregister eingetragen sind.
+              Kapitalgesellschaften (GmbH, UG, AG) erhalten keinen Freibetrag.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind Existenzgründer vom IHK-Beitrag befreit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja, unter den Voraussetzungen von § 3 Abs. 3 IHKG. Die Gründerbefreiung gilt nur für
+              <strong>natürliche Personen</strong> (Einzelunternehmer) mit einem Gewerbeertrag bis
+              <strong>25.000 €</strong>, die nicht im Handelsregister eingetragen sind: Sie sind in den
+              <strong>ersten beiden Jahren komplett beitragsfrei</strong> (Grundbeitrag und Umlage). In
+              <strong>Jahr 3 und 4</strong> ist nur noch der Grundbeitrag fällig, die Umlage entfällt.
+              Für Personen- und Kapitalgesellschaften gilt die Gründerbefreiung nicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ein Kleingewerbe IHK-Beitrag zahlen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Grundsätzlich ja, denn die Mitgliedschaft ist gesetzlich vorgeschrieben. Liegt der
+              Gewerbeertrag einer nicht im Handelsregister eingetragenen natürlichen Person jedoch unter
+              <strong>5.200 €</strong>, entfällt der Grundbeitrag (Freistellungsgrenze). Durch den Freibetrag
+              von 15.340 € fällt bei kleinen Erträgen außerdem oft keine Umlage an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist der IHK-Beitrag bei jeder IHK unterschiedlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Grundbeitrag und Umlagesatz werden von jeder IHK eigenständig in ihrer Wirtschaftssatzung
+              festgelegt. Deshalb können die Beträge je nach IHK-Bezirk deutlich abweichen. Bundeseinheitlich
+              geregelt sind dagegen der Freibetrag (15.340 €), die Freistellungsgrenze (5.200 €) und die
+              Existenzgründer-Befreiung. Die Werte im Rechner sind Beispielwerte – bitte mit Ihrer IHK
+              abgleichen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind Freiberufler IHK-Mitglied?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Reine Freiberufler (z. B. Ärzte, Anwälte, Architekten) sind nicht gewerbesteuerpflichtig
+              und damit auch nicht Mitglied der IHK – sie gehören ggf. ihrer berufsständischen Kammer an. Wer
+              gewerblich tätig ist, ist dagegen IHK-Mitglied (handwerkliche Betriebe der Handwerkskammer).</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/kleinunternehmer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleinunternehmer-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/koerperschaftsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Körperschaftsteuer-Rechner</p>
+          </a>
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧮</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "IHK-Beitrag-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/ihk-beitrag-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie setzt sich der IHK-Beitrag zusammen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der IHK-Beitrag besteht aus dem Grundbeitrag (fester Sockelbetrag) und der Umlage (Prozentsatz auf den Gewerbeertrag). Beide Werte legt jede IHK in ihrer Wirtschaftssatzung selbst fest. Die Umlage wird erst auf den Gewerbeertrag nach Abzug des Freibetrags von 15.340 € berechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der IHK-Freibetrag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Umlage-Freibetrag beträgt bundeseinheitlich 15.340 €. Er gilt nur für natürliche Personen und Personengesellschaften, die nicht im Handelsregister eingetragen sind. Kapitalgesellschaften (GmbH, UG, AG) erhalten keinen Freibetrag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Existenzgründer vom IHK-Beitrag befreit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, unter den Voraussetzungen von § 3 Abs. 3 IHKG. Die Gründerbefreiung gilt nur für natürliche Personen (Einzelunternehmer) mit einem Gewerbeertrag bis 25.000 €, die nicht im Handelsregister eingetragen sind: Sie sind in den ersten beiden Jahren komplett beitragsfrei (Grundbeitrag und Umlage). In Jahr 3 und 4 ist nur noch der Grundbeitrag fällig, die Umlage entfällt. Für Personen- und Kapitalgesellschaften gilt die Gründerbefreiung nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ein Kleingewerbe IHK-Beitrag zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grundsätzlich ja, denn die Mitgliedschaft ist gesetzlich vorgeschrieben. Liegt der Gewerbeertrag einer nicht im Handelsregister eingetragenen natürlichen Person jedoch unter 5.200 €, entfällt der Grundbeitrag (Freistellungsgrenze). Durch den Freibetrag von 15.340 € fällt bei kleinen Erträgen außerdem oft keine Umlage an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist der IHK-Beitrag bei jeder IHK unterschiedlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grundbeitrag und Umlagesatz werden von jeder IHK eigenständig in ihrer Wirtschaftssatzung festgelegt. Deshalb können die Beträge je nach IHK-Bezirk deutlich abweichen. Bundeseinheitlich geregelt sind dagegen der Freibetrag (15.340 €), die Freistellungsgrenze (5.200 €) und die Existenzgründer-Befreiung. Die Werte im Rechner sind Beispielwerte und sollten mit der eigenen IHK abgeglichen werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Freiberufler IHK-Mitglied?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Reine Freiberufler (z. B. Ärzte, Anwälte, Architekten) sind nicht gewerbesteuerpflichtig und damit auch nicht Mitglied der IHK. Wer gewerblich tätig ist, ist dagegen IHK-Mitglied; handwerkliche Betriebe gehören der Handwerkskammer an."
+        }
+      }
+    ]
+  })} />
+</Layout>

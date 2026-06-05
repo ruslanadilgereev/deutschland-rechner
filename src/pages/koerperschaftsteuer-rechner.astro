@@ -1,0 +1,403 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KoerperschaftsteuerRechner from '../components/rechner/KoerperschaftsteuerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Körperschaftsteuer-Rechner 2026 – Steuerlast für GmbH, UG & AG berechnen";
+const description = "Körperschaftsteuer, Solidaritätszuschlag und Gewerbesteuer für GmbH, UG oder AG sofort berechnen. Kostenloser Rechner mit 15 % KSt, 5,5 % Soli und individuellem Hebesatz – inkl. Gesamtbelastung in Prozent.";
+const keywords = "Körperschaftsteuer Rechner, Körperschaftsteuer berechnen, GmbH Steuer berechnen, UG Steuer, Steuerlast GmbH, Körperschaftsteuer 15 Prozent, Soli GmbH, Gewerbesteuer GmbH, Gesamtsteuerbelastung Kapitalgesellschaft, KSt Rechner 2026";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Körperschaftsteuer-Rechner", url: "/koerperschaftsteuer-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Körperschaftsteuer-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-indigo-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏢</span>
+          <div>
+            <h1 class="text-2xl font-bold">Körperschaftsteuer-Rechner 2026</h1>
+            <p class="text-indigo-200 text-sm">Steuerlast für GmbH, UG &amp; AG berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 23 KStG (15 % Körperschaftsteuer), § 4 SolZG (5,5 % Solidaritätszuschlag), § 11 und § 16 GewStG (Gewerbesteuer mit Hebesatz) – Stand 2026</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Körperschaftsteuer, Solidaritätszuschlag, Gewerbesteuer ohne Freibetrag, Gesamtbelastung in Prozent, Standortvergleich nach Hebesatz</p>
+            <p><strong>Nicht berücksichtigt:</strong> gewerbesteuerliche Hinzurechnungen und Kürzungen, verdeckte Gewinnausschüttungen, Organschaft, Verlustvorträge, Kapitalertragsteuer bei Ausschüttung – der Rechner liefert die steuerliche Standardberechnung als Schätzung ohne Gewähr und ersetzt keine Steuerberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KoerperschaftsteuerRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Körperschaftsteuer berechnen: Formel, Sätze &amp; Gesamtbelastung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Körperschaftsteuer (KSt)</strong> ist die „Einkommensteuer der juristischen
+            Personen“. Sie betrifft Kapitalgesellschaften wie die <strong>GmbH</strong>, die
+            <strong>UG (haftungsbeschränkt)</strong> und die <strong>AG</strong>. Mit unserem
+            Körperschaftsteuer-Rechner ermitteln Sie in Sekunden die vollständige Steuerlast Ihrer
+            Gesellschaft – inklusive Solidaritätszuschlag und Gewerbesteuer.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Steuern einer Kapitalgesellschaft</h3>
+          <p>Auf den Gewinn einer GmbH, UG oder AG fallen drei Steuern an:</p>
+          <div class="bg-indigo-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Körperschaftsteuer</strong> = Gewinn × 15 % (§ 23 KStG)</li>
+              <li><strong>Solidaritätszuschlag</strong> = Körperschaftsteuer × 5,5 % (§ 4 SolZG)</li>
+              <li><strong>Gewerbesteuer</strong> = Gewinn × 3,5 % × Hebesatz (§ 11 / § 16 GewStG)</li>
+            </ul>
+          </div>
+          <p>
+            Körperschaftsteuer und Solidaritätszuschlag ergeben zusammen eine feste Belastung von
+            <strong>15,825 %</strong> des Gewinns – diese Sätze sind bundeseinheitlich. Nur die
+            Gewerbesteuer hängt vom <strong>Hebesatz der Gemeinde</strong> ab und macht den
+            Standortunterschied aus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kein Freibetrag, keine Anrechnung</h3>
+          <p>
+            Anders als Einzelunternehmer und Personengesellschaften haben Kapitalgesellschaften bei der
+            Gewerbesteuer <strong>keinen Freibetrag</strong> von 24.500 €. Die Gewerbesteuer fällt also
+            ab dem ersten Euro Gewinn an. Außerdem können GmbH, UG und AG die Gewerbesteuer
+            <strong>nicht</strong> auf eine andere Steuer anrechnen – die Anrechnung nach
+            <a href="/gewerbesteuer-rechner" class="text-indigo-600 hover:text-indigo-800 underline">§ 35 EStG</a>
+            gilt nur für natürliche Personen. Die Gewerbesteuer bleibt damit voll als Belastung bestehen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Hebesatz als Standortfaktor</h3>
+          <p>
+            Der Gewerbesteuer-Hebesatz wird von jeder Gemeinde selbst festgelegt und beträgt mindestens
+            200 %. Der bundesweite Durchschnitt liegt bei rund <strong>407 %</strong> (Statistisches
+            Bundesamt). Großstädte wie München (490 %) oder Köln (475 %) liegen deutlich höher,
+            Steueroasen wie Monheim am Rhein (250 %) deutlich niedriger. Bei der Standortwahl kann der
+            Hebesatz über die Jahre tausende Euro ausmachen – tragen Sie im Rechner den Hebesatz Ihrer
+            tatsächlichen Gemeinde ein.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was nach den Steuern kommt</h3>
+          <p>
+            Der Rechner zeigt den Gewinn der Gesellschaft <em>nach</em> KSt, Soli und Gewerbesteuer.
+            Schüttet die GmbH diesen Gewinn an die Gesellschafter aus, fällt auf der privaten Ebene
+            zusätzlich Abgeltungsteuer an – das berechnen Sie mit dem
+            <a href="/kapitalertragsteuer-rechner" class="text-indigo-600 hover:text-indigo-800 underline">Kapitalertragsteuer-Rechner</a>.
+            Wer zwischen GmbH und Einzelunternehmen vergleicht, sollte die
+            <a href="/einkommensteuer-rechner" class="text-indigo-600 hover:text-indigo-800 underline">Einkommensteuer</a>
+            gegenrechnen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzt sich die Steuerlast bei unterschiedlichen Hebesätzen zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: GmbH mit 100.000 € Gewinn, Hebesatz 400 %</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Zu versteuernder Gewinn:</div>
+              <div class="font-medium text-gray-800">100.000,00 €</div>
+              <div class="text-gray-600">Körperschaftsteuer (15 %):</div>
+              <div class="font-medium text-gray-800">15.000,00 €</div>
+              <div class="text-gray-600">Solidaritätszuschlag (5,5 %):</div>
+              <div class="font-medium text-gray-800">825,00 €</div>
+              <div class="text-gray-600">Gewerbesteuer (3,5 % × 400 %):</div>
+              <div class="font-medium text-gray-800">14.000,00 €</div>
+              <div class="text-gray-600 font-semibold">Gesamte Steuerlast:</div>
+              <div class="font-bold text-indigo-700">29.825,00 €</div>
+              <div class="text-gray-600">Gesamtbelastung:</div>
+              <div class="font-medium text-indigo-700">29,825 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-indigo-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: GmbH mit 250.000 € Gewinn in München, Hebesatz 490 %</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Zu versteuernder Gewinn:</div>
+              <div class="font-medium text-gray-800">250.000,00 €</div>
+              <div class="text-gray-600">Körperschaftsteuer (15 %):</div>
+              <div class="font-medium text-gray-800">37.500,00 €</div>
+              <div class="text-gray-600">Solidaritätszuschlag (5,5 %):</div>
+              <div class="font-medium text-gray-800">2.062,50 €</div>
+              <div class="text-gray-600">Gewerbesteuer (3,5 % × 490 %):</div>
+              <div class="font-medium text-gray-800">42.875,00 €</div>
+              <div class="text-gray-600 font-semibold">Gesamte Steuerlast:</div>
+              <div class="font-bold text-indigo-700">82.437,50 €</div>
+              <div class="text-gray-600">Gesamtbelastung:</div>
+              <div class="font-medium text-indigo-700">32,975 %</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-3 mt-4 text-sm text-indigo-800">
+          <strong>💡 Standort-Effekt:</strong> Bei 250.000 € Gewinn kostet ein Hebesatz von 490 % statt
+          400 % allein bei der Gewerbesteuer rund 7.875 € mehr pro Jahr – Jahr für Jahr.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Gewerbesteuer-Freibetrag annehmen</h3>
+            <p>Den Freibetrag von 24.500 € gibt es nur für Einzelunternehmer und Personengesellschaften.
+            Eine GmbH, UG oder AG zahlt Gewerbesteuer ab dem ersten Euro Gewinn – ohne Freibetrag.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: § 35-Anrechnung auf Kapitalgesellschaften übertragen</h3>
+            <p>Die Anrechnung der Gewerbesteuer (§ 35 EStG) gilt nur für natürliche Personen. Bei
+            Kapitalgesellschaften bleibt die Gewerbesteuer in voller Höhe als Belastung bestehen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Soli für abgeschafft halten</h3>
+            <p>Bei der Einkommensteuer ist der Solidaritätszuschlag für die meisten entfallen – bei der
+            <strong>Körperschaftsteuer fällt er weiterhin in voller Höhe</strong> mit 5,5 % an.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Gewinnausschüttung</h3>
+            <p>Die berechnete Belastung betrifft die Ebene der Gesellschaft. Wird der Gewinn an die
+            Gesellschafter ausgeschüttet, fällt zusätzlich
+            <a href="/kapitalertragsteuer-rechner" class="text-indigo-600 underline">Abgeltungsteuer</a>
+            auf der privaten Ebene an.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Hinzurechnungen und Kürzungen</h3>
+            <p>Für die Gewerbesteuer wird der Gewinn um bestimmte Posten (z. B. anteilige Zinsen und
+            Mieten) korrigiert. Der Rechner geht vereinfachend von Gewinn = Gewerbeertrag aus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Körperschaftsteuer</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Körperschaftsteuer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Körperschaftsteuer beträgt bundeseinheitlich <strong>15 %</strong> des zu
+              versteuernden Gewinns (§ 23 KStG). Hinzu kommt der Solidaritätszuschlag von 5,5 % auf die
+              Körperschaftsteuer, sodass KSt und Soli zusammen <strong>15,825 %</strong> des Gewinns
+              ausmachen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Steuerlast einer GmbH?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Gesamtlast ergibt sich aus drei Steuern: Körperschaftsteuer (Gewinn × 15 %),
+              Solidaritätszuschlag (KSt × 5,5 %) und Gewerbesteuer (Gewinn × 3,5 % × Hebesatz). Bei
+              100.000 € Gewinn und 400 % Hebesatz sind das 15.000 € + 825 € + 14.000 € =
+              <strong>29.825 €</strong> oder 29,825 %.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zahlt eine GmbH Gewerbesteuer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Kapitalgesellschaften wie GmbH, UG und AG sind kraft Rechtsform
+              gewerbesteuerpflichtig – und zwar <strong>ohne Freibetrag</strong> ab dem ersten Euro
+              Gewinn. Den Freibetrag von 24.500 € gibt es nur für Einzelunternehmer und
+              Personengesellschaften.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann eine GmbH die Gewerbesteuer anrechnen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Die Anrechnung der Gewerbesteuer nach § 35 EStG (das 4-fache des Messbetrags)
+              gilt nur für natürliche Personen, also Einzelunternehmer und Gesellschafter von
+              Personengesellschaften. Bei einer GmbH bleibt die Gewerbesteuer in voller Höhe als
+              Belastung bestehen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wirkt sich der Hebesatz auf die Steuer aus?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Körperschaftsteuer und Soli sind überall gleich. Nur die Gewerbesteuer hängt vom
+              Hebesatz der Gemeinde ab: Gewinn × 3,5 % × Hebesatz. Der bundesweite Durchschnitt liegt
+              bei rund 407 %, die Spanne reicht von etwa 250 % (z. B. Monheim) bis über 500 %. Der
+              Standort beeinflusst die Gesamtbelastung daher spürbar.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Fällt bei der Körperschaftsteuer noch Solidaritätszuschlag an?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Während der Soli bei der Einkommensteuer für die meisten entfallen ist, wird er bei
+              der Körperschaftsteuer weiterhin <strong>in voller Höhe von 5,5 %</strong> auf die
+              festgesetzte Körperschaftsteuer erhoben (§ 4 SolZG).</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/kirchensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kirchensteuer-Rechner</p>
+          </a>
+          <a href="/dividende-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dividenden-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Körperschaftsteuer-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/koerperschaftsteuer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Körperschaftsteuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Körperschaftsteuer beträgt bundeseinheitlich 15 % des zu versteuernden Gewinns (§ 23 KStG). Hinzu kommt der Solidaritätszuschlag von 5,5 % auf die Körperschaftsteuer, sodass KSt und Soli zusammen 15,825 % des Gewinns ausmachen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Steuerlast einer GmbH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gesamtlast ergibt sich aus drei Steuern: Körperschaftsteuer (Gewinn × 15 %), Solidaritätszuschlag (KSt × 5,5 %) und Gewerbesteuer (Gewinn × 3,5 % × Hebesatz). Bei 100.000 € Gewinn und 400 % Hebesatz sind das 15.000 € + 825 € + 14.000 € = 29.825 € oder 29,825 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Zahlt eine GmbH Gewerbesteuer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Kapitalgesellschaften wie GmbH, UG und AG sind kraft Rechtsform gewerbesteuerpflichtig – und zwar ohne Freibetrag ab dem ersten Euro Gewinn. Den Freibetrag von 24.500 € gibt es nur für Einzelunternehmer und Personengesellschaften."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann eine GmbH die Gewerbesteuer anrechnen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Anrechnung der Gewerbesteuer nach § 35 EStG (das 4-fache des Messbetrags) gilt nur für natürliche Personen, also Einzelunternehmer und Gesellschafter von Personengesellschaften. Bei einer GmbH bleibt die Gewerbesteuer in voller Höhe als Belastung bestehen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wirkt sich der Hebesatz auf die Steuer aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Körperschaftsteuer und Soli sind überall gleich. Nur die Gewerbesteuer hängt vom Hebesatz der Gemeinde ab: Gewinn × 3,5 % × Hebesatz. Der bundesweite Durchschnitt liegt bei rund 407 %, die Spanne reicht von etwa 250 % (z. B. Monheim) bis über 500 %. Der Standort beeinflusst die Gesamtbelastung daher spürbar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fällt bei der Körperschaftsteuer noch Solidaritätszuschlag an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Während der Soli bei der Einkommensteuer für die meisten entfallen ist, wird er bei der Körperschaftsteuer weiterhin in voller Höhe von 5,5 % auf die festgesetzte Körperschaftsteuer erhoben (§ 4 SolZG)."
+        }
+      }
+    ]
+  })} />
+</Layout>

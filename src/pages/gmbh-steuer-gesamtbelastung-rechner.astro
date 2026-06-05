@@ -1,0 +1,410 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GmbhSteuerGesamtbelastungRechner from '../components/rechner/GmbhSteuerGesamtbelastungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "GmbH-Steuer-Rechner 2026 – Gesamtbelastung: Thesaurierung vs. Ausschüttung";
+const description = "GmbH-Gesamtsteuerbelastung berechnen: Körperschaftsteuer, Gewerbesteuer und Abgeltungsteuer bzw. Teileinkünfteverfahren in einem Rechner. Vergleichen Sie Thesaurierung und Ausschüttung – kostenlos, Stand 2026.";
+const keywords = "GmbH Steuer Rechner, GmbH Gesamtsteuerbelastung, Thesaurierung Ausschüttung, Körperschaftsteuer GmbH, Gewinnausschüttung Steuer, Abgeltungsteuer GmbH, Teileinkünfteverfahren, GmbH Steuerlast 2026, GmbH Gewinn versteuern";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "GmbH-Steuer-Rechner", url: "/gmbh-steuer-gesamtbelastung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'GmbH-Steuer-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-indigo-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏦</span>
+          <div>
+            <h1 class="text-2xl font-bold">GmbH-Steuer-Rechner 2026</h1>
+            <p class="text-indigo-200 text-sm">Gesamtbelastung: Thesaurierung vs. Ausschüttung</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Zweistufige Besteuerung der GmbH nach KStG, GewStG und EStG – Körperschaftsteuer 15 % (§ 23 KStG), Solidaritätszuschlag 5,5 %, Gewerbesteuer (Messzahl 3,5 % × Hebesatz, § 11/§ 16 GewStG) sowie Abgeltungsteuer (§ 32d EStG) bzw. Teileinkünfteverfahren (§ 3 Nr. 40 EStG)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Steuer auf Gesellschaftsebene (Stufe 1), Steuer beim Gesellschafter auf die Ausschüttung (Stufe 2), Sparer-Pauschbetrag, Kirchensteuer optional, Thesaurierungs- und Ausschüttungsquote</p>
+            <p><strong>Nicht berücksichtigt:</strong> gewerbesteuerliche Hinzurechnungen/Kürzungen, Geschäftsführergehalt, Verlustvorträge, Holding-Strukturen und individuelle Gestaltungen – Schätzung ohne Gewähr, ersetzt keine Steuerberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GmbhSteuerGesamtbelastungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">GmbH-Steuern verstehen: Die zweistufige Besteuerung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Eine GmbH wird <strong>zweistufig</strong> besteuert. Auf der ersten Stufe zahlt die Gesellschaft
+            selbst Steuern auf ihren Gewinn. Auf der zweiten Stufe wird die Ausschüttung an die Gesellschafter
+            noch einmal besteuert. Genau diese Doppelbelastung macht die Frage
+            <strong>„Thesaurieren oder ausschütten?“</strong> so wichtig – und genau dafür ist dieser Rechner gedacht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stufe 1 – Steuern auf Ebene der GmbH</h3>
+          <p>Auf den Gewinn der GmbH fallen drei Steuern an:</p>
+          <div class="bg-indigo-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Körperschaftsteuer:</strong> 15 % des zu versteuernden Einkommens (§ 23 Abs. 1 KStG)</li>
+              <li><strong>Solidaritätszuschlag:</strong> 5,5 % auf die Körperschaftsteuer (= 0,825 % des Gewinns)</li>
+              <li><strong>Gewerbesteuer:</strong> Steuermesszahl 3,5 % × Hebesatz der Gemeinde – ohne Freibetrag</li>
+            </ul>
+          </div>
+          <p>
+            Bei einem Hebesatz von 400 % ergibt das eine Belastung von rund
+            <strong>29,8 % auf Stufe 1</strong>: 15 % KSt + 0,825 % Soli + 14 % Gewerbesteuer = 29,825 %. Der
+            Hebesatz ist standortabhängig – in Gemeinden mit niedrigem Hebesatz fällt die Belastung deutlich
+            geringer aus, in Großstädten mit Hebesätzen um 490 % entsprechend höher. Tragen Sie deshalb
+            unbedingt den <strong>Hebesatz Ihrer Gemeinde</strong> ein.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stufe 2 – Steuern beim Gesellschafter</h3>
+          <p>
+            Schüttet die GmbH ihren Nachsteuergewinn aus, wird diese Dividende beim Gesellschafter erneut
+            besteuert. Dafür gibt es zwei Verfahren:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>
+              <strong>Abgeltungsteuer (Privatvermögen):</strong> 25 % Kapitalertragsteuer plus 5,5 %
+              Solidaritätszuschlag ergeben effektiv <strong>26,375 %</strong>. Es gilt der Sparer-Pauschbetrag
+              von 1.000 € (ledig) bzw. 2.000 € (zusammenveranlagt).
+            </li>
+            <li>
+              <strong>Teileinkünfteverfahren (Betriebsvermögen):</strong> Nur <strong>60 %</strong> der
+              Ausschüttung sind steuerpflichtig, 40 % bleiben steuerfrei. Die steuerpflichtigen 60 % werden mit
+              dem <strong>persönlichen Grenzsteuersatz</strong> belastet. Möglich auf Antrag bei einer
+              Beteiligung von mindestens 25 % oder von mindestens 1 % plus beruflicher Tätigkeit für die GmbH.
+            </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Thesaurierung vs. Vollausschüttung</h3>
+          <p>
+            Solange Gewinne in der GmbH <strong>thesauriert</strong> (einbehalten) werden, bleibt es bei der
+            Belastung der Stufe 1 von rund 30 %. Erst bei der Ausschüttung kommt die zweite Steuerschicht hinzu.
+            Bei einer <strong>Vollausschüttung ins Privatvermögen</strong> liegt die Gesamtbelastung deshalb bei
+            rund <strong>48,3 %</strong>. Wer Gewinne im Unternehmen reinvestiert, profitiert vom Steuerstundungs-
+            und Zinseszinseffekt – ein zentrales Argument für die Rechtsform GmbH.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Basis: 100.000 € Gewinn, Hebesatz 400 %. So unterscheiden sich Thesaurierung und Ausschüttung:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Vollausschüttung ins Privatvermögen (Abgeltungsteuer)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gewinn vor Steuern:</div>
+              <div class="font-medium text-gray-800">100.000,00 €</div>
+              <div class="text-gray-600">Steuer Stufe 1 (KSt + Soli + GewSt):</div>
+              <div class="font-medium text-gray-800">29.825,00 €</div>
+              <div class="text-gray-600">Gewinn nach Steuern:</div>
+              <div class="font-medium text-gray-800">70.175,00 €</div>
+              <div class="text-gray-600">Abgeltungsteuer (26,375 %, ohne Pauschbetrag):</div>
+              <div class="font-medium text-gray-800">ca. 18.508 €</div>
+              <div class="text-gray-600">Netto beim Gesellschafter:</div>
+              <div class="font-medium text-gray-800">ca. 51.667 €</div>
+              <div class="text-gray-600">Gesamtsteuerbelastung:</div>
+              <div class="font-medium text-indigo-700">ca. 48,3 %</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Hinweis: Mit dem Sparer-Pauschbetrag (1.000 € ledig) sinkt die Belastung minimal.
+            </p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-indigo-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Volle Thesaurierung (keine Ausschüttung)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gewinn vor Steuern:</div>
+              <div class="font-medium text-gray-800">100.000,00 €</div>
+              <div class="text-gray-600">Steuer Stufe 1 (KSt + Soli + GewSt):</div>
+              <div class="font-medium text-gray-800">29.825,00 €</div>
+              <div class="text-gray-600">Steuer Stufe 2 (keine Ausschüttung):</div>
+              <div class="font-medium text-gray-800">0,00 €</div>
+              <div class="text-gray-600">In der GmbH thesauriert:</div>
+              <div class="font-medium text-gray-800">70.175,00 €</div>
+              <div class="text-gray-600">Gesamtsteuerbelastung:</div>
+              <div class="font-medium text-indigo-700">ca. 29,8 %</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Die zweite Steuerschicht entsteht erst, wenn der Gewinn später ausgeschüttet wird.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-3 mt-4 text-sm text-indigo-800">
+          <strong>💡 Faustregel:</strong> Thesaurieren ist steuerlich günstiger als sofort ausschütten –
+          ideal, wenn Sie Gewinne im Unternehmen reinvestieren. Wer das Geld privat benötigt, kommt um die
+          zweite Steuerstufe nicht herum.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur die Körperschaftsteuer betrachten</h3>
+            <p>Die GmbH zahlt nicht nur 15 % Körperschaftsteuer. Mit Soli und Gewerbesteuer liegt die
+            Belastung auf Gesellschaftsebene bei rund 30 % – und bei Ausschüttung kommt noch die
+            Anteilseignerbesteuerung obendrauf.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Den Hebesatz pauschal mit 400 % ansetzen</h3>
+            <p>Der Gewerbesteuer-Hebesatz ist gemeindeabhängig und schwankt von rund 200 % bis über 500 %.
+            Schon 100 Hebesatzpunkte Unterschied machen bei der GmbH 3,5 Prozentpunkte Steuerbelastung aus.
+            Tragen Sie den Hebesatz Ihrer Gemeinde ein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Geschäftsführergehalt vergessen</h3>
+            <p>Ein angemessenes Geschäftsführergehalt mindert als Betriebsausgabe den GmbH-Gewinn und damit
+            die Steuer auf Stufe 1. Es wird allerdings als Arbeitslohn versteuert – dieser Effekt ist in der
+            reinen Gewinnbetrachtung nicht enthalten.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Holding-Struktur</h3>
+            <p>Schüttet eine GmbH an eine Holding-GmbH aus, sind die Dividenden zu 95 % steuerfrei (§ 8b KStG).
+            Das senkt die Belastung der Zwischenstufe erheblich – dieser Rechner bildet die direkte Ausschüttung
+            an natürliche Personen ab, nicht die Holding-Kette.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Abgeltungsteuer vs. Teileinkünfteverfahren</h3>
+            <p>Das Teileinkünfteverfahren lohnt sich vor allem bei hohem Beteiligungsaufwand (z. B. fremdfinanzierte
+            Anteile), weil 60 % der damit verbundenen Kosten abziehbar sind. Bei niedrigem persönlichem
+            Steuersatz kann die Günstigerprüfung ebenfalls eine Rolle spielen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur GmbH-Besteuerung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Gesamtsteuerbelastung einer GmbH?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Auf Gesellschaftsebene (Stufe 1) liegt die Belastung aus Körperschaftsteuer (15 %),
+              Solidaritätszuschlag (0,825 %) und Gewerbesteuer bei einem Hebesatz von 400 % bei rund
+              <strong>29,8 %</strong>. Wird der Gewinn voll ins Privatvermögen ausgeschüttet, kommt die
+              Abgeltungsteuer hinzu und die Gesamtbelastung steigt auf etwa <strong>48,3 %</strong>.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet Thesaurierung bei einer GmbH?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Thesaurierung heißt, dass der Gewinn nach Steuern in der GmbH einbehalten und nicht
+              ausgeschüttet wird. Dann fällt nur die Steuer der Stufe 1 (rund 30 %) an. Die zweite
+              Steuerschicht beim Gesellschafter entsteht erst, wenn der Gewinn später ausgeschüttet wird –
+              das verschafft einen Steuerstundungs- und Reinvestitionsvorteil.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Abgeltungsteuer oder Teileinkünfteverfahren – was ist günstiger?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Im Privatvermögen gilt standardmäßig die Abgeltungsteuer von 26,375 % (inkl. Soli). Das
+              Teileinkünfteverfahren – bei dem 60 % der Ausschüttung mit dem persönlichen Steuersatz belastet
+              werden – ist auf Antrag möglich, wenn Sie zu mindestens 25 % beteiligt sind oder zu mindestens
+              1 % beteiligt und für die GmbH tätig sind. Es lohnt sich besonders, wenn hohe Werbungskosten
+              (z. B. Finanzierungszinsen) gegengerechnet werden können.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Rolle spielt der Gewerbesteuer-Hebesatz?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Gewerbesteuer berechnet sich aus Steuermesszahl (3,5 %) mal Hebesatz der Gemeinde. Da
+              Kapitalgesellschaften keinen Freibetrag erhalten, schlägt der Hebesatz voll durch. Bei 400 %
+              entspricht das 14 % des Gewinns, bei 490 % schon 17,15 %. Der Standort der GmbH kann die
+              Steuerbelastung daher spürbar verändern.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zahlt eine GmbH Solidaritätszuschlag?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Anders als bei der Einkommensteuer, wo der Solidaritätszuschlag für die meisten Bürger
+              entfallen ist, zahlen Kapitalgesellschaften den Soli weiterhin in voller Höhe: 5,5 % auf die
+              Körperschaftsteuer. Bezogen auf den Gewinn sind das 0,825 %.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich eine GmbH gegenüber dem Einzelunternehmen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt davon ab, ob Gewinne entnommen oder reinvestiert werden. Werden Gewinne in der GmbH
+              thesauriert, ist die Belastung mit rund 30 % oft niedriger als der persönliche Spitzensteuersatz.
+              Bei sofortiger Vollausschüttung liegt die Gesamtbelastung der GmbH (ca. 48,3 %) dagegen auf einem
+              ähnlichen Niveau wie beim Spitzensteuersatz eines Einzelunternehmers. Vergleichen Sie Ihre Situation
+              mit unserem Einkommensteuer- und Gewerbesteuer-Rechner.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+          <a href="/dividende-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dividenden-Rechner</p>
+          </a>
+          <a href="/kleingewerbe-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏪</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleingewerbe-Steuer-Rechner</p>
+          </a>
+          <a href="/aktien-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Aktien-Steuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "GmbH-Steuer-Rechner 2026 (Thesaurierung vs. Ausschüttung)",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/gmbh-steuer-gesamtbelastung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Gesamtsteuerbelastung einer GmbH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Auf Gesellschaftsebene (Stufe 1) liegt die Belastung aus Körperschaftsteuer (15 %), Solidaritätszuschlag (0,825 %) und Gewerbesteuer bei einem Hebesatz von 400 % bei rund 29,8 %. Wird der Gewinn voll ins Privatvermögen ausgeschüttet, kommt die Abgeltungsteuer hinzu und die Gesamtbelastung steigt auf etwa 48,3 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet Thesaurierung bei einer GmbH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Thesaurierung heißt, dass der Gewinn nach Steuern in der GmbH einbehalten und nicht ausgeschüttet wird. Dann fällt nur die Steuer der Stufe 1 (rund 30 %) an. Die zweite Steuerschicht beim Gesellschafter entsteht erst, wenn der Gewinn später ausgeschüttet wird – das verschafft einen Steuerstundungs- und Reinvestitionsvorteil."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Abgeltungsteuer oder Teileinkünfteverfahren – was ist günstiger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Im Privatvermögen gilt standardmäßig die Abgeltungsteuer von 26,375 % (inkl. Soli). Das Teileinkünfteverfahren – bei dem 60 % der Ausschüttung mit dem persönlichen Steuersatz belastet werden – ist auf Antrag möglich, wenn Sie zu mindestens 25 % beteiligt sind oder zu mindestens 1 % beteiligt und für die GmbH tätig sind. Es lohnt sich besonders, wenn hohe Werbungskosten (z. B. Finanzierungszinsen) gegengerechnet werden können."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Rolle spielt der Gewerbesteuer-Hebesatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gewerbesteuer berechnet sich aus Steuermesszahl (3,5 %) mal Hebesatz der Gemeinde. Da Kapitalgesellschaften keinen Freibetrag erhalten, schlägt der Hebesatz voll durch. Bei 400 % entspricht das 14 % des Gewinns, bei 490 % schon 17,15 %. Der Standort der GmbH kann die Steuerbelastung daher spürbar verändern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Zahlt eine GmbH Solidaritätszuschlag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Anders als bei der Einkommensteuer, wo der Solidaritätszuschlag für die meisten Bürger entfallen ist, zahlen Kapitalgesellschaften den Soli weiterhin in voller Höhe: 5,5 % auf die Körperschaftsteuer. Bezogen auf den Gewinn sind das 0,825 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich eine GmbH gegenüber dem Einzelunternehmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt davon ab, ob Gewinne entnommen oder reinvestiert werden. Werden Gewinne in der GmbH thesauriert, ist die Belastung mit rund 30 % oft niedriger als der persönliche Spitzensteuersatz. Bei sofortiger Vollausschüttung liegt die Gesamtbelastung der GmbH (ca. 48,3 %) dagegen auf einem ähnlichen Niveau wie beim Spitzensteuersatz eines Einzelunternehmers."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,416 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InvestitionsabzugsbetragRechner from '../components/rechner/InvestitionsabzugsbetragRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Investitionsabzugsbetrag-Rechner (§ 7g) 2026 – IAB & Steuerstundung berechnen";
+const description = "Investitionsabzugsbetrag nach § 7g EStG berechnen: IAB-Betrag (bis 50 % der Anschaffungskosten), Steuerstundung und Sonderabschreibung. Kostenloser Rechner mit Hinweis: IAB ist Stundung, keine endgültige Ersparnis.";
+const keywords = "Investitionsabzugsbetrag Rechner, IAB Rechner, § 7g EStG, IAB berechnen, Investitionsabzugsbetrag 2026, Sonderabschreibung 7g, Steuerstundung, AHK 50 Prozent, IAB Gewinngrenze, IAB Höchstbetrag";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[
+    { name: "Steuern & Abgaben", url: "/steuern-abgaben" },
+    { name: "Investitionsabzugsbetrag-Rechner", url: "/investitionsabzugsbetrag-rechner" }
+  ]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Investitionsabzugsbetrag-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🛠️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Investitionsabzugsbetrag-Rechner (§ 7g)</h1>
+            <p class="text-amber-100 text-sm">IAB-Betrag, Steuerstundung & Sonderabschreibung berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 7g EStG (Investitionsabzugsbeträge und Sonderabschreibungen), Stand 2026 – Verzinsung nach § 233a i.&nbsp;V.&nbsp;m. § 238 AO</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> IAB bis 50&nbsp;% der voraussichtlichen Anschaffungs-/Herstellungskosten, Gewinngrenze 200.000&nbsp;€, Summen-Höchstgrenze 200.000&nbsp;€ je Betrieb, Sonderabschreibung 40&nbsp;%, Steuerstundung über den Grenzsteuersatz</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Buchungslogik im Einzelfall, exakte AfA-Verteilung über die Nutzungsdauer, Soli/Kirchensteuer, Progressionseffekte – der Rechner liefert eine Standardschätzung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <InvestitionsabzugsbetragRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Investitionsabzugsbetrag (§ 7g EStG): So funktioniert der IAB</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Investitionsabzugsbetrag</strong> (kurz <strong>IAB</strong>) nach § 7g des
+            Einkommensteuergesetzes erlaubt es kleinen und mittleren Betrieben, einen Teil der Kosten
+            einer <em>geplanten</em> Investition schon vor der Anschaffung gewinnmindernd geltend zu machen.
+            Sie können bis zu <strong>50&nbsp;% der voraussichtlichen Anschaffungs- oder
+            Herstellungskosten</strong> eines beweglichen Wirtschaftsguts vorab vom Gewinn abziehen – und
+            so Steuern in die Zukunft verschieben.
+          </p>
+
+          <div class="bg-red-50 border border-red-200 p-4 rounded-lg my-4">
+            <p class="text-red-800 text-sm m-0">
+              <strong>Das Wichtigste zuerst:</strong> Der IAB ist eine <strong>Steuerstundung, keine
+              endgültige Ersparnis.</strong> Sie sparen keine Steuern dauerhaft, sondern verschieben die
+              Steuerlast nach vorne (Liquiditäts- und Zinsvorteil). Bei der Anschaffung wird der Betrag
+              wieder hinzugerechnet, die Abschreibungsbasis sinkt entsprechend.
+            </p>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>IAB-Betrag</strong> = voraussichtliche AHK × IAB-Quote (max. 50&nbsp;%)</li>
+              <li><strong>Steuerstundung</strong> = IAB-Betrag × persönlicher Grenzsteuersatz</li>
+              <li><strong>Sonder-AfA (§ 7g Abs. 5)</strong> = (AHK − IAB) × bis zu 40&nbsp;%</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzungen für den IAB</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Gewinngrenze:</strong> Der Gewinn des Betriebs im Abzugsjahr darf höchstens 200.000&nbsp;€ betragen (ohne Berücksichtigung des IAB).</li>
+            <li><strong>Bewegliches Wirtschaftsgut:</strong> Nur abnutzbare, bewegliche Wirtschaftsgüter des Anlagevermögens (z.&nbsp;B. Maschinen, Fahrzeuge, EDV) – keine Gebäude.</li>
+            <li><strong>Betriebliche Nutzung:</strong> Mindestens 90&nbsp;% betriebliche Nutzung im Anschaffungs- und Folgejahr.</li>
+            <li><strong>Höchstgrenze:</strong> Maximal 200.000&nbsp;€ IAB je Betrieb (laufendes Jahr plus drei Vorjahre zusammengerechnet).</li>
+            <li><strong>Investitionszeitraum:</strong> Die Investition muss innerhalb von drei Jahren nach dem Abzugsjahr erfolgen.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">IAB plus Sonderabschreibung</h3>
+          <p>
+            Zusätzlich zum IAB erlaubt § 7g Abs. 5 EStG eine <strong>Sonderabschreibung von bis zu 40&nbsp;%</strong>
+            der (um den IAB geminderten) Anschaffungskosten. Sie kann im Anschaffungsjahr und den vier
+            Folgejahren frei verteilt werden – zusätzlich zur regulären linearen
+            <a href="/afa-rechner" class="text-amber-600 hover:text-amber-800 underline">Abschreibung (AfA)</a>.
+            Die Kombination aus IAB und Sonder-AfA erzeugt den größten Vorzieh-Effekt und damit den
+            stärksten Liquiditätsvorteil in den ersten Jahren.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum ein Stundungseffekt trotzdem wertvoll ist</h3>
+          <p>
+            Auch wenn der IAB keine endgültige Ersparnis bringt: Wer Steuern später zahlt, kann das Geld
+            in der Zwischenzeit nutzen – etwa um die geplante Investition zu finanzieren. Der Vorteil
+            entspricht dem <a href="/zinseszins-rechner" class="text-amber-600 hover:text-amber-800 underline">Zinsvorteil</a>
+            auf den gestundeten Betrag. Genau deshalb nutzen viele Betriebe den IAB gezielt im Jahr mit
+            hohem Gewinn, um die Progression zu glätten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirkt sich der Investitionsabzugsbetrag konkret aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Maschine für 50.000 €, 50 % IAB</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Voraussichtliche AHK:</div>
+              <div class="font-medium text-gray-800">50.000,00 €</div>
+              <div class="text-gray-600">IAB-Quote:</div>
+              <div class="font-medium text-gray-800">50 %</div>
+              <div class="text-gray-600">Investitionsabzugsbetrag:</div>
+              <div class="font-medium text-gray-800">25.000,00 €</div>
+              <div class="text-gray-600">Grenzsteuersatz:</div>
+              <div class="font-medium text-gray-800">42 %</div>
+              <div class="text-gray-600">Steuerstundung (IAB):</div>
+              <div class="font-medium text-green-700">10.500,00 €</div>
+              <div class="text-gray-600">Sonder-AfA (40 % von 25.000 €):</div>
+              <div class="font-medium text-gray-800">10.000,00 €</div>
+              <div class="text-gray-600">+ Stundung Sonder-AfA:</div>
+              <div class="font-medium text-green-700">4.200,00 €</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">
+              Liquiditätsvorteil im Abzugsjahr: rund <strong>14.700&nbsp;€</strong> – aber: keine endgültige
+              Ersparnis, sondern Vorziehen der Abschreibung.
+            </p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-amber-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Transporter für 30.000 €, 30 % IAB, GmbH</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Voraussichtliche AHK:</div>
+              <div class="font-medium text-gray-800">30.000,00 €</div>
+              <div class="text-gray-600">IAB-Quote:</div>
+              <div class="font-medium text-gray-800">30 %</div>
+              <div class="text-gray-600">Investitionsabzugsbetrag:</div>
+              <div class="font-medium text-gray-800">9.000,00 €</div>
+              <div class="text-gray-600">Grenzsteuersatz (KSt + GewSt):</div>
+              <div class="font-medium text-gray-800">30 %</div>
+              <div class="text-gray-600">Steuerstundung (IAB):</div>
+              <div class="font-medium text-green-700">2.700,00 €</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">
+              Ein bewusst niedriger IAB-Ansatz reduziert das Risiko, falls die Investition kleiner ausfällt
+              als geplant – sonst droht eine teilweise Rückgängigmachung.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-4 text-sm text-amber-800">
+          <strong>💡 Tipp:</strong> Setzen Sie den IAB nicht reflexartig auf die vollen 50&nbsp;%. Wird
+          weniger oder gar nicht investiert, müssen Sie den IAB rückwirkend auflösen – inklusive Verzinsung
+          nach § 233a AO.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: IAB als „geschenkte“ Steuerersparnis sehen</h3>
+            <p>Der IAB ist eine <strong>Stundung</strong>, keine dauerhafte Ersparnis. Bei der Anschaffung
+            wird er hinzugerechnet, die Abschreibungsbasis sinkt. Über die Nutzungsdauer zahlen Sie
+            insgesamt dieselbe Steuer – nur später.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Gewinngrenze übersehen</h3>
+            <p>Liegt der Gewinn im Abzugsjahr über <strong>200.000&nbsp;€</strong>, ist gar kein IAB
+            zulässig (§ 7g Abs. 1 Satz 2 Nr. 1 EStG) – unabhängig von der Rechtsform.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Investitionsfrist verpassen</h3>
+            <p>Erfolgt die Investition nicht innerhalb von <strong>drei Jahren</strong>, wird der IAB
+            rückwirkend im Abzugsjahr aufgelöst. Die Steuernachzahlung wird nach § 233a i.&nbsp;V.&nbsp;m.
+            § 238 AO verzinst (aktuell 1,8&nbsp;% p.&nbsp;a., Stand 2026).</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 4: Privatnutzung zu hoch</h3>
+            <p>Wird das Wirtschaftsgut zu mehr als 10&nbsp;% privat genutzt, entfallen IAB und
+            Sonderabschreibung rückwirkend. Die 90-%-Grenze gilt im Anschaffungs- und im Folgejahr.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Höchstgrenze je Betrieb</h3>
+            <p>Über das laufende Jahr und die drei Vorjahre dürfen insgesamt maximal
+            <strong>200.000&nbsp;€</strong> IAB je Betrieb gebildet sein. Diese Summe wird betriebs-, nicht
+            personenbezogen geprüft.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Investitionsabzugsbetrag</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Investitionsabzugsbetrag?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der IAB beträgt bis zu <strong>50&nbsp;% der voraussichtlichen Anschaffungs- oder
+              Herstellungskosten</strong> eines beweglichen Wirtschaftsguts. Bei geplanten Kosten von
+              50.000&nbsp;€ sind das also bis zu 25.000&nbsp;€, die Sie vorab gewinnmindernd abziehen können
+              (§ 7g Abs. 1 EStG).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Spart der IAB endgültig Steuern?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der IAB ist eine <strong>Steuerstundung, keine endgültige Ersparnis.</strong> Bei der
+              tatsächlichen Anschaffung wird der abgezogene Betrag wieder dem Gewinn hinzugerechnet und die
+              Abschreibungsbasis entsprechend gemindert. Über die gesamte Nutzungsdauer fällt dieselbe
+              Steuer an – sie wird nur zeitlich nach vorne verlagert. Der Vorteil ist ein Liquiditäts- und
+              Zinsvorteil.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Gewinngrenze gilt für den IAB?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Gewinn des Betriebs im Abzugsjahr darf höchstens <strong>200.000&nbsp;€</strong>
+              betragen – maßgeblich ist der Gewinn ohne Berücksichtigung des IAB. Liegt der Gewinn darüber,
+              ist in diesem Jahr kein Investitionsabzugsbetrag möglich (§ 7g Abs. 1 Satz 2 Nr. 1 EStG).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie lange habe ich Zeit zu investieren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Investition muss innerhalb von <strong>drei Jahren</strong> nach dem Abzugsjahr
+              erfolgen (§ 7g Abs. 3 EStG). Wird nicht oder zu wenig investiert, wird der IAB rückwirkend im
+              Abzugsjahr aufgelöst und die Steuernachzahlung nach § 233a AO verzinst (aktuell 1,8&nbsp;% p.&nbsp;a.).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich IAB und Sonderabschreibung kombinieren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Zusätzlich zum IAB erlaubt § 7g Abs. 5 EStG eine <strong>Sonderabschreibung von bis
+              zu 40&nbsp;%</strong> der (um den IAB geminderten) Anschaffungskosten, frei verteilbar über das
+              Anschaffungsjahr und die vier Folgejahre. Voraussetzung ist eine betriebliche Nutzung von
+              mindestens 90&nbsp;%.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert, wenn ich die Investition nicht durchführe?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Dann wird der IAB rückwirkend im Abzugsjahr rückgängig gemacht. Die dadurch entstehende
+              Steuernachzahlung wird nach § 233a i.&nbsp;V.&nbsp;m. § 238 AO verzinst – aktuell mit 0,15&nbsp;%
+              je Monat, also <strong>1,8&nbsp;% pro Jahr</strong> (Stand 2026). Der ursprüngliche
+              Liquiditätsvorteil kann sich so in einen Zinsnachteil verkehren.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/afa-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">AfA-Rechner (Abschreibung)</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/koerperschaftsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Körperschaftsteuer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Investitionsabzugsbetrag-Rechner (§ 7g) 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/investitionsabzugsbetrag-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Investitionsabzugsbetrag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der IAB beträgt bis zu 50 % der voraussichtlichen Anschaffungs- oder Herstellungskosten eines beweglichen Wirtschaftsguts. Bei geplanten Kosten von 50.000 € sind das also bis zu 25.000 €, die Sie vorab gewinnmindernd abziehen können (§ 7g Abs. 1 EStG)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Spart der IAB endgültig Steuern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der IAB ist eine Steuerstundung, keine endgültige Ersparnis. Bei der tatsächlichen Anschaffung wird der abgezogene Betrag wieder dem Gewinn hinzugerechnet und die Abschreibungsbasis entsprechend gemindert. Über die gesamte Nutzungsdauer fällt dieselbe Steuer an – sie wird nur zeitlich nach vorne verlagert. Der Vorteil ist ein Liquiditäts- und Zinsvorteil."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Gewinngrenze gilt für den IAB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Gewinn des Betriebs im Abzugsjahr darf höchstens 200.000 € betragen – maßgeblich ist der Gewinn ohne Berücksichtigung des IAB. Liegt der Gewinn darüber, ist in diesem Jahr kein Investitionsabzugsbetrag möglich (§ 7g Abs. 1 Satz 2 Nr. 1 EStG)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange habe ich Zeit zu investieren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Investition muss innerhalb von drei Jahren nach dem Abzugsjahr erfolgen (§ 7g Abs. 3 EStG). Wird nicht oder zu wenig investiert, wird der IAB rückwirkend im Abzugsjahr aufgelöst und die Steuernachzahlung nach § 233a AO verzinst (aktuell 1,8 % p. a.)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich IAB und Sonderabschreibung kombinieren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Zusätzlich zum IAB erlaubt § 7g Abs. 5 EStG eine Sonderabschreibung von bis zu 40 % der um den IAB geminderten Anschaffungskosten, frei verteilbar über das Anschaffungsjahr und die vier Folgejahre. Voraussetzung ist eine betriebliche Nutzung von mindestens 90 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert, wenn ich die Investition nicht durchführe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dann wird der IAB rückwirkend im Abzugsjahr rückgängig gemacht. Die dadurch entstehende Steuernachzahlung wird nach § 233a i. V. m. § 238 AO verzinst – aktuell mit 0,15 % je Monat, also 1,8 % pro Jahr (Stand 2026). Der ursprüngliche Liquiditätsvorteil kann sich so in einen Zinsnachteil verkehren."
+        }
+      }
+    ]
+  })} />
+</Layout>

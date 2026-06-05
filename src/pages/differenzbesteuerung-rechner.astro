@@ -1,0 +1,405 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DifferenzbesteuerungRechner from '../components/rechner/DifferenzbesteuerungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Differenzbesteuerung-Rechner 2026 – Marge, Umsatzsteuer & Netto-Marge berechnen (§ 25a UStG)";
+const description = "Differenzbesteuerung nach § 25a UStG sofort berechnen: aus Einkaufs- und Verkaufspreis die Marge, die enthaltene Umsatzsteuer (19 % aus der Differenz) und die Netto-Marge ermitteln. Kostenloser Rechner für Wiederverkäufer, Gebrauchtwagen- und Antiquitätenhändler.";
+const keywords = "Differenzbesteuerung Rechner, Differenzbesteuerung berechnen, § 25a UStG, Marge Umsatzsteuer, Differenzbesteuerung Gebrauchtwagen, 19/119 herausrechnen, Wiederverkäufer Umsatzsteuer, Differenzbesteuerung Antiquitäten, Umsatzsteuer Marge";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Differenzbesteuerung-Rechner", url: "/differenzbesteuerung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Differenzbesteuerung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔄</span>
+          <div>
+            <h1 class="text-2xl font-bold">Differenzbesteuerung-Rechner 2026</h1>
+            <p class="text-emerald-200 text-sm">Marge, Umsatzsteuer & Netto-Marge nach § 25a UStG berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 25a Umsatzsteuergesetz (UStG) – Differenzbesteuerung, bundeseinheitlich. Quelle: <a href="https://www.gesetze-im-internet.de/ustg_1980/__25a.html" target="_blank" rel="noopener noreferrer" class="underline">gesetze-im-internet.de/ustg_1980/__25a.html</a></p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Einzeldifferenz aus Einkaufs- und Verkaufspreis, die aus der Marge herausgerechnete Umsatzsteuer (19 %) und die Netto-Marge</p>
+            <p><strong>Nicht berücksichtigt:</strong> Pauschalmarge bei Einkaufspreisen bis 500 €, Gesamtdifferenzbesteuerung, EU-/Auslandsfälle sowie sonstige Betriebskosten – diese Sonderfälle werden im Text nur erläutert</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DifferenzbesteuerungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Differenzbesteuerung berechnen: Formel, § 25a UStG & Bedeutung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Differenzbesteuerung</strong> nach <strong>§ 25a UStG</strong> ist eine
+            Sonderregelung der Umsatzsteuer für gewerbliche Wiederverkäufer. Der entscheidende
+            Unterschied zur normalen Besteuerung: Die Umsatzsteuer wird <strong>nicht aus dem
+            vollen Verkaufspreis</strong> berechnet, sondern <strong>ausschließlich aus der
+            Marge</strong> – also aus der Differenz zwischen Verkaufs- und Einkaufspreis. Mit
+            unserem <strong>Differenzbesteuerung-Rechner</strong> ermitteln Sie in Sekunden die
+            Marge, die darin enthaltene Umsatzsteuer und Ihre Netto-Marge.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt die gesetzliche Berechnung nach § 25a UStG:</p>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Marge</strong> = Verkaufspreis (VK) − Einkaufspreis (EK)</li>
+              <li><strong>Enthaltene Umsatzsteuer</strong> = Marge × 19 / 119</li>
+              <li><strong>Netto-Marge</strong> = Marge − enthaltene Umsatzsteuer</li>
+            </ul>
+          </div>
+          <p>
+            Die Umsatzsteuer ist in der Marge bereits enthalten und wird mit dem Faktor 19/119
+            „herausgerechnet“. Bei der Differenzbesteuerung gilt <strong>immer der Regelsteuersatz
+            von 19 %</strong> – einen ermäßigten Satz von 7 % gibt es hier nicht, selbst wenn die
+            Ware selbst ermäßigt besteuert würde.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Für wen gilt die Differenzbesteuerung?</h3>
+          <p>
+            Die Regelung gilt für <strong>Wiederverkäufer</strong>, die bewegliche körperliche
+            Gegenstände <strong>ohne Vorsteuerabzug</strong> eingekauft haben – etwa von
+            Privatpersonen, Kleinunternehmern oder anderen Differenzbesteuerern. Typische Branchen
+            sind Gebrauchtwagenhandel, Antiquitäten- und Kunsthandel sowie der An- und Verkauf von
+            Second-Hand-Ware. Der Vorteil: Statt der Umsatzsteuer auf den vollen Verkaufspreis muss
+            nur die Steuer auf den eigenen Aufschlag abgeführt werden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Preis dafür: kein Vorsteuerabzug, kein USt-Ausweis</h3>
+          <p>
+            Wer die Differenzbesteuerung nutzt, darf aus dem Einkauf <strong>keine Vorsteuer
+            ziehen</strong> und in der Verkaufsrechnung die <strong>Umsatzsteuer nicht offen
+            ausweisen</strong>. Stattdessen ist auf die Sonderregelung hinzuweisen (z. B.
+            „Differenzbesteuerung nach § 25a UStG / Gebrauchtgegenstände“). Bei Verkäufen an
+            vorsteuerabzugsberechtigte Geschäftskunden kann es daher sinnvoll sein, freiwillig zur
+            <a href="/mehrwertsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Regelbesteuerung</a>
+            zu wechseln.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So funktioniert die Differenzbesteuerung in der Praxis:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Second-Hand-Ware</h3>
+            <p class="text-xs text-gray-500 mb-3">Ein Händler kauft eine Ware privat für 2.000 € und verkauft sie für 3.000 €.</p>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Einkaufspreis (EK):</div>
+              <div class="font-medium text-gray-800">2.000,00 €</div>
+              <div class="text-gray-600">Verkaufspreis (VK):</div>
+              <div class="font-medium text-gray-800">3.000,00 €</div>
+              <div class="text-gray-600">Marge (VK − EK):</div>
+              <div class="font-medium text-gray-800">1.000,00 €</div>
+              <div class="text-gray-600">Umsatzsteuer (× 19/119):</div>
+              <div class="font-medium text-emerald-700">159,66 €</div>
+              <div class="text-gray-600">Netto-Marge:</div>
+              <div class="font-medium text-gray-800">840,34 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">
+              Bei normaler Besteuerung wären 478,99 € Umsatzsteuer (aus 3.000 €) fällig – die
+              Differenzbesteuerung spart hier 319,33 €.
+            </p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-emerald-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Gebrauchtwagenhandel</h3>
+            <p class="text-xs text-gray-500 mb-3">Ein Autohändler kauft einen Gebrauchtwagen von privat für 8.000 € und verkauft ihn für 10.000 €.</p>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Einkaufspreis (EK):</div>
+              <div class="font-medium text-gray-800">8.000,00 €</div>
+              <div class="text-gray-600">Verkaufspreis (VK):</div>
+              <div class="font-medium text-gray-800">10.000,00 €</div>
+              <div class="text-gray-600">Marge (VK − EK):</div>
+              <div class="font-medium text-gray-800">2.000,00 €</div>
+              <div class="text-gray-600">Umsatzsteuer (× 19/119):</div>
+              <div class="font-medium text-emerald-700">319,33 €</div>
+              <div class="text-gray-600">Netto-Marge:</div>
+              <div class="font-medium text-gray-800">1.680,67 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">
+              Statt 1.596,64 € Umsatzsteuer (aus 10.000 €) werden nur 319,33 € fällig.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mt-4 text-sm text-emerald-800">
+          <strong>💡 Merke:</strong> Je kleiner Ihr Aufschlag im Verhältnis zum Verkaufspreis,
+          desto größer der Vorteil der Differenzbesteuerung gegenüber der Regelbesteuerung.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Umsatzsteuer aus dem vollen Verkaufspreis berechnen</h3>
+            <p>Der häufigste Fehler. Bei der Differenzbesteuerung wird die Umsatzsteuer
+            <strong>nur aus der Marge</strong> herausgerechnet (× 19/119), niemals aus dem gesamten
+            Verkaufspreis.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Den ermäßigten Satz von 7 % anwenden</h3>
+            <p>Bei der Differenzbesteuerung gilt <strong>immer 19 %</strong>, unabhängig davon,
+            welchem Steuersatz die Ware regulär unterliegen würde.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Umsatzsteuer in der Rechnung ausweisen</h3>
+            <p>In der Verkaufsrechnung darf die Umsatzsteuer <strong>nicht offen ausgewiesen</strong>
+            werden. Stattdessen ist auf die Differenzbesteuerung hinzuweisen. Ein versehentlicher
+            Ausweis kann zur Steuerschuld nach § 14c UStG führen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verlust beim Wiederverkauf</h3>
+            <p>Liegt der Verkaufspreis unter dem Einkaufspreis, ist die Marge negativ. Dann fällt
+            <strong>keine Umsatzsteuer</strong> an (Bemessungsgrundlage 0 €). Ein Verlust mindert bei
+            der Einzeldifferenz nicht die Marge anderer Verkäufe.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Pauschalmarge bei EK ≤ 500 €</h3>
+            <p>Bei Einkaufspreisen von höchstens 500 € darf die Marge pauschal über die
+            Gesamtdifferenz eines Zeitraums ermittelt werden. Dieser Sonderfall sowie die
+            Gesamtdifferenzbesteuerung werden von diesem Rechner nicht abgebildet.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: EU- und Auslandsgeschäfte</h3>
+            <p>Bei innergemeinschaftlichen Lieferungen und grenzüberschreitenden Sachverhalten
+            gelten besondere Regeln. Hier empfiehlt sich die Abstimmung mit dem Steuerberater.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Differenzbesteuerung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird die Umsatzsteuer bei der Differenzbesteuerung berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Umsatzsteuer wird ausschließlich aus der Marge herausgerechnet:
+              <strong>Marge × 19 / 119</strong>. Die Marge ist der Verkaufspreis minus
+              Einkaufspreis. Beispiel: Bei einer Marge von 1.000 € fallen 1.000 € × 19/119 =
+              159,66 € Umsatzsteuer an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Marge bei der Differenzbesteuerung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Marge ist die Differenz zwischen dem Verkaufspreis (VK) und dem Einkaufspreis
+              (EK): <strong>Marge = VK − EK</strong>. Nur auf diese Differenz – nicht auf den
+              gesamten Verkaufspreis – wird die Umsatzsteuer erhoben.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt bei der Differenzbesteuerung der ermäßigte Steuersatz von 7 %?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Bei der Differenzbesteuerung gilt <strong>immer der Regelsteuersatz von
+              19 %</strong>, auch wenn die Ware selbst regulär dem ermäßigten Satz von 7 %
+              unterliegen würde.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Für wen gilt die Differenzbesteuerung nach § 25a UStG?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Sie gilt für gewerbliche Wiederverkäufer, die bewegliche körperliche Gegenstände
+              <strong>ohne Vorsteuerabzug</strong> eingekauft haben – etwa von Privatpersonen oder
+              Kleinunternehmern. Typisch sind Gebrauchtwagen-, Antiquitäten- und Kunsthändler sowie
+              der An- und Verkauf von Second-Hand-Ware.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Darf ich bei der Differenzbesteuerung Vorsteuer ziehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Aus dem Einkauf der Ware darf <strong>keine Vorsteuer</strong> gezogen werden,
+              und in der Verkaufsrechnung darf die Umsatzsteuer nicht offen ausgewiesen werden. Das
+              ist der „Preis“ dafür, dass nur die Marge besteuert wird.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert, wenn ich mit Verlust verkaufe?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Liegt der Verkaufspreis unter dem Einkaufspreis, ist die Marge negativ und es fällt
+              <strong>keine Umsatzsteuer</strong> an (Bemessungsgrundlage 0 €). Bei der
+              Einzeldifferenz mindert ein Verlust allerdings nicht die Marge anderer Verkäufe.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/kleingewerbe-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧮</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleingewerbe-Steuer-Rechner</p>
+          </a>
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rabatt-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💸</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Differenzbesteuerung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/differenzbesteuerung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie wird die Umsatzsteuer bei der Differenzbesteuerung berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Umsatzsteuer wird ausschließlich aus der Marge herausgerechnet: Marge × 19 / 119. Die Marge ist der Verkaufspreis minus Einkaufspreis. Beispiel: Bei einer Marge von 1.000 € fallen 1.000 € × 19/119 = 159,66 € Umsatzsteuer an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Marge bei der Differenzbesteuerung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Marge ist die Differenz zwischen dem Verkaufspreis (VK) und dem Einkaufspreis (EK): Marge = VK − EK. Nur auf diese Differenz – nicht auf den gesamten Verkaufspreis – wird die Umsatzsteuer erhoben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt bei der Differenzbesteuerung der ermäßigte Steuersatz von 7 %?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Bei der Differenzbesteuerung gilt immer der Regelsteuersatz von 19 %, auch wenn die Ware selbst regulär dem ermäßigten Satz von 7 % unterliegen würde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Für wen gilt die Differenzbesteuerung nach § 25a UStG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sie gilt für gewerbliche Wiederverkäufer, die bewegliche körperliche Gegenstände ohne Vorsteuerabzug eingekauft haben – etwa von Privatpersonen oder Kleinunternehmern. Typisch sind Gebrauchtwagen-, Antiquitäten- und Kunsthändler sowie der An- und Verkauf von Second-Hand-Ware."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Darf ich bei der Differenzbesteuerung Vorsteuer ziehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Aus dem Einkauf der Ware darf keine Vorsteuer gezogen werden, und in der Verkaufsrechnung darf die Umsatzsteuer nicht offen ausgewiesen werden. Das ist der Preis dafür, dass nur die Marge besteuert wird."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert, wenn ich mit Verlust verkaufe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Liegt der Verkaufspreis unter dem Einkaufspreis, ist die Marge negativ und es fällt keine Umsatzsteuer an (Bemessungsgrundlage 0 €). Bei der Einzeldifferenz mindert ein Verlust allerdings nicht die Marge anderer Verkäufe."
+        }
+      }
+    ]
+  })} />
+</Layout>
