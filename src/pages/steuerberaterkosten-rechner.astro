@@ -1,0 +1,395 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SteuerberaterkostenRechner from '../components/rechner/SteuerberaterkostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Steuerberaterkosten-Rechner 2026 – Honorar nach StBVV berechnen";
+const description = "Steuerberaterkosten nach StBVV (Stand ab 01.07.2025) berechnen: Einkommensteuererklärung, EÜR, Jahresabschluss, Buchführung & mehr. Kostenloser Rechner mit Gegenstandswert, Zehntelsatz, Auslagen & 19 % USt – netto und brutto.";
+const keywords = "Steuerberaterkosten Rechner, Steuerberater Kosten berechnen, StBVV Rechner, Steuerberatergebühren, Steuerberater Kosten Einkommensteuererklärung, Kosten Jahresabschluss Steuerberater, Buchführung Kosten Steuerberater, EÜR Steuerberater Kosten, Gegenstandswert Steuerberater, Steuerberater Honorar 2026";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Steuerberaterkosten-Rechner", url: "/steuerberaterkosten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Steuerberaterkosten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-indigo-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💼</span>
+          <div>
+            <h1 class="text-2xl font-bold">Steuerberaterkosten-Rechner 2026</h1>
+            <p class="text-indigo-200 text-sm">Honorar nach StBVV berechnen – netto &amp; brutto</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Steuerberatervergütungsverordnung (StBVV), Fassung ab 01.07.2025 – Tabelle A (Anlage 1), Tabelle B (Anlage 2), Tabelle C (Anlage 3) sowie §§ 11, 15, 16, 24, 25, 33, 35 StBVV</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Gegenstandswert, Mindest-Gegenstandswerte, Zehntelsatz innerhalb des gesetzlichen Rahmens (Mittelgebühr voreingestellt), Auslagenpauschale § 16 (20 %, max. 20 €) und 19 % Umsatzsteuer – Ausweis netto und brutto</p>
+            <p><strong>Nicht berücksichtigt:</strong> Vergütungsvereinbarungen und Pauschalhonorare (§ 14 StBVV), Zeitgebühren, individuelle Gebührenbestimmung nach § 11 sowie Mehraufwand bei besonders umfangreichen Mandaten – der Rechner liefert die StBVV-Standardberechnung als Schätzung ohne Gewähr und ersetzt keine Steuerberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SteuerberaterkostenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Steuerberaterkosten berechnen: So funktioniert die StBVV</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Was ein Steuerberater kosten darf, ist in Deutschland nicht frei verhandelbar, sondern in der
+            <strong>Steuerberatervergütungsverordnung (StBVV)</strong> gesetzlich geregelt. Mit unserem
+            Steuerberaterkosten-Rechner ermitteln Sie für die wichtigsten Leistungen – von der
+            Einkommensteuererklärung über die Einnahmenüberschussrechnung bis zum Jahresabschluss – das
+            voraussichtliche Honorar nach den amtlichen Gebührentabellen (Fassung ab 01.07.2025).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Bausteine jeder Steuerberatergebühr</h3>
+          <p>Eine Gebühr nach der StBVV setzt sich immer aus drei Faktoren zusammen:</p>
+          <div class="bg-indigo-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Gegenstandswert</strong> = der „Wert“ der Angelegenheit, z. B. Summe der Einkünfte, Umsatz oder Bilanzsumme</li>
+              <li><strong>Volle Gebühr (10/10)</strong> = der zum Gegenstandswert gehörende Tabellenwert aus Tabelle A, B oder C</li>
+              <li><strong>Zehntelsatz</strong> = ein Rahmensatz (z. B. 1/10 bis 6/10), mit dem die volle Gebühr multipliziert wird</li>
+            </ul>
+          </div>
+          <p>
+            Das Nettohonorar ist also <strong>volle Gebühr × Zehntelsatz ÷ 10</strong>. Dazu kommen noch die
+            Auslagenpauschale nach § 16 StBVV (20 % der Gebühr, höchstens 20 €) und die Umsatzsteuer von 19 %
+            (§ 15 StBVV). Erst diese Summe ist der Betrag, der tatsächlich auf der Rechnung steht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Drei Tabellen für unterschiedliche Leistungen</h3>
+          <p>
+            Die StBVV verweist je nach Tätigkeit auf unterschiedliche Gebührentabellen. <strong>Tabelle A</strong>
+            (Beratungstabelle) gilt für Steuererklärungen wie Einkommensteuer-, Umsatzsteuer- und
+            Gewerbesteuererklärung. <strong>Tabelle B</strong> (Abschlusstabelle) gilt für die
+            Einnahmenüberschussrechnung und den Jahresabschluss. <strong>Tabelle C</strong> (Buchführungstabelle)
+            gilt für die laufende Buchführung. Der Rechner wählt die richtige Tabelle automatisch zur gewählten
+            Leistung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Mittelgebühr als Orientierung</h3>
+          <p>
+            Innerhalb des Rahmens – etwa 1/10 bis 6/10 bei der Einkommensteuererklärung – bestimmt der
+            Steuerberater den konkreten Satz nach Umfang, Schwierigkeit und Bedeutung der Sache (§ 11 StBVV).
+            In der Praxis wird bei durchschnittlichen Fällen meist die <strong>Mittelgebühr</strong> angesetzt,
+            also der mittlere Wert des Rahmens. Bei der Einkommensteuererklärung sind das zum Beispiel 3,5/10.
+            Diese Mittelgebühr ist im Rechner voreingestellt; über den Schieberegler können Sie ein günstigeres
+            oder höheres Szenario durchspielen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindest-Gegenstandswerte beachten</h3>
+          <p>
+            Für viele Leistungen gilt ein <strong>Mindest-Gegenstandswert</strong>: bei den Steuererklärungen
+            8.000 €, bei der Einnahmenüberschussrechnung 17.500 €. Liegt der tatsächliche Wert darunter, rechnet
+            die StBVV trotzdem mit dem Mindestwert. Der Rechner berücksichtigt das automatisch und weist darauf
+            hin. Wer seine Belastung insgesamt im Blick behalten will, kann ergänzend den
+            <a href="/einkommensteuer-rechner" class="text-indigo-600 hover:text-indigo-800 underline">Einkommensteuer-Rechner</a>
+            oder den
+            <a href="/gewerbesteuer-rechner" class="text-indigo-600 hover:text-indigo-800 underline">Gewerbesteuer-Rechner</a>
+            nutzen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzt sich das Honorar bei typischen Leistungen mit Mittelgebühr zusammen (netto, vor Auslagen und USt):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Einkommensteuererklärung, Einkünfte 40.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gegenstandswert (Tabelle A):</div>
+              <div class="font-medium text-gray-800">40.000,00 €</div>
+              <div class="text-gray-600">Volle Gebühr (10/10):</div>
+              <div class="font-medium text-gray-800">1.125,00 €</div>
+              <div class="text-gray-600">Mittelgebühr 3,5/10:</div>
+              <div class="font-medium text-gray-800">× 0,35</div>
+              <div class="text-gray-600 font-semibold">Nettohonorar:</div>
+              <div class="font-bold text-indigo-700">393,75 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-indigo-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Einnahmenüberschussrechnung (EÜR), 80.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gegenstandswert (Tabelle B):</div>
+              <div class="font-medium text-gray-800">80.000,00 €</div>
+              <div class="text-gray-600">Volle Gebühr (10/10):</div>
+              <div class="font-medium text-gray-800">353,00 €</div>
+              <div class="text-gray-600">Mittelgebühr 17,5/10:</div>
+              <div class="font-medium text-gray-800">× 1,75</div>
+              <div class="text-gray-600 font-semibold">Nettohonorar:</div>
+              <div class="font-bold text-indigo-700">617,75 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Laufende Buchführung, Jahresumsatz 300.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gegenstandswert (Tabelle C):</div>
+              <div class="font-medium text-gray-800">300.000,00 €</div>
+              <div class="text-gray-600">Volle Gebühr (10/10):</div>
+              <div class="font-medium text-gray-800">359,00 €</div>
+              <div class="text-gray-600">Mittelgebühr 7/10:</div>
+              <div class="font-medium text-gray-800">× 0,70</div>
+              <div class="text-gray-600 font-semibold">Nettohonorar pro Monat:</div>
+              <div class="font-bold text-indigo-700">251,30 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-3 mt-4 text-sm text-indigo-800">
+          <strong>💡 Wichtig:</strong> Auf jedes Nettohonorar kommen noch die Auslagenpauschale (§ 16, max. 20 €)
+          und 19 % Umsatzsteuer hinzu. Bei der Buchführung ist die Gebühr eine Monatsgebühr – für den Jahreswert
+          mit 12 multiplizieren.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Honorar als Festpreis verstehen</h3>
+            <p>Die StBVV nennt einen <strong>Gebührenrahmen</strong>, keinen festen Betrag. Der Steuerberater
+            wählt den Zehntelsatz innerhalb des Rahmens selbst. Das berechnete Ergebnis ist deshalb eine
+            Orientierung, kein verbindlicher Preis.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Umsatzsteuer und Auslagen vergessen</h3>
+            <p>Viele rechnen nur mit der „Gebühr“ und übersehen, dass darauf noch die Auslagenpauschale
+            (§ 16, höchstens 20 €) und 19 % Umsatzsteuer (§ 15) kommen. Erst der Bruttobetrag ist der Rechnungsbetrag.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Falscher Gegenstandswert</h3>
+            <p>Der Gegenstandswert ist je Leistung unterschiedlich definiert: bei der Einkommensteuererklärung
+            die <strong>Summe der positiven Einkünfte</strong>, bei der EÜR der höhere Wert aus Betriebseinnahmen
+            oder -ausgaben. Mit dem falschen Wert ist auch das Honorar falsch.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Buchführung ist eine Monatsgebühr</h3>
+            <p>Die Gebühr für die laufende Buchführung (§ 33 StBVV) fällt <strong>pro Monat</strong> an. Für die
+            Jahresbelastung wird sie mit 12 multipliziert. Der Rechner weist beides aus.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Vergütungsvereinbarung</h3>
+            <p>Bei reiner Beratung oder besonderen Mandaten kann der Steuerberater eine
+            <strong>Pauschalvergütung</strong> (§ 14 StBVV) oder eine abweichende Vergütungsvereinbarung treffen.
+            Dann gelten die Tabellenwerte nur eingeschränkt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Steuerberaterkosten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel kostet eine Einkommensteuererklärung beim Steuerberater?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von der Höhe der Einkünfte ab. Bei 40.000 € positiven Einkünften beträgt die volle Gebühr nach Tabelle A 1.125 €. Mit der üblichen Mittelgebühr von 3,5/10 ergibt das ein Nettohonorar von 393,75 €. Hinzu kommen die Auslagenpauschale (§ 16, höchstens 20 €) und 19 % Umsatzsteuer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnen sich Steuerberaterkosten nach der StBVV?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Nettohonorar ist volle Gebühr × Zehntelsatz ÷ 10. Die volle Gebühr (10/10) ergibt sich aus dem Gegenstandswert über die jeweilige Tabelle (A, B oder C). Der Zehntelsatz liegt in einem gesetzlichen Rahmen, meist wird die Mittelgebühr angesetzt. Auf das Nettohonorar kommen die Auslagenpauschale nach § 16 StBVV (20 %, höchstens 20 €) und 19 % Umsatzsteuer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Gegenstandswert bei Steuerberaterkosten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Gegenstandswert ist der „Wert“ der bearbeiteten Angelegenheit. Er ist je Leistung unterschiedlich: bei der Einkommensteuererklärung die Summe der positiven Einkünfte, bei der Umsatzsteuererklärung die Summe der Entgelte, bei der EÜR der höhere Wert aus Betriebseinnahmen oder -ausgaben, beim Jahresabschluss das Mittel aus Bilanzsumme und Jahresleistung. Aus diesem Wert wird über die Gebührentabelle die volle Gebühr abgeleitet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Mittelgebühr beim Steuerberater?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Mittelgebühr ist der mittlere Zehntelsatz innerhalb des gesetzlichen Rahmens. Bei einem Rahmen von 1/10 bis 6/10 ist das 3,5/10. Sie wird bei durchschnittlich umfangreichen und schwierigen Mandaten angesetzt. Bei besonders einfachen Fällen kann ein niedrigerer, bei sehr aufwendigen ein höherer Satz gerechtfertigt sein (§ 11 StBVV).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind Steuerberaterkosten gesetzlich festgelegt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Steuerberatervergütungsverordnung (StBVV) gibt für die meisten Tätigkeiten einen Gebührenrahmen vor, keinen Festpreis. Der Steuerberater bestimmt den konkreten Satz innerhalb des Rahmens. Bei reiner Beratung oder besonderen Mandaten ist außerdem eine Pauschal- oder Vergütungsvereinbarung möglich (§ 14 StBVV). Das berechnete Ergebnis ist daher eine fundierte Schätzung, kein verbindliches Angebot.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Fällt auf Steuerberaterkosten Umsatzsteuer an?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Auf die Steuerberatergebühr und die Auslagen wird die Umsatzsteuer von 19 % erhoben (§ 15 StBVV). Unternehmer können diese in der Regel als Vorsteuer abziehen, für Privatpersonen ist sie ein echter Kostenbestandteil. Der Rechner weist das Honorar deshalb sowohl netto als auch brutto aus.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/koerperschaftsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Körperschaftsteuer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/kleinunternehmer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📒</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kleinunternehmer-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧮</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Steuerberaterkosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/steuerberaterkosten-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel kostet eine Einkommensteuererklärung beim Steuerberater?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von der Höhe der Einkünfte ab. Bei 40.000 € positiven Einkünften beträgt die volle Gebühr nach Tabelle A 1.125 €. Mit der üblichen Mittelgebühr von 3,5/10 ergibt das ein Nettohonorar von 393,75 €. Hinzu kommen die Auslagenpauschale (§ 16, höchstens 20 €) und 19 % Umsatzsteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnen sich Steuerberaterkosten nach der StBVV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Nettohonorar ist volle Gebühr × Zehntelsatz ÷ 10. Die volle Gebühr (10/10) ergibt sich aus dem Gegenstandswert über die jeweilige Tabelle (A, B oder C). Der Zehntelsatz liegt in einem gesetzlichen Rahmen, meist wird die Mittelgebühr angesetzt. Auf das Nettohonorar kommen die Auslagenpauschale nach § 16 StBVV (20 %, höchstens 20 €) und 19 % Umsatzsteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Gegenstandswert bei Steuerberaterkosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Gegenstandswert ist der „Wert“ der bearbeiteten Angelegenheit. Er ist je Leistung unterschiedlich: bei der Einkommensteuererklärung die Summe der positiven Einkünfte, bei der Umsatzsteuererklärung die Summe der Entgelte, bei der EÜR der höhere Wert aus Betriebseinnahmen oder -ausgaben, beim Jahresabschluss das Mittel aus Bilanzsumme und Jahresleistung. Aus diesem Wert wird über die Gebührentabelle die volle Gebühr abgeleitet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Mittelgebühr beim Steuerberater?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Mittelgebühr ist der mittlere Zehntelsatz innerhalb des gesetzlichen Rahmens. Bei einem Rahmen von 1/10 bis 6/10 ist das 3,5/10. Sie wird bei durchschnittlich umfangreichen und schwierigen Mandaten angesetzt. Bei besonders einfachen Fällen kann ein niedrigerer, bei sehr aufwendigen ein höherer Satz gerechtfertigt sein (§ 11 StBVV)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Steuerberaterkosten gesetzlich festgelegt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Steuerberatervergütungsverordnung (StBVV) gibt für die meisten Tätigkeiten einen Gebührenrahmen vor, keinen Festpreis. Der Steuerberater bestimmt den konkreten Satz innerhalb des Rahmens. Bei reiner Beratung oder besonderen Mandaten ist außerdem eine Pauschal- oder Vergütungsvereinbarung möglich (§ 14 StBVV). Das berechnete Ergebnis ist daher eine fundierte Schätzung, kein verbindliches Angebot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fällt auf Steuerberaterkosten Umsatzsteuer an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Auf die Steuerberatergebühr und die Auslagen wird die Umsatzsteuer von 19 % erhoben (§ 15 StBVV). Unternehmer können diese in der Regel als Vorsteuer abziehen, für Privatpersonen ist sie ein echter Kostenbestandteil. Der Rechner weist das Honorar deshalb sowohl netto als auch brutto aus."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -2648,6 +2648,59 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Rollrasen Rechner, Rollrasen berechnen, Rollrasen Menge, Rollrasen Kosten, Rasensaat Menge, Verschnitt Rollrasen',
     quellen: ['https://www.hornbach.de/projekte/rollrasen-verlegen/', 'https://www.kiepenkerl.de/rasen-anlegen/rollrasen-verlegen/', 'https://www.rasengesellschaft.de/'],
   },
+  // ═══════════════════════════════════════════════════════════════
+  // GEWERBE & STEUER DEEP-DIVE (Welle 3 – tabellenlastig)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: 'steuerberaterkosten',
+    name: 'Steuerberaterkosten-Rechner',
+    beschreibung: 'Honorar nach StBVV (Tabelle A/B/C) berechnen',
+    icon: '🧾',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Steuerberaterkosten Rechner, Steuerberater Kosten berechnen, StBVV Rechner, Steuerberatergebühren, Kosten Jahresabschluss Steuerberater, Buchführung Kosten, Steuerberater Honorar 2026',
+    quellen: ['https://www.gesetze-im-internet.de/stbgebv/'],
+  },
+  {
+    id: 'gmbh-gruendungskosten',
+    name: 'GmbH-Gründungskosten-Rechner',
+    beschreibung: 'Notar, Handelsregister & Gesamtkosten der GmbH',
+    icon: '🏢',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'GmbH Gründungskosten, GmbH gründen Kosten, GmbH Notarkosten, GmbH Handelsregister Gebühr, GmbH Musterprotokoll Kosten, Notarkosten GmbH Gründung, Sachgründung GmbH Kosten',
+    quellen: ['https://www.gesetze-im-internet.de/gnotkg/', 'https://www.gesetze-im-internet.de/gmbhg/__5.html'],
+  },
+  {
+    id: 'ug-gruendungskosten',
+    name: 'UG-Gründungskosten-Rechner',
+    beschreibung: 'Notar, HReg & Gesamtkosten der UG-Gründung',
+    icon: '🚀',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'UG Gründungskosten, UG gründen Kosten, UG Notarkosten, Mini-GmbH Gründung Kosten, UG Handelsregister Gebühr, UG Musterprotokoll Kosten, UG haftungsbeschränkt Kosten',
+    quellen: ['https://www.gesetze-im-internet.de/gmbhg/__5a.html', 'https://www.gesetze-im-internet.de/gnotkg/'],
+  },
+  {
+    id: 'wegzugsteuer',
+    name: 'Wegzugsteuer-Rechner',
+    beschreibung: 'Wegzugsteuer §6 AStG auf GmbH-Anteile',
+    icon: '✈️',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Wegzugsteuer Rechner, Wegzugsteuer berechnen, §6 AStG, Wegzugsbesteuerung, Exit Tax Deutschland, GmbH Anteile Wegzug, Teileinkünfteverfahren, Auswandern GmbH Steuer',
+    quellen: ['https://www.gesetze-im-internet.de/astg/__6.html'],
+  },
+  {
+    id: 'gmbh-vs-einzelunternehmen',
+    name: 'GmbH vs. Einzelunternehmen Rechner',
+    beschreibung: 'Steuervergleich der Rechtsform bei gleichem Gewinn',
+    icon: '⚖️',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'GmbH vs Einzelunternehmen, Rechtsform Steuervergleich, GmbH oder Einzelunternehmen, Steuerbelastung Rechtsform vergleichen, Thesaurierung GmbH, ab wann lohnt sich GmbH, Rechtsformvergleich Steuer',
+    quellen: ['https://www.gesetze-im-internet.de/estg/__35.html', 'https://www.gesetze-im-internet.de/kstg_1977/__23.html'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 
