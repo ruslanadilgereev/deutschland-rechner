@@ -60,22 +60,13 @@ const ASSET_TYPEN = [
     steuerpflichtig: true,
     teilfreistellung: 0,
   },
-  { 
-    id: 'dividenden', 
-    label: 'Dividenden (deutsche Aktien)', 
+  {
+    id: 'dividenden',
+    label: 'Dividenden (deutsche Aktien)',
     icon: '💰',
     beschreibung: '25% Abgeltungsteuer auf Dividenden',
     steuerpflichtig: true,
     teilfreistellung: 0,
-  },
-  { 
-    id: 'krypto', 
-    label: 'Kryptowährungen', 
-    icon: '₿',
-    beschreibung: 'Steuerfrei nach 1 Jahr Haltefrist',
-    steuerpflichtig: true,
-    teilfreistellung: 0,
-    krypto: true,
   },
 ];
 
@@ -87,10 +78,7 @@ export default function KapitalertragsteuerRechner() {
   
   // Asset-Typ
   const [assetTyp, setAssetTyp] = useState('aktien');
-  
-  // Bei Krypto: Haltefrist
-  const [haltefristUeber1Jahr, setHaltefristUeber1Jahr] = useState(false);
-  
+
   // Persönliche Situation
   const [verheiratet, setVerheiratet] = useState(false);
   const [kirchensteuerSatz, setKirchensteuerSatz] = useState(0);
@@ -102,28 +90,6 @@ export default function KapitalertragsteuerRechner() {
   const sparerpauschbetrag = verheiratet ? SPARERPAUSCHBETRAG.verheiratet : SPARERPAUSCHBETRAG.single;
   
   const ergebnis = useMemo(() => {
-    // Krypto-Sonderfall: Nach 1 Jahr steuerfrei
-    if (selectedAsset.krypto && haltefristUeber1Jahr) {
-      return {
-        bruttoGewinn,
-        teilfreistellung: 0,
-        steuerpflichtiger: bruttoGewinn,
-        verlustverrechnung: 0,
-        nachVerlust: bruttoGewinn,
-        sparerpauschbetrag: 0,
-        zuVersteuern: 0,
-        abgeltungsteuer: 0,
-        soli: 0,
-        kirchensteuer: 0,
-        steuerGesamt: 0,
-        bereitsGezahlt: 0,
-        nachzahlung: 0,
-        nettoGewinn: bruttoGewinn,
-        effektiverSteuersatz: 0,
-        kryptoSteuerfrei: true,
-      };
-    }
-    
     // 1. Teilfreistellung anwenden (für Fonds)
     const teilfreistellungBetrag = bruttoGewinn * selectedAsset.teilfreistellung;
     const nachTeilfreistellung = bruttoGewinn - teilfreistellungBetrag;
@@ -192,11 +158,10 @@ export default function KapitalertragsteuerRechner() {
       erstattung,
       nettoGewinn: Math.round(nettoGewinn),
       effektiverSteuersatz,
-      kryptoSteuerfrei: false,
     };
   }, [
-    bruttoGewinn, verluste, bereitsBezahlt, assetTyp, selectedAsset,
-    haltefristUeber1Jahr, verheiratet, kirchensteuerSatz,
+    bruttoGewinn, verluste, bereitsBezahlt, selectedAsset,
+    verheiratet, kirchensteuerSatz,
     freistellungsauftrag, guenstigerpruefung, persoenlichSteuer, sparerpauschbetrag
   ]);
 
@@ -235,25 +200,27 @@ export default function KapitalertragsteuerRechner() {
           ))}
         </div>
         
-        {/* Krypto Haltefrist */}
-        {selectedAsset.krypto && (
-          <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
-            <label className="flex items-center gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={haltefristUeber1Jahr}
-                onChange={(e) => setHaltefristUeber1Jahr(e.target.checked)}
-                className="w-5 h-5 rounded border-yellow-400 text-yellow-600 focus:ring-yellow-500"
-              />
-              <div>
-                <span className="font-medium text-yellow-800">Haltefrist über 1 Jahr</span>
-                <p className="text-sm text-yellow-600">
-                  Krypto-Gewinne sind nach 1 Jahr Haltefrist komplett steuerfrei!
-                </p>
-              </div>
-            </label>
+        {/* Hinweis: Krypto wird anders besteuert */}
+        <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+          <div className="flex items-start gap-3">
+            <span className="text-xl">₿</span>
+            <div>
+              <p className="font-medium text-amber-800">Kryptowährungen?</p>
+              <p className="text-sm text-amber-700 mt-1">
+                Krypto fällt nicht unter die Abgeltungsteuer, sondern wird als privates
+                Veräußerungsgeschäft (§&#8239;23 EStG) besteuert: nach 1&nbsp;Jahr Haltefrist
+                steuerfrei, sonst mit Ihrem persönlichen Einkommensteuersatz (Freigrenze
+                1.000&nbsp;€/Jahr). Nutzen Sie dafür den{' '}
+                <a
+                  href="/krypto-steuer-rechner"
+                  className="font-medium text-amber-800 underline hover:text-amber-900"
+                >
+                  Krypto-Steuer-Rechner
+                </a>.
+              </p>
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Kapitalerträge */}
@@ -446,22 +413,7 @@ export default function KapitalertragsteuerRechner() {
       </div>
 
       {/* Ergebnis */}
-      {ergebnis.kryptoSteuerfrei ? (
-        <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg p-6 text-white mb-6">
-          <div className="text-center">
-            <span className="text-6xl mb-4 block">🎉</span>
-            <h3 className="text-2xl font-bold mb-2">Steuerfrei!</h3>
-            <p className="text-green-100 mb-4">
-              Dein Krypto-Gewinn von {formatEuro(bruttoGewinn)} ist nach über 1 Jahr Haltefrist komplett steuerfrei.
-            </p>
-            <div className="bg-white/20 rounded-xl p-4">
-              <span className="text-sm text-green-100">Dein Netto-Gewinn</span>
-              <span className="text-4xl font-bold block">{formatEuro(bruttoGewinn)}</span>
-            </div>
-          </div>
-        </div>
-) : (
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-lg p-6 text-white mb-6">
+      <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-lg p-6 text-white mb-6">
           <h3 className="text-sm font-medium text-blue-200 mb-1">Kapitalertragsteuer</h3>
           
           <div className="mb-4">
@@ -490,12 +442,10 @@ export default function KapitalertragsteuerRechner() {
             </div>
           </div>
         </div>
-      )}
 
       {/* Aufschlüsselung */}
-      {!ergebnis.kryptoSteuerfrei && (
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-          <h3 className="font-bold text-gray-800 mb-4">📊 Berechnung im Detail</h3>
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 className="font-bold text-gray-800 mb-4">&#128202; Berechnung im Detail</h3>
           
           <div className="space-y-3">
             {/* Brutto */}
@@ -588,7 +538,6 @@ export default function KapitalertragsteuerRechner() {
             </div>
           </div>
         </div>
-      )}
 
       {/* Steuerübersicht */}
       <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-6 mb-6">
@@ -621,7 +570,12 @@ export default function KapitalertragsteuerRechner() {
           <li className="flex gap-2">
             <span>₿</span>
             <span>
-              <strong>Krypto-Sonderregel</strong>: Nach 1 Jahr Haltefrist komplett steuerfrei!
+              <strong>Krypto gehört nicht hierher</strong>: Kryptowährungen sind keine Kapitalerträge,
+              sondern private Veräußerungsgeschäfte (§&#8239;23 EStG) – nach 1&nbsp;Jahr steuerfrei,
+              sonst persönlicher Einkommensteuersatz. Dafür gibt es den{' '}
+              <a href="/krypto-steuer-rechner" className="underline font-medium hover:text-amber-900">
+                Krypto-Steuer-Rechner
+              </a>.
             </span>
           </li>
         </ul>
@@ -733,13 +687,21 @@ export default function KapitalertragsteuerRechner() {
           >
             §20 EStG – Einkünfte aus Kapitalvermögen
           </a>
-          <a 
+          <a
             href="https://www.gesetze-im-internet.de/estg/__32d.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             §32d EStG – Abgeltungsteuer
+          </a>
+          <a
+            href="https://www.gesetze-im-internet.de/estg/__23.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            §23 EStG – Private Veräußerungsgeschäfte (Krypto)
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/invstg_2018/"

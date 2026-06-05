@@ -18,7 +18,9 @@ const HEBESATZ_PRESETS = [
   { name: 'Stuttgart', satz: 420 },
   { name: 'Monheim', satz: 250 },
   { name: 'Zossen', satz: 200 },
-  { name: 'Durchschnitt', satz: 435 },
+  // Bundesweiter Durchschnitts-Hebesatz aller Gemeinden 2024: 409 %
+  // Quelle: Statistisches Bundesamt (Destatis), PM Nr. 309 vom 08/2025
+  { name: 'Bundesschnitt 2024', satz: 409 },
 ];
 
 type Rechtsform = 'einzelunternehmer' | 'personengesellschaft' | 'kapitalgesellschaft';

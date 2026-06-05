@@ -196,7 +196,7 @@ export default function MehrwertsteuerRechner() {
               <li>• Möbel, Haushaltsgeräte</li>
               <li>• Autos, Fahrräder</li>
               <li>• Handwerker- & Dienstleistungen</li>
-              <li>• Restaurantbesuche (Speisen vor Ort)</li>
+              <li>• Getränke in der Gastronomie (vor Ort)</li>
             </ul>
           </div>
           <div className="p-4 bg-green-50 rounded-xl">
@@ -208,6 +208,7 @@ export default function MehrwertsteuerRechner() {
               <li>• Hotelübernachtungen</li>
               <li>• Kulturveranstaltungen, Kino</li>
               <li>• Speisen zum Mitnehmen</li>
+              <li>• Gastronomie-Speisen vor Ort (neu seit 2026)</li>
             </ul>
           </div>
           <div className="p-4 bg-blue-50 rounded-xl">
