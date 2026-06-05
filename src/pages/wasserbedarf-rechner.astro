@@ -1,0 +1,370 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WasserbedarfRechner from '../components/rechner/WasserbedarfRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Wasserbedarf-Rechner 2026 – Tägliche Trinkmenge berechnen (DGE)";
+const description = "Wie viel sollten Sie täglich trinken? Wasserbedarf-Rechner nach DGE-Richtwerten: Trinkmenge in Liter pro Tag aus Gewicht, Alter, Sport & Wetter. Kostenlos & sofort.";
+const keywords = "Wasserbedarf Rechner, Trinkmenge berechnen, wie viel Wasser am Tag, täglicher Wasserbedarf, Flüssigkeitsbedarf berechnen, DGE Trinkmenge, ml pro kg Körpergewicht, wie viel trinken pro Tag, Wasser Rechner, Trinkmenge Sport Hitze";
+
+const faqs = [
+  {
+    q: "Wie viel Wasser sollte ich pro Tag trinken?",
+    a: "Die Deutsche Gesellschaft für Ernährung (DGE) empfiehlt Erwachsenen rund 1,5 Liter über Getränke pro Tag. Zusammen mit dem Wasser aus fester Nahrung ergibt das eine Gesamtwasserzufuhr von etwa 2,5 Litern. Als Faustformel gelten rund 30 bis 40 ml pro Kilogramm Körpergewicht – bei Sport und Hitze entsprechend mehr.",
+  },
+  {
+    q: "Wie berechnet man den täglichen Wasserbedarf nach Körpergewicht?",
+    a: "Eine gängige Faustformel rechnet etwa 35 ml pro Kilogramm Körpergewicht für Erwachsene zwischen 19 und 50 Jahren. Bei 70 kg sind das rund 2,45 Liter Gesamtwasserzufuhr, wovon etwa 1,3 bis 1,5 Liter über Getränke gedeckt werden sollten. Kinder und Jugendliche brauchen bis zu 40 ml/kg, ältere Menschen oft etwa 30 ml/kg.",
+  },
+  {
+    q: "Zählt der Wasserbedarf nur Getränke oder auch Essen?",
+    a: "Der Gesamtwasserbedarf umfasst beides. Rund die Hälfte der täglichen Flüssigkeit nehmen Sie über feste Nahrung auf – etwa über Obst, Gemüse, Suppen oder Joghurt. Die andere Hälfte, bei Erwachsenen also etwa 1,5 Liter, sollte über Getränke kommen. Unser Rechner zeigt beide Werte getrennt an.",
+  },
+  {
+    q: "Wie viel mehr sollte ich bei Sport und Hitze trinken?",
+    a: "Bei körperlicher Anstrengung verlieren Sie über Schweiß zusätzlich Flüssigkeit. Je nach Intensität kommen pro Stunde Sport etwa 0,3 bis 0,75 Liter dazu. An heißen Tagen über 30 °C steigt der Bedarf um bis zu rund einen Liter zusätzlich. Trinken Sie über den Tag verteilt, nicht erst, wenn Sie Durst verspüren.",
+  },
+  {
+    q: "Ist zu viel Trinken schädlich?",
+    a: "In der Regel reguliert der Körper überschüssige Flüssigkeit problemlos. In seltenen Fällen kann übermäßiges Trinken jedoch zu einer Wasservergiftung (Hyponatriämie) mit gefährlich niedrigem Natriumspiegel führen. Menschen mit Herz- oder Nierenerkrankungen sollten ihre Trinkmenge unbedingt ärztlich abstimmen, da hier teils eine Begrenzung gilt.",
+  },
+  {
+    q: "Was sind die besten Getränke, um den Wasserbedarf zu decken?",
+    a: "Am besten geeignet sind Wasser (Leitungs- oder Mineralwasser), ungesüßte Kräuter- und Früchtetees sowie stark verdünnte Saftschorlen. Kaffee und schwarzer Tee zählen in moderaten Mengen ebenfalls zur Flüssigkeitsbilanz. Vermeiden Sie zuckerhaltige Limonaden und größere Mengen Alkohol, da Alkohol entwässernd wirkt.",
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Wasserbedarf-Rechner", url: "/wasserbedarf-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Gesundheit', href: '/gesundheit' },
+    { name: 'Wasserbedarf-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💧</span>
+          <div>
+            <h1 class="text-2xl font-bold">Wasserbedarf-Rechner 2026</h1>
+            <p class="text-blue-100 text-sm">Tägliche Trinkmenge nach DGE-Richtwerten berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Referenzwerte für die Wasserzufuhr der Deutschen Gesellschaft für Ernährung (DGE / D-A-CH). Faustformel: ca. 30–40 ml pro kg Körpergewicht Gesamtwasserzufuhr pro Tag, altersabhängig; rund 1,5 l davon über Getränke bei Erwachsenen.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Körpergewicht, Alter, sportliche Aktivität (Dauer/Intensität) und Wetter/Temperatur. Ausgewiesen werden empfohlene Trinkmenge über Getränke und geschätzte Gesamtwasserzufuhr.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Erkrankungen, Medikamente, Fieber, Schwangerschaft und Stillzeit. Der Rechner ist eine Orientierung und ersetzt keine ärztliche Beratung – bei Herz- oder Nierenerkrankungen kann eine ärztlich verordnete Trinkmengen-Begrenzung gelten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WasserbedarfRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wasserbedarf berechnen: Wie viel sollten Sie täglich trinken?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wasser ist lebensnotwendig: Es transportiert Nährstoffe, reguliert die Körpertemperatur
+            und hält den Kreislauf in Schwung. Doch wie viel Flüssigkeit braucht der Körper wirklich
+            pro Tag? Mit unserem <strong>Wasserbedarf-Rechner</strong> ermitteln Sie Ihre persönliche
+            Trinkmenge auf Basis der Richtwerte der <strong>Deutschen Gesellschaft für Ernährung (DGE)</strong> –
+            angepasst an Gewicht, Alter, Sport und Wetter.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die DGE-Empfehlung im Überblick</h3>
+          <p>
+            Die DGE empfiehlt gesunden Erwachsenen, täglich rund <strong>1,5 Liter</strong> über
+            Getränke aufzunehmen. Zusammen mit dem Wasser aus fester Nahrung (Obst, Gemüse, Suppen)
+            kommt man so auf eine <strong>Gesamtwasserzufuhr von etwa 2,5 Litern</strong> pro Tag.
+            Etwa die Hälfte der Flüssigkeit liefert also schon das Essen, die andere Hälfte müssen
+            Sie trinken.
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Über Getränke:</strong> ca. 1,5 l pro Tag (Richtwert Erwachsene)</li>
+              <li><strong>Über feste Nahrung:</strong> ca. 0,7–1,0 l pro Tag</li>
+              <li><strong>Oxidationswasser (Stoffwechsel):</strong> ca. 0,3 l pro Tag</li>
+              <li><strong>Gesamtwasserzufuhr:</strong> ca. 2,5 l pro Tag</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faustformel: ml pro Kilogramm Körpergewicht</h3>
+          <p>
+            Neben dem pauschalen Richtwert lässt sich der Bedarf auch über das Körpergewicht
+            abschätzen. Diese Faustformel berücksichtigt, dass schwerere Menschen mehr Flüssigkeit
+            benötigen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kinder &amp; Jugendliche:</strong> bis zu 40 ml pro kg und Tag</li>
+            <li><strong>Erwachsene 19–50 Jahre:</strong> ca. 35 ml pro kg und Tag</li>
+            <li><strong>Ab 51 Jahren:</strong> ca. 30 ml pro kg und Tag</li>
+          </ul>
+          <p>
+            Die Werte beziehen sich auf die <strong>Gesamtwasserzufuhr</strong>. Rund 55 % davon
+            sollten Sie über Getränke decken. Beispiel: Eine 70 kg schwere, 35-jährige Person
+            kommt auf 70 × 35 ml = 2.450 ml Gesamtwasser, davon etwa 1,3–1,4 Liter über Getränke.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mehr trinken bei Sport und Hitze</h3>
+          <p>
+            Bei körperlicher Anstrengung und an heißen Tagen verlieren Sie über Schweiß deutlich mehr
+            Flüssigkeit. Pro Stunde intensivem Sport sollten Sie etwa <strong>0,5 bis 0,75 Liter</strong>
+            zusätzlich einplanen, bei Temperaturen über 30 °C bis zu <strong>einen Liter</strong> mehr.
+            Wer abnehmen oder seinen <a href="/grundumsatz-rechner" class="text-blue-600 hover:text-blue-800 underline">Grundumsatz</a>
+            kennen möchte, kombiniert das mit dem
+            <a href="/kalorien-rechner" class="text-blue-600 hover:text-blue-800 underline">Kalorienbedarf-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: Trinkmenge pro Tag</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle zeigen, wie sich Gewicht, Alter und Aktivität auswirken:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Büroangestellte, 65 kg, kein Sport</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Alter:</div>
+              <div class="font-medium text-gray-800">35 Jahre</div>
+              <div class="text-gray-600">Faktor:</div>
+              <div class="font-medium text-gray-800">35 ml/kg</div>
+              <div class="text-gray-600">Gesamtwasserzufuhr:</div>
+              <div class="font-medium text-gray-800">~ 2,3 l</div>
+              <div class="text-gray-600">Empfohlen über Getränke:</div>
+              <div class="font-medium text-blue-700">~ 1,3 l / Tag</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Hobbyläufer, 80 kg, 1 h Sport, warm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Alter:</div>
+              <div class="font-medium text-gray-800">40 Jahre</div>
+              <div class="text-gray-600">Grundbedarf Getränke:</div>
+              <div class="font-medium text-gray-800">~ 1,5 l</div>
+              <div class="text-gray-600">Zuschlag Sport (1 h moderat):</div>
+              <div class="font-medium text-gray-800">+ 0,5 l</div>
+              <div class="text-gray-600">Zuschlag Wärme:</div>
+              <div class="font-medium text-gray-800">+ 0,5 l</div>
+              <div class="text-gray-600">Empfohlen über Getränke:</div>
+              <div class="font-medium text-blue-700">~ 2,5 l / Tag</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Seniorin, 60 kg, kein Sport</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Alter:</div>
+              <div class="font-medium text-gray-800">72 Jahre</div>
+              <div class="text-gray-600">Faktor:</div>
+              <div class="font-medium text-gray-800">30 ml/kg</div>
+              <div class="text-gray-600">Gesamtwasserzufuhr:</div>
+              <div class="font-medium text-gray-800">~ 1,8 l</div>
+              <div class="text-gray-600">Empfohlen über Getränke:</div>
+              <div class="font-medium text-blue-700">~ 1,0 l / Tag</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Ältere Menschen verspüren oft weniger Durst, brauchen aber
+          weiterhin ausreichend Flüssigkeit. Stellen Sie sich feste Trinkzeiten oder ein gefülltes
+          Glas in Sichtweite, um das Trinken nicht zu vergessen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler beim Wasserbedarf</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Erst trinken, wenn man Durst hat</h3>
+            <p>Durst ist bereits ein Zeichen für beginnenden Flüssigkeitsmangel. Trinken Sie
+            <strong>regelmäßig über den Tag verteilt</strong>, nicht erst bei akutem Durstgefühl –
+            besonders ältere Menschen sollten nicht auf das Durstsignal warten.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Den Bedarf pauschal mit „3 Liter“ ansetzen</h3>
+            <p>Die oft gehörte Regel „mindestens 3 Liter pro Tag“ gilt nicht für jeden. Für gesunde
+            Erwachsene reichen unter normalen Bedingungen meist rund <strong>1,5 Liter über Getränke</strong>.
+            Deutlich mehr ist nur bei Sport, Hitze oder Krankheit nötig.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Falsche Getränke einrechnen</h3>
+            <p>Zuckerhaltige Limonaden, Energydrinks und Alkohol sind keine geeigneten Durstlöscher.
+            Alkohol wirkt sogar <strong>entwässernd</strong>. Setzen Sie auf Wasser, ungesüßte Tees
+            und stark verdünnte Saftschorlen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Herz- und Nierenerkrankungen</h3>
+            <p>Bei Herzschwäche oder eingeschränkter Nierenfunktion kann eine
+            <strong>Trinkmengen-Begrenzung</strong> ärztlich verordnet sein. In diesen Fällen sind die
+            allgemeinen Richtwerte nicht anwendbar – halten Sie sich an die Vorgaben Ihrer Ärztin
+            oder Ihres Arztes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für Sie? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Ihr Ergebnis zeigt, wie viel Sie unter Ihren Bedingungen ungefähr über Getränke trinken
+            sollten. So setzen Sie es im Alltag um:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Über den Tag verteilen</p>
+              <p>Teilen Sie die Menge auf mehrere Portionen auf – etwa ein Glas zu jeder Mahlzeit und
+              dazwischen. So bleibt der Flüssigkeitshaushalt konstant.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Bei Sport vorab trinken</p>
+              <p>Trinken Sie schon vor dem Training und gleichen Sie den Verlust danach aus. Bei langem
+              Schwitzen helfen mineralstoffhaltige Getränke, den Elektrolythaushalt zu stabilisieren.</p>
+            </div>
+
+            <div class="bg-yellow-50 rounded-lg p-3">
+              <p class="font-semibold text-yellow-800 mb-1">💰 Gesundheit im Blick behalten</p>
+              <p>Dunkler Urin ist ein Warnzeichen für zu wenig Flüssigkeit. Prüfen Sie auch Ihren
+              <a href="/bmi-rechner" class="text-blue-600 underline">BMI</a> und Ihren
+              <a href="/kalorien-rechner" class="text-blue-600 underline">Kalorienbedarf</a>, um Ihre
+              Ernährung ganzheitlich einzuschätzen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Wasserbedarf</h2>
+
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.q}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorien-Rechner</p>
+          </a>
+          <a href="/grundumsatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🫀</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundumsatz-Rechner</p>
+          </a>
+          <a href="/kaloriendefizit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaloriendefizit-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wasserbedarf-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/wasserbedarf-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} />
+</Layout>

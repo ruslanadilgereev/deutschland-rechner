@@ -1,0 +1,423 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UstvaRechner from '../components/rechner/UstvaRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Umsatzsteuer-Voranmeldung-Rechner 2026 – Zahllast & Vorsteuer berechnen";
+const description = "Umsatzsteuer-Voranmeldung kostenlos berechnen: Zahllast aus Umsätzen (19 % & 7 %) und Vorsteuer ermitteln. Mit Erstattungs-Hinweis, Abgaberhythmus, Frist (10. des Folgemonats) und Dauerfristverlängerung.";
+const keywords = "Umsatzsteuer-Voranmeldung Rechner, UStVA Rechner, Zahllast berechnen, Vorsteuer Umsatzsteuer, Umsatzsteuer berechnen, ELSTER Voranmeldung, Dauerfristverlängerung, monatlich vierteljährlich, § 18 UStG";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Umsatzsteuer-Voranmeldung-Rechner", url: "/ustva-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Umsatzsteuer-Voranmeldung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Umsatzsteuer-Voranmeldung-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Zahllast aus Umsatzsteuer und Vorsteuer berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 18 UStG (Besteuerungsverfahren), § 12 UStG (Steuersätze 19 % / 7 %), Vorgaben von ELSTER und dem Bundesfinanzministerium</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> vereinnahmte Umsatzsteuer aus Umsätzen zu 19 % und 7 %, abziehbare Vorsteuer, Zahllast bzw. Erstattung, Abgaberhythmus und Fristen</p>
+            <p><strong>Nicht berücksichtigt:</strong> Reverse-Charge (§ 13b UStG), innergemeinschaftliche Erwerbe, Einfuhrumsatzsteuer, steuerfreie Umsätze und Kleinunternehmerregelung – der Rechner liefert eine vereinfachte Schätzung, keine Steuerberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <UstvaRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Umsatzsteuer-Voranmeldung: Zahllast, Vorsteuer & Fristen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Umsatzsteuer-Voranmeldung</strong> (kurz UStVA) ist die regelmäßige Meldung,
+            mit der umsatzsteuerpflichtige Unternehmen dem Finanzamt mitteilen, wie viel Umsatzsteuer
+            sie eingenommen und wie viel Vorsteuer sie selbst gezahlt haben. Die Differenz – die
+            sogenannte <strong>Zahllast</strong> – wird ans Finanzamt überwiesen. Mit unserem
+            <strong>Umsatzsteuer-Voranmeldung-Rechner</strong> ermitteln Sie diese Zahllast in Sekunden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die zentrale Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Vereinnahmte Umsatzsteuer</strong> = Umsätze 19 % × 19 % + Umsätze 7 % × 7 %</li>
+              <li><strong>Zahllast</strong> = vereinnahmte Umsatzsteuer − gezahlte Vorsteuer</li>
+            </ul>
+          </div>
+          <p>
+            Ist das Ergebnis positiv, zahlen Sie diesen Betrag ans Finanzamt. Ist es negativ, hatten
+            Sie mehr Vorsteuer als Umsatzsteuer – ein <strong>Vorsteuerüberhang</strong>. Dann
+            erstattet das Finanzamt Ihnen die Differenz. Das kommt häufig in Investitions- oder
+            Gründungsphasen vor, wenn große Einkäufe getätigt werden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist Vorsteuer?</h3>
+          <p>
+            Vorsteuer ist die Umsatzsteuer, die Ihnen Ihre Lieferanten und Dienstleister auf deren
+            Rechnungen ausweisen. Als vorsteuerabzugsberechtigtes Unternehmen können Sie diese
+            gezahlte Umsatzsteuer von Ihrer eigenen Umsatzsteuerschuld abziehen. Voraussetzung ist
+            eine ordnungsgemäße Rechnung nach § 14 UStG. So zahlen Sie wirtschaftlich nur die Steuer
+            auf Ihre eigene Wertschöpfung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie oft ist abzugeben?</h3>
+          <p>
+            Der Voranmeldungszeitraum hängt von der Umsatzsteuer-Zahllast des <strong>Vorjahres</strong>
+            ab (§ 18 Abs. 2 UStG):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>über 9.000 €</strong> Vorjahres-Zahllast → monatliche Abgabe</li>
+            <li><strong>2.000 € bis 9.000 €</strong> → vierteljährliche Abgabe</li>
+            <li><strong>bis 2.000 €</strong> → das Finanzamt kann von der Voranmeldung befreien (nur Jahreserklärung)</li>
+          </ul>
+          <p>
+            Die Grenze von 9.000 € gilt seit dem 1. Januar 2025 und wurde durch das Vierte
+            Bürokratieentlastungsgesetz (BEG IV) von zuvor 7.500 € angehoben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Abgabefrist und Dauerfristverlängerung</h3>
+          <p>
+            Die Voranmeldung muss <strong>bis zum 10. Tag nach Ablauf des Voranmeldungszeitraums</strong>
+            elektronisch über ELSTER beim Finanzamt sein – die Steuer ist gleichzeitig fällig. Fällt
+            der 10. auf ein Wochenende oder einen Feiertag, verschiebt sich die Frist auf den nächsten
+            Werktag. Mit der <strong>Dauerfristverlängerung</strong> verschafft sich das Unternehmen
+            dauerhaft einen Monat mehr Zeit. Monatszahler leisten dafür einmal jährlich eine
+            <strong>Sondervorauszahlung von 1/11</strong> der Vorjahres-Zahllast (Anmeldung und Zahlung
+            bis 10. Februar), die mit der Dezember-Voranmeldung verrechnet wird.
+          </p>
+
+          <p class="text-xs text-gray-500 mt-4">
+            Hinweis: Dieser Rechner dient der Orientierung und stellt keine Steuerberatung dar. Für
+            verbindliche Auskünfte wenden Sie sich an Ihr Finanzamt oder Ihre Steuerberatung. Alle
+            Angaben ohne Gewähr.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzt sich die Zahllast typischerweise zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Dienstleister mit Zahllast</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Umsätze 19 % (netto):</div>
+              <div class="font-medium text-gray-800">10.000,00 €</div>
+              <div class="text-gray-600">Umsatzsteuer 19 %:</div>
+              <div class="font-medium text-gray-800">1.900,00 €</div>
+              <div class="text-gray-600">Gezahlte Vorsteuer:</div>
+              <div class="font-medium text-gray-800">1.200,00 €</div>
+              <div class="text-gray-600">Zahllast ans Finanzamt:</div>
+              <div class="font-medium text-blue-700">700,00 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-green-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Investitionsmonat mit Erstattung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Umsätze 19 % (netto):</div>
+              <div class="font-medium text-gray-800">5.000,00 €</div>
+              <div class="text-gray-600">Umsatzsteuer 19 %:</div>
+              <div class="font-medium text-gray-800">950,00 €</div>
+              <div class="text-gray-600">Gezahlte Vorsteuer:</div>
+              <div class="font-medium text-gray-800">3.000,00 €</div>
+              <div class="text-gray-600">Erstattung vom Finanzamt:</div>
+              <div class="font-medium text-green-700">−2.050,00 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Mischumsätze 19 % und 7 %</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Umsätze 19 % (netto):</div>
+              <div class="font-medium text-gray-800">8.000,00 €</div>
+              <div class="text-gray-600">Umsätze 7 % (netto):</div>
+              <div class="font-medium text-gray-800">2.000,00 €</div>
+              <div class="text-gray-600">Umsatzsteuer gesamt:</div>
+              <div class="font-medium text-gray-800">1.660,00 €</div>
+              <div class="text-gray-600">Gezahlte Vorsteuer:</div>
+              <div class="font-medium text-gray-800">600,00 €</div>
+              <div class="text-gray-600">Zahllast ans Finanzamt:</div>
+              <div class="font-medium text-blue-700">1.060,00 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Die Zahllast ist durchlaufender Posten – die vereinnahmte
+          Umsatzsteuer gehört nie Ihnen. Legen Sie sie am besten direkt auf einem separaten Konto
+          zurück, damit zum 10. genug Liquidität da ist.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Frist zum 10. verpasst</h3>
+            <p>Bei verspäteter Abgabe drohen Verspätungszuschlag und Säumniszuschläge. Wer regelmäßig
+            knapp dran ist, sollte die Dauerfristverlängerung beantragen – sie verschafft einen
+            ganzen Monat Puffer.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Vereinnahmte Umsatzsteuer als Einnahme verbuchen</h3>
+            <p>Die Umsatzsteuer auf Ihren Rechnungen ist kein Gewinn, sondern ein durchlaufender
+            Posten für den Staat. Wer sie ausgibt, hat zum Fälligkeitstermin ein Liquiditätsproblem.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Vorsteuer ohne ordnungsgemäße Rechnung ziehen</h3>
+            <p>Der Vorsteuerabzug setzt eine korrekte Rechnung nach § 14 UStG voraus (u. a.
+            Steuernummer bzw. USt-IdNr., ausgewiesene Steuer). Fehlt eine Pflichtangabe, kann das
+            Finanzamt den Abzug streichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kleinunternehmer (§ 19 UStG)</h3>
+            <p>Wer die Kleinunternehmerregelung nutzt, weist keine Umsatzsteuer aus und gibt in der
+            Regel keine Voranmeldung ab – kann dafür aber auch keine Vorsteuer ziehen. Dieser Rechner
+            gilt für die Regelbesteuerung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Reverse-Charge & EU-Geschäfte</h3>
+            <p>Bei Leistungen nach § 13b UStG (Reverse-Charge) oder innergemeinschaftlichen Erwerben
+            schuldet der Leistungsempfänger die Steuer. Solche Fälle bildet dieser Rechner nicht ab –
+            hier hilft Ihre Steuerberatung weiter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Umsatzsteuer-Voranmeldung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Zahllast der Umsatzsteuer-Voranmeldung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Zahllast ergibt sich aus der <strong>vereinnahmten Umsatzsteuer minus der
+              gezahlten Vorsteuer</strong>. Die Umsatzsteuer berechnen Sie aus Ihren Nettoumsätzen
+              (19 % bzw. 7 %), die Vorsteuer ist die auf Eingangsrechnungen ausgewiesene Steuer.
+              Beispiel: 1.900 € Umsatzsteuer − 1.200 € Vorsteuer = 700 € Zahllast.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann muss ich monatlich, wann vierteljährlich abgeben?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von der Zahllast des Vorjahres ab (§ 18 Abs. 2 UStG): Über 9.000 €
+              monatlich, zwischen 2.000 € und 9.000 € vierteljährlich. Bis 2.000 € kann das Finanzamt
+              von der Voranmeldung befreien, dann genügt die Jahreserklärung. Die 9.000-€-Grenze gilt
+              seit dem 1. Januar 2025.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Bis wann muss die Umsatzsteuer-Voranmeldung abgegeben werden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Grundsätzlich bis zum <strong>10. Tag nach Ablauf des Voranmeldungszeitraums</strong>
+              – zugleich ist die Steuer fällig. Fällt der 10. auf Wochenende oder Feiertag,
+              verschiebt sich die Frist auf den nächsten Werktag. Mit Dauerfristverlängerung haben Sie
+              einen Monat länger Zeit.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Dauerfristverlängerung und die Sondervorauszahlung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Dauerfristverlängerung verschiebt die Abgabefrist dauerhaft um einen Monat nach
+              hinten. Monatszahler müssen dafür eine <strong>Sondervorauszahlung von 1/11</strong> der
+              Vorjahres-Zahllast leisten (Anmeldung und Zahlung bis 10. Februar); sie wird später mit
+              der Dezember-Voranmeldung verrechnet. Vierteljahreszahler zahlen keine
+              Sondervorauszahlung. Beantragt wird alles über ELSTER.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet ein negatives Ergebnis (Vorsteuerüberhang)?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein negatives Ergebnis heißt, Sie haben mehr Vorsteuer gezahlt, als Sie Umsatzsteuer
+              eingenommen haben. Dieser <strong>Vorsteuerüberhang</strong> wird Ihnen vom Finanzamt
+              erstattet. Das passiert häufig bei größeren Investitionen oder in der Gründungsphase.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich die Voranmeldung als Kleinunternehmer abgeben?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Wer die Kleinunternehmerregelung nach § 19 UStG nutzt, weist keine Umsatzsteuer
+              aus und gibt in der Regel keine Voranmeldung ab – kann aber auch keine Vorsteuer ziehen.
+              Dieser Rechner gilt für Unternehmen in der Regelbesteuerung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rabatt-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Umsatzsteuer-Voranmeldung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/ustva-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Zahllast der Umsatzsteuer-Voranmeldung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Zahllast ergibt sich aus der vereinnahmten Umsatzsteuer minus der gezahlten Vorsteuer. Die Umsatzsteuer berechnen Sie aus Ihren Nettoumsätzen (19 % bzw. 7 %), die Vorsteuer ist die auf Eingangsrechnungen ausgewiesene Steuer. Beispiel: 1.900 € Umsatzsteuer − 1.200 € Vorsteuer = 700 € Zahllast."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann muss ich monatlich, wann vierteljährlich abgeben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von der Zahllast des Vorjahres ab (§ 18 Abs. 2 UStG): Über 9.000 € monatlich, zwischen 2.000 € und 9.000 € vierteljährlich. Bis 2.000 € kann das Finanzamt von der Voranmeldung befreien, dann genügt die Jahreserklärung. Die 9.000-€-Grenze gilt seit dem 1. Januar 2025."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bis wann muss die Umsatzsteuer-Voranmeldung abgegeben werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grundsätzlich bis zum 10. Tag nach Ablauf des Voranmeldungszeitraums – zugleich ist die Steuer fällig. Fällt der 10. auf Wochenende oder Feiertag, verschiebt sich die Frist auf den nächsten Werktag. Mit Dauerfristverlängerung haben Sie einen Monat länger Zeit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Dauerfristverlängerung und die Sondervorauszahlung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Dauerfristverlängerung verschiebt die Abgabefrist dauerhaft um einen Monat nach hinten. Monatszahler müssen dafür eine Sondervorauszahlung von 1/11 der Vorjahres-Zahllast leisten (Anmeldung und Zahlung bis 10. Februar); sie wird später mit der Dezember-Voranmeldung verrechnet. Vierteljahreszahler zahlen keine Sondervorauszahlung. Beantragt wird alles über ELSTER."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet ein negatives Ergebnis (Vorsteuerüberhang)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein negatives Ergebnis heißt, Sie haben mehr Vorsteuer gezahlt, als Sie Umsatzsteuer eingenommen haben. Dieser Vorsteuerüberhang wird Ihnen vom Finanzamt erstattet. Das passiert häufig bei größeren Investitionen oder in der Gründungsphase."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich die Voranmeldung als Kleinunternehmer abgeben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Wer die Kleinunternehmerregelung nach § 19 UStG nutzt, weist keine Umsatzsteuer aus und gibt in der Regel keine Voranmeldung ab – kann aber auch keine Vorsteuer ziehen. Dieser Rechner gilt für Unternehmen in der Regelbesteuerung."
+        }
+      }
+    ]
+  })} />
+</Layout>

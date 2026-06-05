@@ -1,0 +1,391 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HundealterRechner from '../components/rechner/HundealterRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Hundealter-Rechner 2026 – Hundejahre in Menschenjahre umrechnen";
+const description = "Wie alt ist mein Hund in Menschenjahren? Hundealter-Rechner mit größenabhängiger Umrechnung (klein, mittel, groß, sehr groß) nach der modernen AKC-Tabelle – nicht die veraltete 7-Jahre-Regel. Kostenlos & sofort.";
+const keywords = "Hundealter Rechner, Hundejahre in Menschenjahre, Hundealter berechnen, wie alt ist mein Hund in Menschenjahren, Hundealter Tabelle, Hundejahre umrechnen, Hundealter nach Größe, AKC Hundealter";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Hundealter-Rechner", url: "/hundealter-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Hundealter-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🐕</span>
+          <div>
+            <h1 class="text-2xl font-bold">Hundealter-Rechner 2026</h1>
+            <p class="text-amber-100 text-sm">Hundejahre in Menschenjahre umrechnen – nach Größe</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Größenabhängige Umrechnungstabelle des American Kennel Club (AKC), basierend auf Empfehlungen der American Veterinary Medical Association (AVMA)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> vier Größenklassen (klein, mittel, groß, sehr groß), das schnellere Reifen im ersten Lebensjahr und das schnellere Altern großer Rassen im Seniorenalter</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Rasse, Gesundheitszustand, Ernährung und Haltung – der Rechner liefert einen anerkannten Richtwert, keine tierärztliche Diagnose</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <HundealterRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Hundealter in Menschenjahre: Warum die Größe entscheidet</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die wohl bekannteste Faustregel lautet: „Ein Hundejahr entspricht sieben
+            Menschenjahren.“ Diese <strong>7-Jahre-Regel ist heute überholt</strong>. Sie
+            unterschätzt, wie schnell ein Hund im ersten Lebensjahr erwachsen wird, und ignoriert
+            den größten Faktor überhaupt – die <strong>Größe der Rasse</strong>. Unser
+            <strong>Hundealter-Rechner</strong> nutzt deshalb die moderne, größenabhängige Tabelle
+            des American Kennel Club (AKC).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die moderne Umrechnung</h3>
+          <p>Statt einer einzigen Zahl gelten heute vier Grundsätze:</p>
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1. Lebensjahr:</strong> ≈ 15 Menschenjahre (für alle Größen ähnlich)</li>
+              <li><strong>2. Lebensjahr:</strong> + ≈ 9 Menschenjahre (zusammen ≈ 24)</li>
+              <li><strong>3. bis 5. Jahr:</strong> für alle Größen nahezu gleich (rund 4 Menschenjahre pro Hundejahr)</li>
+              <li><strong>Ab dem 6. Jahr:</strong> je nach Größe rund 4 bis 9 Menschenjahre pro Hundejahr – große Rassen altern schneller</li>
+            </ul>
+          </div>
+          <p>
+            Ein junger Hund ist mit zwei Jahren also bereits ein junger Erwachsener von etwa
+            24 Menschenjahren – unabhängig davon, ob es ein Chihuahua oder eine Dogge ist. Bis
+            etwa zum fünften Lebensjahr bleiben die Werte für alle Größen nahezu gleich, erst
+            ab dem sechsten Jahr laufen die Kurven deutlich auseinander.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum große Hunde schneller altern</h3>
+          <p>
+            Kleine Rassen werden im Schnitt deutlich älter als große. Ein Chihuahua erreicht oft
+            15 Jahre und mehr, eine Deutsche Dogge selten über 8 bis 10 Jahre. Entsprechend
+            „verbraucht“ ein großer Hund seine Lebensjahre schneller: Ab dem 6. Lebensjahr zählt
+            ein einzelnes Hundejahr bei sehr großen Rassen fast doppelt so viele Menschenjahre wie
+            bei kleinen Rassen. Genau das bildet die größenabhängige Tabelle ab – und genau das
+            macht den Unterschied zur pauschalen 7-Jahre-Regel aus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die vier Größenklassen</h3>
+          <p>
+            Der Rechner orientiert sich am Körpergewicht des ausgewachsenen Hundes:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Klein:</strong> bis 9 kg (z. B. Chihuahua, Dackel, Yorkshire Terrier)</li>
+            <li><strong>Mittel:</strong> 10–22 kg (z. B. Beagle, Cocker Spaniel, Border Collie)</li>
+            <li><strong>Groß:</strong> 23–40 kg (z. B. Labrador, Schäferhund, Boxer)</li>
+            <li><strong>Sehr groß:</strong> über 40 kg (z. B. Bernhardiner, Dogge, Rottweiler)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So unterschiedlich altern Hunde gleichen Alters – je nach Größe:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Kleiner Hund, 5 Jahre (z. B. Dackel)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Hundealter:</div>
+              <div class="font-medium text-gray-800">5 Jahre</div>
+              <div class="text-gray-600">Größenklasse:</div>
+              <div class="font-medium text-gray-800">Klein (bis 9 kg)</div>
+              <div class="text-gray-600">In Menschenjahren:</div>
+              <div class="font-medium text-amber-700">36 Jahre</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-amber-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Sehr großer Hund, 5 Jahre (z. B. Dogge)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Hundealter:</div>
+              <div class="font-medium text-gray-800">5 Jahre</div>
+              <div class="text-gray-600">Größenklasse:</div>
+              <div class="font-medium text-gray-800">Sehr groß (über 40 kg)</div>
+              <div class="text-gray-600">In Menschenjahren:</div>
+              <div class="font-medium text-amber-700">35 Jahre</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Derselbe Vergleich mit 10 Jahren</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Kleiner Hund (10 J.):</div>
+              <div class="font-medium text-gray-800">56 Menschenjahre</div>
+              <div class="text-gray-600">Sehr großer Hund (10 J.):</div>
+              <div class="font-medium text-amber-700">79 Menschenjahre</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-4 text-sm text-amber-800">
+          <strong>💡 Beobachtung:</strong> Mit 5 Jahren sind beide Hunde fast gleich „alt“ –
+          mit 10 Jahren trennen sie über 20 Menschenjahre. Das ist der ganze Unterschied zur
+          alten 7-Jahre-Regel, die für beide stur 70 Jahre liefern würde.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Die starre 7-Jahre-Regel nutzen</h3>
+            <p>„Hundejahr mal 7“ ist die häufigste Fehlrechnung. Sie überschätzt junge Hunde
+            (ein 1-jähriger Hund ist kein 7-Jähriger, sondern eher ein Teenager) und ignoriert
+            die Größe komplett.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Größe nicht berücksichtigen</h3>
+            <p>Ein 9 Jahre alter Chihuahua und eine 9 Jahre alte Dogge sind keineswegs gleich alt.
+            Wer die Größenklasse weglässt, verschätzt sich bei großen Rassen um Jahrzehnte.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Welpenalter linear hochrechnen</h3>
+            <p>Im ersten Jahr altern Hunde rasend schnell und sehr ungleichmäßig. Ein Welpe von
+            6 Monaten ist kein „halber 15-Jähriger“ – die Werte unter einem Jahr sind nur grobe
+            Näherungen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Mischlinge</h3>
+            <p>Bei Mischlingen zählt das voraussichtliche Endgewicht des ausgewachsenen Hundes.
+            Im Zweifel die Größenklasse wählen, die dem erwarteten Gewicht am nächsten kommt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Rasse schlägt Tabelle</h3>
+            <p>Die Tabelle ist ein Durchschnitt. Innerhalb einer Größenklasse altern Rassen
+            unterschiedlich. Für eine individuelle Einschätzung ist die Tierärztin oder der
+            Tierarzt die richtige Anlaufstelle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Hundealter</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie alt ist mein Hund in Menschenjahren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Alter <strong>und</strong> der Größe ab. Faustregel: Das erste
+              Hundejahr zählt etwa 15 Menschenjahre, das zweite rund 9 weitere (zusammen ≈ 24).
+              Danach kommen je nach Größe 4 bis 9 Menschenjahre pro Hundejahr hinzu – große Rassen
+              altern schneller. Geben Sie Alter und Größenklasse oben ein, dann rechnet der Rechner
+              den exakten Wert aus.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Stimmt die Regel „1 Hundejahr = 7 Menschenjahre“?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein, diese Regel gilt heute als überholt. Sie berücksichtigt weder das schnelle
+              Reifen im ersten Lebensjahr noch die Größe der Rasse. Moderne Tierärzte und der
+              American Kennel Club nutzen stattdessen eine größenabhängige Tabelle, die deutlich
+              genauere Werte liefert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum altern große Hunde schneller als kleine?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Große und sehr große Rassen haben eine kürzere Lebenserwartung als kleine. Ihr
+              Körper „verbraucht“ sich schneller, weshalb ein einzelnes Hundejahr im Seniorenalter
+              mehr Menschenjahre zählt. Ab dem 6. Lebensjahr ist dieser Unterschied am deutlichsten:
+              Eine sehr große Rasse altert dann fast doppelt so schnell wie eine kleine.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Größenklasse soll ich für meinen Hund wählen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Entscheidend ist das Gewicht des ausgewachsenen Hundes: klein bis 9 kg, mittel
+              10–22 kg, groß 23–40 kg, sehr groß über 40 kg. Bei Mischlingen orientieren Sie sich am
+              voraussichtlichen Endgewicht. Im Zweifel wählen Sie die Klasse, die dem tatsächlichen
+              Gewicht am nächsten liegt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann gilt ein Hund als Senior?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt stark von der Größe ab. Kleine Rassen gelten oft erst mit 9 bis 10 Jahren
+              als Senior, große und sehr große Rassen dagegen bereits mit 6 bis 7 Jahren. In
+              Menschenjahren liegt die Schwelle bei etwa 65 Jahren – diese erreichen große Hunde
+              entsprechend früher.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist der Hundealter-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner liefert einen anerkannten, größenbasierten Durchschnittswert nach der
+              AKC-Tabelle. Er ist deutlich genauer als die alte 7-Jahre-Regel, bleibt aber ein
+              Richtwert. Das tatsächliche Altern hängt von Rasse, Genetik, Ernährung, Bewegung und
+              Gesundheit ab. Eine individuelle Einschätzung kann nur die Tierärztin oder der Tierarzt
+              geben – alle Angaben ohne Gewähr und ohne tierärztliche Beratung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/alter-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎂</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Alter-Rechner</p>
+          </a>
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">➗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+          <a href="/trinkgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Trinkgeld-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hundealter-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/hundealter-rechner",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie alt ist mein Hund in Menschenjahren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Alter und der Größe ab. Faustregel: Das erste Hundejahr zählt etwa 15 Menschenjahre, das zweite rund 9 weitere (zusammen ungefähr 24). Danach kommen je nach Größe 4 bis 9 Menschenjahre pro Hundejahr hinzu – große Rassen altern schneller."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Stimmt die Regel „1 Hundejahr = 7 Menschenjahre“?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, diese Regel gilt heute als überholt. Sie berücksichtigt weder das schnelle Reifen im ersten Lebensjahr noch die Größe der Rasse. Moderne Tierärzte und der American Kennel Club nutzen stattdessen eine größenabhängige Tabelle, die deutlich genauere Werte liefert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum altern große Hunde schneller als kleine?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Große und sehr große Rassen haben eine kürzere Lebenserwartung als kleine. Ihr Körper verbraucht sich schneller, weshalb ein einzelnes Hundejahr im Seniorenalter mehr Menschenjahre zählt. Ab dem 6. Lebensjahr ist dieser Unterschied am deutlichsten: Eine sehr große Rasse altert dann fast doppelt so schnell wie eine kleine."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Größenklasse soll ich für meinen Hund wählen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Entscheidend ist das Gewicht des ausgewachsenen Hundes: klein bis 9 kg, mittel 10–22 kg, groß 23–40 kg, sehr groß über 40 kg. Bei Mischlingen orientieren Sie sich am voraussichtlichen Endgewicht. Im Zweifel wählen Sie die Klasse, die dem tatsächlichen Gewicht am nächsten liegt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann gilt ein Hund als Senior?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt stark von der Größe ab. Kleine Rassen gelten oft erst mit 9 bis 10 Jahren als Senior, große und sehr große Rassen dagegen bereits mit 6 bis 7 Jahren. In Menschenjahren liegt die Schwelle bei etwa 65 Jahren – diese erreichen große Hunde entsprechend früher."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist der Hundealter-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner liefert einen anerkannten, größenbasierten Durchschnittswert nach der AKC-Tabelle. Er ist deutlich genauer als die alte 7-Jahre-Regel, bleibt aber ein Richtwert. Das tatsächliche Altern hängt von Rasse, Genetik, Ernährung, Bewegung und Gesundheit ab. Eine individuelle Einschätzung kann nur die Tierärztin oder der Tierarzt geben – alle Angaben ohne Gewähr und ohne tierärztliche Beratung."
+        }
+      }
+    ]
+  })} />
+</Layout>

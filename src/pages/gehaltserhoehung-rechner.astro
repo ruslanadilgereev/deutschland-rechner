@@ -1,0 +1,462 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GehaltserhoehungRechner from '../components/rechner/GehaltserhoehungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Gehaltserhöhung-Rechner 2026 – Wie viel Netto bleibt übrig?";
+const description = "Gehaltserhöhung-Rechner 2026: Wie viel Netto bleibt von einer Brutto-Gehaltserhöhung? Netto vorher vs. nachher, Netto-Zuwachs und Grenzbelastung berechnen – nach BMF-PAP 2026. Kostenlos & sofort.";
+const keywords = "Gehaltserhöhung Rechner, Gehaltserhöhung netto, wie viel bleibt von Gehaltserhöhung übrig, Netto von Brutto Erhöhung, Grenzbelastung Gehaltserhöhung, Lohnerhöhung netto Rechner, Gehaltserhöhung 2026, mehr brutto weniger netto";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Gehaltserhöhung-Rechner", url: "/gehaltserhoehung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt', href: '/arbeit-gehalt' },
+    { name: 'Gehaltserhöhung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Gehaltserhöhung-Rechner 2026</h1>
+            <p class="text-green-100 text-sm">Wie viel Netto bleibt von Ihrer Erhöhung?</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> BMF-Programmablaufplan Lohnsteuer 2026, §32a EStG (Grundfreibetrag 12.348 €), Rechengrößen der Sozialversicherung 2026 (Bundeskabinett 08.10.2025)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Lohnsteuer nach allen sechs Steuerklassen, Solidaritätszuschlag, Kirchensteuer, Renten-, Arbeitslosen-, Kranken- und Pflegeversicherung bis zu den Beitragsbemessungsgrenzen (KV/PV 69.750 €, RV/AV 101.400 € pro Jahr), durchschnittlicher KV-Zusatzbeitrag 2,9 %</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Freibeträge, geldwerte Vorteile, Einmalzahlungen, betriebliche Altersvorsorge, private Krankenversicherung – maßgeblich ist immer Ihre persönliche Gehaltsabrechnung. Es handelt sich um eine Schätzung, keine Steuerberatung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GehaltserhoehungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Gehaltserhöhung 2026: Wie viel Netto bleibt wirklich übrig?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Eine <strong>Gehaltserhöhung</strong> klingt zunächst nach einem großen Sprung – doch vom
+            Brutto-Mehrverdienst landet nur ein Teil auf Ihrem Konto. Der Grund: Auf jeden zusätzlichen
+            Euro fallen <strong>Sozialabgaben</strong> und <strong>Lohnsteuer</strong> an. Unser
+            <strong>Gehaltserhöhung-Rechner</strong> zeigt Ihnen auf einen Blick, wie viel von Ihrer
+            geplanten Erhöhung netto übrig bleibt – mit einem direkten Vergleich von Netto vorher und nachher.
+            Möchten Sie Ihr gesamtes Netto berechnen, nutzen Sie den
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:text-blue-800 underline">Brutto-Netto-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Unterschied: Grenzsteuersatz statt Durchschnittssteuersatz</h3>
+          <p>
+            Der wichtigste Effekt ist die <strong>Progression</strong>: Der zusätzlich verdiente Euro wird mit
+            Ihrem <strong>Grenzsteuersatz</strong> belastet – also dem Steuersatz für das oberste Stück Ihres
+            Einkommens. Dieser liegt deutlich über dem Durchschnittssteuersatz, mit dem Ihr gesamtes Gehalt
+            besteuert wird. Genau deshalb fühlt sich eine Gehaltserhöhung netto oft kleiner an, als sie brutto
+            aussieht. Zusammen mit dem Arbeitnehmer-Anteil an der Sozialversicherung (rund 20–21 %) entsteht
+            die sogenannte <strong>Grenzbelastung</strong> auf den Mehrverdienst.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Werte 2026 im Überblick</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Grundfreibetrag:</strong> 12.348 € (§32a EStG)</li>
+              <li><strong>Rentenversicherung:</strong> 9,3 % Arbeitnehmer-Anteil (18,6 % gesamt)</li>
+              <li><strong>Arbeitslosenversicherung:</strong> 1,3 % Arbeitnehmer-Anteil (2,6 % gesamt)</li>
+              <li><strong>Krankenversicherung:</strong> 7,3 % + halber Zusatzbeitrag (Ø 2,9 % in 2026)</li>
+              <li><strong>Pflegeversicherung:</strong> 1,8 % (kinderlos ab 23 Jahren +0,6 %)</li>
+              <li><strong>BBG Kranken-/Pflegeversicherung:</strong> 69.750 € pro Jahr (5.812,50 €/Monat)</li>
+              <li><strong>BBG Renten-/Arbeitslosenversicherung:</strong> 101.400 € pro Jahr (8.450 €/Monat)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was passiert oberhalb der Beitragsbemessungsgrenze?</h3>
+          <p>
+            Verdienen Sie bereits über der <strong>Beitragsbemessungsgrenze</strong>, fallen auf den darüber
+            liegenden Teil der Erhöhung <strong>keine Sozialbeiträge</strong> mehr an. Dann bleibt von der
+            Erhöhung relativ mehr Netto übrig – die Netto-Quote steigt. Liegt Ihr Gehalt dagegen im mittleren
+            Bereich, wirken Steuerprogression und volle Sozialabgaben zusammen, und die Grenzbelastung ist am höchsten.
+            Wie sich die einzelnen Steuern zusammensetzen, sehen Sie im
+            <a href="/lohnsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Lohnsteuer-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Lohnt sich die Gehaltsverhandlung trotzdem?</h3>
+          <p>
+            Ja – auch wenn netto „nur“ etwa die Hälfte ankommt, summiert sich der Effekt: Eine Erhöhung wirkt
+            dauerhaft, erhöht künftige Erhöhungen (Basis-Effekt) und steigert auch Ihre spätere Rente. Bevor
+            Sie verhandeln, lohnt ein Blick darauf, ob Ihr Gehalt überhaupt marktgerecht ist – das prüfen Sie
+            mit dem <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:text-blue-800 underline">Gehaltsvergleich-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: Was bleibt netto?</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle (Steuerklasse 1, kinderlos, NRW, KV-Zusatzbeitrag 2,9 % – Schätzwerte nach BMF-PAP 2026):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 3.500 € brutto, +250 € Erhöhung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Brutto vorher → nachher:</div>
+              <div class="font-medium text-gray-800">3.500 € → 3.750 €</div>
+              <div class="text-gray-600">Brutto-Erhöhung:</div>
+              <div class="font-medium text-gray-800">+250 € / Monat</div>
+              <div class="text-gray-600">Netto-Zuwachs:</div>
+              <div class="font-medium text-green-700">rund +135 € / Monat</div>
+              <div class="text-gray-600">Grenzbelastung:</div>
+              <div class="font-medium text-orange-700">rund 45 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 4.500 € brutto, +5 % Erhöhung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Brutto vorher → nachher:</div>
+              <div class="font-medium text-gray-800">4.500 € → 4.725 €</div>
+              <div class="text-gray-600">Brutto-Erhöhung:</div>
+              <div class="font-medium text-gray-800">+225 € / Monat</div>
+              <div class="text-gray-600">Netto-Zuwachs:</div>
+              <div class="font-medium text-green-700">rund +120 € / Monat</div>
+              <div class="text-gray-600">Grenzbelastung:</div>
+              <div class="font-medium text-orange-700">rund 47 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 9.000 € brutto, +500 € Erhöhung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Brutto vorher → nachher:</div>
+              <div class="font-medium text-gray-800">9.000 € → 9.500 €</div>
+              <div class="text-gray-600">Brutto-Erhöhung:</div>
+              <div class="font-medium text-gray-800">+500 € / Monat</div>
+              <div class="text-gray-600">Netto-Zuwachs:</div>
+              <div class="font-medium text-green-700">rund +265 € / Monat</div>
+              <div class="text-gray-600">Besonderheit:</div>
+              <div class="font-medium text-blue-700">über BBG → mehr Netto-Quote</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Im hohen Einkommensbereich liegt das Gehalt teils über der Beitragsbemessungsgrenze –
+          auf den darüber liegenden Teil der Erhöhung fallen keine Sozialabgaben mehr an. Geben Sie Ihre eigenen Werte
+          oben in den Rechner ein, um Ihren genauen Netto-Zuwachs zu sehen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Brutto-Erhöhung mit Netto-Plus gleichsetzen</h3>
+            <p>Eine Erhöhung um 200 € brutto bedeutet <strong>nicht</strong> 200 € mehr Netto. Je nach Einkommen bleibt
+            netto häufig nur etwa die Hälfte übrig – der Rest geht an Steuern und Sozialabgaben.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Mit dem Durchschnittssteuersatz rechnen</h3>
+            <p>Der Mehrverdienst wird mit dem höheren <strong>Grenzsteuersatz</strong> versteuert, nicht mit dem
+            niedrigeren Durchschnittssteuersatz. Wer das verwechselt, überschätzt das Netto-Plus.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Sachleistungen vergessen</h3>
+            <p>Statt einer Brutto-Erhöhung können steuerfreie oder pauschal versteuerte Leistungen (z. B.
+            Sachbezug, Jobticket, betriebliche Altersvorsorge) netto oft mehr bringen. Diese sind in diesem
+            Rechner nicht abgebildet.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wechsel des Beitragssatzes</h3>
+            <p>Ändert sich durch die Erhöhung Ihr individueller KV-Zusatzbeitrag (Kassenwechsel) oder fällt der
+            Kinderlos-Zuschlag weg, verschiebt sich das Ergebnis. Passen Sie die Felder im Rechner entsprechend an.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Steuerklasse 5 oder 6</h3>
+            <p>In Steuerklasse 5 und 6 ist die monatliche Belastung besonders hoch, weil Freibeträge fehlen.
+            Der endgültige Betrag ergibt sich erst aus der Einkommensteuererklärung – die Monatsschätzung kann
+            deutlich abweichen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für Sie? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Ihr Ergebnis zeigt, wie viel von der Brutto-Erhöhung netto übrig bleibt. So nutzen Sie es weiter:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Verhandlungsbasis prüfen</p>
+              <p>Vergleichen Sie Ihr Gehalt zuerst mit dem Marktniveau, bevor Sie verhandeln –
+              mit dem <a href="/gehaltsvergleich-rechner" class="text-blue-600 underline">Gehaltsvergleich-Rechner</a>.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Alternativen durchrechnen</p>
+              <p>Steuerfreie oder begünstigte Zusatzleistungen können netto attraktiver sein als eine reine
+              Brutto-Erhöhung. Fragen Sie gezielt nach Sachbezug oder betrieblicher Altersvorsorge.</p>
+            </div>
+
+            <div class="bg-yellow-50 rounded-lg p-3">
+              <p class="font-semibold text-yellow-800 mb-1">💰 Komplettes Netto berechnen</p>
+              <p>Das gesamte neue Netto inklusive aller Abzüge ermitteln Sie im
+              <a href="/brutto-netto-rechner" class="text-blue-600 underline">Brutto-Netto-Rechner</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Gehaltserhöhung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Netto bleibt von einer Gehaltserhöhung übrig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von Ihrem Einkommen, Ihrer Steuerklasse und Ihren Sozialbeiträgen ab. In der Praxis
+              bleibt vom Brutto-Mehrverdienst je nach Konstellation häufig <strong>etwa die Hälfte</strong> netto
+              übrig, weil Lohnsteuer und Sozialabgaben anfallen. Geben Sie Ihre Werte in den Rechner ein, um Ihren
+              persönlichen Netto-Zuwachs zu sehen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Grenzbelastung bei einer Gehaltserhöhung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Grenzbelastung ist der Anteil der Brutto-Erhöhung, der durch Steuern und Sozialabgaben
+              „verloren“ geht. Sie ergibt sich aus Ihrem <strong>Grenzsteuersatz</strong> plus dem
+              Arbeitnehmer-Anteil an der Sozialversicherung. Im mittleren Einkommensbereich liegt sie häufig
+              zwischen 45 % und 50 %.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum bleibt von der Gehaltserhöhung netto so wenig übrig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der zusätzliche Euro wird mit dem höheren <strong>Grenzsteuersatz</strong> versteuert, nicht mit
+              dem niedrigeren Durchschnittssteuersatz. Zusätzlich fallen Renten-, Arbeitslosen-, Kranken- und
+              Pflegeversicherung an. Erst oberhalb der Beitragsbemessungsgrenze entfallen die Sozialbeiträge auf
+              den darüber liegenden Teil, sodass relativ mehr Netto übrig bleibt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich eine Gehaltserhöhung überhaupt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Auch wenn netto nur ein Teil ankommt, wirkt eine Erhöhung <strong>dauerhaft</strong>: Sie ist
+              Basis für künftige prozentuale Erhöhungen, erhöht Ihre Beiträge zur Rentenversicherung und damit Ihre
+              spätere Rente. Über die Jahre summiert sich der Effekt deutlich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann bringt eine Erhöhung netto besonders viel?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Liegt Ihr Gehalt bereits über der <strong>Beitragsbemessungsgrenze</strong> (2026: 69.750 € für
+              Kranken-/Pflegeversicherung bzw. 101.400 € für Renten-/Arbeitslosenversicherung pro Jahr), fallen auf
+              den Mehrverdienst keine bzw. weniger Sozialbeiträge an. Dann steigt die Netto-Quote, und von der
+              Erhöhung kommt relativ mehr an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die Werte im Rechner verbindlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert eine <strong>Schätzung</strong> nach dem BMF-Programmablaufplan 2026 und den
+              Sozialversicherungs-Rechengrößen 2026. Nicht berücksichtigt werden individuelle Freibeträge, geldwerte
+              Vorteile, Einmalzahlungen oder eine private Krankenversicherung. Maßgeblich ist Ihre persönliche
+              Gehaltsabrechnung – im Zweifel hilft eine Steuerberatung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/lohnsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Lohnsteuer-Rechner</p>
+          </a>
+          <a href="/gehaltsvergleich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gehaltsvergleich-Rechner</p>
+          </a>
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn-Rechner</p>
+          </a>
+          <a href="/abfindung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🤝</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Abfindungs-Rechner</p>
+          </a>
+          <a href="/mindestlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mindestlohn-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zuständige Stelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Stellen
+        </h2>
+
+        <div class="p-4 bg-blue-50 rounded-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">Finanzamt & Krankenkasse</h3>
+          <p class="text-blue-700 text-sm mb-2">
+            Für <strong>Lohnsteuer und Steuerklasse</strong> ist Ihr Finanzamt zuständig (online über ELSTER).
+            Den <strong>KV-Zusatzbeitrag</strong> legt Ihre Krankenkasse individuell fest – ein Kassenwechsel kann
+            sich nach einer Gehaltserhöhung lohnen.
+          </p>
+          <p class="text-blue-700 text-sm">
+            <strong>Online:</strong> elster.de · bmf-steuerrechner.de
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gehaltserhöhung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/gehaltserhoehung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Netto bleibt von einer Gehaltserhöhung übrig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von Ihrem Einkommen, Ihrer Steuerklasse und Ihren Sozialbeiträgen ab. In der Praxis bleibt vom Brutto-Mehrverdienst je nach Konstellation häufig etwa die Hälfte netto übrig, weil Lohnsteuer und Sozialabgaben anfallen. Geben Sie Ihre Werte in den Rechner ein, um Ihren persönlichen Netto-Zuwachs zu sehen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Grenzbelastung bei einer Gehaltserhöhung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Grenzbelastung ist der Anteil der Brutto-Erhöhung, der durch Steuern und Sozialabgaben verloren geht. Sie ergibt sich aus Ihrem Grenzsteuersatz plus dem Arbeitnehmer-Anteil an der Sozialversicherung. Im mittleren Einkommensbereich liegt sie häufig zwischen 45 % und 50 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum bleibt von der Gehaltserhöhung netto so wenig übrig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der zusätzliche Euro wird mit dem höheren Grenzsteuersatz versteuert, nicht mit dem niedrigeren Durchschnittssteuersatz. Zusätzlich fallen Renten-, Arbeitslosen-, Kranken- und Pflegeversicherung an. Erst oberhalb der Beitragsbemessungsgrenze entfallen die Sozialbeiträge auf den darüber liegenden Teil, sodass relativ mehr Netto übrig bleibt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich eine Gehaltserhöhung überhaupt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Auch wenn netto nur ein Teil ankommt, wirkt eine Erhöhung dauerhaft: Sie ist Basis für künftige prozentuale Erhöhungen, erhöht Ihre Beiträge zur Rentenversicherung und damit Ihre spätere Rente. Über die Jahre summiert sich der Effekt deutlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann bringt eine Erhöhung netto besonders viel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Liegt Ihr Gehalt bereits über der Beitragsbemessungsgrenze (2026: 69.750 € für Kranken-/Pflegeversicherung bzw. 101.400 € für Renten-/Arbeitslosenversicherung pro Jahr), fallen auf den Mehrverdienst keine bzw. weniger Sozialbeiträge an. Dann steigt die Netto-Quote, und von der Erhöhung kommt relativ mehr an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind die Werte im Rechner verbindlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert eine Schätzung nach dem BMF-Programmablaufplan 2026 und den Sozialversicherungs-Rechengrößen 2026. Nicht berücksichtigt werden individuelle Freibeträge, geldwerte Vorteile, Einmalzahlungen oder eine private Krankenversicherung. Maßgeblich ist Ihre persönliche Gehaltsabrechnung – im Zweifel hilft eine Steuerberatung."
+        }
+      }
+    ]
+  })} />
+</Layout>

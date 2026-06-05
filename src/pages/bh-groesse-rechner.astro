@@ -1,0 +1,439 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BhGroesseRechner from '../components/rechner/BhGroesseRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "BH-Größen-Rechner 2026 – Körbchengröße & Bandgröße berechnen";
+const description = "BH-Größe einfach berechnen: Unterbrustumfang und Brustumfang eingeben und Bandgröße (65/70/75/80…) plus Cup (A, B, C, D…) erhalten. Kostenloser Rechner mit deutscher Größentabelle und Mess-Anleitung.";
+const keywords = "BH Größe berechnen, BH Größen Rechner, Körbchengröße berechnen, Cup Größe ermitteln, Unterbrustumfang, Brustumfang messen, BH Größentabelle, Bandgröße 75 80, BH messen Anleitung";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "BH-Größen-Rechner", url: "/bh-groesse-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'BH-Größen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-pink-600 to-rose-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-pink-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">BH-Größen-Rechner 2026</h1>
+            <p class="text-pink-100 text-sm">Körbchengröße & Bandgröße aus Ihren Maßen ermitteln</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Europäische BH-Standardtabelle – Bandgröße in 5-cm-Schritten, Cupgröße in 2-cm-Schritten der Differenz</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Bandgröße (65, 70, 75, 80 …) aus dem Unterbrustumfang, Cup (AA bis K) aus der Differenz Brust- minus Unterbrustumfang</p>
+            <p><strong>Nicht berücksichtigt:</strong> markenspezifische Schnitte, Schwester-/Cup-Anpassungen für einen besseren Sitz, US- und UK-Größen – der Rechner liefert einen Richtwert nach der gängigen deutschen Tabelle</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BhGroesseRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">BH-Größe berechnen: Bandgröße, Cup & Größentabelle</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Eine deutsche bzw. europäische BH-Größe besteht aus zwei Teilen: der <strong>Bandgröße</strong>
+            (die Zahl, z. B. 75) und der <strong>Cupgröße</strong> (der Buchstabe, z. B. B). Zusammen
+            ergibt sich daraus eine Größe wie „75B“. Mit unserem <strong>BH-Größen-Rechner</strong>
+            ermitteln Sie beide Werte aus nur zwei Maßen: dem Unterbrustumfang und dem Brustumfang.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die zwei Schritte</h3>
+          <div class="bg-pink-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Bandgröße</strong> = Unterbrustumfang, gerundet auf den nächsten 5er-Schritt</li>
+              <li><strong>Cupgröße</strong> = Brustumfang − Unterbrustumfang (Differenz in cm)</li>
+            </ul>
+          </div>
+          <p>
+            Beispiel: Ein Unterbrustumfang von 76 cm ergibt die Bandgröße 75. Bei einem Brustumfang
+            von 90 cm beträgt die Differenz 14 cm – das entspricht Cup B. Die BH-Größe lautet also
+            <strong>75B</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bandgröße aus dem Unterbrustumfang</h3>
+          <p>
+            Der Unterbrustumfang wird direkt unter der Brust gemessen und auf den nächsten
+            5er-Wert gerundet:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="border border-gray-200 px-3 py-2 text-left">Unterbrustumfang</th>
+                  <th class="border border-gray-200 px-3 py-2 text-left">Bandgröße</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border border-gray-200 px-3 py-2">63–67 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">65</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">68–72 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">70</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">73–77 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">75</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">78–82 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">80</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">83–87 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">85</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">88–92 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">90</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">93–97 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">95</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">98–102 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">100</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Cupgröße aus der Differenz</h3>
+          <p>
+            Die Differenz zwischen Brust- und Unterbrustumfang bestimmt das Körbchen. Je größer die
+            Differenz, desto größer der Cup – in Schritten von rund 2 cm:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="border border-gray-200 px-3 py-2 text-left">Differenz</th>
+                  <th class="border border-gray-200 px-3 py-2 text-left">Cup</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border border-gray-200 px-3 py-2">8–11 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">AA</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">12–13 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">A</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">14–15 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">B</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">16–17 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">C</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">18–19 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">D</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">20–21 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">E (DD)</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">22–23 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">F</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">24–25 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">G</td></tr>
+                <tr><td class="border border-gray-200 px-3 py-2">26–28 cm</td><td class="border border-gray-200 px-3 py-2 font-medium">H</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">
+            Die Zuordnung der Differenz zur Cupgröße variiert je nach Quelle leicht (manche Tabellen
+            nutzen überlappende 2-cm-Bereiche). Diese Tabelle folgt der gängigen deutschen Einteilung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum Marken unterschiedlich ausfallen</h3>
+          <p>
+            BH-Größen sind nicht streng genormt. Schnitt, Bügelform, Material und das Herkunftsland
+            der Marke führen dazu, dass derselbe Körper bei der einen Marke 75B, bei der anderen 70C
+            oder 80B trägt. Der Rechner liefert deshalb einen <strong>Ausgangswert</strong> – die
+            endgültige Größe entscheidet immer der Sitz beim Anprobieren.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich unterschiedliche Maße auf die BH-Größe aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Standardmaße</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Unterbrustumfang:</div>
+              <div class="font-medium text-gray-800">76 cm</div>
+              <div class="text-gray-600">Brustumfang:</div>
+              <div class="font-medium text-gray-800">90 cm</div>
+              <div class="text-gray-600">Differenz:</div>
+              <div class="font-medium text-gray-800">14 cm</div>
+              <div class="text-gray-600">Ergebnis:</div>
+              <div class="font-medium text-pink-700">75B</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-pink-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Größerer Cup</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Unterbrustumfang:</div>
+              <div class="font-medium text-gray-800">80 cm</div>
+              <div class="text-gray-600">Brustumfang:</div>
+              <div class="font-medium text-gray-800">98 cm</div>
+              <div class="text-gray-600">Differenz:</div>
+              <div class="font-medium text-gray-800">18 cm</div>
+              <div class="text-gray-600">Ergebnis:</div>
+              <div class="font-medium text-pink-700">80D</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Schmale Bandgröße</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Unterbrustumfang:</div>
+              <div class="font-medium text-gray-800">69 cm</div>
+              <div class="text-gray-600">Brustumfang:</div>
+              <div class="font-medium text-gray-800">85 cm</div>
+              <div class="text-gray-600">Differenz:</div>
+              <div class="font-medium text-gray-800">16 cm</div>
+              <div class="text-gray-600">Ergebnis:</div>
+              <div class="font-medium text-pink-700">70C</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-pink-50 border border-pink-200 rounded-lg p-3 mt-4 text-sm text-pink-800">
+          <strong>💡 Tipp:</strong> Wenn das Unterbrustband im Grenzbereich liegt (z. B. 77 oder
+          78 cm), probieren Sie beide Bandgrößen an. Eine engere Bandgröße braucht oft einen größeren
+          Cup und umgekehrt – das nennt man „Schwestergrößen“.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler beim BH-Messen</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Maßband zu locker oder zu fest</h3>
+            <p>Beim Unterbrustumfang soll das Band straff anliegen, beim Brustumfang locker.
+            Vertauscht man das, fällt die Größe zu groß oder zu klein aus.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Im dick gepolsterten BH messen</h3>
+            <p>Push-up und dicke Polster vergrößern den Brustumfang künstlich und führen zu einem
+            zu großen Cup. Am besten ohne BH oder in einem dünnen, ungepolsterten Modell messen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Maßband schräg angelegt</h3>
+            <p>Verrutscht das Band hinten nach oben oder unten, stimmt der Umfang nicht. Vorne und
+            hinten auf gleicher Höhe halten und im Spiegel kontrollieren.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Differenz genau auf der Grenze</h3>
+            <p>Liegt die Differenz genau zwischen zwei Cups (z. B. 13 oder 14 cm), lohnt es sich,
+            beide Cupgrößen anzuprobieren – der Sitz entscheidet.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Größe ändert sich über die Zeit</h3>
+            <p>Gewicht, Zyklus, Schwangerschaft oder Stillzeit verändern die BH-Größe. Es lohnt
+            sich, ein- bis zweimal im Jahr neu zu messen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur BH-Größe</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich meine BH-Größe?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Sie brauchen zwei Maße: den <strong>Unterbrustumfang</strong> (direkt unter der
+              Brust) und den <strong>Brustumfang</strong> (an der stärksten Stelle). Der
+              Unterbrustumfang ergibt – auf 5 cm gerundet – die Bandgröße. Die Differenz aus Brust-
+              minus Unterbrustumfang ergibt den Cup. Beispiel: 76 cm Unterbrust und 90 cm Brust =
+              Differenz 14 cm = 75B.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Differenz entspricht welcher Cupgröße?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als grobe Orientierung gilt: 12–13 cm = A, 14–15 cm = B, 16–17 cm = C, 18–19 cm = D,
+              20–21 cm = E (DD), 22–23 cm = F, 24–25 cm = G. Pro etwa 2 cm mehr Differenz steigt der
+              Cup um eine Stufe. Je nach Hersteller weicht die Einteilung leicht ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet die Zahl bei der BH-Größe?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Zahl ist die <strong>Bandgröße</strong> und entspricht ungefähr dem
+              Unterbrustumfang in Zentimetern, gerundet auf den nächsten 5er-Schritt. Bei 75 liegt
+              der Unterbrustumfang also etwa zwischen 73 und 77 cm. Sie beschreibt, wie eng das
+              Band um den Brustkorb sitzt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum passt dieselbe Größe bei verschiedenen Marken nicht?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>BH-Größen sind nicht streng genormt. Schnitt, Bügelform, Material und das
+              Herkunftsland der Marke führen zu Abweichungen von ein bis zwei Größen. Der Rechner
+              liefert daher einen Richtwert – die endgültige Größe entscheidet der Sitz beim
+              Anprobieren.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sind Schwestergrößen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Schwestergrößen haben dasselbe Cup-Volumen bei anderer Bandgröße. Wird das Band
+              enger, wächst der Cup – und umgekehrt. Beispiel: 75C, 70D und 80B sind
+              Schwestergrößen. Sitzt das Band nicht, hilft oft der Wechsel zur Schwestergröße.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind deutsche und europäische BH-Größen gleich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja, die deutsche BH-Größe entspricht der europäischen (EU/FR/IT können kleine
+              Unterschiede haben). US- und UK-Größen weichen dagegen ab: Dort werden andere
+              Cup-Bezeichnungen und Zoll statt Zentimeter verwendet. Dieser Rechner liefert die
+              deutsche bzw. europäische Größe.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/koerperfett-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Körperfett-Rechner</p>
+          </a>
+          <a href="/idealgewicht-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Idealgewicht-Rechner</p>
+          </a>
+          <a href="/einheiten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einheiten-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">%</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍎</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorien-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BH-Größen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bh-groesse-rechner",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich meine BH-Größe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sie brauchen zwei Maße: den Unterbrustumfang (direkt unter der Brust) und den Brustumfang (an der stärksten Stelle). Der Unterbrustumfang ergibt – auf 5 cm gerundet – die Bandgröße. Die Differenz aus Brust- minus Unterbrustumfang ergibt den Cup. Beispiel: 76 cm Unterbrust und 90 cm Brust = Differenz 14 cm = 75B."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Differenz entspricht welcher Cupgröße?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als grobe Orientierung gilt: 12–13 cm = A, 14–15 cm = B, 16–17 cm = C, 18–19 cm = D, 20–21 cm = E (DD), 22–23 cm = F, 24–25 cm = G. Pro etwa 2 cm mehr Differenz steigt der Cup um eine Stufe. Je nach Hersteller weicht die Einteilung leicht ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet die Zahl bei der BH-Größe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Zahl ist die Bandgröße und entspricht ungefähr dem Unterbrustumfang in Zentimetern, gerundet auf den nächsten 5er-Schritt. Bei 75 liegt der Unterbrustumfang also etwa zwischen 73 und 77 cm. Sie beschreibt, wie eng das Band um den Brustkorb sitzt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum passt dieselbe Größe bei verschiedenen Marken nicht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BH-Größen sind nicht streng genormt. Schnitt, Bügelform, Material und das Herkunftsland der Marke führen zu Abweichungen von ein bis zwei Größen. Der Rechner liefert daher einen Richtwert – die endgültige Größe entscheidet der Sitz beim Anprobieren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was sind Schwestergrößen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Schwestergrößen haben dasselbe Cup-Volumen bei anderer Bandgröße. Wird das Band enger, wächst der Cup – und umgekehrt. Beispiel: 75C, 70D und 80B sind Schwestergrößen. Sitzt das Band nicht, hilft oft der Wechsel zur Schwestergröße."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind deutsche und europäische BH-Größen gleich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, die deutsche BH-Größe entspricht der europäischen (EU/FR/IT können kleine Unterschiede haben). US- und UK-Größen weichen dagegen ab: Dort werden andere Cup-Bezeichnungen und Zoll statt Zentimeter verwendet. Dieser Rechner liefert die deutsche bzw. europäische Größe."
+        }
+      }
+    ]
+  })} />
+</Layout>

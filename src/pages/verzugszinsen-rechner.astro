@@ -1,0 +1,409 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerzugszinsenRechner from '../components/rechner/VerzugszinsenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Verzugszinsen-Rechner 2026 – Verzugszinsen nach § 288 BGB berechnen";
+const description = "Verzugszinsen bei verspäteter Zahlung sofort berechnen: Basiszinssatz 1,27 % + 5 Punkte (Verbraucher) bzw. + 9 Punkte (B2B), inkl. 40 € Mahnpauschale. Kostenloser Rechner nach § 288 BGB, taggenau.";
+const keywords = "Verzugszinsen Rechner, Verzugszinsen berechnen, § 288 BGB, Basiszinssatz 2026, Verzugszinssatz, Mahnpauschale 40 Euro, Zahlungsverzug, Verzugszinsen B2B, Verzugszinsen Verbraucher";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Verzugszinsen-Rechner", url: "/verzugszinsen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Verzugszinsen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Verzugszinsen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Verzugszinsen nach § 288 BGB taggenau berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 288 BGB (Verzugszinsen) und § 247 BGB (Basiszinssatz). Aktueller Basiszinssatz der Deutschen Bundesbank: <strong>1,27 %</strong> (Stand 1. Januar 2026, unverändert seit 1. Juli 2025)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Verzugszins für Verbraucher (Basiszins + 5 Punkte) und B2B (Basiszins + 9 Punkte), taggenaue Berechnung sowie die 40-€-Mahnpauschale nach § 288 Abs. 5 BGB</p>
+            <p><strong>Nicht berücksichtigt:</strong> vertraglich vereinbarte abweichende Zinssätze, Zinseszinsen, der genaue Verzugseintritt im Einzelfall – ohne Gewähr, keine Rechts- oder Steuerberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <VerzugszinsenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Verzugszinsen berechnen: Höhe, Formel & Rechtsgrundlage</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            <strong>Verzugszinsen</strong> sind der gesetzliche Schadenersatz dafür, dass eine fällige
+            Geldforderung nicht rechtzeitig bezahlt wurde. Wer in <strong>Zahlungsverzug</strong> gerät,
+            muss die offene Forderung verzinsen – und zwar ab dem Tag, an dem der Verzug eintritt. Mit
+            unserem <strong>Verzugszinsen-Rechner</strong> ermitteln Sie die Zinsen taggenau nach
+            § 288 BGB, inklusive der 40-Euro-Mahnpauschale im Geschäftsverkehr.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie hoch sind die Verzugszinsen 2026?</h3>
+          <p>
+            Der Verzugszinssatz setzt sich aus dem <strong>Basiszinssatz</strong> der Deutschen
+            Bundesbank plus einem gesetzlichen Aufschlag zusammen. Der Basiszinssatz nach § 247 BGB
+            wird halbjährlich – jeweils zum 1. Januar und 1. Juli – angepasst und beträgt aktuell
+            <strong>1,27 %</strong> (Stand 1. Januar 2026, unverändert seit 1. Juli 2025).
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Verbraucher (§ 288 Abs. 1 BGB):</strong> Basiszins + 5 Prozentpunkte = <strong>6,27 % p. a.</strong></li>
+              <li><strong>Geschäftskunden / B2B (§ 288 Abs. 2 BGB):</strong> Basiszins + 9 Prozentpunkte = <strong>10,27 % p. a.</strong></li>
+            </ul>
+          </div>
+          <p>
+            Der höhere B2B-Satz gilt für <strong>Entgeltforderungen</strong> bei Rechtsgeschäften, an
+            denen <em>kein Verbraucher</em> beteiligt ist – also wenn beide Seiten Unternehmer sind.
+            Sobald ein Verbraucher beteiligt ist, gilt der niedrigere Satz von 5 Prozentpunkten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt die übliche taggenaue Verzugszins-Formel:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-sm font-medium text-center">
+              Verzugszinsen = Forderung × Verzugszinssatz × Verzugstage ÷ 365
+            </p>
+          </div>
+          <p>
+            Der Zinssatz ist der Jahreszins (Basiszins + Aufschlag), die Verzugstage werden auf das
+            Kalenderjahr mit 365 Tagen umgelegt. Beispiel: 1.000 € Forderung, Verbraucher (6,27 %),
+            30 Tage Verzug ergeben 1.000 × 0,0627 × 30 ÷ 365 = <strong>5,15 €</strong> Verzugszinsen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 40-Euro-Mahnpauschale im B2B</h3>
+          <p>
+            Ist der Schuldner einer Entgeltforderung <strong>kein Verbraucher</strong>, hat der
+            Gläubiger zusätzlich Anspruch auf eine <strong>Pauschale von 40 €</strong> (§ 288 Abs. 5
+            BGB). Diese Pauschale ist unabhängig von der Höhe der Forderung und von der konkreten
+            Mahnung. Achtung: Sie wird auf später entstehende Rechtsverfolgungskosten (z. B.
+            Anwaltskosten) angerechnet, soweit der Schaden darin begründet ist.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann beginnt der Verzug?</h3>
+          <p>
+            Verzug tritt grundsätzlich erst nach einer <strong>Mahnung</strong> ein (§ 286 Abs. 1
+            BGB). Es gibt aber Ausnahmen, bei denen es keiner Mahnung bedarf – etwa bei einem
+            kalendermäßig bestimmten Zahlungstermin. Bei Entgeltforderungen kommt der Schuldner
+            zudem <strong>spätestens 30 Tage nach Fälligkeit und Zugang der Rechnung</strong> in
+            Verzug (§ 286 Abs. 3 BGB); gegenüber Verbrauchern gilt dies nur, wenn in der Rechnung
+            darauf hingewiesen wurde. Der genaue Verzugsbeginn ist für die Berechnung entscheidend –
+            er bestimmt, ab welchem Tag die Zinsen laufen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Forderungshöhe, Schuldnertyp und Verzugsdauer aus (Basiszins 1,27 %):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Verbraucher, 1.000 € offen, 30 Tage</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Forderung:</div>
+              <div class="font-medium text-gray-800">1.000,00 €</div>
+              <div class="text-gray-600">Verzugszinssatz:</div>
+              <div class="font-medium text-gray-800">6,27 % (1,27 % + 5)</div>
+              <div class="text-gray-600">Verzugstage:</div>
+              <div class="font-medium text-gray-800">30</div>
+              <div class="text-gray-600">Verzugszinsen:</div>
+              <div class="font-medium text-green-700">5,15 €</div>
+              <div class="text-gray-600">Gesamtforderung:</div>
+              <div class="font-medium text-gray-800">1.005,15 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: B2B, 5.000 € offen, 60 Tage</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Forderung:</div>
+              <div class="font-medium text-gray-800">5.000,00 €</div>
+              <div class="text-gray-600">Verzugszinssatz:</div>
+              <div class="font-medium text-gray-800">10,27 % (1,27 % + 9)</div>
+              <div class="text-gray-600">Verzugstage:</div>
+              <div class="font-medium text-gray-800">60</div>
+              <div class="text-gray-600">Verzugszinsen:</div>
+              <div class="font-medium text-green-700">84,41 €</div>
+              <div class="text-gray-600">+ Mahnpauschale:</div>
+              <div class="font-medium text-gray-800">40,00 €</div>
+              <div class="text-gray-600">Gesamtforderung:</div>
+              <div class="font-medium text-gray-800">5.124,41 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Im Geschäftsverkehr summieren sich der höhere Zinssatz und die
+          40-€-Pauschale spürbar. Eine zeitnahe Mahnung lohnt sich – sie sichert den Verzugsbeginn
+          und damit den Zinslauf.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Falscher Aufschlag</h3>
+            <p>5 Prozentpunkte gelten, sobald ein <strong>Verbraucher</strong> beteiligt ist. Die
+            9 Prozentpunkte greifen nur bei reinen B2B-Entgeltforderungen, an denen kein Verbraucher
+            beteiligt ist.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Veralteter Basiszinssatz</h3>
+            <p>Der Basiszinssatz ändert sich halbjährlich (1. Januar / 1. Juli). Für jeden Zeitraum
+            ist der jeweils gültige Satz maßgeblich. Aktuell beträgt er 1,27 % (Stand 1. Januar
+            2026).</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verzugsbeginn falsch angesetzt</h3>
+            <p>Die Zinsen laufen nicht ab Rechnungsdatum, sondern ab <strong>Eintritt des
+            Verzugs</strong> – meist nach Mahnung oder spätestens 30 Tage nach Fälligkeit und Zugang
+            der Rechnung (§ 286 Abs. 3 BGB).</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Pauschale wird angerechnet</h3>
+            <p>Die 40-€-Pauschale ist auf einen Schadenersatz wegen Rechtsverfolgungskosten
+            anzurechnen, soweit der Schaden darin begründet ist (§ 288 Abs. 5 Satz 3 BGB). Sie kommt
+            also nicht „doppelt“ obendrauf, wenn z. B. Anwaltskosten geltend gemacht werden.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Höhere vertragliche Zinsen</h3>
+            <p>Vertraglich können höhere Verzugszinsen vereinbart sein. Der Gläubiger darf außerdem
+            einen weitergehenden Verzugsschaden geltend machen (§ 288 Abs. 4 BGB) – etwa nachweisbare
+            Kreditkosten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Verzugszinsen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind die Verzugszinsen 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Verzugszinsen betragen für Verbraucher <strong>5 Prozentpunkte</strong> und für
+              Geschäftskunden (B2B) <strong>9 Prozentpunkte</strong> über dem Basiszinssatz. Bei einem
+              Basiszinssatz von 1,27 % (Stand 1. Januar 2026) sind das 6,27 % p. a. für Verbraucher und
+              10,27 % p. a. im B2B-Bereich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man Verzugszinsen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Verzugszinsen ergeben sich aus <strong>Forderung × Verzugszinssatz × Verzugstage
+              ÷ 365</strong>. Beispiel: 1.000 € Forderung, 6,27 % Zinssatz und 30 Tage Verzug ergeben
+              1.000 × 0,0627 × 30 ÷ 365 = 5,15 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Basiszinssatz und wie hoch ist er aktuell?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Basiszinssatz nach § 247 BGB ist die von der Deutschen Bundesbank halbjährlich
+              festgelegte Bezugsgröße für die Verzugszinsen. Er wird jeweils zum 1. Januar und 1. Juli
+              angepasst und liegt aktuell bei <strong>1,27 %</strong> (Stand 1. Januar 2026,
+              unverändert seit 1. Juli 2025).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann darf ich die 40-Euro-Mahnpauschale verlangen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Pauschale von 40 € nach § 288 Abs. 5 BGB können Sie verlangen, wenn der Schuldner
+              einer Entgeltforderung <strong>kein Verbraucher</strong> ist und sich in Verzug befindet.
+              Sie gilt also nur im Geschäftsverkehr (B2B) und wird auf später entstehende
+              Rechtsverfolgungskosten angerechnet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann beginnt der Zahlungsverzug?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Verzug tritt in der Regel mit einer <strong>Mahnung nach Fälligkeit</strong> ein
+              (§ 286 Abs. 1 BGB). Bei Entgeltforderungen kommt der Schuldner spätestens 30 Tage nach
+              Fälligkeit und Zugang der Rechnung in Verzug (§ 286 Abs. 3 BGB) – gegenüber Verbrauchern
+              nur, wenn in der Rechnung ausdrücklich darauf hingewiesen wurde.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt der niedrigere Zinssatz immer für Verbraucher?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Sobald an dem Rechtsgeschäft ein <strong>Verbraucher</strong> beteiligt ist – egal
+              ob als Schuldner oder Gläubiger –, gilt der Satz von 5 Prozentpunkten über dem
+              Basiszinssatz. Die 9 Prozentpunkte sind reinen B2B-Entgeltforderungen vorbehalten.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+          <a href="/dispo-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dispo-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/privatinsolvenz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Privatinsolvenz-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Verzugszinsen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/verzugszinsen-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die Verzugszinsen 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Verzugszinsen betragen für Verbraucher 5 Prozentpunkte und für Geschäftskunden (B2B) 9 Prozentpunkte über dem Basiszinssatz. Bei einem Basiszinssatz von 1,27 % (Stand 1. Januar 2026) sind das 6,27 % p. a. für Verbraucher und 10,27 % p. a. im B2B-Bereich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man Verzugszinsen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Verzugszinsen ergeben sich aus Forderung × Verzugszinssatz × Verzugstage ÷ 365. Beispiel: 1.000 € Forderung, 6,27 % Zinssatz und 30 Tage Verzug ergeben 1.000 × 0,0627 × 30 ÷ 365 = 5,15 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Basiszinssatz und wie hoch ist er aktuell?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Basiszinssatz nach § 247 BGB ist die von der Deutschen Bundesbank halbjährlich festgelegte Bezugsgröße für die Verzugszinsen. Er wird jeweils zum 1. Januar und 1. Juli angepasst und liegt aktuell bei 1,27 % (Stand 1. Januar 2026, unverändert seit 1. Juli 2025)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann darf ich die 40-Euro-Mahnpauschale verlangen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Pauschale von 40 € nach § 288 Abs. 5 BGB können Sie verlangen, wenn der Schuldner einer Entgeltforderung kein Verbraucher ist und sich in Verzug befindet. Sie gilt also nur im Geschäftsverkehr (B2B) und wird auf später entstehende Rechtsverfolgungskosten angerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann beginnt der Zahlungsverzug?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verzug tritt in der Regel mit einer Mahnung nach Fälligkeit ein (§ 286 Abs. 1 BGB). Bei Entgeltforderungen kommt der Schuldner spätestens 30 Tage nach Fälligkeit und Zugang der Rechnung in Verzug (§ 286 Abs. 3 BGB) – gegenüber Verbrauchern nur, wenn in der Rechnung ausdrücklich darauf hingewiesen wurde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt der niedrigere Zinssatz immer für Verbraucher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Sobald an dem Rechtsgeschäft ein Verbraucher beteiligt ist – egal ob als Schuldner oder Gläubiger –, gilt der Satz von 5 Prozentpunkten über dem Basiszinssatz. Die 9 Prozentpunkte sind reinen B2B-Entgeltforderungen vorbehalten."
+        }
+      }
+    ]
+  })} />
+</Layout>

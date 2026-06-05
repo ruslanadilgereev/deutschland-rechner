@@ -1,0 +1,448 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KalorienverbrauchRechner from '../components/rechner/KalorienverbrauchRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Kalorienverbrauch-Rechner 2026 – Kalorien beim Sport berechnen (MET)";
+const description = "Wie viele Kalorien verbrennen Sie? Kalorienverbrauch pro Aktivität nach der MET-Methode berechnen: Joggen, Radfahren, Schwimmen, Krafttraining & mehr. Formel kcal = MET × Gewicht × Dauer. Kostenlos & sofort.";
+const keywords = "Kalorienverbrauch Rechner, Kalorien verbrennen, Kalorienverbrauch Sport, kcal beim Joggen, kcal Radfahren, MET Wert, Kalorienverbrauch berechnen, Kalorien pro Stunde, verbrannte Kalorien, Kalorienverbrauch Schwimmen, Kalorienverbrauch Krafttraining";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Kalorienverbrauch-Rechner", url: "/kalorienverbrauch-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Gesundheit', href: '/gesundheit' },
+    { name: 'Kalorienverbrauch-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/gesundheit"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Gesundheits-Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏃</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kalorienverbrauch-Rechner 2026</h1>
+            <p class="text-orange-200 text-sm">Verbrannte Kalorien pro Aktivität (MET-Methode)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> MET-Werte aus dem Compendium of Physical Activities (Ainsworth et al., 2011 / 2024 Adult Compendium), Energieumsatz-Definition der Deutschen Gesellschaft für Ernährung (DGE)</p>
+            <p class="mb-1"><strong>Berechnet:</strong> verbrannte Kilokalorien nach der Formel kcal = MET × Körpergewicht (kg) × Dauer (h) für über 50 Aktivitäten – plus Netto-Verbrauch über dem Grundumsatz und kcal pro Minute</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Faktoren wie Trainingszustand, Muskelmasse, Alter, Geschlecht und tagesaktuelle Intensität – der reale Verbrauch kann um 15–25 % abweichen. Es handelt sich um Schätzwerte ohne medizinische Garantie.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KalorienverbrauchRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kalorienverbrauch berechnen: So funktioniert die MET-Methode</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Kalorienverbrauch-Rechner</strong> schätzt, wie viele Kilokalorien (kcal) Sie bei einer
+            Sportart oder Alltagsaktivität verbrennen. Grundlage ist die international anerkannte
+            <strong>MET-Methode</strong>. Ein MET (metabolisches Äquivalent) beschreibt, wie viel Energie eine
+            Aktivität im Vergleich zum völligen Ruhezustand verbraucht. Ein MET entspricht rund
+            <strong>1 kcal pro Kilogramm Körpergewicht und Stunde</strong> – das ist der Energieumsatz, den
+            Ihr Körper im Sitzen oder Liegen hat.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-orange-50 p-4 rounded-lg my-4">
+            <p class="font-mono text-gray-800 text-center text-base">
+              kcal = MET × Körpergewicht (kg) × Dauer (Stunden)
+            </p>
+          </div>
+          <p>
+            Beispiel: Eine 75 kg schwere Person joggt 45 Minuten langsam (8 MET). Die Rechnung lautet
+            8 × 75 × 0,75 = <strong>450 kcal</strong>. Je höher der MET-Wert und je länger und schwerer Sie
+            sind, desto mehr Energie verbrennen Sie.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">MET-Werte gängiger Aktivitäten</h3>
+          <p>
+            Die folgenden Werte stammen aus dem <em>Compendium of Physical Activities</em> – der Referenz­quelle
+            für MET-Werte in Forschung und Sportmedizin:
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg my-4">
+            <ul class="space-y-1 text-sm">
+              <li><strong>Gehen (5 km/h):</strong> 3,5 MET</li>
+              <li><strong>Wandern (Gelände):</strong> 6,0 MET</li>
+              <li><strong>Joggen (8 km/h):</strong> 8,0 MET</li>
+              <li><strong>Laufen (9,7 km/h):</strong> 9,8 MET</li>
+              <li><strong>Radfahren (16–19 km/h):</strong> 6,8 MET</li>
+              <li><strong>Schwimmen, Kraul:</strong> 8,3 MET</li>
+              <li><strong>Krafttraining (intensiv):</strong> 6,0 MET</li>
+              <li><strong>Fußball (Freizeit):</strong> 7,0 MET</li>
+              <li><strong>Seilspringen:</strong> 11,0 MET</li>
+              <li><strong>Yoga (Hatha):</strong> 2,5 MET</li>
+              <li><strong>Hausarbeit / Putzen:</strong> 3,3 MET</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brutto- und Netto-Verbrauch</h3>
+          <p>
+            Der Rechner zeigt zwei Werte: den <strong>Brutto-Verbrauch</strong> (die gesamte verbrauchte Energie)
+            und den <strong>Netto-Verbrauch</strong>. Der Netto-Wert zieht den Grundumsatz ab, den Ihr Körper
+            ohnehin verbraucht hätte (1 MET). Wer also wissen will, wie viel <em>zusätzliche</em> Energie das
+            Training kostet, schaut auf den Netto-Wert – er ist für Abnehm-Ziele oft aussagekräftiger.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kalorienverbrauch, Kalorienbedarf und Defizit</h3>
+          <p>
+            Wichtig ist die Abgrenzung: Dieser Rechner ermittelt nur die Kalorien <strong>einer einzelnen
+            Aktivität</strong>. Ihren gesamten täglichen Energiebedarf (Grundumsatz plus Aktivität) berechnen Sie
+            mit dem
+            <a href="/grundumsatz-rechner" class="text-blue-600 hover:text-blue-800 underline">Grundumsatz-Rechner</a>
+            oder dem
+            <a href="/kalorien-rechner" class="text-blue-600 hover:text-blue-800 underline">Kalorienbedarf-Rechner</a>.
+            Wenn Sie abnehmen möchten, kombinieren Sie das mit dem
+            <a href="/kaloriendefizit-rechner" class="text-blue-600 hover:text-blue-800 underline">Kaloriendefizit-Rechner</a>:
+            Abnehmen funktioniert, wenn Sie über den Tag mehr Kalorien verbrauchen, als Sie aufnehmen. Sport
+            ist dabei ein Baustein, die Ernährung der andere.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: Kalorien beim Sport</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle – alle mit der Formel kcal = MET × Gewicht × Dauer:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 30 Min. Joggen, 70 kg</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Aktivität:</div>
+              <div class="font-medium text-gray-800">Joggen (8 MET)</div>
+              <div class="text-gray-600">Gewicht:</div>
+              <div class="font-medium text-gray-800">70 kg</div>
+              <div class="text-gray-600">Dauer:</div>
+              <div class="font-medium text-gray-800">30 Min. (0,5 h)</div>
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-orange-700">8 × 70 × 0,5 = 280 kcal</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 60 Min. Radfahren, 85 kg</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Aktivität:</div>
+              <div class="font-medium text-gray-800">Radfahren moderat (6,8 MET)</div>
+              <div class="text-gray-600">Gewicht:</div>
+              <div class="font-medium text-gray-800">85 kg</div>
+              <div class="text-gray-600">Dauer:</div>
+              <div class="font-medium text-gray-800">60 Min. (1 h)</div>
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-orange-700">6,8 × 85 × 1 = 578 kcal</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 45 Min. Krafttraining, 60 kg</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Aktivität:</div>
+              <div class="font-medium text-gray-800">Krafttraining intensiv (6 MET)</div>
+              <div class="text-gray-600">Gewicht:</div>
+              <div class="font-medium text-gray-800">60 kg</div>
+              <div class="text-gray-600">Dauer:</div>
+              <div class="font-medium text-gray-800">45 Min. (0,75 h)</div>
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-orange-700">6 × 60 × 0,75 = 270 kcal</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-3 mt-4 text-sm text-orange-800">
+          <strong>💡 Tipp:</strong> Wählen Sie im Rechner oben Ihre Aktivität, Ihr Gewicht und die Dauer –
+          und Sie sehen sofort den Brutto-Verbrauch, den Netto-Verbrauch über dem Grundumsatz und die
+          Kalorien pro Minute.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler beim Kalorien-Zählen</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Verbrauch überschätzen</h3>
+            <p>Fitness-Apps und Geräte zeigen oft zu hohe Werte. Die MET-Methode liefert solide
+            Durchschnittswerte, aber der reale Verbrauch kann <strong>15–25 % darunter oder darüber</strong>
+            liegen – je nach Trainingszustand und Intensität.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Brutto statt Netto rechnen</h3>
+            <p>Wer abnehmen will und den Brutto-Verbrauch in die Kalorienbilanz einrechnet, zählt den
+            Grundumsatz doppelt. Für die Bilanz ist meist der <strong>Netto-Wert</strong> (über dem
+            Ruheumsatz) realistischer.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Sport als „Freifahrtschein" sehen</h3>
+            <p>Eine Stunde Joggen verbrennt oft weniger Kalorien, als ein üppiges Stück Kuchen liefert. Der
+            größte Hebel zum Abnehmen ist die <strong>Ernährung</strong> – Sport ist Ergänzung, nicht Ersatz.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 4: Nachbrenneffekt einrechnen</h3>
+            <p>Der sogenannte Nachbrenneffekt (EPOC) ist real, aber bei moderatem Training meist klein
+            (oft unter 10 %). Verlassen Sie sich nicht auf große Extra-Verbräuche nach dem Sport.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: gleiche Sportart, andere Intensität</h3>
+            <p>„Radfahren" ist nicht gleich „Radfahren". Zwischen gemütlichem Rollen (4 MET) und zügigem
+            Tempo (10 MET) liegen mehr als das Doppelte. Wählen Sie im Rechner die Variante, die Ihrer
+            tatsächlichen Anstrengung entspricht.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für Sie? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Ihr Ergebnis zeigt die geschätzte Energie, die eine Trainingseinheit kostet. So setzen Sie es um:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Gesamtbedarf kennen</p>
+              <p>Berechnen Sie zuerst Ihren <a href="/grundumsatz-rechner" class="text-blue-600 underline">Grundumsatz</a>
+              und Ihren <a href="/kalorien-rechner" class="text-blue-600 underline">täglichen Kalorienbedarf</a> –
+              erst dann lässt sich der Sportverbrauch sinnvoll einordnen.</p>
+            </div>
+
+            <div class="bg-orange-50 rounded-lg p-3">
+              <p class="font-semibold text-orange-800 mb-1">📉 Defizit planen</p>
+              <p>Zum Abnehmen brauchen Sie ein Kaloriendefizit. Wie groß es sein sollte und wie viel Sie
+              dadurch pro Woche verlieren, zeigt der
+              <a href="/kaloriendefizit-rechner" class="text-blue-600 underline">Kaloriendefizit-Rechner</a>.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">⚖️ Gewicht im Blick</p>
+              <p>Ob Ihr Gewicht im gesunden Bereich liegt, prüfen Sie mit dem
+              <a href="/bmi-rechner" class="text-blue-600 underline">BMI-Rechner</a> nach WHO-Klassifikation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Kalorienverbrauch</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird der Kalorienverbrauch beim Sport berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Mit der MET-Methode. Die Formel lautet <strong>kcal = MET × Körpergewicht (kg) × Dauer (Stunden)</strong>.
+              Der MET-Wert beschreibt, wie anstrengend eine Aktivität im Vergleich zur Ruhe ist. Joggen hat
+              zum Beispiel rund 8 MET, also den achtfachen Ruheumsatz. Geben Sie Aktivität, Gewicht und Dauer
+              in den Rechner ein, um Ihren Wert zu sehen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein MET-Wert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>MET steht für <strong>metabolisches Äquivalent</strong>. Ein MET entspricht dem Energieumsatz
+              in völliger Ruhe – etwa 1 kcal pro Kilogramm Körpergewicht und Stunde. Ein Wert von 6 MET bedeutet,
+              dass die Aktivität sechsmal so viel Energie verbraucht wie Ruhe. Die MET-Werte stammen aus dem
+              wissenschaftlichen <em>Compendium of Physical Activities</em>.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Kalorien verbrennt man beim Joggen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Langsames Joggen hat etwa 8 MET. Eine 70 kg schwere Person verbrennt damit rund
+              <strong>280 kcal in 30 Minuten</strong> (8 × 70 × 0,5). Bei höherem Tempo (z. B. 11 MET) und mehr
+              Gewicht steigt der Verbrauch entsprechend. Wählen Sie im Rechner Ihr Lauftempo, um den passenden
+              Wert zu erhalten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist der Kalorienverbrauch-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Er liefert solide <strong>Durchschnittswerte</strong> auf Basis wissenschaftlicher MET-Tabellen.
+              Der individuelle Verbrauch hängt aber von Trainingszustand, Muskelmasse, Alter, Geschlecht und
+              tagesaktueller Intensität ab und kann um <strong>15–25 %</strong> abweichen. Für die meisten
+              Alltags- und Trainingsfragen ist die Schätzung dennoch sehr brauchbar.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Brutto- und Netto-Verbrauch?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der <strong>Brutto-Verbrauch</strong> ist die gesamte Energie der Aktivität. Der
+              <strong>Netto-Verbrauch</strong> zieht den Grundumsatz ab (1 MET), den Ihr Körper ohnehin gehabt
+              hätte. Für eine ehrliche Kalorienbilanz beim Abnehmen ist der Netto-Wert oft aussagekräftiger,
+              weil er nur die zusätzlich verbrannte Energie zählt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Verbrenne ich beim Krafttraining oder beim Ausdauersport mehr Kalorien?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Während des Trainings verbrennt Ausdauersport wie Laufen oder Radfahren meist mehr Kalorien pro
+              Minute als klassisches Krafttraining. Krafttraining baut dafür <strong>Muskelmasse</strong> auf, die
+              langfristig den Grundumsatz erhöht. Für die Gesamtbilanz lohnt sich eine Kombination aus beidem.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍽️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorienbedarf-Rechner</p>
+          </a>
+          <a href="/grundumsatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundumsatz-Rechner</p>
+          </a>
+          <a href="/kaloriendefizit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaloriendefizit-Rechner</p>
+          </a>
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kalorienverbrauch-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kalorienverbrauch-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie wird der Kalorienverbrauch beim Sport berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mit der MET-Methode. Die Formel lautet kcal = MET × Körpergewicht (kg) × Dauer (Stunden). Der MET-Wert beschreibt, wie anstrengend eine Aktivität im Vergleich zur Ruhe ist. Joggen hat zum Beispiel rund 8 MET, also den achtfachen Ruheumsatz. Geben Sie Aktivität, Gewicht und Dauer in den Rechner ein, um Ihren Wert zu sehen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein MET-Wert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MET steht für metabolisches Äquivalent. Ein MET entspricht dem Energieumsatz in völliger Ruhe – etwa 1 kcal pro Kilogramm Körpergewicht und Stunde. Ein Wert von 6 MET bedeutet, dass die Aktivität sechsmal so viel Energie verbraucht wie Ruhe. Die MET-Werte stammen aus dem wissenschaftlichen Compendium of Physical Activities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Kalorien verbrennt man beim Joggen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Langsames Joggen hat etwa 8 MET. Eine 70 kg schwere Person verbrennt damit rund 280 kcal in 30 Minuten (8 × 70 × 0,5). Bei höherem Tempo und mehr Gewicht steigt der Verbrauch entsprechend. Wählen Sie im Rechner Ihr Lauftempo, um den passenden Wert zu erhalten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist der Kalorienverbrauch-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Er liefert solide Durchschnittswerte auf Basis wissenschaftlicher MET-Tabellen. Der individuelle Verbrauch hängt aber von Trainingszustand, Muskelmasse, Alter, Geschlecht und tagesaktueller Intensität ab und kann um 15–25 % abweichen. Für die meisten Alltags- und Trainingsfragen ist die Schätzung dennoch sehr brauchbar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Brutto- und Netto-Verbrauch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Brutto-Verbrauch ist die gesamte Energie der Aktivität. Der Netto-Verbrauch zieht den Grundumsatz ab (1 MET), den Ihr Körper ohnehin gehabt hätte. Für eine ehrliche Kalorienbilanz beim Abnehmen ist der Netto-Wert oft aussagekräftiger, weil er nur die zusätzlich verbrannte Energie zählt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Verbrenne ich beim Krafttraining oder beim Ausdauersport mehr Kalorien?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Während des Trainings verbrennt Ausdauersport wie Laufen oder Radfahren meist mehr Kalorien pro Minute als klassisches Krafttraining. Krafttraining baut dafür Muskelmasse auf, die langfristig den Grundumsatz erhöht. Für die Gesamtbilanz lohnt sich eine Kombination aus beidem."
+        }
+      }
+    ]
+  })} />
+</Layout>

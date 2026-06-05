@@ -1,0 +1,477 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BmiKinderRechner } from '../components/rechner/BmiKinderRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "BMI-Rechner für Kinder 2026 – Perzentile nach Alter & Geschlecht";
+const description = "BMI für Kinder & Jugendliche (2–18 Jahre) berechnen und mit alters- und geschlechtsspezifischen Perzentilen nach Kromeyer-Hauschild (AGA) einordnen: Untergewicht, Normalgewicht, Übergewicht, Adipositas. Kostenlos & sofort.";
+const keywords = "BMI Rechner Kinder, BMI Kind berechnen, BMI Perzentile Kinder, Kromeyer-Hauschild, BMI Jugendliche, Übergewicht Kind, Adipositas Kinder, BMI Tabelle Kinder, BMI Perzentilkurve, AGA Perzentile, BMI Kind Junge Mädchen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "BMI-Rechner für Kinder", url: "/bmi-kinder-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Gesundheit', href: '/gesundheit' },
+    { name: 'BMI-Rechner für Kinder' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/gesundheit"
+          class="inline-flex items-center gap-2 text-green-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Gesundheits-Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧒</span>
+          <div>
+            <h1 class="text-2xl font-bold">BMI-Rechner für Kinder 2026</h1>
+            <p class="text-green-100 text-sm">Perzentile nach Alter & Geschlecht (Kromeyer-Hauschild / AGA)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Referenzwerte für den Body-Mass-Index nach Kromeyer-Hauschild et al. (Monatsschrift Kinderheilkunde 2001; Update 2015), empfohlen von der Arbeitsgemeinschaft Adipositas im Kindes- und Jugendalter (AGA) der Deutschen Adipositas-Gesellschaft</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> alters- und geschlechtsspezifische Perzentile (P3, P10, P90, P97) für Kinder und Jugendliche von 2 bis 18 Jahren, lineare Interpolation zwischen den Lebensjahren</p>
+            <p><strong>Nicht berücksichtigt:</strong> Muskelmasse, Körperbau, Pubertätsstand, Wachstumsschübe und individuelle Entwicklung – maßgeblich ist immer die ärztliche Beurteilung durch Ihre Kinderärztin oder Ihren Kinderarzt</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BmiKinderRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">BMI bei Kindern: Warum Perzentile statt fester Grenzwerte</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Body-Mass-Index (BMI)</strong> setzt das Gewicht ins Verhältnis zur Körpergröße:
+            BMI = Gewicht in Kilogramm geteilt durch die Körpergröße in Metern zum Quadrat. Bei Erwachsenen
+            gelten dafür feste Grenzen der WHO (Normalgewicht 18,5–24,9). Bei <strong>Kindern und
+            Jugendlichen funktioniert das nicht</strong>: Ihr Körper verändert sich ständig, und ein BMI
+            von 18 kann bei einem 5-jährigen Kind schon Übergewicht bedeuten, bei einem 14-Jährigen aber
+            völlig normal sein.
+          </p>
+          <p>
+            Deshalb wird der Kinder-BMI über <strong>Perzentile</strong> eingeordnet – also über den Vergleich
+            mit vielen gleichaltrigen Kindern desselben Geschlechts. Liegt der BMI eines Kindes auf dem
+            90. Perzentil, heißt das: 90 % der gleichaltrigen Kinder gleichen Geschlechts haben einen
+            niedrigeren BMI. Den BMI für Erwachsene berechnen Sie mit dem
+            <a href="/bmi-rechner" class="text-green-600 hover:text-green-800 underline">BMI-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Referenz: Kromeyer-Hauschild</h3>
+          <p>
+            In Deutschland sind die <strong>Referenzwerte nach Kromeyer-Hauschild</strong> Standard. Sie
+            beruhen auf den Körpergrößen- und Gewichtsdaten von rund 17.000 Jungen und 17.000 Mädchen aus
+            17 deutschen Studien. Die <strong>Arbeitsgemeinschaft Adipositas im Kindes- und Jugendalter
+            (AGA)</strong> empfiehlt diese Perzentilkurven in ihrer Leitlinie. Bewusst stammen die Daten
+            aus einer Zeit, in der Übergewicht bei Kindern noch seltener war – sonst würde der heutige
+            Durchschnitt zu viele tatsächlich übergewichtige Kinder als „normal“ einstufen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So werden die Perzentile eingeteilt</h3>
+          <div class="bg-green-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Unter dem 3. Perzentil (&lt; P3):</strong> starkes Untergewicht</li>
+              <li><strong>3. bis 10. Perzentil (P3–P10):</strong> Untergewicht</li>
+              <li><strong>10. bis 90. Perzentil (P10–P90):</strong> Normalgewicht</li>
+              <li><strong>90. bis 97. Perzentil (P90–P97):</strong> Übergewicht</li>
+              <li><strong>Über dem 97. Perzentil (&gt; P97):</strong> Adipositas (starkes Übergewicht)</li>
+            </ul>
+          </div>
+          <p>
+            Diese Einteilung ist eine fachliche Empfehlung der AGA – sie ersetzt keine Diagnose. Ob ein Kind
+            tatsächlich Über- oder Untergewicht hat, entscheidet die Kinderärztin oder der Kinderarzt unter
+            Berücksichtigung von Wachstum, Pubertät und Gesamtentwicklung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BMI-Grenzwerte für Übergewicht (P90) – Beispiele</h3>
+          <p>
+            Die folgenden Werte zeigen, ab welchem BMI ein Kind nach Kromeyer-Hauschild als übergewichtig
+            (über dem 90. Perzentil) gilt. Sie steigen mit dem Alter deutlich an:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>6 Jahre:</strong> Jungen ab ca. 17,9 · Mädchen ab ca. 18,0 kg/m²</li>
+            <li><strong>10 Jahre:</strong> Jungen ab ca. 20,8 · Mädchen ab ca. 20,9 kg/m²</li>
+            <li><strong>14 Jahre:</strong> Jungen ab ca. 24,2 · Mädchen ab ca. 24,2 kg/m²</li>
+            <li><strong>18 Jahre:</strong> Jungen ab ca. 26,2 · Mädchen ab ca. 25,9 kg/m²</li>
+          </ul>
+          <p>
+            Wer das gesunde Gewicht eines Kindes mit dem späteren Erwachsenen-Idealgewicht vergleichen möchte,
+            findet im
+            <a href="/idealgewicht-rechner" class="text-green-600 hover:text-green-800 underline">Idealgewicht-Rechner</a>
+            weitere Orientierung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: Kinder-BMI im Perzentil</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle – derselbe BMI führt je nach Alter und Geschlecht zu unterschiedlichen Einordnungen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-green-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Junge, 8 Jahre, normalgewichtig</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Größe / Gewicht:</div>
+              <div class="font-medium text-gray-800">130 cm / 27 kg</div>
+              <div class="text-gray-600">BMI:</div>
+              <div class="font-medium text-gray-800">16,0 kg/m²</div>
+              <div class="text-gray-600">Übergewicht (P90) ab:</div>
+              <div class="font-medium text-gray-800">19,1 kg/m²</div>
+              <div class="text-gray-600">Einordnung:</div>
+              <div class="font-medium text-green-700">Normalgewicht</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Mädchen, 10 Jahre, Übergewicht</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Größe / Gewicht:</div>
+              <div class="font-medium text-gray-800">140 cm / 44 kg</div>
+              <div class="text-gray-600">BMI:</div>
+              <div class="font-medium text-gray-800">22,4 kg/m²</div>
+              <div class="text-gray-600">Übergewicht (P90) ab:</div>
+              <div class="font-medium text-gray-800">20,9 kg/m²</div>
+              <div class="text-gray-600">Einordnung:</div>
+              <div class="font-medium text-orange-700">Übergewicht (P90–P97)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Junge, 14 Jahre, normalgewichtig</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Größe / Gewicht:</div>
+              <div class="font-medium text-gray-800">165 cm / 56 kg</div>
+              <div class="text-gray-600">BMI:</div>
+              <div class="font-medium text-gray-800">20,6 kg/m²</div>
+              <div class="text-gray-600">Übergewicht (P90) ab:</div>
+              <div class="font-medium text-gray-800">24,2 kg/m²</div>
+              <div class="text-gray-600">Einordnung:</div>
+              <div class="font-medium text-green-700">Normalgewicht</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-green-50 border border-green-200 rounded-lg p-3 mt-4 text-sm text-green-800">
+          <strong>💡 Tipp:</strong> Ein BMI von 20,6 ist bei einem 14-jährigen Jungen normal, bei einem
+          7-jährigen aber bereits Adipositas. Genau deshalb darf man den Kinder-BMI nie mit den festen
+          Erwachsenen-Grenzen bewerten.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Erwachsenen-Grenzen auf Kinder anwenden</h3>
+            <p>Die WHO-Grenzen (Übergewicht ab BMI 25) gelten <strong>nicht</strong> für Kinder. Ein Kind mit
+            BMI 20 kann normalgewichtig oder bereits adipös sein – das hängt komplett von Alter und Geschlecht ab.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Größe in cm statt m einsetzen</h3>
+            <p>Der BMI braucht die Größe in Metern. Wer mit Zentimetern rechnet, erhält absurd kleine Werte.
+            Unser Rechner nimmt die Größe in cm entgegen und rechnet korrekt um.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Einen einzelnen Wert überbewerten</h3>
+            <p>Aussagekräftig ist der <strong>Verlauf</strong> über die Zeit, nicht ein einzelner BMI. Springt
+            ein Kind plötzlich über mehrere Perzentile, ist das wichtiger als der absolute Wert. Den Verlauf
+            dokumentiert das gelbe Kinderuntersuchungsheft (U-Untersuchungen).</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Pubertät & Wachstumsschübe</h3>
+            <p>In der Pubertät verändert sich der Körperbau stark. Ein vorübergehend höherer oder niedrigerer
+            BMI ist oft normal. Muskulöse, sportliche Kinder können einen hohen BMI haben, ohne übergewichtig
+            zu sein – der BMI unterscheidet nicht zwischen Muskel- und Fettmasse.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kinder unter 2 Jahren</h3>
+            <p>Für Säuglinge und Kleinkinder unter 2 Jahren ist der BMI wenig aussagekräftig. Hier nutzen
+            Kinderärzte spezielle Gewichts- und Längenkurven. Dieser Rechner gilt daher erst ab 2 Jahren.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das Ergebnis -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Ihr Kind?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Das Ergebnis ist ein <strong>Anhaltspunkt</strong>, keine Diagnose. So gehen Sie sinnvoll damit um:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Normalgewicht</p>
+              <p>Alles im grünen Bereich. Achten Sie weiterhin auf ausgewogene Ernährung und ausreichend
+              Bewegung – das ist die beste Vorsorge.</p>
+            </div>
+
+            <div class="bg-orange-50 rounded-lg p-3">
+              <p class="font-semibold text-orange-800 mb-1">⚠️ Über- oder Untergewicht</p>
+              <p>Sprechen Sie das Ergebnis bei der nächsten Vorsorgeuntersuchung (U- oder J-Untersuchung) an.
+              Die Kinderärztin oder der Kinderarzt ordnet den BMI im Verlauf und im Gesamtbild ein.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Verlauf dokumentieren</p>
+              <p>Tragen Sie den BMI über die Zeit in die Perzentilkurve ein. Der Trend sagt mehr aus als
+              ein Einzelwert – ein stabiler Verlauf auf einem Perzentil ist meist unbedenklich.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum BMI bei Kindern</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum gelten für Kinder andere BMI-Grenzen als für Erwachsene?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Weil sich der Körper von Kindern ständig verändert. Der „normale“ BMI hängt stark von Alter
+              und Geschlecht ab: Ein BMI von 18 kann bei einem 5-jährigen Kind Übergewicht bedeuten, bei einem
+              14-Jährigen aber völlig normal sein. Deshalb wird der Kinder-BMI über alters- und
+              geschlechtsspezifische <strong>Perzentile</strong> eingeordnet, nicht über die festen
+              WHO-Grenzen der Erwachsenen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet ein Perzentil beim BMI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Perzentil vergleicht Ihr Kind mit vielen gleichaltrigen Kindern desselben Geschlechts.
+              Liegt der BMI auf dem <strong>75. Perzentil</strong>, haben 75 % der gleichaltrigen Kinder einen
+              niedrigeren und 25 % einen höheren BMI. Werte zwischen dem 10. und 90. Perzentil gelten als
+              Normalgewicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab welchem BMI gilt mein Kind als übergewichtig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Übergewicht beginnt nach der AGA-Leitlinie über dem <strong>90. Perzentil</strong>, Adipositas
+              über dem <strong>97. Perzentil</strong>. Der konkrete BMI-Wert hängt von Alter und Geschlecht ab:
+              Bei einem 6-jährigen Jungen liegt die Übergewichtsgrenze bei etwa 17,9 kg/m², bei einem 14-Jährigen
+              schon bei etwa 24,2 kg/m². Der Rechner oben zeigt die passenden Grenzen für das eingegebene Alter an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Für welches Alter ist dieser Rechner geeignet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner gilt für Kinder und Jugendliche von <strong>2 bis 18 Jahren</strong>. Für Säuglinge
+              und Kleinkinder unter 2 Jahren ist der BMI wenig aussagekräftig – hier nutzen Kinderärzte spezielle
+              Gewichts- und Längenkurven. Ab 18 Jahren können Sie den
+              <a href="/bmi-rechner" class="text-green-600 underline">normalen BMI-Rechner</a> verwenden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Referenzwerte nutzt der Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner verwendet die in Deutschland gebräuchlichen <strong>Perzentile nach
+              Kromeyer-Hauschild</strong>, die von der Arbeitsgemeinschaft Adipositas im Kindes- und Jugendalter
+              (AGA) empfohlen werden. Sie beruhen auf Daten von rund 17.000 Jungen und 17.000 Mädchen aus
+              17 deutschen Studien.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Mein Kind ist sportlich – stimmt der BMI dann überhaupt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der BMI unterscheidet nicht zwischen Muskel- und Fettmasse. Sehr muskulöse, sportliche Kinder
+              können einen erhöhten BMI haben, ohne übergewichtig zu sein. Deshalb ist der BMI immer nur ein
+              <strong>Anhaltspunkt</strong>. Eine zuverlässige Beurteilung mit Blick auf Körperbau und Entwicklung
+              kann nur die Kinderärztin oder der Kinderarzt geben.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner (Erwachsene)</p>
+          </a>
+          <a href="/idealgewicht-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Idealgewicht-Rechner</p>
+          </a>
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍎</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorien-Rechner</p>
+          </a>
+          <a href="/koerperfett-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Körperfett-Rechner</p>
+          </a>
+          <a href="/kindergeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kindergeld-Rechner</p>
+          </a>
+          <a href="/gesundheit" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">❤️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Alle Gesundheits-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ärztlicher Rat -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">⚕️</span>
+          Wann zur Kinderärztin oder zum Kinderarzt?
+        </h2>
+
+        <div class="p-4 bg-green-50 rounded-lg">
+          <p class="text-green-800 text-sm mb-2">
+            Der BMI-Rechner für Kinder ersetzt <strong>keine ärztliche Untersuchung</strong>. Lassen Sie
+            das Gewicht Ihres Kindes von Fachleuten einordnen, besonders bei diesen Punkten:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-green-800 text-sm">
+            <li>Der BMI liegt über dem 90. oder unter dem 10. Perzentil</li>
+            <li>Das Kind springt im Verlauf über mehrere Perzentile</li>
+            <li>Sie sind unsicher oder besorgt über die Entwicklung</li>
+          </ul>
+          <p class="text-green-800 text-sm mt-2">
+            Die regelmäßigen <strong>U-Untersuchungen</strong> (bis zur U9) und die <strong>J1-Untersuchung</strong>
+            für Jugendliche sind die richtige Gelegenheit, Gewicht und Wachstum zu besprechen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BMI-Rechner für Kinder 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bmi-kinder-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Warum gelten für Kinder andere BMI-Grenzen als für Erwachsene?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Weil sich der Körper von Kindern ständig verändert. Der normale BMI hängt stark von Alter und Geschlecht ab: Ein BMI von 18 kann bei einem 5-jährigen Kind Übergewicht bedeuten, bei einem 14-Jährigen aber völlig normal sein. Deshalb wird der Kinder-BMI über alters- und geschlechtsspezifische Perzentile eingeordnet, nicht über die festen WHO-Grenzen der Erwachsenen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet ein Perzentil beim BMI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Perzentil vergleicht Ihr Kind mit vielen gleichaltrigen Kindern desselben Geschlechts. Liegt der BMI auf dem 75. Perzentil, haben 75 % der gleichaltrigen Kinder einen niedrigeren und 25 % einen höheren BMI. Werte zwischen dem 10. und 90. Perzentil gelten als Normalgewicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab welchem BMI gilt mein Kind als übergewichtig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Übergewicht beginnt nach der AGA-Leitlinie über dem 90. Perzentil, Adipositas über dem 97. Perzentil. Der konkrete BMI-Wert hängt von Alter und Geschlecht ab: Bei einem 6-jährigen Jungen liegt die Übergewichtsgrenze bei etwa 17,9 kg/m², bei einem 14-Jährigen schon bei etwa 24,2 kg/m². Der Rechner zeigt die passenden Grenzen für das eingegebene Alter an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Für welches Alter ist dieser Rechner geeignet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner gilt für Kinder und Jugendliche von 2 bis 18 Jahren. Für Säuglinge und Kleinkinder unter 2 Jahren ist der BMI wenig aussagekräftig – hier nutzen Kinderärzte spezielle Gewichts- und Längenkurven. Ab 18 Jahren können Sie den normalen BMI-Rechner verwenden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Referenzwerte nutzt der Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner verwendet die in Deutschland gebräuchlichen Perzentile nach Kromeyer-Hauschild, die von der Arbeitsgemeinschaft Adipositas im Kindes- und Jugendalter (AGA) empfohlen werden. Sie beruhen auf Daten von rund 17.000 Jungen und 17.000 Mädchen aus 17 deutschen Studien."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mein Kind ist sportlich – stimmt der BMI dann überhaupt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der BMI unterscheidet nicht zwischen Muskel- und Fettmasse. Sehr muskulöse, sportliche Kinder können einen erhöhten BMI haben, ohne übergewichtig zu sein. Deshalb ist der BMI immer nur ein Anhaltspunkt. Eine zuverlässige Beurteilung mit Blick auf Körperbau und Entwicklung kann nur die Kinderärztin oder der Kinderarzt geben."
+        }
+      }
+    ]
+  })} />
+</Layout>

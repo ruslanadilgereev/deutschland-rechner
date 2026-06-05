@@ -1,0 +1,402 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KoerpergroesseKindRechner from '../components/rechner/KoerpergroesseKindRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Körpergröße-Rechner (Kind) – Wie groß wird mein Kind? | Zielgröße berechnen";
+const description = "Wie groß wird mein Kind voraussichtlich? Erwachsenen-Körpergröße mit der Zielgrößen-Methode aus der Größe von Mutter und Vater berechnen: (Mutter + Vater) ÷ 2 ± 6,5 cm, Streubereich ± 8,5 cm. Kostenlos & sofort.";
+const keywords = "Körpergröße Rechner Kind, wie groß wird mein Kind, Erwachsenengröße berechnen, Zielgröße Kind, genetische Zielgröße, Mittelelterngröße, Endgröße berechnen, Größe Kind vorhersagen, Wachstumsrechner Kind";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Körpergröße-Rechner (Kind)", url: "/koerpergroesse-kind-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Familie & Kinder', href: '/familie-kinder' },
+    { name: 'Körpergröße-Rechner (Kind)' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📏</span>
+          <div>
+            <h1 class="text-2xl font-bold">Körpergröße-Rechner (Kind)</h1>
+            <p class="text-blue-200 text-sm">Wie groß wird mein Kind? Zielgröße aus der Elterngröße</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Zielgrößen-Methode (genetische Zielgröße aus der Mittelelterngröße), wie sie in der Kinderheilkunde zur ersten Orientierung verwendet wird – Quellen: PTA-Forum, PEZZ Kinderhormonzentrum, AMBOSS</p>
+            <p class="mb-1"><strong>Berechnet:</strong> Mittelelterngröße = (Größe Mutter + Größe Vater) ÷ 2, dann + 6,5 cm für Jungen bzw. − 6,5 cm für Mädchen; wahrscheinliche Spanne = Zielgröße ± 8,5 cm</p>
+            <p><strong>Nicht berücksichtigt:</strong> aktuelle Größe und Alter des Kindes, Pubertätsstand, Knochenalter, Ernährung, Hormone oder Erkrankungen – das Ergebnis ist eine grobe statistische Schätzung und ersetzt keine kinderärztliche Beurteilung anhand von Perzentilenkurven.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KoerpergroesseKindRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wie groß wird mein Kind? Die Zielgrößen-Methode</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Viele Eltern fragen sich: <strong>„Wie groß wird mein Kind einmal?“</strong> Eine bewährte
+            Faustregel ist die <strong>Zielgrößen-Methode</strong> (auch Mittelelterngröße oder
+            genetische Zielgröße genannt). Sie schätzt die spätere Erwachsenengröße allein aus der
+            Größe von Mutter und Vater. Der Grund: Die Körpergröße ist zu einem großen Teil erblich –
+            Kinder ähneln in ihrer Endgröße meist ihren Eltern. Mit unserem
+            <strong>Körpergröße-Rechner für Kinder</strong> erhalten Sie sofort eine Prognose und die
+            wahrscheinliche Spanne.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel im Detail</h3>
+          <p>
+            Die Methode besteht aus zwei Schritten. Zuerst wird die <strong>Mittelelterngröße</strong>
+            gebildet, dann ein geschlechtsspezifischer Wert addiert oder abgezogen:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Mittelelterngröße</strong> = (Größe Mutter + Größe Vater) ÷ 2</li>
+              <li><strong>Jungen:</strong> Mittelelterngröße + 6,5 cm</li>
+              <li><strong>Mädchen:</strong> Mittelelterngröße − 6,5 cm</li>
+              <li><strong>Wahrscheinliche Spanne:</strong> Zielgröße ± 8,5 cm</li>
+            </ul>
+          </div>
+          <p>
+            Der Unterschied von rund 13 cm zwischen Jungen und Mädchen (zweimal 6,5 cm) spiegelt
+            wider, dass Männer im Durchschnitt etwa 13 cm größer sind als Frauen. Der Streubereich von
+            ± 8,5 cm berücksichtigt, dass nicht jedes Kind exakt im Mittel liegt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum nur eine Schätzung?</h3>
+          <p>
+            Die Körpergröße ist zwar stark genetisch geprägt, hängt aber von vielen weiteren Faktoren
+            ab: Ernährung, Hormonhaushalt (vor allem Wachstums- und Schilddrüsenhormone), chronische
+            Erkrankungen, Schlaf und der Zeitpunkt der Pubertät. Deshalb ist das Ergebnis eine
+            <strong>grobe Orientierung</strong> und keine exakte Vorhersage. In der kinderärztlichen
+            Praxis wird die Größe zusätzlich in <strong>Perzentilenkurven</strong> eingetragen und bei
+            Auffälligkeiten das <strong>Knochenalter</strong> per Röntgen der Hand bestimmt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Größe und Gewicht im Blick behalten</h3>
+          <p>
+            Größe allein sagt wenig über die gesunde Entwicklung aus – entscheidend ist das Verhältnis
+            zwischen Größe und Gewicht. Den Body-Mass-Index berechnen Sie mit unserem
+            <a href="/bmi-rechner" class="text-blue-600 hover:text-blue-800 underline">BMI-Rechner</a>.
+            Bei Kindern und Jugendlichen wird der BMI allerdings immer alters- und geschlechtsabhängig
+            über Perzentilen beurteilt und nicht mit festen Erwachsenen-Grenzwerten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle für die voraussichtliche Erwachsenen-Körpergröße:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Junge, durchschnittlich große Eltern</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Größe Mutter:</div>
+              <div class="font-medium text-gray-800">168 cm</div>
+              <div class="text-gray-600">Größe Vater:</div>
+              <div class="font-medium text-gray-800">180 cm</div>
+              <div class="text-gray-600">Mittelelterngröße:</div>
+              <div class="font-medium text-gray-800">174 cm</div>
+              <div class="text-gray-600">Zielgröße (+ 6,5 cm):</div>
+              <div class="font-medium text-blue-700">180,5 cm</div>
+              <div class="text-gray-600">Wahrscheinliche Spanne:</div>
+              <div class="font-medium text-green-700">172 – 189 cm</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-pink-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Mädchen, eher große Eltern</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Größe Mutter:</div>
+              <div class="font-medium text-gray-800">165 cm</div>
+              <div class="text-gray-600">Größe Vater:</div>
+              <div class="font-medium text-gray-800">178 cm</div>
+              <div class="text-gray-600">Mittelelterngröße:</div>
+              <div class="font-medium text-gray-800">171,5 cm</div>
+              <div class="text-gray-600">Zielgröße (− 6,5 cm):</div>
+              <div class="font-medium text-pink-700">165 cm</div>
+              <div class="text-gray-600">Wahrscheinliche Spanne:</div>
+              <div class="font-medium text-green-700">156,5 – 173,5 cm</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Junge, eher kleine Eltern</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Größe Mutter:</div>
+              <div class="font-medium text-gray-800">158 cm</div>
+              <div class="text-gray-600">Größe Vater:</div>
+              <div class="font-medium text-gray-800">172 cm</div>
+              <div class="text-gray-600">Mittelelterngröße:</div>
+              <div class="font-medium text-gray-800">165 cm</div>
+              <div class="text-gray-600">Zielgröße (+ 6,5 cm):</div>
+              <div class="font-medium text-blue-700">171,5 cm</div>
+              <div class="text-gray-600">Wahrscheinliche Spanne:</div>
+              <div class="font-medium text-green-700">163 – 180 cm</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Die Spanne von ± 8,5 cm ist bewusst breit. Selbst Geschwister mit
+          denselben Eltern können sich am Ende deutlich in der Größe unterscheiden.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Missverständnisse</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Die Zielgröße als feste Vorhersage lesen</h3>
+            <p>Der berechnete Wert ist ein <strong>Mittelwert</strong>. Die tatsächliche Endgröße
+            liegt in einem breiten Bereich – und in Einzelfällen sogar außerhalb der ± 8,5 cm.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: +6,5 cm und −6,5 cm vertauschen</h3>
+            <p>Für <strong>Jungen</strong> wird addiert, für <strong>Mädchen</strong> subtrahiert.
+            Wer das vertauscht, erhält eine um 13 cm verschobene Prognose.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Aktuelle Größe des Kindes ignorieren</h3>
+            <p>Die Zielgrößen-Methode nutzt nur die Elterngrößen. Eine genauere Einschätzung gelingt,
+            wenn die Kinderärztin die aktuelle Größe in die <strong>Perzentilenkurve</strong> einträgt
+            und den bisherigen Wachstumsverlauf einbezieht.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Missverständnis: Früher Wachstumsschub = später groß</h3>
+            <p>Ein früher Pubertätsbeginn kann das Wachstum sogar <strong>früher beenden</strong>.
+            Kinder, die früh in die Höhe schießen, sind nicht automatisch als Erwachsene die größten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß wird mein Kind voraussichtlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine erste Schätzung liefert die Zielgrößen-Methode: Bilden Sie den Mittelwert aus der
+              Größe von Mutter und Vater und addieren Sie bei Jungen 6,5 cm bzw. ziehen Sie bei Mädchen
+              6,5 cm ab. Die tatsächliche Erwachsenengröße liegt mit hoher Wahrscheinlichkeit in einem
+              Bereich von ± 8,5 cm um diesen Wert. Geben Sie die Elterngrößen in den Rechner ein, um
+              Ihre persönliche Prognose zu sehen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist die Zielgrößen-Methode?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Sie ist eine <strong>grobe Orientierung</strong>, keine exakte Vorhersage. Die
+              tatsächliche Endgröße kann um mehrere Zentimeter abweichen, weil neben den Genen auch
+              Ernährung, Hormone, Erkrankungen und der Zeitpunkt der Pubertät das Wachstum beeinflussen.
+              Deshalb gibt der Rechner bewusst eine Spanne von ± 8,5 cm an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum werden bei Jungen 6,5 cm addiert und bei Mädchen abgezogen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Männer sind im Durchschnitt etwa 13 cm größer als Frauen. Da die Mittelelterngröße
+              beide Elternteile gleich gewichtet, gleicht der Wert von 6,5 cm in beide Richtungen
+              (zusammen 13 cm) diesen geschlechtsbedingten Unterschied aus.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann mein Kind größer oder kleiner als die Eltern werden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Die berechnete Zielgröße ist nur der wahrscheinlichste Wert. Durch die natürliche
+              Streuung kann ein Kind durchaus größer oder kleiner werden als beide Elternteile –
+              besonders, wenn Großeltern oder andere Verwandte deutlich abweichende Größen hatten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann steht die endgültige Körpergröße fest?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Längenwachstum endet meist mit dem Schluss der Wachstumsfugen am Ende der Pubertät.
+              Bei Mädchen ist das in der Regel mit etwa 15 bis 17 Jahren der Fall, bei Jungen mit etwa
+              17 bis 19 Jahren. Danach verändert sich die Körpergröße kaum noch.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann sollte ich wegen der Körpergröße zum Arzt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Wenn die Größe Ihres Kindes deutlich von der Perzentilenkurve abweicht, das Kind sehr
+              langsam oder plötzlich sehr schnell wächst oder die berechnete Zielgröße stark von der
+              tatsächlichen Entwicklung abweicht, ist die Kinderärztin oder der Kinderarzt die richtige
+              Anlaufstelle. Dort kann unter anderem das Knochenalter bestimmt und ein möglicher
+              Klein- oder Hochwuchs abgeklärt werden.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/kindergeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kindergeld-Rechner</p>
+          </a>
+          <a href="/elterngeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Elterngeld-Rechner</p>
+          </a>
+          <a href="/eisprung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📅</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eisprung-Rechner</p>
+          </a>
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorien-Rechner</p>
+          </a>
+          <a href="/familie-kinder" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👨‍👩‍👧‍👦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Alle Familie-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Körpergröße-Rechner (Kind)",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/koerpergroesse-kind-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie groß wird mein Kind voraussichtlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine erste Schätzung liefert die Zielgrößen-Methode: Bilden Sie den Mittelwert aus der Größe von Mutter und Vater und addieren Sie bei Jungen 6,5 cm bzw. ziehen Sie bei Mädchen 6,5 cm ab. Die tatsächliche Erwachsenengröße liegt mit hoher Wahrscheinlichkeit in einem Bereich von ± 8,5 cm um diesen Wert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist die Zielgrößen-Methode?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sie ist eine grobe Orientierung, keine exakte Vorhersage. Die tatsächliche Endgröße kann um mehrere Zentimeter abweichen, weil neben den Genen auch Ernährung, Hormone, Erkrankungen und der Zeitpunkt der Pubertät das Wachstum beeinflussen. Deshalb gibt der Rechner bewusst eine Spanne von ± 8,5 cm an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum werden bei Jungen 6,5 cm addiert und bei Mädchen abgezogen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Männer sind im Durchschnitt etwa 13 cm größer als Frauen. Da die Mittelelterngröße beide Elternteile gleich gewichtet, gleicht der Wert von 6,5 cm in beide Richtungen (zusammen 13 cm) diesen geschlechtsbedingten Unterschied aus."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann mein Kind größer oder kleiner als die Eltern werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Die berechnete Zielgröße ist nur der wahrscheinlichste Wert. Durch die natürliche Streuung kann ein Kind durchaus größer oder kleiner werden als beide Elternteile – besonders, wenn Großeltern oder andere Verwandte deutlich abweichende Größen hatten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann steht die endgültige Körpergröße fest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Längenwachstum endet meist mit dem Schluss der Wachstumsfugen am Ende der Pubertät. Bei Mädchen ist das in der Regel mit etwa 15 bis 17 Jahren der Fall, bei Jungen mit etwa 17 bis 19 Jahren. Danach verändert sich die Körpergröße kaum noch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann sollte ich wegen der Körpergröße zum Arzt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wenn die Größe Ihres Kindes deutlich von der Perzentilenkurve abweicht, das Kind sehr langsam oder plötzlich sehr schnell wächst oder die berechnete Zielgröße stark von der tatsächlichen Entwicklung abweicht, ist die Kinderärztin oder der Kinderarzt die richtige Anlaufstelle. Dort kann unter anderem das Knochenalter bestimmt und ein möglicher Klein- oder Hochwuchs abgeklärt werden."
+        }
+      }
+    ]
+  })} />
+</Layout>

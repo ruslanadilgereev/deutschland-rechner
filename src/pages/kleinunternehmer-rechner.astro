@@ -1,0 +1,423 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KleinunternehmerRechner from '../components/rechner/KleinunternehmerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Kleinunternehmer-Rechner 2026 – Kleinunternehmerregelung § 19 UStG prüfen";
+const description = "Kleinunternehmerregelung nach § 19 UStG prüfen: Sind Sie Kleinunternehmer? Umsatzgrenzen 25.000 € (Vorjahr) und 100.000 € (laufendes Jahr) seit 2025 – kostenloser Rechner mit Erklärung zu Umsatzsteuer und Vorsteuer.";
+const keywords = "Kleinunternehmer Rechner, Kleinunternehmerregelung, § 19 UStG, Kleinunternehmer 2025, Kleinunternehmer 2026, Umsatzgrenze Kleinunternehmer, 25000 Euro Grenze, 100000 Euro Grenze, Kleinunternehmer Umsatzsteuer, keine Umsatzsteuer, Kleinunternehmer prüfen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Kleinunternehmer-Rechner", url: "/kleinunternehmer-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Kleinunternehmer-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧾</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kleinunternehmer-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kleinunternehmerregelung nach § 19 UStG prüfen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 19 UStG in der seit 01.01.2025 geltenden Fassung (Reform durch das Jahressteuergesetz 2024) sowie das BMF-Schreiben vom 18.03.2025</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Umsatzgrenze Vorjahr (25.000 €), Umsatzgrenze laufendes Jahr (100.000 €), Neugründung ohne Vorjahr, sofortiges Ende beim Überschreiten der oberen Grenze</p>
+            <p><strong>Nicht berücksichtigt:</strong> Sonderfälle wie innergemeinschaftliche Umsätze, steuerfreie Umsätze, Geschäftsveräußerung im Ganzen oder die neue EU-Kleinunternehmerregelung nach § 19a UStG – der Rechner liefert eine erste Orientierung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KleinunternehmerRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kleinunternehmerregelung § 19 UStG: Wer ist Kleinunternehmer?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Kleinunternehmerregelung</strong> nach § 19 Umsatzsteuergesetz (UStG) erlaubt es
+            kleinen Unternehmen, Freiberuflern und Selbstständigen, ohne Umsatzsteuer zu arbeiten. Wer
+            Kleinunternehmer ist, weist auf seinen Rechnungen <strong>keine Umsatzsteuer</strong> aus,
+            muss keine Umsatzsteuer-Voranmeldung abgeben – darf im Gegenzug aber auch
+            <strong> keine Vorsteuer</strong> aus Eingangsrechnungen abziehen. Mit unserem
+            <strong> Kleinunternehmer-Rechner</strong> prüfen Sie in Sekunden, ob Sie die Voraussetzungen
+            erfüllen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die zwei entscheidenden Umsatzgrenzen (seit 2025)</h3>
+          <p>
+            Zum 1. Januar 2025 wurde die Kleinunternehmerregelung grundlegend reformiert. Maßgeblich sind
+            seitdem zwei Grenzen, die <strong>beide eingehalten</strong> werden müssen:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Vorjahresumsatz:</strong> höchstens 25.000 € (vorher 22.000 €)</li>
+              <li><strong>Laufendes Jahr:</strong> höchstens 100.000 € (vorher 50.000 € als Prognose)</li>
+            </ul>
+          </div>
+          <p>
+            Beide Beträge werden seit 2025 <strong>netto</strong> betrachtet – also ohne Umsatzsteuer.
+            Das ist eine wichtige Änderung gegenüber der alten Rechtslage, bei der die Grenzen brutto
+            galten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Fallbeil-Effekt bei 100.000 €</h3>
+          <p>
+            Die 100.000-€-Grenze ist seit 2025 <strong>keine Prognose mehr, sondern eine feste Grenze</strong>.
+            Sobald Ihr Umsatz im laufenden Jahr diese Marke überschreitet, endet die
+            Kleinunternehmer-Eigenschaft <strong>sofort</strong> – und zwar bereits mit dem Umsatz, der zur
+            Überschreitung führt. Genau dieser Umsatz unterliegt schon der
+            <a href="/mehrwertsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Umsatzsteuer</a>.
+            Die zuvor erzielten Umsätze bleiben hingegen steuerfrei.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Neugründung: kein Vorjahr, keine Hochrechnung</h3>
+          <p>
+            Wer im laufenden Jahr <strong>neu gründet</strong>, hat keinen Vorjahresumsatz. Hier zählt
+            allein, dass der Umsatz im Gründungsjahr die Grenze nicht überschreitet. Seit 2025 wird der
+            tatsächliche Umsatz dabei <strong>nicht mehr auf ein volles Jahr hochgerechnet</strong> – auch
+            wer erst im Dezember startet, darf den vollen Jahresbetrag ausschöpfen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Echte Steuerbefreiung statt Nichterhebung</h3>
+          <p>
+            Seit 2025 sind die Umsätze von Kleinunternehmern <strong>echt steuerbefreit</strong> (vorher
+            wurde die Steuer nur „nicht erhoben“). Praktisch ändert sich für die meisten wenig: weiterhin
+            keine Umsatzsteuer auf der Rechnung, weiterhin kein Vorsteuerabzug. Auf die Rechnung gehört
+            ein Hinweis wie „Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.“
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freiwillig auf die Regelung verzichten?</h3>
+          <p>
+            Sie können freiwillig <strong>auf die Kleinunternehmerregelung verzichten</strong> und zur
+            Regelbesteuerung optieren – etwa wenn Sie hohe Investitionen tätigen und die Vorsteuer
+            abziehen möchten. Achtung: An diesen Verzicht sind Sie <strong>fünf Jahre</strong> gebunden.
+            Der Schritt sollte daher gut überlegt sein.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispiele</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich unterschiedliche Umsätze auf den Kleinunternehmer-Status aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-green-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Solo-Selbstständige bleibt Kleinunternehmerin</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Vorjahresumsatz:</div>
+              <div class="font-medium text-gray-800">18.000 €</div>
+              <div class="text-gray-600">Erwartet laufendes Jahr:</div>
+              <div class="font-medium text-gray-800">30.000 €</div>
+              <div class="text-gray-600">Vorjahr (Grenze 25.000 €):</div>
+              <div class="font-medium text-green-700">eingehalten</div>
+              <div class="text-gray-600">Laufend (Grenze 100.000 €):</div>
+              <div class="font-medium text-green-700">eingehalten</div>
+              <div class="text-gray-600">Status:</div>
+              <div class="font-medium text-green-700">Kleinunternehmer ✅</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Vorjahr zu hoch</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Vorjahresumsatz:</div>
+              <div class="font-medium text-gray-800">28.000 €</div>
+              <div class="text-gray-600">Erwartet laufendes Jahr:</div>
+              <div class="font-medium text-gray-800">35.000 €</div>
+              <div class="text-gray-600">Vorjahr (Grenze 25.000 €):</div>
+              <div class="font-medium text-red-700">überschritten</div>
+              <div class="text-gray-600">Status:</div>
+              <div class="font-medium text-red-700">Regelbesteuerung ⚠️</div>
+            </div>
+            <p class="text-xs text-gray-600 mt-2">
+              Schon weil der Vorjahresumsatz über 25.000 € lag, entfällt die Regelung für das gesamte
+              laufende Jahr – auch wenn der aktuelle Umsatz niedrig ist.
+            </p>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Fallbeil bei 100.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Vorjahresumsatz:</div>
+              <div class="font-medium text-gray-800">22.000 €</div>
+              <div class="text-gray-600">Erwartet laufendes Jahr:</div>
+              <div class="font-medium text-gray-800">110.000 €</div>
+              <div class="text-gray-600">Laufend (Grenze 100.000 €):</div>
+              <div class="font-medium text-red-700">überschritten</div>
+              <div class="text-gray-600">Status:</div>
+              <div class="font-medium text-red-700">Regelbesteuerung ab Überschreitung ⚠️</div>
+            </div>
+            <p class="text-xs text-gray-600 mt-2">
+              Ab dem Umsatz, mit dem die 100.000 € überschritten werden, gilt die Regelbesteuerung. Die
+              bis dahin erzielten Umsätze bleiben steuerfrei.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Wer dauerhaft an die obere Grenze stößt, sollte die Umstellung auf die
+          Regelbesteuerung frühzeitig planen – etwa Preise und Buchhaltung anpassen, damit der Wechsel
+          nicht zur Stolperfalle wird.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Alte Grenzen verwenden</h3>
+            <p>Viele rechnen noch mit 22.000 € und 50.000 €. Seit 2025 gelten 25.000 € (Vorjahr) und
+            100.000 € (laufendes Jahr).</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Brutto statt netto rechnen</h3>
+            <p>Seit 2025 werden die Grenzen netto betrachtet. Wer noch brutto rechnet, kann sich
+            verschätzen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: 100.000 € als Prognose behandeln</h3>
+            <p>Die obere Grenze ist keine Schätzung mehr. Wird sie überschritten, endet die
+            Kleinunternehmer-Eigenschaft sofort – nicht erst im Folgejahr.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verzicht bindet 5 Jahre</h3>
+            <p>Ein freiwilliger Verzicht auf die Kleinunternehmerregelung gilt für mindestens fünf
+            Kalenderjahre. Erst danach ist eine Rückkehr möglich.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Mehrere Tätigkeiten</h3>
+            <p>Die Umsätze aller selbstständigen Tätigkeiten einer Person werden zusammengerechnet. Wer
+            mehrere Standbeine hat, prüft die Grenze über die Summe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Kleinunternehmerregelung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind die Umsatzgrenzen für Kleinunternehmer 2025 und 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Seit dem 1. Januar 2025 darf der Vorjahresumsatz höchstens <strong>25.000 €</strong>
+              betragen und der Umsatz im laufenden Jahr höchstens <strong>100.000 €</strong>. Beide
+              Grenzen werden netto betrachtet und müssen gleichzeitig eingehalten werden. Diese Werte
+              gelten auch 2026 unverändert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert, wenn ich die 100.000-Euro-Grenze überschreite?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Dann endet Ihre Kleinunternehmer-Eigenschaft <strong>sofort</strong> – bereits mit dem
+              Umsatz, der die Grenze überschreitet. Dieser Umsatz unterliegt schon der Regelbesteuerung,
+              Sie müssen ab da Umsatzsteuer ausweisen. Die bis dahin erzielten Umsätze bleiben steuerfrei.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Werden die Grenzen brutto oder netto berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Seit 2025 werden die Umsatzgrenzen <strong>netto</strong> betrachtet, also ohne
+              Umsatzsteuer. Bis Ende 2024 galt noch die Bruttobetrachtung. Geben Sie im Rechner daher
+              Ihre Nettoumsätze ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt für Neugründer eine besondere Grenze?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer Neugründung gibt es keinen Vorjahresumsatz. Es zählt allein, dass der Umsatz
+              im Gründungsjahr 25.000 € nicht überschreitet. Eine Hochrechnung auf ein volles Jahr findet
+              seit 2025 <strong>nicht mehr statt</strong> – auch wer spät im Jahr startet, darf den vollen
+              Betrag nutzen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Vor- und Nachteile hat die Kleinunternehmerregelung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p><strong>Vorteile:</strong> keine Umsatzsteuer auf Rechnungen, keine
+              Umsatzsteuer-Voranmeldung, weniger Bürokratie und günstigere Preise für Privatkunden.
+              <strong> Nachteile:</strong> kein Vorsteuerabzug aus Eingangsrechnungen – bei hohen
+              Investitionen kann die Regelbesteuerung günstiger sein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich freiwillig auf die Kleinunternehmerregelung verzichten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Sie können zur Regelbesteuerung optieren, etwa um Vorsteuer abziehen zu können. An
+              diesen Verzicht sind Sie jedoch <strong>fünf Jahre</strong> gebunden, bevor Sie wieder
+              zurückwechseln können. Der Schritt sollte daher gut überlegt sein.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏭</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/skonto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Skonto-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/steuern-abgaben" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🗂️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Alle Steuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kleinunternehmer-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kleinunternehmer-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die Umsatzgrenzen für Kleinunternehmer 2025 und 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seit dem 1. Januar 2025 darf der Vorjahresumsatz höchstens 25.000 € betragen und der Umsatz im laufenden Jahr höchstens 100.000 €. Beide Grenzen werden netto betrachtet und müssen gleichzeitig eingehalten werden. Diese Werte gelten auch 2026 unverändert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert, wenn ich die 100.000-Euro-Grenze überschreite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dann endet Ihre Kleinunternehmer-Eigenschaft sofort – bereits mit dem Umsatz, der die Grenze überschreitet. Dieser Umsatz unterliegt schon der Regelbesteuerung, Sie müssen ab da Umsatzsteuer ausweisen. Die bis dahin erzielten Umsätze bleiben steuerfrei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden die Grenzen brutto oder netto berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seit 2025 werden die Umsatzgrenzen netto betrachtet, also ohne Umsatzsteuer. Bis Ende 2024 galt noch die Bruttobetrachtung. Geben Sie im Rechner daher Ihre Nettoumsätze ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt für Neugründer eine besondere Grenze?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Neugründung gibt es keinen Vorjahresumsatz. Es zählt allein, dass der Umsatz im Gründungsjahr 25.000 € nicht überschreitet. Eine Hochrechnung auf ein volles Jahr findet seit 2025 nicht mehr statt – auch wer spät im Jahr startet, darf den vollen Betrag nutzen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Vor- und Nachteile hat die Kleinunternehmerregelung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vorteile: keine Umsatzsteuer auf Rechnungen, keine Umsatzsteuer-Voranmeldung, weniger Bürokratie und günstigere Preise für Privatkunden. Nachteile: kein Vorsteuerabzug aus Eingangsrechnungen – bei hohen Investitionen kann die Regelbesteuerung günstiger sein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich freiwillig auf die Kleinunternehmerregelung verzichten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Sie können zur Regelbesteuerung optieren, etwa um Vorsteuer abziehen zu können. An diesen Verzicht sind Sie jedoch fünf Jahre gebunden, bevor Sie wieder zurückwechseln können. Der Schritt sollte daher gut überlegt sein."
+        }
+      }
+    ]
+  })} />
+</Layout>
