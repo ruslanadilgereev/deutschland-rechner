@@ -1,0 +1,427 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TaschengeldRechner from '../components/rechner/TaschengeldRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Taschengeld-Rechner 2026 – Empfehlung nach Alter (DJI-Tabelle)";
+const description = "Wie viel Taschengeld ist angemessen? Empfohlener Betrag nach Alter auf Basis der DJI-Taschengeldtabelle: Spanne, Auszahlungsrhythmus und Hochrechnung pro Monat. Kostenlos & ohne Anmeldung.";
+const keywords = "Taschengeld-Rechner, Taschengeldtabelle 2026, Taschengeld nach Alter, wie viel Taschengeld, DJI Taschengeld, Taschengeld Empfehlung, Taschengeld 10 Jahre, Taschengeld Jugendliche";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Taschengeld-Rechner", url: "/taschengeld-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Familie & Kinder', href: '/familie-kinder' },
+    { name: 'Taschengeld-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪙</span>
+          <div>
+            <h1 class="text-2xl font-bold">Taschengeld-Rechner 2026</h1>
+            <p class="text-amber-100 text-sm">Empfohlener Betrag nach Alter (DJI-Tabelle)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Taschengeld-Empfehlungen des Deutschen Jugendinstituts (DJI), wie sie von Jugendämtern und Verbraucherzentralen verwendet werden</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Empfohlene Betragsspanne je Altersjahr (1–18), Auszahlungsrhythmus (wöchentlich bis 9 Jahre, danach monatlich) sowie eine Hochrechnung auf Monat und Jahr</p>
+            <p><strong>Nicht berücksichtigt:</strong> Familieneinkommen, Wohnort, „Budgetgeld“ für Kleidung oder Schulsachen und individuelle Reife – die Tabellenwerte sind Richtwerte, keine festen Vorgaben. Es gibt in Deutschland <em>kein Gesetz</em>, das die Höhe von Taschengeld regelt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TaschengeldRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Taschengeld 2026: Wie viel ist angemessen?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wie viel <strong>Taschengeld</strong> Ihr Kind bekommen sollte, ist eine der häufigsten Erziehungsfragen –
+            und es gibt keine gesetzliche Vorgabe dazu. Als Orientierung dient die <strong>Taschengeldtabelle des
+            Deutschen Jugendinstituts (DJI)</strong>, die auch von Jugendämtern empfohlen wird. Unser Taschengeld-Rechner
+            zeigt Ihnen die empfohlene Betragsspanne für jedes Alter, den passenden Auszahlungsrhythmus und eine
+            Hochrechnung auf Monat und Jahr.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die DJI-Taschengeldtabelle (Richtwerte)</h3>
+          <p>
+            Die folgenden Spannen gelten als gängige Empfehlung. Innerhalb der Spanne wählen Sie selbst einen Betrag,
+            der zu Ihrer Familiensituation passt:
+          </p>
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-amber-50 text-left">
+                  <th class="p-2 border-b border-amber-100 font-semibold text-gray-700">Alter</th>
+                  <th class="p-2 border-b border-amber-100 font-semibold text-gray-700">Empfehlung</th>
+                  <th class="p-2 border-b border-amber-100 font-semibold text-gray-700">Rhythmus</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600">
+                <tr><td class="p-2 border-b border-gray-100">unter 4 Jahren</td><td class="p-2 border-b border-gray-100">noch kein Taschengeld</td><td class="p-2 border-b border-gray-100">–</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">4–5 Jahre</td><td class="p-2 border-b border-gray-100">1–2 €</td><td class="p-2 border-b border-gray-100">wöchentlich</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">6–7 Jahre</td><td class="p-2 border-b border-gray-100">2–3 €</td><td class="p-2 border-b border-gray-100">wöchentlich</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">8–9 Jahre</td><td class="p-2 border-b border-gray-100">3–4 €</td><td class="p-2 border-b border-gray-100">wöchentlich</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">10–11 Jahre</td><td class="p-2 border-b border-gray-100">15–25 €</td><td class="p-2 border-b border-gray-100">monatlich</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">12–13 Jahre</td><td class="p-2 border-b border-gray-100">20–30 €</td><td class="p-2 border-b border-gray-100">monatlich</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">14–15 Jahre</td><td class="p-2 border-b border-gray-100">25–45 €</td><td class="p-2 border-b border-gray-100">monatlich</td></tr>
+                <tr><td class="p-2 border-b border-gray-100">16–17 Jahre</td><td class="p-2 border-b border-gray-100">40–60 €</td><td class="p-2 border-b border-gray-100">monatlich</td></tr>
+                <tr><td class="p-2">18 Jahre</td><td class="p-2">55–75 €</td><td class="p-2">monatlich</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-400">
+            Die DJI-Empfehlungen werden in mehrjährigen Abständen an die Inflation angepasst; die letzte Anpassung der
+            unteren Altersgruppen erfolgte 2024. Verschiedene Jugendämter und Banken nennen leicht abweichende Spannen –
+            betrachten Sie die Werte als Korridor, nicht als feste Zahl.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum erst wöchentlich, dann monatlich?</h3>
+          <p>
+            Kleine Kinder können einen langen Zeitraum noch nicht überblicken. Ein wöchentlicher Rhythmus bis etwa
+            9 Jahre macht den Zusammenhang zwischen „Geld da“ und „Geld weg“ greifbar. Ab 10 Jahren ist eine
+            <strong>monatliche Auszahlung</strong> sinnvoll: Sie zwingt zum Einteilen über mehrere Wochen – eine
+            zentrale Vorstufe zum späteren Umgang mit dem ersten eigenen Gehalt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Taschengeld als Erziehungswerkzeug</h3>
+          <p>
+            Taschengeld ist kein Lohn und keine Belohnung. Es soll regelmäßig fließen – unabhängig von Noten oder
+            Verhalten. Der pädagogische Wert entsteht gerade dadurch, dass Kinder selbst entscheiden, sparen und
+            auch Fehlkäufe machen dürfen. Wer früh den Umgang mit kleinen Beträgen übt, tut sich später leichter mit
+            größeren finanziellen Entscheidungen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispiele: Taschengeld nach Alter</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So liest sich die Empfehlung in der Praxis (jeweils Mitte der Spanne als Richtwert):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Grundschulkind, 8 Jahre</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Empfohlene Spanne:</div>
+              <div class="font-medium text-gray-800">3–4 € / Woche</div>
+              <div class="text-gray-600">Richtwert:</div>
+              <div class="font-medium text-gray-800">3,50 € / Woche</div>
+              <div class="text-gray-600">Auszahlung:</div>
+              <div class="font-medium text-gray-800">wöchentlich</div>
+              <div class="text-gray-600">Umgerechnet pro Monat:</div>
+              <div class="font-medium text-gray-800">~15 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-amber-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Jugendliche, 15 Jahre</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Empfohlene Spanne:</div>
+              <div class="font-medium text-gray-800">25–45 € / Monat</div>
+              <div class="text-gray-600">Richtwert:</div>
+              <div class="font-medium text-gray-800">35 € / Monat</div>
+              <div class="text-gray-600">Auszahlung:</div>
+              <div class="font-medium text-gray-800">monatlich</div>
+              <div class="text-gray-600">Pro Jahr:</div>
+              <div class="font-medium text-gray-800">~420 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-4 text-sm text-amber-800">
+          <strong>💡 Tipp:</strong> Geben Sie oben das genaue Alter Ihres Kindes ein. Der Rechner zeigt die Spanne,
+          den Richtwert und rechnet wöchentliche Beträge automatisch auf den Monat hoch – so lassen sich die
+          Altersstufen direkt vergleichen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Taschengeld an Noten oder Verhalten koppeln</h3>
+            <p>Taschengeld ist kein Lohn. Wird es als Belohnung oder Strafe eingesetzt, verliert es seine Funktion
+            als verlässliches Übungsfeld. Zahlen Sie es regelmäßig und unabhängig vom Verhalten.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Bei leerer Kasse aufstocken</h3>
+            <p>Wenn das Geld vor dem nächsten Termin weg ist, sollte nicht nachgeschossen werden. Der Lerneffekt
+            entsteht gerade durch die Erfahrung, dass das Budget begrenzt ist.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Budgetgeld ab ca. 14 Jahren</h3>
+            <p>Ältere Jugendliche bekommen oft zusätzlich ein „Budgetgeld“ für Kleidung, Schulmaterial oder das
+            Handy. Das ist getrennt vom Taschengeld zu sehen und liegt deutlich über den hier genannten Spannen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Geschwister & Gerechtigkeit</h3>
+            <p>Jüngere Geschwister vergleichen schnell. Es hilft, die Logik „mehr Taschengeld mit mehr Alter und
+            mehr Verantwortung“ früh zu erklären – nicht alle Kinder bekommen gleich viel, sondern altersgerecht.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Eigenes Konto fürs Kind</h3>
+            <p>Ab etwa 12–14 Jahren kann ein Taschengeld- oder Jugendkonto sinnvoll sein. Der Umgang mit Karte und
+            digitalem Geld will zusätzlich geübt werden – Bargeld bleibt für jüngere Kinder anschaulicher.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Der Richtwert ist ein <strong>Startpunkt</strong>, kein fixer Tarif. So nutzen Sie ihn:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Spanne als Korridor verstehen</p>
+              <p>Bleiben Sie innerhalb der angezeigten Spanne. Den genauen Betrag legen Sie nach Familieneinkommen,
+              Wohnort (Stadt vs. Land) und Reife des Kindes fest.</p>
+            </div>
+
+            <div class="bg-amber-50 rounded-lg p-3">
+              <p class="font-semibold text-amber-800 mb-1">📈 Jährlich anpassen</p>
+              <p>Erhöhen Sie das Taschengeld zu einem festen Zeitpunkt – etwa zum Geburtstag oder Schuljahresbeginn.
+              So wird der Anstieg planbar und nachvollziehbar.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">💬 Regeln vorher klären</p>
+              <p>Besprechen Sie, wofür das Taschengeld gedacht ist und was weiterhin die Eltern zahlen. Klare
+              Erwartungen verhindern Streit – und das Kind weiß, womit es planen kann.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Taschengeld</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Taschengeld ist mit 10 Jahren angemessen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für 10- bis 11-Jährige empfiehlt die DJI-Taschengeldtabelle <strong>15 bis 25 € pro Monat</strong>.
+              Ab 10 Jahren wird das Taschengeld monatlich ausgezahlt, damit das Kind lernt, das Geld über mehrere
+              Wochen einzuteilen. Der konkrete Betrag innerhalb der Spanne hängt von Familieneinkommen und
+              Lebensumständen ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab welchem Alter sollte man Taschengeld geben?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Sinnvoll wird Taschengeld etwa ab dem <strong>4. bis 5. Lebensjahr</strong> mit kleinen Beträgen
+              von 1 bis 2 € pro Woche. Vorher verstehen Kinder das Konzept von Geld noch nicht. Spätestens mit dem
+              Schuleintritt sollte ein regelmäßiges, kleines Taschengeld eingeführt sein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gibt es ein Gesetz, das die Höhe von Taschengeld regelt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p><strong>Nein.</strong> In Deutschland gibt es keine gesetzliche Pflicht und keine vorgeschriebene
+              Höhe für Taschengeld. Die Werte stammen aus den Empfehlungen des Deutschen Jugendinstituts (DJI), die
+              von Jugendämtern verwendet werden. Der oft genannte „Taschengeldparagraph“ (§ 110 BGB) regelt nur,
+              dass Kinder mit ihrem Taschengeld kleine Käufe wirksam tätigen dürfen – nicht dessen Höhe.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum soll man Taschengeld bis 9 Jahre wöchentlich zahlen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Jüngere Kinder können längere Zeiträume noch nicht überblicken. Eine <strong>wöchentliche
+              Auszahlung</strong> macht den Zusammenhang zwischen verfügbarem und ausgegebenem Geld direkt erfahrbar.
+              Erst ab etwa 10 Jahren ist eine monatliche Auszahlung sinnvoll, weil das Kind dann ein längeres
+              Budget einteilen kann.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Darf man Taschengeld als Strafe kürzen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Pädagogisch wird davon abgeraten. Taschengeld ist kein Lohn und keine Belohnung, sondern ein festes
+              Übungsfeld für den Umgang mit Geld. Wird es an Verhalten oder Noten gekoppelt, verliert es seine
+              Funktion. Besser ist es, <strong>regelmäßig und verlässlich</strong> zu zahlen – unabhängig vom Verhalten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Taschengeld bekommt ein 16-Jähriger?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für 16- bis 17-Jährige empfiehlt die Tabelle <strong>40 bis 60 € pro Monat</strong>. In diesem Alter
+              kommt häufig zusätzlich ein „Budgetgeld“ für Kleidung, Handy oder Schulsachen hinzu, das getrennt vom
+              Taschengeld zu sehen ist. Mit eigenem Nebenjob verschiebt sich die Aufteilung oft weiter.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kindergeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kindergeld-Rechner</p>
+          </a>
+          <a href="/elterngeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Elterngeld-Rechner</p>
+          </a>
+          <a href="/unterhalt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Unterhalt-Rechner</p>
+          </a>
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">ETF-Sparplan-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/minijob-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧑‍🔧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Minijob-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Taschengeld-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/taschengeld-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Taschengeld ist mit 10 Jahren angemessen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für 10- bis 11-Jährige empfiehlt die DJI-Taschengeldtabelle 15 bis 25 € pro Monat. Ab 10 Jahren wird das Taschengeld monatlich ausgezahlt, damit das Kind lernt, das Geld über mehrere Wochen einzuteilen. Der konkrete Betrag innerhalb der Spanne hängt von Familieneinkommen und Lebensumständen ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab welchem Alter sollte man Taschengeld geben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sinnvoll wird Taschengeld etwa ab dem 4. bis 5. Lebensjahr mit kleinen Beträgen von 1 bis 2 € pro Woche. Vorher verstehen Kinder das Konzept von Geld noch nicht. Spätestens mit dem Schuleintritt sollte ein regelmäßiges, kleines Taschengeld eingeführt sein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es ein Gesetz, das die Höhe von Taschengeld regelt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. In Deutschland gibt es keine gesetzliche Pflicht und keine vorgeschriebene Höhe für Taschengeld. Die Werte stammen aus den Empfehlungen des Deutschen Jugendinstituts (DJI), die von Jugendämtern verwendet werden. Der oft genannte Taschengeldparagraph (§ 110 BGB) regelt nur, dass Kinder mit ihrem Taschengeld kleine Käufe wirksam tätigen dürfen – nicht dessen Höhe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum soll man Taschengeld bis 9 Jahre wöchentlich zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jüngere Kinder können längere Zeiträume noch nicht überblicken. Eine wöchentliche Auszahlung macht den Zusammenhang zwischen verfügbarem und ausgegebenem Geld direkt erfahrbar. Erst ab etwa 10 Jahren ist eine monatliche Auszahlung sinnvoll, weil das Kind dann ein längeres Budget einteilen kann."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Darf man Taschengeld als Strafe kürzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pädagogisch wird davon abgeraten. Taschengeld ist kein Lohn und keine Belohnung, sondern ein festes Übungsfeld für den Umgang mit Geld. Wird es an Verhalten oder Noten gekoppelt, verliert es seine Funktion. Besser ist es, regelmäßig und verlässlich zu zahlen – unabhängig vom Verhalten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Taschengeld bekommt ein 16-Jähriger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für 16- bis 17-Jährige empfiehlt die Tabelle 40 bis 60 € pro Monat. In diesem Alter kommt häufig zusätzlich ein Budgetgeld für Kleidung, Handy oder Schulsachen hinzu, das getrennt vom Taschengeld zu sehen ist. Mit eigenem Nebenjob verschiebt sich die Aufteilung oft weiter."
+        }
+      }
+    ]
+  })} />
+</Layout>

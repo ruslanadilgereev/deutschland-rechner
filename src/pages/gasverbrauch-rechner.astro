@@ -1,0 +1,397 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GasverbrauchRechner from '../components/rechner/GasverbrauchRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Gasverbrauch-Rechner: m³ in kWh umrechnen (2026)";
+const description = "Gasverbrauch von m³ in kWh umrechnen – mit Brennwert und Zustandszahl von Ihrer Abrechnung. Kostenloser Rechner inkl. Rückrechnung kWh → m³ und Kostenschätzung.";
+const keywords = "Gasverbrauch Rechner, m3 in kWh umrechnen, Gas umrechnen, Brennwert, Zustandszahl, Gasverbrauch berechnen, kWh in m3, Gaskosten berechnen, Gasrechnung verstehen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Gasverbrauch-Rechner", url: "/gasverbrauch-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Gasverbrauch-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Gasverbrauch-Rechner</h1>
+            <p class="text-orange-100 text-sm">Kubikmeter (m³) in Kilowattstunden (kWh) umrechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Standard-Umrechnungsformel der Gasversorger nach DVGW/BDEW – m³ × Brennwert × Zustandszahl = kWh (Bundesnetzagentur, Vattenfall, EnBW)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Brennwert (kWh/m³) und Zustandszahl von Ihrer Abrechnung, Rückrechnung kWh → m³, optionale Kostenschätzung über den Arbeitspreis (ct/kWh)</p>
+            <p><strong>Nicht berücksichtigt:</strong> Grund- bzw. Zählerpreis, Mehrwertsteuer, monatlich schwankende Brennwerte des Netzbetreibers – der Rechner liefert eine <em>technische Umrechnung</em>, keine verbindliche Abrechnung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GasverbrauchRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Gasverbrauch von m³ in kWh umrechnen: So geht's</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Ihr <strong>Gaszähler</strong> misst den Verbrauch in Kubikmetern (m³), Ihr Energieversorger
+            rechnet aber in <strong>Kilowattstunden (kWh)</strong> ab. Der Grund: Ein Kubikmeter Gas
+            enthält je nach Zusammensetzung unterschiedlich viel Energie. Mit unserem
+            <strong>Gasverbrauch-Rechner</strong> wandeln Sie Ihren abgelesenen Verbrauch in m³ exakt in
+            kWh um – und können das Ergebnis mit Ihrer <a href="/heizkosten-rechner" class="text-blue-600 hover:text-blue-800 underline">Heizkostenabrechnung</a> abgleichen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Umrechnungsformel</h3>
+          <p>
+            Alle Gasversorger in Deutschland nutzen dieselbe Formel:
+          </p>
+          <div class="bg-orange-50 p-4 rounded-lg my-4 text-center font-medium text-gray-800">
+            Verbrauch (m³) × Brennwert (kWh/m³) × Zustandszahl = Energie (kWh)
+          </div>
+          <p>
+            Beide Faktoren – <strong>Brennwert</strong> und <strong>Zustandszahl</strong> – stehen auf
+            Ihrer letzten Gasrechnung. Tragen Sie sie in den Rechner ein, erhalten Sie ein Ergebnis,
+            das exakt der Berechnung Ihres Versorgers entspricht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Brennwert?</h3>
+          <p>
+            Der <strong>Brennwert</strong> gibt an, wie viel Energie bei der vollständigen Verbrennung
+            eines Kubikmeters Gas frei wird. Er hängt von der genauen Gaszusammensetzung im Netz ab
+            und wird vom Netzbetreiber monatlich gemessen und veröffentlicht. Typische Werte:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>H-Gas</strong> (hoher Brennwert, in Deutschland überwiegend): ca. 10,0 – 13,1 kWh/m³</li>
+            <li><strong>L-Gas</strong> (niedriger Brennwert, einige Regionen): ca. 8,4 – 11,2 kWh/m³</li>
+            <li><strong>Häufiger Durchschnittswert:</strong> rund 10,3 kWh/m³</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Zustandszahl?</h3>
+          <p>
+            Die <strong>Zustandszahl</strong> (z-Zahl) korrigiert den am Zähler gemessenen Verbrauch auf
+            den sogenannten Normzustand. Das Gasvolumen schwankt mit Druck und Temperatur am Einbauort
+            des Zählers – die Zustandszahl rechnet diese Einflüsse heraus. Sie hängt unter anderem von
+            der Höhenlage und der Gasdruckregelung ab und liegt typischerweise zwischen
+            <strong>0,90 und 0,95</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faustregel: 1 m³ ≈ 10 kWh</h3>
+          <p>
+            Für eine schnelle Schätzung können Sie den m³-Verbrauch einfach mit 10 multiplizieren.
+            Für die <strong>Abrechnung</strong> zählen aber immer die exakten Werte Ihres Netzbetreibers.
+            Wer den realen Verbrauch eines Hauses oder einer Heizung einschätzen möchte, kombiniert das
+            Ergebnis am besten mit dem <a href="/waermepumpe-rechner" class="text-blue-600 hover:text-blue-800 underline">Wärmepumpen-Rechner</a> oder
+            der <a href="/nebenkosten-rechner" class="text-blue-600 hover:text-blue-800 underline">Nebenkostenabrechnung</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzt sich die Umrechnung in der Praxis zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wohnung – 1.200 m³ Jahresverbrauch</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-gray-800">1.200 m³</div>
+              <div class="text-gray-600">Brennwert:</div>
+              <div class="font-medium text-gray-800">10,3 kWh/m³</div>
+              <div class="text-gray-600">Zustandszahl:</div>
+              <div class="font-medium text-gray-800">0,95</div>
+              <div class="text-gray-600">Energie:</div>
+              <div class="font-medium text-gray-800">≈ 11.742 kWh</div>
+              <div class="text-gray-600">Kosten bei 12 ct/kWh:</div>
+              <div class="font-medium text-gray-800">≈ 1.409 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Einfamilienhaus – 2.000 m³ Jahresverbrauch</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-gray-800">2.000 m³</div>
+              <div class="text-gray-600">Brennwert:</div>
+              <div class="font-medium text-gray-800">11,1 kWh/m³</div>
+              <div class="text-gray-600">Zustandszahl:</div>
+              <div class="font-medium text-gray-800">0,95</div>
+              <div class="text-gray-600">Energie:</div>
+              <div class="font-medium text-gray-800">≈ 21.090 kWh</div>
+              <div class="text-gray-600">Kosten bei 11 ct/kWh:</div>
+              <div class="font-medium text-gray-800">≈ 2.320 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Tragen Sie Brennwert und Zustandszahl von Ihrer Abrechnung in den
+          Rechner ein – dann stimmt die kWh-Zahl auf wenige Stellen mit der Rechnung Ihres Versorgers
+          überein. Den vollständigen Energieverbrauch eines Haushalts sehen Sie mit dem
+          <a href="/stromkosten-rechner" class="text-blue-700 underline">Stromkosten-Rechner</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Brennwert mit Heizwert verwechseln</h3>
+            <p>Für die Gasabrechnung gilt der <strong>Brennwert</strong> (Ho), nicht der Heizwert (Hu).
+            Der Heizwert liegt etwa 10 % niedriger. Auf der Rechnung ist immer der Brennwert in kWh/m³
+            angegeben – diesen Wert müssen Sie verwenden.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Mit Faktor 10 abrechnen statt umrechnen</h3>
+            <p>Die Faustregel „1 m³ ≈ 10 kWh" ist nur eine grobe Schätzung. Bei H-Gas liegt der reale
+            Faktor (Brennwert × Zustandszahl) oft bei 10,5 bis 11,5. Über ein ganzes Jahr summieren
+            sich die Abweichungen schnell auf einige hundert Kilowattstunden.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Brennwert schwankt monatlich</h3>
+            <p>Der Netzbetreiber misst den Brennwert laufend und veröffentlicht den Monatsmittelwert
+            bis zum 10. des Folgemonats. Für die Jahresabrechnung wird ein gewichteter Durchschnitt
+            gebildet. Für eine grobe Umrechnung reicht der Wert von der letzten Rechnung.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Höhenlage und Zustandszahl</h3>
+            <p>In höher gelegenen Regionen sinkt der Luftdruck – die Zustandszahl fällt dadurch
+            niedriger aus. Deshalb kann sie je nach Wohnort zwischen etwa 0,90 und 0,96 liegen.
+            Verlassen Sie sich auf den exakten Wert Ihrer Abrechnung statt auf den Default.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kosten richtig schätzen</h3>
+            <p>Die optionale Kostenschätzung im Rechner berücksichtigt nur den <strong>Arbeitspreis</strong>
+            (ct/kWh). Hinzu kommen Grundpreis und ggf. weitere Posten. Für die Gesamtkosten samt
+            Nebenkosten nutzen Sie den <a href="/nebenkosten-rechner" class="text-blue-600 underline">Nebenkosten-Rechner</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich Gas von m³ in kWh um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie den Verbrauch in Kubikmetern mit dem <strong>Brennwert</strong> (kWh/m³)
+              und der <strong>Zustandszahl</strong>: m³ × Brennwert × Zustandszahl = kWh. Beide Werte stehen
+              auf Ihrer Gasrechnung. Als grobe Faustregel gilt: 1 m³ Erdgas entspricht ungefähr 10 kWh.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wo finde ich Brennwert und Zustandszahl?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beide Werte stehen auf Ihrer letzten <strong>Gasabrechnung</strong> – meist im Abschnitt zur
+              Verbrauchsermittlung. Der Brennwert ist in kWh/m³ angegeben, die Zustandszahl als Faktor
+              (z. B. 0,95). Falls Sie die Werte nicht zur Hand haben, können Sie die Default-Werte des
+              Rechners (10,3 und 0,95) als Näherung nutzen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Brennwert von Erdgas?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Brennwert liegt je nach Gasart und Netz unterschiedlich hoch. <strong>H-Gas</strong>,
+              das in Deutschland überwiegend geliefert wird, hat einen Brennwert von etwa 10,0 bis
+              13,1 kWh/m³. <strong>L-Gas</strong> liegt mit ca. 8,4 bis 11,2 kWh/m³ niedriger. Ein häufiger
+              Durchschnittswert sind rund 10,3 kWh/m³.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet die Zustandszahl?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Zustandszahl korrigiert das am Zähler gemessene Gasvolumen auf den Normzustand, da
+              sich das Volumen mit Druck und Temperatur ändert. Sie hängt unter anderem von der Höhenlage
+              und der Gasdruckregelung ab und liegt typischerweise zwischen <strong>0,90 und 0,95</strong>.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel kWh sind 1 m³ Gas?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel entspricht <strong>1 m³ Erdgas etwa 10 kWh</strong>. Der genaue Wert ergibt
+              sich aus Brennwert × Zustandszahl und liegt bei H-Gas meist zwischen 10,5 und 11,5 kWh pro
+              Kubikmeter. Für die Abrechnung zählen immer die exakten Werte Ihres Netzbetreibers.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich auch von kWh in m³ zurückrechnen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Schalten Sie im Rechner auf den Modus <strong>„kWh → m³"</strong> um. Dann wird die
+              eingegebene Energiemenge durch den Umrechnungsfaktor (Brennwert × Zustandszahl) geteilt.
+              Das ist praktisch, wenn Ihr Vertrag in kWh angegeben ist, Ihr Zähler aber in m³ misst.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+          <a href="/stromkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromkosten-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpen-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/co2-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌍</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">CO₂-Steuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gasverbrauch-Rechner (m³ in kWh)",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/gasverbrauch-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich Gas von m³ in kWh um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie den Verbrauch in Kubikmetern mit dem Brennwert (kWh/m³) und der Zustandszahl: m³ × Brennwert × Zustandszahl = kWh. Beide Werte stehen auf Ihrer Gasrechnung. Als grobe Faustregel gilt: 1 m³ Erdgas entspricht ungefähr 10 kWh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo finde ich Brennwert und Zustandszahl?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beide Werte stehen auf Ihrer letzten Gasabrechnung – meist im Abschnitt zur Verbrauchsermittlung. Der Brennwert ist in kWh/m³ angegeben, die Zustandszahl als Faktor (z. B. 0,95). Falls Sie die Werte nicht zur Hand haben, können Sie die Default-Werte des Rechners (10,3 und 0,95) als Näherung nutzen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Brennwert von Erdgas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Brennwert liegt je nach Gasart und Netz unterschiedlich hoch. H-Gas, das in Deutschland überwiegend geliefert wird, hat einen Brennwert von etwa 10,0 bis 13,1 kWh/m³. L-Gas liegt mit ca. 8,4 bis 11,2 kWh/m³ niedriger. Ein häufiger Durchschnittswert sind rund 10,3 kWh/m³."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet die Zustandszahl?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Zustandszahl korrigiert das am Zähler gemessene Gasvolumen auf den Normzustand, da sich das Volumen mit Druck und Temperatur ändert. Sie hängt unter anderem von der Höhenlage und der Gasdruckregelung ab und liegt typischerweise zwischen 0,90 und 0,95."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel kWh sind 1 m³ Gas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel entspricht 1 m³ Erdgas etwa 10 kWh. Der genaue Wert ergibt sich aus Brennwert × Zustandszahl und liegt bei H-Gas meist zwischen 10,5 und 11,5 kWh pro Kubikmeter. Für die Abrechnung zählen immer die exakten Werte Ihres Netzbetreibers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich auch von kWh in m³ zurückrechnen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Schalten Sie im Rechner auf den Modus „kWh → m³\" um. Dann wird die eingegebene Energiemenge durch den Umrechnungsfaktor (Brennwert × Zustandszahl) geteilt. Das ist praktisch, wenn Ihr Vertrag in kWh angegeben ist, Ihr Zähler aber in m³ misst."
+        }
+      }
+    ]
+  })} />
+</Layout>

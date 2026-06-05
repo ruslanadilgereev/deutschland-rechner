@@ -1,0 +1,407 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkontoRechner from '../components/rechner/SkontoRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Skonto-Rechner 2026 – Skontobetrag, Zahlbetrag & Effektivzins berechnen";
+const description = "Skonto sofort berechnen: Skontobetrag, Zahlbetrag und effektiver Jahreszins des Lieferantenkredits. Kostenloser Rechner mit kaufmännischer Standardformel und Brutto-/Netto-Hinweis.";
+const keywords = "Skonto Rechner, Skonto berechnen, Skontobetrag, Zahlbetrag, effektiver Jahreszins, Lieferantenkredit, Skontosatz, Zahlungsziel, Skontofrist, Skonto Formel";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Skonto-Rechner", url: "/skonto-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Skonto-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧾</span>
+          <div>
+            <h1 class="text-2xl font-bold">Skonto-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Skontobetrag, Zahlbetrag & Effektivzins berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Kaufmännische Standardformel zur Skonto- und Effektivzinsberechnung (360-Tage-Konvention)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Skontobetrag, Zahlbetrag, effektiver Jahreszins des Lieferantenkredits, Vergleich mit dem Bankzins, Brutto-/Netto-Hinweis</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Zahlungsbedingungen, taggenaue Zinseszins-Effekte, steuerliche Buchung im Einzelfall – der Rechner liefert die kaufmännische Standardberechnung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SkontoRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Skonto berechnen: Formel, Effektivzins & Bedeutung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            <strong>Skonto</strong> ist ein Preisnachlass, den ein Lieferant gewährt, wenn der Kunde
+            seine Rechnung besonders schnell bezahlt – typischerweise innerhalb einer kurzen
+            Skontofrist statt erst zum vollen Zahlungsziel. Mit unserem <strong>Skonto-Rechner</strong>
+            ermitteln Sie in Sekunden den Skontobetrag, den reduzierten Zahlbetrag und den
+            entscheidenden Wert: den <strong>effektiven Jahreszins des Lieferantenkredits</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Formeln</h3>
+          <p>Der Rechner nutzt die kaufmännische Standardformel:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Skontobetrag</strong> = Rechnungsbetrag × Skontosatz</li>
+              <li><strong>Zahlbetrag</strong> = Rechnungsbetrag − Skontobetrag</li>
+              <li><strong>Effektiver Jahreszins</strong> = Skontosatz ÷ (Zahlungsziel − Skontofrist) × 360</li>
+            </ul>
+          </div>
+          <p>
+            Der Klammerausdruck (Zahlungsziel − Skontofrist) ist der <strong>Kreditzeitraum</strong>:
+            die Zeit, die Sie länger zahlen dürfen, wenn Sie auf das Skonto verzichten. Genau dafür
+            „bezahlen“ Sie mit dem entgangenen Skonto.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Übliche Skonto-Konditionen</h3>
+          <p>
+            Es gibt keine gesetzliche Vorgabe für die Höhe des Skontos – jedes Unternehmen legt seine
+            Konditionen selbst fest. In der Praxis haben sich folgende Werte etabliert:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Skontosatz:</strong> meist 1–3 %</li>
+            <li><strong>Skontofrist:</strong> in der Regel 7–14 Tage</li>
+            <li><strong>Zahlungsziel:</strong> typischerweise 30 Tage (auch 14 oder 60 Tage)</li>
+          </ul>
+          <p>
+            Eine klassische Zahlungsbedingung lautet: „2 % Skonto bei Zahlung innerhalb von 10 Tagen,
+            netto 30 Tage.“
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum sich Skonto fast immer lohnt</h3>
+          <p>
+            Ein scheinbar kleiner Nachlass von 2 % entpuppt sich auf das Jahr gerechnet als
+            erstaunlich teurer Kredit. Bei 2 % Skonto, 10 Tagen Skontofrist und 30 Tagen
+            Zahlungsziel beträgt der effektive Jahreszins:
+            2 % ÷ (30 − 10) × 360 = <strong>36 % pro Jahr</strong>. Wer das Skonto verstreichen
+            lässt, finanziert seinen Einkauf also de facto zu 36 % p. a. – ein Vielfaches dessen, was
+            selbst ein teurer <a href="/dispo-rechner" class="text-blue-600 hover:text-blue-800 underline">Dispokredit</a> kostet.
+            Deshalb gilt die kaufmännische Faustregel: <strong>Skonto ziehen, notfalls über einen
+            günstigeren Kredit finanziert.</strong>
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Skonto vom Brutto- oder Nettobetrag?</h3>
+          <p>
+            Der Skontosatz kann sowohl vom Netto- als auch vom Bruttobetrag abgezogen werden – das
+            prozentuale Ergebnis ist identisch. Im B2B-Bereich wird buchhalterisch häufig vom
+            Nettobetrag gerechnet, in der Praxis oft direkt vom Bruttobetrag. Wichtig: Beim
+            Skontoabzug ändert sich auch die Bemessungsgrundlage der
+            <a href="/mehrwertsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Umsatzsteuer</a>.
+            Lieferant und Kunde müssen Umsatzsteuer bzw. Vorsteuer nach § 17 UStG entsprechend
+            korrigieren.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich unterschiedliche Konditionen aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Klassische Bedingung „2 %, 10 Tage, netto 30“</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Rechnungsbetrag:</div>
+              <div class="font-medium text-gray-800">1.190,00 €</div>
+              <div class="text-gray-600">Skontosatz:</div>
+              <div class="font-medium text-gray-800">2 %</div>
+              <div class="text-gray-600">Skontobetrag:</div>
+              <div class="font-medium text-gray-800">23,80 €</div>
+              <div class="text-gray-600">Zahlbetrag:</div>
+              <div class="font-medium text-gray-800">1.166,20 €</div>
+              <div class="text-gray-600">Kreditzeitraum:</div>
+              <div class="font-medium text-gray-800">20 Tage</div>
+              <div class="text-gray-600">Effektiver Jahreszins:</div>
+              <div class="font-medium text-green-700">36,0 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Höherer Skonto „3 %, 14 Tage, netto 60“</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Rechnungsbetrag:</div>
+              <div class="font-medium text-gray-800">5.000,00 €</div>
+              <div class="text-gray-600">Skontosatz:</div>
+              <div class="font-medium text-gray-800">3 %</div>
+              <div class="text-gray-600">Skontobetrag:</div>
+              <div class="font-medium text-gray-800">150,00 €</div>
+              <div class="text-gray-600">Zahlbetrag:</div>
+              <div class="font-medium text-gray-800">4.850,00 €</div>
+              <div class="text-gray-600">Kreditzeitraum:</div>
+              <div class="font-medium text-gray-800">46 Tage</div>
+              <div class="text-gray-600">Effektiver Jahreszins:</div>
+              <div class="font-medium text-green-700">23,5 %</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Selbst der „nur“ 23,5 % teure Lieferantenkredit aus Beispiel 2
+          ist deutlich teurer als jeder normale Bankkredit. Skonto ziehen lohnt sich in beiden Fällen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Skontosatz mit Jahreszins verwechseln</h3>
+            <p>„2 % sind doch wenig“ – auf das Jahr hochgerechnet werden daraus schnell 36 % und
+            mehr. Der niedrige Prozentsatz täuscht über die kurze Frist hinweg.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Falscher Kreditzeitraum</h3>
+            <p>Der Kreditzeitraum ist <strong>Zahlungsziel minus Skontofrist</strong> – nicht das
+            volle Zahlungsziel. Bei „10 Tage Skonto, netto 30“ sind es 20 Tage, nicht 30.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Umsatzsteuer nicht angepasst</h3>
+            <p>Wird Skonto gezogen, sinkt das Entgelt und damit die Umsatzsteuer. Lieferant und Kunde
+            müssen die Steuer nach § 17 UStG korrigieren – sonst stimmt die Buchhaltung nicht.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Liquidität fehlt</h3>
+            <p>Auch wenn das Konto leer ist, lohnt es sich oft, den
+            <a href="/dispo-rechner" class="text-blue-600 underline">Dispo</a> oder einen
+            Kontokorrentkredit zu nutzen, um das Skonto zu ziehen – solange der Bankzins unter dem
+            Skonto-Effektivzins liegt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Skontofrist verpasst</h3>
+            <p>Wird die Skontofrist auch nur um einen Tag überschritten, entfällt der Nachlass
+            vollständig. Dann gilt der volle Rechnungsbetrag zum Zahlungsziel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Skonto</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man Skonto?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Skontobetrag ergibt sich aus <strong>Rechnungsbetrag × Skontosatz</strong>. Den
+              reduzierten Zahlbetrag erhalten Sie, indem Sie diesen Skontobetrag vom Rechnungsbetrag
+              abziehen. Beispiel: 1.190 € × 2 % = 23,80 € Skonto, Zahlbetrag also 1.166,20 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der effektive Jahreszins beim Skonto?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der effektive Jahreszins des Lieferantenkredits berechnet sich als
+              <strong>Skontosatz ÷ (Zahlungsziel − Skontofrist) × 360</strong>. Bei 2 % Skonto,
+              10 Tagen Frist und 30 Tagen Zahlungsziel sind das 2 % ÷ 20 × 360 = 36 % pro Jahr. Die
+              360 stehen für das kaufmännische Geschäftsjahr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich Skonto immer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Fast immer. Der effektive Jahreszins liegt typischerweise zwischen 20 % und 70 % –
+              und damit weit über jedem Bank- oder Dispokredit. Solange Ihr Vergleichszins niedriger
+              ist als der Skonto-Effektivzins, lohnt es sich, das Skonto zu ziehen, notfalls sogar
+              über einen Kredit finanziert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wird Skonto vom Brutto- oder Nettobetrag berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beides ist möglich und führt prozentual zum identischen Ergebnis. Im B2B wird
+              buchhalterisch meist vom Nettobetrag gerechnet, in der Praxis oft direkt vom
+              Bruttobetrag. Wichtig ist nur, dass die Umsatzsteuer beim Skontoabzug nach § 17 UStG
+              korrekt angepasst wird.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Skontofrist?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Skontofrist ist der Zeitraum, innerhalb dessen Sie zahlen müssen, um den Skonto
+              zu erhalten – üblich sind 7 bis 14 Tage. Wird sie überschritten, entfällt der Nachlass
+              und es gilt der volle Rechnungsbetrag zum regulären Zahlungsziel.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist ein üblicher Skontosatz?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Üblich sind 1 bis 3 %. Es gibt keine gesetzliche Vorgabe – Unternehmen legen ihren
+              Skontosatz frei fest. Höhere Sätze sind selten, weil sie für den Lieferanten teuer
+              werden.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rabatt-Rechner</p>
+          </a>
+          <a href="/dispo-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dispo-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">➗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Skonto-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/skonto-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man Skonto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Skontobetrag ergibt sich aus Rechnungsbetrag × Skontosatz. Den reduzierten Zahlbetrag erhalten Sie, indem Sie diesen Skontobetrag vom Rechnungsbetrag abziehen. Beispiel: 1.190 € × 2 % = 23,80 € Skonto, Zahlbetrag also 1.166,20 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der effektive Jahreszins beim Skonto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der effektive Jahreszins des Lieferantenkredits berechnet sich als Skontosatz ÷ (Zahlungsziel − Skontofrist) × 360. Bei 2 % Skonto, 10 Tagen Frist und 30 Tagen Zahlungsziel sind das 2 % ÷ 20 × 360 = 36 % pro Jahr. Die 360 stehen für das kaufmännische Geschäftsjahr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich Skonto immer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fast immer. Der effektive Jahreszins liegt typischerweise zwischen 20 % und 70 % und damit weit über jedem Bank- oder Dispokredit. Solange Ihr Vergleichszins niedriger ist als der Skonto-Effektivzins, lohnt es sich, das Skonto zu ziehen, notfalls sogar über einen Kredit finanziert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird Skonto vom Brutto- oder Nettobetrag berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beides ist möglich und führt prozentual zum identischen Ergebnis. Im B2B wird buchhalterisch meist vom Nettobetrag gerechnet, in der Praxis oft direkt vom Bruttobetrag. Wichtig ist nur, dass die Umsatzsteuer beim Skontoabzug nach § 17 UStG korrekt angepasst wird."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Skontofrist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Skontofrist ist der Zeitraum, innerhalb dessen Sie zahlen müssen, um den Skonto zu erhalten – üblich sind 7 bis 14 Tage. Wird sie überschritten, entfällt der Nachlass und es gilt der volle Rechnungsbetrag zum regulären Zahlungsziel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist ein üblicher Skontosatz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Üblich sind 1 bis 3 %. Es gibt keine gesetzliche Vorgabe – Unternehmen legen ihren Skontosatz frei fest. Höhere Sätze sind selten, weil sie für den Lieferanten teuer werden."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,463 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KaloriendefizitRechner from '../components/rechner/KaloriendefizitRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Kaloriendefizit-Rechner – Kalorien zum Abnehmen berechnen";
+const description = "Kaloriendefizit berechnen: empfohlene kcal pro Tag zum Abnehmen, Grundumsatz nach Mifflin-St-Jeor, Gesamtumsatz (TDEE) und geschätzte Dauer bis zum Zielgewicht. Kostenlos & ohne Anmeldung.";
+const keywords = "Kaloriendefizit Rechner, Kalorien zum Abnehmen, Kaloriendefizit berechnen, Abnehmen Kalorien, Grundumsatz, TDEE, Mifflin-St-Jeor, kcal pro Tag abnehmen, Defizit berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Kaloriendefizit-Rechner", url: "/kaloriendefizit-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Gesundheit', href: '/gesundheit' },
+    { name: 'Kaloriendefizit-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📉</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kaloriendefizit-Rechner</h1>
+            <p class="text-emerald-200 text-sm">Kalorien zum Abnehmen mit Mifflin-St-Jeor berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Mifflin-St-Jeor-Formel (1990) für den Grundumsatz, PAL-Werte nach Deutscher Gesellschaft für Ernährung (DGE), Energiewert von 1 kg Körperfett ≈ 7.700 kcal</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Geschlecht, Alter, Größe, Gewicht, Aktivitätslevel (PAL), Zielgewicht, Abnehm-Tempo sowie eine Sicherheitsgrenze (nicht unter 1.200 kcal für Frauen / 1.500 kcal für Männer)</p>
+            <p><strong>Nicht berücksichtigt:</strong> Körperzusammensetzung, Krankheiten, Medikamente, Stoffwechsel-Anpassung im Verlauf der Diät – der Rechner liefert eine Orientierung, keine medizinische Diagnose</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KaloriendefizitRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kaloriendefizit: So funktioniert Abnehmen rechnerisch</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Abnehmen folgt einem einfachen Prinzip: Sie verbrauchen über den Tag mehr Energie, als Sie
+            über die Nahrung aufnehmen. Diese Lücke heißt <strong>Kaloriendefizit</strong>. Unser
+            <strong>Kaloriendefizit-Rechner</strong> ermittelt, wie viele Kalorien Sie pro Tag essen
+            sollten, um Ihr Wunschgewicht zu erreichen – und wie lange das voraussichtlich dauert.
+            Den reinen Bedarf ohne Abnehmziel zeigt Ihnen unser
+            <a href="/kalorien-rechner" class="text-emerald-600 hover:text-emerald-800 underline">Kalorien-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundumsatz, Gesamtumsatz und Defizit</h3>
+          <p>
+            Die Berechnung läuft in drei Stufen ab:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>
+              <strong>Grundumsatz (BMR):</strong> Energie, die Ihr Körper in völliger Ruhe verbraucht –
+              für Atmung, Herzschlag, Organe. Wir nutzen die Mifflin-St-Jeor-Formel, die als eine der
+              genauesten Schätzformeln für gesunde Erwachsene gilt. Den reinen Grundumsatz können Sie
+              im <a href="/grundumsatz-rechner" class="text-emerald-600 hover:text-emerald-800 underline">Grundumsatz-Rechner</a> isoliert berechnen.
+            </li>
+            <li>
+              <strong>Gesamtumsatz (TDEE):</strong> Grundumsatz multipliziert mit dem Aktivitätsfaktor
+              (PAL). Er enthält Alltag, Beruf und Sport.
+            </li>
+            <li>
+              <strong>Empfohlene Zufuhr:</strong> Gesamtumsatz minus tägliches Defizit. Das Defizit
+              ergibt sich aus dem gewünschten Tempo.
+            </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Mifflin-St-Jeor-Formel</h3>
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Männer:</strong> 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter (J) + 5</li>
+              <li><strong>Frauen:</strong> 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter (J) − 161</li>
+            </ul>
+          </div>
+          <p>
+            Der Unterschied von 166 kcal zwischen den Geschlechtern liegt am durchschnittlich höheren
+            Muskelanteil bei Männern – Muskeln verbrauchen auch in Ruhe mehr Energie.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktivitätsfaktor (PAL-Wert)</h3>
+          <p>
+            Der PAL-Wert (Physical Activity Level) übersetzt Ihren Lebensstil in einen Multiplikator.
+            Die DGE empfiehlt für Berufstätige mit etwas Bewegung Werte um 1,4 bis 1,7:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>PAL 1,2:</strong> sitzend, kaum Bewegung</li>
+            <li><strong>PAL 1,4:</strong> Bürojob, gelegentliche Spaziergänge</li>
+            <li><strong>PAL 1,55:</strong> Büro plus 2–3× Sport pro Woche</li>
+            <li><strong>PAL 1,7:</strong> stehende Arbeit oder fast tägliches Training</li>
+            <li><strong>PAL 1,9:</strong> körperliche Arbeit oder Leistungssport</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Defizit ist sinnvoll?</h3>
+          <p>
+            Ein Kilogramm Körperfett speichert rund <strong>7.700 kcal</strong>. Wer pro Woche 0,5 kg
+            abnehmen möchte, braucht also etwa 3.850 kcal Defizit pro Woche oder rund 550 kcal pro Tag.
+            Ein moderates Defizit von <strong>300 bis 550 kcal täglich</strong> gilt als nachhaltig:
+            Sie verlieren stetig Gewicht, ohne übermäßig Muskeln abzubauen oder den Stoffwechsel
+            stark zu drosseln. Sehr aggressive Defizite über 1.000 kcal/Tag begünstigen Müdigkeit,
+            Muskelabbau und den Jo-Jo-Effekt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Unterschied: Kalorienbedarf vs. Kaloriendefizit</h3>
+          <p>
+            Diese beiden Begriffe werden oft verwechselt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>
+              Der <strong>Kalorienbedarf</strong> (Gesamtumsatz/TDEE) ist die Menge, bei der Ihr
+              Gewicht <em>gleich bleibt</em>. Genau das berechnet der
+              <a href="/kalorien-rechner" class="text-emerald-600 hover:text-emerald-800 underline">Kalorien-Rechner</a>.
+            </li>
+            <li>
+              Das <strong>Kaloriendefizit</strong> ist die <em>reduzierte</em> Zufuhr darunter, mit der
+              Sie abnehmen. Dieser Rechner zieht das Defizit automatisch vom Bedarf ab.
+            </li>
+          </ul>
+          <p>
+            Ob Ihr Ausgangsgewicht im gesunden Bereich liegt, prüfen Sie mit dem
+            <a href="/bmi-rechner" class="text-emerald-600 hover:text-emerald-800 underline">BMI-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So sehen typische Ergebnisse aus (alle Werte gerundet):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Frau, 30 J., 170 cm, 80 kg → 70 kg, leicht aktiv</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Grundumsatz (BMR):</div>
+              <div class="font-medium text-gray-800">~1.552 kcal</div>
+              <div class="text-gray-600">Gesamtumsatz (PAL 1,4):</div>
+              <div class="font-medium text-gray-800">~2.172 kcal</div>
+              <div class="text-gray-600">Tempo:</div>
+              <div class="font-medium text-gray-800">0,5 kg/Woche (−550 kcal/Tag)</div>
+              <div class="text-gray-600">Empfohlene Zufuhr:</div>
+              <div class="font-medium text-emerald-700">~1.620 kcal/Tag</div>
+              <div class="text-gray-600">Dauer bis 70 kg:</div>
+              <div class="font-medium text-gray-800">~20 Wochen (~4,6 Monate)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-emerald-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Mann, 40 J., 183 cm, 95 kg → 85 kg, mäßig aktiv</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Grundumsatz (BMR):</div>
+              <div class="font-medium text-gray-800">~1.899 kcal</div>
+              <div class="text-gray-600">Gesamtumsatz (PAL 1,55):</div>
+              <div class="font-medium text-gray-800">~2.943 kcal</div>
+              <div class="text-gray-600">Tempo:</div>
+              <div class="font-medium text-gray-800">0,75 kg/Woche (−825 kcal/Tag)</div>
+              <div class="text-gray-600">Empfohlene Zufuhr:</div>
+              <div class="font-medium text-emerald-700">~2.120 kcal/Tag</div>
+              <div class="text-gray-600">Dauer bis 85 kg:</div>
+              <div class="font-medium text-gray-800">~14 Wochen (~3,2 Monate)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mt-4 text-sm text-emerald-800">
+          <strong>💡 Tipp:</strong> Der Körper passt seinen Verbrauch im Laufe einer Diät an. Prüfen Sie
+          alle 4–6 Wochen Ihr Gewicht und justieren Sie die Zufuhr nach, wenn der Fortschritt stockt.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Zu großes Defizit wählen</h3>
+            <p>Mehr Defizit bedeutet nicht schneller schlank. Unter 1.200 kcal (Frauen) bzw. 1.500 kcal
+            (Männer) drohen Nährstoffmangel, Muskelabbau und Heißhunger. Der Rechner kappt deshalb
+            extreme Werte automatisch und warnt Sie.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Aktivitätslevel überschätzen</h3>
+            <p>Ein einzelnes Workout macht aus einem Bürojob noch keinen aktiven Lebensstil. Wer den
+            PAL-Wert zu hoch ansetzt, berechnet einen zu hohen Bedarf – und nimmt trotz „Defizit"
+            nicht ab. Im Zweifel die niedrigere Stufe wählen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Wasser- mit Fettverlust verwechseln</h3>
+            <p>In der ersten Woche purzeln oft schnell 1–2 kg – das ist überwiegend Wasser, kein Fett.
+            Der echte Fettabbau ist langsamer und entspricht eher dem berechneten Tempo. Lassen Sie sich
+            von Schwankungen auf der Waage nicht entmutigen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Viel Muskelmasse oder Untergewicht</h3>
+            <p>Bei sehr muskulösen Personen unterschätzt jede gewichtsbasierte Formel den Verbrauch leicht.
+            Liegt Ihr Ausgangsgewicht bereits im unteren Normalbereich (siehe
+            <a href="/bmi-rechner" class="text-emerald-600 underline">BMI-Rechner</a>), ist ein
+            Abnehmziel oft nicht sinnvoll – sprechen Sie das mit Fachpersonal ab.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Schwangerschaft & Stillzeit</h3>
+            <p>In Schwangerschaft und Stillzeit ist ein Kaloriendefizit zum Abnehmen nicht angezeigt.
+            Der Energiebedarf ist erhöht – eine Reduktion sollte nur in ärztlicher Absprache erfolgen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für Sie? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Die empfohlene Kalorienzahl ist Ihr <strong>Tagesbudget</strong>. So setzen Sie es um:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Realistisch bleiben</p>
+              <p>Ein langsameres Tempo (0,25–0,5 kg/Woche) ist leichter durchzuhalten und schont die
+              Muskulatur. Geduld schlägt Crash-Diät – fast immer.</p>
+            </div>
+
+            <div class="bg-emerald-50 rounded-lg p-3">
+              <p class="font-semibold text-emerald-800 mb-1">🥗 Eiweiß priorisieren</p>
+              <p>Ausreichend Protein (etwa 1,6–2 g pro kg Körpergewicht) erhält Muskelmasse im Defizit
+              und sättigt gut. Kombiniert mit Krafttraining wird vor allem Fett statt Muskeln abgebaut.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Fortschritt kontrollieren</p>
+              <p>Wiegen Sie sich morgens, nüchtern und über die Woche gemittelt. Stagniert das Gewicht
+              über zwei bis drei Wochen, justieren Sie das Defizit um 100–200 kcal nach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Kaloriendefizit</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein Kaloriendefizit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Kaloriendefizit liegt vor, wenn Sie weniger Energie aufnehmen, als Ihr Körper
+              verbraucht. Die fehlende Energie holt sich der Körper aus den Reserven – vor allem aus
+              Körperfett. Genau so nimmt man ab. 1 kg Körperfett entspricht etwa 7.700 kcal.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Kaloriendefizit pro Tag ist gesund?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein moderates Defizit von 300 bis 550 kcal pro Tag gilt als nachhaltig und entspricht
+              etwa 0,25 bis 0,5 kg Gewichtsverlust pro Woche. Defizite über 1.000 kcal/Tag werden meist
+              nicht empfohlen, da sie Muskelabbau und den Jo-Jo-Effekt begünstigen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Formel nutzt der Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Grundumsatz wird mit der Mifflin-St-Jeor-Formel (1990) berechnet: 10 × Gewicht (kg)
+              + 6,25 × Größe (cm) − 5 × Alter (Jahre), plus 5 für Männer bzw. minus 161 für Frauen.
+              Multipliziert mit dem Aktivitätsfaktor (PAL) ergibt sich der Gesamtumsatz. Diese Formel
+              gilt für gesunde Erwachsene als besonders treffsicher.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Worin unterscheiden sich Kalorienbedarf und Kaloriendefizit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Kalorienbedarf (Gesamtumsatz) ist die Menge, bei der das Gewicht stabil bleibt.
+              Das Kaloriendefizit ist die darunterliegende, reduzierte Zufuhr zum Abnehmen. Den reinen
+              Bedarf zeigt der Kalorien-Rechner, das Defizit berechnet dieser Rechner.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sollte ich unter 1.200 kcal gehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für die meisten Menschen ist das nicht empfehlenswert. Als grobe Untergrenze gelten
+              etwa 1.200 kcal für Frauen und 1.500 kcal für Männer. Darunter steigt das Risiko für
+              Nährstoffmangel, Muskelabbau und Heißhunger. Der Rechner begrenzt die Empfehlung daher
+              automatisch auf diese Werte.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ersetzt der Rechner eine Ernährungsberatung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert eine rechnerische Orientierung auf Basis von Standardformeln
+              und ersetzt keine ärztliche oder ernährungsberaterische Beratung. Bei Vorerkrankungen, in
+              Schwangerschaft und Stillzeit, bei Essstörungen oder vor einer stärkeren Umstellung sollten
+              Sie ärztlichen Rat einholen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍎</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorien-Rechner</p>
+          </a>
+          <a href="/grundumsatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundumsatz-Rechner</p>
+          </a>
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/promille-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍺</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Promille-Rechner</p>
+          </a>
+          <a href="/eisprung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌸</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eisprung-Rechner</p>
+          </a>
+          <a href="/geburtstermin-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Geburtstermin-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kaloriendefizit-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kaloriendefizit-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist ein Kaloriendefizit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Kaloriendefizit liegt vor, wenn Sie weniger Energie aufnehmen, als Ihr Körper verbraucht. Die fehlende Energie holt sich der Körper aus den Reserven – vor allem aus Körperfett. Genau so nimmt man ab. 1 kg Körperfett entspricht etwa 7.700 kcal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Kaloriendefizit pro Tag ist gesund?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein moderates Defizit von 300 bis 550 kcal pro Tag gilt als nachhaltig und entspricht etwa 0,25 bis 0,5 kg Gewichtsverlust pro Woche. Defizite über 1.000 kcal/Tag werden meist nicht empfohlen, da sie Muskelabbau und den Jo-Jo-Effekt begünstigen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Formel nutzt der Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Grundumsatz wird mit der Mifflin-St-Jeor-Formel (1990) berechnet: 10 × Gewicht (kg) + 6,25 × Größe (cm) − 5 × Alter (Jahre), plus 5 für Männer bzw. minus 161 für Frauen. Multipliziert mit dem Aktivitätsfaktor (PAL) ergibt sich der Gesamtumsatz. Diese Formel gilt für gesunde Erwachsene als besonders treffsicher."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Worin unterscheiden sich Kalorienbedarf und Kaloriendefizit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Kalorienbedarf (Gesamtumsatz) ist die Menge, bei der das Gewicht stabil bleibt. Das Kaloriendefizit ist die darunterliegende, reduzierte Zufuhr zum Abnehmen. Den reinen Bedarf zeigt der Kalorien-Rechner, das Defizit berechnet dieser Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sollte ich unter 1.200 kcal gehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für die meisten Menschen ist das nicht empfehlenswert. Als grobe Untergrenze gelten etwa 1.200 kcal für Frauen und 1.500 kcal für Männer. Darunter steigt das Risiko für Nährstoffmangel, Muskelabbau und Heißhunger. Der Rechner begrenzt die Empfehlung daher automatisch auf diese Werte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ersetzt der Rechner eine Ernährungsberatung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert eine rechnerische Orientierung auf Basis von Standardformeln und ersetzt keine ärztliche oder ernährungsberaterische Beratung. Bei Vorerkrankungen, in Schwangerschaft und Stillzeit, bei Essstörungen oder vor einer stärkeren Umstellung sollten Sie ärztlichen Rat einholen."
+        }
+      }
+    ]
+  })} />
+</Layout>

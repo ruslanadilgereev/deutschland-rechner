@@ -1,0 +1,456 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PaypalGebuehrenRechner from '../components/rechner/PaypalGebuehrenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "PayPal-Gebühren-Rechner 2026 – Kosten & Auszahlung berechnen";
+const description = "PayPal-Gebühren sofort berechnen: 2,49 % + 0,35 € für Waren & Dienstleistungen, kostenlos bei Freunde & Familie. Vorwärts und rückwärts rechnen – mit aktuellen Werten 2026.";
+const keywords = "PayPal Gebühren Rechner, PayPal Gebühren berechnen, PayPal Gebühren 2026, PayPal Waren und Dienstleistungen, PayPal Freunde und Familie Gebühren, PayPal Gebühren rückwärts, PayPal Kosten Empfänger, PayPal Auszahlung berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "PayPal-Gebühren-Rechner", url: "/paypal-gebuehren-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'PayPal-Gebühren-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💸</span>
+          <div>
+            <h1 class="text-2xl font-bold">PayPal-Gebühren-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Gebühr, Auszahlung & Brutto-Betrag berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Offizielle PayPal-Gebührenseiten für Deutschland (Händler- und Verbrauchergebühren), zuletzt von PayPal aktualisiert am 30. April 2026</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Waren &amp; Dienstleistungen national (2,49 % + 0,35 €) und international, Freunde &amp; Familie (Guthaben/Bankkonto kostenlos, Kreditkarte 2,9 %, international 5 % mit Min/Max), Vorwärts- und Rückwärtsrechnung</p>
+            <p><strong>Nicht berücksichtigt:</strong> Gebühr für Währungsumrechnung (zusätzlich 3 % über dem Basiswechselkurs), individuelle ausgehandelte Konditionen für Großhändler, micropayment-Tarife sowie Sondertarife für Spendenorganisationen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PaypalGebuehrenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">PayPal-Gebühren 2026: Was wirklich abgezogen wird</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer über PayPal Geld empfängt, bekommt selten den vollen Betrag. PayPal zieht die
+            Transaktionsgebühr immer beim <strong>Empfänger</strong> ab – wie hoch sie ausfällt,
+            hängt von zwei Dingen ab: der <strong>Transaktionsart</strong> (gewerblich oder privat)
+            und der <strong>Region</strong> (national oder international). Mit unserem
+            <strong>PayPal-Gebühren-Rechner</strong> sehen Sie sofort, was nach Abzug der Gebühr
+            übrig bleibt – oder wie viel jemand senden muss, damit Ihr Wunschbetrag ankommt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Waren &amp; Dienstleistungen (gewerblich)</h3>
+          <p>
+            Bei jeder geschäftlichen Zahlung – also wenn Sie etwas verkaufen oder eine Dienstleistung
+            anbieten – berechnet PayPal national in Deutschland <strong>2,49 % des Betrags plus eine
+            Festgebühr von 0,35 €</strong>. Diese Variante enthält den PayPal-Käuferschutz. Bei
+            internationalen Zahlungen kommt ein Aufschlag auf den Prozentsatz hinzu:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>National (Deutschland):</strong> 2,49 % + 0,35 €</li>
+              <li><strong>International EWR (EU/EWR):</strong> 2,49 % + 0,35 € (kein Aufschlag)</li>
+              <li><strong>International Vereinigtes Königreich:</strong> 3,78 % + 0,35 € (+1,29 %)</li>
+              <li><strong>International restliche Welt:</strong> 5,48 % + 0,35 € (+2,99 %)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freunde &amp; Familie (privat)</h3>
+          <p>
+            Geld an Freunde oder Familie zu senden, ist innerhalb Deutschlands (und des EWR in Euro)
+            <strong>kostenlos</strong> – solange Sie PayPal-Guthaben oder Ihr verknüpftes Bankkonto
+            als Zahlungsquelle nutzen. Es gibt aber zwei wichtige Ausnahmen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kreditkarte als Zahlungsquelle:</strong> Es fällt eine Funding-Gebühr von ca. <strong>2,9 %</strong> an.</li>
+            <li><strong>Internationale Zahlung:</strong> PayPal berechnet <strong>5 % des Betrags</strong> (mindestens 0,99 €, maximal 3,99 €).</li>
+          </ul>
+          <p>
+            Wichtig: Bei „Freunde &amp; Familie" gibt es <strong>keinen Käuferschutz</strong>. Diese
+            Zahlungsart ist nicht für Käufe von Fremden gedacht. Wer sie missbraucht, um Gebühren zu
+            sparen, verliert im Streitfall jeden Anspruch.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vorwärts oder rückwärts rechnen</h3>
+          <p>
+            Der Rechner kann beides. Im Modus <strong>„Was bleibt übrig?"</strong> geben Sie den
+            gesendeten Betrag ein und sehen die Auszahlung nach Gebühr. Im Modus
+            <strong>„Wie viel senden lassen?"</strong> geben Sie den gewünschten Netto-Betrag ein –
+            der Rechner ermittelt, welchen Brutto-Betrag der Sender überweisen muss, damit nach Abzug
+            der Gebühr genau Ihr Wunschbetrag ankommt.
+          </p>
+          <p>
+            Tipp: Geht es um geschäftliche Beträge, kalkulieren Sie die PayPal-Gebühr von Anfang an
+            in Ihre Preise ein. Bei Rechnungen mit Umsatzsteuer hilft Ihnen der
+            <a href="/mehrwertsteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Mehrwertsteuer-Rechner</a>,
+            und bei internationalen Beträgen lohnt sich vorab ein Blick in den
+            <a href="/waehrungs-rechner" class="text-blue-600 hover:text-blue-800 underline">Währungsrechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: PayPal-Gebühren</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So viel zieht PayPal in typischen Situationen ab:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Online-Verkauf für 100 € (national)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gesendeter Betrag:</div>
+              <div class="font-medium text-gray-800">100,00 €</div>
+              <div class="text-gray-600">Gebühr (2,49 % + 0,35 €):</div>
+              <div class="font-medium text-gray-800">2,84 €</div>
+              <div class="text-gray-600">Auszahlung an Sie:</div>
+              <div class="font-medium text-green-700">97,16 €</div>
+              <div class="text-gray-600">Effektiver Satz:</div>
+              <div class="font-medium text-gray-800">2,84 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 50 € sollen ankommen (rückwärts, national)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Soll bei Ihnen ankommen:</div>
+              <div class="font-medium text-gray-800">50,00 €</div>
+              <div class="text-gray-600">Nötiger Brutto-Betrag:</div>
+              <div class="font-medium text-gray-800">51,64 €</div>
+              <div class="text-gray-600">PayPal-Gebühr:</div>
+              <div class="font-medium text-gray-800">1,64 €</div>
+              <div class="text-gray-600">Formel:</div>
+              <div class="font-medium text-gray-800">(50 + 0,35) / 0,9751</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 200 € an Freunde (international, außerhalb EWR)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gesendeter Betrag:</div>
+              <div class="font-medium text-gray-800">200,00 €</div>
+              <div class="text-gray-600">Gebühr (5 %, gedeckelt):</div>
+              <div class="font-medium text-gray-800">3,99 € (Maximum)</div>
+              <div class="text-gray-600">Auszahlung an Empfänger:</div>
+              <div class="font-medium text-green-700">196,01 €</div>
+              <div class="text-gray-600">Hinweis:</div>
+              <div class="font-medium text-gray-800">5 % wären 10 €, aber max. 3,99 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Die gleiche Zahlung als „Freunde &amp; Familie" national mit
+          Guthaben wäre komplett kostenlos – allerdings ohne Käuferschutz. Für geschäftliche
+          Zahlungen ist „Waren &amp; Dienstleistungen" Pflicht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Gebühr einfach auf den Betrag aufschlagen</h3>
+            <p>Wer 100 € erhalten will und 100 € + 2,49 % aufschlägt, liegt falsch. Da die Gebühr
+            auf den höheren Brutto-Betrag berechnet wird, müssen Sie durch (1 − Gebührensatz) teilen.
+            Nutzen Sie dafür den Modus „Wie viel senden lassen?".</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: „Freunde &amp; Familie" für Verkäufe missbrauchen</h3>
+            <p>Um die 2,49 % zu sparen, bitten manche Verkäufer um Zahlung über „Freunde &amp;
+            Familie". Das verstößt gegen die PayPal-Nutzungsbedingungen, lässt den Käuferschutz
+            entfallen und kann zur Kontosperrung führen. Für Geschäfte ist nur „Waren &amp;
+            Dienstleistungen" zulässig.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Festgebühr von 0,35 € vergessen</h3>
+            <p>Bei kleinen Beträgen fällt die Festgebühr stark ins Gewicht. Bei 5 € sind 2,49 % nur
+            12 Cent, aber zusammen mit den 0,35 € sind das schon 47 Cent – ein effektiver Satz von
+            fast 9,5 %. Je kleiner der Betrag, desto teurer relativ.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Währungsumrechnung</h3>
+            <p>Erfolgt die Zahlung in einer Fremdwährung, kommt zusätzlich eine Umrechnungsgebühr von
+            <strong>3 % über dem Basiswechselkurs</strong> hinzu. Dieser Aufschlag ist im Rechner
+            nicht enthalten – prüfen Sie den Kurs vorab mit dem
+            <a href="/waehrungs-rechner" class="text-blue-600 underline">Währungsrechner</a>.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Internationale Freunde-Zahlung gedeckelt</h3>
+            <p>Bei „Freunde &amp; Familie" international gilt 5 %, aber mit Minimum 0,99 € und
+            Maximum 3,99 €. Ab ca. 80 € greift immer der Deckel von 3,99 € – größere Beträge werden
+            damit relativ günstig.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für Sie? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Das Ergebnis zeigt entweder Ihre <strong>tatsächliche Auszahlung</strong> oder den
+            <strong>nötigen Brutto-Betrag</strong>. So nutzen Sie die Werte:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Preise richtig kalkulieren</p>
+              <p>Wenn Sie als Selbstständiger über PayPal Zahlungen annehmen, schlagen Sie die Gebühr
+              auf Ihren Preis auf. Bei 100 € Wunschauszahlung müssen Sie rund 102,91 € berechnen –
+              den exakten Wert liefert der Rückwärts-Modus.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Marge im Blick behalten</p>
+              <p>Die 2,49 % + 0,35 € drücken Ihre Marge spürbar – besonders bei kleinen Beträgen.
+              Wer Stundensätze kalkuliert, sollte die Zahlungsgebühr mit einplanen. Der
+              <a href="/stundenlohn-rechner" class="text-blue-600 underline">Stundenlohn-Rechner</a>
+              hilft beim Gegenrechnen.</p>
+            </div>
+
+            <div class="bg-yellow-50 rounded-lg p-3">
+              <p class="font-semibold text-yellow-800 mb-1">💰 Privat clever senden</p>
+              <p>Für private Überweisungen im Inland nutzen Sie „Freunde &amp; Familie" mit Guthaben
+              oder Bankkonto – das ist komplett kostenlos. Nur die Kreditkarte als Quelle kostet
+              extra (2,9 %).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu PayPal-Gebühren</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind die PayPal-Gebühren in Deutschland?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für Waren &amp; Dienstleistungen berechnet PayPal national <strong>2,49 % des Betrags
+              plus 0,35 € Festgebühr</strong>. Bei „Freunde &amp; Familie" im Inland mit
+              Guthaben oder Bankkonto fallen <strong>keine Gebühren</strong> an. Stand: PayPal-Gebührenseite,
+              zuletzt aktualisiert am 30. April 2026.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer zahlt die PayPal-Gebühr – Sender oder Empfänger?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Gebühr trägt grundsätzlich der <strong>Empfänger</strong>. PayPal zieht sie
+              automatisch vom gesendeten Betrag ab, bevor das Geld gutgeschrieben wird. Wer einen
+              exakten Netto-Betrag erhalten möchte, muss den Sender bitten, einen entsprechend
+              höheren Betrag zu überweisen – das berechnet der Rückwärts-Modus dieses Rechners.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist PayPal bei Freunde &amp; Familie wirklich kostenlos?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja, aber nur unter Bedingungen: Die Zahlung muss <strong>innerhalb Deutschlands bzw.
+              des EWR in Euro</strong> erfolgen und mit <strong>PayPal-Guthaben oder Bankkonto</strong>
+              finanziert werden. Wird eine Kreditkarte als Zahlungsquelle genutzt, fallen ca. 2,9 %
+              an. Bei internationalen Zahlungen berechnet PayPal 5 % (min. 0,99 €, max. 3,99 €).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel muss jemand senden, damit 100 € ankommen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei „Waren &amp; Dienstleistungen" national muss der Sender rund <strong>102,91 €</strong>
+              überweisen, damit nach Abzug von 2,49 % + 0,35 € genau 100 € bei Ihnen ankommen.
+              Die Formel lautet: (Wunschbetrag + 0,35 €) / (1 − 0,0249). Den exakten Wert liefert der
+              Modus „Wie viel senden lassen?".</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist die Gebühr bei kleinen Beträgen so hoch?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Weil die Festgebühr von <strong>0,35 €</strong> unabhängig vom Betrag immer anfällt.
+              Bei 5 € machen die 0,35 € allein schon 7 % aus, zusammen mit den 2,49 % sind es fast
+              9,5 % effektiv. Je kleiner der Betrag, desto stärker fällt die Festgebühr ins Gewicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Fallen bei Zahlungen ins Ausland zusätzliche Kosten an?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Bei „Waren &amp; Dienstleistungen" kommt ein Aufschlag auf den Prozentsatz hinzu:
+              0 % im EWR, +1,29 % beim Vereinigten Königreich, +2,99 % in der restlichen Welt.
+              Zusätzlich berechnet PayPal bei Zahlungen in fremder Währung eine Umrechnungsgebühr von
+              <strong>3 % über dem Basiswechselkurs</strong>, die in diesem Rechner nicht enthalten ist.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mehrwertsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mehrwertsteuer-Rechner</p>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏭</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gewerbesteuer-Rechner</p>
+          </a>
+          <a href="/waehrungs-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Währungsrechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozentrechner</p>
+          </a>
+          <a href="/rabatt-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏷️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rabatt-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PayPal-Gebühren-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/paypal-gebuehren-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die PayPal-Gebühren in Deutschland?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Waren & Dienstleistungen berechnet PayPal national 2,49 % des Betrags plus 0,35 € Festgebühr. Bei Freunde & Familie im Inland mit Guthaben oder Bankkonto fallen keine Gebühren an. Stand: PayPal-Gebührenseite, zuletzt aktualisiert am 30. April 2026."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer zahlt die PayPal-Gebühr – Sender oder Empfänger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Gebühr trägt grundsätzlich der Empfänger. PayPal zieht sie automatisch vom gesendeten Betrag ab, bevor das Geld gutgeschrieben wird. Wer einen exakten Netto-Betrag erhalten möchte, muss den Sender bitten, einen entsprechend höheren Betrag zu überweisen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist PayPal bei Freunde & Familie wirklich kostenlos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, aber nur unter Bedingungen: Die Zahlung muss innerhalb Deutschlands bzw. des EWR in Euro erfolgen und mit PayPal-Guthaben oder Bankkonto finanziert werden. Wird eine Kreditkarte als Zahlungsquelle genutzt, fallen ca. 2,9 % an. Bei internationalen Zahlungen berechnet PayPal 5 % (min. 0,99 €, max. 3,99 €)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel muss jemand senden, damit 100 € ankommen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Waren & Dienstleistungen national muss der Sender rund 102,91 € überweisen, damit nach Abzug von 2,49 % + 0,35 € genau 100 € bei Ihnen ankommen. Die Formel lautet: (Wunschbetrag + 0,35 €) / (1 − 0,0249)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist die Gebühr bei kleinen Beträgen so hoch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Weil die Festgebühr von 0,35 € unabhängig vom Betrag immer anfällt. Bei 5 € machen die 0,35 € allein schon 7 % aus, zusammen mit den 2,49 % sind es fast 9,5 % effektiv. Je kleiner der Betrag, desto stärker fällt die Festgebühr ins Gewicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fallen bei Zahlungen ins Ausland zusätzliche Kosten an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Bei Waren & Dienstleistungen kommt ein Aufschlag auf den Prozentsatz hinzu: 0 % im EWR, +1,29 % beim Vereinigten Königreich, +2,99 % in der restlichen Welt. Zusätzlich berechnet PayPal bei Zahlungen in fremder Währung eine Umrechnungsgebühr von 3 % über dem Basiswechselkurs."
+        }
+      }
+    ]
+  })} />
+</Layout>

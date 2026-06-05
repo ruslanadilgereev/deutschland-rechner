@@ -1,0 +1,387 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IndustrieminutenRechner from '../components/rechner/IndustrieminutenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Industrieminuten-Rechner – Industriezeit umrechnen (mit Tabelle)";
+const description = "Industrieminuten kostenlos umrechnen: normale Zeit (hh:mm) in Industriezeit (Dezimalstunden) und zurück. Inkl. Umrechnungstabelle, Formel und Beispielen für Zeiterfassung & Lohnabrechnung.";
+const keywords = "Industrieminuten Rechner, Industriezeit umrechnen, Dezimalzeit, Industrieminuten Tabelle, Industriestunden, Zeit in Dezimal umrechnen, Stunden dezimal, Industrieminuten berechnen, Zeiterfassung";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Industrieminuten-Rechner", url: "/industrieminuten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt', href: '/arbeit-gehalt' },
+    { name: 'Industrieminuten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🕐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Industrieminuten-Rechner</h1>
+            <p class="text-blue-200 text-sm">Normale Zeit in Industriezeit umrechnen – und zurück</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Industriezeit nach dem Dezimalsystem – 1 Stunde = 100 Industrieminuten, 1 Industrieminute = 36 Sekunden (Definition u. a. nach Wikipedia / REFA-Zeitwirtschaft)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Umrechnung in beide Richtungen (hh:mm ↔ Industriestunden, Minuten ↔ Industrieminuten), exakte Dezimalberechnung, Umrechnungstabelle 5–60 Minuten</p>
+            <p><strong>Nicht berücksichtigt:</strong> Pausenregelungen, Zuschläge, Rundungsvorgaben einzelner Zeiterfassungssysteme oder Tarifverträge – diese können von der reinen mathematischen Umrechnung abweichen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <IndustrieminutenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Industrieminuten: Was steckt dahinter?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            <strong>Industrieminuten</strong> – auch Industriezeit oder Dezimalzeit genannt – teilen eine Stunde
+            nicht in 60, sondern in <strong>100 gleiche Teile</strong>. Eine Industrieminute entspricht damit
+            einem Hundertstel einer Stunde, also exakt <strong>36 Sekunden</strong> oder 0,6 normalen Minuten.
+            Eine Industriestunde besteht aus 100 Industrieminuten. Vor dem Komma stehen die Stunden, hinter dem
+            Komma die dezimalen Minuten. Wer Arbeitszeiten erfasst und in eine
+            <a href="/stundenlohn-rechner" class="text-blue-600 hover:text-blue-800 underline">Lohnabrechnung</a> überträgt,
+            rechnet mit diesem System deutlich einfacher, weil sich Dezimalwerte direkt mit dem Stundenlohn multiplizieren lassen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum überhaupt Industrieminuten?</h3>
+          <p>
+            Im normalen 60-Minuten-System ist die Multiplikation umständlich: 8 Stunden und 45 Minuten lassen sich
+            nicht einfach mit dem Stundenlohn malnehmen. In Industriezeit sind dieselben 8:45 schlicht
+            <strong>8,75 Stunden</strong> – das mal Stundenlohn ergibt sofort den Bruttolohn. Genau deshalb nutzen
+            Zeiterfassungssysteme, Stundenzettel und Abrechnungsprogramme diese Darstellung. Wie viel davon netto
+            übrig bleibt, zeigt der <a href="/brutto-netto-rechner" class="text-blue-600 hover:text-blue-800 underline">Brutto-Netto-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die beiden Formeln</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Normalzeit → Industriezeit:</strong> Industriestunden = Stunden + (Minuten ÷ 60)</li>
+              <li><strong>Industriezeit → Normalzeit:</strong> Normalminuten = Nachkommastellen × 60</li>
+              <li><strong>Minuten → Industrieminuten:</strong> Industrieminuten = (Minuten ÷ 60) × 100</li>
+              <li><strong>Industrieminute:</strong> 1 IM = 0,6 normale Minuten = 36 Sekunden</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Schnelle Merkwerte</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>15 Minuten = 25 Industrieminuten</strong> (eine Viertelstunde = 0,25 h)</li>
+            <li><strong>30 Minuten = 50 Industrieminuten</strong> (eine halbe Stunde = 0,5 h)</li>
+            <li><strong>45 Minuten = 75 Industrieminuten</strong> (eine Dreiviertelstunde = 0,75 h)</li>
+            <li><strong>60 Minuten = 100 Industrieminuten</strong> (eine volle Industriestunde)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Arbeitstag 8 Stunden 45 Minuten → Industriezeit</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Eingegebene Zeit:</div>
+              <div class="font-medium text-gray-800">8 h 45 min</div>
+              <div class="text-gray-600">Rechnung:</div>
+              <div class="font-medium text-gray-800">8 + 45 ÷ 60 = 8,75</div>
+              <div class="text-gray-600">Industriestunden:</div>
+              <div class="font-medium text-gray-800">8,75</div>
+              <div class="text-gray-600">Industrieminuten gesamt:</div>
+              <div class="font-medium text-gray-800">875</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 7,25 Industriestunden → normale Zeit</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Industriezeit:</div>
+              <div class="font-medium text-gray-800">7,25</div>
+              <div class="text-gray-600">Rechnung Minuten:</div>
+              <div class="font-medium text-gray-800">0,25 × 60 = 15</div>
+              <div class="text-gray-600">Normale Zeit:</div>
+              <div class="font-medium text-gray-800">7:15 (7 Std. 15 Min.)</div>
+              <div class="text-gray-600">Industrieminuten:</div>
+              <div class="font-medium text-gray-800">725</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Lohn aus Industriezeit berechnen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Geleistete Zeit:</div>
+              <div class="font-medium text-gray-800">6 h 20 min</div>
+              <div class="text-gray-600">In Industriezeit:</div>
+              <div class="font-medium text-gray-800">6 + 20 ÷ 60 ≈ 6,33</div>
+              <div class="text-gray-600">Stundenlohn (Beispiel):</div>
+              <div class="font-medium text-gray-800">18,00 €</div>
+              <div class="text-gray-600">Bruttolohn:</div>
+              <div class="font-medium text-gray-800">6,33 × 18 ≈ 114,00 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Geben Sie Ihre Werte oben in den Rechner ein – beide Richtungen sind möglich.
+          Für die anschließende Lohnberechnung hilft der
+          <a href="/stundenlohn-rechner" class="text-blue-700 underline">Stundenlohn-Rechner</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Minuten direkt als Nachkommastelle eintragen</h3>
+            <p>8 Stunden 30 Minuten sind <strong>nicht</strong> 8,30 Industriestunden, sondern 8,50.
+            Die Minuten müssen durch 60 geteilt werden (30 ÷ 60 = 0,5). Das ist der häufigste Umrechnungsfehler.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Industrieminute mit normaler Minute verwechseln</h3>
+            <p>Eine Industrieminute ist <strong>kürzer</strong> als eine normale Minute – sie dauert nur 36 Sekunden.
+            50 Industrieminuten entsprechen deshalb 30 normalen Minuten, nicht 50.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Rundung in der Anzeige</h3>
+            <p>Werte wie 20 Minuten ergeben 33,33 Industrieminuten – eine periodische Dezimalzahl.
+            Der Rechner rundet für die Anzeige; bei der Lohnabrechnung kann ein Cent-Unterschied entstehen.
+            Maßgeblich ist immer der ungerundete Wert.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Pausen und Zuschläge</h3>
+            <p>Industrieminuten beschreiben nur die <strong>reine Zeitdauer</strong>. Gesetzliche Pausen,
+            <a href="/ueberstunden-rechner" class="text-blue-600 underline">Überstunden</a>-Zuschläge oder
+            Nachtarbeitszuschläge müssen separat berücksichtigt werden.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sekundengenaue Erfassung</h3>
+            <p>Wird sekundengenau gestempelt, gilt: Industriestunden = Stunden + Minuten ÷ 60 + Sekunden ÷ 3600.
+            Dieser Rechner arbeitet mit Stunden und Minuten – für die meisten Stundenzettel ausreichend genau.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Industrieminuten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist eine Industrieminute?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Industrieminute ist ein Hundertstel einer Stunde. Eine Stunde wird also nicht in 60,
+              sondern in <strong>100 Industrieminuten</strong> geteilt. Eine Industrieminute dauert deshalb
+              exakt <strong>36 Sekunden</strong> beziehungsweise 0,6 normale Minuten. Dieses Dezimalsystem
+              vereinfacht die Berechnung von Arbeitszeiten und Löhnen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich normale Zeit in Industriezeit um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie die Minuten durch 60 und addieren Sie das Ergebnis zu den vollen Stunden.
+              Formel: <strong>Industriestunden = Stunden + (Minuten ÷ 60)</strong>.
+              Beispiel: 8 Stunden 45 Minuten = 8 + 45 ÷ 60 = <strong>8,75 Industriestunden</strong>.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Industrieminuten sind 30 Minuten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>30 normale Minuten entsprechen <strong>50 Industrieminuten</strong>, also 0,5 Industriestunden.
+              Die Rechnung: 30 ÷ 60 × 100 = 50. Eine Viertelstunde (15 Minuten) sind 25 Industrieminuten,
+              eine Dreiviertelstunde (45 Minuten) sind 75 Industrieminuten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Sekunden hat eine Industrieminute?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Industrieminute hat <strong>36 Sekunden</strong>. Das ergibt sich aus 3.600 Sekunden
+              pro Stunde geteilt durch 100 Industrieminuten (3.600 ÷ 100 = 36). Im Vergleich: Eine normale
+              Minute hat 60 Sekunden – die Industrieminute ist also kürzer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wofür werden Industrieminuten verwendet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Industrieminuten werden vor allem in der <strong>Zeiterfassung, auf Stundenzetteln und in der
+              Lohnabrechnung</strong> eingesetzt. Der Vorteil: Dezimalwerte lassen sich direkt mit dem
+              Stundenlohn multiplizieren. 8,75 Industriestunden × Stundenlohn ergibt sofort den Bruttolohn –
+              ganz ohne Umrechnung von Minuten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist 8:30 nicht gleich 8,30 in Industriezeit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Weil die Minuten durch 60 geteilt werden müssen. 30 Minuten sind eine halbe Stunde, also 0,5 –
+              und nicht 0,30. Korrekt sind <strong>8,50 Industriestunden</strong> für 8 Stunden 30 Minuten.
+              Das direkte Übertragen der Minuten als Nachkommastelle ist der häufigste Fehler.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn-Rechner</p>
+          </a>
+          <a href="/ueberstunden-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">➕</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Überstunden-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/arbeitstage-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📅</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Arbeitstage-Rechner</p>
+          </a>
+          <a href="/arbeitszeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🕒</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Arbeitszeit-Rechner</p>
+          </a>
+          <a href="/minijob-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Minijob-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Industrieminuten-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/industrieminuten-rechner",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist eine Industrieminute?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Industrieminute ist ein Hundertstel einer Stunde. Eine Stunde wird also nicht in 60, sondern in 100 Industrieminuten geteilt. Eine Industrieminute dauert deshalb exakt 36 Sekunden beziehungsweise 0,6 normale Minuten. Dieses Dezimalsystem vereinfacht die Berechnung von Arbeitszeiten und Löhnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich normale Zeit in Industriezeit um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie die Minuten durch 60 und addieren Sie das Ergebnis zu den vollen Stunden. Formel: Industriestunden = Stunden + (Minuten ÷ 60). Beispiel: 8 Stunden 45 Minuten = 8 + 45 ÷ 60 = 8,75 Industriestunden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Industrieminuten sind 30 Minuten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "30 normale Minuten entsprechen 50 Industrieminuten, also 0,5 Industriestunden. Die Rechnung: 30 ÷ 60 × 100 = 50. Eine Viertelstunde (15 Minuten) sind 25 Industrieminuten, eine Dreiviertelstunde (45 Minuten) sind 75 Industrieminuten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Sekunden hat eine Industrieminute?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Industrieminute hat 36 Sekunden. Das ergibt sich aus 3.600 Sekunden pro Stunde geteilt durch 100 Industrieminuten (3.600 ÷ 100 = 36). Im Vergleich: Eine normale Minute hat 60 Sekunden – die Industrieminute ist also kürzer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wofür werden Industrieminuten verwendet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Industrieminuten werden vor allem in der Zeiterfassung, auf Stundenzetteln und in der Lohnabrechnung eingesetzt. Der Vorteil: Dezimalwerte lassen sich direkt mit dem Stundenlohn multiplizieren. 8,75 Industriestunden mal Stundenlohn ergibt sofort den Bruttolohn – ganz ohne Umrechnung von Minuten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist 8:30 nicht gleich 8,30 in Industriezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Weil die Minuten durch 60 geteilt werden müssen. 30 Minuten sind eine halbe Stunde, also 0,5 – und nicht 0,30. Korrekt sind 8,50 Industriestunden für 8 Stunden 30 Minuten. Das direkte Übertragen der Minuten als Nachkommastelle ist der häufigste Fehler."
+        }
+      }
+    ]
+  })} />
+</Layout>

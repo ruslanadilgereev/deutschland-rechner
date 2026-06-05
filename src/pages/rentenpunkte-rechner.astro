@@ -1,0 +1,471 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RentenpunkteRechner from '../components/rechner/RentenpunkteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Rentenpunkte-Rechner 2026 – Entgeltpunkte & Rente berechnen";
+const description = "Rentenpunkte sofort berechnen: Entgeltpunkte pro Jahr aus Ihrem Bruttogehalt, Durchschnittsentgelt 51.944 € und Rentenwert 40,79 €. Kostenloser Rechner mit aktuellen Werten der Deutschen Rentenversicherung.";
+const keywords = "Rentenpunkte Rechner, Entgeltpunkte berechnen, Rentenpunkte 2026, Rentenwert, Durchschnittsentgelt, Entgeltpunkte pro Jahr, gesetzliche Rente berechnen, Rentenanspruch";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Rentenpunkte-Rechner", url: "/rentenpunkte-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Sozialleistungen', href: '/sozialleistungen' },
+    { name: 'Rentenpunkte-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rentenpunkte-Rechner 2026</h1>
+            <p class="text-emerald-200 text-sm">Entgeltpunkte und Rentenanspruch berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Deutsche Rentenversicherung – Sozialversicherungsrechengrößen 2026, Rentenanpassung 2026 (§ 68 SGB VI)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> vorläufiges Durchschnittsentgelt 2026 (51.944 €), aktueller Rentenwert 40,79 € (seit Juli 2025) und 42,52 € ab Juli 2026, Beitragsbemessungsgrenze 101.400 € (max. ca. 1,9521 Entgeltpunkte/Jahr)</p>
+            <p><strong>Nicht berücksichtigt:</strong> künftige Gehaltsentwicklung, künftige Rentenanpassungen, Zu- und Abschläge (Kindererziehung, Frührente), Abzüge für Kranken-/Pflegeversicherung und Steuern – der Rechner liefert eine vereinfachte Brutto-Hochrechnung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RentenpunkteRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rentenpunkte 2026: Entgeltpunkte, Rentenwert & Berechnung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            <strong>Rentenpunkte</strong> – offiziell <strong>Entgeltpunkte</strong> genannt – sind die zentrale Währung
+            der gesetzlichen Rente. Sie sammeln jedes Jahr Punkte an, abhängig davon, wie hoch Ihr Verdienst im
+            Vergleich zum bundesweiten Durchschnitt liegt. Mit unserem <strong>Rentenpunkte-Rechner 2026</strong>
+            sehen Sie, wie viele Entgeltpunkte Ihr aktuelles Gehalt pro Jahr bringt und welcher monatliche
+            Rentenanspruch sich daraus hochrechnen lässt. Wie groß die Differenz zu Ihrem letzten Nettogehalt ist,
+            zeigt ergänzend der <a href="/rentenluecke-rechner" class="text-blue-600 hover:text-blue-800 underline">Rentenlücke-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie entstehen Entgeltpunkte?</h3>
+          <p>
+            Die Formel ist einfach: Ihr beitragspflichtiges Bruttojahresgehalt wird durch das
+            <strong>vorläufige Durchschnittsentgelt</strong> aller Versicherten geteilt. Wer genau den Durchschnitt
+            verdient, erhält pro Jahr exakt einen Entgeltpunkt.
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="font-mono text-sm">Entgeltpunkte/Jahr = Bruttojahresgehalt &#247; Durchschnittsentgelt</p>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Werte 2026</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Durchschnittsentgelt 2026 (vorläufig):</strong> 51.944 € (2025: 50.493 €)</li>
+              <li><strong>Aktueller Rentenwert:</strong> 40,79 € pro Entgeltpunkt (seit 1. Juli 2025)</li>
+              <li><strong>Rentenwert ab 1. Juli 2026:</strong> 42,52 € (Rentenanpassung +4,24 %)</li>
+              <li><strong>Beitragsbemessungsgrenze Rente 2026:</strong> 101.400 € pro Jahr (8.450 €/Monat)</li>
+              <li><strong>Maximale Entgeltpunkte pro Jahr:</strong> ca. 1,9521 (101.400 € &#247; 51.944 €)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vom Entgeltpunkt zur Monatsrente</h3>
+          <p>
+            Die spätere Bruttorente ergibt sich aus Ihren gesammelten Entgeltpunkten multipliziert mit dem
+            aktuellen Rentenwert:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="font-mono text-sm">Monatsrente = Entgeltpunkte &#215; Rentenwert (z. B. 40,79 €)</p>
+          </div>
+          <p>
+            Genau genommen wird die Rente nach der Rentenformel berechnet: Entgeltpunkte &#215; Zugangsfaktor &#215;
+            Rentenartfaktor &#215; aktueller Rentenwert. Bei der Regelaltersrente sind Zugangs- und Rentenartfaktor 1,0 –
+            deshalb genügt für eine Schätzung die einfache Multiplikation. Wie viel davon nach Steuern übrig bleibt,
+            zeigt der <a href="/rentensteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Rentensteuer-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beitragsbemessungsgrenze: die Obergrenze</h3>
+          <p>
+            Über die Beitragsbemessungsgrenze hinaus zahlen Sie keine Rentenbeiträge – und sammeln dafür auch keine
+            zusätzlichen Punkte. 2026 liegt die Grenze bei 101.400 € im Jahr. Wer mehr verdient, kommt deshalb auf
+            maximal rund 1,9521 Entgeltpunkte pro Jahr, egal wie hoch das Gehalt darüber hinaus ist.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen: Rentenpunkte 2026</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So viele Entgeltpunkte sammeln Sie bei verschiedenen Gehältern – und welche Monatsrente sich daraus nach
+          35 Beitragsjahren ergeben würde (Rentenwert heute 40,79 €, gleichbleibendes Gehalt, brutto):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Durchschnittsverdiener – 51.944 € brutto</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bruttojahresgehalt:</div>
+              <div class="font-medium text-gray-800">51.944 €</div>
+              <div class="text-gray-600">Entgeltpunkte pro Jahr:</div>
+              <div class="font-medium text-gray-800">1,0000 EP</div>
+              <div class="text-gray-600">Nach 35 Jahren:</div>
+              <div class="font-medium text-gray-800">35,00 EP</div>
+              <div class="text-gray-600">Monatsrente (brutto):</div>
+              <div class="font-medium text-gray-800">~1.428 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 40.000 € brutto</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bruttojahresgehalt:</div>
+              <div class="font-medium text-gray-800">40.000 €</div>
+              <div class="text-gray-600">Entgeltpunkte pro Jahr:</div>
+              <div class="font-medium text-gray-800">~0,7701 EP</div>
+              <div class="text-gray-600">Nach 35 Jahren:</div>
+              <div class="font-medium text-gray-800">~26,95 EP</div>
+              <div class="text-gray-600">Monatsrente (brutto):</div>
+              <div class="font-medium text-gray-800">~1.099 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-yellow-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Gutverdiener über der Grenze – 110.000 € brutto</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bruttojahresgehalt:</div>
+              <div class="font-medium text-gray-800">110.000 €</div>
+              <div class="text-gray-600">Beitragspflichtig (gedeckelt):</div>
+              <div class="font-medium text-gray-800">101.400 €</div>
+              <div class="text-gray-600">Entgeltpunkte pro Jahr:</div>
+              <div class="font-medium text-gray-800">~1,9521 EP (Maximum)</div>
+              <div class="text-gray-600">Nach 35 Jahren:</div>
+              <div class="font-medium text-gray-800">~68,32 EP</div>
+              <div class="text-gray-600">Monatsrente (brutto):</div>
+              <div class="font-medium text-gray-800">~2.787 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Die Beispiele sind vereinfacht (gleichbleibendes Gehalt, heutiger Rentenwert).
+          Nutzen Sie den Rechner oben für Ihre eigenen Werte und vergleichen Sie das Ergebnis mit Ihrer
+          persönlichen Renteninformation.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonderfälle & Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Heutigen Rentenwert für die ferne Zukunft ansetzen</h3>
+            <p>Der Rentenwert steigt nahezu jedes Jahr mit den Löhnen. Wer erst in 30 Jahren in Rente geht, erhält
+            voraussichtlich einen deutlich höheren Wert als 40,79 €. Der Rechner zeigt bewusst die heutige
+            Kaufkraft – Ihre nominale Rente liegt später höher.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Brutto- mit Nettorente verwechseln</h3>
+            <p>Das Ergebnis ist die <strong>Bruttorente</strong>. Davon gehen noch Beiträge zur Kranken- und
+            Pflegeversicherung (rund 11–12 %) sowie ggf. Steuern ab. Die ausgezahlte Rente liegt entsprechend
+            niedriger – das berechnen Sie mit dem <a href="/rentensteuer-rechner" class="text-blue-600 underline">Rentensteuer-Rechner</a>.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kindererziehung & Pflege</h3>
+            <p>Für Kindererziehungszeiten gibt es zusätzliche Entgeltpunkte (bis zu 3 Jahre pro Kind, ab 1992
+            geboren). Auch Pflege von Angehörigen kann Punkte bringen. Diese Zeiten sind in der einfachen
+            Gehaltsrechnung nicht enthalten.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Frührente und Abschläge</h3>
+            <p>Wer vor der Regelaltersgrenze in Rente geht, muss mit Abschlägen von 0,3 % pro Monat rechnen
+            (Zugangsfaktor unter 1,0). Wie sich das auswirkt, zeigt der
+            <a href="/fruehrente-rechner" class="text-blue-600 underline">Frührente-Rechner</a>.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verdienst über der Beitragsbemessungsgrenze</h3>
+            <p>Gehalt oberhalb von 101.400 € (2026) bringt keine weiteren Entgeltpunkte. Das Maximum liegt bei
+            rund 1,9521 Punkten pro Jahr. Der Rechner deckelt das automatisch und weist darauf hin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Was bedeutet das für dich? -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Was bedeutet das Ergebnis für Sie?</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <p>
+            Ihre Entgeltpunkte zeigen, wie sich Ihr heutiges Gehalt in Rentenanwartschaften übersetzt. So ordnen
+            Sie die Werte ein:
+          </p>
+
+          <div class="grid gap-3">
+            <div class="bg-green-50 rounded-lg p-3">
+              <p class="font-semibold text-green-800 mb-1">✅ Punktestand prüfen</p>
+              <p>Vergleichen Sie die berechneten Entgeltpunkte pro Jahr mit Ihrer Renteninformation. So sehen Sie,
+              ob Beitragszeiten korrekt erfasst sind.</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-3">
+              <p class="font-semibold text-blue-800 mb-1">📋 Lücke einschätzen</p>
+              <p>Liegt die hochgerechnete Rente unter Ihrem heutigen Bedarf, lohnt ein Blick auf private Vorsorge.
+              Den Versorgungsbedarf ermitteln Sie mit dem
+              <a href="/rentenluecke-rechner" class="text-blue-600 underline">Rentenlücke-Rechner</a> und
+              dem <a href="/riester-rechner" class="text-blue-600 underline">Riester-Rechner</a>.</p>
+            </div>
+
+            <div class="bg-yellow-50 rounded-lg p-3">
+              <p class="font-semibold text-yellow-800 mb-1">💰 Gehaltsentwicklung mitdenken</p>
+              <p>Steigt Ihr Gehalt über die Jahre, sammeln Sie mehr Punkte als die einfache Hochrechnung zeigt.
+              Rechnen Sie verschiedene Szenarien durch, indem Sie das Bruttogehalt anpassen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Rentenpunkten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein Rentenpunkt (Entgeltpunkt)?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Rentenpunkt – offiziell Entgeltpunkt – ist die Recheneinheit der gesetzlichen Rente.
+              Sie erhalten pro Jahr genau einen Entgeltpunkt, wenn Ihr Bruttoverdienst dem vorläufigen
+              Durchschnittsentgelt aller Versicherten entspricht (2026: 51.944 €). Verdienen Sie mehr, sammeln Sie
+              mehr Punkte, bei weniger entsprechend weniger.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel ist ein Rentenpunkt 2026 wert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Seit dem 1. Juli 2025 ist ein Entgeltpunkt 40,79 € monatliche Bruttorente wert. Zum 1. Juli 2026
+              steigt der aktuelle Rentenwert um 4,24 % auf 42,52 €. Ein Entgeltpunkt bringt dann also rund 42,52 €
+              Bruttorente pro Monat.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Entgeltpunkte pro Jahr?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie Ihr beitragspflichtiges Bruttojahresgehalt durch das Durchschnittsentgelt des Jahres.
+              Beispiel 2026: 60.000 € &#247; 51.944 € = rund 1,155 Entgeltpunkte. Bei genau 51.944 € erhalten Sie
+              exakt 1,0 Punkt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Rentenpunkte kann man maximal pro Jahr bekommen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Maximum ergibt sich aus der Beitragsbemessungsgrenze. 2026 liegt sie bei 101.400 € im Jahr.
+              Geteilt durch das Durchschnittsentgelt von 51.944 € ergibt das rund 1,9521 Entgeltpunkte. Gehalt
+              oberhalb dieser Grenze bringt keine weiteren Punkte.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist die berechnete Rente brutto oder netto?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner zeigt die Bruttorente. Davon werden noch Beiträge zur gesetzlichen Kranken- und
+              Pflegeversicherung (zusammen rund 11–12 %) sowie gegebenenfalls Steuern abgezogen. Ihre ausgezahlte
+              Nettorente liegt deshalb niedriger.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist die Hochrechnung des Rechners?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Hochrechnung ist eine vereinfachte Schätzung mit dem heutigen Rentenwert und konstantem Gehalt.
+              Sie berücksichtigt keine künftigen Lohn- und Rentenanpassungen, keine Zu- und Abschläge und keine
+              Kindererziehungs- oder Pflegezeiten. Verbindliche Werte liefert nur die Deutsche Rentenversicherung
+              in Ihrer persönlichen Renteninformation.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+          <a href="/rentenluecke-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rentenlücke-Rechner</p>
+          </a>
+          <a href="/rentensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rentensteuer-Rechner</p>
+          </a>
+          <a href="/fruehrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏳</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Frührente-Rechner</p>
+          </a>
+          <a href="/grundrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🤝</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundrente-Rechner</p>
+          </a>
+          <a href="/riester-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Riester-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Behörde
+        </h2>
+
+        <div class="p-4 bg-blue-50 rounded-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">Deutsche Rentenversicherung</h3>
+          <p class="text-blue-700 text-sm mb-2">
+            Für die <strong>gesetzliche Rente, Entgeltpunkte und Ihre Renteninformation</strong> ist die
+            Deutsche Rentenversicherung (DRV) zuständig. Ihren persönlichen Punktestand finden Sie in der
+            jährlichen Renteninformation oder im Online-Konto.
+          </p>
+          <p class="text-blue-700 text-sm mb-2">
+            <strong>Servicetelefon:</strong> 0800 1000 4800 (kostenfrei)
+          </p>
+          <p class="text-blue-700 text-sm">
+            <strong>Online:</strong> deutsche-rentenversicherung.de
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rentenpunkte-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/rentenpunkte-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist ein Rentenpunkt (Entgeltpunkt)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Rentenpunkt – offiziell Entgeltpunkt – ist die Recheneinheit der gesetzlichen Rente. Sie erhalten pro Jahr genau einen Entgeltpunkt, wenn Ihr Bruttoverdienst dem vorläufigen Durchschnittsentgelt aller Versicherten entspricht (2026: 51.944 €). Verdienen Sie mehr, sammeln Sie mehr Punkte, bei weniger entsprechend weniger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel ist ein Rentenpunkt 2026 wert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seit dem 1. Juli 2025 ist ein Entgeltpunkt 40,79 € monatliche Bruttorente wert. Zum 1. Juli 2026 steigt der aktuelle Rentenwert um 4,24 % auf 42,52 €. Ein Entgeltpunkt bringt dann also rund 42,52 € Bruttorente pro Monat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Entgeltpunkte pro Jahr?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie Ihr beitragspflichtiges Bruttojahresgehalt durch das Durchschnittsentgelt des Jahres. Beispiel 2026: 60.000 € geteilt durch 51.944 € = rund 1,155 Entgeltpunkte. Bei genau 51.944 € erhalten Sie exakt 1,0 Punkt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Rentenpunkte kann man maximal pro Jahr bekommen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Maximum ergibt sich aus der Beitragsbemessungsgrenze. 2026 liegt sie bei 101.400 € im Jahr. Geteilt durch das Durchschnittsentgelt von 51.944 € ergibt das rund 1,9521 Entgeltpunkte. Gehalt oberhalb dieser Grenze bringt keine weiteren Punkte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die berechnete Rente brutto oder netto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner zeigt die Bruttorente. Davon werden noch Beiträge zur gesetzlichen Kranken- und Pflegeversicherung (zusammen rund 11–12 %) sowie gegebenenfalls Steuern abgezogen. Ihre ausgezahlte Nettorente liegt deshalb niedriger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist die Hochrechnung des Rechners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Hochrechnung ist eine vereinfachte Schätzung mit dem heutigen Rentenwert und konstantem Gehalt. Sie berücksichtigt keine künftigen Lohn- und Rentenanpassungen, keine Zu- und Abschläge und keine Kindererziehungs- oder Pflegezeiten. Verbindliche Werte liefert nur die Deutsche Rentenversicherung in Ihrer persönlichen Renteninformation."
+        }
+      }
+    ]
+  })} />
+</Layout>
