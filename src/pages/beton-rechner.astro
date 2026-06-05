@@ -1,0 +1,437 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BetonRechner from '../components/rechner/BetonRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Beton-Rechner 2026 – Betonmenge, Säcke & Gewicht berechnen";
+const description = "Betonmenge einfach berechnen: Volumen in m³, Gewicht in kg sowie Anzahl Fertigbeton-Säcke oder Zement, Sand und Wasser zum Selbstmischen. Für Bodenplatte, Fundament und Säule – inklusive Verschnitt.";
+const keywords = "Beton Rechner, Betonmenge berechnen, Beton Säcke berechnen, wie viel Beton, Beton m3 berechnen, Fertigbeton Bedarf, Beton mischen Verhältnis, Bodenplatte Beton, Fundament Beton berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Beton-Rechner", url: "/beton-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Beton-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏗️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Beton-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Betonmenge, Säcke und Gewicht berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Volumen = Länge × Breite × Höhe (Rundsäule: π × r² × Höhe); Gewicht = Volumen × 2.400 kg/m³ (Rohdichte Normalbeton nach VDZ / DIN EN 206)</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Verschnitt 8 %, Fertigbeton-Ergiebigkeit ≈ 0,0167 m³ pro 40-kg-Sack (≈ 60 Säcke/m³); Selbstmischen C20/25 pro m³: 300 kg Zement, 1.900 kg Sand/Kies, 170 L Wasser (w/z ≈ 0,5).</p>
+            <p><strong>Nicht berücksichtigt:</strong> Statik und Bewehrung tragender Bauteile, Bauteilgeometrie mit Aussparungen, abweichende Rezepturen. Maßgeblich sind DIN EN 206 / DIN 1045-2 und die Herstellerangaben. Keine Bauberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BetonRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Betonmenge richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Beton-Rechner</strong> ermitteln Sie in Sekunden, wie viel Beton Sie für
+            eine Bodenplatte, ein Fundament oder eine Säule brauchen – als <strong>Volumen in m³</strong>,
+            als <strong>Gewicht in kg</strong> und als <strong>Anzahl Fertigbeton-Säcke</strong>. Wer
+            selbst mischt, erhält zusätzlich die nötige Menge an Zement, Sand/Kies und Wasser. So
+            vermeiden Sie Fehlkäufe und teure Nachbestellungen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Grundlage ist die einfache geometrische Volumenberechnung:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Volumen (Quader)</strong> = Länge × Breite × Höhe</li>
+              <li><strong>Volumen (Rundsäule)</strong> = π × (Durchmesser ÷ 2)² × Höhe</li>
+              <li><strong>Gewicht</strong> = Volumen × 2.400 kg/m³ (Rohdichte Normalbeton)</li>
+              <li><strong>Fertigbeton-Säcke</strong> = Volumen ÷ Ergiebigkeit pro Sack</li>
+            </ul>
+          </div>
+          <p>
+            Ein 40-kg-Sack Fertigbeton ergibt rund <strong>17–18 Liter</strong> Frischbeton, also etwa
+            0,0167 m³. Daraus folgt der bekannte Faustwert: Für <strong>1 m³</strong> Beton benötigt man
+            ungefähr <strong>60 Säcke à 40 kg</strong>. Bei größeren Mengen ab etwa 1 m³ lohnt sich
+            meist der Transportbeton vom Mischwerk – das Schleppen und Anmischen von hunderten Säcken
+            ist sonst kaum zu bewältigen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Selbst mischen: das richtige Verhältnis</h3>
+          <p>
+            Für normalen Konstruktionsbeton der Festigkeitsklasse <strong>C20/25</strong> gilt als
+            Richtwert pro Kubikmeter: rund <strong>300 kg Zement</strong>, <strong>1.900 kg
+            Sand/Kies</strong> (0–16 mm Körnung) und etwa <strong>170 Liter Wasser</strong>. Das
+            entspricht ungefähr einem Volumen-Mischverhältnis von <strong>1 Teil Zement zu 4 Teilen
+            Sand/Kies</strong>. Wichtig ist der Wasser-Zement-Wert (w/z) von etwa 0,5: zu viel Wasser
+            macht den Beton weich und mindert die Festigkeit deutlich.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verschnitt einplanen</h3>
+          <p>
+            Rechnen Sie immer einen <strong>Verschnitt von 5 bis 10 %</strong> auf das Volumen auf.
+            Reste in der Mischmaschine, Unebenheiten im Untergrund und kleine Mehrverbräuche an den
+            Rändern sorgen sonst dafür, dass das Material knapp wird. Der Rechner verwendet
+            voreingestellt 8 % – diesen Wert können Sie frei anpassen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann braucht es einen Statiker?</h3>
+          <p>
+            Für ein Gartenmäuerchen oder das Fundament einer Wäschespinne reicht der Richtwert. Sobald
+            ein Bauteil aber <strong>Lasten trägt</strong> – Streifenfundamente unter einem Gebäude,
+            Bodenplatten als Gründung, Decken oder Stützen – ist eine statische Bemessung und
+            Bewehrung nach <strong>DIN EN 206</strong> und <strong>DIN 1045-2</strong> Pflicht. Der
+            Rechner liefert die Materialmenge, ersetzt aber keine Tragwerksplanung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏗️ Richtwerte für Beton</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Faustwerte für Normalbeton – tatsächliche Mengen hängen von Rezeptur und Sackware ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Kennwert</th>
+                <th class="py-2 pl-2 font-semibold text-right">Richtwert</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Rohdichte Normalbeton</td><td class="py-2 pl-2 text-right">≈ 2.400 kg/m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Frischbeton aus 40-kg-Sack</td><td class="py-2 pl-2 text-right">≈ 17–18 Liter</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">40-kg-Säcke pro 1 m³</td><td class="py-2 pl-2 text-right">≈ 60 Säcke</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">25-kg-Säcke pro 1 m³</td><td class="py-2 pl-2 text-right">≈ 96 Säcke</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Zement pro 1 m³ (C20/25)</td><td class="py-2 pl-2 text-right">≈ 300 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Sand/Kies pro 1 m³</td><td class="py-2 pl-2 text-right">≈ 1.900 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Wasser pro 1 m³ (w/z ≈ 0,5)</td><td class="py-2 pl-2 text-right">≈ 170 Liter</td></tr>
+              <tr><td class="py-2 pr-2">Mischverhältnis (Volumen)</td><td class="py-2 pl-2 text-right">1 : 4 (Zement : Sand/Kies)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: beton.org (VDZ), SCHWENK Zement, talu.de.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle, jeweils mit 8 % Verschnitt:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Bodenplatte 5 × 4 m, 15 cm dick</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">5 × 4 × 0,15 = 3,00 m³</div>
+              <div class="text-gray-600">+ 8 % Verschnitt:</div>
+              <div class="font-medium text-gray-800">3,00 × 1,08 = 3,24 m³</div>
+              <div class="text-gray-600">Gewicht:</div>
+              <div class="font-medium text-gray-800">3,24 × 2.400 ≈ 7.776 kg</div>
+              <div class="text-gray-600">Fertigbeton (40 kg):</div>
+              <div class="font-medium text-green-700">195 Säcke (besser Transportbeton)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Streifenfundament 10 m × 0,3 × 0,5 m, selbst mischen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">10 × 0,3 × 0,5 = 1,50 m³</div>
+              <div class="text-gray-600">+ 8 % Verschnitt:</div>
+              <div class="font-medium text-gray-800">1,50 × 1,08 = 1,62 m³</div>
+              <div class="text-gray-600">Zement:</div>
+              <div class="font-medium text-gray-800">1,62 × 300 ≈ 486 kg</div>
+              <div class="text-gray-600">Sand/Kies:</div>
+              <div class="font-medium text-gray-800">1,62 × 1.900 ≈ 3.078 kg</div>
+              <div class="text-gray-600">Wasser:</div>
+              <div class="font-medium text-green-700">1,62 × 170 ≈ 275 Liter</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Rundsäule Ø 30 cm, 2,5 m hoch</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">π × 0,15² × 2,5 ≈ 0,177 m³</div>
+              <div class="text-gray-600">+ 8 % Verschnitt:</div>
+              <div class="font-medium text-gray-800">0,177 × 1,08 ≈ 0,191 m³</div>
+              <div class="text-gray-600">Fertigbeton (40 kg):</div>
+              <div class="font-medium text-green-700">12 Säcke</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Schon ab rund 1 m³ wird Transportbeton vom Mischwerk meist
+          günstiger und vor allem deutlich weniger Arbeit als das Anmischen aus dem Sack.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Maße in cm statt m eingeben</h3>
+            <p>Die Volumenformel rechnet in Metern. Wer 15 cm Dicke als „15“ statt „0,15“ einträgt,
+            erhält ein hundertfach zu großes Ergebnis. Rechnen Sie Zentimeter immer in Meter um
+            (15 cm = 0,15 m).</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Verschnitt vergessen</h3>
+            <p>Ohne Reserve wird der Beton an der ungünstigsten Stelle knapp – und ein nachgemischter
+            Rest hat eine andere Konsistenz. Rechnen Sie 5–10 % auf, gerade bei unebenem Untergrund.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Zu viel Wasser beim Mischen</h3>
+            <p>Ein höherer Wasser-Zement-Wert macht den Beton zwar geschmeidiger, senkt aber die
+            Festigkeit erheblich. Halten Sie sich an w/z ≈ 0,5 und geben Sie Wasser nur in kleinen
+            Mengen zu.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Tragende Bauteile</h3>
+            <p>Bei Fundamenten unter Gebäuden, Bodenplatten als Gründung oder Stützen ist eine
+            Bewehrung und statische Bemessung nach DIN EN 206 / DIN 1045-2 erforderlich. Der Rechner
+            ersetzt keine Tragwerksplanung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Frost und Witterung</h3>
+            <p>Beton darf beim Aushärten nicht gefrieren. Bei Temperaturen unter +5 °C sind besondere
+            Maßnahmen nötig, und frischer Beton sollte vor zu schnellem Austrocknen geschützt werden
+            (Nachbehandlung, Abdecken).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Beton-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Beton brauche ich pro Quadratmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von der Dicke ab: Pro Quadratmeter und Zentimeter Dicke werden 0,01 m³ Beton
+              benötigt. Eine 10 cm dicke Fläche braucht also 0,10 m³ pro m², bei 15 cm sind es 0,15 m³
+              pro m². Multiplizieren Sie diesen Wert mit der Fläche und addieren Sie 5–10 % Verschnitt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Säcke Beton ergeben 1 m³?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein 40-kg-Sack Fertigbeton liefert rund 17–18 Liter Frischbeton. Für einen Kubikmeter
+              brauchen Sie deshalb etwa 60 Säcke à 40 kg, beziehungsweise rund 96 Säcke à 25 kg. Ab
+              etwa 1 m³ ist Transportbeton meist die bessere Wahl.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel wiegt ein Kubikmeter Beton?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Normalbeton hat eine Rohdichte von rund 2.400 kg/m³. Ein Kubikmeter wiegt also etwa
+              2,4 Tonnen. Stahlbeton wiegt durch die Bewehrung mit rund 2.500 kg/m³ noch etwas mehr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">In welchem Verhältnis mische ich Beton selbst?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für normalen Beton C20/25 gilt als Faustregel ein Volumen-Mischverhältnis von 1 Teil
+              Zement zu 4 Teilen Sand/Kies. Pro Kubikmeter sind das rund 300 kg Zement, 1.900 kg
+              Sand/Kies und etwa 170 Liter Wasser (Wasser-Zement-Wert ca. 0,5).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann lohnt sich Transportbeton statt Sackware?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Schon ab etwa 1 m³ ist Transportbeton vom Mischwerk meist günstiger pro Kubikmeter und
+              vor allem deutlich weniger Arbeit. Für einen Kubikmeter müssten Sie sonst rund 60 Säcke
+              schleppen und nacheinander anmischen – das ist kaum sinnvoll zu schaffen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich für ein Fundament einen Statiker?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für kleine, nicht tragende Bauteile wie ein Pfostenfundament reicht der Richtwert. Bei
+              tragenden Fundamenten unter Gebäuden, Bodenplatten als Gründung oder Stützen ist eine
+              statische Bemessung und Bewehrung nach DIN EN 206 / DIN 1045-2 erforderlich.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/mauersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mauerstein-Rechner</p>
+          </a>
+          <a href="/pflastersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧩</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflaster-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪣</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Beton-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/beton-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Beton brauche ich pro Quadratmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von der Dicke ab: Pro Quadratmeter und Zentimeter Dicke werden 0,01 m³ Beton benötigt. Eine 10 cm dicke Fläche braucht also 0,10 m³ pro m², bei 15 cm sind es 0,15 m³ pro m². Multiplizieren Sie diesen Wert mit der Fläche und addieren Sie 5–10 % Verschnitt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Säcke Beton ergeben 1 m³?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein 40-kg-Sack Fertigbeton liefert rund 17–18 Liter Frischbeton. Für einen Kubikmeter brauchen Sie deshalb etwa 60 Säcke à 40 kg, beziehungsweise rund 96 Säcke à 25 kg. Ab etwa 1 m³ ist Transportbeton meist die bessere Wahl."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel wiegt ein Kubikmeter Beton?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Normalbeton hat eine Rohdichte von rund 2.400 kg/m³. Ein Kubikmeter wiegt also etwa 2,4 Tonnen. Stahlbeton wiegt durch die Bewehrung mit rund 2.500 kg/m³ noch etwas mehr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "In welchem Verhältnis mische ich Beton selbst?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für normalen Beton C20/25 gilt als Faustregel ein Volumen-Mischverhältnis von 1 Teil Zement zu 4 Teilen Sand/Kies. Pro Kubikmeter sind das rund 300 kg Zement, 1.900 kg Sand/Kies und etwa 170 Liter Wasser (Wasser-Zement-Wert ca. 0,5)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann lohnt sich Transportbeton statt Sackware?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Schon ab etwa 1 m³ ist Transportbeton vom Mischwerk meist günstiger pro Kubikmeter und vor allem deutlich weniger Arbeit. Für einen Kubikmeter müssten Sie sonst rund 60 Säcke schleppen und nacheinander anmischen – das ist kaum sinnvoll zu schaffen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich für ein Fundament einen Statiker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für kleine, nicht tragende Bauteile wie ein Pfostenfundament reicht der Richtwert. Bei tragenden Fundamenten unter Gebäuden, Bodenplatten als Gründung oder Stützen ist eine statische Bemessung und Bewehrung nach DIN EN 206 / DIN 1045-2 erforderlich."
+        }
+      }
+    ]
+  })} />
+</Layout>

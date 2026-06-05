@@ -1,0 +1,433 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TapetenRechner from '../components/rechner/TapetenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Tapeten-Rechner 2026 – Tapetenrollen & Bahnen berechnen";
+const description = "Tapetenbedarf kostenlos berechnen: Anzahl Rollen und Bahnen aus Raumgröße, Raumhöhe, Rollenmaß und Rapport. Mit Eurorolle 10,05 m, Musterversatz, Reserverollen und Beispielrechnungen.";
+const keywords = "Tapeten Rechner, Tapetenbedarf berechnen, wie viele Tapetenrollen, Tapete berechnen, Eurorolle, Rapport Tapete, Tapetenbahnen berechnen, Tapete Rollen Raum, Tapezieren Bedarf";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Tapeten-Rechner", url: "/tapeten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Tapeten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧻</span>
+          <div>
+            <h1 class="text-2xl font-bold">Tapeten-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Tapetenrollen und Bahnen berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Bahnbasierte Berechnung. Raumumfang ÷ Rollenbreite = Bahnen; Rollenlänge ÷ Bahnlänge = Bahnen pro Rolle. Bahnlänge = Raumhöhe + Verschnitt, bei Muster auf den Rapport aufgerundet.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Eurorolle 10,05 m × 0,53 m, 10 cm Verschnitt pro Bahn, eine Reserverolle. Alle Werte sind anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Türen und Fenster werden nicht abgezogen (bewusst großzügig). Faustkontrolle (Umfang × Höhe) ÷ 5 m² dient nur zur groben Gegenprüfung. Richtwerte, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TapetenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Tapetenbedarf richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Tapeten-Rechner</strong> ermitteln Sie, wie viele Rollen Sie für ein
+            Zimmer benötigen. Der Rechner arbeitet <strong>bahnbasiert</strong>: Er teilt den
+            Raumumfang in einzelne Tapetenbahnen und prüft, wie viele davon aus einer Rolle
+            herausgeschnitten werden können. Das ist genauer als eine reine Flächenrechnung, weil am
+            Ende jeder Rolle ein nicht nutzbarer Rest übrig bleibt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Raumumfang</strong> = 2 × (Länge + Breite)</li>
+              <li><strong>Anzahl Bahnen</strong> = Umfang ÷ Rollenbreite, aufgerundet</li>
+              <li><strong>Bahnlänge</strong> = Raumhöhe + ca. 10 cm Verschnitt (bei Muster auf Rapport aufgerundet)</li>
+              <li><strong>Bahnen pro Rolle</strong> = Rollenlänge ÷ Bahnlänge, abgerundet</li>
+              <li><strong>Rollen</strong> = Bahnen ÷ Bahnen pro Rolle, aufgerundet, + Reserve</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Eurorolle</strong> ist mit 10,05 m Länge und 0,53 m Breite der Standard. Es
+            gibt auch breitere Rollen mit 0,70 m, die mit weniger Bahnen auskommen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Rapport: Muster kostet Material</h3>
+          <p>
+            Der <strong>Rapport</strong> ist die Höhe, nach der sich das Tapetenmuster wiederholt. Er
+            steht als Zahl auf dem Etikett. Bei gemusterten Tapeten muss jede neue Bahn so
+            zugeschnitten werden, dass das Muster passt – die Bahnlänge wird deshalb auf das nächste
+            Vielfache des Rapports aufgerundet. Ein <strong>versetzter Ansatz</strong>, bei dem
+            benachbarte Bahnen um den halben Rapport verschoben sind, erhöht den Verbrauch zusätzlich.
+            Je größer der Rapport, desto mehr Verschnitt entsteht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum die Faustformel oft daneben liegt</h3>
+          <p>
+            Eine beliebte Faustregel lautet: Rollen = (Umfang × Höhe) ÷ 5 m², da eine Rolle rund 5 m²
+            ergiebige Fläche hat. Diese Formel unterschätzt den Bedarf jedoch häufig, weil sie den
+            unvermeidlichen Rest am Rollenende nicht berücksichtigt. Die bahnbasierte Rechnung dieses
+            Rechners liegt deshalb meist etwas höher – und damit auf der sicheren Seite. Nutzen Sie
+            die Faustformel nur als grobe Gegenprüfung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Reserverollen aus einer Charge</h3>
+          <p>
+            Planen Sie <strong>ein bis zwei Reserverollen</strong> ein und bestellen Sie alle Rollen
+            mit derselben <strong>Anfertigungs- bzw. Chargennummer</strong>. Tapeten aus
+            verschiedenen Produktionsläufen können im Farbton minimal abweichen, was an der Wand
+            sichtbar wird. Eine Reserverolle hilft auch bei späteren Reparaturen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧻 Rollen je Raumgröße (Richtwerte)</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Eurorolle 10,05 m × 0,53 m, Raumhöhe 2,50 m, ohne Muster, ohne Türabzug.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Raum (L × B)</th>
+                <th class="py-2 px-2 font-semibold text-right">Umfang</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ Rollen</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">3 × 3 m</td><td class="py-2 px-2 text-right">12 m</td><td class="py-2 pl-2 text-right">8</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">4 × 3 m</td><td class="py-2 px-2 text-right">14 m</td><td class="py-2 pl-2 text-right">9</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">4 × 4 m</td><td class="py-2 px-2 text-right">16 m</td><td class="py-2 pl-2 text-right">11</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">5 × 4 m</td><td class="py-2 px-2 text-right">18 m</td><td class="py-2 pl-2 text-right">12</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">5 × 5 m</td><td class="py-2 px-2 text-right">20 m</td><td class="py-2 pl-2 text-right">13</td></tr>
+              <tr><td class="py-2 pr-2">6 × 5 m</td><td class="py-2 px-2 text-right">22 m</td><td class="py-2 pl-2 text-right">14</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Werte ohne Reserve und ohne Muster. Quellen: sanier.de, maler.org (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Eurorolle 10,05 m × 0,53 m, 10 cm Verschnitt pro Bahn:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Zimmer 5 × 4 m, Höhe 2,50 m, ohne Muster</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Umfang:</div>
+              <div class="font-medium text-gray-800">2 × (5 + 4) = 18 m</div>
+              <div class="text-gray-600">Bahnen:</div>
+              <div class="font-medium text-gray-800">18 ÷ 0,53 = 34</div>
+              <div class="text-gray-600">Bahnlänge:</div>
+              <div class="font-medium text-gray-800">2,50 + 0,10 = 2,60 m</div>
+              <div class="text-gray-600">Bahnen pro Rolle:</div>
+              <div class="font-medium text-gray-800">10,05 ÷ 2,60 = 3</div>
+              <div class="text-gray-600">Rollen (+ 1 Reserve):</div>
+              <div class="font-medium text-green-700">13 Rollen</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Zimmer 4 × 3 m, Höhe 2,50 m</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Umfang:</div>
+              <div class="font-medium text-gray-800">2 × (4 + 3) = 14 m</div>
+              <div class="text-gray-600">Bahnen:</div>
+              <div class="font-medium text-gray-800">14 ÷ 0,53 = 27</div>
+              <div class="text-gray-600">Bahnen pro Rolle:</div>
+              <div class="font-medium text-gray-800">10,05 ÷ 2,60 = 3</div>
+              <div class="text-gray-600">Rollen (+ 1 Reserve):</div>
+              <div class="font-medium text-green-700">10 Rollen</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 5 × 4 m mit 64 cm Rapport</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bahnlänge ohne Muster:</div>
+              <div class="font-medium text-gray-800">2,60 m</div>
+              <div class="text-gray-600">auf Rapport 0,64 m gerundet:</div>
+              <div class="font-medium text-gray-800">3,20 m</div>
+              <div class="text-gray-600">Bahnen pro Rolle:</div>
+              <div class="font-medium text-gray-800">10,05 ÷ 3,20 = 3</div>
+              <div class="text-gray-600">Rollen (+ 1 Reserve):</div>
+              <div class="font-medium text-green-700">13 Rollen</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 zeigt: Ein großer Rapport verlängert jede Bahn auf das
+          nächste Muster-Vielfache. Aus 2,60 m werden 3,20 m – pro Bahn gehen 60 cm Verschnitt
+          verloren. Tapeten mit kleinem oder ohne Rapport sind deutlich materialsparender.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Rapport ignorieren</h3>
+            <p>Bei gemusterten Tapeten verlängert der Rapport jede Bahn. Wer nur mit der reinen
+            Raumhöhe rechnet, bestellt zu wenig Material und das Muster passt nicht zusammen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Faustformel überschätzen</h3>
+            <p>Die Formel (Umfang × Höhe) ÷ 5 m² unterschlägt den Rest am Rollenende. Sie liefert oft
+            eine zu kleine Rollenzahl. Verlassen Sie sich auf die bahnbasierte Rechnung.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Keine Reserve einplanen</h3>
+            <p>Eine beschädigte Bahn oder ein späterer Reparaturbedarf erfordern Material aus
+            derselben Charge. Ohne Reserverolle ist eine exakte Nachbestellung später kaum möglich.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Türen und Fenster</h3>
+            <p>Der Rechner zieht große Öffnungen bewusst nicht ab, um auf der sicheren Seite zu
+            bleiben. Bei sehr großen Fensterfronten können Sie die Reserverollen reduzieren.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Schräge Wände</h3>
+            <p>Bei Dachschrägen variiert die Bahnlänge. Messen Sie die längste benötigte Bahn und
+            setzen Sie diese als Raumhöhe an, damit jede Bahn ausreichend lang ist.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Tapeten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Tapetenrollen brauche ich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von Raumumfang, Raumhöhe und Muster ab. Für ein Zimmer von 5 × 4 m mit
+              2,50 m Höhe und einer Standard-Eurorolle (10,05 × 0,53 m) brauchen Sie ohne Muster rund
+              12 Rollen plus eine Reserverolle. Der Rechner ermittelt den genauen Wert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß ist eine Eurorolle Tapete?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Standard-Eurorolle ist 10,05 m lang und 0,53 m breit, das ergibt rund 5,3 m²
+              Rohfläche. Wegen Verschnitt und Muster liegt die nutzbare Fläche niedriger. Daneben gibt
+              es breitere Rollen mit 0,70 m Bahnbreite.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet Rapport bei Tapeten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rapport ist die Höhe, nach der sich das Muster wiederholt. Er steht auf dem
+              Etikett. Bei gemusterten Tapeten muss jede Bahn auf ein Vielfaches des Rapports
+              zugeschnitten werden, damit das Muster passt – das erhöht den Materialbedarf.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Bahnen bekomme ich aus einer Rolle?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie die Rollenlänge durch die Bahnlänge und runden Sie ab. Aus einer
+              10,05-m-Rolle ergeben sich bei 2,60 m Bahnlänge drei volle Bahnen, der Rest reicht
+              nicht für eine vierte. Bei niedrigeren Räumen sind es mehr Bahnen pro Rolle.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Soll ich Türen und Fenster abziehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Dieser Rechner zieht Öffnungen bewusst nicht ab, um eine Reserve einzukalkulieren.
+              Reststücke über Türen und unter Fenstern lassen sich oft nicht sinnvoll weiterverwenden.
+              Bei sehr großen Fensterfronten können Sie die Reserverollen reduzieren.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum sollte ich Reserverollen aus derselben Charge kaufen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Tapeten aus unterschiedlichen Produktionsläufen können im Farbton leicht abweichen.
+              Bestellen Sie alle Rollen inklusive Reserve mit derselben Anfertigungs- bzw.
+              Chargennummer, dann passen sie an der Wand exakt zusammen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarben-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/wohnflaeche-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohnflächen-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tapeten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/tapeten-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Tapetenrollen brauche ich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von Raumumfang, Raumhöhe und Muster ab. Für ein Zimmer von 5 × 4 m mit 2,50 m Höhe und einer Standard-Eurorolle (10,05 × 0,53 m) brauchen Sie ohne Muster rund 12 Rollen plus eine Reserverolle. Der Rechner ermittelt den genauen Wert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß ist eine Eurorolle Tapete?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Standard-Eurorolle ist 10,05 m lang und 0,53 m breit, das ergibt rund 5,3 m² Rohfläche. Wegen Verschnitt und Muster liegt die nutzbare Fläche niedriger. Daneben gibt es breitere Rollen mit 0,70 m Bahnbreite."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet Rapport bei Tapeten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rapport ist die Höhe, nach der sich das Muster wiederholt. Er steht auf dem Etikett. Bei gemusterten Tapeten muss jede Bahn auf ein Vielfaches des Rapports zugeschnitten werden, damit das Muster passt – das erhöht den Materialbedarf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Bahnen bekomme ich aus einer Rolle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie die Rollenlänge durch die Bahnlänge und runden Sie ab. Aus einer 10,05-m-Rolle ergeben sich bei 2,60 m Bahnlänge drei volle Bahnen, der Rest reicht nicht für eine vierte. Bei niedrigeren Räumen sind es mehr Bahnen pro Rolle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Soll ich Türen und Fenster abziehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dieser Rechner zieht Öffnungen bewusst nicht ab, um eine Reserve einzukalkulieren. Reststücke über Türen und unter Fenstern lassen sich oft nicht sinnvoll weiterverwenden. Bei sehr großen Fensterfronten können Sie die Reserverollen reduzieren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum sollte ich Reserverollen aus derselben Charge kaufen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tapeten aus unterschiedlichen Produktionsläufen können im Farbton leicht abweichen. Bestellen Sie alle Rollen inklusive Reserve mit derselben Anfertigungs- bzw. Chargennummer, dann passen sie an der Wand exakt zusammen."
+        }
+      }
+    ]
+  })} />
+</Layout>

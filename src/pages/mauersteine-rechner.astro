@@ -1,0 +1,420 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MauersteineRechner from '../components/rechner/MauersteineRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Mauerstein-Rechner 2026 – Steinbedarf pro m² berechnen";
+const description = "Mauersteine berechnen: Wie viele Steine pro m² und für die ganze Wand – für die Formate DF, NF und 2DF mit Mörtelfuge nach DIN 4172. Inklusive Mörtel-Richtwert, Aussparungen und Verschnitt.";
+const keywords = "Mauerstein Rechner, Mauersteine pro m2, Steinbedarf berechnen, wie viele Steine pro qm, Ziegel pro m2, Mauerwerk berechnen, NF DF 2DF Format, Mörtelbedarf, Wand mauern Steine";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Mauerstein-Rechner", url: "/mauersteine-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Mauerstein-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Mauerstein-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Steinbedarf pro m² und für die ganze Wand</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Steine pro m² = 1 ÷ ((Steinlänge + Fuge) × (Steinhöhe + Fuge)); Standardformate nach DIN 105 / DIN 4172, Regelfuge 10 mm (oktametrische Maßordnung)</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Format NF (240 × 71 mm), Fuge 10 mm, Verschnitt 7 %, Mörtel-Richtwert 35 L/m² (24-cm-Wand, Normalmörtel). Gesamt = (Wandfläche − Aussparungen) × Steine/m² × (1 + Verschnitt).</p>
+            <p><strong>Nicht berücksichtigt:</strong> statische Bemessung, herstellerspezifische Sondermaße, Dünnbettmörtel-Mauerwerk und Verbandsversatz. Im Zweifel Fachplanung. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MauersteineRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Mauersteine pro m² richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Mauerstein-Rechner</strong> ermitteln Sie, wie viele Steine Sie pro
+            Quadratmeter und für Ihre gesamte Wand benötigen. Der Rechner unterstützt die gängigen
+            Formate <strong>DF</strong>, <strong>NF</strong> und <strong>2DF</strong> nach
+            <strong>DIN 105</strong> sowie ein frei eingebbares Sondermaß, berücksichtigt Aussparungen
+            für Fenster und Türen und gibt zusätzlich einen Mörtel-Richtwert aus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Steinbedarf pro Quadratmeter ergibt sich aus der Ansichtsfläche eines Steins inklusive Mörtelfuge:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Steine/m²</strong> = 1 ÷ ((Steinlänge + Fuge) × (Steinhöhe + Fuge))</li>
+              <li><strong>Wandfläche</strong> = Länge × Höhe − Aussparungen</li>
+              <li><strong>Gesamtsteine</strong> = Wandfläche × Steine/m² × (1 + Verschnitt)</li>
+            </ul>
+          </div>
+          <p>
+            Maßgeblich ist die <strong>Lagerfuge und Stoßfuge</strong> von in der Regel
+            <strong>10 mm</strong>. Diese Regelfuge ist Teil der <strong>oktametrischen Maßordnung</strong>
+            nach DIN 4172: Sie sorgt dafür, dass Steinmaß plus Fuge ein glattes Rastermaß ergibt. Beim
+            NF-Stein (240 mm lang, 71 mm hoch) wird daraus 250 mm × 81 mm pro Steineinheit.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die wichtigsten Steinformate</h3>
+          <p>
+            Alle Formate leiten sich vom <strong>Dünnformat (DF)</strong> mit 240 × 115 × 52 mm ab. Das
+            <strong>Normalformat (NF)</strong> misst 240 × 115 × 71 mm, das <strong>2DF</strong>
+            240 × 115 × 113 mm. Mit jeder Steigerung der Steinhöhe sinkt der Bedarf pro Quadratmeter,
+            weil ein einzelner Stein eine größere Fläche abdeckt – das spart Verarbeitungszeit.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verschnitt richtig wählen</h3>
+          <p>
+            Bei einer einfachen, später verputzten Mauer reichen rund <strong>5 % Verschnitt</strong>.
+            Bei <strong>Sichtmauerwerk</strong>, bei dem alle Steine sauber zugeschnitten und
+            ausgesucht werden, sollten Sie eher <strong>10 %</strong> einplanen. Auch viele Ecken,
+            Aussparungen oder Schrägen erhöhen den Verschnitt. Der Rechner verwendet voreingestellt 7 %.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mörtelbedarf</h3>
+          <p>
+            Der Mörtelbedarf hängt stark von Wanddicke und Fugenbild ab. Als grober Richtwert gelten
+            für eine <strong>24-cm-Wand</strong> mit Normalmörtel etwa <strong>30 bis 40 Liter pro
+            m²</strong>. Bei modernem Dünnbettmauerwerk mit plangeschliffenen Steinen ist der Verbrauch
+            deutlich geringer. Der Rechner gibt 35 L/m² als Orientierung aus.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧱 Steinbedarf je Format (Fuge 10 mm)</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Steine pro m² Wandfläche im Läuferverband, gerechnet aus Länge und Höhe plus 10 mm Fuge.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Format</th>
+                <th class="py-2 px-2 font-semibold text-right">Maß (L×H)</th>
+                <th class="py-2 pl-2 font-semibold text-right">Steine/m²</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">DF (Dünnformat)</td><td class="py-2 px-2 text-right">240 × 52 mm</td><td class="py-2 pl-2 text-right">≈ 64,5</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">NF (Normalformat)</td><td class="py-2 px-2 text-right">240 × 71 mm</td><td class="py-2 pl-2 text-right">≈ 49,4</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">2DF</td><td class="py-2 px-2 text-right">240 × 113 mm</td><td class="py-2 pl-2 text-right">≈ 32,5</td></tr>
+              <tr><td class="py-2 pr-2">3DF</td><td class="py-2 px-2 text-right">240 × 113 mm*</td><td class="py-2 pl-2 text-right">je nach Höhe</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          * Großformate variieren je Hersteller. Quellen: DIN 105 (Wikipedia), BauNetz Wissen, KS-Maurerfibel.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei Wände mit unterschiedlichem Format und Fuge 10 mm:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wand 5 × 2,5 m, NF-Stein, 7 % Verschnitt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1 ÷ (0,25 × 0,081) ≈ 49,4</div>
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">5 × 2,5 = 12,5 m²</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">12,5 × 49,4 × 1,07 ≈ 661 Steine</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Wand 4 × 2,5 m mit 2 m² Fenster, DF-Stein, 7 %</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1 ÷ (0,25 × 0,062) ≈ 64,5</div>
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">4 × 2,5 − 2 = 8 m²</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">8 × 64,5 × 1,07 ≈ 553 Steine</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Wand 6 × 2,75 m, 2DF-Stein, 10 % Verschnitt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1 ÷ (0,25 × 0,123) ≈ 32,5</div>
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">6 × 2,75 = 16,5 m²</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">16,5 × 32,5 × 1,10 ≈ 591 Steine</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Größere Formate wie 2DF decken mehr Fläche pro Stein ab. Das
+          reduziert nicht nur die Steinzahl, sondern auch die Verarbeitungszeit deutlich.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Fuge vergessen</h3>
+            <p>Ohne die Mörtelfuge würde man zu viele Steine bestellen. Die 10-mm-Fuge vergrößert das
+            wirksame Steinmaß und senkt damit den Bedarf pro m². Sie ist fester Bestandteil der
+            Maßordnung.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Aussparungen nicht abziehen</h3>
+            <p>Fenster und Türen können einen großen Teil der Wandfläche ausmachen. Wer sie nicht
+            abzieht, bestellt deutlich zu viele Steine. Tragen Sie die Summe der Öffnungen in m² ein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verschnitt zu niedrig bei Sichtmauerwerk</h3>
+            <p>Bei sichtbarem Mauerwerk werden mehr Steine aussortiert und zugeschnitten. Statt 5 %
+            sollten Sie hier 10 % Verschnitt einplanen, sonst wird das Material knapp.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wanddicke und Mörtel</h3>
+            <p>Die Steinzahl pro m² Ansichtsfläche ändert sich mit der Wanddicke nicht, der Mörtelbedarf
+            aber schon. Eine 36,5-cm-Wand braucht deutlich mehr Mörtel als eine 11,5-cm-Wand.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Plansteine im Dünnbett</h3>
+            <p>Moderne plangeschliffene Steine werden mit nur etwa 1–3 mm Dünnbettmörtel vermauert. Hier
+            ist die Fuge viel kleiner – stellen Sie sie im Rechner entsprechend ein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Mauerstein-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Mauersteine brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Format ab. Mit 10 mm Fuge ergeben sich im Läuferverband rund 49 Steine/m²
+              beim Normalformat (NF), etwa 64–65 beim Dünnformat (DF) und rund 33 beim 2DF. Die Formel
+              lautet: 1 ÷ ((Steinlänge + Fuge) × (Steinhöhe + Fuge)).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeuten DF, NF und 2DF?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das sind genormte Steinformate nach DIN 105. DF (Dünnformat) misst 240 × 115 × 52 mm,
+              NF (Normalformat) 240 × 115 × 71 mm und 2DF 240 × 115 × 113 mm. Alle Maße leiten sich vom
+              Dünnformat ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick ist die Mörtelfuge?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei klassischem Mauerwerk mit Normalmörtel beträgt die Lager- und Stoßfuge in der Regel
+              10 mm. Dieser Wert ist Teil der oktametrischen Maßordnung nach DIN 4172. Bei modernen
+              Plansteinen im Dünnbett sind es nur 1–3 mm.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für eine einfache, verputzte Mauer reichen rund 5 % Verschnitt. Bei Sichtmauerwerk oder
+              vielen Ecken, Schrägen und Aussparungen sind eher 10 % sinnvoll. Der Rechner verwendet
+              voreingestellt 7 %.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Mörtel brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für eine 24-cm-Wand mit Normalmörtel gelten als Richtwert etwa 30 bis 40 Liter pro m².
+              Der genaue Bedarf hängt von Wanddicke, Steinformat und Fugenbild ab. Bei Dünnbettmauerwerk
+              ist der Verbrauch deutlich geringer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich Fenster und Türen abziehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Ziehen Sie die Summe aller Öffnungen in m² von der Wandfläche ab, damit Sie nicht zu
+              viele Steine bestellen. Im Rechner gibt es dafür das Feld „Aussparungen“.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪣</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/pflastersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧩</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflaster-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mauerstein-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/mauersteine-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Mauersteine brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Format ab. Mit 10 mm Fuge ergeben sich im Läuferverband rund 49 Steine/m² beim Normalformat (NF), etwa 64–65 beim Dünnformat (DF) und rund 33 beim 2DF. Die Formel lautet: 1 ÷ ((Steinlänge + Fuge) × (Steinhöhe + Fuge))."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeuten DF, NF und 2DF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das sind genormte Steinformate nach DIN 105. DF (Dünnformat) misst 240 × 115 × 52 mm, NF (Normalformat) 240 × 115 × 71 mm und 2DF 240 × 115 × 113 mm. Alle Maße leiten sich vom Dünnformat ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dick ist die Mörtelfuge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei klassischem Mauerwerk mit Normalmörtel beträgt die Lager- und Stoßfuge in der Regel 10 mm. Dieser Wert ist Teil der oktametrischen Maßordnung nach DIN 4172. Bei modernen Plansteinen im Dünnbett sind es nur 1–3 mm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für eine einfache, verputzte Mauer reichen rund 5 % Verschnitt. Bei Sichtmauerwerk oder vielen Ecken, Schrägen und Aussparungen sind eher 10 % sinnvoll. Der Rechner verwendet voreingestellt 7 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Mörtel brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für eine 24-cm-Wand mit Normalmörtel gelten als Richtwert etwa 30 bis 40 Liter pro m². Der genaue Bedarf hängt von Wanddicke, Steinformat und Fugenbild ab. Bei Dünnbettmauerwerk ist der Verbrauch deutlich geringer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich Fenster und Türen abziehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Ziehen Sie die Summe aller Öffnungen in m² von der Wandfläche ab, damit Sie nicht zu viele Steine bestellen. Im Rechner gibt es dafür das Feld „Aussparungen“."
+        }
+      }
+    ]
+  })} />
+</Layout>

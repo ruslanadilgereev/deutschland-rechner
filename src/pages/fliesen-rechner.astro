@@ -1,0 +1,444 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FliesenRechner from '../components/rechner/FliesenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Fliesen-Rechner 2026 – Fliesenbedarf & Verschnitt berechnen";
+const description = "Fliesenbedarf kostenlos berechnen: Stückzahl, Kartons und Fliesenkleber aus Raumgröße, Fliesenformat, Fugenbreite und Verschnitt. Inklusive Richtwert-Tabelle, Beispielen und Tipps zur Verlegeart.";
+const keywords = "Fliesen Rechner, Fliesenbedarf berechnen, Fliesen Verschnitt, Fliesenmenge berechnen, wie viele Fliesen, Fliesenkleber Bedarf, Fugenbreite, Fliesen pro m2, Quadratmeter Fliesen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Fliesen-Rechner", url: "/fliesen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Fliesen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Fliesen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Fliesenbedarf inkl. Verschnitt berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Fläche ÷ Fliesenfläche (inkl. Fuge), aufgerundet, plus Verschnitt. Fliesenfläche = (Breite + Fuge) × (Höhe + Fuge).</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Verschnitt 10 %, Fugenbreite 3 mm, Fliesenkleber ≈ 1,6 kg/m² (4-mm-Zahnkelle). Alle Werte sind anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Aussparungen (Türen, Säulen), schwierige Zuschnitte und herstellerspezifische Packungsgrößen – ziehen Sie Aussparungen vorab von der Fläche ab. Richtwerte, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <FliesenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Fliesenbedarf richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Fliesen-Rechner</strong> ermitteln Sie, wie viele Fliesen Sie für Boden
+            oder Wand benötigen – inklusive <strong>Verschnitt</strong>, gerundeter Kartons und
+            geschätztem Fliesenkleber. So vermeiden Sie sowohl teure Nachbestellungen aus einer
+            anderen Charge (mit Farb- und Maßabweichungen) als auch unnötig viel Restmaterial.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner geht in drei Schritten vor:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Fläche</strong> = Länge × Breite (mehrere Räume oder Wände addieren)</li>
+              <li><strong>Fliesenfläche</strong> = (Fliesenbreite + Fuge) × (Fliesenhöhe + Fuge)</li>
+              <li><strong>Stückzahl</strong> = Fläche ÷ Fliesenfläche, aufgerundet</li>
+              <li><strong>Gesamt</strong> = Stückzahl × (1 + Verschnitt), aufgerundet</li>
+            </ul>
+          </div>
+          <p>
+            Wichtig ist, die <strong>Fugenbreite</strong> einzurechnen: Eine 30 × 60 cm Fliese belegt
+            mit 3 mm Fuge nicht 0,18 m², sondern rund 0,183 m². Über viele Fliesen summiert sich das
+            zu mehreren Stück Unterschied.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Verschnitt einplanen?</h3>
+          <p>
+            Der <strong>Verschnitt</strong> deckt Zuschnitte an Wänden, Ecken und Aussparungen sowie
+            Bruch ab. Als Richtwert gilt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li><strong>5–10 %</strong> bei kleinen, rechteckigen Räumen mit gerader Verlegung</li>
+            <li><strong>10–15 %</strong> bei normalen Räumen mit einigen Ecken</li>
+            <li><strong>15–20 %</strong> bei diagonaler Verlegung, vielen Nischen oder großem Format</li>
+          </ul>
+          <p>
+            Großformatige Fliesen erzeugen mehr Verschnitt, weil ein Reststück seltener
+            weiterverwendet werden kann. Bei aufwendigen Mustern wie Fischgrät kann der Verschnitt
+            noch höher liegen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fliesenkleber und Fugenmörtel</h3>
+          <p>
+            Für den <strong>Fliesenkleber</strong> rechnet der Rechner mit rund
+            <strong>1,6 kg/m²</strong> bei einer 4-mm-Zahnkelle (Dünnbett). Bei großformatigen
+            Fliesen oder unebenem Untergrund (6-mm- oder 8-mm-Kelle) steigt der Verbrauch auf 2,5 bis
+            4 kg/m². Der <strong>Fugenmörtel</strong> hängt stark von Fliesenformat, Fugenbreite und
+            -tiefe ab – kleinere Fliesen mit breiten Fugen brauchen deutlich mehr. Orientieren Sie
+            sich an der Herstellertabelle auf dem Sack.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Eine Charge, eine Bestellung</h3>
+          <p>
+            Bestellen Sie immer die <strong>gesamte Menge auf einmal</strong> und achten Sie auf eine
+            einheitliche Chargen- bzw. Tonnummer. Fliesen aus unterschiedlichen Bränden weichen oft
+            minimal in Farbe und Maß ab – das fällt im verlegten Zustand auf. Ein bis zwei
+            Reservefliesen pro Format sind sinnvoll für spätere Reparaturen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧱 Fliesen pro m² nach Format</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte ohne Verschnitt, gerechnet mit 3 mm Fuge. Die Stückzahl pro Karton variiert je
+          nach Hersteller.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Format (cm)</th>
+                <th class="py-2 px-2 font-semibold text-right">Fläche/Fliese</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ Stück/m²</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">10 × 10</td><td class="py-2 px-2 text-right">0,011 m²</td><td class="py-2 pl-2 text-right">ca. 95</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">15 × 15</td><td class="py-2 px-2 text-right">0,023 m²</td><td class="py-2 pl-2 text-right">ca. 43</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">20 × 20</td><td class="py-2 px-2 text-right">0,041 m²</td><td class="py-2 pl-2 text-right">ca. 25</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">30 × 30</td><td class="py-2 px-2 text-right">0,092 m²</td><td class="py-2 pl-2 text-right">ca. 11</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">30 × 60</td><td class="py-2 px-2 text-right">0,183 m²</td><td class="py-2 pl-2 text-right">ca. 6</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">60 × 60</td><td class="py-2 px-2 text-right">0,363 m²</td><td class="py-2 pl-2 text-right">ca. 3</td></tr>
+              <tr><td class="py-2 pr-2">60 × 120</td><td class="py-2 px-2 text-right">0,724 m²</td><td class="py-2 pl-2 text-right">ca. 1,4</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: blitzrechner.de, sanier.de (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Format und Verschnitt aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Bad, 4 × 3 m, Fliese 30 × 60</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">4 × 3 = 12 m²</div>
+              <div class="text-gray-600">Fliese inkl. 3 mm Fuge:</div>
+              <div class="font-medium text-gray-800">0,303 × 0,603 = 0,183 m²</div>
+              <div class="text-gray-600">Stück ohne Verschnitt:</div>
+              <div class="font-medium text-gray-800">12 ÷ 0,183 = 66</div>
+              <div class="text-gray-600">+ 10 % Verschnitt:</div>
+              <div class="font-medium text-green-700">73 Fliesen</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Küche, 10 m², Fliese 60 × 60</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">10 m²</div>
+              <div class="text-gray-600">Fliese inkl. 3 mm Fuge:</div>
+              <div class="font-medium text-gray-800">0,603 × 0,603 = 0,363 m²</div>
+              <div class="text-gray-600">Stück ohne Verschnitt:</div>
+              <div class="font-medium text-gray-800">10 ÷ 0,363 = 28</div>
+              <div class="text-gray-600">+ 10 % Verschnitt:</div>
+              <div class="font-medium text-green-700">31 Fliesen</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Flur diagonal, 6 m², 30 × 30</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">6 m²</div>
+              <div class="text-gray-600">Fliese inkl. 3 mm Fuge:</div>
+              <div class="font-medium text-gray-800">0,303 × 0,303 = 0,092 m²</div>
+              <div class="text-gray-600">Stück ohne Verschnitt:</div>
+              <div class="font-medium text-gray-800">6 ÷ 0,092 = 66</div>
+              <div class="text-gray-600">+ 18 % Verschnitt (diagonal):</div>
+              <div class="font-medium text-green-700">78 Fliesen</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 zeigt, wie stark diagonale Verlegung den Bedarf
+          erhöht: Bei gleicher Fläche und gleichem Format führen 18 % statt 10 % Verschnitt zu
+          mehreren Fliesen mehr. Planen Sie das Format bewusst zur Raumform.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Verschnitt vergessen</h3>
+            <p>Wer exakt nach Quadratmetern bestellt, hat keine Reserve für Zuschnitte und Bruch.
+            Mindestens 10 % aufschlagen – bei diagonaler Verlegung deutlich mehr.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Fuge nicht einrechnen</h3>
+            <p>Ohne Berücksichtigung der Fuge wird die Fliese zu groß angenommen und es werden zu
+            wenige Fliesen bestellt. Bei breiten Fugen (5–8 mm) macht das einen spürbaren
+            Unterschied.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Aussparungen nicht abziehen</h3>
+            <p>Türnischen, Heizkörper oder feste Einbauten verkleinern die Fläche. Bei großen
+            Aussparungen die belegte Fläche zuerst genau ermitteln und erst dann den Bedarf
+            berechnen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wand und Boden zusammen</h3>
+            <p>Für ein komplettes Bad addieren Sie Bodenfläche und alle zu fliesenden Wandflächen.
+            Boden- und Wandfliesen haben oft unterschiedliche Formate – rechnen Sie sie getrennt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Mehr Kleber bei großem Format</h3>
+            <p>Der Richtwert von 1,6 kg/m² gilt für die 4-mm-Zahnkelle. Großformat oder unebener
+            Untergrund verlangt eine größere Kelle und damit 2,5 bis 4 kg/m².</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Fliesen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Fliesen brauche ich pro Quadratmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Format ab. Eine 30 × 60 cm Fliese belegt mit Fuge rund 0,183 m², es
+              passen also etwa 6 Stück auf einen Quadratmeter. Bei 60 × 60 cm sind es rund 3 Stück,
+              bei 20 × 20 cm rund 25 Stück. Dazu kommt der Verschnitt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei kleinen, rechteckigen Räumen mit gerader Verlegung reichen 5–10 %. Für normale
+              Räume mit Ecken planen Sie 10–15 % ein, bei diagonaler Verlegung, vielen Nischen oder
+              großem Format 15–20 %. Aufwendige Muster wie Fischgrät können noch mehr erfordern.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Fliesenkleber brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Mit einer 4-mm-Zahnkelle im Dünnbett rechnet man mit rund 1,6 kg/m². Bei
+              großformatigen Fliesen oder unebenem Untergrund wird eine 6- oder 8-mm-Kelle nötig,
+              dann steigt der Verbrauch auf 2,5 bis 4 kg/m². Die genaue Menge steht auf dem
+              Klebersack.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich die Fugenbreite mit einrechnen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Jede Fliese belegt mit Fuge mehr Fläche als ihr reines Maß. Der Rechner addiert
+              die Fugenbreite zu Breite und Höhe. So wird die belegte Fläche je Fliese korrekt
+              berechnet und Sie bestellen nicht zu wenige Fliesen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum sollte ich alle Fliesen auf einmal bestellen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Fliesen aus unterschiedlichen Produktionschargen können in Farbton und Maß minimal
+              abweichen. Bestellen Sie deshalb die gesamte Menge inklusive Verschnitt und ein paar
+              Reservefliesen aus einer einheitlichen Charge. Eine Nachbestellung passt sonst
+              eventuell nicht exakt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich Fliesen für ein ganzes Bad?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Addieren Sie die Bodenfläche und alle zu fliesenden Wandflächen. Ziehen Sie Türen
+              und Fenster ab. Boden- und Wandfliesen haben oft verschiedene Formate – berechnen Sie
+              sie getrennt, jeweils mit eigenem Verschnitt.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarben-Rechner</p>
+          </a>
+          <a href="/tapeten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧻</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tapeten-Rechner</p>
+          </a>
+          <a href="/wohnflaeche-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohnflächen-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Fliesen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/fliesen-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Fliesen brauche ich pro Quadratmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Format ab. Eine 30 × 60 cm Fliese belegt mit Fuge rund 0,183 m², es passen also etwa 6 Stück auf einen Quadratmeter. Bei 60 × 60 cm sind es rund 3 Stück, bei 20 × 20 cm rund 25 Stück. Dazu kommt der Verschnitt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei kleinen, rechteckigen Räumen mit gerader Verlegung reichen 5–10 %. Für normale Räume mit Ecken planen Sie 10–15 % ein, bei diagonaler Verlegung, vielen Nischen oder großem Format 15–20 %. Aufwendige Muster wie Fischgrät können noch mehr erfordern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Fliesenkleber brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mit einer 4-mm-Zahnkelle im Dünnbett rechnet man mit rund 1,6 kg/m². Bei großformatigen Fliesen oder unebenem Untergrund wird eine 6- oder 8-mm-Kelle nötig, dann steigt der Verbrauch auf 2,5 bis 4 kg/m². Die genaue Menge steht auf dem Klebersack."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich die Fugenbreite mit einrechnen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Jede Fliese belegt mit Fuge mehr Fläche als ihr reines Maß. Der Rechner addiert die Fugenbreite zu Breite und Höhe. So wird die belegte Fläche je Fliese korrekt berechnet und Sie bestellen nicht zu wenige Fliesen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum sollte ich alle Fliesen auf einmal bestellen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fliesen aus unterschiedlichen Produktionschargen können in Farbton und Maß minimal abweichen. Bestellen Sie deshalb die gesamte Menge inklusive Verschnitt und ein paar Reservefliesen aus einer einheitlichen Charge. Eine Nachbestellung passt sonst eventuell nicht exakt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich Fliesen für ein ganzes Bad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Addieren Sie die Bodenfläche und alle zu fliesenden Wandflächen. Ziehen Sie Türen und Fenster ab. Boden- und Wandfliesen haben oft verschiedene Formate – berechnen Sie sie getrennt, jeweils mit eigenem Verschnitt."
+        }
+      }
+    ]
+  })} />
+</Layout>

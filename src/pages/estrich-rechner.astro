@@ -1,0 +1,431 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EstrichRechner from '../components/rechner/EstrichRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Estrich-Rechner 2026 – Estrichmenge & Säcke berechnen";
+const description = "Estrichbedarf berechnen: Volumen, Materialgewicht und Anzahl Säcke aus Fläche und Estrichdicke – für Zementestrich (CT) und Calciumsulfatestrich (CA). Inklusive Mindestdicke nach DIN 18560-2 und Trocknungszeit.";
+const keywords = "Estrich Rechner, Estrich berechnen, Estrichmenge berechnen, Estrich Säcke berechnen, Estrich pro m2, Zementestrich Bedarf, Estrichdicke, Estrich Trocknungszeit, Estrich kg pro m3";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Estrich-Rechner", url: "/estrich-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Estrich-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📏</span>
+          <div>
+            <h1 class="text-2xl font-bold">Estrich-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Estrichmenge, Säcke und Gewicht berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Volumen = Fläche × Dicke; Gewicht = Volumen × Rohdichte (Zementestrich CT ≈ 2.100 kg/m³, Calciumsulfatestrich CA ≈ 2.000 kg/m³); Säcke = Gewicht inkl. Verschnitt ÷ Sackgewicht</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Verschnitt 10 %; Mindestdicke schwimmender Estrich nach DIN 18560-2 (CT 45 mm, CA 40 mm); Trocknungsfaustregel ≈ 7 Tage je cm bei 20 °C / 65 % rel. Luftfeuchte.</p>
+            <p><strong>Nicht berücksichtigt:</strong> abweichende Produkt-Schüttdichten, Gefälle-Estriche, Heizestriche und örtliche Unebenheiten. Maßgeblich sind die Herstellerangaben. Keine Bauberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <EstrichRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Estrichbedarf richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Estrich-Rechner</strong> ermitteln Sie, wie viel Estrich Sie für einen Raum
+            benötigen – als <strong>Volumen in m³</strong>, als <strong>Materialgewicht</strong> und als
+            <strong>Anzahl Säcke</strong> der gängigen Sackware. Der Rechner unterscheidet zwischen
+            <strong>Zementestrich (CT)</strong> und <strong>Calciumsulfat- bzw. Anhydritestrich (CA)</strong>,
+            da diese unterschiedlich schwer sind und verschiedene Mindestdicken haben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Die Berechnung läuft in drei Schritten:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Volumen (m³)</strong> = Fläche (m²) × Dicke (m)</li>
+              <li><strong>Gewicht (kg)</strong> = Volumen × Rohdichte (CT ≈ 2.100, CA ≈ 2.000 kg/m³)</li>
+              <li><strong>Säcke</strong> = Gewicht inkl. Verschnitt ÷ Sackgewicht (aufgerundet)</li>
+            </ul>
+          </div>
+          <p>
+            Achten Sie auf die Einheit: Die Estrichdicke wird in Millimetern eingegeben, für die
+            Volumenformel aber in Meter umgerechnet. 50 mm entsprechen 0,05 m. Ein 40-kg-Sack
+            Estrichtrockenmörtel ergibt rund 20 Liter Frischmörtel.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestdicke nach DIN 18560-2</h3>
+          <p>
+            Bei einem <strong>schwimmenden Estrich</strong> – also auf einer Dämmschicht ohne
+            Verbund zum Untergrund – schreibt die <strong>DIN 18560-2</strong> Mindestdicken vor. Für
+            Zementestrich (CT) der gängigen Festigkeit liegt die Nenndicke bei rund <strong>45 mm</strong>,
+            für Calciumsulfatestrich (CA) bei etwa <strong>40 mm</strong>. Die genauen Werte hängen von
+            Festigkeitsklasse und Belastung ab. Wird die Dicke im Rechner darunter eingestellt,
+            erscheint ein Warnhinweis.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Trocknungszeit einplanen</h3>
+          <p>
+            Eine bekannte Faustregel lautet: <strong>etwa 7 Tage Trocknung je Zentimeter Estrichdicke</strong>
+            bei normalen Bedingungen (20 °C, 65 % relative Luftfeuchte). Ein 5 cm dicker Zementestrich
+            braucht also grob 35 Tage, bevor er belegreif ist. Calciumsulfatestrich trocknet unter guten
+            Bedingungen oft etwas schneller. Maßgeblich für die Belegreife ist aber immer eine
+            <strong>CM-Messung</strong> der Restfeuchte, nicht die Faustregel.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">CT oder CA – welcher Estrich?</h3>
+          <p>
+            <strong>Zementestrich (CT)</strong> ist robust, feuchteunempfindlich und damit auch für
+            Bad, Küche und Keller geeignet. <strong>Calciumsulfatestrich (CA)</strong> lässt sich
+            dünner und mit weniger Verzug einbauen, ist aber feuchteempfindlich und sollte nicht in
+            Dauernassbereichen verwendet werden. Für Fußbodenheizungen eignen sich beide, CA wegen der
+            guten Wärmeleitung besonders.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📏 Richtwerte für Estrich</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Materialgewicht pro Quadratmeter bei verschiedenen Dicken (Zementestrich, ohne Verschnitt).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Dicke</th>
+                <th class="py-2 px-2 font-semibold text-right">Volumen/m²</th>
+                <th class="py-2 pl-2 font-semibold text-right">Gewicht/m² (CT)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">40 mm</td><td class="py-2 px-2 text-right">0,040 m³</td><td class="py-2 pl-2 text-right">≈ 84 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">45 mm</td><td class="py-2 px-2 text-right">0,045 m³</td><td class="py-2 pl-2 text-right">≈ 95 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">50 mm</td><td class="py-2 px-2 text-right">0,050 m³</td><td class="py-2 pl-2 text-right">≈ 105 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">60 mm</td><td class="py-2 px-2 text-right">0,060 m³</td><td class="py-2 pl-2 text-right">≈ 126 kg</td></tr>
+              <tr><td class="py-2 pr-2">70 mm</td><td class="py-2 px-2 text-right">0,070 m³</td><td class="py-2 pl-2 text-right">≈ 147 kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: DIN 18560 (Wikipedia), VDZ, Holcim.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Räume, jeweils mit 10 % Verschnitt:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wohnraum 25 m², Zementestrich 50 mm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">25 × 0,05 = 1,25 m³</div>
+              <div class="text-gray-600">Gewicht (× 2.100, +10 %):</div>
+              <div class="font-medium text-gray-800">1,25 × 2.100 × 1,10 ≈ 2.888 kg</div>
+              <div class="text-gray-600">Säcke (40 kg):</div>
+              <div class="font-medium text-green-700">73 Säcke</div>
+              <div class="text-gray-600">Trocknung:</div>
+              <div class="font-medium text-gray-800">ca. 35 Tage</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Raum 30 m², Calciumsulfat 40 mm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">30 × 0,04 = 1,20 m³</div>
+              <div class="text-gray-600">Gewicht (× 2.000, +10 %):</div>
+              <div class="font-medium text-gray-800">1,20 × 2.000 × 1,10 = 2.640 kg</div>
+              <div class="text-gray-600">Säcke (40 kg):</div>
+              <div class="font-medium text-green-700">66 Säcke</div>
+              <div class="text-gray-600">Trocknung:</div>
+              <div class="font-medium text-gray-800">ca. 28 Tage</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Bad 12 m², Zementestrich 60 mm, 25-kg-Säcke</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">12 × 0,06 = 0,72 m³</div>
+              <div class="text-gray-600">Gewicht (× 2.100, +10 %):</div>
+              <div class="font-medium text-gray-800">0,72 × 2.100 × 1,10 ≈ 1.663 kg</div>
+              <div class="text-gray-600">Säcke (25 kg):</div>
+              <div class="font-medium text-green-700">67 Säcke</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Für größere Flächen lohnt sich Fließestrich, der vom Fachbetrieb
+          per Pumpe eingebracht wird – das spart das Schleppen und Anmischen vieler Säcke.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Dicke in mm und m verwechseln</h3>
+            <p>Für die Volumenformel muss die Dicke in Meter stehen: 50 mm = 0,05 m. Wer versehentlich
+            mit 50 statt 0,05 rechnet, erhält ein tausendfach zu großes Ergebnis.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Mindestdicke unterschreiten</h3>
+            <p>Ein schwimmender Estrich unterhalb der Mindestdicke nach DIN 18560-2 kann reißen oder
+            sich verformen. Halten Sie bei CT mindestens 45 mm, bei CA mindestens 40 mm ein – die
+            genauen Werte hängen von Last und Festigkeitsklasse ab.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Zu früh belegen</h3>
+            <p>Die Trocknungsfaustregel ist nur ein grober Anhalt. Vor dem Verlegen von Fliesen,
+            Parkett oder Laminat muss die Restfeuchte per CM-Messung geprüft werden. Zu frühes Belegen
+            führt zu Schäden am Bodenbelag.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Calciumsulfat im Nassbereich</h3>
+            <p>Calciumsulfatestrich (CA) ist feuchteempfindlich und gehört nicht in Dauernassbereiche.
+            In Bad und Keller ist Zementestrich (CT) die sichere Wahl.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Gefälle-Estrich</h3>
+            <p>Bei einem Gefälle, etwa in der bodengleichen Dusche oder auf dem Balkon, ist die Dicke
+            nicht überall gleich. Rechnen Sie mit der mittleren Dicke und planen Sie etwas mehr Material
+            ein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Estrich-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Estrich brauche ich pro Quadratmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Pro Quadratmeter und Zentimeter Dicke werden 0,01 m³ Estrich benötigt. Bei Zementestrich
+              (Rohdichte ≈ 2.100 kg/m³) entspricht ein 5 cm dicker Estrich rund 105 kg pro m². Für die
+              Säckezahl rechnen Sie das Gesamtgewicht inklusive Verschnitt durch das Sackgewicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel wiegt ein Kubikmeter Estrich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zementestrich (CT) hat eine Rohdichte von etwa 2.100 kg/m³, Calciumsulfat- bzw.
+              Anhydritestrich (CA) rund 2.000 kg/m³. Ein Kubikmeter wiegt also je nach Art etwa 2,0 bis
+              2,1 Tonnen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick muss Estrich mindestens sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei schwimmendem Estrich gibt die DIN 18560-2 Mindestdicken vor: für Zementestrich (CT)
+              etwa 45 mm, für Calciumsulfatestrich (CA) rund 40 mm. Die genauen Werte hängen von
+              Festigkeitsklasse und Belastung ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie lange muss Estrich trocknen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel gilt etwa 7 Tage je Zentimeter Dicke bei 20 °C und 65 % Luftfeuchte. Ein
+              5 cm dicker Zementestrich braucht also grob 35 Tage. Verbindlich ist aber nur eine
+              CM-Messung der Restfeuchte vor dem Verlegen des Bodenbelags.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen CT- und CA-Estrich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zementestrich (CT) ist robust und feuchteunempfindlich und eignet sich auch für Bad,
+              Küche und Keller. Calciumsulfat- bzw. Anhydritestrich (CA) lässt sich dünner und
+              verzugsarm einbauen, ist aber feuchteempfindlich und gehört nicht in Dauernassbereiche.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Estrich ergibt ein 40-kg-Sack?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein 40-kg-Sack Estrichtrockenmörtel liefert nach dem Anmischen rund 20 Liter
+              Frischmörtel. Für einen Kubikmeter Estrich benötigen Sie deshalb grob 50 Säcke à 40 kg –
+              die genaue Zahl hängt von Produkt und Verschnitt ab.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/mauersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mauerstein-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪣</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/pflastersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧩</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflaster-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Estrich-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/estrich-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Estrich brauche ich pro Quadratmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pro Quadratmeter und Zentimeter Dicke werden 0,01 m³ Estrich benötigt. Bei Zementestrich (Rohdichte ≈ 2.100 kg/m³) entspricht ein 5 cm dicker Estrich rund 105 kg pro m². Für die Säckezahl rechnen Sie das Gesamtgewicht inklusive Verschnitt durch das Sackgewicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel wiegt ein Kubikmeter Estrich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zementestrich (CT) hat eine Rohdichte von etwa 2.100 kg/m³, Calciumsulfat- bzw. Anhydritestrich (CA) rund 2.000 kg/m³. Ein Kubikmeter wiegt also je nach Art etwa 2,0 bis 2,1 Tonnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dick muss Estrich mindestens sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei schwimmendem Estrich gibt die DIN 18560-2 Mindestdicken vor: für Zementestrich (CT) etwa 45 mm, für Calciumsulfatestrich (CA) rund 40 mm. Die genauen Werte hängen von Festigkeitsklasse und Belastung ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange muss Estrich trocknen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel gilt etwa 7 Tage je Zentimeter Dicke bei 20 °C und 65 % Luftfeuchte. Ein 5 cm dicker Zementestrich braucht also grob 35 Tage. Verbindlich ist aber nur eine CM-Messung der Restfeuchte vor dem Verlegen des Bodenbelags."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen CT- und CA-Estrich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zementestrich (CT) ist robust und feuchteunempfindlich und eignet sich auch für Bad, Küche und Keller. Calciumsulfat- bzw. Anhydritestrich (CA) lässt sich dünner und verzugsarm einbauen, ist aber feuchteempfindlich und gehört nicht in Dauernassbereiche."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Estrich ergibt ein 40-kg-Sack?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein 40-kg-Sack Estrichtrockenmörtel liefert nach dem Anmischen rund 20 Liter Frischmörtel. Für einen Kubikmeter Estrich benötigen Sie deshalb grob 50 Säcke à 40 kg – die genaue Zahl hängt von Produkt und Verschnitt ab."
+        }
+      }
+    ]
+  })} />
+</Layout>

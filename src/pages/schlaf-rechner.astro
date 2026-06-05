@@ -1,0 +1,421 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchlafRechner from '../components/rechner/SchlafRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Schlafrechner 2026 – beste Schlaf- & Aufwachzeiten berechnen";
+const description = "Schlafrechner für die optimale Zubettgeh- und Aufwachzeit: Berechnung nach 90-Minuten-Schlafzyklen, damit Sie erholt am Ende eines Zyklus aufwachen. Inklusive Einschlafzeit-Puffer.";
+const keywords = "Schlafrechner, beste Schlafzeit berechnen, Aufwachzeit berechnen, Schlafzyklus Rechner, wann ins Bett gehen, 90 Minuten Schlafzyklus, optimale Aufstehzeit, erholt aufwachen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Schlafrechner", url: "/schlaf-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Gesundheit', href: '/gesundheit' },
+    { name: 'Schlafrechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">😴</span>
+          <div>
+            <h1 class="text-2xl font-bold">Schlafrechner 2026</h1>
+            <p class="text-blue-200 text-sm">Beste Schlaf- und Aufwachzeiten nach Schlafzyklen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Schlafzyklus-Modell mit durchschnittlich 90 Minuten pro Zyklus. Ziel sind 5–6 volle Zyklen (7,5–9 h Schlaf), 4 Zyklen (6 h) gelten als Minimum. Quelle: Wikipedia (Schlafzyklus), gesundheitsinformation.de, DAK.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Einschlafzeit (Latenz) 15 Minuten, Zyklusdauer 90 Minuten – beide frei anpassbar. Zeiten werden über Mitternacht hinweg korrekt berechnet (modulo 24 Stunden).</p>
+            <p><strong>Nicht berücksichtigt:</strong> individueller Schlafbedarf, Schlafqualität und Tagesform. Kein Arztersatz, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SchlafRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Die beste Schlafzeit nach Schlafzyklen berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Schlafrechner</strong> findet die idealen Zeiten zum Einschlafen oder Aufwachen –
+            abgestimmt auf den natürlichen <strong>Schlafzyklus</strong>. Wer am Ende eines vollständigen
+            Zyklus erwacht, fühlt sich oft erholter, als wer aus einer Tiefschlafphase gerissen wird –
+            selbst bei gleicher Schlafdauer. Geben Sie einfach an, wann Sie aufstehen müssen oder ins Bett
+            gehen, und der Rechner liefert die passenden Zeiten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist ein Schlafzyklus?</h3>
+          <p>
+            Der Schlaf läuft in <strong>Zyklen von durchschnittlich rund 90 Minuten</strong> ab. Ein Zyklus
+            durchläuft Leichtschlaf, Tiefschlaf und schließlich die REM-Phase (Traumschlaf). Pro Nacht
+            wiederholen sich vier bis sechs solcher Zyklen. Am Übergang zwischen zwei Zyklen ist der Schlaf
+            am leichtesten – hier fällt das Aufwachen am wenigsten schwer.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Aufstehzeit bekannt:</strong> Zubettgehzeit = Aufstehzeit − (Zyklen × 90 Min) − Einschlafzeit</li>
+              <li><strong>Zubettgehzeit bekannt:</strong> Aufwachzeit = Zubettgehzeit + Einschlafzeit + (Zyklen × 90 Min)</li>
+              <li><strong>Jetzt ins Bett:</strong> aktuelle Uhrzeit + Einschlafzeit + (Zyklen × 90 Min)</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Einschlafzeit</strong> (Latenz) berücksichtigt, dass man nicht sofort schläft –
+            im Schnitt vergehen rund 15 Minuten. Der Rechner zeigt jeweils die Varianten für 4, 5 und 6
+            Zyklen; die idealen 5–6 Zyklen sind hervorgehoben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viele Zyklen sind ideal?</h3>
+          <p>
+            Für Erwachsene gelten <strong>5 bis 6 vollständige Zyklen</strong> – also 7,5 bis 9 Stunden –
+            als erholsam. Vier Zyklen (6 Stunden) sind ein Minimum, das gelegentlich, aber nicht dauerhaft
+            ausreicht. Der individuelle Schlafbedarf schwankt jedoch: Manche Menschen kommen mit weniger
+            aus, andere brauchen mehr.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum die Aufwachphase zählt</h3>
+          <p>
+            Klingelt der Wecker mitten in einer Tiefschlafphase, fühlt man sich oft wie gerädert
+            („Schlafträgheit“). Endet der Schlaf dagegen am Zyklusübergang im Leichtschlaf, geht das Aufstehen
+            leichter. Der Schlafrechner zielt genau auf diese günstigen Zeitpunkte – ersetzt aber keine
+            ausreichende Gesamtschlafdauer.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">😴 Zyklen, Schlafdauer & Empfehlung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Übersicht der gängigen Schlafdauern bei 90-Minuten-Zyklen (ohne Einschlafzeit).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Zyklen</th>
+                <th class="py-2 px-2 font-semibold text-right">Schlafdauer</th>
+                <th class="py-2 pl-2 font-semibold">Einordnung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">6 Zyklen</td><td class="py-2 px-2 text-right">9,0 h</td><td class="py-2 pl-2">sehr erholsam</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">5 Zyklen</td><td class="py-2 px-2 text-right">7,5 h</td><td class="py-2 pl-2">empfohlen</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">4 Zyklen</td><td class="py-2 px-2 text-right">6,0 h</td><td class="py-2 pl-2">Minimum</td></tr>
+              <tr><td class="py-2 pr-2">3 Zyklen</td><td class="py-2 px-2 text-right">4,5 h</td><td class="py-2 pl-2">nur als Notlösung</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: gesundheitsinformation.de, DAK, Wikipedia (Schlafzyklus). Richtwerte.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Aufstehen um 7:00 Uhr</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">6 Zyklen (9 h):</div>
+              <div class="font-medium text-gray-800">7:00 − 540 − 15 Min = 21:45 Uhr</div>
+              <div class="text-gray-600">5 Zyklen (7,5 h):</div>
+              <div class="font-medium text-green-700">7:00 − 450 − 15 Min = 23:15 Uhr</div>
+              <div class="text-gray-600">4 Zyklen (6 h):</div>
+              <div class="font-medium text-gray-800">7:00 − 360 − 15 Min = 00:45 Uhr</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Ins Bett um 23:00 Uhr</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">6 Zyklen (9 h):</div>
+              <div class="font-medium text-gray-800">23:00 + 15 + 540 Min = 08:15 Uhr</div>
+              <div class="text-gray-600">5 Zyklen (7,5 h):</div>
+              <div class="font-medium text-green-700">23:00 + 15 + 450 Min = 06:45 Uhr</div>
+              <div class="text-gray-600">4 Zyklen (6 h):</div>
+              <div class="font-medium text-gray-800">23:00 + 15 + 360 Min = 05:15 Uhr</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Jetzt ins Bett um 23:40 Uhr</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Start + Latenz:</div>
+              <div class="font-medium text-gray-800">23:40 + 15 Min = 23:55 (Einschlafen)</div>
+              <div class="text-gray-600">5 Zyklen (7,5 h):</div>
+              <div class="font-medium text-green-700">23:55 + 450 Min = 07:25 Uhr</div>
+              <div class="text-gray-600">6 Zyklen (9 h):</div>
+              <div class="font-medium text-gray-800">23:55 + 540 Min = 08:55 Uhr</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 1 und 2 zeigen den Mitternachts-Überlauf: Eine späte
+          Zubettgehzeit (00:45 Uhr) liegt rechnerisch schon am Folgetag, eine Aufwachzeit nach
+          Mitternacht (08:15 Uhr) ebenfalls – der Rechner berücksichtigt das automatisch.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Einschlafzeit vergessen</h3>
+            <p>Wer um Mitternacht ins Bett geht, schläft nicht um Mitternacht ein. Im Schnitt vergehen
+            rund 15 Minuten. Ohne diesen Puffer endet die Rechnung zu früh – der Rechner zieht ihn
+            automatisch ab bzw. addiert ihn.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Zyklen mit Stunden gleichsetzen</h3>
+            <p>Ein Zyklus dauert 90 Minuten, also 1,5 Stunden – nicht 1 Stunde. Sechs Zyklen ergeben 9
+            Stunden, nicht 6. Wer in Stunden statt in Zyklen rechnet, landet leicht mitten in einer
+            Tiefschlafphase.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: 90 Minuten als feste Größe nehmen</h3>
+            <p>Die Zyklusdauer ist ein Durchschnitt und schwankt individuell zwischen 80 und 110 Minuten.
+            Wer sich an einem Wert ständig unausgeschlafen fühlt, kann die Zyklusdauer im Rechner anpassen
+            und ausprobieren.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: zu wenig Gesamtschlaf</h3>
+            <p>Der richtige Aufwachzeitpunkt ersetzt keine ausreichende Schlafmenge. Dauerhaft mit 4
+            Zyklen (6 Stunden) auszukommen, ist für die meisten Menschen zu wenig – die Zyklen-Optimierung
+            hilft nur ergänzend.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: anhaltende Schlafprobleme</h3>
+            <p>Bei dauerhaften Ein- oder Durchschlafstörungen, starker Tagesmüdigkeit oder Schnarchen mit
+            Atemaussetzern sollten Sie ärztlichen Rat suchen. Ein Rechner kann hier keine Diagnose
+            ersetzen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Schlafrechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann sollte ich ins Bett gehen, wenn ich um 7 Uhr aufstehen muss?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für 5 vollständige Zyklen (7,5 h) gehen Sie um etwa <strong>23:15 Uhr</strong> ins Bett:
+              7:00 minus 450 Minuten Schlaf minus 15 Minuten Einschlafzeit. Für 6 Zyklen (9 h) wäre es
+              21:45 Uhr, für 4 Zyklen (6 h) 00:45 Uhr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie lange dauert ein Schlafzyklus?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Schlafzyklus dauert im Durchschnitt rund <strong>90 Minuten</strong> und durchläuft
+              Leicht-, Tief- und REM-Schlaf. Individuell schwankt die Dauer zwischen etwa 80 und 110
+              Minuten. Pro Nacht wiederholen sich vier bis sechs Zyklen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Stunden Schlaf sind ideal?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für Erwachsene gelten <strong>7,5 bis 9 Stunden</strong> (5 bis 6 Zyklen) als erholsam.
+              6 Stunden (4 Zyklen) sind ein gelegentliches Minimum. Der individuelle Schlafbedarf
+              unterscheidet sich jedoch von Mensch zu Mensch.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum wache ich manchmal trotz langem Schlaf müde auf?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Vermutlich klingelte der Wecker mitten in einer Tiefschlafphase. Diese „Schlafträgheit“
+              fühlt sich an wie gerädert. Wachen Sie am Ende eines Zyklus im Leichtschlaf auf, fällt das
+              Aufstehen leichter – genau darauf zielt der Schlafrechner.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet die Einschlafzeit im Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Einschlafzeit (Latenz) ist die Spanne vom Hinlegen bis zum tatsächlichen Einschlafen –
+              im Schnitt rund <strong>15 Minuten</strong>. Der Rechner berücksichtigt sie, damit die
+              Zyklen-Berechnung ab dem echten Einschlafmoment startet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ersetzt der Schlafrechner einen Arztbesuch?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner ist eine Orientierungshilfe auf Basis durchschnittlicher Schlafzyklen.
+              Bei anhaltenden Schlafproblemen, starker Tagesmüdigkeit oder Verdacht auf eine Schlafstörung
+              sollten Sie ärztlichen oder schlafmedizinischen Rat einholen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kalorien-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🍎</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kalorien-Rechner</p>
+          </a>
+          <a href="/grundumsatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundumsatz-Rechner</p>
+          </a>
+          <a href="/wasserbedarf-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wasserbedarf-Rechner</p>
+          </a>
+          <a href="/bmi-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">BMI-Rechner</p>
+          </a>
+          <a href="/blutdruck-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">❤️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Blutdruck-Rechner</p>
+          </a>
+          <a href="/zeitzone-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zeitzonen-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Schlafrechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/schlaf-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wann sollte ich ins Bett gehen, wenn ich um 7 Uhr aufstehen muss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für 5 vollständige Zyklen (7,5 h) gehen Sie um etwa 23:15 Uhr ins Bett: 7:00 minus 450 Minuten Schlaf minus 15 Minuten Einschlafzeit. Für 6 Zyklen (9 h) wäre es 21:45 Uhr, für 4 Zyklen (6 h) 00:45 Uhr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert ein Schlafzyklus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Schlafzyklus dauert im Durchschnitt rund 90 Minuten und durchläuft Leicht-, Tief- und REM-Schlaf. Individuell schwankt die Dauer zwischen etwa 80 und 110 Minuten. Pro Nacht wiederholen sich vier bis sechs Zyklen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Stunden Schlaf sind ideal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Erwachsene gelten 7,5 bis 9 Stunden (5 bis 6 Zyklen) als erholsam. 6 Stunden (4 Zyklen) sind ein gelegentliches Minimum. Der individuelle Schlafbedarf unterscheidet sich jedoch von Mensch zu Mensch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum wache ich manchmal trotz langem Schlaf müde auf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vermutlich klingelte der Wecker mitten in einer Tiefschlafphase. Diese Schlafträgheit fühlt sich an wie gerädert. Wachen Sie am Ende eines Zyklus im Leichtschlaf auf, fällt das Aufstehen leichter – genau darauf zielt der Schlafrechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet die Einschlafzeit im Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Einschlafzeit (Latenz) ist die Spanne vom Hinlegen bis zum tatsächlichen Einschlafen – im Schnitt rund 15 Minuten. Der Rechner berücksichtigt sie, damit die Zyklen-Berechnung ab dem echten Einschlafmoment startet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ersetzt der Schlafrechner einen Arztbesuch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner ist eine Orientierungshilfe auf Basis durchschnittlicher Schlafzyklen. Bei anhaltenden Schlafproblemen, starker Tagesmüdigkeit oder Verdacht auf eine Schlafstörung sollten Sie ärztlichen oder schlafmedizinischen Rat einholen."
+        }
+      }
+    ]
+  })} />
+</Layout>

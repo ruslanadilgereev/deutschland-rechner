@@ -1,0 +1,451 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReifengroesseRechner from '../components/rechner/ReifengroesseRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Reifengrößen-Rechner 2026 – Reifenmaße, Abweichung & Tacho";
+const description = "Reifengrößen vergleichen: Durchmesser, Umfang und Abrollumfang aus dem Reifenmaß (z.B. 205/55 R16) berechnen. Inklusive Abweichung in Prozent und Tachoabweichung beim Umrüsten auf andere Reifen.";
+const keywords = "Reifengrößen Rechner, Reifenmaße berechnen, Abrollumfang berechnen, Reifendurchmesser, Tachoabweichung Reifen, Reifenumfang, Reifen umrechnen, 205 55 R16, andere Reifengröße fahren";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Reifengrößen-Rechner", url: "/reifengroesse-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Auto & Mobilität', href: '/auto-mobilitaet' },
+    { name: 'Reifengrößen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🛞</span>
+          <div>
+            <h1 class="text-2xl font-bold">Reifengrößen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Reifenmaße, Abweichung & Tachoanzeige vergleichen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Geometrische Reifenmaß-Formel: Ø = Zoll × 25,4 + 2 × (Breite × Querschnitt ÷ 100); Umfang = Ø × π; Tachoabweichung = Anzeige × Ø<sub>neu</sub> ÷ Ø<sub>alt</sub>. Zulassung geregelt in § 36 StVZO (Bereifung) und § 19 StVZO (Betriebserlaubnis).</p>
+            <p class="mb-1"><strong>Standardwerte:</strong> Reifen alt 205/55 R16, Reifen neu 225/45 R17, Tachoanzeige 100 km/h. Abrollumfang als Näherung mit Faktor ≈ 0,97.</p>
+            <p><strong>Nicht berücksichtigt:</strong> herstellerspezifische Reifenfreigaben, Felgenmaulweite, Einpresstiefe, Karosseriefreigängigkeit. Kein Zulassungsnachweis – verbindlich sind Fahrzeugschein/CoC. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ReifengroesseRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Reifengrößen verstehen und vergleichen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Reifengrößen-Rechner</strong> ermitteln Sie aus der Reifenbezeichnung –
+            etwa <strong>205/55 R16</strong> – den genauen Durchmesser, Umfang und Abrollumfang eines
+            Reifens. Wer auf eine andere Größe umrüsten möchte (zum Beispiel auf breitere oder
+            größere Felgen), sieht sofort, wie stark der neue Reifen vom Original abweicht und welche
+            <strong>Tachoabweichung</strong> daraus entsteht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeutet 205/55 R16?</h3>
+          <p>
+            Die drei Zahlen einer Reifenbezeichnung stehen für:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>205</strong> = Reifenbreite in Millimetern</li>
+              <li><strong>55</strong> = Querschnittsverhältnis in Prozent (Flankenhöhe = 55 % der Breite)</li>
+              <li><strong>R</strong> = Radialbauweise</li>
+              <li><strong>16</strong> = Felgendurchmesser in Zoll (1 Zoll = 25,4 mm)</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Flankenhöhe</strong> ergibt sich also aus Breite × Querschnitt ÷ 100. Bei
+            205/55 sind das 205 × 55 ÷ 100 = 112,75 mm pro Flanke – oben und unten am Rad.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel für den Durchmesser</h3>
+          <p>Der Gesamtdurchmesser eines Reifens berechnet sich aus Felge plus zwei Flankenhöhen:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Reifen-Ø (mm)</strong> = Zoll × 25,4 + 2 × (Breite × Querschnitt ÷ 100)</li>
+              <li><strong>Umfang (mm)</strong> = Durchmesser × π</li>
+              <li><strong>Abrollumfang (mm)</strong> ≈ Umfang × 0,97</li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>Abrollumfang</strong> ist der dynamische Umfang, den der Reifen unter Last
+            tatsächlich abrollt. Weil der Reifen einwalkt, ist er etwas kleiner als der rein
+            geometrische Umfang – als Faustwert rechnen wir mit rund 3 % weniger (Faktor 0,97). Den
+            exakten Abrollumfang gibt nur der Reifenhersteller an.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum der Tacho abweicht</h3>
+          <p>
+            Der Tacho ist auf den serienmäßigen Reifendurchmesser geeicht. Montieren Sie einen
+            <strong>größeren</strong> Reifen, legt das Rad pro Umdrehung mehr Strecke zurück – Sie
+            fahren real schneller, als der Tacho anzeigt. Bei einem <strong>kleineren</strong> Reifen
+            ist es umgekehrt. Die reale Geschwindigkeit skaliert mit dem Verhältnis der Durchmesser:
+            real = Anzeige × Ø<sub>neu</sub> ÷ Ø<sub>alt</sub>. Wichtig: Der Tacho darf laut Vorschrift
+            nie weniger anzeigen als die tatsächliche Geschwindigkeit (er darf voreilen) – ein zu
+            großer Reifen kann diese Toleranz verletzen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Abweichung ist erlaubt?</h3>
+          <p>
+            Als technische Faustregel gilt eine Toleranz von etwa <strong>±2 % beim Abrollumfang</strong>.
+            Entscheidend ist aber nicht der Rechner, sondern die Eintragung: Welche Reifengrößen für Ihr
+            Fahrzeug zulässig sind, steht im <strong>Fahrzeugschein</strong> (Zulassungsbescheinigung
+            Teil I, Ziffern 15.1/15.2) bzw. in der <strong>CoC-Bescheinigung</strong> (Ziffern 32 und 50)
+            sowie in der Reifenfreigabe des Herstellers. Größen, die dort nicht stehen, müssen über ein
+            Gutachten bei TÜV oder DEKRA eingetragen werden (§ 19 StVZO).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🛞 Maße gängiger Reifengrößen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Berechnete Richtwerte (geometrisch). Der reale Abrollumfang weicht je nach Hersteller leicht ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Reifengröße</th>
+                <th class="py-2 px-2 font-semibold text-right">Ø (mm)</th>
+                <th class="py-2 px-2 font-semibold text-right">Umfang (cm)</th>
+                <th class="py-2 pl-2 font-semibold text-right">Abroll (cm)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">175/65 R14</td><td class="py-2 px-2 text-right">583,1</td><td class="py-2 px-2 text-right">183,2</td><td class="py-2 pl-2 text-right">177,7</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">185/65 R15</td><td class="py-2 px-2 text-right">621,5</td><td class="py-2 px-2 text-right">195,2</td><td class="py-2 pl-2 text-right">189,4</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">195/65 R15</td><td class="py-2 px-2 text-right">634,5</td><td class="py-2 px-2 text-right">199,3</td><td class="py-2 pl-2 text-right">193,4</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">205/55 R16</td><td class="py-2 px-2 text-right">631,9</td><td class="py-2 px-2 text-right">198,5</td><td class="py-2 pl-2 text-right">192,6</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">225/45 R17</td><td class="py-2 px-2 text-right">634,3</td><td class="py-2 px-2 text-right">199,3</td><td class="py-2 pl-2 text-right">193,3</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">225/40 R18</td><td class="py-2 px-2 text-right">637,2</td><td class="py-2 px-2 text-right">200,2</td><td class="py-2 pl-2 text-right">194,2</td></tr>
+              <tr><td class="py-2 pr-2">235/35 R19</td><td class="py-2 px-2 text-right">647,1</td><td class="py-2 px-2 text-right">203,3</td><td class="py-2 pl-2 text-right">197,2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quelle: eigene Berechnung nach geometrischer Reifenmaß-Formel (vgl. rechneronline.de/reifen-check).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Maße von 205/55 R16</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Flankenhöhe:</div>
+              <div class="font-medium text-gray-800">205 × 55 ÷ 100 = 112,75 mm</div>
+              <div class="text-gray-600">Felge:</div>
+              <div class="font-medium text-gray-800">16 × 25,4 = 406,4 mm</div>
+              <div class="text-gray-600">Durchmesser:</div>
+              <div class="font-medium text-gray-800">406,4 + 2 × 112,75 = 631,9 mm</div>
+              <div class="text-gray-600">Umfang:</div>
+              <div class="font-medium text-green-700">631,9 × π ≈ 198,5 cm</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Umrüstung 205/55 R16 → 225/45 R17</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Ø alt:</div>
+              <div class="font-medium text-gray-800">631,9 mm</div>
+              <div class="text-gray-600">Ø neu:</div>
+              <div class="font-medium text-gray-800">431,8 + 2 × 101,25 = 634,3 mm</div>
+              <div class="text-gray-600">Abweichung:</div>
+              <div class="font-medium text-gray-800">(634,3 − 631,9) ÷ 631,9 ≈ +0,38 %</div>
+              <div class="text-gray-600">Tacho 100 km/h real:</div>
+              <div class="font-medium text-green-700">≈ 100,4 km/h</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: deutlich größerer Reifen 205/55 R16 → 235/35 R19</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Ø alt:</div>
+              <div class="font-medium text-gray-800">631,9 mm</div>
+              <div class="text-gray-600">Ø neu:</div>
+              <div class="font-medium text-gray-800">482,6 + 2 × 82,25 = 647,1 mm</div>
+              <div class="text-gray-600">Abweichung:</div>
+              <div class="font-medium text-gray-800">(647,1 − 631,9) ÷ 631,9 ≈ +2,41 %</div>
+              <div class="text-gray-600">Tacho 100 km/h real:</div>
+              <div class="font-medium text-red-700">≈ 102,4 km/h (über ±2 %!)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 2 zeigt das Ziel einer guten Umrüstung: ein nahezu
+          identischer Durchmesser trotz anderer Felge. Beispiel 3 überschreitet die ±2 %-Faustregel –
+          hier wäre eine Reifenfreigabe oder Eintragung zwingend zu prüfen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Rechner als Freigabe missverstehen</h3>
+            <p>Eine Abweichung von 0 % bedeutet nicht automatisch „erlaubt“. Maßgeblich sind die im
+            Fahrzeugschein/CoC eingetragenen Größen und die Reifenfreigabe des Herstellers – nicht
+            der geometrische Vergleich.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Querschnitt mit Millimetern verwechseln</h3>
+            <p>Die mittlere Zahl (z. B. 55) ist ein <strong>Prozentwert</strong> der Breite, keine
+            Millimeterangabe. 55 bedeutet: Flankenhöhe = 55 % der Reifenbreite.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Abrollumfang mit Umfang gleichsetzen</h3>
+            <p>Der geometrische Umfang (Ø × π) ist nicht der reale Abrollumfang. Unter Last walkt der
+            Reifen ein, der dynamische Wert liegt rund 3 % darunter. Unser Faktor 0,97 ist nur eine
+            Näherung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: gleicher Durchmesser, andere Breite</h3>
+            <p>Auch wenn der Durchmesser passt, kann ein breiterer Reifen am Radhaus oder Fahrwerk
+            schleifen. Felgenmaulweite, Einpresstiefe (ET) und Freigängigkeit müssen separat geprüft
+            werden.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Tacho darf nicht „nacheilen“</h3>
+            <p>Der Gesetzgeber erlaubt nur, dass der Tacho mehr anzeigt als die reale Geschwindigkeit.
+            Ein zu großer Reifen kann dazu führen, dass der Tacho zu wenig anzeigt – das ist nicht
+            zulässig.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Reifengrößen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeuten die Zahlen einer Reifengröße wie 205/55 R16?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>205 ist die Reifenbreite in Millimetern, 55 das Querschnittsverhältnis in Prozent
+              (die Flankenhöhe beträgt 55 % der Breite), R steht für Radialbauweise und 16 ist der
+              Felgendurchmesser in Zoll (1 Zoll = 25,4 mm).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich den Abrollumfang eines Reifens?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zuerst den Durchmesser: Zoll × 25,4 + 2 × (Breite × Querschnitt ÷ 100). Den
+              geometrischen Umfang erhalten Sie mit Ø × π. Der reale Abrollumfang liegt unter Last
+              rund 3 % darunter – als Näherung Umfang × 0,97. Bei 205/55 R16 sind das etwa 198,5 cm
+              Umfang und rund 192,6 cm Abrollumfang.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Abweichung bei der Reifengröße ist erlaubt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als technische Faustregel gilt eine Toleranz von etwa ±2 % beim Abrollumfang.
+              Rechtlich verbindlich ist jedoch allein, ob die Größe im Fahrzeugschein bzw. in der
+              CoC-Bescheinigung steht oder über eine Reifenfreigabe abgedeckt ist. Andernfalls ist
+              eine Eintragung bei TÜV oder DEKRA nötig.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wirkt sich eine andere Reifengröße auf den Tacho aus?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Tacho ist auf den Serienreifen geeicht. Ein größerer Reifen führt dazu, dass Sie
+              real schneller fahren als angezeigt, ein kleinerer Reifen umgekehrt. Die reale
+              Geschwindigkeit ergibt sich aus Anzeige × Ø<sub>neu</sub> ÷ Ø<sub>alt</sub>. Der Tacho
+              darf laut Vorschrift nie weniger anzeigen als die tatsächliche Geschwindigkeit.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wo finde ich die zugelassenen Reifengrößen für mein Auto?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Im Fahrzeugschein (Zulassungsbescheinigung Teil I, Ziffern 15.1 und 15.2) sowie in
+              der CoC-Bescheinigung (Ziffern 32 und 50). Zusätzlich gibt der Reifenhersteller über
+              Reifenfreigaben weitere zulässige Größen an. Nicht aufgeführte Größen müssen eingetragen
+              werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert, wenn ich nicht zugelassene Reifen fahre?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Fahren mit nicht eingetragener oder nicht freigegebener Bereifung kann ein
+              Bußgeld von etwa 50 bis 90 € nach sich ziehen und im schlimmsten Fall das Erlöschen der
+              Betriebserlaubnis bedeuten. Außerdem kann der Versicherungsschutz im Schadensfall
+              gefährdet sein.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kw-ps-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚙️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">kW-PS-Rechner</p>
+          </a>
+          <a href="/spritverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛽</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spritverbrauch-Rechner</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/versicherung-auto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Versicherung-Rechner</p>
+          </a>
+          <a href="/autofinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Autofinanzierung-Rechner</p>
+          </a>
+          <a href="/bussgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚓</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bußgeld-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Reifengrößen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/reifengroesse-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was bedeuten die Zahlen einer Reifengröße wie 205/55 R16?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "205 ist die Reifenbreite in Millimetern, 55 das Querschnittsverhältnis in Prozent (die Flankenhöhe beträgt 55 % der Breite), R steht für Radialbauweise und 16 ist der Felgendurchmesser in Zoll (1 Zoll = 25,4 mm)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich den Abrollumfang eines Reifens?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zuerst den Durchmesser: Zoll × 25,4 + 2 × (Breite × Querschnitt ÷ 100). Den geometrischen Umfang erhalten Sie mit Ø × π. Der reale Abrollumfang liegt unter Last rund 3 % darunter – als Näherung Umfang × 0,97. Bei 205/55 R16 sind das etwa 198,5 cm Umfang und rund 192,6 cm Abrollumfang."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Abweichung bei der Reifengröße ist erlaubt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als technische Faustregel gilt eine Toleranz von etwa ±2 % beim Abrollumfang. Rechtlich verbindlich ist jedoch allein, ob die Größe im Fahrzeugschein bzw. in der CoC-Bescheinigung steht oder über eine Reifenfreigabe abgedeckt ist. Andernfalls ist eine Eintragung bei TÜV oder DEKRA nötig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wirkt sich eine andere Reifengröße auf den Tacho aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Tacho ist auf den Serienreifen geeicht. Ein größerer Reifen führt dazu, dass Sie real schneller fahren als angezeigt, ein kleinerer Reifen umgekehrt. Die reale Geschwindigkeit ergibt sich aus Anzeige × Ø-neu ÷ Ø-alt. Der Tacho darf laut Vorschrift nie weniger anzeigen als die tatsächliche Geschwindigkeit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo finde ich die zugelassenen Reifengrößen für mein Auto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Im Fahrzeugschein (Zulassungsbescheinigung Teil I, Ziffern 15.1 und 15.2) sowie in der CoC-Bescheinigung (Ziffern 32 und 50). Zusätzlich gibt der Reifenhersteller über Reifenfreigaben weitere zulässige Größen an. Nicht aufgeführte Größen müssen eingetragen werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert, wenn ich nicht zugelassene Reifen fahre?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Fahren mit nicht eingetragener oder nicht freigegebener Bereifung kann ein Bußgeld von etwa 50 bis 90 € nach sich ziehen und im schlimmsten Fall das Erlöschen der Betriebserlaubnis bedeuten. Außerdem kann der Versicherungsschutz im Schadensfall gefährdet sein."
+        }
+      }
+    ]
+  })} />
+</Layout>

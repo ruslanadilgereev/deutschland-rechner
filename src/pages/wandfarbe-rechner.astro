@@ -1,0 +1,436 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WandfarbeRechner from '../components/rechner/WandfarbeRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Wandfarben-Rechner 2026 – Farbmenge & Liter berechnen";
+const description = "Wandfarbe kostenlos berechnen: benötigte Liter und Eimer aus Wandfläche, Anstrichen, Ergiebigkeit und Reserve. Mit Abzug für Türen und Fenster, Richtwerten nach DIN EN 13300 und Beispielen.";
+const keywords = "Wandfarbe Rechner, Farbmenge berechnen, wie viel Farbe pro m2, Wandfarbe Liter berechnen, Ergiebigkeit Farbe, Farbe streichen Bedarf, Deckkraftklasse, Wandfläche berechnen, Farbverbrauch";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Wandfarben-Rechner", url: "/wandfarbe-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Wandfarben-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎨</span>
+          <div>
+            <h1 class="text-2xl font-bold">Wandfarben-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Farbmenge und Liter berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Liter = (Netto-Wandfläche ÷ Ergiebigkeit) × Anstriche × (1 + Reserve). Netto = Brutto − Türen (≈ 1,8 m²) − Fenster (≈ 1,7 m²).</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Ergiebigkeit 7 m²/l (DIN EN 13300, Spanne 6–8), zwei Anstriche, 10 % Reserve. Alle Werte sind anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> stark saugende oder dunkle Untergründe, nötige Grundierung sowie Decke (separat rechnen). Maßgeblich ist die Herstellerangabe auf dem Eimer. Richtwerte, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WandfarbeRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wandfarbe richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Wandfarben-Rechner</strong> ermitteln Sie, wie viele Liter Farbe Sie zum
+            Streichen eines Raums oder einer einzelnen Wand brauchen – inklusive Abzug für Türen und
+            Fenster, Anzahl der Anstriche und Reserve. So vermeiden Sie, mitten im Streichen ohne Farbe
+            dazustehen oder teure Reste übrig zu behalten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Brutto-Wandfläche</strong> = (Länge + Breite) × 2 × Raumhöhe (ganzer Raum)</li>
+              <li><strong>Netto</strong> = Brutto − Türen (ca. 1,8 m²/Stk) − Fenster (ca. 1,7 m²/Stk)</li>
+              <li><strong>Liter</strong> = (Netto ÷ Ergiebigkeit) × Anstriche × (1 + Reserve)</li>
+            </ul>
+          </div>
+          <p>
+            Für eine einzelne Wand wird stattdessen Länge × Höhe gerechnet. Die Decke ist hier nicht
+            enthalten – sie hat oft eine andere Farbe und sollte separat berechnet werden
+            (Deckenfläche = Länge × Breite).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ergiebigkeit und Deckkraftklasse</h3>
+          <p>
+            Die <strong>Ergiebigkeit</strong> gibt an, wie viele Quadratmeter ein Liter Farbe bei
+            einem Anstrich deckt. Übliche Wandfarben liegen bei <strong>6 bis 8 m²/l</strong>, der
+            Rechner nutzt 7 m²/l als Mittelwert. Eng damit verknüpft ist die
+            <strong>Deckkraftklasse</strong> nach DIN EN 13300:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li><strong>Klasse 1</strong> – höchste Deckkraft, oft schon mit einem Anstrich deckend</li>
+            <li><strong>Klasse 2</strong> – gute Deckkraft, in der Regel zwei Anstriche</li>
+            <li><strong>Klasse 3 und 4</strong> – geringere Deckkraft, meist zwei bis drei Anstriche nötig</li>
+          </ul>
+          <p>
+            Eine Faustkontrolle: Bei zwei Anstrichen werden rund <strong>400 ml Farbe je m²</strong>
+            verbraucht – ein 10-l-Eimer reicht also für etwa 25 m² Wandfläche.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum Untergrund und Reserve zählen</h3>
+          <p>
+            Stark saugende, raue oder unbehandelte Wände (frischer Putz, Gipskarton) ziehen mehr Farbe
+            und brauchen oft eine <strong>Grundierung</strong> oder einen zusätzlichen Anstrich. Auch
+            ein <strong>Farbwechsel</strong> – etwa dunkel auf hell – verlangt mehr Material. Planen
+            Sie deshalb immer eine Reserve von 10 bis 15 % ein, damit Nuancen aus derselben Charge
+            verfügbar sind und kein zweiter Eimer mit leicht abweichendem Ton nötig wird.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viele Anstriche?</h3>
+          <p>
+            Auf gleichmäßig hellem, bereits gestrichenem Untergrund reicht bei guter Farbe oft ein
+            Anstrich. Standard sind <strong>zwei Anstriche</strong> für ein deckendes, gleichmäßiges
+            Ergebnis. Bei kräftigen Farbtönen, fleckigen Wänden oder Renovierungen können drei
+            Anstriche nötig sein.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🎨 Farbbedarf je Raumgröße</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte für zwei Anstriche, 7 m²/l Ergiebigkeit, 10 % Reserve, je eine Tür und ein
+          Fenster abgezogen, Raumhöhe 2,50 m.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Raum (L × B)</th>
+                <th class="py-2 px-2 font-semibold text-right">Netto-Wand</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ Liter</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">3 × 3 m</td><td class="py-2 px-2 text-right">26,5 m²</td><td class="py-2 pl-2 text-right">8,3 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">4 × 3 m</td><td class="py-2 px-2 text-right">31,5 m²</td><td class="py-2 pl-2 text-right">9,9 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">4 × 4 m</td><td class="py-2 px-2 text-right">36,5 m²</td><td class="py-2 pl-2 text-right">11,5 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">5 × 4 m</td><td class="py-2 px-2 text-right">41,5 m²</td><td class="py-2 pl-2 text-right">13,0 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">5 × 5 m</td><td class="py-2 px-2 text-right">46,5 m²</td><td class="py-2 pl-2 text-right">14,6 l</td></tr>
+              <tr><td class="py-2 pr-2">6 × 5 m</td><td class="py-2 px-2 text-right">51,5 m²</td><td class="py-2 pl-2 text-right">16,2 l</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: duefa.de, derendo.com, toom.de (Stand 2026). Werte gerundet.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Ergiebigkeit 7 m²/l, zwei Anstriche, 10 % Reserve:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wohnzimmer 5 × 4 m, Höhe 2,50 m</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Brutto-Wand:</div>
+              <div class="font-medium text-gray-800">(5 + 4) × 2 × 2,50 = 45 m²</div>
+              <div class="text-gray-600">Abzug 1 Tür + 1 Fenster:</div>
+              <div class="font-medium text-gray-800">1,8 + 1,7 = 3,5 m²</div>
+              <div class="text-gray-600">Netto:</div>
+              <div class="font-medium text-gray-800">41,5 m²</div>
+              <div class="text-gray-600">Liter:</div>
+              <div class="font-medium text-green-700">(41,5 ÷ 7) × 2 × 1,1 = 13,0 l</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Einzelne Akzentwand 4 × 2,50 m</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">4 × 2,50 = 10 m²</div>
+              <div class="text-gray-600">Abzug:</div>
+              <div class="font-medium text-gray-800">keine</div>
+              <div class="text-gray-600">Liter:</div>
+              <div class="font-medium text-green-700">(10 ÷ 7) × 2 × 1,1 = 3,1 l</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Faustkontrolle 10-l-Eimer</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch 2 Anstriche:</div>
+              <div class="font-medium text-gray-800">ca. 400 ml/m²</div>
+              <div class="text-gray-600">10 l ÷ 0,4 l/m²:</div>
+              <div class="font-medium text-gray-800">25 m²</div>
+              <div class="text-gray-600">Reichweite:</div>
+              <div class="font-medium text-green-700">ca. 25 m² Wand</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 ist die schnelle Kopfrechnung: Ein 10-l-Eimer deckt
+          bei zwei Anstrichen rund 25 m². Für das Wohnzimmer aus Beispiel 1 (41,5 m²) reicht ein
+          10-l-Eimer also nicht ganz – planen Sie einen zweiten kleineren Eimer als Reserve ein.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur einen Anstrich rechnen</h3>
+            <p>Außer bei deckstarker Klasse-1-Farbe auf hellem Untergrund sind zwei Anstriche die
+            Regel. Wer nur einen einplant, bestellt die halbe Menge und das Ergebnis wird fleckig.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Untergrund unterschätzen</h3>
+            <p>Frischer Putz, Gipskarton oder dunkle Altanstriche saugen stark und verlangen mehr
+            Farbe oder eine Grundierung. Die Ergiebigkeitsangabe gilt für glatte, vorbehandelte
+            Wände.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Reserve weglassen</h3>
+            <p>Ohne Puffer fehlt am Ende oft ein halber Liter. Ein nachgekaufter Eimer kann im Farbton
+            leicht abweichen. 10 bis 15 % Reserve aus derselben Charge sind sinnvoll.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Decke mitstreichen</h3>
+            <p>Die Decke ist in diesem Rechner nicht enthalten. Rechnen Sie sie separat: Deckenfläche
+            = Länge × Breite. Deckenfarbe hat häufig eine andere Ergiebigkeit.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kräftige Farbtöne</h3>
+            <p>Intensive Töne wie Rot, Gelb oder Türkis decken schlechter und brauchen häufig drei
+            Anstriche. Erhöhen Sie in diesem Fall die Anzahl der Anstriche im Rechner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Wandfarbe</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Wandfarbe brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer Ergiebigkeit von 7 m²/l und zwei Anstrichen rechnet man mit rund 400 ml
+              Farbe je Quadratmeter Wandfläche. Ein Liter reicht damit für etwa 2,5 m² bei zwei
+              Anstrichen oder rund 7 m² bei einem Anstrich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Wandfläche eines Zimmers?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Brutto-Wandfläche ergibt sich aus (Länge + Breite) × 2 × Raumhöhe. Davon ziehen
+              Sie Türen (rund 1,8 m² je Stück) und Fenster (rund 1,7 m² je Stück) ab. Die Decke wird
+              getrennt mit Länge × Breite gerechnet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Reicht ein Anstrich oder brauche ich zwei?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Auf gleichmäßig hellem, bereits gestrichenem Untergrund reicht bei deckstarker Farbe
+              oft ein Anstrich. Standard für ein gleichmäßiges Ergebnis sind zwei Anstriche. Kräftige
+              Farbtöne oder fleckige Wände erfordern teils drei Anstriche.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Deckkraftklasse nach DIN EN 13300?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die DIN EN 13300 teilt Wandfarben in vier Deckkraftklassen ein. Klasse 1 bietet die
+              höchste Deckkraft und deckt oft schon mit einem Anstrich, Klasse 2 ist guter Standard.
+              Je höher die Klassenzahl, desto geringer die Deckkraft und desto mehr Anstriche sind
+              nötig.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie weit reicht ein 10-Liter-Eimer Wandfarbe?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei zwei Anstrichen und einem Verbrauch von rund 400 ml/m² reicht ein 10-l-Eimer für
+              etwa 25 m² Wandfläche. Bei nur einem Anstrich verdoppelt sich die Reichweite auf rund
+              50 m². Stark saugende Untergründe verringern die Reichweite.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich vor dem Streichen grundieren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei stark saugenden Untergründen wie frischem Putz oder Gipskarton ist eine
+              Grundierung (Tiefgrund) sinnvoll. Sie reduziert die Saugfähigkeit, sorgt für
+              gleichmäßiges Trocknen und senkt am Ende den Farbverbrauch. Auf glatten Altanstrichen ist
+              sie meist nicht nötig.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/tapeten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧻</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tapeten-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/wohnflaeche-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohnflächen-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wandfarben-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/wandfarbe-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Wandfarbe brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Ergiebigkeit von 7 m²/l und zwei Anstrichen rechnet man mit rund 400 ml Farbe je Quadratmeter Wandfläche. Ein Liter reicht damit für etwa 2,5 m² bei zwei Anstrichen oder rund 7 m² bei einem Anstrich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Wandfläche eines Zimmers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Brutto-Wandfläche ergibt sich aus (Länge + Breite) × 2 × Raumhöhe. Davon ziehen Sie Türen (rund 1,8 m² je Stück) und Fenster (rund 1,7 m² je Stück) ab. Die Decke wird getrennt mit Länge × Breite gerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Reicht ein Anstrich oder brauche ich zwei?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Auf gleichmäßig hellem, bereits gestrichenem Untergrund reicht bei deckstarker Farbe oft ein Anstrich. Standard für ein gleichmäßiges Ergebnis sind zwei Anstriche. Kräftige Farbtöne oder fleckige Wände erfordern teils drei Anstriche."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Deckkraftklasse nach DIN EN 13300?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die DIN EN 13300 teilt Wandfarben in vier Deckkraftklassen ein. Klasse 1 bietet die höchste Deckkraft und deckt oft schon mit einem Anstrich, Klasse 2 ist guter Standard. Je höher die Klassenzahl, desto geringer die Deckkraft und desto mehr Anstriche sind nötig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie weit reicht ein 10-Liter-Eimer Wandfarbe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei zwei Anstrichen und einem Verbrauch von rund 400 ml/m² reicht ein 10-l-Eimer für etwa 25 m² Wandfläche. Bei nur einem Anstrich verdoppelt sich die Reichweite auf rund 50 m². Stark saugende Untergründe verringern die Reichweite."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich vor dem Streichen grundieren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei stark saugenden Untergründen wie frischem Putz oder Gipskarton ist eine Grundierung (Tiefgrund) sinnvoll. Sie reduziert die Saugfähigkeit, sorgt für gleichmäßiges Trocknen und senkt am Ende den Farbverbrauch. Auf glatten Altanstrichen ist sie meist nicht nötig."
+        }
+      }
+    ]
+  })} />
+</Layout>

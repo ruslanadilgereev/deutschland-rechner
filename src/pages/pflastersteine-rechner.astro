@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PflastersteineRechner from '../components/rechner/PflastersteineRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Pflaster-Rechner 2026 – Pflastersteine, Splitt & Schotter berechnen";
+const description = "Pflastersteine berechnen: Anzahl Steine pro m², Pflastersplitt für die Bettung und Schotter für die Tragschicht – aus Fläche, Steinformat und Fugenbreite. Mit Verlegemuster, Verschnitt und Nutzungsklasse.";
+const keywords = "Pflaster Rechner, Pflastersteine berechnen, Pflastersteine pro m2, Splitt berechnen, Schotter berechnen, Einfahrt pflastern, Pflaster Verschnitt, Tragschicht Dicke, Pflasterbedarf";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Pflaster-Rechner", url: "/pflastersteine-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Pflaster-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧩</span>
+          <div>
+            <h1 class="text-2xl font-bold">Pflaster-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Pflastersteine, Splitt und Schotter berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Steine/m² = 1.000.000 ÷ ((Steinlänge + Fuge) × (Steinbreite + Fuge)) [mm]; Splitt-Bettung ≈ 75 kg/m² bei 5 cm (15 kg je m² und cm); Schotter-Tragschicht = Fläche × Dicke × 1,3 (Auflockerung)</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Fuge 4 mm, Bettung 4 cm, Reihenverband (+5 % Verschnitt, Diagonal/Fischgrät +9 %); Tragschichtdicke Gehweg 40 cm, PKW-Einfahrt 55 cm, Schwerlast 90 cm.</p>
+            <p><strong>Nicht berücksichtigt:</strong> konkreter Untergrund, Frostschutz, Gefälle und Entwässerung. Maßgeblich sind DIN 18318, FLL und ZTV Wegebau. Keine Fachplanung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PflastersteineRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Pflastersteine und Unterbau richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Pflaster-Rechner</strong> planen Sie eine Terrasse, einen Gehweg oder eine
+            Einfahrt komplett durch: Sie erhalten die <strong>Anzahl Pflastersteine</strong>, die Menge
+            <strong>Pflastersplitt</strong> für die Bettung und das Volumen <strong>Schotter</strong>
+            für die Tragschicht. So vermeiden Sie Fehlmengen beim teuersten Posten – dem Unterbau.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Steinbedarf ergibt sich aus der Ansichtsfläche eines Steins inklusive Fuge:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Steine/m²</strong> = 1.000.000 ÷ ((Steinlänge + Fuge) × (Steinbreite + Fuge)) in mm</li>
+              <li><strong>Gesamtsteine</strong> = Fläche × Steine/m² × (1 + Verschnitt)</li>
+              <li><strong>Splitt</strong> ≈ 15 kg pro m² und cm Bettungsdicke (75 kg/m² bei 5 cm)</li>
+              <li><strong>Schotter (m³)</strong> = Fläche × Tragschichtdicke × 1,3</li>
+            </ul>
+          </div>
+          <p>
+            Der Faktor <strong>1,3</strong> beim Schotter berücksichtigt, dass das lose Material beim
+            Verdichten an Volumen verliert. Sie müssen also rund 30 % mehr Schotter anliefern lassen, als
+            das fertige, verdichtete Volumen ergibt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der richtige Aufbau</h3>
+          <p>
+            Ein dauerhafter Pflasterbelag besteht von unten nach oben aus <strong>Frostschutz- und
+            Tragschicht</strong> (Schotter), einer <strong>Bettung</strong> aus Pflastersplitt (3–5 cm)
+            und den <strong>Pflastersteinen</strong>. Die Fugen werden anschließend mit feinem
+            Fugensplitt oder Sand verfüllt. Wichtig ist ein leichtes <strong>Gefälle</strong> von etwa
+            2 %, damit Regenwasser ablaufen kann.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tragschichtdicke je Nutzung</h3>
+          <p>
+            Je höher die Last, desto dicker der Unterbau. Für einen <strong>Gehweg oder eine
+            Terrasse</strong> genügen rund 30–50 cm Tragschicht, für eine <strong>PKW-Einfahrt</strong>
+            sind 45–70 cm üblich und bei <strong>Schwerlast</strong> (LKW, Stellplätze) eher 75–105 cm.
+            Der Rechner verwendet die Mittelwerte dieser Spannen. Der genaue Wert hängt vom Untergrund
+            und der Frostempfindlichkeit des Bodens ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verlegemuster und Verschnitt</h3>
+          <p>
+            Beim einfachen <strong>Reihenverband</strong> fällt wenig Verschnitt an – etwa 5 %. Wer
+            <strong>diagonal</strong> oder im <strong>Fischgrätmuster</strong> verlegt, muss an allen
+            Rändern Steine zuschneiden und sollte rund 8–10 % einplanen. Der Rechner stellt das je nach
+            gewähltem Muster automatisch ein.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧩 Richtwerte für Pflasterflächen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Empfohlene Tragschichtdicke und Steinbedarf gängiger Formate (Fuge 4 mm).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Merkmal</th>
+                <th class="py-2 pl-2 font-semibold text-right">Richtwert</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Stein 20 × 10 cm</td><td class="py-2 pl-2 text-right">≈ 47 Steine/m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Stein 10 × 10 cm</td><td class="py-2 pl-2 text-right">≈ 94 Steine/m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Stein 20 × 16,5 cm</td><td class="py-2 pl-2 text-right">≈ 29 Steine/m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Splitt-Bettung 5 cm</td><td class="py-2 pl-2 text-right">≈ 75 kg/m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Tragschicht Gehweg/Terrasse</td><td class="py-2 pl-2 text-right">30–50 cm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Tragschicht PKW-Einfahrt</td><td class="py-2 pl-2 text-right">45–70 cm</td></tr>
+              <tr><td class="py-2 pr-2">Tragschicht Schwerlast</td><td class="py-2 pl-2 text-right">75–105 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: steda.de, bauen.de, sanier.de (GaLaBau-Faustwerte).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Flächen mit unterschiedlichem Format und Muster:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Terrasse 5 × 4 m, Stein 20 × 10 cm, Reihenverband</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1.000.000 ÷ (204 × 104) ≈ 47,1</div>
+              <div class="text-gray-600">Steine (20 m², +5 %):</div>
+              <div class="font-medium text-green-700">20 × 47,1 × 1,05 ≈ 990 Steine</div>
+              <div class="text-gray-600">Splitt (4 cm):</div>
+              <div class="font-medium text-gray-800">20 × 4 × 15 = 1.200 kg</div>
+              <div class="text-gray-600">Schotter (40 cm):</div>
+              <div class="font-medium text-gray-800">20 × 0,40 × 1,3 ≈ 10,4 m³</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: PKW-Einfahrt 6 × 3,5 m, Stein 10 × 10 cm, Fuge 3 mm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1.000.000 ÷ (103 × 103) ≈ 94,3</div>
+              <div class="text-gray-600">Steine (21 m², +5 %):</div>
+              <div class="font-medium text-green-700">21 × 94,3 × 1,05 ≈ 2.079 Steine</div>
+              <div class="text-gray-600">Splitt (5 cm):</div>
+              <div class="font-medium text-gray-800">21 × 5 × 15 = 1.575 kg</div>
+              <div class="text-gray-600">Schotter (55 cm):</div>
+              <div class="font-medium text-gray-800">21 × 0,55 × 1,3 ≈ 15,0 m³</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Hofzufahrt 8 × 4 m, Stein 20 × 16,5 cm, Fischgrät, Schwerlast</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1.000.000 ÷ (205 × 170) ≈ 28,7</div>
+              <div class="text-gray-600">Steine (32 m², +9 %):</div>
+              <div class="font-medium text-green-700">32 × 28,7 × 1,09 ≈ 1.001 Steine</div>
+              <div class="text-gray-600">Splitt (4 cm):</div>
+              <div class="font-medium text-gray-800">32 × 4 × 15 = 1.920 kg</div>
+              <div class="text-gray-600">Schotter (90 cm):</div>
+              <div class="font-medium text-gray-800">32 × 0,90 × 1,3 ≈ 37,4 m³</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Bestellen Sie die Steine möglichst auf einmal und in einer Charge –
+          unterschiedliche Produktionschargen können leicht abweichende Farbtöne haben.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Fuge nicht mitrechnen</h3>
+            <p>Ohne die 3–5 mm Fuge wird die Steinzahl pro m² überschätzt. Die Fuge vergrößert das
+            wirksame Steinmaß und senkt damit den Bedarf – tragen Sie sie immer ein.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Tragschicht zu dünn</h3>
+            <p>Eine zu dünne Tragschicht führt bei Frost und Last zu Setzungen und Wellen im Belag. Für
+            eine befahrene Einfahrt sind 45–70 cm nötig, nicht die 30 cm eines Gehwegs.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Auflockerung des Schotters vergessen</h3>
+            <p>Loser Schotter verliert beim Verdichten Volumen. Wer ohne den Faktor 1,3 rechnet,
+            bestellt rund 30 % zu wenig und muss nachordern.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Diagonalverlegung</h3>
+            <p>Diagonale Muster und Fischgrät erzeugen viele Schnittsteine an den Rändern. Planen Sie
+            hier 8–10 % Verschnitt statt der üblichen 5 % ein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Gefälle und Entwässerung</h3>
+            <p>Ein Gefälle von rund 2 % ist Pflicht, damit Wasser abläuft. Bei großen oder versiegelten
+            Flächen kann zusätzlich eine Entwässerungsrinne nötig sein – das berücksichtigt der Rechner
+            nicht.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Pflaster-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Pflastersteine brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Steinformat ab. Bei 20 × 10 cm und 4 mm Fuge sind es rund 47 Steine/m²,
+              bei 10 × 10 cm etwa 94 Steine/m². Die Formel lautet: 1.000.000 ÷ ((Steinlänge + Fuge) ×
+              (Steinbreite + Fuge)) in Millimetern.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Splitt brauche ich für die Bettung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Pflastersplitt für die Bettung wiegt bei 5 cm Dicke rund 75 kg pro m², also etwa 15 kg
+              je m² und Zentimeter. Für 20 m² mit 4 cm Bettung ergeben sich rund 1.200 kg.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick muss die Tragschicht sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für Gehwege und Terrassen reichen 30–50 cm, für PKW-Einfahrten 45–70 cm und für
+              Schwerlastflächen 75–105 cm. Der genaue Wert hängt von Untergrund und Frostempfindlichkeit
+              des Bodens ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Schotter brauche ich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie Fläche, Tragschichtdicke und den Auflockerungsfaktor 1,3. Für eine
+              21 m² große Einfahrt mit 55 cm Tragschicht sind das rund 15 m³ Schotter, da loses Material
+              beim Verdichten Volumen verliert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim Reihenverband etwa 5 %, bei diagonaler Verlegung oder Fischgrätmuster eher 8–10 %,
+              weil an den Rändern viele Steine zugeschnitten werden. Der Rechner stellt den Wert je nach
+              Muster automatisch ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welches Gefälle braucht eine Pflasterfläche?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Gefälle von rund 2 % ist üblich, damit Regenwasser sicher abläuft und sich keine
+              Pfützen bilden. Das Gefälle wird in der Tragschicht und Bettung angelegt, nicht erst in den
+              Steinen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/mauersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mauerstein-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪣</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pflaster-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/pflastersteine-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Pflastersteine brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Steinformat ab. Bei 20 × 10 cm und 4 mm Fuge sind es rund 47 Steine/m², bei 10 × 10 cm etwa 94 Steine/m². Die Formel lautet: 1.000.000 ÷ ((Steinlänge + Fuge) × (Steinbreite + Fuge)) in Millimetern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Splitt brauche ich für die Bettung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pflastersplitt für die Bettung wiegt bei 5 cm Dicke rund 75 kg pro m², also etwa 15 kg je m² und Zentimeter. Für 20 m² mit 4 cm Bettung ergeben sich rund 1.200 kg."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dick muss die Tragschicht sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Gehwege und Terrassen reichen 30–50 cm, für PKW-Einfahrten 45–70 cm und für Schwerlastflächen 75–105 cm. Der genaue Wert hängt von Untergrund und Frostempfindlichkeit des Bodens ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Schotter brauche ich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie Fläche, Tragschichtdicke und den Auflockerungsfaktor 1,3. Für eine 21 m² große Einfahrt mit 55 cm Tragschicht sind das rund 15 m³ Schotter, da loses Material beim Verdichten Volumen verliert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim Reihenverband etwa 5 %, bei diagonaler Verlegung oder Fischgrätmuster eher 8–10 %, weil an den Rändern viele Steine zugeschnitten werden. Der Rechner stellt den Wert je nach Muster automatisch ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welches Gefälle braucht eine Pflasterfläche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Gefälle von rund 2 % ist üblich, damit Regenwasser sicher abläuft und sich keine Pfützen bilden. Das Gefälle wird in der Tragschicht und Bettung angelegt, nicht erst in den Steinen."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,424 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RollrasenRechner from '../components/rechner/RollrasenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Rollrasen-Rechner 2026 – Menge, Rollen & Kosten berechnen";
+const description = "Rollrasen-Bedarf berechnen: Fläche, benötigte Rollen inklusive Verschnitt und Materialkosten in Euro. Mit Saatgut-Alternative und Richtwerten zu Preis und Verschnitt.";
+const keywords = "Rollrasen Rechner, Rollrasen berechnen, Rollrasen Menge, Rollrasen Kosten, Rollrasen Rollen, Quadratmeter Rasen, Rasensaat Menge, Verschnitt Rollrasen, Rollrasen Preis 2026";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Rollrasen-Rechner", url: "/rollrasen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Rollrasen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🌱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rollrasen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Menge, Rollen und Kosten berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Fläche = Länge × Breite (Teilflächen werden summiert); Bruttofläche = Fläche × (1 + Verschnitt); Rollen aufgerundet (Standardrolle = 1 m²); Kosten = Bruttofläche × Preis/m². Saatgut = Fläche × Aussaatstärke.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Verschnitt 5 %, Materialpreis 3 €/m², Aussaatstärke 25 g/m² (Neuanlage). Alle Werte frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Lieferung, Verlegung, Bodenvorbereitung und Düngung. Preise sind regional und saisonal stark schwankend. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RollrasenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rollrasen-Bedarf richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Rollrasen-Rechner</strong> ermitteln Sie, wie viele Quadratmeter Rollrasen Sie
+            für Ihren Garten brauchen, mit welchem Verschnitt Sie rechnen müssen und was das Material
+            ungefähr kostet. Wer lieber selbst säen möchte, wechselt mit einem Klick zur
+            <strong>Saatgut-Berechnung</strong>. So vermeiden Sie, zu wenig oder unnötig viel zu bestellen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Fläche (m²)</strong> = Länge × Breite (verwinkelte Flächen in Teilflächen zerlegen und summieren)</li>
+              <li><strong>Bruttofläche</strong> = Fläche × (1 + Verschnitt)</li>
+              <li><strong>Rollen</strong> = aufgerundete Bruttofläche (1 Standardrolle ≈ 1 m²)</li>
+              <li><strong>Kosten</strong> = Bruttofläche × Preis pro m²</li>
+              <li><strong>Saatgut (g)</strong> = Fläche × Aussaatstärke</li>
+            </ul>
+          </div>
+          <p>
+            Eine <strong>Standardrolle Rollrasen</strong> deckt rund einen Quadratmeter ab (typisch ca.
+            2,5 m lang und 0,4 m breit). Da Rollrasen passend zugeschnitten wird und Verschnitt entsteht,
+            rechnet der Rechner einen Zuschlag ein und rundet die Rollenzahl auf.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Verschnitt einplanen?</h3>
+          <p>
+            Bei einer einfachen, <strong>rechteckigen Fläche</strong> genügen rund <strong>3 %</strong>
+            Verschnitt. Verwinkelte Gärten mit Beeten, Wegen oder Rundungen erfordern eher <strong>5 bis
+            10 %</strong>, weil mehr zugeschnitten werden muss. Planen Sie zusätzlich immer mindestens
+            1–2 m² Reserve ein – fehlt am Ende ein Streifen, ist eine Nachbestellung teuer und farblich oft
+            nicht ganz identisch.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was kostet Rollrasen?</h3>
+          <p>
+            Das reine Material kostet je nach Qualität und Region rund <strong>2 bis 3,50 €/m²</strong>.
+            Inklusive Lieferung und professioneller Verlegung steigt der Gesamtpreis auf etwa
+            <strong>4 bis 9 €/m²</strong>. Hinzu kommen je nach Zustand des Bodens Kosten für
+            Bodenvorbereitung, Abtragen des alten Rasens und Startdünger. Tragen Sie für eine genaue
+            Rechnung das Angebot Ihres Anbieters ein.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rollrasen oder Rasensaat?</h3>
+          <p>
+            <strong>Rollrasen</strong> ist sofort belastbar und liefert binnen Stunden eine fertige Fläche,
+            kostet aber mehr. <strong>Rasensaat</strong> ist deutlich günstiger, braucht jedoch Wochen bis
+            Monate, bis die Fläche voll nutzbar ist. Für die Neuanlage rechnet man rund <strong>20–25 g
+            Saatgut pro m²</strong>, für eine Nachsaat 10–15 g/m².
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🌱 Rollrasen-Bedarf nach Flächengröße</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beispielwerte mit 5 % Verschnitt und 3 €/m² Material (nur Rollrasen, ohne Verlegung).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Fläche</th>
+                <th class="py-2 px-2 font-semibold text-right">+ 5 % Verschnitt</th>
+                <th class="py-2 px-2 font-semibold text-right">Rollen (≈ 1 m²)</th>
+                <th class="py-2 pl-2 font-semibold text-right">Material</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">25 m²</td><td class="py-2 px-2 text-right">26,3 m²</td><td class="py-2 px-2 text-right">27</td><td class="py-2 pl-2 text-right">78,75 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">50 m²</td><td class="py-2 px-2 text-right">52,5 m²</td><td class="py-2 px-2 text-right">53</td><td class="py-2 pl-2 text-right">157,50 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">100 m²</td><td class="py-2 px-2 text-right">105 m²</td><td class="py-2 px-2 text-right">105</td><td class="py-2 pl-2 text-right">315,00 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">200 m²</td><td class="py-2 px-2 text-right">210 m²</td><td class="py-2 px-2 text-right">210</td><td class="py-2 pl-2 text-right">630,00 €</td></tr>
+              <tr><td class="py-2 pr-2">500 m²</td><td class="py-2 px-2 text-right">525 m²</td><td class="py-2 px-2 text-right">525</td><td class="py-2 pl-2 text-right">1.575,00 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Hornbach, Kiepenkerl, Deutsche Rasengesellschaft. Richtwerte, regional schwankend.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Rechteck 8 × 5 m, Rollrasen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">8 × 5 = 40 m²</div>
+              <div class="text-gray-600">+ 3 % Verschnitt:</div>
+              <div class="font-medium text-gray-800">41,2 m² → 42 Rollen</div>
+              <div class="text-gray-600">Kosten (3 €/m²):</div>
+              <div class="font-medium text-green-700">123,60 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: verwinkelt 10×5 + 4×3 m</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Teilflächen:</div>
+              <div class="font-medium text-gray-800">50 + 12 = 62 m²</div>
+              <div class="text-gray-600">+ 8 % Verschnitt:</div>
+              <div class="font-medium text-gray-800">66,96 m² → 67 Rollen</div>
+              <div class="text-gray-600">Kosten (3 €/m²):</div>
+              <div class="font-medium text-green-700">200,88 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 50 m² säen statt rollen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">50 m²</div>
+              <div class="text-gray-600">Aussaatstärke:</div>
+              <div class="font-medium text-gray-800">25 g/m² (Neuanlage)</div>
+              <div class="text-gray-600">Saatgut:</div>
+              <div class="font-medium text-green-700">1.250 g = 1,25 kg</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Messen Sie verwinkelte Flächen lieber in mehreren Rechtecken aus und
+          addieren Sie diese – das ist genauer, als grob „über den Daumen“ zu schätzen, und vermeidet
+          Fehlbestellungen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Verschnitt vergessen</h3>
+            <p>Wer genau die Nettofläche bestellt, hat am Ende fast immer zu wenig, weil beim Zuschneiden
+            Reste anfallen. Planen Sie je nach Form 3–10 % Verschnitt plus 1–2 m² Reserve ein.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: nur Materialpreis kalkulieren</h3>
+            <p>Rollrasen-Material ab 2 €/m² klingt günstig – mit Lieferung, Bodenvorbereitung und
+            Verlegung landet man schnell bei 4–9 €/m². Rechnen Sie diese Posten für ein realistisches
+            Budget mit ein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Rollrasen zu spät verlegen</h3>
+            <p>Rollrasen ist eine Frischware. Wird er nicht innerhalb von rund 24 Stunden nach Lieferung
+            verlegt, beginnt er sich zu erhitzen und kann gelb werden oder absterben. Planen Sie Lieferung
+            und Verlegung am selben Tag.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: runde oder schräge Flächen</h3>
+            <p>Bei Kreisen, Dreiecken oder Böschungen entsteht überdurchschnittlich viel Verschnitt.
+            Erhöhen Sie den Zuschlag hier auf 10 % oder mehr und nähern Sie die Fläche über umschließende
+            Rechtecke an.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Nachsaat statt Neuanlage</h3>
+            <p>Soll nur eine bestehende Rasenfläche aufgebessert werden, genügt eine geringere
+            Aussaatstärke von etwa 10–15 g/m². Stellen Sie den Wert im Saat-Modus entsprechend ein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Rollrasen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Rollen Rollrasen brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Standardrolle deckt rund <strong>einen Quadratmeter</strong> ab (typisch ca. 2,5 m
+              lang und 0,4 m breit). Für 50 m² Fläche plus 5 % Verschnitt brauchen Sie also etwa 53 Rollen.
+              Der Rechner rundet die Rollenzahl immer auf.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei rechteckigen Flächen genügen rund <strong>3 %</strong>, bei verwinkelten Gärten eher
+              <strong>5 bis 10 %</strong>. Zusätzlich sollten Sie immer mindestens 1–2 m² Reserve
+              bestellen, da Nachbestellungen teuer und farblich oft nicht ganz identisch sind.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet Rollrasen pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das reine Material kostet rund <strong>2 bis 3,50 €/m²</strong>. Mit Lieferung und
+              professioneller Verlegung liegt der Gesamtpreis bei etwa <strong>4 bis 9 €/m²</strong>.
+              Die Preise schwanken regional und saisonal stark.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Saatgut brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für eine <strong>Neuanlage</strong> rechnet man rund <strong>20–25 g/m²</strong>, für eine
+              <strong>Nachsaat</strong> 10–15 g/m². Für 50 m² Neuanlage benötigen Sie also etwa 1,0 bis
+              1,25 kg Rasensamen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie schnell muss Rollrasen verlegt werden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Rollrasen sollte innerhalb von rund <strong>24 Stunden</strong> nach der Lieferung verlegt
+              werden. Bleibt er länger aufgerollt liegen, erhitzt er sich, vergilbt und kann absterben.
+              Planen Sie Lieferung und Verlegung am besten am selben Tag.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Rollrasen oder Rasen säen – was lohnt sich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Rollrasen ist sofort begehbar und liefert binnen Stunden eine fertige Fläche, kostet aber
+              mehr. Rasensaat ist deutlich günstiger, braucht jedoch Wochen bis Monate bis zur vollen
+              Belastbarkeit. Wer schnell ein nutzbares Ergebnis will, greift zu Rollrasen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/dachneigung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dachneigungs-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+          <a href="/wasserbedarf-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wasserbedarf-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">➗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rollrasen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/rollrasen-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Rollen Rollrasen brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Standardrolle deckt rund einen Quadratmeter ab (typisch ca. 2,5 m lang und 0,4 m breit). Für 50 m² Fläche plus 5 % Verschnitt brauchen Sie also etwa 53 Rollen. Der Rechner rundet die Rollenzahl immer auf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei rechteckigen Flächen genügen rund 3 %, bei verwinkelten Gärten eher 5 bis 10 %. Zusätzlich sollten Sie immer mindestens 1–2 m² Reserve bestellen, da Nachbestellungen teuer und farblich oft nicht ganz identisch sind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet Rollrasen pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das reine Material kostet rund 2 bis 3,50 €/m². Mit Lieferung und professioneller Verlegung liegt der Gesamtpreis bei etwa 4 bis 9 €/m². Die Preise schwanken regional und saisonal stark."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Saatgut brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für eine Neuanlage rechnet man rund 20–25 g/m², für eine Nachsaat 10–15 g/m². Für 50 m² Neuanlage benötigen Sie also etwa 1,0 bis 1,25 kg Rasensamen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie schnell muss Rollrasen verlegt werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rollrasen sollte innerhalb von rund 24 Stunden nach der Lieferung verlegt werden. Bleibt er länger aufgerollt liegen, erhitzt er sich, vergilbt und kann absterben. Planen Sie Lieferung und Verlegung am besten am selben Tag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Rollrasen oder Rasen säen – was lohnt sich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rollrasen ist sofort begehbar und liefert binnen Stunden eine fertige Fläche, kostet aber mehr. Rasensaat ist deutlich günstiger, braucht jedoch Wochen bis Monate bis zur vollen Belastbarkeit. Wer schnell ein nutzbares Ergebnis will, greift zu Rollrasen."
+        }
+      }
+    ]
+  })} />
+</Layout>

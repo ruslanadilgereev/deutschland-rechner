@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeizoelRechner from '../components/rechner/HeizoelRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Heizöl-Verbrauch-Rechner 2026 – Liter, Kosten & Reichweite";
+const description = "Heizölverbrauch pro Jahr aus Wohnfläche und Gebäudezustand berechnen: Liter, Heizölkosten in Euro, Energiemenge in kWh und Reichweite des Tankvorrats inklusive Bestellzeitpunkt.";
+const keywords = "Heizöl Verbrauch Rechner, Heizölverbrauch berechnen, Heizölkosten Rechner, Liter Heizöl pro m2, Heizöl pro Jahr, Tankreichweite Heizöl, Heizölpreis 2026, Ölheizung Verbrauch";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Heizöl-Verbrauch-Rechner", url: "/heizoel-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Heizöl-Verbrauch-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🛢️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Heizöl-Verbrauch-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Liter, Kosten und Tankreichweite berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Verbrauch (l/Jahr) = Wohnfläche × spezifischer Verbrauch (l/m²·a); Kosten = Liter × Heizölpreis; Energie = Liter × 10 kWh/l (Heizöl EL). Richtwerte des spezifischen Verbrauchs nach co2online / heizung.de.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Baujahr 1977–2002 ≈ 15 l/m², Heizölpreis 1,10 €/l (Stand Juni 2026, inkl. CO₂-Abgabe). Beide Werte sind frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelles Heizverhalten, Witterung, Anlagenwirkungsgrad und Preisschwankungen. Keine Energieberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <HeizoelRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Heizölverbrauch berechnen und einordnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Heizöl-Verbrauch-Rechner</strong> schätzen Sie ab, wie viele Liter Heizöl Ihr
+            Haus im Jahr benötigt, was das kostet und wie lange Ihr aktueller Tankvorrat reicht. Die
+            Berechnung basiert auf dem <strong>spezifischen Verbrauch pro Quadratmeter Wohnfläche</strong>,
+            der wiederum stark vom Baujahr und Sanierungsstand des Gebäudes abhängt. Wer den Wechsel auf
+            eine andere Heizung erwägt, vergleicht so leicht mit den Kosten von
+            <a href="/gasverbrauch-rechner" class="text-blue-600 hover:text-blue-800 underline">Gas</a>
+            oder einer
+            <a href="/waermepumpe-rechner" class="text-blue-600 hover:text-blue-800 underline">Wärmepumpe</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Verbrauch (l/Jahr)</strong> = Wohnfläche (m²) × spezifischer Verbrauch (l/m²·a)</li>
+              <li><strong>Kosten (€/Jahr)</strong> = Liter × Heizölpreis (€/l)</li>
+              <li><strong>Energiemenge (kWh)</strong> = Liter × 10 (1 l Heizöl EL ≈ 10 kWh)</li>
+            </ul>
+          </div>
+          <p>
+            Wird das Warmwasser <strong>nicht</strong> über die Ölheizung erzeugt, rechnet der Rechner nur
+            den Heizungsanteil von rund 85 %, da etwa 10–15 % des Verbrauchs auf die Warmwasserbereitung
+            entfallen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Spezifischer Verbrauch je Gebäudealter</h3>
+          <p>
+            Der spezifische Verbrauch ist der entscheidende Hebel. Ein unsanierter Altbau aus der Zeit vor
+            1977 verbraucht grob <strong>20 Liter pro m² und Jahr</strong>, Gebäude aus den Jahren 1977 bis
+            2002 rund <strong>15 l/m²</strong>, energetisch sanierte Häuser etwa <strong>10 l/m²</strong>
+            und moderne Neubauten oder Passivhäuser deutlich weniger. Der bundesweite Durchschnitt
+            einschließlich Warmwasser liegt bei rund 15 l/m².
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tankreichweite und Bestellzeitpunkt</h3>
+          <p>
+            Aus dem Jahresverbrauch lässt sich abschätzen, wie lange Ihr aktueller Tankvorrat reicht:
+            <strong>Reichweite (Monate) = Tankvorrat ÷ (Jahresverbrauch ÷ 12)</strong>. Da Lieferzeiten und
+            Preisschwankungen einen Puffer erfordern, empfiehlt sich eine Nachbestellung rund acht Wochen
+            bevor der Tank rechnerisch leer wäre. So vermeiden Sie es, in der teuren Heizsaison kurzfristig
+            bestellen zu müssen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Heizölpreis 2026</h3>
+          <p>
+            Der Heizölpreis ist eine der volatilsten Größen überhaupt. Im Juni 2026 lag der Literpreis für
+            leichtes Heizöl (EL) bei rund <strong>1,10 €/l</strong> – einschließlich der schrittweise
+            steigenden CO₂-Abgabe. Da sich der Preis täglich ändert, sollten Sie für eine genaue Rechnung
+            stets den aktuellen Tagespreis Ihres Lieferanten eintragen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🛢️ Spezifischer Heizölverbrauch je Gebäude</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte inkl. Warmwasser. Beispiel: 130 m² Wohnfläche, Heizölpreis 1,10 €/l.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Gebäude</th>
+                <th class="py-2 px-2 font-semibold text-right">l/m²·a</th>
+                <th class="py-2 px-2 font-semibold text-right">130 m²: Liter</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ €/Jahr</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏚️ Altbau vor 1977</td><td class="py-2 px-2 text-right">20</td><td class="py-2 px-2 text-right">2.600</td><td class="py-2 pl-2 text-right">2.860 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏠 Baujahr 1977–2002</td><td class="py-2 px-2 text-right">15</td><td class="py-2 px-2 text-right">1.950</td><td class="py-2 pl-2 text-right">2.145 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔧 Saniert / KfW 70</td><td class="py-2 px-2 text-right">10</td><td class="py-2 px-2 text-right">1.300</td><td class="py-2 pl-2 text-right">1.430 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏡 Neubau gut gedämmt</td><td class="py-2 px-2 text-right">6</td><td class="py-2 px-2 text-right">780</td><td class="py-2 pl-2 text-right">858 €</td></tr>
+              <tr><td class="py-2 pr-2">🌿 Passivhaus</td><td class="py-2 px-2 text-right">1,5</td><td class="py-2 px-2 text-right">195</td><td class="py-2 pl-2 text-right">215 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: co2online, heizung.de, Statista (Heizölpreis). Werte gerundet.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 130 m², Baujahr 1990, mit Warmwasser</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Spez. Verbrauch:</div>
+              <div class="font-medium text-gray-800">15 l/m²</div>
+              <div class="text-gray-600">Jahresverbrauch:</div>
+              <div class="font-medium text-gray-800">130 × 15 = 1.950 Liter</div>
+              <div class="text-gray-600">Kosten (1,10 €/l):</div>
+              <div class="font-medium text-green-700">2.145 €/Jahr</div>
+              <div class="text-gray-600">Energiemenge:</div>
+              <div class="font-medium text-gray-800">19.500 kWh</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Tankreichweite bei 3.000 l Vorrat</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch/Monat:</div>
+              <div class="font-medium text-gray-800">1.950 ÷ 12 = 162,5 l</div>
+              <div class="text-gray-600">Reichweite:</div>
+              <div class="font-medium text-gray-800">3.000 ÷ 162,5 = 18,5 Monate</div>
+              <div class="text-gray-600">Nachbestellen nach:</div>
+              <div class="font-medium text-green-700">ca. 16,6 Monaten</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 100 m² saniert, Warmwasser über Strom</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Spez. Verbrauch:</div>
+              <div class="font-medium text-gray-800">10 l/m² × 0,85 (nur Heizung)</div>
+              <div class="text-gray-600">Jahresverbrauch:</div>
+              <div class="font-medium text-gray-800">100 × 10 × 0,85 = 850 Liter</div>
+              <div class="text-gray-600">Kosten (1,10 €/l):</div>
+              <div class="font-medium text-green-700">935 €/Jahr</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Den genauesten spezifischen Verbrauch erhalten Sie, indem Sie Ihre
+          gelieferte Heizölmenge der letzten Jahre durch die Wohnfläche teilen – das berücksichtigt Ihr
+          tatsächliches Heizverhalten besser als die pauschalen Richtwerte.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Beheizte Fläche zu hoch ansetzen</h3>
+            <p>Nicht oder selten beheizte Räume wie Keller, Dachboden oder ständig geschlossene
+            Gästezimmer verfälschen das Ergebnis. Rechnen Sie nur mit der tatsächlich beheizten
+            Wohnfläche.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Festen Heizölpreis annehmen</h3>
+            <p>Heizöl gehört zu den volatilsten Energieträgern. Der Preis kann innerhalb weniger Wochen
+            zweistellig schwanken. Nutzen Sie für die Kostenrechnung stets den aktuellen Tagespreis.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Witterung außer Acht lassen</h3>
+            <p>Ein milder Winter senkt den Verbrauch deutlich, ein strenger erhöht ihn. Die Richtwerte
+            gelten für ein durchschnittliches Heizjahr – einzelne Jahre können stark abweichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: CO₂-Abgabe steigt weiter</h3>
+            <p>Der CO₂-Preis auf fossile Brennstoffe steigt schrittweise an und ist bereits im Literpreis
+            enthalten. Über die Jahre verteuert das Heizöl spürbar – ein Argument, das bei einer
+            Sanierung mitgedacht werden sollte.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: alter Heizkessel</h3>
+            <p>Ein alter Standardkessel arbeitet ineffizienter als ein moderner Brennwertkessel. Bei
+            veralteter Technik kann der reale Verbrauch deutlich über dem Richtwert liegen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Heizölverbrauch</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Heizöl verbraucht ein Haus pro Jahr?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Verbrauch ergibt sich aus <strong>Wohnfläche × spezifischem Verbrauch</strong>. Ein
+              Haus mit 130 m² aus den Jahren 1977–2002 (ca. 15 l/m²) benötigt rund 1.950 Liter pro Jahr.
+              Ein Altbau verbraucht mehr (ca. 20 l/m²), ein saniertes Haus weniger (ca. 10 l/m²).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Liter Heizöl pro Quadratmeter sind normal?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Richtwert inklusive Warmwasser gelten: unsanierter Altbau ca. 20 l/m², Baujahr
+              1977–2002 ca. 15 l/m², saniert ca. 10 l/m², Neubau ca. 6 l/m². Der bundesweite Durchschnitt
+              liegt bei rund 15 Litern pro Quadratmeter und Jahr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel kWh hat ein Liter Heizöl?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Liter leichtes Heizöl (EL) enthält rund <strong>10 kWh</strong> Energie. 1.950 Liter
+              entsprechen also etwa 19.500 kWh. Über diesen Wert lässt sich der Heizölverbrauch direkt mit
+              Gas (kWh) oder dem Strombedarf einer Wärmepumpe vergleichen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Reichweite meines Heizöltanks?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie den aktuellen Tankvorrat durch den monatlichen Verbrauch:
+              <strong>Reichweite = Tankvorrat ÷ (Jahresverbrauch ÷ 12)</strong>. Bei 3.000 Litern Vorrat
+              und 1.950 Litern Jahresverbrauch reicht der Tank etwa 18,5 Monate. Bestellen Sie rund acht
+              Wochen vorher nach.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet Heizöl 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Im Juni 2026 lag der Literpreis für leichtes Heizöl bei rund <strong>1,10 €/l</strong>
+              inklusive CO₂-Abgabe. Der Preis ist jedoch stark schwankend und ändert sich täglich. Für eine
+              genaue Kostenrechnung sollten Sie den aktuellen Tagespreis Ihres Lieferanten verwenden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel des Heizöls entfällt auf Warmwasser?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Wird das Warmwasser über die Ölheizung erzeugt, entfallen grob 10–15 % des Verbrauchs auf
+              die Warmwasserbereitung. Reine Heizung macht also rund 85 % aus. Erfolgt die
+              Warmwasserbereitung getrennt (z. B. elektrisch), rechnet der Rechner nur diesen
+              Heizungsanteil.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/gasverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gasverbrauch-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/heizlast-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizlast-Rechner</p>
+          </a>
+          <a href="/stromverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔌</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromverbrauch-Rechner</p>
+          </a>
+          <a href="/co2-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌍</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">CO₂-Steuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Heizöl-Verbrauch-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/heizoel-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Heizöl verbraucht ein Haus pro Jahr?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Verbrauch ergibt sich aus Wohnfläche × spezifischem Verbrauch. Ein Haus mit 130 m² aus den Jahren 1977–2002 (ca. 15 l/m²) benötigt rund 1.950 Liter pro Jahr. Ein Altbau verbraucht mehr (ca. 20 l/m²), ein saniertes Haus weniger (ca. 10 l/m²)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Liter Heizöl pro Quadratmeter sind normal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Richtwert inklusive Warmwasser gelten: unsanierter Altbau ca. 20 l/m², Baujahr 1977–2002 ca. 15 l/m², saniert ca. 10 l/m², Neubau ca. 6 l/m². Der bundesweite Durchschnitt liegt bei rund 15 Litern pro Quadratmeter und Jahr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel kWh hat ein Liter Heizöl?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Liter leichtes Heizöl (EL) enthält rund 10 kWh Energie. 1.950 Liter entsprechen also etwa 19.500 kWh. Über diesen Wert lässt sich der Heizölverbrauch direkt mit Gas (kWh) oder dem Strombedarf einer Wärmepumpe vergleichen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Reichweite meines Heizöltanks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie den aktuellen Tankvorrat durch den monatlichen Verbrauch: Reichweite = Tankvorrat ÷ (Jahresverbrauch ÷ 12). Bei 3.000 Litern Vorrat und 1.950 Litern Jahresverbrauch reicht der Tank etwa 18,5 Monate. Bestellen Sie rund acht Wochen vorher nach."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet Heizöl 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Im Juni 2026 lag der Literpreis für leichtes Heizöl bei rund 1,10 €/l inklusive CO₂-Abgabe. Der Preis ist jedoch stark schwankend und ändert sich täglich. Für eine genaue Kostenrechnung sollten Sie den aktuellen Tagespreis Ihres Lieferanten verwenden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel des Heizöls entfällt auf Warmwasser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wird das Warmwasser über die Ölheizung erzeugt, entfallen grob 10–15 % des Verbrauchs auf die Warmwasserbereitung. Reine Heizung macht also rund 85 % aus. Erfolgt die Warmwasserbereitung getrennt (z. B. elektrisch), rechnet der Rechner nur diesen Heizungsanteil."
+        }
+      }
+    ]
+  })} />
+</Layout>

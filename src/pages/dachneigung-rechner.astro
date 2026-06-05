@@ -1,0 +1,436 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DachneigungRechner from '../components/rechner/DachneigungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Dachneigungs-Rechner 2026 – Grad, Prozent & Sparrenlänge berechnen";
+const description = "Dachneigung aus Höhe und Länge berechnen: Grad, Prozent, Verhältnis x:12 und Sparrenlänge. Umrechnung Grad ↔ Prozent inklusive Richtwerten zu Mindestdachneigung und Dachtypen.";
+const keywords = "Dachneigung Rechner, Dachneigung berechnen, Grad in Prozent Dach, Dachneigung Prozent, Sparrenlänge berechnen, Mindestdachneigung, Dachneigung Grad, Dachschräge berechnen, Neigung Dach umrechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Dachneigungs-Rechner", url: "/dachneigung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Dachneigungs-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dachneigungs-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Grad, Prozent, x:12 und Sparrenlänge berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Trigonometrie eines rechtwinkligen Dreiecks – Grad = arctan(Höhe ÷ Länge), Prozent = Höhe ÷ Länge × 100, Sparrenlänge = √(Höhe² + Länge²). Klassifizierung und Mindestneigungen nach der Dachdecker-Fachregel des ZVDH.</p>
+            <p class="mb-1"><strong>Richtwerte:</strong> Flachdach &lt; 10°, flach geneigt 10–22°, Steildach &gt; 22°; Wohnhäuser meist 20–45°.</p>
+            <p><strong>Nicht berücksichtigt:</strong> verbindliche Mindestneigung je Eindeckung, Unterdach, Dachaufbau und Hersteller sowie die Statik. Keine Fachberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DachneigungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Dachneigung richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Dachneigung</strong> beschreibt, wie stark ein Dach geneigt ist. Sie wird
+            wahlweise in <strong>Grad</strong>, in <strong>Prozent</strong> oder als
+            <strong>Verhältnis (x:12)</strong> angegeben. Mit dem Dachneigungs-Rechner ermitteln Sie
+            alle drei Werte sowie die <strong>Sparrenlänge</strong> – egal, ob Sie Höhe und Länge des
+            Daches kennen oder eine bereits bekannte Neigung umrechnen möchten. Die Neigung ist
+            entscheidend für die wählbare Eindeckung, die Eignung für eine
+            <a href="/photovoltaik-rechner" class="text-blue-600 hover:text-blue-800 underline">Photovoltaikanlage</a>
+            und die benötigte Materialmenge.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Ein Dach bildet mit der waagerechten Grundlinie ein rechtwinkliges Dreieck:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Neigung (Grad)</strong> = arctan(Höhe ÷ Grundlänge) × 180 ÷ π</li>
+              <li><strong>Neigung (Prozent)</strong> = Höhe ÷ Grundlänge × 100</li>
+              <li><strong>Verhältnis</strong> = tan(Winkel) × 12 → ergibt „x : 12“</li>
+              <li><strong>Sparrenlänge</strong> = √(Höhe² + Grundlänge²)</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Grundlänge</strong> (auch „Run“) ist der waagerechte Abstand von der Traufe bis
+            unter den First, die <strong>Höhe</strong> (auch „Rise“) der senkrechte Anstieg auf dieser
+            Strecke. Beide Maße müssen in derselben Einheit eingegeben werden – ob Meter oder
+            Zentimeter ist für Grad und Prozent egal, da nur das Verhältnis zählt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Grad und Prozent unterscheiden sich</h3>
+          <p>
+            Ein häufiges Missverständnis: <strong>100 % Neigung sind nicht 90°, sondern 45°</strong>.
+            Denn 100 % bedeuten, dass die Höhe gleich der waagerechten Länge ist – das ergibt genau
+            einen Winkel von 45°. Die Umrechnung lautet: Prozent = tan(Grad) × 100 und umgekehrt
+            Grad = arctan(Prozent ÷ 100). Bei kleinen Winkeln liegen Grad- und Prozentwert noch nah
+            beieinander, mit steigender Neigung laufen sie immer weiter auseinander.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wozu die Sparrenlänge?</h3>
+          <p>
+            Die <strong>Sparrenlänge</strong> ist die tatsächliche Länge der Dachschräge von der Traufe
+            bis zum First. Sie ist immer länger als die waagerechte Grundlänge und wird über den Satz
+            des Pythagoras berechnet. Multipliziert mit der Dachbreite ergibt sie die <strong>geneigte
+            Dachfläche</strong> einer Dachhälfte – die Basis für die Berechnung von Dachziegeln,
+            Dämmung oder Solarmodulen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestdachneigung beachten</h3>
+          <p>
+            Jede Eindeckung hat eine <strong>Regeldachneigung</strong> – die Mindestneigung, bei der sie
+            ohne zusätzliche Maßnahmen regensicher ist. Dachziegel und Dachsteine setzen laut
+            ZVDH-Fachregel meist mindestens etwa 22°, viele Modelle 25°, 30° oder mehr voraus.
+            Unterhalb der Regeldachneigung sind je nach Lage zusätzliche Maßnahmen wie ein wasserdichtes
+            Unterdach nötig. Die hier genannten Werte sind Richtwerte – maßgeblich sind die Vorgaben des
+            jeweiligen Herstellers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📐 Dachneigung: Grad, Prozent & Einordnung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Umrechnung gängiger Neigungen und ihre Klassifizierung. Prozent = tan(Grad) × 100.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Grad</th>
+                <th class="py-2 px-2 font-semibold text-right">Prozent</th>
+                <th class="py-2 px-2 font-semibold text-right">x : 12</th>
+                <th class="py-2 pl-2 font-semibold">Einordnung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">5°</td><td class="py-2 px-2 text-right">8,7 %</td><td class="py-2 px-2 text-right">1,0 : 12</td><td class="py-2 pl-2">Flachdach</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">10°</td><td class="py-2 px-2 text-right">17,6 %</td><td class="py-2 px-2 text-right">2,1 : 12</td><td class="py-2 pl-2">flach geneigt</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">15°</td><td class="py-2 px-2 text-right">26,8 %</td><td class="py-2 px-2 text-right">3,2 : 12</td><td class="py-2 pl-2">flach geneigt</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">22°</td><td class="py-2 px-2 text-right">40,4 %</td><td class="py-2 px-2 text-right">4,8 : 12</td><td class="py-2 pl-2">Steildach (Regelgrenze)</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">30°</td><td class="py-2 px-2 text-right">57,7 %</td><td class="py-2 px-2 text-right">6,9 : 12</td><td class="py-2 pl-2">Steildach</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">35°</td><td class="py-2 px-2 text-right">70,0 %</td><td class="py-2 px-2 text-right">8,4 : 12</td><td class="py-2 pl-2">Steildach</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">40°</td><td class="py-2 px-2 text-right">83,9 %</td><td class="py-2 px-2 text-right">10,1 : 12</td><td class="py-2 pl-2">Steildach</td></tr>
+              <tr><td class="py-2 pr-2">45°</td><td class="py-2 px-2 text-right">100,0 %</td><td class="py-2 px-2 text-right">12 : 12</td><td class="py-2 pl-2">steiles Satteldach</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Klassifizierung und Regeldachneigung nach ZVDH-Fachregel. Werte gerundet.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Höhe 2 m, Länge 4 m</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Grad:</div>
+              <div class="font-medium text-gray-800">arctan(2 ÷ 4) = 26,6°</div>
+              <div class="text-gray-600">Prozent:</div>
+              <div class="font-medium text-gray-800">2 ÷ 4 × 100 = 50 %</div>
+              <div class="text-gray-600">Verhältnis:</div>
+              <div class="font-medium text-gray-800">6 : 12</div>
+              <div class="text-gray-600">Sparrenlänge:</div>
+              <div class="font-medium text-green-700">√(2² + 4²) = 4,47 m</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: bekannte Neigung 30° umrechnen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Prozent:</div>
+              <div class="font-medium text-gray-800">tan(30°) × 100 = 57,7 %</div>
+              <div class="text-gray-600">Verhältnis:</div>
+              <div class="font-medium text-gray-800">tan(30°) × 12 = 6,9 : 12</div>
+              <div class="text-gray-600">Einordnung:</div>
+              <div class="font-medium text-green-700">Steildach</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Flachdach 7 %</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Grad:</div>
+              <div class="font-medium text-gray-800">arctan(7 ÷ 100) = 4,0°</div>
+              <div class="text-gray-600">Einordnung:</div>
+              <div class="font-medium text-gray-800">Flachdach (&lt; 10°)</div>
+              <div class="text-gray-600">Verhältnis:</div>
+              <div class="font-medium text-green-700">0,8 : 12</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Sie müssen nicht aufs Dach steigen: Messen Sie an einem Sparren im
+          Dachboden eine waagerechte Strecke (z. B. mit Wasserwaage) und die zugehörige Höhe – das
+          Verhältnis ist identisch zur gesamten Dachneigung.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Prozent mit Grad gleichsetzen</h3>
+            <p>50 % Neigung sind nicht 50°, sondern nur 26,6°. Und 100 % sind 45°, nicht 90°. Prozent
+            und Grad sind über den Tangens verknüpft, nicht linear – verwechseln Sie die beiden Skalen
+            nicht.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Sparrenlänge mit Grundlänge verwechseln</h3>
+            <p>Die Grundlänge ist die waagerechte Strecke, die Sparrenlänge die geneigte Dachschräge.
+            Für die Materialmenge zählt immer die längere Sparrenlänge, nicht der Grundriss.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Mindestdachneigung ignorieren</h3>
+            <p>Wird eine Eindeckung unterhalb ihrer Regeldachneigung verlegt, drohen Undichtigkeiten.
+            Unterhalb der Regelgrenze sind Zusatzmaßnahmen wie ein wasserdichtes Unterdach Pflicht –
+            das richtet sich nach den Herstellervorgaben.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Dachfläche für Photovoltaik</h3>
+            <p>Für Solarmodule zählt die geneigte Dachfläche, nicht die Grundfläche. Auch der Winkel
+            selbst ist relevant: In Deutschland liefern rund 30–35° Süddach den höchsten Jahresertrag.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: ungleiche Dachhälften</h3>
+            <p>Bei einem asymmetrischen Pult- oder Krüppelwalmdach hat jede Dachfläche eine eigene
+            Neigung. Berechnen Sie dann jede Fläche getrennt mit ihren eigenen Maßen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Dachneigung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Dachneigung in Grad?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Neigung in Grad ergibt sich aus <strong>arctan(Höhe ÷ Grundlänge)</strong>. Bei
+              einer Höhe von 2 m und einer waagerechten Länge von 4 m sind das arctan(2 ÷ 4) = 26,6°.
+              Höhe und Länge müssen in derselben Einheit angegeben werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Grad sind 100 % Dachneigung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>100 % entsprechen genau <strong>45°</strong>, nicht 90°. Denn 100 % bedeuten, dass die
+              Höhe gleich der waagerechten Grundlänge ist. Die Umrechnung lautet Grad =
+              arctan(Prozent ÷ 100), also arctan(1) = 45°.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Mindestdachneigung für Ziegel?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für Dachziegel und Dachsteine liegt die Regeldachneigung laut ZVDH-Fachregel meist bei
+              etwa <strong>22°</strong>, viele Modelle verlangen 25°, 30° oder mehr. Unterhalb der
+              Regeldachneigung sind Zusatzmaßnahmen wie ein wasserdichtes Unterdach nötig. Maßgeblich
+              sind die Herstellervorgaben.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich Grad in Prozent um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Prozent = <strong>tan(Grad) × 100</strong>. Ein 30°-Dach hat also tan(30°) × 100 =
+              57,7 % Gefälle. Umgekehrt gilt Grad = arctan(Prozent ÷ 100). Beide Werte beschreiben
+              dieselbe Neigung in unterschiedlichen Skalen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet die Angabe x:12 bei der Dachneigung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Verhältnis x:12 gibt an, um wie viele Einheiten das Dach auf 12 waagerechte Einheiten
+              ansteigt. Es wird über <strong>tan(Winkel) × 12</strong> berechnet. Ein 30°-Dach ergibt
+              etwa 6,9:12, ein 45°-Dach genau 12:12.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Sparrenlänge?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Sparrenlänge ist die Hypotenuse des Dachdreiecks: <strong>√(Höhe² +
+              Grundlänge²)</strong>. Bei 2 m Höhe und 4 m Grundlänge sind das √(4 + 16) = √20 ≈ 4,47 m.
+              Multipliziert mit der Dachbreite ergibt sich die geneigte Dachfläche.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/heizlast-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizlast-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dachneigungs-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/dachneigung-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Dachneigung in Grad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Neigung in Grad ergibt sich aus arctan(Höhe ÷ Grundlänge). Bei einer Höhe von 2 m und einer waagerechten Länge von 4 m sind das arctan(2 ÷ 4) = 26,6°. Höhe und Länge müssen in derselben Einheit angegeben werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Grad sind 100 % Dachneigung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "100 % entsprechen genau 45°, nicht 90°. Denn 100 % bedeuten, dass die Höhe gleich der waagerechten Grundlänge ist. Die Umrechnung lautet Grad = arctan(Prozent ÷ 100), also arctan(1) = 45°."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Mindestdachneigung für Ziegel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Dachziegel und Dachsteine liegt die Regeldachneigung laut ZVDH-Fachregel meist bei etwa 22°, viele Modelle verlangen 25°, 30° oder mehr. Unterhalb der Regeldachneigung sind Zusatzmaßnahmen wie ein wasserdichtes Unterdach nötig. Maßgeblich sind die Herstellervorgaben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich Grad in Prozent um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prozent = tan(Grad) × 100. Ein 30°-Dach hat also tan(30°) × 100 = 57,7 % Gefälle. Umgekehrt gilt Grad = arctan(Prozent ÷ 100). Beide Werte beschreiben dieselbe Neigung in unterschiedlichen Skalen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet die Angabe x:12 bei der Dachneigung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Verhältnis x:12 gibt an, um wie viele Einheiten das Dach auf 12 waagerechte Einheiten ansteigt. Es wird über tan(Winkel) × 12 berechnet. Ein 30°-Dach ergibt etwa 6,9:12, ein 45°-Dach genau 12:12."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Sparrenlänge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Sparrenlänge ist die Hypotenuse des Dachdreiecks: √(Höhe² + Grundlänge²). Bei 2 m Höhe und 4 m Grundlänge sind das √(4 + 16) = √20 ≈ 4,47 m. Multipliziert mit der Dachbreite ergibt sich die geneigte Dachfläche."
+        }
+      }
+    ]
+  })} />
+</Layout>

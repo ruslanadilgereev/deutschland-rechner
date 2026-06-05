@@ -1,0 +1,419 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PutzRechner from '../components/rechner/PutzRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Putz-Rechner 2026 – Putzmenge & Säcke pro m² berechnen";
+const description = "Putzbedarf berechnen: Putzmenge in kg und Anzahl Säcke aus Fläche, Schichtdicke und Putzart – für Gips-, Kalk- und Zementputz. Mit Verbrauchswerten nach DIN 18550, Abzug für Fenster und Verschnitt.";
+const keywords = "Putz Rechner, Putz berechnen, Putzmenge berechnen, Putz pro m2, Putzverbrauch, Innenputz Bedarf, Außenputz berechnen, Gipsputz kg pro m2, Putz Säcke berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Putz-Rechner", url: "/putz-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Putz-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪣</span>
+          <div>
+            <h1 class="text-2xl font-bold">Putz-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Putzmenge und Säcke pro m² berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Putzmenge = Fläche × Schichtdicke × Verbrauch × (1 + Verschnitt); Verbrauchswerte nach DIN 18550 – Gips-/Maschinenputz 0,9; Kalk-/Kalkzementputz 1,5; Zement-/Außenputz 1,6 kg/m² je mm</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Schichtdicke Innenputz 10–15 mm, Außen-Unterputz ≥ 20 mm; Verschnitt 10 %; Sackgrößen 25/30/40 kg.</p>
+            <p><strong>Nicht berücksichtigt:</strong> stark saugende oder sehr unebene Untergründe, produktspezifische Schüttdichten und Putzträger. Maßgeblich sind die Herstellerangaben. Keine Bauberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PutzRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Putzbedarf richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Putz-Rechner</strong> ermitteln Sie, wie viel Putz Sie für Ihre Wände oder
+            die Fassade brauchen – als <strong>Menge in kg</strong> und als <strong>Anzahl Säcke</strong>.
+            Der Rechner unterscheidet zwischen <strong>Gips-/Maschinenputz</strong>,
+            <strong>Kalk-/Kalkzementputz</strong> und <strong>Zement-/Außenputz</strong>, weil diese
+            Putzarten unterschiedlich viel Material pro Quadratmeter benötigen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Putzbedarf richtet sich nach Fläche, Schichtdicke und materialabhängigem Verbrauch:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Putzmenge (kg)</strong> = Fläche (m²) × Schichtdicke (mm) × Verbrauch (kg/m²/mm)</li>
+              <li><strong>+ Verschnitt</strong> für Reste und unebene Wände (typisch 10 %)</li>
+              <li><strong>Säcke</strong> = Putzmenge ÷ Sackgewicht (aufgerundet)</li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>Verbrauchswert</strong> gibt an, wie viel Kilogramm Putz pro Quadratmeter und
+            pro Millimeter Schichtdicke benötigt werden. Für Kalkzementputz sind das rund 1,5 kg, für
+            den leichteren Gipsputz nur etwa 0,9 kg und für schweren Zementputz etwa 1,6 kg.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Schichtdicken nach DIN 18550</h3>
+          <p>
+            Die <strong>DIN 18550</strong> regelt Putz und Putzsysteme. Für <strong>Innenputz</strong>
+            sind typische Gesamtschichtdicken von <strong>10 bis 15 mm</strong> üblich. Bei
+            <strong>Außenputz</strong> liegt allein der Unterputz meist bei <strong>20 mm</strong> oder
+            mehr, weil er Witterung und Schlagregen standhalten muss. Eine zu dünne Schicht kann reißen,
+            eine zu dicke trocknet ungleichmäßig.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Untergrund entscheidet mit</h3>
+          <p>
+            Der reale Verbrauch hängt stark vom <strong>Untergrund</strong> ab. Stark saugende oder
+            sehr raue Wände, etwa altes Ziegelmauerwerk, schlucken mehr Material als glattes
+            Mauerwerk. Auch Unebenheiten erhöhen den Verbrauch, weil mehr ausgeglichen werden muss.
+            Planen Sie deshalb immer einen Verschnitt ein – bei unebenen Altbauwänden gern mehr als
+            die voreingestellten 10 %.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fenster und Türen abziehen</h3>
+          <p>
+            Bei der Eingabe über Länge × Höhe können Sie die Fläche von Fenstern und Türen direkt
+            abziehen. Das vermeidet eine Überbestellung. Bei vielen kleinen Öffnungen lohnt es sich,
+            einen kleinen Sicherheitspuffer zu lassen, da an den Laibungen zusätzlicher Putz anfällt.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🪣 Putzverbrauch je Putzart</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte in kg pro m² und mm Schichtdicke sowie typische Schichtdicke.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Putzart</th>
+                <th class="py-2 px-2 font-semibold text-right">kg/m²/mm</th>
+                <th class="py-2 pl-2 font-semibold text-right">typ. Dicke</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Gips-/Maschinenputz</td><td class="py-2 px-2 text-right">≈ 0,9</td><td class="py-2 pl-2 text-right">10 mm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Kalk-/Kalkzementputz</td><td class="py-2 px-2 text-right">≈ 1,5</td><td class="py-2 pl-2 text-right">15 mm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Zement-/Außenputz</td><td class="py-2 px-2 text-right">≈ 1,6</td><td class="py-2 pl-2 text-right">20 mm</td></tr>
+              <tr><td class="py-2 pr-2">Leichtputz (mineralisch)</td><td class="py-2 px-2 text-right">≈ 1,0–1,3</td><td class="py-2 pl-2 text-right">15 mm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: DIN 18550 (Baunormenlexikon), hausgarten.net.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle, jeweils mit 10 % Verschnitt:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Innenwand 30 m², Kalkzementputz 15 mm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-gray-800">1,5 kg/m²/mm</div>
+              <div class="text-gray-600">Menge:</div>
+              <div class="font-medium text-gray-800">30 × 15 × 1,5 × 1,10 ≈ 743 kg</div>
+              <div class="text-gray-600">Säcke (40 kg):</div>
+              <div class="font-medium text-green-700">19 Säcke</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Zimmer 40 m², Gipsputz 10 mm, 30-kg-Säcke</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-gray-800">0,9 kg/m²/mm</div>
+              <div class="text-gray-600">Menge:</div>
+              <div class="font-medium text-gray-800">40 × 10 × 0,9 × 1,10 = 396 kg</div>
+              <div class="text-gray-600">Säcke (30 kg):</div>
+              <div class="font-medium text-green-700">14 Säcke</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Fassade 25 m², Zementputz 20 mm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch:</div>
+              <div class="font-medium text-gray-800">1,6 kg/m²/mm</div>
+              <div class="text-gray-600">Menge:</div>
+              <div class="font-medium text-gray-800">25 × 20 × 1,6 × 1,10 = 880 kg</div>
+              <div class="text-gray-600">Säcke (40 kg):</div>
+              <div class="font-medium text-green-700">22 Säcke</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Schon ein Millimeter mehr Schichtdicke erhöht die Menge spürbar.
+          Auf 30 m² macht 1 mm bei Kalkzementputz rund 45 kg aus – also gut einen Sack mehr.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Verbrauchswert der falschen Putzart</h3>
+            <p>Gipsputz ist leichter als Zementputz und braucht deutlich weniger Kilogramm pro
+            Quadratmeter. Wählen Sie immer die tatsächliche Putzart, sonst weicht die Menge stark ab.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Schichtdicke unterschätzen</h3>
+            <p>An unebenen Wänden ist die mittlere Schichtdicke oft größer als geplant. Wer mit der
+            Mindestdicke rechnet, hat am Ende zu wenig Material. Messen Sie an mehreren Stellen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Saugenden Untergrund ignorieren</h3>
+            <p>Stark saugende Wände entziehen dem Putz Wasser und erhöhen den Verbrauch. Ein Grundierungs-
+            oder Vorspritzauftrag spart Material und verbessert die Haftung – kostet aber selbst Material.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Mehrlagiger Außenputz</h3>
+            <p>Außenputz besteht oft aus Unter- und Oberputz. Rechnen Sie die Schichten getrennt und
+            addieren Sie die Mengen, da beide Lagen unterschiedliche Dicken und Verbräuche haben.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Laibungen und Ecken</h3>
+            <p>An Fenster- und Türlaibungen fällt zusätzlicher Putz an, der bei reiner Flächenrechnung
+            untergeht. Bei vielen Öffnungen lieber etwas mehr Verschnitt einplanen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Putz-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Putz brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von Putzart und Schichtdicke ab. Kalkzementputz verbraucht rund 1,5 kg pro m²
+              und mm, also bei 15 mm etwa 22,5 kg/m². Gipsputz braucht mit 0,9 kg/m²/mm deutlich weniger.
+              Multiplizieren Sie Verbrauch, Dicke und Fläche und addieren Sie Verschnitt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick muss Putz aufgetragen werden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für Innenputz sind nach DIN 18550 typische Gesamtschichtdicken von 10 bis 15 mm üblich.
+              Außen liegt allein der Unterputz meist bei 20 mm oder mehr. Die genaue Dicke hängt von Putz
+              und Untergrund ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Säcke Putz brauche ich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie die gesamte Putzmenge in kg durch das Sackgewicht und runden Sie auf. Für
+              30 m² Kalkzementputz in 15 mm Dicke ergeben sich rund 743 kg, also 19 Säcke à 40 kg
+              inklusive 10 % Verschnitt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Gips- und Kalkzementputz?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Gipsputz ist leicht, glatt und ideal für trockene Innenräume. Kalkzementputz ist
+              robuster und feuchtebeständiger und eignet sich auch für Bad, Keller und als Untergrund im
+              Außenbereich. Gipsputz braucht weniger Material, Kalkzementputz mehr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Üblich sind rund 10 % Verschnitt für Reste und Unebenheiten. Bei sehr unebenen oder stark
+              saugenden Altbauwänden kann der Mehrbedarf höher liegen – planen Sie dann eher 15 % ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich Fenster und Türen abziehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja, ziehen Sie größere Öffnungen ab, um nicht zu viel zu bestellen. Bei vielen kleinen
+              Fenstern sollten Sie aber etwas Reserve lassen, weil an den Laibungen zusätzlicher Putz
+              anfällt.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/mauersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mauerstein-Rechner</p>
+          </a>
+          <a href="/pflastersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧩</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflaster-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Putz-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/putz-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Putz brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von Putzart und Schichtdicke ab. Kalkzementputz verbraucht rund 1,5 kg pro m² und mm, also bei 15 mm etwa 22,5 kg/m². Gipsputz braucht mit 0,9 kg/m²/mm deutlich weniger. Multiplizieren Sie Verbrauch, Dicke und Fläche und addieren Sie Verschnitt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dick muss Putz aufgetragen werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Innenputz sind nach DIN 18550 typische Gesamtschichtdicken von 10 bis 15 mm üblich. Außen liegt allein der Unterputz meist bei 20 mm oder mehr. Die genaue Dicke hängt von Putz und Untergrund ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Säcke Putz brauche ich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie die gesamte Putzmenge in kg durch das Sackgewicht und runden Sie auf. Für 30 m² Kalkzementputz in 15 mm Dicke ergeben sich rund 743 kg, also 19 Säcke à 40 kg inklusive 10 % Verschnitt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Gips- und Kalkzementputz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gipsputz ist leicht, glatt und ideal für trockene Innenräume. Kalkzementputz ist robuster und feuchtebeständiger und eignet sich auch für Bad, Keller und als Untergrund im Außenbereich. Gipsputz braucht weniger Material, Kalkzementputz mehr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Üblich sind rund 10 % Verschnitt für Reste und Unebenheiten. Bei sehr unebenen oder stark saugenden Altbauwänden kann der Mehrbedarf höher liegen – planen Sie dann eher 15 % ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich Fenster und Türen abziehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, ziehen Sie größere Öffnungen ab, um nicht zu viel zu bestellen. Bei vielen kleinen Fenstern sollten Sie aber etwas Reserve lassen, weil an den Laibungen zusätzlicher Putz anfällt."
+        }
+      }
+    ]
+  })} />
+</Layout>
