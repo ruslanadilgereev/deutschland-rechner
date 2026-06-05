@@ -1,0 +1,427 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UWertRechner from '../components/rechner/UWertRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "U-Wert-Rechner 2026 – Wärmedurchgang & GEG-Check berechnen";
+const description = "U-Wert berechnen nach DIN EN ISO 6946: aus dem Schichtaufbau von Wand, Dach oder Decke den Wärmedurchgangskoeffizienten ermitteln und gegen die GEG-Höchstwerte prüfen. Mit λ-Werten gängiger Baustoffe.";
+const keywords = "U-Wert Rechner, U-Wert berechnen, Wärmedurchgangskoeffizient, U-Wert Wand, U-Wert Dach, DIN EN ISO 6946, GEG U-Wert, Wärmedämmung berechnen, Lambda Wert";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "U-Wert-Rechner", url: "/u-wert-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'U-Wert-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🌡️</span>
+          <div>
+            <h1 class="text-2xl font-bold">U-Wert-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Wärmedurchgang aus dem Schichtaufbau berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> DIN EN ISO 6946 – R je Schicht = Dicke ÷ λ; R_T = Rsi + Σ(d/λ) + Rse; U = 1 ÷ R_T. Wärmeübergangswiderstände je Bauteil (Wand 0,13/0,04; Dach 0,10/0,04; Boden 0,17/0,00 m²K/W).</p>
+            <p class="mb-1"><strong>GEG-Höchstwerte (Anlage 7, Sanierung):</strong> Außenwand 0,24 · Steildach/oberste Geschossdecke 0,24 · Kellerdecke/Boden 0,30 W/(m²K). Fenster 1,30, Flachdach 0,20.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Wärmebrücken, Befestiger, inhomogene Schichten, Feuchteschutz. λ-Werte sind Richtwerte, keine Bemessungswerte (DIN 4108-4). Kein amtlicher Nachweis – Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <UWertRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Den U-Wert eines Bauteils berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>U-Wert</strong> (Wärmedurchgangskoeffizient) gibt an, wie viel Wärme durch ein
+            Bauteil verloren geht – je <strong>kleiner</strong> der Wert, desto besser die Dämmung.
+            Mit dem <strong>U-Wert-Rechner</strong> ermitteln Sie ihn aus dem kompletten
+            <strong>Schichtaufbau</strong> von Außenwand, Dach oder Geschossdecke und prüfen direkt, ob
+            die <strong>GEG-Höchstwerte</strong> eingehalten werden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Die Berechnung folgt der DIN EN ISO 6946:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>R je Schicht</strong> = Schichtdicke d (m) ÷ Wärmeleitfähigkeit λ (W/m·K)</li>
+              <li><strong>R_T</strong> = Rsi + Summe aller R + Rse (Wärmeübergänge innen/außen)</li>
+              <li><strong>U-Wert</strong> = 1 ÷ R_T in W/(m²·K)</li>
+            </ul>
+          </div>
+          <p>
+            Jede Schicht trägt mit ihrem <strong>Wärmedurchlasswiderstand R = d/λ</strong> bei. Dicke
+            Dämmschichten mit niedrigem λ liefern ein großes R und senken so den U-Wert. Hinzu kommen
+            die <strong>Wärmeübergangswiderstände</strong> Rsi (innen) und Rse (außen), die der Rechner
+            je nach Bauteil automatisch setzt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Wärmeleitfähigkeit λ?</h3>
+          <p>
+            Die <strong>Wärmeleitfähigkeit λ</strong> (Lambda, in W/m·K) beschreibt, wie gut ein
+            Material Wärme leitet. Dämmstoffe haben sehr kleine Werte (Mineralwolle 0,035,
+            PUR/PIR 0,024), Mauerwerk deutlich höhere (Vollziegel 0,68, Stahlbeton 2,30). Den genauen
+            λ-Wert finden Sie auf dem Datenblatt oder der Verpackung des Produkts. Die Werte im Rechner
+            sind Richtwerte – für den amtlichen Nachweis gelten Bemessungswerte nach DIN 4108-4.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">GEG-Höchstwerte im Überblick</h3>
+          <p>
+            Wer mehr als 10 % der Fläche eines Bauteils saniert, muss laut
+            <strong>Gebäudeenergiegesetz (GEG), Anlage 7</strong> bestimmte Höchst-U-Werte einhalten:
+            Außenwand und Steildach jeweils <strong>0,24 W/(m²K)</strong>, oberste Geschossdecke
+            ebenfalls 0,24, Kellerdecke und Boden 0,30, Fenster 1,30. Für die strengere
+            BEG-Förderung gelten teils niedrigere Werte (Außenwand 0,20). Der Rechner zeigt direkt an,
+            ob Ihr Aufbau den GEG-Höchstwert erfüllt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Dämmstärke rückwärts ermitteln</h3>
+          <p>
+            Wenn Sie wissen möchten, <strong>wie dick</strong> die Dämmung sein muss, um einen
+            Ziel-U-Wert zu erreichen, nutzen Sie den
+            <a href="/daemmung-rechner" class="text-blue-600 hover:text-blue-800 underline">Dämmstärke-Rechner</a>.
+            Er rechnet die Formel um und gibt die nötige Dämmschichtdicke samt Materialmenge aus.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🌡️ λ-Werte gängiger Baustoffe</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte der Wärmeleitfähigkeit λ in W/(m·K) – kleiner ist besser dämmend.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Material</th>
+                <th class="py-2 pl-2 font-semibold text-right">λ (W/m·K)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">PUR/PIR-Hartschaum</td><td class="py-2 pl-2 text-right">0,024</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Mineralwolle / EPS (WLG 035)</td><td class="py-2 pl-2 text-right">0,035</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Holzfaserdämmung</td><td class="py-2 pl-2 text-right">0,040</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Porenbeton</td><td class="py-2 pl-2 text-right">0,11</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Hochlochziegel</td><td class="py-2 pl-2 text-right">0,16</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Gipsputz (innen)</td><td class="py-2 pl-2 text-right">0,51</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Vollziegel-Mauerwerk</td><td class="py-2 pl-2 text-right">0,68</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Kalksandstein</td><td class="py-2 pl-2 text-right">0,99</td></tr>
+              <tr><td class="py-2 pr-2">Stahlbeton</td><td class="py-2 pl-2 text-right">2,30</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: DIN EN ISO 6946 (Baunormenlexikon), energie-experten.org, dena-Gebäudeforum.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Aufbauten mit ihren U-Werten:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Gedämmte Außenwand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Aufbau:</div>
+              <div class="font-medium text-gray-800">Gipsputz 1,5 cm + Vollziegel 24 cm + Mineralwolle 12 cm + Außenputz 2 cm</div>
+              <div class="text-gray-600">R_T:</div>
+              <div class="font-medium text-gray-800">0,13 + 3,834 + 0,04 ≈ 4,00 m²K/W</div>
+              <div class="text-gray-600">U-Wert:</div>
+              <div class="font-medium text-green-700">1 ÷ 4,00 ≈ 0,25 (GEG 0,24 knapp verfehlt)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Ungedämmte Vollziegelwand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Aufbau:</div>
+              <div class="font-medium text-gray-800">Gipsputz 1,5 cm + Vollziegel 36,5 cm + Außenputz 2 cm</div>
+              <div class="text-gray-600">R_T:</div>
+              <div class="font-medium text-gray-800">0,13 + 0,589 + 0,04 ≈ 0,76 m²K/W</div>
+              <div class="text-gray-600">U-Wert:</div>
+              <div class="font-medium text-green-700">1 ÷ 0,76 ≈ 1,32 (deutlich über GEG)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Steildach mit Zwischensparrendämmung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Aufbau:</div>
+              <div class="font-medium text-gray-800">Gipskarton 1,25 cm + Mineralwolle 20 cm (Rsi 0,10 / Rse 0,04)</div>
+              <div class="text-gray-600">R_T:</div>
+              <div class="font-medium text-gray-800">0,10 + 5,764 + 0,04 ≈ 5,90 m²K/W</div>
+              <div class="text-gray-600">U-Wert:</div>
+              <div class="font-medium text-green-700">1 ÷ 5,90 ≈ 0,17 (GEG 0,24 erfüllt)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Den größten Hebel hat fast immer die Dämmschicht. Schon 12–20 cm
+          Mineralwolle bringen eine ungedämmte Wand oder ein Dach in GEG-Reichweite.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Dicke in cm statt m in die Formel</h3>
+            <p>Für R = d/λ muss die Dicke in Meter stehen. Der Rechner erwartet die Eingabe in
+            Zentimeter und rechnet intern um – wer von Hand rechnet, muss 12 cm als 0,12 m einsetzen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Übergangswiderstände vergessen</h3>
+            <p>Rsi und Rse gehören zwingend dazu. Ohne sie fällt der R_T zu klein und der U-Wert zu
+            groß aus. Die Werte hängen vom Bauteil und der Wärmestromrichtung ab.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Richtwert statt Bemessungswert</h3>
+            <p>Die λ-Werte hier sind Richtwerte. Für den amtlichen GEG-Nachweis gelten Bemessungswerte
+            nach DIN 4108-4 oder der bauaufsichtlichen Zulassung – diese liegen oft etwas höher.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wärmebrücken</h3>
+            <p>Sparren, Anker und Befestiger durchdringen die Dämmung und verschlechtern den realen
+            U-Wert. Eine genaue Berechnung berücksichtigt diese inhomogenen Schichten gesondert.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Feuchteschutz</h3>
+            <p>Ein guter U-Wert allein genügt nicht. Bei Innendämmung und manchen Aufbauten muss ein
+            Tauwassernachweis (Glaser oder instationär) geführt werden, um Schimmel zu vermeiden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum U-Wert</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sagt der U-Wert aus?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der U-Wert (Wärmedurchgangskoeffizient) gibt an, wie viel Wärme pro Quadratmeter und
+              Grad Temperaturunterschied durch ein Bauteil verloren geht – in W/(m²·K). Je kleiner der
+              Wert, desto besser dämmt das Bauteil.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man den U-Wert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Man addiert die Wärmedurchlasswiderstände aller Schichten (R = Dicke ÷ λ) und die
+              Übergangswiderstände innen und außen zum Gesamtwiderstand R_T. Der U-Wert ist dann der
+              Kehrwert: U = 1 ÷ R_T. Grundlage ist die DIN EN ISO 6946.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welchen U-Wert schreibt das GEG vor?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei Sanierung von mehr als 10 % der Bauteilfläche gelten laut GEG Anlage 7 Höchstwerte:
+              Außenwand und Steildach je 0,24, oberste Geschossdecke 0,24, Kellerdecke/Boden 0,30 und
+              Fenster 1,30 W/(m²K). Für die BEG-Förderung sind die Anforderungen teils strenger.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen U-Wert und λ-Wert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der λ-Wert (Wärmeleitfähigkeit) ist eine Materialeigenschaft und gilt unabhängig von
+              der Dicke. Der U-Wert beschreibt das gesamte Bauteil inklusive aller Schichtdicken und
+              Übergangswiderstände. Erst Dicke und λ zusammen ergeben den Dämmeffekt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein guter U-Wert für eine Wand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer Außenwand gilt der GEG-Höchstwert von 0,24 W/(m²K) als Mindeststandard für
+              die Sanierung. Gut gedämmte Neubau- oder Effizienzhauswände erreichen 0,15 bis 0,20 oder
+              darunter. Ungedämmte Altbauwände liegen oft bei 1,0 bis 1,5.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ersetzt der Rechner einen Energieberater?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert eine überschlägige Orientierung. Der amtliche GEG-Nachweis
+              muss mit Bemessungswerten nach DIN 4108-4 und unter Berücksichtigung von Wärmebrücken
+              durch einen Energieberater oder Fachplaner erstellt werden.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/daemmung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dämmstärke-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+          <a href="/stromverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔌</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromverbrauch-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "U-Wert-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/u-wert-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was sagt der U-Wert aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der U-Wert (Wärmedurchgangskoeffizient) gibt an, wie viel Wärme pro Quadratmeter und Grad Temperaturunterschied durch ein Bauteil verloren geht – in W/(m²·K). Je kleiner der Wert, desto besser dämmt das Bauteil."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man den U-Wert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Man addiert die Wärmedurchlasswiderstände aller Schichten (R = Dicke ÷ λ) und die Übergangswiderstände innen und außen zum Gesamtwiderstand R_T. Der U-Wert ist dann der Kehrwert: U = 1 ÷ R_T. Grundlage ist die DIN EN ISO 6946."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welchen U-Wert schreibt das GEG vor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Sanierung von mehr als 10 % der Bauteilfläche gelten laut GEG Anlage 7 Höchstwerte: Außenwand und Steildach je 0,24, oberste Geschossdecke 0,24, Kellerdecke/Boden 0,30 und Fenster 1,30 W/(m²K). Für die BEG-Förderung sind die Anforderungen teils strenger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen U-Wert und λ-Wert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der λ-Wert (Wärmeleitfähigkeit) ist eine Materialeigenschaft und gilt unabhängig von der Dicke. Der U-Wert beschreibt das gesamte Bauteil inklusive aller Schichtdicken und Übergangswiderstände. Erst Dicke und λ zusammen ergeben den Dämmeffekt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein guter U-Wert für eine Wand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Außenwand gilt der GEG-Höchstwert von 0,24 W/(m²K) als Mindeststandard für die Sanierung. Gut gedämmte Neubau- oder Effizienzhauswände erreichen 0,15 bis 0,20 oder darunter. Ungedämmte Altbauwände liegen oft bei 1,0 bis 1,5."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ersetzt der Rechner einen Energieberater?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert eine überschlägige Orientierung. Der amtliche GEG-Nachweis muss mit Bemessungswerten nach DIN 4108-4 und unter Berücksichtigung von Wärmebrücken durch einen Energieberater oder Fachplaner erstellt werden."
+        }
+      }
+    ]
+  })} />
+</Layout>

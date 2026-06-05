@@ -1,0 +1,431 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DaemmungRechner from '../components/rechner/DaemmungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Dämmstärke-Rechner 2026 – nötige Dämmdicke für GEG berechnen";
+const description = "Dämmstärke berechnen: Wie dick muss die Dämmung sein, um einen Ziel-U-Wert nach GEG zu erreichen? Aus Bestands-U-Wert, Ziel-U-Wert und λ die nötige Dämmdicke plus Material in m² und m³ ermitteln.";
+const keywords = "Dämmstärke berechnen, Dämmdicke Rechner, Dämmung berechnen, wie dick Dämmung, U-Wert Dämmstärke, GEG Dämmung, Dämmstoffbedarf, Dämmstärke Außenwand Dach";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Dämmstärke-Rechner", url: "/daemmung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Dämmstärke-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dämmstärke-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Nötige Dämmdicke für den Ziel-U-Wert berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> DIN EN ISO 6946 (Umkehrung) – nötiger Zusatzwiderstand ΔR = 1/U_ziel − 1/U_bestand; Dämmstärke d = λ × ΔR. Material: Fläche × d = Volumen (m³); Plattenfläche = Fläche × (1 + Verschnitt).</p>
+            <p class="mb-1"><strong>Ziel-U-Werte:</strong> GEG Anlage 7 – Außenwand/Dach 0,24 · Kellerdecke 0,30 W/(m²K); BEG-Förderung strenger (Wand 0,20). λ-Defaults: Mineralwolle/EPS 0,035, PUR/PIR 0,024, Holzfaser 0,040 W/(mK). Verschnitt 7 %.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Wärmebrücken, Feuchte-/Tauwasserschutz, exakte Schichtaufbauten, Förderfähigkeit. Keine GEG-/Förder-Gewähr – ein Energieberater ist nötig. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DaemmungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wie dick muss die Dämmung sein?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Dämmstärke-Rechner</strong> beantwortet die zentrale Sanierungsfrage: Wie viele
+            Zentimeter Dämmstoff brauche ich, um einen bestimmten <strong>Ziel-U-Wert</strong> – etwa
+            den GEG-Höchstwert – zu erreichen? Anders als der
+            <a href="/u-wert-rechner" class="text-blue-600 hover:text-blue-800 underline">U-Wert-Rechner</a>,
+            der aus einem fertigen Aufbau den U-Wert ermittelt, rechnet dieser Rechner
+            <strong>rückwärts</strong> und liefert die nötige Dämmdicke samt Materialmenge.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Grundlage ist die umgestellte U-Wert-Formel nach DIN EN ISO 6946:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>R-Bedarf</strong> = 1/U_ziel − 1/U_bestand (zusätzlich nötiger Widerstand)</li>
+              <li><strong>Dämmstärke d</strong> = λ × R-Bedarf (in m, ×100 für cm)</li>
+              <li><strong>Volumen</strong> = Fläche × d; <strong>Plattenfläche</strong> = Fläche × (1 + Verschnitt)</li>
+            </ul>
+          </div>
+          <p>
+            Der Trick: Der <strong>vorhandene U-Wert</strong> der Bestandskonstruktion enthält bereits
+            alle bestehenden Schichten und die Wärmeübergangswiderstände. Die neue Dämmung muss nur den
+            <strong>fehlenden Widerstand</strong> bis zum Ziel beisteuern. Ein niedriger λ-Wert
+            (z. B. PUR 0,024) erreicht denselben Effekt mit weniger Dicke als ein höherer (Holzfaser 0,040).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Den Bestands-U-Wert finden</h3>
+          <p>
+            Den vorhandenen U-Wert Ihrer Wand oder Ihres Dachs ermitteln Sie am genauesten mit dem
+            <a href="/u-wert-rechner" class="text-blue-600 hover:text-blue-800 underline">U-Wert-Rechner</a>
+            über den Schichtaufbau. Als grobe Richtwerte gelten: ungedämmte Vollziegelwand rund
+            <strong>1,0 bis 1,5</strong>, Altbau mit dünner Dämmung etwa <strong>0,5</strong>, modernes
+            Mauerwerk mit Kerndämmung um <strong>0,3</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">GEG- und Förder-Ziele</h3>
+          <p>
+            Das <strong>Gebäudeenergiegesetz (GEG)</strong> schreibt bei Sanierung Höchst-U-Werte vor:
+            Außenwand und Dach je <strong>0,24 W/(m²K)</strong>, Kellerdecke 0,30. Wer eine
+            <strong>BEG-Förderung</strong> in Anspruch nehmen will, muss strengere Werte erreichen –
+            für die Außenwand etwa 0,20. Der Rechner bietet diese Ziele als Voreinstellung und erlaubt
+            zusätzlich einen frei wählbaren Ziel-U-Wert.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Feuchteschutz nicht vergessen</h3>
+          <p>
+            Eine dicke Dämmung allein macht noch keine schadensfreie Konstruktion. Gerade bei
+            <a href="/innendaemmung-rechner" class="text-blue-600 hover:text-blue-800 underline">Innendämmung</a>
+            ist ein <strong>Tauwassernachweis</strong> nötig, damit keine Feuchte in der Wand kondensiert
+            und Schimmel entsteht. Der Rechner liefert die Mengen, ersetzt aber keine bauphysikalische
+            Fachplanung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧥 Nötige Dämmstärke (Richtwerte)</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beispielhafte Dämmdicke, um von U_bestand 1,0 auf den Ziel-U-Wert zu kommen (Mineralwolle λ 0,035).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Ziel-U-Wert</th>
+                <th class="py-2 px-2 font-semibold text-right">R-Bedarf</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ Dämmdicke</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,30 (Kellerdecke)</td><td class="py-2 px-2 text-right">2,33</td><td class="py-2 pl-2 text-right">≈ 8 cm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,24 (GEG Wand/Dach)</td><td class="py-2 px-2 text-right">3,17</td><td class="py-2 pl-2 text-right">≈ 11 cm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">0,20 (BEG-Förderung)</td><td class="py-2 px-2 text-right">4,00</td><td class="py-2 pl-2 text-right">≈ 14 cm</td></tr>
+              <tr><td class="py-2 pr-2">0,15 (Effizienzhaus)</td><td class="py-2 px-2 text-right">5,67</td><td class="py-2 pl-2 text-right">≈ 20 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: GEG Anlage 7 (gesetze-im-internet.de), dena-Gebäudeforum, energie-experten.org.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei Sanierungsfälle, jeweils mit 7 % Verschnitt:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Außenwand auf GEG 0,24, Mineralwolle</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bestand → Ziel:</div>
+              <div class="font-medium text-gray-800">U 1,0 → 0,24 (λ 0,035)</div>
+              <div class="text-gray-600">R-Bedarf:</div>
+              <div class="font-medium text-gray-800">1/0,24 − 1/1,0 = 3,17 m²K/W</div>
+              <div class="text-gray-600">Dämmstärke:</div>
+              <div class="font-medium text-green-700">0,035 × 3,17 ≈ 11,1 cm (markt­üblich 12 cm)</div>
+              <div class="text-gray-600">Material (100 m²):</div>
+              <div class="font-medium text-gray-800">107 m² Platten, ≈ 11,1 m³</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Altbauwand auf BEG-Förderwert 0,20, PUR</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bestand → Ziel:</div>
+              <div class="font-medium text-gray-800">U 0,8 → 0,20 (λ 0,024)</div>
+              <div class="text-gray-600">R-Bedarf:</div>
+              <div class="font-medium text-gray-800">1/0,20 − 1/0,8 = 3,75 m²K/W</div>
+              <div class="text-gray-600">Dämmstärke:</div>
+              <div class="font-medium text-green-700">0,024 × 3,75 = 9,0 cm (marktüblich 10 cm)</div>
+              <div class="text-gray-600">Material (80 m²):</div>
+              <div class="font-medium text-gray-800">85,6 m² Platten, ≈ 7,2 m³</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Dach auf GEG 0,24, Holzfaser</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bestand → Ziel:</div>
+              <div class="font-medium text-gray-800">U 0,5 → 0,24 (λ 0,040)</div>
+              <div class="text-gray-600">R-Bedarf:</div>
+              <div class="font-medium text-gray-800">1/0,24 − 1/0,5 = 2,17 m²K/W</div>
+              <div class="text-gray-600">Dämmstärke:</div>
+              <div class="font-medium text-green-700">0,040 × 2,17 ≈ 8,7 cm (marktüblich 10 cm)</div>
+              <div class="text-gray-600">Material (60 m²):</div>
+              <div class="font-medium text-gray-800">64,2 m² Platten, ≈ 5,2 m³</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Dämmstoffe gibt es in festen Dickenstufen (meist 20-mm-Schritte).
+          Runden Sie das Ergebnis immer auf die nächste lieferbare Dicke auf – der Rechner zeigt diese
+          marktübliche Stärke samt erreichbarem U-Wert direkt mit an.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Bestands-U-Wert geraten</h3>
+            <p>Der Bestandswert geht direkt in das Ergebnis ein. Ein zu optimistisch geschätzter
+            Bestand führt zu einer zu dünnen Dämmung. Ermitteln Sie ihn über den Schichtaufbau.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: λ-Wert falsch annehmen</h3>
+            <p>Schon der Unterschied zwischen λ 0,035 und 0,040 verändert die nötige Dicke spürbar.
+            Nehmen Sie den λ-Wert vom Datenblatt des konkreten Dämmstoffs.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Auf krumme Dicke bestellen</h3>
+            <p>11,1 cm gibt es nicht zu kaufen. Dämmplatten kommen in festen Stufen – runden Sie auf
+            die nächste lieferbare Dicke auf, sonst wird der Ziel-U-Wert knapp verfehlt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Förderfähigkeit</h3>
+            <p>Für eine BAFA-/KfW-Förderung müssen oft strengere U-Werte und weitere Bedingungen
+            erfüllt sein. Ein Energieeffizienz-Experte bestätigt die Förderfähigkeit verbindlich.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Tauwasser bei Innendämmung</h3>
+            <p>Innendämmung verschiebt den Taupunkt. Ohne Feuchtenachweis drohen Bauschäden. Hier ist
+            eine fachplanerische Diffusionsberechnung Pflicht, nicht nur die Dickenrechnung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Dämmstärke</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick muss die Dämmung sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Ausgangszustand, dem Ziel-U-Wert und dem Dämmstoff ab. Um eine
+              ungedämmte Wand (U ≈ 1,0) mit Mineralwolle auf den GEG-Wert 0,24 zu bringen, sind rund
+              11–12 cm nötig. Für den BEG-Förderwert 0,20 etwa 14 cm.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die nötige Dämmstärke?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Man bestimmt den zusätzlich nötigen Wärmedurchlasswiderstand ΔR = 1/U_ziel −
+              1/U_bestand und multipliziert ihn mit der Wärmeleitfähigkeit λ des Dämmstoffs:
+              d = λ × ΔR. Das Ergebnis ist die Dicke in Metern, mal 100 ergibt Zentimeter.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher U-Wert ist nach GEG gefordert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei Sanierung von mehr als 10 % der Bauteilfläche gelten laut GEG Anlage 7: Außenwand
+              und Dach je 0,24, oberste Geschossdecke 0,24 und Kellerdecke/Boden 0,30 W/(m²K). Für die
+              BEG-Förderung sind die Werte teils strenger (Wand 0,20).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher Dämmstoff braucht am wenigsten Dicke?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Je kleiner die Wärmeleitfähigkeit λ, desto dünner kann die Dämmung sein. PUR/PIR
+              (λ ≈ 0,024) braucht für denselben Effekt etwa ein Drittel weniger Dicke als Holzfaser
+              (λ ≈ 0,040). Mineralwolle und EPS liegen mit 0,035 dazwischen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Woher kenne ich den U-Wert meiner Bestandswand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Am genauesten über den Schichtaufbau im U-Wert-Rechner. Als Richtwerte gelten:
+              ungedämmte Vollziegelwand 1,0–1,5, Altbau mit dünner Dämmung rund 0,5, modernes Mauerwerk
+              mit Kerndämmung um 0,3 W/(m²K).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ersetzt der Rechner einen Energieberater?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Er liefert eine vereinfachte Orientierung. Wärmebrücken, Feuchteschutz und die
+              rechtssichere GEG- bzw. Förderfähigkeits-Prüfung erfordern einen Energieberater oder
+              Fachplaner. Für eine BEG-Förderung ist ein Energieeffizienz-Experte ohnehin Pflicht.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/u-wert-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">U-Wert-Rechner</p>
+          </a>
+          <a href="/innendaemmung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Innendämmung-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dämmstärke-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/daemmung-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie dick muss die Dämmung sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Ausgangszustand, dem Ziel-U-Wert und dem Dämmstoff ab. Um eine ungedämmte Wand (U ≈ 1,0) mit Mineralwolle auf den GEG-Wert 0,24 zu bringen, sind rund 11–12 cm nötig. Für den BEG-Förderwert 0,20 etwa 14 cm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die nötige Dämmstärke?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Man bestimmt den zusätzlich nötigen Wärmedurchlasswiderstand ΔR = 1/U_ziel − 1/U_bestand und multipliziert ihn mit der Wärmeleitfähigkeit λ des Dämmstoffs: d = λ × ΔR. Das Ergebnis ist die Dicke in Metern, mal 100 ergibt Zentimeter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher U-Wert ist nach GEG gefordert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Sanierung von mehr als 10 % der Bauteilfläche gelten laut GEG Anlage 7: Außenwand und Dach je 0,24, oberste Geschossdecke 0,24 und Kellerdecke/Boden 0,30 W/(m²K). Für die BEG-Förderung sind die Werte teils strenger (Wand 0,20)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher Dämmstoff braucht am wenigsten Dicke?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Je kleiner die Wärmeleitfähigkeit λ, desto dünner kann die Dämmung sein. PUR/PIR (λ ≈ 0,024) braucht für denselben Effekt etwa ein Drittel weniger Dicke als Holzfaser (λ ≈ 0,040). Mineralwolle und EPS liegen mit 0,035 dazwischen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Woher kenne ich den U-Wert meiner Bestandswand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Am genauesten über den Schichtaufbau im U-Wert-Rechner. Als Richtwerte gelten: ungedämmte Vollziegelwand 1,0–1,5, Altbau mit dünner Dämmung rund 0,5, modernes Mauerwerk mit Kerndämmung um 0,3 W/(m²K)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ersetzt der Rechner einen Energieberater?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Er liefert eine vereinfachte Orientierung. Wärmebrücken, Feuchteschutz und die rechtssichere GEG- bzw. Förderfähigkeits-Prüfung erfordern einen Energieberater oder Fachplaner. Für eine BEG-Förderung ist ein Energieeffizienz-Experte ohnehin Pflicht."
+        }
+      }
+    ]
+  })} />
+</Layout>

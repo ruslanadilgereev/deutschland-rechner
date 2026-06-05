@@ -1,0 +1,415 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KfwFoerderungHausbauRechner from '../components/rechner/KfwFoerderungHausbauRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "KfW-Förderung-Rechner 2026 – Kredit & Zuschuss berechnen";
+const description = "KfW-Förderung berechnen: Förderkredit, Zinsersparnis und Tilgungszuschuss für KfW 300 (Familien-Neubau), KfW 297/298 (Klimafreundlicher Neubau) und KfW 261 (BEG-Sanierung). Mit Einkommensgrenze, QNG und Bonus-Staffel.";
+const keywords = "kfw rechner, kfw förderung rechner, kfw 300 rechner, kfw kredit rechner, kfw 297 298, kfw 261 sanierung, tilgungszuschuss berechnen, wohneigentum für familien, klimafreundlicher neubau";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "KfW-Förderung-Rechner", url: "/kfw-foerderung-hausbau-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'KfW-Förderung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏦</span>
+          <div>
+            <h1 class="text-2xl font-bold">KfW-Förderung-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Förderkredit, Zinsvorteil & Tilgungszuschuss berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Konditionen-Stand: März 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Offizielle KfW-Programmkonditionen. KfW 300: 170.000 € (ohne QNG) bzw. 220.000 € (mit QNG) + 5.000 € je Kind, max. 270.000 €. KfW 297/298: 100.000 € (EH55) bzw. 150.000 € (EH40/QNG). KfW 261: bis 150.000 € je WE + gestaffelter Tilgungszuschuss. Zinsersparnis = (Bankrate − KfW-Rate) über die Laufzeit.</p>
+            <p class="mb-1"><strong>Standardwerte:</strong> KfW 300, 400.000 € Kosten, 2 Kinder, ohne QNG, 10 Jahre, Vergleichszins 3,5 %.</p>
+            <p><strong>Nicht berücksichtigt:</strong> bonitäts-/endkundenabhängiger Effektivzins, tilgungsfreie Anlaufjahre, Kombination mehrerer Programme, Budget-Deckelung. Antrag stets VOR Vorhabenbeginn über die Hausbank. Verbindlich ist www.kfw.de. Keine Förderberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KfwFoerderungHausbauRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">KfW-Förderung für Hausbau und Sanierung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>KfW</strong> (Kreditanstalt für Wiederaufbau) fördert Neubau, Kauf und Sanierung
+            von Wohneigentum mit <strong>zinsverbilligten Krediten</strong> und teils
+            <strong>Tilgungszuschüssen</strong>. Dieser Rechner zeigt für die drei wichtigsten
+            Programme, wie hoch Ihr Förderkredit ausfällt, wie viel Zinsen Sie gegenüber einem normalen
+            Bankdarlehen sparen und – bei der Sanierung – welchen Zuschuss Sie geschenkt bekommen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">KfW 300 – Wohneigentum für Familien</h3>
+          <p>
+            Für Familien mit mindestens einem Kind unter 18 Jahren beim Neubau oder Ersterwerb. Der
+            Förderkredit beträgt bis zu <strong>170.000 €</strong> (ohne QNG) bzw.
+            <strong>220.000 €</strong> (mit QNG-Siegel), jeweils plus <strong>5.000 € je Kind</strong>,
+            gedeckelt bei 270.000 €. Voraussetzung ist eine Einkommensgrenze beim zu versteuernden
+            Haushaltseinkommen von <strong>90.000 € + 10.000 € je weiterem Kind</strong>. Es gibt keinen
+            Tilgungszuschuss, aber einen sehr niedrigen Zins.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">KfW 297/298 – Klimafreundlicher Neubau</h3>
+          <p>
+            Für energieeffiziente Neubauten ohne Einkommensgrenze. Der Kredit beträgt bis zu
+            <strong>100.000 €</strong> je Wohneinheit (Stufe Klimafreundliches Wohngebäude / EH55) bzw.
+            <strong>150.000 €</strong> mit QNG-Siegel (EH40). Auch hier gibt es keinen Tilgungszuschuss,
+            sondern eine Zinsverbilligung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">KfW 261 – BEG-Sanierung zum Effizienzhaus</h3>
+          <p>
+            Für die Sanierung bestehender Gebäude zum Effizienzhaus. Der Kredit beträgt bis zu
+            <strong>150.000 € je Wohneinheit</strong>. Zusätzlich gibt es einen
+            <strong>Tilgungszuschuss</strong>, der direkt die Restschuld reduziert: gestaffelt nach
+            Effizienzhaus-Stufe (5 % bis 20 %), plus Boni für die EE-/NH-Klasse (+5 %-Punkte) oder ein
+            besonders ineffizientes Ausgangsgebäude (Worst Performing Building, +10 %-Punkte).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So wird der Vorteil berechnet</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Förderkredit</strong> = min(förderfähige Kosten, Programmgrenze)</li>
+              <li><strong>Zinsersparnis</strong> = (Bankrate − KfW-Rate) × Laufzeit in Monaten</li>
+              <li><strong>Tilgungszuschuss</strong> (nur KfW 261) = Zuschuss-% × Förderkredit</li>
+              <li><strong>Gesamtvorteil</strong> = Zinsersparnis + Tilgungszuschuss</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏦 KfW-Programme im Überblick (2026)</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Programm</th>
+                <th class="py-2 px-2 font-semibold text-right">max. Kredit</th>
+                <th class="py-2 pl-2 font-semibold">Besonderheit</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">KfW 300 (Familien)</td><td class="py-2 px-2 text-right">170–270 T€</td><td class="py-2 pl-2">+5 T€/Kind, Einkommensgrenze</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">KfW 297/298 (Neubau)</td><td class="py-2 px-2 text-right">100–150 T€</td><td class="py-2 pl-2">je WE, keine Einkommensgrenze</td></tr>
+              <tr><td class="py-2 pr-2">KfW 261 (Sanierung)</td><td class="py-2 px-2 text-right">150 T€</td><td class="py-2 pl-2">+ Tilgungszuschuss 5–35 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quelle: KfW-Programmseiten und Merkblätter, Stand März 2026. Konditionen ohne Gewähr.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: KfW 300, Familie mit 2 Kindern</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Förderkredit:</div>
+              <div class="font-medium text-gray-800">170.000 + 2 × 5.000 = 180.000 €</div>
+              <div class="text-gray-600">KfW-Zins / Markt:</div>
+              <div class="font-medium text-gray-800">1,12 % / 3,5 %</div>
+              <div class="text-gray-600">Zinsersparnis (10 J):</div>
+              <div class="font-medium text-green-700">≈ 23.241 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: KfW 261, Sanierung auf EH55</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Förderkredit:</div>
+              <div class="font-medium text-gray-800">150.000 €</div>
+              <div class="text-gray-600">Tilgungszuschuss:</div>
+              <div class="font-medium text-gray-800">15 % × 150.000 = 22.500 €</div>
+              <div class="text-gray-600">mit EE-Bonus (+5 %-Pkt.):</div>
+              <div class="font-medium text-green-700">20 % = 30.000 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: KfW 297/298, EH40 mit QNG</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Förderkredit:</div>
+              <div class="font-medium text-gray-800">150.000 € je WE</div>
+              <div class="text-gray-600">KfW-Zins / Markt:</div>
+              <div class="font-medium text-gray-800">0,6 % / 3,5 %</div>
+              <div class="text-gray-600">Zinsersparnis (10 J):</div>
+              <div class="font-medium text-green-700">≈ 23.412 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Bei der Sanierung (KfW 261) ist der Tilgungszuschuss der größte
+          Hebel – er wird Ihnen geschenkt und mindert direkt die Restschuld. Beim Neubau zählt vor
+          allem der niedrige Zins über die gesamte Laufzeit.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Antrag zu spät stellen</h3>
+            <p>Der KfW-Antrag muss <strong>vor Beginn des Vorhabens</strong> über die Hausbank oder
+            einen Finanzierungspartner gestellt werden. Wer schon begonnen hat, verliert den Anspruch.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Einkommensgrenze übersehen (KfW 300)</h3>
+            <p>KfW 300 ist an eine Einkommensgrenze gebunden: 90.000 € zu versteuerndes
+            Haushaltseinkommen plus 10.000 € je weiterem Kind. Maßgeblich ist der Durchschnitt der
+            letzten zwei Jahre.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Budget-Deckelung ignorieren</h3>
+            <p>Die BEG-Fördermittel sind jährlich begrenzt und können vorzeitig ausgeschöpft sein.
+            Sichern Sie sich die Förderung früh im Jahr und planen Sie einen Plan B ein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Energieeffizienz-Experte nötig</h3>
+            <p>Für EH-Stufen, QNG und die BEG-Sanierung brauchen Sie einen zugelassenen
+            Energieeffizienz-Experten, der die Nachweise erstellt. Dessen Kosten werden teilweise
+            mitgefördert.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kombination mit Bankdarlehen</h3>
+            <p>Der KfW-Kredit deckt nur einen Teil der Kosten. Den Rest finanzieren Sie über ein
+            normales Bankdarlehen – der Förderkredit ist ein Baustein der Gesamtfinanzierung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel KfW-Förderung bekomme ich beim Hausbau?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Programm ab. KfW 300 (Familien) gibt 170.000–270.000 € zinsverbilligten
+              Kredit, KfW 297/298 (klimafreundlicher Neubau) 100.000–150.000 € je Wohneinheit. Bei der
+              Sanierung (KfW 261) kommen bis zu 150.000 € Kredit plus 5–35 % Tilgungszuschuss hinzu.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die KfW 300 Wohneigentum für Familien?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein zinsverbilligter Förderkredit für Familien mit mindestens einem Kind unter 18 beim
+              Neubau oder Ersterwerb. Die Kredithöhe steigt mit der Kinderzahl (+5.000 € je Kind), die
+              Förderung ist an eine Einkommensgrenze von 90.000 € plus 10.000 € je weiterem Kind
+              gebunden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Tilgungszuschuss bei der KfW 261?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Tilgungszuschuss ist nach Effizienzhaus-Stufe gestaffelt: von 5 % (Denkmal) bis
+              20 % (EH40). Hinzu kommen Boni für die EE-/NH-Klasse (+5 %-Punkte) oder ein besonders
+              ineffizientes Ausgangsgebäude (+10 %-Punkte). Der Zuschuss mindert direkt die Restschuld.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann muss ich den KfW-Antrag stellen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Immer vor Beginn des Vorhabens. Der Antrag läuft über Ihre Hausbank oder einen
+              Finanzierungspartner, nicht direkt bei der KfW. Wer mit dem Bau oder der Sanierung bereits
+              begonnen hat, verliert den Förderanspruch.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet QNG bei der KfW-Förderung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>QNG steht für das „Qualitätssiegel Nachhaltiges Gebäude“. Mit QNG steigen die maximalen
+              Förderkredite deutlich (z. B. bei KfW 300 von 170.000 € auf 220.000 €, bei KfW 297/298 von
+              100.000 € auf 150.000 €). Den Nachweis erstellt ein Energieeffizienz-Experte.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist die KfW-Förderung eine verbindliche Zusage?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Dieser Rechner liefert eine unverbindliche Schätzung. KfW-Konditionen ändern sich
+              laufend, das BEG-Budget ist gedeckelt und der Effektivzins ist bonitätsabhängig.
+              Verbindlich sind allein die KfW-Merkblätter und www.kfw.de sowie das Angebot Ihrer
+              Hausbank.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
+          </a>
+          <a href="/wie-viel-haus-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wie viel Haus kann ich mir leisten</p>
+          </a>
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "KfW-Förderung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kfw-foerderung-hausbau-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel KfW-Förderung bekomme ich beim Hausbau?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Programm ab. KfW 300 (Familien) gibt 170.000–270.000 € zinsverbilligten Kredit, KfW 297/298 (klimafreundlicher Neubau) 100.000–150.000 € je Wohneinheit. Bei der Sanierung (KfW 261) kommen bis zu 150.000 € Kredit plus 5–35 % Tilgungszuschuss hinzu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die KfW 300 Wohneigentum für Familien?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein zinsverbilligter Förderkredit für Familien mit mindestens einem Kind unter 18 beim Neubau oder Ersterwerb. Die Kredithöhe steigt mit der Kinderzahl (+5.000 € je Kind), die Förderung ist an eine Einkommensgrenze von 90.000 € plus 10.000 € je weiterem Kind gebunden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Tilgungszuschuss bei der KfW 261?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Tilgungszuschuss ist nach Effizienzhaus-Stufe gestaffelt: von 5 % (Denkmal) bis 20 % (EH40). Hinzu kommen Boni für die EE-/NH-Klasse (+5 %-Punkte) oder ein besonders ineffizientes Ausgangsgebäude (+10 %-Punkte). Der Zuschuss mindert direkt die Restschuld."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann muss ich den KfW-Antrag stellen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Immer vor Beginn des Vorhabens. Der Antrag läuft über Ihre Hausbank oder einen Finanzierungspartner, nicht direkt bei der KfW. Wer mit dem Bau oder der Sanierung bereits begonnen hat, verliert den Förderanspruch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet QNG bei der KfW-Förderung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "QNG steht für das Qualitätssiegel Nachhaltiges Gebäude. Mit QNG steigen die maximalen Förderkredite deutlich (z. B. bei KfW 300 von 170.000 € auf 220.000 €, bei KfW 297/298 von 100.000 € auf 150.000 €). Den Nachweis erstellt ein Energieeffizienz-Experte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die KfW-Förderung eine verbindliche Zusage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Dieser Rechner liefert eine unverbindliche Schätzung. KfW-Konditionen ändern sich laufend, das BEG-Budget ist gedeckelt und der Effektivzins ist bonitätsabhängig. Verbindlich sind allein die KfW-Merkblätter und www.kfw.de sowie das Angebot Ihrer Hausbank."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,457 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BeleihungsauslaufRechner from '../components/rechner/BeleihungsauslaufRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Beleihungsauslauf-Rechner 2026 – LTV einfach berechnen";
+const description = "Beleihungsauslauf (LTV) berechnen 2026: Darlehenssumme im Verhältnis zum Beleihungswert ermitteln, Zinskondition-Stufe einordnen (60/80/100 %) und den besten Zinssatz bei der Baufinanzierung sichern. Kostenlos mit Sicherheitsabschlag.";
+const keywords = "Beleihungsauslauf, Beleihungsauslauf berechnen, Beleihungsauslauf Rechner, LTV Rechner, Loan to Value, Beleihungswert, Beleihungsgrenze, Realkredit, Baufinanzierung Zinsen, Sicherheitsabschlag";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Beleihungsauslauf-Rechner", url: "/beleihungsauslauf-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Beleihungsauslauf-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏦</span>
+          <div>
+            <h1 class="text-2xl font-bold">Beleihungsauslauf-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Loan-to-Value (LTV) berechnen und Zinsstufe einordnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Beleihungsauslauf (LTV) = Darlehenssumme ÷ Beleihungswert × 100. Darlehenssumme = Kaufpreis + Kaufnebenkosten − Eigenkapital. Beleihungswert nach Beleihungswertermittlungsverordnung (BelWertV).</p>
+            <p class="mb-1"><strong>Sicherheitsabschlag-Voreinstellung:</strong> optional 10 % (laut BelWertV mindestens 10 %, banküblich 10–20 %). Ohne Abschlag wird vereinfacht der Kaufpreis als Bezugsgröße genutzt. Der Wert ist frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> die individuelle Beleihungswert-Ermittlung jeder Bank, konkrete Zinsaufschläge je Stufe (markt- und bankabhängig, nur illustrativ) sowie Ihre Bonität. Keine Finanz- oder Kreditberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BeleihungsauslaufRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Beleihungsauslauf berechnen: Die wichtigste Kennzahl Ihrer Baufinanzierung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Beleihungsauslauf</strong> – international als <strong>Loan-to-Value (LTV)</strong>
+            bekannt – ist die Kennzahl, die Banken bei einer Baufinanzierung am stärksten interessiert. Sie
+            beschreibt, welcher Anteil des <strong>Beleihungswerts</strong> einer Immobilie über ein Darlehen
+            finanziert wird. Je niedriger der Beleihungsauslauf, desto geringer das Risiko für die Bank – und
+            desto günstiger in der Regel Ihr Zinssatz. Mit unserem Rechner ermitteln Sie Ihren persönlichen
+            Wert in Sekunden und sehen sofort, in welche Zinsstufe Ihre Finanzierung fällt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Beleihungsauslauf wird in drei Schritten berechnet:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1. Darlehenssumme</strong> = Kaufpreis + Kaufnebenkosten − Eigenkapital</li>
+              <li><strong>2. Beleihungswert</strong> = Kaufpreis × (1 − Sicherheitsabschlag)</li>
+              <li><strong>3. Beleihungsauslauf (%)</strong> = Darlehenssumme ÷ Beleihungswert × 100</li>
+            </ul>
+          </div>
+          <p>
+            Wer es einfach halten möchte, lässt den Sicherheitsabschlag weg und rechnet
+            <strong>Darlehenssumme ÷ Kaufpreis × 100</strong>. Das ist die vereinfachte Variante, die viele
+            Vergleichsportale verwenden. Genauer wird es mit dem Sicherheitsabschlag, denn die Bank legt nicht
+            den Kaufpreis, sondern den vorsichtiger angesetzten Beleihungswert zugrunde.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beleihungswert und Sicherheitsabschlag (BelWertV)</h3>
+          <p>
+            Der <strong>Beleihungswert</strong> ist nicht dasselbe wie der Kaufpreis. Er bezeichnet den Wert,
+            den eine Immobilie nach Einschätzung der Bank <strong>dauerhaft und unabhängig von kurzfristigen
+            Marktschwankungen</strong> erzielen kann. Geregelt ist seine Ermittlung in der
+            <strong>Beleihungswertermittlungsverordnung (BelWertV)</strong>. Vom Markt- bzw. Kaufpreis zieht die
+            Bank dabei einen <strong>Sicherheitsabschlag</strong> ab – laut BelWertV mindestens 10 %, in der
+            Praxis je nach Bank und Objekt eher 10 bis 20 %. Aus 400.000 € Kaufpreis werden so etwa
+            360.000 € bis 320.000 € Beleihungswert. Weil der Nenner kleiner wird, fällt der Beleihungsauslauf
+            mit Abschlag <strong>höher</strong> aus als die einfache Rechnung über den Kaufpreis.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum der Beleihungsauslauf über Ihren Zinssatz entscheidet</h3>
+          <p>
+            Banken arbeiten mit <strong>Beleihungsgrenzen</strong>. Bis zu einem Beleihungsauslauf von
+            <strong>60 %</strong> gilt ein Darlehen als besonders sicherer „Realkredit“ und erhält die
+            Bestkondition. Zwischen 60 und 80 % steigt der Zins meist nur leicht. Über 80 % verlangen Banken
+            einen deutlicheren Aufschlag, und ab 90 bis 100 % spricht man von einer
+            <strong>Vollfinanzierung</strong> mit dem höchsten Zinssatz. Wird zusätzlich ein Teil der
+            Kaufnebenkosten mitfinanziert, liegt der Auslauf über 100 % (sogenannte 110-%-Finanzierung). Schon
+            wenige Prozentpunkte mehr Eigenkapital können Sie also über die gesamte Laufzeit fünfstellige
+            Beträge an Zinsen sparen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So senken Sie Ihren Beleihungsauslauf</h3>
+          <p>
+            Den größten Hebel haben Sie über das <strong>Eigenkapital</strong>: Jeder Euro, den Sie selbst
+            einbringen, senkt die Darlehenssumme und damit den Beleihungsauslauf. Faustregel der Banken sind
+            mindestens die <a href="/kaufnebenkosten-rechner" class="text-blue-600 hover:text-blue-800 underline">Kaufnebenkosten</a>
+            aus eigener Tasche plus möglichst 20 % des Kaufpreises. Wie viel
+            <a href="/eigenkapital-rechner" class="text-blue-600 hover:text-blue-800 underline">Eigenkapital</a>
+            Sie brauchen, um unter die 80-%- oder 60-%-Grenze zu kommen, sehen Sie, indem Sie verschiedene
+            Beträge in den Rechner eingeben.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beleihungsauslauf-Stufen und Zinswirkung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Bankübliche Beleihungsgrenzen und ihre typische Wirkung auf den Zinssatz. Die Aufschläge sind
+          illustrativ und je nach Bank, Objekt und Marktlage unterschiedlich.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Beleihungsauslauf</th>
+                <th class="py-2 px-2 font-semibold">Einordnung</th>
+                <th class="py-2 pl-2 font-semibold text-right">Zinswirkung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">bis 60 %</td><td class="py-2 px-2">Realkredit (Bestkondition)</td><td class="py-2 pl-2 text-right">bester Zins</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 60–80 %</td><td class="py-2 px-2">solide Finanzierung</td><td class="py-2 pl-2 text-right">leichter Aufschlag</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 80–90 %</td><td class="py-2 px-2">erhöhtes Risiko</td><td class="py-2 pl-2 text-right">deutlicher Aufschlag</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">über 90–100 %</td><td class="py-2 px-2">Vollfinanzierung</td><td class="py-2 pl-2 text-right">hoher Aufschlag</td></tr>
+              <tr><td class="py-2 pr-2">über 100 %</td><td class="py-2 px-2">inkl. Nebenkosten (110 %)</td><td class="py-2 pl-2 text-right">höchster Aufschlag</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: BelWertV (gesetze-im-internet.de), Verivox, Check24, ImmobilienScout24 (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Eigenkapital, Nebenkosten und Sicherheitsabschlag auf den Beleihungsauslauf aus
+          (Kaufpreis jeweils 400.000 €):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 20 % Eigenkapital, ohne Sicherheitsabschlag</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Eigenkapital:</div>
+              <div class="font-medium text-gray-800">80.000 € (20 %)</div>
+              <div class="text-gray-600">Nebenkosten:</div>
+              <div class="font-medium text-gray-800">0 € (aus Eigenkapital gezahlt)</div>
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">400.000 + 0 − 80.000 = 320.000 €</div>
+              <div class="text-gray-600">Beleihungsauslauf:</div>
+              <div class="font-medium text-green-700">320.000 ÷ 400.000 × 100 = 80,0 %</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Stufe: gute Kondition – nur leichter Zinsaufschlag.</p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Nur Nebenkosten als Eigenkapital</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Eigenkapital:</div>
+              <div class="font-medium text-gray-800">40.000 €</div>
+              <div class="text-gray-600">Nebenkosten:</div>
+              <div class="font-medium text-gray-800">10 % = 40.000 €</div>
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">400.000 + 40.000 − 40.000 = 400.000 €</div>
+              <div class="text-gray-600">Beleihungsauslauf:</div>
+              <div class="font-medium text-green-700">400.000 ÷ 400.000 × 100 = 100,0 %</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Stufe: Vollfinanzierung des Kaufpreises – hoher Zinsaufschlag.</p>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 30 % Eigenkapital, mit 10 % Sicherheitsabschlag</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Eigenkapital:</div>
+              <div class="font-medium text-gray-800">120.000 € (30 %)</div>
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">400.000 − 120.000 = 280.000 €</div>
+              <div class="text-gray-600">Beleihungswert:</div>
+              <div class="font-medium text-gray-800">400.000 × 0,9 = 360.000 €</div>
+              <div class="text-gray-600">Beleihungsauslauf:</div>
+              <div class="font-medium text-green-700">280.000 ÷ 360.000 × 100 = 77,8 %</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Mit Abschlag steigt der Auslauf gegenüber der einfachen Rechnung (70 %) auf 77,8 %.</p>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 zeigt den Effekt des Sicherheitsabschlags: Ohne Abschlag läge der
+          Auslauf bei 280.000 ÷ 400.000 = 70 %. Weil die Bank aber nur 360.000 € als Beleihungswert ansetzt,
+          steigt der reale Beleihungsauslauf auf 77,8 % – und damit näher an die wichtige 80-%-Grenze.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Kaufpreis mit Beleihungswert gleichsetzen</h3>
+            <p>Der Beleihungswert ist fast immer niedriger als der Kaufpreis, weil die Bank einen
+            Sicherheitsabschlag (mindestens 10 % laut BelWertV) abzieht. Wer mit dem Kaufpreis rechnet,
+            unterschätzt seinen tatsächlichen Beleihungsauslauf.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Kaufnebenkosten vergessen</h3>
+            <p>Grunderwerbsteuer, Notar, Grundbuch und Makler machen 9–15 % des Kaufpreises aus. Werden sie
+            mitfinanziert, steigt die Darlehenssumme – und der Beleihungsauslauf kann leicht über 100 %
+            klettern. Banken finanzieren diese Kosten ungern mit.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Knapp über einer Grenze landen</h3>
+            <p>Ein Beleihungsauslauf von 81 % statt 79 % kann eine ganze Zinsstufe teurer sein. Es lohnt sich
+            oft, mit etwas mehr Eigenkapital gezielt unter die 80-%- oder 60-%-Grenze zu rutschen, statt knapp
+            darüber zu bleiben.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Beleihungsauslauf vs. Beleihungsgrenze</h3>
+            <p>Der Beleihungsauslauf ist Ihr tatsächlich genutzter Anteil. Die Beleihungsgrenze ist der maximale
+            Anteil, bis zu dem die Bank überhaupt finanziert (oft 80 % des Beleihungswerts bei Banken,
+            60 % bei klassischen Pfandbrief-Krediten). Beide Begriffe werden häufig verwechselt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: sinkende Restschuld</h3>
+            <p>Mit jeder Tilgung und jeder Wertsteigerung der Immobilie sinkt Ihr Beleihungsauslauf. Bei einer
+            Anschlussfinanzierung liegen Sie dadurch oft in einer günstigeren Zinsstufe als beim Erstkauf – das
+            ist ein guter Verhandlungspunkt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Beleihungsauslauf</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Beleihungsauslauf?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Beleihungsauslauf (englisch Loan-to-Value, LTV) gibt an, welcher Anteil des
+              Beleihungswerts einer Immobilie über ein Darlehen finanziert wird. Er berechnet sich aus
+              <strong>Darlehenssumme ÷ Beleihungswert × 100</strong>. Je niedriger der Wert, desto geringer
+              das Risiko für die Bank und desto günstiger in der Regel der Zinssatz.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich den Beleihungsauslauf?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>In drei Schritten: Erstens die Darlehenssumme = Kaufpreis + Kaufnebenkosten − Eigenkapital.
+              Zweitens den Beleihungswert = Kaufpreis × (1 − Sicherheitsabschlag). Drittens den
+              Beleihungsauslauf = Darlehenssumme ÷ Beleihungswert × 100. Beispiel: 320.000 € Darlehen bei
+              400.000 € Bezugswert ergeben 80 %.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Beleihungswert und Kaufpreis?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Kaufpreis ist der Betrag, den Sie für die Immobilie zahlen. Der Beleihungswert ist der
+              Wert, den die Bank als dauerhaft erzielbar ansetzt. Sie zieht dafür laut
+              Beleihungswertermittlungsverordnung (BelWertV) einen Sicherheitsabschlag von mindestens 10 %
+              ab – banküblich 10 bis 20 %. Der Beleihungswert ist deshalb fast immer niedriger als der
+              Kaufpreis.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher Beleihungsauslauf ist gut?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bis 60 % gilt das Darlehen als „Realkredit“ mit der Bestkondition. Bis 80 % zahlen Sie meist
+              nur einen leichten Zinsaufschlag – das ist der solide Standardbereich. Über 80 % wird es spürbar
+              teurer, ab 90 bis 100 % spricht man von einer Vollfinanzierung mit dem höchsten Zinssatz. Wer
+              kann, sollte unter 80 % bleiben.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie senke ich meinen Beleihungsauslauf?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der wirksamste Hebel ist mehr Eigenkapital, denn jeder eingebrachte Euro senkt die
+              Darlehenssumme. Hilfreich ist außerdem, die Kaufnebenkosten aus eigener Tasche zu zahlen statt
+              mitzufinanzieren. Auch eine Wertsteigerung der Immobilie und laufende Tilgung senken den
+              Beleihungsauslauf über die Zeit – das nützt vor allem bei der Anschlussfinanzierung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann der Beleihungsauslauf über 100 % liegen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Werden neben dem Kaufpreis auch die Kaufnebenkosten mitfinanziert, übersteigt die
+              Darlehenssumme den Wert der Immobilie – man spricht dann von einer 110-%-Finanzierung. Das
+              gelingt nur bei sehr guter Bonität und zum höchsten Zinssatz, weil das Risiko für die Bank am
+              größten ist.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/vorfaelligkeitsentschaedigung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">✂️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Vorfälligkeitsentschädigung</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Beleihungsauslauf-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/beleihungsauslauf-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist der Beleihungsauslauf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Beleihungsauslauf (englisch Loan-to-Value, LTV) gibt an, welcher Anteil des Beleihungswerts einer Immobilie über ein Darlehen finanziert wird. Er berechnet sich aus Darlehenssumme ÷ Beleihungswert × 100. Je niedriger der Wert, desto geringer das Risiko für die Bank und desto günstiger in der Regel der Zinssatz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich den Beleihungsauslauf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In drei Schritten: Erstens die Darlehenssumme = Kaufpreis + Kaufnebenkosten − Eigenkapital. Zweitens den Beleihungswert = Kaufpreis × (1 − Sicherheitsabschlag). Drittens den Beleihungsauslauf = Darlehenssumme ÷ Beleihungswert × 100. Beispiel: 320.000 € Darlehen bei 400.000 € Bezugswert ergeben 80 %."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Beleihungswert und Kaufpreis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Kaufpreis ist der Betrag, den Sie für die Immobilie zahlen. Der Beleihungswert ist der Wert, den die Bank als dauerhaft erzielbar ansetzt. Sie zieht dafür laut Beleihungswertermittlungsverordnung (BelWertV) einen Sicherheitsabschlag von mindestens 10 % ab – banküblich 10 bis 20 %. Der Beleihungswert ist deshalb fast immer niedriger als der Kaufpreis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher Beleihungsauslauf ist gut?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bis 60 % gilt das Darlehen als „Realkredit“ mit der Bestkondition. Bis 80 % zahlen Sie meist nur einen leichten Zinsaufschlag – das ist der solide Standardbereich. Über 80 % wird es spürbar teurer, ab 90 bis 100 % spricht man von einer Vollfinanzierung mit dem höchsten Zinssatz. Wer kann, sollte unter 80 % bleiben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie senke ich meinen Beleihungsauslauf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der wirksamste Hebel ist mehr Eigenkapital, denn jeder eingebrachte Euro senkt die Darlehenssumme. Hilfreich ist außerdem, die Kaufnebenkosten aus eigener Tasche zu zahlen statt mitzufinanzieren. Auch eine Wertsteigerung der Immobilie und laufende Tilgung senken den Beleihungsauslauf über die Zeit – das nützt vor allem bei der Anschlussfinanzierung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann der Beleihungsauslauf über 100 % liegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Werden neben dem Kaufpreis auch die Kaufnebenkosten mitfinanziert, übersteigt die Darlehenssumme den Wert der Immobilie – man spricht dann von einer 110-%-Finanzierung. Das gelingt nur bei sehr guter Bonität und zum höchsten Zinssatz, weil das Risiko für die Bank am größten ist."
+        }
+      }
+    ]
+  })} />
+</Layout>

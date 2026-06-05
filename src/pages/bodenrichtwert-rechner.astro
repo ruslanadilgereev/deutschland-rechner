@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BodenrichtwertRechner from '../components/rechner/BodenrichtwertRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Bodenrichtwert-Rechner 2026 – Bodenwert & Grundstückswert berechnen";
+const description = "Bodenwert kostenlos berechnen: Bodenrichtwert × Grundstücksfläche, korrigiert um Tiefe, Lage und Erschließung nach ImmoWertV 2021. Mit BORIS-Hinweis, Beispielen und Erklärung zum amtlichen Bodenrichtwert.";
+const keywords = "Bodenrichtwert Rechner, Bodenwert berechnen, Grundstückswert ermitteln, Grundstück Wert berechnen, BORIS Bodenrichtwert, ImmoWertV, Bodenrichtwert Grundstück, Grundstückspreis berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bodenrichtwert-Rechner", url: "/bodenrichtwert-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Bodenrichtwert-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🗺️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bodenrichtwert-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Bodenwert und Grundstückswert ermitteln</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Bodenwertverfahren nach ImmoWertV 2021. Bodenwert = Bodenrichtwert (€/m²) × Grundstücksfläche × Korrekturfaktoren (Tiefe nach § 12 ImmoWertV, Lage, Erschließung, Stichtag).</p>
+            <p class="mb-1"><strong>Datenquelle:</strong> Bodenrichtwerte stammen aus dem amtlichen Informationssystem BORIS-D der Gutachterausschüsse und sind kostenlos abrufbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Besonderheiten (Zuschnitt, Altlasten, Baulast), die nur ein Gutachten erfasst. Korrekturfaktoren sind regional und hier als Näherung abgebildet. Kein Verkehrswertgutachten, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BodenrichtwertRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bodenwert mit dem Bodenrichtwert berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Bodenrichtwert</strong> ist ein amtlicher Durchschnittswert für den
+            Quadratmeterpreis von Grund und Boden in einer bestimmten Zone. Mit dem
+            <strong>Bodenrichtwert-Rechner</strong> ermitteln Sie daraus einen Orientierungswert für
+            den <strong>Bodenwert</strong> Ihres Grundstücks – die Grundlage für Kauf,
+            Verkauf, Beleihung und steuerliche Bewertung. Der reine Bodenwert beschreibt nur den Wert
+            des unbebauten Grund und Bodens, ohne das Gebäude.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Bodenrichtwert?</h3>
+          <p>
+            Bodenrichtwerte werden von den unabhängigen <strong>Gutachterausschüssen</strong> der
+            Gemeinden und Landkreise auf Basis tatsächlicher Kaufpreise ermittelt und mindestens alle
+            zwei Jahre aktualisiert. Sie gelten jeweils für eine <strong>Bodenrichtwertzone</strong>
+            mit vergleichbaren Lage- und Nutzungsmerkmalen und beziehen sich auf ein fiktives
+            Grundstück mit den typischen Eigenschaften der Zone. Abrufbar sind die Werte kostenlos über
+            das amtliche Portal <strong>BORIS-D</strong> Ihres Bundeslandes.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Basiswert</strong> = Bodenrichtwert (€/m²) × Grundstücksfläche (m²)</li>
+              <li><strong>Bodenwert</strong> = Basiswert × Tiefe × Größe × Lage × Erschließung × Index</li>
+            </ul>
+          </div>
+          <p>
+            Die einzelnen Faktoren sind <strong>Umrechnungskoeffizienten</strong> nach
+            <strong>§ 12 ImmoWertV 2021</strong>. Sie passen den zonenbezogenen Richtwert an die
+            konkreten Merkmale Ihres Grundstücks an. Ein Faktor von 1,00 bedeutet „keine Anpassung".
+            Liegen keine örtlichen Koeffizienten-Tabellen des Gutachterausschusses vor, bleibt der
+            jeweilige Faktor bei 1,00.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Korrekturen sind üblich?</h3>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li><strong>Tiefe:</strong> Sehr tiefe Grundstücke werden im hinteren Bereich schlechter nutzbar – Abschlag (z. B. ×0,80).</li>
+            <li><strong>Größe / GFZ:</strong> Weicht die bauliche Ausnutzbarkeit vom Zonenstandard ab, korrigiert ein Faktor.</li>
+            <li><strong>Lage / Ecke:</strong> Eckgrundstücke bringen je nach Nutzung einen Zuschlag (Gewerbe) oder Abschlag (Wohnen).</li>
+            <li><strong>Erschließung:</strong> Baureifes, beitragsfreies Land ist der Bezug; Rohbauland und Bauerwartungsland erhalten deutliche Abschläge.</li>
+            <li><strong>Stichtag:</strong> Liegt der Bodenrichtwert-Stichtag länger zurück, gleicht ein Indexfaktor die Marktentwicklung aus.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bodenwert, Verkehrswert und Steuer</h3>
+          <p>
+            Der so ermittelte Bodenwert ist ein <strong>Marktwert-Orientierungswert</strong>, nicht
+            der rechtsverbindliche Verkehrswert. Für die <strong>Grundsteuer</strong> und die
+            steuerliche Bedarfsbewertung verwendet das Finanzamt ein vereinfachtes Schema
+            (Bodenrichtwert × Fläche ohne marktübliche Zu- und Abschläge). Für ein
+            rechtssicheres Ergebnis – etwa bei Erbschaft, Schenkung, Scheidung oder Beleihung – ist ein
+            <strong>Wertgutachten</strong> des Gutachterausschusses oder eines öffentlich bestellten
+            Sachverständigen erforderlich.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🗺️ Typische Korrekturfaktoren</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte nach ImmoWertV-Logik. Maßgeblich sind die Daten des örtlichen
+          Gutachterausschusses.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Merkmal</th>
+                <th class="py-2 pl-2 font-semibold text-right">Faktor</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Baureif, erschließungsbeitragsfrei</td><td class="py-2 pl-2 text-right">1,00</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Baureif, Beitrag noch zahlbar (ebp)</td><td class="py-2 pl-2 text-right">≈ 0,90–0,95</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Rohbauland</td><td class="py-2 pl-2 text-right">≈ 0,50</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Bauerwartungsland</td><td class="py-2 pl-2 text-right">≈ 0,25</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Übertiefe (z. B. 60 m Tiefe)</td><td class="py-2 pl-2 text-right">≈ 0,80</td></tr>
+              <tr><td class="py-2 pr-2">Eckgrundstück Gewerbe (Zuschlag)</td><td class="py-2 pl-2 text-right">≈ 1,05–1,10</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quelle: ImmoWertV 2021, § 12 ImmoWertV (Umrechnungskoeffizienten).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">So wirkt sich der Bodenrichtwert auf den Bodenwert aus:</p>
+
+        <div class="space-y-4">
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Baureifes Grundstück, keine Korrekturen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bodenrichtwert:</div>
+              <div class="font-medium text-gray-800">430 €/m²</div>
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">600 m²</div>
+              <div class="text-gray-600">Faktoren:</div>
+              <div class="font-medium text-gray-800">alle 1,00</div>
+              <div class="text-gray-600">Bodenwert:</div>
+              <div class="font-medium text-green-700">258.000 €</div>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Übertiefes Grundstück (Tiefe ×0,80)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Basiswert:</div>
+              <div class="font-medium text-gray-800">430 × 600 = 258.000 €</div>
+              <div class="text-gray-600">Tiefenfaktor:</div>
+              <div class="font-medium text-gray-800">×0,80</div>
+              <div class="text-gray-600">Bodenwert:</div>
+              <div class="font-medium text-green-700">206.400 €</div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Rohbauland (Erschließung ×0,50)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Basiswert:</div>
+              <div class="font-medium text-gray-800">430 × 600 = 258.000 €</div>
+              <div class="text-gray-600">Erschließungsfaktor:</div>
+              <div class="font-medium text-gray-800">×0,50</div>
+              <div class="text-gray-600">Bodenwert:</div>
+              <div class="font-medium text-green-700">129.000 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Der Erschließungszustand hat den größten Hebel. Ein
+          unerschlossenes Grundstück kann nur die Hälfte oder ein Viertel des Werts eines baureifen
+          Grundstücks erreichen – die fehlenden Erschließungskosten müssen Sie zusätzlich einplanen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Bodenrichtwert mit Verkehrswert verwechseln</h3>
+            <p>Der Bodenrichtwert ist ein Zonen-Durchschnitt, nicht der Wert genau Ihres Grundstücks.
+            Lage, Zuschnitt und Bebaubarkeit können erheblich abweichen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Erschließungszustand ignorieren</h3>
+            <p>Ein hoher Richtwert gilt für baureifes Land. Bei Rohbauland oder Bauerwartungsland ist
+            ein deutlicher Abschlag nötig, weil die Erschließung noch fehlt und Geld kostet.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Marktwert mit Steuerwert gleichsetzen</h3>
+            <p>Für die Grundsteuer rechnet das Finanzamt vereinfacht mit Bodenrichtwert × Fläche ohne
+            Zu- und Abschläge. Der Marktwert-Orientierungswert kann davon abweichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Alter Stichtag</h3>
+            <p>Liegt der Bodenrichtwert-Stichtag länger zurück, bildet er die aktuelle Marktlage nicht
+            mehr ab. Ein Indexfaktor gleicht die Preisentwicklung bis zum Bewertungsstichtag aus.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Besondere Grundstücksmerkmale</h3>
+            <p>Altlasten, Baulasten, Hanglage oder ungünstiger Zuschnitt erfasst nur ein individuelles
+            Gutachten. Der Rechner bildet solche Sonderfälle nicht ab.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Bodenrichtwert</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Bodenrichtwert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Bodenrichtwert ist ein amtlicher Durchschnittswert für den Quadratmeterpreis von
+              Grund und Boden in einer bestimmten Zone. Er wird von den Gutachterausschüssen aus echten
+              Kaufpreisen ermittelt, mindestens alle zwei Jahre aktualisiert und ist über das Portal
+              BORIS-D kostenlos abrufbar.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich den Bodenwert meines Grundstücks?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie den Bodenrichtwert (€/m²) mit der Grundstücksfläche (m²). Das ergibt
+              den Basiswert. Diesen passen Sie mit Korrekturfaktoren für Tiefe, Größe, Lage,
+              Erschließung und Stichtag an. Beispiel: 430 €/m² × 600 m² = 258.000 € Basiswert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wo finde ich den Bodenrichtwert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Über das amtliche Bodenrichtwertinformationssystem BORIS-D Ihres Bundeslandes. Dort
+              geben Sie die Adresse ein und lesen den Wert der jeweiligen Bodenrichtwertzone ab. Die
+              Abfrage ist in den meisten Ländern kostenlos.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist der Bodenrichtwert gleich dem Verkehrswert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Bodenrichtwert ist ein Zonen-Durchschnitt und damit nur ein Orientierungswert.
+              Der Verkehrswert berücksichtigt die konkreten Merkmale Ihres Grundstücks und wird in einem
+              Gutachten ermittelt. Abweichungen nach oben oder unten sind normal.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wird der Bodenrichtwert für die Grundsteuer genutzt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Für die Grundsteuer und die steuerliche Bedarfsbewertung verwendet das Finanzamt ein
+              vereinfachtes Schema: Bodenrichtwert × Grundstücksfläche, ohne marktübliche Zu- und
+              Abschläge. Der steuerliche Feststellungswert kann daher vom Marktwert abweichen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet erschließungsbeitragsfrei (ebf)?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Erschließungsbeitragsfrei bedeutet, dass die Erschließungskosten (Straße, Kanal,
+              Versorgung) bereits bezahlt sind. Solche baureifen Grundstücke sind der Bezugsfall. Ist der
+              Beitrag noch zu zahlen (ebp) oder das Land unerschlossen, sinkt der Wert entsprechend.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/wohnflaeche-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohnflächen-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bodenrichtwert-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bodenrichtwert-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Was ist der Bodenrichtwert?", "acceptedAnswer": { "@type": "Answer", "text": "Der Bodenrichtwert ist ein amtlicher Durchschnittswert für den Quadratmeterpreis von Grund und Boden in einer bestimmten Zone. Er wird von den Gutachterausschüssen aus echten Kaufpreisen ermittelt, mindestens alle zwei Jahre aktualisiert und ist über das Portal BORIS-D kostenlos abrufbar." } },
+      { "@type": "Question", "name": "Wie berechne ich den Bodenwert meines Grundstücks?", "acceptedAnswer": { "@type": "Answer", "text": "Multiplizieren Sie den Bodenrichtwert (€/m²) mit der Grundstücksfläche (m²). Das ergibt den Basiswert. Diesen passen Sie mit Korrekturfaktoren für Tiefe, Größe, Lage, Erschließung und Stichtag an. Beispiel: 430 €/m² × 600 m² = 258.000 € Basiswert." } },
+      { "@type": "Question", "name": "Wo finde ich den Bodenrichtwert?", "acceptedAnswer": { "@type": "Answer", "text": "Über das amtliche Bodenrichtwertinformationssystem BORIS-D Ihres Bundeslandes. Dort geben Sie die Adresse ein und lesen den Wert der jeweiligen Bodenrichtwertzone ab. Die Abfrage ist in den meisten Ländern kostenlos." } },
+      { "@type": "Question", "name": "Ist der Bodenrichtwert gleich dem Verkehrswert?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Der Bodenrichtwert ist ein Zonen-Durchschnitt und damit nur ein Orientierungswert. Der Verkehrswert berücksichtigt die konkreten Merkmale Ihres Grundstücks und wird in einem Gutachten ermittelt. Abweichungen nach oben oder unten sind normal." } },
+      { "@type": "Question", "name": "Wird der Bodenrichtwert für die Grundsteuer genutzt?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Für die Grundsteuer und die steuerliche Bedarfsbewertung verwendet das Finanzamt ein vereinfachtes Schema: Bodenrichtwert × Grundstücksfläche, ohne marktübliche Zu- und Abschläge. Der steuerliche Feststellungswert kann daher vom Marktwert abweichen." } },
+      { "@type": "Question", "name": "Was bedeutet erschließungsbeitragsfrei (ebf)?", "acceptedAnswer": { "@type": "Answer", "text": "Erschließungsbeitragsfrei bedeutet, dass die Erschließungskosten (Straße, Kanal, Versorgung) bereits bezahlt sind. Solche baureifen Grundstücke sind der Bezugsfall. Ist der Beitrag noch zu zahlen (ebp) oder das Land unerschlossen, sinkt der Wert entsprechend." } }
+    ]
+  })} />
+</Layout>

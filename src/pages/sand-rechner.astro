@@ -1,0 +1,420 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SandRechner from '../components/rechner/SandRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Sand-Rechner 2026 – Sandmenge in m³, Tonnen & Säcken berechnen";
+const description = "Sandmenge berechnen: aus Fläche und Schichthöhe das Volumen in m³, das Gewicht in Tonnen und die Anzahl Säcke oder BigBags ermitteln – mit Presets für Pflasterbett, Sandkasten und Mörtelbett.";
+const keywords = "Sand Rechner, Sandmenge berechnen, Pflastersand berechnen, Sand Tonnen, Sandkasten Sand Menge, Sand in m3, wieviel Sand, BigBag Sand, Spielsand berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Sand-Rechner", url: "/sand-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Sand-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Sand-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Sandmenge in m³, Tonnen und Säcken berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Volumen = Fläche × Schichthöhe × (1 + Zuschlag); Masse (t) = Volumen × Schüttdichte; Säcke = aufgerundet(kg ÷ Sackgröße).</p>
+            <p class="mb-1"><strong>Presets:</strong> Pflasterbett 4 cm (DIN 18318: 3–5 cm), Sandkasten 30 cm, Mörtelbett 5 cm. Schüttdichten: Bau-/Pflastersand 1,5 t/m³, Spielsand 1,3 t/m³. Zuschlag 5 %. Sackgrößen 25/40 kg, BigBag 1 t.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Verdichtungsgrad, Feuchte, Körnung, Untergrund (beeinflussen Bedarf und Gewicht). Bei Spielsand auf Fallschutz-Zertifizierung (DIN EN 1177) achten. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SandRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Sandmenge richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Sand-Rechner</strong> ermitteln Sie, wie viel Sand Sie brauchen – egal ob
+            für ein <strong>Pflasterbett</strong>, einen <strong>Sandkasten</strong> oder ein
+            <strong>Mörtel- bzw. Estrichbett</strong>. Das Ergebnis erhalten Sie als Volumen in m³, als
+            Gewicht in Tonnen und als Anzahl <strong>Säcke oder BigBags</strong>, denn Sand wird sowohl
+            im Sack als auch lose verkauft.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Volumen (m³)</strong> = Fläche (m²) × Schichthöhe (m) × (1 + Zuschlag)</li>
+              <li><strong>Masse (t)</strong> = Volumen × Schüttdichte (t/m³)</li>
+              <li><strong>Säcke</strong> = aufgerundet(Masse in kg ÷ Sackgröße)</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Schüttdichte</strong> entscheidet über das Gewicht: Bausand und Pflastersand
+            wiegen rund 1,5 t/m³, leichter Spielsand etwa 1,3 t/m³. Feuchter Sand ist schwerer. Da Sand
+            meist nach Gewicht verkauft wird, ist die Umrechnung von Volumen in Tonnen für die Bestellung
+            entscheidend.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pflasterbett nach DIN 18318</h3>
+          <p>
+            Für ein <strong>Pflasterbett</strong> schreibt die DIN 18318 (VOB Teil C) eine Bettungsdicke
+            von <strong>3 bis 5 cm</strong> vor (unverdichtet), die nach dem Verdichten auf etwa
+            30–50 mm zusammensackt. Verwendet wird Brechsand-Splitt-Gemisch oder Pflastersand. Den
+            Bedarf an Steinen dazu berechnen Sie mit dem
+            <a href="/pflastersteine-rechner" class="text-blue-600 hover:text-blue-800 underline">Pflaster-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sandkasten befüllen</h3>
+          <p>
+            Für einen <strong>Sandkasten</strong> rechnen Sie mit einer Füllhöhe von 20–40 cm. In der
+            Praxis wird er meist zu rund 60 % befüllt, damit der Sand beim Spielen nicht überläuft.
+            Wichtig: Verwenden Sie <strong>zertifizierten Spielsand</strong> – bei Spielgeräten gelten
+            zusätzlich Fallschutzanforderungen nach DIN EN 1177.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sack oder lose Lieferung?</h3>
+          <p>
+            Kleine Mengen bis ein paar hundert Kilogramm kauft man praktisch im <strong>25-kg-Sack</strong>
+            im Baumarkt. Für größere Mengen sind <strong>BigBags (1 t)</strong> oder die lose Lieferung
+            per Kipper günstiger. Der Rechner zeigt sowohl die Säcke als auch die BigBag-Anzahl an.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏖️ Sandtypen und Schüttdichte</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte – tatsächliches Gewicht hängt von Körnung und Feuchte ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Sandtyp</th>
+                <th class="py-2 px-2 font-semibold text-right">t/m³</th>
+                <th class="py-2 pl-2 font-semibold text-right">1 m³ wiegt ca.</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Spielsand (zertifiziert)</td><td class="py-2 px-2 text-right">1,3</td><td class="py-2 pl-2 text-right">1.300 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Bausand / Pflastersand (trocken)</td><td class="py-2 px-2 text-right">1,5</td><td class="py-2 pl-2 text-right">1.500 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Mörtel-/Estrichsand</td><td class="py-2 px-2 text-right">1,5</td><td class="py-2 pl-2 text-right">1.500 kg</td></tr>
+              <tr><td class="py-2 pr-2">feuchter / verdichteter Sand</td><td class="py-2 px-2 text-right">1,7–1,9</td><td class="py-2 pl-2 text-right">bis 1.900 kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: DIN 18318 (bauindex-online.de), Sachverständiger GaLaBau, BauMigo.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle, jeweils mit 5 % Zuschlag:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Pflasterbett 10 m², 4 cm, Pflastersand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">10 × 0,04 × 1,05 = 0,42 m³</div>
+              <div class="text-gray-600">Masse (1,5 t/m³):</div>
+              <div class="font-medium text-green-700">0,42 × 1,5 = 0,63 t (630 kg)</div>
+              <div class="text-gray-600">Säcke (25 kg):</div>
+              <div class="font-medium text-gray-800">26 Säcke</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Sandkasten 2 × 2 m, 30 cm, Spielsand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">4 × 0,30 × 1,05 = 1,26 m³</div>
+              <div class="text-gray-600">Masse (1,3 t/m³):</div>
+              <div class="font-medium text-green-700">1,26 × 1,3 ≈ 1,64 t (1.638 kg)</div>
+              <div class="text-gray-600">Säcke (25 kg):</div>
+              <div class="font-medium text-gray-800">66 Säcke (oder 2 BigBags)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Pflasterbett 30 m², 5 cm, Bausand, BigBag</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">30 × 0,05 × 1,05 = 1,575 m³</div>
+              <div class="text-gray-600">Masse (1,5 t/m³):</div>
+              <div class="font-medium text-green-700">1,575 × 1,5 ≈ 2,36 t (2.363 kg)</div>
+              <div class="text-gray-600">BigBags (1 t):</div>
+              <div class="font-medium text-gray-800">3 BigBags</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Für den Sandkasten ist BigBag oder lose Lieferung meist deutlich
+          günstiger als viele Einzelsäcke – ab rund einer Tonne lohnt sich der Vergleich.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Volumen mit Gewicht verwechseln</h3>
+            <p>Sand wird nach Gewicht verkauft. Ein Kubikmeter Bausand wiegt rund 1,5 Tonnen – rechnen
+            Sie das Volumen immer in Tonnen um, bevor Sie bestellen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Pflasterbett zu dick ansetzen</h3>
+            <p>Nach DIN 18318 sind 3–5 cm vorgesehen. Ein zu dickes Sandbett sackt unter Last
+            ungleichmäßig ab und führt zu Wellen im Pflaster.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Spielsand nicht zertifiziert</h3>
+            <p>Für Kinder gehört zertifizierter, gewaschener Spielsand in den Sandkasten. Normaler
+            Bausand kann Lehm und scharfkantige Körner enthalten. Bei Spielgeräten gilt zusätzlich der
+            Fallschutz nach DIN EN 1177.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Feuchter Sand</h3>
+            <p>Nasser Sand wiegt deutlich mehr als trockener. Wird nach Gewicht geliefert, bekommen Sie
+            für dasselbe Geld weniger Volumen – fragen Sie nach trockenem Material.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sandkasten nur teilfüllen</h3>
+            <p>Befüllen Sie den Sandkasten nur zu rund 60–70 %, sonst läuft beim Spielen ständig Sand
+            über den Rand. Rechnen Sie die Füllhöhe entsprechend kleiner als die Kastentiefe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Sand-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel wiegt 1 m³ Sand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Trockener Bau- oder Pflastersand wiegt rund 1,5 Tonnen pro Kubikmeter, leichter
+              Spielsand etwa 1,3 t/m³. Feuchter oder verdichteter Sand kann auf 1,7 bis 1,9 t/m³
+              kommen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich, wie viel Sand ich brauche?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie die Fläche mit der Schichthöhe für das Volumen und dann mit der
+              Schüttdichte für das Gewicht. Für 10 m² Pflasterbett mit 4 cm Bausand sind das rund
+              0,42 m³, also etwa 0,63 Tonnen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick muss das Sandbett beim Pflastern sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach DIN 18318 sind 3 bis 5 cm unverdichtetes Sand- bzw. Splittbett vorgesehen, das
+              nach dem Verdichten auf etwa 30–50 mm zusammensackt. Dicker sollte das Bett nicht sein,
+              sonst sackt das Pflaster ungleichmäßig ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Sand braucht ein Sandkasten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von Grundfläche und Füllhöhe ab. Ein 2 × 2 m großer Kasten mit 30 cm Sand
+              braucht rund 1,2 m³, also etwa 1,6 Tonnen Spielsand. Befüllen Sie ihn nur zu rund 60 %,
+              damit nichts überläuft.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher Sand für den Sandkasten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Verwenden Sie zertifizierten, gewaschenen Spielsand, der staubarm und frei von
+              scharfen Körnern ist. Bei Spielgeräten mit Fallhöhe gilt zusätzlich der Fallschutz nach
+              DIN EN 1177. Normaler Bausand ist für den Sandkasten ungeeignet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sack oder BigBag – was ist günstiger?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bis wenige hundert Kilogramm ist der 25-kg-Sack praktisch. Ab etwa einer Tonne sind
+              BigBags oder die lose Lieferung per Kipper pro Kilogramm deutlich günstiger – sofern eine
+              Abladefläche vorhanden ist.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/schotter-kies-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Schotter- & Kies-Rechner</p>
+          </a>
+          <a href="/pflastersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧩</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflaster-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/mauersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mauerstein-Rechner</p>
+          </a>
+          <a href="/rollrasen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rollrasen-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sand-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/sand-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel wiegt 1 m³ Sand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trockener Bau- oder Pflastersand wiegt rund 1,5 Tonnen pro Kubikmeter, leichter Spielsand etwa 1,3 t/m³. Feuchter oder verdichteter Sand kann auf 1,7 bis 1,9 t/m³ kommen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich, wie viel Sand ich brauche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie die Fläche mit der Schichthöhe für das Volumen und dann mit der Schüttdichte für das Gewicht. Für 10 m² Pflasterbett mit 4 cm Bausand sind das rund 0,42 m³, also etwa 0,63 Tonnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dick muss das Sandbett beim Pflastern sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach DIN 18318 sind 3 bis 5 cm unverdichtetes Sand- bzw. Splittbett vorgesehen, das nach dem Verdichten auf etwa 30–50 mm zusammensackt. Dicker sollte das Bett nicht sein, sonst sackt das Pflaster ungleichmäßig ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Sand braucht ein Sandkasten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von Grundfläche und Füllhöhe ab. Ein 2 × 2 m großer Kasten mit 30 cm Sand braucht rund 1,2 m³, also etwa 1,6 Tonnen Spielsand. Befüllen Sie ihn nur zu rund 60 %, damit nichts überläuft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher Sand für den Sandkasten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verwenden Sie zertifizierten, gewaschenen Spielsand, der staubarm und frei von scharfen Körnern ist. Bei Spielgeräten mit Fallhöhe gilt zusätzlich der Fallschutz nach DIN EN 1177. Normaler Bausand ist für den Sandkasten ungeeignet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sack oder BigBag – was ist günstiger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bis wenige hundert Kilogramm ist der 25-kg-Sack praktisch. Ab etwa einer Tonne sind BigBags oder die lose Lieferung per Kipper pro Kilogramm deutlich günstiger – sofern eine Abladefläche vorhanden ist."
+        }
+      }
+    ]
+  })} />
+</Layout>

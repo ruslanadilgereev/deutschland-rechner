@@ -1,0 +1,425 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WieVielHausRechner from '../components/rechner/WieVielHausRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Wie viel Haus kann ich mir leisten? Budgetrechner 2026";
+const description = "Budgetrechner Hauskauf: Wie viel Haus oder Wohnung kann ich mir leisten? Aus Nettoeinkommen, Eigenkapital, Zins und Tilgung den maximalen Kaufpreis, das Darlehen und die Kaufnebenkosten berechnen – inkl. Grunderwerbsteuer je Bundesland.";
+const keywords = "wie viel haus kann ich mir leisten, budgetrechner hauskauf, wie viel immobilie kann ich mir leisten, maximaler kaufpreis rechner, haus budget berechnen, wie viel kredit fürs haus, immobilien budget";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Wie viel Haus kann ich mir leisten", url: "/wie-viel-haus-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Wie viel Haus kann ich mir leisten' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏡</span>
+          <div>
+            <h1 class="text-2xl font-bold">Wie viel Haus kann ich mir leisten? 2026</h1>
+            <p class="text-blue-200 text-sm">Budgetrechner Hauskauf: max. Kaufpreis aus Einkommen & Eigenkapital</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Tragbare Rate = Nettoeinkommen × Quote (Faustregel 35 %, 30–40 %). Darlehen = (Rate × 12) ÷ (Sollzins + Anfangstilgung). Max. Kaufpreis = (Darlehen + Eigenkapital) ÷ (1 + Kaufnebenkostenquote). Grunderwerbsteuer 3,5–6,5 % je Bundesland (Destatis).</p>
+            <p class="mb-1"><strong>Standardwerte:</strong> 4.000 € Netto, 35 % Quote, 80.000 € Eigenkapital, 3,8 % Sollzins, 2,0 % Tilgung, Nordrhein-Westfalen, Makler 3,57 %. Notar + Grundbuch pauschal 2,0 %.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Bonität (SCHUFA), Beleihungsauslauf, bestehende Kredite, KfW-Förderung, Bankrichtlinien, tagesaktuelle Zinsen. Keine Finanzierungszusage oder Kreditberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WieVielHausRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wie viel Haus kann ich mir leisten?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Budgetrechner für den Hauskauf</strong> beantwortet die zentrale Frage am
+            Anfang jeder Immobiliensuche: Welchen Kaufpreis können Sie sich realistisch leisten? Statt
+            erst beim Wunschobjekt zu rechnen, ermitteln Sie aus Ihrem <strong>Nettoeinkommen</strong>,
+            Ihrem <strong>Eigenkapital</strong> und den aktuellen Konditionen rückwärts den
+            <strong>maximalen Kaufpreis</strong>, das mögliche Darlehen und die anfallenden
+            Kaufnebenkosten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Schritt 1: tragbare Monatsrate</h3>
+          <p>
+            Als bewährte Faustregel sollte die monatliche Kreditrate nicht mehr als
+            <strong>35 % des Nettohaushaltseinkommens</strong> betragen (vorsichtig: 30 %, sportlich:
+            40 %). Bei 4.000 € netto sind das 1.400 € Rate. Wer seine Lebenshaltungskosten genau kennt,
+            kann die Quote individuell anpassen – wichtig ist ein Puffer für Instandhaltung, Rücklagen
+            und unerwartete Ausgaben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Schritt 2: mögliches Darlehen</h3>
+          <p>Aus der Rate ergibt sich über die Annuitäten-Faustformel die Darlehenshöhe:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Darlehen</strong> = (Monatsrate × 12) ÷ (Sollzins % + Anfangstilgung %)</li>
+            </ul>
+          </div>
+          <p>
+            Die Anfangstilgung bestimmt, wie schnell Sie schuldenfrei werden. 2 % sind heute das
+            Minimum; je höher die Tilgung, desto kürzer die Laufzeit, aber desto höher die Rate.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Schritt 3: Kaufnebenkosten abziehen</h3>
+          <p>
+            Beim Hauskauf fallen <strong>Kaufnebenkosten</strong> an, die Banken in der Regel
+            <strong>nicht mitfinanzieren</strong>: Grunderwerbsteuer (3,5–6,5 % je Bundesland), Notar
+            und Grundbuch (rund 2 %) sowie ggf. Maklerprovision (oft 3,57 % inkl. MwSt.). Diese Kosten
+            fallen auf den Kaufpreis an, nicht auf das Gesamtbudget. Deshalb wird der maximale Kaufpreis
+            so berechnet:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>max. Kaufpreis</strong> = (Darlehen + Eigenkapital) ÷ (1 + Nebenkostenquote)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Eigenkapital brauche ich?</h3>
+          <p>
+            Faustregel: Das Eigenkapital sollte mindestens die <strong>Kaufnebenkosten plus
+            10–20 % des Kaufpreises</strong> abdecken. Banken vergeben zwar auch
+            Vollfinanzierungen, verlangen dann aber höhere Zinsen. Je mehr Eigenkapital, desto besser
+            der Zins und desto geringer das Risiko. Wie sich Ihr Eigenkapital konkret zusammensetzt,
+            ermitteln Sie mit dem <a href="/eigenkapital-rechner" class="text-blue-600 hover:text-blue-800 underline">Eigenkapital-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏦 Grunderwerbsteuer nach Bundesland (2026)</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Bundesland</th>
+                <th class="py-2 pl-2 font-semibold text-right">Grunderwerbsteuer</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Bayern</td><td class="py-2 pl-2 text-right">3,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Baden-Württemberg, Bremen, Niedersachsen, Rheinland-Pfalz, Sachsen-Anhalt, Thüringen</td><td class="py-2 pl-2 text-right">5,0 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Hamburg, Sachsen</td><td class="py-2 pl-2 text-right">5,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Berlin, Hessen, Mecklenburg-Vorpommern</td><td class="py-2 pl-2 text-right">6,0 %</td></tr>
+              <tr><td class="py-2 pr-2">Brandenburg, Nordrhein-Westfalen, Saarland, Schleswig-Holstein</td><td class="py-2 pl-2 text-right">6,5 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quelle: Finanzverwaltungen der Länder / Statistisches Bundesamt (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 4.000 € netto, 80.000 € Eigenkapital (NRW)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Rate (35 %):</div>
+              <div class="font-medium text-gray-800">1.400 €</div>
+              <div class="text-gray-600">Darlehen (3,8 % + 2 %):</div>
+              <div class="font-medium text-gray-800">(1.400 × 12) ÷ 5,8 % ≈ 289.655 €</div>
+              <div class="text-gray-600">Gesamtkapital:</div>
+              <div class="font-medium text-gray-800">289.655 + 80.000 = 369.655 €</div>
+              <div class="text-gray-600">max. Kaufpreis:</div>
+              <div class="font-medium text-green-700">÷ 1,1207 ≈ 329.800 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: gleiches Einkommen, ohne Makler (Bayern)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gesamtkapital:</div>
+              <div class="font-medium text-gray-800">369.655 €</div>
+              <div class="text-gray-600">Nebenkosten:</div>
+              <div class="font-medium text-gray-800">3,5 % + 2 % = 5,5 %</div>
+              <div class="text-gray-600">max. Kaufpreis:</div>
+              <div class="font-medium text-green-700">÷ 1,055 ≈ 350.384 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 5.500 € netto, 150.000 € Eigenkapital (NRW)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Rate (35 %):</div>
+              <div class="font-medium text-gray-800">1.925 €</div>
+              <div class="text-gray-600">Darlehen (3,8 % + 2 %):</div>
+              <div class="font-medium text-gray-800">(1.925 × 12) ÷ 5,8 % ≈ 398.276 €</div>
+              <div class="text-gray-600">max. Kaufpreis:</div>
+              <div class="font-medium text-green-700">(398.276 + 150.000) ÷ 1,1207 ≈ 489.226 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 1 und 2 zeigen den Hebel der Kaufnebenkosten: Allein der
+          Verzicht auf den Makler und das günstigere Bundesland heben den möglichen Kaufpreis bei
+          gleichem Budget um über 20.000 €.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Kaufnebenkosten vergessen</h3>
+            <p>Banken finanzieren Grunderwerbsteuer, Notar und Makler meist nicht mit. Wer das Budget
+            voll in den Kaufpreis steckt, hat plötzlich 10–15 % Nebenkosten ohne Deckung.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Rate zu hoch ansetzen</h3>
+            <p>40 % des Nettos sind das absolute Maximum. Vergessen werden oft laufende Kosten:
+            Hausgeld, Instandhaltungsrücklage, höhere Nebenkosten als zur Miete, Versicherungen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: aktuellen Zins als sicher annehmen</h3>
+            <p>Der Sollzins gilt nur für die Zinsbindung. Danach folgt eine Anschlussfinanzierung zu
+            einem heute unbekannten Zins. Eine höhere Anfangstilgung senkt dieses Risiko.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: bestehende Kredite</h3>
+            <p>Laufende Raten für Auto, Konsumkredit oder Unterhalt mindern die tragbare Rate direkt.
+            Ziehen Sie diese von der berechneten Maximalrate ab.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Förderung nutzen</h3>
+            <p>KfW-Förderkredite (z. B. für Familien oder klimafreundlichen Neubau) können das Budget
+            erhöhen. Sie sind hier nicht eingerechnet – prüfen Sie die Förderung separat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Haus kann ich mir mit meinem Gehalt leisten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel sollte die Monatsrate höchstens 35 % Ihres Nettohaushaltseinkommens
+              betragen. Aus dieser Rate, Ihrem Eigenkapital sowie Zins und Tilgung ergibt sich der
+              maximale Kaufpreis. Bei 4.000 € netto und 80.000 € Eigenkapital sind je nach Bundesland
+              rund 330.000–350.000 € realistisch.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Prozent vom Netto darf die Rate sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Üblich sind 30 bis 40 % des Nettohaushaltseinkommens, mit 35 % als gängigem Richtwert.
+              Wichtig ist ein Puffer für Instandhaltung, höhere Nebenkosten als zur Miete und
+              unerwartete Ausgaben. Bestehende Kreditraten sollten Sie von der tragbaren Rate abziehen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Eigenkapital sollte ich beim Hauskauf haben?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Faustregel: Das Eigenkapital sollte mindestens die Kaufnebenkosten plus 10–20 % des
+              Kaufpreises abdecken. Banken finanzieren die Nebenkosten in der Regel nicht mit. Mehr
+              Eigenkapital senkt den Zins und das Risiko, eine Vollfinanzierung ist teurer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Kaufnebenkosten fallen beim Hauskauf an?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Grunderwerbsteuer (3,5–6,5 % je Bundesland), Notar und Grundbucheintrag (zusammen rund
+              2 %) sowie gegebenenfalls Maklerprovision (oft 3,57 % inkl. MwSt.). In Summe sind das je
+              nach Land und Makler rund 9–15 % des Kaufpreises – meist aus Eigenkapital zu zahlen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist das Ergebnis eine verbindliche Finanzierungszusage?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert eine unverbindliche Orientierung auf Basis von Faustregeln.
+              Die tatsächliche Darlehenshöhe hängt von Ihrer Bonität, dem Beleihungsauslauf, den
+              Bankrichtlinien und dem aktuellen Zinsmarkt ab. Für ein verbindliches Angebot ist eine
+              individuelle Finanzierungsberatung nötig.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wirkt sich die Anfangstilgung auf das Budget aus?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine höhere Anfangstilgung verkürzt die Laufzeit und senkt das Zinsänderungsrisiko,
+              erhöht aber bei gleicher Darlehenssumme die Rate. Da die Faustformel Zins und Tilgung
+              addiert, sinkt bei höherer Tilgung das maximal mögliche Darlehen – dafür sind Sie
+              schneller schuldenfrei.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/mieten-oder-kaufen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mieten-oder-Kaufen-Rechner</p>
+          </a>
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wie viel Haus kann ich mir leisten – Budgetrechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/wie-viel-haus-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Haus kann ich mir mit meinem Gehalt leisten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel sollte die Monatsrate höchstens 35 % Ihres Nettohaushaltseinkommens betragen. Aus dieser Rate, Ihrem Eigenkapital sowie Zins und Tilgung ergibt sich der maximale Kaufpreis. Bei 4.000 € netto und 80.000 € Eigenkapital sind je nach Bundesland rund 330.000–350.000 € realistisch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Prozent vom Netto darf die Rate sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Üblich sind 30 bis 40 % des Nettohaushaltseinkommens, mit 35 % als gängigem Richtwert. Wichtig ist ein Puffer für Instandhaltung, höhere Nebenkosten als zur Miete und unerwartete Ausgaben. Bestehende Kreditraten sollten Sie von der tragbaren Rate abziehen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Eigenkapital sollte ich beim Hauskauf haben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Faustregel: Das Eigenkapital sollte mindestens die Kaufnebenkosten plus 10–20 % des Kaufpreises abdecken. Banken finanzieren die Nebenkosten in der Regel nicht mit. Mehr Eigenkapital senkt den Zins und das Risiko, eine Vollfinanzierung ist teurer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kaufnebenkosten fallen beim Hauskauf an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grunderwerbsteuer (3,5–6,5 % je Bundesland), Notar und Grundbucheintrag (zusammen rund 2 %) sowie gegebenenfalls Maklerprovision (oft 3,57 % inkl. MwSt.). In Summe sind das je nach Land und Makler rund 9–15 % des Kaufpreises – meist aus Eigenkapital zu zahlen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist das Ergebnis eine verbindliche Finanzierungszusage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert eine unverbindliche Orientierung auf Basis von Faustregeln. Die tatsächliche Darlehenshöhe hängt von Ihrer Bonität, dem Beleihungsauslauf, den Bankrichtlinien und dem aktuellen Zinsmarkt ab. Für ein verbindliches Angebot ist eine individuelle Finanzierungsberatung nötig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wirkt sich die Anfangstilgung auf das Budget aus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine höhere Anfangstilgung verkürzt die Laufzeit und senkt das Zinsänderungsrisiko, erhöht aber bei gleicher Darlehenssumme die Rate. Da die Faustformel Zins und Tilgung addiert, sinkt bei höherer Tilgung das maximal mögliche Darlehen – dafür sind Sie schneller schuldenfrei."
+        }
+      }
+    ]
+  })} />
+</Layout>

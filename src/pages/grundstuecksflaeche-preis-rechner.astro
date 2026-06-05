@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrundstuecksflaechePreisRechner from '../components/rechner/GrundstuecksflaechePreisRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Grundstückspreis-Rechner 2026 – Grundstückswert & m²-Preis";
+const description = "Grundstückspreis berechnen: Gesamtpreis aus Fläche und Preis pro m², Rückrechnung des m²-Preises, Hochrechnung auf Wunschgröße und Vergleich mit dem amtlichen Bodenrichtwert (BORIS). Mit Beispielen.";
+const keywords = "Grundstückspreis Rechner, Grundstückspreise pro qm, was kostet ein Grundstück, Grundstückswert ermitteln, Grundstück Preis berechnen, Bodenrichtwert Vergleich, Quadratmeterpreis Grundstück";
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Grundstückspreis-Rechner", url: "/grundstuecksflaeche-preis-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Grundstückspreis-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grundstückspreis-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Grundstückswert und m²-Preis berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Gesamtpreis = Fläche × Preis/m². Zusätzlich Rückrechnung des m²-Preises, Hochrechnung auf eine Wunschgröße und Vergleich mit dem amtlichen Bodenwert (Bodenrichtwert × Fläche, ImmoWertV 2021).</p>
+            <p class="mb-1"><strong>Datenquelle Vergleich:</strong> Bodenrichtwerte aus dem amtlichen Portal BORIS-D.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Grunderwerbsteuer, Notar- und Maklerkosten sowie Erschließungskosten – diese kommen zum Kaufpreis hinzu. Überschlägige Werte, kein Wertgutachten. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GrundstuecksflaechePreisRechner client:load />
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Grundstückspreis und Bodenwert berechnen</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Grundstückspreis-Rechner</strong> ermitteln Sie den Gesamtpreis eines
+            Grundstücks, rechnen den Quadratmeterpreis zurück und vergleichen ein Angebot mit dem
+            amtlichen <strong>Bodenrichtwert</strong>. So erkennen Sie, ob ein Preis im Rahmen liegt oder
+            über dem Marktniveau der Zone. Für reine Wohnflächen- oder Mietpreis-Vergleiche nutzen Sie
+            den <a href="/quadratmeterpreis-rechner" class="text-blue-600 hover:text-blue-800 underline">Quadratmeterpreis-Rechner</a>;
+            dieser Rechner ist auf Bauland und Bodenwert zugeschnitten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formeln</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Gesamtpreis</strong> = Fläche (m²) × Preis pro m² (€/m²)</li>
+              <li><strong>Preis pro m²</strong> = Gesamtpreis ÷ Fläche</li>
+              <li><strong>Hochrechnung</strong> = Wunschfläche × Preis pro m²</li>
+              <li><strong>Bodenwert</strong> = Bodenrichtwert × Fläche (Vergleichswert)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Angebot gegen Bodenrichtwert prüfen</h3>
+          <p>
+            Der Bodenrichtwert ist ein amtlicher Durchschnitt aus echten Kaufpreisen einer Zone. Liegt
+            der geforderte Preis deutlich über dem Bodenwert, kann das an besonderer Lage, Zuschnitt oder
+            schlicht einem ambitionierten Verkäufer liegen. Der Rechner zeigt die prozentuale Abweichung
+            an, damit Sie eine fundierte Verhandlungsbasis haben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erschließung getrennt betrachten</h3>
+          <p>
+            Bodenrichtwerte enthalten in der Regel bereits die Erschließungsbeiträge (§ 127 BauGB). Bei
+            <strong>unerschlossenem Bauland</strong> sollten Sie die Erschließungskosten von etwa
+            <strong>30 bis 100 €/m²</strong> getrennt ausweisen und nicht im Quadratmeterpreis verstecken
+            – sonst vergleichen Sie Äpfel mit Birnen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mehrere Angebote vergleichen</h3>
+          <p>
+            Um Angebote fair zu vergleichen, normieren Sie sie auf den Quadratmeterpreis. Ein größeres,
+            günstiger wirkendes Grundstück kann pro m² teurer sein als ein kleineres. Erst der m²-Preis
+            macht unterschiedliche Größen vergleichbar – und die Hochrechnung auf eine einheitliche
+            Wunschgröße zeigt den realen Unterschied.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📐 Gesamtpreis nach Fläche und m²-Preis</h2>
+        <p class="text-gray-600 text-sm mb-4">Beispielwerte zur Orientierung (ohne Nebenkosten).</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Fläche</th>
+                <th class="py-2 px-2 font-semibold text-right">200 €/m²</th>
+                <th class="py-2 px-2 font-semibold text-right">400 €/m²</th>
+                <th class="py-2 pl-2 font-semibold text-right">800 €/m²</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">400 m²</td><td class="py-2 px-2 text-right">80.000 €</td><td class="py-2 px-2 text-right">160.000 €</td><td class="py-2 pl-2 text-right">320.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">600 m²</td><td class="py-2 px-2 text-right">120.000 €</td><td class="py-2 px-2 text-right">240.000 €</td><td class="py-2 pl-2 text-right">480.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">800 m²</td><td class="py-2 px-2 text-right">160.000 €</td><td class="py-2 px-2 text-right">320.000 €</td><td class="py-2 pl-2 text-right">640.000 €</td></tr>
+              <tr><td class="py-2 pr-2">1.000 m²</td><td class="py-2 px-2 text-right">200.000 €</td><td class="py-2 px-2 text-right">400.000 €</td><td class="py-2 pl-2 text-right">800.000 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">Quellen: BORIS-D, Finanztip (Stand 2026).</p>
+      </div>
+    </div>
+
+    <!-- Beispiele -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <div class="space-y-4">
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Gesamtpreis</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div><div class="font-medium text-gray-800">600 m²</div>
+              <div class="text-gray-600">Preis pro m²:</div><div class="font-medium text-gray-800">400 €/m²</div>
+              <div class="text-gray-600">Gesamtpreis:</div><div class="font-medium text-green-700">240.000 €</div>
+            </div>
+          </div>
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: m²-Preis zurückrechnen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gesamtpreis:</div><div class="font-medium text-gray-800">320.000 €</div>
+              <div class="text-gray-600">Fläche:</div><div class="font-medium text-gray-800">800 m²</div>
+              <div class="text-gray-600">Preis pro m²:</div><div class="font-medium text-green-700">400 €/m²</div>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Vergleich mit Bodenrichtwert</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Angebot (600 × 400):</div><div class="font-medium text-gray-800">240.000 €</div>
+              <div class="text-gray-600">Bodenwert (600 × 430):</div><div class="font-medium text-gray-800">258.000 €</div>
+              <div class="text-gray-600">Abweichung:</div><div class="font-medium text-green-700">−7,0 % (unter BRW)</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Ein Preis unter dem Bodenrichtwert ist ein gutes Zeichen, kann aber
+          auch auf Nachteile (Zuschnitt, Lärm, fehlende Erschließung) hindeuten. Prüfen Sie immer den
+          konkreten Grund.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nebenkosten vergessen</h3>
+            <p>Zum Kaufpreis kommen Grunderwerbsteuer, Notar- und Grundbuchkosten sowie ggf. Maklerprovision – zusammen oft 7 bis 12 % des Preises.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Erschließung im m²-Preis verstecken</h3>
+            <p>Unerschlossenes Land wirkt günstig, bis die Erschließungskosten dazukommen. Weisen Sie diese mit 30–100 €/m² getrennt aus.</p>
+          </div>
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Bodenrichtwert als Festpreis sehen</h3>
+            <p>Der Bodenrichtwert ist ein Zonen-Durchschnitt. Das konkrete Grundstück kann je nach Lage und Zuschnitt deutlich abweichen.</p>
+          </div>
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sehr großes Grundstück</h3>
+            <p>Bei großen Flächen sinkt der m²-Preis oft, weil nicht jeder Quadratmeter voll bebaubar ist. Ein Umrechnungskoeffizient für die Größe kann den Wert mindern.</p>
+          </div>
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Bauerwartungsland</h3>
+            <p>Noch nicht baureifes Land ist deutlich günstiger, aber mit Unsicherheit behaftet. Ob und wann es Bauland wird, entscheidet die Gemeinde.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Grundstückspreis</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg"><summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich den Preis eines Grundstücks?</summary><div class="px-4 pb-4 text-sm text-gray-600"><p>Multiplizieren Sie die Grundstücksfläche mit dem Preis pro Quadratmeter. Ein Grundstück mit 600 m² und 400 €/m² kostet also 240.000 €. Den m²-Preis rechnen Sie umgekehrt aus, indem Sie den Gesamtpreis durch die Fläche teilen.</p></div></details>
+          <details class="border border-gray-200 rounded-lg"><summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Quadratmeter Grundstück?</summary><div class="px-4 pb-4 text-sm text-gray-600"><p>Das hängt stark von der Lage ab und reicht von unter 100 €/m² in ländlichen Regionen bis über 2.000 €/m² in begehrten Städten. Der amtliche Bodenrichtwert Ihrer Zone gibt den besten Anhaltspunkt und ist über BORIS-D kostenlos abrufbar.</p></div></details>
+          <details class="border border-gray-200 rounded-lg"><summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist der Grundstückspreis gleich dem Bodenrichtwert?</summary><div class="px-4 pb-4 text-sm text-gray-600"><p>Nicht zwingend. Der Bodenrichtwert ist ein Zonen-Durchschnitt; der tatsächliche Kaufpreis kann je nach Lage, Zuschnitt, Nachfrage und Erschließungszustand darüber oder darunter liegen. Der Rechner zeigt die prozentuale Abweichung als Verhandlungshilfe.</p></div></details>
+          <details class="border border-gray-200 rounded-lg"><summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind Erschließungskosten im Grundstückspreis enthalten?</summary><div class="px-4 pb-4 text-sm text-gray-600"><p>Bei baureifen Grundstücken in der Regel ja – Bodenrichtwerte enthalten meist die Erschließungsbeiträge. Bei unerschlossenem Bauland kommen Erschließungskosten von etwa 30 bis 100 €/m² hinzu, die Sie getrennt einplanen sollten.</p></div></details>
+          <details class="border border-gray-200 rounded-lg"><summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Nebenkosten kommen zum Grundstückspreis dazu?</summary><div class="px-4 pb-4 text-sm text-gray-600"><p>Hinzu kommen Grunderwerbsteuer (je nach Bundesland 3,5–6,5 %), Notar- und Grundbuchkosten (rund 1,5–2 %) sowie eventuell Maklerprovision. Zusammen sind das oft 7 bis 12 % des Kaufpreises.</p></div></details>
+          <details class="border border-gray-200 rounded-lg"><summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie vergleiche ich mehrere Grundstücke?</summary><div class="px-4 pb-4 text-sm text-gray-600"><p>Rechnen Sie jedes Angebot auf den Quadratmeterpreis um und rechnen Sie es auf eine einheitliche Wunschgröße hoch. So werden unterschiedlich große Grundstücke vergleichbar und Sie erkennen, welches pro m² wirklich günstiger ist.</p></div></details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><span class="text-2xl">📏</span><p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p></a>
+          <a href="/bodenrichtwert-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><span class="text-2xl">🗺️</span><p class="font-medium text-gray-800 text-sm mt-1">Bodenrichtwert-Rechner</p></a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><span class="text-2xl">🧾</span><p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p></a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><span class="text-2xl">📑</span><p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p></a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><span class="text-2xl">🏦</span><p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p></a>
+          <a href="/erschliessungskosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><span class="text-2xl">🚧</span><p class="font-medium text-gray-800 text-sm mt-1">Erschließungskosten-Rechner</p></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Grundstückspreis-Rechner 2026",
+    "description": description, "url": "https://www.deutschland-rechner.de/grundstuecksflaeche-preis-rechner",
+    "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Wie berechne ich den Preis eines Grundstücks?", "acceptedAnswer": { "@type": "Answer", "text": "Multiplizieren Sie die Grundstücksfläche mit dem Preis pro Quadratmeter. Ein Grundstück mit 600 m² und 400 €/m² kostet also 240.000 €. Den m²-Preis rechnen Sie umgekehrt aus, indem Sie den Gesamtpreis durch die Fläche teilen." } },
+      { "@type": "Question", "name": "Was kostet ein Quadratmeter Grundstück?", "acceptedAnswer": { "@type": "Answer", "text": "Das hängt stark von der Lage ab und reicht von unter 100 €/m² in ländlichen Regionen bis über 2.000 €/m² in begehrten Städten. Der amtliche Bodenrichtwert Ihrer Zone gibt den besten Anhaltspunkt und ist über BORIS-D kostenlos abrufbar." } },
+      { "@type": "Question", "name": "Ist der Grundstückspreis gleich dem Bodenrichtwert?", "acceptedAnswer": { "@type": "Answer", "text": "Nicht zwingend. Der Bodenrichtwert ist ein Zonen-Durchschnitt; der tatsächliche Kaufpreis kann je nach Lage, Zuschnitt, Nachfrage und Erschließungszustand darüber oder darunter liegen. Der Rechner zeigt die prozentuale Abweichung als Verhandlungshilfe." } },
+      { "@type": "Question", "name": "Sind Erschließungskosten im Grundstückspreis enthalten?", "acceptedAnswer": { "@type": "Answer", "text": "Bei baureifen Grundstücken in der Regel ja – Bodenrichtwerte enthalten meist die Erschließungsbeiträge. Bei unerschlossenem Bauland kommen Erschließungskosten von etwa 30 bis 100 €/m² hinzu, die Sie getrennt einplanen sollten." } },
+      { "@type": "Question", "name": "Welche Nebenkosten kommen zum Grundstückspreis dazu?", "acceptedAnswer": { "@type": "Answer", "text": "Hinzu kommen Grunderwerbsteuer (je nach Bundesland 3,5–6,5 %), Notar- und Grundbuchkosten (rund 1,5–2 %) sowie eventuell Maklerprovision. Zusammen sind das oft 7 bis 12 % des Kaufpreises." } },
+      { "@type": "Question", "name": "Wie vergleiche ich mehrere Grundstücke?", "acceptedAnswer": { "@type": "Answer", "text": "Rechnen Sie jedes Angebot auf den Quadratmeterpreis um und rechnen Sie es auf eine einheitliche Wunschgröße hoch. So werden unterschiedlich große Grundstücke vergleichbar und Sie erkennen, welches pro m² wirklich günstiger ist." } }
+    ]
+  })} />
+</Layout>

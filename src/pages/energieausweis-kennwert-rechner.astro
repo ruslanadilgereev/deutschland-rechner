@@ -1,0 +1,426 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EnergieausweisKennwertRechner from '../components/rechner/EnergieausweisKennwertRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Energieausweis-Rechner 2026 – Energiekennwert & Effizienzklasse";
+const description = "Energiekennwert und Effizienzklasse des Hauses berechnen: aus dem Verbrauch der letzten 3 Jahre den Endenergiekennwert in kWh/(m²·a) und die GEG-Effizienzklasse (A+ bis H) ermitteln. Mit Umrechnung für Gas, Öl und Pellets.";
+const keywords = "Energieausweis Rechner, Energieeffizienzklasse berechnen, Energiekennwert berechnen, Energieverbrauchskennwert, Effizienzklasse Haus, GEG Energieklasse, kWh pro m2, Energieausweis Werte";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Energieausweis-Rechner", url: "/energieausweis-kennwert-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Energieausweis-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Energieausweis-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Energiekennwert und Effizienzklasse berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Verbrauchsausweis-Methode (vereinfacht) – 3-Jahres-Mittel des Endenergieverbrauchs ÷ Gebäudenutzfläche AN. AN ≈ Wohnfläche × 1,35. Klassen nach GEG § 86 / Anlage 10.</p>
+            <p class="mb-1"><strong>Umrechnung:</strong> Heizöl 1 l ≈ 10 kWh, Erdgas 1 m³ ≈ 10 kWh, Pellets 1 kg ≈ 4,8 kWh. Klimafaktor Default 1,0 (DWD-Witterungskorrektur). Klassengrenzen: A+ ≤30 · A ≤50 · B ≤75 · C ≤100 · D ≤130 · E ≤160 · F ≤200 · G ≤250 · H >250 kWh/(m²·a).</p>
+            <p><strong>Nicht berücksichtigt:</strong> exaktes DWD-Witterungsverfahren, Bedarfsausweis-Berechnung, getrennter Warmwasseranteil. Ersetzt keinen amtlichen Energieausweis. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <EnergieausweisKennwertRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Energiekennwert und Effizienzklasse berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Energieausweis-Rechner</strong> schätzen Sie den
+            <strong>Endenergiekennwert</strong> Ihres Hauses in kWh pro Quadratmeter und Jahr und
+            ermitteln die zugehörige <strong>Effizienzklasse</strong> von A+ bis H. Grundlage ist die
+            Logik des <strong>Verbrauchsausweises</strong>: der reale Energieverbrauch der letzten drei
+            Jahre, bezogen auf die Gebäudenutzfläche.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>3-Jahres-Mittel</strong> = (V1 + V2 + V3) ÷ 3, in kWh</li>
+              <li><strong>Nutzfläche AN</strong> ≈ Wohnfläche × 1,35 (Wohngebäude)</li>
+              <li><strong>Kennwert</strong> = (Mittel × Klimafaktor) ÷ AN in kWh/(m²·a)</li>
+            </ul>
+          </div>
+          <p>
+            Verbräuche in Litern Öl, Kubikmetern Gas oder Kilogramm Pellets werden zuerst in
+            <strong>Kilowattstunden</strong> umgerechnet: Heizöl und Erdgas mit rund Faktor 10,
+            Holzpellets mit etwa 4,8 kWh/kg. Der <strong>Klimafaktor</strong> gleicht milde oder strenge
+            Winter am Standort aus – standardmäßig 1,0, also ohne Korrektur.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum mal 1,35?</h3>
+          <p>
+            Der Energieausweis bezieht sich nicht auf die Wohnfläche, sondern auf die
+            <strong>Gebäudenutzfläche AN</strong> nach GEG. Bei Wohngebäuden liegt sie typischerweise
+            rund <strong>35 % über der Wohnfläche</strong>, weil auch beheizte Nebenflächen einbezogen
+            werden. Wer die AN bereits kennt, kann sie im Rechner direkt eingeben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verbrauchs- oder Bedarfsausweis?</h3>
+          <p>
+            Dieser Rechner bildet den <strong>Verbrauchsausweis</strong> ab, der auf den tatsächlichen
+            Heizkosten basiert und stark vom Nutzerverhalten abhängt. Der <strong>Bedarfsausweis</strong>
+            dagegen wird aus dem baulichen Zustand des Gebäudes berechnet und ist aufwändiger. Für
+            ältere, kleinere Häuser ist bei Verkauf/Vermietung teils der Bedarfsausweis Pflicht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Effizienzklassen und ihre Bedeutung</h3>
+          <p>
+            Die Skala reicht von <strong>A+</strong> (Neubau-/Passivhaus-Niveau, ≤ 30 kWh/m²a) bis
+            <strong>H</strong> (unsanierter Altbau, > 250). Die Klasse landet seit 2014 auf jedem
+            Energieausweis und wird in Immobilienanzeigen zunehmend wichtig – sie beeinflusst Kaufpreis,
+            Miete und die Frage, ob eine Sanierung ansteht.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📋 Effizienzklassen nach GEG (Wohngebäude)</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Endenergiekennwert in kWh/(m²·a) und zugehörige Effizienzklasse (GEG Anlage 10).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Klasse</th>
+                <th class="py-2 px-2 font-semibold text-right">kWh/(m²·a)</th>
+                <th class="py-2 pl-2 font-semibold text-right">typisch</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">A+</td><td class="py-2 px-2 text-right">≤ 30</td><td class="py-2 pl-2 text-right">Passivhaus</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">A</td><td class="py-2 px-2 text-right">> 30–50</td><td class="py-2 pl-2 text-right">KfW-Effizienzhaus</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">B</td><td class="py-2 px-2 text-right">> 50–75</td><td class="py-2 pl-2 text-right">Neubau</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">C</td><td class="py-2 px-2 text-right">> 75–100</td><td class="py-2 pl-2 text-right">saniert</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">D</td><td class="py-2 px-2 text-right">> 100–130</td><td class="py-2 pl-2 text-right">teilsaniert</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">E</td><td class="py-2 px-2 text-right">> 130–160</td><td class="py-2 pl-2 text-right">älterer Bestand</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">F</td><td class="py-2 px-2 text-right">> 160–200</td><td class="py-2 pl-2 text-right">unsaniert</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">G</td><td class="py-2 px-2 text-right">> 200–250</td><td class="py-2 pl-2 text-right">Altbau</td></tr>
+              <tr><td class="py-2 pr-2">H</td><td class="py-2 px-2 text-right">> 250</td><td class="py-2 pl-2 text-right">sanierungsbedürftig</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: GEG § 86 / Anlage 10 (gesetze-im-internet.de), Finanztip, energie-experten.org.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei Haushalte mit unterschiedlichen Energieträgern (Klimafaktor 1,0):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Gasheizung, 140 m² Wohnfläche</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch (kWh):</div>
+              <div class="font-medium text-gray-800">18.000 / 19.500 / 16.500 → Mittel 18.000</div>
+              <div class="text-gray-600">Nutzfläche AN:</div>
+              <div class="font-medium text-gray-800">140 × 1,35 = 189 m²</div>
+              <div class="text-gray-600">Kennwert:</div>
+              <div class="font-medium text-green-700">18.000 ÷ 189 ≈ 95,2 → Klasse C</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Ölheizung, 150 m² Wohnfläche</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch (Liter):</div>
+              <div class="font-medium text-gray-800">2.200 / 2.400 / 2.000 → Mittel 2.200 l ≈ 22.000 kWh</div>
+              <div class="text-gray-600">Nutzfläche AN:</div>
+              <div class="font-medium text-gray-800">150 × 1,35 = 202,5 m²</div>
+              <div class="text-gray-600">Kennwert:</div>
+              <div class="font-medium text-green-700">22.000 ÷ 202,5 ≈ 108,6 → Klasse D</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Gas in m³, 120 m² Wohnfläche</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Verbrauch (m³):</div>
+              <div class="font-medium text-gray-800">1.500 / 1.600 / 1.400 → Mittel 1.500 m³ ≈ 15.000 kWh</div>
+              <div class="text-gray-600">Nutzfläche AN:</div>
+              <div class="font-medium text-gray-800">120 × 1,35 = 162 m²</div>
+              <div class="text-gray-600">Kennwert:</div>
+              <div class="font-medium text-green-700">15.000 ÷ 162 ≈ 92,6 → Klasse C</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Nutzen Sie drei zusammenhängende, vollständige Abrechnungsjahre.
+          Ein einzelnes mildes oder strenges Jahr verzerrt das Ergebnis – der Mittelwert glättet das.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Wohnfläche statt Nutzfläche</h3>
+            <p>Der Kennwert bezieht sich auf die Gebäudenutzfläche AN, nicht auf die Wohnfläche. Ohne
+            den Faktor 1,35 fällt der Kennwert zu hoch und die Klasse zu schlecht aus.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Einheit nicht umrechnen</h3>
+            <p>Gas in m³ oder Öl in Litern muss erst in kWh umgerechnet werden (Faktor ~10). Wer die
+            Rohmenge direkt durch die Fläche teilt, erhält einen völlig falschen Wert.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Nur ein Jahr verwenden</h3>
+            <p>Der Verbrauchsausweis verlangt drei zusammenhängende Jahre. Ein einzelnes Jahr ist zu
+            stark vom Wetter und vom Verhalten abhängig und nicht aussagekräftig.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Warmwasser separat</h3>
+            <p>Wird das Warmwasser elektrisch oder getrennt erzeugt, fehlt dieser Anteil im
+            Heizverbrauch. Für einen exakten Kennwert muss er pauschal ergänzt werden – das amtliche
+            Verfahren regelt das genauer.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Klimabereinigung</h3>
+            <p>Das amtliche Verfahren bereinigt den Heizverbrauch mit einem standortgenauen
+            DWD-Witterungsfaktor je PLZ. Die hier nutzbare Pauschale (Default 1,0) ist eine
+            Vereinfachung und kann vom amtlichen Wert abweichen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Energieausweis</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Energieeffizienzklasse?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Man bildet das 3-Jahres-Mittel des Energieverbrauchs in kWh und teilt es durch die
+              Gebäudenutzfläche AN (≈ Wohnfläche × 1,35). Das Ergebnis in kWh/(m²·a) wird der
+              GEG-Skala zugeordnet: bis 30 ist A+, über 250 ist H.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein guter Energiekennwert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Werte unter 50 kWh/(m²·a) (Klasse A/A+) entsprechen Neubau- oder Effizienzhaus-Niveau.
+              Ein saniertes Haus liegt oft bei 75–100 (Klasse C), ein unsanierter Altbau bei über 200
+              (Klasse G/H). Je kleiner der Wert, desto besser.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich Gas oder Öl in kWh um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel entsprechen 1 Liter Heizöl und 1 m³ Erdgas jeweils rund 10 kWh, 1 kg
+              Holzpellets etwa 4,8 kWh. Der genaue Gas-Faktor steht über Brennwert und Zustandszahl auf
+              der Abrechnung. Wer den Verbrauch schon in kWh hat, nutzt ihn direkt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Verbrauchs- und Bedarfsausweis?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Verbrauchsausweis basiert auf den realen Heizkosten der letzten drei Jahre und
+              hängt vom Nutzerverhalten ab. Der Bedarfsausweis wird aus dem baulichen Zustand berechnet
+              und ist objektiver, aber aufwändiger. Dieser Rechner bildet den Verbrauchsausweis ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum wird die Wohnfläche mit 1,35 multipliziert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Energieausweis nutzt die Gebäudenutzfläche AN, nicht die Wohnfläche. Bei
+              Wohngebäuden liegt die AN im Schnitt rund 35 % höher, weil weitere beheizte Flächen
+              einbezogen werden. Deshalb der Umrechnungsfaktor 1,35.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ersetzt der Rechner einen offiziellen Energieausweis?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert nur eine Orientierung. Ein rechtsgültiger Energieausweis darf
+              ausschließlich von berechtigten Ausstellern nach § 88 GEG erstellt werden und ist für
+              Verkauf und Vermietung gesetzlich vorgeschrieben.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/u-wert-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">U-Wert-Rechner</p>
+          </a>
+          <a href="/daemmung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dämmstärke-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/gasverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gasverbrauch-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Energieausweis-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/energieausweis-kennwert-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Energieeffizienzklasse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Man bildet das 3-Jahres-Mittel des Energieverbrauchs in kWh und teilt es durch die Gebäudenutzfläche AN (≈ Wohnfläche × 1,35). Das Ergebnis in kWh/(m²·a) wird der GEG-Skala zugeordnet: bis 30 ist A+, über 250 ist H."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist ein guter Energiekennwert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Werte unter 50 kWh/(m²·a) (Klasse A/A+) entsprechen Neubau- oder Effizienzhaus-Niveau. Ein saniertes Haus liegt oft bei 75–100 (Klasse C), ein unsanierter Altbau bei über 200 (Klasse G/H). Je kleiner der Wert, desto besser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich Gas oder Öl in kWh um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel entsprechen 1 Liter Heizöl und 1 m³ Erdgas jeweils rund 10 kWh, 1 kg Holzpellets etwa 4,8 kWh. Der genaue Gas-Faktor steht über Brennwert und Zustandszahl auf der Abrechnung. Wer den Verbrauch schon in kWh hat, nutzt ihn direkt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Verbrauchs- und Bedarfsausweis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Verbrauchsausweis basiert auf den realen Heizkosten der letzten drei Jahre und hängt vom Nutzerverhalten ab. Der Bedarfsausweis wird aus dem baulichen Zustand berechnet und ist objektiver, aber aufwändiger. Dieser Rechner bildet den Verbrauchsausweis ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum wird die Wohnfläche mit 1,35 multipliziert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Energieausweis nutzt die Gebäudenutzfläche AN, nicht die Wohnfläche. Bei Wohngebäuden liegt die AN im Schnitt rund 35 % höher, weil weitere beheizte Flächen einbezogen werden. Deshalb der Umrechnungsfaktor 1,35."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ersetzt der Rechner einen offiziellen Energieausweis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert nur eine Orientierung. Ein rechtsgültiger Energieausweis darf ausschließlich von berechtigten Ausstellern nach § 88 GEG erstellt werden und ist für Verkauf und Vermietung gesetzlich vorgeschrieben."
+        }
+      }
+    ]
+  })} />
+</Layout>

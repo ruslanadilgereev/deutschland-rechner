@@ -1,0 +1,422 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PorenbetonRechner from '../components/rechner/PorenbetonRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Porenbeton-Rechner 2026 – Ytong-Steine & Kleber berechnen";
+const description = "Porenbeton berechnen: Anzahl Plansteine pro m² und für die ganze Wand, Paletten sowie Dünnbettkleber – für Ytong & Co. Mit Steinformat, Wanddicke, Öffnungen und Verschnitt.";
+const keywords = "Porenbeton Rechner, Porenbeton berechnen, Ytong Rechner, Ytong Steine berechnen, Porenbetonsteine pro m2, Gasbeton berechnen, Dünnbettkleber Bedarf, Plansteine Anzahl";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Porenbeton-Rechner", url: "/porenbeton-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Porenbeton-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⬜</span>
+          <div>
+            <h1 class="text-2xl font-bold">Porenbeton-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Plansteine, Paletten und Kleber berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Steine/m² = 1 ÷ (Steinlänge × Steinhöhe); Plansteine berücksichtigen die Dünnbettfuge im Rastermaß. Gesamt = (Wandfläche − Öffnungen) × Steine/m² × (1 + Verschnitt). Kleber ≈ 0,8 kg/m² je 100 mm Wanddicke.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Standard-Planstein 599 × 199 mm (Raster 600 × 200), Verschnitt 5 %, Wanddicke 24 cm, Klebersack 25 kg. Steine pro Palette frei eingebbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> statische Bemessung (Eurocode 6 / DIN EN 1996), U-Wert-/Schallschutznachweis, herstellerspezifische Sondermaße. Im Zweifel Fachplaner/Statiker. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PorenbetonRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Porenbeton- und Ytong-Steine berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Porenbeton-Rechner</strong> ermitteln Sie, wie viele Plansteine Sie für
+            Ihre Wand brauchen, wie viele <strong>Paletten</strong> das sind und wie viel
+            <strong>Dünnbettkleber</strong> dazugehört. Der Rechner gilt für alle Porenbeton-Marken
+            wie <strong>Ytong</strong> und ähnliche Gasbeton-Plansteine.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Steine/m²</strong> = 1 ÷ (Steinlänge × Steinhöhe) in Metern</li>
+              <li><strong>Wandfläche</strong> = Länge × Höhe − Öffnungen</li>
+              <li><strong>Gesamtsteine</strong> = Wandfläche × Steine/m² × (1 + Verschnitt)</li>
+              <li><strong>Kleber</strong> ≈ 0,8 kg/m² je 100 mm Wanddicke</li>
+            </ul>
+          </div>
+          <p>
+            Beim Standard-Planstein mit 599 × 199 mm Sichtfläche ergeben sich rund
+            <strong>8,4 Steine pro m²</strong>. Anders als beim klassischen Mauerwerk mit 10-mm-Fuge ist
+            bei Plansteinen die <strong>dünne Klebefuge</strong> (1–3 mm) bereits im Rastermaß
+            600 × 200 mm berücksichtigt – deshalb wird hier mit dem Steinmaß selbst gerechnet.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum Porenbeton?</h3>
+          <p>
+            Porenbeton (auch Gasbeton oder Ytong) ist leicht, gut wärmedämmend und lässt sich einfach
+            sägen und bearbeiten. Die großformatigen Plansteine werden mit <strong>Dünnbettmörtel</strong>
+            statt mit dickem Mörtelbett verklebt – das geht schnell und spart Material. Für den
+            Mörtelbedarf klassischer Ziegel nutzen Sie dagegen den
+            <a href="/mauersteine-rechner" class="text-blue-600 hover:text-blue-800 underline">Mauerstein-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kleberbedarf richtig schätzen</h3>
+          <p>
+            Der Dünnbettkleber-Verbrauch hängt von der <strong>Wanddicke</strong> ab, weil breitere
+            Steine eine größere Klebefläche haben. Als Faustwert gelten rund <strong>0,8 kg pro m² und
+            100 mm Wanddicke</strong> – bei einer 24-cm-Wand also etwa 2 kg/m². Der genaue Verbrauch
+            steht auf dem Klebersack des Herstellers.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verschnitt und Paletten</h3>
+          <p>
+            Für DIY-Projekte sind rund <strong>5 % Verschnitt</strong> üblich, bei vielen Ecken und
+            Zuschnitten eher 7–10 %. Porenbeton wird auf <strong>Paletten</strong> geliefert – die
+            Stückzahl pro Palette hängt von Format und Wanddicke ab und steht auf dem Lieferschein.
+            Tragen Sie sie im Rechner ein, um die Palettenzahl zu erhalten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⬜ Richtwerte für Porenbeton</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Steinbedarf und Kleberverbrauch – Richtwerte, herstellerabhängig.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Kennwert</th>
+                <th class="py-2 pl-2 font-semibold text-right">Richtwert</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Planstein 599 × 199 mm</td><td class="py-2 pl-2 text-right">≈ 8,4 Steine/m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Rastermaß (inkl. Fuge)</td><td class="py-2 pl-2 text-right">600 × 200 mm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Dünnbettfuge</td><td class="py-2 pl-2 text-right">1–3 mm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Kleber 11,5-cm-Wand</td><td class="py-2 pl-2 text-right">≈ 0,9 kg/m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Kleber 24-cm-Wand</td><td class="py-2 pl-2 text-right">≈ 1,9 kg/m²</td></tr>
+              <tr><td class="py-2 pr-2">Kleber 36,5-cm-Wand</td><td class="py-2 pl-2 text-right">≈ 2,9 kg/m²</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: BV Porenbeton, Xella/Ytong, BauNetz Wissen (Eurocode 6).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei Wände mit Standard-Planstein 599 × 199 mm:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wand 5 × 2,5 m, 24 cm, 5 % Verschnitt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Steine/m²:</div>
+              <div class="font-medium text-gray-800">1 ÷ (0,599 × 0,199) ≈ 8,4</div>
+              <div class="text-gray-600">Steine (12,5 m²):</div>
+              <div class="font-medium text-green-700">12,5 × 8,4 × 1,05 ≈ 111 Steine</div>
+              <div class="text-gray-600">Kleber (1,9 kg/m²):</div>
+              <div class="font-medium text-gray-800">≈ 24 kg → 1 Sack (25 kg)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Wand 8 × 2,75 m mit 2,5 m² Fenster, 36,5 cm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">8 × 2,75 − 2,5 = 19,5 m²</div>
+              <div class="text-gray-600">Steine (5 %):</div>
+              <div class="font-medium text-green-700">19,5 × 8,4 × 1,05 ≈ 172 Steine</div>
+              <div class="text-gray-600">Kleber (2,9 kg/m²):</div>
+              <div class="font-medium text-gray-800">≈ 57 kg → 3 Säcke (25 kg)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Trennwand 4 × 2,5 m, 11,5 cm, 7 % Verschnitt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">4 × 2,5 = 10 m²</div>
+              <div class="text-gray-600">Steine (7 %):</div>
+              <div class="font-medium text-green-700">10 × 8,4 × 1,07 ≈ 90 Steine</div>
+              <div class="text-gray-600">Kleber (0,9 kg/m²):</div>
+              <div class="font-medium text-gray-800">≈ 9 kg → 1 Sack (25 kg)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Bestellen Sie die Steine auf einer Palette mehr als knapp gerechnet –
+          beschädigte Steine und Zuschnitte an Ecken summieren sich schneller als gedacht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Mit 10-mm-Fuge rechnen</h3>
+            <p>Plansteine werden im Dünnbett verklebt, nicht vermauert. Die 1–3-mm-Fuge ist schon im
+            Rastermaß enthalten – rechnen Sie deshalb mit dem Steinmaß, nicht mit dicker Mörtelfuge.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Öffnungen nicht abziehen</h3>
+            <p>Fenster und Türen können einen großen Teil der Wand ausmachen. Ziehen Sie ihre Fläche ab,
+            sonst bestellen Sie deutlich zu viele Steine und zu viel Kleber.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Kleberbedarf pauschal annehmen</h3>
+            <p>Der Kleberverbrauch steigt mit der Wanddicke. Eine 36,5-cm-Wand braucht dreimal so viel
+            Kleber pro m² wie eine 11,5-cm-Trennwand. Wählen Sie die richtige Wanddicke.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Tragende Wände</h3>
+            <p>Für tragende Porenbetonwände ist eine statische Bemessung nach Eurocode 6 (DIN EN 1996)
+            erforderlich. Der Rechner liefert nur die Materialmenge, keine Tragwerksplanung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Erste Schicht im Mörtelbett</h3>
+            <p>Die unterste Steinreihe wird oft in ein dickeres Ausgleichs-Mörtelbett gesetzt, um
+            Unebenheiten der Bodenplatte auszugleichen. Dafür fällt zusätzlicher Mörtel an, der hier
+            nicht enthalten ist.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Porenbeton-Rechner</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Porenbetonsteine brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim Standard-Planstein mit 599 × 199 mm Sichtfläche sind es rund 8,4 Steine pro m². Die
+              Formel lautet 1 ÷ (Steinlänge × Steinhöhe) in Metern. Die dünne Klebefuge ist im
+              Rastermaß 600 × 200 mm bereits berücksichtigt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Dünnbettkleber brauche ich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustwert rund 0,8 kg pro m² und 100 mm Wanddicke. Eine 24-cm-Wand braucht also
+              etwa 1,9 kg/m², eine 36,5-cm-Wand rund 2,9 kg/m². Der genaue Verbrauch steht auf dem
+              Klebersack des Herstellers.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zu Ytong?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Kein inhaltlicher: Ytong ist die bekannteste Markenbezeichnung für Porenbeton (Gasbeton)
+              des Herstellers Xella. Der Rechner gilt für Ytong ebenso wie für Porenbeton anderer
+              Hersteller – maßgeblich ist das jeweilige Steinformat.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für einfache Wände rund 5 %, bei vielen Ecken, Aussparungen und Zuschnitten eher 7–10 %.
+              Porenbeton lässt sich zwar gut sägen, aber Reststücke und Bruch summieren sich – planen Sie
+              lieber etwas Reserve ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Worin unterscheidet sich der Porenbeton- vom Mauerstein-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Mauerstein-Rechner gilt für Ziegel nach DIN 105 mit 10-mm-Mörtelfuge und rechnet
+              den Mörtel in Litern. Der Porenbeton-Rechner gilt für großformatige Plansteine im Dünnbett
+              und rechnet den Kleber in Kilogramm. Beide ergänzen sich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich für eine tragende Wand einen Statiker?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Für tragende Porenbetonwände ist eine statische Bemessung nach Eurocode 6
+              (DIN EN 1996) erforderlich. Der Rechner liefert nur die Materialmenge und ersetzt keine
+              Tragwerksplanung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/mauersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Mauerstein-Rechner</p>
+          </a>
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪣</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/u-wert-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">U-Wert-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Porenbeton-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/porenbeton-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Porenbetonsteine brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim Standard-Planstein mit 599 × 199 mm Sichtfläche sind es rund 8,4 Steine pro m². Die Formel lautet 1 ÷ (Steinlänge × Steinhöhe) in Metern. Die dünne Klebefuge ist im Rastermaß 600 × 200 mm bereits berücksichtigt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Dünnbettkleber brauche ich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustwert rund 0,8 kg pro m² und 100 mm Wanddicke. Eine 24-cm-Wand braucht also etwa 1,9 kg/m², eine 36,5-cm-Wand rund 2,9 kg/m². Der genaue Verbrauch steht auf dem Klebersack des Herstellers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zu Ytong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kein inhaltlicher: Ytong ist die bekannteste Markenbezeichnung für Porenbeton (Gasbeton) des Herstellers Xella. Der Rechner gilt für Ytong ebenso wie für Porenbeton anderer Hersteller – maßgeblich ist das jeweilige Steinformat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für einfache Wände rund 5 %, bei vielen Ecken, Aussparungen und Zuschnitten eher 7–10 %. Porenbeton lässt sich zwar gut sägen, aber Reststücke und Bruch summieren sich – planen Sie lieber etwas Reserve ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Worin unterscheidet sich der Porenbeton- vom Mauerstein-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Mauerstein-Rechner gilt für Ziegel nach DIN 105 mit 10-mm-Mörtelfuge und rechnet den Mörtel in Litern. Der Porenbeton-Rechner gilt für großformatige Plansteine im Dünnbett und rechnet den Kleber in Kilogramm. Beide ergänzen sich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich für eine tragende Wand einen Statiker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Für tragende Porenbetonwände ist eine statische Bemessung nach Eurocode 6 (DIN EN 1996) erforderlich. Der Rechner liefert nur die Materialmenge und ersetzt keine Tragwerksplanung."
+        }
+      }
+    ]
+  })} />
+</Layout>

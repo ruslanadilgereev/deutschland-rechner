@@ -1,0 +1,419 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ParkettRechner from '../components/rechner/ParkettRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Parkett-Rechner 2026 – Materialbedarf, Pakete & Verschnitt berechnen";
+const description = "Parkett-Bedarf berechnen: benötigte m² inklusive Verschnitt, Anzahl Pakete und Materialkosten. Mit Verschnittwerten für gerade, diagonale und Fischgrät-Verlegung sowie Sockelleisten.";
+const keywords = "Parkett Rechner, Parkett berechnen, Parkett Menge berechnen, Parkett Verschnitt berechnen, wie viel Parkett brauche ich, Parkett Pakete berechnen, Fischgrät Verschnitt, Parkett m2 Rechner";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Parkett-Rechner", url: "/parkett-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Parkett-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪵</span>
+          <div>
+            <h1 class="text-2xl font-bold">Parkett-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Materialbedarf, Pakete und Verschnitt berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Materialbedarf = Raumfläche × (1 + Verschnitt); Pakete = aufrunden(Bedarf ÷ Paketinhalt). Verschnittwerte als branchenübliche Faustregeln (Parkett Direkt, casando, Domke Parkett).</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> gerade Verlegung 6 %, diagonal/verwinkelt 10 %, Fischgrät/Muster 15 %; Paketinhalt 2,5 m². Alle Werte frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> exaktes Aufmaß, Raumzuschnitte und Musterrapport. Verschnittwerte sind Richtwerte, kein verbindlicher Bedarf. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ParkettRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Parkett-Bedarf richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Parkett-Rechner</strong> ermitteln Sie, wie viele Quadratmeter Parkett Sie für
+            Ihren Raum brauchen, wie viele Pakete das sind und was das Material kostet. Entscheidend ist
+            neben der Raumfläche der <strong>Verschnitt</strong> – also der Anteil, der beim Zuschneiden
+            anfällt und je nach Verlegeart stark schwankt. So vermeiden Sie, zu wenig zu bestellen und
+            später teuer aus einer anderen Charge nachkaufen zu müssen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Raumfläche (m²)</strong> = Länge × Breite (mehrere Räume addieren)</li>
+              <li><strong>Materialbedarf</strong> = Raumfläche × (1 + Verschnitt)</li>
+              <li><strong>Pakete</strong> = aufrunden(Materialbedarf ÷ Paketinhalt in m²)</li>
+              <li><strong>Sockelleisten</strong> = Raumumfang × 1,10 (10 % Verschnitt)</li>
+            </ul>
+          </div>
+          <p>
+            Da Parkett paketweise verkauft wird, rundet der Rechner immer auf das nächste volle Paket auf.
+            Der Paketinhalt steht auf der Verpackung und liegt typischerweise zwischen 2,0 und 2,5 m².
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verschnitt je Verlegeart</h3>
+          <p>
+            Der <strong>Verschnitt</strong> ist der größte Unsicherheitsfaktor. Bei einer einfachen
+            <strong>geraden Verlegung</strong> in einem rechteckigen Raum genügen rund 5–6 %. Wird
+            <strong>diagonal</strong> verlegt oder ist der Raum verwinkelt (Erker, Nischen, Treppen),
+            steigt der Verschnitt auf 8–10 %. Aufwendige Muster wie <strong>Fischgrät</strong> oder
+            Kassetten erfordern rund 15 %, weil viele Dielen schräg zugeschnitten werden. Diese Werte sind
+            branchenübliche Faustregeln, kein verbindlicher Bedarf.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum aus einer Charge bestellen?</h3>
+          <p>
+            Holz ist ein Naturprodukt – Farbe und Maserung können zwischen verschiedenen
+            Produktionschargen sichtbar abweichen. Bestellen Sie deshalb die komplette Menge inklusive
+            Reserve <strong>auf einmal aus derselben Charge</strong>. Eine Nachbestellung führt nicht nur
+            zu Mehrkosten, sondern oft auch zu Farbunterschieden im verlegten Boden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Parkett, Laminat oder Vinyl?</h3>
+          <p>
+            Die Grundformel (Fläche × Verschnitt) gilt für alle Bodenbeläge, die Verschnittwerte
+            unterscheiden sich jedoch. Für andere Beläge nutzen Sie den
+            <a href="/laminat-rechner" class="text-blue-600 hover:text-blue-800 underline">Laminat-Rechner</a>
+            oder den
+            <a href="/vinylboden-rechner" class="text-blue-600 hover:text-blue-800 underline">Vinylboden-Rechner</a>.
+            Parkett hat wegen Diagonal- und Fischgrät-Verlegung tendenziell die höheren Verschnittwerte.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🪵 Verschnitt je Verlegeart</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Branchenübliche Faustwerte und Beispiel-Bedarf für einen 20 m² großen Raum.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Verlegeart</th>
+                <th class="py-2 px-2 font-semibold text-right">Verschnitt</th>
+                <th class="py-2 px-2 font-semibold text-right">20 m²: Bedarf</th>
+                <th class="py-2 pl-2 font-semibold text-right">Pakete (2,5 m²)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Gerade / parallel</td><td class="py-2 px-2 text-right">6 %</td><td class="py-2 px-2 text-right">21,2 m²</td><td class="py-2 pl-2 text-right">9</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Diagonal / verwinkelt</td><td class="py-2 px-2 text-right">10 %</td><td class="py-2 px-2 text-right">22,0 m²</td><td class="py-2 pl-2 text-right">9</td></tr>
+              <tr><td class="py-2 pr-2">Fischgrät / Muster</td><td class="py-2 px-2 text-right">15 %</td><td class="py-2 px-2 text-right">23,0 m²</td><td class="py-2 pl-2 text-right">10</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Parkett Direkt, casando, Domke Parkett. Werte gerundet.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 5 × 4 m, gerade verlegt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">5 × 4 = 20 m²</div>
+              <div class="text-gray-600">Bedarf (+6 %):</div>
+              <div class="font-medium text-gray-800">20 × 1,06 = 21,2 m²</div>
+              <div class="text-gray-600">Pakete (2,5 m²):</div>
+              <div class="font-medium text-green-700">aufrunden(8,48) = 9 Pakete</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 20 m² Fischgrät</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Bedarf (+15 %):</div>
+              <div class="font-medium text-gray-800">20 × 1,15 = 23,0 m²</div>
+              <div class="text-gray-600">Pakete (2,5 m²):</div>
+              <div class="font-medium text-gray-800">aufrunden(9,2) = 10 Pakete</div>
+              <div class="text-gray-600">Kosten (30 €/m²):</div>
+              <div class="font-medium text-green-700">23,0 × 30 = 690 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Sockelleisten für 5 × 4 m</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Umfang:</div>
+              <div class="font-medium text-gray-800">2 × (5 + 4) = 18 m</div>
+              <div class="text-gray-600">+ 10 % Verschnitt:</div>
+              <div class="font-medium text-green-700">18 × 1,10 = 19,8 m</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Heben Sie ein bis zwei volle Dielen als Reserve auf. So können Sie
+          später einzelne beschädigte Stellen ersetzen, ohne den gesamten Boden auf eine neue Charge
+          umstellen zu müssen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Verschnitt vergessen</h3>
+            <p>Wer genau die Raumfläche bestellt, hat fast immer zu wenig. Beim Zuschneiden an Wänden,
+            Türen und Ecken fällt Verschnitt an – je nach Verlegeart 6 bis 15 %.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: In zwei Chargen kaufen</h3>
+            <p>Holz ist ein Naturprodukt mit Farb- und Maserungsschwankungen. Nachbestellungen aus einer
+            anderen Charge sind im Boden oft sichtbar. Lieber von Anfang an mit Reserve aus einer Charge
+            kaufen.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verlegeart nicht beachten</h3>
+            <p>Eine Diagonal- oder Fischgrät-Verlegung sieht edel aus, kostet aber spürbar mehr Material.
+            Wählen Sie im Rechner die tatsächliche Verlegeart, sonst weicht der Bedarf ab.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: verwinkelte Räume</h3>
+            <p>Bei L- oder U-förmigen Räumen die Fläche in Rechtecke zerlegen, einzeln berechnen und
+            addieren. Erhöhen Sie zusätzlich den Verschnitt-Zuschlag, da mehr Zuschnitte anfallen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Untergrund und Trittschall</h3>
+            <p>Neben dem Parkett selbst brauchen Sie je nach Verlegung Trittschalldämmung, Dampfbremse
+            und Sockelleisten. Planen Sie diese Posten zusätzlich ein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Parkett-Bedarf</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Parkett brauche ich für einen Raum?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Bedarf ergibt sich aus <strong>Raumfläche × (1 + Verschnitt)</strong>. Für einen
+              20 m² großen Raum mit gerader Verlegung (6 % Verschnitt) brauchen Sie 20 × 1,06 = 21,2 m²,
+              also bei 2,5 m² pro Paket 9 Pakete.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich bei Parkett einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel: gerade/parallele Verlegung 5–6 %, diagonale oder verwinkelte Verlegung
+              8–10 %, aufwendige Muster wie Fischgrät rund 15 %. Diese Werte sind branchenübliche
+              Richtwerte, kein verbindlicher Bedarf.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele m² sind in einem Parkett-Paket?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom Produkt ab und steht auf der Verpackung. Üblich sind <strong>2,0 bis
+              2,5 m² pro Paket</strong>. Da nur volle Pakete verkauft werden, rundet der Rechner die
+              Paketzahl immer auf.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum sollte ich Parkett aus einer Charge bestellen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Holz ist ein Naturprodukt. Farbe und Maserung können zwischen Produktionschargen sichtbar
+              abweichen. Bestellen Sie deshalb die gesamte Menge inklusive Reserve auf einmal aus
+              derselben Charge, um Farbunterschiede im Boden zu vermeiden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Sockelleisten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Länge der Sockelleisten entspricht dem <strong>Raumumfang plus 10 % Verschnitt</strong>.
+              Bei einem Raum von 5 × 4 m ist der Umfang 2 × (5 + 4) = 18 m, mit Verschnitt also 19,8 m.
+              Türöffnungen können Sie abziehen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet Parkett pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Materialpreise reichen je nach Holzart und Qualität von rund 20 € bis weit über
+              80 € pro m². Tragen Sie im Rechner Ihren konkreten m²-Preis ein, um die Materialkosten für
+              den Gesamtbedarf zu erhalten. Verlegung und Zubehör kommen hinzu.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🟫</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/vinylboden-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Vinylboden-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔲</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Parkett-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/parkett-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Parkett brauche ich für einen Raum?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Bedarf ergibt sich aus Raumfläche × (1 + Verschnitt). Für einen 20 m² großen Raum mit gerader Verlegung (6 % Verschnitt) brauchen Sie 20 × 1,06 = 21,2 m², also bei 2,5 m² pro Paket 9 Pakete."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich bei Parkett einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel: gerade/parallele Verlegung 5–6 %, diagonale oder verwinkelte Verlegung 8–10 %, aufwendige Muster wie Fischgrät rund 15 %. Diese Werte sind branchenübliche Richtwerte, kein verbindlicher Bedarf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele m² sind in einem Parkett-Paket?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Produkt ab und steht auf der Verpackung. Üblich sind 2,0 bis 2,5 m² pro Paket. Da nur volle Pakete verkauft werden, rundet der Rechner die Paketzahl immer auf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum sollte ich Parkett aus einer Charge bestellen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Holz ist ein Naturprodukt. Farbe und Maserung können zwischen Produktionschargen sichtbar abweichen. Bestellen Sie deshalb die gesamte Menge inklusive Reserve auf einmal aus derselben Charge, um Farbunterschiede im Boden zu vermeiden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Sockelleisten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Länge der Sockelleisten entspricht dem Raumumfang plus 10 % Verschnitt. Bei einem Raum von 5 × 4 m ist der Umfang 2 × (5 + 4) = 18 m, mit Verschnitt also 19,8 m. Türöffnungen können Sie abziehen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet Parkett pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Materialpreise reichen je nach Holzart und Qualität von rund 20 € bis weit über 80 € pro m². Tragen Sie im Rechner Ihren konkreten m²-Preis ein, um die Materialkosten für den Gesamtbedarf zu erhalten. Verlegung und Zubehör kommen hinzu."
+        }
+      }
+    ]
+  })} />
+</Layout>

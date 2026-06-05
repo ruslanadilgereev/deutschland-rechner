@@ -1,0 +1,423 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchotterKiesRechner from '../components/rechner/SchotterKiesRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Schotter-Rechner 2026 – Kies, Schotter & Splitt in Tonnen berechnen";
+const description = "Schotter, Kies, Splitt und Sand berechnen: aus Fläche und Schichtdicke das Volumen in m³ und das Gewicht in Tonnen ermitteln – inklusive BigBag- und LKW-Anzahl sowie Verdichtungszuschlag.";
+const keywords = "Schotter Rechner, Kies berechnen, Schotter berechnen, Schotter in Tonnen, Kies Tonnen Rechner, Splitt berechnen, Schüttgut Rechner, BigBag Schotter, Einfahrt Schotter Menge";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Schotter- & Kies-Rechner", url: "/schotter-kies-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Schotter- & Kies-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪨</span>
+          <div>
+            <h1 class="text-2xl font-bold">Schotter- & Kies-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Menge in m³ und Tonnen berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 5. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Volumen = Fläche × Schichtdicke; bestellte Menge = Volumen × (1 + Zuschlag); Masse (t) = Volumen × Schüttdichte. BigBags = aufgerundet(t ÷ Sackgröße), LKW-Fuhren = aufgerundet(t ÷ Nutzlast).</p>
+            <p class="mb-1"><strong>Schüttdichten (t/m³, Default):</strong> Kies 1,6 · Schotter 1,8 · Splitt 1,45 · Sand 1,55. Verdichtungszuschlag für Tragschichten 6 %. BigBag 0,5/1,0 t.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Gesteinsart, Körnung und Feuchte (beeinflussen das Gewicht), Tragschicht-Statik. Liefergewicht beim Händler erfragen. Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SchotterKiesRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Schotter, Kies und Splitt richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Schotter- & Kies-Rechner</strong> ermitteln Sie, wie viel Schüttgut Sie für
+            eine Einfahrt, einen Weg, eine Tragschicht oder ein Kiesbeet brauchen – als
+            <strong>Volumen in m³</strong> und als <strong>Gewicht in Tonnen</strong>. Zusätzlich
+            erhalten Sie die Anzahl der <strong>BigBags</strong> und <strong>LKW-Fuhren</strong>, denn
+            Schüttgut wird fast immer nach Gewicht verkauft und geliefert.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Volumen (m³)</strong> = Fläche (m²) × Schichtdicke (m)</li>
+              <li><strong>Bestellmenge</strong> = Volumen × (1 + Verdichtungszuschlag)</li>
+              <li><strong>Masse (t)</strong> = Volumen × Schüttdichte (t/m³)</li>
+            </ul>
+          </div>
+          <p>
+            Der entscheidende Wert ist die <strong>Schüttdichte</strong>: Sie sagt, wie viele Tonnen ein
+            Kubikmeter des losen Materials wiegt. Schotter ist mit rund 1,8 t/m³ schwerer als Kies
+            (1,6) oder Splitt (1,45). Da diese Werte je nach Gestein und Feuchte schwanken, lässt der
+            Rechner sie frei anpassen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verdichtungszuschlag nicht vergessen</h3>
+          <p>
+            Wird das Material als <strong>Tragschicht verdichtet</strong> – etwa unter Pflaster oder
+            einer Einfahrt – verliert es beim Rütteln an Volumen. Deshalb sollten Sie rund
+            <strong>6 % mehr</strong> bestellen, als das fertige, verdichtete Volumen ergibt. Bei
+            losen Schüttungen (Kiesbeet) entfällt dieser Zuschlag weitgehend.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Schichtdicke je Anwendung</h3>
+          <p>
+            Für ein dekoratives <strong>Kiesbeet</strong> reichen 5–8 cm. Eine <strong>Tragschicht</strong>
+            unter Gehweg oder Terrasse liegt bei 15–25 cm, unter einer <strong>PKW-Einfahrt</strong>
+            eher bei 30–40 cm Frostschutz plus Schottertragschicht. Den genauen Aufbau einer befahrbaren
+            Fläche planen Sie am besten mit dem
+            <a href="/pflastersteine-rechner" class="text-blue-600 hover:text-blue-800 underline">Pflaster-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BigBag oder LKW?</h3>
+          <p>
+            Kleinere Mengen bis wenige Tonnen kommen praktisch im <strong>BigBag</strong> (0,5 oder
+            1,0 t). Ab etwa 5 Tonnen lohnt sich die <strong>lose Lieferung per Kipper</strong> – sie ist
+            pro Tonne deutlich günstiger, braucht aber eine zugängliche Abladefläche. Der Rechner zeigt
+            beide Varianten an.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🪨 Schüttdichten gängiger Materialien</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte für lose Schüttung – tatsächliches Gewicht variiert je Gestein und Feuchte.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Material</th>
+                <th class="py-2 px-2 font-semibold text-right">t/m³</th>
+                <th class="py-2 pl-2 font-semibold text-right">1 m³ wiegt ca.</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Splitt</td><td class="py-2 px-2 text-right">1,45</td><td class="py-2 pl-2 text-right">1.450 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Sand</td><td class="py-2 px-2 text-right">1,55</td><td class="py-2 pl-2 text-right">1.550 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Kies</td><td class="py-2 px-2 text-right">1,60</td><td class="py-2 pl-2 text-right">1.600 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Schotter / Frostschutz 0/32</td><td class="py-2 px-2 text-right">1,80</td><td class="py-2 pl-2 text-right">1.800 kg</td></tr>
+              <tr><td class="py-2 pr-2">Basalt-/Granitschotter</td><td class="py-2 px-2 text-right">1,82</td><td class="py-2 pl-2 text-right">1.820 kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: hausjournal.net, bauen.de (Splittrechner), sanier.de.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle, jeweils mit 6 % Verdichtungszuschlag:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Tragschicht 20 m², 20 cm Schotter</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">20 × 0,20 = 4,0 m³ → +6 % = 4,24 m³</div>
+              <div class="text-gray-600">Masse (1,8 t/m³):</div>
+              <div class="font-medium text-green-700">4,24 × 1,8 ≈ 7,63 t</div>
+              <div class="text-gray-600">Lieferung:</div>
+              <div class="font-medium text-gray-800">8 BigBags (1 t) oder 2 LKW (5 t)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Pflasterbett 25 m², 5 cm Splitt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">25 × 0,05 = 1,25 m³ → +6 % = 1,325 m³</div>
+              <div class="text-gray-600">Masse (1,45 t/m³):</div>
+              <div class="font-medium text-green-700">1,325 × 1,45 ≈ 1,92 t</div>
+              <div class="text-gray-600">Lieferung:</div>
+              <div class="font-medium text-gray-800">4 BigBags (0,5 t)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Kiesbeet 40 m², 8 cm Kies</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">40 × 0,08 = 3,2 m³ → +6 % = 3,392 m³</div>
+              <div class="text-gray-600">Masse (1,6 t/m³):</div>
+              <div class="font-medium text-green-700">3,392 × 1,6 ≈ 5,43 t</div>
+              <div class="text-gray-600">Lieferung:</div>
+              <div class="font-medium text-gray-800">6 BigBags (1 t) oder 2 LKW (5 t)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Bestellen Sie eher etwas mehr als zu wenig – eine Nachlieferung
+          kostet erneut Anfahrt und ist oft teurer als der Materialpreis selbst.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: m³ mit Tonnen verwechseln</h3>
+            <p>Schüttgut wird nach Gewicht verkauft, gerechnet wird aber im Volumen. Ein Kubikmeter
+            Schotter wiegt rund 1,8 Tonnen – verwechseln Sie die Einheiten nicht bei der Bestellung.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Verdichtung ignorieren</h3>
+            <p>Eine Tragschicht verliert beim Rütteln Volumen. Ohne den Zuschlag von rund 6 % fehlt
+            am Ende Material und die Schicht wird zu dünn.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Feuchtes Material unterschätzen</h3>
+            <p>Nasser Sand oder Kies wiegt deutlich mehr als trockenes Material. Die Schüttdichte ist
+            ein Richtwert – das tatsächliche Liefergewicht kann abweichen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Befahrbare Einfahrt</h3>
+            <p>Unter einer PKW-Einfahrt braucht es einen mehrschichtigen, frostsicheren Aufbau. Rechnen
+            Sie Frostschutz und Schottertragschicht getrennt und planen Sie den Aufbau mit dem
+            Pflaster-Rechner.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Zugänglichkeit für den Kipper</h3>
+            <p>Lose Lieferung ist günstig, aber der Kipper muss abladen können. Ist die Fläche nicht
+            erreichbar, bleibt nur der teurere, aber flexible BigBag mit Kran.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Schotter & Kies</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel wiegt 1 m³ Schotter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Kubikmeter Schotter wiegt je nach Gestein rund 1,8 Tonnen (1.800 kg). Kies liegt
+              bei etwa 1,6 t/m³, Splitt bei 1,45 und Sand bei 1,55. Diese Schüttdichten sind Richtwerte
+              und schwanken mit Körnung und Feuchte.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich, wie viel Schotter ich brauche?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie die Fläche mit der Schichtdicke für das Volumen, schlagen Sie für
+              Tragschichten rund 6 % Verdichtung auf und multiplizieren Sie mit der Schüttdichte. So
+              erhalten Sie das Gewicht in Tonnen, das Sie bestellen müssen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie dick muss die Schotterschicht sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Kiesbeet kommt mit 5–8 cm aus. Eine Tragschicht unter Gehweg oder Terrasse liegt
+              bei 15–25 cm, unter einer PKW-Einfahrt sind inklusive Frostschutz 30–40 cm oder mehr
+              üblich. Der genaue Aufbau hängt vom Untergrund und der Last ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele BigBags brauche ich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie das benötigte Gewicht in Tonnen durch die BigBag-Größe (0,5 oder 1,0 t) und
+              runden Sie auf. Für 7,6 Tonnen Schotter sind das 8 BigBags à 1 Tonne. Ab etwa 5 Tonnen ist
+              lose Lieferung per Kipper meist günstiger.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Schotter, Kies und Splitt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Schotter ist gebrochenes, kantiges Gestein und verkeilt sich gut – ideal für
+              Tragschichten. Kies ist rund gewaschen und dekorativ. Splitt ist feiner gebrochenes
+              Material, oft für Pflasterbett und Fugen. Entsprechend unterscheiden sich die
+              Schüttdichten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Soll ich etwas mehr bestellen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Über den Verdichtungszuschlag hinaus ist eine kleine Reserve sinnvoll, da
+              Unebenheiten im Untergrund Material schlucken. Eine Nachlieferung kostet erneut Anfahrt
+              und ist oft teurer als das bisschen Mehrmaterial.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/sand-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Sand-Rechner</p>
+          </a>
+          <a href="/pflastersteine-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧩</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Pflaster-Rechner</p>
+          </a>
+          <a href="/beton-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Beton-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/rollrasen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rollrasen-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Schotter- & Kies-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/schotter-kies-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel wiegt 1 m³ Schotter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Kubikmeter Schotter wiegt je nach Gestein rund 1,8 Tonnen (1.800 kg). Kies liegt bei etwa 1,6 t/m³, Splitt bei 1,45 und Sand bei 1,55. Diese Schüttdichten sind Richtwerte und schwanken mit Körnung und Feuchte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich, wie viel Schotter ich brauche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie die Fläche mit der Schichtdicke für das Volumen, schlagen Sie für Tragschichten rund 6 % Verdichtung auf und multiplizieren Sie mit der Schüttdichte. So erhalten Sie das Gewicht in Tonnen, das Sie bestellen müssen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie dick muss die Schotterschicht sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Kiesbeet kommt mit 5–8 cm aus. Eine Tragschicht unter Gehweg oder Terrasse liegt bei 15–25 cm, unter einer PKW-Einfahrt sind inklusive Frostschutz 30–40 cm oder mehr üblich. Der genaue Aufbau hängt vom Untergrund und der Last ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele BigBags brauche ich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie das benötigte Gewicht in Tonnen durch die BigBag-Größe (0,5 oder 1,0 t) und runden Sie auf. Für 7,6 Tonnen Schotter sind das 8 BigBags à 1 Tonne. Ab etwa 5 Tonnen ist lose Lieferung per Kipper meist günstiger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Schotter, Kies und Splitt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Schotter ist gebrochenes, kantiges Gestein und verkeilt sich gut – ideal für Tragschichten. Kies ist rund gewaschen und dekorativ. Splitt ist feiner gebrochenes Material, oft für Pflasterbett und Fugen. Entsprechend unterscheiden sich die Schüttdichten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Soll ich etwas mehr bestellen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Über den Verdichtungszuschlag hinaus ist eine kleine Reserve sinnvoll, da Unebenheiten im Untergrund Material schlucken. Eine Nachlieferung kostet erneut Anfahrt und ist oft teurer als das bisschen Mehrmaterial."
+        }
+      }
+    ]
+  })} />
+</Layout>

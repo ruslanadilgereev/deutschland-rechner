@@ -1,0 +1,412 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BereitstellungszinsenRechner from '../components/rechner/BereitstellungszinsenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Bereitstellungszinsen-Rechner 2026 – Baufinanzierung";
+const description = "Bereitstellungszinsen berechnen: Kosten für den noch nicht abgerufenen Teil Ihres Baudarlehens nach Ablauf der bereitstellungsfreien Zeit. Mit Abruf-Zeitplan für mehrere Bauphasen und Standard- oder KfW-Satz.";
+const keywords = "bereitstellungszinsen rechner, bereitstellungszinsen berechnen, bereitstellungsfreie zeit, bereitstellungszinsen baufinanzierung, bereitstellungszinsen kfw, abrufplan darlehen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bereitstellungszinsen-Rechner", url: "/bereitstellungszinsen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Bereitstellungszinsen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏗️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bereitstellungszinsen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kosten für nicht abgerufenes Baudarlehen berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Bereitstellungszins je Monat = noch nicht abgerufene Darlehenssumme × Monatssatz, fällig erst nach Ablauf der bereitstellungsfreien Zeit. Jeder Abruf reduziert die offene Summe ab dem Folgemonat. Standard 0,25 %/Monat (= 3 %/Jahr), KfW 0,15 %/Monat.</p>
+            <p class="mb-1"><strong>Standardwerte:</strong> 300.000 € Darlehen, 0,25 %/Monat, 6 Monate bereitstellungsfrei, Abruf in 3 Phasen (Monat 6, 12, 18).</p>
+            <p><strong>Nicht berücksichtigt:</strong> taggenaue 360-/365-Tage-Abrechnung, abweichende Vertragsklauseln, steuerliche Absetzbarkeit. Satz und freie Zeit sind frei verhandelbar – maßgeblich ist Ihr Vertrag. Keine Finanz- oder Steuerberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BereitstellungszinsenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Was sind Bereitstellungszinsen?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            <strong>Bereitstellungszinsen</strong> sind ein Entgelt, das die Bank dafür verlangt, dass
+            sie Ihr bewilligtes Baudarlehen bereithält, obwohl Sie es noch nicht abgerufen haben.
+            Besonders beim <strong>Neubau</strong> wird das Geld nicht auf einmal, sondern nach
+            Baufortschritt in mehreren Tranchen ausgezahlt. Für den noch offenen Teil zahlen Sie nach
+            Ablauf der bereitstellungsfreien Zeit diese Zinsen – zusätzlich zu den normalen Sollzinsen
+            auf den bereits abgerufenen Betrag.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Zins pro Monat</strong> = noch nicht abgerufene Summe × Monatssatz</li>
+              <li>fällig erst nach Ablauf der <strong>bereitstellungsfreien Zeit</strong></li>
+              <li>jeder Abruf reduziert die offene Summe ab dem Folgemonat</li>
+            </ul>
+          </div>
+          <p>
+            Der übliche Satz beträgt <strong>0,25 % pro Monat</strong>, also 3 % pro Jahr. Bei
+            KfW-Darlehen sind es 0,15 % pro Monat. Die bereitstellungsfreie Zeit liegt typisch zwischen
+            3 und 12 Monaten; beim KfW-Wohneigentumsprogramm sind es 12 Monate.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum sie beim Neubau ins Geld gehen</h3>
+          <p>
+            Ein Hausbau dauert oft länger als geplant. Verzögert sich der Baufortschritt, bleibt ein
+            großer Teil des Darlehens lange ungenutzt – und kostet trotzdem. Bei 200.000 € offener
+            Summe und 0,25 % pro Monat sind das <strong>500 € monatlich</strong>, die zusätzlich zur
+            normalen Rate anfallen. Über mehrere Monate summiert sich das schnell auf einen
+            vierstelligen Betrag.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So vermeiden oder senken Sie sie</h3>
+          <p>
+            Verhandeln Sie eine <strong>möglichst lange bereitstellungsfreie Zeit</strong> – das ist
+            der wirksamste Hebel. Stimmen Sie außerdem den <strong>Abrufplan</strong> realistisch auf
+            den Baufortschritt ab und rufen Sie Tranchen erst ab, wenn sie wirklich gebraucht werden.
+            Ein günstiger Bereitstellungszinssatz im Vertrag hilft zusätzlich.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referenztabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏗️ Monatliche Kosten nach offener Summe</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Bereitstellungszins pro Monat (Standard 0,25 %/Monat) auf den noch nicht abgerufenen Betrag.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">offene Summe</th>
+                <th class="py-2 px-2 font-semibold text-right">0,25 %/Monat</th>
+                <th class="py-2 pl-2 font-semibold text-right">0,15 %/Monat (KfW)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">50.000 €</td><td class="py-2 px-2 text-right">125 €</td><td class="py-2 pl-2 text-right">75 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">100.000 €</td><td class="py-2 px-2 text-right">250 €</td><td class="py-2 pl-2 text-right">150 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">200.000 €</td><td class="py-2 px-2 text-right">500 €</td><td class="py-2 pl-2 text-right">300 €</td></tr>
+              <tr><td class="py-2 pr-2">300.000 €</td><td class="py-2 px-2 text-right">750 €</td><td class="py-2 pl-2 text-right">450 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quelle: Finanztip, Sparkasse, Verivox (Stand 2026). Sätze sind frei verhandelbar.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: zwei Tranchen, 6 Monate frei</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">300.000 €</div>
+              <div class="text-gray-600">Abruf:</div>
+              <div class="font-medium text-gray-800">100.000 € in Monat 4, Rest in Monat 8</div>
+              <div class="text-gray-600">Monate 7–8 auf 200.000 €:</div>
+              <div class="font-medium text-gray-800">200.000 × 0,25 % × 2</div>
+              <div class="text-gray-600">Bereitstellungszinsen:</div>
+              <div class="font-medium text-green-700">1.000 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 3 Bauphasen (Standardwerte)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Abrufplan:</div>
+              <div class="font-medium text-gray-800">90 T€ (M6), 120 T€ (M12), 90 T€ (M18)</div>
+              <div class="text-gray-600">frei / Satz:</div>
+              <div class="font-medium text-gray-800">6 Monate / 0,25 %</div>
+              <div class="text-gray-600">Bereitstellungszinsen:</div>
+              <div class="font-medium text-green-700">4.500 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: KfW-Satz statt Standard</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">gleicher Abrufplan:</div>
+              <div class="font-medium text-gray-800">wie Beispiel 2</div>
+              <div class="text-gray-600">Satz:</div>
+              <div class="font-medium text-gray-800">0,15 %/Monat (KfW)</div>
+              <div class="text-gray-600">Bereitstellungszinsen:</div>
+              <div class="font-medium text-green-700">2.700 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 2 und 3 zeigen den Hebel des Satzes: Allein der Wechsel
+          von 0,25 % auf den KfW-Satz von 0,15 % spart bei identischem Abrufplan 1.800 €. Noch mehr
+          bringt eine längere bereitstellungsfreie Zeit.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: bereitstellungsfreie Zeit nicht verhandeln</h3>
+            <p>Die freie Zeit ist der größte Hebel. Wer statt 3 Monaten 12 Monate frei vereinbart,
+            spart beim Neubau oft mehrere tausend Euro. Verhandeln Sie das vor Vertragsabschluss.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Bauzeit zu optimistisch planen</h3>
+            <p>Verzögerungen am Bau sind die Regel, nicht die Ausnahme. Jeder Monat Verzug auf eine
+            hohe offene Summe kostet bares Geld. Planen Sie einen Puffer ein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Bereitstellungs- mit Sollzins verwechseln</h3>
+            <p>Bereitstellungszinsen fallen auf den noch nicht abgerufenen Teil an, Sollzinsen auf den
+            bereits ausgezahlten. In der Bauphase zahlen Sie unter Umständen beides parallel.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Tageszählung 360 vs. 365</h3>
+            <p>Manche Banken rechnen taggenau mit 360 oder 365 Tagen statt pauschal pro Monat. Das
+            kann das Ergebnis leicht verschieben – maßgeblich ist die Klausel im Vertrag.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: KfW-Darlehen</h3>
+            <p>KfW-Kredite haben mit 0,15 %/Monat einen niedrigeren Satz, aber oft eine feste
+            bereitstellungsfreie Zeit von 12 Monaten ab Zusage. Prüfen Sie das jeweilige Merkblatt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sind Bereitstellungszinsen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bereitstellungszinsen zahlt die Bank für das Bereithalten des bewilligten, aber noch
+              nicht abgerufenen Darlehens. Sie fallen nach Ablauf der bereitstellungsfreien Zeit auf
+              den noch offenen Teil an – typisch 0,25 % pro Monat, also 3 % pro Jahr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich Bereitstellungszinsen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Pro Monat: noch nicht abgerufene Summe × Monatssatz, erst nach der bereitstellungsfreien
+              Zeit. Bei 200.000 € offener Summe und 0,25 % sind das 500 € im Monat. Jeder Abruf senkt
+              die offene Summe und damit die Kosten der Folgemonate.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind Bereitstellungszinsen üblicherweise?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der marktübliche Satz liegt bei 0,25 % pro Monat (3 % pro Jahr). KfW-Darlehen nutzen
+              0,15 % pro Monat. Der Satz ist nicht gesetzlich geregelt, sondern frei verhandelbar und
+              steht im Darlehensvertrag.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die bereitstellungsfreie Zeit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das ist der Zeitraum nach Vertragsabschluss, in dem noch keine Bereitstellungszinsen
+              anfallen. Üblich sind 3 bis 12 Monate, beim KfW-Wohneigentumsprogramm 12 Monate. Je länger
+              diese Zeit, desto geringer die Kosten – sie ist der wichtigste Verhandlungspunkt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie kann ich Bereitstellungszinsen vermeiden?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Vereinbaren Sie eine möglichst lange bereitstellungsfreie Zeit, stimmen Sie den
+              Abrufplan realistisch auf den Baufortschritt ab und rufen Sie Tranchen erst bei Bedarf ab.
+              Ein niedriger Satz im Vertrag und ein zügiger Bauablauf senken die Kosten zusätzlich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind Bereitstellungszinsen steuerlich absetzbar?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nur in Spezialfällen, etwa bei vermieteten Immobilien als Werbungskosten. Beim
+              selbstgenutzten Eigenheim sind sie in der Regel nicht absetzbar. Klären Sie das mit einer
+              Steuerberatung – dieser Rechner ersetzt keine Steuerberatung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
+          </a>
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+          <a href="/kfw-foerderung-hausbau-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">KfW-Förderung-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/baunebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baunebenkosten-Rechner</p>
+          </a>
+          <a href="/anschlussfinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔄</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Anschlussfinanzierung</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bereitstellungszinsen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bereitstellungszinsen-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was sind Bereitstellungszinsen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bereitstellungszinsen zahlt die Bank für das Bereithalten des bewilligten, aber noch nicht abgerufenen Darlehens. Sie fallen nach Ablauf der bereitstellungsfreien Zeit auf den noch offenen Teil an – typisch 0,25 % pro Monat, also 3 % pro Jahr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich Bereitstellungszinsen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pro Monat: noch nicht abgerufene Summe × Monatssatz, erst nach der bereitstellungsfreien Zeit. Bei 200.000 € offener Summe und 0,25 % sind das 500 € im Monat. Jeder Abruf senkt die offene Summe und damit die Kosten der Folgemonate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind Bereitstellungszinsen üblicherweise?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der marktübliche Satz liegt bei 0,25 % pro Monat (3 % pro Jahr). KfW-Darlehen nutzen 0,15 % pro Monat. Der Satz ist nicht gesetzlich geregelt, sondern frei verhandelbar und steht im Darlehensvertrag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die bereitstellungsfreie Zeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das ist der Zeitraum nach Vertragsabschluss, in dem noch keine Bereitstellungszinsen anfallen. Üblich sind 3 bis 12 Monate, beim KfW-Wohneigentumsprogramm 12 Monate. Je länger diese Zeit, desto geringer die Kosten – sie ist der wichtigste Verhandlungspunkt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie kann ich Bereitstellungszinsen vermeiden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vereinbaren Sie eine möglichst lange bereitstellungsfreie Zeit, stimmen Sie den Abrufplan realistisch auf den Baufortschritt ab und rufen Sie Tranchen erst bei Bedarf ab. Ein niedriger Satz im Vertrag und ein zügiger Bauablauf senken die Kosten zusätzlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Bereitstellungszinsen steuerlich absetzbar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nur in Spezialfällen, etwa bei vermieteten Immobilien als Werbungskosten. Beim selbstgenutzten Eigenheim sind sie in der Regel nicht absetzbar. Klären Sie das mit einer Steuerberatung – dieser Rechner ersetzt keine Steuerberatung."
+        }
+      }
+    ]
+  })} />
+</Layout>
