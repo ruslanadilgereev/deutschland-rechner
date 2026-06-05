@@ -5,9 +5,10 @@ import RechnerFeedback from './RechnerFeedback';
 // Quelle: VDZ / DIN EN 206. Wir nutzen diesen Standardwert für die Gewichtsschätzung.
 const ROHDICHTE_KG_PRO_M3 = 2400;
 
-// Ergiebigkeit eines 40-kg-Sacks Fertigbeton: ~17–18 L Frischbeton ≈ 0,0167 m³.
-// Daraus folgt: ~60 Säcke à 40 kg pro 1 m³. Wir skalieren linear mit dem Sackgewicht.
-const FRISCHBETON_LITER_PRO_KG = 0.0167 / 40; // m³ pro kg Sackware ≈ 0,0004175 m³/kg
+// Ergiebigkeit eines 40-kg-Sacks Fertigbeton: ~18 L Frischbeton ≈ 0,018 m³
+// (Herstellerangaben Sakret/quick-mix: 40 kg ≈ 18–19 L). Daraus folgt: ~56 Säcke
+// à 40 kg pro 1 m³ (leicht konservativ). Wir skalieren linear mit dem Sackgewicht.
+const FRISCHBETON_LITER_PRO_KG = 0.018 / 40; // m³ pro kg Sackware ≈ 0,00045 m³/kg
 
 // Selbstmischen C20/25 pro 1 m³ Frischbeton (Richtwerte, w/z ≈ 0,5):
 const ZEMENT_KG_PRO_M3 = 300;
