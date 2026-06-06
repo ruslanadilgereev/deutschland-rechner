@@ -1,0 +1,248 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Hausbau-Rechner 2026 – alle Rechner zum Haus bauen & kaufen";
+const description = "Über 60 kostenlose Rechner für den kompletten Hausbau: von Finanzierung und Grundstück über Rohbau, Material und Innenausbau bis Energie und Haustechnik. Plane jeden Schritt vom Budget bis zur Heizung.";
+const keywords = "Hausbau Rechner, Haus bauen Kosten Rechner, Baukosten berechnen, Hausbau planen, Baufinanzierung Rechner, Materialrechner Bau, Hausbau Übersicht, was kostet ein Haus";
+
+type R = { slug: string; name: string };
+type Phase = { icon: string; title: string; intro: string; rechner: R[] };
+
+const phasen: Phase[] = [
+  {
+    icon: '💶',
+    title: '1. Finanzierung & Förderung',
+    intro: 'Bevor der erste Spatenstich erfolgt, steht das Geld. Wie viel Haus du dir leisten kannst, welche Rate tragbar ist, wie lange du die Zinsen bindest und welche Förderung du mitnimmst – hier rechnest du dein Fundament durch.',
+    rechner: [
+      { slug: 'wie-viel-haus', name: 'Wie viel Haus kann ich mir leisten?' },
+      { slug: 'baufinanzierung', name: 'Baufinanzierung' },
+      { slug: 'eigenkapital', name: 'Eigenkapital' },
+      { slug: 'tilgungsplan', name: 'Tilgungsplan' },
+      { slug: 'tilgungssatz-vergleich', name: 'Tilgungssatz-Vergleich' },
+      { slug: 'sollzinsbindung-vergleich', name: 'Sollzinsbindung-Vergleich' },
+      { slug: 'sondertilgung-ersparnis', name: 'Sondertilgung-Ersparnis' },
+      { slug: 'restschuld', name: 'Restschuld' },
+      { slug: 'anschlussfinanzierung', name: 'Anschlussfinanzierung' },
+      { slug: 'forward-darlehen', name: 'Forward-Darlehen' },
+      { slug: 'volltilgerdarlehen', name: 'Volltilgerdarlehen' },
+      { slug: 'bereitstellungszinsen', name: 'Bereitstellungszinsen' },
+      { slug: 'beleihungsauslauf', name: 'Beleihungsauslauf (LTV)' },
+      { slug: 'kfw-foerderung-hausbau', name: 'KfW-Förderung' },
+    ],
+  },
+  {
+    icon: '🏞️',
+    title: '2. Grundstück, Nebenkosten & Genehmigung',
+    intro: 'Das Grundstück ist oft der größte Einzelposten – plus Kaufnebenkosten, Erschließung und Gebühren. Was darfst du überhaupt bauen, was kostet die Vermessung, das Bodengutachten oder der Hausanschluss?',
+    rechner: [
+      { slug: 'bodenrichtwert', name: 'Bodenrichtwert' },
+      { slug: 'grundstuecksflaeche-preis', name: 'Grundstückspreis' },
+      { slug: 'grz-gfz', name: 'GRZ / GFZ (Bebauung)' },
+      { slug: 'grunderwerbsteuer', name: 'Grunderwerbsteuer' },
+      { slug: 'notarkosten', name: 'Notarkosten' },
+      { slug: 'maklerkosten', name: 'Maklerkosten' },
+      { slug: 'kaufnebenkosten', name: 'Kaufnebenkosten' },
+      { slug: 'erschliessungskosten', name: 'Erschließungskosten' },
+      { slug: 'hausanschluss-kosten', name: 'Hausanschlusskosten' },
+      { slug: 'vermessungskosten', name: 'Vermessungskosten' },
+      { slug: 'bodengutachten-kosten', name: 'Bodengutachten' },
+      { slug: 'baugenehmigung-kosten', name: 'Baugenehmigungskosten' },
+      { slug: 'baunebenkosten', name: 'Baunebenkosten' },
+      { slug: 'grundstueck-teilung', name: 'Grundstücksteilung' },
+      { slug: 'hausabriss-kosten', name: 'Abrisskosten' },
+      { slug: 'erdaushub', name: 'Erdaushub' },
+    ],
+  },
+  {
+    icon: '🧱',
+    title: '3. Rohbau & Material-Mengen',
+    intro: 'Fundament, Wände, Decke, Dach: Hier rechnest du die Materialmengen für den Rohbau aus – Beton, Steine, Estrich, Putz, Schüttgut und Dachmaterial inklusive Verschnitt.',
+    rechner: [
+      { slug: 'beton', name: 'Beton' },
+      { slug: 'estrich', name: 'Estrich' },
+      { slug: 'mauersteine', name: 'Mauersteine' },
+      { slug: 'porenbeton', name: 'Porenbeton (Ytong)' },
+      { slug: 'putz', name: 'Putz' },
+      { slug: 'schotter-kies', name: 'Schotter & Kies' },
+      { slug: 'sand', name: 'Sand' },
+      { slug: 'dachflaeche', name: 'Dachfläche' },
+      { slug: 'dachneigung', name: 'Dachneigung' },
+      { slug: 'dachziegel', name: 'Dachziegel' },
+      { slug: 'bauholz-sparren', name: 'Sparren / Bauholz' },
+      { slug: 'wohnflaeche', name: 'Wohnfläche (WoFlV)' },
+      { slug: 'raumhoehe-volumen', name: 'Raumvolumen' },
+    ],
+  },
+  {
+    icon: '🎨',
+    title: '4. Innenausbau & Oberflächen',
+    intro: 'Vom Trockenbau bis zum fertigen Boden: Fliesen, Laminat, Parkett, Farbe, Tapete, Türen und Decken – mit diesen Rechnern bestellst du genau die richtige Menge.',
+    rechner: [
+      { slug: 'fliesen', name: 'Fliesen' },
+      { slug: 'fliesenkleber', name: 'Fliesenkleber' },
+      { slug: 'laminat', name: 'Laminat' },
+      { slug: 'parkett', name: 'Parkett' },
+      { slug: 'vinylboden', name: 'Vinylboden' },
+      { slug: 'teppichboden', name: 'Teppichboden' },
+      { slug: 'wandfarbe', name: 'Wandfarbe' },
+      { slug: 'tapeten', name: 'Tapeten' },
+      { slug: 'trockenbau', name: 'Trockenbau' },
+      { slug: 'abgehaengte-decke', name: 'Abgehängte Decke' },
+      { slug: 'wandverkleidung-paneele', name: 'Wandpaneele' },
+      { slug: 'spachtelmasse', name: 'Spachtelmasse' },
+      { slug: 'grundierung', name: 'Grundierung' },
+      { slug: 'innentueren', name: 'Innentüren' },
+    ],
+  },
+  {
+    icon: '🌡️',
+    title: '5. Energie, Dämmung & Haustechnik',
+    intro: 'Heizung richtig dimensionieren, dämmen, Warmwasser und Strom planen: Diese Rechner helfen, die Anlagentechnik passend auszulegen und langfristig Energiekosten zu sparen.',
+    rechner: [
+      { slug: 'heizlast', name: 'Heizlast' },
+      { slug: 'heizkoerper-leistung', name: 'Heizkörper-Leistung' },
+      { slug: 'fussbodenheizung', name: 'Fußbodenheizung' },
+      { slug: 'warmwasserbedarf', name: 'Warmwasserbedarf' },
+      { slug: 'pufferspeicher', name: 'Pufferspeicher' },
+      { slug: 'daemmung', name: 'Dämmstärke' },
+      { slug: 'u-wert', name: 'U-Wert' },
+      { slug: 'innendaemmung', name: 'Innendämmung' },
+      { slug: 'daemmung-amortisation', name: 'Dämmung-Amortisation' },
+      { slug: 'energieausweis-kennwert', name: 'Energieausweis' },
+      { slug: 'waermepumpe', name: 'Wärmepumpe' },
+      { slug: 'photovoltaik', name: 'Photovoltaik' },
+      { slug: 'solarthermie', name: 'Solarthermie' },
+      { slug: 'stromspeicher-groesse', name: 'Stromspeicher' },
+      { slug: 'heizoel', name: 'Heizöl-Verbrauch' },
+    ],
+  },
+  {
+    icon: '🌿',
+    title: '6. Außenanlagen & nach dem Einzug',
+    intro: 'Einfahrt, Garten und die laufenden Kosten nach dem Einzug: Pflaster, Rasen, Grundsteuer, Nebenkosten und Verbrauch – damit auch das Drumherum und der Unterhalt stimmen.',
+    rechner: [
+      { slug: 'pflastersteine', name: 'Pflastersteine' },
+      { slug: 'rollrasen', name: 'Rollrasen' },
+      { slug: 'grundsteuer', name: 'Grundsteuer' },
+      { slug: 'nebenkosten', name: 'Nebenkosten' },
+      { slug: 'heizkosten', name: 'Heizkosten' },
+      { slug: 'stromverbrauch', name: 'Stromverbrauch' },
+      { slug: 'wohngeld', name: 'Wohngeld' },
+    ],
+  },
+];
+
+const anzahl = phasen.reduce((s, p) => s + p.rechner.length, 0);
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Hausbau-Rechner – alle Rechner zum Haus bauen und kaufen",
+  "description": description,
+  "url": "https://www.deutschland-rechner.de/hausbau",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Deutschlandrechner",
+    "url": "https://www.deutschland-rechner.de",
+  },
+};
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Hausbau", url: "/hausbau" }]} />
+  <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Hausbau' }]} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} is:inline />
+
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-8 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏗️</span>
+          <div>
+            <h1 class="text-3xl font-bold">Hausbau-Rechner: alle Rechner zum Haus bauen & kaufen</h1>
+            <p class="text-orange-100 text-sm mt-1">{anzahl} Rechner für jede Phase – von der Finanzierung bis zur Heizung</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Den kompletten Hausbau Schritt für Schritt durchrechnen</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Ein Haus zu bauen oder zu kaufen ist die größte finanzielle Entscheidung der meisten Menschen –
+            und sie besteht aus Dutzenden Einzelfragen. Wie viel Haus kann ich mir leisten? Was kostet das
+            Grundstück mit allen Nebenkosten? Wie viel Beton, Estrich oder Dachziegel brauche ich? Wie groß
+            muss die Heizung sein? Diese Seite bündelt alle Rechner entlang der typischen
+            <strong>Hausbau-Reise</strong> – von der ersten Budgetfrage bis zu den laufenden Kosten nach dem
+            Einzug. Alle Rechner sind kostenlos, ohne Anmeldung und mit transparenten Formeln.
+          </p>
+          <p>
+            <strong>So gehst du am besten vor:</strong> Starte mit Phase 1, um dein realistisches Budget zu
+            kennen. Erst danach lohnt sich die Grundstückssuche (Phase 2). Steht das Grundstück, planst du
+            Rohbau und Material (Phase 3), den Innenausbau (Phase 4) sowie Energie und Haustechnik (Phase 5).
+            Phase 6 deckt Außenanlagen und die laufenden Kosten ab, mit denen du nach dem Einzug rechnen musst.
+          </p>
+          <p>
+            <strong>Wichtig:</strong> Alle Ergebnisse sind unverbindliche Orientierungswerte. Material- und
+            Kostenangaben hängen stark von Region, Ausführung und Marktlage ab; Finanzierungswerte ersetzen
+            keine Beratung durch Bank oder Energieberater. Für verbindliche Zahlen ziehe Fachbetriebe,
+            Architekt:innen und deine Bank hinzu.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {phasen.map((p) => (
+      <div class="max-w-4xl mx-auto px-4 mt-6">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+            <span class="text-2xl">{p.icon}</span> {p.title}
+          </h2>
+          <p class="text-gray-600 text-sm mb-4">{p.intro}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {p.rechner.map((r) => (
+              <a href={`/${r.slug}-rechner`} class="p-3 bg-gray-50 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition-colors text-sm font-medium text-gray-800">
+                {r.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+
+    <div class="max-w-4xl mx-auto px-4 mt-6 mb-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufige Fragen zum Hausbau</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet es, ein Haus zu bauen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600"><p>Die Gesamtkosten setzen sich aus Grundstück, Kaufnebenkosten (Grunderwerbsteuer, Notar, ggf. Makler), Baukosten (Rohbau, Ausbau, Haustechnik), Baunebenkosten und Außenanlagen zusammen. Als grobe Orientierung gelten beim Neubau je nach Region und Standard etwa 2.000 bis 3.500 € pro m² Wohnfläche – plus Grundstück. Mit den Rechnern oben kalkulierst du jeden Posten einzeln.</p></div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Eigenkapital brauche ich für den Hausbau?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600"><p>Banken erwarten in der Regel, dass du mindestens die Kaufnebenkosten (rund 10–15 % des Kaufpreises) aus Eigenkapital deckst, besser zusätzlich 10–20 % des Kaufpreises. Wie viel Haus damit drin ist, zeigt der <a href="/wie-viel-haus-rechner" class="text-amber-700 underline">Wie-viel-Haus-Rechner</a> in Kombination mit dem <a href="/eigenkapital-rechner" class="text-amber-700 underline">Eigenkapital-Rechner</a>.</p></div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">In welcher Reihenfolge sollte ich planen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600"><p>Erst das Budget (Finanzierung), dann Grundstück inklusive aller Nebenkosten, danach Rohbau, Innenausbau und Haustechnik. So vermeidest du, dich in ein Grundstück oder eine Ausstattung zu verlieben, die das Budget sprengt. Die sechs Phasen oben bilden genau diese Reihenfolge ab.</p></div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die Rechner verbindlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600"><p>Nein. Alle Rechner liefern unverbindliche Orientierungswerte nach gängigen Formeln und Richtwerten. Material- und Kostenangaben schwanken regional und saisonal; Finanzierungs- und Heizlastwerte ersetzen keine Beratung durch Bank, Energieberater oder Fachbetrieb. Für verbindliche Angebote hole Fachleute hinzu.</p></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
