@@ -29,18 +29,18 @@ const ABSTAND_80: AbstandEintrag[] = [
 // Tempo > 100 km/h
 const ABSTAND_100: AbstandEintrag[] = [
   { anteil: '5/10 bis 4/10', von: 0.4, bis: 0.5, bussgeld: 75, punkte: 1, fahrverbot: 0 },
-  { anteil: '4/10 bis 3/10', von: 0.3, bis: 0.4, bussgeld: 160, punkte: 2, fahrverbot: 0 },
-  { anteil: '3/10 bis 2/10', von: 0.2, bis: 0.3, bussgeld: 240, punkte: 2, fahrverbot: 1 },
-  { anteil: '2/10 bis 1/10', von: 0.1, bis: 0.2, bussgeld: 320, punkte: 2, fahrverbot: 2 },
-  { anteil: 'weniger als 1/10', von: 0, bis: 0.1, bussgeld: 400, punkte: 2, fahrverbot: 3 },
+  { anteil: '4/10 bis 3/10', von: 0.3, bis: 0.4, bussgeld: 100, punkte: 1, fahrverbot: 0 },
+  { anteil: '3/10 bis 2/10', von: 0.2, bis: 0.3, bussgeld: 160, punkte: 2, fahrverbot: 1 },
+  { anteil: '2/10 bis 1/10', von: 0.1, bis: 0.2, bussgeld: 240, punkte: 2, fahrverbot: 2 },
+  { anteil: 'weniger als 1/10', von: 0, bis: 0.1, bussgeld: 320, punkte: 2, fahrverbot: 3 },
 ];
 
 // Tempo > 130 km/h
 const ABSTAND_130: AbstandEintrag[] = [
   { anteil: '5/10 bis 4/10', von: 0.4, bis: 0.5, bussgeld: 100, punkte: 1, fahrverbot: 0 },
-  { anteil: '4/10 bis 3/10', von: 0.3, bis: 0.4, bussgeld: 180, punkte: 2, fahrverbot: 1 },
-  { anteil: '3/10 bis 2/10', von: 0.2, bis: 0.3, bussgeld: 280, punkte: 2, fahrverbot: 2 },
-  { anteil: '2/10 bis 1/10', von: 0.1, bis: 0.2, bussgeld: 400, punkte: 2, fahrverbot: 3 },
+  { anteil: '4/10 bis 3/10', von: 0.3, bis: 0.4, bussgeld: 180, punkte: 1, fahrverbot: 0 },
+  { anteil: '3/10 bis 2/10', von: 0.2, bis: 0.3, bussgeld: 240, punkte: 2, fahrverbot: 1 },
+  { anteil: '2/10 bis 1/10', von: 0.1, bis: 0.2, bussgeld: 320, punkte: 2, fahrverbot: 2 },
   { anteil: 'weniger als 1/10', von: 0, bis: 0.1, bussgeld: 400, punkte: 2, fahrverbot: 3 },
 ];
 
