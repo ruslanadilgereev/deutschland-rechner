@@ -2580,7 +2580,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'auto',
     fertig: true,
     seoKeywords: 'Reifengrößen Rechner, Reifenmaße berechnen, Abrollumfang berechnen, Reifendurchmesser, Tachoabweichung Reifen, Reifen umrechnen, 205 55 R16',
-    quellen: ['https://rechneronline.de/reifen-check/reifenmasse.php', 'https://www.gesetze-im-internet.de/stvzo_2012/__36.html', 'https://www.autozeitung.de/tachoabweichung-191387.html'],
+    quellen: ['https://www.gesetze-im-internet.de/stvzo_2012/__36.html', 'https://www.unece.org/fileadmin/DAM/trans/main/wp29/wp29regs/r030r3e.pdf', 'https://www.kba.de/DE/Themen/ZentraleRegister/FAER/Punktekatalog/bereifung_laufflaechen.html'],
   },
   {
     id: 'ladezeit-eauto',
@@ -2590,7 +2590,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'auto',
     fertig: true,
     seoKeywords: 'E-Auto Ladezeit Rechner, Ladedauer E-Auto, Wallbox Ladezeit, Schnellladen Dauer, Elektroauto laden Zeit, 10 auf 80 Prozent laden, Ladekosten E-Auto',
-    quellen: ['https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/laden/schnellladen-langstrecke-ladekurven-2026/', 'https://www.enbw.com/blog/elektromobilitaet/laden/ladezeit-beim-e-auto-welche-modelle-laden-am-schnellsten/', 'https://wallbox.mennekes.de/wissen/e-auto-ladedauer/'],
+    quellen: ['https://www.gesetze-im-internet.de/lsv_2026/BJNR16F0B0025.html', 'https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/start.html'],
   },
   {
     id: 'bremsweg',
@@ -2600,7 +2600,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'auto',
     fertig: true,
     seoKeywords: 'Bremsweg Rechner, Anhalteweg berechnen, Reaktionsweg, Faustformel Bremsweg, Gefahrenbremsung, Bremsweg 100 km/h, Führerschein Bremsweg',
-    quellen: ['https://www.adac.de/verkehr/rund-um-den-fuehrerschein/erwerb/bremsweg-berechnen/', 'https://www.adac.de/verkehr/rund-um-den-fuehrerschein/erwerb/reaktionsweg-berechnen/', 'https://www.tuev-nord.de/de/privatkunden/'],
+    quellen: ['https://www.gesetze-im-internet.de/stvo_2013/__4.html', 'https://www.gesetze-im-internet.de/stvzo_2012/__41.html'],
   },
   {
     id: 'leasingfaktor',
@@ -2610,7 +2610,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'auto',
     fertig: true,
     seoKeywords: 'Leasingfaktor Rechner, Leasingfaktor berechnen, guter Leasingfaktor, Leasing Angebot bewerten, Gesamtkostenfaktor, Leasing vergleichen',
-    quellen: ['https://www.adac.de/fahrzeugwelt/rechner/leasingfaktor/', 'https://www.verivox.de/kredit/themen/leasingfaktor/', 'https://www.sistrix.de/news/sectorwatch-leasing/'],
+    quellen: ['https://esth.bundesfinanzministerium.de/esth/2022/C-Anhaenge/Anhang-21/I/inhalt.html', 'https://www.gesetze-im-internet.de/bgb/__506.html'],
   },
   {
     id: 'wohnflaeche',
@@ -2620,7 +2620,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Wohnfläche berechnen, WoFlV, Wohnflächenverordnung, Dachschräge Wohnfläche, Balkon Wohnfläche, DIN 277',
-    quellen: ['https://www.gesetze-im-internet.de/woflv/__4.html', 'https://www.gesetze-im-internet.de/woflv/BJNR234610003.html', 'https://www.ista.com/de/gesetze-und-verordnungen/wohnflaechenverordnung/'],
+    quellen: ['https://www.gesetze-im-internet.de/woflv/__4.html', 'https://www.gesetze-im-internet.de/woflv/BJNR234610003.html'],
   },
   {
     id: 'fliesen',
@@ -2630,7 +2630,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Fliesen berechnen, Fliesenbedarf, Fliesen Verschnitt, wie viele Fliesen pro m2, Fliesenkleber Bedarf, Fugenbreite',
-    quellen: ['https://www.blitzrechner.de/fliesen-legen/', 'https://www.sanier.de/bodenbelag/fliesen/fliesenmenge-berechnen', 'https://www.hausjournal.net/wieviel-fugenmoertel-pro-m2-fliese'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18157-1/267885420', 'https://www.dinmedia.de/de/norm/din-18352/310833611'],
   },
   {
     id: 'tapeten',
@@ -2640,7 +2640,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Tapeten berechnen, wie viele Tapetenrollen, Tapetenbedarf, Eurorolle, Rapport Tapete, Tapetenbahnen',
-    quellen: ['https://www.sanier.de/malerarbeiten/tapete/die-anzahl-der-benoetigten-tapetenrollen-berechnen', 'https://www.sanier.de/malerarbeiten/tapete/tapetenmuster', 'https://www.maler.org/magazin/tapeten-berechnen-201316561'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18366/310840037', 'https://www.dinmedia.de/de/norm/din-en-233/264631125'],
   },
   {
     id: 'wandfarbe',
@@ -2650,7 +2650,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Wandfarbe berechnen, wie viel Farbe pro m2, Farbmenge Liter, Ergiebigkeit Farbe, Deckkraftklasse, Farbverbrauch',
-    quellen: ['https://www.duefa.de/wiki/artikel/deckkraftklasse-deckvermoegen-kontrastverhaeltnis', 'https://www.derendo.com/pages/klassifizierung-von-farbe', 'https://toom.de/selbermachen/bauen-renovieren/wand-decke/waende-streichen/deckkraft-von-farben/'],
+    quellen: ['https://www.dinmedia.de/en/standard/din-en-13300/356220726'],
   },
   {
     id: 'laminat',
@@ -2660,7 +2660,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Laminat berechnen, Laminatbedarf, Verschnitt Laminat, wie viele Pakete Laminat, Laminat Kosten pro m2, Laminat verlegen Kosten',
-    quellen: ['https://www.casando.de/ratgeber/verschnitt-berechnen-von-parkett-laminat-und-vinyl/', 'https://www.parkett-direkt.net/blog/weitere-themen/verschnitt-und-materialbedarf-berechnen', 'https://renovierungskosten.net/laminat-verlegen-kosten/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-13329/374970204', 'https://www.dinmedia.de/de/norm/din-en-13810-1/54209291', 'https://www.dinmedia.de/de/norm/din-18365/310839991'],
   },
   {
     id: 'beton',
@@ -2670,7 +2670,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Beton berechnen, Betonmenge, Beton mischen, wieviel Sack Beton pro m3, Beton Fundament, Betonrechner',
-    quellen: ['https://www.beton.org/', 'https://www.talu.de/mischung-beton/', 'https://www.schwenk.de/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-206/329082925', 'https://www.dinmedia.de/de/norm/din-1045-2/369550272'],
   },
   {
     id: 'estrich',
@@ -2680,7 +2680,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Estrich berechnen, Estrichmenge, Estrich pro m2, Zementestrich, Estrich Säcke, Estrichrechner',
-    quellen: ['https://de.wikipedia.org/wiki/DIN_18560', 'https://www.holcim.de/', 'https://www.vdz-online.de/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18560-1/328759231', 'https://www.dinmedia.de/en/standard/din-18560-2/356233036', 'https://www.dinmedia.de/en/standard/din-en-13813/53501698'],
   },
   {
     id: 'mauersteine',
@@ -2690,7 +2690,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Mauersteine berechnen, Steine pro m2, Ziegelbedarf, Mauerstein Rechner, Mörtelbedarf, NF DF Format',
-    quellen: ['https://de.wikipedia.org/wiki/DIN_105', 'https://www.baunetzwissen.de/mauerwerk/fachwissen/planungsgrundlagen/steinformat-und-massordnung-162694', 'https://www.ks-maurerfibel.de/maurerfibel/3-maurermoertel/3-3-moertel-und-steinbedarf/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-4172/236657231', 'https://www.dinmedia.de/en/standard/din-en-771-1/232406026'],
   },
   {
     id: 'putz',
@@ -2700,7 +2700,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Putz berechnen, Putzbedarf, Putz pro m2, Innenputz, Außenputz, Putzrechner',
-    quellen: ['https://www.baunormenlexikon.de/norm/din-18550-1/176be22a-e617-4edb-89b0-03f6eb13233a', 'https://www.baunormenlexikon.de/norm/din-18550-2/54834e41-bc55-4e59-9528-1dea500438b2', 'https://www.hausgarten.net/innenputz-verbrauch/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18550-1/280063660', 'https://www.dinmedia.de/de/norm/din-18550-2/232851755', 'https://www.dinmedia.de/de/norm/din-en-13914-1/240321140', 'https://www.dinmedia.de/de/norm/din-en-13914-2/240321171'],
   },
   {
     id: 'pflastersteine',
@@ -2710,7 +2710,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Pflastersteine berechnen, Pflaster pro m2, Splitt berechnen, Schotter Tragschicht, Pflaster Rechner, Einfahrt pflastern',
-    quellen: ['https://magazin.steda.de/pflastersteine-berechnen/', 'https://www.bauen.de/rechner/splittrechner/', 'https://www.sanier.de/einfahrt-wege-pflasterarbeiten/schotter-kies-und-splitt-so-berechnen-sie-die-noetige-menge'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18318/310832964', 'https://www.dinmedia.de/de/norm/din-en-1338/64516330'],
   },
   {
     id: 'dachneigung',
@@ -2720,7 +2720,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Dachneigung Rechner, Dachneigung berechnen, Grad in Prozent Dach, Sparrenlänge berechnen, Mindestdachneigung',
-    quellen: ['https://wissenwiki.de/Fachregel_f%C3%BCr_Dachdeckungen_mit_Dachziegeln_und_Dachsteinen', 'https://www.nelskamp.de/de/beratung-service/dachlexikon/mindestdachneigung.html', 'https://www.ddh.de/neuerungen-im-regelwerk-update-1-2-11062024'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18531-1/391197155', 'https://www.dinmedia.de/de/norm/din-18338/310833375', 'https://www.dinmedia.de/en/standard/din-en-1304/187600851'],
   },
   {
     id: 'heizoel',
@@ -2730,7 +2730,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Heizöl Verbrauch Rechner, Heizölverbrauch berechnen, Heizölkosten Rechner, Liter Heizöl pro m2, Tankreichweite Heizöl',
-    quellen: ['https://www.co2online.de/modernisieren-und-bauen/heizung/verbrauch-einer-oelheizung/', 'https://de.statista.com/statistik/daten/studie/1692/umfrage/preis-fuer-einen-liter-leichtes-heizoel-monatsdurchschnittswerte/', 'https://www.heizung.de/oelheizung/wissen/den-heizoelverbrauch-bestimmen-und-senken.html'],
+    quellen: ['https://www.gesetze-im-internet.de/ebev_2030/anlage_2.html', 'https://www.umweltbundesamt.de/sites/default/files/medien/1968/publikationen/co2-emissionsfaktoren_fur_fossile_brennstoffe_korrektur.pdf', 'https://www.dinmedia.de/en/technical-rule/vdi-3807-blatt-2/208355632'],
   },
   {
     id: 'heizlast',
@@ -2740,7 +2740,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Heizlast Rechner, Heizlast berechnen, Heizleistung kW berechnen, Heizlastberechnung Wärmepumpe, Watt pro m2 Heizung',
-    quellen: ['https://www.bosch-homecomfort.com/de/de/wohngebaeude/wissen/heizungsratgeber/heizleistung-berechnen/', 'https://www.viessmann.de/de/wissen/infos-und-tipps-zum-kauf/heizlastberechnung.html', 'https://www.waermepumpe.de/werkzeuge/heizlastrechner/'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/__60c.html', 'https://www.dinmedia.de/de/norm/din-en-12831-1/261292587', 'https://www.dinmedia.de/de/technische-regel/din-ts-12831-1/316645651'],
   },
   {
     id: 'schlaf',
@@ -2750,7 +2750,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'gesundheit',
     fertig: true,
     seoKeywords: 'Schlafrechner, beste Schlafzeit berechnen, Aufwachzeit berechnen, Schlafzyklus Rechner, wann ins Bett gehen, 90 Minuten Schlafzyklus',
-    quellen: ['https://de.wikipedia.org/wiki/Schlafzyklus', 'https://www.gesundheitsinformation.de/was-ist-normaler-schlaf.html', 'https://www.dak.de/dak/gesundheit/koerper-seele/schlaf/schlafphasen-so-verlaeuft-gesunder-schlaf_13364'],
+    quellen: ['https://www.gesundheitsinformation.de/was-ist-normaler-schlaf.html'],
   },
   {
     id: 'rollrasen',
@@ -2760,7 +2760,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'alltag',
     fertig: true,
     seoKeywords: 'Rollrasen Rechner, Rollrasen berechnen, Rollrasen Menge, Rollrasen Kosten, Rasensaat Menge, Verschnitt Rollrasen',
-    quellen: ['https://www.hornbach.de/projekte/rollrasen-verlegen/', 'https://www.kiepenkerl.de/rasen-anlegen/rollrasen-verlegen/', 'https://www.rasengesellschaft.de/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18917/290509432', 'https://www.dinmedia.de/de/norm/din-18915/287389107'],
   },
   // ═══════════════════════════════════════════════════════════════
   // GEWERBE & STEUER DEEP-DIVE (Welle 3 – tabellenlastig)
