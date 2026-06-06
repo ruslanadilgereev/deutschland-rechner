@@ -9,7 +9,7 @@ const GEWST_MESSZAHL = 0.035; // 3,5 % Steuermesszahl, § 11 Abs. 2 GewStG
 
 // Echte Hebesätze ausgewählter Großstädte (Stand 2025)
 const HEBESATZ_PRESETS = [
-  { name: 'Bundesschnitt', satz: 407 },
+  { name: 'Bundesschnitt 2024', satz: 409 },
   { name: 'München', satz: 490 },
   { name: 'Berlin', satz: 410 },
   { name: 'Hamburg', satz: 470 },
@@ -23,7 +23,7 @@ const HEBESATZ_PRESETS = [
 
 export function KoerperschaftsteuerRechner() {
   const [gewinn, setGewinn] = useState(100000);
-  const [hebesatz, setHebesatz] = useState(407);
+  const [hebesatz, setHebesatz] = useState(409);
 
   const ergebnis = useMemo(() => {
     const g = Math.max(0, gewinn);
@@ -98,7 +98,7 @@ export function KoerperschaftsteuerRechner() {
             <span className="text-gray-700 font-medium">Gewerbesteuer-Hebesatz der Gemeinde</span>
             <span className="text-xs text-gray-500 block mt-1">
               Editierbar – jede Gemeinde legt ihren Hebesatz selbst fest (mindestens 200 %). Voreingestellt
-              ist der bundesweite Durchschnitt von 407 %.
+              ist der bundesweite Durchschnitt 2024 von 409 % (Destatis).
             </span>
           </label>
           <div className="relative">

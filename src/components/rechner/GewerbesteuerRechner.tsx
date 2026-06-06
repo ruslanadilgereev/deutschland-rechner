@@ -29,7 +29,7 @@ export default function GewerbesteuerRechner() {
   // Eingabewerte
   const [gewinn, setGewinn] = useState(100000);
   const [rechtsform, setRechtsform] = useState<Rechtsform>('einzelunternehmer');
-  const [hebesatz, setHebesatz] = useState(400);
+  const [hebesatz, setHebesatz] = useState(409);
   const [hinzurechnungen, setHinzurechnungen] = useState(0);
   const [kuerzungen, setKuerzungen] = useState(0);
   const [istEinkommensteuerPflichtig, setIstEinkommensteuerPflichtig] = useState(true);

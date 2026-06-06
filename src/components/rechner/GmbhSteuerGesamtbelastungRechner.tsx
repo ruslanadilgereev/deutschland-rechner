@@ -26,7 +26,7 @@ type Verfahren = 'abgeltung' | 'tev';
 export default function GmbhSteuerGesamtbelastungRechner() {
   // Eingaben
   const [gewinn, setGewinn] = useState(100000); // Gewinn vor Steuern auf GmbH-Ebene
-  const [hebesatz, setHebesatz] = useState(400);
+  const [hebesatz, setHebesatz] = useState(409);
   const [ausschuettungsquote, setAusschuettungsquote] = useState(100); // % des Nachsteuergewinns
   const [verfahren, setVerfahren] = useState<Verfahren>('abgeltung');
   const [grenzsteuersatz, setGrenzsteuersatz] = useState(42); // für TEV
@@ -166,7 +166,7 @@ export default function GmbhSteuerGesamtbelastungRechner() {
           <label className="block mb-2">
             <span className="text-gray-700 font-medium">Gewerbesteuer-Hebesatz der Gemeinde</span>
             <span className="text-xs text-gray-500 block mt-1">
-              Standortabhängig (mind. 200 %). Bundesweiter Durchschnitt rund 400–435 % – bitte den Hebesatz Ihrer Gemeinde eintragen.
+              Standortabhängig (mind. 200 %). Bundesweiter Durchschnitt 2024 rund 409 % (Destatis) – bitte den Hebesatz Ihrer Gemeinde eintragen.
             </span>
           </label>
           <div className="relative">
