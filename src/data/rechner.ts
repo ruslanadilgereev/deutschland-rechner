@@ -2827,7 +2827,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'wie viel Haus kann ich mir leisten, Budgetrechner Hauskauf, maximaler Kaufpreis, Immobilie leisten, Baufinanzierung Budget',
-    quellen: ['https://www.finanztip.de/baufinanzierungsrechner/budgetrechner-hauskauf/', 'https://www.test.de/Immobilienfinanzierung-So-viel-Haus-koennen-Sie-sich-leisten-4918655-0/', 'https://www.destatis.de/DE/Themen/Staat/Steuern/Steuereinnahmen/_inhalt.html'],
+    quellen: ['https://www.gesetze-im-internet.de/grestg_1983/__11.html', 'https://www.gesetze-im-internet.de/bgb/__656d.html', 'https://www.gesetze-im-internet.de/gnotkg/'],
   },
   {
     id: 'anschlussfinanzierung',
@@ -2837,7 +2837,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Anschlussfinanzierung Rechner, Anschlussfinanzierung berechnen, Restschuld nach Zinsbindung, Prolongation, Umschuldung Baufinanzierung',
-    quellen: ['https://www.finanztip.de/baufinanzierung/forward-darlehen/', 'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/baufinanzierung/anschlussfinanzierung-darauf-sollten-sie-achten-13576', 'https://www.verivox.de/baufinanzierung/prolongation/'],
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__489.html', 'https://www.gesetze-im-internet.de/bgb/__502.html', 'https://www.gesetze-im-internet.de/bgb/__500.html'],
   },
   {
     id: 'volltilgerdarlehen',
@@ -2847,7 +2847,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Volltilgerdarlehen Rechner, Volltilgung berechnen, Darlehen ohne Restschuld, Volltilger Zinsen, Annuität Volltilgung',
-    quellen: ['https://www.zinsen-berechnen.de/kredit-darlehen/volltilgerdarlehen.php', 'https://www.interhyp.de/volltilgungsrechner/', 'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/baufinanzierung'],
+    quellen: ['https://www.gesetze-im-internet.de/pangv_2022/anlage.html', 'https://www.gesetze-im-internet.de/pangv_2022/__16.html', 'https://www.gesetze-im-internet.de/bgb/__492.html'],
   },
   {
     id: 'kfw-foerderung-hausbau',
@@ -2857,7 +2857,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'KfW Förderung Rechner, KfW Kredit Hausbau, KfW Wohneigentum, KfW Zuschuss, Förderkredit Bauen',
-    quellen: ['https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/F%C3%B6rderprodukte/Wohneigentum-f%C3%BCr-Familien-(300)/', 'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/F%C3%B6rderprodukte/Klimafreundlicher-Neubau-Wohngeb%C3%A4ude-(297-298)/', 'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/F%C3%B6rderprodukte/Bundesf%C3%B6rderung-f%C3%BCr-effiziente-Geb%C3%A4ude-Wohngeb%C3%A4ude-Kredit-(261-262)/'],
+    quellen: ['https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/F%C3%B6rderprodukte/Wohneigentum-f%C3%BCr-Familien-(300)/', 'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/F%C3%B6rderprodukte/Klimafreundlicher-Neubau-Wohngeb%C3%A4ude-(297-298)/', 'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/F%C3%B6rderprodukte/Bundesf%C3%B6rderung-f%C3%BCr-effiziente-Geb%C3%A4ude-Wohngeb%C3%A4ude-Kredit-(261-262)/', 'https://www.gesetze-im-internet.de/geg/'],
   },
   {
     id: 'forward-darlehen',
@@ -2867,7 +2867,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Forward-Darlehen Rechner, Forward Darlehen berechnen, Forward-Aufschlag, Zinsbindung sichern, Anschlussfinanzierung Forward',
-    quellen: ['https://www.finanztip.de/baufinanzierung/forward-darlehen/', 'https://www.allianz.de/recht-und-eigentum/baufinanzierung/forward-darlehen/', 'https://www.lbs.de/finanzieren/ablauf-baufinanzierung/forward-darlehen'],
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__489.html', 'https://www.gesetze-im-internet.de/bgb/__490.html', 'https://www.gesetze-im-internet.de/bgb/__502.html'],
   },
   {
     id: 'sondertilgung-ersparnis',
@@ -2877,7 +2877,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Sondertilgung Rechner, Sondertilgung berechnen, Sondertilgung Ersparnis, Restschuld Sondertilgung, Tilgung Zinsersparnis',
-    quellen: ['https://de.wikipedia.org/wiki/Sondertilgung', 'https://www.commerzbank.de/privatkunden/wissen/ratgeber/finanzierung/baufinanzierung/annuitaetendarlehen/', 'https://www.vr.de/privatkunden/themenwelten/finanzen/kredit-finanzierung/tilgungsplan-erstellen.html'],
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__500.html', 'https://www.gesetze-im-internet.de/bgb/__502.html'],
   },
   {
     id: 'bereitstellungszinsen',
@@ -2887,7 +2887,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Bereitstellungszinsen Rechner, Bereitstellungszinsen berechnen, bereitstellungsfreie Zeit, Baufinanzierung Auszahlung',
-    quellen: ['https://www.finanztip.de/baufinanzierung/bereitstellungszinsen/', 'https://www.sparkasse.de/pk/ratgeber/wohnen/immobilie-erwerben/bereitstellungszinsen.html', 'https://www.verivox.de/baufinanzierung/themen/bereitstellungszinsen/'],
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__488.html', 'https://www.gesetze-im-internet.de/bgb/__491.html'],
   },
   {
     id: 'beleihungsauslauf',
@@ -2897,7 +2897,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Beleihungsauslauf Rechner, Beleihungsauslauf berechnen, LTV, Beleihungswert, Beleihungsgrenze Baufinanzierung',
-    quellen: ['https://www.gesetze-im-internet.de/belwertv/BJNR117500006.html', 'https://www.verivox.de/baufinanzierung/themen/beleihungsauslauf/', 'https://www.check24.de/baufinanzierung/ratgeber/beleihungswert/'],
+    quellen: ['https://www.gesetze-im-internet.de/belwertv/BJNR117500006.html', 'https://www.gesetze-im-internet.de/pfandbg/__16.html', 'https://www.gesetze-im-internet.de/pfandbg/__14.html'],
   },
   {
     id: 'bodenrichtwert',
@@ -2907,7 +2907,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Bodenrichtwert berechnen, Bodenwert ermitteln, Grundstückswert, BORIS, ImmoWertV',
-    quellen: ['https://www.gesetze-im-internet.de/immowertv_2022/BJNR280500021.html', 'https://www.gesetze-im-internet.de/immowertv_2022/__12.html', 'https://www.bodenrichtwerte-boris.de/boris-d/?lang=de'],
+    quellen: ['https://www.gesetze-im-internet.de/bbaug/__196.html', 'https://www.gesetze-im-internet.de/immowertv_2022/__13.html', 'https://www.gesetze-im-internet.de/immowertv_2022/__14.html', 'https://www.bodenrichtwerte-boris.de/boris-d/?lang=de'],
   },
   {
     id: 'grundstuecksflaeche-preis',
@@ -2917,7 +2917,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Grundstückspreis berechnen, Grundstückspreise pro qm, was kostet ein Grundstück, Grundstückswert ermitteln',
-    quellen: ['https://www.bodenrichtwerte-boris.de/boris-d/?lang=de', 'https://www.finanztip.de/baufinanzierung/boris-und-bodenrichtwert/', 'https://www.gesetze-im-internet.de/bbaug/__127.html'],
+    quellen: ['https://www.gesetze-im-internet.de/bbaug/__196.html', 'https://www.gesetze-im-internet.de/immowertv_2022/__13.html', 'https://www.bodenrichtwerte-boris.de/boris-d/?lang=de'],
   },
   {
     id: 'baugenehmigung-kosten',
@@ -2927,7 +2927,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Baugenehmigung Kosten Rechner, Baugenehmigung Gebühren, Bauantrag Kosten, Baugenehmigung berechnen',
-    quellen: ['https://www.aknw.de/aktuelles/news/details/news/bauo-nrw-2018-verwaltungsgebuehren', 'https://www.schleswig-holstein.de/DE/fachinhalte/B/bauen/baugebuehrenrecht', 'https://www.wohneigentum.nrw/beitrag/kosten-baugenehmigung'],
+    quellen: ['https://recht.nrw.de/lrgv/rechtsverordnung/25042026-allgemeine-verwaltungsgebuehrenordnung-nrw-avwgebo-nrw', 'https://recht.nrw.de/lmi/owa/br_vbl_detail_text?anw_nr=7&vd_id=22532&ver=10&val=22532&sg=0&menu=0&vd_back=N&amtlich=1', 'https://www.gesetze-rechtsprechung.sh.juris.de/jportal/?quelle=jlink&query=BauGebV+SH&psml=bsshoprod.psml&max=true&aiz=true'],
   },
   {
     id: 'daemmung',
@@ -2937,7 +2937,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Dämmstärke berechnen, Dämmung Rechner, U-Wert Dämmung, Dämmstoff Dicke, GEG Dämmung, WLG Lambda',
-    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.gebaeudeforum.de/ordnungsrecht/geg/', 'https://www.energie-experten.org/bauen-und-sanieren/daemmung/waermedaemmung/u-wert'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.dinmedia.de/de/norm/din-en-iso-6946/255315365', 'https://www.dinmedia.de/de/norm/din-4108-4/327502903'],
   },
   {
     id: 'u-wert',
@@ -2947,7 +2947,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'U-Wert Rechner, U-Wert berechnen, Wärmedurchgangskoeffizient, Bauteil U-Wert, R-Wert, Wärmedämmung Wand',
-    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.baunormenlexikon.de/norm/din-en-iso-6946/393114e3-3d03-44de-88d5-c2486dc7240d', 'https://www.gebaeudeforum.de/realisieren/bauphysik/waermedurchgangskoeffizient-u-wert/'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.dinmedia.de/de/norm/din-en-iso-6946/255315365'],
   },
   {
     id: 'innendaemmung',
@@ -2957,7 +2957,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Innendämmung Rechner, Innendämmung berechnen, Innendämmung U-Wert, Dämmung innen, Kalziumsilikat',
-    quellen: ['https://www.energie-experten.org/bauen-und-sanieren/daemmung/waermedaemmung/u-wert', 'https://www.energie-experten.org/bauen-und-sanieren/daemmung/waermedaemmung/foerderung-daemmung', 'https://www.gesetze-im-internet.de/geg/'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.gesetze-im-internet.de/geg/__48.html', 'https://www.dinmedia.de/de/norm/din-en-iso-6946/255315365', 'https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Gebaeudehuelle/gebaeudehuelle_node.html'],
   },
   {
     id: 'schotter-kies',
@@ -2967,7 +2967,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Schotter berechnen, Kies Rechner, Schotter Menge, Kies pro m2, Tragschicht Schotter, Schüttgut Tonnen',
-    quellen: ['https://www.hausjournal.net/schotter-berechnen', 'https://www.bauen.de/rechner/splittrechner/', 'https://www.sanier.de/einfahrt-wege-pflasterarbeiten/schotter-kies-und-splitt-so-berechnen-sie-die-noetige-menge'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-13242/100523806', 'https://www.dinmedia.de/de/norm/din-en-13043/46905889'],
   },
   {
     id: 'sand',
@@ -2977,7 +2977,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Sand berechnen, Sand Rechner, Sandmenge, Sand pro m2, Sand Tonnen, Mauersand Bedarf',
-    quellen: ['https://www.bauindex-online.de/allgemein/din-18318/', 'https://www.sachverstaendiger-galabau.info/baulexikon-recht/wegebau-pflasterbau/die-pflasterbettung/', 'https://www.baumigo.de/bauwissen/gewicht-sand/'],
+    quellen: ['https://www.din.de/de/wdc-beuth:din21:232668500/toc-2312944/download', 'https://www.dinmedia.de/de/norm/din-en-12620/103098198'],
   },
   {
     id: 'porenbeton',
@@ -2987,7 +2987,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Porenbeton berechnen, Ytong Rechner, Porenbeton Steine pro m2, Gasbeton Bedarf, Porenbetonsteine',
-    quellen: ['https://www.bv-porenbeton.de/pdfs/technische_publikationen/BVP_Bautechnische-Daten_Porenbeton-Mauerwerksprodukte_05-2019.pdf', 'https://www.xella.de/de_DE/downloads/technische-produktdatenblaetter/ytong', 'https://www.baunetzwissen.de/mauerwerk/tipps/planungshilfen/eurocode-6--bemessungstafeln-fuer-porenbeton-mauerwerk-4807505'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-771-4/232408970', 'https://www.dinmedia.de/de/norm/din-20000-404/282100374', 'https://www.dinmedia.de/de/norm/din-en-1996-1-1/150640106'],
   },
   {
     id: 'energieausweis-kennwert',
@@ -2997,7 +2997,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Energieausweis Rechner, Energiekennwert berechnen, Energieeffizienzklasse, Endenergiebedarf, kWh m2 a, GEG',
-    quellen: ['https://www.gesetze-im-internet.de/geg/__86.html', 'https://www.finanztip.de/energieeffizienzklasse-haus/', 'https://www.energie-experten.org/energie-sparen/energieverbrauch/kennwert'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/__86.html', 'https://www.gesetze-im-internet.de/geg/anlage_10.html'],
   },
   {
     id: 'parkett',
@@ -3007,7 +3007,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Parkett berechnen, Parkettbedarf, Parkett Verschnitt, Parkett Pakete, Parkett pro m2, Parkett verlegen',
-    quellen: ['https://www.parkett-direkt.net/blog/weitere-themen/verschnitt-und-materialbedarf-berechnen', 'https://www.domke-parkett.de/blog/parkett-materialbedarf-berechnen/', 'https://www.casando.de/ratgeber/verschnitt-berechnen-von-parkett-laminat-und-vinyl/'],
+    quellen: ['https://www.din.de/de/wdc-beuth:din21:310833709', 'https://www.din.de/de/wdc-beuth:din21:385350442'],
   },
   {
     id: 'vinylboden',
@@ -3017,7 +3017,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Vinylboden berechnen, Vinyl Rechner, Vinylboden Bedarf, Designboden pro m2, Klick-Vinyl Pakete',
-    quellen: ['https://www.casando.de/ratgeber/verschnitt-berechnen-von-parkett-laminat-und-vinyl/', 'https://www.sanier.de/bodenbelag/laminat-parkett-und-vinyl-verschnitt-richtig-berechnen', 'https://www.handwerk.cloud/wissen/allgemein/vinylboden-verlegen-kosten-pro-qm'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18365/310839991', 'https://www.dinmedia.de/de/norm/din-en-iso-10582/296740447'],
   },
   {
     id: 'teppichboden',
@@ -3027,7 +3027,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Teppichboden berechnen, Teppich Rechner, Teppichboden Bedarf, Teppich pro m2, Bahnenbreite, Verschnitt Teppich',
-    quellen: ['https://www.kibek.de/tipps-zum-aufmass-des-teppichbodens', 'https://woodstore24.de/holzratgeber/boden-ratgeber/verschnitt-berechnen.html', 'https://www.sanier.de/bodenbelag/teppichboden-richtig-verlegen'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18365/310839991', 'https://www.dinmedia.de/de/norm/din-en-1307/306469271'],
   },
 
   // ===============================================================
@@ -3041,7 +3041,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Restschuld Rechner, Restschuld berechnen, Restschuld nach Zinsbindung, Restschuld Annuitätendarlehen, Restschuld Baufinanzierung',
-    quellen: ['https://www.finanzfluss.de/rechner/restschuld-berechnen/', 'https://www.schuldnerberatung.de/restschuld/', 'https://www.baufi24.de/restschuld/'],
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__492.html', 'https://www.gesetze-im-internet.de/pangv_2022/__16.html', 'https://www.gesetze-im-internet.de/pangv_2022/anlage.html', 'https://www.gesetze-im-internet.de/bgbeg/art_247__14.html'],
   },
   {
     id: 'sollzinsbindung-vergleich',
@@ -3051,7 +3051,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Sollzinsbindung Vergleich, welche Zinsbindung, 10 oder 20 Jahre Zinsbindung, Zinsbindung Baufinanzierung, Restschuld Bindungsende',
-    quellen: ['https://www.finanztip.de/baufinanzierung/zinsbindung/', 'https://www.finanzfluss.de/rechner/restschuld-berechnen/', 'https://www.vergleich.de/sollzinsbindung.html'],
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__489.html', 'https://www.gesetze-im-internet.de/bgb/__493.html'],
   },
   {
     id: 'tilgungssatz-vergleich',
@@ -3061,7 +3061,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Tilgungssatz Vergleich, welche Tilgung, Tilgung 2 oder 3 Prozent, optimale Tilgung, Anfangstilgung berechnen',
-    quellen: ['https://www.haushaltsfinanzen.de/finanzmathematik/annuitaeten.php', 'https://www.vergleich.de/tilgung.html', 'https://www.interhyp.de/baufinanzierung/tilgungsrate/'],
+    quellen: ['https://www.gesetze-im-internet.de/pangv_2022/anlage.html', 'https://www.gesetze-im-internet.de/pangv_2022/__16.html', 'https://www.gesetze-im-internet.de/bgb/__500.html'],
   },
   {
     id: 'erschliessungskosten',
@@ -3071,7 +3071,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Erschließungskosten Rechner, Erschließungskosten berechnen, Erschließungsbeitrag, Grundstück erschließen Kosten',
-    quellen: ['https://dejure.org/gesetze/BauGB/131.html', 'https://www.juraforum.de/gesetze/baugb/127-erhebung-des-erschliessungsbeitrags', 'https://de.wikipedia.org/wiki/Erschlie%C3%9Fungsbeitrag'],
+    quellen: ['https://www.gesetze-im-internet.de/bbaug/__129.html', 'https://www.gesetze-im-internet.de/bbaug/__127.html', 'https://www.gesetze-im-internet.de/bbaug/__131.html'],
   },
   {
     id: 'grz-gfz',
@@ -3081,7 +3081,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'GRZ GFZ Rechner, Grundflächenzahl berechnen, Geschossflächenzahl, Bebauungsplan Ausnutzung, wie viel darf ich bauen, BauNVO',
-    quellen: ['https://www.gesetze-im-internet.de/baunvo/__19.html', 'https://www.gesetze-im-internet.de/baunvo/__20.html', 'https://stadt.muenchen.de/infos/berechnung-grundflaeche-geschossflaeche.html'],
+    quellen: ['https://www.gesetze-im-internet.de/baunvo/__19.html', 'https://www.gesetze-im-internet.de/baunvo/__20.html', 'https://www.gesetze-im-internet.de/baunvo/__17.html'],
   },
   {
     id: 'vermessungskosten',
@@ -3091,7 +3091,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Vermessungskosten Rechner, Vermessung Grundstück Kosten, Einmessung Gebäude, Vermessungsgebühren, Lageplan Kosten',
-    quellen: ['https://bravors.brandenburg.de/verordnungen/vermgebo', 'https://recht.nrw.de/lmi/owa/br_text_anzeigen?v_id=10000000000000000446', 'https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/LVERMGEOSH/Service/Gebuehrenrechner/gebuehrenrechnerStart'],
+    quellen: ['https://bravors.brandenburg.de/verordnungen/vermgebo', 'https://recht.nrw.de/lmi/owa/br_text_anzeigen?v_id=10000000000000000446', 'https://www.gesetze-bayern.de/Content/Document/BayGebOVerm/true', 'https://www.gesetze-rechtsprechung.sh.juris.de/jportal/?quelle=jlink&query=VermGebV+SH&psml=bsshoprod.psml&max=true&aiz=true'],
   },
   {
     id: 'baunebenkosten',
@@ -3101,7 +3101,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Baunebenkosten Rechner, Baunebenkosten berechnen, Nebenkosten Hausbau, Baunebenkosten Prozent, Hausbau Zusatzkosten',
-    quellen: ['https://www.bauprofessor.de/baunebenkosten/', 'https://gripsware.de/din276/kg700/', 'https://www.hoai.de/glossar/din-276/'],
+    quellen: ['https://www.gesetze-im-internet.de/grestg_1983/', 'https://www.gesetze-im-internet.de/gnotkg/', 'https://www.dinmedia.de/de/norm/din-276/293154016'],
   },
   {
     id: 'bodengutachten-kosten',
@@ -3111,7 +3111,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Bodengutachten Kosten, Baugrundgutachten Rechner, Bodengutachten Preis, Baugrunduntersuchung Kosten',
-    quellen: ['https://de.wikipedia.org/wiki/DIN_4020', 'https://www.baunormenlexikon.de/norm/din-4020/43e62ceb-a57a-43ba-b9b9-cb685a3386ff', 'https://izw.baw.de/publikationen/kolloquien/0/05-Ruppert.pdf'],
+    quellen: ['https://www.gesetze-im-internet.de/hoai_2013/anlage_1.html', 'https://www.dinmedia.de/de/norm/din-4020/135119566', 'https://www.dinmedia.de/de/norm/din-en-1997-2/133519498'],
   },
   {
     id: 'hausabriss-kosten',
@@ -3121,7 +3121,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Hausabriss Kosten Rechner, Abrisskosten berechnen, Haus abreißen Kosten, Abriss pro m3, Entsorgung Abbruch',
-    quellen: ['https://www.talu.de/abbruchkosten/', 'https://www.immoverkauf24.de/immobilienverkauf/immobilienverkauf-a-z/abrisskosten-haus/', 'https://immobilien.sparkasse.de/bauen/bauprozess/abrissgenehmigung.html'],
+    quellen: ['https://www.gesetze-im-internet.de/gewabfv_2017/', 'https://www.dinmedia.de/de/norm/din-18459/256284643', 'https://www.dinmedia.de/de/norm/din-18007/353873008', 'https://www.gesetze-im-internet.de/ersatzbaustoffv/'],
   },
   {
     id: 'grundstueck-teilung',
@@ -3131,7 +3131,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Grundstücksteilung Rechner, Grundstück teilen Kosten, Teilungsvermessung, Parzellierung',
-    quellen: ['https://www.gesetze-im-internet.de/bbaug/__19.html', 'https://www.juraforum.de/gesetze/baunvo/19-grundflaechenzahl-zulaessige-grundflaeche', 'https://www.augsburg.de/fileadmin/user_upload/verwaltungswegweiser/stadtplanung/Merkblatt_Grundstuecksteilung.form.pdf'],
+    quellen: ['https://www.gesetze-im-internet.de/bbaug/__19.html', 'https://www.gesetze-im-internet.de/baunvo/__19.html'],
   },
   {
     id: 'hausanschluss-kosten',
@@ -3141,7 +3141,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Hausanschlusskosten Rechner, Hausanschluss Kosten, Strom Wasser Gas Anschluss, Hausanschluss Neubau',
-    quellen: ['https://www.verivox.de/baufinanzierung/themen/hausanschluesse/', 'https://www.schwaebisch-hall.de/ratgeber/immobilie-bauen/erschliessungskosten.html', 'https://www.immobilienscout24.de/wissen/kaufen/erschliessungskosten.html'],
+    quellen: ['https://www.gesetze-im-internet.de/avbwasserv/BJNR007500980.html', 'https://www.gesetze-im-internet.de/nav/BJNR247710006.html', 'https://www.gesetze-im-internet.de/ndav/BJNR248500006.html', 'https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Netzanschluss/Baukostenzuschuesse/start.html'],
   },
   {
     id: 'erdaushub',
@@ -3151,7 +3151,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Erdaushub berechnen, Aushub Rechner, Baugrube m3, Erdaushub Kosten, Auflockerungsfaktor',
-    quellen: ['https://www.baugrundjacobi.de/wp-content/uploads/2023/10/Homogenbereich-DIN-18300-Artikel-Baugrund-JACOBI.pdf', 'https://www.forum-verlag.com/fachwissen/bau-und-gebaeudemanagement/din-18300/', 'https://www.lbeg.niedersachsen.de/karten_daten_publikationen/karten_daten/baugrund/bodenklassen_erdarbeiten_nach_din_18300/bodenklassen-fuer-erdarbeiten-nach-din-18300-ibokla-50-621.html'],
+    quellen: ['https://www.dinmedia.de/en/standard/din-18300/310840319', 'https://www.dinmedia.de/en/standard/din-18196/360893361'],
   },
   {
     id: 'raumhoehe-volumen',
@@ -3161,7 +3161,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Raumvolumen berechnen, Raum m3 Rechner, Luftvolumen Raum, Kubikmeter Raum',
-    quellen: ['https://www.velux.de/magazin/wohnflaechenberechnung-dachgeschoss', 'https://www.heizung.de/ratgeber/wohnraumlueftung/die-wohnraumlueftungs-luftmenge-berechnen.html', 'https://www.bosch-homecomfort.com/de/de/wohngebaeude/wissen/heizungsratgeber/heizleistung-berechnen/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-277/342217323', 'https://www.dinmedia.de/de/norm/din-en-12831-1/261292587', 'https://www.dinmedia.de/de/norm/din-1946-6/314483915'],
   },
   {
     id: 'trockenbau',
@@ -3171,7 +3171,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Trockenbau Rechner, Rigips berechnen, Gipskartonplatten Bedarf, Trockenbau Profile, Ständerwerk Material',
-    quellen: ['https://knauf.com/de-DE/knauf-gips/produkte-systeme/systeme/trockenbau-systeme-ueberblick/wand-systeme-im-ueberblick/w11-de-metallstaenderwaende', 'https://www.knauf.de/media/modules/cad/cadlayer.php?ss_sg_nr=W111.de&herst=1001', 'https://www.siniat.de/de-de/siniathek/trockenbau-a-z/92775/unterkonstruktion-bauen/'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18181/301290398', 'https://www.dinmedia.de/de/norm/din-18182-1/238897372', 'https://www.dinmedia.de/de/norm/din-18180/215666970'],
   },
   {
     id: 'dachflaeche',
@@ -3181,7 +3181,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Dachfläche berechnen, Dachflächen Rechner, Satteldach Fläche, Dachfläche pro m2',
-    quellen: ['https://www.11880-dachdecker.com/ratgeber/dachflaeche-berechnen', 'https://www.meindach.de/ratgeber/dachflaeche-berechnen/', 'https://www.wirdaemmendeinhaus.com/wissen/dachflaeche-berechnen'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.dinmedia.de/de/norm/din-18531-1/391197155'],
   },
   {
     id: 'dachziegel',
@@ -3191,7 +3191,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Dachziegel berechnen, Dachziegel pro m2, Ziegelbedarf Dach, Dachsteine Rechner',
-    quellen: ['https://dachdecker.org/regelwerk/', 'https://www.nelskamp.de/downloads/Dachziegel/Flachdachziegel/F15/Verlegeanleitung_F15.pdf', 'https://www.dachziegel.de/wp-content/uploads/2024/04/Bedachung_nach_Mass_042024.pdf'],
+    quellen: ['https://www.din.de/de/mitwirken/normenausschuesse/nabau/veroeffentlichungen/wdc-beuth:din21:187600851', 'https://www.din.de/de/mitwirken/normenausschuesse/nabau/veroeffentlichungen/wdc-beuth:din21:151129391'],
   },
   {
     id: 'bauholz-sparren',
@@ -3201,7 +3201,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Sparren berechnen, Bauholz Rechner, Sparrenabstand, Dachstuhl Holz, Sparren Anzahl',
-    quellen: ['https://www.energie-experten.org/bauen-und-sanieren/dach/dachaufbau/dachsparren', 'https://www.studysmarter.de/ausbildung/ausbildung-in-handwerk-produktion-und-gewerbe/dachdecker/sparren-bemessung/', 'https://www.dachdecker.com/magazin/sparrenabstand-berechnen-202336629'],
+    quellen: ['https://www.dinmedia.de/en/standard/din-en-1995-1-1/134637145', 'https://www.dinmedia.de/en/standard/din-en-1991-1-3/134637120', 'https://www.dinmedia.de/en/standard/din-en-1991-1-4/127478352'],
   },
   {
     id: 'fliesenkleber',
@@ -3211,7 +3211,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Fliesenkleber Rechner, Fliesenkleber pro m2, Kleberbedarf Fliesen, Zahnkelle Verbrauch',
-    quellen: ['https://www.talu.de/fliesenkleber-pro-m2/', 'https://www.hausjournal.net/fliesenkleber-verbrauch', 'https://www.hausjournal.net/wieviel-fugenmoertel-pro-m2-fliese'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-12004-1/257429459', 'https://www.dinmedia.de/de/norm/din-18157-1/267885420'],
   },
   {
     id: 'spachtelmasse',
@@ -3221,7 +3221,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Spachtelmasse Rechner, Spachtel pro m2, Spachtelmasse Verbrauch, Flächenspachtel Menge',
-    quellen: ['https://knauf.com/de-DE/knauf-gips/loesungen/fachkompetenzen/gestaltung/spachtelung', 'https://www.hausjournal.net/wie-viel-ausgleichsmasse-pro-qm', 'https://knauf.com/de-DE/knauf-diy/produkte-und-sortiment/highlights/spachtelkompetenz/spachtel-qualitaetsstufen'],
+    quellen: ['https://www.din.de/de/norm/din-18181/301290398', 'https://www.din.de/de/norm/din-18550-2/280064013'],
   },
   {
     id: 'grundierung',
@@ -3231,7 +3231,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Grundierung Rechner, Tiefengrund Verbrauch, Grundierung pro m2, Haftgrund Menge',
-    quellen: ['https://www.sakret.de/heimwerker/produkte/tiefengrund', 'https://www.baumit-selbermachen.de/chameleon/public/507a0ff3-594e-cded-7455-90b62959dfe8/Tiefengrund_05-07-16.pdf', 'https://static.toom.de/produkte/bilder/3054150/technisches_datenblatt_3054150_31.pdf'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18363/310839867', 'https://www.dinmedia.de/de/norm/din-18550-2/280064013'],
   },
   {
     id: 'innentueren',
@@ -3241,7 +3241,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Innentüren Rechner, Innentüren Kosten, Türen Hausbau Anzahl, Zimmertüren kalkulieren',
-    quellen: ['https://tuermassrechner.tueren-albrecht.de/', 'https://www.energie-experten.org/bauen-und-sanieren/tueren/innentueren/preise', 'https://www.tischler-schreiner.org/magazin/tuerzarge-einbauen-kosten-202413547'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18101/204907014', 'https://www.dinmedia.de/de/norm/din-4172/236657231'],
   },
   {
     id: 'abgehaengte-decke',
@@ -3251,7 +3251,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Abgehängte Decke Rechner, abgehängte Decke Material, Deckenprofile berechnen, Gipskarton Decke',
-    quellen: ['https://drepper.com/wp-content/uploads/PDFs/baustoffwissen/Gipsplatten_und_Putze_Knauf_Konstruktion_D11.pdf', 'https://mdbapi.knauf.com/v1/pdf_download.php?p=g&action=download&a=302650&c=c77e98a020621d65fe5635e58e1385c4', 'https://www.obi.de/magazin/bauen/zimmerdecke/decke-abhaengen'],
+    quellen: ['https://www.dinmedia.de/en/standard/din-18168-1/97095058', 'https://www.dinmedia.de/en/standard/din-en-13964/201473602', 'https://www.dinmedia.de/en/standard/din-18181/301290398'],
   },
   {
     id: 'wandverkleidung-paneele',
@@ -3261,7 +3261,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Wandpaneele Rechner, Paneele berechnen, Wandverkleidung Bedarf, Akustikpaneele m2',
-    quellen: ['https://www.holzprofi24.de/magazin/wohnwelt/wandverkleidungen/akustikpaneele-quiet-luxury-trend/', 'https://www.hornbach.de/c/farben-tapeten-wandverkleidungen/wandverkleidung-deckenverkleidung/wandpaneele-deckenpaneele/akustikpaneele/S28222/', 'https://www.sanier.de/malerarbeiten/ratgeber/wandflaeche-berechnen'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-18355/310839786', 'https://www.dinmedia.de/de/norm/din-18340/369848140'],
   },
   {
     id: 'heizkoerper-leistung',
@@ -3271,7 +3271,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Heizkörper Leistung berechnen, Heizkörper Watt pro m2, Heizkörper dimensionieren, Heizleistung Raum',
-    quellen: ['https://www.baunormenlexikon.de/norm/din-en-442-2/c5271cc7-12a3-4aef-bf8a-7b5ad3c169a3', 'https://www.sbz-monteur.de/gut-zu-wissen/norm-waermeleistung-oder-reale-bedingungen', 'http://www.bosy-online.de/hydraulischer_abgleich/heizflaechenauslegung_recknagel.pdf'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-442-2/207503152', 'https://www.dinmedia.de/de/norm/din-en-12831-1/261292587'],
   },
   {
     id: 'fussbodenheizung',
@@ -3281,7 +3281,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Fußbodenheizung Rechner, Rohrlänge berechnen, Verlegeabstand Fußbodenheizung, FBH Heizkreis Länge',
-    quellen: ['https://www.heizsparer.de/heizung/heizkorper/fussbodenheizung/fussbodenheizung-planen-heizkreise-berechnen', 'https://www.haustec.de/heizung/waermeverteilung/basiswissen-fussbodenheizung-richtig-auslegen', 'https://heliogaia.de/leistungstabelle_datenblatt_fbh24.pdf'],
+    quellen: ['https://www.dinmedia.de/de/norm/din-en-1264-2/332537063', 'https://www.dinmedia.de/de/norm/din-18560-2/356233036'],
   },
   {
     id: 'warmwasserbedarf',
@@ -3291,7 +3291,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Warmwasserbedarf berechnen, Warmwasser pro Person, Speichergröße Warmwasser, Liter Warmwasser Tag',
-    quellen: ['https://www.baunetzwissen.de/heizung/fachwissen/warmwasser/warmwasserbedarf-fuer-wohngebaeude-161292', 'https://www.energie-lexikon.info/warmwasser.html', 'https://www.sbz-monteur.de/fokus/auslegen-nach-din-4708'],
+    quellen: ['https://www.din.de/de/mitwirken/normenausschuesse/nhrs/veroeffentlichungen/wdc-beuth:din21:2276019', 'https://www.din.de/de/mitwirken/normenausschuesse/nhrs/veroeffentlichungen/wdc-beuth:din21:2275907', 'https://www.umweltbundesamt.de/daten/private-haushalte-konsum/wohnen/wassernutzung-privater-haushalte'],
   },
   {
     id: 'solarthermie',
@@ -3301,7 +3301,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Solarthermie Rechner, Kollektorfläche berechnen, Solarthermie Dimensionierung, Solarspeicher Größe',
-    quellen: ['https://www.solaranlage-ratgeber.de/solarthermie/solarthermie-planung/solarthermie-dimensionierung', 'https://www.viessmann.de/de/wissen/infos-und-tipps-zum-kauf/solarthermie-berechnen.html', 'https://www.heizcenter.de/blog/solarthermie-dimensionierung-planung-2026'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/__71e.html', 'https://www.gesetze-im-internet.de/geg/__71.html', 'https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerdervoraussetzungen/foerdervoraussetzungen_node.html'],
   },
   {
     id: 'daemmung-amortisation',
@@ -3311,7 +3311,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Dämmung Amortisation Rechner, Dämmung Ersparnis, Dämmung wann lohnt sich, Heizkosten sparen Dämmung',
-    quellen: ['https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/rechenbeispiele-fuer-eine-fassadendaemmung-8192', 'https://www.energie-lexikon.info/heizgradtage.html', 'https://www.energie-fachberater.de/daemmung/wann-rechnet-sich-eine-waermedaemmung.php'],
+    quellen: ['https://www.gesetze-im-internet.de/geg/anlage_7.html', 'https://www.dinmedia.de/de/norm/din-4108-2/401017482', 'https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Gebaeudehuelle/gebaeudehuelle_node.html'],
   },
   {
     id: 'pufferspeicher',
@@ -3321,7 +3321,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Pufferspeicher Rechner, Pufferspeicher Größe berechnen, Pufferspeicher Liter, Wärmespeicher Größe',
-    quellen: ['https://www.baunetzwissen.de/heizung/fachwissen/speicher/dimensionierung-von-pufferspeichern-161296', 'https://www.gesetze-im-internet.de/bimschv_1_2010/', 'https://www.energie-experten.org/heizung/waermepumpe/waermepumpenheizung/pufferspeicher'],
+    quellen: ['https://www.gesetze-im-internet.de/bimschv_1_2010/__5.html', 'https://www.bafa.de/SharedDocs/Downloads/DE/Energie/ee_merkblatt_technische_anforderungen.pdf'],
   },
   {
     id: 'stromspeicher-groesse',
@@ -3331,7 +3331,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Stromspeicher Größe berechnen, Batteriespeicher kWh, PV Speicher Dimensionierung, Speichergröße Solar',
-    quellen: ['https://solar.htw-berlin.de/rechner/unabhaengigkeitsrechner/', 'https://solar.htw-berlin.de/faq-unabhaengigkeitsrechner/', 'https://www.energie-experten.org/erneuerbare-energien/photovoltaik/stromspeicher/speicher-groesse'],
+    quellen: ['https://www.umweltbundesamt.de/themen/klima-energie/erneuerbare-energien/photovoltaik/photovoltaik-dachanlagen', 'https://www.umweltbundesamt.de/sites/default/files/medien/479/publikationen/cc_66-2021_wirtschaftlichkeit_von_photovoltaik-dachanlagen.pdf', 'https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/07/PD25_N034_43.html'],
   },
 ];
 
