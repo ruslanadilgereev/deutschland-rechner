@@ -1,0 +1,465 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ErdaushubRechner from '../components/rechner/ErdaushubRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Erdaushub-Rechner 2026 – Aushubvolumen, Tonnage & LKW-Fuhren berechnen";
+const description = "Erdaushub berechnen: festes und loses Aushubvolumen, Masse in Tonnen, Anzahl LKW-Fuhren und Entsorgungskosten aus Länge, Breite, Tiefe und Bodenart. Mit Auflockerungsfaktor und Arbeitsraum nach DIN 4124.";
+const keywords = "Erdaushub Rechner, Erdaushub berechnen, Aushub berechnen, Bodenaushub berechnen, Aushubvolumen, Auflockerungsfaktor, Erdaushub entsorgen Kosten, Baugrube berechnen, Erdaushub Tonnen, LKW Fuhren berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Erdaushub-Rechner", url: "/erdaushub-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Erdaushub-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⛏️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Erdaushub-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Aushubvolumen, Tonnage und LKW-Fuhren berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Profilvolumen V = (L + 2 × Arbeitsraum) × (B + 2 × Arbeitsraum) × Tiefe; loses Volumen = festes Volumen × Auflockerungsfaktor; Masse = festes Volumen × Dichte. Arbeitsraum/Böschung nach DIN 4124, Bodenklassen bzw. Homogenbereiche nach DIN 18300 (VOB/C).</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Arbeitsraum 0,5 m je Seite; Auflockerungsfaktoren Sand/Kies 1,15, Mutterboden 1,20, Lehm/Ton 1,30, Fels 1,50; Dichten (fest) 1,4–2,2 t/m³. Alle Werte frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> exakte Bodenklasse und Belastung (LAGA-Deklaration), Böschungswinkel, Grundwasser, Wurzeln und Einbauten. Keine Bau-, Statik- oder Rechtsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ErdaushubRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Erdaushub berechnen: Volumen, Tonnen und Fuhren</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Erdaushub-Rechner</strong> ermitteln Sie für eine Baugrube, einen Keller,
+            einen Pool oder einen Graben das <strong>auszuhebende Erdvolumen</strong>, die Masse in
+            Tonnen und die Anzahl der nötigen <strong>LKW-Fuhren</strong>. Das ist die Grundlage, um
+            den Aufwand für Bagger, Abtransport und <strong>Entsorgung</strong> realistisch zu planen –
+            denn lockerer Boden braucht deutlich mehr Ladevolumen, als das reine Grubenmaß vermuten
+            lässt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Festes Volumen, loses Volumen und Masse</h3>
+          <p>
+            Beim Erdaushub gibt es drei verschiedene Mengen, die man auseinanderhalten muss. Der
+            Rechner gibt alle drei aus:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Festes Volumen (Profilvolumen)</strong> = (Länge + 2 × Arbeitsraum) × (Breite + 2 × Arbeitsraum) × Tiefe</li>
+              <li><strong>Loses Volumen (abzufahren)</strong> = festes Volumen × Auflockerungsfaktor</li>
+              <li><strong>Masse</strong> = festes Volumen × Dichte (t/m³)</li>
+              <li><strong>LKW-Fuhren</strong> = loses Volumen ÷ Mulden-Volumen, aufgerundet</li>
+            </ul>
+          </div>
+          <p>
+            Das <strong>feste Volumen</strong> ist das Loch im Boden – also das Profil der Grube. Sobald
+            der Boden gelöst und auf den LKW geladen wird, <strong>lockert er auf</strong>: Zwischen den
+            Krümeln entsteht Hohlraum, das Schüttvolumen steigt. Genau diese aufgelockerte Menge müssen
+            Sie abfahren und bezahlen. Die <strong>Masse</strong> in Tonnen wiederum richtet sich nach
+            dem festen Volumen und der Dichte und ist meist die Grundlage für die
+            Entsorgungsgebühr je Tonne.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Auflockerungsfaktor je Bodenart</h3>
+          <p>
+            Der Auflockerungsfaktor beschreibt, um wie viel sich der Boden beim Lösen ausdehnt. Er
+            hängt stark von der Bodenart ab: Sand und Kies lockern nur wenig auf (rund 15 %), bindige
+            Böden wie Lehm und Ton stärker (rund 30 %), gesprengter Fels am meisten (40–60 %). Welche
+            <strong>Bodenklasse</strong> bzw. welcher <strong>Homogenbereich nach DIN 18300</strong>
+            vorliegt, sollte für größere Vorhaben ein Baugrundgutachten klären – davon hängen sowohl der
+            Aushubaufwand als auch die Entsorgungskosten ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitsraum nach DIN 4124</h3>
+          <p>
+            Eine Baugrube ist immer größer als das geplante Bauwerk: Rund um Fundament oder Keller wird
+            ein <strong>Arbeitsraum</strong> benötigt, damit Schalung, Abdichtung und Dämmung angebracht
+            werden können. Die <strong>DIN 4124</strong> sieht hierfür typischerweise einen Zuschlag von
+            etwa <strong>0,5 bis 0,8 m je Seite</strong> vor. Deshalb rechnet der Rechner auf jeder Seite
+            den eingestellten Arbeitsraum hinzu. Wer nur Mutterboden flächig abträgt, setzt den
+            Arbeitsraum einfach auf 0.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Anzahl LKW-Fuhren und Entsorgung</h3>
+          <p>
+            Für den Abtransport teilt der Rechner das <strong>lose Volumen</strong> durch das
+            Nutzvolumen der gewählten Mulde und rundet auf, denn eine halbe Fuhre gibt es nicht. Als
+            Richtwerte gelten ein 3-Achser mit rund 8 m³, ein 4-Achser mit 12–16 m³ und ein
+            Sattelkipper mit 20–24 m³. Die <strong>Entsorgungskosten</strong> richten sich nach der
+            Belastungsklasse (LAGA bzw. Deklarationsanalyse): Unbelasteter Boden ist günstig, belasteter
+            Aushub kann ein Vielfaches kosten. Die optionale Kostenschätzung im Rechner liefert nur eine
+            grobe Hausnummer – ein verbindliches Angebot bekommen Sie nur vom Tiefbauer oder der Deponie.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⛏️ Richtwerte: Auflockerung & Dichte je Bodenart</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Anhaltswerte – der genaue Wert hängt vom Baugrund ab und ist nach DIN 18300
+          (Homogenbereiche) bzw. durch ein Bodengutachten zu bestimmen.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Bodenart</th>
+                <th class="py-2 px-2 font-semibold text-right">Auflockerung</th>
+                <th class="py-2 pl-2 font-semibold text-right">Dichte (fest)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏖️ Sand / Kies</td><td class="py-2 px-2 text-right">1,15 (≈ 15 %)</td><td class="py-2 pl-2 text-right">≈ 1,5 t/m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🌱 Mutterboden</td><td class="py-2 px-2 text-right">1,20 (≈ 20 %)</td><td class="py-2 pl-2 text-right">≈ 1,4 t/m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧱 Lehm / Ton (bindig)</td><td class="py-2 px-2 text-right">1,30 (≈ 30 %)</td><td class="py-2 pl-2 text-right">≈ 1,9 t/m³</td></tr>
+              <tr><td class="py-2 pr-2">🪨 Fels / steiniger Boden</td><td class="py-2 px-2 text-right">1,50 (≈ 50 %)</td><td class="py-2 pl-2 text-right">≈ 2,2 t/m³</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: DIN 18300 / VOB/C (Bodenklassen & Homogenbereiche), LBEG Niedersachsen, Fachliteratur Erdbau (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Maße, Arbeitsraum und Bodenart aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Garagen-Baugrube in Sand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">6 × 4 m, 0,8 m tief</div>
+              <div class="text-gray-600">Arbeitsraum:</div>
+              <div class="font-medium text-gray-800">0,5 m je Seite → 7 × 5 m</div>
+              <div class="text-gray-600">Festes Volumen:</div>
+              <div class="font-medium text-gray-800">7 × 5 × 0,8 = 28 m³</div>
+              <div class="text-gray-600">Loses Volumen:</div>
+              <div class="font-medium text-gray-800">28 × 1,15 = 32,2 m³</div>
+              <div class="text-gray-600">Masse:</div>
+              <div class="font-medium text-gray-800">28 × 1,5 = 42 t</div>
+              <div class="text-gray-600">LKW-Fuhren (8 m³):</div>
+              <div class="font-medium text-green-700">aufgerundet 5</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Pool-Grube in Lehm</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">8 × 4 m, 1,5 m tief</div>
+              <div class="text-gray-600">Arbeitsraum:</div>
+              <div class="font-medium text-gray-800">0,5 m je Seite → 9 × 5 m</div>
+              <div class="text-gray-600">Festes Volumen:</div>
+              <div class="font-medium text-gray-800">9 × 5 × 1,5 = 67,5 m³</div>
+              <div class="text-gray-600">Loses Volumen:</div>
+              <div class="font-medium text-gray-800">67,5 × 1,3 = 87,75 m³</div>
+              <div class="text-gray-600">Masse:</div>
+              <div class="font-medium text-gray-800">67,5 × 1,9 = 128,25 t</div>
+              <div class="text-gray-600">LKW-Fuhren (12 m³):</div>
+              <div class="font-medium text-green-700">aufgerundet 8</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Mutterboden flächig abtragen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">10 × 8 m, 0,3 m tief</div>
+              <div class="text-gray-600">Arbeitsraum:</div>
+              <div class="font-medium text-gray-800">0 m (Oberbodenabtrag)</div>
+              <div class="text-gray-600">Festes Volumen:</div>
+              <div class="font-medium text-gray-800">10 × 8 × 0,3 = 24 m³</div>
+              <div class="text-gray-600">Loses Volumen:</div>
+              <div class="font-medium text-gray-800">24 × 1,2 = 28,8 m³</div>
+              <div class="text-gray-600">Masse:</div>
+              <div class="font-medium text-gray-800">24 × 1,4 = 33,6 t</div>
+              <div class="text-gray-600">LKW-Fuhren (8 m³):</div>
+              <div class="font-medium text-green-700">aufgerundet 4</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Achten Sie immer auf das <em>lose</em> Volumen, wenn Sie Fuhren und
+          Container planen – nicht auf das Grubenmaß. Beispiel 2 zeigt, wie stark Tiefe und Arbeitsraum
+          die Menge treiben: aus einem 8 × 4 m großen Pool werden fast 88 m³ Aushub.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Auflockerung vergessen</h3>
+            <p>Das Loch hat 28 m³ – aber abzufahren sind 32 m³ und mehr, weil der gelöste Boden
+            auflockert. Wer mit dem festen Grubenmaß Container bestellt, ordert zu wenig. Rechnen Sie
+            für den Abtransport immer mit dem losen Volumen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Arbeitsraum nicht einplanen</h3>
+            <p>Ohne Arbeitsraum passt kein Mensch zum Abdichten neben das Fundament. Die DIN 4124 fordert
+            je nach Tiefe rund 0,5–0,8 m je Seite. Das vergrößert die Grube spürbar: Aus 6 × 4 m werden
+            mit 0,5 m schon 7 × 5 m – rund 46 % mehr Grundfläche.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Böschung ignorieren</h3>
+            <p>Tiefe Gruben haben selten senkrechte Wände – ohne Verbau müssen sie geböscht werden. Eine
+            geböschte Grube ist oben breiter und hat dadurch mehr Volumen. Dieser Rechner geht von
+            senkrechten Wänden aus; für geböschte Gruben fällt das tatsächliche Volumen höher aus.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Belasteter Boden</h3>
+            <p>Bauschutt, Altlasten oder schadstoffhaltiger Boden fallen unter eine höhere
+            Belastungsklasse (LAGA). Die Entsorgung kostet dann statt weniger Euro pro Tonne schnell
+            50–70 € und mehr. Vor dem Abtransport klärt eine Deklarationsanalyse die Einstufung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wiederverwendung statt Entsorgung</h3>
+            <p>Mutterboden und unbelasteter Erdaushub lassen sich oft im Garten wieder einbauen,
+            verfüllen oder verschenken. Das spart Entsorgungs- und Transportkosten. Rechnen Sie deshalb,
+            welcher Anteil wirklich abgefahren werden muss.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Erdaushub</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich den Erdaushub?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das feste Aushubvolumen ergibt sich aus
+              <strong>(Länge + 2 × Arbeitsraum) × (Breite + 2 × Arbeitsraum) × Tiefe</strong>. Eine
+              6 × 4 m große Grube mit 0,8 m Tiefe und 0,5 m Arbeitsraum je Seite ergibt 7 × 5 × 0,8 =
+              28 m³. Für den Abtransport multiplizieren Sie dieses Volumen noch mit dem
+              Auflockerungsfaktor.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen festem und losem Volumen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das feste Volumen ist das Loch im Boden (Profilvolumen). Sobald der Boden gelöst wird,
+              lockert er auf und nimmt mehr Platz ein – das ist das lose Volumen, das tatsächlich
+              abgefahren wird. Es ergibt sich aus festem Volumen × Auflockerungsfaktor und ist je nach
+              Bodenart 15 bis 60 % größer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Tonnen wiegt ein Kubikmeter Erdaushub?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von der Bodenart ab. Als Richtwerte gelten Sand rund 1,5 t/m³, Mutterboden
+              rund 1,4 t/m³, Lehm 1,8–2,0 t/m³ und Fels über 2 t/m³. Die Masse berechnet der Rechner aus
+              festem Volumen × Dichte – sie ist meist die Grundlage für die Entsorgungsgebühr je Tonne.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet die Entsorgung von Erdaushub?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Aushub selbst kostet grob 10–25 € pro m³. Die Entsorgung liegt bei unbelastetem
+              Boden bei wenigen Euro je Tonne, bei belastetem Aushub aber bei 50–70 € pro Tonne und mehr.
+              Maßgeblich ist die Belastungsklasse (LAGA-Deklaration) und die Region. Die Schätzung im
+              Rechner ersetzt kein Angebot vom Tiefbauer oder der Deponie.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Auflockerungsfaktor?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Auflockerungsfaktor gibt an, um wie viel sich der Boden beim Lösen ausdehnt. Sand
+              und Kies lockern nur rund 15 % auf (Faktor 1,15), bindige Böden wie Lehm rund 30 %
+              (Faktor 1,30), gesprengter Fels 40–60 % (Faktor 1,40–1,60). Er wandelt das feste in das
+              lose, abzufahrende Volumen um.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Arbeitsraum braucht eine Baugrube?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach DIN 4124 wird rund um das Bauwerk ein Arbeitsraum von typischerweise 0,5 bis 0,8 m
+              je Seite vorgesehen, damit Schalung, Abdichtung und Dämmung angebracht werden können. Der
+              Rechner schlägt diesen Wert auf jeder Seite zu. Bei reinem Oberbodenabtrag setzen Sie den
+              Arbeitsraum auf 0.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/umzugskosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Umzugskosten-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Erdaushub-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/erdaushub-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich den Erdaushub?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das feste Aushubvolumen ergibt sich aus (Länge + 2 × Arbeitsraum) × (Breite + 2 × Arbeitsraum) × Tiefe. Eine 6 × 4 m große Grube mit 0,8 m Tiefe und 0,5 m Arbeitsraum je Seite ergibt 7 × 5 × 0,8 = 28 m³. Für den Abtransport multiplizieren Sie dieses Volumen noch mit dem Auflockerungsfaktor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen festem und losem Volumen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das feste Volumen ist das Loch im Boden (Profilvolumen). Sobald der Boden gelöst wird, lockert er auf und nimmt mehr Platz ein – das ist das lose Volumen, das tatsächlich abgefahren wird. Es ergibt sich aus festem Volumen × Auflockerungsfaktor und ist je nach Bodenart 15 bis 60 % größer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Tonnen wiegt ein Kubikmeter Erdaushub?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von der Bodenart ab. Als Richtwerte gelten Sand rund 1,5 t/m³, Mutterboden rund 1,4 t/m³, Lehm 1,8–2,0 t/m³ und Fels über 2 t/m³. Die Masse berechnet der Rechner aus festem Volumen × Dichte – sie ist meist die Grundlage für die Entsorgungsgebühr je Tonne."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet die Entsorgung von Erdaushub?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Aushub selbst kostet grob 10–25 € pro m³. Die Entsorgung liegt bei unbelastetem Boden bei wenigen Euro je Tonne, bei belastetem Aushub aber bei 50–70 € pro Tonne und mehr. Maßgeblich ist die Belastungsklasse (LAGA-Deklaration) und die Region. Die Schätzung im Rechner ersetzt kein Angebot vom Tiefbauer oder der Deponie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Auflockerungsfaktor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Auflockerungsfaktor gibt an, um wie viel sich der Boden beim Lösen ausdehnt. Sand und Kies lockern nur rund 15 % auf (Faktor 1,15), bindige Böden wie Lehm rund 30 % (Faktor 1,30), gesprengter Fels 40–60 % (Faktor 1,40–1,60). Er wandelt das feste in das lose, abzufahrende Volumen um."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Arbeitsraum braucht eine Baugrube?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach DIN 4124 wird rund um das Bauwerk ein Arbeitsraum von typischerweise 0,5 bis 0,8 m je Seite vorgesehen, damit Schalung, Abdichtung und Dämmung angebracht werden können. Der Rechner schlägt diesen Wert auf jeder Seite zu. Bei reinem Oberbodenabtrag setzen Sie den Arbeitsraum auf 0."
+        }
+      }
+    ]
+  })} />
+</Layout>

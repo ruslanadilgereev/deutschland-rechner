@@ -1,0 +1,469 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SollzinsbindungVergleichRechner from '../components/rechner/SollzinsbindungVergleichRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Sollzinsbindung-Vergleich 2026 – 10, 15 oder 20 Jahre berechnen";
+const description = "Sollzinsbindung vergleichen: Monatsrate, gezahlte Zinsen und Restschuld bei 10, 15 oder 20 Jahren Zinsbindung nebeneinander berechnen. So finden Sie die richtige Zinsbindung für Ihre Baufinanzierung.";
+const keywords = "Sollzinsbindung Vergleich, Sollzinsbindungsrechner, welche Zinsbindung, 10 oder 20 Jahre Zinsbindung, Zinsbindung 10 15 20 Jahre, Zinsbindung Baufinanzierung, Restschuld Bindungsende, Anschlussfinanzierung Risiko";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Sollzinsbindung-Vergleich-Rechner", url: "/sollzinsbindung-vergleich-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Sollzinsbindung-Vergleich-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Sollzinsbindung-Vergleich-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">10, 15 oder 20 Jahre Zinsbindung vergleichen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Standard-Annuitätenmathematik. Monatsrate = Darlehen × (Sollzins + Tilgung) ÷ 100 ÷ 12; Restschuld nach N Monaten = D × (1 + i)<sup>N</sup> − Rate × ((1 + i)<sup>N</sup> − 1) ÷ i, mit i = Sollzins ÷ 1.200. Das gesetzliche Sonderkündigungsrecht nach 10 Jahren ergibt sich aus § 489 Abs. 1 Nr. 2 BGB.</p>
+            <p class="mb-1"><strong>Voreinstellung:</strong> 300.000 € Darlehen, 2 % anfängliche Tilgung, Beispiel-Sollzinsen 3,4 % (10 J) / 3,7 % (15 J) / 3,9 % (20 J). Längere Bindung = höherer Zins ist der typische Aufschlag – Werte sind frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Sondertilgungen, Bereitstellungszinsen, der tatsächliche Anschlusszins nach der Bindung sowie individuelle Bonität. Reine Modellrechnung, keine Finanzberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SollzinsbindungVergleichRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Welche Sollzinsbindung ist die richtige?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Bei jeder Baufinanzierung steht früher oder später die Frage: <strong>10, 15 oder 20 Jahre
+            Zinsbindung?</strong> Mit dem <strong>Sollzinsbindung-Vergleich-Rechner</strong> sehen Sie
+            für mehrere Bindungsdauern gleichzeitig, wie hoch die Monatsrate ausfällt, wie viel Zinsen
+            Sie in der Bindung zahlen und – das Entscheidende – <strong>welche Restschuld am Ende der
+            Zinsbindung übrig bleibt</strong>. Anders als ein einfacher
+            <a href="/baufinanzierung-rechner" class="text-blue-600 hover:text-blue-800 underline">Baufinanzierungs-Rechner</a>
+            oder <a href="/tilgungsplan-rechner" class="text-blue-600 hover:text-blue-800 underline">Tilgungsplan-Rechner</a>,
+            die ein einziges Szenario durchrechnen, stellt dieser Rechner die Bindungsvarianten direkt
+            nebeneinander – genau die Entscheidungsgrundlage, die Sie für die Bankberatung brauchen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Sollzinsbindung?</h3>
+          <p>
+            Die <strong>Sollzinsbindung</strong> (auch Zinsbindungsfrist oder Zinsfestschreibung) ist der
+            Zeitraum, für den die Bank Ihnen den vereinbarten Sollzins garantiert. Während dieser Frist
+            ist Ihre Rate fix und unabhängig davon, wie sich die Marktzinsen entwickeln. Üblich sind
+            Bindungen von 5, 10, 15, 20 oder sogar 30 Jahren. Je länger Sie sich den Zins sichern,
+            desto höher ist in der Regel der Zinssatz – die Bank lässt sich die längere Planungssicherheit
+            mit einem Aufschlag bezahlen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel: Annuitätendarlehen</h3>
+          <p>Der Rechner nutzt die Standardmathematik des Annuitätendarlehens:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Monatsrate</strong> = Darlehen × (Sollzins % + Tilgung %) ÷ 100 ÷ 12</li>
+              <li><strong>Monatlicher Zins i</strong> = Sollzins ÷ 1.200</li>
+              <li><strong>Restschuld nach N Monaten</strong> = D × (1 + i)<sup>N</sup> − Rate × ((1 + i)<sup>N</sup> − 1) ÷ i</li>
+              <li><strong>Gezahlte Zinsen in der Bindung</strong> = Rate × N − (Darlehen − Restschuld)</li>
+            </ul>
+          </div>
+          <p>
+            Die Rate bleibt über die ganze Bindung konstant (Annuität). Anfangs besteht sie überwiegend
+            aus Zinsen, mit jeder Rate sinkt aber die Restschuld – dadurch wächst der Tilgungsanteil und
+            der Zinsanteil schrumpft. Eine höhere anfängliche Tilgung erhöht die Rate, entschuldet aber
+            spürbar schneller.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Lange vs. kurze Bindung – der Zielkonflikt</h3>
+          <p>
+            Eine <strong>kurze Bindung</strong> (z. B. 10 Jahre) ist meist günstiger im Zins, hinterlässt
+            aber eine <strong>hohe Restschuld</strong>, die Sie danach zu einem heute unbekannten Zins
+            anschlussfinanzieren müssen – das ist das <strong>Prolongationsrisiko</strong>. Steigen die
+            Zinsen bis dahin, kann die Anschlussfinanzierung deutlich teurer werden. Eine
+            <strong>lange Bindung</strong> (15–20 Jahre) kostet zwar etwas mehr Zins, schützt aber vor
+            Zinssteigerungen und tilgt – bei gleicher anfänglicher Tilgung – bis zum Bindungsende einen
+            deutlich größeren Teil des Darlehens.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderkündigungsrecht nach 10 Jahren</h3>
+          <p>
+            Ein wichtiger Vorteil langer Bindungen: Nach <strong>§ 489 Abs. 1 Nr. 2 BGB</strong> dürfen
+            Darlehensnehmer jedes Darlehen mit Sollzinsbindung <strong>zehn Jahre nach Vollauszahlung</strong>
+            mit einer Frist von sechs Monaten ohne Vorfälligkeitsentschädigung kündigen. Wer also eine
+            20-Jahres-Bindung wählt, ist nach 10 Jahren frei, kann aber von der Zinssicherheit profitieren,
+            falls die Zinsen steigen. Eine lange Bindung ist damit oft eine Art „Versicherung“ gegen
+            Zinsanstieg – mit eingebautem Ausstieg.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚖️ Bindungsvergleich bei 300.000 € und 2 % Tilgung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beispielwerte mit dem typischen Zinsaufschlag für längere Bindungen. Tatsächliche Sollzinsen
+          sind tagesaktuell und bonitätsabhängig – tragen Sie im Rechner Ihre eigenen Konditionen ein.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Bindung</th>
+                <th class="py-2 px-2 font-semibold text-right">Sollzins</th>
+                <th class="py-2 px-2 font-semibold text-right">Rate/Mon.</th>
+                <th class="py-2 px-2 font-semibold text-right">Zinsen</th>
+                <th class="py-2 pl-2 font-semibold text-right">Restschuld</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">10 Jahre</td><td class="py-2 px-2 text-right">3,40 %</td><td class="py-2 px-2 text-right">1.350 €</td><td class="py-2 px-2 text-right">90.658 €</td><td class="py-2 pl-2 text-right">228.658 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">15 Jahre</td><td class="py-2 px-2 text-right">3,70 %</td><td class="py-2 px-2 text-right">1.425 €</td><td class="py-2 px-2 text-right">136.426 €</td><td class="py-2 pl-2 text-right">179.926 €</td></tr>
+              <tr><td class="py-2 pr-2">20 Jahre</td><td class="py-2 px-2 text-right">3,90 %</td><td class="py-2 px-2 text-right">1.475 €</td><td class="py-2 px-2 text-right">172.659 €</td><td class="py-2 pl-2 text-right">118.659 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Finanztip (Zinsbindung), Finanzfluss (Restschuldformel), vergleich.de (Zinsaufschlag
+          lange vs. kurze Bindung). Werte gerundet, Stand Juni 2026.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So unterschiedlich fällt die Restschuld am Bindungsende je nach Zinsbindung aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 10 vs. 20 Jahre bei 300.000 €, 2 % Tilgung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">10 J / 3,40 % – Rate:</div>
+              <div class="font-medium text-gray-800">1.350,00 €</div>
+              <div class="text-gray-600">10 J – Restschuld:</div>
+              <div class="font-medium text-gray-800">228.658 € (Zinsen 90.658 €)</div>
+              <div class="text-gray-600">20 J / 3,90 % – Rate:</div>
+              <div class="font-medium text-gray-800">1.475,00 €</div>
+              <div class="text-gray-600">20 J – Restschuld:</div>
+              <div class="font-medium text-green-700">118.659 € (Zinsen 172.659 €)</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Für 125 € mehr Rate pro Monat ist die Restschuld nach der Bindung um rund 110.000 €
+              niedriger – und das volle Zinsänderungsrisiko entfällt für weitere 10 Jahre.
+            </p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 10 vs. 15 Jahre bei 400.000 €, 3 % Tilgung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">10 J / 3,50 % – Rate:</div>
+              <div class="font-medium text-gray-800">2.166,67 €</div>
+              <div class="text-gray-600">10 J – Restschuld:</div>
+              <div class="font-medium text-gray-800">256.567 €</div>
+              <div class="text-gray-600">15 J / 3,80 % – Rate:</div>
+              <div class="font-medium text-gray-800">2.266,67 €</div>
+              <div class="text-gray-600">15 J – Restschuld:</div>
+              <div class="font-medium text-green-700">157.892 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Höhere Darlehen und höhere Tilgung verschieben den Effekt: 100 € mehr Rate und 5 Jahre
+              längere Bindung senken die Restschuld um rund 99.000 €.
+            </p>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 5 vs. 15 Jahre bei 250.000 €, 2 % Tilgung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">5 J / 3,20 % – Rate:</div>
+              <div class="font-medium text-gray-800">1.083,33 €</div>
+              <div class="text-gray-600">5 J – Restschuld:</div>
+              <div class="font-medium text-gray-800">222.928 €</div>
+              <div class="text-gray-600">15 J / 3,80 % – Rate:</div>
+              <div class="font-medium text-gray-800">1.208,33 €</div>
+              <div class="text-gray-600">15 J – Restschuld:</div>
+              <div class="font-medium text-green-700">149.122 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Eine sehr kurze 5-Jahres-Bindung tilgt kaum (rund 27.000 €) und lässt fast den vollen
+              Betrag ins Zinsänderungsrisiko laufen – riskant, wenn die Zinsen bis dahin steigen.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Vergleichen Sie nicht nur die Rate, sondern vor allem die
+          <strong>Restschuld am Bindungsende</strong>. Genau dieser Betrag entscheidet, wie stark Sie
+          das Zinsniveau bei der Anschlussfinanzierung trifft.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur auf die Monatsrate schauen</h3>
+            <p>Die kürzeste Bindung hat oft die niedrigste Rate – aber auch die höchste Restschuld.
+            Wer nur die Rate vergleicht, übersieht das Anschlussfinanzierungs-Risiko und kann am Ende
+            deutlich teurer fahren, falls die Zinsen gestiegen sind.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Restschuld mit Gesamtschuld verwechseln</h3>
+            <p>Die Restschuld ist nicht das, was Sie insgesamt noch zahlen, sondern der zum Bindungsende
+            offene Darlehensbetrag. Auf diesen Betrag rechnet die Bank bei der Anschlussfinanzierung den
+            dann gültigen Zins – nicht auf die ursprüngliche Darlehenssumme.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Prolongationsrisiko ausblenden</h3>
+            <p>Bei kurzer Bindung müssen Sie eine hohe Restschuld zu einem heute unbekannten Zins
+            weiterfinanzieren. Rechnen Sie zur Sicherheit durch, was passiert, wenn der Anschlusszins
+            2–3 Prozentpunkte höher liegt – die Rate kann dann spürbar steigen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sonderkündigungsrecht nutzen</h3>
+            <p>Auch eine 15- oder 20-jährige Bindung können Sie nach § 489 BGB zehn Jahre nach
+            Vollauszahlung mit sechs Monaten Frist ohne Vorfälligkeitsentschädigung ablösen. Die lange
+            Bindung ist also nach 10 Jahren keine „Falle“, sondern ein einseitiger Vorteil für Sie.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Zinsen sind keine feste Empfehlung</h3>
+            <p>Die voreingestellten Sollzinsen sind Beispielwerte mit typischem Aufschlag für längere
+            Bindungen. Ihre echten Konditionen hängen von Marktzins, Beleihung und Bonität ab – holen
+            Sie konkrete Angebote ein und tragen Sie diese im Rechner ein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Sollzinsbindung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">10, 15 oder 20 Jahre Zinsbindung – was ist besser?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Pauschal lässt sich das nicht sagen, es ist ein Abwägen: Eine kurze Bindung (10 Jahre)
+              ist meist zinsgünstiger, hinterlässt aber eine hohe Restschuld, die zu einem unbekannten
+              Zins anschlussfinanziert werden muss. Eine lange Bindung (15–20 Jahre) kostet etwas mehr
+              Zins, schützt aber vor Zinssteigerungen und tilgt bis zum Bindungsende deutlich mehr.
+              Wer Sicherheit will oder bei niedrigem Zinsniveau finanziert, wählt eher lang.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Sollzinsbindung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Sollzinsbindung (auch Zinsfestschreibung) ist der Zeitraum, für den die Bank Ihnen
+              den vereinbarten Sollzins garantiert. Während dieser Frist bleibt Ihre Rate fix,
+              unabhängig von der Marktzinsentwicklung. Üblich sind 5, 10, 15, 20 oder 30 Jahre. Je
+              länger die Bindung, desto höher in der Regel der Zinssatz.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist der Zins bei längerer Bindung höher?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Mit einer langen Bindung übernimmt die Bank über viele Jahre das Risiko steigender
+              Refinanzierungskosten und gibt Ihnen Planungssicherheit. Diesen Vorteil lässt sie sich
+              mit einem Zinsaufschlag bezahlen. Deshalb kostet eine 20-jährige Bindung typischerweise
+              einige Zehntel Prozentpunkte mehr als eine 10-jährige – im Rechner können Sie den
+              Aufschlag mit Ihren echten Konditionen abbilden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Restschuld am Ende der Zinsbindung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Restschuld ist der Teil des Darlehens, der nach Ablauf der Zinsbindung noch offen
+              ist. Sie berechnet sich aus Darlehen, Sollzins und Rate über die Bindungsdauer. Bei
+              200.000 € Darlehen, 4 % Sollzins und 2 % anfänglicher Tilgung beträgt die Rate 1.000 €
+              und nach 10 Jahren Bindung bleiben rund 150.917 € Restschuld – genau dieser Betrag muss
+              dann zu einem neuen, heute unbekannten Zins weiterfinanziert werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist das Prolongationsrisiko?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Prolongationsrisiko (Anschlussfinanzierungs-Risiko) bezeichnet man die Gefahr, dass
+              die Zinsen bis zum Ende Ihrer Zinsbindung gestiegen sind und Sie die verbleibende
+              Restschuld dann zu einem höheren Zins anschlussfinanzieren müssen. Je kürzer die Bindung
+              und je höher die Restschuld, desto größer dieses Risiko. Eine lange Bindung reduziert es.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich eine lange Zinsbindung vorzeitig kündigen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Nach § 489 Abs. 1 Nr. 2 BGB dürfen Sie jedes Darlehen mit Sollzinsbindung zehn
+              Jahre nach Vollauszahlung mit einer Frist von sechs Monaten kündigen – ohne
+              Vorfälligkeitsentschädigung. Eine 15- oder 20-jährige Bindung gibt Ihnen daher lange
+              Zinssicherheit, lässt Ihnen nach 10 Jahren aber trotzdem den Ausstieg, falls die Zinsen
+              gefallen sind.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/vorfaelligkeitsentschaedigung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">✂️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Vorfälligkeitsentschädigung</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sollzinsbindung-Vergleich-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/sollzinsbindung-vergleich-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "10, 15 oder 20 Jahre Zinsbindung – was ist besser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pauschal lässt sich das nicht sagen, es ist ein Abwägen: Eine kurze Bindung (10 Jahre) ist meist zinsgünstiger, hinterlässt aber eine hohe Restschuld, die zu einem unbekannten Zins anschlussfinanziert werden muss. Eine lange Bindung (15–20 Jahre) kostet etwas mehr Zins, schützt aber vor Zinssteigerungen und tilgt bis zum Bindungsende deutlich mehr. Wer Sicherheit will oder bei niedrigem Zinsniveau finanziert, wählt eher lang."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Sollzinsbindung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Sollzinsbindung (auch Zinsfestschreibung) ist der Zeitraum, für den die Bank Ihnen den vereinbarten Sollzins garantiert. Während dieser Frist bleibt Ihre Rate fix, unabhängig von der Marktzinsentwicklung. Üblich sind 5, 10, 15, 20 oder 30 Jahre. Je länger die Bindung, desto höher in der Regel der Zinssatz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist der Zins bei längerer Bindung höher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mit einer langen Bindung übernimmt die Bank über viele Jahre das Risiko steigender Refinanzierungskosten und gibt Ihnen Planungssicherheit. Diesen Vorteil lässt sie sich mit einem Zinsaufschlag bezahlen. Deshalb kostet eine 20-jährige Bindung typischerweise einige Zehntel Prozentpunkte mehr als eine 10-jährige – im Rechner können Sie den Aufschlag mit Ihren echten Konditionen abbilden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Restschuld am Ende der Zinsbindung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Restschuld ist der Teil des Darlehens, der nach Ablauf der Zinsbindung noch offen ist. Sie berechnet sich aus Darlehen, Sollzins und Rate über die Bindungsdauer. Bei 200.000 € Darlehen, 4 % Sollzins und 2 % anfänglicher Tilgung beträgt die Rate 1.000 € und nach 10 Jahren Bindung bleiben rund 150.917 € Restschuld – genau dieser Betrag muss dann zu einem neuen, heute unbekannten Zins weiterfinanziert werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist das Prolongationsrisiko?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Prolongationsrisiko (Anschlussfinanzierungs-Risiko) bezeichnet man die Gefahr, dass die Zinsen bis zum Ende Ihrer Zinsbindung gestiegen sind und Sie die verbleibende Restschuld dann zu einem höheren Zins anschlussfinanzieren müssen. Je kürzer die Bindung und je höher die Restschuld, desto größer dieses Risiko. Eine lange Bindung reduziert es."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich eine lange Zinsbindung vorzeitig kündigen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Nach § 489 Abs. 1 Nr. 2 BGB dürfen Sie jedes Darlehen mit Sollzinsbindung zehn Jahre nach Vollauszahlung mit einer Frist von sechs Monaten kündigen – ohne Vorfälligkeitsentschädigung. Eine 15- oder 20-jährige Bindung gibt Ihnen daher lange Zinssicherheit, lässt Ihnen nach 10 Jahren aber trotzdem den Ausstieg, falls die Zinsen gefallen sind."
+        }
+      }
+    ]
+  })} />
+</Layout>

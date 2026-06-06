@@ -1,0 +1,449 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BodengutachtenKostenRechner from '../components/rechner/BodengutachtenKostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Bodengutachten-Rechner 2026 – Kosten Baugrundgutachten schätzen";
+const description = "Bodengutachten-Kosten beim Hausbau berechnen: Grundpauschale, Bohrungen, Laboranalyse und Bericht – mit Zuschlägen für Keller, geotechnische Kategorie (DIN 4020) und Lage. Mit Beispielen und Richtwert-Tabelle.";
+const keywords = "Bodengutachten Kosten, Baugrundgutachten Kosten, Bodengutachten Rechner, Bodengutachten Hausbau, Baugrunduntersuchung Kosten, Geotechnischer Bericht Kosten, Bodengutachten Preis, DIN 4020 Kosten";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Bodengutachten-Rechner", url: "/bodengutachten-kosten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Bodengutachten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⛏️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Bodengutachten-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kosten für das Baugrundgutachten schätzen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Additiver Kostenschätzer aus den dokumentierten Posten eines Baugrundgutachtens (Grundpauschale + Bohrungen × Tiefen-Faktor + Laboranalyse + Bericht), multipliziert mit Zuschlägen für Bauweise, geotechnische Kategorie (DIN 4020 / DIN EN 1997-2, Eurocode 7) und Lage.</p>
+            <p class="mb-1"><strong>Default-Werte (netto):</strong> Grundpauschale 300 €, je Bohrung 250 € (Basis bis 6 m, je weitere 2 m + 20 %), Laboranalyse 350 €, Bericht 450 €. Zuschläge: Keller + 18 %, GK2 + 30 %, GK3 + 75 %, Ballungsraum + 15 %. Ergebnis als Spanne ± 20 %.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelle Angebotsfaktoren, Erschwernisse (Hanglage, Fels, Grundwasser), Anfahrtsentfernung im Detail, Mehrwertsteuer. Kein verbindliches Angebot, keine Bauberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BodengutachtenKostenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Bodengutachten-Kosten beim Hausbau realistisch einschätzen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Bodengutachten-Rechner</strong> schätzen Sie, was ein
+            <strong>Baugrundgutachten</strong> für Ihr Bauvorhaben ungefähr kostet. Ein Bodengutachten –
+            fachlich <strong>geotechnischer Bericht</strong> – untersucht, ob und wie tragfähig der
+            Untergrund Ihres Grundstücks ist. Es ist die Grundlage für die Statik, die Wahl der Gründung
+            (Bodenplatte oder Keller) und die Bemessung von Abdichtung und Dränage. Ohne belastbare
+            Kenntnis des Baugrunds drohen später teure Setzungsschäden oder feuchte Keller.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aus welchen Posten setzen sich die Kosten zusammen?</h3>
+          <p>Der Rechner addiert die typischen Einzelposten und schlägt anschließend projektabhängige Faktoren auf:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Grundpauschale</strong> (Anfahrt, Vorbereitung, Gerätetransport): ca. 250–400 €</li>
+              <li><strong>Bohrungen / Sondierungen</strong>: ca. 150–400 € je Bohrung, beim Einfamilienhaus typisch 2–4 Stück</li>
+              <li><strong>Laboranalyse</strong> der entnommenen Bodenproben: ca. 200–600 €</li>
+              <li><strong>Geotechnischer Bericht</strong> (Auswertung, Gründungsempfehlung): ca. 300–700 €</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Bohrtiefe</strong> wirkt sich direkt auf die Bohrkosten aus: Bis etwa 6 m gilt der
+            Basispreis, je weitere angefangene 2 m rechnet der Rechner rund 20 % Aufschlag auf die
+            Bohrkosten. Tiefere Bohrungen werden nötig, wenn tragfähige Schichten erst weiter unten liegen
+            oder ein Keller geplant ist.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Geotechnische Kategorien GK1, GK2, GK3</h3>
+          <p>
+            Die <strong>DIN 4020</strong> (in Verbindung mit dem Eurocode 7, <strong>DIN EN 1997-2</strong>)
+            ordnet jedes Bauvorhaben einer von drei <strong>geotechnischen Kategorien</strong> zu. Sie
+            bestimmen den Untersuchungsaufwand und damit die Kosten:
+          </p>
+          <ul class="space-y-1 text-sm list-disc pl-5">
+            <li><strong>GK1</strong> – einfacher, gut bekannter Baugrund und kleine, unkritische Bauwerke. Geringster Aufwand.</li>
+            <li><strong>GK2</strong> – mittlere Verhältnisse, der Regelfall beim Einfamilienhaus. Im Rechner + 30 %.</li>
+            <li><strong>GK3</strong> – schwierige Baugrundverhältnisse, etwa Hanglage, hohes Grundwasser, Altlast- oder Hohlraumverdacht. Im Rechner + 75 %, in Extremfällen noch mehr.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Faustregel als Plausibilitätscheck</h3>
+          <p>
+            Als grobe Daumenregel liegen die Kosten eines Baugrundgutachtens bei etwa
+            <strong>0,1 bis 0,5 % der Gesamtbaukosten</strong> oder rund <strong>5 € pro m² Grundfläche</strong>.
+            Bei einem Einfamilienhaus mit 400.000 € Baukosten wären das also ungefähr 400 bis 2.000 €.
+            Der realistische Korridor für ein Standardgutachten liegt meist zwischen <strong>800 und 3.000 €</strong>,
+            bei schwierigem Baugrund auch darüber. Die Untergrenze für ein vollständiges Gutachten
+            (Feldarbeit, Labor und Bericht) liegt selten unter rund 1.700 €.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ist ein Bodengutachten Pflicht?</h3>
+          <p>
+            Ein gesetzliches Bundesgesetz „Bodengutachten-Pflicht“ gibt es nicht. In der Praxis verlangen
+            jedoch Statiker, Bauträger und Banken fast immer einen geotechnischen Bericht, und die
+            Bauordnungen der Länder bzw. die untere Bauaufsicht können ihn fordern. Wer ohne Gutachten baut,
+            trägt das volle Risiko: Bodenrisiken gelten als „Bauherrenrisiko“. Die wenigen hundert Euro
+            für das Gutachten sind im Vergleich zu möglichen Schäden gut investiert.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⛏️ Richtwerte: Kosten je nach Aufwand</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Typische Größenordnungen für ein Einfamilienhaus (netto). Tatsächliche Preise hängen vom
+          Gutachter, der Region und den Baugrundverhältnissen ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Fall</th>
+                <th class="py-2 px-2 font-semibold text-right">Bohrungen</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ Kosten</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Kleine Sondierung, ohne Labor</td><td class="py-2 px-2 text-right">1–2</td><td class="py-2 pl-2 text-right">800–1.200 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Standard-EFH, Bodenplatte (GK1)</td><td class="py-2 px-2 text-right">2–3</td><td class="py-2 pl-2 text-right">1.500–2.200 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">EFH mit Keller (GK2)</td><td class="py-2 px-2 text-right">3–4</td><td class="py-2 pl-2 text-right">2.200–3.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Schwieriger Baugrund (GK3)</td><td class="py-2 px-2 text-right">3–5</td><td class="py-2 pl-2 text-right">2.800–4.500 €</td></tr>
+              <tr><td class="py-2 pr-2">Ballungsraum-Zuschlag</td><td class="py-2 px-2 text-right">—</td><td class="py-2 pl-2 text-right">+ ca. 15 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Richtwerte aus Marktrecherche zu geotechnischen Untersuchungen nach DIN 4020. Alle Beträge netto.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Umfang und Baugrund auf die Kosten aus (alle Werte netto):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Standard-EFH mit Bodenplatte (GK1)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Posten:</div>
+              <div class="font-medium text-gray-800">3 Bohrungen á 250 € (6 m), Labor, Bericht</div>
+              <div class="text-gray-600">Zwischensumme:</div>
+              <div class="font-medium text-gray-800">300 + (3 × 250 × 1) + 350 + 450 = 1.850 €</div>
+              <div class="text-gray-600">Zuschläge:</div>
+              <div class="font-medium text-gray-800">× 1 (Bodenplatte) × 1 (GK1) × 1 (ländlich)</div>
+              <div class="text-gray-600">Geschätzte Kosten:</div>
+              <div class="font-medium text-green-700">≈ 1.850 € (Spanne 1.480–2.220 €)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: EFH mit Keller, GK2, 8 m, Ballungsraum</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Posten:</div>
+              <div class="font-medium text-gray-800">4 Bohrungen á 250 €, 8 m → Faktor 1,2, Labor, Bericht</div>
+              <div class="text-gray-600">Zwischensumme:</div>
+              <div class="font-medium text-gray-800">300 + (4 × 250 × 1,2) + 350 + 450 = 2.300 €</div>
+              <div class="text-gray-600">Zuschläge:</div>
+              <div class="font-medium text-gray-800">× 1,18 (Keller) × 1,3 (GK2) × 1,15 (Ballungsraum)</div>
+              <div class="text-gray-600">Geschätzte Kosten:</div>
+              <div class="font-medium text-green-700">≈ 4.057 € (Spanne 3.246–4.869 €)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Schwieriger Baugrund (GK3), ohne Labor</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Posten:</div>
+              <div class="font-medium text-gray-800">2 Bohrungen á 250 € (6 m), keine Laboranalyse, Bericht</div>
+              <div class="text-gray-600">Zwischensumme:</div>
+              <div class="font-medium text-gray-800">300 + (2 × 250 × 1) + 0 + 450 = 1.250 €</div>
+              <div class="text-gray-600">Zuschläge:</div>
+              <div class="font-medium text-gray-800">× 1 (Bodenplatte) × 1,75 (GK3) × 1 (ländlich)</div>
+              <div class="text-gray-600">Geschätzte Kosten:</div>
+              <div class="font-medium text-green-700">≈ 2.188 € (Spanne 1.750–2.625 €)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Holen Sie immer mindestens zwei bis drei Angebote von
+          Baugrundgutachtern ein und achten Sie darauf, dass Bohrungen, Labor und Bericht jeweils
+          ausgewiesen sind. So lassen sich die Angebote sauber vergleichen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Am Gutachten sparen</h3>
+            <p>Wer das Bodengutachten weglässt oder die billigste Minimalvariante wählt, spart ein paar
+            hundert Euro – riskiert aber feuchte Keller, Setzungsrisse oder eine falsch dimensionierte
+            Gründung. Die Folgekosten übersteigen die Gutachtenkosten schnell um das Zehnfache.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Brutto und Netto verwechseln</h3>
+            <p>Die hier genannten Richtwerte sind Nettobeträge. Auf das Honorar des Gutachters kommen
+            in der Regel 19 % Mehrwertsteuer hinzu. Aus 2.000 € netto werden so 2.380 € brutto –
+            kalkulieren Sie das ein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Tiefe und Anzahl unterschätzen</h3>
+            <p>Liegt die tragfähige Schicht tief oder ist ein Keller geplant, sind mehr und tiefere
+            Bohrungen nötig. Jede zusätzliche Bohrung und jede weiteren 2 m Tiefe treiben die Kosten
+            spürbar nach oben – planen Sie hier nicht zu knapp.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Hanglage und Altlasten</h3>
+            <p>Auf Hanggrundstücken, bei Altlastverdacht oder in ehemaligen Bergbaugebieten steigt der
+            Aufwand stark (geotechnische Kategorie GK3). Hier können Zuschläge von 50 bis über 100 %
+            anfallen, und es werden zusätzliche Untersuchungen nötig.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Rechner ersetzt kein Gutachten</h3>
+            <p>Dieser Rechner schätzt nur die zu erwartenden Kosten. Er ersetzt weder ein konkretes
+            Angebot noch das eigentliche Bodengutachten. Das muss immer ein qualifizierter
+            Sachverständiger für Geotechnik nach DIN 4020 / Eurocode 7 erstellen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Bodengutachten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Bodengutachten beim Hausbau?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für ein Einfamilienhaus liegt ein Baugrundgutachten meist zwischen rund 800 und 3.000 €
+              netto, bei schwierigem Baugrund auch darüber. Ein Standardgutachten mit 2–3 Bohrungen,
+              Laboranalyse und Bericht kostet typischerweise etwa 1.500 bis 2.200 € netto.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Aus welchen Posten setzen sich die Kosten zusammen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Hauptposten sind eine Grundpauschale für Anfahrt und Vorbereitung (ca. 250–400 €),
+              die Bohrungen bzw. Sondierungen (ca. 150–400 € je Stück), die Laboranalyse der Bodenproben
+              (ca. 200–600 €) sowie der geotechnische Bericht mit Auswertung und Gründungsempfehlung
+              (ca. 300–700 €). Tiefere Bohrungen und schwieriger Baugrund erhöhen die Kosten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist ein Bodengutachten Pflicht?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Es gibt kein bundesweites Gesetz, das ein Bodengutachten pauschal vorschreibt. In der
+              Praxis verlangen Statiker, Bauträger und Banken aber fast immer einen geotechnischen
+              Bericht, und die Bauaufsicht kann ihn fordern. Da Bodenrisiken als Bauherrenrisiko gelten,
+              ist ein Gutachten dringend zu empfehlen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Bohrungen sind für ein Einfamilienhaus nötig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim Einfamilienhaus sind typischerweise 2 bis 4 Bohrungen oder Sondierungen üblich –
+              oft eine je Gebäudeecke. Wie viele genau nötig sind, hängt von der Grundstücksgröße, der
+              geotechnischen Kategorie und der Heterogenität des Untergrunds ab und entscheidet der
+              Gutachter.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeuten die geotechnischen Kategorien GK1, GK2 und GK3?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach DIN 4020 (im Zusammenspiel mit Eurocode 7 / DIN EN 1997-2) wird jedes Bauvorhaben
+              einer geotechnischen Kategorie zugeordnet: GK1 steht für einfachen, gut bekannten Baugrund,
+              GK2 für mittlere Verhältnisse (Regelfall beim EFH) und GK3 für schwierige Baugrundverhältnisse
+              wie Hanglage, hohes Grundwasser oder Altlastverdacht. Je höher die Kategorie, desto größer
+              der Untersuchungsaufwand und die Kosten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer zahlt das Bodengutachten – Käufer oder Verkäufer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>In der Regel trägt der Bauherr bzw. Grundstückskäufer die Kosten für das Bodengutachten,
+              da er es für seine Planung und Statik benötigt. Manche Verkäufer oder Bauträger legen bereits
+              ein Baugrundgutachten vor – prüfen Sie es dann auf Aktualität und Aussagekraft, bevor Sie ein
+              eigenes beauftragen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📜</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/notarkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">✒️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Notarkosten-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bodengutachten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/bodengutachten-kosten-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Bodengutachten beim Hausbau?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für ein Einfamilienhaus liegt ein Baugrundgutachten meist zwischen rund 800 und 3.000 € netto, bei schwierigem Baugrund auch darüber. Ein Standardgutachten mit 2–3 Bohrungen, Laboranalyse und Bericht kostet typischerweise etwa 1.500 bis 2.200 € netto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Aus welchen Posten setzen sich die Kosten zusammen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Hauptposten sind eine Grundpauschale für Anfahrt und Vorbereitung (ca. 250–400 €), die Bohrungen bzw. Sondierungen (ca. 150–400 € je Stück), die Laboranalyse der Bodenproben (ca. 200–600 €) sowie der geotechnische Bericht mit Auswertung und Gründungsempfehlung (ca. 300–700 €). Tiefere Bohrungen und schwieriger Baugrund erhöhen die Kosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist ein Bodengutachten Pflicht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es gibt kein bundesweites Gesetz, das ein Bodengutachten pauschal vorschreibt. In der Praxis verlangen Statiker, Bauträger und Banken aber fast immer einen geotechnischen Bericht, und die Bauaufsicht kann ihn fordern. Da Bodenrisiken als Bauherrenrisiko gelten, ist ein Gutachten dringend zu empfehlen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Bohrungen sind für ein Einfamilienhaus nötig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim Einfamilienhaus sind typischerweise 2 bis 4 Bohrungen oder Sondierungen üblich – oft eine je Gebäudeecke. Wie viele genau nötig sind, hängt von der Grundstücksgröße, der geotechnischen Kategorie und der Heterogenität des Untergrunds ab und entscheidet der Gutachter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeuten die geotechnischen Kategorien GK1, GK2 und GK3?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach DIN 4020 (im Zusammenspiel mit Eurocode 7 / DIN EN 1997-2) wird jedes Bauvorhaben einer geotechnischen Kategorie zugeordnet: GK1 steht für einfachen, gut bekannten Baugrund, GK2 für mittlere Verhältnisse (Regelfall beim EFH) und GK3 für schwierige Baugrundverhältnisse wie Hanglage, hohes Grundwasser oder Altlastverdacht. Je höher die Kategorie, desto größer der Untersuchungsaufwand und die Kosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer zahlt das Bodengutachten – Käufer oder Verkäufer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In der Regel trägt der Bauherr bzw. Grundstückskäufer die Kosten für das Bodengutachten, da er es für seine Planung und Statik benötigt. Manche Verkäufer oder Bauträger legen bereits ein Baugrundgutachten vor – prüfen Sie es dann auf Aktualität und Aussagekraft, bevor Sie ein eigenes beauftragen."
+        }
+      }
+    ]
+  })} />
+</Layout>

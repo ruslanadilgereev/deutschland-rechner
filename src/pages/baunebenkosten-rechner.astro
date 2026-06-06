@@ -1,0 +1,491 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BaunebenkostenRechner from '../components/rechner/BaunebenkostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Baunebenkosten-Rechner 2026 – KG 700 nach DIN 276 berechnen";
+const description = "Baunebenkosten beim Hausbau berechnen: Architekt (HOAI), Statiker, Vermessung, Baugenehmigung, Bodengutachten, Erschließung und Bauversicherungen als Aufschlüsselung nach DIN 276 KG 700 – mit Euro-Beträgen und Prozent-Anteil.";
+const keywords = "Baunebenkosten Rechner, Baunebenkosten berechnen, DIN 276 KG 700, Baunebenkosten Hausbau, Architektenhonorar HOAI berechnen, Erschließungskosten Hausbau, Baunebenkosten Prozent, Baukosten Nebenkosten";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Baunebenkosten-Rechner", url: "/baunebenkosten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Baunebenkosten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏗️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Baunebenkosten-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Nebenkosten beim Hausbau nach DIN 276 KG 700 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Kostengruppe 700 (Baunebenkosten) nach DIN 276; Architektenhonorar nach HOAI 2021 (anrechenbare Kosten = KG 300 + 400, Honorarzone III). Die Posten werden anteilig auf die reinen Baukosten (KG 300 Bauwerk-Baukonstruktion + KG 400 Technische Anlagen) gerechnet.</p>
+            <p class="mb-1"><strong>Default-Anteile:</strong> Architekt/Ingenieur 12 %, Statiker 1,5 %, Baugenehmigung 0,35 % der Baukosten; Vermessung 2.000 €, Bodengutachten 1.000 €, Hausanschluss/Erschließung 13.000 €, Bauversicherungen 1.000 € – alle Werte frei anpassbar. Summe Default rund 17–20 % der Baukosten.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Grundstückskosten und Kaufnebenkosten (Grunderwerbsteuer, Notar, Makler) sowie Finanzierungsnebenkosten (DIN 276 KG 800, z. B. Bereitstellungszinsen). Keine Bau-, Rechts- oder Steuerberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BaunebenkostenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Baunebenkosten beim Hausbau berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer ein Haus baut, plant meist sehr genau mit den reinen Baukosten – also dem Geld für
+            Rohbau, Ausbau und Technik. Doch rund um diese Baukosten fällt eine ganze Reihe weiterer
+            Ausgaben an: Honorare für Architekt und Statiker, Gebühren für die Baugenehmigung,
+            Vermessung, Bodengutachten, der Hausanschluss und die Bauversicherungen. Diese Posten
+            fasst man als <strong>Baunebenkosten</strong> zusammen. In der Normsprache des Bauwesens
+            sind sie als <strong>Kostengruppe 700 (KG 700) nach DIN 276</strong> definiert. Mit dem
+            Baunebenkosten-Rechner ermitteln Sie diese Kosten als übersichtliche Aufschlüsselung – in
+            Euro und als Prozent-Anteil der Baukosten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was zählt zu den Baunebenkosten (DIN 276 KG 700)?</h3>
+          <p>
+            Die DIN 276 gliedert die Gesamtkosten eines Bauprojekts in Kostengruppen. Die reinen
+            Baukosten stecken in <strong>KG 300 (Bauwerk – Baukonstruktion)</strong> und
+            <strong>KG 400 (Bauwerk – Technische Anlagen)</strong>. Die Baunebenkosten in
+            <strong>KG 700</strong> umfassen vor allem:
+          </p>
+          <ul class="space-y-1 text-sm list-disc list-inside">
+            <li><strong>Architekten- und Ingenieurhonorare</strong> (Planung, Bauleitung) – berechnet nach HOAI</li>
+            <li><strong>Statik / Tragwerksplanung</strong> inklusive Prüfstatik</li>
+            <li><strong>Vermessung</strong> (Lageplan, Grenz- und Gebäudeeinmessung)</li>
+            <li><strong>Baugenehmigung und behördliche Gebühren</strong></li>
+            <li><strong>Bodengutachten / Baugrunduntersuchung</strong></li>
+            <li><strong>Hausanschluss und Erschließung</strong> (Strom, Wasser, Abwasser, Gas, Telekom)</li>
+            <li><strong>Bauversicherungen</strong> (Bauherrenhaftpflicht, Bauleistungs-, Feuerrohbauversicherung)</li>
+          </ul>
+          <p>
+            Als Faustregel liegen die Baunebenkosten bei rund <strong>15 bis 20 % der reinen
+            Baukosten</strong>. Bei einem Einfamilienhaus mit 350.000 € Baukosten sind das schnell
+            60.000 bis 70.000 € zusätzlich – Geld, das in der Finanzierung von Anfang an eingeplant
+            werden muss.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner kombiniert prozentuale Posten mit festen Pauschalen:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Prozent-Posten</strong> = Baukosten (KG 300 + 400) × Anteil in % (Architekt, Statiker, Baugenehmigung)</li>
+              <li><strong>Pauschal-Posten</strong> = feste Beträge (Vermessung, Bodengutachten, Hausanschluss, Versicherungen)</li>
+              <li><strong>Baunebenkosten gesamt</strong> = Summe aller Posten</li>
+            </ul>
+          </div>
+          <p>
+            Jeder Posten lässt sich im Rechner einzeln anpassen. So können Sie ein Angebot Ihres
+            Architekten oder die konkreten Gebühren Ihrer Gemeinde direkt eintragen und sehen sofort,
+            wie sich die Gesamtsumme verändert.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Architektenhonorar nach HOAI</h3>
+          <p>
+            Der mit Abstand größte Posten ist meist das <strong>Architekten- und Ingenieurhonorar</strong>.
+            Es wird nach der <strong>Honorarordnung für Architekten und Ingenieure (HOAI)</strong>
+            berechnet. Maßgeblich sind die <strong>anrechenbaren Kosten</strong> (im Wesentlichen
+            KG 300 + 400), die <strong>Honorarzone</strong> (für Wohngebäude meist Zone III) und der
+            beauftragte <strong>Leistungsumfang</strong> (Leistungsphasen 1–9). Je nach Umfang liegt
+            das Honorar typischerweise bei 10 bis 15 % der Baukosten – im Rechner sind 12 % als
+            mittlerer Default hinterlegt. Wer nur die Planung, nicht aber die volle Bauleitung
+            beauftragt, kommt günstiger weg.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erschließung: der unterschätzte Posten</h3>
+          <p>
+            Der <strong>Hausanschluss</strong> für Strom, Wasser, Abwasser, Gas und Telekommunikation
+            kostet bei einem bereits erschlossenen Grundstück meist zwischen 10.000 und 16.000 €. Ist
+            das Grundstück hingegen <strong>noch nicht erschlossen</strong>, kommen Erschließungs- und
+            Anliegerbeiträge der Gemeinde hinzu – diese können mehrere Zehntausend Euro betragen und
+            liegen dann eher bei 5 bis 7 % der Bausumme. Prüfen Sie vor dem Grundstückskauf unbedingt
+            den Erschließungszustand.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Achtung: Finanzierungskosten gehören nicht dazu</h3>
+          <p>
+            Ein häufiges Missverständnis: <strong>Finanzierungskosten</strong> wie Bereitstellungszinsen
+            oder Schätzgebühren der Bank zählen seit der Neufassung <strong>DIN 276:2018 nicht mehr zu
+            den Baunebenkosten</strong> (KG 700), sondern bilden eine eigene Kostengruppe 800. Sie sind
+            in diesem Rechner deshalb bewusst nicht enthalten. Auch die <strong>Kaufnebenkosten</strong>
+            für das Grundstück (Grunderwerbsteuer, Notar, Makler) sind ein eigenes Thema – dafür gibt es
+            den <a href="/kaufnebenkosten-rechner" class="text-blue-600 hover:text-blue-800 underline">Kaufnebenkosten-Rechner</a>.
+            Für die gesamte Hausfinanzierung inklusive Zinsen nutzen Sie den
+            <a href="/baufinanzierung-rechner" class="text-blue-600 hover:text-blue-800 underline">Baufinanzierungs-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏗️ Richtwerte der einzelnen Posten</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Übliche Spannen je Posten (bezogen auf die reinen Baukosten bzw. als Pauschale). Tatsächliche
+          Werte hängen von Bundesland, Gemeinde, Grundstück und Leistungsumfang ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Posten</th>
+                <th class="py-2 px-2 font-semibold text-right">Übliche Spanne</th>
+                <th class="py-2 pl-2 font-semibold text-right">Default</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Architekt / Ingenieur (HOAI)</td><td class="py-2 px-2 text-right">10–15 %</td><td class="py-2 pl-2 text-right">12 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Statiker / Tragwerksplanung</td><td class="py-2 px-2 text-right">1,5–2 %</td><td class="py-2 pl-2 text-right">1,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Baugenehmigung / Gebühren</td><td class="py-2 px-2 text-right">0,2–0,5 %</td><td class="py-2 pl-2 text-right">0,35 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Vermessung</td><td class="py-2 px-2 text-right">1.500–3.000 €</td><td class="py-2 pl-2 text-right">2.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Bodengutachten</td><td class="py-2 px-2 text-right">500–1.500 €</td><td class="py-2 pl-2 text-right">1.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">Hausanschluss / Erschließung</td><td class="py-2 px-2 text-right">10.000–16.000 €</td><td class="py-2 pl-2 text-right">13.000 €</td></tr>
+              <tr><td class="py-2 pr-2">Bauversicherungen</td><td class="py-2 px-2 text-right">500–1.500 €</td><td class="py-2 pl-2 text-right">1.000 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Bauprofessor (DIN 276 KG 700), gripsware.de (DIN 276 KG 700), HOAI.de (anrechenbare Kosten / Honorarzonen). Stand 2026.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich die Baunebenkosten je nach Bauvorhaben zusammen (jeweils mit den Standard-Anteilen):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Einfamilienhaus, 350.000 € Baukosten</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Architekt (12 %):</div>
+              <div class="font-medium text-gray-800">42.000 €</div>
+              <div class="text-gray-600">Statiker (1,5 %):</div>
+              <div class="font-medium text-gray-800">5.250 €</div>
+              <div class="text-gray-600">Baugenehmigung (0,35 %):</div>
+              <div class="font-medium text-gray-800">1.225 €</div>
+              <div class="text-gray-600">Pauschalen:</div>
+              <div class="font-medium text-gray-800">2.000 + 1.000 + 13.000 + 1.000 = 17.000 €</div>
+              <div class="text-gray-600">Baunebenkosten gesamt:</div>
+              <div class="font-medium text-green-700">65.475 € (18,7 %)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Reihenhaus, 280.000 € Baukosten</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Architekt (12 %):</div>
+              <div class="font-medium text-gray-800">33.600 €</div>
+              <div class="text-gray-600">Statiker (1,5 %):</div>
+              <div class="font-medium text-gray-800">4.200 €</div>
+              <div class="text-gray-600">Baugenehmigung (0,35 %):</div>
+              <div class="font-medium text-gray-800">980 €</div>
+              <div class="text-gray-600">Pauschalen:</div>
+              <div class="font-medium text-gray-800">2.000 + 1.000 + 13.000 + 1.000 = 17.000 €</div>
+              <div class="text-gray-600">Baunebenkosten gesamt:</div>
+              <div class="font-medium text-green-700">55.780 € (19,9 %)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Großes Haus, 450.000 € Baukosten</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Architekt (12 %):</div>
+              <div class="font-medium text-gray-800">54.000 €</div>
+              <div class="text-gray-600">Statiker (1,5 %):</div>
+              <div class="font-medium text-gray-800">6.750 €</div>
+              <div class="text-gray-600">Baugenehmigung (0,35 %):</div>
+              <div class="font-medium text-gray-800">1.575 €</div>
+              <div class="text-gray-600">Pauschalen:</div>
+              <div class="font-medium text-gray-800">2.000 + 1.000 + 13.000 + 1.000 = 17.000 €</div>
+              <div class="text-gray-600">Baunebenkosten gesamt:</div>
+              <div class="font-medium text-green-700">79.325 € (17,6 %)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Bei kleineren Bauvorhaben fällt der prozentuale Anteil tendenziell
+          höher aus, weil sich die festen Pauschalen (Hausanschluss, Vermessung) auf eine kleinere
+          Bausumme verteilen. Plane Baunebenkosten daher eher mit 18–20 % als mit 15 % ein.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Baunebenkosten ganz vergessen</h3>
+            <p>Viele Bauherren kalkulieren nur die reinen Baukosten und das Grundstück. 15 bis 20 %
+            zusätzlich für Architekt, Genehmigung und Erschließung können dann die ganze Finanzierung
+            ins Wanken bringen. Planen Sie die Baunebenkosten von Anfang an mit ein.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Bau- und Kaufnebenkosten verwechseln</h3>
+            <p>Baunebenkosten (KG 700) fallen rund um das Bauen an: Architekt, Statiker, Genehmigung.
+            Davon zu trennen sind die <strong>Kaufnebenkosten</strong> beim Grundstückskauf
+            (Grunderwerbsteuer, Notar, Grundbuch, Makler). Beide zusammen ergeben erst die echten
+            Gesamtkosten.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Finanzierungskosten einrechnen</h3>
+            <p>Bereitstellungszinsen, Schätzkosten der Bank und Ähnliches zählen seit DIN 276:2018 zur
+            eigenen Kostengruppe 800 – nicht zu den Baunebenkosten. Wer sie hier mitrechnet, doppelt sie
+            womöglich mit der Finanzierungsplanung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Unerschlossenes Grundstück</h3>
+            <p>Liegt das Grundstück noch nicht an Straße, Kanal und Versorgung an, fallen zusätzlich
+            Erschließungs- und Anliegerbeiträge an. Diese können mehrere Zehntausend Euro betragen.
+            Tragen Sie den Posten Hausanschluss/Erschließung dann deutlich höher ein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Schwieriger Baugrund</h3>
+            <p>Zeigt das Bodengutachten Probleme – etwa hoher Grundwasserstand, Hanglage oder schlechte
+            Tragfähigkeit – steigen Statik- und Gründungskosten spürbar. Ein gutes Bodengutachten vor
+            dem Kauf schützt vor teuren Überraschungen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu den Baunebenkosten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind die Baunebenkosten beim Hausbau?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel liegen die Baunebenkosten nach DIN 276 KG 700 bei rund <strong>15 bis 20 %
+              der reinen Baukosten</strong>. Bei 350.000 € Baukosten sind das mit den Standard-Anteilen
+              dieses Rechners etwa 65.000 € (rund 18,7 %). Bei kleineren Bauvorhaben fällt der
+              prozentuale Anteil tendenziell höher aus, weil sich feste Pauschalen wie der Hausanschluss
+              auf eine kleinere Bausumme verteilen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was gehört zu den Baunebenkosten nach DIN 276?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zur Kostengruppe 700 (Baunebenkosten) zählen unter anderem Architekten- und
+              Ingenieurhonorare, Statik und Tragwerksplanung, Vermessung, Gebühren für die
+              Baugenehmigung, Bodengutachten, Hausanschluss und Erschließung sowie Bauversicherungen.
+              Nicht dazu gehören die reinen Baukosten (KG 300 + 400), die Grundstückskosten (KG 100)
+              und – seit DIN 276:2018 – die Finanzierungskosten (KG 800).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird das Architektenhonorar berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Honorar wird nach der HOAI (Honorarordnung für Architekten und Ingenieure)
+              berechnet. Maßgeblich sind die <strong>anrechenbaren Kosten</strong> (im Wesentlichen
+              KG 300 + 400), die <strong>Honorarzone</strong> (bei Wohngebäuden meist Zone III) und der
+              beauftragte Leistungsumfang (Leistungsphasen 1–9). In der Praxis liegt das Honorar
+              typischerweise bei 10 bis 15 % der Baukosten; der Rechner nutzt 12 % als mittleren
+              Standardwert.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Baunebenkosten und Kaufnebenkosten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p><strong>Kaufnebenkosten</strong> fallen beim Erwerb der Immobilie oder des Grundstücks
+              an: Grunderwerbsteuer, Notar, Grundbuch und gegebenenfalls Makler. <strong>Baunebenkosten</strong>
+              entstehen dagegen rund um das Bauen selbst: Architekt, Statiker, Baugenehmigung, Vermessung,
+              Erschließung und Versicherungen (DIN 276 KG 700). Beide sind getrennte Kostenblöcke und
+              müssen beide in der Finanzierung berücksichtigt werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gehören Finanzierungskosten zu den Baunebenkosten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Seit der Neufassung der DIN 276 im Jahr 2018 zählen Finanzierungskosten wie
+              Bereitstellungszinsen oder Schätzgebühren der Bank <strong>nicht mehr</strong> zur
+              Kostengruppe 700, sondern zur eigenen Kostengruppe 800. Sie sind in diesem Rechner deshalb
+              nicht enthalten. Für die gesamte Finanzierung inklusive Zinsen nutzen Sie den
+              Baufinanzierungs-Rechner.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind die Kosten für den Hausanschluss?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Hausanschluss für Strom, Wasser, Abwasser, Gas und Telekommunikation kostet bei
+              einem bereits erschlossenen Grundstück meist zwischen <strong>10.000 und 16.000 €</strong>.
+              Ist das Grundstück noch nicht erschlossen, kommen Erschließungs- und Anliegerbeiträge der
+              Gemeinde hinzu, die mehrere Zehntausend Euro betragen können. Der Rechner setzt als
+              Standardwert 13.000 € an, den Sie anpassen können.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🛠️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/notarkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Notarkosten-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Baunebenkosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/baunebenkosten-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die Baunebenkosten beim Hausbau?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel liegen die Baunebenkosten nach DIN 276 KG 700 bei rund 15 bis 20 % der reinen Baukosten. Bei 350.000 € Baukosten sind das mit den Standard-Anteilen dieses Rechners etwa 65.000 € (rund 18,7 %). Bei kleineren Bauvorhaben fällt der prozentuale Anteil tendenziell höher aus, weil sich feste Pauschalen wie der Hausanschluss auf eine kleinere Bausumme verteilen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was gehört zu den Baunebenkosten nach DIN 276?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zur Kostengruppe 700 (Baunebenkosten) zählen unter anderem Architekten- und Ingenieurhonorare, Statik und Tragwerksplanung, Vermessung, Gebühren für die Baugenehmigung, Bodengutachten, Hausanschluss und Erschließung sowie Bauversicherungen. Nicht dazu gehören die reinen Baukosten (KG 300 + 400), die Grundstückskosten (KG 100) und – seit DIN 276:2018 – die Finanzierungskosten (KG 800)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird das Architektenhonorar berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Honorar wird nach der HOAI (Honorarordnung für Architekten und Ingenieure) berechnet. Maßgeblich sind die anrechenbaren Kosten (im Wesentlichen KG 300 + 400), die Honorarzone (bei Wohngebäuden meist Zone III) und der beauftragte Leistungsumfang (Leistungsphasen 1–9). In der Praxis liegt das Honorar typischerweise bei 10 bis 15 % der Baukosten; der Rechner nutzt 12 % als mittleren Standardwert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Baunebenkosten und Kaufnebenkosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kaufnebenkosten fallen beim Erwerb der Immobilie oder des Grundstücks an: Grunderwerbsteuer, Notar, Grundbuch und gegebenenfalls Makler. Baunebenkosten entstehen dagegen rund um das Bauen selbst: Architekt, Statiker, Baugenehmigung, Vermessung, Erschließung und Versicherungen (DIN 276 KG 700). Beide sind getrennte Kostenblöcke und müssen beide in der Finanzierung berücksichtigt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gehören Finanzierungskosten zu den Baunebenkosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Seit der Neufassung der DIN 276 im Jahr 2018 zählen Finanzierungskosten wie Bereitstellungszinsen oder Schätzgebühren der Bank nicht mehr zur Kostengruppe 700, sondern zur eigenen Kostengruppe 800. Sie sind in diesem Rechner deshalb nicht enthalten. Für die gesamte Finanzierung inklusive Zinsen nutzen Sie den Baufinanzierungs-Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die Kosten für den Hausanschluss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Hausanschluss für Strom, Wasser, Abwasser, Gas und Telekommunikation kostet bei einem bereits erschlossenen Grundstück meist zwischen 10.000 und 16.000 €. Ist das Grundstück noch nicht erschlossen, kommen Erschließungs- und Anliegerbeiträge der Gemeinde hinzu, die mehrere Zehntausend Euro betragen können. Der Rechner setzt als Standardwert 13.000 € an, den Sie anpassen können."
+        }
+      }
+    ]
+  })} />
+</Layout>

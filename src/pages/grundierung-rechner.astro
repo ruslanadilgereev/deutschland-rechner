@@ -1,0 +1,458 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrundierungRechner from '../components/rechner/GrundierungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Grundierung-Rechner 2026 – Tiefengrund-Verbrauch pro m² berechnen";
+const description = "Grundierung & Tiefengrund-Verbrauch berechnen: benötigte Liter und Gebinde aus Fläche, Saugfähigkeit, Anstrichen und Verdünnung. Mit Richtwerten in ml/m², Verschnitt-Reserve und Beispielen für Putz, Gips und Beton.";
+const keywords = "Grundierung Rechner, Tiefengrund Verbrauch, Tiefengrund pro m2, Grundierung berechnen, wie viel Tiefengrund pro qm, Grundierung Verbrauch, Tiefengrund verdünnen, Tiefengrund Reichweite, Grundierung Liter berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Grundierung-Rechner", url: "/grundierung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Grundierung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪣</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grundierung-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Tiefengrund-Verbrauch pro m² berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Mengenformel benötigte Grundierung [l] = (Fläche ÷ Reichweite) × Anstriche × (1 + Reserve); bei Konzentrat-Tiefengrund Konzentrat = streichfertige Menge ÷ (1 + Verdünnungsteil). Reichweite nach Saugfähigkeit gemäß Hersteller-Merkblättern (SAKRET, Baumit, toom).</p>
+            <p class="mb-1"><strong>Richtwerte:</strong> stark saugend ≈ 4 m²/l (≈ 250 ml/m²), normal saugend ≈ 9 m²/l (≈ 110 ml/m²), schwach saugend / verdünnt ≈ 15 m²/l (≈ 65 ml/m²). Reserve voreingestellt 5 %, frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> sehr stark sandende oder mehrfach zu grundierende Untergründe können deutlich mehr Material brauchen; Wandfarbe, Spachtel und Putz werden separat gerechnet. Maßgeblich ist die Verbrauchsangabe auf dem Gebinde. Richtwerte, keine Verarbeitungsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GrundierungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Grundierung und Tiefengrund-Verbrauch berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Grundierung-Rechner</strong> ermitteln Sie, wie viel
+            <strong>Tiefengrund bzw. Grundierung</strong> Sie für Ihre Fläche brauchen – als Liter und
+            als Anzahl der zu kaufenden Gebinde. Eine gute Grundierung verfestigt sandende Untergründe,
+            reduziert und vereinheitlicht die Saugfähigkeit und sorgt dafür, dass die spätere
+            <a href="/wandfarbe-rechner" class="text-blue-600 hover:text-blue-800 underline">Wandfarbe</a>,
+            der Putz oder der Fliesenkleber gleichmäßig haften. Anders als beim Farbverbrauch zählt hier
+            nicht die Deckkraft, sondern die <strong>Saugfähigkeit des Untergrunds</strong> und die
+            <strong>Verdünnung</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt eine einfache Mengenformel:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Streichfertige Menge (l)</strong> = (Fläche in m² ÷ Reichweite in m²/l) × Anstriche × (1 + Reserve)</li>
+              <li><strong>Benötigtes Konzentrat (l)</strong> = streichfertige Menge ÷ (1 + Verdünnungsteil)</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Reichweite</strong> in Quadratmeter pro Liter ist der entscheidende Hebel. Sie
+            lässt sich umrechnen in den anschaulicheren Verbrauch in Milliliter pro Quadratmeter:
+            10 m²/l entsprechen 100 ml/m², 4 m²/l rund 250 ml/m². Bei einem
+            <strong>Konzentrat-Tiefengrund</strong>, der etwa im Verhältnis 1:3 mit Wasser verdünnt
+            wird, ergibt ein Teil Konzentrat vier Teile streichfertige Grundierung – Sie brauchen also
+            nur ein Viertel der Liter an Konzentrat.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie sauer ist mein Untergrund?</h3>
+          <p>
+            Die <strong>Saugfähigkeit</strong> erkennen Sie mit einem einfachen Test: Tropfen Sie Wasser
+            auf die Wand. Zieht es sofort und vollständig ein, ist der Untergrund <strong>stark
+            saugend</strong> (typisch für Gipsputz, Gipskarton, Porenbeton, alte Kalkputze) – hier sinkt
+            die Reichweite auf rund 3 bis 5 m²/l. Perlt das Wasser ab oder bleibt lange stehen, ist die
+            Fläche <strong>schwach saugend</strong> (dichter Beton, Altanstriche). <strong>Normal
+            saugende</strong> Untergründe wie Zement- und Kalkzementputz oder Beton liegen mit etwa 8 bis
+            10 m²/l dazwischen. Im Zweifel rechnen Sie mit der niedrigeren Reichweite – zu wenig
+            Grundierung ist ärgerlicher als ein Rest im Eimer.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gebrauchsfertig oder Konzentrat?</h3>
+          <p>
+            Tiefengrund gibt es <strong>gebrauchsfertig</strong> und als <strong>Konzentrat</strong>.
+            Gebrauchsfertige Produkte werden unverdünnt aufgetragen – die Liter, die der Rechner ausgibt,
+            sind dann direkt die Kaufmenge. Konzentrate werden je nach Untergrund mit Wasser gestreckt,
+            häufig 1:1 oder 1:3. Wählen Sie im Rechner die passende Verdünnung, rechnet er von der
+            streichfertigen Menge auf das tatsächlich benötigte <strong>Konzentrat</strong> zurück. So
+            kaufen Sie weder zu viel noch zu wenig.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Reserve und Gebinde</h3>
+          <p>
+            Planen Sie immer einen <strong>Verschnitt-Aufschlag</strong> von etwa 5 bis 10 % ein – für
+            unebene Stellen, Reste in Rolle und Pinsel sowie Ausbesserungen. Anschließend rundet der
+            Rechner auf die gewählte <strong>Gebindegröße</strong> (1, 5 oder 10 Liter) auf, denn
+            Grundierung kauft man nur in ganzen Gebinden. Ein kleiner Rest schadet nicht: Angebrochene
+            Gebinde halten verschlossen einige Monate und sind ideal für spätere Reparaturstellen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🪣 Richtwerte: Verbrauch nach Untergrund</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte für einen Anstrich gebrauchsfertigen Tiefengrund. Der tatsächliche Verbrauch hängt
+          von Saugfähigkeit, Oberfläche und Werkzeug ab – maßgeblich ist die Herstellerangabe.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Untergrund</th>
+                <th class="py-2 px-2 font-semibold text-right">Reichweite</th>
+                <th class="py-2 px-2 font-semibold text-right">≈ ml/m²</th>
+                <th class="py-2 pl-2 font-semibold text-right">l für 40 m²</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧱 Gipsputz / Gipskarton (stark saugend)</td><td class="py-2 px-2 text-right">3–5 m²/l</td><td class="py-2 px-2 text-right">200–300</td><td class="py-2 pl-2 text-right">ca. 8–13 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧊 Porenbeton / Ytong (stark saugend)</td><td class="py-2 px-2 text-right">3–5 m²/l</td><td class="py-2 px-2 text-right">200–300</td><td class="py-2 pl-2 text-right">ca. 8–13 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏠 Kalkzementputz (normal saugend)</td><td class="py-2 px-2 text-right">8–10 m²/l</td><td class="py-2 px-2 text-right">100–125</td><td class="py-2 pl-2 text-right">ca. 4–5 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪨 Beton (normal saugend)</td><td class="py-2 px-2 text-right">8–10 m²/l</td><td class="py-2 px-2 text-right">100–125</td><td class="py-2 pl-2 text-right">ca. 4–5 l</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🟫 Estrich vor Bodenbelag</td><td class="py-2 px-2 text-right">6–10 m²/l</td><td class="py-2 px-2 text-right">100–165</td><td class="py-2 pl-2 text-right">ca. 4–7 l</td></tr>
+              <tr><td class="py-2 pr-2">💧 dichter Untergrund / 1:3 verdünnt</td><td class="py-2 px-2 text-right">12–18 m²/l</td><td class="py-2 px-2 text-right">55–85</td><td class="py-2 pl-2 text-right">ca. 2–3 l</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: SAKRET, Baumit und toom – technische Merkblätter / Produktdatenblätter Tiefengrund (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Saugfähigkeit und Verdünnung aus (jeweils 1 Anstrich, 5 % Reserve):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wohnzimmer, normal saugender Putz</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Raum:</div>
+              <div class="font-medium text-gray-800">5 × 4 m, Höhe 2,5 m, 1 Tür, 1 Fenster</div>
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">(5 + 4) × 2 × 2,5 − 3,5 = 41,5 m²</div>
+              <div class="text-gray-600">Reichweite:</div>
+              <div class="font-medium text-gray-800">9 m²/l (gebrauchsfertig)</div>
+              <div class="text-gray-600">Menge:</div>
+              <div class="font-medium text-gray-800">41,5 ÷ 9 × 1,05 = 4,84 l</div>
+              <div class="text-gray-600">Kauf:</div>
+              <div class="font-medium text-green-700">1 × 5-l-Gebinde</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Gipsputz, stark saugend</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">30 m² (direkt)</div>
+              <div class="text-gray-600">Reichweite:</div>
+              <div class="font-medium text-gray-800">4 m²/l (gebrauchsfertig)</div>
+              <div class="text-gray-600">Menge:</div>
+              <div class="font-medium text-gray-800">30 ÷ 4 × 1,05 = 7,88 l</div>
+              <div class="text-gray-600">Kauf:</div>
+              <div class="font-medium text-green-700">2 × 5-l-Gebinde</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Konzentrat 1:3, dichter Untergrund</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Fläche:</div>
+              <div class="font-medium text-gray-800">40 m² (direkt)</div>
+              <div class="text-gray-600">Reichweite:</div>
+              <div class="font-medium text-gray-800">15 m²/l (1:3 verdünnt)</div>
+              <div class="text-gray-600">Streichfertig:</div>
+              <div class="font-medium text-gray-800">40 ÷ 15 × 1,05 = 2,8 l</div>
+              <div class="text-gray-600">Konzentrat:</div>
+              <div class="font-medium text-gray-800">2,8 ÷ (1 + 3) = 0,7 l</div>
+              <div class="text-gray-600">Kauf:</div>
+              <div class="font-medium text-green-700">1 × 1-l-Gebinde</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 1 und 2 zeigen, wie stark der Untergrund zählt: Dieselbe
+          Tür-Wandfläche braucht bei stark saugendem Gips mehr als das Doppelte an Tiefengrund wie bei
+          normalem Putz. Beispiel 3 macht deutlich, dass ein Konzentrat im Einkauf am sparsamsten ist.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Saugfähigkeit unterschätzen</h3>
+            <p>Frischer Gipsputz oder Porenbeton saugt Tiefengrund regelrecht weg. Wer mit den Werten
+            für normalen Putz rechnet, hat schnell zu wenig im Eimer. Machen Sie vorher den Wassertest
+            und wählen Sie im Zweifel die niedrigere Reichweite.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Konzentrat wie gebrauchsfertig kaufen</h3>
+            <p>Bei einem Konzentrat brauchen Sie nur einen Bruchteil der streichfertigen Menge. Wer das
+            Verdünnungsverhältnis ignoriert, kauft bei 1:3 viermal zu viel. Stellen Sie die Verdünnung
+            im Rechner korrekt ein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Reserve und Abzüge vergessen</h3>
+            <p>Ohne Verschnitt-Aufschlag reicht die Menge bei Ausbesserungen oft nicht. Umgekehrt sollten
+            Sie Türen und Fenster von der Wandfläche abziehen, sonst kaufen Sie unnötig viel. Der Rechner
+            erledigt beides für Sie.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sandende oder mehlende Flächen</h3>
+            <p>Lösen sich beim Drüberwischen Partikel, ist die Fläche sehr saugfähig und braucht teils
+            einen zweiten Auftrag oder einen speziellen Grundierungstyp. Erhöhen Sie dann die Anstriche
+            auf 2 und planen Sie zusätzlich Reserve ein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Falsche Grundierung für den Zweck</h3>
+            <p>Tiefengrund ist nicht gleich Haftgrund oder Sperrgrund. Für nicht saugende, glatte
+            Untergründe (Fliesen, Lack) braucht es einen Haftvermittler, gegen Flecken einen Isoliergrund.
+            Die Verbrauchswerte hier gelten für klassischen, lösemittelfreien Tiefengrund.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Grundierung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Tiefengrund brauche ich pro m²?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Richtwert gehen bei normal saugendem Untergrund rund <strong>100 ml/m²</strong> drauf,
+              das entspricht etwa 10 m²/l. Stark saugende Flächen wie Gipsputz oder Porenbeton brauchen mit
+              200 bis 300 ml/m² deutlich mehr, dichte oder verdünnt grundierte Flächen mit 55 bis 85 ml/m²
+              weniger. Maßgeblich bleibt die Angabe des Herstellers auf dem Gebinde.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich den Grundierungs-Verbrauch?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie die Fläche durch die Reichweite und multiplizieren Sie mit der Zahl der
+              Anstriche und einem Reserve-Aufschlag: <strong>Liter = (Fläche ÷ Reichweite) × Anstriche ×
+              (1 + Reserve)</strong>. Für 41,5 m² bei 9 m²/l und 5 % Reserve sind das 41,5 ÷ 9 × 1,05 ≈
+              4,8 Liter gebrauchsfertige Grundierung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie verdünne ich Tiefengrund-Konzentrat richtig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Konzentrate werden je nach Untergrund mit Wasser gestreckt – häufig 1:1 oder 1:3. Bei 1:3
+              ergibt 1 Teil Konzentrat 4 Teile streichfertige Grundierung. Für die Kaufmenge gilt also:
+              <strong>Konzentrat = streichfertige Menge ÷ (1 + Verdünnungsteil)</strong>. Brauchen Sie
+              2,8 Liter streichfertig, sind das bei 1:3 nur 0,7 Liter Konzentrat. Beachten Sie immer das
+              auf dem Gebinde angegebene Verhältnis.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie erkenne ich, wie stark mein Untergrund saugt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Tropfen Sie Wasser auf die Fläche. Zieht es sofort ein, ist der Untergrund stark saugend
+              (Gips, Porenbeton, alte Kalkputze) – rechnen Sie mit 3 bis 5 m²/l. Perlt das Wasser ab oder
+              steht lange, ist er schwach saugend (dichter Beton, Altanstriche). Normaler Zement- oder
+              Kalkzementputz liegt mit 8 bis 10 m²/l dazwischen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich vor dem Streichen oder Verputzen immer grundieren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nicht immer, aber sehr oft. Grundieren lohnt sich bei stark oder ungleichmäßig saugenden,
+              sandenden oder mehlenden Untergründen, vor Putz, Spachtel, Fliesenkleber und Estrich-Belägen.
+              Auf intakten, normal saugenden Altanstrichen kann man oft direkt streichen. Im Zweifel hilft
+              der Wassertest und ein Blick ins Merkblatt der nachfolgenden Beschichtung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie lange muss Tiefengrund trocknen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Üblich sind je nach Produkt, Saugfähigkeit und Raumklima rund <strong>4 bis 12 Stunden</strong>,
+              häufig wird über Nacht trocknen lassen. Erst wenn die Grundierung vollständig durchgetrocknet
+              und der Untergrund nicht mehr klebrig ist, sollten Sie weiterarbeiten. Die genaue Wartezeit
+              steht im technischen Merkblatt des Herstellers.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarben-Rechner</p>
+          </a>
+          <a href="/tapeten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧻</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tapeten-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/estrich-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🟫</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Estrich-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔲</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grundierung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/grundierung-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Tiefengrund brauche ich pro m²?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Richtwert gehen bei normal saugendem Untergrund rund 100 ml/m² drauf, das entspricht etwa 10 m²/l. Stark saugende Flächen wie Gipsputz oder Porenbeton brauchen mit 200 bis 300 ml/m² deutlich mehr, dichte oder verdünnt grundierte Flächen mit 55 bis 85 ml/m² weniger. Maßgeblich bleibt die Angabe des Herstellers auf dem Gebinde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich den Grundierungs-Verbrauch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie die Fläche durch die Reichweite und multiplizieren Sie mit der Zahl der Anstriche und einem Reserve-Aufschlag: Liter = (Fläche ÷ Reichweite) × Anstriche × (1 + Reserve). Für 41,5 m² bei 9 m²/l und 5 % Reserve sind das 41,5 ÷ 9 × 1,05 ≈ 4,8 Liter gebrauchsfertige Grundierung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie verdünne ich Tiefengrund-Konzentrat richtig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Konzentrate werden je nach Untergrund mit Wasser gestreckt – häufig 1:1 oder 1:3. Bei 1:3 ergibt 1 Teil Konzentrat 4 Teile streichfertige Grundierung. Für die Kaufmenge gilt also: Konzentrat = streichfertige Menge ÷ (1 + Verdünnungsteil). Brauchen Sie 2,8 Liter streichfertig, sind das bei 1:3 nur 0,7 Liter Konzentrat. Beachten Sie immer das auf dem Gebinde angegebene Verhältnis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie erkenne ich, wie stark mein Untergrund saugt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tropfen Sie Wasser auf die Fläche. Zieht es sofort ein, ist der Untergrund stark saugend (Gips, Porenbeton, alte Kalkputze) – rechnen Sie mit 3 bis 5 m²/l. Perlt das Wasser ab oder steht lange, ist er schwach saugend (dichter Beton, Altanstriche). Normaler Zement- oder Kalkzementputz liegt mit 8 bis 10 m²/l dazwischen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich vor dem Streichen oder Verputzen immer grundieren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nicht immer, aber sehr oft. Grundieren lohnt sich bei stark oder ungleichmäßig saugenden, sandenden oder mehlenden Untergründen, vor Putz, Spachtel, Fliesenkleber und Estrich-Belägen. Auf intakten, normal saugenden Altanstrichen kann man oft direkt streichen. Im Zweifel hilft der Wassertest und ein Blick ins Merkblatt der nachfolgenden Beschichtung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange muss Tiefengrund trocknen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Üblich sind je nach Produkt, Saugfähigkeit und Raumklima rund 4 bis 12 Stunden, häufig wird über Nacht trocknen lassen. Erst wenn die Grundierung vollständig durchgetrocknet und der Untergrund nicht mehr klebrig ist, sollten Sie weiterarbeiten. Die genaue Wartezeit steht im technischen Merkblatt des Herstellers."
+        }
+      }
+    ]
+  })} />
+</Layout>

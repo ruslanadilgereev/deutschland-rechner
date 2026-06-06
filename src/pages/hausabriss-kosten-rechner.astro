@@ -1,0 +1,471 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HausabrissKostenRechner from '../components/rechner/HausabrissKostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Abrisskosten-Rechner 2026 – Hausabriss & Abbruchkosten berechnen";
+const description = "Abrisskosten für den Hausabriss berechnen: Kosten aus Wohnfläche oder umbautem Raum schätzen – inklusive Keller-Rückbau, Asbest-Sanierung, Lage-Zuschlag und Abrissgenehmigung. Mit Faustwerten 2026 und Beispielen.";
+const keywords = "Abrisskosten Rechner, Hausabriss Kosten, Haus abreißen Kosten, Abbruchkosten, Abrisskosten Haus, Abbruchkosten pro m3, Kosten Hausabriss, Abrissgenehmigung Kosten, Keller abreißen Kosten, Asbest Entsorgung Kosten";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Abrisskosten-Rechner", url: "/hausabriss-kosten-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Abrisskosten-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏚️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Abrisskosten-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kosten für den Hausabriss schätzen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Branchenübliche Faustwerte – Abbruch pro m³ umbauter Raum (Leichtbau ca. 25 €/m³, Massivbau ca. 40 €/m³, Stahlbeton ca. 55 €/m³) bzw. 50–100 €/m² Wohnfläche im Schnellmodus, plus Keller-Rückbau, Asbest-Sanierung (TRGS 519), Lage-Zuschlag und Abrissgenehmigung.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Massivbau 40 €/m³, Keller-/Bodenplattenrückbau 60 €/m², Asbest 50 €/m² Schadstofffläche, Lage-Zuschlag 15 %, Genehmigung 600 € (Spanne 200–1.000 €).</p>
+            <p><strong>Nicht berücksichtigt:</strong> regionale Lohn- und Deponiekosten, Bodenkontamination, Baumfällung, Wiederherstellung des Grundstücks. Ergebnis ist eine unverbindliche Schätzung – keine Bau- oder Rechtsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <HausabrissKostenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Abrisskosten für den Hausabriss berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Abrisskosten-Rechner</strong> schätzen Sie, was der <strong>Abriss eines
+            Hauses</strong> kostet – egal ob Sie ein altes Bestandsgebäude für einen Neubau
+            beseitigen, ein marodes Nebengebäude entfernen oder die Wirtschaftlichkeit von Abriss
+            gegen Sanierung abwägen. Der Rechner bietet zwei Wege: einen <strong>Schnellmodus</strong>
+            über die Wohnfläche und einen <strong>Detailmodus</strong> über den umbauten Raum (m³)
+            mit Zuschlägen für Keller, Asbest, beengte Lage und Genehmigung. Realistisch liegen die
+            Gesamtkosten für ein typisches Einfamilienhaus zwischen rund 10.000 € und 35.000 €.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Detailmodus rechnet nach dem in der Abbruchbranche üblichen Schema:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Umbauter Raum (m³)</strong> = Grundfläche (m²) × Gebäudehöhe (m)</li>
+              <li><strong>Abbruchkosten</strong> = umbauter Raum × Preis pro m³ je Bauart (inkl. Bauschutt-Entsorgung)</li>
+              <li><strong>+ Keller/Bodenplatte</strong> = Grundfläche × 60 €/m²</li>
+              <li><strong>+ Asbest-Sanierung</strong> = belastete Fläche × 50 €/m²</li>
+              <li><strong>+ Lage-Zuschlag</strong> = 15 % auf Abbruch + Keller (bei beengter Lage)</li>
+              <li><strong>+ Abrissgenehmigung</strong> = Pauschale (Voreinstellung 600 €)</li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>umbaute Raum</strong> ist das Volumen des gesamten Gebäudes über Außenmaßen,
+            nicht die Wohnfläche. Als Faustregel rechnet man rund 3 m Höhe je Geschoss; ein Bungalow
+            kommt damit auf etwa 3 m, ein zweigeschossiges Haus auf rund 6 m, mit Spitzdach und
+            Kniestock etwas mehr. Im <strong>Schnellmodus</strong> wird vereinfacht mit
+            50–100 €/m² Wohnfläche gerechnet – das genügt für eine erste grobe Hausnummer.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was die Abbruchkosten je m³ bestimmt</h3>
+          <p>
+            Der Preis pro Kubikmeter hängt vor allem von der <strong>Bauart</strong> ab. Leichte
+            Konstruktionen aus Holz oder mit dünnen Wänden lassen sich günstig abtragen (ca.
+            25 €/m³). Klassischer <strong>Massivbau</strong> aus Ziegel oder Kalksandstein liegt bei
+            rund 40 €/m³. Am teuersten ist stark armierter <strong>Stahlbeton</strong>, etwa bei
+            Industriebauten oder massiven Kellern (ca. 55 €/m³ und mehr), weil das Material aufwendig
+            getrennt und zerkleinert werden muss. In diesen Werten ist die Entsorgung des
+            <strong>Bauschutts</strong> – grob 30–50 € je m³ Schutt bzw. nach Deponiegewicht – bereits
+            kalkulatorisch enthalten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Keller, Asbest und Lage als Kostentreiber</h3>
+          <p>
+            Ein zu beseitigender <strong>Keller</strong> oder eine dicke Bodenplatte erhöht die
+            Kosten deutlich, weil Aushub, Beton-Rückbau und Verfüllung anfallen – im Rechner mit
+            60 €/m² Grundfläche angesetzt. Findet sich <strong>Asbest</strong> (häufig in alten
+            Dacheindeckungen, Eternit-Fassaden oder Fußbodenkleber), schreibt die
+            <strong>TRGS 519</strong> vor, dass nur Fachbetriebe mit Sachkundenachweis die Sanierung
+            durchführen dürfen; Asbest ist Sondermüll mit Entsorgungsnachweis. Eine
+            <strong>beengte, innerstädtische Lage</strong> verteuert den Abriss zusätzlich, weil
+            Staubschutz, Handabbruch statt Bagger und schwierige Logistik nötig werden – dafür
+            schlägt der Rechner 15 % auf.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Brauche ich eine Abrissgenehmigung?</h3>
+          <p>
+            Ob für den Abbruch eine <strong>Abrissgenehmigung</strong> nötig ist, hängt vom
+            jeweiligen <strong>Bundesland und Bebauungsplan</strong> ab. Viele Landesbauordnungen
+            stellen den Abriss kleiner, freistehender Gebäude genehmigungsfrei, verlangen aber eine
+            Anzeige; bei größeren Objekten, Reihenhäusern oder unter Denkmalschutz stehenden Bauten
+            ist eine Genehmigung Pflicht. Die Gebühren liegen meist zwischen 200 € und 1.000 €. Klären
+            Sie das immer vorab mit Ihrer Bauaufsichtsbehörde – ein nicht genehmigter Abriss kann
+            teuer werden.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏗️ Richtwerte für Abbruchkosten 2026</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Faustwerte je m³ umbauter Raum bzw. typische Pauschalen. Die tatsächlichen Preise
+          schwanken regional je nach Lohn- und Deponiekosten erheblich.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Position</th>
+                <th class="py-2 px-2 font-semibold text-right">Einheit</th>
+                <th class="py-2 pl-2 font-semibold text-right">Richtwert</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪵 Abbruch Leichtbau / Holz</td><td class="py-2 px-2 text-right">€/m³</td><td class="py-2 pl-2 text-right">20–30 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧱 Abbruch Massivbau</td><td class="py-2 px-2 text-right">€/m³</td><td class="py-2 pl-2 text-right">35–50 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏭 Abbruch Stahlbeton / Industrie</td><td class="py-2 px-2 text-right">€/m³</td><td class="py-2 pl-2 text-right">50–70 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">⚡ Schnellwert je Wohnfläche</td><td class="py-2 px-2 text-right">€/m²</td><td class="py-2 pl-2 text-right">50–100 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🕳️ Keller / Bodenplatte zurückbauen</td><td class="py-2 px-2 text-right">€/m²</td><td class="py-2 pl-2 text-right">40–80 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">♻️ Bauschutt-Entsorgung</td><td class="py-2 px-2 text-right">€/m³</td><td class="py-2 pl-2 text-right">30–50 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">☢️ Asbest-Sanierung (TRGS 519)</td><td class="py-2 px-2 text-right">€/m²</td><td class="py-2 pl-2 text-right">30–80 €</td></tr>
+              <tr><td class="py-2 pr-2">📄 Abrissgenehmigung</td><td class="py-2 px-2 text-right">pauschal</td><td class="py-2 pl-2 text-right">200–1.000 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Talu.de, immoverkauf24, Sparkasse Immobilien, BAuA/TRGS 519 (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich die Abrisskosten in typischen Fällen zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Bungalow (Massivbau) mit Keller</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Grundfläche × Höhe:</div>
+              <div class="font-medium text-gray-800">80 m² × 3 m = 240 m³</div>
+              <div class="text-gray-600">Abbruch (40 €/m³):</div>
+              <div class="font-medium text-gray-800">240 × 40 = 9.600 €</div>
+              <div class="text-gray-600">Keller (60 €/m²):</div>
+              <div class="font-medium text-gray-800">80 × 60 = 4.800 €</div>
+              <div class="text-gray-600">Genehmigung:</div>
+              <div class="font-medium text-gray-800">600 €</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">15.000 € (≈ 12.000–18.000 €)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Zweigeschossiges Haus mit Asbestdach</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Grundfläche × Höhe:</div>
+              <div class="font-medium text-gray-800">120 m² × 7 m = 840 m³</div>
+              <div class="text-gray-600">Abbruch (40 €/m³):</div>
+              <div class="font-medium text-gray-800">840 × 40 = 33.600 €</div>
+              <div class="text-gray-600">Keller (60 €/m²):</div>
+              <div class="font-medium text-gray-800">120 × 60 = 7.200 €</div>
+              <div class="text-gray-600">Asbest (150 m² × 50 €):</div>
+              <div class="font-medium text-gray-800">7.500 €</div>
+              <div class="text-gray-600">Genehmigung:</div>
+              <div class="font-medium text-gray-800">600 €</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">48.900 € (≈ 39.120–58.680 €)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Schnellschätzung über die Wohnfläche</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wohnfläche:</div>
+              <div class="font-medium text-gray-800">150 m²</div>
+              <div class="text-gray-600">Preis pro m²:</div>
+              <div class="font-medium text-gray-800">80 €/m²</div>
+              <div class="text-gray-600">Rechnung:</div>
+              <div class="font-medium text-gray-800">150 × 80 = 12.000 €</div>
+              <div class="text-gray-600">Gesamt:</div>
+              <div class="font-medium text-green-700">12.000 € (≈ 9.600–14.400 €)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Der Schnellmodus über die Wohnfläche liefert eine grobe Hausnummer.
+          Sobald Keller, Asbest oder eine enge Lage im Spiel sind, rechnen Sie besser im Detailmodus
+          – dort werden diese Kostentreiber einzeln ausgewiesen.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Wohnfläche statt umbauten Raum nehmen</h3>
+            <p>Abbruchpreise je m³ beziehen sich auf den <strong>umbauten Raum</strong> über
+            Außenmaßen, nicht auf die Wohnfläche. Wer die Wohnfläche in die m³-Formel einsetzt,
+            unterschätzt das Volumen massiv. Nutzen Sie für die Wohnfläche stattdessen den
+            Schnellmodus mit €/m².</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Keller und Bodenplatte vergessen</h3>
+            <p>Viele Angebote rechnen zunächst nur den oberirdischen Abbruch. Aushub, Beton-Rückbau
+            und Verfüllung eines Kellers können aber mehrere tausend Euro ausmachen. Klären Sie immer,
+            ob die <strong>Bodenplatte</strong> entfernt oder im Boden verbleiben darf.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Asbest unterschätzen</h3>
+            <p>Asbest in Dach, Fassade oder Bodenkleber macht den Abriss teuer und rechtlich heikel.
+            Die Sanierung darf nur ein Fachbetrieb mit Sachkundenachweis nach <strong>TRGS 519</strong>
+            durchführen, die Entsorgung erfolgt als Sondermüll mit Nachweispflicht. Vor dem Abriss
+            lohnt ein Schadstoffgutachten.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verwertbarer Bauschutt</h3>
+            <p>Sauber getrennter, unbelasteter Beton- und Ziegelschutt lässt sich recyceln und senkt
+            die Entsorgungskosten. Eine getrennte Demontage („Rückbau“ statt „Abriss“) kostet zwar
+            mehr Arbeitszeit, kann aber bei hohen Deponiegebühren unter dem Strich günstiger sein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Förderung und Grundstücksaufbereitung</h3>
+            <p>Manche Kommunen fördern den Abriss leerstehender Gebäude. Umgekehrt fallen nach dem
+            Abriss oft Folgekosten an: Verfüllung der Baugrube, Entfernung von Fundamenten, Baumfällung
+            oder Bodenuntersuchung. Diese sind im Rechner <strong>nicht</strong> enthalten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Abrisskosten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet es, ein Haus abzureißen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für ein typisches Einfamilienhaus liegen die Abrisskosten grob zwischen
+              <strong>10.000 € und 35.000 €</strong>. Als Faustwert rechnet man 50–100 € je m²
+              Wohnfläche oder rund 25–55 € je m³ umbauten Raum je nach Bauart. Keller, Asbest und eine
+              beengte Lage können die Kosten deutlich erhöhen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Abrisskosten pro m³?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie den <strong>umbauten Raum</strong> (Grundfläche × Gebäudehöhe) mit
+              dem Abbruchpreis je Bauart. Ein Massivhaus mit 120 m² Grundfläche und 7 m Höhe hat
+              840 m³; bei 40 €/m³ sind das 33.600 € allein für den oberirdischen Abbruch, zuzüglich
+              Keller, Asbest und Genehmigung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet der Abriss eines Kellers?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rückbau von Keller und Bodenplatte schlägt mit rund <strong>40–80 € je m²
+              Grundfläche</strong> zu Buche, im Rechner mit 60 €/m² angesetzt. Bei 100 m² Grundfläche
+              sind das also etwa 6.000 €. Teurer wird es, wenn der Keller aus Stahlbeton besteht oder
+              die Baugrube anschließend verfüllt werden muss.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet die Asbest-Entsorgung beim Abriss?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Asbest-Sanierung kostet je nach Material und Aufwand etwa <strong>30–80 € je m²</strong>
+              belasteter Fläche. Sie darf laut <strong>TRGS 519</strong> nur von Fachbetrieben mit
+              Sachkundenachweis ausgeführt werden, und Asbest ist Sondermüll mit
+              Entsorgungsnachweispflicht. Eine 150 m² große Asbest-Dachfläche kostet damit grob
+              4.500–12.000 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich für den Hausabriss eine Genehmigung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vom <strong>Bundesland und Bebauungsplan</strong> ab. Viele
+              Landesbauordnungen stellen den Abriss kleiner, freistehender Gebäude genehmigungsfrei
+              (oft mit Anzeigepflicht), bei größeren, angebauten oder denkmalgeschützten Objekten ist
+              eine Abrissgenehmigung Pflicht. Die Gebühren liegen meist zwischen 200 € und 1.000 €.
+              Klären Sie das vorab mit der Bauaufsichtsbehörde.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet umbauter Raum und wie ermittle ich ihn?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der umbaute Raum ist das <strong>Volumen des gesamten Gebäudes</strong> über
+              Außenmaßen in Kubikmetern, gemessen von der Bodenplatte bis zum Dach. Vereinfacht
+              berechnen Sie ihn als Grundfläche × Gebäudehöhe. Als Faustregel gelten rund 3 m je
+              Geschoss; ein zweigeschossiges Haus mit 100 m² Grundfläche kommt also auf etwa 600 m³.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/umzugskosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Umzugskosten-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Abrisskosten-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/hausabriss-kosten-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet es, ein Haus abzureißen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für ein typisches Einfamilienhaus liegen die Abrisskosten grob zwischen 10.000 € und 35.000 €. Als Faustwert rechnet man 50–100 € je m² Wohnfläche oder rund 25–55 € je m³ umbauten Raum je nach Bauart. Keller, Asbest und eine beengte Lage können die Kosten deutlich erhöhen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Abrisskosten pro m³?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie den umbauten Raum (Grundfläche × Gebäudehöhe) mit dem Abbruchpreis je Bauart. Ein Massivhaus mit 120 m² Grundfläche und 7 m Höhe hat 840 m³; bei 40 €/m³ sind das 33.600 € allein für den oberirdischen Abbruch, zuzüglich Keller, Asbest und Genehmigung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet der Abriss eines Kellers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rückbau von Keller und Bodenplatte schlägt mit rund 40–80 € je m² Grundfläche zu Buche, im Rechner mit 60 €/m² angesetzt. Bei 100 m² Grundfläche sind das also etwa 6.000 €. Teurer wird es, wenn der Keller aus Stahlbeton besteht oder die Baugrube anschließend verfüllt werden muss."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet die Asbest-Entsorgung beim Abriss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Asbest-Sanierung kostet je nach Material und Aufwand etwa 30–80 € je m² belasteter Fläche. Sie darf laut TRGS 519 nur von Fachbetrieben mit Sachkundenachweis ausgeführt werden, und Asbest ist Sondermüll mit Entsorgungsnachweispflicht. Eine 150 m² große Asbest-Dachfläche kostet damit grob 4.500–12.000 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich für den Hausabriss eine Genehmigung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vom Bundesland und Bebauungsplan ab. Viele Landesbauordnungen stellen den Abriss kleiner, freistehender Gebäude genehmigungsfrei (oft mit Anzeigepflicht), bei größeren, angebauten oder denkmalgeschützten Objekten ist eine Abrissgenehmigung Pflicht. Die Gebühren liegen meist zwischen 200 € und 1.000 €. Klären Sie das vorab mit der Bauaufsichtsbehörde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet umbauter Raum und wie ermittle ich ihn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der umbaute Raum ist das Volumen des gesamten Gebäudes über Außenmaßen in Kubikmetern, gemessen von der Bodenplatte bis zum Dach. Vereinfacht berechnen Sie ihn als Grundfläche × Gebäudehöhe. Als Faustregel gelten rund 3 m je Geschoss; ein zweigeschossiges Haus mit 100 m² Grundfläche kommt also auf etwa 600 m³."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,461 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DaemmungAmortisationRechner from '../components/rechner/DaemmungAmortisationRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Dämmung-Amortisation-Rechner 2026 – Wann lohnt sich Dämmen?";
+const description = "Lohnt sich Dämmung? Berechnen Sie Energieersparnis, Kostenersparnis und Amortisationszeit Ihrer Fassaden-, Dach- oder Geschossdeckendämmung nach der Formel ΔU × FGt × Fläche – inklusive BEG/BAFA-Förderung und CO₂-Einsparung.";
+const keywords = "Dämmung Amortisation Rechner, lohnt sich Dämmung, Fassadendämmung Kosten Einsparung, wann rechnet sich Dämmung, U-Wert Einsparung berechnen, Dämmung Wirtschaftlichkeit, Amortisationszeit Dämmung, Energieeinsparung Dämmung";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Dämmung-Amortisation-Rechner", url: "/daemmung-amortisation-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Dämmung-Amortisation-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dämmung-Amortisation-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Wann sich eine Dämmung wirtschaftlich rechnet</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Methodik der Verbraucherzentrale und VDI 3807 – Energieersparnis = ΔU × Gradtagzahl-Faktor (FGt) × Fläche; Amortisation = (Dämmkosten − Förderung) ÷ jährliche Kostenersparnis</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> FGt 65 kKh/a (Mittelwert Deutschland, Heizgrenze 15 °C); Gaspreis 0,12 €/kWh; BEG/BAFA-Förderung 15 % (bis 20 % mit Sanierungsfahrplan iSFP). Alle Werte sind frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> regionale Klimaunterschiede über den FGt hinaus, Energiepreissteigerung, Instandhaltungs-Sowieso-Kosten und steuerliche Abschreibung. Keine Energieberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DaemmungAmortisationRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Lohnt sich eine Dämmung? So berechnen Sie die Amortisation</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Eine energetische Sanierung kostet schnell fünfstellig – und die wichtigste Frage lautet:
+            <strong>Wann rechnet sich die Dämmung?</strong> Der <strong>Dämmung-Amortisation-Rechner</strong>
+            beantwortet das, indem er die jährliche Heizenergie-Einsparung aus der Verbesserung des
+            U-Werts berechnet, daraus die Kostenersparnis ableitet und sie der um die Förderung
+            reduzierten Investition gegenüberstellt. So sehen Sie auf einen Blick, nach wie vielen
+            Jahren sich die Maßnahme bezahlt macht und wie viel Sie über 20 Jahre netto sparen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel hinter der Einsparung</h3>
+          <p>Der Rechner nutzt die anerkannte überschlägige Methodik (Verbraucherzentrale, VDI 3807):</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Energieersparnis (kWh/Jahr)</strong> = ΔU × FGt × Fläche</li>
+              <li><strong>ΔU</strong> = U-Wert vor der Dämmung − U-Wert nach der Dämmung [W/(m²·K)]</li>
+              <li><strong>Kostenersparnis (€/Jahr)</strong> = Energieersparnis (kWh) × Energiepreis (€/kWh)</li>
+              <li><strong>Amortisationszeit (Jahre)</strong> = (Dämmkosten − Förderung) ÷ Kostenersparnis pro Jahr</li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>Gradtagzahl-Faktor FGt</strong> bündelt das Klima: Er gibt an, wie viele
+            Kilo-Kelvinstunden (kKh) pro Jahr beheizt werden müssen. Für Deutschland liegt er im Mittel
+            bei rund <strong>65 kKh/a</strong> (Heizgrenze 15 °C, Raumtemperatur 20 °C). Weil die Einheiten
+            sich auflösen – Watt × Kilo-Kelvinstunden je Kelvin ergibt direkt Kilowattstunden – kommt
+            ohne Umweg die jährliche Einsparung in kWh heraus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der U-Wert?</h3>
+          <p>
+            Der <strong>U-Wert (Wärmedurchgangskoeffizient)</strong> in W/(m²·K) beschreibt, wie viel
+            Wärme ein Bauteil verliert: Je kleiner, desto besser gedämmt. Eine ungedämmte Altbau-Wand
+            liegt oft bei 1,2 bis 1,5 W/(m²·K), eine gut gedämmte Fassade erreicht 0,20 bis 0,24. Den
+            U-Wert nach der Sanierung können Sie aus <strong>Dämmstoffdicke und Lambda-Wert</strong> des
+            Materials abschätzen oder direkt aus den Vorgaben des Gebäudeenergiegesetzes (GEG) ableiten,
+            das für die Förderung ohnehin eingehalten werden muss.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Förderung BEG/BAFA 2026</h3>
+          <p>
+            Für Einzelmaßnahmen an der Gebäudehülle gibt es über die <strong>Bundesförderung für
+            effiziente Gebäude (BEG)</strong> bei der BAFA in der Regel <strong>15 % Zuschuss</strong>.
+            Wer die Dämmung im Rahmen eines <strong>individuellen Sanierungsfahrplans (iSFP)</strong>
+            umsetzt, erhält 5 Prozentpunkte mehr – also bis zu <strong>20 %</strong>. Voraussetzung ist
+            das Einhalten der technischen Mindestanforderungen und meist die Einbindung einer Energie-
+            Effizienz-Expertin oder eines Energie-Effizienz-Experten. Die Förderung reduziert im Rechner
+            die Investitionssumme und verkürzt damit die Amortisationszeit spürbar.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Dämmung rechnet sich am schnellsten?</h3>
+          <p>
+            Faustregel: Je günstiger die Maßnahme pro Quadratmeter und je größer die U-Wert-Verbesserung,
+            desto schneller die Amortisation. Die <strong>oberste Geschossdecke</strong> ist oft der
+            günstigste Hebel (teils unter 50 €/m²) und rechnet sich häufig in unter 10 Jahren. Eine
+            <strong>Fassadendämmung</strong> (WDVS) ist teurer (rund 150–200 €/m²) und braucht meist 12
+            bis 20 Jahre – lohnt sich aber besonders, wenn die Fassade ohnehin saniert werden muss, weil
+            dann nur die Mehrkosten der Dämmung anzusetzen sind (sogenannte Sowieso-Kosten).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧱 Richtwerte für Dämmmaßnahmen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Typische U-Werte vor/nach, Kosten und überschlägige Amortisation (FGt 65, Gas 0,12 €/kWh,
+          15 % Förderung). Werte sind objektabhängige Richtwerte.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Maßnahme</th>
+                <th class="py-2 px-2 font-semibold text-right">U vorher → nachher</th>
+                <th class="py-2 px-2 font-semibold text-right">Kosten/m²</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ Amortisation</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔺 Oberste Geschossdecke</td><td class="py-2 px-2 text-right">0,8 → 0,2</td><td class="py-2 px-2 text-right">9–50 €</td><td class="py-2 pl-2 text-right">5–9 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧱 Kellerdecke</td><td class="py-2 px-2 text-right">1,0 → 0,3</td><td class="py-2 px-2 text-right">30–60 €</td><td class="py-2 pl-2 text-right">7–12 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏠 Fassade (WDVS)</td><td class="py-2 px-2 text-right">1,4 → 0,24</td><td class="py-2 px-2 text-right">150–200 €</td><td class="py-2 pl-2 text-right">12–20 Jahre</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏚️ Steildach (Aufsparren)</td><td class="py-2 px-2 text-right">0,9 → 0,2</td><td class="py-2 px-2 text-right">150–250 €</td><td class="py-2 pl-2 text-right">15–30 Jahre</td></tr>
+              <tr><td class="py-2 pr-2">🪟 Einblasdämmung Hohlwand</td><td class="py-2 px-2 text-right">1,2 → 0,5</td><td class="py-2 px-2 text-right">20–40 €</td><td class="py-2 pl-2 text-right">4–8 Jahre</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Verbraucherzentrale, Energie-Fachberater, co2online (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken U-Wert-Verbesserung, Fläche und Kosten zusammen (FGt 65 kKh/a):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Fassadendämmung, 110 m², Gas</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">ΔU:</div>
+              <div class="font-medium text-gray-800">1,4 − 0,24 = 1,16 → hier 1,31 W/(m²·K)</div>
+              <div class="text-gray-600">Energieersparnis:</div>
+              <div class="font-medium text-gray-800">1,31 × 65 × 110 = 9.367 kWh/Jahr</div>
+              <div class="text-gray-600">Kostenersparnis:</div>
+              <div class="font-medium text-gray-800">9.367 × 0,12 € = 1.124 €/Jahr</div>
+              <div class="text-gray-600">Investition (20 % Förderung):</div>
+              <div class="font-medium text-gray-800">110 × 175 € − 20 % = 15.400 €</div>
+              <div class="text-gray-600">Amortisation:</div>
+              <div class="font-medium text-green-700">15.400 ÷ 1.124 = 13,7 Jahre</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Oberste Geschossdecke, 80 m², Gas</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">ΔU:</div>
+              <div class="font-medium text-gray-800">0,8 − 0,2 = 0,6 W/(m²·K)</div>
+              <div class="text-gray-600">Energieersparnis:</div>
+              <div class="font-medium text-gray-800">0,6 × 65 × 80 = 3.120 kWh/Jahr</div>
+              <div class="text-gray-600">Kostenersparnis:</div>
+              <div class="font-medium text-gray-800">3.120 × 0,12 € = 374 €/Jahr</div>
+              <div class="text-gray-600">Investition (15 % Förderung):</div>
+              <div class="font-medium text-gray-800">80 × 30 € − 15 % = 2.040 €</div>
+              <div class="text-gray-600">Amortisation:</div>
+              <div class="font-medium text-green-700">2.040 ÷ 374 = 5,4 Jahre</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Steildach, 120 m², Wärmepumpe</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">ΔU:</div>
+              <div class="font-medium text-gray-800">0,9 − 0,2 = 0,7 W/(m²·K)</div>
+              <div class="text-gray-600">Energieersparnis:</div>
+              <div class="font-medium text-gray-800">0,7 × 65 × 120 = 5.460 kWh/Jahr</div>
+              <div class="text-gray-600">Kostenersparnis:</div>
+              <div class="font-medium text-gray-800">5.460 × 0,089 € = 486 €/Jahr</div>
+              <div class="text-gray-600">Investition (15 % Förderung):</div>
+              <div class="font-medium text-gray-800">120 × 200 € − 15 % = 20.400 €</div>
+              <div class="text-gray-600">Amortisation:</div>
+              <div class="font-medium text-green-700">20.400 ÷ 486 = 42,0 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 2 und 3 zeigen den Unterschied: Eine günstige Geschossdecke
+          rechnet sich in wenigen Jahren, während ein teures Dach beim niedrigen Wärmepumpen-Energiepreis
+          lange braucht. Bei ohnehin nötiger Sanierung sollten Sie nur die Dämm-Mehrkosten ansetzen –
+          dann fällt die Amortisation deutlich kürzer aus.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Volle Dämmkosten ansetzen statt Mehrkosten</h3>
+            <p>Muss die Fassade ohnehin gestrichen oder das Dach neu gedeckt werden, fallen ein Großteil
+            der Kosten (Gerüst, Putz, Eindeckung) sowieso an. Für die Wirtschaftlichkeit zählen nur die
+            <strong>energetischen Mehrkosten</strong> der Dämmung – die Amortisation ist dann viel kürzer.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: U-Wert falsch einschätzen</h3>
+            <p>Wer den U-Wert vorher zu hoch oder nachher zu niedrig ansetzt, überschätzt die Ersparnis.
+            Entscheidend ist allein das <strong>ΔU</strong>: Eine Wand von 1,4 auf 0,24 zu bringen spart
+            viel mehr als eine schon mäßig gedämmte Wand von 0,5 auf 0,24.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Energiepreissteigerung ignorieren</h3>
+            <p>Der Rechner kalkuliert mit konstanten Preisen. Steigen Gas, Öl oder Strom über die Jahre,
+            wächst die Ersparnis – die reale Amortisation ist dann <strong>kürzer</strong> als angezeigt.
+            Eine konstante Rechnung ist die vorsichtige, konservative Variante.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wärmepumpe</h3>
+            <p>Bei einer Wärmepumpe ist der wirksame Wärmepreis der <strong>Strompreis geteilt durch die
+            Jahresarbeitszahl (JAZ)</strong> – etwa 0,30 € ÷ 3,4 ≈ 0,089 €/kWh. Der niedrige Wärmepreis
+            macht die Einsparung kleiner und die Amortisation länger als bei Gas oder Öl.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Förderung und GEG-Pflicht</h3>
+            <p>Manche Dämmmaßnahmen sind beim Tausch oder Neubau ohnehin gesetzlich vorgeschrieben (GEG).
+            Förderquoten und Mindestanforderungen ändern sich; prüfen Sie immer den aktuellen Stand bei
+            BAFA/KfW und lassen Sie sich von einer Fachperson beraten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Dämmung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann lohnt sich eine Dämmung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Dämmung lohnt sich, wenn die jährliche Energieersparnis die Investition in
+              überschaubarer Zeit ausgleicht. Günstige Maßnahmen wie die oberste Geschossdecke
+              amortisieren sich oft in 5 bis 9 Jahren, eine Fassadendämmung meist in 12 bis 20 Jahren.
+              Besonders wirtschaftlich ist Dämmen, wenn die Fassade oder das Dach ohnehin saniert werden
+              muss, weil dann nur die Mehrkosten zählen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Amortisation einer Dämmung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Amortisationszeit ergibt sich aus (Dämmkosten − Förderung) ÷ jährliche
+              Kostenersparnis. Die Ersparnis berechnet man mit ΔU × FGt × Fläche × Energiepreis. Beispiel:
+              Eine Fassade mit ΔU 1,31 und 110 m² spart bei FGt 65 rund 9.367 kWh, also etwa 1.124 € pro
+              Jahr bei Gas. Bei 15.400 € Investition nach Förderung amortisiert sie sich in rund 13,7 Jahren.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet ΔU und der Gradtagzahl-Faktor FGt?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>ΔU ist die Verbesserung des Wärmedurchgangskoeffizienten, also U-Wert vorher minus U-Wert
+              nachher in W/(m²·K). Der Gradtagzahl-Faktor FGt beschreibt das Heizklima eines Standorts in
+              Kilo-Kelvinstunden pro Jahr und liegt in Deutschland im Mittel bei rund 65 kKh/a (VDI 3807,
+              Heizgrenze 15 °C). Je größer ΔU und FGt, desto höher die Einsparung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Förderung gibt es für eine Dämmung 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Über die Bundesförderung für effiziente Gebäude (BEG) gibt es bei der BAFA für
+              Einzelmaßnahmen an der Gebäudehülle in der Regel 15 % Zuschuss. Mit einem individuellen
+              Sanierungsfahrplan (iSFP) kommen 5 Prozentpunkte hinzu – also bis zu 20 %. Voraussetzung
+              sind die technischen Mindestanforderungen und meist eine Energie-Effizienz-Expertin oder
+              ein Energie-Effizienz-Experte. Fördersätze können sich ändern.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Dämmung rechnet sich am schnellsten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Am schnellsten amortisieren sich günstige Maßnahmen mit großer Wirkung: die Dämmung der
+              obersten Geschossdecke (teils unter 50 €/m², oft unter 10 Jahre) und die Einblasdämmung
+              zweischaliger Wände. Eine Fassadendämmung kostet mehr pro Quadratmeter und braucht länger,
+              ist aber bei ohnehin fälliger Fassadensanierung sehr wirtschaftlich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Spielt der Energieträger für die Amortisation eine Rolle?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Die eingesparten Kilowattstunden sind gleich, aber ihr Wert hängt vom Energiepreis ab.
+              Bei Gas (ca. 0,12 €/kWh) oder Öl (ca. 0,11 €) ist die Ersparnis pro kWh höher als bei einer
+              Wärmepumpe, deren wirksamer Wärmepreis (Strompreis ÷ Jahresarbeitszahl, ca. 0,089 €/kWh)
+              niedriger liegt. Bei Gas und Öl amortisiert sich dieselbe Dämmung daher schneller als bei
+              einer Wärmepumpe.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/gaskosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gaskosten-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/stromverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔌</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromverbrauch-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dämmung-Amortisation-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/daemmung-amortisation-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wann lohnt sich eine Dämmung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Dämmung lohnt sich, wenn die jährliche Energieersparnis die Investition in überschaubarer Zeit ausgleicht. Günstige Maßnahmen wie die oberste Geschossdecke amortisieren sich oft in 5 bis 9 Jahren, eine Fassadendämmung meist in 12 bis 20 Jahren. Besonders wirtschaftlich ist Dämmen, wenn die Fassade oder das Dach ohnehin saniert werden muss, weil dann nur die Mehrkosten zählen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Amortisation einer Dämmung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Amortisationszeit ergibt sich aus (Dämmkosten − Förderung) ÷ jährliche Kostenersparnis. Die Ersparnis berechnet man mit ΔU × FGt × Fläche × Energiepreis. Beispiel: Eine Fassade mit ΔU 1,31 und 110 m² spart bei FGt 65 rund 9.367 kWh, also etwa 1.124 € pro Jahr bei Gas. Bei 15.400 € Investition nach Förderung amortisiert sie sich in rund 13,7 Jahren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet ΔU und der Gradtagzahl-Faktor FGt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ΔU ist die Verbesserung des Wärmedurchgangskoeffizienten, also U-Wert vorher minus U-Wert nachher in W/(m²·K). Der Gradtagzahl-Faktor FGt beschreibt das Heizklima eines Standorts in Kilo-Kelvinstunden pro Jahr und liegt in Deutschland im Mittel bei rund 65 kKh/a (VDI 3807, Heizgrenze 15 °C). Je größer ΔU und FGt, desto höher die Einsparung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Förderung gibt es für eine Dämmung 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Über die Bundesförderung für effiziente Gebäude (BEG) gibt es bei der BAFA für Einzelmaßnahmen an der Gebäudehülle in der Regel 15 % Zuschuss. Mit einem individuellen Sanierungsfahrplan (iSFP) kommen 5 Prozentpunkte hinzu – also bis zu 20 %. Voraussetzung sind die technischen Mindestanforderungen und meist eine Energie-Effizienz-Expertin oder ein Energie-Effizienz-Experte. Fördersätze können sich ändern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Dämmung rechnet sich am schnellsten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Am schnellsten amortisieren sich günstige Maßnahmen mit großer Wirkung: die Dämmung der obersten Geschossdecke (teils unter 50 €/m², oft unter 10 Jahre) und die Einblasdämmung zweischaliger Wände. Eine Fassadendämmung kostet mehr pro Quadratmeter und braucht länger, ist aber bei ohnehin fälliger Fassadensanierung sehr wirtschaftlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Spielt der Energieträger für die Amortisation eine Rolle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Die eingesparten Kilowattstunden sind gleich, aber ihr Wert hängt vom Energiepreis ab. Bei Gas (ca. 0,12 €/kWh) oder Öl (ca. 0,11 €) ist die Ersparnis pro kWh höher als bei einer Wärmepumpe, deren wirksamer Wärmepreis (Strompreis ÷ Jahresarbeitszahl, ca. 0,089 €/kWh) niedriger liegt. Bei Gas und Öl amortisiert sich dieselbe Dämmung daher schneller als bei einer Wärmepumpe."
+        }
+      }
+    ]
+  })} />
+</Layout>

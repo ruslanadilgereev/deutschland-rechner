@@ -1,0 +1,469 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WandverkleidungPaneeleRechner from '../components/rechner/WandverkleidungPaneeleRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Wandpaneele-Rechner 2026 – Anzahl Akustik-/Lamellenpaneele berechnen";
+const description = "Wandpaneele-Bedarf berechnen: Wie viele Akustik- oder Lamellenpaneele Sie für Ihre Wand brauchen – aus Wandfläche, Bedeckungsgrad, Verschnitt und Paneelformat. Inklusive Unterkonstruktion und Kostenschätzung.";
+const keywords = "Wandpaneele Rechner, Akustikpaneele Anzahl berechnen, Lamellenpaneele Bedarf, wie viele Paneele für Wand, Wandverkleidung Paneele berechnen, Akustikpaneele Rechner, Lamellenwand Paneele, Wandpaneele Quadratmeter";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Wandpaneele-Rechner", url: "/wandverkleidung-paneele-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Wandpaneele-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪵</span>
+          <div>
+            <h1 class="text-2xl font-bold">Wandpaneele-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Anzahl Akustik- und Lamellenpaneele berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Stückzahl = aufrunden(Netto-Wandfläche × Bedeckungsgrad × (1 + Verschnitt) ÷ Fläche je Paneel). Netto-Wandfläche nach gängiger Methodik (Bruttofläche minus Fenster-/Türflächen, vgl. Sanier.de-Ratgeber zur effektiven Wandfläche).</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Paneelformat 60 × 260 cm = 1,56 m² (Standardformat im Fachhandel, vgl. HORNBACH-Sortiment); Verschnitt 10 % (DIY-Empfehlung), bei Akustik-Zuschnitt 20 %; Vollverkleidung = Bedeckungsgrad 100 %, Akustik-Teilbelegung 20–30 %.</p>
+            <p><strong>Nicht berücksichtigt:</strong> herstellerspezifische Sondermaße, komplexe Wandgeometrien (Schrägen, Nischen), Sockel-/Abschlussleisten sowie Kleber/Schrauben (nur grobe Kostenoption). Keine Fachplanung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WandverkleidungPaneeleRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wandpaneele richtig berechnen: Anzahl, Verschnitt und Unterkonstruktion</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Wandpaneele-Rechner</strong> ermitteln Sie schnell, wie viele
+            <strong>Akustikpaneele</strong>, <strong>Lamellenpaneele</strong> oder klassische
+            Holz-/MDF-Wandpaneele Sie für Ihre Wand benötigen. Der Rechner berücksichtigt die
+            Netto-Wandfläche, den gewünschten Bedeckungsgrad, einen Verschnittzuschlag und das
+            konkrete Paneelformat – und rundet am Ende immer auf die nächste ganze Paneelzahl auf, denn
+            ein halbes Paneel können Sie im Handel nicht kaufen. Auf Wunsch schätzt er zusätzlich den
+            Bedarf an Unterkonstruktion (Latten) und die Materialkosten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel Schritt für Schritt</h3>
+          <p>So setzt sich die benötigte Paneelzahl zusammen:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>1. Bruttofläche</strong> = Wandbreite × Wandhöhe (mehrere Wände einfach addieren)</li>
+              <li><strong>2. Netto-Wandfläche</strong> = Bruttofläche − Fenster- und Türflächen</li>
+              <li><strong>3. Belegte Fläche</strong> = Netto-Wandfläche × Bedeckungsgrad</li>
+              <li><strong>4. Materialbedarf</strong> = belegte Fläche × (1 + Verschnitt)</li>
+              <li><strong>5. Stückzahl</strong> = aufrunden(Materialbedarf ÷ Fläche je Paneel)</li>
+            </ul>
+          </div>
+          <p>
+            Die <strong>Fläche je Paneel</strong> ergibt sich aus Breite × Höhe des Paneels. Ein
+            typisches Paneel mit 60 cm Breite und 260 cm Höhe deckt also 0,6 × 2,6 = <strong>1,56 m²</strong>
+            ab. Da am Rand, an Steckdosen und in Ecken zwangsläufig Reste abfallen, rechnet der Rechner
+            mit einem prozentualen Verschnittzuschlag.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vollverkleidung oder Akustik-Teilbelegung?</h3>
+          <p>
+            Beim <strong>Bedeckungsgrad</strong> unterscheidet man zwei typische Anwendungen: Eine
+            klassische <strong>Vollverkleidung</strong> der Wand mit Holz- oder MDF-Paneelen entspricht
+            100 %. Geht es dagegen um eine reine <strong>Akustikwirkung</strong> – etwa im Homeoffice,
+            Wohnzimmer oder Podcast-Raum – reicht oft schon eine Teilbelegung. Als Faustwert gelten
+            20–30 % belegte Wandfläche für eine spürbare Verbesserung der Raumakustik. Stellen Sie den
+            Bedeckungsgrad einfach auf den gewünschten Prozentsatz; der Rechner reduziert die belegte
+            Fläche entsprechend.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Verschnitt einplanen?</h3>
+          <p>
+            Bei einer geraden Vollverkleidung genügen meist <strong>10 % Verschnitt</strong> für Eck-
+            und Steckdosenzuschnitte. Werden Akustikpaneele auf Maß zugeschnitten oder versetzt verlegt,
+            empfehlen sich eher <strong>20 %</strong>, weil mehr Reste anfallen und Sie einen
+            Chargenpuffer brauchen. Wichtig: Bestellen Sie die Reserve immer aus <strong>derselben
+            Produktionscharge</strong>. Holzfurniere und Filzfarben können von Charge zu Charge sichtbar
+            abweichen – eine spätere Nachbestellung passt dann oft nicht mehr exakt zum Rest der Wand.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Unterkonstruktion oder Klebemontage?</h3>
+          <p>
+            Wandpaneele lassen sich entweder direkt auf den glatten, tragfähigen Untergrund
+            <strong>kleben</strong> oder auf eine <strong>Lattung</strong> schrauben. Für die
+            Klebemontage brauchen Sie keine Unterkonstruktion. Bei der Lattung berechnet der Rechner die
+            laufenden Meter über den Achsabstand: Bei 0,50 m Achsabstand und 5 m Wandbreite ergeben sich
+            rund 11 vertikale Latten (inklusive Randlatte), die jeweils über die volle Wandhöhe laufen.
+            Üblich sind Achsabstände von 0,40 bis 0,60 m – je schwerer das Paneel, desto enger die
+            Lattung. Beachten Sie die Montagehinweise des Herstellers.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Akustikpaneele liegen im Trend</h3>
+          <p>
+            Akustik- und Lamellenpaneele gehören 2026 zu den gefragtesten Wohntrends („Quiet Luxury“):
+            Sie verbinden eine warme Holzoptik mit hörbar besserer Raumakustik. Die meisten Systeme
+            bestehen aus Echtholz- oder MDF-Lamellen auf einer Filzplatte und kommen in den
+            Standardhöhen 240, 260 und 300 cm. Genau diese Formate sind im Rechner als Voreinstellung
+            hinterlegt – für Sondermaße tragen Sie Breite und Höhe einfach selbst ein.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📐 Standard-Paneelformate und Fläche je Stück</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Gängige Formate von Akustik- und Lamellenpaneelen (Breite meist 60 cm). Die Fläche je Paneel
+          bestimmt, wie viele Stück Sie pro Quadratmeter brauchen.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Format (B × H)</th>
+                <th class="py-2 px-2 font-semibold text-right">Fläche/Paneel</th>
+                <th class="py-2 px-2 font-semibold text-right">Paneele/m²</th>
+                <th class="py-2 pl-2 font-semibold text-right">für 10 m²*</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">60 × 240 cm</td><td class="py-2 px-2 text-right">1,44 m²</td><td class="py-2 px-2 text-right">0,69</td><td class="py-2 pl-2 text-right">8 Stück</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">60 × 260 cm</td><td class="py-2 px-2 text-right">1,56 m²</td><td class="py-2 px-2 text-right">0,64</td><td class="py-2 pl-2 text-right">8 Stück</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">60 × 270 cm</td><td class="py-2 px-2 text-right">1,62 m²</td><td class="py-2 px-2 text-right">0,62</td><td class="py-2 pl-2 text-right">7 Stück</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">60 × 300 cm</td><td class="py-2 px-2 text-right">1,80 m²</td><td class="py-2 px-2 text-right">0,56</td><td class="py-2 pl-2 text-right">7 Stück</td></tr>
+              <tr><td class="py-2 pr-2">30 × 240 cm (schmal)</td><td class="py-2 px-2 text-right">0,72 m²</td><td class="py-2 px-2 text-right">1,39</td><td class="py-2 pl-2 text-right">16 Stück</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          *Vollverkleidung 100 %, inkl. 10 % Verschnitt, auf ganze Paneele aufgerundet. Quellen:
+          HORNBACH-Akustikpaneele-Sortiment, Holzprofi24-Magazin, Sanier.de-Ratgeber.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle, jeweils Schritt für Schritt durchgerechnet:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Vollverkleidung Wohnzimmerwand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wand:</div>
+              <div class="font-medium text-gray-800">4,0 m × 2,5 m = 10 m²</div>
+              <div class="text-gray-600">Bedeckung / Verschnitt:</div>
+              <div class="font-medium text-gray-800">100 % / +10 %</div>
+              <div class="text-gray-600">Paneel:</div>
+              <div class="font-medium text-gray-800">60 × 260 cm = 1,56 m²</div>
+              <div class="text-gray-600">Materialbedarf:</div>
+              <div class="font-medium text-gray-800">10 × 1,0 × 1,1 = 11,0 m²</div>
+              <div class="text-gray-600">Paneele:</div>
+              <div class="font-medium text-green-700">aufrunden(11,0 ÷ 1,56) = 8 Stück</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Akustik-Teilbelegung hinter dem TV</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wand:</div>
+              <div class="font-medium text-gray-800">3,5 m × 2,5 m = 8,75 m²</div>
+              <div class="text-gray-600">Bedeckung / Verschnitt:</div>
+              <div class="font-medium text-gray-800">30 % / +20 %</div>
+              <div class="text-gray-600">Paneel:</div>
+              <div class="font-medium text-gray-800">60 × 240 cm = 1,44 m²</div>
+              <div class="text-gray-600">Materialbedarf:</div>
+              <div class="font-medium text-gray-800">8,75 × 0,30 × 1,2 = 3,15 m²</div>
+              <div class="text-gray-600">Paneele:</div>
+              <div class="font-medium text-green-700">aufrunden(3,15 ÷ 1,44) = 3 Stück</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Flurwand mit Tür inkl. Unterkonstruktion</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wand brutto:</div>
+              <div class="font-medium text-gray-800">5,0 m × 2,6 m = 13 m²</div>
+              <div class="text-gray-600">Abzug Tür / netto:</div>
+              <div class="font-medium text-gray-800">−2,0 m² → 11,0 m²</div>
+              <div class="text-gray-600">Bedeckung / Verschnitt:</div>
+              <div class="font-medium text-gray-800">100 % / +10 %</div>
+              <div class="text-gray-600">Materialbedarf:</div>
+              <div class="font-medium text-gray-800">11,0 × 1,1 = 12,1 m²</div>
+              <div class="text-gray-600">Paneele (60 × 260):</div>
+              <div class="font-medium text-green-700">aufrunden(12,1 ÷ 1,56) = 8 Stück</div>
+              <div class="text-gray-600">Lattung (0,5 m Achse):</div>
+              <div class="font-medium text-gray-800">(5 ÷ 0,5 + 1) × 2,6 = 28,6 lfm</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 2 zeigt, dass eine reine Akustik-Teilbelegung mit nur
+          30 % Bedeckung deutlich weniger Material braucht als eine Vollverkleidung – ideal, wenn es
+          nur um besseren Klang und einen optischen Akzent geht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Reserve aus anderer Charge bestellen</h3>
+            <p>Holz- und Filzpaneele weichen von Charge zu Charge in Farbe und Maserung ab. Bestellen
+            Sie deshalb gleich genügend Reserve (10–20 %) aus <strong>derselben Produktionscharge</strong>
+            mit – eine spätere Nachbestellung passt häufig nicht exakt zur restlichen Wand.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Fenster und Türen nicht abziehen</h3>
+            <p>Wer mit der Bruttofläche rechnet, kauft zu viele Paneele. Ziehen Sie die Flächen von
+            Fenstern und Türen ab. Ein Standardfenster bringt rund 1,5–2,5 m², eine Tür etwa 1,8–2 m² –
+            das sind schnell ein bis zwei Paneele weniger.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verschnitt unterschätzen</h3>
+            <p>Bei diagonaler Verlegung, vielen Steckdosen oder schrägen Wänden fällt deutlich mehr
+            Verschnitt an als die 10 % der Voreinstellung. Erhöhen Sie den Zuschlag in solchen Fällen
+            auf 15–20 %, sonst fehlt am Ende das letzte Paneel.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Paneele kürzen statt Vollhöhe</h3>
+            <p>Ist die Raumhöhe kleiner als die Paneelhöhe, wird jedes Paneel auf Maß gekürzt – der Rest
+            ist meist Verschnitt. Rechnen Sie dann mit der vollen Paneelhöhe (so kalkuliert der Rechner)
+            und planen Sie den Abschnitt als Reserve ein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Brandschutz und Fluchtwege</h3>
+            <p>In gewerblichen Räumen, Treppenhäusern oder Fluchtwegen gelten oft Brandschutzauflagen
+            (z. B. Baustoffklasse B1). Prüfen Sie die Herstellerzertifikate und das geltende Baurecht –
+            dieser Rechner liefert nur den Mengenbedarf, keine bauaufsichtliche Bewertung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Wandpaneelen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Wandpaneele brauche ich für meine Wand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Stückzahl ergibt sich aus <strong>aufrunden(Netto-Wandfläche × Bedeckungsgrad ×
+              (1 + Verschnitt) ÷ Fläche je Paneel)</strong>. Für eine 10 m² große Wand bei
+              Vollverkleidung, 10 % Verschnitt und Paneelen mit 1,56 m² (60 × 260 cm) sind das
+              aufrunden(11,0 ÷ 1,56) = 8 Paneele.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß ist die Fläche eines Akustikpaneels?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Standardpaneele sind meist 60 cm breit. Bei 240 cm Höhe deckt ein Paneel 0,6 × 2,4 =
+              1,44 m² ab, bei 260 cm sind es 1,56 m² und bei 300 cm 1,80 m². Die genauen Maße stehen in
+              den Produktangaben des Herstellers.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Prozent der Wand sollte ich mit Akustikpaneelen belegen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für eine spürbare Verbesserung der Raumakustik gilt als Faustwert eine Teilbelegung von
+              <strong>20 bis 30 %</strong> der Wandfläche. Wer die volle Holzoptik möchte, verkleidet die
+              Wand komplett (Bedeckungsgrad 100 %). Im Rechner stellen Sie den gewünschten Prozentsatz
+              einfach selbst ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Verschnitt sollte ich einplanen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei gerader Vollverkleidung reichen meist <strong>10 %</strong> Verschnitt. Werden
+              Akustikpaneele zugeschnitten oder versetzt verlegt, planen Sie eher <strong>20 %</strong>
+              ein. Bestellen Sie die Reserve immer aus derselben Charge, da Farbe und Maserung sonst
+              abweichen können.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich eine Unterkonstruktion für Wandpaneele?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nicht zwingend. Auf einem glatten, tragfähigen Untergrund lassen sich viele Paneele
+              direkt <strong>ankleben</strong> – dann entfällt die Unterkonstruktion. Alternativ schraubt
+              man sie auf eine <strong>Lattung</strong> mit einem Achsabstand von üblicherweise 0,40–0,60 m.
+              Der Rechner schätzt die benötigten Lattenmeter auf Wunsch mit.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich Fenster und Türen von der Fläche abziehen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Rechnen Sie mit der <strong>Netto-Wandfläche</strong>, also Bruttofläche minus den
+              Flächen von Fenstern und Türen. Ein Standardfenster bringt rund 1,5–2,5 m², eine Tür etwa
+              1,8–2 m². Tragen Sie die Summe dieser Flächen im Feld „Abzug Fenster/Türen“ ein.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🟫</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/tapeten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tapeten-Rechner</p>
+          </a>
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarbe-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wandpaneele-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/wandverkleidung-paneele-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Wandpaneele brauche ich für meine Wand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Stückzahl ergibt sich aus aufrunden(Netto-Wandfläche × Bedeckungsgrad × (1 + Verschnitt) ÷ Fläche je Paneel). Für eine 10 m² große Wand bei Vollverkleidung, 10 % Verschnitt und Paneelen mit 1,56 m² (60 × 260 cm) sind das aufrunden(11,0 ÷ 1,56) = 8 Paneele."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß ist die Fläche eines Akustikpaneels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standardpaneele sind meist 60 cm breit. Bei 240 cm Höhe deckt ein Paneel 0,6 × 2,4 = 1,44 m² ab, bei 260 cm sind es 1,56 m² und bei 300 cm 1,80 m². Die genauen Maße stehen in den Produktangaben des Herstellers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Prozent der Wand sollte ich mit Akustikpaneelen belegen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für eine spürbare Verbesserung der Raumakustik gilt als Faustwert eine Teilbelegung von 20 bis 30 % der Wandfläche. Wer die volle Holzoptik möchte, verkleidet die Wand komplett (Bedeckungsgrad 100 %). Im Rechner stellen Sie den gewünschten Prozentsatz einfach selbst ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Verschnitt sollte ich einplanen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei gerader Vollverkleidung reichen meist 10 % Verschnitt. Werden Akustikpaneele zugeschnitten oder versetzt verlegt, planen Sie eher 20 % ein. Bestellen Sie die Reserve immer aus derselben Charge, da Farbe und Maserung sonst abweichen können."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich eine Unterkonstruktion für Wandpaneele?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nicht zwingend. Auf einem glatten, tragfähigen Untergrund lassen sich viele Paneele direkt ankleben – dann entfällt die Unterkonstruktion. Alternativ schraubt man sie auf eine Lattung mit einem Achsabstand von üblicherweise 0,40–0,60 m. Der Rechner schätzt die benötigten Lattenmeter auf Wunsch mit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich Fenster und Türen von der Fläche abziehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Rechnen Sie mit der Netto-Wandfläche, also Bruttofläche minus den Flächen von Fenstern und Türen. Ein Standardfenster bringt rund 1,5–2,5 m², eine Tür etwa 1,8–2 m². Tragen Sie die Summe dieser Flächen im Feld „Abzug Fenster/Türen“ ein."
+        }
+      }
+    ]
+  })} />
+</Layout>

@@ -1,0 +1,471 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SolarthermieRechner from '../components/rechner/SolarthermieRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Solarthermie-Rechner 2026 – Kollektorfläche & Speicher berechnen";
+const description = "Solarthermie berechnen: Kollektorfläche, Speichervolumen und solaren Deckungsgrad nach Personenzahl, Wohnfläche und Kollektortyp dimensionieren. Mit Faustformeln, Richtwert-Tabelle und Beispielen für Warmwasser und Heizungsunterstützung.";
+const keywords = "Solarthermie Rechner, Solarthermie berechnen, Kollektorfläche berechnen, Solarthermie Dimensionierung, Solarthermie Auslegung, Solaranlage Warmwasser berechnen, Speichervolumen Solarthermie, Kollektorfläche pro Person";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Solarthermie-Rechner", url: "/solarthermie-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Solarthermie-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">☀️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Solarthermie-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kollektorfläche & Speichervolumen dimensionieren</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Branchen-Faustregeln zur Solarthermie-Dimensionierung – Warmwasser: ca. 1,5 m² Flachkollektor (bzw. 1,0 m² Röhre) je Person und ca. 80 l Speicher je Person; Heizungsunterstützung: Kollektorfläche = Wohnfläche × Flächenfaktor je Gebäudestandard, Kombispeicher 60–80 l je m² Kollektor (Quellen: solaranlage-ratgeber.de, Viessmann, HeizCenter).</p>
+            <p class="mb-1"><strong>Standard-Werte:</strong> 4 Personen, Flachkollektor, nur Warmwasser. Flächenfaktor Heizung: Neubau 0,05 · saniert 0,07 · unsanierter Altbau 0,10 m² je m² Wohnfläche.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Dachausrichtung & -neigung, Verschattung, individuelles Verbrauchsverhalten, hydraulischer Abgleich. Orientierungswerte – keine verbindliche Auslegung, keine Energieberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SolarthermieRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Solarthermie richtig berechnen und dimensionieren</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Solarthermie-Rechner</strong> ermitteln Sie in Sekunden, wie groß die
+            <strong>Kollektorfläche</strong> und der <strong>Solarspeicher</strong> für Ihr Haus
+            ausgelegt sein sollten – wahlweise für die reine <strong>Trinkwassererwärmung</strong>
+            (Warmwasser) oder für <strong>Warmwasser plus Heizungsunterstützung</strong>. Solarthermie
+            wandelt Sonnenlicht über Kollektoren auf dem Dach in Wärme um. Diese Wärme wird in einem
+            Speicher zwischengelagert und versorgt Dusche, Wasserhahn und – bei größeren Anlagen –
+            auch die Heizung. Anders als die <a href="/photovoltaik-rechner" class="text-blue-600 hover:text-blue-800 underline">Photovoltaik, die Strom erzeugt</a>,
+            liefert Solarthermie ausschließlich Wärme.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Faustformeln für die Auslegung</h3>
+          <p>Der Rechner nutzt die in der Branche üblichen Dimensionierungs-Faustregeln:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Warmwasser:</strong> Kollektorfläche = Personen × 1,5 m² (Flachkollektor) bzw. × 1,0 m² (Vakuumröhre)</li>
+              <li><strong>Speicher Warmwasser:</strong> Personen × 80 Liter, mindestens 200 Liter</li>
+              <li><strong>Heizungsunterstützung:</strong> Kollektorfläche = beheizte Wohnfläche × Flächenfaktor (0,05–0,10 je nach Dämmung)</li>
+              <li><strong>Kombispeicher:</strong> Kollektorfläche × 60 l/m² (Flach) bzw. × 80 l/m² (Röhre)</li>
+            </ul>
+          </div>
+          <p>
+            Bei der Variante „Warmwasser + Heizung“ vergleicht der Rechner die für Warmwasser nötige
+            Fläche mit der für die Heizungsunterstützung nötigen Fläche und empfiehlt den größeren der
+            beiden Werte. So ist sichergestellt, dass die Anlage in beiden Betriebsfällen ausreichend
+            dimensioniert ist. Heizungsunterstützende Anlagen sind dadurch typischerweise rund doppelt
+            so groß wie reine Warmwasseranlagen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Flachkollektor oder Vakuumröhre?</h3>
+          <p>
+            <strong>Flachkollektoren</strong> sind günstiger und am weitesten verbreitet, brauchen aber
+            etwas mehr Dachfläche. <strong>Vakuumröhrenkollektoren</strong> haben einen höheren
+            Wirkungsgrad pro Quadratmeter – sie kommen mit rund 70–75 % der Fläche eines
+            Flachkollektors aus, sind dafür aber teurer. Der Rechner berücksichtigt diesen Unterschied
+            automatisch über die kleineren Flächenwerte beim Röhrenkollektor. Für ein durchschnittliches
+            Satteldach mit guter Süd-Ausrichtung sind Flachkollektoren meist die wirtschaftlichste Wahl.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeutet der solare Deckungsgrad?</h3>
+          <p>
+            Der <strong>solare Deckungsgrad</strong> gibt an, welcher Anteil des jährlichen Wärmebedarfs
+            durch die Sonne gedeckt wird. Bei reiner Warmwasserbereitung sind <strong>50 bis 65 %</strong>
+            realistisch – über das Jahr gerechnet, denn im Sommer deckt die Anlage den Bedarf praktisch
+            vollständig, im Winter dagegen kaum. Bei Heizungsunterstützung liegt der Deckungsgrad bezogen
+            auf den gesamten Wärmebedarf (Heizung + Warmwasser) nur bei rund <strong>15 bis 25 %</strong>,
+            weil im Winter – wenn am meisten geheizt wird – am wenigsten Sonne verfügbar ist. Eine
+            100-Prozent-Solardeckung ist technisch möglich, aber unwirtschaftlich.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Flächenfaktor nach Gebäudestandard</h3>
+          <p>
+            Wie viel Kollektorfläche pro Quadratmeter Wohnfläche nötig ist, hängt stark von der Dämmung
+            ab. Ein gut gedämmter <strong>Neubau</strong> kommt mit etwa 0,04–0,06 m² je m² Wohnfläche
+            aus, ein <strong>energetisch saniertes</strong> Haus braucht 0,06–0,08 m², ein
+            <strong>unsanierter Altbau</strong> 0,08–0,12 m². Als Faustregel gilt für Flachkollektoren:
+            etwa 1 m² Kollektorfläche je 10 m² beheizter Wohnfläche. Je schlechter die Dämmung, desto
+            größer muss die Anlage sein – oft lohnt es sich, zuerst zu dämmen und dann erst die Solaranlage
+            zu dimensionieren.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">☀️ Richtwerte zur Solarthermie-Dimensionierung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Typische Auslegung für Flachkollektoren. Werte sind Richtgrößen – die exakte Dimensionierung
+          hängt von Standort, Dach und Verbrauch ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Haushalt / Gebäude</th>
+                <th class="py-2 px-2 font-semibold text-right">Kollektorfläche</th>
+                <th class="py-2 px-2 font-semibold text-right">Speicher</th>
+                <th class="py-2 pl-2 font-semibold text-right">Deckung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚿 2 Pers., nur Warmwasser</td><td class="py-2 px-2 text-right">ca. 3 m²</td><td class="py-2 px-2 text-right">200 l</td><td class="py-2 pl-2 text-right">50–65 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚿 3 Pers., nur Warmwasser</td><td class="py-2 px-2 text-right">ca. 4,5 m²</td><td class="py-2 px-2 text-right">240 l</td><td class="py-2 pl-2 text-right">50–65 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚿 4 Pers., nur Warmwasser</td><td class="py-2 px-2 text-right">ca. 6 m²</td><td class="py-2 px-2 text-right">320 l</td><td class="py-2 pl-2 text-right">50–65 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚿 5 Pers., nur Warmwasser</td><td class="py-2 px-2 text-right">ca. 7,5 m²</td><td class="py-2 px-2 text-right">400 l</td><td class="py-2 pl-2 text-right">50–65 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔥 120 m² Neubau, WW + Heizung</td><td class="py-2 px-2 text-right">ca. 6 m²</td><td class="py-2 px-2 text-right">ca. 360 l</td><td class="py-2 pl-2 text-right">15–25 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔥 140 m² saniert, WW + Heizung</td><td class="py-2 px-2 text-right">ca. 10 m²</td><td class="py-2 px-2 text-right">ca. 590 l</td><td class="py-2 pl-2 text-right">15–25 %</td></tr>
+              <tr><td class="py-2 pr-2">🔥 150 m² Altbau, WW + Heizung</td><td class="py-2 px-2 text-right">ca. 15 m²</td><td class="py-2 px-2 text-right">ca. 900 l</td><td class="py-2 pl-2 text-right">15–25 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: solaranlage-ratgeber.de, Viessmann, HeizCenter (Stand 2026). Vakuumröhren benötigen
+          ca. 70–75 % dieser Flächen.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Personenzahl, Wohnfläche und Kollektortyp auf die Auslegung aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 4 Personen, nur Warmwasser (Flachkollektor)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Personen:</div>
+              <div class="font-medium text-gray-800">4</div>
+              <div class="text-gray-600">Kollektorfläche:</div>
+              <div class="font-medium text-gray-800">4 × 1,5 m² = 6 m²</div>
+              <div class="text-gray-600">Speicher:</div>
+              <div class="font-medium text-gray-800">4 × 80 l = 320 l</div>
+              <div class="text-gray-600">Module (≈ 2,3 m²):</div>
+              <div class="font-medium text-gray-800">6 ÷ 2,3 → 3 Stück</div>
+              <div class="text-gray-600">Solarer Deckungsgrad:</div>
+              <div class="font-medium text-green-700">ca. 50–65 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 140 m² saniert, Warmwasser + Heizung (Flach)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wohnfläche / Standard:</div>
+              <div class="font-medium text-gray-800">140 m² / saniert (0,07)</div>
+              <div class="text-gray-600">Fläche Warmwasser:</div>
+              <div class="font-medium text-gray-800">4 × 1,5 = 6 m²</div>
+              <div class="text-gray-600">Fläche Heizung:</div>
+              <div class="font-medium text-gray-800">140 × 0,07 = 9,8 m²</div>
+              <div class="text-gray-600">Empfehlung (größerer Wert):</div>
+              <div class="font-medium text-gray-800">9,8 m²</div>
+              <div class="text-gray-600">Kombispeicher:</div>
+              <div class="font-medium text-gray-800">9,8 × 60 l/m² = 588 l</div>
+              <div class="text-gray-600">Solarer Deckungsgrad:</div>
+              <div class="font-medium text-green-700">ca. 15–25 %</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 3 Personen, nur Warmwasser (Vakuumröhre)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Personen:</div>
+              <div class="font-medium text-gray-800">3</div>
+              <div class="text-gray-600">Kollektorfläche:</div>
+              <div class="font-medium text-gray-800">3 × 1,0 m² = 3 m²</div>
+              <div class="text-gray-600">Speicher:</div>
+              <div class="font-medium text-gray-800">3 × 80 l = 240 l</div>
+              <div class="text-gray-600">Module (≈ 2,0 m²):</div>
+              <div class="font-medium text-gray-800">3 ÷ 2,0 → 2 Stück</div>
+              <div class="text-gray-600">Solarer Deckungsgrad:</div>
+              <div class="font-medium text-green-700">ca. 50–65 %</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Vakuumröhren brauchen weniger Fläche (Beispiel 3: 3 m² statt
+          4,5 m² für drei Personen), kosten aber pro Quadratmeter mehr. Bei knapper oder ungünstig
+          ausgerichteter Dachfläche können sie sich lohnen, sonst ist der Flachkollektor meist
+          wirtschaftlicher.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Anlage auf 100 % Solardeckung auslegen</h3>
+            <p>Eine Solarthermieanlage, die auch im Winter den vollen Bedarf decken soll, ist im Sommer
+            massiv überdimensioniert und produziert dann ungenutzte Überschusswärme (Stagnation). Das ist
+            teuer und belastet die Anlage. Sinnvoll sind 50–65 % bei Warmwasser und 15–25 % bei
+            Heizungsunterstützung.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Speicher zu klein wählen</h3>
+            <p>Ein zu kleiner Speicher kann die an sonnigen Tagen gewonnene Wärme nicht aufnehmen – sie
+            geht verloren. Faustregel: ca. 80 l je Person beim Warmwasserspeicher, 60–80 l je m²
+            Kollektorfläche beim Kombispeicher. Lieber etwas größer als zu klein.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Dachausrichtung & Verschattung ignorieren</h3>
+            <p>Die Faustformeln gehen von einer guten Süd-Ausrichtung und einer Dachneigung um 30–45°
+            aus. Bei Ost-/West-Dächern, flacher Neigung oder Verschattung durch Bäume und Nachbargebäude
+            sinkt der Ertrag deutlich – dann ist eine größere Fläche nötig. Dieser Rechner kann das nicht
+            erfassen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Unsanierter Altbau</h3>
+            <p>Bei schlechter Dämmung steigt der Flächenfaktor auf bis zu 0,12 m² je m² Wohnfläche. Hier
+            lohnt es sich, zuerst die Gebäudehülle zu dämmen: Das senkt den Wärmebedarf und damit die
+            nötige Kollektorfläche – oft die wirtschaftlichere Reihenfolge.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Warmwasser vs. Heizungsunterstützung</h3>
+            <p>Heizungsunterstützende Anlagen sind rund doppelt so groß und teurer als reine
+            Warmwasseranlagen, der zusätzliche Solarertrag im Winter ist aber gering. Ob sich die
+            größere Anlage lohnt, sollte individuell mit einem Fachbetrieb geprüft werden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Solarthermie</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Kollektorfläche brauche ich für Solarthermie?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für die reine Warmwasserbereitung rechnet man mit etwa <strong>1,5 m² Flachkollektor
+              je Person</strong> (Vakuumröhre ca. 1,0 m²). Ein 4-Personen-Haushalt benötigt also rund
+              6 m². Soll die Anlage auch die Heizung unterstützen, kommen je nach Dämmung 0,05–0,10 m²
+              je m² Wohnfläche zusammen – bei 140 m² etwa 10 m².</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß muss der Solarspeicher sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim reinen Warmwasserspeicher rechnet man mit etwa <strong>80 Litern je Person</strong>,
+              mindestens jedoch 200 Liter. Ein 4-Personen-Haushalt braucht also rund 320 Liter. Beim
+              Kombispeicher für Heizungsunterstützung gelten 60–80 Liter je Quadratmeter Kollektorfläche;
+              typische Einfamilienhaus-Kombispeicher fassen rund 600–900 Liter.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welchen Anteil deckt Solarthermie am Wärmebedarf?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei reiner Warmwasserbereitung deckt eine richtig dimensionierte Anlage über das Jahr
+              <strong>50 bis 65 %</strong> des Warmwasserbedarfs. Bei Heizungsunterstützung liegt der
+              solare Deckungsgrad bezogen auf den gesamten Wärmebedarf nur bei rund <strong>15 bis
+              25 %</strong>, weil im Winter wenig Sonne verfügbar ist. Eine 100-Prozent-Deckung ist
+              unwirtschaftlich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Flachkollektor oder Vakuumröhre – was ist besser?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Flachkollektoren sind günstiger und am weitesten verbreitet, brauchen aber etwas mehr
+              Dachfläche. Vakuumröhren haben einen höheren Wirkungsgrad und kommen mit rund
+              <strong>70–75 % der Fläche</strong> aus, sind dafür teurer. Bei gutem, gut ausgerichtetem
+              Dach ist der Flachkollektor meist die wirtschaftlichste Wahl; bei knapper Fläche kann sich
+              die Röhre lohnen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich Solarthermie zur Heizungsunterstützung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Heizungsunterstützende Anlagen sind rund doppelt so groß und teurer als reine
+              Warmwasseranlagen, liefern aber im Winter – wenn am meisten geheizt wird – nur wenig
+              zusätzlichen Ertrag. Der solare Deckungsgrad bleibt bei 15–25 %. Ob sich die größere
+              Investition lohnt, hängt stark von Dämmung, Heizsystem und Dach ab und sollte mit einem
+              Fachbetrieb geprüft werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Solarthermie und Photovoltaik?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Solarthermie wandelt Sonnenlicht in <strong>Wärme</strong> um und versorgt damit
+              Warmwasser und Heizung. Photovoltaik erzeugt dagegen <strong>Strom</strong>. Beide nutzen
+              das Dach: Solarthermie braucht weniger Fläche für die gleiche Wärmemenge, Photovoltaik ist
+              flexibler nutzbar. Auf demselben Dach lassen sich beide Technologien auch kombinieren.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpen-Rechner</p>
+          </a>
+          <a href="/heizlast-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🌡️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizlast-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/gasverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Gasverbrauch-Rechner</p>
+          </a>
+          <a href="/stromverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔌</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromverbrauch-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Solarthermie-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/solarthermie-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Kollektorfläche brauche ich für Solarthermie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für die reine Warmwasserbereitung rechnet man mit etwa 1,5 m² Flachkollektor je Person (Vakuumröhre ca. 1,0 m²). Ein 4-Personen-Haushalt benötigt also rund 6 m². Soll die Anlage auch die Heizung unterstützen, kommen je nach Dämmung 0,05–0,10 m² je m² Wohnfläche zusammen – bei 140 m² etwa 10 m²."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß muss der Solarspeicher sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim reinen Warmwasserspeicher rechnet man mit etwa 80 Litern je Person, mindestens jedoch 200 Liter. Ein 4-Personen-Haushalt braucht also rund 320 Liter. Beim Kombispeicher für Heizungsunterstützung gelten 60–80 Liter je Quadratmeter Kollektorfläche; typische Einfamilienhaus-Kombispeicher fassen rund 600–900 Liter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welchen Anteil deckt Solarthermie am Wärmebedarf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei reiner Warmwasserbereitung deckt eine richtig dimensionierte Anlage über das Jahr 50 bis 65 % des Warmwasserbedarfs. Bei Heizungsunterstützung liegt der solare Deckungsgrad bezogen auf den gesamten Wärmebedarf nur bei rund 15 bis 25 %, weil im Winter wenig Sonne verfügbar ist. Eine 100-Prozent-Deckung ist unwirtschaftlich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Flachkollektor oder Vakuumröhre – was ist besser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Flachkollektoren sind günstiger und am weitesten verbreitet, brauchen aber etwas mehr Dachfläche. Vakuumröhren haben einen höheren Wirkungsgrad und kommen mit rund 70–75 % der Fläche aus, sind dafür teurer. Bei gutem, gut ausgerichtetem Dach ist der Flachkollektor meist die wirtschaftlichste Wahl; bei knapper Fläche kann sich die Röhre lohnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich Solarthermie zur Heizungsunterstützung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Heizungsunterstützende Anlagen sind rund doppelt so groß und teurer als reine Warmwasseranlagen, liefern aber im Winter – wenn am meisten geheizt wird – nur wenig zusätzlichen Ertrag. Der solare Deckungsgrad bleibt bei 15–25 %. Ob sich die größere Investition lohnt, hängt stark von Dämmung, Heizsystem und Dach ab und sollte mit einem Fachbetrieb geprüft werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Solarthermie und Photovoltaik?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solarthermie wandelt Sonnenlicht in Wärme um und versorgt damit Warmwasser und Heizung. Photovoltaik erzeugt dagegen Strom. Beide nutzen das Dach: Solarthermie braucht weniger Fläche für die gleiche Wärmemenge, Photovoltaik ist flexibler nutzbar. Auf demselben Dach lassen sich beide Technologien auch kombinieren."
+        }
+      }
+    ]
+  })} />
+</Layout>

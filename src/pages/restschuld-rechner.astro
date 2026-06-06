@@ -1,0 +1,465 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RestschuldRechner from '../components/rechner/RestschuldRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Restschuld-Rechner 2026 – Restschuld nach Zinsbindung berechnen";
+const description = "Restschuld berechnen: Wie viel Kredit oder Baufinanzierung bleibt nach der Zinsbindung übrig? Restschuldrechner mit Sollzins, Tilgung, Sondertilgung und Stichtag – kostenlos und ohne Anmeldung.";
+const keywords = "Restschuld Rechner, Restschuld berechnen, Restschuldrechner, Restschuld nach Zinsbindung, Restschuld Annuitätendarlehen, Restschuld Kredit berechnen, Restschuld Baufinanzierung, Anschlussfinanzierung Restschuld";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Restschuld-Rechner", url: "/restschuld-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Restschuld-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📉</span>
+          <div>
+            <h1 class="text-2xl font-bold">Restschuld-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Restschuld nach der Zinsbindung berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Annuitätendarlehen mit monatlicher Verzinsung. Restschuld nach k Monaten = Darlehen × (1 + i)<sup>k</sup> − Rate × ((1 + i)<sup>k</sup> − 1) ÷ i, mit Monatszins i = Sollzins p.a. ÷ 12.</p>
+            <p class="mb-1"><strong>Default-Werte:</strong> 300.000 € Darlehen, 3,5 % Sollzins, 2 % anfängliche Tilgung, 10 Jahre Zinsbindung – alle frei anpassbar. Optional jährliche Sondertilgung.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Gebühren, Disagio, Bereitstellungszinsen, Restschuldversicherung sowie abweichende Tilgungsverrechnung der Bank (täglich/monatlich/jährlich). Keine Anlage- oder Finanzierungsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RestschuldRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Restschuld berechnen – was nach der Zinsbindung übrig bleibt</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Restschuld</strong> ist der Betrag, den Sie zu einem bestimmten Stichtag noch
+            schulden – am wichtigsten ist sie am <strong>Ende der Zinsbindung</strong>. Bei einer
+            typischen Baufinanzierung ist das Darlehen nach 10 oder 15 Jahren fester Zinsbindung
+            nämlich längst noch nicht abbezahlt. Für den verbleibenden Rest brauchen Sie eine
+            <strong>Anschlussfinanzierung</strong> – und je niedriger die Restschuld, desto kleiner das
+            Zinsänderungsrisiko. Dieser <strong>Restschuldrechner</strong> zeigt Ihnen in einem Schritt,
+            wie hoch die Restschuld zu Ihrem Wunsch-Stichtag ist, wie viel Sie bis dahin getilgt haben
+            und wie viele Zinsen Sie gezahlt haben.
+          </p>
+          <p>
+            Anders als ein voller <a href="/tilgungsplan-rechner" class="text-blue-600 hover:text-blue-800 underline">Tilgungsplan-Rechner</a>,
+            der jede einzelne Rate auflistet, liefert dieser Rechner gezielt eine Zahl: die Restschuld
+            zum gewählten Zeitpunkt. Das ist die entscheidende Größe für Anschlussfinanzierung,
+            Forward-Darlehen und den Vergleich verschiedener Tilgungsstrategien.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt die anerkannte Formel für das Annuitätendarlehen mit monatlicher Verzinsung:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Monatszins i</strong> = Sollzins p.a. ÷ 12 (als Dezimalzahl)</li>
+              <li><strong>Monatsrate</strong> = Darlehen × (Sollzins + anfängliche Tilgung) ÷ 12</li>
+              <li><strong>Restschuld nach k Monaten</strong> = Darlehen × (1 + i)<sup>k</sup> − Rate × ((1 + i)<sup>k</sup> − 1) ÷ i</li>
+            </ul>
+          </div>
+          <p>
+            Hinter der Formel steckt das Prinzip der <strong>Annuität</strong>: Die Monatsrate bleibt
+            konstant, aber ihre Zusammensetzung verschiebt sich. Anfangs zahlen Sie viel Zins und wenig
+            Tilgung; mit jeder Rate sinkt die Restschuld, dadurch wird der Zinsanteil kleiner und der
+            Tilgungsanteil größer. Genau deshalb steigt die Tilgung über die Jahre – und genau deshalb
+            ist die Restschuld am Ende der Zinsbindung deutlich höher, als viele erwarten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tilgungssatz oder feste Rate?</h3>
+          <p>
+            Sie können die Monatsrate auf zwei Arten festlegen. Bei der <strong>anfänglichen Tilgung</strong>
+            geben Sie an, mit wie viel Prozent des Darlehens Sie im ersten Jahr tilgen wollen – der
+            Rechner ermittelt daraus die Rate. Üblich sind heute 2 bis 3 Prozent; je höher die Tilgung,
+            desto schneller sind Sie schuldenfrei und desto niedriger die Restschuld. Alternativ tragen
+            Sie eine <strong>feste Monatsrate</strong> in Euro ein, etwa wenn Ihre Bank Ihnen bereits eine
+            konkrete Rate genannt hat.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Sondertilgung senkt die Restschuld spürbar</h3>
+          <p>
+            Viele Darlehensverträge erlauben jährliche <strong>Sondertilgungen</strong>, oft bis zu 5 %
+            der ursprünglichen Darlehenssumme pro Jahr ohne Vorfälligkeitsentschädigung. Im Rechner
+            tragen Sie einen jährlichen Sondertilgungsbetrag ein, der jeweils am Ende eines vollen Jahres
+            zusätzlich verrechnet wird. Weil dadurch früh weniger Restschuld verzinst wird, sparen
+            Sondertilgungen über die Laufzeit überproportional viel Zinsen – ein wirksamer Hebel, um die
+            Restschuld zum Stichtag zu drücken.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Restschuld und Anschlussfinanzierung</h3>
+          <p>
+            Endet die Zinsbindung, vereinbaren Sie für die Restschuld neue Konditionen –
+            das ist die <strong>Anschlussfinanzierung</strong>. Steigen die Zinsen bis dahin, kann die
+            Anschlussrate deutlich teurer werden. Wer früh plant, kann sich mit einem
+            <strong>Forward-Darlehen</strong> die heutigen Zinsen für die spätere Restschuld sichern.
+            Die hier berechnete Restschuld ist die Basis für all diese Überlegungen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📉 Restschuld nach 10 Jahren Zinsbindung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beispiel: 300.000 € Darlehen, 3,5 % Sollzins, 10 Jahre Zinsbindung. So wirkt sich die
+          anfängliche Tilgung auf die verbleibende Restschuld aus.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Anf. Tilgung</th>
+                <th class="py-2 px-2 font-semibold text-right">Monatsrate</th>
+                <th class="py-2 px-2 font-semibold text-right">getilgt</th>
+                <th class="py-2 pl-2 font-semibold text-right">Restschuld</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">1 %</td><td class="py-2 px-2 text-right">1.125 €</td><td class="py-2 px-2 text-right">35.858 €</td><td class="py-2 pl-2 text-right">264.142 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">2 %</td><td class="py-2 px-2 text-right">1.375 €</td><td class="py-2 px-2 text-right">71.716 €</td><td class="py-2 pl-2 text-right">228.284 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">3 %</td><td class="py-2 px-2 text-right">1.625 €</td><td class="py-2 px-2 text-right">107.574 €</td><td class="py-2 pl-2 text-right">192.426 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">4 %</td><td class="py-2 px-2 text-right">1.875 €</td><td class="py-2 px-2 text-right">143.433 €</td><td class="py-2 pl-2 text-right">156.567 €</td></tr>
+              <tr><td class="py-2 pr-2">5 %</td><td class="py-2 px-2 text-right">2.125 €</td><td class="py-2 px-2 text-right">179.291 €</td><td class="py-2 pl-2 text-right">120.709 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Werte gerundet, gerechnet mit dem Annuitätenmodell dieses Rechners. Faustregel: Jeder
+          Prozentpunkt mehr Tilgung senkt die Restschuld nach 10 Jahren um rund 36.000 €.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle – jeweils mit Restschuld zum Ende der Zinsbindung:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Baufinanzierung, 2 % Tilgung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">300.000 €</div>
+              <div class="text-gray-600">Sollzins / Tilgung:</div>
+              <div class="font-medium text-gray-800">3,5 % / 2 %</div>
+              <div class="text-gray-600">Monatsrate:</div>
+              <div class="font-medium text-gray-800">300.000 × 5,5 % ÷ 12 = 1.375 €</div>
+              <div class="text-gray-600">Zinsbindung:</div>
+              <div class="font-medium text-gray-800">10 Jahre (120 Monate)</div>
+              <div class="text-gray-600">Restschuld:</div>
+              <div class="font-medium text-green-700">228.283,74 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">getilgt: 71.716,26 € · gezahlte Zinsen: 93.283,74 €</p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Feste Monatsrate von 1.000 €</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">200.000 €</div>
+              <div class="text-gray-600">Sollzins:</div>
+              <div class="font-medium text-gray-800">4,0 %</div>
+              <div class="text-gray-600">Feste Rate:</div>
+              <div class="font-medium text-gray-800">1.000 € / Monat</div>
+              <div class="text-gray-600">Laufzeit:</div>
+              <div class="font-medium text-gray-800">15 Jahre (180 Monate)</div>
+              <div class="text-gray-600">Restschuld:</div>
+              <div class="font-medium text-green-700">117.969,84 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">getilgt: 82.030,16 € · gezahlte Zinsen: 97.969,84 €</p>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 5.000 € Sondertilgung pro Jahr</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Darlehen:</div>
+              <div class="font-medium text-gray-800">250.000 €</div>
+              <div class="text-gray-600">Sollzins / Tilgung:</div>
+              <div class="font-medium text-gray-800">3,0 % / 3 %</div>
+              <div class="text-gray-600">Monatsrate:</div>
+              <div class="font-medium text-gray-800">1.250 €</div>
+              <div class="text-gray-600">Sondertilgung:</div>
+              <div class="font-medium text-gray-800">5.000 € / Jahr</div>
+              <div class="text-gray-600">Restschuld nach 10 Jahren:</div>
+              <div class="font-medium text-green-700">105.232,29 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Ohne Sondertilgung läge die Restschuld bei 162.661,61 € – die Sondertilgungen senken sie um über 57.000 €.</p>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 zeigt den Hebel der Sondertilgung: 50.000 € extra über
+          zehn Jahre senken die Restschuld um mehr als 57.000 €, weil zusätzlich Zinsen auf die früher
+          getilgten Beträge gespart werden.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Restschuld linear schätzen</h3>
+            <p>„2 % Tilgung über 10 Jahre = 20 % getilgt“ stimmt nicht. Durch den steigenden
+            Tilgungsanteil bei konstanter Rate wird mehr getilgt – im Beispiel rund 24 % statt 20 %.
+            Die Restschuld lässt sich nur mit der Annuitätenformel korrekt bestimmen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Sollzins und Effektivzins verwechseln</h3>
+            <p>Für die Restschuld zählt der <strong>Sollzins</strong>, nicht der höhere Effektivzins.
+            Der Effektivzins enthält Nebenkosten und dient nur dem Tarifvergleich – die Tilgung wird
+            mit dem Sollzins verrechnet.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Tilgung zu niedrig wählen</h3>
+            <p>Bei nur 1 % anfänglicher Tilgung bleibt nach 10 Jahren der Großteil der Schuld stehen.
+            Das volle Zinsänderungsrisiko trifft dann die Anschlussfinanzierung. Schon 1 Prozentpunkt
+            mehr Tilgung senkt die Restschuld nach 10 Jahren um rund 36.000 €.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Rate deckt die Zinsen nicht</h3>
+            <p>Liegt die Monatsrate unter dem monatlichen Zins, wächst die Schuld statt zu sinken
+            (negative Tilgung). Der Rechner warnt in diesem Fall – erhöhen Sie dann Rate oder Tilgung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Abweichende Bank-Verrechnung</h3>
+            <p>Dieser Rechner verrechnet die Tilgung monatlich. Manche Banken rechnen täglich oder nur
+            jährlich an. Dadurch kann die tatsächliche Restschuld um einige hundert Euro abweichen –
+            maßgeblich bleibt immer Ihr Darlehensvertrag.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Restschuld</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Restschuld?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Restschuld ist der Betrag, den Sie zu einem bestimmten Stichtag noch schulden – am
+              häufigsten am Ende der Zinsbindung. Sie ergibt sich aus dem ursprünglichen Darlehen abzüglich
+              aller bis dahin geleisteten Tilgungen. Für die Restschuld vereinbaren Sie dann eine
+              Anschlussfinanzierung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man die Restschuld?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Beim Annuitätendarlehen gilt: Restschuld nach k Monaten = Darlehen × (1 + i)<sup>k</sup>
+              − Rate × ((1 + i)<sup>k</sup> − 1) ÷ i, wobei i der Monatszins (Sollzins p.a. ÷ 12) ist.
+              Bei 300.000 € Darlehen, 3,5 % Sollzins und 1.375 € Rate ergibt sich nach 120 Monaten eine
+              Restschuld von 228.283,74 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Restschuld nach der Zinsbindung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt vor allem von der anfänglichen Tilgung ab. Bei 300.000 € Darlehen, 3,5 %
+              Sollzins und 10 Jahren Zinsbindung verbleiben bei 1 % Tilgung rund 264.000 €, bei 2 %
+              etwa 228.000 € und bei 3 % rund 192.000 € Restschuld. Je höher die Tilgung, desto kleiner
+              die Restschuld und das Zinsänderungsrisiko.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie senkt eine Sondertilgung die Restschuld?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Sondertilgung verringert die Restschuld sofort und damit auch die künftig anfallenden
+              Zinsen. Bei 250.000 € Darlehen, 3 % Sollzins und 1.250 € Rate über 10 Jahre senken jährliche
+              Sondertilgungen von 5.000 € die Restschuld von 162.661,61 € auf 105.232,29 € – ein Plus von
+              über 57.000 € weniger Schuld bei nur 50.000 € Sondertilgung.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zum Tilgungsplan-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Tilgungsplan-Rechner listet jede einzelne Rate mit Zins- und Tilgungsanteil über die
+              gesamte Laufzeit auf. Der Restschuld-Rechner liefert dagegen gezielt die eine Zahl, die für
+              die Anschlussfinanzierung zählt: die verbleibende Schuld zu Ihrem Wunsch-Stichtag – ohne die
+              komplette Tabelle.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum ist nach 10 Jahren noch so viel Restschuld offen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer Annuität ist der Zinsanteil anfangs hoch und der Tilgungsanteil niedrig. Mit
+              2 % anfänglicher Tilgung dauert die vollständige Rückzahlung knapp 30 Jahre. Nach 10 Jahren
+              sind deshalb erst rund ein Viertel getilgt – der große Rest bleibt als Restschuld stehen und
+              muss anschlussfinanziert werden.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierung-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/vorfaelligkeitsentschaedigung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⚖️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Vorfälligkeitsentschädigung</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Restschuld-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/restschuld-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist die Restschuld?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Restschuld ist der Betrag, den Sie zu einem bestimmten Stichtag noch schulden – am häufigsten am Ende der Zinsbindung. Sie ergibt sich aus dem ursprünglichen Darlehen abzüglich aller bis dahin geleisteten Tilgungen. Für die Restschuld vereinbaren Sie dann eine Anschlussfinanzierung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Restschuld?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beim Annuitätendarlehen gilt: Restschuld nach k Monaten = Darlehen × (1 + i)^k − Rate × ((1 + i)^k − 1) ÷ i, wobei i der Monatszins (Sollzins p.a. ÷ 12) ist. Bei 300.000 € Darlehen, 3,5 % Sollzins und 1.375 € Rate ergibt sich nach 120 Monaten eine Restschuld von 228.283,74 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Restschuld nach der Zinsbindung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt vor allem von der anfänglichen Tilgung ab. Bei 300.000 € Darlehen, 3,5 % Sollzins und 10 Jahren Zinsbindung verbleiben bei 1 % Tilgung rund 264.000 €, bei 2 % etwa 228.000 € und bei 3 % rund 192.000 € Restschuld. Je höher die Tilgung, desto kleiner die Restschuld und das Zinsänderungsrisiko."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie senkt eine Sondertilgung die Restschuld?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Sondertilgung verringert die Restschuld sofort und damit auch die künftig anfallenden Zinsen. Bei 250.000 € Darlehen, 3 % Sollzins und 1.250 € Rate über 10 Jahre senken jährliche Sondertilgungen von 5.000 € die Restschuld von 162.661,61 € auf 105.232,29 € – ein Plus von über 57.000 € weniger Schuld bei nur 50.000 € Sondertilgung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zum Tilgungsplan-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Tilgungsplan-Rechner listet jede einzelne Rate mit Zins- und Tilgungsanteil über die gesamte Laufzeit auf. Der Restschuld-Rechner liefert dagegen gezielt die eine Zahl, die für die Anschlussfinanzierung zählt: die verbleibende Schuld zu Ihrem Wunsch-Stichtag – ohne die komplette Tabelle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist nach 10 Jahren noch so viel Restschuld offen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Annuität ist der Zinsanteil anfangs hoch und der Tilgungsanteil niedrig. Mit 2 % anfänglicher Tilgung dauert die vollständige Rückzahlung knapp 30 Jahre. Nach 10 Jahren sind deshalb erst rund ein Viertel getilgt – der große Rest bleibt als Restschuld stehen und muss anschlussfinanziert werden."
+        }
+      }
+    ]
+  })} />
+</Layout>

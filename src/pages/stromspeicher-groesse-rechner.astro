@@ -1,0 +1,487 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StromspeicherGroesseRechner from '../components/rechner/StromspeicherGroesseRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Stromspeicher-Rechner 2026 – PV-Speichergröße richtig berechnen";
+const description = "Stromspeicher-Größe berechnen: Wie viele kWh braucht Ihr PV-Speicher? Empfohlene Kapazität, Autarkiegrad, Eigenverbrauch und Kosten aus Jahresverbrauch und PV-Leistung – mit Faustformel, Richtwert-Tabelle und Beispielen.";
+const keywords = "Stromspeicher Rechner, Stromspeicher Größe berechnen, PV Speicher Größe berechnen, Batteriespeicher Dimensionierung, Stromspeicher Dimensionierung, Speichergröße Photovoltaik, kWh Speicher berechnen, Autarkiegrad berechnen, Eigenverbrauch PV";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Stromspeicher-Rechner", url: "/stromspeicher-groesse-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Stromspeicher-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Stromspeicher-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">PV-Speichergröße, Autarkie und Kosten berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Branchen-Faustformel für die Speicherdimensionierung (rund 1,0–1,5 kWh nutzbare Kapazität je 1.000 kWh Jahresverbrauch bzw. je kWp PV-Leistung). Autarkie- und Eigenverbrauchs-Werte sind Näherungen, kalibriert an den Simulationstabellen des HTW-Berlin-Unabhängigkeitsrechners (Prof. Quaschning).</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Speicherpreis 500 €/kWh nutzbar (marktüblich 2026 rund 440–800 €/kWh), Strompreis 32 ct/kWh, Entladetiefe (DoD) 0,90 für LiFePO4-Speicher.</p>
+            <p><strong>Nicht berücksichtigt:</strong> individuelles Lastprofil, Ausrichtung/Verschattung, E-Auto, Wärmepumpe, Förderungen, Förderkredite und exakte Strompreis-Entwicklung. Orientierungswerte, keine Fachplanung – Angaben ohne Gewähr, keine Energieberatung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <StromspeicherGroesseRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Stromspeicher-Größe richtig berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Stromspeicher-Rechner</strong> finden Sie heraus, wie groß der
+            Batteriespeicher zu Ihrer Photovoltaik-Anlage sein sollte. Während der
+            <a href="/photovoltaik-rechner" class="text-blue-600 hover:text-blue-800 underline">Photovoltaik-Rechner</a>
+            klärt, ob sich eine PV-Anlage insgesamt lohnt, beantwortet dieser Rechner die umgekehrte
+            Frage: <strong>Wie viele Kilowattstunden Speicherkapazität brauche ich?</strong> Sie geben
+            Ihren Jahresstromverbrauch und die geplante PV-Leistung ein und erhalten eine empfohlene
+            Speichergröße, eine Spanne, eine grobe Einschätzung von Autarkie und Eigenverbrauch sowie
+            die ungefähren Anschaffungskosten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Faustformel für die Speichergröße</h3>
+          <p>
+            In der Praxis hat sich eine einfache Daumenregel etabliert: Pro 1.000 kWh
+            Jahresstromverbrauch – und ebenso pro Kilowattpeak (kWp) installierter PV-Leistung – ist
+            rund <strong>1,0 bis 1,5 kWh nutzbare Speicherkapazität</strong> sinnvoll. Beide Größen
+            wirken als Deckel, denn ein großer Speicher nützt nichts, wenn entweder der Verbrauch oder
+            die Erzeugung zu klein ist.
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Verbrauchs-Deckel</strong> = Jahresverbrauch (kWh) ÷ 1.000 × 1,0 bis 1,5</li>
+              <li><strong>PV-Deckel</strong> = PV-Leistung (kWp) × 1,0 bis 1,5</li>
+              <li><strong>Empfehlung (nutzbar)</strong> ≈ Mittel beider Faustwerte, praktisch 3–15 kWh im Einfamilienhaus</li>
+              <li><strong>Brutto-Kapazität</strong> = nutzbare Kapazität ÷ Entladetiefe (DoD)</li>
+            </ul>
+          </div>
+          <p>
+            Hersteller geben Speicher oft mit der <strong>Brutto-Kapazität</strong> an, nutzbar ist
+            jedoch nur ein Teil davon. Bei modernen Lithium-Eisenphosphat-Speichern (LiFePO4) liegt die
+            Entladetiefe bei rund 90 bis 95 Prozent. Ein Speicher mit 10 kWh brutto stellt also etwa
+            9 bis 9,5 kWh nutzbar zur Verfügung. Der Rechner zeigt beide Werte getrennt aus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Autarkiegrad und Eigenverbrauch verstehen</h3>
+          <p>
+            Der <strong>Autarkiegrad</strong> gibt an, welcher Anteil Ihres Strombedarfs aus eigener
+            Solarenergie (direkt oder aus dem Speicher) gedeckt wird. Der
+            <strong>Eigenverbrauchsanteil</strong> beschreibt umgekehrt, welcher Anteil des erzeugten
+            Solarstroms selbst genutzt statt eingespeist wird. Beide steigen mit der Speichergröße –
+            allerdings flacht der Zuwachs schnell ab: Die ersten Kilowattstunden Speicher bringen den
+            größten Sprung, jede weitere kWh deutlich weniger. Genau deshalb ist ein
+            <strong>mittelgroßer Speicher meist wirtschaftlicher</strong> als ein sehr großer. Mit PV
+            und passendem Speicher sind im Einfamilienhaus typischerweise 60 bis 75 Prozent Autarkie
+            realistisch; vollständige Unabhängigkeit (100 %) ist mit Speicher allein nicht erreichbar,
+            weil im Winter zu wenig Sonne scheint.
+          </p>
+          <p>
+            <strong>Wichtig:</strong> Die im Rechner angezeigten Prozentwerte sind bewusst als
+            <em>Näherung</em> gekennzeichnet. Die exakten Werte hängen stark vom individuellen
+            Lastprofil ab (wann am Tag Sie wie viel Strom verbrauchen) und werden seriös nur über
+            Simulationen ermittelt. Der <strong>Unabhängigkeitsrechner der HTW Berlin</strong>
+            (Forschungsgruppe Solarspeichersysteme) wertet dafür rund 25.000 simulierte
+            Systemkonfigurationen aus und ist die fachliche Referenz.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was kostet ein Stromspeicher 2026?</h3>
+          <p>
+            Die Preise für Heimspeicher sind in den letzten Jahren deutlich gefallen. 2026 liegen die
+            Kosten je nach Hersteller, Größe und Installation grob bei <strong>440 bis 800 €/kWh</strong>
+            nutzbarer Kapazität inklusive Wechselrichter und Montage. Größere Speicher sind pro kWh oft
+            günstiger als kleine. Der Rechner nutzt als Voreinstellung 500 €/kWh – ein typischer
+            Mittelwert. Für eine belastbare Zahl holen Sie am besten konkrete Angebote von
+            Fachbetrieben ein, denn auch die Komplexität der Installation beeinflusst den Endpreis.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann lohnt sich ein größerer Speicher?</h3>
+          <p>
+            Ein größerer Speicher ergibt vor allem dann Sinn, wenn künftig <strong>zusätzliche
+            Verbraucher</strong> hinzukommen: ein E-Auto, das nachts geladen wird, oder eine
+            <a href="/waermepumpe-rechner" class="text-blue-600 hover:text-blue-800 underline">Wärmepumpe</a>,
+            die den Strombedarf spürbar erhöht. Auch ein klar wachsender Haushalt rechtfertigt eine
+            Reserve nach oben. Wer dagegen rein auf Wirtschaftlichkeit optimiert, fährt mit einem
+            mittelgroßen Speicher (im Einfamilienhaus oft 3 bis 8 kWh) meist am besten – die
+            Mehrkosten eines XXL-Speichers amortisieren sich über die typische Lebensdauer von
+            12 bis 15 Jahren häufig nicht.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔋 Richtwerte: Speichergröße nach Haushalt</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Orientierungswerte für typische Einfamilienhäuser. Die empfohlene Größe ergibt sich aus der
+          Faustformel (rund 1 kWh nutzbar je 1.000 kWh Verbrauch bzw. je kWp).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Haushalt</th>
+                <th class="py-2 px-2 font-semibold text-right">Verbrauch</th>
+                <th class="py-2 px-2 font-semibold text-right">PV-Anlage</th>
+                <th class="py-2 pl-2 font-semibold text-right">Speicher (nutzbar)</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧍 1 Person</td><td class="py-2 px-2 text-right">~1.800 kWh</td><td class="py-2 px-2 text-right">3–4 kWp</td><td class="py-2 pl-2 text-right">3–4 kWh</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">👫 2 Personen</td><td class="py-2 px-2 text-right">~2.800 kWh</td><td class="py-2 px-2 text-right">4–6 kWp</td><td class="py-2 pl-2 text-right">3–5 kWh</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">👨‍👩‍👧 3–4 Personen (EFH)</td><td class="py-2 px-2 text-right">~4.500 kWh</td><td class="py-2 px-2 text-right">7–9 kWp</td><td class="py-2 pl-2 text-right">5–7 kWh</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">👨‍👩‍👧‍👦 5+ Personen</td><td class="py-2 px-2 text-right">~6.000 kWh</td><td class="py-2 px-2 text-right">9–11 kWp</td><td class="py-2 pl-2 text-right">6–9 kWh</td></tr>
+              <tr><td class="py-2 pr-2">🏡 Großes EFH + E-Auto</td><td class="py-2 px-2 text-right">~7.500 kWh</td><td class="py-2 px-2 text-right">10–14 kWp</td><td class="py-2 pl-2 text-right">8–12 kWh</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: energie-experten.org (Faustregel Speichergröße), HTW Berlin (Unabhängigkeitsrechner). Stand 2026 – Richtwerte, keine Fachplanung.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Verbrauch und PV-Leistung auf die empfohlene Größe aus (Speicherpreis 500 €/kWh, DoD 0,90):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Einfamilienhaus, 4 Personen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Jahresverbrauch:</div>
+              <div class="font-medium text-gray-800">4.500 kWh</div>
+              <div class="text-gray-600">PV-Leistung:</div>
+              <div class="font-medium text-gray-800">8 kWp</div>
+              <div class="text-gray-600">Empfehlung nutzbar:</div>
+              <div class="font-medium text-gray-800">(4,5 + 8) ÷ 2 ≈ 6 kWh</div>
+              <div class="text-gray-600">Brutto-Kapazität:</div>
+              <div class="font-medium text-gray-800">6 ÷ 0,90 ≈ 6,7 kWh</div>
+              <div class="text-gray-600">Autarkie / Eigenverbrauch:</div>
+              <div class="font-medium text-gray-800">≈ 68 % / ≈ 35 %</div>
+              <div class="text-gray-600">Investition:</div>
+              <div class="font-medium text-green-700">≈ 3.333 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Kleineres EFH, 3 Personen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Jahresverbrauch:</div>
+              <div class="font-medium text-gray-800">4.000 kWh</div>
+              <div class="text-gray-600">PV-Leistung:</div>
+              <div class="font-medium text-gray-800">6 kWp</div>
+              <div class="text-gray-600">Empfehlung nutzbar:</div>
+              <div class="font-medium text-gray-800">(4 + 6) ÷ 2 = 5 kWh</div>
+              <div class="text-gray-600">Brutto-Kapazität:</div>
+              <div class="font-medium text-gray-800">5 ÷ 0,90 ≈ 5,6 kWh</div>
+              <div class="text-gray-600">Autarkie / Eigenverbrauch:</div>
+              <div class="font-medium text-gray-800">≈ 65 % / ≈ 36 %</div>
+              <div class="text-gray-600">Investition:</div>
+              <div class="font-medium text-green-700">≈ 2.778 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Großes EFH, 5 Personen</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Jahresverbrauch:</div>
+              <div class="font-medium text-gray-800">5.500 kWh</div>
+              <div class="text-gray-600">PV-Leistung:</div>
+              <div class="font-medium text-gray-800">10 kWp</div>
+              <div class="text-gray-600">Empfehlung nutzbar:</div>
+              <div class="font-medium text-gray-800">(5,5 + 10) ÷ 2 ≈ 8 kWh</div>
+              <div class="text-gray-600">Brutto-Kapazität:</div>
+              <div class="font-medium text-gray-800">8 ÷ 0,90 ≈ 8,9 kWh</div>
+              <div class="text-gray-600">Autarkie / Eigenverbrauch:</div>
+              <div class="font-medium text-gray-800">≈ 69 % / ≈ 35 %</div>
+              <div class="text-gray-600">Investition:</div>
+              <div class="font-medium text-green-700">≈ 4.444 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> In allen drei Fällen liegt der Eigenverbrauchsanteil bei rund einem
+          Drittel des erzeugten Solarstroms – obwohl der Speicher wächst. Das zeigt: Über eine gewisse
+          Größe hinaus bringt jede zusätzliche kWh kaum noch Mehrwert. Ein mittelgroßer Speicher ist
+          deshalb meist die wirtschaftlichste Wahl.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Den Speicher zu groß dimensionieren</h3>
+            <p>Mehr kWh klingen nach mehr Unabhängigkeit – doch der Nutzen flacht stark ab. Ein
+            überdimensionierter Speicher wird im Sommer selten ganz geladen und steht im Winter mangels
+            Sonne ohnehin oft leer. Die Mehrkosten amortisieren sich dann häufig nicht.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Brutto- und nutzbare Kapazität verwechseln</h3>
+            <p>Hersteller werben meist mit der Brutto-Kapazität. Nutzbar sind durch die Entladetiefe nur
+            rund 90 bis 95 Prozent davon. Vergleichen Sie Angebote immer auf Basis der nutzbaren kWh,
+            sonst zahlen Sie für Kapazität, die Sie nie abrufen können.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Autarkie mit Eigenverbrauch verwechseln</h3>
+            <p>Autarkiegrad (Anteil des Bedarfs aus Solar) und Eigenverbrauchsanteil (Anteil der
+            Erzeugung, der selbst genutzt wird) sind zwei verschiedene Kennzahlen. Eine große PV-Anlage
+            steigert die Autarkie, senkt aber tendenziell den Eigenverbrauchsanteil.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: E-Auto oder Wärmepumpe geplant</h3>
+            <p>Kommen künftig große Verbraucher hinzu, steigt der sinnvolle Speicherbereich nach oben.
+            Planen Sie absehbare Anschaffungen am besten direkt mit ein, statt später nachzurüsten –
+            das ist meist teurer.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: 100 % Autarkie als Ziel</h3>
+            <p>Vollständige Unabhängigkeit ist mit einem Batteriespeicher allein praktisch nicht
+            erreichbar, weil im Winter zu wenig Solarstrom anfällt. Dafür bräuchte es saisonale
+            Speicher – die für Privathaushalte unwirtschaftlich sind.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Stromspeicher</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß sollte mein Stromspeicher sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Faustregel gilt rund <strong>1,0 bis 1,5 kWh nutzbare Speicherkapazität je 1.000 kWh
+              Jahresverbrauch</strong> und ebenso je kWp PV-Leistung. Für ein Einfamilienhaus mit
+              4.500 kWh Verbrauch und 8 kWp Anlage ergibt das etwa 6 kWh nutzbar. Im Einfamilienhaus
+              sind 3 bis 8 kWh meist die wirtschaftlichste Wahl.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die richtige Speichergröße für meine PV-Anlage?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Teilen Sie Ihren Jahresverbrauch durch 1.000 und nehmen Sie diesen Wert sowie Ihre
+              PV-Leistung in kWp als Anhaltspunkte. Die empfohlene nutzbare Kapazität liegt ungefähr im
+              Mittel beider Werte. Beispiel: 4.000 kWh Verbrauch und 6 kWp ergeben (4 + 6) ÷ 2 = 5 kWh
+              nutzbar. Genauer wird es über eine Simulation, etwa mit dem Unabhängigkeitsrechner der
+              HTW Berlin.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Brutto- und nutzbarer Kapazität?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die <strong>Brutto-Kapazität</strong> ist die gesamte verbaute Speichermenge, die
+              <strong>nutzbare Kapazität</strong> der tatsächlich abrufbare Anteil. Durch die
+              Entladetiefe (DoD) von rund 90 bis 95 Prozent bei modernen LiFePO4-Speichern sind nutzbar
+              etwas weniger kWh. Ein Speicher mit 6 kWh nutzbar entspricht bei DoD 0,90 etwa 6,7 kWh
+              brutto.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel kostet ein Stromspeicher 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>2026 liegen die Preise je nach Größe, Hersteller und Installation grob bei
+              <strong>440 bis 800 €/kWh</strong> nutzbarer Kapazität inklusive Wechselrichter und
+              Montage. Ein 6-kWh-Speicher kostet damit überschlägig rund 3.000 bis 5.000 €. Größere
+              Speicher sind pro kWh oft günstiger. Konkrete Angebote holen Sie am besten bei
+              Fachbetrieben ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Erreiche ich mit einem Speicher 100 % Autarkie?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Mit PV und Speicher sind im Einfamilienhaus typischerweise 60 bis 75 Prozent
+              Autarkie realistisch. Vollständige Unabhängigkeit ist mit einem Batteriespeicher allein
+              nicht erreichbar, weil im Winter zu wenig Solarstrom erzeugt wird. Dafür wären saisonale
+              Speicher nötig, die für Privathaushalte unwirtschaftlich sind.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich ein größerer Speicher für E-Auto oder Wärmepumpe?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Wenn ein E-Auto oder eine Wärmepumpe geplant ist, steigt der Strombedarf deutlich – und
+              damit der sinnvolle Speicherbereich nach oben. In diesem Fall kann ein größerer Speicher
+              tatsächlich lohnen. Ohne solche Großverbraucher ist ein mittelgroßer Speicher meist
+              wirtschaftlicher, weil der Nutzen jeder zusätzlichen kWh schnell abnimmt.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/stromkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromkosten-Rechner</p>
+          </a>
+          <a href="/stromverbrauch-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔌</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stromverbrauch-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">♨️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpe-Rechner</p>
+          </a>
+          <a href="/e-auto-foerderung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚗</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">E-Auto-Förderung-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Stromspeicher-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/stromspeicher-groesse-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie groß sollte mein Stromspeicher sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Faustregel gilt rund 1,0 bis 1,5 kWh nutzbare Speicherkapazität je 1.000 kWh Jahresverbrauch und ebenso je kWp PV-Leistung. Für ein Einfamilienhaus mit 4.500 kWh Verbrauch und 8 kWp Anlage ergibt das etwa 6 kWh nutzbar. Im Einfamilienhaus sind 3 bis 8 kWh meist die wirtschaftlichste Wahl."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die richtige Speichergröße für meine PV-Anlage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teilen Sie Ihren Jahresverbrauch durch 1.000 und nehmen Sie diesen Wert sowie Ihre PV-Leistung in kWp als Anhaltspunkte. Die empfohlene nutzbare Kapazität liegt ungefähr im Mittel beider Werte. Beispiel: 4.000 kWh Verbrauch und 6 kWp ergeben (4 + 6) ÷ 2 = 5 kWh nutzbar. Genauer wird es über eine Simulation, etwa mit dem Unabhängigkeitsrechner der HTW Berlin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Brutto- und nutzbarer Kapazität?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Brutto-Kapazität ist die gesamte verbaute Speichermenge, die nutzbare Kapazität der tatsächlich abrufbare Anteil. Durch die Entladetiefe (DoD) von rund 90 bis 95 Prozent bei modernen LiFePO4-Speichern sind nutzbar etwas weniger kWh. Ein Speicher mit 6 kWh nutzbar entspricht bei DoD 0,90 etwa 6,7 kWh brutto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel kostet ein Stromspeicher 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2026 liegen die Preise je nach Größe, Hersteller und Installation grob bei 440 bis 800 €/kWh nutzbarer Kapazität inklusive Wechselrichter und Montage. Ein 6-kWh-Speicher kostet damit überschlägig rund 3.000 bis 5.000 €. Größere Speicher sind pro kWh oft günstiger. Konkrete Angebote holen Sie am besten bei Fachbetrieben ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Erreiche ich mit einem Speicher 100 % Autarkie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Mit PV und Speicher sind im Einfamilienhaus typischerweise 60 bis 75 Prozent Autarkie realistisch. Vollständige Unabhängigkeit ist mit einem Batteriespeicher allein nicht erreichbar, weil im Winter zu wenig Solarstrom erzeugt wird. Dafür wären saisonale Speicher nötig, die für Privathaushalte unwirtschaftlich sind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich ein größerer Speicher für E-Auto oder Wärmepumpe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wenn ein E-Auto oder eine Wärmepumpe geplant ist, steigt der Strombedarf deutlich – und damit der sinnvolle Speicherbereich nach oben. In diesem Fall kann ein größerer Speicher tatsächlich lohnen. Ohne solche Großverbraucher ist ein mittelgroßer Speicher meist wirtschaftlicher, weil der Nutzen jeder zusätzlichen kWh schnell abnimmt."
+        }
+      }
+    ]
+  })} />
+</Layout>

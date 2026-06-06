@@ -1,0 +1,452 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnentuerenRechner from '../components/rechner/InnentuerenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Innentüren-Rechner 2026 – Kosten für Türen & Montage berechnen";
+const description = "Innentüren-Kosten berechnen: Türblatt, Zarge, Beschlag und Montage je Tür auf einen Blick. Für CPL, furniert, Massivholz und Glastüren – inklusive Nebenkosten und Sondermaß-Aufpreis.";
+const keywords = "Innentüren Rechner, Innentüren Kosten, Zimmertüren Kosten, Türen einbauen Kosten, Türblatt Preis, Türzarge Kosten, Innentür Montage Kosten, Türen Kostenrechner";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Innentüren-Rechner", url: "/innentueren-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Innentüren-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚪</span>
+          <div>
+            <h1 class="text-2xl font-bold">Innentüren-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kosten für Türen, Zargen & Montage berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Gesamtkosten = Anzahl × (Türblatt + Zarge + Beschlag/Drückergarnitur + Montage); optional zuzüglich Nebenkosten je Tür. Maß-/Normgrundlage: Normmaß-Türhöhe 198,5 cm nach DIN 18101.</p>
+            <p class="mb-1"><strong>Richtwerte (Voreinstellung):</strong> Türblatt CPL/weiß 70–100 €, furniert 300–450 €, Massivholz 400–650 €, Glaseinsatz ab 130 €; Zarge 20–80 € (Design bis 300 €); Beschlag 20–80 €; Montage je Tür 50–150 €. Alle Werte frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> regionale Preisunterschiede, Sonderlackierungen, Schallschutz-/Brandschutztüren, größere Wandanpassungen. Keine Statik- oder Sicherheitsberechnung – unverbindliche Orientierung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <InnentuerenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Innentüren-Kosten berechnen: was eine neue Tür wirklich kostet</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer eine Wohnung renoviert oder einen Neubau plant, unterschätzt die Türen gern. Eine
+            einzelne <strong>Innentür</strong> wirkt überschaubar – doch in einer durchschnittlichen
+            Wohnung kommen schnell fünf bis acht Türen zusammen, jeweils mit Türblatt, Zarge, Beschlag
+            und Montage. Mit dem <strong>Innentüren-Rechner</strong> kalkulieren Sie alle vier
+            Kostenblöcke je Tür und sehen die Gesamtsumme für Ihr Projekt sofort. So gehen Sie mit
+            einer realistischen Hausnummer in das Gespräch mit Schreiner oder Türenfachmarkt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die vier Kostenblöcke je Tür</h3>
+          <p>Der Preis einer fertig eingebauten Innentür setzt sich aus vier Positionen zusammen:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Türblatt</strong> – das eigentliche Türelement; größter Preistreiber, abhängig von der Ausführung (CPL, furniert, Massivholz, Glas).</li>
+              <li><strong>Zarge</strong> – der Rahmen, der die Tür mit der Wand verbindet; Standardzarge günstig, Design-/Massivholzzarge deutlich teurer.</li>
+              <li><strong>Beschlag/Drückergarnitur</strong> – Türgriff, Rosetten und Schließblech.</li>
+              <li><strong>Montage</strong> – Einbau durch den Fachbetrieb; entfällt bei Eigenmontage.</li>
+            </ul>
+          </div>
+          <p>
+            Die Formel ist denkbar einfach:
+            <strong>Gesamtkosten = Anzahl × (Türblatt + Zarge + Beschlag + Montage)</strong>. Optional
+            rechnet der Rechner pro Tür Nebenkosten dazu – also Demontage und Entsorgung der alten Tür,
+            anteilige Anfahrt und Kleinmaterial.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel kostet eine Innentür 2026?</h3>
+          <p>
+            Eine schlichte <strong>CPL- oder weiß lackierte Standardtür</strong> im Normmaß bekommen
+            Sie als Türblatt bereits ab 70 bis 100 €. <strong>Furnierte Türen</strong> mit echter
+            Holzoberfläche liegen je nach Holzart bei rund 300 bis 450 €, hochwertige
+            <strong> Massivholztüren</strong> bei 400 bis 650 € und mehr. Türen mit
+            <strong> Glaseinsatz</strong> starten bei etwa 130 €. Hinzu kommen Zarge (20–80 €,
+            Design-/Massivholzzargen bis 300 €), Beschlag (20–80 €) und Montage (50–150 € je Tür).
+            Eine komplett montierte Standardtür liegt damit häufig im Bereich von rund 250 bis 350 €,
+            eine furnierte oder massive Tür schnell beim Doppelten oder Dreifachen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Normmaß nach DIN 18101</h3>
+          <p>
+            Innentüren in Deutschland folgen der <strong>DIN 18101</strong>, die Baurichtmaße für
+            Türöffnung und Türblatt festlegt. Das gängige <strong>Normmaß</strong> hat eine Türhöhe von
+            <strong> 198,5 cm</strong> (Türblatt) bei Breiten von meist 61, 73, 86 oder 98,5 cm.
+            Solange Ihre Öffnungen dem Normmaß entsprechen, greifen Sie auf günstige Lagerware zurück.
+            <strong> Raumhohe Türen</strong> (Türhöhe über 211 cm) oder echte Sondermaße müssen
+            gefertigt werden – das verteuert das Türblatt typischerweise um 30 bis 80 %. Im Rechner
+            bilden Sie das über den Sondermaß-Aufpreis ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Selbst einbauen oder Fachbetrieb?</h3>
+          <p>
+            Bei einer Standardzarge in eine maßhaltige Öffnung ist die Eigenmontage mit etwas
+            handwerklichem Geschick machbar – dann setzen Sie die Montagekosten im Rechner auf 0 €. Ist
+            die Wandöffnung unsauber, soll eine Blockzarge verbaut oder eine Glastür sauber justiert
+            werden, lohnt sich der Fachbetrieb. Als Faustregel verursachen die Türen rund
+            <strong> 3,5 % der gesamten Bausumme</strong> – ein grober Anhaltspunkt, um den eigenen
+            Voranschlag auf Plausibilität zu prüfen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🚪 Richtwerte: Innentür-Preise nach Ausführung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Preisspannen je Türblatt (Normmaß) plus typische Nebenpositionen. Tatsächliche Preise
+          variieren nach Hersteller, Region und Qualität.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Position</th>
+                <th class="py-2 px-2 font-semibold text-right">günstig</th>
+                <th class="py-2 pl-2 font-semibold text-right">gehoben</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚪 Türblatt CPL/weiß</td><td class="py-2 px-2 text-right">70 €</td><td class="py-2 pl-2 text-right">100 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪵 Türblatt furniert</td><td class="py-2 px-2 text-right">300 €</td><td class="py-2 pl-2 text-right">450 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🌳 Türblatt Massivholz</td><td class="py-2 px-2 text-right">400 €</td><td class="py-2 pl-2 text-right">650 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪟 Türblatt mit Glaseinsatz</td><td class="py-2 px-2 text-right">130 €</td><td class="py-2 pl-2 text-right">400 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔲 Zarge Standard/Stahl</td><td class="py-2 px-2 text-right">20 €</td><td class="py-2 pl-2 text-right">80 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🟫 Zarge Holz/Design</td><td class="py-2 px-2 text-right">150 €</td><td class="py-2 pl-2 text-right">300 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔧 Drücker/Beschlaggarnitur</td><td class="py-2 px-2 text-right">20 €</td><td class="py-2 pl-2 text-right">80 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">👷 Montage je Tür (Fachbetrieb)</td><td class="py-2 px-2 text-right">50 €</td><td class="py-2 pl-2 text-right">150 €</td></tr>
+              <tr><td class="py-2 pr-2">♻️ Demontage/Entsorgung/Anfahrt je Tür</td><td class="py-2 px-2 text-right">50 €</td><td class="py-2 pl-2 text-right">200 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: energie-experten.org, tischler-schreiner.org, DIN 18101 (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Wie sich Ausführung, Zarge und Montage auf die Gesamtkosten auswirken:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 5 Standardtüren (CPL/weiß) mit Montage</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Stückpreis:</div>
+              <div class="font-medium text-gray-800">90 + 50 + 40 + 100 = 280 €</div>
+              <div class="text-gray-600">Anzahl:</div>
+              <div class="font-medium text-gray-800">5 Türen</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">5 × 280 = 1.400 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: 3 furnierte Türen mit Designzarge</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Türblatt furniert:</div>
+              <div class="font-medium text-gray-800">375 €</div>
+              <div class="text-gray-600">Stückpreis:</div>
+              <div class="font-medium text-gray-800">375 + 200 + 70 + 120 = 765 €</div>
+              <div class="text-gray-600">Anzahl:</div>
+              <div class="font-medium text-gray-800">3 Türen</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">3 × 765 = 2.295 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 1 raumhohe Massivholztür inkl. Nebenkosten</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Türblatt Massivholz:</div>
+              <div class="font-medium text-gray-800">525 € + 40 % Sondermaß = 735 €</div>
+              <div class="text-gray-600">Stückpreis:</div>
+              <div class="font-medium text-gray-800">735 + 80 + 60 + 130 + 100 = 1.105 €</div>
+              <div class="text-gray-600">Anzahl:</div>
+              <div class="font-medium text-gray-800">1 Tür</div>
+              <div class="text-gray-600">Gesamtkosten:</div>
+              <div class="font-medium text-green-700">1 × 1.105 = 1.105 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Eine einzige raumhohe Massivholztür (Beispiel 3) kann fast so viel
+          kosten wie fünf einfache Standardtüren (Beispiel 1). Die Ausführung des Türblatts und das
+          Maß sind die größten Preishebel – nicht Zarge oder Beschlag.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur den Türblatt-Preis sehen</h3>
+            <p>Der Werbepreis „Tür ab 70 €“ meint fast immer nur das nackte Türblatt. Zarge, Beschlag
+            und Montage verdoppeln den Preis pro Tür oft. Rechnen Sie immer mit dem kompletten
+            Stückpreis.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Zarge vergessen</h3>
+            <p>Ohne passende Zarge lässt sich keine Tür montieren. Bei einer Renovierung kann die alte
+            Zarge oft bleiben (nur Türblatt tauschen), im Neubau oder bei beschädigtem Rahmen muss sie
+            mitkalkuliert werden.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Altür-Entsorgung übersehen</h3>
+            <p>Demontage und Entsorgung der alten Türen sowie die Anfahrt des Betriebs stehen selten im
+            Hauptpreis. Aktivieren Sie im Rechner die Nebenkosten je Tür, damit Ihr Budget nicht später
+            kippt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sondermaß statt Normmaß</h3>
+            <p>Stimmt die Wandöffnung nicht mit dem Normmaß nach DIN 18101 überein, wird die Tür zur
+            Sonderanfertigung. Das verteuert das Türblatt um 30 bis 80 % und verlängert die Lieferzeit
+            deutlich.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Schall- und Brandschutztüren</h3>
+            <p>Türen mit Schallschutz- oder Brandschutzanforderung (z. B. zum Treppenhaus) kosten
+            deutlich mehr als hier angesetzt. Für diese Spezialtüren sollten Sie ein gesondertes Angebot
+            einholen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zu Innentüren-Kosten</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet eine Innentür inklusive Einbau?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine komplett montierte Standardtür (CPL/weiß) liegt 2026 häufig bei rund 250 bis 350 €.
+              Das setzt sich zusammen aus Türblatt (70–100 €), Zarge (20–80 €), Beschlag (20–80 €) und
+              Montage (50–150 €). Furnierte oder massive Türen kosten das Zwei- bis Dreifache.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Kosten für mehrere Türen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Multiplizieren Sie den Stückpreis je Tür mit der Anzahl: Gesamtkosten = Anzahl ×
+              (Türblatt + Zarge + Beschlag + Montage). Fünf Standardtüren zu je 280 € ergeben zum
+              Beispiel 5 × 280 = 1.400 €. Optionale Nebenkosten je Tür (Demontage, Entsorgung, Anfahrt)
+              rechnen Sie pro Tür dazu.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet die Montage einer Innentür?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Einbau einer Innentür durch einen Fachbetrieb kostet je nach Aufwand und Region rund
+              50 bis 150 € pro Tür. Soll auch die Zarge neu gesetzt werden, liegt der Aufwand am oberen
+              Ende. Bei Eigenmontage in eine maßhaltige Öffnung entfallen diese Kosten – im Rechner
+              setzen Sie die Montage dann auf 0 €.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welches Normmaß haben Innentüren?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Innentüren folgen in Deutschland der DIN 18101. Das gängige Normmaß hat eine Türblatthöhe
+              von 198,5 cm bei Breiten von meist 61, 73, 86 oder 98,5 cm. Solange Ihre Öffnung dem
+              Normmaß entspricht, nutzen Sie günstige Lagerware; raumhohe Türen oder Sondermaße müssen
+              gefertigt werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel teurer sind raumhohe oder Sondermaß-Türen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Raumhohe Türen (Türhöhe über 211 cm) und echte Sondermaße sind Sonderanfertigungen. Der
+              Aufpreis auf das Türblatt liegt typischerweise bei 30 bis 80 %, dazu kommt eine längere
+              Lieferzeit. Im Rechner bilden Sie das über die Option „Raumhoch/Sondermaß“ mit einem frei
+              wählbaren Prozent-Aufschlag ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich der Einbau von Innentüren in Eigenleistung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer Standardzarge in eine maßhaltige Wandöffnung ist die Eigenmontage mit etwas
+              handwerklichem Geschick gut machbar und spart 50 bis 150 € pro Tür. Bei unsauberen
+              Öffnungen, Blockzargen oder Glastüren, die exakt justiert werden müssen, ist der Fachbetrieb
+              die sicherere Wahl.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👷</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarbe-Rechner</p>
+          </a>
+          <a href="/tapeten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧻</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tapeten-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Innentüren-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/innentueren-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet eine Innentür inklusive Einbau?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine komplett montierte Standardtür (CPL/weiß) liegt 2026 häufig bei rund 250 bis 350 €. Das setzt sich zusammen aus Türblatt (70–100 €), Zarge (20–80 €), Beschlag (20–80 €) und Montage (50–150 €). Furnierte oder massive Türen kosten das Zwei- bis Dreifache."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Kosten für mehrere Türen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiplizieren Sie den Stückpreis je Tür mit der Anzahl: Gesamtkosten = Anzahl × (Türblatt + Zarge + Beschlag + Montage). Fünf Standardtüren zu je 280 € ergeben zum Beispiel 5 × 280 = 1.400 €. Optionale Nebenkosten je Tür (Demontage, Entsorgung, Anfahrt) rechnen Sie pro Tür dazu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet die Montage einer Innentür?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Einbau einer Innentür durch einen Fachbetrieb kostet je nach Aufwand und Region rund 50 bis 150 € pro Tür. Soll auch die Zarge neu gesetzt werden, liegt der Aufwand am oberen Ende. Bei Eigenmontage in eine maßhaltige Öffnung entfallen diese Kosten – im Rechner setzen Sie die Montage dann auf 0 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welches Normmaß haben Innentüren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Innentüren folgen in Deutschland der DIN 18101. Das gängige Normmaß hat eine Türblatthöhe von 198,5 cm bei Breiten von meist 61, 73, 86 oder 98,5 cm. Solange Ihre Öffnung dem Normmaß entspricht, nutzen Sie günstige Lagerware; raumhohe Türen oder Sondermaße müssen gefertigt werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel teurer sind raumhohe oder Sondermaß-Türen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Raumhohe Türen (Türhöhe über 211 cm) und echte Sondermaße sind Sonderanfertigungen. Der Aufpreis auf das Türblatt liegt typischerweise bei 30 bis 80 %, dazu kommt eine längere Lieferzeit. Im Rechner bilden Sie das über die Option „Raumhoch/Sondermaß“ mit einem frei wählbaren Prozent-Aufschlag ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich der Einbau von Innentüren in Eigenleistung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Standardzarge in eine maßhaltige Wandöffnung ist die Eigenmontage mit etwas handwerklichem Geschick gut machbar und spart 50 bis 150 € pro Tür. Bei unsauberen Öffnungen, Blockzargen oder Glastüren, die exakt justiert werden müssen, ist der Fachbetrieb die sicherere Wahl."
+        }
+      }
+    ]
+  })} />
+</Layout>

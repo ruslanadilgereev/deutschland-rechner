@@ -1,0 +1,460 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrundstueckTeilungRechner from '../components/rechner/GrundstueckTeilungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Grundstücksteilung-Rechner 2026 – Teilbarkeit & Kosten prüfen";
+const description = "Grundstück teilen: prüfen Sie Mindestgröße, Teilbarkeit und Bebaubarkeit (GRZ) der neuen Teilfläche und schätzen Sie die Kosten für Teilungsvermessung, Notar und Grundbuch. Inklusive Beispielen und § 19 BauGB.";
+const keywords = "Grundstücksteilung Rechner, Grundstück teilen Kosten, Grundstück teilen Voraussetzungen, Teilungsvermessung Kosten, Mindestgrundstücksgröße, GRZ Rechner, Grundstück teilen Bebauungsplan, Grundstücksteilung 2026";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Grundstücksteilung-Rechner", url: "/grundstueck-teilung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Grundstücksteilung-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grundstücksteilung-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Teilbarkeit, Bebaubarkeit &amp; Kosten prüfen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 19 BauGB (Teilung von Grundstücken), § 19 BauNVO (Grundflächenzahl/GRZ) sowie GNotKG Tabelle B für Notar- und Grundbuchgebühren. Teilbarkeit: Teilfläche und Restgrundstück müssen jeweils die Mindestgrundstücksgröße erreichen.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Mindestgröße 400 m² (typisch 300–500 m²), GRZ 0,3, Bodenrichtwert 300 €/m², Teilungsvermessung 1.500–3.000 € als konservative Spanne. Alle Werte sind frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> landes- und kommunalrechtliche Sonderregeln (Teilungsgenehmigung, Sanierungs-/Erhaltungssatzungsgebiete), Erschließungs- und Grunderwerbskosten, individuelle Vermessungshonorare. Keine Rechts- oder Vermessungsberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GrundstueckTeilungRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Grundstück teilen: Voraussetzungen, Ablauf und Kosten</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer ein großes Grundstück besitzt, kann es häufig <strong>teilen</strong> – etwa um eine
+            Parzelle als Bauplatz zu verkaufen, eine zweite Immobilie zu errichten oder das Erbe gerecht
+            aufzuteilen. Eine Grundstücksteilung ist die buchmäßige und vermessungstechnische Trennung
+            eines Flurstücks in zwei oder mehr neue Flurstücke. Der <strong>Grundstücksteilung-Rechner</strong>
+            beantwortet die drei zentralen Fragen vor jeder Teilung: Ist das Grundstück überhaupt teilbar?
+            Wie viel darf auf der neuen Teilfläche gebaut werden? Und mit welchen Kosten ist zu rechnen?
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzung 1: Mindestgrundstücksgröße</h3>
+          <p>
+            Nach einer Teilung müssen <strong>beide</strong> entstehenden Grundstücke – die abgetrennte
+            Teilfläche und das Restgrundstück – die im <strong>Bebauungsplan</strong> festgelegte
+            Mindestgröße einhalten. Diese liegt je nach Kommune typischerweise zwischen
+            <strong>300 und 500 m²</strong>. Ein 1.000-m²-Grundstück lässt sich bei 400 m² Mindestgröße
+            also problemlos in 400 m² und 600 m² teilen, ein 700-m²-Grundstück hingegen nicht, weil das
+            Restgrundstück mit 300 m² unter die Grenze fiele. Der Rechner prüft beide Teile automatisch.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzung 2: Bebaubarkeit und GRZ</h3>
+          <p>
+            Wie viel Gebäude-Grundfläche auf der neuen Teilfläche zulässig ist, regelt die
+            <strong>Grundflächenzahl (GRZ)</strong> nach § 19 BauNVO. Sie gibt an, welcher Anteil des
+            Grundstücks überbaut werden darf: Eine <strong>GRZ von 0,3</strong> bedeutet, dass höchstens
+            30 % der Fläche bebaut werden dürfen – bei 400 m² also maximal 120 m² Grundfläche. Steht auf
+            der Teilfläche bereits ein Gebäude, schmälert dessen Grundfläche das verbleibende Baurecht.
+            Wichtig: Die zulässige Grundfläche darf nach § 19 Abs. 4 BauNVO für Garagen, Stellplätze und
+            Nebenanlagen um bis zu 50 % überschritten werden – diese Kappungsgrenze berücksichtigt der
+            Rechner bewusst nicht, um den Hauptbaukörper konservativ abzubilden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzung 3: Teilungsgenehmigung?</h3>
+          <p>
+            Seit der Baurechtsnovelle ist die <strong>Teilungsgenehmigung</strong> nach § 19 BauGB
+            bundesweit nicht mehr generell vorgeschrieben. Einzelne Bundesländer können sie aber per
+            Landesrecht weiterhin verlangen, und in <strong>Sanierungs- oder Erhaltungssatzungsgebieten</strong>
+            ist häufig eine Genehmigung nötig. Ob in Ihrem Fall eine Genehmigung erforderlich ist, klärt
+            verbindlich das zuständige <strong>Bauamt</strong> bzw. die Gemeinde – nicht dieser Rechner.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Kosten entstehen?</h3>
+          <p>
+            Die mit Abstand größte Position ist die <strong>Teilungsvermessung</strong> durch eine:n
+            öffentlich bestellte:n Vermessungsingenieur:in (ÖbVI) oder die Katasterbehörde. Ihre
+            Gebühr richtet sich nach dem Bodenwert und liegt für ein normales Wohnbaugrundstück grob bei
+            <strong>1.500 bis 3.000 €</strong>. Wird die Teilfläche anschließend <strong>verkauft</strong>,
+            kommen <strong>Notarkosten</strong> für die Beurkundung des Kaufvertrags und
+            <strong>Grundbuchkosten</strong> für Eigentumsumschreibung und Auflassungsvormerkung hinzu –
+            beide werden nach den Wertgebühren der GNotKG Tabelle B berechnet. Hinzu kommt eine kleine
+            Pauschale für die <strong>Fortführung des Liegenschaftskatasters</strong> bzw. eine etwaige
+            Teilungsgenehmigung. Bei einer reinen Teilung im eigenen Bestand <em>ohne</em> Verkauf
+            entfallen Notar- und Grundbuchkosten weitgehend.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📐 Notar- &amp; Grundbuchkosten nach Wert der Teilfläche</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte nach GNotKG Tabelle B – fallen nur an, wenn die Teilfläche verkauft wird
+          (Beurkundung + Eigentumsumschreibung + Auflassungsvormerkung). Notar inkl. 19 % MwSt.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Wert Teilfläche</th>
+                <th class="py-2 px-2 font-semibold text-right">Notar (brutto)</th>
+                <th class="py-2 px-2 font-semibold text-right">Grundbuch</th>
+                <th class="py-2 pl-2 font-semibold text-right">+ Vermessung*</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">30.000 €</td><td class="py-2 px-2 text-right">446 €</td><td class="py-2 px-2 text-right">188 €</td><td class="py-2 pl-2 text-right">1.500–3.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">50.000 €</td><td class="py-2 px-2 text-right">589 €</td><td class="py-2 px-2 text-right">248 €</td><td class="py-2 pl-2 text-right">1.500–3.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">100.000 €</td><td class="py-2 px-2 text-right">975 €</td><td class="py-2 px-2 text-right">410 €</td><td class="py-2 pl-2 text-right">1.500–3.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">150.000 €</td><td class="py-2 px-2 text-right">1.264 €</td><td class="py-2 px-2 text-right">531 €</td><td class="py-2 pl-2 text-right">1.500–3.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">200.000 €</td><td class="py-2 px-2 text-right">1.553 €</td><td class="py-2 px-2 text-right">653 €</td><td class="py-2 pl-2 text-right">1.500–3.000 €</td></tr>
+              <tr><td class="py-2 pr-2">250.000 €</td><td class="py-2 px-2 text-right">1.910 €</td><td class="py-2 px-2 text-right">803 €</td><td class="py-2 pl-2 text-right">1.500–3.000 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          *Teilungsvermessung ist wert- und länderabhängig; die Spanne ist ein konservativer Richtwert.
+          Quellen: GNotKG Anlage 2 (Tabelle B), § 19 BauGB, § 19 BauNVO.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Fälle (Mindestgröße 400 m², GRZ 0,3, Bodenrichtwert 300 €/m²):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 1.000-m²-Grundstück teilen (ohne Verkauf)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gesamtfläche:</div>
+              <div class="font-medium text-gray-800">1.000 m²</div>
+              <div class="text-gray-600">Teilfläche:</div>
+              <div class="font-medium text-gray-800">400 m²</div>
+              <div class="text-gray-600">Restgrundstück:</div>
+              <div class="font-medium text-gray-800">1.000 − 400 = 600 m²</div>
+              <div class="text-gray-600">Teilbar?</div>
+              <div class="font-medium text-green-700">Ja (400 ≥ 400 und 600 ≥ 400)</div>
+              <div class="text-gray-600">Bebaubar (GRZ 0,3):</div>
+              <div class="font-medium text-gray-800">400 × 0,3 = 120 m²</div>
+              <div class="text-gray-600">Kosten gesamt:</div>
+              <div class="font-medium text-green-700">1.750 – 3.250 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Teilfläche wird verkauft (mit Beurkundung)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Teilfläche:</div>
+              <div class="font-medium text-gray-800">400 m²</div>
+              <div class="text-gray-600">Wert (400 × 300 €):</div>
+              <div class="font-medium text-gray-800">120.000 €</div>
+              <div class="text-gray-600">Notar (brutto):</div>
+              <div class="font-medium text-gray-800">1.071 €</div>
+              <div class="text-gray-600">Grundbuch:</div>
+              <div class="font-medium text-gray-800">450 €</div>
+              <div class="text-gray-600">Vermessung + Behörde:</div>
+              <div class="font-medium text-gray-800">1.500–3.000 € + 250 €</div>
+              <div class="text-gray-600">Kosten gesamt:</div>
+              <div class="font-medium text-green-700">3.271 – 4.771 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Teilung nicht möglich</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gesamtfläche:</div>
+              <div class="font-medium text-gray-800">700 m²</div>
+              <div class="text-gray-600">Teilfläche:</div>
+              <div class="font-medium text-gray-800">400 m²</div>
+              <div class="text-gray-600">Restgrundstück:</div>
+              <div class="font-medium text-gray-800">700 − 400 = 300 m²</div>
+              <div class="text-gray-600">Teilbar?</div>
+              <div class="font-medium text-red-700">Nein (300 m² &lt; 400 m² Mindestgröße)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 1 und 3 zeigen: Nicht die Teilfläche allein entscheidet,
+          sondern dass <strong>auch das Restgrundstück</strong> die Mindestgröße erreicht. Prüfen Sie immer
+          beide Teile – und holen Sie vor dem Notartermin die verbindliche Auskunft des Bauamts ein.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur die Teilfläche prüfen</h3>
+            <p>Viele schauen nur, ob das abzutrennende Stück groß genug ist. Entscheidend ist aber, dass
+            <strong>beide</strong> Grundstücke nach der Teilung die Mindestgröße erreichen – sonst wird die
+            Teilung versagt oder das Restgrundstück verliert seine Bebaubarkeit.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: GRZ ignorieren</h3>
+            <p>Eine ausreichend große Teilfläche heißt nicht automatisch, dass sie sinnvoll bebaubar ist.
+            Bei niedriger GRZ und ungünstigem Zuschnitt kann das Baurecht so klein ausfallen, dass sich
+            kein vollwertiges Haus realisieren lässt.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Erschließung vergessen</h3>
+            <p>Jedes neue Grundstück braucht eine gesicherte <strong>Zuwegung</strong> und Anschlüsse
+            (Wasser, Abwasser, Strom). Fehlt die Erschließung, können hohe Zusatzkosten oder ein
+            Geh- und Fahrtrecht (Grunddienstbarkeit) im Grundbuch nötig werden – im Rechner nicht enthalten.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sanierungs- oder Erhaltungsgebiet</h3>
+            <p>Liegt das Grundstück in einem Sanierungs- oder Erhaltungssatzungsgebiet, ist die Teilung
+            häufig <strong>genehmigungspflichtig</strong>. Hier sollten Sie unbedingt vor jeder Planung
+            das Bauamt einbinden.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Bestandsgebäude verschiebt Grenzen</h3>
+            <p>Steht ein Gebäude nah an der geplanten neuen Grenze, müssen die bauordnungsrechtlichen
+            <strong>Abstandsflächen</strong> nach Landesbauordnung eingehalten werden. Das kann die
+            Lage der Teilungsgrenze erzwingen und die nutzbare Fläche reduzieren.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Grundstücksteilung</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet es, ein Grundstück zu teilen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die größte Position ist die Teilungsvermessung mit grob 1.500 bis 3.000 € je nach Bodenwert
+              und Bundesland. Wird die Teilfläche verkauft, kommen Notar- und Grundbuchkosten nach GNotKG
+              Tabelle B hinzu – bei einem Wert von 120.000 € rund 1.071 € Notar (brutto) und 450 € Grundbuch.
+              Plus eine kleine Pauschale für Kataster und Behörde. Ohne Verkauf liegen die Gesamtkosten daher
+              meist bei etwa 1.750 bis 3.250 €, mit Verkauf entsprechend höher.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß muss ein Grundstück sein, um es zu teilen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Es gibt keine bundesweit einheitliche Grenze. Maßgeblich ist die im Bebauungsplan festgelegte
+              Mindestgrundstücksgröße, die je nach Kommune typischerweise zwischen 300 und 500 m² liegt.
+              Wichtig: Sowohl die abgetrennte Teilfläche als auch das Restgrundstück müssen diese Mindestgröße
+              erreichen. Ein 1.000-m²-Grundstück lässt sich bei 400 m² Mindestgröße in 400 m² und 600 m² teilen,
+              ein 700-m²-Grundstück dagegen nicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich für die Grundstücksteilung eine Genehmigung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach § 19 BauGB ist die Teilungsgenehmigung bundesweit nicht mehr generell vorgeschrieben.
+              Einzelne Bundesländer können sie per Landesrecht aber weiterhin verlangen, und in Sanierungs-
+              oder Erhaltungssatzungsgebieten ist meist eine Genehmigung nötig. Ob in Ihrem konkreten Fall
+              eine Genehmigung erforderlich ist, klärt verbindlich das zuständige Bauamt bzw. die Gemeinde.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet GRZ bei der Bebaubarkeit?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Grundflächenzahl (GRZ) nach § 19 BauNVO gibt an, welcher Anteil eines Grundstücks mit
+              Gebäuden überbaut werden darf. Eine GRZ von 0,3 bedeutet, dass höchstens 30 % der Fläche bebaut
+              werden dürfen – bei 400 m² also maximal 120 m² Grundfläche. Für Garagen, Stellplätze und
+              Nebenanlagen darf dieser Wert nach § 19 Abs. 4 BauNVO um bis zu 50 % überschritten werden.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer darf ein Grundstück vermessen und teilen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Teilungsvermessung darf nur eine öffentlich bestellte Vermessungsingenieurin bzw. ein
+              öffentlich bestellter Vermessungsingenieur (ÖbVI) oder die zuständige Katasterbehörde durchführen.
+              Sie setzen die neuen Grenzpunkte, erstellen den Veränderungsnachweis und melden die neuen
+              Flurstücke zur Fortführung des Liegenschaftskatasters an. Erst danach kann das Grundbuchamt die
+              neuen Grundstücke eintragen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich einen Notar, um ein Grundstück zu teilen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für die reine Teilung im eigenen Bestand ist kein Notar nötig – die Vermessung und die
+              Eintragung der neuen Flurstücke genügen. Ein Notar wird erst erforderlich, wenn die Teilfläche
+              verkauft oder verschenkt wird, denn die Übertragung von Grundeigentum muss nach § 311b BGB
+              notariell beurkundet werden. Dann fallen Notar- und Grundbuchkosten nach GNotKG Tabelle B an.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/notarkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📝</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Notarkosten-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kaufnebenkosten-Rechner</p>
+          </a>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          </a>
+          <a href="/maklerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🤝</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Maklerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grundstücksteilung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/grundstueck-teilung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet es, ein Grundstück zu teilen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die größte Position ist die Teilungsvermessung mit grob 1.500 bis 3.000 € je nach Bodenwert und Bundesland. Wird die Teilfläche verkauft, kommen Notar- und Grundbuchkosten nach GNotKG Tabelle B hinzu – bei einem Wert von 120.000 € rund 1.071 € Notar (brutto) und 450 € Grundbuch. Plus eine kleine Pauschale für Kataster und Behörde. Ohne Verkauf liegen die Gesamtkosten daher meist bei etwa 1.750 bis 3.250 €, mit Verkauf entsprechend höher."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß muss ein Grundstück sein, um es zu teilen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es gibt keine bundesweit einheitliche Grenze. Maßgeblich ist die im Bebauungsplan festgelegte Mindestgrundstücksgröße, die je nach Kommune typischerweise zwischen 300 und 500 m² liegt. Wichtig: Sowohl die abgetrennte Teilfläche als auch das Restgrundstück müssen diese Mindestgröße erreichen. Ein 1.000-m²-Grundstück lässt sich bei 400 m² Mindestgröße in 400 m² und 600 m² teilen, ein 700-m²-Grundstück dagegen nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich für die Grundstücksteilung eine Genehmigung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach § 19 BauGB ist die Teilungsgenehmigung bundesweit nicht mehr generell vorgeschrieben. Einzelne Bundesländer können sie per Landesrecht aber weiterhin verlangen, und in Sanierungs- oder Erhaltungssatzungsgebieten ist meist eine Genehmigung nötig. Ob in Ihrem konkreten Fall eine Genehmigung erforderlich ist, klärt verbindlich das zuständige Bauamt bzw. die Gemeinde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet GRZ bei der Bebaubarkeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Grundflächenzahl (GRZ) nach § 19 BauNVO gibt an, welcher Anteil eines Grundstücks mit Gebäuden überbaut werden darf. Eine GRZ von 0,3 bedeutet, dass höchstens 30 % der Fläche bebaut werden dürfen – bei 400 m² also maximal 120 m² Grundfläche. Für Garagen, Stellplätze und Nebenanlagen darf dieser Wert nach § 19 Abs. 4 BauNVO um bis zu 50 % überschritten werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer darf ein Grundstück vermessen und teilen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Teilungsvermessung darf nur eine öffentlich bestellte Vermessungsingenieurin bzw. ein öffentlich bestellter Vermessungsingenieur (ÖbVI) oder die zuständige Katasterbehörde durchführen. Sie setzen die neuen Grenzpunkte, erstellen den Veränderungsnachweis und melden die neuen Flurstücke zur Fortführung des Liegenschaftskatasters an. Erst danach kann das Grundbuchamt die neuen Grundstücke eintragen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich einen Notar, um ein Grundstück zu teilen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für die reine Teilung im eigenen Bestand ist kein Notar nötig – die Vermessung und die Eintragung der neuen Flurstücke genügen. Ein Notar wird erst erforderlich, wenn die Teilfläche verkauft oder verschenkt wird, denn die Übertragung von Grundeigentum muss nach § 311b BGB notariell beurkundet werden. Dann fallen Notar- und Grundbuchkosten nach GNotKG Tabelle B an."
+        }
+      }
+    ]
+  })} />
+</Layout>

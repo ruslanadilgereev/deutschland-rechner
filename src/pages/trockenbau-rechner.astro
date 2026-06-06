@@ -1,0 +1,471 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TrockenbauRechner from '../components/rechner/TrockenbauRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Trockenbau-Rechner 2026 – Rigips & Ständerwand Material berechnen";
+const description = "Trockenbau-Material kostenlos berechnen: Gipskartonplatten, CW/UW-Profile, Schrauben, Spachtel und Dämmung für Ihre Metallständerwand. Inklusive Verschnitt, Rechenweg und Beispielen nach Knauf W111 / DIN 18181.";
+const keywords = "Trockenbau Rechner, Trockenbau berechnen, Rigips berechnen, Gipskartonplatten berechnen, Ständerwand Material, CW UW Profile berechnen, Metallständerwand, Trockenbauwand Material, Trockenbau Materialbedarf, Gipsplatten Rechner";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Trockenbau-Rechner", url: "/trockenbau-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Trockenbau-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Trockenbau-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Material für Gipskarton-Ständerwand berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Metallständerwand Knauf W111 nach DIN 18181 – Achsabstand der CW-Profile 62,5 cm (= halbe Plattenbreite), Standard-Plattenbreite 1.250 mm. Platten = Wandfläche ÷ Plattenfläche × Seiten × Lagen × Verschnitt; CW-Profile = aufgerundet(Länge ÷ 0,625) + 1.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Platte 1,25 × 2,00 m (= 2,5 m²), Verschnitt 10 %, ca. 28 Schnellbauschrauben/m², Spachtel 0,4 kg/m² (Q2-Fugen) bzw. 1,2 kg/m² (Q3/Q4-Vollflächen). Alle Werte sind frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Tür-/Fensteröffnungen, Anschlussdetails, Eckausbildungen sowie statische Grenzen der zulässigen Wandhöhe. Keine Fachplanung oder Statik, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TrockenbauRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Trockenbau-Material für eine Ständerwand berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Trockenbau-Rechner</strong> ermitteln Sie in Sekunden, wie viel Material
+            Sie für eine <strong>Metallständerwand</strong> aus Gipskarton (umgangssprachlich „Rigips“)
+            brauchen: Gipskartonplatten, CW- und UW-Profile, Schnellbauschrauben, Spachtelmasse,
+            Fugendeckstreifen und Mineralwolle-Dämmung. Anders als ein reiner
+            <a href="/quadratmeterpreis-rechner" class="text-blue-600 hover:text-blue-800 underline">Quadratmeterpreis-Rechner</a>
+            liefert dieser Rechner einen kompletten Materialsatz für das gesamte Gewerk – ideal für
+            die Heimwerker-Planung oder als Gegenkontrolle zum
+            <a href="/handwerkerkosten-rechner" class="text-blue-600 hover:text-blue-800 underline">Handwerkerkosten-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formeln im Überblick</h3>
+          <p>Der Rechner folgt dem Systemaufbau einer Knauf-W111-Metallständerwand nach DIN 18181:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Wandfläche A</strong> = Wandlänge × Wandhöhe</li>
+              <li><strong>Gipsplatten</strong> = A ÷ Plattenfläche × Seiten × Lagen × (1 + Verschnitt), aufgerundet</li>
+              <li><strong>CW-Ständerprofile</strong> = aufgerundet(Länge ÷ 0,625 m) + 1</li>
+              <li><strong>UW-Profil</strong> = 2 × Wandlänge (Boden- und Deckenanschluss)</li>
+              <li><strong>Schnellbauschrauben</strong> = Beplankungsfläche × ca. 28 Stück/m²</li>
+              <li><strong>Spachtelmasse</strong> = Wandfläche × Seiten × 0,4 kg/m² (Q2) bzw. 1,2 kg/m² (Q3/Q4)</li>
+              <li><strong>Mineralwolle</strong> = Wandfläche (Dicke = CW-Profilbreite)</li>
+            </ul>
+          </div>
+          <p>
+            Der <strong>Achsabstand von 62,5 cm</strong> ist kein Zufall: Er entspricht exakt der
+            halben Standard-Plattenbreite von 1,25 m. Dadurch trifft jeder Plattenstoß zweier
+            benachbarter Platten genau auf der Mitte eines CW-Profils auf – die Voraussetzung für eine
+            saubere, rissfreie Verschraubung. Das „+ 1“ in der Profilformel berücksichtigt das
+            zusätzliche Endprofil am Wandabschluss.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">CW, UW und die richtige Profilbreite</h3>
+          <p>
+            Die Unterkonstruktion besteht aus zwei Profiltypen: Das <strong>UW-Profil</strong>
+            (U-förmig) wird an Boden und Decke befestigt und bildet die waagerechte Führung. Die
+            <strong>CW-Profile</strong> (C-förmig) werden senkrecht eingestellt und tragen die
+            Beplankung. Die Profilbreite – <strong>CW 50, 75 oder 100 mm</strong> – bestimmt sowohl
+            die Dicke der einlegbaren Dämmung als auch die maximal zulässige Wandhöhe: Je breiter das
+            Profil, desto höher darf die Wand bei gleichem Achsabstand werden. Für hohe Wände oder
+            erhöhte Anforderungen wählt man breitere Profile oder einen engeren Achsabstand (z. B.
+            41,7 cm). Die genauen Grenzwerte stehen im jeweiligen Knauf- oder Siniat-Datenblatt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ein- oder zweilagig, ein- oder beidseitig</h3>
+          <p>
+            Eine klassische Trennwand wird <strong>beidseitig einlagig</strong> beplankt – also auf
+            beiden Seiten des Ständerwerks je eine Plattenlage. Für besseren Schall- und Brandschutz
+            wird <strong>zweilagig</strong> (doppelt) beplankt. Eine
+            <strong>einseitige</strong> Beplankung kommt etwa bei einer Vorsatzschale vor einer
+            bestehenden Wand vor. Der Rechner multipliziert die Wandfläche entsprechend mit der Zahl
+            der Seiten und Lagen – bei beidseitig zweilagig also mit dem Faktor vier.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Spachteln in Qualitätsstufen Q1 bis Q4</h3>
+          <p>
+            Die DIN-Norm 18181 bzw. das Merkblatt zu Oberflächengüten kennt vier Stufen: <strong>Q1</strong>
+            ist die reine Grundverspachtelung der Fugen, <strong>Q2</strong> die Standard-Fugenspachtelung
+            für tapezierfertige Wände (Richtwert ca. 0,4 kg/m²). <strong>Q3</strong> und vor allem
+            <strong>Q4</strong> bedeuten eine vollflächige Verspachtelung für Streiflicht-empfindliche
+            Glanzanstriche – hier steigt der Materialbedarf auf grob 1 bis 1,5 kg/m². Stellen Sie im
+            Rechner die passende Stufe ein, damit die Spachtelmenge realistisch ist.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🧱 Richtwerte: Material pro 10 m² Wandfläche</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Faustwerte für eine beidseitig einlagig beplankte Metallständerwand (Platte 1,25 × 2,00 m,
+          Achsabstand 62,5 cm, 10 % Verschnitt). Tatsächliche Mengen hängen von Zuschnitten,
+          Öffnungen und System ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Material</th>
+                <th class="py-2 px-2 font-semibold text-right">Einheit</th>
+                <th class="py-2 pl-2 font-semibold text-right">≈ pro 10 m² Wand</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧱 Gipskartonplatten (beidseitig)</td><td class="py-2 px-2 text-right">m²</td><td class="py-2 pl-2 text-right">ca. 22 m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">⬛ CW-Ständerprofile (Wand 4 m)</td><td class="py-2 px-2 text-right">Stück</td><td class="py-2 pl-2 text-right">ca. 8</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">➖ UW-Profil (Boden + Decke)</td><td class="py-2 px-2 text-right">lfm</td><td class="py-2 pl-2 text-right">ca. 8 lfm</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔩 Schnellbauschrauben</td><td class="py-2 px-2 text-right">Stück</td><td class="py-2 pl-2 text-right">ca. 560</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪣 Fugenspachtel (Q2)</td><td class="py-2 px-2 text-right">kg</td><td class="py-2 pl-2 text-right">ca. 8 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪣 Vollspachtel (Q3/Q4)</td><td class="py-2 px-2 text-right">kg</td><td class="py-2 pl-2 text-right">ca. 24 kg</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">📏 Fugendeckstreifen</td><td class="py-2 px-2 text-right">lfm</td><td class="py-2 pl-2 text-right">ca. 24 lfm</td></tr>
+              <tr><td class="py-2 pr-2">🧶 Mineralwolle (Dämmung)</td><td class="py-2 px-2 text-right">m²</td><td class="py-2 pl-2 text-right">ca. 10 m²</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Knauf W11.de / W111.de (DIN 18181), Siniat „Unterkonstruktion bauen“ (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Wände, jeweils mit Platte 2,5 m² (1,25 × 2,00 m):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Trennwand 4 × 2,5 m, beidseitig 1-lagig</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">4 × 2,5 = 10 m²</div>
+              <div class="text-gray-600">Platten:</div>
+              <div class="font-medium text-gray-800">10 ÷ 2,5 × 2 × 1 × 1,10 = 8,8 → 9 Stück</div>
+              <div class="text-gray-600">CW-Profile:</div>
+              <div class="font-medium text-gray-800">⌈4 ÷ 0,625⌉ + 1 = 7 + 1 = 8</div>
+              <div class="text-gray-600">UW-Profil:</div>
+              <div class="font-medium text-gray-800">2 × 4 = 8 lfm</div>
+              <div class="text-gray-600">Schrauben:</div>
+              <div class="font-medium text-gray-800">10 × 2 × 28 = 560</div>
+              <div class="text-gray-600">Spachtel (Q2):</div>
+              <div class="font-medium text-green-700">10 × 2 × 0,4 = 8 kg</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Vorsatzschale 6 × 2,75 m, einseitig 1-lagig</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">6 × 2,75 = 16,5 m²</div>
+              <div class="text-gray-600">Platten:</div>
+              <div class="font-medium text-gray-800">16,5 ÷ 2,5 × 1 × 1 × 1,10 = 7,26 → 8 Stück</div>
+              <div class="text-gray-600">CW-Profile:</div>
+              <div class="font-medium text-gray-800">⌈6 ÷ 0,625⌉ + 1 = 10 + 1 = 11</div>
+              <div class="text-gray-600">UW-Profil:</div>
+              <div class="font-medium text-gray-800">2 × 6 = 12 lfm</div>
+              <div class="text-gray-600">Schrauben:</div>
+              <div class="font-medium text-gray-800">16,5 × 1 × 28 = 462</div>
+              <div class="text-gray-600">Spachtel (Q2):</div>
+              <div class="font-medium text-green-700">16,5 × 1 × 0,4 = 6,6 kg</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Schallschutzwand 5 × 3 m, beidseitig 2-lagig, Q3/Q4</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">5 × 3 = 15 m²</div>
+              <div class="text-gray-600">Platten:</div>
+              <div class="font-medium text-gray-800">15 ÷ 2,5 × 2 × 2 × 1,15 = 27,6 → 28 Stück</div>
+              <div class="text-gray-600">CW-Profile:</div>
+              <div class="font-medium text-gray-800">⌈5 ÷ 0,625⌉ + 1 = 8 + 1 = 9</div>
+              <div class="text-gray-600">Schrauben:</div>
+              <div class="font-medium text-gray-800">15 × 2 × 2 × 28 = 1.680</div>
+              <div class="text-gray-600">Spachtel (Q3/Q4):</div>
+              <div class="font-medium text-green-700">15 × 2 × 1,2 = 36 kg</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 zeigt, wie stark eine zweilagige, beidseitige
+          Beplankung den Bedarf treibt – aus 15 m² Wand werden mit dem Faktor 4 ganze 60 m² zu
+          beplankende Fläche. Wer nur Schallschutz braucht, prüft, ob eine einlagige Wand mit
+          Mineralwolle bereits ausreicht.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur eine Seite gerechnet</h3>
+            <p>Eine freistehende Trennwand wird beidseitig beplankt – die zu beplankende Fläche ist
+            also doppelt so groß wie die Wandfläche. Wer nur eine Seite einplant, bestellt die Hälfte
+            der Platten und Schrauben. Achten Sie auf die Einstellung „einseitig / beidseitig“.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Achsabstand 62,5 cm ignorieren</h3>
+            <p>Der 62,5-cm-Achsabstand ist auf die Plattenbreite von 1,25 m abgestimmt, damit jeder
+            Plattenstoß auf einem Profil sitzt. Ein willkürlicher Abstand führt zu Fugen „in der
+            Luft“ und damit zu Rissen. Bei höheren Wänden wird der Abstand verengt, nicht vergrößert.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verschnitt zu knapp</h3>
+            <p>Bei Türen, Fenstern, Schrägen oder vielen Zuschnitten reichen 10 % Verschnitt oft nicht.
+            Planen Sie dann 15 bis 20 % ein. Ein angebrochenes Plattenpaket lässt sich meist nicht
+            zurückgeben – etwas Reserve ist günstiger als ein zweiter Baumarktweg.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Maximale Wandhöhe</h3>
+            <p>Nicht jede Wandhöhe ist mit jedem Profil zulässig. CW 50 trägt bei 62,5 cm Achsabstand
+            deutlich weniger Höhe als CW 100. Überschreiten Sie die Grenzwerte, braucht es breitere
+            Profile, einen engeren Abstand oder eine statische Betrachtung – siehe Knauf-Datenblatt.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Spachtelstufe unterschätzt</h3>
+            <p>Für tapezierfertige Wände genügt Q2 mit rund 0,4 kg/m². Wer einen Glanzanstrich oder
+            Streiflicht-Situationen hat, braucht eine Q3/Q4-Vollverspachtelung mit dem drei- bis
+            vierfachen Materialeinsatz. Stellen Sie die richtige Stufe ein, sonst fehlt Spachtel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Trockenbau</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Gipskartonplatten brauche ich pro Quadratmeter Wand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Standardplatte misst 1,25 × 2,00 m und deckt 2,5 m² ab. Für eine beidseitig
+              einlagig beplankte Wand brauchen Sie also rund 2,2 m² Platte je 1 m² Wand (beide Seiten
+              plus 10 % Verschnitt). Bei 10 m² Wand sind das etwa 9 Platten. Zweilagig verdoppelt
+              sich dieser Bedarf.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie groß ist der Abstand der CW-Profile?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Standard-Achsabstand beträgt 62,5 cm – das entspricht der halben Plattenbreite von
+              1,25 m, damit jeder Plattenstoß mittig auf einem Profil sitzt. Die Profilzahl ist
+              aufgerundet(Wandlänge ÷ 0,625) + 1. Bei höheren Wänden oder erhöhten Anforderungen wird
+              der Abstand auf 41,7 cm oder 31,25 cm verengt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen CW- und UW-Profilen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das UW-Profil (U-förmig) wird an Boden und Decke verschraubt und bildet die waagerechte
+              Führung – Sie brauchen es zweimal je Wandlänge. Die CW-Profile (C-förmig) werden senkrecht
+              in die UW-Profile gestellt und tragen die Beplankung. Beide gibt es in den Breiten 50, 75
+              und 100 mm.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche CW-Profilbreite soll ich wählen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Profilbreite bestimmt Dämmstoffdicke und maximale Wandhöhe. CW 50 reicht für
+              niedrige Trennwände, CW 75 ist der gängige Standard, CW 100 für hohe Wände oder besseren
+              Schallschutz. Je breiter das Profil, desto höher darf die Wand bei gleichem Achsabstand
+              werden. Die genauen Höhengrenzen stehen im Knauf- bzw. Siniat-Datenblatt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Spachtelmasse brauche ich beim Trockenbau?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für die Standard-Fugenspachtelung Q2 (tapezierfertig) rechnet man rund 0,4 kg je
+              Quadratmeter beplankter Fläche. Für eine vollflächige Q3/Q4-Verspachtelung – nötig bei
+              Glanzanstrichen oder Streiflicht – steigt der Bedarf auf etwa 1 bis 1,5 kg/m². Bei
+              beidseitiger Beplankung zählt jede Seite einzeln.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich eine Genehmigung für eine Trockenbauwand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine nichttragende Trennwand im Inneren ist in der Regel nicht genehmigungspflichtig.
+              Sobald aber statisch relevante, tragende Wände, der Brandschutz oder bei Mietwohnungen
+              die Zustimmung des Vermieters betroffen sind, sollten Sie das vorab klären. Dieser
+              Rechner ersetzt keine Fachplanung oder statische Bemessung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarbe-Rechner</p>
+          </a>
+          <a href="/tapeten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧻</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tapeten-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪣</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/daemmung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dämmung-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Trockenbau-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/trockenbau-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viele Gipskartonplatten brauche ich pro Quadratmeter Wand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Standardplatte misst 1,25 × 2,00 m und deckt 2,5 m² ab. Für eine beidseitig einlagig beplankte Wand brauchen Sie also rund 2,2 m² Platte je 1 m² Wand (beide Seiten plus 10 % Verschnitt). Bei 10 m² Wand sind das etwa 9 Platten. Zweilagig verdoppelt sich dieser Bedarf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie groß ist der Abstand der CW-Profile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Standard-Achsabstand beträgt 62,5 cm – das entspricht der halben Plattenbreite von 1,25 m, damit jeder Plattenstoß mittig auf einem Profil sitzt. Die Profilzahl ist aufgerundet(Wandlänge ÷ 0,625) + 1. Bei höheren Wänden oder erhöhten Anforderungen wird der Abstand auf 41,7 cm oder 31,25 cm verengt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen CW- und UW-Profilen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das UW-Profil (U-förmig) wird an Boden und Decke verschraubt und bildet die waagerechte Führung – Sie brauchen es zweimal je Wandlänge. Die CW-Profile (C-förmig) werden senkrecht in die UW-Profile gestellt und tragen die Beplankung. Beide gibt es in den Breiten 50, 75 und 100 mm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche CW-Profilbreite soll ich wählen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Profilbreite bestimmt Dämmstoffdicke und maximale Wandhöhe. CW 50 reicht für niedrige Trennwände, CW 75 ist der gängige Standard, CW 100 für hohe Wände oder besseren Schallschutz. Je breiter das Profil, desto höher darf die Wand bei gleichem Achsabstand werden. Die genauen Höhengrenzen stehen im Knauf- bzw. Siniat-Datenblatt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Spachtelmasse brauche ich beim Trockenbau?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für die Standard-Fugenspachtelung Q2 (tapezierfertig) rechnet man rund 0,4 kg je Quadratmeter beplankter Fläche. Für eine vollflächige Q3/Q4-Verspachtelung – nötig bei Glanzanstrichen oder Streiflicht – steigt der Bedarf auf etwa 1 bis 1,5 kg/m². Bei beidseitiger Beplankung zählt jede Seite einzeln."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich eine Genehmigung für eine Trockenbauwand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine nichttragende Trennwand im Inneren ist in der Regel nicht genehmigungspflichtig. Sobald aber statisch relevante, tragende Wände, der Brandschutz oder bei Mietwohnungen die Zustimmung des Vermieters betroffen sind, sollten Sie das vorab klären. Dieser Rechner ersetzt keine Fachplanung oder statische Bemessung."
+        }
+      }
+    ]
+  })} />
+</Layout>

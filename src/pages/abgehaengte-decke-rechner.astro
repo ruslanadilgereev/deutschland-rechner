@@ -1,0 +1,468 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AbgehaengteDeckeRechner from '../components/rechner/AbgehaengteDeckeRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Abgehängte-Decke-Rechner 2026 – Material & Profile berechnen";
+const description = "Abgehängte Decke berechnen: Gipsplatten, CD-/UD-Profile in lfm, Direktabhänger und Schrauben für Ihre Unterdecke. Mit Verschnitt, Rechenweg und Beispielen nach Knauf D11 / D112.";
+const keywords = "abgehängte Decke Rechner, decke abhängen, abgehängte Decke Material, abgehängte Decke Kosten, Decke abhängen berechnen, CD UD Profile berechnen, Direktabhänger berechnen, Gipskarton Decke, Trockenbau Decke, Unterdecke Material";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Abgehängte-Decke-Rechner", url: "/abgehaengte-decke-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Abgehängte-Decke-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪜</span>
+          <div>
+            <h1 class="text-2xl font-bold">Abgehängte-Decke-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Material für eine Gipskarton-Unterdecke berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Gipskarton-Unterdecke in Metall-Unterkonstruktion nach Knauf D11 / D112 (DIN 18181) – Achsabstand der Tragprofile maximal 40 cm bei 12,5-mm-Beplankung, Abstand der Direktabhänger ≤ 90 cm, Schraubabstand ≤ 17 cm. Platten = aufgerundet(Fläche × Verschnitt ÷ 2,5 m²) × Lagen.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Platte 2,00 × 1,25 m (= 2,5 m²), Achsabstand Tragprofil 40 cm, Achsabstand Grundprofil 1,00 m, Verschnitt 10 %, ca. 17 Schrauben/m² je Lage. Alle Werte sind frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> statische Bemessung, schwere Lasten, Abhängehöhe über 12,5 cm (dann Nonius- statt Direktabhänger), Verbinder, Brand- und Schallschutzaufbauten. Keine Fachplanung oder Statik, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AbgehaengteDeckeRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Abgehängte Decke berechnen – Material für die Unterdecke</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Abgehängte-Decke-Rechner</strong> ermitteln Sie schnell, wie viel Material
+            Sie für eine <strong>Gipskarton-Unterdecke in Metall-Unterkonstruktion</strong> brauchen:
+            Gipsplatten, CD-Tragprofile und CD-Grundprofile in laufenden Metern, das UD-Randprofil für
+            den Wandanschluss, die Direktabhänger sowie die Schnellbauschrauben. Eine Decke abhängen
+            lohnt sich, um Leitungen und Lüftungsrohre zu verstecken, Einbauspots zu integrieren, den
+            Schall- oder Brandschutz zu verbessern oder eine zu hohe Raumhöhe optisch zu senken.
+          </p>
+          <p>
+            Anders als der
+            <a href="/trockenbau-rechner" class="text-blue-600 hover:text-blue-800 underline">Trockenbau-Rechner für Ständerwände</a>
+            betrachtet dieser Rechner die <strong>Decke</strong> mit ihrer eigenen Geometrie: Profile
+            laufen in laufenden Metern statt in Stück, dazu kommen Direktabhänger und – beim Doppelrost
+            – eine zweite Profilebene. Geben Sie einfach Raumlänge und -breite (oder die Fläche direkt)
+            ein und wählen Sie Beplankung und Konstruktion.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel nach Knauf D11 / D112</h3>
+          <p>Der Rechner folgt den Hersteller-Detailblättern Knauf D11/D112 (Aufbau nach DIN 18181):</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Deckenfläche A</strong> = Länge × Breite (m²)</li>
+              <li><strong>Gipsplatten</strong> = aufgerundet(A × (1 + Verschnitt) ÷ 2,5 m²) × Lagen</li>
+              <li><strong>Tragprofil-Reihen</strong> = aufgerundet(Breite ÷ Achsabstand) + 1; <strong>Trag-CD</strong> = Reihen × Länge × (1 + Verschnitt)</li>
+              <li><strong>Grundprofil-Reihen</strong> (nur Doppelrost) = aufgerundet(Länge ÷ 1,00 m) + 1; <strong>Grund-CD</strong> = Reihen × Breite × (1 + Verschnitt)</li>
+              <li><strong>Direktabhänger</strong> = aufgerundet(netto Trag-CD-Länge ÷ 0,90 m)</li>
+              <li><strong>UD-Randprofil</strong> = Raumumfang × (1 + Verschnitt)</li>
+              <li><strong>Schrauben</strong> = A × 17 Stk/m² × Lagen</li>
+            </ul>
+          </div>
+          <p>
+            Eine Standard-Gipskartonplatte misst <strong>2,00 × 1,25 m</strong> und deckt damit
+            <strong>2,5 m²</strong> ab. Die Tragprofile (CD 60/27) laufen in einem Achsabstand von
+            <strong>maximal 40 cm</strong>, weil dünne 12,5-mm-Platten sonst durchhängen würden. Beim
+            Doppelrost liegt darüber quer eine zweite Ebene aus Grundprofilen im Abstand von rund
+            1,00 m, die über Direktabhänger an der Rohdecke befestigt wird.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einfachrost oder Doppelrost?</h3>
+          <p>
+            Beim <strong>Einfachrost</strong> werden nur die Tragprofile direkt mit Abhängern an der
+            Decke montiert – das spart Material und Bauhöhe, ist aber nur bei kleinen, gut zugänglichen
+            Decken sinnvoll. Der <strong>Doppelrost</strong> mit Grund- und Tragprofilebene ist der
+            robuste Standard: Er gleicht Unebenheiten der Rohdecke besser aus, verteilt Lasten und ist
+            für größere Räume vorgeschrieben. Der Rechner ist standardmäßig auf Doppelrost eingestellt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Direktabhänger, Nonius oder Drahtabhänger?</h3>
+          <p>
+            <strong>Direktabhänger</strong> sind die günstigste Lösung, eignen sich aber nur für
+            <strong>geringe Abhängehöhen bis etwa 12,5 cm</strong>. Wer tiefer abhängt oder schwere
+            Leuchten und Lasten plant, braucht <strong>Nonius-Abhänger</strong> (stufenlos höhenverstellbar)
+            oder <strong>Drahtabhänger mit Schnellspanner</strong> für große Abhängehöhen. Der Abstand
+            der Abhänger entlang des Tragprofils darf höchstens rund 0,90 bis 1,00 m betragen; das
+            äußere Profil läuft mit etwa 20 cm Wandabstand.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verschnitt und Sonderfälle</h3>
+          <p>
+            Bei einem rechteckigen Raum reichen rund <strong>10 % Verschnitt</strong>. Bei verwinkelten
+            Grundrissen, vielen Einbauspots oder Schrägen sollten Sie eher <strong>15 bis 20 %</strong>
+            ansetzen. Einbauspots werden im Rechner nur als Merkposten geführt – sie müssen so platziert
+            werden, dass sie nicht mit den Profilen kollidieren, und brauchen oft eine separate
+            Verkabelung und ausreichend Hohlraum oberhalb der Platten. Bei der direkten Flächeneingabe
+            schätzt der Rechner Profilreihen und Umfang aus einem quadratischen Ersatzmaß; für eine
+            exakte Profilliste geben Sie besser Länge und Breite getrennt ein.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🪜 Richtwerte je Quadratmeter Unterdecke</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Grobe Faustwerte für eine 1-lagige Decke im Doppelrost, Achsabstand 40 cm, ohne Verschnitt.
+          Tatsächliche Mengen hängen von Raumzuschnitt und Abhängehöhe ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Material</th>
+                <th class="py-2 px-2 font-semibold text-right">je m²</th>
+                <th class="py-2 pl-2 font-semibold text-right">Hinweis</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧱 Gipskartonplatte (2,5 m²)</td><td class="py-2 px-2 text-right">0,40 Stk</td><td class="py-2 pl-2 text-right">1 Platte ≈ 2,5 m²</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">📏 CD-Profil 60/27 (Trag + Grund)</td><td class="py-2 px-2 text-right">ca. 4,0 lfm</td><td class="py-2 pl-2 text-right">davon ~2,8 lfm Trag</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🔩 Direktabhänger</td><td class="py-2 px-2 text-right">ca. 3,1 Stk</td><td class="py-2 pl-2 text-right">≤ 0,90 m Abstand</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🪛 Schnellbauschrauben TN 25</td><td class="py-2 px-2 text-right">17 Stk</td><td class="py-2 pl-2 text-right">je Lage</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🧰 UD-Randprofil</td><td class="py-2 px-2 text-right">je Umfang</td><td class="py-2 pl-2 text-right">= 2 × (L + B)</td></tr>
+              <tr><td class="py-2 pr-2">🧊 Dämmung (optional)</td><td class="py-2 px-2 text-right">1,0 m²</td><td class="py-2 pl-2 text-right">= Deckenfläche</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Quellen: Knauf Detailblatt D11 / D112 (DIN 18181), OBI Ratgeber „Decke abhängen“ (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Alle Beispiele mit Achsabstand 40 cm und 10 % Verschnitt:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wohnzimmer 5 × 4 m, 1-lagig, Doppelrost</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Deckenfläche:</div>
+              <div class="font-medium text-gray-800">5 × 4 = 20 m²</div>
+              <div class="text-gray-600">Gipsplatten:</div>
+              <div class="font-medium text-gray-800">aufger.(20 × 1,1 ÷ 2,5) = 9 Stk</div>
+              <div class="text-gray-600">Tragprofile:</div>
+              <div class="font-medium text-gray-800">(aufger.(4 ÷ 0,4)+1) × 5 × 1,1 = 60,5 lfm</div>
+              <div class="text-gray-600">Grundprofile:</div>
+              <div class="font-medium text-gray-800">(aufger.(5 ÷ 1,0)+1) × 4 × 1,1 = 26,4 lfm</div>
+              <div class="text-gray-600">CD gesamt:</div>
+              <div class="font-medium text-gray-800">86,9 lfm → 22 Stangen (4 m)</div>
+              <div class="text-gray-600">Direktabhänger:</div>
+              <div class="font-medium text-green-700">aufger.(55 ÷ 0,9) = 62 Stk</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Schlafzimmer 4 × 3 m, 2-lagig (Schallschutz), Doppelrost</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Deckenfläche:</div>
+              <div class="font-medium text-gray-800">4 × 3 = 12 m²</div>
+              <div class="text-gray-600">Gipsplatten:</div>
+              <div class="font-medium text-gray-800">aufger.(12 × 1,1 ÷ 2,5) × 2 = 12 Stk</div>
+              <div class="text-gray-600">CD gesamt:</div>
+              <div class="font-medium text-gray-800">39,6 + 16,5 = 56,1 lfm → 15 Stangen</div>
+              <div class="text-gray-600">Direktabhänger:</div>
+              <div class="font-medium text-gray-800">aufger.(36 ÷ 0,9) = 40 Stk</div>
+              <div class="text-gray-600">Schrauben:</div>
+              <div class="font-medium text-green-700">12 × 17 × 2 = 408 Stk</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Flur 3 × 2,5 m, 1-lagig, Einfachrost</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Deckenfläche:</div>
+              <div class="font-medium text-gray-800">3 × 2,5 = 7,5 m²</div>
+              <div class="text-gray-600">Gipsplatten:</div>
+              <div class="font-medium text-gray-800">aufger.(7,5 × 1,1 ÷ 2,5) = 4 Stk</div>
+              <div class="text-gray-600">Tragprofile (= CD gesamt):</div>
+              <div class="font-medium text-gray-800">(aufger.(2,5 ÷ 0,4)+1) × 3 × 1,1 = 26,4 lfm → 7 Stangen</div>
+              <div class="text-gray-600">UD-Randprofil:</div>
+              <div class="font-medium text-gray-800">2 × (3 + 2,5) × 1,1 = 12,1 lfm → 4 Stangen</div>
+              <div class="text-gray-600">Direktabhänger:</div>
+              <div class="font-medium text-green-700">aufger.(24 ÷ 0,9) = 27 Stk</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beim Einfachrost (Beispiel 3) entfallen die Grundprofile – die CD-Menge
+          besteht dann nur aus den Tragprofilen. Für große oder unebene Decken bleibt der Doppelrost
+          trotzdem die empfohlene, lastsicherere Variante.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Achsabstand zu groß wählen</h3>
+            <p>Bei 12,5-mm-Platten darf der Achsabstand der Tragprofile höchstens 40 cm betragen
+            (Knauf D112). Wer 50 cm oder mehr ansetzt, riskiert durchhängende Platten und Risse in den
+            Fugen. 50 cm sind nur bei dickerer oder doppelter Beplankung zulässig.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Direktabhänger bei zu großer Abhängehöhe</h3>
+            <p>Direktabhänger funktionieren nur bis etwa 12,5 cm Abhängehöhe. Für tiefere Decken oder
+            schwere Lasten (große Leuchten, Lautsprecher) gehören Nonius- oder Drahtabhänger zum
+            Einsatz – sonst trägt die Konstruktion nicht sicher.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verschnitt und Reststücke unterschätzen</h3>
+            <p>Profile werden auf Länge geschnitten, Platten an Wänden, Spots und Ecken zugeschnitten.
+            Ohne Reserve fehlt schnell Material. Bei verwinkelten Räumen oder vielen Einbauspots lieber
+            15–20 % statt 10 % Verschnitt einplanen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Lasten an der Decke</h3>
+            <p>Eine abgehängte Decke ist keine Tragdecke. Schwere Hängeleuchten, Deckenventilatoren
+            oder Hängeschränke brauchen eine separate Befestigung an der Rohdecke oder eine verstärkte
+            Unterkonstruktion. Der Rechner liefert keine statische Bemessung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Brand- und Schallschutz</h3>
+            <p>Für Schall- oder Brandschutzdecken gelten eigene Systemaufbauten – andere Plattentypen
+            (z. B. Feuerschutzplatten), zweilagige Beplankung, definierte Hohlraumdämmung und engere
+            Abhängerraster. Hier sind die jeweiligen Systemvorgaben des Herstellers und ggf. eine
+            Fachplanung maßgeblich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur abgehängten Decke</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Material brauche ich für eine abgehängte Decke?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Pro Quadratmeter rechnen Sie grob mit 0,4 Gipsplatten (eine Platte deckt 2,5 m² ab),
+              rund 4,0 lfm CD-Profil (Trag- und Grundprofil zusammen), etwa 3,1 Direktabhängern und
+              17 Schnellbauschrauben je Lage. Für eine 20 m² große Decke im Doppelrost sind das etwa
+              9 Platten, rund 87 lfm CD-Profil und etwa 62 Abhänger – plus 10 % Verschnitt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher Achsabstand gilt für die Tragprofile?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei 12,5-mm-Gipskartonplatten beträgt der maximale Achsabstand der Tragprofile 40 cm
+              (Knauf D112). Größere Abstände wie 50 cm sind nur bei dickerer oder doppelter Beplankung
+              zulässig. Die Grundprofile beim Doppelrost laufen quer im Abstand von rund 1,00 m.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Direktabhänger pro Meter Profil?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Entlang jedes Tragprofils sitzt mindestens alle 0,90 m ein Abhänger. Der Rechner teilt
+              die gesamte verbaute Tragprofil-Länge durch 0,90 m und rundet auf. Wichtig: Direktabhänger
+              eignen sich nur bis etwa 12,5 cm Abhängehöhe – darüber brauchen Sie Nonius- oder
+              Drahtabhänger.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Einfachrost oder Doppelrost – was ist besser?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Einfachrost mit nur einer Profilebene spart Material und Bauhöhe und reicht für
+              kleine, ebene Decken. Der Doppelrost mit Grund- und Tragprofil ist der robuste Standard:
+              Er gleicht Unebenheiten der Rohdecke aus, verteilt Lasten besser und ist für größere
+              Decken vorgeschrieben.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Gipsplatten brauche ich pro Quadratmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Standard-Gipskartonplatte misst 2,00 × 1,25 m und deckt 2,5 m² ab. Pro
+              Quadratmeter Decke brauchen Sie also rund 0,4 Platten je Lage. Für eine zweilagige
+              Decke (z. B. Schallschutz) verdoppelt sich die Plattenzahl entsprechend.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist der Rechner eine Statik-Berechnung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner liefert eine Mengen- und Materialschätzung nach den
+              Hersteller-Detailblättern Knauf D11/D112 – keine statische Bemessung. Tragfähigkeit der
+              Abhänger, maximale Achsabstände sowie Anforderungen an Brand- und Schallschutz richten sich
+              nach den Systemvorgaben des Herstellers und ggf. nach einer Fachplanung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/trockenbau-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧱</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Trockenbau-Rechner (Wand)</p>
+          </a>
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarbe-Rechner</p>
+          </a>
+          <a href="/putz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Putz-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🟦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/laminat-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪵</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Laminat-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Abgehängte-Decke-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/abgehaengte-decke-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Material brauche ich für eine abgehängte Decke?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pro Quadratmeter rechnen Sie grob mit 0,4 Gipsplatten (eine Platte deckt 2,5 m² ab), rund 4,0 lfm CD-Profil (Trag- und Grundprofil zusammen), etwa 3,1 Direktabhängern und 17 Schnellbauschrauben je Lage. Für eine 20 m² große Decke im Doppelrost sind das etwa 9 Platten, rund 87 lfm CD-Profil und etwa 62 Abhänger – plus 10 % Verschnitt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher Achsabstand gilt für die Tragprofile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 12,5-mm-Gipskartonplatten beträgt der maximale Achsabstand der Tragprofile 40 cm (Knauf D112). Größere Abstände wie 50 cm sind nur bei dickerer oder doppelter Beplankung zulässig. Die Grundprofile beim Doppelrost laufen quer im Abstand von rund 1,00 m."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Direktabhänger pro Meter Profil?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Entlang jedes Tragprofils sitzt mindestens alle 0,90 m ein Abhänger. Der Rechner teilt die gesamte verbaute Tragprofil-Länge durch 0,90 m und rundet auf. Wichtig: Direktabhänger eignen sich nur bis etwa 12,5 cm Abhängehöhe – darüber brauchen Sie Nonius- oder Drahtabhänger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Einfachrost oder Doppelrost – was ist besser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Einfachrost mit nur einer Profilebene spart Material und Bauhöhe und reicht für kleine, ebene Decken. Der Doppelrost mit Grund- und Tragprofil ist der robuste Standard: Er gleicht Unebenheiten der Rohdecke aus, verteilt Lasten besser und ist für größere Decken vorgeschrieben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Gipsplatten brauche ich pro Quadratmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Standard-Gipskartonplatte misst 2,00 × 1,25 m und deckt 2,5 m² ab. Pro Quadratmeter Decke brauchen Sie also rund 0,4 Platten je Lage. Für eine zweilagige Decke (z. B. Schallschutz) verdoppelt sich die Plattenzahl entsprechend."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist der Rechner eine Statik-Berechnung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner liefert eine Mengen- und Materialschätzung nach den Hersteller-Detailblättern Knauf D11/D112 – keine statische Bemessung. Tragfähigkeit der Abhänger, maximale Achsabstände sowie Anforderungen an Brand- und Schallschutz richten sich nach den Systemvorgaben des Herstellers und ggf. nach einer Fachplanung."
+        }
+      }
+    ]
+  })} />
+</Layout>

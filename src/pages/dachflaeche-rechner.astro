@@ -1,0 +1,457 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DachflaecheRechner from '../components/rechner/DachflaecheRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Dachflächen-Rechner 2026 – Dachfläche & Ziegelbedarf berechnen";
+const description = "Dachfläche berechnen für Sattel-, Pult-, Walm- und Flachdach: geneigte Fläche in m² aus Grundfläche und Dachneigung (Faktor 1 ÷ cos α) inklusive Dachüberstand, Ziegelbedarf und Dämmfläche.";
+const keywords = "Dachfläche berechnen, Dachflächenrechner, Dachfläche Satteldach, Dachfläche Walmdach, Dachfläche Pultdach, Ziegelbedarf berechnen, Dachziegel berechnen, Dachneigung Faktor, m2 Dach berechnen, Dachfläche Quadratmeter";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Dachflächen-Rechner", url: "/dachflaeche-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Dachflächen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dachflächen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Dachfläche & Ziegelbedarf berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Geometrische Standardformel – geneigte Dachfläche = überdachte Grundfläche × (1 ÷ cos α). Der Neigungsfaktor (Faktor X) beträgt bei 30° = 1,1547, bei 40° = 1,3054 und bei 45° = 1,4142. Beim Flachdach entfällt der Faktor.</p>
+            <p class="mb-1"><strong>Voreinstellungen:</strong> Dachüberstand 0 cm (frei wählbar), Ziegelbedarf 12 Stück/m² (Frankfurter Pfanne), Verschnitt 7 %. Alle Werte sind anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Gauben, Kehlen, Grate, Deckmaße der konkreten Ziegelmarke, Statik und Dachaufbau. Rein geometrische Näherung – keine verbindliche Mengenkalkulation, keine Fachberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DachflaecheRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Dachfläche berechnen – so geht es</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Dachflächen-Rechner</strong> ermitteln Sie die tatsächliche, geneigte
+            <strong>Dachfläche in Quadratmetern</strong> – die Basis für jede Material- und
+            Kostenkalkulation rund ums Dach: Ziegel, Dämmung, Unterspannbahn, Photovoltaik oder die
+            Neueindeckung. Anders als der
+            <a href="/dachneigung-rechner" class="text-blue-600 hover:text-blue-800 underline">Dachneigungs-Rechner</a>,
+            der aus Höhe und Länge die <em>Neigung</em> bestimmt, nimmt dieser Rechner die Neigung als
+            <em>Eingabe</em> und liefert daraus die fertige Dachfläche – für Satteldach, Pultdach,
+            Walmdach und Flachdach.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel: der Neigungsfaktor</h3>
+          <p>
+            Die wahre Dachfläche ist immer größer als die Grundfläche darunter, weil das Dach schräg
+            steht. Der Zusammenhang ist rein trigonometrisch:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Geneigte Dachfläche</strong> = überdachte Grundfläche × (1 ÷ cos α)</li>
+              <li><strong>Überdachte Grundfläche</strong> = (Länge + 2 × Ortgang-Überstand) × (Breite + 2 × Trauf-Überstand)</li>
+              <li><strong>Faktor X</strong> = 1 ÷ cos α (Dachneigung α)</li>
+            </ul>
+          </div>
+          <p>
+            Der Kosinus der Dachneigung beschreibt das Verhältnis von Grundriss zu Schräge. Bei 0°
+            (waagerecht) ist der Faktor 1, bei 45° rund 1,41 – die Dachfläche ist dann also gut 41 %
+            größer als der Grundriss. Praktisch gilt: Je steiler das Dach, desto mehr Material brauchen
+            Sie pro Quadratmeter Grundfläche.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum alle Dachformen die gleiche Formel nutzen</h3>
+          <p>
+            Beim <strong>Satteldach</strong> bilden die zwei Schrägen zusammen genau die überdachte
+            Grundfläche, multipliziert mit dem Faktor X. Beim <strong>Pultdach</strong> ist es eine
+            einzige Fläche über dem gesamten Grundriss. Beim <strong>Walmdach</strong> zerlegt man das
+            Dach in zwei Trapeze und zwei Dreiecke – haben alle die gleiche Neigung, ergibt ihre Summe
+            wieder die überdachte Grundfläche × Faktor X. Deshalb rechnet dieser Rechner alle geneigten
+            Formen mit derselben Kernformel; nur das <strong>Flachdach</strong> kommt ohne
+            Neigungsfaktor aus, weil seine Fläche praktisch der Grundfläche entspricht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Dachüberstand richtig einrechnen</h3>
+          <p>
+            Das Dach ragt fast immer über die Außenwand hinaus. Diesen <strong>Dachüberstand</strong>
+            gibt es an der <strong>Traufe</strong> (untere Dachkante) und am <strong>Ortgang</strong>
+            (seitliche Dachkante). Übliche Werte liegen bei 30 bis 50 cm pro Seite. Da der Überstand
+            beidseitig wirkt, addieren Sie ihn doppelt: effektive Länge = Gebäudelänge + 2 × Überstand.
+            Wer ihn vergisst, unterschätzt die Dachfläche und damit den Materialbedarf spürbar.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vom Quadratmeter zum Ziegelbedarf</h3>
+          <p>
+            Aus der Dachfläche lässt sich der <strong>Dachziegel-Bedarf</strong> direkt ableiten:
+            Fläche × Stück pro m² × Verschnittfaktor. Der Bedarf pro Quadratmeter hängt stark von der
+            Marke ab – eine Frankfurter Pfanne deckt mit rund <strong>10–12 Stück/m²</strong>, ein
+            kleiner Biberschwanz braucht <strong>32–36 Stück/m²</strong>. Für Grate, Kehlen, Ränder und
+            Bruch rechnet man <strong>5–10 % Verschnitt</strong> auf. Für Unterspannbahn und Dämmung
+            genügt meist ein Aufschlag von rund 10 % auf die reine Dachfläche.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📐 Neigungsfaktor nach Dachneigung</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Der Faktor X = 1 ÷ cos α gibt an, um wie viel die Dachfläche größer ist als die Grundfläche.
+          Multiplizieren Sie Ihre überdachte Grundfläche mit dem passenden Wert.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Dachneigung</th>
+                <th class="py-2 px-2 font-semibold text-right">Faktor X</th>
+                <th class="py-2 pl-2 font-semibold text-right">Mehrfläche</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">10°</td><td class="py-2 px-2 text-right">1,0154</td><td class="py-2 pl-2 text-right">+1,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">15°</td><td class="py-2 px-2 text-right">1,0353</td><td class="py-2 pl-2 text-right">+3,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">20°</td><td class="py-2 px-2 text-right">1,0642</td><td class="py-2 pl-2 text-right">+6,4 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">25°</td><td class="py-2 px-2 text-right">1,1034</td><td class="py-2 pl-2 text-right">+10,3 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">30°</td><td class="py-2 px-2 text-right">1,1547</td><td class="py-2 pl-2 text-right">+15,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">35°</td><td class="py-2 px-2 text-right">1,2208</td><td class="py-2 pl-2 text-right">+22,1 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">40°</td><td class="py-2 px-2 text-right">1,3054</td><td class="py-2 pl-2 text-right">+30,5 %</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">45°</td><td class="py-2 px-2 text-right">1,4142</td><td class="py-2 pl-2 text-right">+41,4 %</td></tr>
+              <tr><td class="py-2 pr-2">50°</td><td class="py-2 px-2 text-right">1,5557</td><td class="py-2 pl-2 text-right">+55,6 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Faktor X = 1 ÷ cos α. Quellen: 11880-dachdecker.com, wirdaemmendeinhaus.com (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So wirken sich Dachform, Neigung und Überstand auf die Fläche aus:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Satteldach, 40° Neigung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gebäude:</div>
+              <div class="font-medium text-gray-800">10 m × 8 m, ohne Überstand</div>
+              <div class="text-gray-600">Grundfläche:</div>
+              <div class="font-medium text-gray-800">10 × 8 = 80 m²</div>
+              <div class="text-gray-600">Faktor (40°):</div>
+              <div class="font-medium text-gray-800">1 ÷ cos 40° = 1,3054</div>
+              <div class="text-gray-600">Dachfläche:</div>
+              <div class="font-medium text-green-700">80 × 1,3054 = 104,43 m²</div>
+              <div class="text-gray-600">Ziegel (12/m², +7 %):</div>
+              <div class="font-medium text-gray-800">≈ 1.341 Stück</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Pultdach, 15° Neigung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gebäude:</div>
+              <div class="font-medium text-gray-800">6 m × 5 m, ohne Überstand</div>
+              <div class="text-gray-600">Grundfläche:</div>
+              <div class="font-medium text-gray-800">6 × 5 = 30 m²</div>
+              <div class="text-gray-600">Faktor (15°):</div>
+              <div class="font-medium text-gray-800">1 ÷ cos 15° = 1,0353</div>
+              <div class="text-gray-600">Dachfläche:</div>
+              <div class="font-medium text-green-700">30 × 1,0353 = 31,06 m²</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Walmdach, 35° mit Überstand</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Gebäude:</div>
+              <div class="font-medium text-gray-800">12 m × 9 m</div>
+              <div class="text-gray-600">Überstand:</div>
+              <div class="font-medium text-gray-800">Traufe 50 cm, Ortgang 30 cm</div>
+              <div class="text-gray-600">Grundfläche:</div>
+              <div class="font-medium text-gray-800">(12 + 0,6) × (9 + 1,0) = 126 m²</div>
+              <div class="text-gray-600">Faktor (35°):</div>
+              <div class="font-medium text-gray-800">1 ÷ cos 35° = 1,2208</div>
+              <div class="text-gray-600">Dachfläche:</div>
+              <div class="font-medium text-green-700">126 × 1,2208 = 153,82 m²</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Beispiel 3 zeigt, wie stark der Überstand wirkt: 0,5 m Traufe und
+          0,3 m Ortgang vergrößern die überdachte Grundfläche von 108 auf 126 m² – das sind rund 17 %
+          mehr Fläche und damit auch mehr Ziegel.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Grundfläche statt Dachfläche nehmen</h3>
+            <p>Die Grundfläche des Hauses ist nicht die Dachfläche. Wer den Neigungsfaktor vergisst,
+            unterschätzt die Fläche je nach Neigung um 15 bis über 40 % – und bestellt zu wenig
+            Material.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Dachüberstand vergessen</h3>
+            <p>Das Dach ragt über die Wände hinaus. Werden 30–50 cm Überstand an Traufe und Ortgang
+            nicht mitgerechnet, fehlen bei einem typischen Einfamilienhaus schnell mehrere Quadratmeter
+            und mehr als hundert Ziegel.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Verschnitt zu niedrig ansetzen</h3>
+            <p>Bei einem einfachen Satteldach genügen oft 5 % Verschnitt. Sobald Gauben, Kehlen, Grate
+            oder ein verwinkelter Grundriss dazukommen, steigt der reale Verschnitt deutlich – kalkulieren
+            Sie dann lieber 10 % oder mehr ein.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Gauben und Dachfenster</h3>
+            <p>Gauben vergrößern die zu deckende Fläche und erzeugen zusätzliche Kehlen; Dachfenster
+            reduzieren sie geringfügig. Beides ist in der reinen Rechteck-Näherung nicht enthalten und
+            sollte bei komplexen Dächern separat berücksichtigt werden.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Neigung in Prozent angegeben</h3>
+            <p>Dachneigungen werden manchmal in Prozent statt Grad genannt. Rechnen Sie zuerst um:
+            Grad = arctan(Prozent ÷ 100). 100 % entsprechen 45°, 50 % rund 26,6°. Den genauen Wert
+            liefert der Dachneigungs-Rechner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Dachfläche</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Dachfläche?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die geneigte Dachfläche ergibt sich aus <strong>überdachter Grundfläche × (1 ÷ cos
+              Dachneigung)</strong>. Bei einem Satteldach mit 80 m² Grundfläche und 40° Neigung sind das
+              80 × 1,3054 = 104,43 m². Den Dachüberstand rechnen Sie vorher zur Grundfläche hinzu.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Faktor X bei der Dachfläche?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Faktor X ist der Neigungsfaktor 1 ÷ cos α. Er gibt an, um wie viel größer die schräge
+              Dachfläche gegenüber der Grundfläche ist. Bei 30° beträgt er 1,1547, bei 40° 1,3054 und bei
+              45° 1,4142 – die Dachfläche ist dann also rund 15, 31 bzw. 41 % größer als der Grundriss.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Dachfläche eines Walmdachs?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Walmdach besteht aus zwei Trapezen (Längsseiten) und zwei Dreiecken (Walmseiten).
+              Haben alle vier Flächen dieselbe Neigung, ergibt ihre Summe genau die überdachte Grundfläche
+              × (1 ÷ cos α). Sie können das Walmdach also wie Satteldach und Pultdach mit der gleichen
+              Kernformel berechnen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Dachziegel brauche ich pro Quadratmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von der Ziegelmarke ab: Eine Frankfurter Pfanne deckt mit rund 10–12 Stück/m²,
+              ein kleiner Biberschwanz braucht 32–36 Stück/m². Multiplizieren Sie die Dachfläche mit dem
+              Wert Ihrer Marke und schlagen Sie 5–10 % Verschnitt für Grate, Kehlen und Ränder auf.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich den Dachüberstand mitrechnen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Das Dach ragt an Traufe und Ortgang über die Außenwände hinaus, üblich sind 30–50 cm
+              pro Seite. Da der Überstand beidseitig wirkt, addieren Sie ihn doppelt: effektive Länge =
+              Gebäudelänge + 2 × Überstand. Ohne diesen Schritt fallen Fläche und Materialbedarf zu
+              niedrig aus.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie unterscheidet sich der Dachflächen-Rechner vom Dachneigungs-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Dachneigungs-Rechner bestimmt aus Höhe und Länge die Neigung in Grad, Prozent und
+              Sparrenlänge – das Ergebnis ist die Neigung. Dieser Dachflächen-Rechner nimmt die Neigung
+              als Eingabe und liefert daraus die Dachfläche in m² sowie den Ziegel- und Dämmbedarf für
+              mehrere Dachformen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/dachneigung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dachneigungs-Rechner</p>
+          </a>
+          <a href="/photovoltaik-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">☀️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Photovoltaik-Rechner</p>
+          </a>
+          <a href="/waermepumpe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wärmepumpen-Rechner</p>
+          </a>
+          <a href="/handwerkerkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔧</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Handwerkerkosten-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dachflächen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/dachflaeche-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Dachfläche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die geneigte Dachfläche ergibt sich aus überdachter Grundfläche × (1 ÷ cos Dachneigung). Bei einem Satteldach mit 80 m² Grundfläche und 40° Neigung sind das 80 × 1,3054 = 104,43 m². Den Dachüberstand rechnen Sie vorher zur Grundfläche hinzu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Faktor X bei der Dachfläche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Faktor X ist der Neigungsfaktor 1 ÷ cos α. Er gibt an, um wie viel größer die schräge Dachfläche gegenüber der Grundfläche ist. Bei 30° beträgt er 1,1547, bei 40° 1,3054 und bei 45° 1,4142 – die Dachfläche ist dann also rund 15, 31 bzw. 41 % größer als der Grundriss."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Dachfläche eines Walmdachs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Walmdach besteht aus zwei Trapezen (Längsseiten) und zwei Dreiecken (Walmseiten). Haben alle vier Flächen dieselbe Neigung, ergibt ihre Summe genau die überdachte Grundfläche × (1 ÷ cos α). Sie können das Walmdach also wie Satteldach und Pultdach mit der gleichen Kernformel berechnen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Dachziegel brauche ich pro Quadratmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von der Ziegelmarke ab: Eine Frankfurter Pfanne deckt mit rund 10–12 Stück/m², ein kleiner Biberschwanz braucht 32–36 Stück/m². Multiplizieren Sie die Dachfläche mit dem Wert Ihrer Marke und schlagen Sie 5–10 % Verschnitt für Grate, Kehlen und Ränder auf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich den Dachüberstand mitrechnen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Das Dach ragt an Traufe und Ortgang über die Außenwände hinaus, üblich sind 30–50 cm pro Seite. Da der Überstand beidseitig wirkt, addieren Sie ihn doppelt: effektive Länge = Gebäudelänge + 2 × Überstand. Ohne diesen Schritt fallen Fläche und Materialbedarf zu niedrig aus."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie unterscheidet sich der Dachflächen-Rechner vom Dachneigungs-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Dachneigungs-Rechner bestimmt aus Höhe und Länge die Neigung in Grad, Prozent und Sparrenlänge – das Ergebnis ist die Neigung. Dieser Dachflächen-Rechner nimmt die Neigung als Eingabe und liefert daraus die Dachfläche in m² sowie den Ziegel- und Dämmbedarf für mehrere Dachformen."
+        }
+      }
+    ]
+  })} />
+</Layout>

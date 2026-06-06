@@ -1,0 +1,464 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RaumhoeheVolumenRechner from '../components/rechner/RaumhoeheVolumenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Raumvolumen-Rechner 2026 – Kubikmeter (m³) eines Raums berechnen";
+const description = "Raumvolumen in Kubikmeter berechnen: Länge × Breite × Höhe ergibt den m³-Rauminhalt. Inklusive Dachschräge, Wandfläche, Heizlast-Faustwert und Lüftungsbedarf – mit Formel und Beispielen.";
+const keywords = "Raumvolumen berechnen, Kubikmeter berechnen, m3 Rechner, Rauminhalt berechnen, Kubikmeter Raum, Raumhöhe Volumen, Luftvolumen Raum, m3 Raum, beheiztes Volumen, Lüftungsbedarf Raum";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Raumvolumen-Rechner", url: "/raumhoehe-volumen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Raumvolumen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📦</span>
+          <div>
+            <h1 class="text-2xl font-bold">Raumvolumen-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Kubikmeter (m³) eines Raums berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Geometrische Standardformel Volumen = Länge × Breite × Raumhöhe (m³); bei Dachschräge mittlere Raumhöhe = (höchste + niedrigste Höhe) ÷ 2. Wandfläche = 2 × (Länge + Breite) × Höhe − Tür-/Fensterflächen.</p>
+            <p class="mb-1"><strong>Faustwerte:</strong> Heizlast 30–50 W/m³ je nach Dämmstandard (Orientierung, nicht DIN EN 12831), Lüftungsbedarf = Volumen × Luftwechselrate (Wohnräume 0,5–1,0/h, nach DIN 1946-6).</p>
+            <p><strong>Nicht berücksichtigt:</strong> Nischen, Erker, komplexe Dachformen und Sonderquerschnitte; reines Volumen ist keine Wohnflächenermittlung nach WoFlV. Keine Heizungs- oder Lüftungsplanung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RaumhoeheVolumenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Raumvolumen in Kubikmeter berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Raumvolumen-Rechner</strong> ermitteln Sie den <strong>Rauminhalt eines
+            Zimmers in Kubikmeter (m³)</strong> – also wie viel Luft sich tatsächlich im Raum
+            befindet. Den Wert brauchen Sie für ganz unterschiedliche Zwecke: zum Auslegen einer
+            Heizung oder Klimaanlage, zur Planung der Lüftung, beim Umzug für das Volumen des
+            Transportguts oder schlicht, um ein Gefühl für die Größe eines Raums zu bekommen.
+            Anders als der <a href="/wohnflaeche-rechner" class="text-blue-600 hover:text-blue-800 underline">Wohnflächen-Rechner</a>,
+            der die nutzbare Grundfläche in Quadratmetern liefert, rechnet dieser Rechner den
+            dreidimensionalen Raum aus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt die geometrische Standardformel für einen Quader:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Volumen (m³)</strong> = Länge (m) × Breite (m) × Raumhöhe (m)</li>
+              <li><strong>1 m³</strong> = 1.000 Liter Luftraum</li>
+              <li><strong>Wandfläche (m²)</strong> = 2 × (Länge + Breite) × Höhe − Tür-/Fensterflächen</li>
+            </ul>
+          </div>
+          <p>
+            Alle drei Maße müssen in <strong>Metern</strong> eingesetzt werden. Haben Sie in
+            Zentimetern gemessen, teilen Sie den Wert vorher durch 100 (250 cm = 2,5 m). Ein
+            Kubikmeter ist ein Würfel mit 1 m Kantenlänge und fasst genau 1.000 Liter.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Räume mit Dachschräge</h3>
+          <p>
+            Bei einem Raum unter dem Dach ist die Höhe nicht überall gleich. Für eine durchgehende,
+            gleichmäßige Schräge rechnet man mit der <strong>mittleren Raumhöhe</strong>: dem
+            Mittelwert aus der höchsten Stelle (am First) und der niedrigsten Stelle (am Kniestock).
+            Die Formel lautet dann <strong>mittlere Höhe = (h<sub>max</sub> + h<sub>min</sub>) ÷ 2</strong>,
+            multipliziert mit der Grundfläche. Aktivieren Sie dazu im Rechner die Option „Raum mit
+            Dachschräge“ und tragen Sie beide Höhen ein. Wichtig: Das so ermittelte Volumen ist ein
+            geometrischer Näherungswert – komplexe Dachformen mit mehreren Schrägen oder Gauben
+            müssen in Teilkörper zerlegt werden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Heizlast als grober Faustwert</h3>
+          <p>
+            Aus dem Volumen lässt sich überschlägig abschätzen, welche Heizleistung ein Raum
+            braucht. Als Faustwert gilt je nach Dämmstandard etwa <strong>50 W/m³ im unsanierten
+            Altbau</strong>, rund <strong>40 W/m³ teilsaniert</strong> und etwa <strong>30 W/m³ im
+            Neubau bzw. KfW-Standard</strong>. Das ist ausdrücklich nur eine Orientierung. Die
+            verbindliche Heizlastberechnung erfolgt nach <strong>DIN EN 12831</strong> und
+            berücksichtigt unter anderem Außenwände, Fensterflächen, Lage und Wärmebrücken. Für die
+            tatsächliche Dimensionierung einer Heizung oder Wärmepumpe sollten Sie eine Fachkraft
+            hinzuziehen – siehe auch unseren
+            <a href="/waermepumpe-rechner" class="text-blue-600 hover:text-blue-800 underline">Wärmepumpen-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Lüftungsbedarf aus dem Volumen</h3>
+          <p>
+            Für eine gute Luftqualität sollte die Raumluft mehrmals täglich ausgetauscht werden. Der
+            nötige <strong>Frischluftbedarf</strong> ergibt sich aus <strong>Volumen × Luftwechselrate</strong>.
+            Für Wohnräume liegt die empfohlene Luftwechselrate bei rund <strong>0,5 bis 1,0 pro
+            Stunde</strong>, das heißt, die gesamte Raumluft wird ein- bis zweimal pro Stunde
+            erneuert. Ein 50 m³ großer Raum braucht bei n = 0,5 also etwa 25 m³ Frischluft pro
+            Stunde. Eine normgerechte Lüftungsplanung erfolgt nach <strong>DIN 1946-6</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wandfläche als Nebenergebnis</h3>
+          <p>
+            Aus Umfang und Höhe gibt der Rechner zusätzlich die <strong>Wandfläche</strong> aus –
+            praktisch als erster Anhaltspunkt. Für das exakte Material brauchen Sie aber spezielle
+            Rechner: Wie viel Farbe Sie benötigen, klärt der
+            <a href="/wandfarbe-rechner" class="text-blue-600 hover:text-blue-800 underline">Wandfarben-Rechner</a>,
+            den Bedarf an Tapetenrollen der
+            <a href="/tapeten-rechner" class="text-blue-600 hover:text-blue-800 underline">Tapeten-Rechner</a>.
+            Die Wandfläche hier ist ein rechnerischer Richtwert ohne Abzug von Nischen oder
+            Schrägflächen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📐 Typische Raumvolumen im Überblick</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Richtwerte bei einer Standard-Raumhöhe von 2,50 m. Das tatsächliche Volumen hängt von der
+          exakten Höhe und etwaigen Dachschrägen ab.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Raum</th>
+                <th class="py-2 px-2 font-semibold text-right">Grundfläche</th>
+                <th class="py-2 px-2 font-semibold text-right">Höhe</th>
+                <th class="py-2 pl-2 font-semibold text-right">Volumen</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🚪 Kleines Bad / Flur</td><td class="py-2 px-2 text-right">6 m²</td><td class="py-2 px-2 text-right">2,50 m</td><td class="py-2 pl-2 text-right">15 m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🛏️ Schlafzimmer</td><td class="py-2 px-2 text-right">14 m²</td><td class="py-2 px-2 text-right">2,50 m</td><td class="py-2 pl-2 text-right">35 m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🛋️ Wohnzimmer</td><td class="py-2 px-2 text-right">25 m²</td><td class="py-2 px-2 text-right">2,50 m</td><td class="py-2 pl-2 text-right">62,5 m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🍳 Küche</td><td class="py-2 px-2 text-right">12 m²</td><td class="py-2 px-2 text-right">2,50 m</td><td class="py-2 pl-2 text-right">30 m³</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">🏛️ Altbau-Zimmer</td><td class="py-2 px-2 text-right">20 m²</td><td class="py-2 px-2 text-right">3,20 m</td><td class="py-2 pl-2 text-right">64 m³</td></tr>
+              <tr><td class="py-2 pr-2">🏠 Komplette 70-m²-Wohnung</td><td class="py-2 px-2 text-right">70 m²</td><td class="py-2 px-2 text-right">2,50 m</td><td class="py-2 pl-2 text-right">175 m³</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          1 m³ = 1.000 Liter. Werte gerundet, dienen nur der groben Orientierung.
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich Volumen und abgeleitete Werte zusammen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Wohnzimmer (Quader)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">5 m × 4 m × 2,50 m</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">5 × 4 × 2,5 = 50 m³ (50.000 Liter)</div>
+              <div class="text-gray-600">Wandfläche:</div>
+              <div class="font-medium text-gray-800">2 × (5 + 4) × 2,5 = 45 m²</div>
+              <div class="text-gray-600">Lüftung (n = 0,5):</div>
+              <div class="font-medium text-green-700">50 × 0,5 = 25 m³/h</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Schlafzimmer mit Dachschräge</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">4 m × 3 m, Höhe 1,20 m bis 2,60 m</div>
+              <div class="text-gray-600">Mittlere Höhe:</div>
+              <div class="font-medium text-gray-800">(2,60 + 1,20) ÷ 2 = 1,90 m</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-green-700">4 × 3 × 1,9 = 22,8 m³</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Büro im Neubau (Heizlast-Faustwert)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">3 m × 2,50 m × 2,40 m</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-gray-800">3 × 2,5 × 2,4 = 18 m³</div>
+              <div class="text-gray-600">Heizlast (30 W/m³):</div>
+              <div class="font-medium text-green-700">18 × 30 = 540 W ≈ 0,5 kW</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Bei Dachschrägen ist das Volumen über die mittlere Höhe nur dann
+          exakt, wenn die Schräge gleichmäßig von einer Wand zur anderen verläuft. Bei einem
+          Satteldach mit Kniestock zerlegen Sie den Raum besser in einen unteren Quader plus ein
+          oberes Dreiecks-Prisma.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Zentimeter und Meter mischen</h3>
+            <p>Die häufigste Fehlerquelle. Alle drei Maße müssen in derselben Einheit stehen –
+            am besten in Metern. Eine Raumhöhe von 250 cm sind 2,50 m, nicht 250 m. Wer Zentimeter
+            einträgt, erhält ein um den Faktor eine Million zu großes Volumen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Volumen mit Wohnfläche verwechseln</h3>
+            <p>Das Raumvolumen in m³ ist nicht die Wohnfläche in m². Für mietrechtlich relevante
+            Wohnflächen gilt die Wohnflächenverordnung (WoFlV) mit eigenen Regeln zur
+            Höhenstaffelung bei Dachschrägen. Nutzen Sie dafür den
+            <a href="/wohnflaeche-rechner" class="text-blue-600 hover:text-blue-800 underline">Wohnflächen-Rechner</a>.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Heizlast für bare Münze nehmen</h3>
+            <p>Die W/m³-Faustwerte sind nur eine erste Orientierung. Sie ersetzen keine
+            Heizlastberechnung nach DIN EN 12831, die Außenwände, Verglasung, Lage und Wärmebrücken
+            berücksichtigt. Für die Heizungs- oder Wärmepumpen-Auslegung immer eine Fachkraft
+            einbeziehen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Komplexe Dachformen</h3>
+            <p>Bei Gauben, mehreren Schrägen oder einem L-förmigen Grundriss liefert die einfache
+            mittlere Höhe kein exaktes Ergebnis. Zerlegen Sie den Raum in einfache Teilkörper
+            (Quader, Dreiecks-Prismen), berechnen Sie jeden einzeln und addieren Sie die Volumen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Wandfläche zu großzügig</h3>
+            <p>Die ausgegebene Wandfläche zieht nur die von Ihnen eingetragene Tür- und Fensterfläche
+            ab. Nischen, Vorsprünge oder eine offene Wandseite sind nicht berücksichtigt. Für den
+            exakten Farb- oder Tapetenbedarf nutzen Sie die spezialisierten Rechner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Raumvolumen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man das Raumvolumen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Volumen eines rechteckigen Raums ergibt sich aus
+              <strong>Länge × Breite × Raumhöhe</strong>, alle Maße in Metern. Ein Raum mit
+              5 m × 4 m × 2,50 m hat also 5 × 4 × 2,5 = 50 m³. Das entspricht 50.000 Litern Luftraum.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Liter sind ein Kubikmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Kubikmeter (1 m³) entspricht genau <strong>1.000 Litern</strong>. Es ist das
+              Volumen eines Würfels mit 1 Meter Kantenlänge. Ein Raum mit 50 m³ fasst demnach
+              50.000 Liter Luft.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich das Volumen bei einer Dachschräge?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei einer gleichmäßigen Schräge rechnen Sie mit der <strong>mittleren Raumhöhe</strong>:
+              (höchste Höhe + niedrigste Höhe) ÷ 2. Diese multiplizieren Sie mit der Grundfläche. Bei
+              4 m × 3 m und Höhen von 1,20 m bis 2,60 m ergibt sich (2,60 + 1,20) ÷ 2 = 1,90 m und
+              damit 4 × 3 × 1,9 = 22,8 m³.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Heizleistung braucht ein Raum pro Kubikmeter?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als grober Faustwert gelten je nach Dämmstandard etwa <strong>30 bis 50 W pro m³</strong>:
+              rund 50 W/m³ im unsanierten Altbau, etwa 30 W/m³ im Neubau. Das ist nur eine Orientierung.
+              Die verbindliche Heizlast wird nach DIN EN 12831 von einer Fachkraft berechnet und
+              berücksichtigt Außenwände, Fenster und Wärmebrücken.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Frischluft braucht ein Raum pro Stunde?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Frischluftbedarf ergibt sich aus <strong>Volumen × Luftwechselrate</strong>. Für
+              Wohnräume liegt die empfohlene Rate bei 0,5 bis 1,0 pro Stunde. Ein 50 m³ großer Raum
+              braucht bei n = 0,5 also etwa 25 m³ Frischluft pro Stunde. Alternativ rechnet man rund
+              30 m³/h pro anwesender Person.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist das Raumvolumen dasselbe wie die Wohnfläche?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Das Volumen wird in Kubikmetern (m³) gemessen und beschreibt den dreidimensionalen
+              Luftraum, die Wohnfläche dagegen in Quadratmetern (m²) die nutzbare Grundfläche. Für die
+              mietrechtlich verbindliche Wohnfläche gilt die Wohnflächenverordnung (WoFlV) mit eigenen
+              Regeln, etwa zur anteiligen Anrechnung von Flächen unter Dachschrägen.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/wohnflaeche-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wohnflächen-Rechner</p>
+          </a>
+          <a href="/wandfarbe-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🎨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Wandfarben-Rechner</p>
+          </a>
+          <a href="/fliesen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔲</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Fliesen-Rechner</p>
+          </a>
+          <a href="/quadratmeterpreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Quadratmeterpreis-Rechner</p>
+          </a>
+          <a href="/heizkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Heizkosten-Rechner</p>
+          </a>
+          <a href="/nebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏠</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Nebenkosten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Raumvolumen-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/raumhoehe-volumen-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man das Raumvolumen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Volumen eines rechteckigen Raums ergibt sich aus Länge × Breite × Raumhöhe, alle Maße in Metern. Ein Raum mit 5 m × 4 m × 2,50 m hat also 5 × 4 × 2,5 = 50 m³. Das entspricht 50.000 Litern Luftraum."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Liter sind ein Kubikmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Kubikmeter (1 m³) entspricht genau 1.000 Litern. Es ist das Volumen eines Würfels mit 1 Meter Kantenlänge. Ein Raum mit 50 m³ fasst demnach 50.000 Liter Luft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich das Volumen bei einer Dachschräge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer gleichmäßigen Schräge rechnen Sie mit der mittleren Raumhöhe: (höchste Höhe + niedrigste Höhe) ÷ 2. Diese multiplizieren Sie mit der Grundfläche. Bei 4 m × 3 m und Höhen von 1,20 m bis 2,60 m ergibt sich (2,60 + 1,20) ÷ 2 = 1,90 m und damit 4 × 3 × 1,9 = 22,8 m³."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Heizleistung braucht ein Raum pro Kubikmeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als grober Faustwert gelten je nach Dämmstandard etwa 30 bis 50 W pro m³: rund 50 W/m³ im unsanierten Altbau, etwa 30 W/m³ im Neubau. Das ist nur eine Orientierung. Die verbindliche Heizlast wird nach DIN EN 12831 von einer Fachkraft berechnet und berücksichtigt Außenwände, Fenster und Wärmebrücken."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Frischluft braucht ein Raum pro Stunde?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Frischluftbedarf ergibt sich aus Volumen × Luftwechselrate. Für Wohnräume liegt die empfohlene Rate bei 0,5 bis 1,0 pro Stunde. Ein 50 m³ großer Raum braucht bei n = 0,5 also etwa 25 m³ Frischluft pro Stunde. Alternativ rechnet man rund 30 m³/h pro anwesender Person."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist das Raumvolumen dasselbe wie die Wohnfläche?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Das Volumen wird in Kubikmetern (m³) gemessen und beschreibt den dreidimensionalen Luftraum, die Wohnfläche dagegen in Quadratmetern (m²) die nutzbare Grundfläche. Für die mietrechtlich verbindliche Wohnfläche gilt die Wohnflächenverordnung (WoFlV) mit eigenen Regeln, etwa zur anteiligen Anrechnung von Flächen unter Dachschrägen."
+        }
+      }
+    ]
+  })} />
+</Layout>

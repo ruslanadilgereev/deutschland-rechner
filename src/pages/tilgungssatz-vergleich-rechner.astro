@@ -1,0 +1,462 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TilgungssatzVergleichRechner from '../components/rechner/TilgungssatzVergleichRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Tilgungssatz-Vergleich-Rechner 2026 – welche Tilgung ist richtig?";
+const description = "Tilgungssätze 1, 2, 3 und 4 % direkt vergleichen: Monatsrate, Restschuld am Zinsbindungsende, Volltilgungsdauer und Gesamtzinsen auf einen Blick. Finden Sie die optimale Anfangstilgung für Ihre Baufinanzierung.";
+const keywords = "Tilgungssatz Vergleich, welche Tilgung, Tilgung 2 oder 3 Prozent, optimale Tilgung, Anfangstilgung berechnen, Tilgungssatz Baufinanzierung, Tilgungsrate finden, Tilgung vergleichen Rechner";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Tilgungssatz-Vergleich-Rechner", url: "/tilgungssatz-vergleich-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Tilgungssatz-Vergleich-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Tilgungssatz-Vergleich-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Welche Tilgung ist die richtige für Sie?</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 6. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Annuitätendarlehen-Finanzmathematik. Monatsrate = Darlehen × (Sollzins % + Anfangstilgung %) ÷ 12; Restschuld am Zinsbindungsende über die geschlossene Annuitätenformel R = Darlehen × (1 + i)<sup>n</sup> − Rate × ((1 + i)<sup>n</sup> − 1) ÷ i, mit i = Sollzins ÷ 12.</p>
+            <p class="mb-1"><strong>Voreinstellung:</strong> 300.000 € Darlehen, 3,5 % Sollzins, 10 Jahre Zinsbindung, Vergleich der Tilgungssätze 1/2/3/4 % – alle Werte frei anpassbar.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Sondertilgungen, Tilgungssatzwechsel, Bereitstellungszinsen sowie der Zinssatz der Anschlussfinanzierung. Der Rechner unterstellt einen über die gesamte Laufzeit konstanten Sollzins. Keine Finanzberatung, Angaben ohne Gewähr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TilgungssatzVergleichRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Welche Tilgung ist die richtige? Tilgungssätze im Vergleich</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die Frage „2 oder 3 Prozent Tilgung?“ ist eine der wichtigsten Entscheidungen bei jeder
+            Baufinanzierung – und sie wird oft unterschätzt. Mit dem
+            <strong>Tilgungssatz-Vergleich-Rechner</strong> stellen Sie mehrere Anfangstilgungssätze
+            direkt nebeneinander und sehen sofort, wie sich Ihre Wahl auf <strong>Monatsrate</strong>,
+            <strong>Restschuld am Zinsbindungsende</strong>, <strong>Laufzeit bis zur Volltilgung</strong>
+            und <strong>Gesamtzinslast</strong> auswirkt. Anders als der
+            <a href="/tilgungsplan-rechner" class="text-blue-600 hover:text-blue-800 underline">Tilgungsplan-Rechner</a>,
+            der ein einzelnes Szenario Monat für Monat aufschlüsselt, beantwortet dieser Rechner die
+            vorgelagerte Frage: <em>Welche Tilgung soll ich überhaupt wählen?</em>
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeutet der Tilgungssatz?</h3>
+          <p>
+            Beim <strong>Annuitätendarlehen</strong> zahlen Sie jeden Monat eine gleichbleibende Rate –
+            die Annuität. Sie setzt sich aus einem <strong>Zinsanteil</strong> und einem
+            <strong>Tilgungsanteil</strong> zusammen. Der <strong>anfängliche Tilgungssatz</strong> gibt
+            an, welcher Prozentsatz der Darlehenssumme im ersten Jahr getilgt wird. Die Anfangsannuität
+            ergibt sich aus Sollzins plus Anfangstilgung: Bei 3,5 % Zins und 2 % Tilgung sind das 5,5 %
+            der Darlehenssumme pro Jahr. Da mit jeder Rate die Restschuld sinkt, fällt der Zinsanteil
+            Monat für Monat – und weil die Rate konstant bleibt, steigt der Tilgungsanteil entsprechend.
+            Die Tilgung beschleunigt sich also von selbst.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel hinter dem Vergleich</h3>
+          <p>Der Rechner nutzt die klassische Annuitäten-Finanzmathematik:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Monatsrate</strong> = Darlehen × (Sollzins % + Tilgung %) ÷ 12</li>
+              <li><strong>Monatszins i</strong> = Sollzins p.a. ÷ 12 (als Dezimalzahl)</li>
+              <li><strong>Restschuld nach n Monaten</strong> = Darlehen × (1 + i)<sup>n</sup> − Rate × ((1 + i)<sup>n</sup> − 1) ÷ i</li>
+              <li><strong>Monate bis Volltilgung</strong> = ln(Rate ÷ (Rate − Darlehen × i)) ÷ ln(1 + i), aufgerundet</li>
+              <li><strong>Gesamtzinsen</strong> = Summe aller Raten (inkl. gekappter Schlussrate) − Darlehen</li>
+            </ul>
+          </div>
+          <p>
+            Wichtig: Diese Werte gelten unter der Annahme, dass der heutige Sollzins über die gesamte
+            Rückzahlung gilt. Real ist Ihr Zins nur während der vereinbarten <strong>Zinsbindung</strong>
+            (meist 10, 15 oder 20 Jahre) garantiert. Deshalb gibt der Rechner zusätzlich die
+            <strong>Restschuld am Zinsbindungsende</strong> aus – das ist der Betrag, den Sie nach Ablauf
+            der Zinsbindung neu finanzieren müssen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Höhere Tilgung = mehr Rate, aber weniger Zinsen</h3>
+          <p>
+            Eine höhere Anfangstilgung bedeutet eine höhere Monatsrate, aber gleich zwei Vorteile: Sie
+            sind <strong>deutlich schneller schuldenfrei</strong> und zahlen über die Laufzeit
+            <strong>spürbar weniger Zinsen</strong>. Faustregel vieler Finanzierungsberater: In einer
+            Niedrigzinsphase mindestens 2 %, bei höheren Zinsen wie 2026 eher 3 % Anfangstilgung, sofern
+            es das Haushaltsbudget erlaubt. Wer die Restschuld am Zinsbindungsende möglichst klein halten
+            will – um das Anschlussfinanzierungsrisiko zu reduzieren – wählt tendenziell höher.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tilgung und Zinsniveau hängen zusammen</h3>
+          <p>
+            Ein wichtiger Effekt: Bei niedrigem Zins braucht es eine höhere Anfangstilgung, um in
+            vertretbarer Zeit schuldenfrei zu werden, weil ein größerer Teil der Rate von Anfang an in die
+            Tilgung fließt – aber die absolute Tilgung pro Prozentpunkt langsamer wirkt. Bei hohem Zins
+            ist der Zinsanteil zu Beginn so groß, dass eine niedrige Tilgung (1 %) zu einer extrem langen
+            Laufzeit führt. Faustformel: Sollzins plus Tilgung sollten zusammen ungefähr eine Annuität
+            ergeben, die das Darlehen in 30 bis 35 Jahren vollständig zurückführt. Genau das macht der
+            Vergleich oben sichtbar.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtwert-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚖️ Tilgungssätze im direkten Vergleich</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Beispiel: 300.000 € Darlehen, 3,5 % Sollzins. So wirkt sich der Tilgungssatz auf Rate,
+          Restschuld nach 10 Jahren Zinsbindung und Gesamtkosten aus (konstanter Zins angenommen).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Tilgung</th>
+                <th class="py-2 px-2 font-semibold text-right">Rate/Monat</th>
+                <th class="py-2 px-2 font-semibold text-right">Restschuld n. 10 J.</th>
+                <th class="py-2 px-2 font-semibold text-right">Volltilgung</th>
+                <th class="py-2 pl-2 font-semibold text-right">Zinsen ges.</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700">
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">1 %</td><td class="py-2 px-2 text-right">1.125 €</td><td class="py-2 px-2 text-right">264.142 €</td><td class="py-2 px-2 text-right">43 J. 1 M.</td><td class="py-2 pl-2 text-right">280.990 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">2 %</td><td class="py-2 px-2 text-right">1.375 €</td><td class="py-2 px-2 text-right">228.284 €</td><td class="py-2 px-2 text-right">29 J.</td><td class="py-2 pl-2 text-right">177.593 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-2">3 %</td><td class="py-2 px-2 text-right">1.625 €</td><td class="py-2 px-2 text-right">192.426 €</td><td class="py-2 px-2 text-right">22 J. 2 M.</td><td class="py-2 pl-2 text-right">131.406 €</td></tr>
+              <tr><td class="py-2 pr-2">4 %</td><td class="py-2 px-2 text-right">1.875 €</td><td class="py-2 px-2 text-right">156.567 €</td><td class="py-2 px-2 text-right">18 J.</td><td class="py-2 pl-2 text-right">104.695 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Modellwerte unter Annahme konstanter 3,5 % Sollzins über die gesamte Laufzeit. Quellen:
+          haushaltsfinanzen.de, vergleich.de, Interhyp (Stand 2026).
+        </p>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Drei typische Entscheidungssituationen – jeweils durchgerechnet:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: 2 % oder 3 % Tilgung bei 300.000 € (3,5 % Zins)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Rate bei 2 %:</div>
+              <div class="font-medium text-gray-800">1.375,00 € → Volltilgung 29 J.</div>
+              <div class="text-gray-600">Rate bei 3 %:</div>
+              <div class="font-medium text-gray-800">1.625,00 € → Volltilgung 22 J. 2 M.</div>
+              <div class="text-gray-600">Zinsersparnis bei 3 %:</div>
+              <div class="font-medium text-green-700">177.593 € − 131.406 € = 46.187 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">250 € mehr Rate pro Monat sparen über die Laufzeit rund 46.000 € Zinsen und verkürzen die Schuldenfreiheit um fast 7 Jahre.</p>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Restschuld nach 10 Jahren Zinsbindung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Darlehen / Zins:</div>
+              <div class="font-medium text-gray-800">300.000 € / 3,5 %</div>
+              <div class="text-gray-600">Restschuld bei 2 %:</div>
+              <div class="font-medium text-gray-800">228.284 €</div>
+              <div class="text-gray-600">Restschuld bei 4 %:</div>
+              <div class="font-medium text-gray-800">156.567 €</div>
+              <div class="text-gray-600">Differenz:</div>
+              <div class="font-medium text-green-700">71.717 € weniger anschlussfinanzieren</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Wer höher tilgt, muss am Ende der Zinsbindung deutlich weniger neu finanzieren – das senkt das Zinsänderungsrisiko erheblich.</p>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: 250.000 €, 4,0 % Zins, 15 Jahre Zinsbindung</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Rate bei 2 %:</div>
+              <div class="font-medium text-gray-800">1.250,00 € → Volltilgung 27 J. 7 M.</div>
+              <div class="text-gray-600">Rate bei 3 %:</div>
+              <div class="font-medium text-gray-800">1.458,33 € → Volltilgung 21 J. 3 M.</div>
+              <div class="text-gray-600">Restschuld n. 15 J. (2 % / 3 %):</div>
+              <div class="font-medium text-gray-800">147.462 € / 96.193 €</div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Bei höherem Zinsniveau wirkt eine zusätzliche Tilgung noch stärker: 3 % statt 2 % senken die Restschuld nach 15 Jahren um über 51.000 €.</p>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Je höher der Sollzins, desto wichtiger eine ausreichende
+          Anfangstilgung. Bei 1 % Tilgung und 3,5 % Zins laufen Sie über 43 Jahre – das überschreitet bei
+          vielen Käufern das Rentenalter. Achten Sie darauf, bei Renteneintritt schuldenfrei zu sein.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Nur auf die niedrige Rate schauen</h3>
+            <p>Eine Tilgung von 1 % wirkt verlockend, weil die Monatsrate am niedrigsten ist. Doch bei
+            3,5 % Zins läuft die Rückzahlung dann über 43 Jahre und kostet fast das Doppelte des Darlehens
+            an Zinsen. Die niedrigste Rate ist selten die günstigste Finanzierung.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Restschuld am Bindungsende ignorieren</h3>
+            <p>Die ausgewiesene Volltilgungsdauer unterstellt einen konstanten Zins. In Wirklichkeit
+            endet die Zinsbindung nach 10, 15 oder 20 Jahren. Entscheidend ist deshalb, wie hoch die
+            Restschuld dann ist – denn sie muss zu einem unbekannten Zins neu finanziert werden.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Tilgung und Zinsbindung verwechseln</h3>
+            <p>Der Tilgungssatz bestimmt, wie schnell Sie zurückzahlen. Die Zinsbindung bestimmt nur, wie
+            lange Ihr Zins garantiert ist. Beides sind getrennte Größen – eine kurze Zinsbindung macht die
+            Schulden nicht schneller weg, sie erhöht nur das Risiko der Anschlussfinanzierung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Sondertilgung statt höherer Anfangstilgung</h3>
+            <p>Wer flexibel bleiben will, wählt eine moderate Anfangstilgung und nutzt vereinbarte
+            Sondertilgungsrechte (meist bis 5 % pro Jahr). Das senkt die Pflichtrate, erlaubt aber bei
+            Bonuszahlungen schnelleres Tilgen. Den Effekt rechnet der
+            <a href="/tilgungsplan-rechner" class="text-blue-600 hover:text-blue-800 underline">Tilgungsplan-Rechner</a> durch.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Tilgung deckt die Zinsen nicht</h3>
+            <p>Ist die gewählte Rate kleiner als der monatliche Zinsbetrag (Restschuld × i), tilgt sich
+            das Darlehen nicht – die Restschuld würde sogar wachsen. Der Rechner weist diesen Fall
+            ausdrücklich aus. Banken verlangen daher in der Regel mindestens 1 % Anfangstilgung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Tilgungssatz</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Tilgung ist sinnvoll – 2 oder 3 Prozent?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Faustregel lautet: mindestens 2 % Anfangstilgung, bei höheren Zinsen wie 2026 eher
+              3 %, sofern es das Budget erlaubt. Bei 300.000 € und 3,5 % Sollzins kostet 2 % Tilgung rund
+              1.375 € im Monat (Volltilgung nach 29 Jahren), 3 % rund 1.625 € (Volltilgung nach gut 22
+              Jahren). Die höhere Tilgung spart hier über die Laufzeit rund 46.000 € Zinsen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird der Tilgungssatz in die Monatsrate umgerechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Anfangsannuität pro Jahr ergibt sich aus Darlehen × (Sollzins % + Tilgung %), geteilt
+              durch 12 ergibt das die konstante Monatsrate. Beispiel: 300.000 € × (3,5 % + 2 %) ÷ 12 =
+              300.000 × 0,055 ÷ 12 = 1.375 € pro Monat. Die Rate bleibt über die gesamte Laufzeit gleich,
+              nur das Verhältnis von Zins zu Tilgung verschiebt sich.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert mit der Restschuld nach der Zinsbindung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach Ablauf der Zinsbindung – meist 10, 15 oder 20 Jahre – ist das Darlehen in der Regel
+              noch nicht vollständig getilgt. Die verbleibende Restschuld muss zu dann gültigen Konditionen
+              neu finanziert werden (Anschlussfinanzierung). Bei 300.000 €, 3,5 % Zins und 2 % Tilgung
+              verbleiben nach 10 Jahren rund 228.000 €, bei 4 % Tilgung nur rund 157.000 €. Eine höhere
+              Tilgung senkt also das Zinsänderungsrisiko.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum spart eine höhere Tilgung Zinsen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zinsen werden immer auf die aktuelle Restschuld berechnet. Wer mehr tilgt, senkt die
+              Restschuld schneller, sodass künftige Zinsen auf einen kleineren Betrag anfallen. Zusätzlich
+              verkürzt sich die Laufzeit. Bei 300.000 € und 3,5 % Zins fallen über die gesamte Laufzeit
+              bei 1 % Tilgung rund 281.000 € Zinsen an, bei 4 % nur rund 105.000 € – also etwa 176.000 €
+              weniger.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich den Tilgungssatz später ändern?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Viele Banken bieten kostenlose Tilgungssatzwechsel an, meist ein- bis dreimal während der
+              Zinsbindung, oft in einem Korridor von etwa 1 % bis 5 %. Zusätzlich erlauben viele Verträge
+              jährliche Sondertilgungen von bis zu 5 % der Darlehenssumme. Beides sollte beim Vertrag
+              vereinbart werden – nachträglich ist es selten möglich. Der Rechner geht von einem
+              konstanten Tilgungssatz aus.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist eine hohe Tilgung immer besser?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Finanziell ja – mehr Tilgung bedeutet weniger Zinsen und schnellere Schuldenfreiheit.
+              Aber die höhere Rate muss dauerhaft sicher tragbar sein, auch bei Einkommensausfall oder
+              unerwarteten Ausgaben. Empfehlenswert ist ein Tilgungssatz, der das Darlehen bis zum
+              Rentenbeginn vollständig zurückführt, ohne den finanziellen Spielraum zu eng zu machen. Ein
+              Notgroschen sollte trotz hoher Tilgung erhalten bleiben.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/tilgungsplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📉</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Tilgungsplan-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/eigenkapital-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Eigenkapital-Rechner</p>
+          </a>
+          <a href="/kredit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kredit-Rechner</p>
+          </a>
+          <a href="/zinseszins-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Zinseszins-Rechner</p>
+          </a>
+          <a href="/vorfaelligkeitsentschaedigung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📑</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Vorfälligkeitsentschädigung</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tilgungssatz-Vergleich-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/tilgungssatz-vergleich-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Tilgung ist sinnvoll – 2 oder 3 Prozent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Faustregel lautet: mindestens 2 % Anfangstilgung, bei höheren Zinsen wie 2026 eher 3 %, sofern es das Budget erlaubt. Bei 300.000 € und 3,5 % Sollzins kostet 2 % Tilgung rund 1.375 € im Monat (Volltilgung nach 29 Jahren), 3 % rund 1.625 € (Volltilgung nach gut 22 Jahren). Die höhere Tilgung spart hier über die Laufzeit rund 46.000 € Zinsen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird der Tilgungssatz in die Monatsrate umgerechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Anfangsannuität pro Jahr ergibt sich aus Darlehen × (Sollzins % + Tilgung %), geteilt durch 12 ergibt das die konstante Monatsrate. Beispiel: 300.000 € × (3,5 % + 2 %) ÷ 12 = 300.000 × 0,055 ÷ 12 = 1.375 € pro Monat. Die Rate bleibt über die gesamte Laufzeit gleich, nur das Verhältnis von Zins zu Tilgung verschiebt sich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert mit der Restschuld nach der Zinsbindung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach Ablauf der Zinsbindung – meist 10, 15 oder 20 Jahre – ist das Darlehen in der Regel noch nicht vollständig getilgt. Die verbleibende Restschuld muss zu dann gültigen Konditionen neu finanziert werden (Anschlussfinanzierung). Bei 300.000 €, 3,5 % Zins und 2 % Tilgung verbleiben nach 10 Jahren rund 228.000 €, bei 4 % Tilgung nur rund 157.000 €. Eine höhere Tilgung senkt also das Zinsänderungsrisiko."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum spart eine höhere Tilgung Zinsen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zinsen werden immer auf die aktuelle Restschuld berechnet. Wer mehr tilgt, senkt die Restschuld schneller, sodass künftige Zinsen auf einen kleineren Betrag anfallen. Zusätzlich verkürzt sich die Laufzeit. Bei 300.000 € und 3,5 % Zins fallen über die gesamte Laufzeit bei 1 % Tilgung rund 281.000 € Zinsen an, bei 4 % nur rund 105.000 € – also etwa 176.000 € weniger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich den Tilgungssatz später ändern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Viele Banken bieten kostenlose Tilgungssatzwechsel an, meist ein- bis dreimal während der Zinsbindung, oft in einem Korridor von etwa 1 % bis 5 %. Zusätzlich erlauben viele Verträge jährliche Sondertilgungen von bis zu 5 % der Darlehenssumme. Beides sollte beim Vertrag vereinbart werden – nachträglich ist es selten möglich. Der Rechner geht von einem konstanten Tilgungssatz aus."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist eine hohe Tilgung immer besser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Finanziell ja – mehr Tilgung bedeutet weniger Zinsen und schnellere Schuldenfreiheit. Aber die höhere Rate muss dauerhaft sicher tragbar sein, auch bei Einkommensausfall oder unerwarteten Ausgaben. Empfehlenswert ist ein Tilgungssatz, der das Darlehen bis zum Rentenbeginn vollständig zurückführt, ohne den finanziellen Spielraum zu eng zu machen. Ein Notgroschen sollte trotz hoher Tilgung erhalten bleiben."
+        }
+      }
+    ]
+  })} />
+</Layout>
