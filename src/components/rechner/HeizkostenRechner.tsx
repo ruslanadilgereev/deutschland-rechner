@@ -445,14 +445,6 @@ export default function HeizkostenRechner() {
         </div>
       </div>
 
-      {/* Affiliate-Banner direkt nach Result */}
-      <aside className="-mt-2 mb-3 text-center">
-        <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-0.5 leading-tight">Anzeige</p>
-        <a href="https://a.check24.net/misc/click.php?pid=1171454&aid=317&deep=gasanbieter-wechseln&cat=3&tid=heizkostenGasInline" target="_blank" rel="nofollow sponsored noopener noreferrer" className="inline-block max-w-full">
-          <img src="https://a.check24.net/misc/view.php?pid=1171454&aid=317&cat=3" width={728} height={90} alt="Gas-Anbieter wechseln · CHECK24" loading="lazy" className="max-w-full h-auto block mx-auto" />
-        </a>
-      </aside>
-
 {/* CO2 und Umwelt */}
       <div className="bg-white rounded-2xl shadow-lg p-5 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">🌍 CO₂-Emissionen</h3>
