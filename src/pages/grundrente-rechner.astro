@@ -2,6 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import GrundrenteRechner from '../components/rechner/GrundrenteRechner';
 
+// PFLEGE-TASK (Rentenanpassung 01.07.2026): Neuen aktuellen Rentenwert erst NACH amtlicher
+// Verkündung (Rentenwertbestimmungsverordnung / DRV) eintragen — nicht schätzen. Dann synchron
+// an ALLEN Stellen ändern: GRUNDRENTE_2026.rentenwert in GrundrenteRechner.tsx, Beispielbox
+// (499,68€), Max-Zuschlag-Absatz (ca. 500€), FAQ "Wie wird der Grundrentenzuschlag berechnet?"
+// (40,79€) sichtbar UND im FAQPage-Schema, sowie die sichtbare Stand-Zeile.
+// Achtung: /renten-rechner nennt in seiner Description bereits "ab 07/2026: 42,52€" — dort beim
+// Update denselben amtlichen Verifikations-Check fahren, sonst widersprechen sich zwei Seiten.
 const title = "Grundrente-Rechner 2025 & 2026 – Grundrentenzuschlag berechnen";
 const description = "Grundrente-Rechner 2026: Berechne deinen Grundrentenzuschlag mit Einkommensprüfung. Voraussetzungen, Freibeträge (1.492€) und Entgeltpunkte-Aufwertung erklärt!";
 const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berechnen, Einkommensprüfung, Freibetrag Grundrente, 33 Jahre Grundrentenzeiten, Entgeltpunkte Aufwertung, Grundrente Voraussetzungen";
@@ -50,7 +57,10 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
             die lange gearbeitet, aber wenig verdient haben. Mit unserem <strong>Grundrente-Rechner</strong> 
             berechnen Sie Ihren möglichen Grundrentenzuschlag und sehen, wie die Einkommensprüfung wirkt.
           </p>
-          
+          <p class="text-xs text-gray-500">
+            Stand: Januar 2026 · Rentenwert 40,79€ · Freibeträge 1.492€/2.327€
+          </p>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzungen für die Grundrente</h3>
           <div class="bg-purple-50 p-4 rounded-lg my-4">
             <ul class="space-y-2 text-sm">
@@ -63,7 +73,7 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">So wird der Grundrentenzuschlag berechnet</h3>
           <p>
-            Die Berechnung erfolgt in mehreren Schritten:
+            Die Berechnung der Grundrente erfolgt in fünf Schritten:
           </p>
           <ol class="list-decimal pl-5 space-y-2">
             <li><strong>Verdopplung:</strong> Ihre durchschnittlichen Entgeltpunkte werden verdoppelt</li>
@@ -77,8 +87,13 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
             Beispiel: 0,4 EP × 2 = 0,8 EP → Aufwertung: 0,4 EP → −12,5% = 0,35 EP/Jahr<br/>
             Bei 35 Jahren: 0,35 × 35 = 12,25 EP × 40,79€ = <strong>499,68€/Monat</strong>
           </div>
+          <p class="text-sm">
+            💡 Durchschnittliche Entgeltpunkte unbekannt? Mit dem
+            <a href="/rentenpunkte-rechner" class="text-purple-600 hover:underline">Rentenpunkte-Rechner</a>
+            ermitteln Sie Ihre Entgeltpunkte aus Ihrem Bruttoeinkommen.
+          </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibeträge bei der Einkommensprüfung 2026</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einkommensprüfung 2026: Freibeträge beim Grundrentenzuschlag</h3>
           <p>
             Der Grundrentenzuschlag wird nach Einkommen gekürzt:
           </p>
@@ -90,6 +105,48 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
               <li><strong>Stufe 2:</strong> 100% Anrechnung darüber</li>
             </ul>
           </div>
+          <p>
+            Daraus ergeben sich diese absoluten Grenzen (zu versteuerndes Einkommen pro Monat):
+          </p>
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm border border-gray-200 rounded-lg">
+              <thead>
+                <tr class="bg-gray-50 text-left">
+                  <th class="p-2 border-b border-gray-200">Anrechnung</th>
+                  <th class="p-2 border-b border-gray-200">Alleinstehende</th>
+                  <th class="p-2 border-b border-gray-200">Paare</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-2 border-b border-gray-100"><strong>Keine</strong> (voller Zuschlag)</td>
+                  <td class="p-2 border-b border-gray-100">bis 1.492€</td>
+                  <td class="p-2 border-b border-gray-100">bis 2.327€</td>
+                </tr>
+                <tr>
+                  <td class="p-2 border-b border-gray-100"><strong>60%</strong> des übersteigenden Einkommens</td>
+                  <td class="p-2 border-b border-gray-100">1.492€ – 1.909€</td>
+                  <td class="p-2 border-b border-gray-100">2.327€ – 2.744€</td>
+                </tr>
+                <tr>
+                  <td class="p-2"><strong>100%</strong> des übersteigenden Einkommens</td>
+                  <td class="p-2">über 1.909€</td>
+                  <td class="p-2">über 2.744€</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>Rechenbeispiel 1 (Alleinstehend, 1.700€ Einkommen):</strong> 208€ liegen über dem
+            Freibetrag von 1.492€. Davon werden 60% angerechnet = 124,80€. Vom maximalen Zuschlag
+            (499,68€) bleiben <strong>374,88€/Monat</strong>.
+          </p>
+          <p>
+            <strong>Rechenbeispiel 2 (Alleinstehend, 2.000€ Einkommen):</strong> 508€ liegen über dem
+            Freibetrag. Die ersten 417€ werden zu 60% angerechnet (250,20€), die restlichen 91€ zu
+            100% (91,00€) – Anrechnung gesamt 341,20€. Vom maximalen Zuschlag (499,68€) bleiben
+            <strong>158,48€/Monat</strong>.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Was zählt als Grundrentenzeit?</h3>
           <ul class="list-disc pl-5 space-y-1">
@@ -118,8 +175,9 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
             <li>Einkommen unter dem Freibetrag</li>
           </ul>
           <p>
-            Das ergibt <strong>ca. 500€/Monat</strong> Grundrentenzuschlag. Bei 0,3 EP sind es noch 
-            ca. 375€/Monat, bei 0,5 EP ca. 375€/Monat.
+            Das ergibt <strong>ca. 500€/Monat</strong> Grundrentenzuschlag. Bei 0,3 EP sind es noch
+            ca. 375€/Monat, bei 0,5 EP ca. 375€/Monat – kein Tippfehler: Die Aufwertung ist um
+            0,4 EP herum symmetrisch, beide Werte sind korrekt.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundrente vs. Grundsicherung</h3>
@@ -146,6 +204,10 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
           <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">👴</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+          <a href="/rentenpunkte-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⭐</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Rentenpunkte-Rechner</p>
           </a>
           <a href="/witwenrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
             <span class="text-2xl">💔</span>
@@ -197,6 +259,8 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
           <ul class="text-sm text-gray-600 space-y-1">
             <li>• <a href="https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Grundrente/grundrente_node.html" class="text-purple-600 hover:underline" target="_blank" rel="noopener">Deutsche Rentenversicherung: Grundrente</a></li>
             <li>• <a href="https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/Grundrente/grundrente.html" class="text-purple-600 hover:underline" target="_blank" rel="noopener">BMAS: Grundrente</a></li>
+            <li>• <a href="https://www.gesetze-im-internet.de/sgb_6/__76g.html" class="text-purple-600 hover:underline" target="_blank" rel="noopener">§ 76g SGB VI – Zuschlag an Entgeltpunkten für langjährige Versicherung (Grundrentenzuschlag)</a></li>
+            <li>• <a href="https://www.gesetze-im-internet.de/sgb_6/__97a.html" class="text-purple-600 hover:underline" target="_blank" rel="noopener">§ 97a SGB VI – Einkommensanrechnung beim Grundrentenzuschlag</a></li>
             <li>• Grundrentengesetz (GruReG) vom 12.08.2020</li>
           </ul>
         </div>
@@ -230,6 +294,12 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
             <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Freibetrag bei der Grundrente 2026?</summary>
             <div class="px-4 pb-4 text-sm text-gray-600">
               <p>Der Freibetrag für die Einkommensprüfung liegt 2026 bei 1.492€ pro Monat für Alleinstehende und 2.327€ für Paare (zu versteuerndes Einkommen). Einkommen darüber wird zu 60% (bis zur nächsten Stufe) bzw. 100% auf den Grundrentenzuschlag angerechnet.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch darf das Einkommen bei der Grundrente sein?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Den vollen Grundrentenzuschlag gibt es 2026 bis zu einem zu versteuernden Einkommen von 1.492€ pro Monat (Alleinstehende) bzw. 2.327€ (Paare). Einkommen bis 417€ über dem Freibetrag – also bis 1.909€ bzw. 2.744€ – wird zu 60% angerechnet, darüber zu 100%. Der Zuschlag sinkt dadurch schrittweise und kann ganz entfallen.</p>
             </div>
           </details>
           <details class="border border-gray-200 rounded-lg">
@@ -310,6 +380,14 @@ const keywords = "Grundrente Rechner, Grundrentenzuschlag 2026, Grundrente berec
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Der Freibetrag für die Einkommensprüfung liegt 2026 bei 1.492€ pro Monat für Alleinstehende und 2.327€ für Paare (zu versteuerndes Einkommen). Einkommen darüber wird zu 60% (bis zur nächsten Stufe) bzw. 100% auf den Grundrentenzuschlag angerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch darf das Einkommen bei der Grundrente sein?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Den vollen Grundrentenzuschlag gibt es 2026 bis zu einem zu versteuernden Einkommen von 1.492€ pro Monat (Alleinstehende) bzw. 2.327€ (Paare). Einkommen bis 417€ über dem Freibetrag – also bis 1.909€ bzw. 2.744€ – wird zu 60% angerechnet, darüber zu 100%. Der Zuschlag sinkt dadurch schrittweise und kann ganz entfallen."
         }
       },
       {

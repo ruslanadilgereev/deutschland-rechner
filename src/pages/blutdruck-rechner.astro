@@ -4,7 +4,7 @@ import BlutdruckRechner from '../components/rechner/BlutdruckRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
 const title = "Blutdruck-Rechner – Werte bewerten nach WHO/ESH";
-const description = "Blutdruck-Rechner: Werte nach WHO/ESH-Klassifikation bewerten. Mit Pulsdruck, Risikobewertung & Empfehlungen. Kostenlos!";
+const description = "Blutdruck-Rechner mit Puls: Werte eingeben & nach WHO/ESH bewerten. Mit Pulsdruck, MAP & Blutdruck-Tabelle nach Alter. Kostenlos!";
 const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle, systolisch diastolisch, normaler Blutdruck, Bluthochdruck Werte, Hypotonie, Hypertonie, Blutdruck messen, optimaler Blutdruck, Pulsdruck berechnen, Blutdruck Alter";
 ---
 
@@ -31,7 +31,7 @@ const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle,
           <span class="text-4xl">❤️</span>
           <div>
             <h1 class="text-2xl font-bold">Blutdruck-Rechner</h1>
-            <p class="text-red-100 text-sm">Blutdruckwerte bewerten – kostenlos & sofort</p>
+            <p class="text-red-100 text-sm">Blutdruckwerte eingeben & bewerten – kostenlos & sofort</p>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@ const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle,
         <div class="flex items-start gap-3">
           <span class="text-xl mt-0.5">✅</span>
           <div>
-            <p class="font-semibold mb-1">Zuletzt aktualisiert am 4. Juni 2026</p>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 10. Juni 2026</p>
             <p class="mb-1"><strong>Grundlage:</strong> Klassifikationsgrenzen der ESC/ESH-Leitlinie und der Deutschen Hochdruckliga (DHL). Optimal &lt;120/80, Hypertonie ab 140/90 mmHg bei Praxismessung. Hinweis: Die ESC-Leitlinie 2024 führt zusätzlich die Kategorie „erhöht“ (120–139/70–89 mmHg) ein – diese Seite nutzt die etablierte 6-stufige Tabelle (optimal bis Grad 3).</p>
             <p class="mb-1"><strong>Berücksichtigt:</strong> systolischer und diastolischer Wert (es zählt immer der höhere der beiden für die Einstufung), Pulsdruck (Differenz syst.–diast.) sowie eine grobe Risiko-Einordnung.</p>
             <p><strong>Nicht berücksichtigt:</strong> Einzelmessung statt 24-h-Langzeitmessung, Weißkittel-/maskierte Hypertonie, Vorerkrankungen, Medikamente, Schwangerschaft und Kinder. Der Rechner ersetzt keine ärztliche Diagnose.</p>
@@ -71,7 +71,8 @@ const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle,
             <strong>„hochnormal“</strong> – also noch kein Bluthochdruck, aber auch kein Grund, das Thema abzuhaken.
             In Deutschland hat etwa jeder dritte Erwachsene erhöhte Werte, viele davon unbemerkt. Der Rechner
             zeigt Ihnen zusätzlich den Pulsdruck und eine grobe Risiko-Einordnung – ersetzt aber, gerade bei
-            Grenzwerten, keine ärztliche Abklärung.
+            Grenzwerten, keine ärztliche Abklärung. Optional können Sie auch Ihren <strong>Puls mit eingeben</strong>:
+            Der Rechner ordnet den Ruhepuls direkt mit ein (normal sind 60-100 Schläge pro Minute).
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeuten systolisch und diastolisch?</h3>
@@ -120,16 +121,26 @@ const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle,
             <li><strong>Schwangere:</strong> Engmaschige Überwachung ab 140/90 mmHg</li>
           </ul>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Blutdruck nach Alter</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Blutdruck nach Alter: Tabelle mit Durchschnittswerten</h3>
           <p>
             Im Laufe des Lebens verändert sich der Blutdruck:
           </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>20-30 Jahre:</strong> Durchschnitt etwa 120/80 mmHg</li>
-            <li><strong>40-50 Jahre:</strong> Leichter Anstieg auf ~125/85 mmHg normal</li>
-            <li><strong>60-70 Jahre:</strong> Häufig 130-140/85-90 mmHg</li>
-            <li><strong>Über 80:</strong> Zielwert unter 150/90 mmHg (individuell)</li>
-          </ul>
+          <div class="overflow-x-auto my-4">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-4 py-2 text-left">Alter</th>
+                  <th class="px-4 py-2 text-left">Durchschnittlicher Blutdruck</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b"><td class="px-4 py-2">20-30 Jahre</td><td class="px-4 py-2">Durchschnitt etwa 120/80 mmHg</td></tr>
+                <tr class="border-b"><td class="px-4 py-2">40-50 Jahre</td><td class="px-4 py-2">Leichter Anstieg auf ~125/85 mmHg normal</td></tr>
+                <tr class="border-b"><td class="px-4 py-2">60-70 Jahre</td><td class="px-4 py-2">Häufig 130-140/85-90 mmHg</td></tr>
+                <tr><td class="px-4 py-2">Über 80</td><td class="px-4 py-2">Zielwert unter 150/90 mmHg (individuell)</td></tr>
+              </tbody>
+            </table>
+          </div>
           <p>
             <strong>Wichtig:</strong> Auch bei älteren Menschen ist ein niedrigerer Blutdruck (wenn vertragen) 
             meist vorteilhaft für die Herzgesundheit.
@@ -148,7 +159,28 @@ const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle,
             <li><strong>Erhöht (&gt;60 mmHg):</strong> Kann auf steife Arterien hindeuten (Arteriosklerose)</li>
             <li><strong>Zu niedrig (&lt;25 mmHg):</strong> Kann auf Herzprobleme hinweisen</li>
           </ul>
-          
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mittlerer arterieller Druck (MAP)</h3>
+          <p>
+            Der <strong>mittlere arterielle Druck (MAP)</strong> beschreibt den durchschnittlichen Druck
+            im Kreislauf und wird vom Rechner zusätzlich ausgegeben. Er berechnet sich aus dem
+            diastolischen Wert und dem Pulsdruck:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4">
+            <code class="text-lg font-mono">MAP = Diastolisch + Pulsdruck / 3</code>
+          </div>
+          <p>
+            Als Normalbereich gelten <strong>70-100 mmHg</strong>. Beispiel: Bei 120/80 mmHg beträgt der
+            Pulsdruck 40 mmHg und der MAP rund 93 mmHg (80 + 40/3) – also im Normalbereich.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kann ich beim Blutdruck-Rechner auch den Puls eingeben?</h3>
+          <p>
+            Ja. Der Rechner bietet ein optionales Puls-Feld (Schläge/Minute). Wird ein Wert eingegeben,
+            ordnet der Rechner den Ruhepuls direkt mit ein: Normal sind <strong>60-100 Schläge pro Minute</strong>,
+            Werte darunter gelten als Bradykardie (langsamer Puls), Werte darüber als Tachykardie (schneller Puls).
+          </p>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Bluthochdruck (Hypertonie) – Risiken</h3>
           <p>
             Bluthochdruck ist ein „stiller Killer“ – oft symptomlos, aber mit schweren Folgen:
@@ -340,6 +372,14 @@ const keywords = "Blutdruck Rechner, Blutdruck bewerten, Blutdruckwerte Tabelle,
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Ja, der Blutdruck steigt mit dem Alter tendenziell an, da die Gefäße weniger elastisch werden. Bei Menschen über 80 Jahren kann ein Zielwert unter 150/90 mmHg akzeptabel sein. Generell ist aber auch im Alter ein niedrigerer Blutdruck vorteilhaft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich beim Blutdruck-Rechner auch den Puls eingeben?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, der Rechner bietet ein optionales Puls-Feld (Schläge/Minute). Wird ein Wert eingegeben, ordnet der Rechner den Ruhepuls direkt mit ein: Normal sind 60-100 Schläge pro Minute, Werte darunter gelten als Bradykardie (langsamer Puls), Werte darüber als Tachykardie (schneller Puls)."
         }
       }
     ]

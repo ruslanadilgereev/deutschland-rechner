@@ -426,7 +426,7 @@ export default function GrundsteuerRechner() {
 
       {/* Result Section */}
       <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl shadow-lg p-6 text-white mb-6">
-        <h3 className="text-sm font-medium opacity-80 mb-1">🏡 Ihre neue Grundsteuer ab 2025</h3>
+        <h3 className="text-sm font-medium opacity-80 mb-1">🏡 Ihre neue Grundsteuer (seit 2025)</h3>
         
         <div className="mb-4">
           <div className="flex items-baseline gap-2">
@@ -494,7 +494,7 @@ export default function GrundsteuerRechner() {
 
       {/* Info Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert die neue Grundsteuer 2025</h3>
+        <h3 className="font-bold text-gray-800 mb-3">ℹ️ So funktioniert die neue Grundsteuer (seit 2025)</h3>
         <ul className="space-y-2 text-sm text-gray-600">
           <li className="flex gap-2">
             <span>✓</span>
@@ -572,7 +572,7 @@ export default function GrundsteuerRechner() {
           </li>
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Hebesatz ändern sich:</strong> Viele Gemeinden passen ihre Hebesätze 2025 an – informieren Sie sich bei Ihrer Gemeinde.</span>
+            <span><strong>Hebesätze ändern sich:</strong> Viele Gemeinden haben ihre Hebesätze seit der Reform angepasst – informieren Sie sich bei Ihrer Gemeinde.</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>
