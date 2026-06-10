@@ -6,8 +6,8 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import RechnerTrust from '../components/RechnerTrust.astro';
 import VerwandteRechner from '../components/VerwandteRechner.astro';
 
-const title = "Flugzeit-Rechner – Flugdauer & Entfernung berechnen";
-const description = "Flugzeit Rechner: Berechnen Sie die Flugdauer zwischen beliebigen Städten weltweit. Inklusive Entfernung in km, Zeitverschiebung und Ankunftszeit. Kostenlos & sofort.";
+const title = "Flugzeit berechnen: Rechner mit Zeitverschiebung";
+const description = "Wie lange fliegt man nach Mallorca, New York oder Dubai? Flugdauer, Entfernung, Zeitverschiebung & Ankunftszeit für über 50 Ziele. Kostenlos & sofort.";
 const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, Flugzeit Deutschland, Flugentfernung, Flugzeit nach Thailand, Flugzeit USA, Flugzeit Mallorca, Entfernung berechnen, Flugroute";
 ---
 
@@ -38,7 +38,7 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
         <div class="flex items-center gap-3">
           <span class="text-4xl">✈️</span>
           <div>
-            <h1 class="text-2xl font-bold">Flugzeit-Rechner</h1>
+            <h1 class="text-2xl font-bold">Flugzeit-Rechner – Flugdauer, Zeitverschiebung & Ankunftszeit</h1>
             <p class="text-sky-100 text-sm">Flugdauer & Entfernung berechnen – kostenlos & sofort</p>
           </div>
         </div>
@@ -57,6 +57,146 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
         Bevor du einen Flug buchst, willst du oft wissen: Wie lange dauert das eigentlich? Genau dafür ist der Flugzeit-Rechner da. Der Klassiker: <strong>Reisezeit-Planung für Direktflüge</strong> — von Berlin nach Mallorca, von Frankfurt nach New York, von München nach Bali. Du kennst die Abflugzeit, willst die Ankunft kalkulieren, und brauchst den Anschluss am Zielort (Mietwagen, Hoteltransfer, Anschlussflug). Spannender wird es bei <strong>Stopover-Berechnungen mit Layover</strong>: Berlin → Doha → Bali ist nicht 14 Stunden, sondern 14 + 2 (Layover) + 8 — also 24 Stunden Tür-zu-Tür. Auch beruflich relevant: <strong>Flug-Schätzung für Privatflug-Anfragen</strong> (Charter, Privatjet) — Charter-Anbieter geben Stundenpreise an, eine grobe Flugzeit-Schätzung hilft beim Budget. Dazu kommt die persönliche Vorbereitung: <strong>Jet-Lag-Vorbereitung</strong> — wer von Frankfurt nach Tokio fliegt, hat 8 Stunden Zeitverschiebung und braucht 3–4 Tage zur Akklimatisierung; mit der konkreten Flugdauer kannst du Schlafrhythmus und Essenszeiten vorab anpassen. Und schließlich: <strong>CO₂-Bilanz für den Flug abschätzen</strong> — Faustregel etwa 250 g CO₂ pro Personenkilometer in Economy-Class auf Mittelstrecke.
       </p>
 
+      <h2 class="text-2xl font-bold mt-12 mb-6">Flugzeit berechnen – die Formel</h2>
+      <div class="bg-sky-50 border border-sky-200 rounded-xl p-5 not-prose">
+        <p class="font-semibold text-gray-800 mb-2">Flugzeit ≈ Großkreis-Entfernung ÷ 840 km/h + 1 Stunde für Start und Landung</p>
+        <p class="text-gray-700 text-sm">
+          Beispiel Frankfurt → New York: 6.196 km ÷ 840 km/h ≈ 7 Stunden 23 Minuten reine Flugzeit.
+          Plus rund 30 Minuten Steigflug und 30 Minuten Landeanflug ergibt etwa 8 Stunden 30 Minuten –
+          genau der Wert, den der Rechner für diese Route ansetzt.
+        </p>
+      </div>
+      <p>
+        In die Berechnung fließen vier Faktoren ein: die <strong>Entfernung</strong> als Luftlinie
+        (Großkreis-Distanz), die <strong>Reisegeschwindigkeit</strong> von ~840 km/h moderner
+        Verkehrsflugzeuge, die Zusatzzeit für <strong>Start und Landung</strong> (je ca. 30 Minuten)
+        sowie <strong>Windverhältnisse</strong> – Rücken- oder Gegenwind (Jetstream) können die reale
+        Flugzeit um ±30 bis ±60 Minuten verschieben.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Voraussichtliche Ankunftszeit berechnen</h2>
+      <p>
+        Die Ankunftszeit in Ortszeit am Zielort berechnest du so:
+        <strong>Ankunftszeit = Abflugzeit + Flugzeit ± Zeitverschiebung</strong>.
+      </p>
+      <p>
+        Durchgerechnetes Beispiel: Abflug Frankfurt 10:00 Uhr nach New York (JFK).
+        10:00 Uhr + 8 Stunden 30 Minuten Flugzeit = 18:30 Uhr deutscher Zeit.
+        Minus 6 Stunden Zeitverschiebung (New York UTC−5, Deutschland UTC+1) =
+        <strong>12:30 Uhr Ortszeit New York</strong>. Bei langen Flügen nach Osten
+        (z.&nbsp;B. Bangkok oder Sydney) landet man dagegen oft erst am Folgetag –
+        der Rechner zeigt das als „+1 Tag" an.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Wie lange fliegt man nach …? Flugzeiten ab Frankfurt</h2>
+      <p>
+        Alle Werte stammen direkt aus dem Rechner: durchschnittliche Flugzeiten ab Frankfurt (FRA),
+        Entfernung als Großkreis-Distanz, Zeitverschiebung gegenüber Deutschland.
+      </p>
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-sky-100 text-left">
+              <th class="p-2 font-semibold">Ziel</th>
+              <th class="p-2 font-semibold">Flugzeit</th>
+              <th class="p-2 font-semibold">Entfernung</th>
+              <th class="p-2 font-semibold">Zeitverschiebung</th>
+              <th class="p-2 font-semibold">Direktflug</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Europa</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">London (LHR)</td><td class="p-2">1h 35min</td><td class="p-2">654 km</td><td class="p-2">−1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Paris (CDG)</td><td class="p-2">1h 15min</td><td class="p-2">479 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Amsterdam (AMS)</td><td class="p-2">1h 10min</td><td class="p-2">365 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Barcelona (BCN)</td><td class="p-2">1h 55min</td><td class="p-2">1.093 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Madrid (MAD)</td><td class="p-2">2h 30min</td><td class="p-2">1.428 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Rom (FCO)</td><td class="p-2">1h 45min</td><td class="p-2">959 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Wien (VIE)</td><td class="p-2">1h 15min</td><td class="p-2">596 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Zürich (ZRH)</td><td class="p-2">55min</td><td class="p-2">287 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Athen (ATH)</td><td class="p-2">2h 45min</td><td class="p-2">1.803 km</td><td class="p-2">+1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Istanbul (IST)</td><td class="p-2">3h</td><td class="p-2">1.862 km</td><td class="p-2">+2 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Lissabon (LIS)</td><td class="p-2">2h 50min</td><td class="p-2">1.877 km</td><td class="p-2">−1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Palma de Mallorca (PMI)</td><td class="p-2">2h</td><td class="p-2">1.175 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Nordamerika</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">New York (JFK)</td><td class="p-2">8h 30min</td><td class="p-2">6.196 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Los Angeles (LAX)</td><td class="p-2">11h 30min</td><td class="p-2">9.311 km</td><td class="p-2">−9 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Chicago (ORD)</td><td class="p-2">9h 30min</td><td class="p-2">6.971 km</td><td class="p-2">−7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Miami (MIA)</td><td class="p-2">10h</td><td class="p-2">7.835 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">San Francisco (SFO)</td><td class="p-2">11h</td><td class="p-2">9.145 km</td><td class="p-2">−9 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Toronto (YYZ)</td><td class="p-2">8h 30min</td><td class="p-2">6.338 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Vancouver (YVR)</td><td class="p-2">10h</td><td class="p-2">8.097 km</td><td class="p-2">−9 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Cancún (CUN)</td><td class="p-2">11h</td><td class="p-2">8.871 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Südamerika</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">São Paulo (GRU)</td><td class="p-2">12h</td><td class="p-2">9.522 km</td><td class="p-2">−4 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Buenos Aires (EZE)</td><td class="p-2">13h</td><td class="p-2">11.466 km</td><td class="p-2">−4 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Bogotá (BOG)</td><td class="p-2">11h</td><td class="p-2">9.039 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Lima (LIM)</td><td class="p-2">12h</td><td class="p-2">10.379 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Nahost</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Dubai (DXB)</td><td class="p-2">6h</td><td class="p-2">4.832 km</td><td class="p-2">+3 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Doha (DOH)</td><td class="p-2">6h</td><td class="p-2">4.693 km</td><td class="p-2">+2 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Abu Dhabi (AUH)</td><td class="p-2">6h 10min</td><td class="p-2">4.895 km</td><td class="p-2">+3 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Tel Aviv (TLV)</td><td class="p-2">4h</td><td class="p-2">2.920 km</td><td class="p-2">+1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Asien</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Bangkok (BKK)</td><td class="p-2">10h 30min</td><td class="p-2">8.975 km</td><td class="p-2">+6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Singapur (SIN)</td><td class="p-2">12h</td><td class="p-2">10.263 km</td><td class="p-2">+7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Hong Kong (HKG)</td><td class="p-2">11h</td><td class="p-2">9.170 km</td><td class="p-2">+7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Peking (PEK)</td><td class="p-2">9h 30min</td><td class="p-2">7.794 km</td><td class="p-2">+7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Shanghai (PVG)</td><td class="p-2">10h 30min</td><td class="p-2">8.839 km</td><td class="p-2">+7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Tokio (NRT)</td><td class="p-2">11h 30min</td><td class="p-2">9.378 km</td><td class="p-2">+8 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Tokio (HND)</td><td class="p-2">11h 30min</td><td class="p-2">9.378 km</td><td class="p-2">+8 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Seoul (ICN)</td><td class="p-2">10h 30min</td><td class="p-2">8.577 km</td><td class="p-2">+8 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Delhi (DEL)</td><td class="p-2">7h 30min</td><td class="p-2">5.772 km</td><td class="p-2">+4:30 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Mumbai (BOM)</td><td class="p-2">8h 30min</td><td class="p-2">6.340 km</td><td class="p-2">+4:30 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Kuala Lumpur (KUL)</td><td class="p-2">11h</td><td class="p-2">9.957 km</td><td class="p-2">+7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Jakarta (CGK)</td><td class="p-2">13h</td><td class="p-2">10.962 km</td><td class="p-2">+6 Std.</td><td class="p-2">Nein (Umstieg)</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Bali (DPS)</td><td class="p-2">14h</td><td class="p-2">11.665 km</td><td class="p-2">+7 Std.</td><td class="p-2">Nein (Umstieg)</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Hanoi (HAN)</td><td class="p-2">10h 30min</td><td class="p-2">8.597 km</td><td class="p-2">+6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Malé (MLE)</td><td class="p-2">9h 30min</td><td class="p-2">7.442 km</td><td class="p-2">+4 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Afrika</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Kairo (CAI)</td><td class="p-2">4h</td><td class="p-2">2.914 km</td><td class="p-2">+1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Hurghada (HRG)</td><td class="p-2">4h 30min</td><td class="p-2">3.350 km</td><td class="p-2">+1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Johannesburg (JNB)</td><td class="p-2">10h 30min</td><td class="p-2">8.669 km</td><td class="p-2">+1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Kapstadt (CPT)</td><td class="p-2">11h</td><td class="p-2">9.406 km</td><td class="p-2">+1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Casablanca (CMN)</td><td class="p-2">3h 15min</td><td class="p-2">2.096 km</td><td class="p-2">±0</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Nairobi (NBO)</td><td class="p-2">8h</td><td class="p-2">6.028 km</td><td class="p-2">+2 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Mauritius (MRU)</td><td class="p-2">11h</td><td class="p-2">9.010 km</td><td class="p-2">+3 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="bg-gray-100"><th colspan="5" class="p-2 text-left font-semibold">Ozeanien</th></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Sydney (SYD)</td><td class="p-2">22h</td><td class="p-2">16.478 km</td><td class="p-2">+9 Std.</td><td class="p-2">Nein (Umstieg)</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Melbourne (MEL)</td><td class="p-2">22h 30min</td><td class="p-2">16.098 km</td><td class="p-2">+9 Std.</td><td class="p-2">Nein (Umstieg)</td></tr>
+            <tr><td class="p-2">Auckland (AKL)</td><td class="p-2">24h</td><td class="p-2">18.393 km</td><td class="p-2">+11 Std.</td><td class="p-2">Nein (Umstieg)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Flugzeiten ab München</h3>
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-sky-100 text-left">
+              <th class="p-2 font-semibold">Ziel</th>
+              <th class="p-2 font-semibold">Flugzeit</th>
+              <th class="p-2 font-semibold">Entfernung</th>
+              <th class="p-2 font-semibold">Zeitverschiebung</th>
+              <th class="p-2 font-semibold">Direktflug</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-100"><td class="p-2">London (LHR)</td><td class="p-2">1h 45min</td><td class="p-2">922 km</td><td class="p-2">−1 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">New York (JFK)</td><td class="p-2">8h 50min</td><td class="p-2">6.555 km</td><td class="p-2">−6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Dubai (DXB)</td><td class="p-2">5h 50min</td><td class="p-2">4.688 km</td><td class="p-2">+3 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Bangkok (BKK)</td><td class="p-2">10h 20min</td><td class="p-2">8.747 km</td><td class="p-2">+6 Std.</td><td class="p-2">Ja</td></tr>
+            <tr class="border-b border-gray-100"><td class="p-2">Singapur (SIN)</td><td class="p-2">11h 40min</td><td class="p-2">10.113 km</td><td class="p-2">+7 Std.</td><td class="p-2">Ja</td></tr>
+            <tr><td class="p-2">Tokio (NRT)</td><td class="p-2">11h 10min</td><td class="p-2">9.326 km</td><td class="p-2">+8 Std.</td><td class="p-2">Ja</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-gray-500">
+        Zeitverschiebungen beziehen sich auf die Standard-Winterzeit (MEZ) – im Sommer kann sich die
+        Differenz ändern. Ab Berlin (+15 min), Hamburg (+10 min) und Düsseldorf (+5 min) verlängern
+        sich die Frankfurter Flugzeiten geringfügig.
+      </p>
+
       <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
 
       <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 1: Frankfurt → New York — Hin & Rück sind nicht gleich</h3>
@@ -73,6 +213,43 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
       <p>
         Innerdeutsch: München (MUC) → Düsseldorf (DUS) ist <strong>480 km Luftlinie</strong>. Die reine Flugzeit auf Reiseflughöhe ist nur etwa <strong>1h 5min</strong> — aber dazu kommen ~30 Minuten für Steigflug auf FL360 (12 km Höhe) und ~30 Minuten Landeanflug. Macht zusammen <strong>~1h 30 min Block-Zeit</strong> (von Pushback am Gate München bis zum Stillstand am Gate Düsseldorf). In der Praxis liegt der Anteil reine Flugzeit auf solchen Kurzstrecken deshalb nur bei rund 50 % der Block-Zeit — bei Langstrecken ist das Verhältnis dramatisch besser (95 %+ reine Flugzeit). Das ist auch der Grund, warum Kurzstreckenflüge pro Personenkilometer mehr CO₂ verursachen als Langstrecken.
       </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Flugzeit nach Kontinenten</h2>
+      <p>
+        Ungefähre Flugzeiten ab Deutschland:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Innerhalb Europas:</strong> 1-4 Stunden</li>
+        <li><strong>Nordafrika/Naher Osten:</strong> 4-6 Stunden</li>
+        <li><strong>Nordamerika (Ostküste):</strong> 8-10 Stunden</li>
+        <li><strong>Nordamerika (Westküste):</strong> 11-13 Stunden</li>
+        <li><strong>Südamerika:</strong> 12-14 Stunden</li>
+        <li><strong>Südostasien:</strong> 10-12 Stunden</li>
+        <li><strong>Australien:</strong> 20-24 Stunden (mit Zwischenstopp)</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Was beeinflusst die tatsächliche Flugzeit?</h2>
+      <p>
+        Die reale Flugzeit kann von der berechneten abweichen:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Jetstream:</strong> Starke Höhenwinde können Flüge nach Osten beschleunigen</li>
+        <li><strong>Flugroute:</strong> Nicht immer wird die kürzeste Strecke geflogen</li>
+        <li><strong>Wetterbedingungen:</strong> Umwege bei Gewittern oder Turbulenzen</li>
+        <li><strong>Flugzeugtyp:</strong> Unterschiedliche Reisegeschwindigkeiten</li>
+        <li><strong>Luftraumrestriktionen:</strong> Manche Gebiete dürfen nicht überflogen werden</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Langstreckenflüge planen</h2>
+      <p>
+        Tipps für lange Flüge:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Zeitverschiebung beachten:</strong> Planen Sie Zeit für die Akklimatisierung ein</li>
+        <li><strong>Zwischenstopps:</strong> Bei sehr langen Strecken kann ein Stopover sinnvoll sein</li>
+        <li><strong>Beste Reisezeit:</strong> Manche Routen sind saisonal günstiger</li>
+        <li><strong>Sitzplatzwahl:</strong> Bei Langstrecken ist der richtige Platz wichtig</li>
+      </ul>
 
       <h2 class="text-2xl font-bold mt-12 mb-6">Erweiterte FAQ</h2>
 
@@ -118,9 +295,51 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
         </p>
       </details>
 
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie lange fliegt man nach Dubai?</summary>
+        <p class="mt-2 text-gray-700">
+          Ab Frankfurt ca. <strong>6 Stunden</strong> nonstop, ab München ca. 5 Stunden 50 Minuten. Die <strong>Zeitverschiebung beträgt +3 Stunden</strong> (Dubai UTC+4, Deutschland UTC+1 in der Winterzeit) — wer um 10:00 Uhr in Frankfurt startet, landet gegen 19:00 Uhr Ortszeit in Dubai.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie lange braucht ein Flugzeug für 100 km?</summary>
+        <p class="mt-2 text-gray-700">
+          Bei einer Reisegeschwindigkeit von ca. <strong>840 km/h</strong> braucht ein Verkehrsflugzeug für 100 km etwa <strong>7 Minuten</strong> reine Flugzeit. Auf kurzen Strecken kommt allerdings die Zeit für Start, Steigflug und Landeanflug hinzu, die die Gesamtzeit dominiert.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie lange fliegt man nach Thailand?</summary>
+        <p class="mt-2 text-gray-700">
+          Nonstop nach Bangkok: ab Frankfurt ca. <strong>10 Stunden 30 Minuten</strong>, ab München ca. 10 Stunden 20 Minuten. Mit Zwischenstopp kann die Reisezeit auf 14–18 Stunden ansteigen.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie lange fliegt man nach Mallorca?</summary>
+        <p class="mt-2 text-gray-700">
+          Ab Frankfurt und München ca. <strong>2 Stunden</strong>, ab Düsseldorf ca. 2 Stunden 5 Minuten, ab Hamburg ca. 2 Stunden 10 Minuten, ab Berlin ca. 2 Stunden 15 Minuten.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie lange fliegt man in die USA?</summary>
+        <p class="mt-2 text-gray-700">
+          Je nach Ziel: Zur Ostküste (Frankfurt → New York) ca. <strong>8 Stunden 30 Minuten</strong>, zur Westküste (San Francisco, Los Angeles) ca. <strong>11 bis 11,5 Stunden</strong>. Rückflüge sind wegen des Jetstreams oft kürzer.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie berechnet man die Flugzeit zwischen zwei Städten?</summary>
+        <p class="mt-2 text-gray-700">
+          Flugzeit ≈ Großkreis-Entfernung ÷ <strong>840 km/h</strong> Reisegeschwindigkeit, plus rund <strong>60 Minuten</strong> für Start, Steigflug und Landeanflug. Wind und Routenführung können das Ergebnis um ±30 bis ±60 Minuten verschieben.
+        </p>
+      </details>
+
       <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
       <p>
-        Die Flugzeit-Berechnung basiert auf der <strong>Großkreis-Distanz nach der Haversine-Formel</strong> (mittlerer Erdradius 6.371 km, WGS84-Koordinaten der Flughäfen). Die Reisegeschwindigkeit ist mit <strong>~840 km/h</strong> angesetzt — der typische Durchschnitt moderner Verkehrsflugzeuge wie Boeing 737 NG/MAX und Airbus A320/A321 (Mach 0.78–0.82). Für die Block-Time werden zusätzlich 30 Minuten für Steigflug und 30 Minuten für Landeanflug eingerechnet. Wind- und Routenfaktoren (Jetstream, vorgegebene Air Traffic Control Routen, Sperrgebiete wie aktuell Russland-Ukraine) werden in der Schätzung nicht berücksichtigt — die reale Block-Time kann je nach Tag um ±30 bis ±60 Minuten abweichen. CO₂-Schätzungen basieren auf Daten des Umweltbundesamts (UBA) und der ICAO (International Civil Aviation Organization).
+        Die Flugzeit-Berechnung basiert auf der <strong>Großkreis-Distanz nach der Haversine-Formel</strong> (mittlerer Erdradius 6.371 km, WGS84-Koordinaten der Flughäfen). Die Reisegeschwindigkeit ist mit <strong>~840 km/h</strong> angesetzt — der typische Durchschnitt moderner Verkehrsflugzeuge wie Boeing 737 NG/MAX und Airbus A320/A321 (Mach 0.78–0.82). Für die Block-Time werden zusätzlich 30 Minuten für Steigflug und 30 Minuten für Landeanflug eingerechnet. Wind- und Routenfaktoren (Jetstream, vorgegebene Air Traffic Control Routen, Sperrgebiete wie aktuell Russland-Ukraine) werden in der Schätzung nicht berücksichtigt — die reale Block-Time kann je nach Tag um ±30 bis ±60 Minuten abweichen. CO₂-Schätzungen basieren auf Daten des <a href="https://www.umweltbundesamt.de/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Umweltbundesamts (UBA)</a> und der <a href="https://www.icao.int/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">ICAO (International Civil Aviation Organization)</a>.
       </p>
 
       <p class="text-sm text-gray-500 mt-6">Zuletzt aktualisiert: April 2026</p>
@@ -130,132 +349,6 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
 
     <VerwandteRechner aktuellerSlug="flugzeit" slugs={['entfernung', 'zeitzone', 'spritkosten', 'co2-steuer']} />
 
-<!-- SEO Content Section -->
-    <div class="max-w-2xl mx-auto px-4 mt-8">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Flugzeit-Rechner: Alles, was Sie wissen müssen</h2>
-        
-        <div class="prose prose-sm text-gray-600 space-y-4">
-          <p>
-            Mit unserem <strong>Flugzeit-Rechner</strong> können Sie die Flugdauer zwischen beliebigen 
-            Städten weltweit berechnen. Der Rechner zeigt Ihnen nicht nur die geschätzte Flugzeit, 
-            sondern auch die Entfernung in Kilometern und hilfreiche Informationen zur Zeitverschiebung.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Flugzeit berechnet?</h3>
-          <p>
-            Die Berechnung der Flugzeit basiert auf mehreren Faktoren:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Entfernung:</strong> Die Luftlinie (Großkreis-Distanz) zwischen Start und Ziel</li>
-            <li><strong>Durchschnittsgeschwindigkeit:</strong> Passagierflugzeuge fliegen etwa 800-900 km/h</li>
-            <li><strong>Start und Landung:</strong> Zusätzliche Zeit für Start, Steigflug und Landeanflug</li>
-            <li><strong>Windverhältnisse:</strong> Rücken- oder Gegenwind können die Flugzeit beeinflussen</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beliebte Flugrouten ab Deutschland</h3>
-          <p>
-            Hier finden Sie typische Flugzeiten von deutschen Flughäfen:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Frankfurt → Mallorca:</strong> ca. 2 Stunden</li>
-            <li><strong>München → London:</strong> ca. 1 Stunde 50 Minuten</li>
-            <li><strong>Berlin → Paris:</strong> ca. 1 Stunde 45 Minuten</li>
-            <li><strong>Frankfurt → New York:</strong> ca. 8-9 Stunden</li>
-            <li><strong>München → Bangkok:</strong> ca. 10-11 Stunden</li>
-            <li><strong>Frankfurt → Dubai:</strong> ca. 6 Stunden</li>
-            <li><strong>Düsseldorf → Antalya:</strong> ca. 3 Stunden 30 Minuten</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Flugzeit nach Kontinenten</h3>
-          <p>
-            Ungefähre Flugzeiten ab Deutschland:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Innerhalb Europas:</strong> 1-4 Stunden</li>
-            <li><strong>Nordafrika/Naher Osten:</strong> 4-6 Stunden</li>
-            <li><strong>Nordamerika (Ostküste):</strong> 8-10 Stunden</li>
-            <li><strong>Nordamerika (Westküste):</strong> 11-13 Stunden</li>
-            <li><strong>Südamerika:</strong> 12-14 Stunden</li>
-            <li><strong>Südostasien:</strong> 10-12 Stunden</li>
-            <li><strong>Australien:</strong> 20-24 Stunden (mit Zwischenstopp)</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was beeinflusst die tatsächliche Flugzeit?</h3>
-          <p>
-            Die reale Flugzeit kann von der berechneten abweichen:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Jetstream:</strong> Starke Höhenwinde können Flüge nach Osten beschleunigen</li>
-            <li><strong>Flugroute:</strong> Nicht immer wird die kürzeste Strecke geflogen</li>
-            <li><strong>Wetterbedingungen:</strong> Umwege bei Gewittern oder Turbulenzen</li>
-            <li><strong>Flugzeugtyp:</strong> Unterschiedliche Reisegeschwindigkeiten</li>
-            <li><strong>Luftraumrestriktionen:</strong> Manche Gebiete dürfen nicht überflogen werden</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Langstreckenflüge planen</h3>
-          <p>
-            Tipps für lange Flüge:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Zeitverschiebung beachten:</strong> Planen Sie Zeit für die Akklimatisierung ein</li>
-            <li><strong>Zwischenstopps:</strong> Bei sehr langen Strecken kann ein Stopover sinnvoll sein</li>
-            <li><strong>Beste Reisezeit:</strong> Manche Routen sind saisonal günstiger</li>
-            <li><strong>Sitzplatzwahl:</strong> Bei Langstrecken ist der richtige Platz wichtig</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die längsten Nonstop-Flüge der Welt</h3>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Singapur → New York:</strong> ca. 18,5 Stunden (15.300 km)</li>
-            <li><strong>Auckland → Dubai:</strong> ca. 17,5 Stunden (14.200 km)</li>
-            <li><strong>Perth → London:</strong> ca. 17 Stunden (14.500 km)</li>
-            <li><strong>Los Angeles → Singapur:</strong> ca. 17,5 Stunden (14.100 km)</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufig gesuchte Flugzeiten</h3>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Wie lange fliegt man nach Thailand?</strong> Ab Deutschland ca. 10-11 Stunden nonstop</li>
-            <li><strong>Wie lange fliegt man nach Mallorca?</strong> Ab Deutschland ca. 2-2,5 Stunden</li>
-            <li><strong>Wie lange fliegt man in die USA?</strong> 8-13 Stunden je nach Küste</li>
-            <li><strong>Wie lange fliegt man nach Ägypten?</strong> Ca. 4-5 Stunden</li>
-            <li><strong>Wie lange fliegt man auf die Kanaren?</strong> Ca. 4-5 Stunden</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Weitere Tools -->
-    <div class="max-w-2xl mx-auto px-4 mt-6">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span class="text-2xl">🔗</span>
-          Ähnliche Rechner
-        </h2>
-        
-        <div class="grid grid-cols-2 gap-4">
-          <a href="/zeitzone-rechner" class="p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-            <div class="text-2xl mb-2">🌍</div>
-            <div class="font-semibold text-gray-800">Zeitzonen-Rechner</div>
-            <div class="text-sm text-gray-500">Zeitzonen umrechnen</div>
-          </a>
-          <a href="/tage-rechner" class="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
-            <div class="text-2xl mb-2">📅</div>
-            <div class="font-semibold text-gray-800">Tage-Rechner</div>
-            <div class="text-sm text-gray-500">Tage zwischen Daten</div>
-          </a>
-          <a href="/spritkosten-rechner" class="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
-            <div class="text-2xl mb-2">⛽</div>
-            <div class="font-semibold text-gray-800">Spritkosten-Rechner</div>
-            <div class="text-sm text-gray-500">Fahrtkosten berechnen</div>
-          </a>
-          <a href="/einheiten-rechner" class="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
-            <div class="text-2xl mb-2">📐</div>
-            <div class="font-semibold text-gray-800">Einheiten-Rechner</div>
-            <div class="text-sm text-gray-500">Einheiten umrechnen</div>
-          </a>
-        </div>
-      </div>
-    </div>
 </main>
   
   <!-- Structured Data for SEO -->
@@ -285,42 +378,42 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wie lange fliegt man nach Thailand?",
+        "name": "Wie schnell fliegt ein Verkehrsflugzeug?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Flugzeit von Deutschland nach Thailand (Bangkok) beträgt etwa 10-11 Stunden bei einem Nonstop-Flug. Mit Zwischenstopp kann die Reisezeit auf 14-18 Stunden ansteigen."
+          "text": "Moderne Verkehrsflugzeuge wie Boeing 737 oder Airbus A320 fliegen typisch mit ~840 km/h Reisegeschwindigkeit (Mach 0.78 bis 0.85). Größere Langstreckenflugzeuge wie Boeing 747 oder Airbus A380 fliegen leicht schneller (~900 km/h)."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie lange fliegt man nach Mallorca?",
+        "name": "Warum dauert der Hinflug länger als der Rückflug?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Flugzeit von Deutschland nach Mallorca beträgt etwa 2 bis 2,5 Stunden, je nach Abflughafen. Von München sind es etwa 1 Stunde 45 Minuten, von Hamburg ca. 2 Stunden 30 Minuten."
+          "text": "Schuld ist der Jetstream, ein starker Höhenwind, der typisch mit 100 bis 250 km/h von West nach Ost weht. Richtung Nordamerika fliegt man gegen den Wind, zurück mit dem Wind. Frankfurt nach New York braucht typisch 8h 30min, New York nach Frankfurt nur 7h 30min."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie berechnet man die Flugzeit zwischen zwei Städten?",
+        "name": "Was ist die Block-Zeit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Flugzeit wird anhand der Entfernung (Großkreis-Distanz) und der durchschnittlichen Reisegeschwindigkeit von Passagierflugzeugen (ca. 850 km/h) berechnet. Zusätzlich werden ca. 30 Minuten für Start und Landung eingerechnet."
+          "text": "Die Block-Zeit ist die Zeit von Block-off (Pushback am Gate) bis Block-on (Stillstand am Zielgate). Sie ist länger als die reine Flugzeit, weil Rollzeit am Boden, Warten auf Start-Freigabe und das Rollen zum Gate enthalten sind – typisch 15-30 Minuten pro Flug. In Tickets steht meist die Block-Zeit."
         }
       },
       {
         "@type": "Question",
-        "name": "Wie lange fliegt man in die USA?",
+        "name": "Wie viel CO₂ verursacht ein Flug?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Flugzeit von Deutschland in die USA variiert je nach Ziel: Zur Ostküste (New York) ca. 8-9 Stunden, zur Westküste (Los Angeles) ca. 11-12 Stunden. Rückflüge sind wegen des Jetstreams oft kürzer."
+          "text": "Faustregel: ~250 g CO₂ pro Personenkilometer in Economy Class auf Mittelstrecke. Frankfurt nach Mallorca (1.300 km) verursacht ca. 325 kg CO₂ pro Person, Frankfurt nach New York (6.200 km) ca. 1.550 kg pro Person. Business Class verursacht etwa das Dreifache."
         }
       },
       {
         "@type": "Question",
-        "name": "Warum ist der Rückflug manchmal kürzer?",
+        "name": "Wie kompensiert man Jet-Lag am besten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Jetstream, ein starker Höhenwind, weht meist von West nach Ost. Flüge von Amerika nach Europa profitieren von diesem Rückenwind und sind daher oft 1-2 Stunden kürzer als der Hinflug."
+          "text": "Faustregel: pro Stunde Zeitverschiebung etwa ein Tag Akklimatisierung. Schon 2-3 Tage vor Abflug den Schlafrhythmus Richtung Zielzeit verschieben, im Flugzeug viel Wasser und kein Alkohol, am Zielort sofort in den Lokal-Rhythmus einsteigen – Tageslicht morgens, dunkel abends."
         }
       },
       {
@@ -328,7 +421,55 @@ const keywords = "Flugzeit Rechner, Flugdauer berechnen, wie lange fliegt man, F
         "name": "Was ist der längste Nonstop-Flug der Welt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der längste Nonstop-Flug der Welt führt von Singapur nach New York und dauert etwa 18,5 Stunden bei einer Strecke von rund 15.300 Kilometern."
+          "text": "Aktuell ist Singapore Airlines SQ23 Singapur nach New York (JFK) mit ca. 15.300 km und 18:30 Stunden Flugzeit der längste planmäßige Nonstop-Flug, geflogen mit Airbus A350-900ULR."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man nach Dubai?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab Frankfurt ca. 6 Stunden nonstop, ab München ca. 5 Stunden 50 Minuten. Die Zeitverschiebung beträgt +3 Stunden (Dubai UTC+4, Deutschland UTC+1 in der Winterzeit) – wer um 10:00 Uhr in Frankfurt startet, landet gegen 19:00 Uhr Ortszeit in Dubai."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange braucht ein Flugzeug für 100 km?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Reisegeschwindigkeit von ca. 840 km/h braucht ein Verkehrsflugzeug für 100 km etwa 7 Minuten reine Flugzeit. Auf kurzen Strecken kommt allerdings die Zeit für Start, Steigflug und Landeanflug hinzu, die die Gesamtzeit dominiert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man nach Thailand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nonstop nach Bangkok: ab Frankfurt ca. 10 Stunden 30 Minuten, ab München ca. 10 Stunden 20 Minuten. Mit Zwischenstopp kann die Reisezeit auf 14-18 Stunden ansteigen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man nach Mallorca?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab Frankfurt und München ca. 2 Stunden, ab Düsseldorf ca. 2 Stunden 5 Minuten, ab Hamburg ca. 2 Stunden 10 Minuten, ab Berlin ca. 2 Stunden 15 Minuten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange fliegt man in die USA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Je nach Ziel: Zur Ostküste (Frankfurt nach New York) ca. 8 Stunden 30 Minuten, zur Westküste (San Francisco, Los Angeles) ca. 11 bis 11,5 Stunden. Rückflüge sind wegen des Jetstreams oft kürzer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man die Flugzeit zwischen zwei Städten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Flugzeit ≈ Großkreis-Entfernung ÷ 840 km/h Reisegeschwindigkeit, plus rund 60 Minuten für Start, Steigflug und Landeanflug. Wind und Routenführung können das Ergebnis um ±30 bis ±60 Minuten verschieben."
         }
       }
     ]
