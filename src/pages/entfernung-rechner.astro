@@ -6,9 +6,9 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import RechnerTrust from '../components/RechnerTrust.astro';
 import VerwandteRechner from '../components/VerwandteRechner.astro';
 
-const title = "Entfernungs-Rechner 2026 – Distanz, Fahrzeit & Pendlerpauschale";
-const description = "Entfernungs-Rechner: Luftlinie & Fahrzeit zwischen deutschen Städten berechnen. Mit Pendlerpauschale 2026 (38 Ct/km ab km 1), Reisezeit-Vergleich Auto/Bahn/Flug & Entfernungstabelle.";
-const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten, Luftlinie Rechner, Fahrzeit berechnen, deutsche Städte Entfernung, Berlin München Entfernung, Hamburg Frankfurt km, Entfernungstabelle Deutschland, Kilometerrechner, Pendlerpauschale 2026, Entfernungspauschale, Entfernungskilometer";
+const title = "Entfernungsrechner: Auto-km, Luftlinie, Fahrzeit";
+const description = "Entfernung in km berechnen: Luftlinie, Auto-Strecke (geschätzt) & Fahrzeit für deutsche Städte. Plus kürzeste Straßenverbindung & Pendlerpauschale 2026.";
+const keywords = "Entfernungsrechner, Entfernungsrechner km Auto, Entfernung berechnen km Auto, Entfernung Rechner, Entfernung berechnen, km zwischen Städten, Luftlinie Rechner, Fahrzeit berechnen, deutsche Städte Entfernung, Berlin München Entfernung, Hamburg Frankfurt km, Entfernungstabelle Deutschland, Kilometerrechner, Pendlerpauschale 2026, Entfernungspauschale, Entfernungskilometer";
 ---
 
 <Layout 
@@ -38,7 +38,7 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         <div class="flex items-center gap-3">
           <span class="text-4xl">📍</span>
           <div>
-            <h1 class="text-2xl font-bold">Entfernungs-Rechner 2026</h1>
+            <h1 class="text-2xl font-bold">Entfernung berechnen: Luftlinie, Auto-km & Fahrzeit</h1>
             <p class="text-blue-100 text-sm">Luftlinie, Fahrzeit & Pendlerpauschale berechnen</p>
           </div>
         </div>
@@ -52,8 +52,8 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         Straßenentfernung ≈ Luftlinie × 1,3 (Umwegfaktor). Pendlerpauschale 2026: <strong>0,38 €/km</strong> ab dem 
         1. Kilometer (§ 9 Abs. 1 Nr. 4 EStG, Steueränderungsgesetz 2025). Koordinaten: amtliche Daten der 20 größten deutschen Städte.
         <div class="mt-2 text-xs text-blue-600">
-          <strong>Was der Rechner berechnet:</strong> Luftlinie (km), geschätzte Straßenentfernung, Fahrzeit nach Streckenkategorie, 
-          Pendlerpauschale für die <a href="/einkommensteuer-rechner" class="text-blue-700 hover:underline">Steuererklärung</a>.<br/>
+          <strong>Was der Rechner berechnet:</strong> Luftlinie (km), geschätzte Straßenentfernung, Fahrzeit nach Streckenkategorie —
+          die km-Grundlage für die Pendlerpauschale in der <a href="/einkommensteuer-rechner" class="text-blue-700 hover:underline">Steuererklärung</a>.<br/>
           <strong>Was der Rechner nicht berücksichtigt:</strong> Echtzeit-Verkehrslage, Baustellen, individuelle Routenwahl, 
           <a href="/spritkosten-rechner" class="text-blue-700 hover:underline">Spritkosten</a> (→ separater Rechner), 
           Mautgebühren, Fährverbindungen.
@@ -68,6 +68,182 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
 
     <!-- Erweiterter SEO-Content: Use-Cases, Praxis, FAQ, Quellen -->
     <article class="prose prose-lg max-w-3xl mx-auto px-4 mt-8">
+      <h2 class="text-2xl font-bold mt-12 mb-6">Entfernung mit dem Auto in km berechnen</h2>
+      <p>
+        Wer die <strong>Entfernung in km mit dem Auto berechnen</strong> möchte, bekommt vom Rechner oben zwei Werte:
+        die exakte <strong>Luftlinie</strong> (Haversine-Formel) und die daraus geschätzte <strong>Auto-Strecke</strong>.
+        Die Schätzung nutzt den Umwegfaktor: <strong>Auto-km ≈ Luftlinie × 1,3</strong>, weil Straßen Kurven fahren sowie
+        Flüsse und Gelände umgehen. Aus der Auto-Strecke leitet der Rechner anschließend die <strong>Fahrzeit</strong> ab
+        (Ø 50–100 km/h je nach Streckenlänge, plus 15 Minuten Puffer). So zeigt der Entfernungsrechner für jede Verbindung
+        zwischen den 20 größten deutschen Städten Luftlinie, Auto-Kilometer und Fahrzeit in einem Schritt.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm mt-4">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="text-left py-2 px-3">Strecke</th>
+              <th class="text-center py-2 px-3">Luftlinie</th>
+              <th class="text-center py-2 px-3">Auto-km (geschätzt)</th>
+              <th class="text-center py-2 px-3">Fahrzeit (ca.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-2 px-3">Berlin – Hamburg</td>
+              <td class="text-center py-2 px-3">255 km</td>
+              <td class="text-center py-2 px-3">332 km</td>
+              <td class="text-center py-2 px-3">3 Std 34 Min</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">Berlin – München</td>
+              <td class="text-center py-2 px-3">504 km</td>
+              <td class="text-center py-2 px-3">656 km</td>
+              <td class="text-center py-2 px-3">6 Std 48 Min</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">Berlin – Köln</td>
+              <td class="text-center py-2 px-3">477 km</td>
+              <td class="text-center py-2 px-3">620 km</td>
+              <td class="text-center py-2 px-3">6 Std 27 Min</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">Berlin – Frankfurt am Main</td>
+              <td class="text-center py-2 px-3">424 km</td>
+              <td class="text-center py-2 px-3">551 km</td>
+              <td class="text-center py-2 px-3">5 Std 45 Min</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">Hamburg – Frankfurt am Main</td>
+              <td class="text-center py-2 px-3">393 km</td>
+              <td class="text-center py-2 px-3">511 km</td>
+              <td class="text-center py-2 px-3">5 Std 22 Min</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">München – Hamburg</td>
+              <td class="text-center py-2 px-3">612 km</td>
+              <td class="text-center py-2 px-3">796 km</td>
+              <td class="text-center py-2 px-3">8 Std 13 Min</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">München – Stuttgart</td>
+              <td class="text-center py-2 px-3">191 km</td>
+              <td class="text-center py-2 px-3">248 km</td>
+              <td class="text-center py-2 px-3">3 Std</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-3">Düsseldorf – München</td>
+              <td class="text-center py-2 px-3">488 km</td>
+              <td class="text-center py-2 px-3">634 km</td>
+              <td class="text-center py-2 px-3">6 Std 35 Min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-2">
+        Werte wie im Rechner oben: Auto-km = Luftlinie × 1,3 (Umwegfaktor), Fahrzeit inkl. 15 Min Puffer.
+      </p>
+      <p>
+        Die Schätzung mit Faktor 1,3 ist bewusst konservativ: Auf schnurgeraden Autobahnkorridoren ist die reale Route
+        oft kürzer — Berlin–München sind real ca. 585 km über die A9 statt der geschätzten 656 km. Brauchen Sie die
+        exakte Route mit Echtzeit-Verkehr, nutzen Sie Google Maps. Für eine schnelle Schätzung der Auto-Kilometer und
+        als km-Grundlage für die Pendlerpauschale in der Steuererklärung reicht der Rechner oben.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Kürzeste Straßenverbindung ermitteln (für Finanzamt & Pendlerpauschale)</h2>
+      <p>
+        Für die Pendlerpauschale zählt weder die Luftlinie noch Ihre bevorzugte Route, sondern die
+        <strong>kürzeste verkehrsübliche Straßenverbindung</strong> zwischen Wohnung und erster Tätigkeitsstätte
+        (§ 9 Abs. 1 Nr. 4 EStG). So ermitteln Sie sie: Route in Google Maps eingeben, in den Routenoptionen die
+        <strong>kürzeste Route</strong> (statt der schnellsten) anzeigen lassen, die Kilometerzahl auf volle km abrunden
+        und einen Screenshot für die Steuerunterlagen archivieren — falls das Finanzamt nachfragt. Der Rechner oben
+        liefert mit der geschätzten Straßenentfernung einen schnellen Anhaltspunkt; den finalen Wert für die
+        Steuererklärung sollten Sie immer per Routenplaner verifizieren.
+      </p>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel: Kürzeste Straßenverbindung Düsseldorf–München in km</h3>
+      <p>
+        Die Luftlinie Düsseldorf–München beträgt <strong>488 km</strong> (rund 490 km — so gibt sie auch der Rechner oben aus).
+        Die <strong>kürzeste Straßenverbindung liegt bei ca. 610 km</strong> über die A3 und A9, die Fahrzeit bei rund
+        <strong>6 Stunden</strong> ohne Stau. Der Rechner schätzt mit dem Umwegfaktor 1,3 etwa 634 km — etwas mehr als die
+        reale kürzeste Route, weil der Autobahnkorridor relativ direkt verläuft. Für die Steuererklärung gilt der per
+        Routenplaner ermittelte Wert der kürzesten Route.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Wie weit ist Berlin, München oder NRW von mir entfernt?</h2>
+      <p>
+        Der Rechner hat keine automatische Standorterkennung. Der schnellste Weg zur Antwort: Wählen Sie
+        <strong>Ihre nächstgelegene Großstadt als Startort</strong> und die gesuchte Stadt als Ziel — das Ergebnis weicht
+        meist nur um wenige Kilometer von der Distanz ab Ihrer Haustür ab. Die Tabelle weiter unten zeigt die
+        Luftlinien-Entfernung von Berlin und München zu allen anderen Städten im Rechner; die Auto-Strecke liegt jeweils
+        ca. 30 % darüber.
+      </p>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Wie weit ist Berlin von mir entfernt?</h3>
+      <p>
+        Wählen Sie die Großstadt in Ihrer Nähe als Startort und Berlin als Ziel. Beispiele (Luftlinie): von Hamburg
+        <strong>255 km</strong>, von Köln <strong>477 km</strong>, von Frankfurt am Main <strong>424 km</strong>,
+        von München <strong>504 km</strong>.
+      </p>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Wie weit ist München von mir entfernt?</h3>
+      <p>
+        Auch hier gilt: nächstgelegene Großstadt als Startort, München als Ziel. Beispiele (Luftlinie): von Berlin
+        <strong>504 km</strong>, von Hamburg <strong>612 km</strong>, von Frankfurt am Main <strong>305 km</strong>,
+        von Stuttgart <strong>191 km</strong>, von Köln <strong>456 km</strong>.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm mt-4">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="text-left py-2 px-3">Stadt</th>
+              <th class="text-center py-2 px-3">Luftlinie von Berlin</th>
+              <th class="text-center py-2 px-3">Luftlinie von München</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b"><td class="py-2 px-3">Berlin</td><td class="text-center py-2 px-3">–</td><td class="text-center py-2 px-3">504 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Hamburg</td><td class="text-center py-2 px-3">255 km</td><td class="text-center py-2 px-3">612 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">München</td><td class="text-center py-2 px-3">504 km</td><td class="text-center py-2 px-3">–</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Köln</td><td class="text-center py-2 px-3">477 km</td><td class="text-center py-2 px-3">456 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Frankfurt am Main</td><td class="text-center py-2 px-3">424 km</td><td class="text-center py-2 px-3">305 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Stuttgart</td><td class="text-center py-2 px-3">512 km</td><td class="text-center py-2 px-3">191 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Düsseldorf</td><td class="text-center py-2 px-3">477 km</td><td class="text-center py-2 px-3">488 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Leipzig</td><td class="text-center py-2 px-3">149 km</td><td class="text-center py-2 px-3">361 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Dortmund</td><td class="text-center py-2 px-3">421 km</td><td class="text-center py-2 px-3">478 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Essen</td><td class="text-center py-2 px-3">453 km</td><td class="text-center py-2 px-3">494 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Bremen</td><td class="text-center py-2 px-3">316 km</td><td class="text-center py-2 px-3">584 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Dresden</td><td class="text-center py-2 px-3">165 km</td><td class="text-center py-2 px-3">359 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Hannover</td><td class="text-center py-2 px-3">249 km</td><td class="text-center py-2 px-3">490 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Nürnberg</td><td class="text-center py-2 px-3">378 km</td><td class="text-center py-2 px-3">151 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Duisburg</td><td class="text-center py-2 px-3">471 km</td><td class="text-center py-2 px-3">504 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Bochum</td><td class="text-center py-2 px-3">439 km</td><td class="text-center py-2 px-3">486 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Wuppertal</td><td class="text-center py-2 px-3">451 km</td><td class="text-center py-2 px-3">471 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Bielefeld</td><td class="text-center py-2 px-3">336 km</td><td class="text-center py-2 px-3">485 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Bonn</td><td class="text-center py-2 px-3">478 km</td><td class="text-center py-2 px-3">434 km</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">Münster</td><td class="text-center py-2 px-3">398 km</td><td class="text-center py-2 px-3">510 km</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-2">
+        Luftlinie wie im Rechner (Haversine-Formel); Auto-Strecke ≈ Luftlinie × 1,3.
+      </p>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Wie weit ist NRW von mir entfernt?</h3>
+      <p>
+        Zehn der 20 Städte im Rechner liegen in Nordrhein-Westfalen: Köln, Düsseldorf, Dortmund, Essen, Duisburg, Bochum,
+        Wuppertal, Bielefeld, Bonn und Münster. Wählen Sie die NRW-Stadt, die Ihrem Ziel am nächsten liegt — Köln oder
+        Düsseldorf für das Rheinland, Dortmund oder Essen für das Ruhrgebiet. Von Berlin nach Köln sind es
+        <strong>477 km</strong> Luftlinie, von München nach Köln <strong>456 km</strong>.
+      </p>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Wie weit ist Baden-Württemberg von mir entfernt?</h3>
+      <p>
+        Referenzstadt für Baden-Württemberg ist im Rechner Stuttgart. Von Berlin nach Stuttgart sind es
+        <strong>512 km</strong> Luftlinie, von München <strong>191 km</strong>. Für Ziele im Schwarzwald rechnen Sie
+        bei der Auto-Strecke eher mit dem bergigen Umwegfaktor 1,4–1,5 statt 1,3.
+      </p>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Wie weit ist Hessen von mir entfernt?</h3>
+      <p>
+        Für Hessen wählen Sie Frankfurt am Main als Zielort. Von Berlin sind es <strong>424 km</strong> Luftlinie,
+        von Hamburg <strong>393 km</strong>, von München <strong>305 km</strong>. Frankfurt liegt verkehrsgünstig nahe
+        der Mitte Deutschlands — die Entfernungen aus den meisten Großstädten bleiben entsprechend moderat.
+      </p>
+
       <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den Entfernungs-Rechner?</h2>
       <p>
         Entfernungen zwischen zwei Orten interessieren dich aus ganz unterschiedlichen Gründen. Der Klassiker: <strong>Pendler-Pauschale berechnen</strong> — also die einfache Entfernung Wohnort → Arbeitsstelle, multipliziert mit Arbeitstagen und 0,38 €/km, ergibt die Werbungskosten in deiner Steuererklärung. Dazu kommt der <strong>private Reisekostenfall</strong>: Wer mit dem Auto unterwegs ist, will wissen, wie weit es zur Hochzeit, zur Beerdigung oder in den Urlaub ist, und was das an Sprit kostet. Auch <strong>Routenplanung mit Zwischenstopps</strong> ist häufig — Hannover → Hamburg → Kiel statt Direkt-Strecke, wie viel Umweg ist das eigentlich? Etwas exotischer, aber real: <strong>Luftlinien-Distanzen für Modellbahn-Maßstäbe</strong> (typisch H0 1:87 oder N 1:160) — wer eine reale Strecke nachbauen will, rechnet die Originaldistanz auf den Maßstab herunter. Und schließlich der technische Fall: <strong>Geo-Koordinaten zwischen zwei Punkten</strong> exakt vermessen — etwa für Geocaching, Vermessungs-Apps oder Drohnen-Flugplanung, bei denen die Haversine-Formel die kürzeste Großkreis-Strecke liefert.
@@ -592,13 +768,46 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
               Wie genau ist die Fahrzeit-Schätzung?
             </summary>
             <div class="px-4 pb-4 text-sm text-gray-600">
-              Unsere Schätzung basiert auf Durchschnittswerten bei normalem Verkehr (±15–20 % Abweichung). 
-              Bei Stau, Baustellen oder schlechtem Wetter kann die reale Fahrzeit deutlich abweichen. 
-              Für exakte Echtzeit-Angaben empfehlen wir Google Maps oder HERE WeGo. Planen Sie bei 
+              Unsere Schätzung basiert auf Durchschnittswerten bei normalem Verkehr (±15–20 % Abweichung).
+              Bei Stau, Baustellen oder schlechtem Wetter kann die reale Fahrzeit deutlich abweichen.
+              Für exakte Echtzeit-Angaben empfehlen wir Google Maps oder HERE WeGo. Planen Sie bei
               Langstrecken immer 30 Minuten Pufferzeit ein.
             </div>
           </details>
-          
+
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie viel km sind 1 km Luftlinie auf der Straße?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              1 km Luftlinie entspricht auf der Straße im Durchschnitt etwa <strong>1,3 km</strong> (Umwegfaktor 1,3).
+              In bergigem Gelände wie Alpen, Schwarzwald oder Harz sind es eher 1,4 bis 1,5 km pro Luftlinien-Kilometer.
+              Für die Steuererklärung zählt immer die kürzeste Straßenverbindung, nicht die Luftlinie.
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie weit ist Berlin von mir entfernt?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Wählen Sie im Rechner Ihre nächstgelegene Großstadt als Startort und Berlin als Ziel.
+              Beispiele (Luftlinie): von Hamburg 255 km, von Köln 477 km, von Frankfurt am Main 424 km,
+              von München 504 km. Die Auto-Strecke liegt jeweils ca. 30 % über der Luftlinie.
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg mb-2">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-800 hover:bg-gray-50">
+              Wie weit ist München von mir entfernt?
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Wählen Sie im Rechner Ihre nächstgelegene Großstadt als Startort und München als Ziel.
+              Beispiele (Luftlinie): von Berlin 504 km, von Hamburg 612 km, von Frankfurt am Main 305 km,
+              von Stuttgart 191 km, von Köln 456 km. Die Auto-Strecke liegt jeweils ca. 30 % über der Luftlinie.
+            </div>
+          </details>
+
           <!-- Verwandte Rechner -->
           <h3 class="text-lg font-semibold text-gray-800 mt-8">Verwandte Rechner</h3>
           <div class="grid grid-cols-2 gap-2 mt-3">
@@ -706,6 +915,30 @@ const keywords = "Entfernung Rechner, Entfernung berechnen, km zwischen Städten
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Unsere Schätzung basiert auf Durchschnittswerten bei normalem Verkehr (±15–20 % Abweichung). Bei Stau, Baustellen oder schlechtem Wetter kann die reale Fahrzeit deutlich abweichen. Für exakte Angaben empfehlen wir Google Maps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel km sind 1 km Luftlinie auf der Straße?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1 km Luftlinie entspricht auf der Straße im Durchschnitt etwa 1,3 km (Umwegfaktor 1,3). In bergigem Gelände wie Alpen, Schwarzwald oder Harz sind es eher 1,4 bis 1,5 km pro Luftlinien-Kilometer. Für die Steuererklärung zählt immer die kürzeste Straßenverbindung, nicht die Luftlinie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie weit ist Berlin von mir entfernt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wählen Sie im Rechner Ihre nächstgelegene Großstadt als Startort und Berlin als Ziel. Beispiele (Luftlinie): von Hamburg 255 km, von Köln 477 km, von Frankfurt am Main 424 km, von München 504 km. Die Auto-Strecke liegt jeweils ca. 30 % über der Luftlinie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie weit ist München von mir entfernt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wählen Sie im Rechner Ihre nächstgelegene Großstadt als Startort und München als Ziel. Beispiele (Luftlinie): von Berlin 504 km, von Hamburg 612 km, von Frankfurt am Main 305 km, von Stuttgart 191 km, von Köln 456 km. Die Auto-Strecke liegt jeweils ca. 30 % über der Luftlinie."
         }
       }
     ]

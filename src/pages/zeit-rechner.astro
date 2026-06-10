@@ -6,8 +6,8 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import RechnerTrust from '../components/RechnerTrust.astro';
 import VerwandteRechner from '../components/VerwandteRechner.astro';
 
-const title = "Zeit-Rechner – Stunden & Minuten addieren, Zeitdifferenz";
-const description = "Zeit-Rechner: Stunden, Minuten und Sekunden addieren oder subtrahieren. Zeitdifferenz berechnen & Dezimalstunden umrechnen. Perfekt für Arbeitszeit-Erfassung!";
+const title = "Zeit-Rechner: Stunden & Minuten zusammenrechnen";
+const description = "Mehrere Zeiten addieren oder abziehen: Stunden & Minuten zusammenrechnen – mit Dezimalstunden & Rechenweg. Ideal für Arbeitszeit & Stundenzettel.";
 const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berechnen, Zeitdifferenz, Dezimalstunden, Stunden addieren, Minuten addieren, Arbeitszeit Rechner, Zeit subtrahieren, Stundenrechner";
 ---
 
@@ -38,7 +38,7 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
         <div class="flex items-center gap-3">
           <span class="text-4xl">⏰</span>
           <div>
-            <h1 class="text-2xl font-bold">Zeit-Rechner</h1>
+            <h1 class="text-2xl font-bold">Zeit-Rechner – Stunden &amp; Minuten zusammenrechnen</h1>
             <p class="text-blue-100 text-sm">Stunden & Minuten addieren/subtrahieren</p>
           </div>
         </div>
@@ -48,6 +48,49 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
     <!-- Calculator -->
     <div class="max-w-2xl mx-auto px-4 py-6">
       <ZeitRechner client:load />
+    </div>
+
+    <!-- Zusammenrechnen-Anleitung -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Stunden und Minuten zusammenrechnen – so geht's</h2>
+        <p>
+          Beim Minuten zusammenrechnen gibt es nur eine Stolperstelle: Sobald die Minutensumme 60
+          erreicht, wandert eine volle Stunde als Übertrag nach vorn. So geht's von Hand:
+        </p>
+        <ol>
+          <li>Alle Minuten addieren.</li>
+          <li>Je volle 60 Minuten in 1 Stunde umwandeln (Übertrag), der Rest bleibt als Minuten stehen.</li>
+          <li>Alle Stunden addieren – inklusive Übertrag.</li>
+        </ol>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          0:45 + 1:30 + 0:50<br/>
+          Minuten: 45 + 30 + 50 = 125 min = 2 h + 5 min<br/>
+          Stunden: 0 + 1 + 0 = 1 h, plus 2 h Übertrag<br/>
+          = <strong>3:05 h</strong>
+        </div>
+        <p>
+          Genau das übernimmt der Minuten-Rechner oben automatisch — egal ob du zwei oder zwanzig
+          Zeiten zusammenrechnen willst, samt Rechenweg und Dezimalstunden-Ausgabe.
+        </p>
+
+        <h3>Uhrzeit minus Minuten: Was ist 14:29 minus 39 Minuten?</h3>
+        <p>
+          Eine Uhrzeit minus Minuten rechnet sich am leichtesten in zwei Schritten über die volle
+          Stunde:
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          14:29 − 0:39<br/>
+          Schritt 1: 29 min zurück bis zur vollen Stunde → 14:00<br/>
+          Schritt 2: die restlichen 10 min zurück → <strong>13:50</strong>
+        </div>
+        <p>
+          Dieses Muster funktioniert für jede Aufgabe der Form „Uhrzeit plus/minus Minuten“: erst
+          bis zur vollen Stunde rechnen, dann den Rest. Im Subtraktions-Modus des Rechners genügt
+          dafür der Startwert 14:29 und ein zweiter Eintrag mit − 0:39 — das Ergebnis 13:50
+          erscheint inklusive Rechenweg.
+        </p>
+      </article>
     </div>
 
     <!-- Use-Case-Block -->
@@ -192,6 +235,31 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
           </p>
         </details>
 
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist jetzt plus 72 Stunden?</summary>
+          <p class="mt-3">
+            72 Stunden sind exakt 3 Tage — „jetzt plus 72 Stunden“ ist also dieselbe Uhrzeit in
+            drei Tagen. Beispiel: Mittwoch 15:00 + 72 h = Samstag 15:00. Für Berechnungen mit
+            konkretem Datum hilft der <a href="/tage-rechner">Tage-Rechner</a>.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie oft passen 45 Minuten in 12 Stunden?</summary>
+          <p class="mt-3">
+            12 Stunden sind 720 Minuten (12 × 60). 720 ÷ 45 = 16 — 45 Minuten passen also genau
+            16-mal in 12 Stunden.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie viel sind 14 Stunden und 54 Minuten?</summary>
+          <p class="mt-3">
+            14 Stunden und 54 Minuten sind 894 Minuten (14 × 60 + 54), als Dezimalwert 14,9
+            Stunden (54 ÷ 60 = 0,9) — das entspricht ungefähr 0,62 Tagen.
+          </p>
+        </details>
+
         <h2 class="text-2xl font-bold mt-12 mb-6">Quellen &amp; Methodik</h2>
         <p>
           Die rechtlichen Vorgaben zur Arbeitszeit ergeben sich aus dem
@@ -228,22 +296,29 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
           <div class="bg-blue-50 p-4 rounded-lg my-4">
             <p class="text-sm text-blue-800 font-semibold mb-2">🔧 Die 2 Berechnungsmodi:</p>
             <ul class="space-y-1 text-sm text-blue-700">
-              <li><strong>Zeit addieren/subtrahieren:</strong> Mehrere Zeitwerte zusammenrechnen</li>
+              <li><strong>Zeit addieren/subtrahieren:</strong> Mehrere Zeiten zusammenrechnen/addieren</li>
               <li><strong>Zeitdifferenz:</strong> Dauer zwischen zwei Uhrzeiten berechnen</li>
             </ul>
           </div>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitszeit addieren – so geht's</h3>
           <p>
-            Bei der <strong>Arbeitszeiterfassung</strong> müssen oft mehrere Zeitabschnitte addiert werden. 
+            Bei der <strong>Arbeitszeiterfassung</strong> müssen oft mehrere Zeitabschnitte addiert werden.
             Unser Rechner übernimmt das Umrechnen automatisch, auch wenn die Minuten oder Sekunden über 60 gehen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Arbeitszeiten addieren: Wochensumme aus dem Stundenzettel</h3>
+          <p>
+            Wer seine <strong>Arbeitszeiten addieren</strong> will, trägt die einzelnen Tageswerte
+            vom Stundenzettel einfach untereinander in den Rechner ein — Tag für Tag, so wie sie
+            notiert sind:
           </p>
           <div class="bg-gray-50 p-4 rounded-lg my-4 font-mono text-sm">
             <p><strong>Beispiel: Wochenstunden</strong></p>
             <p>Mo: 8:30 + Di: 7:45 + Mi: 9:00 + Do: 8:15 + Fr: 6:30</p>
             <p class="mt-2 text-green-600"><strong>= 40:00 Stunden pro Woche</strong></p>
           </div>
-          
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Zeitdifferenz berechnen</h3>
           <p>
             Die <strong>Zeitdifferenz</strong> zwischen zwei Uhrzeiten ist wichtig für:
@@ -562,6 +637,30 @@ const keywords = "Zeitrechner, Stunden Rechner, Zeit addieren, Arbeitszeit berec
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Bei mehr als 6 Stunden Arbeitszeit: mindestens 30 Minuten Pause. Bei mehr als 9 Stunden: mindestens 45 Minuten. Pausen können in 15-Minuten-Blöcke aufgeteilt werden (§4 ArbZG)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist jetzt plus 72 Stunden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "72 Stunden sind exakt 3 Tage — „jetzt plus 72 Stunden“ ist also dieselbe Uhrzeit in drei Tagen. Beispiel: Mittwoch 15:00 + 72 h = Samstag 15:00. Für Berechnungen mit konkretem Datum hilft der Tage-Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie oft passen 45 Minuten in 12 Stunden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "12 Stunden sind 720 Minuten (12 × 60). 720 ÷ 45 = 16 — 45 Minuten passen also genau 16-mal in 12 Stunden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel sind 14 Stunden und 54 Minuten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "14 Stunden und 54 Minuten sind 894 Minuten (14 × 60 + 54), als Dezimalwert 14,9 Stunden (54 ÷ 60 = 0,9) — das entspricht ungefähr 0,62 Tagen."
         }
       }
     ]

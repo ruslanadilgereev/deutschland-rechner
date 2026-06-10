@@ -21,7 +21,9 @@ const {
 
 const siteUrl = "https://www.deutschland-rechner.de";
 const fullTitle = title === "Alle Rechner" ? "Deutschlandrechner – Alle deutschen Rechner 2026" : `${title} | Deutschlandrechner`;
-const canonicalUrl = canonical || Astro.url.pathname;
+// Canonical immer OHNE Trailing-Slash (Slash-Variante wird via vercel.json 308-redirected)
+const rawCanonical = canonical || Astro.url.pathname;
+const canonicalUrl = rawCanonical !== '/' && rawCanonical.endsWith('/') ? rawCanonical.slice(0, -1) : rawCanonical;
 ---
 
 <!doctype html>

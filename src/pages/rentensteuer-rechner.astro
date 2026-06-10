@@ -4,8 +4,8 @@ import RentensteuerRechner from '../components/rechner/RentensteuerRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
-const title = "Rentensteuer-Rechner 2025 & 2026 – Netto-Rente nach Abzügen berechnen";
-const description = "Rentensteuer-Rechner 2026: Berechnen Sie Ihre Netto-Rente nach Steuern & Sozialabgaben. Besteuerungsanteil 84%, KV 8,75%, PV 3,6%. Aktivrente, Betriebsrente, Witwenrente – kostenlos & sofort.";
+const title = "Rentensteuer-Rechner 2026: Netto-Rente berechnen";
+const description = "Rentensteuer-Rechner 2026: Brutto-Rente eingeben, Netto-Rente sehen. Steuer, KV & PV inkl. Betriebsrente – auch für Ehepaare. Kostenlos & ohne Anmeldung.";
 const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Rentenbesteuerung 2026, Besteuerungsanteil, Krankenversicherung Rentner, Steuern auf Rente, Rente Abzüge, Rentenfreibetrag, Aktivrente 2026, Betriebsrente Steuer, Witwenrente Steuer, Grundfreibetrag Rentner";
 ---
 
@@ -63,17 +63,32 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Rentensteuer-Rechner</strong> berechnen Sie kostenlos, wie viel 
-            von Ihrer Brutto-Rente nach <strong>Steuern und Sozialabgaben</strong> übrig bleibt. 
-            Seit dem Alterseinkünftegesetz 2005 werden Renten schrittweise stärker besteuert — der 
-            <strong>Besteuerungsanteil</strong> steigt mit jedem Rentenjahrgang. Durch das 
-            <strong>Wachstumschancengesetz</strong> wächst er seit 2023 nur noch um 0,5 Prozentpunkte 
-            pro Jahr statt zuvor um einen vollen Punkt. Die volle Besteuerung (100 %) wird damit 
-            erst <strong>2058</strong> statt 2040 erreicht. Ergänzend können Sie mit unserem 
-            <a href="/renten-rechner" class="text-purple-600 hover:underline">Renten-Rechner</a> 
+            Mit unserem <strong>Rentensteuer-Rechner</strong> berechnen Sie kostenlos, wie viel
+            von Ihrer Brutto-Rente nach <strong>Steuern und Sozialabgaben</strong> übrig bleibt.
+            Sie können damit in wenigen Sekunden die <strong>Steuer auf die Rente berechnen</strong> und
+            sehen sofort, welchen Teil Sie von Ihrer <strong>Rente versteuern</strong> müssen.
+            Seit dem Alterseinkünftegesetz 2005 werden Renten schrittweise stärker besteuert — der
+            <strong>Besteuerungsanteil</strong> steigt mit jedem Rentenjahrgang. Durch das
+            <strong>Wachstumschancengesetz</strong> wächst er seit 2023 nur noch um 0,5 Prozentpunkte
+            pro Jahr statt zuvor um einen vollen Punkt. Die volle Besteuerung (100 %) wird damit
+            erst <strong>2058</strong> statt 2040 erreicht. Ergänzend können Sie mit unserem
+            <a href="/renten-rechner" class="text-purple-600 hover:underline">Renten-Rechner</a>
             Ihre gesetzliche Brutto-Rente berechnen und so die Differenz zur Netto-Rente sehen.
           </p>
-          
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rentensteuer berechnen: Schritt für Schritt</h3>
+          <p>
+            So wird die <strong>Rentensteuer berechnet</strong> — der Rechner nimmt Ihnen alle
+            fünf Schritte ab:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li><strong>Jahres-Brutto-Rente ermitteln:</strong> Monatsrente × 12</li>
+            <li><strong>Besteuerungsanteil anwenden:</strong> Bei Rentenbeginn 2026 sind 84 % steuerpflichtig — der Rest ist Ihr lebenslanger Rentenfreibetrag</li>
+            <li><strong>Pauschalen und Vorsorgeaufwendungen abziehen:</strong> Werbungskosten-Pauschale (102 €), Sonderausgaben-Pauschbetrag (36 €) und Ihre KV-/PV-Beiträge</li>
+            <li><strong>Zu versteuerndes Einkommen (zvE) bestimmen:</strong> Liegt es unter dem Grundfreibetrag von 12.348 € (2026, Ledige), fällt keine Einkommensteuer an</li>
+            <li><strong>Einkommensteuer nach §32a EStG berechnen:</strong> Auf das zvE wird der progressive Tarif (14–45 %) angewendet — ggf. plus Soli und Kirchensteuer</li>
+          </ol>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Besteuerungsanteil nach Rentenbeginn</h3>
           <p>
             Der <strong>Besteuerungsanteil</strong> Ihrer Rente hängt vom Jahr Ihres Rentenbeginns ab. 
@@ -139,11 +154,79 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
         </div>
       </div>
     </div>
-    
+
+    <!-- Brutto-Netto-Rentenrechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Brutto-Netto-Rechner für die Rente 2026</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Dieser Rechner funktioniert wie ein <strong>Brutto-Netto-Rentenrechner</strong>: Sie geben
+            Ihre <strong>Brutto-Rente</strong> ein, und der Rechner durchläuft die komplette Abzugskette —
+            Besteuerungsanteil, zu versteuerndes Einkommen, Einkommensteuer nach §32a EStG sowie
+            KV- und PV-Beiträge — bis zu Ihrer <strong>Netto-Rente</strong>. So sehen Sie auf einen
+            Blick, wie viel von der Rente brutto zu netto übrig bleibt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Tabelle: Brutto-Rente in Netto-Rente 2026</h3>
+          <div class="overflow-x-auto mt-2">
+            <table class="w-full text-xs border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="border p-2 text-left">Brutto-Rente/Monat</th>
+                  <th class="border p-2 text-right">Einkommensteuer/Monat</th>
+                  <th class="border p-2 text-right">KV + PV/Monat</th>
+                  <th class="border p-2 text-right">Netto-Rente/Monat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border p-2">1.200 €</td>
+                  <td class="border p-2 text-right">0 €</td>
+                  <td class="border p-2 text-right">ca. 148 €</td>
+                  <td class="border p-2 text-right font-medium">ca. 1.052 €</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="border p-2">1.500 €</td>
+                  <td class="border p-2 text-right">ca. 5 €</td>
+                  <td class="border p-2 text-right">ca. 185 €</td>
+                  <td class="border p-2 text-right font-medium">ca. 1.310 €</td>
+                </tr>
+                <tr>
+                  <td class="border p-2">1.800 €</td>
+                  <td class="border p-2 text-right">ca. 42 €</td>
+                  <td class="border p-2 text-right">ca. 223 €</td>
+                  <td class="border p-2 text-right font-medium">ca. 1.535 €</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="border p-2">2.000 €</td>
+                  <td class="border p-2 text-right">ca. 72 €</td>
+                  <td class="border p-2 text-right">ca. 247 €</td>
+                  <td class="border p-2 text-right font-medium">ca. 1.681 €</td>
+                </tr>
+                <tr>
+                  <td class="border p-2">2.500 €</td>
+                  <td class="border p-2 text-right">ca. 159 €</td>
+                  <td class="border p-2 text-right">ca. 309 €</td>
+                  <td class="border p-2 text-right font-medium">ca. 2.032 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs">
+            Annahmen: Rentenbeginn 2026 (Besteuerungsanteil 84 %), alleinstehend, keine weiteren
+            Einkünfte, keine Kirchensteuer, KV 8,75 % + PV 3,6 %. Werte gerundet — Ihre individuelle
+            Netto-Rente berechnen Sie oben im Rechner.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Beispielrechnungen -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 3 Beispielrechnungen: Netto-Rente 2026</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 4 Beispielrechnungen: Netto-Rente 2026</h2>
         
         <div class="space-y-4">
           <!-- Beispiel 1 -->
@@ -190,6 +273,22 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
               <li>Einkommensteuer: ca. <strong>3.542 €/Jahr</strong> (295 €/Monat)</li>
               <li>KV auf Betriebsrente: voller Satz (14,6 % + 2,9 % ZB) abzgl. <a href="/brutto-netto-rechner" class="text-amber-600 hover:underline">Freibetrag 197,75 €</a></li>
               <li class="pt-2 border-t border-amber-200 font-bold">➜ Netto gesamt: ca. 2.483 €/Monat (80 % vom Brutto)</li>
+            </ul>
+          </div>
+
+          <!-- Beispiel 4 -->
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-purple-800 mb-2">Beispiel 4: Rentner-Ehepaar mit Betriebsrente (Rentenbeginn 2026)</h3>
+            <ul class="space-y-1 text-sm text-purple-700">
+              <li>Gesetzliche Rente Partner 1: <strong>1.700 €/Monat</strong> = 20.400 €/Jahr (BA 84 %)</li>
+              <li>Betriebsrente Partner 1: <strong>400 €/Monat</strong> = 4.800 €/Jahr (100 % steuerpflichtig)</li>
+              <li>Gesetzliche Rente Partner 2: <strong>1.100 €/Monat</strong> = 13.200 €/Jahr (BA 84 %)</li>
+              <li>Steuerpflichtig: 17.136 € + 4.800 € + 11.088 € = 33.024 €</li>
+              <li>Abzgl. 2 × Werbungskosten + Sonderausgaben + Vorsorge: ca. −5.023 €</li>
+              <li>Gemeinsames zvE: ca. <strong>28.001 €</strong> — Zusammenveranlagung (Grundfreibetrag 24.696 €)</li>
+              <li>Einkommensteuer (Splittingtarif): ca. <strong>513 €/Jahr</strong> (43 €/Monat)</li>
+              <li>KV auf Betriebsrente: voller Satz (14,6 % + 2,9 % ZB) auf den Teil über 197,75 €/Monat</li>
+              <li class="pt-2 border-t border-purple-200 font-bold">➜ Netto gesamt: ca. 2.760 €/Monat (von 3.200 € brutto)</li>
             </ul>
           </div>
         </div>
@@ -303,17 +402,6 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
             </div>
           </details>
           
-          <!-- Sonderfall 3: Erwerbsminderungsrente -->
-          <details class="group border border-gray-200 rounded-lg">
-            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
-              <span>🏥 <a href="/erwerbsminderungsrente-rechner" class="text-purple-600 hover:underline">Erwerbsminderungsrente</a>: Besondere Regeln</span>
-              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <div class="p-3 pt-0 text-gray-600">
-              <p>Die EM-Rente wird steuerlich wie eine Altersrente behandelt — der Besteuerungsanteil richtet sich nach dem <strong>Beginn der EM-Rente</strong>. Bei Umwandlung in eine Altersrente bleibt der ursprüngliche Freibetrag erhalten. <strong>Hinzuverdienstgrenzen</strong> gelten weiterhin: Bei voller EM-Rente max. 18.558,75 €/Jahr (2026), bei teilweiser EM-Rente max. 37.117,50 €/Jahr. Überschreiten führt zur anteiligen Kürzung.</p>
-            </div>
-          </details>
-          
           <!-- Sonderfall 4: Doppelbesteuerung -->
           <details class="group border border-gray-200 rounded-lg">
             <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-semibold text-gray-800">
@@ -338,7 +426,32 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
         </div>
       </div>
     </div>
-    
+
+    <!-- Erwerbsminderungsrente -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🏥 Steuer auf die Erwerbsminderungsrente berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Erwerbsminderungsrente (EM-Rente)</strong> wird steuerlich wie eine
+            Altersrente behandelt — der Besteuerungsanteil richtet sich nach dem
+            <strong>Beginn der EM-Rente</strong>. Auch die <strong>volle Erwerbsminderungsrente
+            berechnen</strong> Sie deshalb mit diesem Rechner: Geben Sie als Rentenbeginn einfach
+            das Jahr ein, in dem Ihre EM-Rente begonnen hat. Bei Umwandlung in eine Altersrente
+            bleibt der ursprüngliche Rentenfreibetrag erhalten.
+          </p>
+          <p>
+            <strong>Hinzuverdienstgrenzen</strong> gelten weiterhin: Bei voller EM-Rente max.
+            <strong>20.763,75 €/Jahr</strong> (2026), bei teilweiser EM-Rente max.
+            <strong>41.527,50 €/Jahr</strong>. Überschreiten führt zur anteiligen Kürzung.
+            Die Höhe Ihrer EM-Rente selbst ermitteln Sie mit dem
+            <a href="/erwerbsminderungsrente-rechner" class="text-purple-600 hover:underline">Erwerbsminderungsrente-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Absetzbare Kosten & Steuertipps -->
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-white rounded-2xl shadow-lg p-6">
@@ -477,6 +590,22 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
               <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </summary>
             <p class="p-3 pt-0 text-sm text-gray-600">Der Rechner liefert eine <strong>zuverlässige Schätzung</strong> auf Basis der aktuellen Steuerformel (§32a EStG), des offiziellen Besteuerungsanteils und der gültigen Sozialversicherungssätze 2026. Er berücksichtigt Grundfreibetrag, Werbungskosten-Pauschale, Sonderausgaben-Pauschbetrag und Vorsorgeaufwendungen. <strong>Nicht erfasst</strong> werden individuelle außergewöhnliche Belastungen, weitere Einkünfte (Miete, Kapital) und kassenspezifische Zusatzbeiträge. Für eine verbindliche Berechnung wenden Sie sich an einen Steuerberater oder <a href="/lohnsteuer-rechner" class="text-purple-600 hover:underline">Lohnsteuerhilfeverein</a>.</p>
+          </details>
+
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Wie wird die volle Erwerbsminderungsrente versteuert?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Die volle Erwerbsminderungsrente wird steuerlich <strong>wie eine Altersrente</strong> behandelt: Maßgeblich ist der Besteuerungsanteil im Jahr des <strong>EM-Rentenbeginns</strong>. Sie können die Steuer auf die volle Erwerbsminderungsrente daher mit diesem Rechner berechnen — geben Sie als Rentenbeginn das Jahr ein, in dem Ihre EM-Rente begonnen hat. Beachten Sie die <strong>Hinzuverdienstgrenze</strong>: Bei voller EM-Rente liegt sie 2026 bei <strong>20.763,75 €/Jahr</strong>, bei Überschreiten wird die Rente anteilig gekürzt.</p>
+          </details>
+
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Gibt es einen kostenlosen Steuerrechner für Rentner?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Ja — dieser <strong>Steuerrechner für Rentner</strong> ist komplett <strong>kostenlos</strong> und <strong>ohne Anmeldung</strong> nutzbar. Er rechnet mit den aktuellen Werten 2026 (Grundfreibetrag 12.348 €, Besteuerungsanteil 84 % für Neurentner, KV ca. 8,75 %, PV 3,6 %) und berücksichtigt auch Betriebsrente, Zusammenveranlagung für Ehepaare und Kirchensteuer.</p>
           </details>
         </div>
       </div>
@@ -662,6 +791,22 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Der Rechner liefert eine zuverlässige Schätzung auf Basis der aktuellen Steuerformel (§32a EStG), des offiziellen Besteuerungsanteils und der gültigen Sozialversicherungssätze 2026. Er berücksichtigt Grundfreibetrag, Werbungskosten-Pauschale, Sonderausgaben-Pauschbetrag und Vorsorgeaufwendungen. Nicht erfasst werden individuelle außergewöhnliche Belastungen, weitere Einkünfte und kassenspezifische Zusatzbeiträge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird die volle Erwerbsminderungsrente versteuert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die volle Erwerbsminderungsrente wird steuerlich wie eine Altersrente behandelt: Maßgeblich ist der Besteuerungsanteil im Jahr des EM-Rentenbeginns. Sie können die Steuer auf die volle Erwerbsminderungsrente daher mit diesem Rechner berechnen — geben Sie als Rentenbeginn das Jahr ein, in dem Ihre EM-Rente begonnen hat. Beachten Sie die Hinzuverdienstgrenze: Bei voller EM-Rente liegt sie 2026 bei 20.763,75 €/Jahr, bei Überschreiten wird die Rente anteilig gekürzt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es einen kostenlosen Steuerrechner für Rentner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja — dieser Steuerrechner für Rentner ist komplett kostenlos und ohne Anmeldung nutzbar. Er rechnet mit den aktuellen Werten 2026 (Grundfreibetrag 12.348 €, Besteuerungsanteil 84 % für Neurentner, KV ca. 8,75 %, PV 3,6 %) und berücksichtigt auch Betriebsrente, Zusammenveranlagung für Ehepaare und Kirchensteuer."
         }
       }
     ]
