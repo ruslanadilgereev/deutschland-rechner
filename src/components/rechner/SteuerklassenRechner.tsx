@@ -77,8 +77,8 @@ const BBG_2026 = {
 // SOLI & KIRCHENSTEUER
 // ============================================================================
 const SOLI_SATZ = 0.055; // 5,5%
-const SOLI_FREIGRENZE_GRUND = 18130;     // Grundtarif
-const SOLI_FREIGRENZE_SPLITTING = 36260; // Splittingtarif
+const SOLI_FREIGRENZE_GRUND = 20350;     // Grundtarif (VZ 2026, §3 SolzG)
+const SOLI_FREIGRENZE_SPLITTING = 40700; // Splittingtarif (VZ 2026, §3 SolzG)
 const SOLI_MILDERUNGSZONE_FAKTOR = 0.119;
 
 // ============================================================================

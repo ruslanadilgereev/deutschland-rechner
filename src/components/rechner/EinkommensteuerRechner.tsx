@@ -81,11 +81,11 @@ function berechneGrenzsteuersatz(zvE: number, verheiratet: boolean): number {
   if (zvEHalb <= GRUNDFREIBETRAG_2026) return 0;
   if (zvEHalb <= TARIFZONEN_2026.zone1Ende) {
     const y = (zvEHalb - GRUNDFREIBETRAG_2026) / 10000;
-    return Math.min(24, 14 + (2 * 914.51 * y + 1400) / 100);
+    return Math.min(24, (2 * 914.51 * y + 1400) / 100);
   }
   if (zvEHalb <= TARIFZONEN_2026.zone2Ende) {
     const z = (zvEHalb - TARIFZONEN_2026.zone1Ende) / 10000;
-    return Math.min(42, 24 + (2 * 173.10 * z + 2397) / 100);
+    return Math.min(42, (2 * 173.10 * z + 2397) / 100);
   }
   if (zvEHalb <= TARIFZONEN_2026.zone3Ende) return 42;
   return 45;
@@ -93,8 +93,10 @@ function berechneGrenzsteuersatz(zvE: number, verheiratet: boolean): number {
 
 // Solidaritätszuschlag (stark reduziert seit 2021)
 function berechneSoli(einkommensteuer: number, verheiratet: boolean): number {
-  const freigrenze = verheiratet ? 36260 : 18130;
-  const milderungszone = verheiratet ? 66126 : 33063;
+  // Freigrenze 2026: 20.350 € Einzel / 40.700 € Zusammenveranlagung (§ 3 SolzG)
+  const freigrenze = verheiratet ? 40700 : 20350;
+  // Ende Milderungszone = Freigrenze × 0,119/0,064
+  const milderungszone = verheiratet ? 75677 : 37839;
   
   if (einkommensteuer <= freigrenze) return 0;
   if (einkommensteuer <= milderungszone) {

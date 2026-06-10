@@ -83,8 +83,8 @@ const TARIF = STEUERJAHR === 2025 ? TARIF_2025 : TARIF_2026;
 // Solidaritätszuschlag (§3 SolzG)
 const SOLI_SATZ = 0.055; // 5,5%
 // Freigrenzen Soli (seit 2021 stark erhöht - ca. 90% zahlen keinen Soli mehr)
-const SOLI_FREIGRENZE_GRUND = 18130;     // Grundtarif: 18.130€ Lohnsteuer/Jahr
-const SOLI_FREIGRENZE_SPLITTING = 36260; // Splittingtarif: 36.260€ Lohnsteuer/Jahr
+const SOLI_FREIGRENZE_GRUND = 20350;     // Grundtarif: 20.350€ Lohnsteuer/Jahr (VZ 2026)
+const SOLI_FREIGRENZE_SPLITTING = 40700; // Splittingtarif: 40.700€ Lohnsteuer/Jahr (VZ 2026)
 const SOLI_MILDERUNGSZONE_FAKTOR = 0.119; // 11,9% in der Milderungszone
 
 // Kirchensteuer nach Bundesland (§51a EStG i.V.m. Landesrecht)

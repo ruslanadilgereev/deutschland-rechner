@@ -13,14 +13,14 @@ const ATZ_2026 = {
   rvBeitragssatzGesamt: 18.6,     // % Gesamtbeitragssatz RV 2026
   rvBeitragssatzAN: 9.3,          // % Arbeitnehmeranteil RV
   
-  // Beitragsbemessungsgrenze RV West 2026
-  bbgRVMonat: 8050,               // €/Monat
+  // Beitragsbemessungsgrenze RV 2026 (bundeseinheitlich)
+  bbgRVMonat: 8450,               // €/Monat
   
   // Durchschnittsentgelt für Rentenpunkte 2026 (vorläufig)
   durchschnittsentgelt: 47450,    // €/Jahr
   
-  // Aktueller Rentenwert 2026 (vorläufig ab 01.07.2025)
-  aktuellerRentenwert: 39.32,     // €/Entgeltpunkt/Monat
+  // Aktueller Rentenwert (gültig 01.07.2025–30.06.2026)
+  aktuellerRentenwert: 40.79,     // €/Entgeltpunkt/Monat
 };
 
 interface AtzErgebnis {

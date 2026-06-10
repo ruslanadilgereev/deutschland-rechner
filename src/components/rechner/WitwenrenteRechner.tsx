@@ -33,8 +33,8 @@ const ALTERSGRENZE_2026 = { jahre: 46, monate: 6 }; // 46 Jahre 6 Monate
 // KV/PV-Beiträge auf Renten (ca.)
 const KV_BEITRAG = 0.073; // 7,3% + Zusatzbeitrag
 const KV_ZUSATZBEITRAG = 0.0145; // ca. 1,45% AN-Anteil (Hälfte von Ø 2,9% Zusatzbeitrag 2026)
-const PV_BEITRAG = 0.018; // 1,8% (AN-Anteil ab 2024)
-const PV_ZUSCHLAG_KINDERLOS = 0.006; // +0,6% für Kinderlose ab 23
+const PV_BEITRAG = 0.036; // 3,6% (Rentner tragen den vollen PV-Beitrag allein, seit 01.07.2025)
+const PV_ZUSCHLAG_KINDERLOS = 0.006; // +0,6% für Kinderlose ab 23 (= 4,2% gesamt)
 
 export default function WitwenrenteRechner() {
   // Eingabewerte

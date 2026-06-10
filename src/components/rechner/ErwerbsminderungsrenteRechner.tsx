@@ -31,7 +31,7 @@ const DURCHSCHNITTSENTGELTE: Record<number, number> = {
 };
 
 // Beitragsbemessungsgrenze RV 2026 (bundesweit einheitlich)
-const BBG_RV_2026 = 8050 * 12; // 96.600 €/Jahr
+const BBG_RV_2026 = 8450 * 12; // 101.400 €/Jahr
 
 // Rentenartfaktoren
 const RENTENARTFAKTOR = {
@@ -78,12 +78,14 @@ const ABSCHLAGSFREIES_ALTER: Record<number, { jahre: number; monate: number }> =
 const HINZUVERDIENSTGRENZE_VOLL_2026 = 20763.75; // Euro pro Jahr
 const HINZUVERDIENSTGRENZE_VOLL_MONAT = Math.round(HINZUVERDIENSTGRENZE_VOLL_2026 / 12);
 
-// Sozialabgaben auf EM-Rente (Rentner zahlen halben Beitrag)
+// Sozialabgaben auf EM-Rente
+// KV: Rentner zahlen den halben Beitragssatz (Träger zahlt die andere Hälfte)
+// PV: Rentner tragen den vollen Beitrag allein (§ 59 SGB XI)
 const ABZUEGE_RENTE = {
   krankenversicherung: 0.073,  // 7,3% (halber allg. Beitragssatz)
   zusatzbeitrag_kv: 0.0145,   // 1,45% durchschnittlicher Zusatzbeitrag
-  pflegeversicherung: 0.018,  // 1,8% mit Kindern
-  pflegeversicherung_kinderlos: 0.024, // 2,4% ohne Kinder
+  pflegeversicherung: 0.036,  // 3,6% mit Kindern (voller Satz)
+  pflegeversicherung_kinderlos: 0.042, // 4,2% ohne Kinder (voller Satz)
 };
 
 type EMTyp = 'voll' | 'teilweise';

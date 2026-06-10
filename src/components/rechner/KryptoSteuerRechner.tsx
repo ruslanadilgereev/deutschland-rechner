@@ -11,27 +11,33 @@ const FREIGRENZE = 1000;
 // ═══════════════════════════════════════════════════════════════════════════
 const GRUNDFREIBETRAG = 12348; // 2026
 
-function berechneEinkommensteuer(zvE: number): number {
-  if (zvE <= GRUNDFREIBETRAG) return 0;
-  
-  if (zvE <= 17799) {
-    const y = (zvE - 12348) / 10000;
-    return Math.floor((914.51 * y + 1400) * y);
-  } else if (zvE <= 69878) {
-    const z = (zvE - 17799) / 10000;
-    return Math.floor((173.10 * z + 2397) * z + 1034.87);
-  } else if (zvE <= 277825) {
-    return Math.floor(0.42 * zvE - 11135.63);
+function berechneEinkommensteuer(zvE: number, verheiratet: boolean): number {
+  // Splittingverfahren (§32a Abs. 5 EStG): Steuer auf halbes zvE, dann verdoppelt
+  const faktor = verheiratet ? 2 : 1;
+  const x = zvE / faktor;
+  if (x <= GRUNDFREIBETRAG) return 0;
+
+  let steuer: number;
+  if (x <= 17799) {
+    const y = (x - 12348) / 10000;
+    steuer = (914.51 * y + 1400) * y;
+  } else if (x <= 69878) {
+    const z = (x - 17799) / 10000;
+    steuer = (173.10 * z + 2397) * z + 1034.87;
+  } else if (x <= 277825) {
+    steuer = 0.42 * x - 11135.63;
   } else {
-    return Math.floor(0.45 * zvE - 19470.38);
+    steuer = 0.45 * x - 19470.38;
   }
+  return Math.floor(steuer) * faktor;
 }
 
-function berechneGrenzsteuersatz(zvE: number): number {
-  if (zvE <= GRUNDFREIBETRAG) return 0;
-  if (zvE <= 17799) return 14 + ((zvE - GRUNDFREIBETRAG) / (17799 - GRUNDFREIBETRAG)) * (24 - 14);
-  if (zvE <= 69878) return 24 + ((zvE - 17799) / (69878 - 17799)) * (42 - 24);
-  if (zvE <= 277825) return 42;
+function berechneGrenzsteuersatz(zvE: number, verheiratet: boolean): number {
+  const x = zvE / (verheiratet ? 2 : 1);
+  if (x <= GRUNDFREIBETRAG) return 0;
+  if (x <= 17799) return 14 + ((x - GRUNDFREIBETRAG) / (17799 - GRUNDFREIBETRAG)) * (24 - 14);
+  if (x <= 69878) return 24 + ((x - 17799) / (69878 - 17799)) * (42 - 24);
+  if (x <= 277825) return 42;
   return 45;
 }
 
@@ -155,14 +161,15 @@ export default function KryptoSteuerRechner() {
     const zvEOhneKrypto = zuVersteuerndesEinkommen;
     const zvEMitKrypto = zvEOhneKrypto + zuVersteuernderGewinn;
     
-    const steuerOhneKrypto = berechneEinkommensteuer(zvEOhneKrypto);
-    const steuerMitKrypto = berechneEinkommensteuer(zvEMitKrypto);
-    
+    const verheiratet = steuerklasse === 'verheiratet';
+    const steuerOhneKrypto = berechneEinkommensteuer(zvEOhneKrypto, verheiratet);
+    const steuerMitKrypto = berechneEinkommensteuer(zvEMitKrypto, verheiratet);
+
     // Steuer auf Krypto = Differenz
     const einkommensteuerKrypto = steuerMitKrypto - steuerOhneKrypto;
-    
+
     // Grenzsteuersatz (für Anzeige)
-    const grenzsteuersatz = berechneGrenzsteuersatz(zvEMitKrypto);
+    const grenzsteuersatz = berechneGrenzsteuersatz(zvEMitKrypto, verheiratet);
     
     // Effektiver Steuersatz auf Krypto
     const effektiverSteuersatz = zuVersteuernderGewinn > 0 
@@ -170,21 +177,16 @@ export default function KryptoSteuerRechner() {
       : 0;
     
     // Solidaritätszuschlag (5,5% auf ESt wenn > Freigrenze)
-    // Soli-Freigrenze 2026: 20.350€ (Singles) / 40.700€ (Verheiratete) – Konstante unten nutzt noch die 2025er Werte (19.950/39.900)
-    const soliFreibetrag = steuerklasse === 'single' ? 19950 : 39900;
+    // Soli-Freigrenze 2026: 20.350€ (Singles) / 40.700€ (Verheiratete) – §3 SolzG 1995
+    const soliFreibetrag = steuerklasse === 'single' ? 20350 : 40700;
     let soli = 0;
     if (steuerMitKrypto > soliFreibetrag) {
-      // Milderungszone zwischen Freigrenze und +631€
+      // Milderungszone (§4 SolzG): Soli auf max. 11,9% des Betrags über der Freigrenze begrenzt
       const ueberFreigrenze = steuerMitKrypto - soliFreibetrag;
-      if (ueberFreigrenze > 631) {
-        soli = Math.round(einkommensteuerKrypto * 0.055);
-      } else {
-        // Gleitende Zone: max 11,9% des Differenzbetrags
-        soli = Math.min(
-          Math.round(einkommensteuerKrypto * 0.055),
-          Math.round(ueberFreigrenze * 0.119)
-        );
-      }
+      soli = Math.min(
+        Math.round(einkommensteuerKrypto * 0.055),
+        Math.round(ueberFreigrenze * 0.119)
+      );
     }
     
     // Kirchensteuer

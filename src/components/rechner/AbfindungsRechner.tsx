@@ -23,21 +23,21 @@ import { useState, useMemo } from 'react';
 // den Arbeitgeber berücksichtigt! Sie muss in der Steuererklärung beantragt werden.
 // ═══════════════════════════════════════════════════════════════════════════════
 
-// Einkommensteuer-Tarif 2025 (§ 32a EStG)
+// Einkommensteuer-Tarif 2026 (§ 32a EStG)
 // Quelle: Bundesgesetzblatt, BMF
-const GRUNDFREIBETRAG_2025 = 12096;
+const GRUNDFREIBETRAG_2026 = 12348;
 
-// Einkommensteuer nach Tarif 2025 berechnen
+// Einkommensteuer nach Tarif 2026 berechnen
 // Formel nach § 32a Abs. 1 EStG
 function berechneEinkommensteuer(zvE: number): number {
   // Nullzone: Grundfreibetrag
-  if (zvE <= GRUNDFREIBETRAG_2025) return 0;
+  if (zvE <= GRUNDFREIBETRAG_2026) return 0;
   
-  // Zone 2: Progressionszone I (12.097€ - 17.005€)
+  // Zone 2: Progressionszone I (12.349€ - 17.005€)
   // ESt = (932,30 × y + 1.400) × y
-  // wobei y = (zvE - 12.096) / 10.000
+  // wobei y = (zvE - 12.348) / 10.000
   if (zvE <= 17005) {
-    const y = (zvE - GRUNDFREIBETRAG_2025) / 10000;
+    const y = (zvE - GRUNDFREIBETRAG_2026) / 10000;
     return Math.floor((932.30 * y + 1400) * y);
   }
   
@@ -62,10 +62,10 @@ function berechneEinkommensteuer(zvE: number): number {
 
 // Solidaritätszuschlag berechnen (mit Freigrenzen)
 function berechneSoli(einkommensteuer: number): number {
-  const freigrenze = 18130; // 2025 Freigrenze
+  const freigrenze = 20350; // 2026 Freigrenze (Einzelveranlagung; Zusammenveranlagung: 40.700€)
   if (einkommensteuer <= freigrenze) return 0;
-  
-  // Milderungszone bis ca. 33.000€ Steuer
+
+  // Milderungszone bis ca. 37.800€ Steuer
   const vollSoli = einkommensteuer * 0.055;
   const milderung = (einkommensteuer - freigrenze) * 0.119;
   return Math.min(vollSoli, milderung);
@@ -130,8 +130,8 @@ export default function AbfindungsRechner() {
     const werbungskostenpauschale = 1230; // 2025
     const zvE = jahresbrutto - werbungskostenpauschale;
     
-    // Kinderfreibeträge pro Kind: 6.612€ (Kind) + 2.928€ (Betreuung) = 9.540€ für 2025
-    const kinderfreibetragGesamt = kinderfreibetraege * 9540 / 2; // Hälfte für einen Elternteil
+    // Kinderfreibeträge pro Kind: 6.828€ (Kind) + 2.928€ (Betreuung) = 9.756€ für 2026
+    const kinderfreibetragGesamt = kinderfreibetraege * 9756 / 2; // Hälfte für einen Elternteil
     const zvENachKinderfreibetrag = Math.max(0, zvE - kinderfreibetragGesamt);
     
     // 1. Steuer OHNE Abfindung
@@ -177,7 +177,7 @@ export default function AbfindungsRechner() {
     const grenzsteuersatzOhne = zvENachKinderfreibetrag > 277825 ? 45 
       : zvENachKinderfreibetrag > 66760 ? 42 
       : zvENachKinderfreibetrag > 17005 ? (176.64 * 2 * ((zvENachKinderfreibetrag - 17005) / 10000) + 2397) / 100 + 24 
-      : zvENachKinderfreibetrag > GRUNDFREIBETRAG_2025 ? 14 + (932.30 * 2 * ((zvENachKinderfreibetrag - GRUNDFREIBETRAG_2025) / 10000) + 1400) / 100
+      : zvENachKinderfreibetrag > GRUNDFREIBETRAG_2026 ? 14 + (932.30 * 2 * ((zvENachKinderfreibetrag - GRUNDFREIBETRAG_2026) / 10000) + 1400) / 100
       : 0;
     
     return {
@@ -771,7 +771,7 @@ export default function AbfindungsRechner() {
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            § 32a EStG – Einkommensteuertarif 2025
+            § 32a EStG – Einkommensteuertarif 2026
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/kschg/__1a.html"
@@ -801,7 +801,7 @@ export default function AbfindungsRechner() {
         <p className="text-xs text-gray-500 mt-3">
           <strong>Fünftelregelung (§ 34 Abs. 1 EStG):</strong><br/>
           ESt(Abfindung) = 5 × [ESt(zvE + ⅕·Abfindung) − ESt(zvE)]<br/>
-          Einkommensteuertarif 2025: Grundfreibetrag 12.096€
+          Einkommensteuertarif 2026: Grundfreibetrag 12.348€
         </p>
       </div>
     </div>
