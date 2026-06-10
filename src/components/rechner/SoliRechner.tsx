@@ -740,7 +740,7 @@ export default function SoliRechner() {
           </li>
           <li className="flex gap-2">
             <span>•</span>
-            <span><strong>Verfassungsmäßigkeit:</strong> Das BVerfG hat den Soli 2020 für verfassungsgemäß erklärt</span>
+            <span><strong>Verfassungsmäßigkeit:</strong> Das BVerfG hat den Soli mit Urteil vom 26.03.2025 für verfassungsgemäß erklärt</span>
           </li>
           <li className="flex gap-2">
             <span>•</span>

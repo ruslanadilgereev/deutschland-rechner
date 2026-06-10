@@ -110,7 +110,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Geburtstermin Rechner, SSW Rechner, Schwangerschaftswoche berechnen, ET berechnen, Entbindungstermin Rechner, Geburtstermin berechnen, wann kommt mein Baby, Schwangerschaftsrechner 2025',
     quellen: [
       'https://www.familienplanung.de/schwangerschaft/',
-      'https://www.frauenaerzte-im-netz.de/schwangerschaft-geburt/',
       'https://www.bmfsfj.de/bmfsfj/themen/familie',
     ],
   },
@@ -191,7 +190,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/sgb_4/__20.html',
       'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Arbeitnehmer-und-Selbststaendige/01-uebergangsbereich/uebergangsbereich_node.html',
-      'https://www.lohn-info.de/uebergangsbereich.html',
     ],
   },
   {
@@ -304,9 +302,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, Arbeitstage im Jahr, Arbeitstage 2025, Arbeitstage 2026, Feiertage Deutschland, Arbeitstage Bundesland',
     quellen: [
       'https://www.bmi.bund.de/',
-      'https://www.dgb.de/service/ratgeber/feiertage/',
       'https://www.gesetze-im-internet.de/arbzg/',
-      'https://www.schulferien.org/deutschland/feiertage/',
     ],
   },
   {
@@ -334,7 +330,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Sabbatical Rechner, Sabbatical berechnen, Ansparmodell, Sabbatical Gehalt, Sabbatjahr, Langzeiturlaub, Auszeit vom Job, 4+1 Modell, Sabbatical planen, Sabbatical Deutschland, Sabbatical Rente',
     quellen: [
       'https://www.bmas.de/DE/Arbeit/Arbeitsrecht/arbeitsrecht.html',
-      'https://www.haufe.de/',
+      'https://www.gesetze-im-internet.de/tzbfg/',
       'https://www.deutsche-rentenversicherung.de',
     ],
   },
@@ -377,7 +373,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/erbstg_1974/',
       'https://www.gesetze-im-internet.de/bewg/',
       'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html',
-      'https://www.steuertipps.de/',
     ],
   },
   {
@@ -392,7 +387,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/erbstg_1974/',
       'https://www.gesetze-im-internet.de/bewg/',
       'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html',
-      'https://www.steuertipps.de/',
     ],
   },
   {
@@ -422,7 +416,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/grstg_1973/',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.grundsteuer.de',
       'https://www.bodenrichtwerte-boris.de',
     ],
   },
@@ -506,7 +499,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__51a.html',
       'https://www.gesetze-im-internet.de/estg/__10.html',
-      'https://www.lohn-info.de/kirchensteuer.html',
       'https://www.kirchenfinanzen.de/kirchensteuer/kappung.html',
       'https://www.bmf-steuerrechner.de',
     ],
@@ -579,7 +571,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/wogg/',
       'https://www.bmwsb.bund.de/Webs/BMWSB/DE/themen/wohnen/wohngeld/wohngeld-node.html',
-      'https://www.wohngeld.org',
     ],
   },
   {
@@ -592,7 +583,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'BAföG Rechner, BAföG berechnen, BAföG Höhe 2025',
     quellen: [
       'https://www.bafög.de',
-      'https://www.studentenwerke.de/de/bafoeg',
       'https://www.gesetze-im-internet.de/baf_g/',
     ],
   },
@@ -647,7 +637,7 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/estg/__10a.html',
       'https://www.gesetze-im-internet.de/estg/__79.html',
       'https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/rente-und-altersvorsorge.html',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
+      'https://www.gesetze-im-internet.de/altzertg/',
     ],
   },
   {
@@ -734,8 +724,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Nebenkosten Rechner, Betriebskosten berechnen, Nebenkostenabrechnung, Mietnebenkosten, zweite Miete, Heizkosten, Betriebskostenspiegel, BetrKV, warme Nebenkosten, kalte Nebenkosten',
     quellen: [
       'https://www.gesetze-im-internet.de/betrkv/',
-      'https://www.mieterbund.de',
-      'https://www.heizspiegel.de',
+      'https://www.gesetze-im-internet.de/bgb/__556.html',
     ],
   },
   {
@@ -747,10 +736,9 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Stromkosten Rechner, Stromverbrauch berechnen, Strompreis 2026, kWh Preis, Stromkosten Haushalt, Stromverbrauch schätzen, Stromkosten pro Jahr',
     quellen: [
-      'https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/',
-      'https://www.verivox.de/strom/strompreisentwicklung/',
-      'https://www.co2online.de/energie-sparen/strom-sparen/strom-sparen-stromspartipps/strompreis/',
-      'https://strom-report.com/strompreisentwicklung/',
+      'https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Erdgas-Strom-DurchschnittsPreise/_inhalt.html',
+      'https://www.bundesnetzagentur.de/',
+      'https://www.gesetze-im-internet.de/enwg_2005/',
     ],
   },
   {
@@ -762,10 +750,8 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Heizkosten Rechner, Heizkosten berechnen, Heizkosten pro qm, Heizkosten 2026, Gasheizung Kosten, Ölheizung Kosten, Wärmepumpe Kosten, Fernwärme Kosten, Heizspiegel, CO2 Steuer Heizung',
     quellen: [
-      'https://www.heizspiegel.de',
-      'https://www.bdew.de/energie/erdgas/',
+      'https://www.gesetze-im-internet.de/heizkostenv/',
       'https://www.umweltbundesamt.de/themen/klima-energie/energieversorgung/strom-waermeversorgung-in-zahlen',
-      'https://www.co2online.de/energie-sparen/heizung/heizkosten-senken/',
       'https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html',
     ],
   },
@@ -778,10 +764,8 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Gaskosten Rechner, Gasverbrauch berechnen, Gaspreis 2026, Heizkosten Gas, Gaskosten pro Jahr, Gasverbrauch Haushalt, Gaspreisvergleich, Gaskosten senken',
     quellen: [
-      'https://www.bdew.de/energie/erdgas/',
-      'https://www.verivox.de/gas/gaspreise/',
-      'https://www.finanztip.de/gaspreisvergleich/gaspreis-gaskosten/',
-      'https://www.co2online.de/energie-sparen/heizung/heizkosten-senken/',
+      'https://www.gesetze-im-internet.de/enwg_2005/',
+      'https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Erdgas-Strom-DurchschnittsPreise/_inhalt.html',
     ],
   },
   {
@@ -795,8 +779,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html',
       'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Energieeffizient-sanieren/Heizung/',
-      'https://www.waermepumpe.de',
-      'https://www.bdew.de',
       'https://www.umweltbundesamt.de/',
     ],
   },
@@ -810,10 +792,8 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Mietkaution Rechner, Kaution berechnen, Kaution Zinsen, Mietkaution Zinsen, §551 BGB, Mietkaution Rückzahlung, Kaution 3 Monatsmieten, Mietkaution 2025, Kautionsrechner, Mietkaution Ratenzahlung',
     quellen: [
       'https://www.gesetze-im-internet.de/bgb/__551.html',
-      'https://dejure.org/gesetze/BGB/551.html',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
-      'https://www.mieterbund.de',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
+      'https://www.gesetze-im-internet.de/bgb/__535.html',
     ],
   },
   {
@@ -825,10 +805,9 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Umzugskosten Rechner, Was kostet ein Umzug, Umzugskosten berechnen, Umzugsfirma Kosten, Selbstumzug Kosten, Umzug steuerlich absetzbar, Umzugskostenpauschale 2025, Umzugskosten Checkliste',
     quellen: [
-      'https://www.finanztip.de/umzugskosten/',
+      'https://www.gesetze-im-internet.de/estg/__9.html',
       'https://www.bundesfinanzministerium.de/Content/DE/BMF_Schreiben/Steuerarten/Lohnsteuer/2023-12-28-umzugskostenpauschalen-ab-1-maerz-2024.html',
       'https://www.gesetze-im-internet.de/bukg_1990/',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen-schulden-insolvenz/umzug-kosten-richtig-planen-5822',
     ],
   },
   {
@@ -860,9 +839,8 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/gnotkg/',
       'https://www.gesetze-im-internet.de/gnotkg/anlage_2.html',
-      'https://dejure.org/gesetze/GNotKG/34.html',
+      'https://www.gesetze-im-internet.de/gnotkg/__34.html',
       'https://www.bnotk.de',
-      'http://www.gnotkg.de/gebuehrentabelle.html',
     ],
   },
   {
@@ -894,7 +872,7 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/preisabg/',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
       'https://www.bafin.de/',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung',
+      'https://www.gesetze-im-internet.de/bgb/__491.html',
       'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/',
     ],
   },
@@ -916,7 +894,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Eigenkapital Hauskauf, Eigenkapital berechnen, wie viel Eigenkapital, Eigenkapital Immobilie, 20 Prozent Eigenkapital, 30 Prozent Eigenkapital, Beleihungsauslauf, Finanzierung Hauskauf',
     quellen: [
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung',
+      'https://www.gesetze-im-internet.de/belwertv/',
       'https://www.kfw.de/inlandsfoerderung/Privatpersonen/',
       'https://www.bundesfinanzministerium.de',
     ],
@@ -960,8 +938,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/sgb_11/',
       'https://www.bundesgesundheitsministerium.de/themen/pflege',
-      'https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegeleistungen/pflegegeld/',
-      'https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/pflegeantrag-und-leistungen',
+      'https://www.gesetze-im-internet.de/sgb_11/__37.html',
     ],
   },
   {
@@ -1054,7 +1031,7 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/kraftstg/',
       'https://www.zoll.de/DE/Privatpersonen/Kraftfahrzeugsteuer/kraftfahrzeugsteuer_node.html',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/kfz-steuer/',
+      'https://www.gesetze-im-internet.de/kraftstg/__9.html',
     ],
   },
   {
@@ -1084,8 +1061,8 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Auto Leasing Rechner, Leasingrate berechnen, Leasing Kosten, Leasingfaktor, Restwert Leasing, Leasing oder Finanzierung, Kilometerleasing',
     quellen: [
-      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/leasing/',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen-schulden-insolvenz/autoleasing-14061',
+      'https://www.gesetze-im-internet.de/bgb/__535.html',
+      'https://www.gesetze-im-internet.de/bgb/__506.html',
       'https://www.bfh.de/',
     ],
   },
@@ -1110,7 +1087,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/estg/__6.html',
       'https://www.gesetze-im-internet.de/estg/__8.html',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.adac.de/rund-ums-fahrzeug/',
     ],
   },
   {
@@ -1125,7 +1101,7 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/estg/__8.html',
       'https://www.gesetze-im-internet.de/estg/__3.html',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.finanztip.de/dienstfahrrad/',
+      'https://www.gesetze-im-internet.de/estg/__6.html',
     ],
   },
   {
@@ -1188,7 +1164,7 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/stvo_2013/',
       'https://www.gesetze-im-internet.de/bkatv_2013/',
       'https://www.kba.de/DE/Themen/ZentraleRegister/FAER/faer_node.html',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/stvg/',
     ],
   },
   {
@@ -1202,7 +1178,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/bkatv_2013/',
       'https://www.gesetze-im-internet.de/stvg/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/stvo_2013/',
     ],
   },
   {
@@ -1216,7 +1192,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/bkatv_2013/',
       'https://www.gesetze-im-internet.de/stvo_2013/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/stvg/',
     ],
   },
   {
@@ -1230,7 +1206,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/bkatv_2013/',
       'https://www.gesetze-im-internet.de/stvo_2013/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/stvg/',
     ],
   },
   {
@@ -1243,8 +1219,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Falschparken Bußgeld, Strafzettel Kosten, Knöllchen Höhe, Parken Halteverbot Strafe, Gehweg parken Bußgeld, zweite Reihe parken, Behindertenparkplatz Strafe, Parken ohne Parkschein',
     quellen: [
       'https://www.gesetze-im-internet.de/stvo_2013/',
-      'https://www.bussgeldkatalog.org/halten-parken/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/bkatv_2013/',
     ],
   },
   {
@@ -1257,8 +1232,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Handy am Steuer Strafe, Handy am Steuer Bußgeld, Handynutzung Auto Punkte, Smartphone am Steuer, Handy am Steuer Probezeit, Handy Radfahrer Bußgeld, E-Scooter Handy',
     quellen: [
       'https://www.gesetze-im-internet.de/stvo_2013/',
-      'https://www.bussgeldkatalog.org/handy-am-steuer/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/bkatv_2013/',
     ],
   },
   {
@@ -1271,8 +1245,8 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'TÜV überzogen Strafe, HU überzogen Bußgeld, TÜV abgelaufen Kosten, Hauptuntersuchung überfällig, TÜV vergessen Bußgeld, vertiefte HU, TÜV Punkt Flensburg',
     quellen: [
       'https://www.gesetze-im-internet.de/stvzo_2012/',
-      'https://www.bussgeldkatalog.org/tuev-ueberziehen/',
-      'https://www.adac.de/rund-ums-fahrzeug/',
+      'https://www.gesetze-im-internet.de/bkatv_2013/',
+      'https://www.gesetze-im-internet.de/stvzo_2012/__29.html',
     ],
   },
   {
@@ -1286,8 +1260,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/stvg/__24a.html',
       'https://www.gesetze-im-internet.de/stgb/__316.html',
-      'https://www.bussgeldkatalog.org/alkohol/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/bkatv_2013/',
     ],
   },
   {
@@ -1301,8 +1274,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/stvg/__4.html',
       'https://www.kba.de/DE/Themen/ZentraleRegister/FAER/faer_node.html',
-      'https://www.bussgeldkatalog.org/punkte-flensburg/',
-      'https://www.adac.de/verkehr/recht/bussgeld-punkte/',
+      'https://www.gesetze-im-internet.de/fev_2010/__40.html',
     ],
   },
   {
@@ -1314,10 +1286,8 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Restwert Rechner, Auto Restwert berechnen, Fahrzeugbewertung, Wertverlust Auto, Auto Wert berechnen, Gebrauchtwagen Wert, DAT Schwacke Alternative, Autowert Rechner, Fahrzeug Restwert, Wertverlust Neuwagen',
     quellen: [
-      'https://www.dat.de/',
-      'https://www.schwacke.de/',
-      'https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/',
-      'https://www.mobile.de/',
+      'https://www.gesetze-im-internet.de/estg/__7.html',
+      'https://www.bundesfinanzministerium.de/',
     ],
   },
 
@@ -1336,7 +1306,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/bgb/__488.html',
       'https://www.gesetze-im-internet.de/bgb/__491.html',
       'https://www.bafin.de/DE/Verbraucher/verbraucher_node.html',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
     ],
   },
@@ -1352,7 +1321,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
       'https://www.gesetze-im-internet.de/estg/__20.html',
       'https://www.bafin.de/DE/Verbraucher/verbraucher_node.html',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
       'https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html',
     ],
   },
@@ -1368,8 +1336,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/estg/__20.html',
       'https://www.gesetze-im-internet.de/estg/__32d.html',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
-      'https://www.finanztip.de/',
     ],
   },
   {
@@ -1385,8 +1351,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/invstg_2018/',
       'https://www.bafin.de/DE/Verbraucher/verbraucher_node.html',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
-      'https://www.finanztip.de/indexfonds-etf/',
     ],
   },
   {
@@ -1411,7 +1375,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/bgb/__493.html',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
       'https://www.bafin.de/',
-      'https://www.verbraucherzentrale.de/schuldnerberatung',
     ],
   },
   {
@@ -1438,7 +1401,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/zpo/__850c.html',
       'https://www.recht.bund.de/bgbl/1/2025/110/VO.html',
-      'https://www.finanztip.de/pfaendungstabelle/',
+      'https://www.gesetze-im-internet.de/inso/',
       'https://freibetragsrechner.justiz.nrw.de/',
     ],
   },
@@ -1451,9 +1414,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Budget Rechner, Haushaltsbuch, 50 30 20 Regel, Budgetplanung, Monatsbudget, Elizabeth Warren',
     quellen: [
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen-schulden-insolvenz/haushaltsbuch-einnahmen-und-ausgaben-im-blick-44954',
-      'https://www.finanztip.de/haushaltsbuch/',
-      'https://www.sparkasse.de/pk/ratgeber/finanzen-im-griff/haushaltsbuch.html',
+      'https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/_inhalt.html',
     ],
   },
 
@@ -1470,8 +1431,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Trinkgeld Rechner, Trinkgeld berechnen, wie viel Trinkgeld, Trinkgeld Restaurant, Trinkgeld Deutschland, Trinkgeld Prozent, aufrunden',
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__3.html',
-      'https://www.verbraucherzentrale.de',
-      'https://www.dehoga-bundesverband.de',
     ],
   },
   {
@@ -1482,10 +1441,6 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'alltag',
     fertig: true,
     seoKeywords: 'Prozent Rechner, Prozent berechnen, Prozentrechnung, Prozentwert berechnen, Prozentsatz berechnen, prozentuale Veränderung, Grundwert Prozentwert, Prozent ausrechnen',
-    quellen: [
-      'https://www.mathematik.de/',
-      'https://www.frustfrei-lernen.de/mathematik/prozentrechnung.html',
-    ],
   },
   {
     id: 'rabatt',
@@ -1496,8 +1451,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Rabatt Rechner, Rabatt berechnen, Preisnachlass, Ersparnis berechnen, Sale berechnen, Black Friday Rechner, Prozent Rabatt, Staffelrabatt, doppelter Rabatt, neuer Preis nach Rabatt',
     quellen: [
-      'https://www.verbraucherzentrale.de',
-      'https://de.wikipedia.org/wiki/Rabatt',
+      'https://www.gesetze-im-internet.de/pangv_2022/',
     ],
   },
   {
@@ -1525,7 +1479,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.ihk.de/themen/gruendung-foerderung/unternehmensgruendung',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
     ],
   },
   {
@@ -1537,9 +1490,8 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Flugzeit Rechner, Flugdauer berechnen, wie lange fliegen, Zeitverschiebung Flug, Flugzeit Frankfurt New York, Flugzeit München Bangkok',
     quellen: [
-      'https://www.lufthansa.com',
-      'https://www.google.com/flights',
-      'https://www.flightaware.com',
+      'https://www.iana.org/time-zones',
+      'https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-441/gesetzliche-zeit.html',
     ],
   },
   {
@@ -1551,7 +1503,6 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Zeitzonen Rechner, Zeitunterschied berechnen, Uhrzeit weltweit, Zeitzone umrechnen, CET EST PST JST, Weltzeituhr, Sommerzeit Winterzeit, MEZ MESZ',
     quellen: [
-      'https://www.timeanddate.de',
       'https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-441/gesetzliche-zeit.html',
       'https://www.iana.org/time-zones',
     ],
@@ -1574,8 +1525,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Tage Rechner, Tage berechnen, wie viele Tage bis, Tage dazwischen, Datumsrechner, Tage zählen, Countdown Rechner, Tage zwischen Daten',
     quellen: [
-      'https://de.wikipedia.org/wiki/Zeitspanne',
-      'https://de.wikipedia.org/wiki/Gregorianischer_Kalender',
+      'https://www.gesetze-im-internet.de/me_einhg/',
     ],
   },
   {
@@ -1589,7 +1539,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.nist.gov/pml/owm/metric-si/si-units',
       'https://www.bipm.org/en/measurement-units',
-      'https://de.wikipedia.org/wiki/Angloamerikanisches_Ma%C3%9Fsystem',
     ],
   },
   {
@@ -1601,10 +1550,8 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Hochzeitskosten Rechner, Hochzeit Kosten, Hochzeit Budget, Hochzeit planen, Hochzeit Kosten pro Gast, Hochzeit Location, Hochzeit Catering, Trauung Kosten, Brautkleid Kosten, Hochzeitstorte, Hochzeit Deutschland',
     quellen: [
-      'https://www.statista.com/statistics/798352/average-wedding-cost-germany/',
-      'https://www.hochzeitsportal24.de/hochzeitskosten/',
-      'https://www.weddyplace.com/hochzeitskosten-rechner/',
-      'https://www.verbraucherzentrale.de',
+      'https://www.gesetze-im-internet.de/pstg/',
+      'https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Eheschliessungen-Ehescheidungen-Lebenspartnerschaften/_inhalt.html',
     ],
   },
   {
@@ -1632,7 +1579,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Promille Rechner, Alkohol Rechner, Blutalkohol berechnen, Promille berechnen',
     quellen: [
       'https://www.bzga.de',
-      'https://www.adac.de/verkehr/recht/',
+      'https://www.gesetze-im-internet.de/stgb/__316.html',
       'https://www.gesetze-im-internet.de/stvg/__24a.html',
     ],
   },
@@ -1646,8 +1593,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Eisprung Rechner, fruchtbare Tage, Ovulation berechnen, Eisprungkalender, Kinderwunsch Rechner, wann bin ich fruchtbar, Ovulationsrechner, Zyklusrechner, NFP',
     quellen: [
       'https://www.familienplanung.de/',
-      'https://www.frauenaerzte-im-netz.de/familienplanung-verhuetung/natuerliche-familienplanung/',
-      'https://www.profamilia.de/themen/verhuetung',
       'https://www.awmf.org/leitlinien/detail/ll/015-015.html',
     ],
   },
@@ -1661,7 +1606,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'SSW Rechner, Schwangerschaftswoche berechnen, welche SSW bin ich, SSW berechnen, in welcher Woche bin ich schwanger, Schwangerschaftswoche Rechner, SSW Tabelle, SSW Entwicklung',
     quellen: [
       'https://www.familienplanung.de/',
-      'https://www.frauenaerzte-im-netz.de/schwangerschaft-geburt/schwangerschaft/',
       'https://www.bmfsfj.de/bmfsfj/themen/familie',
     ],
   },
@@ -1706,7 +1650,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.dge.de/wissenschaft/referenzwerte/energie/',
       'https://pubmed.ncbi.nlm.nih.gov/2305711/',
-      'https://www.verbraucherzentrale.de/wissen/lebensmittel/gesund-ernaehren/ernaehrung-umsatz-kalorien-wie-viel-energie-benoetigt-der-koerper-102519',
       'https://www.who.int/publications/i/item/9789241210232',
     ],
   },
@@ -1719,9 +1662,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Blutdruck Rechner, Blutdruck Tabelle, Blutdruck normal, Blutdruck Klassifikation, Hypertonie, Bluthochdruck, systolisch diastolisch, WHO ESH Blutdruck',
     quellen: [
-      'https://www.hochdruckliga.de/',
       'https://www.who.int/news-room/fact-sheets/detail/hypertension',
-      'https://www.herzstiftung.de/',
       'https://www.escardio.org/',
     ],
   },
@@ -1746,8 +1687,6 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Entfernung Rechner, Entfernung berechnen, km zwischen Städten, Luftlinie, Fahrzeit, deutsche Städte',
     quellen: [
       'https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/_inhalt.html',
-      'https://www.google.de/maps',
-      'https://www.bahn.de',
     ],
   },
   {
@@ -1762,7 +1701,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/bankleitzahlen',
       'https://www.iso.org/standard/55667.html',
       'https://www.europeanpaymentscouncil.eu/what-we-do/be-involved/sepa-schemes',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/zahlen-mit-iban-und-bic-5169',
     ],
   },
   {
@@ -1776,7 +1714,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.rundfunkbeitrag.de',
       'https://www.gesetze-im-internet.de/',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen/rundfunkbeitrag',
     ],
   },
   {
@@ -1800,10 +1737,6 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'alltag',
     fertig: true,
     seoKeywords: 'Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addieren, Brüche subtrahieren, Brüche multiplizieren, Brüche dividieren, ggT, kgV, Bruch in Dezimalzahl',
-    quellen: [
-      'https://www.mathematik.de/',
-      'https://www.frustfrei-lernen.de/mathematik/bruchrechnung.html',
-    ],
   },
   {
     id: 'notendurchschnitt',
@@ -1871,9 +1804,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/eeg_2014/',
       'https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/start.html',
-      'https://www.solarwirtschaft.de',
       'https://re.jrc.ec.europa.eu/pvg_tools/en/',
-      'https://www.verbraucherzentrale.de/wissen/energie/erneuerbare-energien/photovoltaik-was-bei-der-planung-einer-solaranlage-wichtig-ist-5574',
     ],
   },
   {
@@ -1889,8 +1820,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/bgb/__556e.html',
       'https://www.gesetze-im-internet.de/bgb/__556f.html',
       'https://www.gesetze-im-internet.de/bgb/__556g.html',
-      'https://www.finanztip.de/mietpreisbremse/',
-      'https://www.mieterbund.de/mietrecht/ueberblick/mietpreisbremse.html',
     ],
   },
   {
@@ -1906,7 +1835,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/bgb/__489.html',
       'https://www.gesetze-im-internet.de/bgb/__490.html',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
     ],
   },
 
@@ -1966,8 +1894,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__9.html',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.haufe.de/steuern/steuer-office-gold/doppelte-haushaltsfuehrung_idesk_PI11525_HI2330050.html',
-      'https://www.vlh.de/',
     ],
   },
 
@@ -1983,8 +1909,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.bundesfinanzministerium.de/',
       'https://www.gesetze-im-internet.de/estg/__4.html',
-      'https://www.vlh.de/',
-      'https://www.haufe.de/',
     ],
   },
   {
@@ -1998,7 +1922,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__9.html',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.haufe.de/',
     ],
   },
   {
@@ -2088,7 +2011,6 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/',
       'https://www.bundesfinanzministerium.de/',
-      'https://www.verbraucherzentrale.de/wissen/geld-versicherungen',
     ],
   },
   {
@@ -2110,8 +2032,6 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Kfz Versicherung Rechner, Autoversicherung berechnen, SF Klasse, Typklasse, Regionalklasse, Haftpflicht Versicherung Auto, Teilkasko, Vollkasko, Autoversicherung 2026, Kfz Versicherung vergleichen',
     quellen: [
-      'https://www.gdv.de/de/themen/news/typklassen-52118',
-      'https://www.gdv.de/de/themen/news/regionalklassen-52114',
       'https://www.gesetze-im-internet.de/pflvg/',
       'https://www.bafin.de/',
     ],
@@ -2128,8 +2048,6 @@ export const rechnerListe: Rechner[] = [
       'https://www.umweltbundesamt.de/',
       'https://www.gesetze-im-internet.de/bimschv_38_2017/',
       'https://www.gesetze-im-internet.de/bimschg/__37a.html',
-      'https://www.finanztip.de/thg-quote/',
-      'https://www.verivox.de/elektromobilitaet/thg-quote/',
     ],
   },
 
@@ -2184,7 +2102,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'wohnen',
     fertig: true,
     seoKeywords: 'Gasverbrauch Rechner, m3 in kWh umrechnen, Gas kWh berechnen, Brennwert Zustandszahl, Gasverbrauch kWh, Erdgas Umrechnung',
-    quellen: ['https://www.bdew.de/'],
+    quellen: ['https://www.gesetze-im-internet.de/enwg_2005/', 'https://www.bundesnetzagentur.de/'],
   },
   {
     id: 'pearl-index',
@@ -2258,7 +2176,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'arbeit',
     fertig: true,
     seoKeywords: 'TVöD Rechner, TVöD Tabelle 2026, Entgeltgruppe Stufe, öffentlicher Dienst Gehalt, TVöD VKA, TVöD Brutto Netto, Eingruppierung',
-    quellen: ['https://www.oeffentlicher-dienst.info/tvoed/'],
+    quellen: ['https://www.bmi.bund.de/'],
   },
   {
     id: 'bitcoin',
@@ -2268,7 +2186,7 @@ export const rechnerListe: Rechner[] = [
     kategorie: 'finanzen',
     fertig: true,
     seoKeywords: 'Bitcoin Rechner, Bitcoin in Euro, Krypto Umrechner, BTC EUR Rechner, Ethereum Euro, Krypto Kurs Rechner, Satoshi Rechner',
-    quellen: ['https://www.coingecko.com/'],
+    quellen: ['https://www.bafin.de/'],
   },
   {
     id: 'rvg',

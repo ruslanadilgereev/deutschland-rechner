@@ -6,7 +6,6 @@ import { useState } from 'react';
 //  Brutto-Stück  = ceil(A / Fliesenfläche)
 //  Mit Verschnitt= ceil(Brutto × (1 + Verschnitt))
 //  Kleberbedarf  ≈ 1,6 kg/m² bei 4-mm-Zahnkelle (Richtwert)
-// Quellen: blitzrechner.de, sanier.de, hausjournal.net (Stand 2026).
 
 const KLEBER_KG_PRO_M2 = 1.6; // Richtwert, 4-mm-Zahnkelle
 

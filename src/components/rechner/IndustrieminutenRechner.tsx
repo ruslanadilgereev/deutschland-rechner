@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 // Industrieminuten / Industriezeit (Dezimalzeit)
 // 1 Stunde = 100 Industrieminuten | 1 Industrieminute = 1/100 Stunde = 36 Sekunden = 0,6 Normalminuten
-// Quelle: https://de.wikipedia.org/wiki/Industrieminute
 type Richtung = 'normal-zu-industrie' | 'industrie-zu-normal';
 
 // Hilfsfunktion: Zahl mit deutschem Komma formatieren (max. 4 Nachkommastellen, ohne Nullen am Ende)

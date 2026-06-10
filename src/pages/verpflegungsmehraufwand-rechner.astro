@@ -2,9 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import VerpflegungsmehraufwandRechner from '../components/rechner/VerpflegungsmehraufwandRechner.tsx';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
 
-const title = 'Verpflegungsmehraufwand-Rechner 2025 & 2026 – Spesen berechnen';
-const description = 'Verpflegungsmehraufwand berechnen: Spesen-Pauschalen für Dienstreisen 2026. Inland 28€/14€, Ausland nach Land. Mit Kürzungen für Mahlzeiten. Kostenlos!';
+const title = 'Verpflegungsmehraufwand-Rechner 2026 – Spesen';
+const description = 'Verpflegungsmehraufwand 2026 berechnen: Spesenrechner mit 28 €/14 € Inland (seit 2020 unverändert), Auslandspauschalen & Mahlzeiten-Kürzung. Kostenlos!';
 const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise Pauschale, Verpflegungspauschale 2026, Reisekosten absetzen, Tagespauschale Dienstreise 28 Euro, Spesen berechnen, Auslandspauschale, Reisekostenabrechnung, Verpflegungsmehraufwand Steuererklärung, Werbungskosten Reise';
 ---
 
@@ -27,6 +28,7 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
         <p class="text-gray-600 max-w-lg mx-auto">
           Berechnen Sie Ihre Spesen-Pauschalen für Dienstreisen – steuerfrei erstattbar oder als Werbungskosten absetzbar.
         </p>
+        <p class="text-sm text-gray-500 mt-2">Stand: Januar 2026</p>
       </div>
 
       <!-- Calculator Component -->
@@ -57,12 +59,48 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
           </div>
           
           <div>
-            <h3 class="font-semibold text-gray-800 mb-2">Aktuelle Pauschalen 2025/2026 Inland</h3>
-            <ul class="list-disc pl-5 space-y-1 mt-2">
-              <li><strong>24 Stunden Abwesenheit:</strong> 28 € pro Tag</li>
-              <li><strong>Mehr als 8 Stunden:</strong> 14 € pro Tag</li>
-              <li><strong>An- und Abreisetag:</strong> 14 € (bei mehrtägigen Reisen)</li>
-            </ul>
+            <h3 class="font-semibold text-gray-800 mb-2">Pauschbeträge für Verpflegungsmehraufwand (Inland)</h3>
+            <p>
+              Die Höhe der Pauschale richtet sich nach der Abwesenheitsdauer von Wohnung und
+              erster Tätigkeitsstätte. Rechtsgrundlage ist
+              <a href="https://www.gesetze-im-internet.de/estg/__9.html" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:underline">§ 9 Abs. 4a EStG</a>:
+            </p>
+            <table class="w-full mt-3 border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-2 font-medium text-gray-700">Abwesenheit</th>
+                  <th class="text-right py-2 font-medium text-gray-700">Pauschale pro Tag</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100">
+                  <td class="py-2">24 Stunden</td>
+                  <td class="py-2 text-right font-semibold text-gray-800">28 €</td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="py-2">mehr als 8 Stunden</td>
+                  <td class="py-2 text-right font-semibold text-gray-800">14 €</td>
+                </tr>
+                <tr>
+                  <td class="py-2">An- und Abreisetag (bei mehrtägigen Reisen)</td>
+                  <td class="py-2 text-right font-semibold text-gray-800">14 €</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="mt-3">
+              Diese Sätze gelten <strong>seit 2020 unverändert</strong> – sie gelten also auch
+              für die Steuerjahre 2024 und 2025 sowie für 2026.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Auslandspauschalen: BMF-Schreiben maßgeblich</h3>
+            <p>
+              Für Auslandsreisen gelten länderspezifische Pauschbeträge, die jährlich neu
+              festgesetzt werden. Maßgeblich ist das
+              <a href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2025-12-05-steuerliche-behandlung-reisekosten-2026.html" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:underline">BMF-Schreiben zur steuerlichen Behandlung von Reisekosten ab 1. Januar 2026</a>
+              mit der vollständigen Länderliste.
+            </p>
           </div>
           
           <div>
@@ -79,11 +117,41 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
           </div>
           
           <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Verpflegungsmehraufwand absetzen (Anlage N)</h3>
+            <p>So machen Sie den Verpflegungsmehraufwand in der Steuererklärung geltend:</p>
+            <ol class="list-decimal pl-5 space-y-1 mt-2">
+              <li>
+                <strong>Reisen dokumentieren:</strong> Datum, Dauer, Ziel und Anlass jeder
+                Auswärtstätigkeit notieren – Einzelbelege für Mahlzeiten sind nicht nötig.
+              </li>
+              <li>
+                <strong>Pauschalen berechnen:</strong> Für jeden Reisetag die zutreffende
+                Pauschale ansetzen und bei gestellten Mahlzeiten kürzen.
+              </li>
+              <li>
+                <strong>Arbeitgeber-Erstattung abziehen:</strong> Nur die Differenz zwischen
+                Pauschale und steuerfreier Erstattung ist als Werbungskosten absetzbar.
+              </li>
+              <li>
+                <strong>In die Anlage N eintragen:</strong> Der Betrag gehört in den Bereich
+                „Reisekosten". Selbstständige erfassen den Verpflegungsmehraufwand stattdessen
+                als Betriebsausgaben.
+              </li>
+            </ol>
+          </div>
+
+          <div>
             <h3 class="font-semibold text-gray-800 mb-2">Dreimonatsfrist beachten</h3>
             <p>
-              Wichtig: Nach <strong>drei Monaten</strong> an derselben auswärtigen Tätigkeitsstätte 
-              entfällt der Anspruch auf Verpflegungspauschalen. Die Frist beginnt neu, wenn die 
-              Tätigkeit für mindestens vier Wochen unterbrochen wird.
+              Wichtig: Nach <strong>drei Monaten</strong> an derselben auswärtigen Tätigkeitsstätte
+              entfällt der Anspruch auf Verpflegungspauschalen. Die Frist beginnt neu, wenn die
+              Tätigkeit dort für <strong>mindestens vier Wochen</strong> unterbrochen wird – danach
+              können Sie die Pauschalen erneut für drei Monate ansetzen.
+            </p>
+            <p class="mt-2">
+              Die Dreimonatsfrist gilt auch bei einer
+              <a href="/doppelte-haushaltsfuehrung-rechner" class="text-green-600 hover:underline">doppelten Haushaltsführung</a>:
+              Dort können Sie Verpflegungspauschalen nur für die ersten drei Monate geltend machen.
             </p>
           </div>
         </div>
@@ -122,10 +190,9 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
               Was gilt bei Auslandsreisen?
             </summary>
             <p class="mt-2 text-sm text-gray-600 pl-4">
-              Für Auslandsreisen gelten <strong>länderspezifische Pauschalen</strong>, die das 
-              BMF jährlich veröffentlicht. Am An- und Abreisetag gilt jeweils der Satz des 
-              Landes mit der niedrigeren Pauschale (Inland vs. Ausland). Innerhalb eines 
-              Landes gilt dessen volle Pauschale.
+              Für Auslandsreisen gelten <strong>länderspezifische Pauschalen</strong>, die das
+              BMF jährlich im Schreiben zur steuerlichen Behandlung von Reisekosten
+              veröffentlicht. Innerhalb eines Landes gilt dessen volle Pauschale.
             </p>
           </details>
           
@@ -157,14 +224,20 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
 
       <!-- Back Link -->
       <div class="mt-8 text-center">
-        <a 
-          href="/" 
+        <a
+          href="/"
           class="inline-flex items-center gap-2 text-green-600 hover:text-green-800 font-medium"
         >
           ← Alle Rechner anzeigen
         </a>
       </div>
     </div>
+
+    <!-- Verwandte Rechner -->
+    <VerwandteRechner
+      aktuellerSlug="verpflegungsmehraufwand"
+      slugs={["pendlerpauschale", "doppelte-haushaltsfuehrung", "entfernung", "homeoffice-pauschale"]}
+    />
 </main>
 </Layout>
 
@@ -175,34 +248,42 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Wie hoch ist der Verpflegungsmehraufwand 2026?",
+      "name": "Wie wird der Verpflegungsmehraufwand in der Steuererklärung angegeben?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bei Inlandsreisen beträgt die Pauschale 28 € bei 24 Stunden Abwesenheit, 14 € bei mehr als 8 Stunden Abwesenheit. An- und Abreisetage bei mehrtägigen Reisen: jeweils 14 €. Die Sätze gelten unverändert seit 2020."
+        "text": "Als Arbeitnehmer tragen Sie den Verpflegungsmehraufwand in der Anlage N im Bereich „Reisekosten\" ein. Die Differenz zwischen Pauschale und erhaltener Arbeitgeber-Erstattung können Sie als Werbungskosten absetzen. Selbstständige erfassen die Kosten als Betriebsausgaben."
       }
     },
     {
       "@type": "Question",
-      "name": "Wie werden Mahlzeiten vom Arbeitgeber angerechnet?",
+      "name": "Kann der Arbeitgeber die Pauschalen steuerfrei erstatten?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Gestellte Mahlzeiten kürzen die Pauschale: Frühstück um 20% (5,60 €), Mittagessen um 40% (11,20 €), Abendessen um 40% (11,20 €) – jeweils bezogen auf die volle Tagespauschale von 28 €."
+        "text": "Ja, der Arbeitgeber kann die Verpflegungspauschalen steuerfrei erstatten. Dies ist für beide Seiten vorteilhaft: Der Arbeitnehmer erhält das Geld netto, und der Arbeitgeber spart Lohnnebenkosten. Die Erstattung muss dokumentiert werden."
       }
     },
     {
       "@type": "Question",
-      "name": "Was ist die Dreimonatsfrist beim Verpflegungsmehraufwand?",
+      "name": "Was gilt bei Auslandsreisen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nach drei Monaten an derselben auswärtigen Tätigkeitsstätte entfällt der Anspruch auf Verpflegungspauschalen. Die Frist beginnt neu bei einer Unterbrechung von mindestens vier Wochen."
+        "text": "Für Auslandsreisen gelten länderspezifische Pauschalen, die das BMF jährlich im Schreiben zur steuerlichen Behandlung von Reisekosten veröffentlicht. Innerhalb eines Landes gilt dessen volle Pauschale."
       }
     },
     {
       "@type": "Question",
-      "name": "Kann ich Verpflegungsmehraufwand ohne Erstattung vom Arbeitgeber absetzen?",
+      "name": "Muss ich Belege für Mahlzeiten sammeln?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja, wenn der Arbeitgeber die Pauschalen nicht oder nur teilweise erstattet, können Sie den Verpflegungsmehraufwand als Werbungskosten in der Steuererklärung (Anlage N) geltend machen."
+        "text": "Nein, die Verpflegungspauschalen sind pauschal – Sie müssen keine Einzelbelege für Mahlzeiten sammeln oder vorlegen. Sie sollten aber dokumentieren: Datum, Dauer, Ziel und Anlass der Reise. Bei gestellten Mahlzeiten (z.B. im Hotel) muss entsprechend gekürzt werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt die Pauschale auch bei Heimarbeit/Homeoffice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein, bei Arbeit von zu Hause gibt es keinen Verpflegungsmehraufwand, da Sie sich nicht auswärts aufhalten. Für Homeoffice gibt es stattdessen die Homeoffice-Pauschale von 6 € pro Tag (max. 1.260 € im Jahr)."
       }
     }
   ]
@@ -218,6 +299,7 @@ const keywords = 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise P
   "url": "https://www.deutschland-rechner.de/verpflegungsmehraufwand-rechner",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
+  "dateModified": "2026-06-10",
   "offers": {
     "@type": "Offer",
     "price": "0",

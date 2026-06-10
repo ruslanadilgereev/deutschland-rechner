@@ -4,7 +4,6 @@ import { useState } from 'react';
 // Logik: monatliche Entnahme aus verzinstem Restkapital.
 // Restkapital wird jeden Monat verzinst (i = Rendite p.a. / 12), danach Entnahme abgezogen.
 // 4-%-Regel: Trinity-Studie (Cooley, Hubbard, Walz, 1998) – 4 % des Startkapitals pro Jahr.
-// Quellen: zinsen-berechnen.de, finanztip.de, guidingdata.com (Trinity-Studie)
 
 function formatEuro(n: number): string {
   return n.toLocaleString('de-DE', {

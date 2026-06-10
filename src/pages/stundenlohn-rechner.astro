@@ -4,14 +4,18 @@ import StundenlohnRechner from '../components/rechner/StundenlohnRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
-const title = "▷ Stundenlohn-Rechner 2026 – Monatsgehalt in Stundenlohn umrechnen";
-const description = "Was verdiene ich pro Stunde? Stundenlohn aus Monatsgehalt berechnen, Mindestlohn 2026 prüfen, Brutto und Netto vergleichen. Kostenlos und sofort.";
-const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenlohn, Stundenlohn aus Monatsgehalt, Stundenlohn Formel, Stundenlohn berechnen Formel, Brutto Stundenlohn, Stundenlohn 2026, Mindestlohn Rechner, Stundenlohn ausrechnen, was verdiene ich pro Stunde, Monatsgehalt in Stundenlohn, Stundenlohn Tabelle, Stundenlohn 40 Stunden Woche";
+const title = "Stundenlohn-Rechner 2026 – Gehalt in Stundenlohn";
+const description = "Stundenlohn aus Monatsgehalt berechnen oder in Monatslohn umrechnen – mit Formel (Faktor 4,33), Tabelle und Mindestlohn-Check 2026: 13,90 €. Kostenlos.";
+const keywords = "Stundenlohn Rechner, Stundenlohn berechnen, Gehalt in Stundenlohn, Stundenlohn aus Monatsgehalt, Stundenlohn Formel, Stundenlohn berechnen Formel, Brutto Stundenlohn, Stundenlohn 2026, Mindestlohn Rechner, Stundenlohn ausrechnen, was verdiene ich pro Stunde, Monatsgehalt in Stundenlohn, Stundenlohn Tabelle, Stundenlohn 40 Stunden Woche, Stundenlohn in Monatslohn umrechnen, Monatslohn Rechner";
 
 const faqData = [
   {
     question: "Wie berechne ich meinen Stundenlohn aus dem Monatsgehalt?",
     answer: "Die Formel lautet: Stundenlohn = Monatsgehalt ÷ (Wochenstunden × 4,33). Der Faktor 4,33 ergibt sich aus 52 Wochen ÷ 12 Monate. Bei 3.500 € Monatsgehalt und 40 Wochenstunden ergibt sich: 3.500 € ÷ 173,2 = 20,21 € brutto pro Stunde."
+  },
+  {
+    question: "Wie rechne ich den Stundenlohn in einen Monatslohn um?",
+    answer: "Die Umkehrformel lautet: Monatslohn = Stundenlohn × Wochenstunden × 4,33. Beispiel: Bei 20 € Stundenlohn und einer 40-Stunden-Woche ergibt sich 20 € × 40 × 4,33 = 20 € × 173,2 Stunden = 3.464 € brutto pro Monat."
   },
   {
     question: "Wie hoch ist der Mindestlohn 2026 in Deutschland?",
@@ -71,7 +75,7 @@ const faqData = [
         <div class="flex items-center gap-3">
           <span class="text-4xl">⏰</span>
           <div>
-            <h1 class="text-2xl font-bold">Stundenlohn-Rechner 2026</h1>
+            <h1 class="text-2xl font-bold">Stundenlohn-Rechner 2026 – Monatslohn &amp; Stundenlohn umrechnen</h1>
             <p class="text-blue-100 text-sm">Monatsgehalt, Stundenlohn und Mindestlohn 2026 sofort berechnen</p>
           </div>
         </div>
@@ -89,7 +93,7 @@ const faqData = [
           <span class="text-2xl">✅</span>
           <div class="text-sm text-emerald-900 space-y-2">
             <p><strong>Zuletzt aktualisiert am 07.04.2026</strong>, alle Werte geprüft nach Mindestlohngesetz (MiLoG), Arbeitszeitgesetz (ArbZG) und den aktuellen Empfehlungen der Mindestlohnkommission.</p>
-            <p><strong>Was der Rechner berücksichtigt:</strong> Brutto-Monatsgehalt, Wochenstunden, Sonderzahlungen (Urlaubs-/Weihnachtsgeld), Umrechnung Monatsgehalt ↔ Stundenlohn, Mindestlohn-Prüfung 2026.</p>
+            <p><strong>Was der Rechner berücksichtigt:</strong> Brutto-Monatsgehalt, Wochenstunden, Sonderzahlungen (Urlaubs-/Weihnachtsgeld), Umrechnung Monatsgehalt (Monatslohn) ↔ Stundenlohn, Mindestlohn-Prüfung 2026.</p>
             <p><strong>Was der Rechner nicht berücksichtigt:</strong> Individuelle Steuerbelastung (→ <a href="/brutto-netto-rechner" class="text-emerald-700 underline hover:text-emerald-900">Brutto-Netto-Rechner</a>), tarifliche Zuschläge, Schichtarbeit, geldwerte Vorteile und branchenspezifische Regelungen.</p>
           </div>
         </div>
@@ -103,8 +107,8 @@ const faqData = [
         
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Stundenlohn-Rechner</strong> können Sie ganz einfach Ihren 
-            <strong>Brutto-Stundenlohn aus dem Monatsgehalt berechnen</strong> – oder umgekehrt. 
+            Mit unserem <strong>Stundenlohn-Rechner</strong> können Sie ganz einfach Ihren
+            <strong>Brutto-Stundenlohn aus dem Monatsgehalt (Monatslohn) berechnen</strong> – oder umgekehrt den Stundenlohn in einen Monatslohn umrechnen.
             Egal ob für Gehaltsverhandlungen, die Abrechnung von <a href="/ueberstunden-rechner" class="text-blue-600 hover:underline">Überstunden</a> oder den Vergleich von 
             Jobangeboten mit dem <a href="/gehaltsvergleich-rechner" class="text-blue-600 hover:underline">Gehaltsvergleich-Rechner</a>: Der Stundenlohn ist eine zentrale Kennzahl im Arbeitsleben.
           </p>
@@ -119,10 +123,124 @@ const faqData = [
             </p>
           </div>
           <p>
-            Der Faktor <strong>4,33</strong> ergibt sich aus der durchschnittlichen Anzahl von 
+            Der Faktor <strong>4,33</strong> ergibt sich aus der durchschnittlichen Anzahl von
             Wochen pro Monat (52 Wochen ÷ 12 Monate = 4,33). Wie viele <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage</a> ein Monat tatsächlich hat, schwankt je nach Bundesland und Feiertagen.
           </p>
-          
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundenlohn in Monatslohn umrechnen: Formel</h3>
+          <p>
+            Auch die <strong>umgekehrte Richtung</strong> ist möglich: Wer seinen Stundenlohn kennt,
+            kann daraus den <strong>Brutto-Monatslohn</strong> berechnen. Die Umkehrformel lautet:
+          </p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <p class="text-center font-mono text-lg text-blue-900">
+              <strong>Monatslohn = Stundenlohn × Wochenstunden × 4,33</strong>
+            </p>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Bei 20 € Stundenlohn und einer 40-Stunden-Woche ergibt sich
+            ein Monatslohn von 20 € × 173,2 Stunden = <strong>3.464 € brutto</strong>. Im Rechner oben
+            erledigt das der Umschalter „Stundenlohn → Gehalt".
+          </p>
+
+          <h4 class="font-semibold text-gray-700 mt-4">Tabelle: Stundenlohn in Monatslohn (brutto)</h4>
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm text-left border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-3 py-2 font-semibold text-gray-700">Stundenlohn</th>
+                  <th class="px-3 py-2 font-semibold text-gray-700">35 Std./Woche</th>
+                  <th class="px-3 py-2 font-semibold text-gray-700">38,5 Std./Woche</th>
+                  <th class="px-3 py-2 font-semibold text-gray-700">40 Std./Woche</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">13,90 € (Mindestlohn)</td>
+                  <td class="px-3 py-2">2.107 €</td>
+                  <td class="px-3 py-2">2.317 €</td>
+                  <td class="px-3 py-2">2.407 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">15,00 €</td>
+                  <td class="px-3 py-2">2.273 €</td>
+                  <td class="px-3 py-2">2.501 €</td>
+                  <td class="px-3 py-2">2.598 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">17,00 €</td>
+                  <td class="px-3 py-2">2.576 €</td>
+                  <td class="px-3 py-2">2.834 €</td>
+                  <td class="px-3 py-2">2.944 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">20,00 €</td>
+                  <td class="px-3 py-2">3.031 €</td>
+                  <td class="px-3 py-2">3.334 €</td>
+                  <td class="px-3 py-2">3.464 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">21,00 €</td>
+                  <td class="px-3 py-2">3.183 €</td>
+                  <td class="px-3 py-2">3.501 €</td>
+                  <td class="px-3 py-2">3.637 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">25,00 €</td>
+                  <td class="px-3 py-2">3.789 €</td>
+                  <td class="px-3 py-2">4.168 €</td>
+                  <td class="px-3 py-2">4.330 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">
+            Brutto-Monatslohn (ca.-Werte), gerechnet mit Faktor 4,33 (Wochenstunden × 4,33 = Monatsstunden), auf volle Euro gerundet.
+          </p>
+
+          <h4 class="font-semibold text-gray-700 mt-4">Tabelle: Monatsgehalt in Stundenlohn (brutto)</h4>
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm text-left border border-gray-200 rounded-lg">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-3 py-2 font-semibold text-gray-700">Monatsgehalt</th>
+                  <th class="px-3 py-2 font-semibold text-gray-700">35 Std./Woche</th>
+                  <th class="px-3 py-2 font-semibold text-gray-700">38,5 Std./Woche</th>
+                  <th class="px-3 py-2 font-semibold text-gray-700">40 Std./Woche</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">2.500 €</td>
+                  <td class="px-3 py-2">16,50 €</td>
+                  <td class="px-3 py-2">15,00 €</td>
+                  <td class="px-3 py-2">14,43 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">3.000 €</td>
+                  <td class="px-3 py-2">19,80 €</td>
+                  <td class="px-3 py-2">18,00 €</td>
+                  <td class="px-3 py-2">17,32 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">3.500 €</td>
+                  <td class="px-3 py-2">23,09 €</td>
+                  <td class="px-3 py-2">21,00 €</td>
+                  <td class="px-3 py-2">20,21 €</td>
+                </tr>
+                <tr class="border-t border-gray-200">
+                  <td class="px-3 py-2 font-medium">4.000 €</td>
+                  <td class="px-3 py-2">26,39 €</td>
+                  <td class="px-3 py-2">23,99 €</td>
+                  <td class="px-3 py-2">23,09 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">
+            Brutto-Stundenlohn (ca.-Werte), gerechnet mit Faktor 4,33, auf Cent gerundet.
+          </p>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">3 Beispielrechnungen für verschiedene Gehälter</h3>
           
           <h4 class="font-semibold text-gray-700 mt-4">Beispiel 1: Mindestlohn-Job (40 Stunden/Woche)</h4>
@@ -215,7 +333,7 @@ const faqData = [
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Stundenlohn bei Teilzeit &amp; Minijob</h3>
           <p>
             Der <strong>Stundenlohn bleibt bei Teilzeit grundsätzlich gleich</strong> – nur die Anzahl der 
-            gearbeiteten Stunden ändert sich. Das ist gesetzlich durch das Teilzeit- und Befristungsgesetz (TzBfG) geschützt. Bei einem Stundenlohn von 20 € ergibt sich:
+            gearbeiteten Stunden ändert sich. Das ist gesetzlich durch das Teilzeit- und Befristungsgesetz (TzBfG) geschützt. Bei einem Stundenlohn von 20 € ergibt sich folgender Monatslohn:
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>20 Stunden/Woche:</strong> 20 × 4,33 × 20 € = 1.732 € brutto/Monat</li>
@@ -223,7 +341,7 @@ const faqData = [
             <li><strong>40 Stunden/Woche:</strong> 40 × 4,33 × 20 € = 3.464 € brutto/Monat</li>
           </ul>
           <p>
-            Beim <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> (556-Euro-Grenze 2026) ergibt sich bei Mindestlohn eine maximale Arbeitszeit von ca. 40 Stunden/Monat. Bei einem <a href="/midijob-rechner" class="text-blue-600 hover:underline">Midijob</a> (556,01–2.000 €) fallen reduzierte Sozialabgaben an.
+            Beim <a href="/minijob-rechner" class="text-blue-600 hover:underline">Minijob</a> (603-Euro-Grenze 2026) ergibt sich bei Mindestlohn eine maximale Arbeitszeit von ca. 43 Stunden/Monat. Bei einem <a href="/midijob-rechner" class="text-blue-600 hover:underline">Midijob</a> (603,01–2.000 €) fallen reduzierte Sozialabgaben an.
           </p>
 
           <h3 class="text-lg font-semibold text-gray-800 mt-6">5 typische Fehler bei der Stundenlohn-Berechnung</h3>
@@ -288,7 +406,7 @@ const faqData = [
           <h3 class="text-lg font-semibold text-gray-800 mt-6">💡 Was bedeutet das für dich?</h3>
           <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <p class="text-gray-700 mb-3">
-              Der Stundenlohn macht <strong>Jobangebote vergleichbar</strong>. Ein Gehalt von 4.000 € bei 40 Stunden/Woche (23,09 €/Std.) ist weniger wert als 3.600 € bei 35 Stunden (19,16 €/Std.) – denn Sie haben 5 Stunden mehr Freizeit pro Woche. Rechnen Sie immer in Stundenlohn um, bevor Sie sich entscheiden.
+              Der Stundenlohn macht <strong>Jobangebote vergleichbar</strong>. Ein Gehalt von 4.000 € bei 40 Stunden/Woche (23,09 €/Std.) ist weniger wert als 3.600 € bei 35 Stunden (23,75 €/Std.) – denn Sie haben 5 Stunden mehr Freizeit pro Woche. Rechnen Sie immer in Stundenlohn um, bevor Sie sich entscheiden.
             </p>
             <p class="text-gray-700 mb-3">
               <strong>Für Gehaltsverhandlungen:</strong> Kennen Sie Ihren Stundenlohn, können Sie gezielt argumentieren. „Mein Stundenlohn liegt bei 18 €, der Branchendurchschnitt bei 24 €" ist überzeugender als nur das Monatsgehalt zu nennen.

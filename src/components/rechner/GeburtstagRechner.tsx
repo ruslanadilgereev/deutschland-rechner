@@ -146,11 +146,11 @@ export default function GeburtstagRechner() {
     ];
     
     const elemente = [
+      { name: 'Metall', symbol: '⚙️' },
+      { name: 'Wasser', symbol: '💧' },
       { name: 'Holz', symbol: '🌳' },
       { name: 'Feuer', symbol: '🔥' },
       { name: 'Erde', symbol: '🌍' },
-      { name: 'Metall', symbol: '⚙️' },
-      { name: 'Wasser', symbol: '💧' },
     ];
     
     // 1900 war das Jahr der Metall-Ratte

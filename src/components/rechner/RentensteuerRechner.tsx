@@ -126,8 +126,8 @@ function berechneEinkommensteuer(zvE: number, verheiratet: boolean): number {
 
 // Funktion: Solidaritätszuschlag
 function berechneSoli(einkommensteuer: number, verheiratet: boolean): number {
-  const freigrenze = verheiratet ? 39900 : 19950; // Freigrenze 2026
-  const milderungszone = verheiratet ? 74190 : 37095; // Ende Milderungszone (Schnittpunkt 11,9%-Regel mit 5,5%)
+  const freigrenze = verheiratet ? 40700 : 20350; // Freigrenze 2026 (§ 3 SolzG)
+  const milderungszone = verheiratet ? 75677 : 37839; // Ende Milderungszone (Schnittpunkt 11,9%-Regel mit 5,5%)
   
   if (einkommensteuer <= freigrenze) return 0;
   if (einkommensteuer <= milderungszone) {
