@@ -1,0 +1,320 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UniSchnittRechner from '../components/rechner/UniSchnittRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Uni-Schnitt-Rechner – Notendurchschnitt mit ECTS berechnen";
+const description = "Uni-Notendurchschnitt online berechnen: Noten & ECTS eingeben, gewichteten Schnitt für Bachelor und Master sofort sehen – inkl. Abschlussnote, kostenlos.";
+const keywords = "Uni Notendurchschnitt berechnen, ECTS Notendurchschnitt Rechner, Uni Notenrechner, Bachelornote berechnen, Gesamtnote Studium berechnen, gewichteter Notendurchschnitt Uni, Masternote berechnen, Notenschnitt Uni ausrechnen, ECTS Rechner Noten";
+
+const faqItems = [
+  {
+    frage: "Wie berechnet man den Notendurchschnitt an der Uni?",
+    antwort: "ECTS-gewichtet: jede Modulnote × ECTS-Punkte, alles addieren, durch die Summe der benoteten ECTS teilen. Formel: Schnitt = Σ(Note × ECTS) ÷ Σ ECTS. Ein 10-ECTS-Modul zählt also 5-mal so viel wie ein 2-ECTS-Modul.",
+  },
+  {
+    frage: "Zählt ein unbenotetes Praktikum in die Bachelornote?",
+    antwort: "Nein. Module, die nur „bestanden“ werden, liefern ECTS, gehen aber nicht in den Schnitt ein – geteilt wird nur durch die ECTS der benoteten Module.",
+  },
+  {
+    frage: "Wird die Bachelornote gerundet?",
+    antwort: "Meist nicht: Die meisten Prüfungsordnungen schneiden nach der ersten Dezimalstelle ab (2,57 → 2,5). Maßgeblich ist immer die eigene Prüfungsordnung.",
+  },
+  {
+    frage: "Wie stark zählt die Bachelorarbeit in die Gesamtnote?",
+    antwort: "Standardmäßig mit ihren ECTS (z. B. 12 von 180 ECTS ≈ 7 %). Manche Prüfungsordnungen gewichten sie höher, z. B. mit 20 %.",
+  },
+  {
+    frage: "Was ist ein guter Notendurchschnitt im Studium?",
+    antwort: "Prädikate: bis 1,5 „sehr gut“, 1,6–2,5 „gut“, 2,6–3,5 „befriedigend“, 3,6–4,0 „ausreichend“. Für Master und Stipendien gilt häufig ≤ 2,5 als Richtwert.",
+  },
+  {
+    frage: "Was ist die Bayerische Formel?",
+    antwort: "Die von DAAD/HRK empfohlene Umrechnungsformel für ausländische Noten ins deutsche System: x = 1 + 3 × (Nmax − Nd) ÷ (Nmax − Nmin). Das Ergebnis ist eine unverbindliche Orientierung.",
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Uni-Schnitt-Rechner", url: "/uni-schnitt-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Uni-Schnitt-Rechner: Notendurchschnitt mit ECTS berechnen</h1>
+            <p class="text-indigo-100 text-sm">Bachelor- & Masternote gewichtet berechnen – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <UniSchnittRechner client:load />
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="KMK, Prüfungsordnungen dt. Hochschulen, DAAD/HRK (Bayerische Formel)" aktualisiert="Juni 2026" />
+    </div>
+
+    <VerwandteRechner aktuellerSlug="uni-schnitt" slugs={['abi-schnitt', 'notendurchschnitt', 'bafoeg', 'prozent']} />
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Uni-Schnitt-Rechner: Alles, was Sie wissen müssen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Uni-Schnitt-Rechner</strong> berechnen Sie Ihren ECTS-gewichteten
+            Notendurchschnitt im Bachelor- oder Masterstudium. Der Rechner wendet die in deutschen
+            Prüfungsordnungen übliche Abschneideregel an und zeigt Ihnen mit dem Ziel-Noten-Rechner,
+            welchen Schnitt Sie in den restlichen Modulen für Ihre Wunsch-Gesamtnote brauchen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie berechnet man den Notendurchschnitt an der Uni?</h3>
+          <p>
+            Anders als ein einfaches Mittel wird der Uni-Schnitt <strong>nach ECTS gewichtet</strong>:
+            Jede Modulnote wird mit den Credit Points des Moduls multipliziert, alles wird addiert und
+            durch die Summe der benoteten ECTS geteilt:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
+            <strong>Schnitt = Σ(Note × ECTS) ÷ Σ ECTS</strong> (nur benotete Module)
+          </div>
+          <p>
+            Ein Modul mit 10 ECTS zählt also 5-mal so viel wie ein kleines Modul mit 2 ECTS. Wer
+            in den großen Modulen gut abschneidet, hebt seinen Schnitt überproportional.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beispielrechnung Schritt für Schritt</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-2 text-gray-600">Modul</th>
+                  <th class="text-center py-2 text-gray-600">Note</th>
+                  <th class="text-center py-2 text-gray-600">ECTS</th>
+                  <th class="text-center py-2 text-gray-600">Note × ECTS</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr>
+                  <td class="py-2">Mathe 1</td>
+                  <td class="py-2 text-center">2,3</td>
+                  <td class="py-2 text-center">10</td>
+                  <td class="py-2 text-center">23,0</td>
+                </tr>
+                <tr>
+                  <td class="py-2">Programmierung</td>
+                  <td class="py-2 text-center">1,7</td>
+                  <td class="py-2 text-center">8</td>
+                  <td class="py-2 text-center">13,6</td>
+                </tr>
+                <tr>
+                  <td class="py-2">Seminar</td>
+                  <td class="py-2 text-center">3,0</td>
+                  <td class="py-2 text-center">4</td>
+                  <td class="py-2 text-center">12,0</td>
+                </tr>
+                <tr>
+                  <td class="py-2">Praktikum</td>
+                  <td class="py-2 text-center">unbenotet</td>
+                  <td class="py-2 text-center">6</td>
+                  <td class="py-2 text-center">—</td>
+                </tr>
+                <tr class="border-t border-gray-200 font-semibold">
+                  <td class="py-2">Summe (benotet)</td>
+                  <td class="py-2 text-center"></td>
+                  <td class="py-2 text-center">22</td>
+                  <td class="py-2 text-center">48,6</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <strong>Ergebnis:</strong> 48,6 ÷ 22 = 2,2090… → exakter Schnitt <strong>2,21</strong>,
+            Uni-Note nach Abschneiden <strong>2,2</strong> („gut“). Die 6 ECTS des Praktikums zählen
+            für den Studienfortschritt, aber nicht für die Note.
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind ECTS-Punkte?</h3>
+          <p>
+            <strong>ECTS-Punkte</strong> (Credit Points) messen den Arbeitsaufwand eines Moduls:
+            1 ECTS entspricht etwa 25–30 Stunden Workload. Ein Bachelor umfasst je nach Studiengang
+            180, 210 oder 240 ECTS, ein Master 60–120 ECTS. Weil ein 10-ECTS-Modul deutlich mehr
+            Arbeit bedeutet als ein 2-ECTS-Seminar, ist die ECTS-Gewichtung fairer als ein
+            ungewichtetes Mittel aller Noten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Unbenotete Module, Praktika und „bestanden“</h3>
+          <p>
+            Viele Studiengänge enthalten Module, die nur mit „bestanden“ abgeschlossen werden – etwa
+            Praktika, Sprachkurse oder Schlüsselqualifikationen. Diese Module liefern ECTS für den
+            Abschluss, gehen aber <strong>weder in den Zähler noch in den Nenner</strong> des Schnitts
+            ein. Der häufigste Rechenfehler: für solche Module eine Fantasienote einzutragen. Genau
+            dafür hat der Rechner die „unbenotet“-Checkbox.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Runden oder abschneiden? So entsteht die Abschlussnote</h3>
+          <p>
+            Standard in deutschen Prüfungsordnungen: Bei der Gesamtnote zählt nur die
+            <strong>erste Dezimalstelle</strong>, alle weiteren Stellen werden <strong>ohne Rundung
+            gestrichen</strong>. Aus einem exakten Schnitt von 2,57 wird also die Note 2,5 – und
+            aus 1,59 wird 1,5, was noch als „sehr gut“ gilt. Kaufmännisches Runden ist die Ausnahme.
+            Maßgeblich ist immer die eigene Prüfungsordnung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bachelornote & Masternote: Module, Abschlussarbeit, Gewichtung</h3>
+          <p>
+            Die Abschlussarbeit zählt standardmäßig über ihre ECTS in die Gesamtnote: Eine
+            Bachelorarbeit mit 12 von 180 ECTS macht rund 7 % aus, eine Masterarbeit mit 30 von
+            120 ECTS bereits 25 %. Manche Prüfungsordnungen gewichten die Arbeit abweichend in
+            Prozent oder lassen die schlechtesten Module streichen – prüfen Sie dazu Ihre
+            Prüfungsordnung. Im Master wiegen einzelne Noten generell schwerer, weil insgesamt
+            weniger ECTS zusammenkommen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Notenskala und Prädikate</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-2 text-gray-600">Gesamtnote</th>
+                  <th class="text-left py-2 text-gray-600">Prädikat</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr>
+                  <td class="py-2 font-medium text-green-600">1,0 – 1,5</td>
+                  <td class="py-2">sehr gut</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-medium">1,6 – 2,5</td>
+                  <td class="py-2">gut</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-medium">2,6 – 3,5</td>
+                  <td class="py-2">befriedigend</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-medium">3,6 – 4,0</td>
+                  <td class="py-2">ausreichend</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-medium text-red-600">über 4,0</td>
+                  <td class="py-2">nicht bestanden</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Für viele Masterstudiengänge und Stipendien gilt ein Schnitt von <strong>2,5 oder
+            besser</strong> als Richtwert. Einzelnoten werden meist in Drittelschritten vergeben
+            (1,0 / 1,3 / 1,7 / … / 4,0) plus 5,0 für „nicht bestanden“.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bayerische Formel: ausländische Noten umrechnen</h3>
+          <p>
+            Wer Noten aus dem Ausland ins deutsche System übertragen will, nutzt die von DAAD und
+            HRK empfohlene <strong>Bayerische Formel</strong>:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
+            <strong>x = 1 + 3 × (Nmax − Nd) ÷ (Nmax − Nmin)</strong>
+          </div>
+          <p>
+            Dabei ist Nmax die beste erreichbare Note, Nmin die schlechteste Note zum Bestehen und
+            Nd die erzielte Note. Das Ergebnis wird auf eine Dezimalstelle angegeben und dient als
+            unverbindliche Orientierung – verbindlich entscheidet die jeweilige Hochschule.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wofür Sie Ihren Uni-Schnitt brauchen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Master-Bewerbung:</strong> Viele Studiengänge verlangen eine Mindestnote oder vergeben Plätze nach Gesamtnote.</li>
+            <li><strong>Stipendien:</strong> Studienstiftung, Deutschlandstipendium & Co. achten auf den Notenschnitt.</li>
+            <li><strong>Bewerbungen:</strong> Arbeitgeber fragen besonders beim Berufseinstieg nach der Abschlussnote.</li>
+            <li><strong>BAföG-Leistungsnachweis:</strong> Auch hier hilft der Überblick über erreichte ECTS und Noten.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Uni-Schnitt vs. Schulnoten-Durchschnitt</h3>
+          <p>
+            Für Schul- und Zeugnisnoten ohne ECTS nutzen Sie den
+            <a href="/notendurchschnitt-rechner" class="text-blue-600 hover:underline">Notendurchschnitt-Rechner</a>,
+            für die Abiturnote den
+            <a href="/abi-schnitt-rechner" class="text-blue-600 hover:underline">Abitur-Schnitt-Rechner</a>.
+            Der Unterschied: Im Studium wird nach ECTS gewichtet und die Gesamtnote per Abschneideregel
+            gebildet, während dort ein arithmetisches Mittel bzw. ein Punktesystem gilt.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqItems.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Uni-Schnitt-Rechner – Notendurchschnitt mit ECTS berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/uni-schnitt-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>

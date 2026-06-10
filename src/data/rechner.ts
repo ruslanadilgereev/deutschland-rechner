@@ -1832,6 +1832,19 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'uni-schnitt',
+    name: 'Uni-Schnitt-Rechner',
+    beschreibung: 'Uni-Notendurchschnitt nach ECTS berechnen',
+    icon: '🏛️',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Uni Notendurchschnitt berechnen, ECTS Notendurchschnitt Rechner, Uni Notenrechner, Bachelornote berechnen, Gesamtnote Studium berechnen, gewichteter Notendurchschnitt Uni, Masternote berechnen, Notenschnitt Uni ausrechnen',
+    quellen: [
+      'https://www.kmk.org/',
+      'https://www.hochschulstart.de',
+    ],
+  },
+  {
     id: 'lebenserwartung',
     name: 'Lebenserwartung-Rechner',
     beschreibung: 'Statistische Lebenserwartung berechnen',
