@@ -12,9 +12,9 @@ import { useState, useMemo } from 'react';
 //
 // Quellen:
 // - https://www.gesetze-im-internet.de/wogg/
-// - https://www.wohngeld.org/wohngeldgesetz-wogg/paragraph19/
-// - https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/
-// - https://www.wohngeld.org/wohnkosten/ (Höchstbeträge 2025/2026)
+// - https://www.gesetze-im-internet.de/wogg/__19.html (§ 19 WoGG)
+// - https://www.gesetze-im-internet.de/wogg/anlage_2.html (Anlage 2 zu § 19 WoGG)
+// - https://www.gesetze-im-internet.de/wogg/__12.html (§ 12 WoGG mit Anlage 1 – Höchstbeträge 2025/2026)
 // ============================================================================
 
 // Mietstufen I-VII nach Gemeinde
@@ -24,7 +24,7 @@ type Mietstufe = typeof MIETSTUFEN[number];
 // ============================================================================
 // HÖCHSTBETRÄGE 2025/2026 nach § 12 WoGG (Grundbetrag + Heizkosten + Klima)
 // Stand: 01.01.2025, gültig auch für 2026
-// Quelle: https://www.wohngeld.org/wohnkosten/
+// Quelle: https://www.gesetze-im-internet.de/wogg/__12.html (§ 12 WoGG mit Anlage 1)
 // ============================================================================
 // Format: [1 Person, 2 Personen, 3 Personen, 4 Personen, 5 Personen]
 // Für weitere Personen: +MEHRBETRAG pro Person
@@ -52,7 +52,7 @@ const MEHRBETRAG_PRO_PERSON: Record<Mietstufe, number> = {
 // ============================================================================
 // KOEFFIZIENTEN a, b, c nach Anlage 2 zu § 19 Abs. 1 WoGG
 // EXAKTE WERTE aus dem Gesetzestext!
-// Quelle: https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/
+// Quelle: https://www.gesetze-im-internet.de/wogg/anlage_2.html
 // ============================================================================
 // E-1 = geteilt durch 10
 // E-2 = geteilt durch 100
@@ -107,7 +107,6 @@ const BEISPIELSTAEDTE: Record<Mietstufe, string[]> = {
 };
 
 // Einkommensgrenzen für Wohngeld 2025/2026 (monatlich, ca. Richtwerte)
-// Quelle: https://www.wohngeld.org/einkommen/
 const EINKOMMENSGRENZEN: Record<Mietstufe, number[]> = {
   'I':   [1443, 1953, 2453, 3324, 3822],
   'II':  [1530, 2074, 2610, 3542, 4077],
@@ -412,12 +411,12 @@ export default function WohngeldRechner() {
               {BEISPIELSTAEDTE[mietstufe].join(', ')}
             </p>
             <a
-              href="https://www.wohngeld.org/mietstufe/"
+              href="https://www.gesetze-im-internet.de/wogv/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-purple-600 hover:underline mt-1 inline-block"
             >
-              → Alle Mietstufen nachschlagen
+              → Amtliches Mietenstufen-Verzeichnis (WoGV, Anlage zu § 1 Abs. 3)
             </a>
           </div>
         </div>
@@ -796,20 +795,6 @@ export default function WohngeldRechner() {
                 </a>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">📱</span>
-              <div>
-                <p className="font-medium text-gray-800">Online-Antrag</p>
-                <a 
-                  href="https://www.wohngeld.org/antrag"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  Wohngeld online beantragen →
-                </a>
-              </div>
-            </div>
           </div>
           
           <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl text-sm">
@@ -838,37 +823,37 @@ export default function WohngeldRechner() {
           >
             Wohngeldgesetz (WoGG) – Gesetze im Internet
           </a>
-          <a 
-            href="https://www.wohngeld.org/wohngeldgesetz-wogg/paragraph19/"
+          <a
+            href="https://www.gesetze-im-internet.de/wogg/__19.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            § 19 WoGG – Wohngeldformel mit Berechnungsbeispielen
+            § 19 WoGG – Wohngeldformel
           </a>
-          <a 
-            href="https://www.wohngeld.org/wohngeldgesetz-wogg/anlage2/"
+          <a
+            href="https://www.gesetze-im-internet.de/wogg/anlage_2.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             Anlage 2 zu § 19 WoGG – Koeffizienten a, b, c
           </a>
-          <a 
-            href="https://www.wohngeld.org/wohnkosten/"
+          <a
+            href="https://www.gesetze-im-internet.de/wogg/__12.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Wohngeld Höchstbeträge 2025/2026 – Tabellen
+            § 12 WoGG mit Anlage 1 – Höchstbeträge für Miete und Belastung
           </a>
-          <a 
-            href="https://www.wohngeld.org/mietstufe/"
+          <a
+            href="https://www.gesetze-im-internet.de/wogv/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Mietstufen-Verzeichnis nach Bundesländern
+            WoGV, Anlage zu § 1 Abs. 3 – Mietenstufen der Gemeinden
           </a>
           <a 
             href="https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html"

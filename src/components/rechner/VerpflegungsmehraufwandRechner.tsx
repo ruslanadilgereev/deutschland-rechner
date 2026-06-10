@@ -822,14 +822,6 @@ export default function VerpflegungsmehraufwandRechner() {
           >
             BMF – Steuerliche Behandlung von Reisekosten
           </a>
-          <a 
-            href="https://www.haufe.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Haufe – Verpflegungsmehraufwendungen
-          </a>
         </div>
       </div>
     </div>

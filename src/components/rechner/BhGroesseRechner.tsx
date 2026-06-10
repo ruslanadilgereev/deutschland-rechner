@@ -1,10 +1,6 @@
 import { useState } from 'react';
 
 // BH-Größen-Rechner – deutsche/europäische Größentabelle
-// Quellen:
-//   https://www.blitzrechner.de/bh-groesse/
-//   https://www.bh-guide.de/bh-groesse-berechnen.php
-//   https://www.breuninger.com/de/editorial/bh-berater/
 //
 // Bandgröße: Unterbrustumfang wird auf den nächsten 5er-Schritt gerundet
 //   (63–67 → 65, 68–72 → 70, 73–77 → 75, …).
@@ -241,37 +237,6 @@ export default function BhGroesseRechner() {
           BH-Größen fallen je nach Marke, Schnitt und Modell unterschiedlich aus. Entscheidend ist
           immer der Sitz beim Anprobieren – ohne Gewähr.
         </p>
-      </div>
-
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://www.blitzrechner.de/bh-groesse/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            blitzrechner.de – BH-Größe & Körbchengröße ermitteln
-          </a>
-          <a
-            href="https://www.bh-guide.de/bh-groesse-berechnen.php"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            bh-guide.de – BH-Größe berechnen & Körbchengrößen-Tabelle
-          </a>
-          <a
-            href="https://www.breuninger.com/de/editorial/bh-berater/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Breuninger – BH-Größentabelle & BH-Berater
-          </a>
-        </div>
       </div>
     </div>
   );

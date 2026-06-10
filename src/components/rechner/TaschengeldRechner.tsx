@@ -208,14 +208,6 @@ export default function TaschengeldRechner() {
           >
             Deutsches Jugendinstitut (DJI) – Taschengeld-Empfehlungen
           </a>
-          <a
-            href="https://www.mystipendium.de/geld/taschengeld"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            myStipendium – Taschengeldtabelle nach DJI
-          </a>
         </div>
       </div>
     </div>

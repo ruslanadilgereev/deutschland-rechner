@@ -463,14 +463,7 @@ export default function PrivatinsolvenzRechner() {
               <span className="text-xl">🤝</span>
               <div>
                 <p className="font-medium text-gray-800">Verbraucherzentrale</p>
-                <a 
-                  href="https://www.verbraucherzentrale.de/schuldnerberatung"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  verbraucherzentrale.de →
-                </a>
+                <p className="text-gray-600">Schuldnerberatung vor Ort</p>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
@@ -538,29 +531,13 @@ export default function PrivatinsolvenzRechner() {
           >
             Pfändungsfreigrenzenbekanntmachung 2025 (BGBl. 2025 I Nr. 110)
           </a>
-          <a 
-            href="https://www.finanztip.de/pfaendungstabelle/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Pfändungstabelle 2025/2026
-          </a>
-          <a 
+          <a
             href="https://freibetragsrechner.justiz.nrw.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             Justiz NRW – Offizieller Pfändungsfreigrenzen-Rechner
-          </a>
-          <a 
-            href="https://www.verbraucherzentrale.de/schuldnerberatung"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Schuldnerberatung
           </a>
         </div>
       </div>

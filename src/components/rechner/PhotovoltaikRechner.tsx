@@ -886,13 +886,13 @@ export default function PhotovoltaikRechner() {
               <span className="text-xl">📞</span>
               <div>
                 <p className="font-medium text-gray-800">Energieberatung</p>
-                <a 
-                  href="https://www.verbraucherzentrale-energieberatung.de"
+                <a
+                  href="https://www.energiewechsel.de"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline text-xs"
                 >
-                  Verbraucherzentrale Energieberatung →
+                  energiewechsel.de – BMWK-Energieberatung →
                 </a>
               </div>
             </div>
@@ -933,29 +933,13 @@ export default function PhotovoltaikRechner() {
           >
             Bundesnetzagentur – Erneuerbare Energien
           </a>
-          <a 
-            href="https://www.solarwirtschaft.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Bundesverband Solarwirtschaft (BSW)
-          </a>
-          <a 
+          <a
             href="https://re.jrc.ec.europa.eu/pvg_tools/en/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             EU PVGIS – Photovoltaic Geographical Information System
-          </a>
-          <a 
-            href="https://www.verbraucherzentrale.de/wissen/energie/erneuerbare-energien/photovoltaik-was-bei-der-planung-einer-solaranlage-wichtig-ist-5574"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Photovoltaik Planung
           </a>
         </div>
       </div>

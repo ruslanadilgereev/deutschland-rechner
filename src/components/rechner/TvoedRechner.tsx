@@ -390,20 +390,12 @@ export default function TvoedRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a
-            href="https://oeffentlicher-dienst.info/c/t/rechner/tvoed/vka?id=tvoed-vka-2026&matrix=1"
+            href="https://www.vka.de"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Öffentlicher-Dienst.info – TVöD-VKA Entgelttabelle 2026
-          </a>
-          <a
-            href="https://www.oeffentlichen-dienst.de/entgelttabelle/vka/a/4410-vka-2026.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Oeffentlichen-Dienst.de – TVöD-VKA 01.05.2026–31.03.2027
+            VKA – Tarifvertragspartei des TVöD-VKA (Entgelttabellen)
           </a>
           <a
             href="https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2025/25-10-08-bundeskabinett-sv-rechengroessen-vo-2026.html"

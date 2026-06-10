@@ -620,14 +620,6 @@ export default function VLRechner() {
           >
             BMF – Arbeitnehmer-Sparzulage
           </a>
-          <a 
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Vermögenswirksame Leistungen
-          </a>
         </div>
       </div>
     </div>

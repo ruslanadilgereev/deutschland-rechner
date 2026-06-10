@@ -36,7 +36,7 @@ const ANSPRUCHSDAUER_TABELLE: { beschaeftigung: number; alter50: number; alter55
 ];
 
 // Sozialabgaben für pauschale Nettoberechnung 2026
-// Quelle: https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026
+// Quelle: § 241 SGB V, § 55 SGB XI, § 341 Abs. 2 SGB III, § 158 SGB VI – z.B. https://www.gesetze-im-internet.de/sgb_5/__241.html
 const SOZIALABGABEN = {
   rentenversicherung: 0.093, // 9,3% AN-Anteil (18,6% / 2)
   krankenversicherung: 0.073, // 7,3% AN-Anteil (14,6% / 2)
@@ -785,14 +785,6 @@ export default function ArbeitslosengeldRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Bundesregierung – Beitragsbemessungsgrenzen 2026
-          </a>
-          <a 
-            href="https://www.tk.de/firmenkunden/versicherung/beitraege-faq/zahlen-und-grenzwerte/beitragsbemessungsgrenzen-2033026"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            TK – Beitragsbemessungsgrenzen 2026
           </a>
         </div>
       </div>

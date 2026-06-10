@@ -499,20 +499,6 @@ export default function GeburtsterminRechner() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">📞</span>
-              <div>
-                <p className="font-medium text-gray-800">Hebammen-Suche</p>
-                <a 
-                  href="https://www.hebammensuche.de"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  hebammensuche.de →
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
               <span className="text-xl">🏥</span>
               <div>
                 <p className="font-medium text-gray-800">Mutterpass</p>

@@ -376,14 +376,6 @@ export default function PearlIndexRechner() {
           >
             BZgA / familienplanung.de – Pearl-Index
           </a>
-          <a
-            href="https://www.barmer.de/gesundheit-verstehen/familie/sexualitaet/pearl-index-1261484"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-pink-600 hover:underline"
-          >
-            BARMER – Sicherheit von Verhütungsmitteln
-          </a>
         </div>
       </div>
     </div>

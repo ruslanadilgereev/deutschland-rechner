@@ -230,20 +230,12 @@ export default function ZahnimplantatKostenRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a
-            href="https://www.implantate.com/was-kosten-zahnimplantate.html"
+            href="https://www.gesetze-im-internet.de/sgb_5/__55.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-cyan-700 hover:underline"
           >
-            implantate.com – Was kosten Zahnimplantate (2026)
-          </a>
-          <a
-            href="https://www.aok.de/pk/leistungen/zahngesundheit/zahnersatz-zahnkronen-bruecken-implantate/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-cyan-700 hover:underline"
-          >
-            AOK – Zahnersatz, Festzuschuss & Bonusheft
+            § 55 SGB V – Festzuschüsse & Bonusregelung (gesetze-im-internet.de)
           </a>
         </div>
       </div>

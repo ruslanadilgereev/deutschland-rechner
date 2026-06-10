@@ -817,21 +817,6 @@ export default function EinkommensteuerRechner() {
             </div>
           </div>
           <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-            <span className="text-xl">⚖️</span>
-            <div>
-              <p className="font-medium text-gray-800">Lohnsteuerhilfeverein</p>
-              <p className="text-gray-500">Beratung für Arbeitnehmer</p>
-              <a 
-                href="https://www.lohnsteuerhilfe.net"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                lohnsteuerhilfe.net →
-              </a>
-            </div>
-          </div>
-          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
             <span className="text-xl">🧮</span>
             <div>
               <p className="font-medium text-gray-800">Steuerberater</p>

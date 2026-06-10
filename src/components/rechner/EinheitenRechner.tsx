@@ -621,14 +621,6 @@ export default function EinheitenRechner() {
           >
             BIPM – Bureau International des Poids et Mesures
           </a>
-          <a
-            href="https://de.wikipedia.org/wiki/Angloamerikanisches_Ma%C3%9Fsystem"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Wikipedia – Angloamerikanisches Maßsystem
-          </a>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ import { useState, useMemo } from 'react';
 // Regelsätze 2025/2026: NULLRUNDE - keine Erhöhung gegenüber 2024
 // Quelle: https://www.bundesregierung.de/breg-de/aktuelles/nullrunde-buergergeld-2383676
 // Quelle: https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/Buergergeld/buergergeld.html
-// Quelle: https://www.buergergeld.org/sgb-ii/regelsatz/
+// Quelle: https://www.gesetze-im-internet.de/sgb_2/__20.html (§ 20 SGB II Regelbedarf)
 // ============================================================================
 
 // Regelbedarfsstufen 2025/2026 (§ 20 SGB II, § 8 RBEG)
@@ -40,14 +40,14 @@ const REGELSAETZE_2026 = {
 
 // Kindersofortzuschlag nach § 72 SGB II
 // 25€ pro Kind zusätzlich zum Regelbedarf für Kinder in RBS 3, 4, 5, 6
-// Quelle: https://www.buergergeld.org/news/kindersofortzuschlag/
+// Quelle: https://www.gesetze-im-internet.de/sgb_2/__72.html (§ 72 SGB II Sofortzuschlag)
 const KINDERSOFORTZUSCHLAG = 25;
 
 // ============================================================================
 // Freibeträge vom Erwerbseinkommen nach § 11b SGB II
 // ============================================================================
 // Bei Erwerbstätigkeit wird nicht das gesamte Einkommen angerechnet!
-// Quelle: https://www.buergergeld.org/sgb-ii/einkommen/
+// Quelle: https://www.gesetze-im-internet.de/sgb_2/__11b.html (§ 11b SGB II Absetzbeträge)
 const FREIBETRAEGE = {
   // § 11b Abs. 2 SGB II: Grundfreibetrag
   grundfreibetrag: 100,
@@ -487,15 +487,7 @@ export default function BuergergeldRechner() {
           >
             BMAS – Bürgergeld
           </a>
-          <a 
-            href="https://www.finanztip.de/buergergeld/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Bürgergeld 2026 & Grundsicherungsgeld
-          </a>
-          <a 
+          <a
             href="https://www.bundesregierung.de/breg-de/aktuelles/kabinett-neue-grundsicherung-2399562"
             target="_blank"
             rel="noopener noreferrer"

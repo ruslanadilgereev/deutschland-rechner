@@ -969,29 +969,13 @@ export default function SteuerklassenRechner() {
           >
             BMF – Offizieller Lohnsteuerrechner
           </a>
-          <a 
-            href="https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Einkommensteuer-Formeln {STEUERJAHR} – Finanz-Tools.de
-          </a>
-          <a 
+          <a
             href="https://www.bundesfinanzministerium.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             BMF – FAQ Lohnsteuer & Steuerklassen
-          </a>
-          <a 
-            href="https://www.finanztip.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Steuerklassen-Ratgeber
           </a>
         </div>
       </div>

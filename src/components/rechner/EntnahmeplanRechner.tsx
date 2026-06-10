@@ -278,37 +278,6 @@ export default function EntnahmeplanRechner() {
         <strong>⚠️ Keine Anlageberatung:</strong> Diese Berechnung dient nur zur Orientierung und
         ersetzt keine individuelle Finanz- oder Anlageberatung. Alle Angaben ohne Gewähr.
       </div>
-
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://www.finanztip.de/rechner/entnahmerechner/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Entnahmerechner & Methodik
-          </a>
-          <a
-            href="https://www.zinsen-berechnen.de/entnahmeplan.php"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            zinsen-berechnen.de – Entnahmeplan aus verzinstem Kapital
-          </a>
-          <a
-            href="https://guidingdata.com/trinity-studie-4-prozent-regel/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            GuidingData – Trinity-Studie & 4-Prozent-Regel
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

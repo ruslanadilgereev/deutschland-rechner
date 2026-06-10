@@ -326,16 +326,16 @@ export default function UnterhaltsRechner() {
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
               <span className="text-xl">📞</span>
               <div>
-                <p className="font-medium text-gray-800">Jugendamt finden</p>
-                <a 
-                  href="https://www.jugendaemter.com"
-                  target="_blank" 
+                <p className="font-medium text-gray-800">Jugendamt & Beistandschaft</p>
+                <a
+                  href="https://familienportal.de"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  jugendaemter.com →
+                  Familienportal des Bundes →
                 </a>
-                <p className="text-xs text-gray-500 mt-1">Nach Postleitzahl suchen</p>
+                <p className="text-xs text-gray-500 mt-1">Offizielle Infos zu Beistandschaft & Unterhalt</p>
               </div>
             </div>
             
@@ -343,13 +343,13 @@ export default function UnterhaltsRechner() {
               <span className="text-xl">⚖️</span>
               <div>
                 <p className="font-medium text-gray-800">Rechtsanwalt</p>
-                <a 
-                  href="https://anwaltauskunft.de"
-                  target="_blank" 
+                <a
+                  href="https://www.brak.de"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  Familienrecht-Anwalt finden →
+                  Bundesrechtsanwaltskammer – Anwaltsverzeichnis →
                 </a>
                 <p className="text-xs text-gray-500 mt-1">Bei komplexen Fällen</p>
               </div>

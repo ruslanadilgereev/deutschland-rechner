@@ -527,22 +527,6 @@ export default function BaufinanzierungRechner() {
         
         <div className="space-y-4">
           <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🏦</span>
-            <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale</div>
-              <div className="text-sm text-gray-600">Unabhängige Baufinanzierungsberatung</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                verbraucherzentrale.de/baufinanzierung →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
             <span className="text-2xl">🏗️</span>
             <div>
               <div className="font-medium text-gray-800">KfW-Förderung</div>
@@ -554,22 +538,6 @@ export default function BaufinanzierungRechner() {
                 className="text-blue-600 hover:underline text-sm"
               >
                 kfw.de/Neubau →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">📊</span>
-            <div>
-              <div className="font-medium text-gray-800">Stiftung Warentest / Finanztest</div>
-              <div className="text-sm text-gray-600">Baufinanzierung-Vergleiche & Tests</div>
-              <a 
-                href="https://www.test.de/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                test.de/baufinanzierung →
               </a>
             </div>
           </div>

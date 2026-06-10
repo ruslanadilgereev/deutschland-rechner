@@ -280,37 +280,6 @@ export default function SkontoRechner() {
           </div>
         </div>
       </div>
-
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://www.impulse.de/finanzen/skontoabzug/1016048.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            impulse.de – Skonto berechnen: Formeln und Beispiele
-          </a>
-          <a
-            href="https://www.controllingportal.de/Fachinfo/Finanzmathematische-Formeln/Effektivverzinsung-bei-Skonto.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Controllingportal – Effektivverzinsung bei Skonto
-          </a>
-          <a
-            href="https://www.lexware.de/tools/skontorechner/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Lexware – Skontorechner & Formel
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ const FREIGRENZE = 1000;
 // ═══════════════════════════════════════════════════════════════════════════
 // Einkommensteuer-Tarif 2026 nach §32a EStG
 // Quelle: Steuerfortentwicklungsgesetz, BGBl. 2024 Nr. 449
-// https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2026
+// https://www.gesetze-im-internet.de/estg/__32a.html
 // ═══════════════════════════════════════════════════════════════════════════
 const GRUNDFREIBETRAG = 12348; // 2026
 

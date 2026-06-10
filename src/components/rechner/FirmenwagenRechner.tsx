@@ -793,14 +793,6 @@ export default function FirmenwagenRechner() {
           >
             BMF-Schreiben zur steuerlichen Behandlung von Firmenwagen
           </a>
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Firmenwagen versteuern
-          </a>
         </div>
       </div>
     </div>

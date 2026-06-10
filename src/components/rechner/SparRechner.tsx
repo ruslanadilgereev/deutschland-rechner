@@ -564,31 +564,15 @@ export default function SparRechner() {
           <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
             <span className="text-2xl">🛡️</span>
             <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale</div>
-              <div className="text-sm text-gray-600">Unabhängige Beratung zu Geldanlage & Sparen</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen" 
-                target="_blank" 
+              <div className="font-medium text-gray-800">BaFin – Verbraucherinformation</div>
+              <div className="text-sm text-gray-600">Behördliche Informationen zu Geldanlage & Sparen</div>
+              <a
+                href="https://www.bafin.de"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-600 hover:underline text-sm"
               >
-                verbraucherzentrale.de/geldanlage →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">📊</span>
-            <div>
-              <div className="font-medium text-gray-800">Finanztip</div>
-              <div className="text-sm text-gray-600">Gemeinnützige Finanzbildung</div>
-              <a 
-                href="https://www.finanztip.de/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-amber-600 hover:underline text-sm"
-              >
-                finanztip.de/sparen →
+                bafin.de →
               </a>
             </div>
           </div>

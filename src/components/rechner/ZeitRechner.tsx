@@ -623,14 +623,6 @@ export default function ZeitRechner() {
           >
             BMAS – Arbeitszeit
           </a>
-          <a
-            href="https://www.dgb.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            DGB – Ratgeber Arbeitszeit
-          </a>
         </div>
       </div>
     </div>

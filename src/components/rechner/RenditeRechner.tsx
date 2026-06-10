@@ -292,44 +292,6 @@ export default function RenditeRechner() {
         </p>
       </div>
 
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://growney.de/finanzwiki/rendite-erklarung-und-formel-zum-berechnen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            growney Finanzwiki – Rendite berechnen: Formel & Beispiele
-          </a>
-          <a
-            href="https://www.deltavalue.de/cagr-jaehrliche-wachstumsrate/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            DeltaValue – CAGR (jährliche Wachstumsrate) erklärt
-          </a>
-          <a
-            href="https://www.vr.de/privatkunden/themenwelten/finanzen/investieren-anlegen/rendite.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Volksbanken Raiffeisenbanken – Rendite: Definition & Berechnung
-          </a>
-          <a
-            href="https://www.finanztip.de/indexfonds-etf/etf-rendite/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – ETF-Rendite (historische Werte MSCI World)
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

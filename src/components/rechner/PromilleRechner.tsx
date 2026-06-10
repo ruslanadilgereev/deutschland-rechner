@@ -730,15 +730,7 @@ export default function PromilleRechner() {
           >
             Bundeszentrale für gesundheitliche Aufklärung (BZgA)
           </a>
-          <a 
-            href="https://www.adac.de/verkehr/recht/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Promillegrenzen in Deutschland
-          </a>
-          <a 
+          <a
             href="https://www.gesetze-im-internet.de/stvg/__24a.html"
             target="_blank"
             rel="noopener noreferrer"

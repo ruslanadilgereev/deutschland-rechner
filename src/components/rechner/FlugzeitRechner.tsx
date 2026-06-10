@@ -684,32 +684,6 @@ export default function FlugzeitRechner() {
             <strong>Stand:</strong> 2025/2026 – Flugzeiten können sich durch Flugroutenänderungen oder Wetterbedingungen ändern.
           </p>
         </div>
-        <div className="mt-3 space-y-1">
-          <a 
-            href="https://www.lufthansa.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Lufthansa – Flugbuchung
-          </a>
-          <a 
-            href="https://www.google.com/flights"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Google Flights – Preisvergleich
-          </a>
-          <a 
-            href="https://www.flightaware.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            FlightAware – Echtzeit-Flugverfolgung
-          </a>
-        </div>
       </div>
     </div>
   );

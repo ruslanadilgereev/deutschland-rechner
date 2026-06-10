@@ -615,23 +615,15 @@ export default function AutoLeasingRechner() {
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & weiterführende Informationen</h4>
         <div className="space-y-1">
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/leasing/"
+          <a
+            href="https://www.gesetze-im-internet.de/bgb/__506.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            ADAC – Leasing: Vorteile, Nachteile, Tipps
+            § 506 BGB – Entgeltliche Finanzierungshilfen (Leasing) – Gesetze im Internet
           </a>
-          <a 
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen-schulden-insolvenz/autoleasing-14061"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Autoleasing
-          </a>
-          <a 
+          <a
             href="https://www.bfh.de/"
             target="_blank"
             rel="noopener noreferrer"

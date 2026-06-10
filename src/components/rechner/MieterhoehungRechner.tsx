@@ -251,7 +251,7 @@ export default function MieterhoehungRechner() {
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">€/m²</span>
             </div>
             <p className="text-xs text-gray-500 mt-1">
-              💡 Finden Sie im <a href="https://www.immobilienscout24.de/wissen/mieten/mietspiegel.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Mietspiegel Ihrer Gemeinde</a>
+              💡 Finden Sie im Mietspiegel Ihrer Gemeinde
             </p>
           </div>
 
@@ -309,10 +309,6 @@ export default function MieterhoehungRechner() {
               <div className="mt-2 p-3 bg-blue-50 rounded-lg text-xs text-gray-600 max-h-40 overflow-y-auto">
                 <strong>Städte mit 15% Kappungsgrenze (Auswahl):</strong><br/>
                 Berlin, Hamburg, München, Köln, Frankfurt, Stuttgart, Düsseldorf, Dortmund, Leipzig, Dresden, Hannover, Nürnberg, Potsdam, Freiburg, Heidelberg, Bonn, Münster, Augsburg, Kiel, Erfurt, Jena, Rostock, Greifswald, Mainz, Ludwigshafen u.v.m.
-                <br/><br/>
-                <a href="https://mieterbund.de/service/mieterschutzverordnungen/kappungsgrenze/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                  Vollständige Liste beim Deutschen Mieterbund →
-                </a>
               </div>
             )}
           </div>
@@ -560,61 +556,7 @@ export default function MieterhoehungRechner() {
         </ul>
       </div>
 
-      {/* Anlaufstellen */}
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h3 className="font-semibold text-gray-800 mb-4">📞 Wichtige Anlaufstellen</h3>
-        
-        <div className="space-y-4">
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🏠</span>
-            <div>
-              <div className="font-medium text-gray-800">Deutscher Mieterbund</div>
-              <div className="text-sm text-gray-600">Beratung und Rechtsschutz für Mieter</div>
-              <a 
-                href="https://www.mieterbund.de/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                mieterbund.de →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">📊</span>
-            <div>
-              <div className="font-medium text-gray-800">Mietspiegel Ihrer Stadt</div>
-              <div className="text-sm text-gray-600">Ortsübliche Vergleichsmiete ermitteln</div>
-              <a 
-                href="https://www.immobilienscout24.de/wissen/mieten/mietspiegel.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                Mietspiegel finden →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">⚖️</span>
-            <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale</div>
-              <div className="text-sm text-gray-600">Unabhängige Beratung zu Mietrecht</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                verbraucherzentrale.de/mieterhöhung →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-{/* Quellen */}
+      {/* Quellen */}
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="font-semibold text-gray-700 mb-3">📚 Rechtsgrundlagen</h3>
         <ul className="space-y-1 text-sm text-gray-600">
@@ -636,11 +578,6 @@ export default function MieterhoehungRechner() {
           <li>
             <a href="https://www.gesetze-im-internet.de/bgb/__559.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
               § 559 BGB – Mieterhöhung nach Modernisierungsmaßnahmen
-            </a>
-          </li>
-          <li>
-            <a href="https://mieterbund.de/service/mieterschutzverordnungen/kappungsgrenze/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-              Übersicht: Städte mit 15% Kappungsgrenze (Mieterbund)
             </a>
           </li>
         </ul>

@@ -715,36 +715,6 @@ export default function BruchRechner() {
           </table>
         </div>
       </div>
-{/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Nützliche Ressourcen</h4>
-        <div className="space-y-1">
-          <a 
-            href="https://www.mathematik.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Deutsche Mathematiker-Vereinigung
-          </a>
-          <a 
-            href="https://www.frustfrei-lernen.de/mathematik/bruchrechnung.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Frustfrei-Lernen – Bruchrechnung
-          </a>
-          <a 
-            href="https://www.mathe-lexikon.at/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Mathe-Lexikon – Bruchrechnen Grundlagen
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

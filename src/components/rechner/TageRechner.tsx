@@ -403,42 +403,6 @@ export default function TageRechner() {
           <li>• <strong>Negative Werte:</strong> Wenn das Enddatum vor dem Startdatum liegt, wird die Differenz als negativ angezeigt</li>
         </ul>
       </div>
-{/* Quellen */}
-      <div className="bg-gray-50 rounded-2xl p-6">
-        <h3 className="font-bold text-gray-700 mb-3">📚 Weitere Informationen</h3>
-        <ul className="text-sm text-gray-600 space-y-1">
-          <li>
-            <a 
-              href="https://de.wikipedia.org/wiki/Zeitspanne"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Wikipedia – Zeitspanne
-            </a>
-          </li>
-          <li>
-            <a 
-              href="https://de.wikipedia.org/wiki/Schaltjahr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Wikipedia – Schaltjahr
-            </a>
-          </li>
-          <li>
-            <a 
-              href="https://de.wikipedia.org/wiki/Gregorianischer_Kalender"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Wikipedia – Gregorianischer Kalender
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 }

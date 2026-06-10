@@ -764,20 +764,6 @@ export default function AutofinanzierungRechner() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">📞</span>
-              <div>
-                <p className="font-medium text-gray-800">ADAC Rechtsberatung</p>
-                <a
-                  href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  ADAC Autofinanzierung →
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
               <span className="text-xl">🌐</span>
               <div>
                 <p className="font-medium text-gray-800">BaFin</p>
@@ -815,28 +801,12 @@ export default function AutofinanzierungRechner() {
             PAngV § 6 – Effektiver Jahreszins
           </a>
           <a
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Ratgeber Autofinanzierung
-          </a>
-          <a
             href="https://www.bafin.de/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             BaFin – Autofinanzierung erklärt
-          </a>
-          <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Kredit & Finanzierung
           </a>
         </div>
       </div>

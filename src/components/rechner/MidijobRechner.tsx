@@ -5,8 +5,8 @@ import { useState, useMemo } from 'react';
 // ═══════════════════════════════════════════════════════════════════════════════
 // 
 // RECHTSGRUNDLAGE: § 20 Abs. 2 SGB IV
-// QUELLE: DAK Arbeitgeber-Portal (offizielle Formeln)
-// https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500
+// QUELLE: § 20 SGB IV (Übergangsbereich)
+// https://www.gesetze-im-internet.de/sgb_4/__20.html
 //
 // WICHTIG: Es gibt ZWEI verschiedene Formeln:
 // 1. Gesamtbeitrag (BE) - für Gesamtsozialversicherungsbeitrag
@@ -76,7 +76,7 @@ export default function MidijobRechner() {
 
     // ═══════════════════════════════════════════════════════════════
     // OFFIZIELLE BERECHNUNG NACH DAK-FORMEL (§ 20 Abs. 2 SGB IV)
-    // Quelle: https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500
+    // Quelle: https://www.gesetze-im-internet.de/sgb_4/__20.html
     // ═══════════════════════════════════════════════════════════════
     
     // Gesamtbeitragssatz (für Anzeige und Vergleich)
@@ -833,15 +833,7 @@ export default function MidijobRechner() {
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Berechnungsgrundlagen</h4>
         <div className="space-y-1">
-          <a 
-            href="https://www.dak.de/arbeitgeber-portal/sozialversicherung/versicherung-midijob_55500"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline font-medium"
-          >
-            ★ Haufe/DAK – Offizielle Formeln Übergangsbereich 2026
-          </a>
-          <a 
+          <a
             href="https://www.gesetze-im-internet.de/sgb_4/__20.html"
             target="_blank"
             rel="noopener noreferrer"
@@ -856,14 +848,6 @@ export default function MidijobRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Deutsche Rentenversicherung – Übergangsbereich
-          </a>
-          <a 
-            href="https://www.tk.de/firmenkunden/versicherung/beitraege-faq/minijobs-und-midijobs/beitragspflichtiges-entgelt-fuer-uebergangsbereich-berechnen-2037942"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Techniker Krankenkasse – Midijobrechner
           </a>
         </div>
         <p className="text-xs text-gray-500 mt-3">

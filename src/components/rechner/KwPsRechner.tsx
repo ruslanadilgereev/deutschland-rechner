@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // Umrechnung Leistung kW <-> PS
 // Exakte Definition (DIN 66036): 1 PS = 735,49875 W = 0,73549875 kW
-// Quelle: https://de.wikipedia.org/wiki/Pferdest%C3%A4rke (PTB / DIN 66036)
+// Quelle: https://www.gesetze-im-internet.de/einhv/ (Einheitenverordnung, PTB / DIN 66036)
 const KW_PRO_PS = 0.73549875; // 1 PS in kW (exakt)
 const PS_PRO_KW = 1 / KW_PRO_PS; // 1 kW in PS (= 1,35962162...)
 
@@ -238,14 +238,6 @@ export default function KwPsRechner() {
       <div className="mt-6 p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
-          <a
-            href="https://de.wikipedia.org/wiki/Pferdest%C3%A4rke"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Wikipedia – Pferdestärke (DIN 66036, Definition & Faktor)
-          </a>
           <a
             href="https://www.gesetze-im-internet.de/einhv/"
             target="_blank"

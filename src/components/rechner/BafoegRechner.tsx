@@ -587,15 +587,7 @@ export default function BafoegRechner() {
           >
             Offizielles BAföG-Portal des BMBF
           </a>
-          <a 
-            href="https://www.studentenwerke.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Deutsches Studierendenwerk – BAföG beantragen
-          </a>
-          <a 
+          <a
             href="https://www.gesetze-im-internet.de/baf_g/"
             target="_blank"
             rel="noopener noreferrer"

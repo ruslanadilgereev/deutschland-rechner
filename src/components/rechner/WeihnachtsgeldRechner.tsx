@@ -381,12 +381,12 @@ export default function WeihnachtsgeldRechner() {
             Bundesregierung – Beitragsbemessungsgrenzen 2026
           </a>
           <a
-            href="https://www.tk.de/firmenkunden/versicherung/beitraege-faq/beitragssaetze/aktuelle-beitragssaetze-in-der-sozialversicherung-2031554"
+            href="https://www.gesetze-im-internet.de/sgb_5/__241.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Techniker Krankenkasse – Beitragssaetze 2026
+            § 241 SGB V – Beitragssatz Krankenversicherung (ergaenzend § 55 SGB XI, § 341 SGB III, § 158 SGB VI)
           </a>
           <a
             href="https://esth.bundesfinanzministerium.de/lsth/2026/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html"
@@ -397,12 +397,12 @@ export default function WeihnachtsgeldRechner() {
             BMF – Einkommensteuertarif § 32a EStG 2026
           </a>
           <a
-            href="https://www.haufe.de/personal/entgelt/weihnachtsgeld/weihnachtsgeld-so-versteuern-sie-das-weihnachtsgeld-richtig_78_386500.html"
+            href="https://www.gesetze-im-internet.de/estg/__39b.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Haufe – Weihnachtsgeld richtig versteuern (sonstiger Bezug)
+            § 39b Abs. 3 EStG – Lohnsteuer auf sonstige Bezuege
           </a>
         </div>
       </div>

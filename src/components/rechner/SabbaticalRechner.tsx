@@ -788,13 +788,13 @@ export default function SabbaticalRechner() {
           >
             Bundesministerium für Arbeit und Soziales – Arbeitsrecht
           </a>
-          <a 
-            href="https://www.haufe.de/"
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_4/__7b.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Haufe – Sabbatical: Rechtliche Grundlagen
+            § 7b SGB IV – Wertguthabenvereinbarung (gesetze-im-internet.de)
           </a>
           <a 
             href="https://www.deutsche-rentenversicherung.de"

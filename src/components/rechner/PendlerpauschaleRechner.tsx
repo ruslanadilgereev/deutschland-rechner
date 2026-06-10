@@ -288,21 +288,13 @@ export default function PendlerpauschaleRechner() {
           >
             Bundesfinanzministerium – Steuerliche Änderungen 2026
           </a>
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/autokosten/pendlerpauschale/"
+          <a
+            href="https://www.gesetze-im-internet.de/estg/__9.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            ADAC – Pendlerpauschale 2026
-          </a>
-          <a 
-            href="https://www.vlh.de/presse/pressemitteilungen/fuenf-aenderungen-fuer-2026-mit-blick-auf-die-einkommensteuer.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            VLH – Fünf Steueränderungen 2026 (inkl. Pendlerpauschale)
+            § 9 Abs. 1 Nr. 4 EStG – Entfernungspauschale (gesetze-im-internet.de)
           </a>
         </div>
       </div>

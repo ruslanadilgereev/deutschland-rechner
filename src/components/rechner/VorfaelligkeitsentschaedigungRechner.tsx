@@ -737,14 +737,14 @@ export default function VorfaelligkeitsentschaedigungRechner() {
           <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
             <span className="text-xl">📞</span>
             <div>
-              <p className="font-medium text-gray-800">Verbraucherzentrale</p>
+              <p className="font-medium text-gray-800">BaFin Verbraucherservice</p>
               <a
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung"
+                href="https://www.bafin.de"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                VFE prüfen lassen →
+                Beratung & Beschwerde gegen Banken →
               </a>
             </div>
           </div>
@@ -794,14 +794,6 @@ export default function VorfaelligkeitsentschaedigungRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Bundesbank – Aktuelle Pfandbriefrenditen
-          </a>
-          <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – VFE prüfen
           </a>
         </div>
       </div>

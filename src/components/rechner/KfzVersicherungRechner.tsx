@@ -434,54 +434,7 @@ export default function KfzVersicherungRechner() {
         </div>
       </div>
 
-{/* Vergleichsportale */}
-      <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
-        <h3 className="font-bold text-blue-800 mb-3">🔍 Für exakte Tarife: Vergleichen Sie!</h3>
-        <p className="text-sm text-blue-700 mb-4">
-          Unser Rechner gibt eine <strong>grobe Schätzung</strong>. Die tatsächlichen Preise variieren stark 
-          je nach Versicherer, Alter, Beruf, Stellplatz und weiteren Faktoren. Nutzen Sie Vergleichsportale:
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <a 
-            href="https://www.check24.de/kfz-versicherung/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
-          >
-            <span className="block text-lg mb-1">✓</span>
-            <span className="text-sm font-medium text-gray-800">Check24</span>
-          </a>
-          <a 
-            href="https://www.verivox.de/kfz-versicherung/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
-          >
-            <span className="block text-lg mb-1">✓</span>
-            <span className="text-sm font-medium text-gray-800">Verivox</span>
-          </a>
-          <a 
-            href="https://www.huk24.de/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
-          >
-            <span className="block text-lg mb-1">✓</span>
-            <span className="text-sm font-medium text-gray-800">HUK24</span>
-          </a>
-          <a 
-            href="https://www.financescout24.de/kfz-versicherung" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="py-3 px-4 bg-white rounded-xl text-center hover:shadow-md transition-shadow"
-          >
-            <span className="block text-lg mb-1">✓</span>
-            <span className="text-sm font-medium text-gray-800">FinanceScout</span>
-          </a>
-        </div>
-      </div>
-
-      {/* SF-Klassen Tabelle */}
+{/* SF-Klassen Tabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         <h3 className="font-bold text-gray-800 mb-3">📊 SF-Klassen-Tabelle (Auszug)</h3>
         <p className="text-sm text-gray-600 mb-4">

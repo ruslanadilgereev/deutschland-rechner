@@ -274,20 +274,20 @@ export default function JobRadRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a
-            href="https://www.jobrad.org/wissen/dienstrad-versteuerung"
+            href="https://www.gesetze-im-internet.de/estg/__6.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            JobRad – Dienstrad-Versteuerung (0,25%-Regelung)
+            § 6 Abs. 1 Nr. 4 EStG – Bewertung der Privatnutzung (0,25%-Regelung)
           </a>
           <a
-            href="https://www.finanztip.de/dienstfahrrad/"
+            href="https://www.gesetze-im-internet.de/estg/__3.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Finanztip – Dienstfahrrad versteuern & Ersparnis
+            § 3 Nr. 37 EStG – Steuerfreie Dienstrad-Überlassung
           </a>
           <a
             href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2019-12-09-steuerliche-behandlung-der-ueberlassung-von-fahrraedern.html"

@@ -13,7 +13,7 @@ import { useState, useMemo } from 'react';
  * - BMFSFJ: https://www.bmfsfj.de/bmfsfj/themen/familie
  * - Bundesamt für Soziale Sicherung: https://www.bundesamtsozialesicherung.de/de/mutterschaftsgeld/
  * - Familienportal: https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen
- * - TK Firmenkunden: https://www.tk.de/firmenkunden/versicherung/versicherung-faq/mutterschaftsgeld/
+ * - § 24i SGB V (Mutterschaftsgeld): https://www.gesetze-im-internet.de/sgb_5/__24i.html
  * 
  * Berechnungsmethode (§ 20 MuSchG, § 24i SGB V):
  * 1. Kalendertägliches Netto = (Nettolohn der letzten 3 Monate) / 90 Tage

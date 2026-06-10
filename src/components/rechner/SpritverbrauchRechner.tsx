@@ -615,23 +615,7 @@ export default function SpritverbrauchRechner() {
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Referenzen</h4>
         <div className="space-y-1">
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Spritverbrauch richtig berechnen
-          </a>
-          <a 
-            href="https://www.spritmonitor.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Spritmonitor – Verbrauchsdatenbank
-          </a>
-          <a 
+          <a
             href="https://www.umweltbundesamt.de/"
             target="_blank"
             rel="noopener noreferrer"

@@ -474,14 +474,6 @@ export default function UniSchnittRechner() {
           >
             hochschulstart.de – Stiftung für Hochschulzulassung
           </a>
-          <a
-            href="https://de.wikipedia.org/wiki/Bayerische_Formel"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Wikipedia – Bayerische Formel (DAAD/HRK)
-          </a>
           <p className="text-xs text-gray-500 mt-2">
             Die Berechnung deiner Abschlussnote regelt verbindlich deine Prüfungsordnung.
           </p>

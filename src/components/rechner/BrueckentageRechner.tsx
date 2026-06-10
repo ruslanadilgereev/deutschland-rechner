@@ -333,20 +333,12 @@ export default function BrueckentageRechner() {
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
           <a
-            href="https://www.dgb.de/service/ratgeber/feiertage/"
+            href="https://www.bmi.bund.de/DE/themen/verfassung/staatliche-symbole/nationale-feiertage/nationale-feiertage-node.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            DGB – Gesetzliche Feiertage 2026 nach Bundesland
-          </a>
-          <a
-            href="https://www.feiertage-deutschland.de/2026/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Feiertage Deutschland 2026 – Übersicht mit Wochentagen
+            Bundesministerium des Innern – Gesetzliche Feiertage in Deutschland
           </a>
         </div>
       </div>

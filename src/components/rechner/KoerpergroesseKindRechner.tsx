@@ -204,36 +204,6 @@ export default function KoerpergroesseKindRechner() {
         </div>
       </div>
 
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://www.pta-forum.de/ausgabe-012011/zu-gross-oder-zu-klein-geraten/seite/2/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            PTA-Forum – Genetische Zielgröße berechnen (± 8,5 cm)
-          </a>
-          <a
-            href="https://www.pezz.ch/en/fuer-fachpersonen/rechner-familiaere-groesse/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            PEZZ Kinderhormonzentrum – Rechner familiäre Größe
-          </a>
-          <a
-            href="https://www.amboss.com/de/wissen/Kleinwuchs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            AMBOSS – Kleinwuchs &amp; genetische Zielgröße
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

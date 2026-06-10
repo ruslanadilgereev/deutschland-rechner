@@ -242,37 +242,6 @@ export default function IndustrieminutenRechner() {
           </li>
         </ul>
       </div>
-
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://de.wikipedia.org/wiki/Industrieminute"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Wikipedia – Industrieminute (Definition, 36 Sekunden, Formel)
-          </a>
-          <a
-            href="https://www.personio.com/hr-lexicon/hours-to-decimal-calculator/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Personio HR-Lexikon – Industrieminuten umrechnen
-          </a>
-          <a
-            href="https://www.hrworks.de/lexikon/industrieminuten/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            HRworks Lexikon – Industrieminuten berechnen
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

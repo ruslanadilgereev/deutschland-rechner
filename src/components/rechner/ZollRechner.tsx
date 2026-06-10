@@ -265,14 +265,6 @@ export default function ZollRechner() {
           >
             Zoll online – Beispiele für Warenarten und Zollsätze
           </a>
-          <a
-            href="https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinehandel/zoll-und-ecommerce-einfuhrabgaben-fuer-kaeufe-aus-nichteulaendern-62109"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Zoll & E-Commerce
-          </a>
         </div>
       </div>
     </div>

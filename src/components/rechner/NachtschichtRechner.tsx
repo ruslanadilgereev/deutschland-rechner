@@ -649,19 +649,6 @@ export default function NachtschichtRechner() {
               → Finanzamt finden
             </a>
           </div>
-          
-          <div>
-            <h3 className="font-medium text-blue-800">Vereinigte Lohnsteuerhilfe (VLH)</h3>
-            <p className="text-blue-700">Beratung zur Steuererklärung</p>
-            <a 
-              href="https://www.vlh.de" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              → www.vlh.de
-            </a>
-          </div>
         </div>
       </div>
 {/* Quellen */}

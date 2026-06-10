@@ -1054,25 +1054,14 @@ export default function PkvGkvRechner() {
             </a>
           </div>
           <div>
-            <p className="font-medium text-blue-900">Verbraucherzentrale</p>
-            <a 
-              href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/krankenversicherung" 
-              target="_blank" 
+            <p className="font-medium text-blue-900">BaFin – Bundesanstalt für Finanzdienstleistungsaufsicht</p>
+            <a
+              href="https://www.bafin.de"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
             >
-              → Unabhängige Beratung zu Krankenversicherungen
-            </a>
-          </div>
-          <div>
-            <p className="font-medium text-blue-900">PKV-Verband</p>
-            <a 
-              href="https://www.pkv.de" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline"
-            >
-              → Informationen zur privaten Krankenversicherung
+              → Verbraucherinformationen zur privaten Krankenversicherung
             </a>
           </div>
           <div>
@@ -1120,16 +1109,6 @@ export default function PkvGkvRechner() {
               className="text-blue-600 hover:text-blue-800 underline"
             >
               BMG – Beitragssätze und Rechengrößen 2026
-            </a>
-          </li>
-          <li>
-            <a 
-              href="https://www.pkv.de/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline"
-            >
-              PKV-Verband – Zahlen und Fakten
             </a>
           </li>
         </ul>

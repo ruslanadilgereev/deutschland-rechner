@@ -936,21 +936,13 @@ export default function ElektroautoRechner() {
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Weiterführende Links</h4>
         <div className="space-y-1">
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/"
+          <a
+            href="https://www.bundesnetzagentur.de"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            ADAC – Elektroauto Kostenvergleich
-          </a>
-          <a 
-            href="https://www.bdew.de/energie/elektromobilitaet/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            BDEW – Elektromobilität Strompreise
+            Bundesnetzagentur – Strompreise & Elektromobilität
           </a>
           <a 
             href="https://www.zoll.de/DE/Privatpersonen/Kraftfahrzeugsteuer/kraftfahrzeugsteuer_node.html"

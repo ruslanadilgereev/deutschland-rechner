@@ -616,22 +616,6 @@ export default function RundfunkbeitragRechner() {
           >
             Rundfunkbeitragsstaatsvertrag (RBStV) – Gesetze im Internet
           </a>
-          <a 
-            href="https://www.finanztip.de/rundfunkbeitrag/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Rundfunkbeitrag 2025/2026 erklärt
-          </a>
-          <a 
-            href="https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-alles-rund-um-befreiung-und-ermaessigung-40324"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Befreiung und Ermäßigung
-          </a>
         </div>
       </div>
     </div>

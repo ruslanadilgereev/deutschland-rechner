@@ -622,20 +622,6 @@ export default function UeberstundenRechner() {
                 <p className="text-xs text-gray-500">BMAS Hotline</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">⚖️</span>
-              <div>
-                <p className="font-medium text-gray-800">Gewerkschaften</p>
-                <a 
-                  href="https://www.dgb.de/service/ratgeber/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  DGB Ratgeber →
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -720,14 +706,6 @@ export default function UeberstundenRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Bundesministerium für Arbeit und Soziales – Arbeitsrecht
-          </a>
-          <a 
-            href="https://www.dgb.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            DGB – Arbeitszeit und Überstunden
           </a>
         </div>
       </div>

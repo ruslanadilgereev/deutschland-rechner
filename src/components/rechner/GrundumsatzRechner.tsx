@@ -572,22 +572,9 @@ export default function GrundumsatzRechner() {
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://www.verbraucherzentrale.de/wissen/lebensmittel/gesund-ernaehren/ernaehrung-umsatz-kalorien-wie-viel-energie-benoetigt-der-koerper-102519" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-orange-600 hover:underline flex items-center gap-1"
-                >
-                  Verbraucherzentrale – Energiebedarf des Körpers
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://www.who.int/publications/i/item/9789241210232" 
-                  target="_blank" 
+                <a
+                  href="https://www.who.int/publications/i/item/9789241210232"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-orange-600 hover:underline flex items-center gap-1"
                 >

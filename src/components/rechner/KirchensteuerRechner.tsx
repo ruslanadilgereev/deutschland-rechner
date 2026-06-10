@@ -783,15 +783,7 @@ export default function KirchensteuerRechner() {
           >
             § 10 EStG – Sonderausgaben (Absetzbarkeit Kirchensteuer)
           </a>
-          <a 
-            href="https://www.lohn-info.de/kirchensteuer.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Kirchensteuer beim Lohnsteuerabzugsverfahren – lohn-info.de
-          </a>
-          <a 
+          <a
             href="https://www.kirchenfinanzen.de/kirchensteuer/kappung.html"
             target="_blank"
             rel="noopener noreferrer"

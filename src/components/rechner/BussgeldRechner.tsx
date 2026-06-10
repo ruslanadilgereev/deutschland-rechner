@@ -18,7 +18,7 @@ interface BussgeldErgebnis {
 // Geschwindigkeitsüberschreitungen nach StVO/BKatV 2024
 // Bußgelder wurden 2021 angehoben (StVO-Novelle)
 // Bußgeldkatalog PKW innerorts nach BKatV (Stand 2024/2025/2026)
-// Quelle: https://www.bussgeldkatalog.org/geschwindigkeitsueberschreitung/
+// Quelle: https://www.gesetze-im-internet.de/bkatv_2013/ (BKatV Anhang, Tabelle 1)
 // WICHTIG: 26-30 km/h = 180€, 1 Punkt, Fahrverbot NUR bei Wiederholung
 //          Fahrverbot ab 31 km/h innerorts
 const GESCHWINDIGKEIT_INNERORTS: { bis: number; bussgeld: number; punkte: number; fahrverbot: number }[] = [
@@ -35,7 +35,7 @@ const GESCHWINDIGKEIT_INNERORTS: { bis: number; bussgeld: number; punkte: number
 ];
 
 // Bußgeldkatalog PKW außerorts nach BKatV (Stand 2024/2025/2026)
-// Quelle: https://www.bussgeldkatalog.org/geschwindigkeitsueberschreitung/
+// Quelle: https://www.gesetze-im-internet.de/bkatv_2013/ (BKatV Anhang, Tabelle 1)
 // WICHTIG: 26-30 km/h = 150€, 1 Punkt, Fahrverbot NUR bei Wiederholung
 //          31-40 km/h = 200€, 1 Punkt, Fahrverbot NUR bei Wiederholung
 //          Fahrverbot ab 41 km/h außerorts
@@ -811,14 +811,6 @@ export default function BussgeldRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Kraftfahrt-Bundesamt – Fahreignungsregister
-          </a>
-          <a 
-            href="https://www.adac.de/verkehr/recht/bussgeld-punkte/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Bußgeldkatalog
           </a>
         </div>
       </div>

@@ -474,13 +474,13 @@ export default function ScheidungskostenRechner() {
               <span className="text-xl">📞</span>
               <div>
                 <p className="font-medium text-gray-800">Anwaltssuche</p>
-                <a 
-                  href="https://anwaltauskunft.de/anwaltssuche"
-                  target="_blank" 
+                <a
+                  href="https://www.rechtsanwaltsregister.org"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-600 hover:underline"
                 >
-                  anwaltauskunft.de →
+                  rechtsanwaltsregister.org →
                 </a>
                 <p className="text-xs text-gray-500 mt-1">Fachanwalt Familienrecht</p>
               </div>

@@ -551,37 +551,6 @@ export default function ETFSparplanRechner() {
             </div>
           </div>
 
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🛡️</span>
-            <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale</div>
-              <div className="text-sm text-gray-600">Unabhängige Beratung zu Geldanlage</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-emerald-600 hover:underline text-sm"
-              >
-                verbraucherzentrale.de/geldanlage →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">📊</span>
-            <div>
-              <div className="font-medium text-gray-800">Finanztip</div>
-              <div className="text-sm text-gray-600">Gemeinnützige Finanzbildung</div>
-              <a 
-                href="https://www.finanztip.de/indexfonds-etf/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-emerald-600 hover:underline text-sm"
-              >
-                finanztip.de/indexfonds-etf →
-              </a>
-            </div>
-          </div>
         </div>
       </div>
 {/* Quellen */}

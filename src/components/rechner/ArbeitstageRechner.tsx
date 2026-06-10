@@ -497,27 +497,7 @@ export default function ArbeitstageRechner() {
             </a>
           </li>
           <li>
-            <a 
-              href="https://www.schulferien.org/deutschland/feiertage/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Schulferien.org – Feiertage Deutschland
-            </a>
-          </li>
-          <li>
-            <a 
-              href="https://www.dgb.de/service/ratgeber/feiertage/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Deutscher Gewerkschaftsbund – Feiertage-Übersicht
-            </a>
-          </li>
-          <li>
-            <a 
+            <a
               href="https://www.gesetze-im-internet.de/arbzg/"
               target="_blank"
               rel="noopener noreferrer"

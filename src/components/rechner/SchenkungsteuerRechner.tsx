@@ -831,14 +831,6 @@ export default function SchenkungsteuerRechner() {
           >
             BMF – Erbschaft- und Schenkungsteuer
           </a>
-          <a 
-            href="https://www.steuertipps.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Steuertipps.de – Ratgeber Schenkung
-          </a>
         </div>
       </div>
     </div>

@@ -255,14 +255,6 @@ export function HundealterRechner() {
           >
             American Kennel Club – Dog Years to Human Years Chart
           </a>
-          <a
-            href="https://www.zooplus.de/magazin/hund/hundehaltung/hundejahre-in-menschenjahren"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            zooplus Magazin – Hundejahre in Menschenjahre umrechnen
-          </a>
         </div>
       </div>
     </div>

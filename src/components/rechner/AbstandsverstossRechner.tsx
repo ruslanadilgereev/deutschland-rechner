@@ -297,14 +297,6 @@ export function AbstandsverstossRechner() {
           >
             Bußgeldkatalog-Verordnung (BKatV) – Gesetze im Internet
           </a>
-          <a
-            href="https://www.adac.de/verkehr/recht/bussgeld-punkte/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Bußgeldkatalog & Punkte
-          </a>
         </div>
       </div>
 

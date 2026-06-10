@@ -777,21 +777,6 @@ export default function MietenOderKaufenRechner() {
         <h3 className="font-semibold text-gray-700 mb-3">📚 Quellen & Methodik</h3>
         <ul className="space-y-1 text-sm text-gray-600">
           <li>
-            <a href="https://www.immobilienscout24.de/wissen/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
-              ImmobilienScout24 – Mieten oder Kaufen?
-            </a>
-          </li>
-          <li>
-            <a href="https://www.finanztip.de/baufinanzierung/mieten-oder-kaufen/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
-              Finanztip – Mieten oder Kaufen Rechner
-            </a>
-          </li>
-          <li>
-            <a href="https://de.wikipedia.org/wiki/Peterssche_Formel" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
-              Wikipedia – Peterssche Formel (Instandhaltungskosten)
-            </a>
-          </li>
-          <li>
             <a href="https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
               Bundesbank – Aktuelle Zinssätze
             </a>

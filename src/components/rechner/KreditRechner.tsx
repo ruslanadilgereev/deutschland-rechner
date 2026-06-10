@@ -558,20 +558,6 @@ export default function KreditRechner() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">📞</span>
-              <div>
-                <p className="font-medium text-gray-800">Schuldnerberatung</p>
-                <a
-                  href="https://www.meine-schulden.de"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  Kostenlose Schuldnerberatung →
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
               <span className="text-xl">🌐</span>
               <div>
                 <p className="font-medium text-gray-800">BaFin</p>
@@ -628,14 +614,6 @@ export default function KreditRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             BaFin – Verbraucherinformationen Kredite
-          </a>
-          <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Kredit & Finanzierung
           </a>
           <a
             href="https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen"

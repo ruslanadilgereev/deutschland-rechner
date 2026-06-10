@@ -310,22 +310,6 @@ export default function GasverbrauchRechner() {
           >
             Bundesnetzagentur – Brennwert (Gas)
           </a>
-          <a
-            href="https://www.vattenfall.de/infowelt-energie/gas-ratgeber/wieso-wird-gas-in-kilowattstunden-berechnet"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Vattenfall – Gasverbrauch von m³ in kWh umrechnen
-          </a>
-          <a
-            href="https://www.enbw.com/blog/wohnen/energie-sparen/wieso-wird-gas-in-m3-abgelesen-und-in-kwh-berechnet/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            EnBW – Gas umrechnen von m³ in kWh
-          </a>
         </div>
       </div>
     </div>

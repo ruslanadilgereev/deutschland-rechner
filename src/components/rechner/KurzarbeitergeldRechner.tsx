@@ -891,12 +891,12 @@ export default function KurzarbeitergeldRechner() {
             BMAS – Kurzarbeit und Kurzarbeitergeld
           </a>
           <a
-            href="https://www.haufe.de/"
+            href="https://www.gesetze-im-internet.de/sgb_3/__106.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Haufe – KuG Berechnung und Höhe
+            SGB III §106 – Höhe des Kurzarbeitergeldes
           </a>
         </div>
       </div>

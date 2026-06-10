@@ -279,29 +279,13 @@ export default function GrunderwerbsteuerRechner() {
           >
             Bundesfinanzministerium – Grundsteuer & Grunderwerbsteuer
           </a>
-          <a 
-            href="https://www.finanztip.de/grunderwerbsteuer/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Grunderwerbsteuer Ratgeber (Stand: Feb 2026)
-          </a>
-          <a 
+          <a
             href="https://www.gesetze-im-internet.de/grestg_1983/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             Grunderwerbsteuergesetz (GrEStG) – Gesetze im Internet
-          </a>
-          <a 
-            href="https://de.wikipedia.org/wiki/Grunderwerbsteuer_(Deutschland)"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Wikipedia – Grunderwerbsteuer (Deutschland)
           </a>
         </div>
       </div>

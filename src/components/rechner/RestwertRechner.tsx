@@ -681,44 +681,6 @@ export default function RestwertRechner() {
           professionelle Bewertungsdienste wie DAT oder Schwacke.
         </div>
       </div>
-{/* Quellen */}
-      <div className="p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Weiterführende Links</h4>
-        <div className="space-y-1">
-          <a 
-            href="https://www.dat.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            DAT – Deutsche Automobil Treuhand
-          </a>
-          <a 
-            href="https://www.schwacke.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Schwacke – Fahrzeugbewertung
-          </a>
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Auto kaufen & verkaufen
-          </a>
-          <a 
-            href="https://www.mobile.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Mobile.de – Fahrzeugmarkt
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

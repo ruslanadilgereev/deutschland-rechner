@@ -577,22 +577,6 @@ export default function ThgQuoteRechner() {
           >
             38. BImSchV – THG-Quote Verordnung
           </a>
-          <a 
-            href="https://www.finanztip.de/thg-quote/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – THG-Quote Ratgeber
-          </a>
-          <a 
-            href="https://www.verivox.de/elektromobilitaet/thg-quote/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verivox – THG-Prämie Vergleich
-          </a>
         </div>
       </div>
     </div>

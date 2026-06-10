@@ -5,9 +5,6 @@ import { useState } from 'react';
 //   Gewinn (absolut)            = VK - EK
 //   Marge / Handelsspanne (%)   = (VK - EK) / VK * 100   -> Bezug Verkaufspreis ("von oben")
 //   Aufschlag / Kalk.-Zuschlag  = (VK - EK) / EK * 100   -> Bezug Einkaufspreis ("von unten")
-// Quellen:
-//   https://welt-der-bwl.de/Handelsspanne
-//   https://www.blitzrechner.de/marge-berechnen/
 
 type Modus = 'preise' | 'marge';
 
@@ -303,28 +300,6 @@ export default function MargeRechner() {
         </ul>
       </div>
 
-      {/* Quellen */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
-        <div className="space-y-1">
-          <a
-            href="https://welt-der-bwl.de/Handelsspanne"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Welt der BWL – Handelsspanne &amp; Kalkulationszuschlag
-          </a>
-          <a
-            href="https://www.blitzrechner.de/marge-berechnen/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Blitzrechner – Marge &amp; Aufschlag berechnen
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

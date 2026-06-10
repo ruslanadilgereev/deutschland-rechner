@@ -728,37 +728,6 @@ export default function RentenlueckeRechner() {
             </div>
           </div>
 
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🛡️</span>
-            <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale</div>
-              <div className="text-sm text-gray-600">Unabhängige Altersvorsorge-Beratung</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-indigo-600 hover:underline text-sm"
-              >
-                verbraucherzentrale.de/altersvorsorge →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">📊</span>
-            <div>
-              <div className="font-medium text-gray-800">Stiftung Warentest / Finanztest</div>
-              <div className="text-sm text-gray-600">Unabhängige Tests zu Altersvorsorge-Produkten</div>
-              <a 
-                href="https://www.test.de/thema/altersvorsorge/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-indigo-600 hover:underline text-sm"
-              >
-                test.de/altersvorsorge →
-              </a>
-            </div>
-          </div>
         </div>
       </div>
 {/* Quellen */}
@@ -778,11 +747,6 @@ export default function RentenlueckeRechner() {
           <li>
             <a href="https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/rente-und-altersvorsorge.html" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
               BMAS – Rente und Altersvorsorge
-            </a>
-          </li>
-          <li>
-            <a href="https://www.test.de/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
-              Stiftung Warentest – Rentenpunkte berechnen
             </a>
           </li>
         </ul>

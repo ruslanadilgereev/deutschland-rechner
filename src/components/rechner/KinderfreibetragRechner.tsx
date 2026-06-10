@@ -256,12 +256,12 @@ export default function KinderfreibetragRechner() {
             Bundesfinanzministerium – §32a EStG Einkommensteuertarif 2026
           </a>
           <a
-            href="https://www.vlh.de/wissen-service/steuer-abc/wie-funktioniert-das-mit-dem-kinderfreibetrag.html"
+            href="https://www.gesetze-im-internet.de/estg/__32.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            VLH – Kinderfreibetrag 2025/2026 & Günstigerprüfung
+            § 32 Abs. 6 EStG – Freibeträge für Kinder & Günstigerprüfung (i.V.m. § 31 EStG)
           </a>
           <a
             href="https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer"

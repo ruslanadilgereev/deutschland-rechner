@@ -11,7 +11,6 @@ import { useState, useMemo } from 'react';
  * - https://www.gesetze-im-internet.de/estg/__32a.html
  * - https://www.bmf-steuerrechner.de
  * - https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-32a/inhalt.html
- * - https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025
  */
 
 // ============================================================================
@@ -884,15 +883,7 @@ export default function LohnsteuerRechner() {
           >
             Programmablaufplan Lohnsteuer – BMF
           </a>
-          <a 
-            href="https://www.finanz-tools.de/einkommensteuer/berechnung-formeln/2025"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Einkommensteuer-Formeln {STEUERJAHR} – Finanz-Tools.de
-          </a>
-          <a 
+          <a
             href="https://www.elster.de"
             target="_blank"
             rel="noopener noreferrer"

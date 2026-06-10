@@ -477,14 +477,6 @@ export default function ProzentRechner() {
           >
             Deutsche Mathematiker-Vereinigung
           </a>
-          <a 
-            href="https://www.frustfrei-lernen.de/mathematik/prozentrechnung.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Frustfrei-Lernen – Prozentrechnung
-          </a>
         </div>
       </div>
     </div>

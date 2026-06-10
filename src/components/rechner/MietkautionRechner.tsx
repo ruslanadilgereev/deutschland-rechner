@@ -556,37 +556,6 @@ export default function MietkautionRechner() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">📞</span>
-              <div>
-                <p className="font-medium text-gray-800">Deutscher Mieterbund</p>
-                <a
-                  href="https://www.mieterbund.de"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  www.mieterbund.de →
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">🌐</span>
-              <div>
-                <p className="font-medium text-gray-800">Verbraucherzentrale</p>
-                <a
-                  href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  Mietrecht-Ratgeber →
-                </a>
-              </div>
-            </div>
-          </div>
-
           <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl text-sm">
             <span className="text-xl">💡</span>
             <div>
@@ -615,36 +584,12 @@ export default function MietkautionRechner() {
             §551 BGB – Begrenzung und Anlage von Mietsicherheiten
           </a>
           <a
-            href="https://dejure.org/gesetze/BGB/551.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            dejure.org – §551 BGB mit Kommentierung
-          </a>
-          <a
             href="https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
             Deutsche Bundesbank – Zinssätze Spareinlagen
-          </a>
-          <a
-            href="https://www.mieterbund.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Deutscher Mieterbund – Mietrecht-Infos
-          </a>
-          <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Wohnen & Mieten
           </a>
         </div>
       </div>

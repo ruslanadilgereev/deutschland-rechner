@@ -752,14 +752,6 @@ export default function HandwerkerkostenRechner() {
           >
             BMF – Amtliches Einkommensteuer-Handbuch §35a
           </a>
-          <a
-            href="https://www.lohnsteuer-kompakt.de/texte/2025/87/handwerkerleistungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Lohnsteuer kompakt – Handwerkerleistungen absetzen
-          </a>
         </div>
         <p className="text-xs text-gray-500 mt-3">
           <strong>Offizielle Berechnung nach §35a Abs. 3 EStG:</strong><br/>

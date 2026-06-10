@@ -487,23 +487,7 @@ export default function EntfernungRechner() {
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen & Links</h4>
         <div className="space-y-1">
-          <a 
-            href="https://www.google.de/maps"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Google Maps – Routenplanung
-          </a>
-          <a 
-            href="https://www.bahn.de"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Deutsche Bahn – Verbindungen
-          </a>
-          <a 
+          <a
             href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/_inhalt.html"
             target="_blank"
             rel="noopener noreferrer"

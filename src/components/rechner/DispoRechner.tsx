@@ -488,38 +488,6 @@ export default function DispoRechner() {
         
         <div className="space-y-4">
           <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🏦</span>
-            <div>
-              <div className="font-medium text-gray-800">Verbraucherzentrale</div>
-              <div className="text-sm text-gray-600">Kostenlose Schuldnerberatung</div>
-              <a 
-                href="https://www.verbraucherzentrale.de/schuldnerberatung" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                verbraucherzentrale.de/schuldnerberatung →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-            <span className="text-2xl">🤝</span>
-            <div>
-              <div className="font-medium text-gray-800">Caritas & Diakonie</div>
-              <div className="text-sm text-gray-600">Kostenlose Beratungsstellen bundesweit</div>
-              <a 
-                href="https://www.caritas.de/hilfeundberatung/onlineberatung/schuldnerberatung" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm"
-              >
-                caritas.de/schuldnerberatung →
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
             <span className="text-2xl">📊</span>
             <div>
               <div className="font-medium text-gray-800">BaFin - Dispozins-Übersicht</div>

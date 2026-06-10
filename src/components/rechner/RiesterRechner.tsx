@@ -692,12 +692,12 @@ export default function RiesterRechner() {
             BMAS – Riester-Rente Informationen
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen"
+            href="https://www.deutsche-rentenversicherung.de"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Verbraucherzentrale – Riester-Rente Ratgeber
+            Deutsche Rentenversicherung (ZfA) – Riester-Zulagen
           </a>
         </div>
       </div>

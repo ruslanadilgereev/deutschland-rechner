@@ -640,14 +640,6 @@ export default function KfzSteuerRechner() {
           >
             Bundesfinanzministerium – Kfz-Steuer
           </a>
-          <a 
-            href="https://www.adac.de/rund-ums-fahrzeug/auto-kaufen-verkaufen/kfz-steuer/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            ADAC – Kfz-Steuer berechnen
-          </a>
         </div>
       </div>
     </div>

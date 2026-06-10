@@ -565,13 +565,13 @@ export default function EhegattenunterhaltRechner() {
               <span className="text-xl">⚖️</span>
               <div>
                 <p className="font-medium text-gray-800">Rechtsanwalt Familienrecht</p>
-                <a 
-                  href="https://anwaltauskunft.de/"
-                  target="_blank" 
+                <a
+                  href="https://www.rechtsanwaltsregister.org"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-600 hover:underline"
                 >
-                  Anwalt finden →
+                  Amtliches Anwaltsverzeichnis (BRAK) →
                 </a>
                 <p className="text-xs text-gray-500 mt-1">Dringend empfohlen</p>
               </div>
@@ -606,22 +606,6 @@ export default function EhegattenunterhaltRechner() {
                   Info zu Mediation →
                 </a>
                 <p className="text-xs text-gray-500 mt-1">Einvernehmliche Lösung</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-              <span className="text-xl">📞</span>
-              <div>
-                <p className="font-medium text-gray-800">ISUV e.V.</p>
-                <a 
-                  href="https://www.isuv.de"
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-purple-600 hover:underline"
-                >
-                  isuv.de →
-                </a>
-                <p className="text-xs text-gray-500 mt-1">Interessenverband Unterhalt</p>
               </div>
             </div>
           </div>

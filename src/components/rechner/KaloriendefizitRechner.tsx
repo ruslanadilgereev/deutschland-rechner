@@ -350,20 +350,12 @@ export default function KaloriendefizitRechner() {
             Deutsche Gesellschaft für Ernährung (DGE) – Energiezufuhr & PAL-Werte
           </a>
           <a
-            href="https://eatsmarter.de/ernaehrung/ernaehrungsmythen/kilo-fett-7000-kalorien"
+            href="https://pubmed.ncbi.nlm.nih.gov/2305711/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            EAT SMARTER – Energiegehalt von 1 kg Körperfett (ca. 7.700 kcal)
-          </a>
-          <a
-            href="https://www.omnicalculator.com/de/gesundheit/bmr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Mifflin-St-Jeor-Formel zur Grundumsatz-Berechnung
+            Mifflin MD et al. (1990) – A new predictive equation for resting energy expenditure (PubMed)
           </a>
         </div>
       </div>

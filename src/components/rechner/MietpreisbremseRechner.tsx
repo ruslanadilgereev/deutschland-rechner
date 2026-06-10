@@ -785,14 +785,6 @@ export default function MietpreisbremseRechner() {
           >
             § 556g BGB – Rechtsfolgen und Auskunftspflicht
           </a>
-          <a 
-            href="https://www.finanztip.de/mietpreisbremse/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Finanztip – Mietpreisbremse Ratgeber
-          </a>
         </div>
       </div>
     </div>

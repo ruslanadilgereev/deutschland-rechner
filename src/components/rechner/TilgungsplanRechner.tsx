@@ -806,20 +806,12 @@ export default function TilgungsplanRechner() {
             BGB § 488 – Darlehensvertrag
           </a>
           <a
-            href="https://www.verbraucherzentrale.de/wissen/geld-versicherungen/bau-und-immobilienfinanzierung"
+            href="https://www.bafin.de"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Verbraucherzentrale – Baufinanzierung
-          </a>
-          <a
-            href="https://www.interhyp.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Interhyp – Tilgung bei der Baufinanzierung
+            BaFin – Verbraucherinformationen zur Immobilienfinanzierung
           </a>
         </div>
       </div>

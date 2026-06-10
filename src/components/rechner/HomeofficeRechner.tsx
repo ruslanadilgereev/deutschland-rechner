@@ -753,22 +753,6 @@ export default function HomeofficeRechner() {
           >
             BMF – FAQ Homeoffice-Pauschale
           </a>
-          <a
-            href="https://www.vlh.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            VLH – Homeoffice-Pauschale absetzen
-          </a>
-          <a
-            href="https://www.haufe.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Haufe – Homeoffice-Pauschale dauerhaft
-          </a>
         </div>
         <p className="text-xs text-gray-500 mt-3">
           <strong>Offizielle Berechnung:</strong><br/>

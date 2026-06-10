@@ -646,21 +646,13 @@ export default function PflegegeldRechner() {
           >
             Bundesministerium für Gesundheit – Leistungen der Pflegeversicherung
           </a>
-          <a 
-            href="https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegeleistungen/pflegegeld/"
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_11/__37.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            pflege.de – Pflegegeld: Definition, Höhe & Voraussetzungen
-          </a>
-          <a 
-            href="https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/pflegeantrag-und-leistungen"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Verbraucherzentrale – Pflegeantrag und Leistungen
+            § 37 SGB XI – Pflegegeld für selbst beschaffte Pflegehilfen (gesetze-im-internet.de)
           </a>
         </div>
       </div>

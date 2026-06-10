@@ -743,22 +743,6 @@ export default function DoppelteHaushaltsführungRechner() {
           >
             BMF-Schreiben vom 25.11.2020 – Reisekosten
           </a>
-          <a
-            href="https://www.haufe.de/steuern/steuer-office-gold/doppelte-haushaltsfuehrung_idesk_PI11525_HI2330050.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            Haufe – Doppelte Haushaltsführung
-          </a>
-          <a
-            href="https://www.vlh.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            VLH – Das können Sie absetzen
-          </a>
         </div>
         <p className="text-xs text-gray-500 mt-3">
           <strong>Berechnung:</strong> Unterkunftskosten (max. 1.000€/Monat) + Heimfahrten (Pendlerpauschale) 

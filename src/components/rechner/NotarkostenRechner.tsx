@@ -608,7 +608,7 @@ export default function NotarkostenRechner() {
             GNotKG Anlage 2 – Gebührentabelle B
           </a>
           <a 
-            href="https://dejure.org/gesetze/GNotKG/34.html"
+            href="https://www.gesetze-im-internet.de/gnotkg/__34.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
@@ -622,14 +622,6 @@ export default function NotarkostenRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             Bundesnotarkammer
-          </a>
-          <a 
-            href="http://www.gnotkg.de/gebuehrentabelle.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-blue-600 hover:underline"
-          >
-            GNotKG Gebührentabelle (gnotkg.de)
           </a>
         </div>
         <p className="text-xs text-gray-400 mt-3">
