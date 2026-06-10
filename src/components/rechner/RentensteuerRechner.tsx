@@ -17,7 +17,7 @@ const SONDERAUSGABEN_PAUSCHBETRAG_VERHEIRATET = 72;
 // Kranken-/Pflegeversicherung auf Rente (ca. AN-Anteil)
 const KV_BEITRAG = 0.073; // 7,3% + Zusatzbeitrag
 const KV_ZUSATZBEITRAG = 0.0145; // Ø Zusatzbeitrag 2,9% / 2 (Rentner zahlt Hälfte, seit 2019)
-const PV_BEITRAG = 0.018; // 1,8% AN-Anteil (2024/2025)
+const PV_BEITRAG = 0.036; // 3,6% — Rentner tragen den PV-Beitrag allein (2026)
 const PV_ZUSCHLAG_KINDERLOS = 0.006; // +0,6% für Kinderlose ab 23
 
 // Steuertarif 2026 Zonen (§32a EStG)
@@ -126,8 +126,8 @@ function berechneEinkommensteuer(zvE: number, verheiratet: boolean): number {
 
 // Funktion: Solidaritätszuschlag
 function berechneSoli(einkommensteuer: number, verheiratet: boolean): number {
-  const freigrenze = verheiratet ? 36260 : 18130;
-  const milderungszone = verheiratet ? 66126 : 33063;
+  const freigrenze = verheiratet ? 39900 : 19950; // Freigrenze 2026
+  const milderungszone = verheiratet ? 74190 : 37095; // Ende Milderungszone (Schnittpunkt 11,9%-Regel mit 5,5%)
   
   if (einkommensteuer <= freigrenze) return 0;
   if (einkommensteuer <= milderungszone) {
@@ -713,7 +713,7 @@ export default function RentensteuerRechner() {
           </div>
           
           <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
-            <span>− Pflegeversicherung ({!hatKinder && alter >= 23 ? '2,4%' : '1,8%'})</span>
+            <span>− Pflegeversicherung ({!hatKinder && alter >= 23 ? '4,2%' : '3,6%'})</span>
             <span>{formatEuro(ergebnis.pvMonatlich)}</span>
           </div>
           
