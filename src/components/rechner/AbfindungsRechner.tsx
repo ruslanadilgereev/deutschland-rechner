@@ -33,31 +33,31 @@ function berechneEinkommensteuer(zvE: number): number {
   // Nullzone: Grundfreibetrag
   if (zvE <= GRUNDFREIBETRAG_2026) return 0;
   
-  // Zone 2: Progressionszone I (12.349€ - 17.005€)
-  // ESt = (932,30 × y + 1.400) × y
+  // Zone 2: Progressionszone I (12.349€ - 17.799€)
+  // ESt = (914,51 × y + 1.400) × y
   // wobei y = (zvE - 12.348) / 10.000
-  if (zvE <= 17005) {
+  if (zvE <= 17799) {
     const y = (zvE - GRUNDFREIBETRAG_2026) / 10000;
-    return Math.floor((932.30 * y + 1400) * y);
+    return Math.floor((914.51 * y + 1400) * y);
   }
-  
-  // Zone 3: Progressionszone II (17.006€ - 66.760€)
-  // ESt = (176,64 × z + 2.397) × z + 1.025,38
-  // wobei z = (zvE - 17.005) / 10.000
-  if (zvE <= 66760) {
-    const z = (zvE - 17005) / 10000;
-    return Math.floor((176.64 * z + 2397) * z + 1025.38);
+
+  // Zone 3: Progressionszone II (17.800€ - 69.878€)
+  // ESt = (173,10 × z + 2.397) × z + 1.034,87
+  // wobei z = (zvE - 17.799) / 10.000
+  if (zvE <= 69878) {
+    const z = (zvE - 17799) / 10000;
+    return Math.floor((173.10 * z + 2397) * z + 1034.87);
   }
-  
-  // Zone 4: Proportionalzone I (66.761€ - 277.825€)
-  // ESt = 0,42 × zvE - 10.636,31
+
+  // Zone 4: Proportionalzone I (69.879€ - 277.825€)
+  // ESt = 0,42 × zvE - 11.135,63
   if (zvE <= 277825) {
-    return Math.floor(0.42 * zvE - 10636.31);
+    return Math.floor(0.42 * zvE - 11135.63);
   }
-  
+
   // Zone 5: Proportionalzone II / Reichensteuer (ab 277.826€)
-  // ESt = 0,45 × zvE - 18.971,94
-  return Math.floor(0.45 * zvE - 18971.94);
+  // ESt = 0,45 × zvE - 19.470,38
+  return Math.floor(0.45 * zvE - 19470.38);
 }
 
 // Solidaritätszuschlag berechnen (mit Freigrenzen)
