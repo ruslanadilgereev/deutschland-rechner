@@ -3,9 +3,125 @@ import Layout from '../layouts/Layout.astro';
 import ArbeitstageRechner from '../components/rechner/ArbeitstageRechner.tsx';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = 'Arbeitstage-Rechner 2026 – Werktage & Feiertage nach Bundesland';
-const description = 'Arbeitstage 2026 berechnen: Werktage zwischen zwei Daten mit allen Feiertagen nach Bundesland. Für 5- oder 6-Tage-Woche. Kostenlos & sofort.';
+const title = 'Arbeitstage-Rechner 2026 – Monat & Bundesland';
+const description = 'Wie viele Arbeitstage hat jeder Monat 2026? Monatstabelle + Rechner für alle 16 Bundesländer & jeden Zeitraum. Mit Feiertagen, 5- & 6-Tage-Woche.';
 const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, Arbeitstage zwischen zwei Daten, Werktage Rechner, Arbeitstage im Jahr, Arbeitstage 2025, Arbeitstage 2026, Feiertage Deutschland, gesetzliche Feiertage, Arbeitstage Bundesland, Werktage berechnen, Kalendertage in Arbeitstage, Arbeitstage Steuererklärung, Pendlerpauschale Arbeitstage';
+
+// --- Arbeitstage pro Monat 2026: wird zur Build-Zeit berechnet ---
+// Logik identisch mit ArbeitstageRechner.tsx (Gauß'sche Osterformel + Feiertagskalender),
+// damit Monatstabelle und Rechner garantiert konsistent bleiben. Werte NICHT per Hand pflegen!
+function berechneOstersonntag(jahr: number): Date {
+  const a = jahr % 19;
+  const b = Math.floor(jahr / 100);
+  const c = jahr % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const monat = Math.floor((h + l - 7 * m + 114) / 31);
+  const tag = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(jahr, monat - 1, tag);
+}
+
+function berechneBussUndBettag(jahr: number): Date {
+  const nov23 = new Date(jahr, 10, 23);
+  const wochentag = nov23.getDay();
+  const tageZurueck = wochentag >= 3 ? wochentag - 3 : wochentag + 4;
+  return new Date(jahr, 10, 23 - tageZurueck);
+}
+
+interface Feiertag {
+  name: string;
+  datum: Date;
+  bundeslaender: string[]; // leer = bundesweit
+}
+
+function getFeiertage(jahr: number): Feiertag[] {
+  const ostersonntag = berechneOstersonntag(jahr);
+  const addTage = (datum: Date, tage: number): Date => {
+    const neuesDatum = new Date(datum);
+    neuesDatum.setDate(neuesDatum.getDate() + tage);
+    return neuesDatum;
+  };
+  return [
+    { name: 'Neujahr', datum: new Date(jahr, 0, 1), bundeslaender: [] },
+    { name: 'Karfreitag', datum: addTage(ostersonntag, -2), bundeslaender: [] },
+    { name: 'Ostermontag', datum: addTage(ostersonntag, 1), bundeslaender: [] },
+    { name: 'Tag der Arbeit', datum: new Date(jahr, 4, 1), bundeslaender: [] },
+    { name: 'Christi Himmelfahrt', datum: addTage(ostersonntag, 39), bundeslaender: [] },
+    { name: 'Pfingstmontag', datum: addTage(ostersonntag, 50), bundeslaender: [] },
+    { name: 'Tag der Deutschen Einheit', datum: new Date(jahr, 9, 3), bundeslaender: [] },
+    { name: '1. Weihnachtsfeiertag', datum: new Date(jahr, 11, 25), bundeslaender: [] },
+    { name: '2. Weihnachtsfeiertag', datum: new Date(jahr, 11, 26), bundeslaender: [] },
+    { name: 'Heilige Drei Könige', datum: new Date(jahr, 0, 6), bundeslaender: ['BW', 'BY', 'ST'] },
+    { name: 'Internationaler Frauentag', datum: new Date(jahr, 2, 8), bundeslaender: ['BE', 'MV'] },
+    { name: 'Fronleichnam', datum: addTage(ostersonntag, 60), bundeslaender: ['BW', 'BY', 'HE', 'NW', 'RP', 'SL'] },
+    { name: 'Mariä Himmelfahrt', datum: new Date(jahr, 7, 15), bundeslaender: ['BY', 'SL'] },
+    { name: 'Weltkindertag', datum: new Date(jahr, 8, 20), bundeslaender: ['TH'] },
+    { name: 'Reformationstag', datum: new Date(jahr, 9, 31), bundeslaender: ['BB', 'HB', 'HH', 'MV', 'NI', 'SN', 'ST', 'SH', 'TH'] },
+    { name: 'Allerheiligen', datum: new Date(jahr, 10, 1), bundeslaender: ['BW', 'BY', 'NW', 'RP', 'SL'] },
+    { name: 'Buß- und Bettag', datum: berechneBussUndBettag(jahr), bundeslaender: ['SN'] },
+  ];
+}
+
+// Zählt Arbeitstage eines Monats (5-Tage-Woche). bundesland = '' → nur bundesweite Feiertage.
+function zaehleArbeitstageImMonat(jahr: number, monat: number, bundesland: string): number {
+  const feiertage = getFeiertage(jahr);
+  const ende = new Date(jahr, monat + 1, 0);
+  let arbeitstage = 0;
+  for (let d = new Date(jahr, monat, 1); d <= ende; d.setDate(d.getDate() + 1)) {
+    const wochentag = d.getDay();
+    if (wochentag === 0 || wochentag === 6) continue;
+    const istFeiertag = feiertage.some(
+      (feiertag) =>
+        feiertag.datum.getFullYear() === d.getFullYear() &&
+        feiertag.datum.getMonth() === d.getMonth() &&
+        feiertag.datum.getDate() === d.getDate() &&
+        (feiertag.bundeslaender.length === 0 || feiertag.bundeslaender.includes(bundesland))
+    );
+    if (!istFeiertag) arbeitstage++;
+  }
+  return arbeitstage;
+}
+
+const LAENDER = ['BW', 'BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH'];
+const MONATE = [
+  { name: 'Januar', slug: 'januar' },
+  { name: 'Februar', slug: 'februar' },
+  { name: 'März', slug: 'maerz' },
+  { name: 'April', slug: 'april' },
+  { name: 'Mai', slug: 'mai' },
+  { name: 'Juni', slug: 'juni' },
+  { name: 'Juli', slug: 'juli' },
+  { name: 'August', slug: 'august' },
+  { name: 'September', slug: 'september' },
+  { name: 'Oktober', slug: 'oktober' },
+  { name: 'November', slug: 'november' },
+  { name: 'Dezember', slug: 'dezember' },
+];
+const monatsTabelle = MONATE.map((monat, i) => {
+  const werte = LAENDER.map((land) => zaehleArbeitstageImMonat(2026, i, land));
+  const min = Math.min(...werte);
+  const max = Math.max(...werte);
+  return {
+    ...monat,
+    bund: zaehleArbeitstageImMonat(2026, i, ''),
+    by: zaehleArbeitstageImMonat(2026, i, 'BY'),
+    bw: zaehleArbeitstageImMonat(2026, i, 'BW'),
+    nw: zaehleArbeitstageImMonat(2026, i, 'NW'),
+    spanne: min === max ? `${min}` : `${min}–${max}`,
+  };
+});
+const mai = monatsTabelle[4];
+const juni = monatsTabelle[5];
+
+const faqMai2026 = `Der Mai 2026 hat in allen 16 Bundesländern ${mai.bund} Arbeitstage (5-Tage-Woche). Drei bundesweite Feiertage fallen auf Werktage: Tag der Arbeit (Fr, 1.5.), Christi Himmelfahrt (Do, 14.5.) und Pfingstmontag (Mo, 25.5.). Da im Mai 2026 kein regionaler Feiertag hinzukommt, ist die Zahl bundesweit einheitlich.`;
+const faqJuni2026 = `Der Juni 2026 hat je nach Bundesland ${juni.spanne} Arbeitstage (5-Tage-Woche). In Baden-Württemberg, Bayern, Hessen, NRW, Rheinland-Pfalz und im Saarland fällt Fronleichnam (Do, 4.6.) auf einen Werktag – dort sind es ${juni.nw} Arbeitstage. In den übrigen zehn Bundesländern sind es ${juni.bund} Arbeitstage.`;
 ---
 
 <Layout 
@@ -22,7 +138,7 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
           <span class="text-4xl">📆</span>
         </div>
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-          Arbeitstage-Rechner 2026
+          Arbeitstage-Rechner 2026 – pro Monat & Bundesland
         </h1>
         <p class="text-gray-600 max-w-lg mx-auto">
           Berechnen Sie die Anzahl der Arbeitstage zwischen zwei Daten – mit Feiertagen nach Bundesland. Ideal für Ihre <a href="/pendlerpauschale-rechner" class="text-blue-600 hover:underline">Pendlerpauschale</a> und <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Steuererklärung</a>.
@@ -52,6 +168,90 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
 
       <!-- Calculator Component -->
       <ArbeitstageRechner client:load />
+
+      <!-- Arbeitstage 2026 pro Monat -->
+      <div class="mt-12 bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🗓️ Arbeitstage 2026 pro Monat – alle Bundesländer</h2>
+
+        <p class="text-sm text-gray-600 mb-4">
+          Die Tabelle zeigt die Arbeitstage jedes Monats 2026 bei einer 5-Tage-Woche (Mo–Fr).
+          „Bundesweit" berücksichtigt nur die 9 bundesweiten Feiertage; Bayern, Baden-Württemberg
+          und NRW enthalten zusätzlich die regionalen Feiertage. Ihren exakten Wert für jedes
+          Bundesland und jeden Zeitraum liefert der Rechner oben.
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-2 font-semibold text-gray-700">Monat</th>
+                <th class="text-center py-2 font-semibold text-gray-700">Bundesweit</th>
+                <th class="text-center py-2 font-semibold text-gray-700">Bayern</th>
+                <th class="text-center py-2 font-semibold text-gray-700">Baden-Württemberg</th>
+                <th class="text-center py-2 font-semibold text-gray-700">NRW</th>
+                <th class="text-center py-2 font-semibold text-gray-700">Spanne aller Länder</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {monatsTabelle.map((monat) => (
+                <tr id={`arbeitstage-${monat.slug}-2026`} class="border-b border-gray-100">
+                  <td class="py-2 font-medium">{monat.name} 2026</td>
+                  <td class="text-center py-2">{monat.bund}</td>
+                  <td class="text-center py-2">{monat.by}</td>
+                  <td class="text-center py-2">{monat.bw}</td>
+                  <td class="text-center py-2">{monat.nw}</td>
+                  <td class="text-center py-2 font-semibold">{monat.spanne}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-gray-500 mt-2">5-Tage-Woche (Mo–Fr). „Bundesweit" = nur die 9 bundesweiten Feiertage. „Spanne aller Länder" = Minimum bis Maximum über alle 16 Bundesländer.</p>
+        </div>
+
+        <div class="mt-6 space-y-4 text-sm text-gray-600">
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Arbeitstage hat der Mai 2026?</h3>
+            <p>
+              Der Mai 2026 hat in allen 16 Bundesländern <strong>{mai.bund} Arbeitstage</strong> (5-Tage-Woche).
+              Drei bundesweite Feiertage fallen auf Werktage: Tag der Arbeit (Fr, 1.5.), Christi Himmelfahrt (Do, 14.5.)
+              und Pfingstmontag (Mo, 25.5.). Da im Mai 2026 kein regionaler Feiertag hinzukommt, ist die Zahl
+              bundesweit einheitlich.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Arbeitstage hat der Juni 2026?</h3>
+            <p>
+              Der Juni 2026 hat je nach Bundesland <strong>{juni.spanne} Arbeitstage</strong> (5-Tage-Woche).
+              In Baden-Württemberg, Bayern, Hessen, NRW, Rheinland-Pfalz und im Saarland fällt Fronleichnam (Do, 4.6.)
+              auf einen Werktag – dort sind es <strong>{juni.nw} Arbeitstage</strong>. In den übrigen zehn
+              Bundesländern sind es <strong>{juni.bund} Arbeitstage</strong>.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Wie viele Arbeitsstunden hat der Mai 2026?</h3>
+            <p>
+              Bei einem 8-Stunden-Tag hat der Mai 2026 <strong>{mai.bund * 8} Arbeitsstunden</strong>
+              ({mai.bund} Arbeitstage × 8 Stunden). Die Formel gilt für jeden Monat:
+              <strong>Arbeitstage × tägliche Arbeitszeit = Arbeitsstunden</strong>. Die Arbeitstage des
+              jeweiligen Monats entnehmen Sie der Tabelle oben oder berechnen sie mit dem Rechner.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Arbeitstage zwischen zwei Daten berechnen</h3>
+            <p class="mb-2">
+              Für einen beliebigen Zeitraum – auch über den Jahreswechsel hinweg – gehen Sie so vor:
+            </p>
+            <ol class="list-decimal pl-5 space-y-1">
+              <li>Start- und Enddatum oben im Rechner eintragen (z.B. 23.03.2026 bis 24.06.2026).</li>
+              <li>Bundesland wählen, damit regionale Feiertage korrekt abgezogen werden.</li>
+              <li>Bei 6-Tage-Woche „Samstag ist Arbeitstag" aktivieren – das Ergebnis erscheint sofort.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
 <!-- Beispielrechnungen -->
       <div class="mt-12 bg-white rounded-2xl shadow-lg p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">🧮 Beispielrechnungen für 2026</h2>
@@ -485,9 +685,10 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
           <div>
             <strong>Urlaubsplanung:</strong> 2026 fallen viele Feiertage auf Wochenenden 
             (3. Oktober = Sa, Reformationstag = Sa, Allerheiligen = So, 2. Weihnachtsfeiertag = Sa). 
-            Das bedeutet: weniger „geschenkte" freie Tage. Planen Sie Ihren 
-            <a href="/urlaubstage-rechner" class="text-green-700 underline font-medium">Urlaub</a> strategisch 
-            um Brückentage (z.B. nach Christi Himmelfahrt am 14. Mai oder nach Neujahr am 1. Januar).
+            Das bedeutet: weniger „geschenkte" freie Tage. Planen Sie Ihren
+            <a href="/urlaubstage-rechner" class="text-green-700 underline font-medium">Urlaub</a> strategisch
+            um Brückentage (z.B. nach Christi Himmelfahrt am 14. Mai oder nach Neujahr am 1. Januar) —
+            mit unserem Rechner können Sie alle <a href="/brueckentage-rechner" class="text-green-700 underline font-medium">Brückentage 2026 planen</a>.
           </div>
           <div>
             <strong>Gehaltsverhandlung:</strong> Wer in Bayern arbeitet, hat rein rechnerisch 2 Arbeitstage 
@@ -604,8 +805,32 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
               <strong>Nicht für denselben Tag.</strong> Pro Arbeitstag können Sie entweder die 
               <strong>Pendlerpauschale</strong> (0,38 €/km einfache Strecke, wenn Sie zum Büro gefahren sind) 
               oder die <strong>Homeoffice-Pauschale</strong> (6 €/Tag, max. 1.260 €/Jahr) ansetzen. 
-              Die beiden Pauschalen können sich aber über das Jahr ergänzen: z.B. 180 Bürotage (Pendlerpauschale) + 
+              Die beiden Pauschalen können sich aber über das Jahr ergänzen: z.B. 180 Bürotage (Pendlerpauschale) +
               70 Homeoffice-Tage (Homeoffice-Pauschale) = Werbungskosten aus beiden Töpfen.
+            </p>
+          </details>
+
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wie viele Arbeitstage hat der Mai 2026?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Der Mai 2026 hat in allen 16 Bundesländern <strong>{mai.bund} Arbeitstage</strong> (5-Tage-Woche).
+              Drei bundesweite Feiertage fallen auf Werktage: Tag der Arbeit (Fr, 1.5.), Christi Himmelfahrt (Do, 14.5.)
+              und Pfingstmontag (Mo, 25.5.). Da im Mai 2026 kein regionaler Feiertag hinzukommt, ist die Zahl
+              bundesweit einheitlich.
+            </p>
+          </details>
+
+          <details class="group">
+            <summary class="cursor-pointer font-medium text-gray-800 hover:text-blue-600">
+              Wie viele Arbeitstage hat der Juni 2026?
+            </summary>
+            <p class="mt-2 text-sm text-gray-600 pl-4">
+              Der Juni 2026 hat je nach Bundesland <strong>{juni.spanne} Arbeitstage</strong> (5-Tage-Woche).
+              In Baden-Württemberg, Bayern, Hessen, NRW, Rheinland-Pfalz und im Saarland fällt Fronleichnam (Do, 4.6.)
+              auf einen Werktag – dort sind es <strong>{juni.nw} Arbeitstage</strong>. In den übrigen zehn
+              Bundesländern sind es <strong>{juni.bund} Arbeitstage</strong>.
             </p>
           </details>
         </div>
@@ -718,8 +943,7 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
 </main>
 </Layout>
 
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -786,10 +1010,25 @@ const keywords = 'Arbeitstage Rechner, Arbeitstage berechnen, Werktage zählen, 
         "@type": "Answer",
         "text": "Nicht für denselben Tag. Pro Arbeitstag können Sie entweder die Pendlerpauschale (0,38 €/km, wenn Sie ins Büro gefahren sind) oder die Homeoffice-Pauschale (6 €/Tag, max. 1.260 €/Jahr) ansetzen. Über das Jahr können sich beide ergänzen: z.B. 180 Bürotage plus 70 Homeoffice-Tage."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Arbeitstage hat der Mai 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faqMai2026
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Arbeitstage hat der Juni 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faqJuni2026
+      }
     }
   ]
-}
-</script>
+})} />
 
 <script type="application/ld+json">
 {

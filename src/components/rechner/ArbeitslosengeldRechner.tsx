@@ -7,7 +7,7 @@ import { useState, useMemo } from 'react';
 // - § 149 SGB III: Grundsätze der Bemessung (60%/67% Leistungssatz)
 // - § 150 SGB III: Bemessungszeitraum (letzte 12 Monate)
 // - § 151 SGB III: Bemessungsentgelt (durchschnittliches Bruttoentgelt)
-// - § 152 SGB III: Leistungsentgelt (pauschaliertes Nettoentgelt)
+// - § 153 SGB III: Leistungsentgelt (pauschaliertes Nettoentgelt)
 // - § 147 SGB III: Anspruchsdauer (nach Alter und Beschäftigungsdauer)
 //
 // Quelle: https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld
@@ -51,7 +51,7 @@ const SOZIALABGABEN = {
 // ============================================================================
 // HINWEIS: Die echte Lohnsteuerberechnung ist sehr komplex (Einkommensteuerformel
 // nach § 32a EStG mit 5 Tarifstufen). Die Bundesagentur für Arbeit verwendet
-// für ALG I ein "pauschaliertes Nettoentgelt" nach § 152 SGB III.
+// für ALG I ein "pauschaliertes Nettoentgelt" nach § 153 SGB III.
 //
 // Diese Näherung basiert auf vereinfachten Durchschnittssteuersätzen je Steuerklasse.
 // Für eine präzise Berechnung nutzen Sie den offiziellen Lohnsteuerrechner:
