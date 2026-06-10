@@ -3,9 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import AfaRechner from '../components/rechner/AfaRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "AfA-Rechner 2025 & 2026 – Gebäude-Abschreibung berechnen (2%, 2,5%, 3%)";
-const description = "AfA-Rechner: Jährliche Gebäude-Abschreibung nach §7 EStG berechnen. AfA-Sätze 2%, 2,5%, 3% je Baujahr. Steuerersparnis kostenlos ermitteln!";
-const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechnen, Immobilien Abschreibung, AfA-Satz 2026, Gebäude Abschreibung Rechner, §7 EStG, Vermietung AfA, Abschreibung vermietete Immobilie, AfA Baujahr, Nutzungsdauer Gebäude, lineare AfA";
+const title = "AfA-Rechner 2026 – Gebäude-AfA (2%, 2,5%, 3%)";
+const description = "AfA-Rechner: Gebäude-AfA für Wohnung & Immobilie berechnen. Lineare AfA 2 %, 2,5 %, 3 % (§ 7 EStG) + degressive 5 % für Neubau. Mit Steuerersparnis!";
+const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechnen, AfA Wohnung berechnen, Immobilien AfA berechnen, Immobilien Abschreibung, AfA-Satz 2026, Gebäude Abschreibung Rechner, §7 EStG, degressive AfA, Abschreibungstabelle Gebäude, Vermietung AfA, Abschreibung vermietete Immobilie, AfA Baujahr, Nutzungsdauer Gebäude, lineare AfA";
 ---
 
 <Layout 
@@ -30,8 +30,8 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
         <div class="flex items-center gap-3">
           <span class="text-4xl">📉</span>
           <div>
-            <h1 class="text-2xl font-bold">AfA-Rechner für Gebäude</h1>
-            <p class="text-indigo-100 text-sm">Abschreibung für Immobilien 2026</p>
+            <h1 class="text-2xl font-bold">AfA-Rechner: Gebäude-AfA für Wohnung &amp; Immobilie berechnen</h1>
+            <p class="text-indigo-100 text-sm">Abschreibung nach § 7 EStG – Stand 2026</p>
           </div>
         </div>
       </div>
@@ -68,17 +68,114 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">AfA-Sätze nach Baujahr (2026)</h3>
           <p>
-            Der <strong>AfA-Satz</strong> richtet sich nach dem Baujahr des Gebäudes. Seit 2023 
-            gibt es einen neuen, erhöhten Satz für Neubauten:
+            Der <strong>AfA-Satz</strong> richtet sich bei Wohngebäuden nach dem Jahr der
+            <strong>Fertigstellung</strong> (umgangssprachlich: Baujahr) – nicht nach dem Datum
+            des Bauantrags oder des Kaufs:
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Baujahr vor 1925:</strong> 2,5% AfA-Satz (40 Jahre Nutzungsdauer)</li>
-            <li><strong>Baujahr 1925 – 2022:</strong> 2% AfA-Satz (50 Jahre Nutzungsdauer)</li>
-            <li><strong>Baujahr ab 2023:</strong> 3% AfA-Satz (33,33 Jahre Nutzungsdauer)</li>
+            <li><strong>Fertigstellung vor 1925:</strong> 2,5% AfA-Satz (40 Jahre Nutzungsdauer)</li>
+            <li><strong>Fertigstellung 1925 – 2022:</strong> 2% AfA-Satz (50 Jahre Nutzungsdauer)</li>
+            <li><strong>Fertigstellung nach dem 31.12.2022:</strong> 3% AfA-Satz (33,33 Jahre Nutzungsdauer)</li>
           </ul>
           <p>
-            <strong>Neu seit 2023:</strong> Das Jahressteuergesetz 2022 hat den AfA-Satz für Neubauten 
-            auf 3% erhöht, um den Wohnungsbau attraktiver zu machen.
+            Das Jahressteuergesetz 2022 hat den AfA-Satz für Gebäude mit Fertigstellung nach dem
+            31.12.2022 auf 3% erhöht (§ 7 Abs. 4 Satz 1 Nr. 2a EStG), um den Wohnungsbau
+            attraktiver zu machen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Abschreibungstabelle Gebäude: Alle AfA-Sätze im Überblick</h3>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Gebäude / Fall</th>
+                <th class="py-2 px-2 font-semibold text-right">AfA-Satz</th>
+                <th class="py-2 px-2 font-semibold text-right">Nutzungsdauer</th>
+                <th class="py-2 pl-2 font-semibold">Rechtsgrundlage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-2">Wirtschaftsgebäude (Betriebsvermögen, nicht Wohnzwecke, Bauantrag nach 31.03.1985)</td>
+                <td class="py-2 px-2 text-right">3%</td>
+                <td class="py-2 px-2 text-right">33,33 Jahre</td>
+                <td class="py-2 pl-2">§ 7 Abs. 4 S. 1 Nr. 1 EStG</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-2">Wohngebäude, Fertigstellung nach dem 31.12.2022</td>
+                <td class="py-2 px-2 text-right">3%</td>
+                <td class="py-2 px-2 text-right">33,33 Jahre</td>
+                <td class="py-2 pl-2">§ 7 Abs. 4 S. 1 Nr. 2a EStG</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-2">Wohngebäude, Fertigstellung 1925 – 2022</td>
+                <td class="py-2 px-2 text-right">2%</td>
+                <td class="py-2 px-2 text-right">50 Jahre</td>
+                <td class="py-2 pl-2">§ 7 Abs. 4 S. 1 Nr. 2b EStG</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-2">Wohngebäude, Fertigstellung vor 1925</td>
+                <td class="py-2 px-2 text-right">2,5%</td>
+                <td class="py-2 px-2 text-right">40 Jahre</td>
+                <td class="py-2 pl-2">§ 7 Abs. 4 S. 1 Nr. 2c EStG</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 pr-2">Wohngebäude neu: Baubeginn oder Kauf nach dem 30.09.2023 und vor dem 01.10.2029 (Wahlrecht)</td>
+                <td class="py-2 px-2 text-right">5% degressiv</td>
+                <td class="py-2 px-2 text-right">–</td>
+                <td class="py-2 pl-2">§ 7 Abs. 5a EStG</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-sm">
+            <strong>Abgrenzung:</strong> Die bekannten <strong>BMF-AfA-Tabellen</strong> (z.B.
+            "AfA-Tabelle AV") betreffen <strong>bewegliche Wirtschaftsgüter</strong> wie Maschinen,
+            Pkw oder Büroausstattung – nicht Gebäude. Für die Gebäude-AfA gelten ausschließlich
+            die gesetzlichen Sätze aus § 7 Abs. 4 und Abs. 5a EStG (Tabelle oben).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Degressive AfA für Wohngebäude: 5% (§ 7 Abs. 5a EStG)</h3>
+          <p>
+            Für neue Wohngebäude gibt es ein <strong>Wahlrecht</strong>: Statt der linearen 3%-AfA
+            (§ 7 Abs. 4 Satz 1 Nr. 2a EStG) können Sie die <strong>degressive AfA von 5%</strong>
+            wählen. Sie wird jedes Jahr vom <strong>jeweiligen Restwert (Buchwert)</strong> berechnet –
+            die Abschreibung ist anfangs deutlich höher und sinkt dann von Jahr zu Jahr.
+          </p>
+          <p>Die Voraussetzungen:</p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Herstellung:</strong> Baubeginn nach dem 30.09.2023 und vor dem 01.10.2029</li>
+            <li><strong>Kauf:</strong> Obligatorischer Vertrag (Kaufvertrag) nach dem 30.09.2023 und vor dem 01.10.2029 rechtswirksam abgeschlossen – <strong>und</strong> Anschaffung bis zum Ende des Jahres der Fertigstellung. Der Kauf junger Bestandsbauten in späteren Jahren ist nicht begünstigt.</li>
+            <li><strong>Nutzung:</strong> Gebäude, die Wohnzwecken dienen, in Deutschland bzw. der EU/dem EWR</li>
+            <li><strong>Wechsel:</strong> Der Übergang zur linearen AfA ist zulässig</li>
+          </ul>
+          <p>
+            <strong>Vergleich am Beispiel (320.000 € Gebäudewert):</strong> linear 3% vs. degressiv 5%
+            in den ersten 10 Jahren (Werte auf volle Euro gerundet):
+          </p>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200 text-left text-gray-500">
+                <th class="py-2 pr-2 font-semibold">Jahr</th>
+                <th class="py-2 px-2 font-semibold text-right">Linear 3%</th>
+                <th class="py-2 pl-2 font-semibold text-right">Degressiv 5% (vom Restwert)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">1</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">16.000 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">2</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">15.200 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">3</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">14.440 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">4</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">13.718 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">5</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">13.032 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">6</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">12.380 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">7</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">11.761 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">8</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">11.173 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">9</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">10.615 €</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-1 pr-2">10</td><td class="py-1 px-2 text-right">9.600 €</td><td class="py-1 pl-2 text-right">10.084 €</td></tr>
+              <tr class="border-b border-gray-200 font-semibold"><td class="py-1 pr-2">Summe Jahr 1–10</td><td class="py-1 px-2 text-right">96.000 €</td><td class="py-1 pl-2 text-right">ca. 128.400 €</td></tr>
+            </tbody>
+          </table>
+          <p class="text-sm">
+            Unser Rechner oben berechnet die <strong>lineare AfA</strong>. Quelle:
+            <a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">§ 7 EStG (gesetze-im-internet.de)</a>.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Berechnung der Gebäude-AfA</h3>
@@ -96,6 +193,11 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
             <li>Baujahr 2020 → AfA-Satz: 2%</li>
             <li><strong>Jährliche AfA: 320.000 € × 2% = 6.400 €</strong></li>
           </ul>
+          <p>
+            Zu den Anschaffungskosten gehören neben dem Kaufpreis auch die anteiligen
+            Kaufnebenkosten (Grunderwerbsteuer, Notar, Makler) – diese ermitteln Sie mit dem
+            <a href="/kaufnebenkosten-rechner" class="text-indigo-600 hover:underline">Kaufnebenkosten-Rechner</a>.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Grundstücksanteil richtig ermitteln</h3>
           <p>
@@ -104,10 +206,16 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>Kaufvertrag:</strong> Wenn eine Aufteilung vereinbart wurde, gilt diese</li>
-            <li><strong>Bodenrichtwert:</strong> Grundstückswert = Bodenrichtwert × Fläche</li>
+            <li><strong>Bodenrichtwert:</strong> Grundstückswert = Bodenrichtwert × Fläche – den Bodenrichtwert ermitteln Sie mit dem <a href="/bodenrichtwert-rechner" class="text-indigo-600 hover:underline">Bodenrichtwert-Rechner</a></li>
             <li><strong>Sachwertverfahren:</strong> Gebäudewert aus Herstellungskosten ableiten</li>
             <li><strong>Richtwerte:</strong> Eigentumswohnung ca. 5-15%, Einfamilienhaus ca. 15-30%</li>
           </ul>
+          <p>
+            Die Finanzverwaltung stellt zudem eine offizielle
+            <a href="https://www.bundesfinanzministerium.de/Datenportal/Daten/frei-nutzbare-produkte/Anwendungen/Kaufpreisaufteilung-Grundstuecke/Kaufpreisaufteilung-Grundstuecke.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">Arbeitshilfe zur Kaufpreisaufteilung</a>
+            (Bundesfinanzministerium) bereit, mit der Sie die Aufteilung in Grundstücks- und
+            Gebäudewert selbst berechnen oder plausibilisieren können.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">AfA bei Eigentumswohnungen</h3>
           <p>
@@ -119,6 +227,14 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
             <li>Das Gebäude wird als Ganzes abgeschrieben, nicht die einzelne Wohnung</li>
             <li>Sondereigentum (z.B. Einbauküche) kann separat abgeschrieben werden</li>
           </ul>
+          <p><strong>Beispiel – AfA für eine Wohnung berechnen:</strong></p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Kaufpreis Eigentumswohnung: 300.000 €</li>
+            <li>Grundstücksanteil (10%): 30.000 €</li>
+            <li>Gebäudewert: 270.000 €</li>
+            <li>Baujahr 2015 → AfA-Satz: 2%</li>
+            <li><strong>Jährliche AfA: 270.000 € × 2% = 5.400 €</strong></li>
+          </ul>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Sonderabschreibung §7b EStG (Mietwohnungsneubau)</h3>
           <p>
@@ -126,11 +242,16 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>5% Sonder-AfA</strong> für 4 Jahre (zusätzlich zur linearen AfA)</li>
-            <li><strong>Bauantrag:</strong> Zwischen 01.09.2018 und 31.12.2021 oder ab 01.01.2023</li>
-            <li><strong>Baukostenobergrenze:</strong> Max. 5.200 €/m² Wohnfläche</li>
-            <li><strong>Bemessungsgrundlage:</strong> Max. 4.000 €/m² Wohnfläche</li>
+            <li><strong>Bauantrag:</strong> Zwischen 01.09.2018 und 31.12.2021 <em>oder</em> zwischen 01.01.2023 und 30.09.2029</li>
+            <li><strong>Zusatzanforderung im zweiten Fenster (Bauantrag ab 2023):</strong> Effizienzhaus 40 mit Nachhaltigkeitsklasse (QNG-Siegel)</li>
+            <li><strong>Baukostenobergrenze:</strong> Max. 5.200 €/m² Wohnfläche (erstes Fenster 2018–2021: 3.000 €/m²)</li>
+            <li><strong>Bemessungsgrundlage:</strong> Max. 4.000 €/m² Wohnfläche (erstes Fenster: 2.000 €/m²)</li>
             <li><strong>Bindung:</strong> 10 Jahre Vermietung zu Wohnzwecken</li>
           </ul>
+          <p class="text-sm">
+            Quelle:
+            <a href="https://www.gesetze-im-internet.de/estg/__7b.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">§ 7b EStG (gesetze-im-internet.de)</a>.
+          </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Denkmal-AfA (§7i EStG)</h3>
           <p>
@@ -143,6 +264,20 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
             <li><strong>Gilt nur für:</strong> Sanierungskosten, nicht für den Kaufpreis</li>
           </ul>
           
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kürzere Restnutzungsdauer nachweisen (§ 7 Abs. 4 Satz 2 EStG)</h3>
+          <p>
+            Die gesetzlichen AfA-Sätze unterstellen eine typisierte Nutzungsdauer. Ist die
+            <strong>tatsächliche Nutzungsdauer</strong> Ihres Gebäudes nachweislich kürzer –
+            z.B. belegt durch ein <strong>Gutachten</strong> –, können Sie stattdessen mit der
+            tatsächlichen (Rest-)Nutzungsdauer abschreiben und so einen höheren AfA-Satz ansetzen.
+            Die gesetzlichen Schwellen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Unter 33 Jahre:</strong> bei Wirtschaftsgebäuden und Wohngebäuden mit Fertigstellung nach dem 31.12.2022 (§ 7 Abs. 4 S. 1 Nr. 1 und Nr. 2a EStG)</li>
+            <li><strong>Unter 50 Jahre:</strong> bei Wohngebäuden mit Fertigstellung 1925 – 2022 (Nr. 2b)</li>
+            <li><strong>Unter 40 Jahre:</strong> bei Wohngebäuden mit Fertigstellung vor 1925 (Nr. 2c)</li>
+          </ul>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">AfA-Beginn und -Ende</h3>
           <p>
             Wichtige Zeitpunkte für die <strong>Gebäude-Abschreibung</strong>:
@@ -165,8 +300,10 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
             <p class="text-green-800 font-medium">Steuerersparnis = Jährliche AfA × Grenzsteuersatz</p>
           </div>
           <p>
-            <strong>Beispiel:</strong> Bei 6.400 € AfA und 42% Grenzsteuersatz sparen Sie 
-            <strong>2.688 € Steuern pro Jahr</strong>.
+            <strong>Beispiel:</strong> Bei 6.400 € AfA und 42% Grenzsteuersatz sparen Sie
+            <strong>2.688 € Steuern pro Jahr</strong>. Ihren persönlichen Grenzsteuersatz
+            ermitteln Sie mit dem
+            <a href="/einkommensteuer-rechner" class="text-indigo-600 hover:underline">Einkommensteuer-Rechner</a>.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fragen (FAQ)</h3>
@@ -198,12 +335,120 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
             verbleibenden Nutzungsdauer weiter abgeschrieben.
           </p>
           
-          <p><strong>Gilt die 3%-AfA auch für gebrauchte Immobilien ab 2023?</strong></p>
+          <p><strong>Gilt die 3%-AfA auch für gebrauchte Immobilien?</strong></p>
           <p>
-            Nein! Der <strong>erhöhte AfA-Satz von 3%</strong> gilt nur für Gebäude, deren 
-            Herstellung (Bauantrag) ab dem 01.01.2023 erfolgt. Beim Kauf einer Bestandsimmobilie 
-            gilt weiterhin 2% (Baujahr 1925-2022) bzw. 2,5% (vor 1925).
+            Ja, wenn das Gebäude nach dem 31.12.2022 fertiggestellt wurde. Der <strong>erhöhte
+            AfA-Satz von 3%</strong> (§ 7 Abs. 4 Satz 1 Nr. 2a EStG) knüpft an die
+            <strong>Fertigstellung</strong> an – nicht an Bauantrag oder Kaufdatum. Wer also z.B.
+            eine 2024 fertiggestellte Wohnung gebraucht kauft, schreibt mit 3% ab. Nur bei
+            Fertigstellung vor 2023 bleibt es bei 2% (1925-2022) bzw. 2,5% (vor 1925).
           </p>
+
+          <p><strong>Was ist die degressive 5-%-AfA für Neubauten?</strong></p>
+          <p>
+            Für neue Wohngebäude können Sie statt der linearen 3%-AfA eine <strong>degressive AfA
+            von 5%</strong> wählen (§ 7 Abs. 5a EStG). Sie wird jährlich vom jeweiligen Restwert
+            berechnet. Voraussetzung: Baubeginn nach dem 30.09.2023 und vor dem 01.10.2029 – oder
+            Kauf mit Vertragsabschluss in diesem Zeitraum bis zum Ende des Jahres der
+            Fertigstellung. Der Übergang zur linearen AfA ist zulässig.
+          </p>
+
+          <p><strong>Kann ich eine kürzere Nutzungsdauer ansetzen?</strong></p>
+          <p>
+            Ja. Weisen Sie eine tatsächlich kürzere Nutzungsdauer nach (z.B. durch ein Gutachten),
+            können Sie nach § 7 Abs. 4 Satz 2 EStG mit dieser abschreiben und so einen höheren
+            AfA-Satz erreichen. Das gilt bei weniger als 33 Jahren (3%-Fälle), weniger als
+            50 Jahren (2%-Fall) bzw. weniger als 40 Jahren (2,5%-Fall).
+          </p>
+
+          <p><strong>Wie berechne ich die AfA für eine vermietete Eigentumswohnung?</strong></p>
+          <p>
+            Ziehen Sie vom Kaufpreis den Grundstücksanteil ab (bei Eigentumswohnungen oft 5-15%)
+            und multiplizieren Sie den Gebäudewert mit dem AfA-Satz. Beispiel: 300.000 € Kaufpreis,
+            10% Grundstücksanteil → 270.000 € × 2% (Baujahr 2015) = 5.400 € AfA pro Jahr. Als
+            Steuer-Rechner für die Eigentumswohnung kombinieren Sie den AfA-Rechner am besten mit dem
+            <a href="/einkommensteuer-rechner" class="text-indigo-600 hover:underline">Einkommensteuer-Rechner</a>
+            (Steuerersparnis über den Grenzsteuersatz) und dem
+            <a href="/grundsteuer-rechner" class="text-indigo-600 hover:underline">Grundsteuer-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Quellen &amp; Stand</h3>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li><a href="https://www.gesetze-im-internet.de/estg/__7.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">§ 7 EStG – Absetzung für Abnutzung (inkl. Abs. 4, 5a)</a></li>
+            <li><a href="https://www.gesetze-im-internet.de/estg/__7b.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">§ 7b EStG – Sonderabschreibung für Mietwohnungsneubau</a></li>
+            <li><a href="https://www.bundesfinanzministerium.de/Datenportal/Daten/frei-nutzbare-produkte/Anwendungen/Kaufpreisaufteilung-Grundstuecke/Kaufpreisaufteilung-Grundstuecke.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">BMF – Arbeitshilfe zur Aufteilung eines Gesamtkaufpreises (Kaufpreisaufteilung)</a></li>
+          </ul>
+          <p class="text-xs text-gray-500">
+            Stand: 10. Juni 2026.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔗</span>
+          Verwandte Rechner
+        </h2>
+        <div class="grid gap-3">
+          <a href="/bodenrichtwert-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">📍</span>
+            <div>
+              <div class="font-semibold text-gray-800">Bodenrichtwert-Rechner</div>
+              <div class="text-sm text-gray-500">Grundstückswert für die Kaufpreisaufteilung ermitteln</div>
+            </div>
+          </a>
+          <a href="/kaufnebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🧾</span>
+            <div>
+              <div class="font-semibold text-gray-800">Kaufnebenkosten-Rechner</div>
+              <div class="text-sm text-gray-500">Grunderwerbsteuer, Notar &amp; Makler beim Immobilienkauf</div>
+            </div>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏛️</span>
+            <div>
+              <div class="font-semibold text-gray-800">Grunderwerbsteuer-Rechner</div>
+              <div class="text-sm text-gray-500">Grunderwerbsteuer nach Bundesland berechnen</div>
+            </div>
+          </a>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏠</span>
+            <div>
+              <div class="font-semibold text-gray-800">Grundsteuer-Rechner</div>
+              <div class="text-sm text-gray-500">Grundsteuer für Ihre Immobilie berechnen</div>
+            </div>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">💶</span>
+            <div>
+              <div class="font-semibold text-gray-800">Einkommensteuer-Rechner</div>
+              <div class="text-sm text-gray-500">Einkommensteuer &amp; Grenzsteuersatz berechnen</div>
+            </div>
+          </a>
+          <a href="/mieten-oder-kaufen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">⚖️</span>
+            <div>
+              <div class="font-semibold text-gray-800">Mieten-oder-Kaufen-Rechner</div>
+              <div class="text-sm text-gray-500">Was lohnt sich für Sie: Miete oder Eigentum?</div>
+            </div>
+          </a>
+          <a href="/investitionsabzugsbetrag-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">📊</span>
+            <div>
+              <div class="font-semibold text-gray-800">Investitionsabzugsbetrag-Rechner</div>
+              <div class="text-sm text-gray-500">IAB &amp; Sonderabschreibung für Betriebe</div>
+            </div>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-3">
+            <span class="text-2xl">🏦</span>
+            <div>
+              <div class="font-semibold text-gray-800">Baufinanzierung-Rechner</div>
+              <div class="text-sm text-gray-500">Rate &amp; Zinsen Ihrer Immobilienfinanzierung berechnen</div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -247,7 +492,7 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
         "name": "Welche AfA-Sätze gelten für Gebäude?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die AfA-Sätze richten sich nach dem Baujahr: Vor 1925 gilt 2,5% (40 Jahre Nutzungsdauer), von 1925-2022 gilt 2% (50 Jahre), ab 2023 gilt der erhöhte Satz von 3% (33,33 Jahre). Die erhöhte AfA ab 2023 wurde durch das Jahressteuergesetz 2022 eingeführt."
+          "text": "Die AfA-Sätze richten sich bei Wohngebäuden nach dem Jahr der Fertigstellung: Vor 1925 gilt 2,5% (40 Jahre Nutzungsdauer), von 1925-2022 gilt 2% (50 Jahre), bei Fertigstellung nach dem 31.12.2022 gilt der erhöhte Satz von 3% (33,33 Jahre, § 7 Abs. 4 Satz 1 Nr. 2a EStG, eingeführt durch das Jahressteuergesetz 2022). Für neue Wohngebäude gibt es zusätzlich das Wahlrecht der degressiven AfA von 5% nach § 7 Abs. 5a EStG."
         }
       },
       {
@@ -280,6 +525,38 @@ const keywords = "AfA Rechner, Abschreibung Immobilie, Gebäude AfA, AfA berechn
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Ja, es gibt mehrere Sonderabschreibungen: Die §7b EStG-Sonder-AfA für Mietwohnungsneubau (5% für 4 Jahre), die Denkmal-AfA nach §7i EStG (erhöhte Abschreibung für Sanierungskosten) und die Sanierungsgebiet-AfA nach §7h EStG."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt die 3%-AfA auch für gebrauchte Immobilien?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, wenn das Gebäude nach dem 31.12.2022 fertiggestellt wurde. Der erhöhte AfA-Satz von 3% (§ 7 Abs. 4 Satz 1 Nr. 2a EStG) knüpft an die Fertigstellung an – nicht an Bauantrag oder Kaufdatum. Wer also z.B. eine 2024 fertiggestellte Wohnung gebraucht kauft, schreibt mit 3% ab. Nur bei Fertigstellung vor 2023 bleibt es bei 2% (1925-2022) bzw. 2,5% (vor 1925)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die degressive 5-%-AfA für Neubauten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für neue Wohngebäude können Sie statt der linearen 3%-AfA eine degressive AfA von 5% wählen (§ 7 Abs. 5a EStG). Sie wird jährlich vom jeweiligen Restwert berechnet. Voraussetzung: Baubeginn nach dem 30.09.2023 und vor dem 01.10.2029 – oder Kauf mit Vertragsabschluss in diesem Zeitraum bis zum Ende des Jahres der Fertigstellung. Der Übergang zur linearen AfA ist zulässig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich eine kürzere Nutzungsdauer ansetzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Weisen Sie eine tatsächlich kürzere Nutzungsdauer nach (z.B. durch ein Gutachten), können Sie nach § 7 Abs. 4 Satz 2 EStG mit dieser abschreiben und so einen höheren AfA-Satz erreichen. Das gilt bei weniger als 33 Jahren (3%-Fälle), weniger als 50 Jahren (2%-Fall) bzw. weniger als 40 Jahren (2,5%-Fall)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die AfA für eine vermietete Eigentumswohnung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ziehen Sie vom Kaufpreis den Grundstücksanteil ab (bei Eigentumswohnungen oft 5-15%) und multiplizieren Sie den Gebäudewert mit dem AfA-Satz. Beispiel: 300.000 € Kaufpreis, 10% Grundstücksanteil → 270.000 € × 2% (Baujahr 2015) = 5.400 € AfA pro Jahr. Als Steuer-Rechner für die Eigentumswohnung kombinieren Sie den AfA-Rechner am besten mit dem Einkommensteuer-Rechner (Steuerersparnis über den Grenzsteuersatz) und dem Grundsteuer-Rechner."
         }
       }
     ]

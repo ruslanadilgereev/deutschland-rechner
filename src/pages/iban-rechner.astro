@@ -6,9 +6,9 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import RechnerTrust from '../components/RechnerTrust.astro';
 import VerwandteRechner from '../components/VerwandteRechner.astro';
 
-const title = "IBAN-Rechner – IBAN generieren, prüfen & zerlegen";
-const description = "IBAN aus Kontonummer & BLZ generieren, Prüfziffer validieren oder IBAN zerlegen. Mit BIC-Anzeige & Bank-Erkennung. Sofort & kostenlos!";
-const keywords = "IBAN Rechner, IBAN berechnen, IBAN generieren, IBAN prüfen, IBAN validieren, IBAN zerlegen, BLZ zu IBAN, Kontonummer zu IBAN, IBAN Prüfziffer, IBAN Deutschland, IBAN kostenlos, BIC ermitteln, IBAN Aufbau, SEPA IBAN";
+const title = "IBAN-Rechner – prüfen, generieren & zerlegen";
+const description = "IBAN prüfen, aus Kontonummer & BLZ berechnen oder IBAN in Kontonummer & BLZ umwandeln (zerlegen). Prüfziffer nach ISO 7064 – kostenlos & ohne Anmeldung.";
+const keywords = "IBAN Rechner, IBAN berechnen, IBAN generieren, IBAN prüfen, IBAN validieren, IBAN zerlegen, IBAN in Kontonummer umwandeln, Kontonummer BLZ konvertieren, IBAN umrechnen, BLZ zu IBAN, Kontonummer zu IBAN, IBAN Prüfziffer, IBAN Deutschland, IBAN kostenlos, BIC ermitteln, IBAN Aufbau, SEPA IBAN";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -66,7 +66,7 @@ const faqSchema = {
 };
 ---
 
-<Layout 
+<Layout
   title={title}
   description={description}
   keywords={keywords}
@@ -74,19 +74,19 @@ const faqSchema = {
   <BreadcrumbSchema items={[{ name: "IBAN-Rechner", url: "/iban-rechner" }]} />
   <Breadcrumb items={[
     { name: 'Home', href: '/' },
-    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
     { name: 'IBAN-Rechner' }
   ]} />
-  
+
   <!-- FAQ Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  
+
   <main class="min-h-screen pb-8">
     <!-- Header -->
     <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-6 px-4">
       <div class="max-w-2xl mx-auto">
-        <a 
-          href="/" 
+        <a
+          href="/"
           class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,7 +98,7 @@ const faqSchema = {
           <span class="text-4xl">🏦</span>
           <div>
             <h1 class="text-2xl font-bold">IBAN-Rechner</h1>
-            <p class="text-blue-100 text-sm">IBAN generieren, prüfen & zerlegen – kostenlos</p>
+            <p class="text-blue-100 text-sm">IBAN prüfen, generieren & zerlegen – kostenlos</p>
           </div>
         </div>
       </div>
@@ -109,41 +109,187 @@ const faqSchema = {
       <IbanRechner client:load />
     </div>
 
-    <!-- Erweiterter SEO-Content: Use-Cases, Praxis, FAQ, Quellen -->
+    <!-- SEO-Content: Use-Cases, Umwandeln, Prüfziffer, Praxis, FAQ, Quellen -->
     <article class="prose prose-lg max-w-3xl mx-auto px-4 mt-8">
       <h2 class="text-2xl font-bold mt-12 mb-6">Wann brauchst du den IBAN-Rechner?</h2>
       <p>
-        Die IBAN ist seit Februar 2016 für alle SEPA-Überweisungen Pflicht — und trotzdem sind die alten Bankleitzahlen und Kontonummern nicht aus dem Alltag verschwunden. Auf alten Verträgen, Rechnungen oder Visitenkarten findest du oft noch BLZ + Kontonummer ohne IBAN. Genau dann brauchst du diesen Rechner: um aus <strong>Kontonummer und Bankleitzahl die IBAN zu generieren</strong>, etwa wenn du einen alten Dauerauftrag aus den 90ern modernisieren willst. Er hilft dir auch, eine <strong>IBAN-Prüfziffer vor einer Überweisung zu validieren</strong> — gerade bei größeren Beträgen oder Erstüberweisungen an einen unbekannten Empfänger lohnt sich der schnelle Check, ob die IBAN überhaupt mathematisch korrekt ist (verhindert Tippfehler bei 99 % aller Zahlendreher). Weitere typische Anwendungen: <strong>Bank aus IBAN identifizieren</strong> (welche Bank steckt hinter den ersten Stellen?), <strong>BIC zur IBAN ermitteln</strong> für Überweisungen außerhalb der EU, oder <strong>internationale Überweisungen vorbereiten</strong>, bei denen die Struktur der IBAN je nach Land variiert.
+        Die IBAN ist seit Februar 2016 für alle SEPA-Überweisungen Pflicht — und trotzdem sind die alten Bankleitzahlen und Kontonummern nicht aus dem Alltag verschwunden. Auf alten Verträgen, Rechnungen oder Visitenkarten findest du oft noch BLZ + Kontonummer ohne IBAN. Genau dann brauchst du diesen Rechner: um aus <strong>Kontonummer und Bankleitzahl die IBAN zu generieren</strong>, etwa wenn du einen alten Dauerauftrag aus den 90ern modernisieren willst. Er hilft dir auch, eine <strong>IBAN-Prüfziffer vor einer Überweisung zu validieren</strong> — gerade bei größeren Beträgen oder Erstüberweisungen an einen unbekannten Empfänger lohnt sich der schnelle Check, ob die IBAN überhaupt mathematisch korrekt ist (erkennt praktisch alle Tippfehler und Zahlendreher). Weitere typische Anwendungen: <strong>IBAN in Kontonummer und BLZ umwandeln</strong> (zerlegen), <strong>Bank aus IBAN identifizieren</strong> (welche Bank steckt hinter den ersten Stellen?), <strong>BIC zur IBAN ermitteln</strong> für Überweisungen außerhalb der EU, oder <strong>internationale Überweisungen vorbereiten</strong>, bei denen die Struktur der IBAN je nach Land variiert.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Aufbau der deutschen IBAN</h2>
+      <p>
+        Die <strong>IBAN (International Bank Account Number)</strong> ist eine international standardisierte Kontonummer, die den Zahlungsverkehr im SEPA-Raum (Single Euro Payments Area) vereinheitlicht. Sie ersetzt seit 2016 die alte Kombination aus Kontonummer und Bankleitzahl für Überweisungen. Eine deutsche IBAN besteht aus genau <strong>22 Zeichen</strong> und ist wie folgt aufgebaut:
+      </p>
+      <div class="bg-gray-100 p-4 rounded-lg my-4 overflow-x-auto not-prose">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left border-b border-gray-300">
+              <th class="pb-2">Position</th>
+              <th class="pb-2">Inhalt</th>
+              <th class="pb-2">Beispiel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-2">1-2</td>
+              <td>Ländercode</td>
+              <td class="font-mono">DE</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-2">3-4</td>
+              <td>Prüfziffer</td>
+              <td class="font-mono">46</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-2">5-12</td>
+              <td>Bankleitzahl (BLZ)</td>
+              <td class="font-mono">37050198</td>
+            </tr>
+            <tr>
+              <td class="py-2">13-22</td>
+              <td>Kontonummer</td>
+              <td class="font-mono">0000123456</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Beispiel:</strong> DE46 3705 0198 0000 1234 56 (Sparkasse KölnBonn)
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">IBAN in Kontonummer und BLZ umwandeln</h2>
+      <p>
+        Die Rückrichtung übernimmt der Modus <strong>„Zerlegen"</strong>: Er wandelt jede deutsche IBAN in Kontonummer und Bankleitzahl um. Die Logik steckt direkt im IBAN-Aufbau — die <strong>Stellen 5–12 sind die Bankleitzahl</strong>, die <strong>Stellen 13–22 die Kontonummer</strong>. Führende Nullen der Kontonummer kannst du weglassen: Aus <code>0000123456</code> wird die alte Kontonummer <code>123456</code>. So lässt sich eine IBAN ohne Nachschlagen in Kontonummer und BLZ konvertieren, etwa wenn ein altes Formular oder Buchungssystem noch die getrennte Bankverbindung verlangt.
+      </p>
+      <p>
+        Wichtig zu wissen: Bei einzelnen Instituten steckt die alte Kontonummer <strong>nicht 1:1</strong> im hinteren Teil der IBAN. Grund sind bankindividuelle <a href="https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/iban-regeln" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">IBAN-Regeln der Deutschen Bundesbank</a>, mit denen Banken z. B. nach Fusionen oder bei Unterkonten von der Standardberechnung abweichen. Gleiche die umgewandelte Bankverbindung im Zweifel mit den Kontounterlagen ab.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-3">Kontonummer und BLZ in IBAN umwandeln (konvertieren)</h3>
+      <p>
+        Die Hin-Richtung — eine alte Bankverbindung aus Kontonummer und BLZ in die IBAN umrechnen — erledigt der Modus <strong>„Generieren"</strong>: BLZ und Kontonummer eingeben, der Rechner berechnet die Prüfziffer und setzt die 22-stellige IBAN zusammen. Dabei wird die <strong>Kontonummer auf 10 Stellen mit führenden Nullen aufgefüllt</strong>, die <strong>Bankleitzahl bleibt unverändert</strong> (8 Stellen), neu hinzu kommen Ländercode (DE) und Prüfziffer. So konvertierst du jede alte Bankverbindung (Kto + BLZ) in das heutige IBAN-Format — egal ob du es „umwandeln", „umrechnen" oder „konvertieren" nennst, gemeint ist dieselbe Berechnung.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">IBAN-Prüfziffer berechnen – Schritt für Schritt</h2>
+      <p>
+        Die zweistellige Prüfziffer (Stellen 3 und 4) wird nach <strong>ISO 7064 Mod-97-10</strong> berechnet. Sie dient dazu, Tippfehler bei der IBAN-Eingabe zu erkennen. Beispiel mit BLZ 37040044 und Kontonummer 532013000 (auf 10 Stellen aufgefüllt: 0532013000):
+      </p>
+      <ol class="list-decimal pl-5 space-y-1">
+        <li>BLZ + Kontonummer aneinanderreihen: <code>370400440532013000</code></li>
+        <li>Ländercode buchstabieren: D = 13, E = 14 → <code>DE</code> wird zu <code>1314</code></li>
+        <li>Ländercode-Zahl und Prüfziffer-Platzhalter „00" hinten anhängen: <code>370400440532013000131400</code></li>
+        <li>Diese Riesenzahl Mod 97 rechnen: Rest = 9</li>
+        <li>98 − 9 = <strong>89</strong> → das ist die Prüfziffer</li>
+      </ol>
+      <p>
+        Bei korrekter IBAN ergibt die volle Mod-97-Rechnung mit eingesetzter Prüfziffer immer den Rest 1. Ein einfacher Tippfehler (z. B. zwei vertauschte Ziffern) führt fast garantiert zu einem Rest ≠ 1 und wird so erkannt. Unser Rechner führt diese Prüfung automatisch durch.
       </p>
 
       <h2 class="text-2xl font-bold mt-12 mb-6">Praxisbeispiele</h2>
 
       <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 1: IBAN zerlegen — DE89 3704 0044 0532 0130 00</h3>
       <p>
-        Du bekommst eine deutsche IBAN auf einer Rechnung: <code>DE89 3704 0044 0532 0130 00</code>. Wie lässt sich die zerlegen? <strong>DE</strong> = Ländercode Deutschland (ISO 3166), <strong>89</strong> = Prüfziffer (mathematisch nach Mod-97 berechnet), <strong>37040044</strong> = Bankleitzahl — das ist die <strong>Commerzbank Köln</strong>. Die letzten 10 Stellen <strong>0532013000</strong> sind die Kontonummer; ursprünglich war sie kürzer (532 013 00) und wurde mit führenden Nullen auf 10 Stellen aufgefüllt. Der zugehörige BIC ist <code>COBADEFFXXX</code> bzw. <code>COBADEFF370</code> mit Filialcode. Solche Zerlegungen brauchst du, wenn du z. B. eine fehlerhafte Kontoangabe in einem alten Buchungssystem korrigieren musst und nur die IBAN hast.
+        Du bekommst eine deutsche IBAN auf einer Rechnung: <code>DE89 3704 0044 0532 0130 00</code>. Wie lässt sich die in Kontonummer und BLZ zerlegen? <strong>DE</strong> = Ländercode Deutschland (ISO 3166), <strong>89</strong> = Prüfziffer (mathematisch nach Mod-97 berechnet), <strong>37040044</strong> = Bankleitzahl — das ist die <strong>Commerzbank Köln</strong>. Die letzten 10 Stellen <strong>0532013000</strong> sind die Kontonummer; ursprünglich war sie kürzer (532 013 00) und wurde mit führenden Nullen auf 10 Stellen aufgefüllt. Der zugehörige BIC ist <code>COBADEFFXXX</code> bzw. <code>COBADEFF370</code> mit Filialcode. Solche Zerlegungen brauchst du, wenn du z. B. eine fehlerhafte Kontoangabe in einem alten Buchungssystem korrigieren musst und nur die IBAN hast.
       </p>
 
-      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 2: Prüfziffer-Berechnung Schritt für Schritt</h3>
+      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 2: Französische IBAN — andere Länge, andere Struktur</h3>
       <p>
-        Die Prüfziffer wird nach <strong>ISO 7064 Mod-97-10</strong> berechnet. Beispiel mit BLZ 37040044 und Kontonummer 532013000 (auf 10 Stellen aufgefüllt: 0532013000):
-      </p>
-      <ol class="list-decimal pl-5 space-y-1">
-        <li>BLZ + Kontonummer aneinanderreihen: <code>370400440532013000</code></li>
-        <li>Ländercode buchstabieren: D = 13, E = 14 → <code>DE</code> wird zu <code>1314</code></li>
-        <li>Prüfziffer-Platzhalter „00" hinten anhängen: <code>3704004405320130001314 00</code></li>
-        <li>Diese Riesenzahl Mod 97 rechnen: Rest = 9</li>
-        <li>98 − 9 = <strong>89</strong> → das ist die Prüfziffer</li>
-      </ol>
-      <p>
-        Bei korrekter IBAN ergibt die volle Mod-97-Rechnung mit eingesetzter Prüfziffer immer den Rest 1. Ein einfacher Tippfehler (z. B. zwei vertauschte Ziffern) führt fast garantiert zu einem Rest ≠ 1 und wird so erkannt.
+        Französische IBANs haben <strong>27 Zeichen</strong>: <code>FR14 2004 1010 0505 0001 3M02 606</code>. Der Aufbau: <code>FR</code> (Land), <code>14</code> (Prüfziffer), <code>20041</code> (Bankcode), <code>01005</code> (Filialcode), <code>0500013M026</code> (Kontonummer inkl. nationaler Schlüssel), <code>06</code> (RIB-Schlüssel als nationale Prüfziffer). Im Vergleich: Deutsche IBANs sind 22 Zeichen, britische 22, Schweizer 21, türkische 26, maltesische sogar 31 Zeichen — also je nach Land völlig unterschiedlich strukturiert. Die Mod-97-Prüfung über die gesamte IBAN funktioniert aber überall identisch — das ist der Vorteil des ISO-7064-Standards. <strong>Wichtig:</strong> Unser Rechner prüft und zerlegt nur <strong>deutsche IBANs (DE)</strong> — eine französische IBAN wie diese lehnt er ab; das Beispiel zeigt nur den Strukturunterschied.
       </p>
 
-      <h3 class="text-xl font-semibold mt-8 mb-3">Beispiel 3: Französische IBAN — andere Länge, andere Struktur</h3>
+      <h2 class="text-2xl font-bold mt-12 mb-6">Funktioniert der IBAN-Rechner für jede Bank?</h2>
       <p>
-        Französische IBANs haben <strong>27 Zeichen</strong>: <code>FR14 2004 1010 0505 0001 3M02 606</code>. Der Aufbau: <code>FR</code> (Land), <code>14</code> (Prüfziffer), <code>20041</code> (Bankcode), <code>01005</code> (Filialcode), <code>0500013M026</code> (Kontonummer inkl. nationaler Schlüssel), <code>06</code> (RIB-Schlüssel als nationale Prüfziffer). Im Vergleich: Deutsche IBANs sind 22 Zeichen, britische 22, Schweizer 21, türkische 26, maltesische sogar 31 Zeichen — also je nach Land völlig unterschiedlich strukturiert. Die Mod-97-Prüfung über die gesamte IBAN funktioniert aber überall identisch — das ist der Vorteil des ISO-7064-Standards.
+        Das Standardverfahren — BLZ + auf 10 Stellen aufgefüllte Kontonummer + Prüfziffer — gilt für die meisten deutschen Banken, von der Deutschen Bank über Commerzbank und Sparkassen bis zu Volksbanken. Einzelne Institute verwenden jedoch bankindividuelle <a href="https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/iban-regeln" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">IBAN-Regeln (Deutsche Bundesbank)</a> — dort kann die tatsächliche IBAN vom Standardverfahren abweichen.
+      </p>
+      <p>
+        Außerdem wichtig: <strong>BIC und Bankname</strong> zeigt der Rechner nur für die gängigsten Bankleitzahlen an; bei anderen BLZ erscheint „Nicht in Datenbank" — die IBAN-Berechnung und die Prüfziffer-Validierung funktionieren trotzdem. Der Rechner prüft <strong>nicht</strong>, ob eine BLZ existiert oder das Konto tatsächlich geführt wird. Gleiche deshalb jede generierte IBAN vor der ersten Überweisung mit deinen Bankunterlagen ab.
       </p>
 
-      <h2 class="text-2xl font-bold mt-12 mb-6">Erweiterte FAQ</h2>
+      <h2 class="text-2xl font-bold mt-12 mb-6">Was ist der BIC?</h2>
+      <p>
+        Der <strong>BIC (Bank Identifier Code)</strong>, auch <strong>SWIFT-Code</strong> genannt, identifiziert die Bank eindeutig weltweit. Er besteht aus 8 oder 11 Zeichen:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>4 Buchstaben:</strong> Bankcode</li>
+        <li><strong>2 Buchstaben:</strong> Ländercode</li>
+        <li><strong>2 Zeichen:</strong> Ortscode</li>
+        <li><strong>3 Zeichen (optional):</strong> Filialcode</li>
+      </ul>
+      <p>
+        <strong>Wichtig:</strong> Für SEPA-Überweisungen innerhalb der EU/EWR wird der BIC seit Februar 2016 nicht mehr benötigt – die IBAN reicht aus.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fehler bei der IBAN</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Zahlendreher:</strong> Die Prüfziffer erkennt praktisch alle Einzel- und Doppelfehler</li>
+        <li><strong>Falsche Länge:</strong> Deutsche IBANs haben immer exakt 22 Zeichen</li>
+        <li><strong>Leerzeichen:</strong> Werden ignoriert, IBANs können mit oder ohne Leerzeichen angegeben werden</li>
+        <li><strong>Alte Kontonummern:</strong> Nach Bankfusionen können alte Nummern ungültig sein</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">SEPA-Überweisung: Wann brauche ich was?</h2>
+      <p>
+        Für <strong>SEPA-Überweisungen</strong> (innerhalb EU/EWR + Schweiz, Monaco, etc.):
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>IBAN:</strong> Pflicht für alle SEPA-Überweisungen</li>
+        <li><strong>BIC:</strong> Seit 2016 nicht mehr erforderlich (wird automatisch ermittelt)</li>
+        <li><strong>Name des Empfängers:</strong> Erforderlich</li>
+        <li><strong>Betrag:</strong> In Euro (andere Währungen: SWIFT-Überweisung)</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Wo finde ich meine IBAN?</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Auf der <strong>Bankkarte (Girocard)</strong> – meist auf der Vorder- oder Rückseite</li>
+        <li>Im <strong>Online-Banking</strong> – bei den Kontodetails</li>
+        <li>Auf <strong>Kontoauszügen</strong></li>
+        <li>In der <strong>Banking-App</strong> deiner Bank</li>
+        <li>Mit unserem <strong>IBAN-Rechner</strong> – aus Kontonummer und BLZ berechnen</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-12 mb-6">Häufig gestellte Fragen (FAQ)</h2>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie ist eine deutsche IBAN aufgebaut?</summary>
+        <p class="mt-2 text-gray-700">
+          Eine deutsche IBAN besteht aus 22 Zeichen: Ländercode "DE" (2 Zeichen), Prüfziffer (2 Ziffern), Bankleitzahl (8 Ziffern) und Kontonummer (10 Ziffern, ggf. mit führenden Nullen aufgefüllt).
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie berechne ich die IBAN-Prüfziffer?</summary>
+        <p class="mt-2 text-gray-700">
+          Die Prüfziffer wird nach ISO 7064 (Modulo 97) berechnet: BLZ + Kontonummer + Ländercode als Zahl (DE=1314) + "00" werden zusammengesetzt, der Rest bei Division durch 97 wird von 98 subtrahiert. Beispiel: Ergibt sich Rest 3, ist die Prüfziffer 95.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Brauche ich für SEPA-Überweisungen noch den BIC?</summary>
+        <p class="mt-2 text-gray-700">
+          Für SEPA-Überweisungen innerhalb der EU und des EWR wird der BIC seit 2016 nicht mehr benötigt – die IBAN reicht aus. Für Überweisungen außerhalb des SEPA-Raums ist der BIC weiterhin erforderlich.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Was bedeutet IBAN?</summary>
+        <p class="mt-2 text-gray-700">
+          IBAN steht für "International Bank Account Number". Sie ist eine international standardisierte Kontonummer, die Zahlungen im SEPA-Raum vereinfacht und sicherer macht.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Kann ich meine alte Kontonummer noch verwenden?</summary>
+        <p class="mt-2 text-gray-700">
+          Seit Februar 2016 ist die IBAN für alle SEPA-Überweisungen in Deutschland Pflicht. Alte Kontonummern und BLZ werden von Banken intern automatisch in die IBAN umgewandelt, aber für Überweisungen benötigen Sie die IBAN.
+        </p>
+      </details>
+
+      <details class="bg-gray-50 rounded-lg p-4 mb-3">
+        <summary class="font-semibold text-gray-800 cursor-pointer">Wie erkenne ich eine ungültige IBAN?</summary>
+        <p class="mt-2 text-gray-700">
+          Eine IBAN ist ungültig, wenn: die Länge nicht stimmt (22 Zeichen für DE), die Prüfziffer falsch ist, oder ungültige Zeichen enthalten sind. Unser IBAN-Rechner prüft alle diese Kriterien automatisch.
+        </p>
+      </details>
 
       <details class="bg-gray-50 rounded-lg p-4 mb-3">
         <summary class="font-semibold text-gray-800 cursor-pointer">Wie lang ist eine deutsche IBAN?</summary>
@@ -155,7 +301,7 @@ const faqSchema = {
       <details class="bg-gray-50 rounded-lg p-4 mb-3">
         <summary class="font-semibold text-gray-800 cursor-pointer">Was bedeutet die Prüfziffer in der IBAN?</summary>
         <p class="mt-2 text-gray-700">
-          Die <strong>Stellen 3 und 4</strong> der IBAN sind die Prüfziffer — eine mathematische Prüfsumme nach <strong>ISO 7064 Mod-97-10</strong>. Sie ist nicht zufällig, sondern wird aus BLZ, Kontonummer und Ländercode berechnet. Ihre Aufgabe: Tippfehler erkennen. Statistisch werden so 99 % aller Einzelfehler (eine falsche Ziffer) und nahezu alle Doppelfehler (zwei vertauschte Ziffern) erkannt. Deshalb ist eine IBAN viel sicherer als die alte Kombination BLZ + Kontonummer ohne Prüfziffer.
+          Die <strong>Stellen 3 und 4</strong> der IBAN sind die Prüfziffer — eine mathematische Prüfsumme nach <strong>ISO 7064 Mod-97-10</strong>. Sie ist nicht zufällig, sondern wird aus BLZ, Kontonummer und Ländercode berechnet. Ihre Aufgabe: Tippfehler erkennen. Sie erkennt praktisch alle Einzelfehler (eine falsche Ziffer) und Zahlendreher (zwei vertauschte Ziffern). Deshalb ist eine IBAN viel sicherer als die alte Kombination BLZ + Kontonummer ohne Prüfziffer.
         </p>
       </details>
 
@@ -176,7 +322,7 @@ const faqSchema = {
       <details class="bg-gray-50 rounded-lg p-4 mb-3">
         <summary class="font-semibold text-gray-800 cursor-pointer">Funktioniert IBAN weltweit?</summary>
         <p class="mt-2 text-gray-700">
-          Nein, IBAN gibt es nur in <strong>ca. 80 Ländern</strong> — vor allem in Europa, im Nahen Osten und in einigen Karibik-Staaten. Wichtige Länder <strong>ohne IBAN</strong>: USA (verwenden Routing Number + Account Number), Kanada (Transit Number + Account Number), Japan, China, Indien, Australien, Neuseeland und die meisten afrikanischen Länder. Für Überweisungen dorthin nutzt du den BIC und die jeweilige nationale Kontonummer — meist über das SWIFT-Netzwerk, das zwischen 1 und 5 Werktagen dauert und mit Gebühren von 15–50 € verbunden ist.
+          Nein, die IBAN wird nicht in allen Ländern verwendet — verbreitet ist sie vor allem in Europa, im Nahen Osten und in Teilen der Karibik. Wichtige Länder <strong>ohne IBAN</strong>: USA (verwenden Routing Number + Account Number), Kanada (Transit Number + Account Number), Japan, China, Indien, Australien, Neuseeland und die meisten afrikanischen Länder. Für Überweisungen dorthin nutzt du den BIC und die jeweilige nationale Kontonummer — meist über das SWIFT-Netzwerk, das je nach Bank länger dauern und Gebühren kosten kann.
         </p>
       </details>
 
@@ -189,217 +335,20 @@ const faqSchema = {
 
       <h2 class="text-2xl font-bold mt-12 mb-6">Quellen & Methodik</h2>
       <p>
-        Der IBAN-Rechner setzt die offizielle <strong>ISO 13616</strong> für das IBAN-Format und <strong>DIN ISO 7064 (Mod-97-10)</strong> für die Prüfziffer-Berechnung um. Grundlage für die deutsche IBAN ist die Spezifikation der <strong>Deutschen Bundesbank</strong> sowie die <strong>SEPA-Verordnung (EU) Nr. 260/2012</strong>, die seit Februar 2016 die IBAN für alle EU-Überweisungen vorschreibt. Für die Bank-Erkennung wird die Bankleitzahlen-Datei der Bundesbank verwendet (vierteljährlich aktualisiert), für die BIC-Zuordnung der Verzeichnisdienst von SWIFT (Society for Worldwide Interbank Financial Telecommunication). Die Prüfziffer wird nach dem <strong>Modulo-97-10-Verfahren</strong> berechnet — bei korrekter IBAN ergibt die Mod-97-Operation immer den Rest 1.
+        Der IBAN-Rechner setzt die offizielle <strong>ISO 13616</strong> für das IBAN-Format und <strong>DIN ISO 7064 (Mod-97-10)</strong> für die Prüfziffer-Berechnung um. Grundlage für die deutsche IBAN sind die <a href="https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/iban-regeln" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">IBAN-Regeln der Deutschen Bundesbank</a> sowie die <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32012R0260" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">SEPA-Verordnung (EU) Nr. 260/2012</a>, die seit Februar 2016 die IBAN für alle EU-Überweisungen vorschreibt. Die Bank- und BIC-Zuordnung erfolgt für die gängigsten Bankleitzahlen auf Basis des <a href="https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/bankleitzahlen" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Bankleitzahlen-Verzeichnisses der Deutschen Bundesbank</a>; bei nicht hinterlegten BLZ wird kein BIC angezeigt. Die Prüfziffer wird nach dem <strong>Modulo-97-10-Verfahren</strong> berechnet — bei korrekter IBAN ergibt die Mod-97-Operation immer den Rest 1.
       </p>
 
-      <p class="text-sm text-gray-500 mt-6">Zuletzt aktualisiert: April 2026</p>
+      <div class="mt-6 p-4 bg-gray-100 rounded-lg text-xs text-gray-500 not-prose">
+        <strong>Hinweis:</strong> Dieser IBAN-Rechner dient zur Orientierung. Obwohl wir die
+        Prüfziffernberechnung nach ISO 7064 korrekt implementiert haben, übernehmen wir keine
+        Gewähr für die Richtigkeit. Prüfen Sie generierte IBANs vor Verwendung bei Ihrer Bank.
+      </div>
+
+      <p class="text-sm text-gray-500 mt-6">Zuletzt aktualisiert: Juni 2026</p>
     </article>
 
-    <RechnerTrust quellen="ISO 13616 (IBAN), DIN ISO 7064 (Mod-97-10), Deutsche Bundesbank IBAN-Spezifikation, SEPA-VO (EU) 260/2012" aktualisiert="April 2026" />
+    <RechnerTrust quellen="ISO 13616 (IBAN), DIN ISO 7064 (Mod-97-10), Deutsche Bundesbank IBAN-Regeln, SEPA-VO (EU) 260/2012" aktualisiert="Juni 2026" />
 
     <VerwandteRechner aktuellerSlug="iban" slugs={['kredit', 'autofinanzierung', 'baufinanzierung']} kategorie="finanzen" />
-
-<!-- SEO Content Section -->
-    <div class="max-w-2xl mx-auto px-4 mt-8">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">IBAN-Rechner: Alles Wichtige zur deutschen IBAN</h2>
-        
-        <div class="prose prose-sm text-gray-600 space-y-4">
-          <p>
-            Mit unserem <strong>IBAN-Rechner</strong> können Sie in Sekunden Ihre IBAN aus Kontonummer und 
-            Bankleitzahl generieren, eine vorhandene IBAN auf Gültigkeit prüfen oder in ihre Bestandteile 
-            zerlegen. Der Rechner zeigt zusätzlich den <strong>BIC (SWIFT-Code)</strong> und die Bank an.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist eine IBAN?</h3>
-          <p>
-            Die <strong>IBAN (International Bank Account Number)</strong> ist eine international 
-            standardisierte Kontonummer, die den Zahlungsverkehr im SEPA-Raum (Single Euro Payments Area) 
-            vereinheitlicht. Sie ersetzt seit 2016 die alte Kombination aus Kontonummer und Bankleitzahl 
-            für Überweisungen.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Aufbau der deutschen IBAN</h3>
-          <p>
-            Eine deutsche IBAN besteht aus genau <strong>22 Zeichen</strong> und ist wie folgt aufgebaut:
-          </p>
-          <div class="bg-gray-100 p-4 rounded-lg my-4 overflow-x-auto">
-            <table class="w-full text-sm">
-              <thead>
-                <tr class="text-left border-b border-gray-300">
-                  <th class="pb-2">Position</th>
-                  <th class="pb-2">Inhalt</th>
-                  <th class="pb-2">Beispiel</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="border-b border-gray-200">
-                  <td class="py-2">1-2</td>
-                  <td>Ländercode</td>
-                  <td class="font-mono">DE</td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                  <td class="py-2">3-4</td>
-                  <td>Prüfziffer</td>
-                  <td class="font-mono">89</td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                  <td class="py-2">5-12</td>
-                  <td>Bankleitzahl (BLZ)</td>
-                  <td class="font-mono">37050198</td>
-                </tr>
-                <tr>
-                  <td class="py-2">13-22</td>
-                  <td>Kontonummer</td>
-                  <td class="font-mono">0000123456</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p>
-            <strong>Beispiel:</strong> DE89 3705 0198 0000 1234 56 (Sparkasse KölnBonn)
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie funktioniert die Prüfziffer?</h3>
-          <p>
-            Die zweistellige <strong>Prüfziffer</strong> wird nach dem internationalen Standard 
-            <strong>ISO 7064 (Modulo 97-10)</strong> berechnet. Sie dient dazu, Tippfehler bei der 
-            IBAN-Eingabe zu erkennen. Der Algorithmus:
-          </p>
-          <ol class="list-decimal pl-5 space-y-1">
-            <li>BLZ und Kontonummer aneinanderreihen</li>
-            <li>Ländercode in Zahlen umwandeln (D=13, E=14) und "00" anhängen</li>
-            <li>Die resultierende Zahl durch 97 teilen</li>
-            <li>98 minus Rest = Prüfziffer</li>
-          </ol>
-          <p>
-            Bei richtiger IBAN ergibt die Modulo-97-Berechnung immer den Wert 1. Unser Rechner führt 
-            diese Prüfung automatisch durch.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der BIC?</h3>
-          <p>
-            Der <strong>BIC (Bank Identifier Code)</strong>, auch <strong>SWIFT-Code</strong> genannt, 
-            identifiziert die Bank eindeutig weltweit. Er besteht aus 8 oder 11 Zeichen:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>4 Buchstaben:</strong> Bankcode</li>
-            <li><strong>2 Buchstaben:</strong> Ländercode</li>
-            <li><strong>2 Zeichen:</strong> Ortscode</li>
-            <li><strong>3 Zeichen (optional):</strong> Filialcode</li>
-          </ul>
-          <p>
-            <strong>Wichtig:</strong> Für SEPA-Überweisungen innerhalb der EU/EWR wird der BIC seit 
-            Februar 2016 nicht mehr benötigt – die IBAN reicht aus.
-          </p>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">IBAN vs. Kontonummer & BLZ</h3>
-          <p>
-            Die IBAN enthält im Prinzip die gleichen Informationen wie die alte Kombination aus 
-            Kontonummer und Bankleitzahl, ergänzt um den Ländercode und eine Prüfziffer:
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Kontonummer:</strong> Wird auf 10 Stellen mit führenden Nullen aufgefüllt</li>
-            <li><strong>Bankleitzahl:</strong> Bleibt unverändert (8 Stellen)</li>
-            <li><strong>Neu:</strong> Ländercode (DE) + Prüfziffer für Fehlererkennung</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Häufige Fehler bei der IBAN</h3>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Zahlendreher:</strong> Die Prüfziffer erkennt 99% aller Einzel- und Doppelfehler</li>
-            <li><strong>Falsche Länge:</strong> Deutsche IBANs haben immer exakt 22 Zeichen</li>
-            <li><strong>Leerzeichen:</strong> Werden ignoriert, IBANs können mit oder ohne Leerzeichen angegeben werden</li>
-            <li><strong>Alte Kontonummern:</strong> Nach Bankfusionen können alte Nummern ungültig sein</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">SEPA-Überweisung: Wann brauche ich was?</h3>
-          <p>
-            Für <strong>SEPA-Überweisungen</strong> (innerhalb EU/EWR + Schweiz, Monaco, etc.):
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>IBAN:</strong> Pflicht für alle SEPA-Überweisungen</li>
-            <li><strong>BIC:</strong> Seit 2016 nicht mehr erforderlich (wird automatisch ermittelt)</li>
-            <li><strong>Name des Empfängers:</strong> Erforderlich</li>
-            <li><strong>Betrag:</strong> In Euro (andere Währungen: SWIFT-Überweisung)</li>
-          </ul>
-          
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wo finde ich meine IBAN?</h3>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Auf der <strong>Bankkarte (Girocard)</strong> – meist auf der Vorder- oder Rückseite</li>
-            <li>Im <strong>Online-Banking</strong> – bei den Kontodetails</li>
-            <li>Auf <strong>Kontoauszügen</strong></li>
-            <li>In der <strong>Banking-App</strong> Ihrer Bank</li>
-            <li>Mit unserem <strong>IBAN-Rechner</strong> – aus Kontonummer und BLZ berechnen</li>
-          </ul>
-        </div>
-        
-        <!-- FAQ Section -->
-        <div class="mt-8 pt-6 border-t border-gray-200">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">Häufig gestellte Fragen (FAQ)</h2>
-          
-          <div class="space-y-4">
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="font-semibold text-gray-800 cursor-pointer">Wie ist eine deutsche IBAN aufgebaut?</summary>
-              <p class="mt-2 text-gray-600">
-                Eine deutsche IBAN besteht aus 22 Zeichen: Ländercode "DE" (2 Zeichen), Prüfziffer 
-                (2 Ziffern), Bankleitzahl (8 Ziffern) und Kontonummer (10 Ziffern, ggf. mit führenden 
-                Nullen aufgefüllt).
-              </p>
-            </details>
-            
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="font-semibold text-gray-800 cursor-pointer">Wie berechne ich die IBAN-Prüfziffer?</summary>
-              <p class="mt-2 text-gray-600">
-                Die Prüfziffer wird nach ISO 7064 (Modulo 97) berechnet: BLZ + Kontonummer + 
-                Ländercode als Zahl (DE=1314) + "00" werden zusammengesetzt, der Rest bei Division 
-                durch 97 wird von 98 subtrahiert.
-              </p>
-            </details>
-            
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="font-semibold text-gray-800 cursor-pointer">Brauche ich für SEPA-Überweisungen noch den BIC?</summary>
-              <p class="mt-2 text-gray-600">
-                Für SEPA-Überweisungen innerhalb der EU und des EWR wird der BIC seit 2016 nicht 
-                mehr benötigt – die IBAN reicht aus. Für Überweisungen außerhalb des SEPA-Raums 
-                ist der BIC weiterhin erforderlich.
-              </p>
-            </details>
-            
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="font-semibold text-gray-800 cursor-pointer">Was bedeutet IBAN?</summary>
-              <p class="mt-2 text-gray-600">
-                IBAN steht für "International Bank Account Number". Sie ist eine international 
-                standardisierte Kontonummer, die Zahlungen im SEPA-Raum vereinfacht und sicherer macht.
-              </p>
-            </details>
-            
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="font-semibold text-gray-800 cursor-pointer">Kann ich meine alte Kontonummer noch verwenden?</summary>
-              <p class="mt-2 text-gray-600">
-                Seit Februar 2016 ist die IBAN für alle SEPA-Überweisungen in Deutschland Pflicht. 
-                Alte Kontonummern und BLZ werden von Banken intern automatisch in die IBAN umgewandelt, 
-                aber für Überweisungen benötigen Sie die IBAN.
-              </p>
-            </details>
-            
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="font-semibold text-gray-800 cursor-pointer">Wie erkenne ich eine ungültige IBAN?</summary>
-              <p class="mt-2 text-gray-600">
-                Eine IBAN ist ungültig, wenn: die Länge nicht stimmt (22 Zeichen für DE), die 
-                Prüfziffer falsch ist, oder ungültige Zeichen enthalten sind. Unser IBAN-Rechner 
-                prüft alle diese Kriterien automatisch.
-              </p>
-            </details>
-          </div>
-        </div>
-        
-        <!-- Rechtshinweis -->
-        <div class="mt-6 p-4 bg-gray-100 rounded-lg text-xs text-gray-500">
-          <strong>Hinweis:</strong> Dieser IBAN-Rechner dient zur Orientierung. Obwohl wir die 
-          Prüfziffernberechnung nach ISO 7064 korrekt implementiert haben, übernehmen wir keine 
-          Gewähr für die Richtigkeit. Prüfen Sie generierte IBANs vor Verwendung bei Ihrer Bank.
-        </div>
-      </div>
-    </div>
 </main>
 </Layout>
