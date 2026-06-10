@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Rentenpunkte / Entgeltpunkte 2026
 // Quelle: Deutsche Rentenversicherung – Sozialversicherungsrechengrößen 2026,
@@ -32,7 +31,6 @@ export default function RentenpunkteRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Rentenpunkte-Rechner" rechnerSlug="rentenpunkte-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

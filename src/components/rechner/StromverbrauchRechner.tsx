@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Strompreis-Default Stand Juni 2026
 // Quelle: Finanztip Strompreis (Bestandskunden-Musterhaushalt ~37,2 ct/kWh,
@@ -74,7 +73,6 @@ export function StromverbrauchRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Stromverbrauch-Rechner (Geräte)" rechnerSlug="stromverbrauch-rechner" />
 
       {/* Geräte-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

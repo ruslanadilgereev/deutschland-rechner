@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Bereitstellungszinsen fallen auf den noch nicht abgerufenen Teil des Darlehens
 // an, nach Ablauf der bereitstellungsfreien Zeit. Standard: 0,25 %/Monat (= 3 %/Jahr),
@@ -72,7 +71,6 @@ export function BereitstellungszinsenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Bereitstellungszinsen-Rechner" rechnerSlug="bereitstellungszinsen-rechner" />
 
       {/* Eckdaten */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

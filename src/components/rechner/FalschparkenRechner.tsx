@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // Bußgeldkatalog Halten & Parken (§ 12 StVO), Stand seit 9.11.2021
@@ -174,7 +173,6 @@ export function FalschparkenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Falschparken-Bußgeldrechner" rechnerSlug="falschparken-rechner" />
 
       {/* Verstoß-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

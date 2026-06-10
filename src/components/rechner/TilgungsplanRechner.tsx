@@ -1,5 +1,4 @@
 import { useState, useMemo, useRef } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 interface TilgungsZeile {
   monat: number;
@@ -240,7 +239,6 @@ export default function TilgungsplanRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Tilgungsplan-Rechner" rechnerSlug="tilgungsplan-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // BAFA-Förderung 2026 (Bundesförderung für effiziente Gebäude)
 // Quelle: BAFA, KfW, BMWi
@@ -205,7 +204,6 @@ export default function WaermepumpeRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Wärmepumpe-Rechner 2025 & 2026" rechnerSlug="waermepumpe-rechner" />
 
 {/* Eingabe-Bereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

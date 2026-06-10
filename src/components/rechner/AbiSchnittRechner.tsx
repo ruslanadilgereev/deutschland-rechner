@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 interface Kurs {
   id: string;
@@ -243,7 +242,6 @@ export default function AbiSchnittRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Abitur-Schnitt-Rechner 2025/2026" rechnerSlug="abi-schnitt-rechner" />
 
 {/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-4 mb-6">

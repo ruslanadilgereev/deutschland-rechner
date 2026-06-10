@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Innentüren-Kosten:
 //   Stückpreis je Tür = Türblatt + Zarge + Beschlag/Drückergarnitur + Montage
@@ -80,7 +79,6 @@ export function InnentuerenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Innentüren-Rechner" rechnerSlug="innentueren-rechner" />
 
       {/* Türtyp-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

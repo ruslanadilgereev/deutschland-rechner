@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Materialbedarf für eine abgehängte Decke in Metall-Unterkonstruktion
 // (Gipskarton-Unterdecke nach Knauf D11 / D112):
@@ -88,7 +87,6 @@ export function AbgehaengteDeckeRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Abgehängte-Decke-Rechner" rechnerSlug="abgehaengte-decke-rechner" />
 
       {/* Eingabeart */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

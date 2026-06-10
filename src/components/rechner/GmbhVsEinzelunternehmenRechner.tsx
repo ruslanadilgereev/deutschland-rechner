@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ════════════════════════════════════════════════════════════════════
 // GmbH vs. Einzelunternehmen – Steuervergleich 2026
@@ -187,10 +186,6 @@ export function GmbhVsEinzelunternehmenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback
-        rechnerName="GmbH vs. Einzelunternehmen Rechner"
-        rechnerSlug="gmbh-vs-einzelunternehmen-rechner"
-      />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

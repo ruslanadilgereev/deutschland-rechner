@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Wärmeübergangswiderstände Rsi/Rse nach DIN EN ISO 6946 je nach Bauteil
 // und Richtung des Wärmestroms. GEG-Höchstwert (Anlage 7) zum Abgleich.
@@ -84,7 +83,6 @@ export function UWertRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="U-Wert-Rechner" rechnerSlug="u-wert-rechner" />
 
       {/* Bauteil-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

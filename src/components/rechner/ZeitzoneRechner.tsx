@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 interface Zeitzone {
   id: string;
@@ -216,7 +215,6 @@ export default function ZeitzoneRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Zeitzonen-Rechner" rechnerSlug="zeitzone-rechner" />
 
 {/* Schnellauswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

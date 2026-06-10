@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // §23 EStG – Private Veräußerungsgeschäfte (Kryptowährungen)
 // Freigrenze erhöht auf 1.000€ ab 2024
@@ -226,7 +225,6 @@ export default function KryptoSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Krypto-Steuer-Rechner 2025 & 2026" rechnerSlug="krypto-steuer-rechner" />
 
 {/* Transaktionen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

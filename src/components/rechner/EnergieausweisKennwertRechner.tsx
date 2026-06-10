@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Energieträger mit Umrechnungsfaktor auf kWh (Endenergie, Brennwert-Richtwerte).
 // Eingabe in der jeweiligen Einheit × Faktor = kWh.
@@ -60,7 +59,6 @@ export function EnergieausweisKennwertRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Energieausweis-Rechner" rechnerSlug="energieausweis-kennwert-rechner" />
 
       {/* Energieträger */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

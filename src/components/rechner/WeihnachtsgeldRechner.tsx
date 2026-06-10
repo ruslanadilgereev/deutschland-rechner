@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // =============================================================
 // Weihnachtsgeld-Rechner (brutto -> netto), Stand 2026
@@ -141,7 +140,6 @@ export default function WeihnachtsgeldRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Weihnachtsgeld-Rechner" rechnerSlug="weihnachtsgeld-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

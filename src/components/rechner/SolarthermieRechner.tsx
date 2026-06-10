@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Auslegungs-Faustwerte Solarthermie (Stand 2026)
 // Quellen: solaranlage-ratgeber.de (Dimensionierung), Viessmann (Solarthermie
@@ -91,7 +90,6 @@ export function SolarthermieRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Solarthermie-Rechner" rechnerSlug="solarthermie-rechner" />
 
       {/* Nutzungsart */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

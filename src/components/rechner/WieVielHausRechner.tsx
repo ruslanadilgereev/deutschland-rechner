@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Grunderwerbsteuersätze je Bundesland (Stand 2026).
 // Quelle: Statistisches Bundesamt / Finanzverwaltungen der Länder.
@@ -71,7 +70,6 @@ export function WieVielHausRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Wie viel Haus kann ich mir leisten" rechnerSlug="wie-viel-haus-rechner" />
 
       {/* Einkommen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

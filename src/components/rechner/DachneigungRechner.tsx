@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Berechnungsmodus: aus Höhe + Länge die Neigung herleiten, oder eine bereits
 // bekannte Neigung (Grad bzw. Prozent) in die jeweils anderen Größen umrechnen.
@@ -76,7 +75,6 @@ export function DachneigungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Dachneigungs-Rechner" rechnerSlug="dachneigung-rechner" />
 
       {/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

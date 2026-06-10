@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Margen- & Aufschlag-Rechner (Handelskalkulation)
 // Formeln (alle mit Nettopreisen):
@@ -65,7 +64,6 @@ export default function MargeRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Margen- & Aufschlag-Rechner" rechnerSlug="marge-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

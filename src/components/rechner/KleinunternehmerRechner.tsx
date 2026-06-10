@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Kleinunternehmerregelung § 19 UStG – Stand seit 01.01.2025 (Reform durch JStG 2024)
 // Quelle: § 19 UStG / BMF-Schreiben vom 18.03.2025
@@ -40,7 +39,6 @@ export default function KleinunternehmerRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Kleinunternehmer-Rechner" rechnerSlug="kleinunternehmer-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

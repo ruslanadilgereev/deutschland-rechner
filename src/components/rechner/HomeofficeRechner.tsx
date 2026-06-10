@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Homeoffice-Pauschale (Tagespauschale) - Offizielle Berechnung
@@ -113,7 +112,6 @@ export default function HomeofficeRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Homeoffice-Pauschale Rechner 2026" rechnerSlug="homeoffice-pauschale-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

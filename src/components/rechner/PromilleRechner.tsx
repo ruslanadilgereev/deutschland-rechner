@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Widmark-Formel Konstanten
 const WIDMARK = {
@@ -210,7 +209,6 @@ export default function PromilleRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Promille-Rechner" rechnerSlug="promille-rechner" />
 
 {/* Warnung */}
       <div className="bg-red-50 border border-red-200 rounded-2xl p-4 mb-6">

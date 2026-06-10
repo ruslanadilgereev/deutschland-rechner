@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 interface MieterhoehungResult {
   aktuelleKaltmiete: number;
@@ -189,7 +188,6 @@ export default function MieterhoehungRechner() {
 
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="Mieterhöhung-Rechner" rechnerSlug="mieterhoehung-rechner" />
 
 {/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">

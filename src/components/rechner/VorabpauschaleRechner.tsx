@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Vorabpauschale 2026
 // Basiszins zum 2. Januar 2026 = 3,20 % (BMF-Schreiben vom 13.01.2026, § 18 Abs. 4 InvStG;
@@ -70,7 +69,6 @@ export default function VorabpauschaleRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Vorabpauschale-Rechner" rechnerSlug="vorabpauschale-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

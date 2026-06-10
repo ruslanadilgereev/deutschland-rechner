@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // PUNKTE IN FLENSBURG – Fahreignungs-Bewertungssystem
@@ -159,7 +158,6 @@ export function PunkteFlensburgRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Punkte-in-Flensburg-Rechner" rechnerSlug="punkte-flensburg-rechner" />
 
       {/* Einträge */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

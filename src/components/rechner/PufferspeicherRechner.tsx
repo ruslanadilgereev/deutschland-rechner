@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Konstante zur Umrechnung Energie -> Wasservolumen.
 // Speichervolumen V [Liter] = Q [kWh] x 1000 / (c x dT), mit der spezifischen
@@ -142,7 +141,6 @@ export function PufferspeicherRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Pufferspeicher-Rechner" rechnerSlug="pufferspeicher-rechner" />
 
       {/* Anlagentyp-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

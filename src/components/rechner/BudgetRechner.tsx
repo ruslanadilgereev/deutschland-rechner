@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 const DEFAULT_PROZENTE = { beduerfnisse: 50, wuensche: 30, sparen: 20 };
 
@@ -49,7 +48,6 @@ export default function BudgetRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Budget-Rechner" rechnerSlug="budget-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Wanddicke bestimmt den Dünnbettmörtel-(Kleber-)Verbrauch:
 // Faustwert ~0,8 kg/m² je 100 mm Wanddicke.
@@ -43,7 +42,6 @@ export function PorenbetonRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Porenbeton-Rechner" rechnerSlug="porenbeton-rechner" />
 
       {/* Wandmaße */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

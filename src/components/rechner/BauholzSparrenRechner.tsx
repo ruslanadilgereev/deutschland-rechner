@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Sparren-Rechner: Geometrie + Mengen (laufende Meter und Holzvolumen) für
 // Sparrendächer (Satteldach / Pultdach).
@@ -98,7 +97,6 @@ export function BauholzSparrenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Sparren-Rechner" rechnerSlug="bauholz-sparren-rechner" />
 
       {/* Dachform-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

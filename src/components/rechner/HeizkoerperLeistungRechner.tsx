@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Spezifische Heizlast (Richtwerte in W/m2) nach Bau-/Daemmstandard.
 // Grobe Orientierungswerte fuer ueberschlaegige Auslegung – die exakte
@@ -101,7 +100,6 @@ export function HeizkoerperLeistungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Heizkörper-Leistung-Rechner" rechnerSlug="heizkoerper-leistung-rechner" />
 
       {/* Modus-Umschalter */}
       <div className="bg-white rounded-2xl shadow-lg p-2 mb-6 grid grid-cols-2 gap-2">

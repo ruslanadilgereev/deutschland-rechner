@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Modus: Rollenware mit Bahnbreiten-Logik oder einfache m²-Variante mit Verschnitt.
 type Modus = 'bahn' | 'flaeche';
@@ -64,7 +63,6 @@ export function TeppichbodenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Teppichboden-Rechner" rechnerSlug="teppichboden-rechner" />
 
       {/* Modus */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

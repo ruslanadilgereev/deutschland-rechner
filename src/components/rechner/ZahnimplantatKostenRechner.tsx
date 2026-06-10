@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Zahnimplantat-Kosten 2026 (Schätzung, Richtwerte für Deutschland)
 // Quellen:
@@ -63,7 +62,6 @@ export default function ZahnimplantatKostenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Zahnimplantat-Kosten-Rechner" rechnerSlug="zahnimplantat-kosten-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-6">

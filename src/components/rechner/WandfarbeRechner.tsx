@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Farbbedarf:
 //  Brutto-Wandfläche = (Länge + Breite) × 2 × Raumhöhe  (ganzer Raum)
@@ -47,7 +46,6 @@ export function WandfarbeRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Wandfarben-Rechner" rechnerSlug="wandfarbe-rechner" />
 
       {/* Modus */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

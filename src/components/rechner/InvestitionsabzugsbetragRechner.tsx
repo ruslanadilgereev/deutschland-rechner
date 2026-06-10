@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // === Investitionsabzugsbetrag § 7g EStG – Konstanten (Stand 2026) ===
 // Quelle: https://www.gesetze-im-internet.de/estg/__7g.html
@@ -65,7 +64,6 @@ export default function InvestitionsabzugsbetragRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Investitionsabzugsbetrag-Rechner (§ 7g)" rechnerSlug="investitionsabzugsbetrag-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

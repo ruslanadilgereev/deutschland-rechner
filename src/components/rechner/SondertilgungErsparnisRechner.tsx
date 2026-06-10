@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Sondertilgung-Rechner: stellt zwei monatsgenaue Annuitaeten-Tilgungsplaene
 // gegenueber – Szenario A "ohne Sondertilgung" und Szenario B "mit Sondertilgung".
@@ -134,10 +133,6 @@ export function SondertilgungErsparnisRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback
-        rechnerName="Sondertilgung-Rechner"
-        rechnerSlug="sondertilgung-ersparnis-rechner"
-      />
 
       {/* Eingaben Darlehen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

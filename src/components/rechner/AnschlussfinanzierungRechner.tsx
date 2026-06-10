@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Annuitätendarlehen auf die Restschuld am Ende der Erstzinsbindung.
 // Monatsrate = Restschuld * (Sollzins + Anfangstilgung) / 100 / 12.
@@ -71,7 +70,6 @@ export function AnschlussfinanzierungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Anschlussfinanzierung-Rechner" rechnerSlug="anschlussfinanzierung-rechner" />
 
       {/* Eckdaten */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

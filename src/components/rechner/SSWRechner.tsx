@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 const SCHWANGERSCHAFT_TAGE = 280; // 40 Wochen
 
@@ -177,7 +176,6 @@ export default function SSWRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="SSW-Rechner" rechnerSlug="ssw-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

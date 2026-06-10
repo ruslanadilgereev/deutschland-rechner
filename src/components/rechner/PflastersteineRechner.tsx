@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Pflastersplitt-Bettung: ~75 kg/m² bei 5 cm Dicke (Rohdichte ≈ 1.500 kg/m³).
 // Daraus folgt 15 kg pro m² und cm Bettungsdicke.
@@ -70,7 +69,6 @@ export function PflastersteineRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Pflaster-Rechner" rechnerSlug="pflastersteine-rechner" />
 
       {/* Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

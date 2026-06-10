@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Anrechnung der Wohnfläche nach Wohnflächenverordnung (WoFlV §4):
 //  - Raumteile mit lichter Höhe >= 2,00 m -> 100 %
@@ -80,7 +79,6 @@ export function WohnflaecheRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Wohnflächen-Rechner" rechnerSlug="wohnflaeche-rechner" />
 
       {/* Norm-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

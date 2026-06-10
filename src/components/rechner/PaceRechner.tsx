@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Pace-Rechner (Laufen) – reine Mathematik, exakt.
 // Pace (min/km)  = Zeit (min) / Strecke (km)
@@ -95,7 +94,6 @@ export default function PaceRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Pace-Rechner (Laufen)" rechnerSlug="pace-rechner" />
 
       {/* Modus-Umschalter */}
       <div className="bg-white rounded-2xl shadow-lg p-2 mb-6 flex gap-2">

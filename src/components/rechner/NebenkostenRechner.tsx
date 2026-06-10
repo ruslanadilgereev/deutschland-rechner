@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Nebenkosten-Rechner 2026
@@ -463,7 +462,6 @@ export default function NebenkostenRechner() {
   
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="Nebenkosten-Rechner" rechnerSlug="nebenkosten-rechner" />
 
 {/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Laminatbedarf:
 //  Fläche       = Länge × Breite
@@ -66,7 +65,6 @@ export function LaminatRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Laminat-Rechner" rechnerSlug="laminat-rechner" />
 
       {/* Verlegemuster */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

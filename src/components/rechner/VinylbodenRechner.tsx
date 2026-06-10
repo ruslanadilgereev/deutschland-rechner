@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Verlegeart bestimmt den Verschnitt-Zuschlag. Quelle: casando, sanier.de.
 type Verlegeart = {
@@ -55,7 +54,6 @@ export function VinylbodenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Vinylboden-Rechner" rechnerSlug="vinylboden-rechner" />
 
       {/* Verlegeart */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

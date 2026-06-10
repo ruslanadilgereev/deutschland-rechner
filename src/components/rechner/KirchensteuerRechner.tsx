@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * KIRCHENSTEUERRECHNER 2025/2026
@@ -321,7 +320,6 @@ export default function KirchensteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Kirchensteuer-Rechner 2025 & 2026" rechnerSlug="kirchensteuer-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

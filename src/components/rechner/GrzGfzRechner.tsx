@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Wohnflaechen-Faktor: Umrechnung Geschossflaeche -> Wohnflaeche.
 // Geschossflaeche wird nach Aussenmassen aller Vollgeschosse gemessen (BauNVO § 20),
@@ -86,7 +85,6 @@ export function GrzGfzRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="GRZ/GFZ-Rechner" rechnerSlug="grz-gfz-rechner" />
 
       {/* Gebiets-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

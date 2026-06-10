@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Trockenbau-Materialbedarf für eine Metallständerwand (Knauf W111 / DIN 18181):
 //  Wandfläche A   = Länge × Höhe (m²)
@@ -84,7 +83,6 @@ export function TrockenbauRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Trockenbau-Rechner" rechnerSlug="trockenbau-rechner" />
 
       {/* Plattenformat */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

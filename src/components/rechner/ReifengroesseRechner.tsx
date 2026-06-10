@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Korrekturfaktor für den Abrollumfang: Unter Last walkt der Reifen ein,
 // dadurch ist der dynamische Abrollumfang etwas kleiner als der rein
@@ -87,7 +86,6 @@ export function ReifengroesseRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Reifengrößen-Rechner" rechnerSlug="reifengroesse-rechner" />
 
       {/* Reifen alt */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

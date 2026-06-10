@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Grundierungs-/Tiefengrund-Bedarf:
 //  Brutto-Fläche = (Länge + Breite) × 2 × Höhe (ganzer Raum) bzw. Direkteingabe (Einzelfläche)
@@ -74,7 +73,6 @@ export function GrundierungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Grundierung-Rechner (Tiefengrund Verbrauch)" rechnerSlug="grundierung-rechner" />
 
       {/* Untergrund-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

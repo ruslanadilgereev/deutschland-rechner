@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ── Werte 2026 ───────────────────────────────────────────────────────────────
 // Quelle: count.tax / VLH / Bundesfinanzministerium (Steuerfortentwicklungsgesetz)
@@ -65,7 +64,6 @@ export default function KinderfreibetragRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Kinderfreibetrag-Rechner 2026" rechnerSlug="kinderfreibetrag-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

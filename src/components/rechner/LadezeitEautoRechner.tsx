@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Ladeverluste: Beim AC-Laden gehen durch Wandlung und Thermomanagement
 // typisch 10–15 % verloren, beim DC-Schnellladen ca. 5–10 %.
@@ -85,7 +84,6 @@ export function LadezeitEautoRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="E-Auto-Ladezeit-Rechner" rechnerSlug="ladezeit-eauto-rechner" />
 
       {/* Akku-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

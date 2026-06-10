@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Anwendungs-Presets setzen Schichtdicke und passenden Sandtyp/Schüttdichte.
 type Preset = {
@@ -51,7 +50,6 @@ export function SandRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Sand-Rechner" rechnerSlug="sand-rechner" />
 
       {/* Anwendung */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

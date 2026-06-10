@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ════════════════════════════════════════════════════════════════════
 // BMI-Perzentile für Kinder & Jugendliche (2–18 Jahre)
@@ -177,7 +176,6 @@ export function BmiKinderRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="BMI-Rechner für Kinder" rechnerSlug="bmi-kinder-rechner" />
 
       {/* YMYL-Disclaimer */}
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 text-sm text-amber-900">

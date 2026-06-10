@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Beitragsbemessungsgrenze (BBG) Krankenversicherung 2026
 const BBG_KV_2026 = 69750; // Jahres-BBG
@@ -136,7 +135,6 @@ export default function KrankengeldRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Krankengeld-Rechner 2025 & 2026" rechnerSlug="krankengeld-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

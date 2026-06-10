@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Bitcoin- & Krypto-Rechner – Live-Umrechner Krypto <-> Euro
 // Datenquelle: CoinGecko Simple-Price-API (kostenlos, kein API-Key nötig)
@@ -147,7 +146,6 @@ export default function BitcoinRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Bitcoin- & Krypto-Rechner" rechnerSlug="bitcoin-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // Erwerbsminderungsrente Berechnungsgrundlagen 2026
@@ -282,7 +281,6 @@ export default function ErwerbsminderungsrenteRechner() {
 
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="Erwerbsminderungsrente-Rechner 2026" rechnerSlug="erwerbsminderungsrente-rechner" />
 
 {/* Eingabeformular */}
       <div className="bg-white rounded-2xl shadow-lg p-6">

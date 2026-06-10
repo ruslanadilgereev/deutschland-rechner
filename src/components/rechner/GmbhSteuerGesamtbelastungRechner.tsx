@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // GmbH-Gesamtsteuerbelastung 2026 – zweistufige Besteuerung
 // Stufe 1 (Gesellschaft):
@@ -122,7 +121,6 @@ export default function GmbhSteuerGesamtbelastungRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="GmbH-Steuer-Rechner (Thesaurierung vs. Ausschüttung)" rechnerSlug="gmbh-steuer-gesamtbelastung-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

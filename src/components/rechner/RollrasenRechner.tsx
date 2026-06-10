@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Modus: fertigen Rollrasen verlegen oder die Saat-Alternative berechnen.
 type Modus = 'rollrasen' | 'saat';
@@ -70,7 +69,6 @@ export function RollrasenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Rollrasen-Rechner" rechnerSlug="rollrasen-rechner" />
 
       {/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

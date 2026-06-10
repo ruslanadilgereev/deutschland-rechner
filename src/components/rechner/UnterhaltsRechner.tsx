@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Düsseldorfer Tabelle 2026 (gültig ab 01.01.2026)
 // Quelle: OLG Düsseldorf, Unterhaltsleitlinien
@@ -88,7 +87,6 @@ export default function UnterhaltsRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Unterhalt-Rechner 2025 & 2026" rechnerSlug="unterhalt-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

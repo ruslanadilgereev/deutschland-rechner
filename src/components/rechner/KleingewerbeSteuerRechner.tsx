@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ─────────────────────────────────────────────────────────────
 // Kleingewerbe-Steuer-Rechner – Stand 2026
@@ -88,7 +87,6 @@ export function KleingewerbeSteuerRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Kleingewerbe-Steuer-Rechner" rechnerSlug="kleingewerbe-steuer-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-6">

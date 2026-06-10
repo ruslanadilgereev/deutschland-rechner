@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Gradtagzahl-Faktor (FGt) Default fuer Deutschland.
 // Quelle: VDI 3807 / Verbraucherzentrale-Rechenbeispiel (Heizgrenze 15 Grad C,
@@ -117,7 +116,6 @@ export function DaemmungAmortisationRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Dämmung-Amortisation-Rechner" rechnerSlug="daemmung-amortisation-rechner" />
 
       {/* Bauteil-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

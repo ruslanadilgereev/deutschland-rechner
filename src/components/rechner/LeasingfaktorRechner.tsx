@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Leasingfaktor = (monatliche Rate / Bruttolistenpreis) × 100.
 // Mit Sonderzahlung: Gesamtkostenfaktor berücksichtigt die auf die Laufzeit
@@ -86,7 +85,6 @@ export function LeasingfaktorRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Leasingfaktor-Rechner" rechnerSlug="leasingfaktor-rechner" />
 
       {/* Angebote */}
       {angebote.map((a, i) => (

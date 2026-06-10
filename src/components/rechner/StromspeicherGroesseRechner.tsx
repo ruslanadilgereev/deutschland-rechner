@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Speicherpreis-Default Stand 2026 (nutzbare kWh, inkl. Wechselrichter/Installation).
 // Quelle: Marktdaten Heimspeicher Deutschland 2026 (~440-800 EUR/kWh). Wir nutzen
@@ -93,7 +92,6 @@ export function StromspeicherGroesseRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Stromspeicher-Rechner" rechnerSlug="stromspeicher-groesse-rechner" />
 
       {/* Haushalts-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

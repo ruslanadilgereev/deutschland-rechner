@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Tage-Rechner: Berechnet Tage, Wochen und Monate zwischen zwei Daten
 
@@ -91,7 +90,6 @@ export default function TageRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Tage-Rechner" rechnerSlug="tage-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Kraftstofftypen mit aktuellen Durchschnittspreisen 2025/2026
 type Kraftstofftyp = 'benzin' | 'diesel' | 'superplus' | 'lpg';
@@ -98,7 +97,6 @@ export default function SpritkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Spritkosten-Rechner" rechnerSlug="spritkosten-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

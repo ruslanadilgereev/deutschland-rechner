@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // ALKOHOL AM STEUER – Folgen nach Promille (BAK)
@@ -199,7 +198,6 @@ export function AlkoholAmSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Alkohol-am-Steuer-Rechner" rechnerSlug="alkohol-am-steuer-rechner" />
 
       {/* Fahrer-Typ */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

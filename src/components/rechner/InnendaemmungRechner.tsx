@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Wärmeübergangswiderstände für Innendämmung Außenwand (DIN EN ISO 6946).
 const RSI = 0.13;
@@ -65,7 +64,6 @@ export function InnendaemmungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Innendämmung-Rechner" rechnerSlug="innendaemmung-rechner" />
 
       {/* Bauteil */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

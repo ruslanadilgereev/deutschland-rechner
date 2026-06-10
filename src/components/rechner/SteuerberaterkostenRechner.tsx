@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ============================================================================
 // StBVV-Konstanten (Steuerberatervergütungsverordnung), Fassung ab 01.07.2025
@@ -249,7 +248,6 @@ export function SteuerberaterkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Steuerberaterkosten-Rechner" rechnerSlug="steuerberaterkosten-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

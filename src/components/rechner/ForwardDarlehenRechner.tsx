@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Voreinstellungen Stand Juni 2026.
 // Forward-Aufschlag pro Monat: typisch 0,01–0,03 %-Punkte je Vorlaufmonat
@@ -86,7 +85,6 @@ export function ForwardDarlehenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Forward-Darlehen-Rechner" rechnerSlug="forward-darlehen-rechner" />
 
       {/* Vorlaufzeit-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

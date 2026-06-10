@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Bodenwert nach Bodenwertverfahren (ImmoWertV 2021):
 //   Bodenwert = Bodenrichtwert (€/m²) × Fläche (m²) × Produkt der Korrekturfaktoren
@@ -51,7 +50,6 @@ export function BodenrichtwertRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Bodenrichtwert-Rechner" rechnerSlug="bodenrichtwert-rechner" />
 
       {/* Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

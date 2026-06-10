@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Renten-Rechner 2026 - Quellen: Deutsche Rentenversicherung, BMAS
 // Stand: Rentenwert ab 1. Juli 2025 (bundeseinheitlich)
@@ -143,7 +142,6 @@ export default function RentenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Renten-Rechner 2025 & 2026" rechnerSlug="renten-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

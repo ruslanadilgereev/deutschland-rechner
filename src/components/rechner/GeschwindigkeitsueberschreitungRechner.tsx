@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // GESCHWINDIGKEITSÜBERSCHREITUNG – Bußgeldkatalog (BKatV)
@@ -141,10 +140,6 @@ export function GeschwindigkeitsueberschreitungRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback
-        rechnerName="Geschwindigkeitsüberschreitung-Rechner"
-        rechnerSlug="geschwindigkeitsueberschreitung-rechner"
-      />
 
       {/* Fahrzeug & Ort */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

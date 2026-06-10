@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Default-Kostenkomponenten (alle netto, Stand Juni 2026).
 // Quellen: Marktrecherche zu Baugrundgutachten / geotechnischen Untersuchungen
@@ -70,7 +69,6 @@ export function BodengutachtenKostenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Bodengutachten-Rechner (Baugrundgutachten Kosten)" rechnerSlug="bodengutachten-kosten-rechner" />
 
       {/* Kostenkomponenten */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

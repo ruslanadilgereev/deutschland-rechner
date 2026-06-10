@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 type Operation = 'addieren' | 'subtrahieren' | 'multiplizieren' | 'dividieren';
 
@@ -241,7 +240,6 @@ export default function BruchRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Bruchrechner" rechnerSlug="bruch-rechner" />
 
 {/* Operation Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

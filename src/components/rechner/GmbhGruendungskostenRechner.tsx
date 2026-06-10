@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * GNotKG Anlage 2 (Tabelle B), 1,0-Gebühr ("einfache Gebühr").
@@ -147,7 +146,6 @@ export function GmbhGruendungskostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="GmbH-Gründungskosten-Rechner" rechnerSlug="gmbh-gruendungskosten-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

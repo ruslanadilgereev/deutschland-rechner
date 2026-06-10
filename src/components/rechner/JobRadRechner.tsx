@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // JobRad- & Dienstrad-Rechner – 0,25%-Regelung (seit 2020)
 // Geldwerter Vorteil = 0,25% des UVP pro Monat. Berechnungsweise des Finanzamts:
@@ -60,7 +59,6 @@ export default function JobRadRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="JobRad- & Dienstrad-Rechner" rechnerSlug="jobrad-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Schüttdichten (lose, t/m³) je Material – Richtwerte, editierbar.
 type Material = { id: string; name: string; icon: string; rho: number };
@@ -45,7 +44,6 @@ export function SchotterKiesRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Schotter- & Kies-Rechner" rechnerSlug="schotter-kies-rechner" />
 
       {/* Material */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

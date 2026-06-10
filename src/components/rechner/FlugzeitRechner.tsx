@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Typen
 interface Flughafen {
@@ -311,7 +310,6 @@ export default function FlugzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Flugzeit-Rechner" rechnerSlug="flugzeit-rechner" />
 
 {/* Schnellauswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // PKV-GKV-Vergleich-Rechner 2026 - Private vs. Gesetzliche Krankenversicherung
@@ -393,7 +392,6 @@ export default function PkvGkvRechner() {
 
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="PKV-GKV-Vergleich-Rechner 2025 & 2026" rechnerSlug="pkv-gkv-rechner" />
 
 {/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">

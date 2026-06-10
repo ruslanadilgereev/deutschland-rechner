@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Tapetenbedarf (bahnbasiert):
 //  Raumumfang   U = 2 × (Länge + Breite)
@@ -52,7 +51,6 @@ export function TapetenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Tapeten-Rechner" rechnerSlug="tapeten-rechner" />
 
       {/* Raummaße */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

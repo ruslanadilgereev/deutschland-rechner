@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Industrieminuten / Industriezeit (Dezimalzeit)
 // 1 Stunde = 100 Industrieminuten | 1 Industrieminute = 1/100 Stunde = 36 Sekunden = 0,6 Normalminuten
@@ -57,7 +56,6 @@ export default function IndustrieminutenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Industrieminuten-Rechner" rechnerSlug="industrieminuten-rechner" />
 
       {/* Richtungs-Umschalter */}
       <div className="bg-white rounded-2xl shadow-lg p-2 mb-6">

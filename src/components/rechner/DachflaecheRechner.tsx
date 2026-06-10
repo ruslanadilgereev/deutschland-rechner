@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Dachformen als Voreinstellungen.
 // Geometrische Grundlage: Die geneigte Dachfläche ergibt sich für alle hier
@@ -107,7 +106,6 @@ export function DachflaecheRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Dachflächen-Rechner" rechnerSlug="dachflaeche-rechner" />
 
       {/* Dachform-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

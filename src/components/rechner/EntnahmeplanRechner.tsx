@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Entnahmeplan / Kapitalverzehr (FIRE)
 // Logik: monatliche Entnahme aus verzinstem Restkapital.
@@ -64,7 +63,6 @@ export default function EntnahmeplanRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Entnahmeplan-Rechner" rechnerSlug="entnahmeplan-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Durchschnittsverbrauch in kWh/m²/Jahr nach Gebäudetyp
 // Quelle: Heizspiegel 2025, co2online, BDEW
@@ -169,7 +168,6 @@ export default function HeizkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Heizkosten-Rechner" rechnerSlug="heizkosten-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

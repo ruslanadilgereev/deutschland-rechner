@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════
 // Handy am Steuer (§ 23 Abs. 1a StVO), Stand 2026
@@ -100,7 +99,6 @@ export function HandyAmSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Handy-am-Steuer-Bußgeldrechner" rechnerSlug="handy-am-steuer-rechner" />
 
       {/* Verstoß-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

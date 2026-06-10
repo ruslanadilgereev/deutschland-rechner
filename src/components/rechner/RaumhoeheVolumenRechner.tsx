@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Heizlast-Faustwerte (W pro m3 Raumvolumen) je nach Daemmstandard.
 // NICHT normgenau - nur grobe Orientierung. Eine verbindliche Heizlast-
@@ -74,7 +73,6 @@ export function RaumhoeheVolumenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Raumvolumen-Rechner (m³)" rechnerSlug="raumhoehe-volumen-rechner" />
 
       {/* Grundmasse */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

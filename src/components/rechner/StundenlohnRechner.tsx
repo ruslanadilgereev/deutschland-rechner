@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Typische Arbeitstage und Stunden
 const ARBEITSTAGE_PRO_WOCHE_DEFAULT = 5;
@@ -137,7 +136,6 @@ export default function StundenlohnRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="" rechnerSlug="stundenlohn-rechner" />
 
 {/* Richtungswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

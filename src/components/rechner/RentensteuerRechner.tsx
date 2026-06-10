@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // === OFFIZIELLE WERTE 2026 ===
 // Quelle: §22 Nr. 1a EStG, §32a EStG, BMF-Steuerrechner
@@ -378,7 +377,6 @@ export default function RentensteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Rentensteuer-Rechner 2025 & 2026" rechnerSlug="rentensteuer-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

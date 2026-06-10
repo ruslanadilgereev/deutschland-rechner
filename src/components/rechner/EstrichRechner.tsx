@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Rohdichte je Estrichart (frisch eingebaut, Richtwerte):
 // Zementestrich (CT) ≈ 2.100 kg/m³, Calciumsulfat-/Anhydritestrich (CA) ≈ 2.000 kg/m³.
@@ -49,7 +48,6 @@ export function EstrichRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Estrich-Rechner" rechnerSlug="estrich-rechner" />
 
       {/* Estrichart-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

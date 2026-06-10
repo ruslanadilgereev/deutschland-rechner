@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Spezifische Wärmekapazität von Wasser: c = 4.190 J/(kg·K).
 // Umgerechnet in Wattstunden: 4.190 ÷ 3.600 = 1,1639 Wh/(kg·K).
@@ -100,7 +99,6 @@ export function WarmwasserbedarfRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Warmwasserbedarf-Rechner" rechnerSlug="warmwasserbedarf-rechner" />
 
       {/* Verbrauchstyp-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

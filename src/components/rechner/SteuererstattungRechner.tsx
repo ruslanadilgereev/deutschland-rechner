@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Steuererstattungs-Rechner 2026
@@ -276,7 +275,6 @@ export default function SteuererstattungRechner() {
 
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="Steuererstattung-Rechner 2025 & 2026" rechnerSlug="steuererstattung-rechner" />
 
 {/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">

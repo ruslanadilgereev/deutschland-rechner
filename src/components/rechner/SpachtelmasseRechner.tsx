@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Spezifischer Verbrauch je Produkttyp in kg/m² pro Millimeter Schichtdicke.
 // Default-Presets nach gängigen Herstellerangaben (Knauf, Hausjournal, Stand 2026).
@@ -76,7 +75,6 @@ export function SpachtelmasseRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Spachtelmasse-Rechner" rechnerSlug="spachtelmasse-rechner" />
 
       {/* Produkt-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

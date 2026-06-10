@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Differenzbesteuerung nach § 25a UStG (Stand 2026)
 // Die Umsatzsteuer wird ausschließlich aus der MARGE herausgerechnet, nicht aus dem vollen Verkaufspreis.
@@ -50,7 +49,6 @@ export default function DifferenzbesteuerungRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Differenzbesteuerung-Rechner" rechnerSlug="differenzbesteuerung-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

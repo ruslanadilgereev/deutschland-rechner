@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Verbrauch Fliesenkleber je m² nach Zahnung der Kammspachtel (mittelbettiger
 // Zementkleber, reines Floating-Verfahren). Richtwerte – herstellerabhängig.
@@ -86,7 +85,6 @@ export function FliesenkleberRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Fliesenkleber-Rechner" rechnerSlug="fliesenkleber-rechner" />
 
       {/* Zahnung-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

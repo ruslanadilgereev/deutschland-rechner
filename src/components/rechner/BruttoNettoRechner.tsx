@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Brutto-Netto-Rechner 2026
@@ -662,7 +661,6 @@ export default function BruttoNettoRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Brutto-Netto-Rechner 2025 & 2026" rechnerSlug="brutto-netto-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Grundstückspreis-Rechner:
 //   Gesamtpreis     = Fläche × Preis/m²
@@ -35,7 +34,6 @@ export function GrundstuecksflaechePreisRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Grundstückspreis-Rechner" rechnerSlug="grundstuecksflaeche-preis-rechner" />
 
       {/* Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

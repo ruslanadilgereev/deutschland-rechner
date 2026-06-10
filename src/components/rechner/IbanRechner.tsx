@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // BLZ → BIC Mapping (wichtigste deutsche Banken)
 const BLZ_BIC_MAP: Record<string, { bic: string; bank: string }> = {
@@ -284,7 +283,6 @@ export default function IbanRechner() {
 
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="IBAN-Rechner" rechnerSlug="iban-rechner" />
 
 {/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-4">

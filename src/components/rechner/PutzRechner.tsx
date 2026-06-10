@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Verbrauchs-Richtwerte je Putzart in kg pro m² und mm Schichtdicke.
 // Quelle: DIN 18550, hausgarten.net. Gips-/Maschinenputz ist leichter,
@@ -56,7 +55,6 @@ export function PutzRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Putz-Rechner" rechnerSlug="putz-rechner" />
 
       {/* Putzart-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

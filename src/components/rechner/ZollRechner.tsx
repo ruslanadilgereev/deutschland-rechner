@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Zoll-Rechner – Einfuhrabgaben für Bestellungen aus Nicht-EU-Staaten
 // Stand: 5. Juni 2026
@@ -59,7 +58,6 @@ export default function ZollRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Zoll-Rechner (Einfuhr Nicht-EU)" rechnerSlug="zoll-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

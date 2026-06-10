@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Drei Modi: Aufstehzeit bekannt (wann ins Bett?), Zubettgehzeit bekannt
 // (wann aufstehen?) oder "jetzt ins Bett" (aktuelle Uhrzeit als Start).
@@ -81,7 +80,6 @@ export function SchlafRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Schlafrechner" rechnerSlug="schlaf-rechner" />
 
       {/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

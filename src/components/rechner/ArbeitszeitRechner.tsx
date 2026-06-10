@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Arbeitszeit-Rechner – Netto-Arbeitszeit nach ArbZG
 // Quelle: § 4 ArbZG (Ruhepausen), § 3 ArbZG (Höchstarbeitszeit)
@@ -78,7 +77,6 @@ export default function ArbeitszeitRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Arbeitszeit-Rechner" rechnerSlug="arbeitszeit-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

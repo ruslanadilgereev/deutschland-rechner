@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Vermessungskosten-Schaetzmodell, Stand Juni 2026
 // ------------------------------------------------------------------
@@ -174,7 +173,6 @@ export function VermessungskostenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Vermessungskosten-Rechner" rechnerSlug="vermessungskosten-rechner" />
 
       {/* Vermessungsart waehlen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Körperschaftsteuer-Konstanten (Stand 2026)
 const KST_SATZ = 0.15; // 15 % Körperschaftsteuer, § 23 Abs. 1 KStG
@@ -53,7 +52,6 @@ export function KoerperschaftsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Körperschaftsteuer-Rechner" rechnerSlug="koerperschaftsteuer-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

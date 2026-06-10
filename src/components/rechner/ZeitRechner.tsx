@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 type Modus = 'addieren' | 'differenz';
 
@@ -197,7 +196,6 @@ export default function ZeitRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Zeit-Rechner" rechnerSlug="zeit-rechner" />
 
 {/* Modus Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

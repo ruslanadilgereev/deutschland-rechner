@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // =============================================================================
 // RVG-Gebührentabelle (Anlage 2 zu § 13 Abs. 1 RVG) – Stand 2026
@@ -163,7 +162,6 @@ export default function RvgRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Anwaltskosten-Rechner (RVG)" rechnerSlug="rvg-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

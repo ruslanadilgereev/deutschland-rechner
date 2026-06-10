@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Elternzeit 2026 - Quellen: BMFSFJ, BEEG
 const ELTERNZEIT_2026 = {
@@ -166,7 +165,6 @@ export default function ElternzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Elternzeit-Rechner 2025 & 2026" rechnerSlug="elternzeit-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

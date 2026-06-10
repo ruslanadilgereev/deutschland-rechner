@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Kaloriendefizit-Rechner
 // Grundumsatz (BMR) nach Mifflin-St-Jeor (1990):
@@ -81,7 +80,6 @@ export default function KaloriendefizitRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Kaloriendefizit-Rechner" rechnerSlug="kaloriendefizit-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

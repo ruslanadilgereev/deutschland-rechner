@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Pearl-Index = Schwangerschaften pro 100 Frauen pro Jahr.
 // Referenzwerte aus den DGGG-Leitlinien, veröffentlicht von pro familia,
@@ -206,7 +205,6 @@ export default function PearlIndexRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Pearl-Index-Rechner" rechnerSlug="pearl-index-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

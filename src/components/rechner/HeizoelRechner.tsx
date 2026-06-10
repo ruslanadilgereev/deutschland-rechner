@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Heizölpreis-Default Stand Juni 2026 (leichtes Heizöl EL, brutto pro Liter).
 // Quelle: Statista Monatsdurchschnittswerte / co2online. Der Preis ist volatil –
@@ -67,7 +66,6 @@ export function HeizoelRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Heizöl-Verbrauch-Rechner" rechnerSlug="heizoel-rechner" />
 
       {/* Gebäude-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

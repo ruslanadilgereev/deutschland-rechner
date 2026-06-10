@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Wandpaneele-/Akustikpaneele-Bedarf:
 //  Wandfläche brutto = Wandbreite × Wandhöhe
@@ -78,10 +77,6 @@ export function WandverkleidungPaneeleRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback
-        rechnerName="Wandpaneele-Rechner (Akustik-/Lamellenpaneele Bedarf)"
-        rechnerSlug="wandverkleidung-paneele-rechner"
-      />
 
       {/* Paneelformat */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

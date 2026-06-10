@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Hausanschlusskosten – Orientierungswerte Stand Juni 2026.
 // Quellen: Verivox (Hausanschlüsse), Schwäbisch Hall & ImmobilienScout24
@@ -123,7 +122,6 @@ export function HausanschlussKostenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Hausanschlusskosten-Rechner" rechnerSlug="hausanschluss-kosten-rechner" />
 
       {/* Gewerke auswählen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

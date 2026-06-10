@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Standard-Steinformate nach DIN 105 / DIN 4172 (oktametrische Maßordnung).
 // Maße in Millimetern: Länge × Breite × Höhe. Maßgeblich für die
@@ -62,7 +61,6 @@ export function MauersteineRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Mauerstein-Rechner" rechnerSlug="mauersteine-rechner" />
 
       {/* Format-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

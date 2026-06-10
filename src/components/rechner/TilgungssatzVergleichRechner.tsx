@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Standard-Tilgungssaetze, die nebeneinander verglichen werden.
 // Klassische Faustregel-Spanne in der Baufinanzierung: 1 % (Minimum vieler Banken)
@@ -108,7 +107,6 @@ export function TilgungssatzVergleichRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Tilgungssatz-Vergleich-Rechner" rechnerSlug="tilgungssatz-vergleich-rechner" />
 
       {/* Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

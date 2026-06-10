@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Sollzinsbindung-Vergleich-Rechner
 // Vergleicht mehrere Zinsbindungs-Szenarien eines Annuitaetendarlehens nebeneinander
@@ -110,10 +109,6 @@ export function SollzinsbindungVergleichRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback
-        rechnerName="Sollzinsbindung-Vergleich-Rechner"
-        rechnerSlug="sollzinsbindung-vergleich-rechner"
-      />
 
       {/* Gemeinsame Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

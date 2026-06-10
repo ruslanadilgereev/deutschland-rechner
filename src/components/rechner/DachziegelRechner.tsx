@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Ziegelmodelle mit typischem Bedarf in Stueck pro Quadratmeter.
 // Quellen: ZVDH-Fachregeln, Verlegeanleitungen Nelskamp (F15) und BMI/Braas
@@ -85,7 +84,6 @@ export function DachziegelRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Dachziegel-Rechner" rechnerSlug="dachziegel-rechner" />
 
       {/* Ziegelmodell-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

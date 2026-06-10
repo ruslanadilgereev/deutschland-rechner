@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * LOHNSTEUERRECHNER 2025/2026
@@ -370,7 +369,6 @@ export default function LohnsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Lohnsteuer-Rechner 2025 & 2026" rechnerSlug="lohnsteuer-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

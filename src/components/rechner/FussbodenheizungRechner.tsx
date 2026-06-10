@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Faustwerte Rohrbedarf je Quadratmeter nach Verlegeabstand.
 // Quelle: Heizsparer, Haustec, Heliogaia (DIN EN 1264 als Auslegungsrahmen).
@@ -63,7 +62,6 @@ export function FussbodenheizungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Fußbodenheizung-Rechner" rechnerSlug="fussbodenheizung-rechner" />
 
       {/* Verlegeabstand-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // PAL-Faktoren (Physical Activity Level) nach DGE
 const PAL_FAKTOREN = [
@@ -114,7 +113,6 @@ export default function GrundumsatzRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Grundumsatz-Rechner" rechnerSlug="grundumsatz-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

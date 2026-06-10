@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Ziel-U-Werte: GEG-Höchstwerte (Anlage 7, Sanierung) und strengere BEG-Förderwerte.
 type ZielPreset = { id: string; name: string; u: number };
@@ -68,7 +67,6 @@ export function DaemmungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Dämmstärke-Rechner" rechnerSlug="daemmung-rechner" />
 
       {/* Ziel-U-Wert */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

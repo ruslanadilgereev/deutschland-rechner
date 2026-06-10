@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Fahrschul-Faustformeln (ADAC):
 //   Reaktionsweg = (v/10) × Reaktionszeit-Faktor (Standard 3 für 1 s)
@@ -47,7 +46,6 @@ export function BremswegRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Bremsweg-Rechner" rechnerSlug="bremsweg-rechner" />
 
       {/* Geschwindigkeit */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

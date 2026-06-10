@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Taschengeldtabelle nach DJI (Deutsches Jugendinstitut) / Jugendamt-Empfehlung
 // Stand: zuletzt aktualisiert September 2024/2025 (DJI-Expertise)
@@ -55,7 +54,6 @@ export default function TaschengeldRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Taschengeld-Rechner" rechnerSlug="taschengeld-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

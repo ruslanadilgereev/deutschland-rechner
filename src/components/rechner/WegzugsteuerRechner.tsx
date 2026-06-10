@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ════════════════════════════════════════════════════════════════════
 // Wegzugsteuer-Rechner nach § 6 AStG (Stand 2026)
@@ -135,7 +134,6 @@ export function WegzugsteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Wegzugsteuer-Rechner" rechnerSlug="wegzugsteuer-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

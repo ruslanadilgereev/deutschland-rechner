@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // KfW-Förderrechner (Stand 2026). Drei Programme mit eigener Logik:
 //  - KfW 300 "Wohneigentum für Familien" (Neubau): Kredithöhe nach Kinderzahl/QNG,
@@ -103,7 +102,6 @@ export function KfwFoerderungHausbauRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="KfW-Förderung-Rechner" rechnerSlug="kfw-foerderung-hausbau-rechner" />
 
       {/* Programmauswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

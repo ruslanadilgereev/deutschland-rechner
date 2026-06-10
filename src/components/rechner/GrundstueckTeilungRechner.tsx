@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 /**
  * Einfache Wertgebühr nach GNotKG Tabelle B (Anlage 2 zum Gerichts- und
@@ -114,7 +113,6 @@ export function GrundstueckTeilungRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Grundstücksteilung-Rechner" rechnerSlug="grundstueck-teilung-rechner" />
 
       {/* Flächen-Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Altersteilzeit-Rechner 2026 - Quellen: Altersteilzeitgesetz (AltTZG), Deutsche Rentenversicherung
 // Stand: 2026
@@ -218,7 +217,6 @@ export default function AltersteilzeitRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Altersteilzeit-Rechner 2025 & 2026" rechnerSlug="altersteilzeit-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

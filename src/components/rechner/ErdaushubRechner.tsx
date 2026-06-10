@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Bodenarten mit Auflockerungsfaktor (lockerer Zustand nach dem Lösen) und
 // Dichte des gewachsenen (festen) Bodens. Richtwerte – der genaue Wert hängt
@@ -81,7 +80,6 @@ export function ErdaushubRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Erdaushub-Rechner" rechnerSlug="erdaushub-rechner" />
 
       {/* Bodenart-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

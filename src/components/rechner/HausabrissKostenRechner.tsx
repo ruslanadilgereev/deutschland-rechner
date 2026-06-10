@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Abriss-Faustwerte Stand Juni 2026.
 // Quellen: Talu.de (Abbruchkosten pro m3 umbauter Raum), immoverkauf24
@@ -85,7 +84,6 @@ export function HausabrissKostenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Abrisskosten-Rechner (Hausabriss)" rechnerSlug="hausabriss-kosten-rechner" />
 
       {/* Modus-Auswahl */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

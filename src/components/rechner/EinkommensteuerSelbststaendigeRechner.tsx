@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ════════════════════════════════════════════════════════════════════
 // Einkommensteuer-Rechner für Selbstständige & Freiberufler 2026
@@ -177,10 +176,6 @@ export function EinkommensteuerSelbststaendigeRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback
-        rechnerName="Einkommensteuer-Rechner für Selbstständige"
-        rechnerSlug="einkommensteuer-selbststaendige-rechner"
-      />
 
       {/* Eingaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

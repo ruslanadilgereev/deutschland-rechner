@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // CO2-Staffelung nach KraftStG ab 2021
 // Jede Stufe definiert: von (exklusiv), bis (inklusive), EUR pro g/km
@@ -130,7 +129,6 @@ export default function KfzSteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Kfz-Steuer-Rechner 2025 & 2026" rechnerSlug="kfz-steuer-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

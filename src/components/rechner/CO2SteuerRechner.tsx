@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // CO2-Steuer Entwicklung in €/Tonne
 // Ab 2026: Preiskorridor 55-65 €/Tonne (Emissionshandel statt Festpreis)
@@ -155,7 +154,6 @@ export default function CO2SteuerRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="CO2-Steuer-Rechner 2025 & 2026" rechnerSlug="co2-steuer-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

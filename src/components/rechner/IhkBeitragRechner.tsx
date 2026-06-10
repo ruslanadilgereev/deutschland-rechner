@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // IHK-Beitrag 2026 – bundeseinheitlich gesicherte Werte
 // Quelle: IHKG (§ 3) – https://www.gesetze-im-internet.de/ihkg/__3.html
@@ -101,7 +100,6 @@ export default function IhkBeitragRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="IHK-Beitrag-Rechner" rechnerSlug="ihk-beitrag-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

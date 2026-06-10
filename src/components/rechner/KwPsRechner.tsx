@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Umrechnung Leistung kW <-> PS
 // Exakte Definition (DIN 66036): 1 PS = 735,49875 W = 0,73549875 kW
@@ -41,7 +40,6 @@ export default function KwPsRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="kW-PS-Rechner" rechnerSlug="kw-ps-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

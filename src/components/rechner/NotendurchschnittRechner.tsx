@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 interface Fach {
   id: string;
@@ -155,7 +154,6 @@ export default function NotendurchschnittRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Notendurchschnitt-Rechner" rechnerSlug="notendurchschnitt-rechner" />
 
 {/* Gewichtungs-Toggle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

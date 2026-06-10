@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Volltilgerdarlehen = Annuitätendarlehen mit Sollzinsbindung = Laufzeit,
 // sodass die Restschuld am Laufzeitende exakt 0 ist.
@@ -62,7 +61,6 @@ export function VolltilgerdarlehenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Volltilgerdarlehen-Rechner" rechnerSlug="volltilgerdarlehen-rechner" />
 
       {/* Eckdaten */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

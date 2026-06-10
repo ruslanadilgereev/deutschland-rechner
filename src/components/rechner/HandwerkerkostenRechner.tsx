@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Handwerkerkosten-Rechner (§35a EStG) - Offizielle Berechnung
@@ -123,7 +122,6 @@ export default function HandwerkerkostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Handwerkerkosten-Rechner 2025 & 2026" rechnerSlug="handwerkerkosten-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Gewerbeanmeldung-Kosten 2026
@@ -86,10 +85,6 @@ export default function GewerbeanmeldungKostenRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback
-        rechnerName="Gewerbeanmeldung-Kosten-Rechner"
-        rechnerSlug="gewerbeanmeldung-kosten-rechner"
-      />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

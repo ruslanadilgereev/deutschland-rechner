@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Der Beleihungsauslauf (engl. Loan-to-Value, LTV) ist die zentrale Kennzahl
 // der Baufinanzierung: Darlehenssumme im Verhältnis zum Beleihungswert.
@@ -130,7 +129,6 @@ export function BeleihungsauslaufRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Beleihungsauslauf-Rechner" rechnerSlug="beleihungsauslauf-rechner" />
 
       {/* Szenario-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Renteneintrittsalter / Regelaltersgrenze (Stand 2026)
 // Quelle: §235 SGB VI (Regelaltersrente), §236b SGB VI (besonders langjährig Versicherte)
@@ -90,7 +89,6 @@ export default function RenteneintrittsalterRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Renteneintrittsalter-Rechner" rechnerSlug="renteneintrittsalter-rechner" />
 
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

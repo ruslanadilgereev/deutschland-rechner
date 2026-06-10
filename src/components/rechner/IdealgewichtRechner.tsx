@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Körperbau-Optionen für Creff-Formel
 const KOERPERBAU_OPTIONEN = [
@@ -92,7 +91,6 @@ export default function IdealgewichtRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Idealgewicht-Rechner" rechnerSlug="idealgewicht-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

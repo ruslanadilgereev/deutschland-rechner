@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // §3b EStG - Steuerfreie Zuschläge 2025/2026
 // Grundlohn-Deckel: max. 50 €/Stunde für steuerfreie Zuschläge
@@ -181,7 +180,6 @@ export default function NachtschichtRechner() {
 
   return (
     <div className="space-y-6">
-      <RechnerFeedback rechnerName="Nachtschicht-Zuschlag-Rechner" rechnerSlug="nachtschicht-rechner" />
 
 {/* Eingabebereich */}
       <div className="bg-white rounded-2xl shadow-lg p-6">

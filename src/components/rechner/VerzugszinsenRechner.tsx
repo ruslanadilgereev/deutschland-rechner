@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Verzugszinsen nach § 288 BGB
 // Basiszinssatz der Deutschen Bundesbank (§ 247 BGB): 1,27 % – Stand 1. Januar 2026 (unverändert seit 1. Juli 2025)
@@ -57,7 +56,6 @@ export function VerzugszinsenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Verzugszinsen-Rechner" rechnerSlug="verzugszinsen-rechner" />
 
       {/* Eingabe */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 space-y-5">

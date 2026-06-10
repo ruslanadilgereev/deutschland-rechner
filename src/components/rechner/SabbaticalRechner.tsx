@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Sozialversicherungsbeiträge 2026 (Arbeitnehmer + Arbeitgeber gesamt)
 const SV_BEITRAEGE = {
@@ -139,7 +138,6 @@ export default function SabbaticalRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Sabbatical-Rechner" rechnerSlug="sabbatical-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

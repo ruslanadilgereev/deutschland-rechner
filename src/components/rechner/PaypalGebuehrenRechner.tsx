@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // PayPal-Gebühren Deutschland
 // Quelle: https://www.paypal.com/de/business/paypal-business-fees (zuletzt aktualisiert 30. April 2026)
@@ -110,7 +109,6 @@ export default function PaypalGebuehrenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="PayPal-Gebühren-Rechner" rechnerSlug="paypal-gebuehren-rechner" />
 
       {/* Modus-Umschalter */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

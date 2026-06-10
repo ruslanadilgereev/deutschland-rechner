@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // =============================================================================
 // TVöD-VKA Entgelttabelle – gültig ab 01.05.2026 (Laufzeit bis 31.03.2027)
@@ -160,7 +159,6 @@ export default function TvoedRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="TVöD-Rechner" rechnerSlug="tvoed-rechner" />
 
       {/* Hinweis zum Tarifstand */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-sm text-amber-800">

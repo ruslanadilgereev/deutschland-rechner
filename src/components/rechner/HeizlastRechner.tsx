@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Spezifische Heizlast je Dämmstandard (Watt pro m²). Richtwerte für die
 // überschlägige Flächen-Methode. Quelle: Bosch / Viessmann Heizungsratgeber.
@@ -58,7 +57,6 @@ export function HeizlastRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Heizlast-Rechner" rechnerSlug="heizlast-rechner" />
 
       {/* YMYL-Warnhinweis prominent oben */}
       <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 mb-6 text-sm text-orange-800">

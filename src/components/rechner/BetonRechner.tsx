@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Rohdichte Normalbeton (frisch verdichtet): ~2.400 kg/m³.
 // Quelle: VDZ / DIN EN 206. Wir nutzen diesen Standardwert für die Gewichtsschätzung.
@@ -74,7 +73,6 @@ export function BetonRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Beton-Rechner" rechnerSlug="beton-rechner" />
 
       {/* Form-Voreinstellungen */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

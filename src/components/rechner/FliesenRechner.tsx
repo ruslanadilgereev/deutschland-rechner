@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Fliesenbedarf:
 //  Fläche A      = Länge × Breite (m²)
@@ -67,7 +66,6 @@ export function FliesenRechner() {
 
   return (
     <div className="max-w-lg mx-auto">
-      <RechnerFeedback rechnerName="Fliesen-Rechner" rechnerSlug="fliesen-rechner" />
 
       {/* Fliesenformat */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">

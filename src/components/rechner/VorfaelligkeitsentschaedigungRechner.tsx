@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from './RechnerFeedback';
 
 // Detaillierte Zeile für die Berechnung
 interface BerechnungsZeile {
@@ -145,7 +144,6 @@ export default function VorfaelligkeitsentschaedigungRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Vorfälligkeitsentschädigung-Rechner" rechnerSlug="vorfaelligkeitsentschaedigung-rechner" />
 
 {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
