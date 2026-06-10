@@ -478,7 +478,7 @@ export default function ErwerbsminderungsrenteRechner() {
               <span className="text-gray-700">Ich habe Kinder</span>
             </label>
             <p className="text-xs text-gray-500 mt-1">
-              Kinderlose zahlen einen höheren Pflegeversicherungsbeitrag (2,4% statt 1,8%)
+              Kinderlose zahlen einen höheren Pflegeversicherungsbeitrag (4,2% statt 3,6%)
             </p>
           </div>
           
@@ -576,7 +576,7 @@ export default function ErwerbsminderungsrenteRechner() {
                 <span className="font-medium text-red-600">- {formatCurrency(ergebnis.abzuege.krankenversicherung)}</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span className="text-gray-600">Pflegeversicherung ({hatKinder ? '1,8%' : '2,4%'})</span>
+                <span className="text-gray-600">Pflegeversicherung ({hatKinder ? '3,6%' : '4,2%'})</span>
                 <span className="font-medium text-red-600">- {formatCurrency(ergebnis.abzuege.pflegeversicherung)}</span>
               </div>
               <div className="flex justify-between items-center py-2">

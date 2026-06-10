@@ -605,7 +605,7 @@ export default function WitwenrenteRechner() {
             <span>{formatEuro(ergebnis.kvBeitrag)}</span>
           </div>
           <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
-            <span>− Pflegeversicherung ({!hatKinder && alterHinterbliebener >= 23 ? '2,4%' : '1,8%'})</span>
+            <span>− Pflegeversicherung ({!hatKinder && alterHinterbliebener >= 23 ? '4,2%' : '3,6%'})</span>
             <span>{formatEuro(ergebnis.pvBeitrag)}</span>
           </div>
           

@@ -511,7 +511,7 @@ export default function RentenRechner() {
             <div>
               <p className="font-medium text-orange-800">Bruttorente ≠ Nettorente</p>
               <p className="text-orange-700">
-                Abzüge: Krankenversicherung (~7,3%), Pflegeversicherung (~3,4%), ggf. Steuern.
+                Abzüge: Krankenversicherung (~8,75%), Pflegeversicherung (3,6%, Kinderlose 4,2%), ggf. Steuern.
               </p>
             </div>
           </div>

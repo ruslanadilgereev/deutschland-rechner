@@ -42,7 +42,7 @@ const SOZIALABGABEN = {
   krankenversicherung: 0.073, // 7,3% AN-Anteil (14,6% / 2)
   zusatzbeitrag_kv: 0.0145, // 2026 durchschnittlich 2,9% → 1,45% AN-Anteil
   pflegeversicherung: 0.018, // 2026: 1,8% AN-Anteil (3,6% / 2)
-  pflegeversicherung_kinderlos: 0.024, // 2026: 2,4% AN-Anteil (3,6% + 1,2% Kinderlosenzuschlag = 4,8% → 2,4% AN)
+  pflegeversicherung_kinderlos: 0.024, // 2026: 2,4% AN-Anteil (1,8% + 0,6% Kinderlosenzuschlag, Zuschlag trägt der AN allein)
   arbeitslosenversicherung: 0.013, // 1,3% AN-Anteil (2,6% / 2)
 };
 
@@ -577,7 +577,7 @@ export default function ArbeitslosengeldRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Grundfreibetrag erhöht:</strong> 12.348€/Jahr (2025: 11.784€)</span>
+            <span><strong>Grundfreibetrag erhöht:</strong> 12.348€/Jahr (2025: 12.096€)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>

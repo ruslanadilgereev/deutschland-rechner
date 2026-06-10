@@ -775,7 +775,7 @@ export default function EinkommensteuerRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Soli</strong> nur noch bei hohen Einkommen (Freigrenze: {formatEuro(veranlagung === 'zusammen' ? 36260 : 18130)})</span>
+            <span><strong>Soli</strong> nur noch bei hohen Einkommen (Freigrenze: {formatEuro(veranlagung === 'zusammen' ? 40700 : 20350)})</span>
           </li>
           <li className="flex gap-2">
             <span>⚠️</span>

@@ -124,7 +124,7 @@ const ENTLASTUNGSBETRAG_ALLEINERZ = 4260; // §24b EStG (Grundbetrag)
 const ENTLASTUNGSBETRAG_WEITERE_KINDER = 240; // pro weiterem Kind
 
 // Kinderfreibetrag 2026 (§32 Abs. 6 EStG - Steuerfortentwicklungsgesetz)
-const KINDERFREIBETRAG = 9756; // 4.878€ (Kind: 3.306€ + BEA: 1.572€) × 2 Elternteile
+const KINDERFREIBETRAG = 9756; // 4.878€ (Kind: 3.414€ + BEA: 1.464€) × 2 Elternteile
 
 /**
  * EINKOMMENSTEUERTARIF nach §32a EStG

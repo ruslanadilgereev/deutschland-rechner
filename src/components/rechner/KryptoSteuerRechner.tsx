@@ -170,7 +170,7 @@ export default function KryptoSteuerRechner() {
       : 0;
     
     // Solidaritätszuschlag (5,5% auf ESt wenn > Freigrenze)
-    // Soli-Freigrenze 2026: 19.950€ (Singles) / 39.900€ (Verheiratete)
+    // Soli-Freigrenze 2026: 20.350€ (Singles) / 40.700€ (Verheiratete) – Konstante unten nutzt noch die 2025er Werte (19.950/39.900)
     const soliFreibetrag = steuerklasse === 'single' ? 19950 : 39900;
     let soli = 0;
     if (steuerMitKrypto > soliFreibetrag) {

@@ -8,7 +8,8 @@ import { useState } from 'react';
 // Beispiel: UVP 2.500 € -> 2.500/4 = 625 -> abgerundet 600 -> 1% = 6,00 €/Monat.
 
 // Sozialversicherungs-Arbeitnehmeranteil (Näherung, 2026): RV 9,3% + AV 1,3%
-// + KV ~8,55% (inkl. durchschn. Zusatzbeitrag) + PV ~2,4% (mit Kind) = ~21,55%.
+// + KV ~8,75% (7,3% + 1,45% bei Ø-Zusatzbeitrag 2,9%) + PV 1,8% (mit Kind;
+// Kinderlose ab 23: 2,4%) = ~21,15% (kinderlos ~21,75%).
 // Konservativ runden wir auf ~20% als Pauschale, da oberhalb der
 // Beitragsbemessungsgrenze keine SV-Ersparnis mehr greift.
 const SV_ANTEIL_PAUSCHAL = 0.20;
