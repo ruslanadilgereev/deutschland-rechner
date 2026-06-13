@@ -2911,6 +2911,15 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Gefälle berechnen, Gefälle Rechner, Prozent in Grad, Gefälle cm pro m, Abwasserrohr Gefälle, Rampe Gefälle, Promille umrechnen, Gefälle Verhältnis',
   },
   {
+    id: 'treppe',
+    name: 'Treppen-Rechner',
+    beschreibung: 'Stufenzahl, Steigung, Auftritt & Schrittmaß nach DIN 18065 berechnen',
+    icon: '🪜',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Treppe berechnen, Treppen Rechner, Stufenzahl berechnen, Steigung Auftritt, Schrittmaßregel, Steigungsverhältnis Treppe, DIN 18065 Treppe, Steigungshöhe, Treppensteigung berechnen, Lauflänge Treppe',
+  },
+  {
     id: 'heizoel',
     name: 'Heizöl-Verbrauch-Rechner',
     beschreibung: 'Liter, Kosten und Tankreichweite berechnen',

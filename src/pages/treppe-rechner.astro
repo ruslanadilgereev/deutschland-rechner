@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TreppeRechner from '../components/rechner/TreppeRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Treppen-Rechner – Stufenzahl, Steigung & Schrittmaß (DIN 18065)";
+const description = "Treppe berechnen: Stufenzahl aus der Geschosshöhe, Steigungshöhe, Auftritt, Schrittmaß (2·s+a), Steigungswinkel und Lauflänge. Mit DIN-18065-Richtwerten und Schrittmaßregel.";
+const keywords = "Treppe berechnen, Treppen-Rechner, Stufenzahl berechnen, Steigung Auftritt, Schrittmaßregel, Steigungsverhältnis Treppe, DIN 18065, Steigungshöhe, Treppensteigung, Lauflänge Treppe, 17/29 Treppe";
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Treppen-Rechner", url: "/treppe-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Treppen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🪜</span>
+          <div>
+            <h1 class="text-2xl font-bold">Treppen-Rechner: Stufenzahl, Steigung &amp; Schrittmaß</h1>
+            <p class="text-emerald-100 text-sm">Treppe planen nach DIN 18065 – kostenlos &amp; sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TreppeRechner client:load />
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Treppe richtig dimensionieren</h2>
+        <p>
+          Eine bequeme und sichere Treppe steht und fällt mit dem Verhältnis aus <strong>Steigungshöhe</strong>
+          (wie hoch jede Stufe ist) und <strong>Auftritt</strong> (wie tief man auftritt). Aus der
+          Geschosshöhe ergibt sich zunächst die Stufenzahl, daraus die exakte Steigung – und ob die Treppe
+          die drei klassischen Maßregeln einhält. Dieser Rechner macht das in einem Schritt und zeigt dir
+          per Ampel, ob das Schrittmaß im idealen Bereich liegt.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Die drei Maßregeln &amp; Formeln</h2>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+          <div>Stufenzahl n = Geschosshöhe ÷ Steigungshöhe (gerundet)</div>
+          <div>Steigungshöhe s = Geschosshöhe ÷ n</div>
+          <div>Schrittmaßregel: 2 · s + a = 59–65 cm (Ideal 63)</div>
+          <div>Sicherheitsregel: s + a = 46 cm</div>
+          <div>Bequemlichkeitsregel: a − s = 12 cm</div>
+          <div>Steigungswinkel = arctan(s ÷ a)</div>
+          <div>Lauflänge = (n − 1) · a</div>
+        </div>
+
+        <h3>Das ideale Steigungsverhältnis: 17/29</h3>
+        <p>
+          Eine Treppe mit <strong>17 cm Steigung und 29 cm Auftritt</strong> erfüllt alle drei Regeln auf
+          einmal: Schrittmaß 2·17 + 29 = 63 cm (ideal), Sicherheit 17 + 29 = 46 cm, Bequemlichkeit
+          29 − 17 = 12 cm. Der Steigungswinkel liegt bei rund 30°.
+        </p>
+
+        <h3>Beispiel: Geschosshöhe 280 cm</h3>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Stufenzahl = round(280 ÷ 18) = 16<br/>
+          Steigung s = 280 ÷ 16 = 17,5 cm<br/>
+          Auftritt a = 63 − 2·17,5 = 28 cm<br/>
+          Schrittmaß = 2·17,5 + 28 = <strong>63 cm (ideal)</strong> · Winkel ≈ 32° · Lauflänge = 15·28 = 420 cm
+        </div>
+
+        <p>
+          Geht es dir nur um die reine Neigung einer Fläche, Rampe oder eines Dachs, nutze den
+          <a href="/gefaelle-rechner">Gefälle-Rechner</a> bzw. den
+          <a href="/dachneigung-rechner">Dachneigungs-Rechner</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen zur Treppenberechnung</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie viele Stufen braucht meine Treppe?</summary>
+          <p class="mt-3">
+            Teile die Geschosshöhe durch die gewünschte Steigungshöhe und runde auf eine ganze Zahl:
+            <strong>Stufenzahl = Geschosshöhe ÷ Steigungshöhe</strong>. Bei 280 cm Geschosshöhe und ca.
+            18 cm Wunsch-Steigung sind das 280 ÷ 18 ≈ 16 Stufen. Die exakte Steigung ergibt sich dann aus
+            Geschosshöhe ÷ Stufenzahl (hier 17,5 cm), damit alle Stufen gleich hoch sind.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist die Schrittmaßregel?</summary>
+          <p class="mt-3">
+            Die Schrittmaßregel lautet <strong>2 × Steigung + Auftritt = 59 bis 65 cm</strong>, im Idealfall
+            63 cm. Sie bildet die durchschnittliche Schrittlänge eines Menschen ab. Liegt das Schrittmaß
+            außerhalb dieses Bereichs, wirkt die Treppe entweder zu steil und anstrengend oder zu flach und
+            ausladend.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Welches Steigungsverhältnis ist ideal?</summary>
+          <p class="mt-3">
+            Als ideal gilt <strong>17 cm Steigung zu 29 cm Auftritt (17/29)</strong>. Damit sind die
+            Schrittmaßregel (63 cm), die Sicherheitsregel (s + a = 46 cm) und die Bequemlichkeitsregel
+            (a − s = 12 cm) gleichzeitig erfüllt. Der Steigungswinkel beträgt dann rund 30°.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Welche Steigung und welchen Auftritt erlaubt die DIN 18065?</summary>
+          <p class="mt-3">
+            Als Orientierung nach DIN 18065: Für Treppen in <strong>Wohngebäuden bis zwei Wohnungen</strong>
+            liegt die Steigungshöhe bei 14–20 cm und der Auftritt bei 23–37 cm (Mindestlaufbreite 80 cm). Bei
+            notwendigen Treppen in größeren Gebäuden gelten 14–19 cm Steigung, 26–37 cm Auftritt und 100 cm
+            Laufbreite. Die DIN-Norm selbst ist kostenpflichtig; verbindlich ist zusätzlich die jeweilige
+            Landesbauordnung.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie berechne ich den Steigungswinkel einer Treppe?</summary>
+          <p class="mt-3">
+            Der Steigungswinkel ist <strong>arctan(Steigung ÷ Auftritt)</strong>. Bei 17,5 cm Steigung und
+            28 cm Auftritt ergibt das arctan(17,5 ÷ 28) ≈ 32°. Komfortable Wohnungstreppen liegen meist
+            zwischen 30° und 35°; steiler als 45° wird es zur Raumspartreppe.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie viel Platz (Lauflänge) braucht die Treppe?</summary>
+          <p class="mt-3">
+            Die horizontale Lauflänge im Grundriss ist <strong>(Stufenzahl − 1) × Auftritt</strong>. Bei 16
+            Stufen und 28 cm Auftritt sind das 15 × 28 = 420 cm. Plane zusätzlich Platz für An- und
+            Austritt sowie ggf. ein Zwischenpodest ein.
+          </p>
+        </details>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Geometrische Treppenformeln (Stufenzahl, Steigung/Auftritt, Schrittmaß) + DIN 18065 (Gebäudetreppen, Haupt-/Grenzmaße) als Orientierung" aktualisiert="Juni 2026" />
+
+    <VerwandteRechner aktuellerSlug="treppe" slugs={['dachneigung', 'gefaelle', 'raumhoehe-volumen', 'wohnflaeche']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": title,
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/treppe-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Wie viele Stufen braucht meine Treppe?", "acceptedAnswer": { "@type": "Answer", "text": "Teile die Geschosshöhe durch die gewünschte Steigungshöhe und runde auf eine ganze Zahl: Stufenzahl = Geschosshöhe ÷ Steigungshöhe. Bei 280 cm Geschosshöhe und ca. 18 cm Wunsch-Steigung sind das 280 ÷ 18 ≈ 16 Stufen. Die exakte Steigung ergibt sich dann aus Geschosshöhe ÷ Stufenzahl (hier 17,5 cm), damit alle Stufen gleich hoch sind." } },
+      { "@type": "Question", "name": "Was ist die Schrittmaßregel?", "acceptedAnswer": { "@type": "Answer", "text": "Die Schrittmaßregel lautet 2 × Steigung + Auftritt = 59 bis 65 cm, im Idealfall 63 cm. Sie bildet die durchschnittliche Schrittlänge eines Menschen ab. Liegt das Schrittmaß außerhalb dieses Bereichs, wirkt die Treppe entweder zu steil und anstrengend oder zu flach und ausladend." } },
+      { "@type": "Question", "name": "Welches Steigungsverhältnis ist ideal?", "acceptedAnswer": { "@type": "Answer", "text": "Als ideal gilt 17 cm Steigung zu 29 cm Auftritt (17/29). Damit sind die Schrittmaßregel (63 cm), die Sicherheitsregel (s + a = 46 cm) und die Bequemlichkeitsregel (a − s = 12 cm) gleichzeitig erfüllt. Der Steigungswinkel beträgt dann rund 30°." } },
+      { "@type": "Question", "name": "Welche Steigung und welchen Auftritt erlaubt die DIN 18065?", "acceptedAnswer": { "@type": "Answer", "text": "Als Orientierung nach DIN 18065: Für Treppen in Wohngebäuden bis zwei Wohnungen liegt die Steigungshöhe bei 14–20 cm und der Auftritt bei 23–37 cm (Mindestlaufbreite 80 cm). Bei notwendigen Treppen in größeren Gebäuden gelten 14–19 cm Steigung, 26–37 cm Auftritt und 100 cm Laufbreite. Die DIN-Norm selbst ist kostenpflichtig; verbindlich ist zusätzlich die jeweilige Landesbauordnung." } },
+      { "@type": "Question", "name": "Wie berechne ich den Steigungswinkel einer Treppe?", "acceptedAnswer": { "@type": "Answer", "text": "Der Steigungswinkel ist arctan(Steigung ÷ Auftritt). Bei 17,5 cm Steigung und 28 cm Auftritt ergibt das arctan(17,5 ÷ 28) ≈ 32°. Komfortable Wohnungstreppen liegen meist zwischen 30° und 35°; steiler als 45° wird es zur Raumspartreppe." } },
+      { "@type": "Question", "name": "Wie viel Platz (Lauflänge) braucht die Treppe?", "acceptedAnswer": { "@type": "Answer", "text": "Die horizontale Lauflänge im Grundriss ist (Stufenzahl − 1) × Auftritt. Bei 16 Stufen und 28 cm Auftritt sind das 15 × 28 = 420 cm. Plane zusätzlich Platz für An- und Austritt sowie ggf. ein Zwischenpodest ein." } }
+    ]
+  })} />
+</Layout>
