@@ -846,6 +846,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'ertragswertverfahren',
+    name: 'Ertragswertverfahren-Rechner',
+    beschreibung: 'Ertragswert einer vermieteten Immobilie nach dem Ertragswertverfahren der ImmoWertV 2022 berechnen.',
+    icon: '🏢',
+    kategorie: 'wohnen',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/immowertv_2022/__28.html',
+      'https://www.gesetze-im-internet.de/immowertv_2022/__34.html',
+      'https://www.gesetze-im-internet.de/immowertv_2022/__32.html',
+      'https://www.gesetze-im-internet.de/immowertv_2022/__21.html',
+    ],
+    seoKeywords: 'Ertragswertverfahren Rechner, Ertragswert berechnen, ImmoWertV Ertragswert, Liegenschaftszins, Vervielfältiger Immobilie, Barwertfaktor, Gebäudereinertrag, Reinertrag Immobilie, Ertragswert Immobilie, Immobilienbewertung Ertragswertverfahren',
+  },
+  {
     id: 'notarkosten',
     name: 'Notarkosten-Rechner',
     beschreibung: 'Notar- und Grundbuchkosten nach GNotKG berechnen',
