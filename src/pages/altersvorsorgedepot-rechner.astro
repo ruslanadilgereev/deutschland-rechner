@@ -1,0 +1,278 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AltersvorsorgedepotRechner from '../components/rechner/AltersvorsorgedepotRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Altersvorsorgedepot-Rechner – Zulagen & Endkapital berechnen 2027";
+const description = "Altersvorsorgedepot-Rechner: Grundzulage, Kinderzulage & Berufseinsteigerbonus der neuen geförderten Altersvorsorge berechnen. Endkapital mit Zinseszins. Kostenlos.";
+const keywords = "Altersvorsorgedepot Rechner, Altersvorsorgedepot, geförderte Altersvorsorge Rechner, Riester Nachfolger, Grundzulage Rechner, Kinderzulage Altersvorsorge, Berufseinsteigerbonus, private Altersvorsorge 2027, Förderzulage berechnen, Altersvorsorge Reform 2026, Zulagen Rechner, Altersvorsorgedepot Förderung, Frühstart-Rente Depot, staatliche Förderung Altersvorsorge";
+
+// FAQ – einzige Quelle der Wahrheit für sichtbares FAQ und FAQPage-Schema (1:1-Parität)
+const faqs = [
+  {
+    q: "Was ist das Altersvorsorgedepot?",
+    a: "Das Altersvorsorgedepot ist die neue staatlich geförderte private Altersvorsorge in Deutschland und löst die Riester-Rente ab. Der Bundesrat hat die Reform am 8. Mai 2026 beschlossen. Verbraucher können entsprechende Produkte voraussichtlich ab dem 1. Januar 2027 abschließen. Der Staat fördert die eigenen Einzahlungen über eine gestaffelte Grundzulage, Kinderzulagen und einen einmaligen Berufseinsteigerbonus."
+  },
+  {
+    q: "Wie hoch ist die Grundzulage beim Altersvorsorgedepot?",
+    a: "Die Grundzulage ist gestaffelt: Auf die ersten 360 Euro Eigenbeitrag gibt es 50 Cent je Euro (also bis zu 180 Euro), auf den Eigenbeitrag von 360,01 Euro bis 1.800 Euro gibt es 25 Cent je Euro (also bis zu 360 Euro). Die maximale Grundzulage beträgt damit 540 Euro pro Jahr bei einem geförderten Höchstbeitrag von 1.800 Euro. Voraussetzung ist ein Mindesteigenbeitrag von 120 Euro pro Jahr."
+  },
+  {
+    q: "Wie hoch ist die Kinderzulage?",
+    a: "Für jedes zulageberechtigte Kind gibt es 1 Euro Kinderzulage je gespartem Euro bis zu einem Eigenbeitrag von 300 Euro pro Kind. Die volle Kinderzulage von 300 Euro pro Kind und Jahr erhalten Sie also, wenn Sie mindestens 300 Euro (rund 25 Euro im Monat) je Kind einzahlen. Auch für die Kinderzulage gilt der Mindesteigenbeitrag von 120 Euro pro Jahr."
+  },
+  {
+    q: "Was ist der Berufseinsteigerbonus?",
+    a: "Wer einen Vertrag vor dem 25. Geburtstag abschließt, erhält einmalig einen Berufseinsteigerbonus von 200 Euro. Dieser Bonus wird nur ein einziges Mal gutgeschrieben und nicht jährlich gezahlt. Im Rechner wird er deshalb nur dem ersten Anlagejahr zugerechnet."
+  },
+  {
+    q: "Ab wann gibt es das Altersvorsorgedepot?",
+    a: "Die Reform der geförderten privaten Altersvorsorge wurde am 8. Mai 2026 vom Bundesrat beschlossen. Entsprechende Altersvorsorgedepots sind für Verbraucher voraussichtlich ab dem 1. Januar 2027 verfügbar. Die Berechnung in diesem Rechner beruht auf den bereits beschlossenen Förderparametern; konkrete Anbieterkonditionen und Produktkosten stehen noch nicht fest."
+  },
+  {
+    q: "Wie wird das Endkapital im Rechner ermittelt?",
+    a: "Der Rechner addiert in jedem Jahr Ihren Eigenbeitrag plus die staatlichen Zulagen (Grundzulage, Kinderzulage und im ersten Jahr den Berufseinsteigerbonus) und verzinst das angesparte Kapital anschließend mit der erwarteten Rendite. So entsteht über die Anlagedauer der Zinseszinseffekt. Das ausgewiesene Endkapital enthält Eigenbeiträge, staatliche Zulagen und die erzielte Rendite – jeweils vor Produktkosten und vor der nachgelagerten Besteuerung in der Auszahlphase."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Altersvorsorgedepot-Rechner", url: "/altersvorsorgedepot-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <Breadcrumb items={[{ name: "Startseite", href: "/" }, { name: "Altersvorsorgedepot-Rechner" }]} />
+
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💼</span>
+          <div>
+            <h1 class="text-2xl font-bold">Altersvorsorgedepot-Rechner</h1>
+            <p class="text-orange-100 text-sm">Zulagen & Endkapital der neuen geförderten Altersvorsorge berechnen</p>
+          </div>
+        </div>
+        <p class="text-orange-100 text-xs mt-3">
+          Das Altersvorsorgedepot ist für Verbraucher ab dem 1. Januar 2027 verfügbar. Berechnung auf Basis der beschlossenen Förderparameter.
+        </p>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AltersvorsorgedepotRechner client:load />
+    </div>
+
+    <!-- Trust Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-2">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <strong>✅ Zuletzt aktualisiert am 13. Juni 2026.</strong>
+        <div class="mt-2">
+          <strong>Grundlage:</strong> Reform der steuerlich geförderten privaten Altersvorsorge (Altersvorsorgedepot),
+          beschlossen vom Bundesrat am 8. Mai 2026; Förderparameter laut Bundesministerium der Finanzen (BMF) und
+          Bundesregierung. Produkte sind für Verbraucher ab dem 1. Januar 2027 verfügbar.
+        </div>
+        <div class="mt-2 text-xs text-blue-600">
+          <strong>Berücksichtigt:</strong> Gestaffelte Grundzulage (50 % bis 360 €, 25 % bis 1.800 €, max. 540 €/Jahr),
+          Kinderzulage (1 € je Euro bis 300 € Eigenbeitrag je Kind), einmaliger Berufseinsteigerbonus (200 €),
+          Mindesteigenbeitrag 120 €/Jahr, geförderter Höchstbeitrag 1.800 €/Jahr, Endkapital mit Zinseszins.<br/>
+          <strong>Nicht berücksichtigt:</strong> Konkrete Produktkosten und Gebühren, nachgelagerte Besteuerung in der
+          Auszahlphase, individuelle Steuersituation, Kursschwankungen bzw. negative Renditen sowie exakte
+          Anbieterkonditionen (Produkte erst ab dem 1. Januar 2027 verfügbar).
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Altersvorsorgedepot 2027: Zulagen, Förderquote & Endkapital</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Das <strong>Altersvorsorgedepot</strong> ist die neue staatlich geförderte private Altersvorsorge in
+            Deutschland und tritt an die Stelle der Riester-Rente. Der Bundesrat hat die Reform am
+            <strong>8. Mai 2026</strong> beschlossen; abschließbar ist das Depot für Verbraucher voraussichtlich
+            <strong>ab dem 1. Januar 2027</strong>. Mit unserem <strong>Altersvorsorgedepot-Rechner</strong>
+            ermitteln Sie Ihre jährlichen Zulagen, die Förderquote und das voraussichtliche Endkapital inklusive
+            Zinseszins. Als Vergleich zur ungeförderten Geldanlage können Sie den
+            <a href="/etf-sparplan-rechner" class="text-blue-600 hover:underline">ETF-Sparplan-Rechner</a> nutzen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Zulagen im Überblick</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundzulage (gestaffelt):</strong> 50 Cent je Euro auf die ersten 360 € (= bis 180 €), danach 25 Cent je Euro bis 1.800 € (= bis 360 €). Maximal <strong>540 € pro Jahr</strong>.</li>
+            <li><strong>Kinderzulage:</strong> 1 € je gespartem Euro bis 300 € Eigenbeitrag pro Kind – also bis zu <strong>300 € je Kind und Jahr</strong>.</li>
+            <li><strong>Berufseinsteigerbonus:</strong> einmalig <strong>200 €</strong> bei Vertragsabschluss vor dem 25. Geburtstag.</li>
+            <li><strong>Mindesteigenbeitrag:</strong> <strong>120 € pro Jahr</strong> sind nötig, damit überhaupt eine Zulage fließt.</li>
+            <li><strong>Geförderter Höchstbeitrag:</strong> <strong>1.800 € pro Jahr</strong> – darüber hinaus ist eine Einzahlung möglich, wird aber nicht zusätzlich gefördert.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel für die Grundzulage</h3>
+          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
+            <strong>Grundzulage = min(E; 360) × 0,50 + max(0; min(E; 1.800) − 360) × 0,25</strong>
+          </div>
+          <p>
+            Dabei ist <strong>E</strong> der jährliche Eigenbeitrag. Liegt E unter 120 €, entfällt die Förderung. Die
+            Förderquote zeigt, wie viel Prozent der Staat auf Ihren Eigenbeitrag drauflegt:
+            <strong>Förderquote = (Grundzulage + Kinderzulage) ÷ Eigenbeitrag × 100</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 1: 1.800 € Eigenbeitrag, keine Kinder</h3>
+          <p>
+            Bei einem Eigenbeitrag von <strong>1.800 € pro Jahr</strong> ohne Kinder ergibt sich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Grundzulage = 360 × 0,50 + (1.800 − 360) × 0,25 = 180 € + 360 € = <strong>540 € pro Jahr</strong></li>
+            <li>Förderquote = 540 € ÷ 1.800 € = <strong>30 %</strong></li>
+          </ul>
+          <p>
+            Der Staat legt also 30 % auf den Eigenbeitrag drauf – die maximal mögliche Grundzulage von 540 € ist
+            ausgeschöpft.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 2: 600 € Eigenbeitrag, 1 Kind</h3>
+          <p>
+            Bei einem Eigenbeitrag von <strong>600 € pro Jahr</strong> mit einem Kind ergibt sich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Grundzulage = 360 × 0,50 + (600 − 360) × 0,25 = 180 € + 60 € = <strong>240 €</strong></li>
+            <li>Kinderzulage = min(600 €; 1 × 300 €) = <strong>300 € (1 Kind)</strong> – 600 € Eigenbeitrag reichen für die volle Kinderzulage</li>
+            <li>Zulage gesamt = 240 € + 300 € = <strong>540 €</strong></li>
+            <li>Förderquote = 540 € ÷ 600 € = <strong>90 %</strong></li>
+          </ul>
+          <p>
+            Familien mit Kindern profitieren überproportional: Bei nur 600 € Eigenbeitrag verdoppelt sich der Einsatz
+            durch die Zulagen fast.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So wirkt der Zinseszins</h3>
+          <p>
+            Der Rechner addiert in jedem Jahr den Eigenbeitrag und die Zulagen und verzinst das angesparte Kapital
+            anschließend mit der erwarteten Rendite. Über lange Laufzeiten entsteht so ein erheblicher
+            Zinseszinseffekt – ähnlich wie bei einem
+            <a href="/etf-sparplan-rechner" class="text-blue-600 hover:underline">ETF-Sparplan</a>. Wer das Depot
+            zur Schließung der Rentenlücke nutzen möchte, kann zunächst die
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">gesetzliche Rente berechnen</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Typische Fehler & Sonderfälle</h2>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Mindesteigenbeitrag unterschätzt:</strong> Unter 120 € Eigenbeitrag pro Jahr fließt überhaupt keine Zulage – auch nicht anteilig.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Mehr als 1.800 € eingezahlt:</strong> Beträge oberhalb des geförderten Höchstbeitrags von 1.800 € erhöhen die Zulage nicht mehr – die Grundzulage bleibt bei maximal 540 €.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Kinderzulage als „extra" eingeplant:</strong> Die Kinderzulage wird aus demselben Eigenbeitrag berechnet. Für die volle Zulage je Kind sind 300 € Eigenbeitrag pro Kind nötig.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Berufseinsteigerbonus jährlich erwartet:</strong> Die 200 € gibt es nur einmalig bei Abschluss vor dem 25. Geburtstag – nicht jedes Jahr.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Kosten und Steuern vergessen:</strong> Produktkosten, Gebühren und die nachgelagerte Besteuerung in der Auszahlphase sind im Rechner nicht enthalten und mindern das tatsächliche Ergebnis.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufige Fragen (FAQ)</h2>
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="group border border-gray-200 rounded-lg">
+              <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+                {faq.q}
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">{faq.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/etf-sparplan-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📊</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">ETF-Sparplan-Rechner</p>
+          </a>
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zuletzt aktualisiert -->
+    <div class="max-w-2xl mx-auto px-4 mt-6 mb-4">
+      <p class="text-xs text-gray-400 text-center">Zuletzt aktualisiert: 13. Juni 2026 · Alle Angaben ohne Gewähr · Förderparameter laut BMF und Bundesregierung (Reform beschlossen am 8. Mai 2026)</p>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Altersvorsorgedepot-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/altersvorsorgedepot-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} />
+</Layout>

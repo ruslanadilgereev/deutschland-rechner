@@ -1415,6 +1415,22 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'altersvorsorgedepot',
+    name: 'Altersvorsorgedepot-Rechner',
+    beschreibung: 'Zulagen & Endkapital der neuen geförderten Altersvorsorge berechnen',
+    icon: '💼',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'Altersvorsorgedepot Rechner, Altersvorsorgedepot, geförderte Altersvorsorge Rechner, Riester Nachfolger, Grundzulage Rechner, Kinderzulage Altersvorsorge, Berufseinsteigerbonus, private Altersvorsorge 2027, Förderzulage berechnen, Altersvorsorge Reform 2026, Zulagen Rechner, Altersvorsorgedepot Förderung, staatliche Förderung Altersvorsorge',
+    quellen: [
+      'https://www.bundesfinanzministerium.de/Content/DE/FAQ/reform-der-privaten-altersvorsorge.html',
+      'https://www.bundesregierung.de/breg-de/aktuelles/reform-private-altersvorsorge-2400072',
+      'https://www.bundesfinanzministerium.de/Monatsberichte/Ausgabe/2026/01/Inhalte/Kapitel-2-Analysen/2-2-neustart-fuer-die-private-altersvorsorge.html',
+      'https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2026/260508-bundesrat-reform-private-altersvorsorge.html',
+      'https://www.bundestag.de/dokumente/textarchiv/2026/kw13-de-altersvorsorge-1156798',
+    ],
+  },
+  {
     id: 'inflations',
     name: 'Inflations-Rechner',
     beschreibung: 'Kaufkraftverlust berechnen',
