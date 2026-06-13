@@ -4,9 +4,9 @@ import RentensteuerRechner from '../components/rechner/RentensteuerRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
-const title = "Rentensteuer-Rechner 2026: Netto-Rente berechnen";
-const description = "Rentensteuer-Rechner 2026: Brutto-Rente eingeben, Netto-Rente sehen. Steuer, KV & PV inkl. Betriebsrente – auch für Ehepaare. Kostenlos & ohne Anmeldung.";
-const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Rentenbesteuerung 2026, Besteuerungsanteil, Krankenversicherung Rentner, Steuern auf Rente, Rente Abzüge, Rentenfreibetrag, Aktivrente 2026, Betriebsrente Steuer, Witwenrente Steuer, Grundfreibetrag Rentner";
+const title = "Rentensteuer-Rechner 2026: Rente brutto netto berechnen";
+const description = "Rentensteuer-Rechner 2026 (Rentenrechner brutto netto): Brutto-Rente eingeben, Netto-Rente sehen. Steuer, KV & PV inkl. Betriebsrente – auch für Ehepaare. Kostenlos & ohne Anmeldung.";
+const keywords = "Rentensteuer Rechner, Rentenrechner brutto netto, Rente brutto netto, Rentenabzüge, Netto Rente berechnen, Rentenbesteuerung 2026, Besteuerungsanteil, Krankenversicherung Rentner, Steuern auf Rente, Rente Abzüge, Rentenfreibetrag, Aktivrente 2026, Betriebsrente Steuer, Witwenrente Steuer, Grundfreibetrag Rentner";
 ---
 
 <Layout 
@@ -52,7 +52,7 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
     <div class="max-w-2xl mx-auto px-4 mt-6">
       <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-xs text-purple-800">
         <p class="font-semibold mb-1">📋 Rechtsgrundlagen dieses Rechners</p>
-        <p>Berechnung nach <strong>§22 Nr. 1 Satz 3 Buchst. a Doppelbuchst. aa EStG</strong> (Besteuerungsanteil), <strong>§10 Abs. 1 Nr. 3 EStG</strong> (Vorsorgeaufwendungen), <strong>§32a EStG</strong> (Einkommensteuertarif) und <strong>§226 SGB V / §55 SGB XI</strong> (KV-/PV-Beiträge Rentner). Werte aktualisiert für 2026: Grundfreibetrag 12.348 €, Besteuerungsanteil Neurentner 84 %, KV-Zusatzbeitrag Ø 2,9 %, PV 3,6 %. Was der Rechner <strong>berücksichtigt:</strong> Einkommensteuer, KV, PV, Soli, KiSt, Freibeträge. <strong>Nicht berücksichtigt:</strong> individuelle außergewöhnliche Belastungen, Einkünfte aus Vermietung/Kapital, individuelle Krankenkassenwahl. Zuletzt aktualisiert: März 2026.</p>
+        <p>Berechnung nach <strong>§22 Nr. 1 Satz 3 Buchst. a Doppelbuchst. aa EStG</strong> (Besteuerungsanteil), <strong>§10 Abs. 1 Nr. 3 EStG</strong> (Vorsorgeaufwendungen), <strong>§32a EStG</strong> (Einkommensteuertarif) und <strong>§226 SGB V / §55 SGB XI</strong> (KV-/PV-Beiträge Rentner). Werte aktualisiert für 2026: Grundfreibetrag 12.348 €, Besteuerungsanteil Neurentner 84 %, KV-Zusatzbeitrag Ø 2,9 %, PV 3,6 %. Was der Rechner <strong>berücksichtigt:</strong> Einkommensteuer, KV, PV, Soli, KiSt, Freibeträge. <strong>Nicht berücksichtigt:</strong> individuelle außergewöhnliche Belastungen, Einkünfte aus Vermietung/Kapital, individuelle Krankenkassenwahl. Zuletzt aktualisiert: 13. Juni 2026.</p>
       </div>
     </div>
 
@@ -162,11 +162,36 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
 
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Dieser Rechner funktioniert wie ein <strong>Brutto-Netto-Rentenrechner</strong>: Sie geben
+            Dieser Rechner funktioniert wie ein <strong>Brutto-Netto-Rentenrechner</strong> (auch
+            „<strong>Rentenrechner brutto netto</strong>" genannt): Sie geben
             Ihre <strong>Brutto-Rente</strong> ein, und der Rechner durchläuft die komplette Abzugskette —
             Besteuerungsanteil, zu versteuerndes Einkommen, Einkommensteuer nach §32a EStG sowie
             KV- und PV-Beiträge — bis zu Ihrer <strong>Netto-Rente</strong>. So sehen Sie auf einen
             Blick, wie viel von der Rente brutto zu netto übrig bleibt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie viel Netto bleibt von der Bruttorente?</h3>
+          <p>
+            Die Frage „<strong>Wie viel Netto bleibt von der Bruttorente?</strong>" lässt sich nicht
+            pauschal beantworten — anders als beim Gehalt gibt es bei der Rente keinen festen
+            Abzugssatz. Wie viel <strong>Rente brutto netto</strong> übrig bleibt, hängt von drei
+            Größen ab:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Kranken- und Pflegeversicherung:</strong> Diese rund <strong>12,35 %</strong>
+            (KV ca. 8,75 % + PV 3,6 %) gehen praktisch immer ab — unabhängig davon, ob Steuern
+            anfallen.</li>
+            <li><strong>Besteuerungsanteil:</strong> Bei Rentenbeginn 2026 sind 84 % der Brutto-Rente
+            steuerpflichtig, der Rest bleibt als lebenslanger Rentenfreibetrag steuerfrei.</li>
+            <li><strong>Höhe der Rente:</strong> Liegt das zu versteuernde Einkommen unter dem
+            Grundfreibetrag (12.348 € für Ledige), fällt gar keine Einkommensteuer an.</li>
+          </ul>
+          <p>
+            Als Faustregel bleiben bei einer durchschnittlichen Rente rund <strong>85–88 % netto</strong>
+            von der Brutto-Rente übrig. Bei kleinen Renten ohne Steuerlast sind es bis zu rund 88 %
+            (nur KV/PV-Abzug), bei hohen Renten mit zusätzlicher Betriebsrente können es auch nur
+            80 % sein. Die exakte Netto-Rente liefert Ihnen der <strong>Rentenrechner brutto netto</strong>
+            oben — die folgende Tabelle zeigt typische Werte zur Orientierung.
           </p>
 
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Tabelle: Brutto-Rente in Netto-Rente 2026</h3>
@@ -607,6 +632,14 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
             </summary>
             <p class="p-3 pt-0 text-sm text-gray-600">Ja — dieser <strong>Steuerrechner für Rentner</strong> ist komplett <strong>kostenlos</strong> und <strong>ohne Anmeldung</strong> nutzbar. Er rechnet mit den aktuellen Werten 2026 (Grundfreibetrag 12.348 €, Besteuerungsanteil 84 % für Neurentner, KV ca. 8,75 %, PV 3,6 %) und berücksichtigt auch Betriebsrente, Zusammenveranlagung für Ehepaare und Kirchensteuer.</p>
           </details>
+
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 font-medium text-gray-800">
+              <span>Wie viel Netto bleibt von der Bruttorente?</span>
+              <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="p-3 pt-0 text-sm text-gray-600">Das hängt von der Höhe der Rente und dem Besteuerungsanteil ab. Kranken- und Pflegeversicherung (ca. 12,35 %) gehen fast immer ab, Einkommensteuer erst über dem Grundfreibetrag (12.348 € für Ledige). Als Faustregel bleiben bei einer durchschnittlichen Rente rund <strong>85–88 % netto</strong> von der Brutto-Rente übrig: bei kleinen Renten ohne Steuerlast bis zu 88 % (nur KV/PV), bei hohen Renten mit Betriebsrente auch nur rund 80 %. Den genauen Wert berechnen Sie mit dem <strong>Rentenrechner brutto netto</strong> oben — geben Sie Ihre Brutto-Rente ein und Sie sehen sofort, wie viel Rente brutto netto übrig bleibt.</p>
+          </details>
         </div>
       </div>
     </div>
@@ -807,6 +840,14 @@ const keywords = "Rentensteuer Rechner, Rentenabzüge, Netto Rente berechnen, Re
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Ja — dieser Steuerrechner für Rentner ist komplett kostenlos und ohne Anmeldung nutzbar. Er rechnet mit den aktuellen Werten 2026 (Grundfreibetrag 12.348 €, Besteuerungsanteil 84 % für Neurentner, KV ca. 8,75 %, PV 3,6 %) und berücksichtigt auch Betriebsrente, Zusammenveranlagung für Ehepaare und Kirchensteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Netto bleibt von der Bruttorente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von der Höhe der Rente und dem Besteuerungsanteil ab. Kranken- und Pflegeversicherung (ca. 12,35 %) gehen fast immer ab, Einkommensteuer erst über dem Grundfreibetrag (12.348 € für Ledige). Als Faustregel bleiben bei einer durchschnittlichen Rente rund 85–88 % netto von der Brutto-Rente übrig: bei kleinen Renten ohne Steuerlast bis zu 88 % (nur KV/PV), bei hohen Renten mit Betriebsrente auch nur rund 80 %. Den genauen Wert berechnen Sie mit dem Rentenrechner brutto netto oben — geben Sie Ihre Brutto-Rente ein und Sie sehen sofort, wie viel Rente brutto netto übrig bleibt."
         }
       }
     ]
