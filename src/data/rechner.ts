@@ -2815,6 +2815,16 @@ export const rechnerListe: Rechner[] = [
     quellen: ['https://www.gesetze-im-internet.de/woflv/__4.html', 'https://www.gesetze-im-internet.de/woflv/BJNR234610003.html'],
   },
   {
+    id: 'miteigentumsanteil',
+    name: 'Miteigentumsanteil-Rechner (MEA)',
+    beschreibung: 'Miteigentumsanteil (x/1.000-tel) flächenanteilig schätzen',
+    icon: '🏘️',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Miteigentumsanteil berechnen, MEA Rechner, Miteigentumsanteil Tausendstel, MEA Wohnung, Miteigentumsanteil Wohnfläche, Teilungserklärung MEA, Hausgeld nach Miteigentumsanteil',
+    quellen: ['https://www.gesetze-im-internet.de/woeigg/__8.html', 'https://www.gesetze-im-internet.de/woeigg/__16.html', 'https://www.gesetze-im-internet.de/gbo/__47.html'],
+  },
+  {
     id: 'fliesen',
     name: 'Fliesen-Rechner',
     beschreibung: 'Fliesenbedarf, Verschnitt, Kartons & Kleber',
