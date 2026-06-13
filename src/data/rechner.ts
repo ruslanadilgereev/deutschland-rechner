@@ -2179,6 +2179,16 @@ export const rechnerListe: Rechner[] = [
     quellen: ['https://www.bmi.bund.de/'],
   },
   {
+    id: 'tv-l',
+    name: 'TV-L-Rechner',
+    beschreibung: 'Gehalt im öffentlichen Dienst der Länder (TV-L) nach Entgeltgruppe und Stufe – brutto & netto, Tabelle ab April 2026.',
+    icon: '🏛️',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'TV-L Rechner, TV-L Entgelttabelle 2026, öffentlicher Dienst Länder Gehalt, TV-L Brutto Netto, Entgeltgruppe Stufe TV-L, TV-L 2026, Tarifvertrag Länder, TV-L Gehaltsrechner',
+    quellen: ['https://www.tdl-online.de/tarifvertraege/tv-l', 'https://www.gesetze-im-internet.de/estg/__32a.html', 'https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2025/25-10-08-bundeskabinett-sv-rechengroessen-vo-2026.html'],
+  },
+  {
     id: 'bitcoin',
     name: 'Bitcoin- & Krypto-Rechner',
     beschreibung: 'Bitcoin & Krypto live in Euro umrechnen',

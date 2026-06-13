@@ -1,0 +1,451 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TvlRechner from '../components/rechner/TvlRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "TV-L-Rechner 2026 – Gehalt im öffentlichen Dienst der Länder brutto & netto berechnen";
+const description = "TV-L-Rechner 2026 als Gehaltsrechner für den öffentlichen Dienst der Länder: Monatsbrutto nach Entgeltgruppe und Stufe aus der amtlichen Tabelle ab 1. April 2026 (+2,8 %, mind. +100 €) plus grobe Netto-Schätzung. Kostenlos, ohne Gewähr, VBL nicht enthalten.";
+const keywords = "TV-L Rechner, TV-L Entgelttabelle 2026, öffentlicher Dienst Länder Gehalt, TV-L Brutto Netto, Entgeltgruppe Stufe TV-L, TV-L 2026, Tarifvertrag Länder, TV-L Gehaltsrechner";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "TV-L-Rechner", url: "/tv-l-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt', href: '/arbeit-gehalt' },
+    { name: 'TV-L-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">TV-L-Rechner 2026 – Gehalt im öffentlichen Dienst der Länder</h1>
+            <p class="text-blue-200 text-sm">Brutto & Netto im öffentlichen Dienst der Länder (TV-L)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Amtliche TV-L-Entgelttabelle (Anlage B) der Länder, gültig ab 1. April 2026 (Tarifabschluss TdL vom 14. Februar 2026: +2,8 %, mindestens +100 €), Sozialversicherungs-Rechengrößen 2026</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Monatsbrutto nach Entgeltgruppe (E 1–E 15) und Erfahrungsstufe (1–6), grobe Netto-Schätzung mit Steuerklasse, KV-Zusatzbeitrag und Kirchensteuer</p>
+            <p><strong>Nicht berücksichtigt:</strong> Hessen (eigener TV-H), betriebliche Zusatzversorgung (VBL), Jahressonderzahlung, Zulagen, die Überleitungsgruppen E 2Ü/E 13Ü/E 15Ü sowie Kinder- und individuelle Freibeträge – der Rechner liefert eine unverbindliche Orientierung ohne Gewähr</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TvlRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">TV-L-Gehalt 2026: Entgeltgruppen, Stufen und der Tarifabschluss</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Tarifvertrag für den öffentlichen Dienst der Länder (TV-L)</strong> regelt das
+            Gehalt der Beschäftigten der Bundesländer – etwa an Landesbehörden, Universitäten,
+            Hochschulen, Landesschulen und Universitätskliniken. Als <strong>Gehaltsrechner für den
+            öffentlichen Dienst der Länder</strong> zeigt unser <strong>TV-L-Rechner</strong> das
+            exakte Monatsbrutto aus der amtlichen Entgelttabelle, sobald Sie Entgeltgruppe und Stufe
+            wählen – plus eine grobe Schätzung dessen, was netto übrig bleibt.
+          </p>
+          <p>
+            Wichtig zum Geltungsbereich: Der TV-L gilt für <strong>alle Bundesländer außer Hessen</strong>.
+            Hessen ist aus der Tarifgemeinschaft deutscher Länder (TdL) ausgetreten und hat mit dem
+            <strong> TV-H</strong> einen eigenen Tarifvertrag mit abweichenden Beträgen. Wer dagegen
+            bei einer <strong>Kommune oder beim Bund</strong> angestellt ist, fällt unter den separaten
+            <strong> TVöD</strong> mit eigener Tabelle. Dieser Rechner bildet ausschließlich den TV-L ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Tarifabschluss 2026 und die Stufe ab April 2026</h3>
+          <p>
+            Die Tarifeinigung der TdL mit ver.di und der dbb tarifunion vom <strong>14. Februar 2026</strong>
+            sieht eine mehrstufige Erhöhung vor. Die erste Stufe – <strong>+2,8 %, mindestens aber
+            +100 € (Sockelbetrag)</strong> – wirkt zum <strong>1. April 2026</strong> und liegt diesem
+            Rechner zugrunde. Die Tabelle gilt vom 1. April 2026 bis zum 28. Februar 2027. Danach folgen
+            laut Abschluss weitere Schritte: +2,0 % ab 1. März 2027 und +1,0 % ab 1. Januar 2028.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was sind Entgeltgruppen und Stufen?</h3>
+          <p>Das TV-L-Gehalt ergibt sich aus zwei Achsen:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Entgeltgruppe (E 1–E 15):</strong> richtet sich nach der Tätigkeit und Qualifikation – von einfachen Tätigkeiten (E 1) bis zu akademischen Leitungspositionen (E 15).</li>
+              <li><strong>Erfahrungsstufe (1–6):</strong> steigt mit der Zeit in der Entgeltgruppe. Stufe 1 ist der Einstieg, Stufe 6 die Endstufe nach langjähriger Tätigkeit. In E 1 ist die Stufe 1 nicht besetzt – der Einstieg erfolgt dort in Stufe 2.</li>
+            </ul>
+          </div>
+          <p>
+            Innerhalb einer Entgeltgruppe wächst das Gehalt also automatisch mit den Berufsjahren –
+            die Stufenlaufzeiten reichen von einem Jahr (Stufe 1 → 2) bis zu fünf Jahren (Stufe 5 → 6).
+            Daneben existieren die Überleitungsgruppen <strong>E 2Ü, E 13Ü und E 15Ü</strong> für
+            übergeleitete Beschäftigte (BAT-Altfälle); dieser Rechner bildet die reguläre Tabelle
+            E 1–E 15 ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vom Brutto zum Netto – und warum die VBL fehlt</h3>
+          <p>
+            Vom Bruttogehalt gehen Sozialabgaben (Renten-, Arbeitslosen-, Kranken- und
+            Pflegeversicherung) sowie Lohnsteuer ab. Unser Rechner schätzt diese mit den
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:text-blue-800 underline">Werten 2026</a> grob ab.
+            Wichtig: Im öffentlichen Dienst zahlen Sie zusätzlich einen Eigenanteil zur
+            <strong>betrieblichen Zusatzversorgung (VBL)</strong>. Dieser Anteil ist in unserer
+            Netto-Schätzung <strong>nicht enthalten</strong> – Ihr tatsächliches Netto liegt also etwas
+            niedriger, dafür bauen Sie eine zusätzliche Betriebsrente auf.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispiele aus der Tabelle (ab April 2026)</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So liegen die Monatsbruttos in typischen Konstellationen:
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Verwaltungsfachangestellte – E 6, Stufe 3</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Entgeltgruppe:</div>
+              <div class="font-medium text-gray-800">E 6</div>
+              <div class="text-gray-600">Stufe:</div>
+              <div class="font-medium text-gray-800">3</div>
+              <div class="text-gray-600">Monatsbrutto:</div>
+              <div class="font-medium text-green-700">3.547,20 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Erfahrene Sachbearbeitung – E 9b, Stufe 4</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Entgeltgruppe:</div>
+              <div class="font-medium text-gray-800">E 9b</div>
+              <div class="text-gray-600">Stufe:</div>
+              <div class="font-medium text-gray-800">4</div>
+              <div class="text-gray-600">Monatsbrutto:</div>
+              <div class="font-medium text-green-700">4.488,99 €</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Akademische Leitung – E 13, Stufe 5</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Entgeltgruppe:</div>
+              <div class="font-medium text-gray-800">E 13</div>
+              <div class="text-gray-600">Stufe:</div>
+              <div class="font-medium text-gray-800">5</div>
+              <div class="text-gray-600">Monatsbrutto:</div>
+              <div class="font-medium text-green-700">6.573,97 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Diese Beträge sind das reine Tabellenentgelt. Hinzu kommen je nach
+          Stelle Jahressonderzahlung, Zulagen und die Zusatzversorgung (VBL) – Letztere kostet
+          Eigenanteil, baut aber Ihre Betriebsrente auf. Insgesamt reicht die TV-L-Tabelle von
+          rund 2.534,49 € (E 1, Stufe 2) bis 7.854,52 € (E 15, Stufe 6).
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: TV-L mit TVöD verwechseln</h3>
+            <p>Der TV-L gilt für die Länder, der TVöD für Kommunen (VKA) und den Bund – beide haben
+            eigene Tabellen mit teils anderen Beträgen. Dieser Rechner bildet ausschließlich die
+            <strong>TV-L-Tabelle (Anlage B)</strong> ab.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Hessen mitrechnen</h3>
+            <p>Hessen ist nicht Mitglied der TdL und zahlt nach dem eigenen <strong>TV-H</strong> mit
+            abweichenden Beträgen. Wer in Hessen beim Land angestellt ist, kann die hier gezeigten
+            TV-L-Werte nicht übernehmen.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Stufe mit Lebensalter gleichsetzen</h3>
+            <p>Die Erfahrungsstufe hängt an der Zeit in der jeweiligen Entgeltgruppe, nicht am Alter.
+            Wer neu in eine höhere Entgeltgruppe wechselt, startet dort oft wieder in einer niedrigeren
+            Stufe.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 4: Netto eins zu eins erwarten</h3>
+            <p>Unsere Netto-Schätzung ist eine grobe Näherung. Ihr tatsächliches Netto hängt von
+            Steuerfreibeträgen, Kinderzahl, Bundesland (Kirchensteuer 8 % oder 9 %) und Ihrer
+            Krankenkasse ab – und der VBL-Eigenanteil senkt es zusätzlich.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Überleitungsgruppen E 2Ü/E 13Ü/E 15Ü</h3>
+            <p>Für aus dem BAT übergeleitete Beschäftigte existieren die Besitzstandsgruppen E 2Ü,
+            E 13Ü und E 15Ü. Sie sind nicht Teil der regulären Tabelle E 1–E 15 und werden von diesem
+            Rechner nicht abgebildet.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Teilzeit</h3>
+            <p>Bei Teilzeit wird das Tabellenentgelt anteilig nach Stundenzahl gekürzt. Der Rechner
+            zeigt immer das Vollzeit-Brutto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum TV-L</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der TV-L?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der TV-L ist der Tarifvertrag für den öffentlichen Dienst der Länder. Er regelt das
+              Entgelt der Beschäftigten der Bundesländer – etwa an Landesbehörden, Universitäten,
+              Hochschulen, Landesschulen und Universitätskliniken. Tarifpartei auf Arbeitgeberseite ist
+              die Tarifgemeinschaft deutscher Länder (TdL).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt der TV-L in allen Bundesländern?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der TV-L gilt für alle Bundesländer außer Hessen. Hessen ist aus der
+              Tarifgemeinschaft deutscher Länder ausgetreten und zahlt nach dem eigenen Tarifvertrag
+              TV-H mit abweichenden Beträgen. Wer dagegen bei einer Kommune oder beim Bund beschäftigt
+              ist, fällt unter den TVöD. Dieser Rechner bildet ausschließlich den TV-L ab.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel TV-L-Gehalt gibt es 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ab dem 1. April 2026 steigen die TV-L-Entgelte um 2,8 %, mindestens aber um 100 €
+              (Sockelbetrag). Das Monatsbrutto reicht je nach Entgeltgruppe und Stufe von rund
+              2.534,49 € (E 1, Stufe 2) bis 7.854,52 € (E 15, Stufe 6). Den exakten Wert für Ihre
+              Kombination zeigt der Rechner oben.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen TV-L und TVöD?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der TV-L gilt für die Beschäftigten der Bundesländer (außer Hessen), der TVöD für die
+              Beschäftigten der Kommunen (VKA) und des Bundes. Beide Tarifverträge haben eigene
+              Entgelttabellen mit teils unterschiedlichen Beträgen und eigenen Tarifrunden. Für das
+              kommunale Gehalt nutzen Sie daher den TVöD-Rechner, für das Landesgehalt diesen
+              TV-L-Rechner.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie steige ich in der Stufe auf?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Stufenaufstieg erfolgt automatisch nach festen Laufzeiten in derselben
+              Entgeltgruppe: 1 Jahr von Stufe 1 auf 2, 2 Jahre auf Stufe 3, 3 Jahre auf Stufe 4,
+              4 Jahre auf Stufe 5 und 5 Jahre auf die Endstufe 6. In der Entgeltgruppe E 1 erfolgt der
+              Aufstieg je nach Stufe in größeren Abständen (rund alle vier Jahre).</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist die VBL im Netto enthalten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Die Netto-Schätzung dieses Rechners enthält die betriebliche Zusatzversorgung
+              (VBL) bewusst nicht, weil der Eigenanteil je nach Tarifgebiet und Kasse variiert. Ihr
+              tatsächliches Netto liegt deshalb etwas niedriger – dafür bauen Sie eine zusätzliche
+              Betriebsrente auf. Behandeln Sie das angezeigte Netto als unverbindliche Orientierung
+              ohne Gewähr.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sind die Überleitungsgruppen E 2Ü, E 13Ü und E 15Ü?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Überleitungsgruppen E 2Ü, E 13Ü und E 15Ü sind Besitzstandsgruppen für
+              Beschäftigte, die aus dem früheren BAT in den TV-L übergeleitet wurden. Sie sind nicht
+              Teil der regulären Entgelttabelle E 1–E 15 und werden von diesem Rechner nicht
+              abgebildet.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum unterscheidet sich mein echtes Netto vom Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Netto-Schätzung arbeitet mit vereinfachten Annahmen. Ihr tatsächliches Netto hängt
+              von individuellen Freibeträgen, der Kinderzahl, dem genauen Zusatzbeitrag Ihrer
+              Krankenkasse, dem Bundesland (Kirchensteuer 8 % oder 9 %) und dem VBL-Eigenanteil ab.
+              Der Rechner ersetzt keine Lohnabrechnung und keine Steuerberatung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/tvoed-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏛️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">TVöD-Rechner</p>
+          </a>
+          <a href="/brutto-netto-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Brutto-Netto-Rechner</p>
+          </a>
+          <a href="/lohnsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Lohnsteuer-Rechner</p>
+          </a>
+          <a href="/stundenlohn-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⏱️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Stundenlohn-Rechner</p>
+          </a>
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+          <a href="/teilzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📅</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Teilzeit-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TV-L-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/tv-l-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist der TV-L?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der TV-L ist der Tarifvertrag für den öffentlichen Dienst der Länder. Er regelt das Entgelt der Beschäftigten der Bundesländer – etwa an Landesbehörden, Universitäten, Hochschulen, Landesschulen und Universitätskliniken. Tarifpartei auf Arbeitgeberseite ist die Tarifgemeinschaft deutscher Länder (TdL)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt der TV-L in allen Bundesländern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der TV-L gilt für alle Bundesländer außer Hessen. Hessen ist aus der Tarifgemeinschaft deutscher Länder ausgetreten und zahlt nach dem eigenen Tarifvertrag TV-H mit abweichenden Beträgen. Wer dagegen bei einer Kommune oder beim Bund beschäftigt ist, fällt unter den TVöD. Dieser Rechner bildet ausschließlich den TV-L ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel TV-L-Gehalt gibt es 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab dem 1. April 2026 steigen die TV-L-Entgelte um 2,8 %, mindestens aber um 100 € (Sockelbetrag). Das Monatsbrutto reicht je nach Entgeltgruppe und Stufe von rund 2.534,49 € (E 1, Stufe 2) bis 7.854,52 € (E 15, Stufe 6). Den exakten Wert für Ihre Kombination zeigt der Rechner oben."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen TV-L und TVöD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der TV-L gilt für die Beschäftigten der Bundesländer (außer Hessen), der TVöD für die Beschäftigten der Kommunen (VKA) und des Bundes. Beide Tarifverträge haben eigene Entgelttabellen mit teils unterschiedlichen Beträgen und eigenen Tarifrunden. Für das kommunale Gehalt nutzen Sie daher den TVöD-Rechner, für das Landesgehalt diesen TV-L-Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie steige ich in der Stufe auf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Stufenaufstieg erfolgt automatisch nach festen Laufzeiten in derselben Entgeltgruppe: 1 Jahr von Stufe 1 auf 2, 2 Jahre auf Stufe 3, 3 Jahre auf Stufe 4, 4 Jahre auf Stufe 5 und 5 Jahre auf die Endstufe 6. In der Entgeltgruppe E 1 erfolgt der Aufstieg je nach Stufe in größeren Abständen (rund alle vier Jahre)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die VBL im Netto enthalten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Netto-Schätzung dieses Rechners enthält die betriebliche Zusatzversorgung (VBL) bewusst nicht, weil der Eigenanteil je nach Tarifgebiet und Kasse variiert. Ihr tatsächliches Netto liegt deshalb etwas niedriger – dafür bauen Sie eine zusätzliche Betriebsrente auf. Behandeln Sie das angezeigte Netto als unverbindliche Orientierung ohne Gewähr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was sind die Überleitungsgruppen E 2Ü, E 13Ü und E 15Ü?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Überleitungsgruppen E 2Ü, E 13Ü und E 15Ü sind Besitzstandsgruppen für Beschäftigte, die aus dem früheren BAT in den TV-L übergeleitet wurden. Sie sind nicht Teil der regulären Entgelttabelle E 1–E 15 und werden von diesem Rechner nicht abgebildet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum unterscheidet sich mein echtes Netto vom Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Netto-Schätzung arbeitet mit vereinfachten Annahmen. Ihr tatsächliches Netto hängt von individuellen Freibeträgen, der Kinderzahl, dem genauen Zusatzbeitrag Ihrer Krankenkasse, dem Bundesland (Kirchensteuer 8 % oder 9 %) und dem VBL-Eigenanteil ab. Der Rechner ersetzt keine Lohnabrechnung und keine Steuerberatung."
+        }
+      }
+    ]
+  })} />
+</Layout>
