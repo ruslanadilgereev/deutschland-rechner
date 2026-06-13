@@ -1,0 +1,334 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KuendigungsfristRechner from '../components/rechner/KuendigungsfristRechner.tsx';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Kündigungsfrist-Rechner: Frist & Beendigung (§ 622 BGB)";
+const description = "Kündigungsfrist berechnen: gesetzliche Frist nach § 622 BGB – Grundfrist 4 Wochen zum 15./Monatsende, verlängerte Fristen nach Betriebszugehörigkeit. Kostenlos & sofort.";
+const keywords = "Kündigungsfrist Rechner, Kündigungsfrist berechnen, Kündigungsfrist § 622 BGB, gesetzliche Kündigungsfrist, Kündigungsfrist Arbeitgeber, Kündigungsfrist Arbeitnehmer, Kündigungsfrist Betriebszugehörigkeit, Kündigung Frist berechnen, 4 Wochen Kündigungsfrist, Kündigungstermin";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Kündigungsfrist-Rechner", url: "/kuendigungsfrist-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt', href: '/arbeit-gehalt' },
+    { name: 'Kündigungsfrist-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📄</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kündigungsfrist-Rechner</h1>
+            <p class="text-orange-100 text-sm">Gesetzliche Kündigungsfrist & frühestmögliches Ende nach § 622 BGB</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KuendigungsfristRechner client:load />
+    </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 622 BGB – Grundkündigungsfrist von 4 Wochen (= 28 Tagen) zum 15. oder zum Ende eines Kalendermonats (Abs. 1); verlängerte Fristen nach Betriebszugehörigkeit (1 bis 7 Monate zum Monatsende) ausschließlich bei Arbeitgeber-Kündigung (Abs. 2). Fristberechnung nach §§ 187–188 BGB.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Kündigender (Arbeitgeber/Arbeitnehmer), Betriebszugehörigkeit im Zeitpunkt des Zugangs, Grundfrist (4 Wochen zum 15./Monatsende, § 622 Abs. 1), Staffelung nach Beschäftigungsdauer (§ 622 Abs. 2), taggenaue Datumsarithmetik nach §§ 187–188 BGB.</p>
+            <p><strong>Nicht berücksichtigt:</strong> die nach EuGH Kücükdeveci (C-555/07) nicht mehr anwendbare 25-Jahre-Klausel (§ 622 Abs. 2 Satz 2 – volle Betriebszugehörigkeit zählt), abweichende tarif-/einzelvertragliche Fristen, Probezeit (2 Wochen, § 622 Abs. 3 – siehe Probezeit-Rechner), Sonderkündigungsschutz (Schwangerschaft, Schwerbehinderung, Betriebsrat, Elternzeit), außerordentliche Kündigung (§ 626 BGB).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kündigungsfrist-Rechner: gesetzliche Frist nach § 622 BGB berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Kündigungsfrist-Rechner</strong> ermitteln Sie taggenau, welche gesetzliche
+            <strong>Kündigungsfrist</strong> für Ihr Arbeitsverhältnis gilt und zu welchem Datum es
+            frühestens enden kann. Maßgeblich sind der Eintrittstermin, der Zugang der Kündigung und die
+            Frage, ob der <strong>Arbeitgeber</strong> oder der <strong>Arbeitnehmer</strong> kündigt. Alle
+            Berechnungen folgen <strong>§ 622 BGB</strong> sowie den Fristregeln der §§ 187–188 BGB.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die gesetzliche Grundkündigungsfrist (§ 622 Abs. 1 BGB)</h3>
+          <p>
+            Nach § 622 Abs. 1 BGB kann ein Arbeitsverhältnis mit einer Frist von <strong>vier Wochen zum
+            Fünfzehnten oder zum Ende eines Kalendermonats</strong> gekündigt werden. Wichtig: „Vier Wochen"
+            bedeutet exakt <strong>28 Tage</strong> – nicht „ein Monat". Diese Grundfrist gilt für beide
+            Seiten und immer dann, wenn keine verlängerte Frist greift (also bei jeder Arbeitnehmer-Kündigung
+            sowie bei Arbeitgeber-Kündigungen mit weniger als zwei Jahren Betriebszugehörigkeit).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Verlängerte Fristen nach Betriebszugehörigkeit (§ 622 Abs. 2 BGB)</h3>
+          <p>
+            Für eine Kündigung <strong>durch den Arbeitgeber</strong> verlängert sich die Frist mit
+            zunehmender Betriebszugehörigkeit – jeweils <strong>zum Ende eines Kalendermonats</strong>:
+          </p>
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-sm text-left border border-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-3 py-2 border-b border-gray-200 font-semibold text-gray-700">Betriebszugehörigkeit ab</th>
+                  <th class="px-3 py-2 border-b border-gray-200 font-semibold text-gray-700">Kündigungsfrist</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="px-3 py-2 border-b border-gray-100">2 Jahre</td><td class="px-3 py-2 border-b border-gray-100">1 Monat zum Monatsende</td></tr>
+                <tr><td class="px-3 py-2 border-b border-gray-100">5 Jahre</td><td class="px-3 py-2 border-b border-gray-100">2 Monate zum Monatsende</td></tr>
+                <tr><td class="px-3 py-2 border-b border-gray-100">8 Jahre</td><td class="px-3 py-2 border-b border-gray-100">3 Monate zum Monatsende</td></tr>
+                <tr><td class="px-3 py-2 border-b border-gray-100">10 Jahre</td><td class="px-3 py-2 border-b border-gray-100">4 Monate zum Monatsende</td></tr>
+                <tr><td class="px-3 py-2 border-b border-gray-100">12 Jahre</td><td class="px-3 py-2 border-b border-gray-100">5 Monate zum Monatsende</td></tr>
+                <tr><td class="px-3 py-2 border-b border-gray-100">15 Jahre</td><td class="px-3 py-2 border-b border-gray-100">6 Monate zum Monatsende</td></tr>
+                <tr><td class="px-3 py-2">20 Jahre</td><td class="px-3 py-2">7 Monate zum Monatsende</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Der <strong>Arbeitnehmer</strong> kündigt grundsätzlich immer mit der 4-Wochen-Grundfrist,
+            unabhängig von der Betriebszugehörigkeit. Die Staffelung des Abs. 2 gilt für den Arbeitnehmer
+            nur, wenn das ausdrücklich vereinbart wurde – das bildet dieser Rechner nicht ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was gilt während der Probezeit?</h3>
+          <p>
+            Während einer vereinbarten Probezeit (längstens sechs Monate) gilt die verkürzte
+            Kündigungsfrist von <strong>zwei Wochen</strong> (§ 622 Abs. 3 BGB) – ohne festen
+            Kündigungstermin. Diesen Fall berechnet der separate
+            <a href="/probezeit-rechner" class="text-orange-600 hover:underline">Probezeit-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wichtig: 25-Jahre-Klausel ist nicht mehr anwendbar</h3>
+          <p>
+            § 622 Abs. 2 Satz 2 BGB enthält noch die Regelung, dass Beschäftigungszeiten vor Vollendung des
+            <strong>25. Lebensjahres</strong> nicht mitzählen. Der EuGH hat im Urteil <strong>Kücükdeveci
+            (C-555/07, 19.01.2010)</strong> entschieden, dass diese Vorschrift gegen das unionsrechtliche
+            Verbot der Altersdiskriminierung verstößt; sie ist wegen des Anwendungsvorrangs des Unionsrechts
+            nicht mehr anzuwenden. Dieser Rechner rechnet daher mit der <strong>vollen Betriebszugehörigkeit
+            ab Eintritt</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So wird die Frist berechnet (Formel)</h3>
+          <p>
+            Die Fristberechnung folgt §§ 187–188 BGB. Der Tag des Zugangs zählt nicht mit; die Frist beginnt
+            am Folgetag (§ 187 Abs. 1 BGB):
+          </p>
+          <p>
+            <code class="bg-gray-100 px-2 py-1 rounded">Grundfrist: nächster 15. oder Monatsletzter ≥ (Zugang + 28 Tage)</code>
+          </p>
+          <p>
+            <code class="bg-gray-100 px-2 py-1 rounded">Verlängert: Monatsletzter ≥ (Zugang + X Monate)</code>
+          </p>
+          <p>
+            Fehlt im Zielmonat der maßgebende Tag (z. B. 31. im Februar), endet die Frist mit Ablauf des
+            letzten Tages dieses Monats (§ 188 Abs. 3 BGB).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Arbeitgeber kündigt nach 6 Jahren</h3>
+          <div class="bg-cyan-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+            <p>Der Arbeitgeber kündigt; die Betriebszugehörigkeit beträgt bei Zugang <strong>6 Jahre</strong> (ab 5 Jahren: 2 Monate zum Monatsende, § 622 Abs. 2 BGB).</p>
+            <p>Zugang der Kündigung: <strong>10.06.2026</strong>.</p>
+            <p>Zugang + 2 Monate = 10.08.2026; das frühestmögliche Ende ist das Ende dieses Kalendermonats = <strong>31.08.2026</strong>.</p>
+            <p>Zum Vergleich: Kündigt der <strong>Arbeitnehmer</strong> mit Zugang am 16.06.2026, gilt die Grundfrist (4 Wochen): 16.06. + 28 Tage = 14.07.2026; der nächste zulässige Termin (15. oder Monatsende) ist der <strong>15.07.2026</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Typische Fehler &amp; Sonderfälle</h2>
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+          <li><strong>„Vier Wochen" mit „ein Monat" verwechselt:</strong> Die Grundfrist sind exakt 28 Tage, nicht ein Kalendermonat. Erst ab zwei Jahren Betriebszugehörigkeit gilt bei Arbeitgeber-Kündigung die Monatsfrist (§ 622 Abs. 2 BGB).</li>
+          <li><strong>Verlängerte Frist auf Arbeitnehmer angewendet:</strong> Die Staffelung nach Betriebszugehörigkeit gilt gesetzlich nur für die Arbeitgeber-Kündigung. Der Arbeitnehmer kündigt grundsätzlich mit der 4-Wochen-Grundfrist.</li>
+          <li><strong>25-Jahre-Klausel angewendet:</strong> Zeiten vor dem 25. Lebensjahr werden seit dem EuGH-Urteil Kücükdeveci (C-555/07, 19.01.2010) nicht mehr abgezogen – es zählt die volle Betriebszugehörigkeit ab Eintritt.</li>
+          <li><strong>Zugang statt Absenden:</strong> Maßgeblich ist nicht das Absenden, sondern der Zugang der Kündigung beim Empfänger. Erst ab Zugang läuft die Frist (§ 187 Abs. 1 BGB).</li>
+          <li><strong>Probezeit übersehen:</strong> Während einer vereinbarten Probezeit gilt die verkürzte 2-Wochen-Frist (§ 622 Abs. 3 BGB) – dafür ist der Probezeit-Rechner zuständig.</li>
+          <li><strong>Sonderkündigungsschutz:</strong> Bei Schwangerschaft, Schwerbehinderung, Betriebsratsmitgliedschaft oder in der Elternzeit gelten besondere Schutzvorschriften, die hier nicht abgebildet sind.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zur Kündigungsfrist</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie lang ist die gesetzliche Grundkündigungsfrist?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Nach § 622 Abs. 1 BGB beträgt die Grundkündigungsfrist vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats. „Vier Wochen" bedeutet exakt 28 Tage, nicht „ein Monat". Diese Frist gilt für beide Seiten, solange keine verlängerte Frist greift.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wann verlängert sich die Kündigungsfrist?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Bei einer Kündigung durch den Arbeitgeber verlängert sich die Frist mit der Betriebszugehörigkeit (§ 622 Abs. 2 BGB), jeweils zum Ende eines Kalendermonats: ab 2 Jahren 1 Monat, ab 5 Jahren 2 Monate, ab 8 Jahren 3 Monate, ab 10 Jahren 4 Monate, ab 12 Jahren 5 Monate, ab 15 Jahren 6 Monate und ab 20 Jahren 7 Monate.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Gelten die verlängerten Fristen auch für den Arbeitnehmer?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Nein. Die Staffelung nach Betriebszugehörigkeit gilt gesetzlich nur für die Kündigung durch den Arbeitgeber. Der Arbeitnehmer kündigt grundsätzlich immer mit der 4-Wochen-Grundfrist zum 15. oder zum Monatsende. Eine längere Frist für den Arbeitnehmer gilt nur, wenn sie vertraglich vereinbart wurde – und darf die Frist des Arbeitgebers nicht übersteigen (§ 622 Abs. 6 BGB).</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Zählen Zeiten vor dem 25. Lebensjahr zur Betriebszugehörigkeit?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Ja. Die in § 622 Abs. 2 Satz 2 BGB noch enthaltene Regelung, wonach Zeiten vor Vollendung des 25. Lebensjahres nicht mitzählen, ist nach dem EuGH-Urteil Kücükdeveci (C-555/07, 19.01.2010) wegen Altersdiskriminierung nicht mehr anwendbar. Es zählt die volle Betriebszugehörigkeit ab Eintritt.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Ab wann läuft die Kündigungsfrist – Absenden oder Zugang?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Maßgeblich ist der Zugang der Kündigung beim Empfänger, nicht das Absenden. Der Tag des Zugangs zählt nicht mit; die Frist beginnt am Folgetag (§ 187 Abs. 1 BGB) und endet nach den Regeln der §§ 188 BGB. Fehlt im Zielmonat der maßgebende Tag (z. B. 31. im Februar), endet die Frist mit Ablauf des letzten Tages dieses Monats (§ 188 Abs. 3 BGB).</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welche Kündigungsfrist gilt während der Probezeit?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Während einer vereinbarten Probezeit (längstens sechs Monate) gilt die verkürzte Kündigungsfrist von zwei Wochen (§ 622 Abs. 3 BGB) – ohne festen Kündigungstermin. Diesen Fall berechnet der separate Probezeit-Rechner.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik &amp; Quellen</h2>
+        <p class="text-gray-700">
+          Die Berechnung folgt § 622 BGB (Grundfrist 4 Wochen zum 15. oder Monatsende; verlängerte Fristen
+          nach Betriebszugehörigkeit nur bei Arbeitgeber-Kündigung, § 622 Abs. 2; Probezeit 2 Wochen,
+          § 622 Abs. 3) sowie den Fristregeln der §§ 187–188 BGB. Die in § 622 Abs. 2 Satz 2 BGB noch
+          enthaltene 25-Jahre-Klausel ist nach dem EuGH-Urteil Kücükdeveci (C-555/07, 19.01.2010) wegen
+          Altersdiskriminierung nicht mehr anwendbar und wird nicht berücksichtigt – es zählt die volle
+          Betriebszugehörigkeit ab Eintritt. Abweichende (auch längere) Fristen können sich aus Tarif- oder
+          Arbeitsvertrag ergeben; eine einzelvertraglich für den Arbeitnehmer vereinbarte längere Frist darf
+          die des Arbeitgebers nicht übersteigen (§ 622 Abs. 6 BGB). Sonderkündigungsschutz und die
+          außerordentliche Kündigung aus wichtigem Grund (§ 626 BGB) bleiben unberücksichtigt. Maßgeblich ist
+          der Zugang der Kündigung, nicht das Absenden. Im Zweifel anwaltliche Beratung einholen. Berechnungen
+          laufen vollständig im Browser – keine Daten verlassen Ihr Gerät. Zuletzt aktualisiert: 13. Juni 2026.
+        </p>
+        <p class="text-sm text-gray-500">
+          Quellen:
+          <a href="https://www.gesetze-im-internet.de/bgb/__622.html" class="text-orange-600 hover:underline">§ 622 BGB</a>,
+          <a href="https://www.gesetze-im-internet.de/bgb/__187.html" class="text-orange-600 hover:underline">§ 187 BGB</a>,
+          <a href="https://www.gesetze-im-internet.de/bgb/__188.html" class="text-orange-600 hover:underline">§ 188 BGB</a>
+          (gesetze-im-internet.de),
+          <a href="https://curia.europa.eu/juris/document/document.jsf?docid=72658&doclang=de" class="text-orange-600 hover:underline">EuGH C-555/07 (Kücükdeveci)</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="§ 622 BGB (Kündigungsfristen), §§ 187–188 BGB (Fristberechnung), EuGH C-555/07 (Kücükdeveci)" aktualisiert="13. Juni 2026" />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="kuendigungsfrist" slugs={['probezeit', 'abfindung', 'urlaubstage', 'arbeitstage']} kategorie="arbeit" />
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kündigungsfrist-Rechner – gesetzliche Frist & Beendigung berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kuendigungsfrist-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie lang ist die gesetzliche Grundkündigungsfrist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach § 622 Abs. 1 BGB beträgt die Grundkündigungsfrist vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats. „Vier Wochen\" bedeutet exakt 28 Tage, nicht „ein Monat\". Diese Frist gilt für beide Seiten, solange keine verlängerte Frist greift."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann verlängert sich die Kündigungsfrist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei einer Kündigung durch den Arbeitgeber verlängert sich die Frist mit der Betriebszugehörigkeit (§ 622 Abs. 2 BGB), jeweils zum Ende eines Kalendermonats: ab 2 Jahren 1 Monat, ab 5 Jahren 2 Monate, ab 8 Jahren 3 Monate, ab 10 Jahren 4 Monate, ab 12 Jahren 5 Monate, ab 15 Jahren 6 Monate und ab 20 Jahren 7 Monate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gelten die verlängerten Fristen auch für den Arbeitnehmer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Die Staffelung nach Betriebszugehörigkeit gilt gesetzlich nur für die Kündigung durch den Arbeitgeber. Der Arbeitnehmer kündigt grundsätzlich immer mit der 4-Wochen-Grundfrist zum 15. oder zum Monatsende. Eine längere Frist für den Arbeitnehmer gilt nur, wenn sie vertraglich vereinbart wurde – und darf die Frist des Arbeitgebers nicht übersteigen (§ 622 Abs. 6 BGB)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Zählen Zeiten vor dem 25. Lebensjahr zur Betriebszugehörigkeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Die in § 622 Abs. 2 Satz 2 BGB noch enthaltene Regelung, wonach Zeiten vor Vollendung des 25. Lebensjahres nicht mitzählen, ist nach dem EuGH-Urteil Kücükdeveci (C-555/07, 19.01.2010) wegen Altersdiskriminierung nicht mehr anwendbar. Es zählt die volle Betriebszugehörigkeit ab Eintritt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann läuft die Kündigungsfrist – Absenden oder Zugang?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Maßgeblich ist der Zugang der Kündigung beim Empfänger, nicht das Absenden. Der Tag des Zugangs zählt nicht mit; die Frist beginnt am Folgetag (§ 187 Abs. 1 BGB) und endet nach den Regeln der §§ 188 BGB. Fehlt im Zielmonat der maßgebende Tag (z. B. 31. im Februar), endet die Frist mit Ablauf des letzten Tages dieses Monats (§ 188 Abs. 3 BGB)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kündigungsfrist gilt während der Probezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Während einer vereinbarten Probezeit (längstens sechs Monate) gilt die verkürzte Kündigungsfrist von zwei Wochen (§ 622 Abs. 3 BGB) – ohne festen Kündigungstermin. Diesen Fall berechnet der separate Probezeit-Rechner."
+        }
+      }
+    ]
+  })} />
+</Layout>

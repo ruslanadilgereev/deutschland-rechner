@@ -261,6 +261,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'kuendigungsfrist',
+    name: 'Kündigungsfrist-Rechner',
+    beschreibung: 'Gesetzliche Kündigungsfrist & frühestmögliches Ende nach § 622 BGB',
+    icon: '📄',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'Kündigungsfrist Rechner, Kündigungsfrist berechnen, Kündigungsfrist § 622 BGB, gesetzliche Kündigungsfrist, Kündigungsfrist Arbeitgeber, Kündigungsfrist Arbeitnehmer, Kündigungsfrist Betriebszugehörigkeit, Kündigung Frist berechnen, 4 Wochen Kündigungsfrist, Kündigungstermin',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__622.html',
+      'https://www.gesetze-im-internet.de/bgb/__187.html',
+      'https://www.gesetze-im-internet.de/bgb/__188.html',
+      'https://curia.europa.eu/juris/document/document.jsf?docid=72658&doclang=de',
+    ],
+  },
+  {
     id: 'probezeit',
     name: 'Probezeit-Rechner',
     beschreibung: 'Probezeit-Ende & verkürzte 2-Wochen-Kündigungsfrist (§ 622 BGB)',
