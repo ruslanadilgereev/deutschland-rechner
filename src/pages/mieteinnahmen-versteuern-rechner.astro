@@ -1,0 +1,416 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MieteinnahmenVersteuernRechner from '../components/rechner/MieteinnahmenVersteuernRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Mieteinnahmen versteuern Rechner 2026 – Steuer auf Vermietung berechnen";
+const description = "Mieteinnahmen versteuern: Steuer auf Vermietung & Verpachtung (§ 21 EStG) sofort berechnen. Mit Gebäude-AfA, Schuldzinsen, Werbungskosten und Einkommensteuer nach § 32a EStG 2026 per Differenzmethode.";
+const keywords = "Mieteinnahmen versteuern Rechner, Mieteinnahmen Steuer berechnen, Vermietung Steuer Rechner, Einkünfte Vermietung Verpachtung, Mieteinnahmen Steuer 2026, Gebäude AfA Rechner, Werbungskosten Vermietung, Mietüberschuss versteuern, Steuer auf Miete";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Mieteinnahmen-versteuern-Rechner", url: "/mieteinnahmen-versteuern-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Steuern & Abgaben', href: '/steuern-abgaben' },
+    { name: 'Mieteinnahmen-versteuern-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-2xl font-bold">Mieteinnahmen-versteuern-Rechner 2026</h1>
+            <p class="text-blue-200 text-sm">Steuer auf Vermietung & Verpachtung (§ 21 EStG) berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 21 EStG (Einkünfte aus Vermietung und Verpachtung), § 9a EStG, § 7 Abs. 4 EStG (lineare Gebäude-AfA), § 7b EStG, Einkommensteuertarif 2026 nach § 32a EStG (BMF-Lohnsteuerhandbuch 2026)</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Jahres-Kaltmiete als Einnahmen, Werbungskosten (Gebäude-AfA, Schuldzinsen, Erhaltungsaufwand, Verwaltung), Überschuss bzw. Verlust nach § 21 EStG, Steuer per Differenzmethode (zvE mit/ohne Mieteinkünfte), Grund- und Splittingtarif</p>
+            <p><strong>Nicht berücksichtigt:</strong> Solidaritätszuschlag und Kirchensteuer, § 7b-Sonderabschreibung, degressive AfA-Sonderfälle, verbilligte Vermietung (50 %/66 %-Grenze, § 21 Abs. 2 EStG), Spekulationssteuer beim Verkauf (§ 23 EStG), gewerblicher Grundstückshandel sowie individuelle Frei- und Abzugsbeträge</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MieteinnahmenVersteuernRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Mieteinnahmen versteuern 2026: So funktioniert die Berechnung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer eine Immobilie vermietet, erzielt <strong>Einkünfte aus Vermietung und Verpachtung</strong>
+            nach <strong>§ 21 EStG</strong>. Diese unterliegen der <a href="/einkommensteuer-rechner" class="text-blue-600 hover:text-blue-800 underline">Einkommensteuer</a> –
+            es gibt keine eigene „Mietsteuer". Versteuert wird nicht die Bruttomiete, sondern der
+            <strong>Überschuss</strong>: Mieteinnahmen abzüglich Werbungskosten. Dieser Überschuss erhöht Ihr
+            zu versteuerndes Einkommen und wird mit Ihrem persönlichen Steuersatz belastet.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Formel: Steuer auf Mieteinnahmen</h3>
+          <div class="bg-blue-50 p-4 rounded-lg my-4 text-sm">
+            <p class="font-mono">
+              Mieteinnahmen (Jahres-Kaltmiete)<br/>
+              − Gebäude-AfA (§ 7 EStG)<br/>
+              − Schuldzinsen (Finanzierung)<br/>
+              − Erhaltungsaufwand<br/>
+              − Verwaltung &amp; Sonstiges<br/>
+              <span class="font-semibold">= Überschuss aus V+V (§ 21 EStG)</span>
+            </p>
+            <p class="font-mono mt-3">
+              Steuer = ESt(übriges zvE + Überschuss) − ESt(übriges zvE)
+              <span class="block text-xs mt-1">(Differenzmethode nach § 32a EStG 2026)</span>
+            </p>
+          </div>
+          <p>
+            Der Mietüberschuss wird also „obendrauf" auf Ihr übriges Einkommen besteuert. Deshalb hängt die
+            Steuerhöhe vom Gesamteinkommen ab – die Differenzmethode bildet das exakt ab, indem sie die
+            Einkommensteuer mit und ohne Mieteinkünfte vergleicht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Gebäude-AfA: nur das Gebäude, nicht das Grundstück</h3>
+          <p>
+            Die <strong>Absetzung für Abnutzung (AfA)</strong> nach § 7 Abs. 4 EStG verteilt die
+            Anschaffungs- oder Herstellungskosten des <strong>Gebäudes</strong> über die Nutzungsdauer.
+            Der Grund und Boden ist <strong>nicht</strong> abschreibbar – der Kaufpreis muss daher in
+            Grundstücks- und Gebäudeanteil (typisch 70–80 % Gebäude) aufgeteilt werden. Die linearen Sätze:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>3,0 %/Jahr:</strong> Wohngebäude mit Fertigstellung ab dem 01.01.2023</li>
+            <li><strong>2,0 %/Jahr:</strong> Bestandsgebäude (Fertigstellung 01.01.1925 bis 31.12.2022) – Standardfall</li>
+            <li><strong>2,5 %/Jahr:</strong> Altbau (Fertigstellung vor dem 01.01.1925)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kein Werbungskosten-Pauschbetrag bei V+V</h3>
+          <p>
+            Anders als beim Arbeitnehmer-Pauschbetrag (1.230 €) gibt es bei Vermietung und Verpachtung
+            <strong>keinen Pauschbetrag</strong> (§ 9a EStG). Abziehbar sind nur die <strong>tatsächlichen</strong>
+            Werbungskosten. Wichtig: Bei der Finanzierung sind nur die <strong>Schuldzinsen</strong> absetzbar,
+            <strong>nicht die Tilgung</strong> – die Tilgung baut Vermögen auf und ist steuerlich irrelevant.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnung -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Rechenbeispiel: Eigentumswohnung, ledig</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Ein lediger Vermieter mit 50.000 € übrigem zu versteuerndem Einkommen vermietet eine Wohnung
+          (Gebäudewert 250.000 €, Bestandsbau, AfA 2,0 %):
+        </p>
+
+        <div class="bg-gray-50 rounded-lg p-4">
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="text-gray-600">Jahres-Kaltmiete (Einnahmen):</div>
+            <div class="font-medium text-gray-800">12.000 €</div>
+            <div class="text-gray-600">Gebäude-AfA (250.000 € × 2,0 %):</div>
+            <div class="font-medium text-gray-800">− 5.000 €</div>
+            <div class="text-gray-600">Schuldzinsen:</div>
+            <div class="font-medium text-gray-800">− 4.000 €</div>
+            <div class="text-gray-600">Erhaltungsaufwand:</div>
+            <div class="font-medium text-gray-800">− 1.500 €</div>
+            <div class="text-gray-600">Verwaltung &amp; Sonstiges:</div>
+            <div class="font-medium text-gray-800">− 800 €</div>
+            <div class="text-gray-600 font-semibold border-t border-gray-200 pt-1 mt-1">Überschuss aus V+V:</div>
+            <div class="font-semibold text-gray-900 border-t border-gray-200 pt-1 mt-1">700 €</div>
+            <div class="text-gray-600">Steuer auf den Überschuss (Differenzmethode):</div>
+            <div class="font-medium text-red-700">~247 €</div>
+            <div class="text-gray-600">Effektiver Steuersatz auf die Miete:</div>
+            <div class="font-medium text-gray-800">~35,3 %</div>
+            <div class="text-gray-600 font-semibold">Mietüberschuss nach Steuer:</div>
+            <div class="font-semibold text-green-700">~453 €</div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4 text-sm text-blue-800">
+          <strong>💡 Tipp:</strong> Trotz 12.000 € Mieteinnahmen bleiben nach Werbungskosten nur 700 €
+          steuerpflichtiger Überschuss – die Gebäude-AfA und die Schuldzinsen drücken die Steuerlast
+          deutlich. Bei höheren Werbungskosten kann sogar ein <strong>Verlust</strong> entstehen, der Ihre
+          übrige Einkommensteuer mindert.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Tilgung als Werbungskosten ansetzen</h3>
+            <p>Bei der Finanzierung sind nur die <strong>Schuldzinsen</strong> absetzbar. Die Tilgung
+            reduziert Ihre Schulden und baut Vermögen auf – sie ist <strong>keine</strong> Werbungskosten.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Den gesamten Kaufpreis abschreiben</h3>
+            <p>Nur der <strong>Gebäudeanteil</strong> ist abschreibbar, nicht der Grund und Boden. Wer den
+            vollen Kaufpreis als AfA-Basis ansetzt, schreibt zu viel ab – das Finanzamt korrigiert das.
+            Den Bodenrichtwert finden Sie über <a href="/grundsteuer-rechner" class="text-blue-600 underline">BORIS</a>.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verlust aus Vermietung</h3>
+            <p>Übersteigen die Werbungskosten (vor allem AfA und Schuldzinsen) die Mieteinnahmen, entsteht
+            ein <strong>Verlust</strong>. Dieser wird mit Ihrem übrigen Einkommen verrechnet und mindert die
+            Gesamtsteuer – der Rechner zeigt das als „Steuerersparnis durch Verlust".</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verbilligte Vermietung an Angehörige</h3>
+            <p>Wird unter der ortsüblichen Miete vermietet, ist Vorsicht geboten: Erst ab <strong>66 %</strong>
+            der ortsüblichen Miete bleibt der volle Werbungskostenabzug erhalten. Unter <strong>50 %</strong>
+            wird in einen entgeltlichen und einen unentgeltlichen Teil aufgeteilt (§ 21 Abs. 2 EStG).</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Verkauf innerhalb von 10 Jahren</h3>
+            <p>Verkaufen Sie eine vermietete Immobilie innerhalb von zehn Jahren nach dem Kauf, fällt auf den
+            Gewinn die <strong>Spekulationssteuer</strong> (§ 23 EStG) an. Diese ist von der laufenden
+            Versteuerung der Mieteinnahmen getrennt und wird hier nicht berechnet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zur Versteuerung von Mieteinnahmen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann muss ich Mieteinnahmen versteuern?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Mieteinnahmen aus Vermietung und Verpachtung sind grundsätzlich ab dem ersten Euro steuerpflichtig (§ 21 EStG) und in der Anlage V der Steuererklärung anzugeben. Versteuert wird allerdings nur der Überschuss – also die Einnahmen abzüglich der Werbungskosten. Bleibt Ihr Gesamteinkommen unter dem Grundfreibetrag von 12.348 € (2026), fällt im Ergebnis keine Einkommensteuer an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Steuer auf Mieteinnahmen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Es gibt keinen festen Steuersatz auf Mieteinnahmen. Der Überschuss aus Vermietung und Verpachtung erhöht Ihr zu versteuerndes Einkommen und wird mit Ihrem persönlichen Einkommensteuersatz nach § 32a EStG belastet – 2026 also zwischen 14 % und 45 %. Maßgeblich ist Ihr Grenzsteuersatz: Liegt dieser bei 35 %, zahlen Sie auf 1.000 € Mietüberschuss rund 350 € Steuern.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Kosten kann ich von den Mieteinnahmen absetzen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Als Werbungskosten absetzbar sind unter anderem die Gebäude-AfA (Abschreibung), Schuldzinsen aus der Finanzierung, Erhaltungsaufwand (Reparaturen, Instandhaltung) sowie Verwaltungskosten, Grundsteuer, Versicherungen und nicht umlagefähige Nebenkosten. Bei Vermietung und Verpachtung gibt es keinen Werbungskosten-Pauschbetrag (§ 9a EStG) – es zählen nur die tatsächlichen Kosten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Gebäude-AfA und wie hoch ist sie?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die AfA (Absetzung für Abnutzung) verteilt die Anschaffungs- oder Herstellungskosten des Gebäudes über die Nutzungsdauer (§ 7 Abs. 4 EStG). Die linearen Sätze betragen 3,0 % pro Jahr für Wohngebäude mit Fertigstellung ab 2023, 2,0 % für Bestandsgebäude (Fertigstellung 1925 bis 2022) und 2,5 % für Altbauten vor 1925. Abschreibbar ist nur der Gebäudeanteil – der Grund und Boden ist nicht abschreibbar.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich die Tilgung meines Immobilienkredits absetzen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Absetzbar sind nur die Schuldzinsen aus der Finanzierung, nicht die Tilgung. Die Tilgung reduziert Ihre Restschuld und baut Vermögen auf – sie ist deshalb keine Werbungskosten und steuerlich nicht abziehbar. Diesen Punkt verwechseln viele Vermieter.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert, wenn meine Vermietung einen Verlust macht?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Übersteigen die Werbungskosten (vor allem AfA und Schuldzinsen) die Mieteinnahmen, entsteht ein Verlust aus Vermietung und Verpachtung. Dieser Verlust wird mit Ihren übrigen Einkünften verrechnet und senkt Ihre gesamte Einkommensteuer. Der Rechner zeigt diesen Effekt als Steuerersparnis durch Verlust an.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet der Rechner die Steuer auf Mieteinnahmen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner nutzt die Differenzmethode: Er berechnet die Einkommensteuer einmal mit und einmal ohne den Mietüberschuss und bildet die Differenz. So wird der Mietüberschuss korrekt mit Ihrem persönlichen Grenzsteuersatz nach dem Tarif 2026 (§ 32a EStG) belastet. Das ist genauer als ein pauschaler Steuersatz, weil der Überschuss eine Spanne im progressiven Tarif überstreicht.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich auf Mieteinnahmen auch Umsatzsteuer zahlen?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Vermietung von Wohnraum ist grundsätzlich umsatzsteuerfrei. Dieser Rechner bildet ausschließlich die Einkommensteuer auf die Einkünfte aus Vermietung und Verpachtung ab. Solidaritätszuschlag, Kirchensteuer und Sonderfälle wie die gewerbliche Vermietung sind nicht berücksichtigt – maßgeblich ist allein Ihr Steuerbescheid.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/grundsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏡</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundsteuer-Rechner</p>
+          </a>
+          <a href="/grunderwerbsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏗️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grunderwerbsteuer-Rechner</p>
+          </a>
+          <a href="/kapitalertragsteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📈</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kapitalertragsteuer-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zuständige Behörde -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🏛️</span>
+          Zuständige Behörde
+        </h2>
+
+        <div class="p-4 bg-blue-50 rounded-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">Finanzamt</h3>
+          <p class="text-blue-700 text-sm mb-2">
+            Mieteinnahmen geben Sie in der <strong>Anlage V</strong> zur Einkommensteuererklärung an.
+            Zuständig ist Ihr örtliches Finanzamt; die Erklärung reichen Sie online über ELSTER ein.
+          </p>
+          <p class="text-blue-700 text-sm mb-2">
+            <strong>Abgabefrist Steuerjahr 2025:</strong> 31. Juli 2026 (mit Steuerberater: 28. Februar 2027)
+          </p>
+          <p class="text-blue-700 text-sm">
+            <strong>ELSTER:</strong> elster.de<br/>
+            <strong>Finanzamtsuche:</strong> bzst.de/finanzamtsuche
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mieteinnahmen-versteuern-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/mieteinnahmen-versteuern-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Ab wann muss ich Mieteinnahmen versteuern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mieteinnahmen aus Vermietung und Verpachtung sind grundsätzlich ab dem ersten Euro steuerpflichtig (§ 21 EStG) und in der Anlage V der Steuererklärung anzugeben. Versteuert wird allerdings nur der Überschuss – also die Einnahmen abzüglich der Werbungskosten. Bleibt Ihr Gesamteinkommen unter dem Grundfreibetrag von 12.348 € (2026), fällt im Ergebnis keine Einkommensteuer an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Steuer auf Mieteinnahmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es gibt keinen festen Steuersatz auf Mieteinnahmen. Der Überschuss aus Vermietung und Verpachtung erhöht Ihr zu versteuerndes Einkommen und wird mit Ihrem persönlichen Einkommensteuersatz nach § 32a EStG belastet – 2026 also zwischen 14 % und 45 %. Maßgeblich ist Ihr Grenzsteuersatz: Liegt dieser bei 35 %, zahlen Sie auf 1.000 € Mietüberschuss rund 350 € Steuern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kosten kann ich von den Mieteinnahmen absetzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Werbungskosten absetzbar sind unter anderem die Gebäude-AfA (Abschreibung), Schuldzinsen aus der Finanzierung, Erhaltungsaufwand (Reparaturen, Instandhaltung) sowie Verwaltungskosten, Grundsteuer, Versicherungen und nicht umlagefähige Nebenkosten. Bei Vermietung und Verpachtung gibt es keinen Werbungskosten-Pauschbetrag (§ 9a EStG) – es zählen nur die tatsächlichen Kosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Gebäude-AfA und wie hoch ist sie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die AfA (Absetzung für Abnutzung) verteilt die Anschaffungs- oder Herstellungskosten des Gebäudes über die Nutzungsdauer (§ 7 Abs. 4 EStG). Die linearen Sätze betragen 3,0 % pro Jahr für Wohngebäude mit Fertigstellung ab 2023, 2,0 % für Bestandsgebäude (Fertigstellung 1925 bis 2022) und 2,5 % für Altbauten vor 1925. Abschreibbar ist nur der Gebäudeanteil – der Grund und Boden ist nicht abschreibbar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann ich die Tilgung meines Immobilienkredits absetzen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Absetzbar sind nur die Schuldzinsen aus der Finanzierung, nicht die Tilgung. Die Tilgung reduziert Ihre Restschuld und baut Vermögen auf – sie ist deshalb keine Werbungskosten und steuerlich nicht abziehbar. Diesen Punkt verwechseln viele Vermieter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert, wenn meine Vermietung einen Verlust macht?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Übersteigen die Werbungskosten (vor allem AfA und Schuldzinsen) die Mieteinnahmen, entsteht ein Verlust aus Vermietung und Verpachtung. Dieser Verlust wird mit Ihren übrigen Einkünften verrechnet und senkt Ihre gesamte Einkommensteuer. Der Rechner zeigt diesen Effekt als Steuerersparnis durch Verlust an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet der Rechner die Steuer auf Mieteinnahmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner nutzt die Differenzmethode: Er berechnet die Einkommensteuer einmal mit und einmal ohne den Mietüberschuss und bildet die Differenz. So wird der Mietüberschuss korrekt mit Ihrem persönlichen Grenzsteuersatz nach dem Tarif 2026 (§ 32a EStG) belastet. Das ist genauer als ein pauschaler Steuersatz, weil der Überschuss eine Spanne im progressiven Tarif überstreicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich auf Mieteinnahmen auch Umsatzsteuer zahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Vermietung von Wohnraum ist grundsätzlich umsatzsteuerfrei. Dieser Rechner bildet ausschließlich die Einkommensteuer auf die Einkünfte aus Vermietung und Verpachtung ab. Solidaritätszuschlag, Kirchensteuer und Sonderfälle wie die gewerbliche Vermietung sind nicht berücksichtigt – maßgeblich ist allein Ihr Steuerbescheid."
+        }
+      }
+    ]
+  })} />
+</Layout>
