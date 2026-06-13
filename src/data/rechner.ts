@@ -1637,6 +1637,19 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'massstab',
+    name: 'Maßstab-Rechner',
+    beschreibung: 'Maßstab 1:n für Karte, Plan & Modellbau umrechnen',
+    icon: '📏',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Maßstab Rechner, Maßstab umrechnen, Maßstab berechnen, Maßstab 1:50, Karte Maßstab umrechnen, Modellbau Maßstab, Spur H0 Maßstab, Maßstab ermitteln, Maßstabsrechner, reale Länge berechnen',
+    quellen: [
+      'https://www.morop.org/downloads/nem/de/nem010_d.pdf',
+      'https://www.dinmedia.de/de/norm/din-iso-5455/790721',
+    ],
+  },
+  {
     id: 'hochzeit',
     name: 'Hochzeitskosten-Rechner',
     beschreibung: 'Hochzeitsbudget planen',

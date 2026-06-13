@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MassstabRechner from '../components/rechner/MassstabRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Maßstab-Rechner – Maßstab umrechnen (1:n) für Karte & Modellbau";
+const description = "Maßstab-Rechner: Plan-Länge in reale Länge umrechnen, reale Länge in Plan-Länge oder den Maßstab 1:n ermitteln. Mit Presets für Modellbahn (H0, N) und Karten (TK25, TK50). Kostenlos & sofort.";
+const keywords = "Maßstab Rechner, Maßstab umrechnen, Maßstab berechnen, 1 zu 100, Maßstab 1:50, Karte Maßstab umrechnen, Modellbau Maßstab, Spur H0 Maßstab, Maßstab ermitteln, Maßstabsrechner, Maßstab Karte, reale Länge berechnen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Maßstab-Rechner", url: "/massstab-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Maßstab-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📏</span>
+          <div>
+            <h1 class="text-2xl font-bold">Maßstab-Rechner</h1>
+            <p class="text-orange-100 text-sm">Maßstab 1:n umrechnen – Karte, Plan & Modellbau</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MassstabRechner client:load />
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="DIN ISO 5455, MOROP NEM 010 (Orientierung)" aktualisiert="13. Juni 2026" />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Maßstab-Rechner: So funktioniert die Verhältnisrechnung 1:n</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Ein <strong>Maßstab 1:n</strong> beschreibt das Verhältnis zwischen einer Strecke auf
+            dem Plan (oder der Karte) und derselben Strecke in Wirklichkeit. Die <strong>Maßstabszahl n</strong>
+            ist dimensionslos und gibt an, um welchen Faktor die Realität verkleinert dargestellt
+            wird. Bei 1:100 entspricht 1 cm auf dem Plan also 100 cm = 1 m in der Wirklichkeit.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Rechenwege</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Plan → Real:</strong> reale Länge = Plan-Länge × n</li>
+            <li><strong>Real → Plan:</strong> Plan-Länge = reale Länge ÷ n</li>
+            <li><strong>Maßstab ermitteln:</strong> n = reale Länge ÷ Plan-Länge (beide in derselben Einheit)</li>
+          </ul>
+          <p>
+            Wichtig ist, dass du <strong>beide Längen vor der Rechnung in dieselbe Einheit</strong>
+            bringst (z. B. alles in Meter), sonst stimmt das Verhältnis nicht. Der Rechner erledigt
+            die Umrechnung zwischen mm, cm, m und km automatisch.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Maßstäbe von Modellbahnen (MOROP NEM 010)</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Spur Z</strong> = 1:220 (Spurweite 6,5 mm)</li>
+            <li><strong>Spur N</strong> = 1:160 (Spurweite 9 mm)</li>
+            <li><strong>Spur TT</strong> = 1:120 (Spurweite 12 mm)</li>
+            <li><strong>Spur H0</strong> = 1:87 (Spurweite 16,5 mm)</li>
+            <li><strong>Spur 0</strong> = 1:45 (Spurweite 32 mm)</li>
+            <li><strong>Spur 1</strong> = 1:32 (Spurweite 45 mm)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Maßstäbe topografischer Karten</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>TK10</strong> = 1:10.000</li>
+            <li><strong>TK25</strong> = 1:25.000 (klassische Wanderkarte)</li>
+            <li><strong>TK50</strong> = 1:50.000</li>
+            <li><strong>TK100</strong> = 1:100.000</li>
+            <li><strong>Stadtplan</strong> oft 1:20.000</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Genormte Maßstäbe technischer Zeichnungen (DIN ISO 5455)</h3>
+          <p>
+            Verkleinerung: 1:2, 1:5, 1:10, 1:20, 1:50, 1:100, 1:200, 1:500, 1:1000, 1:2000,
+            1:5000, 1:10000. Vergrößerung: 2:1, 5:1, 10:1, 20:1, 50:1. Der natürliche Maßstab ist 1:1.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rechenbeispiele -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Rechenbeispiele</h2>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 1: Wanderkarte 1:25.000 (Plan → Real)</h3>
+        <p class="text-gray-700">
+          Du misst auf einer Wanderkarte im Maßstab 1:25.000 eine Strecke von 8 cm. Wie weit ist
+          das in der Natur?
+        </p>
+        <div class="bg-orange-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>8 cm × 25.000 = 200.000 cm</p>
+          <p>200.000 cm = 2.000 m = <strong>2 km</strong> in der Natur.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 2: Modellbahn Spur H0 1:87 (Real → Plan)</h3>
+        <p class="text-gray-700">
+          Ein Vorbild-Waggon ist 18 m lang. Wie lang ist das Modell in Spur H0 (Maßstab 1:87)?
+        </p>
+        <div class="bg-orange-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>18 m ÷ 87 = 0,2069 m</p>
+          <p>0,2069 m ≈ <strong>20,7 cm</strong> Modell-Länge.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 3: Maßstab aus zwei Längen ermitteln</h3>
+        <p class="text-gray-700">
+          Ein Bauteil ist real 12 m lang und auf der Zeichnung 24 cm. Welcher Maßstab liegt vor?
+        </p>
+        <div class="bg-orange-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>Gleiche Einheit: 12 m = 1.200 cm</p>
+          <p>n = 1.200 cm ÷ 24 cm = 50 → Maßstab <strong>1:50</strong>.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-3 text-gray-900">Beispiel 4: Topografische Karte 1:50.000 (Plan → Real)</h3>
+        <p class="text-gray-700">
+          Auf der TK50 (1:50.000) misst du 3,4 cm zwischen zwei Punkten.
+        </p>
+        <div class="bg-orange-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+          <p>3,4 cm × 50.000 = 170.000 cm</p>
+          <p>170.000 cm = <strong>1,7 km</strong>.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Typische Fehler & Sonderfälle</h2>
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+          <li>
+            <strong>Einheiten nicht angeglichen:</strong> Wer 12 m durch 24 cm teilt, ohne vorher
+            in dieselbe Einheit umzurechnen, erhält Unsinn. Erst 12 m = 1.200 cm, dann teilen.
+          </li>
+          <li>
+            <strong>Maßstab auf Flächen angewendet:</strong> Der Längenmaßstab 1:n gilt nur für
+            Strecken. Flächen verkleinern sich im Quadrat (1:n²), Volumen in der dritten Potenz
+            (1:n³). Ein 1:100-Modell hat nur 1/10.000 der Grundfläche des Originals.
+          </li>
+          <li>
+            <strong>Karten-Verzerrung:</strong> Topografische Karten beruhen auf Projektionen –
+            über große Distanzen kann der gemessene Wert geringfügig vom realen Wert abweichen.
+          </li>
+          <li>
+            <strong>Druck-/Bildschirm-Skalierung:</strong> Wird ein Plan „an Seite anpassen"
+            gedruckt oder am Bildschirm gezoomt, stimmt der angegebene Maßstab nicht mehr mit den
+            gemessenen Längen überein.
+          </li>
+          <li>
+            <strong>Vergrößerung verwechselt:</strong> Bei technischen Zeichnungen gibt es auch
+            Vergrößerungen wie 2:1 oder 10:1 – hier ist das Plan-Maß größer als das reale Maß.
+          </li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zum Maßstab</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Was bedeutet ein Maßstab wie 1:100?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Ein Maßstab 1:100 heißt: 1 Einheit auf dem Plan entspricht 100 Einheiten in Wirklichkeit. 1 cm auf der Zeichnung sind also 100 cm = 1 m real. Die Zahl n gibt an, um welchen Faktor die Realität verkleinert (oder bei 2:1 vergrößert) dargestellt ist.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie rechne ich von der Karte auf die reale Strecke?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Du misst die Strecke auf der Karte und multiplizierst sie mit der Maßstabszahl n. Beispiel Wanderkarte 1:25.000: 8 cm × 25.000 = 200.000 cm = 2 km in der Natur.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie ermittle ich den Maßstab aus zwei Längen?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Teile die reale Länge durch die Plan-Länge (beide in derselben Einheit). Beispiel: 12 m real, 24 cm auf dem Plan → 1.200 cm ÷ 24 cm = 50, also Maßstab 1:50.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welchen Maßstab hat die Modellbahn Spur H0?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Spur H0 hat den Maßstab 1:87 (Spurweite 16,5 mm), festgelegt in der MOROP-Norm NEM 010. Weitere Nenngrößen: N 1:160, TT 1:120, Z 1:220, Spur 0 1:45, Spur 1 1:32.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welche Maßstäbe sind bei technischen Zeichnungen genormt?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Nach DIN ISO 5455 sind die Verkleinerungsmaßstäbe 1:2, 1:5, 1:10, 1:20, 1:50, 1:100, 1:200, 1:500, 1:1000, 1:2000, 1:5000, 1:10000 sowie die Vergrößerungen 2:1, 5:1, 10:1, 20:1, 50:1 vorgesehen.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Gilt der Maßstab auch für Flächen?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Nein, nicht direkt. Der Längenmaßstab 1:n gilt nur für Strecken. Flächen verkleinern sich im Quadrat (1:n²), Volumen sogar in der dritten Potenz (1:n³). Ein 1:100-Modell hat z. B. nur 1/10.000 der Grundfläche des Originals.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik & Quellen</h2>
+        <p class="text-gray-700">
+          Der Maßstab-Rechner basiert auf reiner <strong>Verhältnisrechnung (1:n)</strong> – die
+          Berechnungen laufen vollständig im Browser. Die Modellbau-Nenngrößen entsprechen der
+          <strong>MOROP-Norm NEM 010</strong> (Ausgabe 2011), die genormten Maßstäbe technischer
+          Zeichnungen der <strong>DIN ISO 5455:1979-12</strong>. Die Kartenmaßstäbe (TK10 bis
+          TK100) sind die gängigen amtlichen topografischen Kartenwerke. Normmaßstäbe dienen nur
+          der Orientierung. Zuletzt aktualisiert: 13. Juni 2026.
+        </p>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="massstab" slugs={['dreisatz', 'prozent', 'einheiten']} kategorie="alltag" />
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Maßstab-Rechner – Maßstab 1:n umrechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/massstab-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was bedeutet ein Maßstab wie 1:100?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Maßstab 1:100 heißt: 1 Einheit auf dem Plan entspricht 100 Einheiten in Wirklichkeit. 1 cm auf der Zeichnung sind also 100 cm = 1 m real. Die Zahl n gibt an, um welchen Faktor die Realität verkleinert (oder bei 2:1 vergrößert) dargestellt ist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich von der Karte auf die reale Strecke?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Du misst die Strecke auf der Karte und multiplizierst sie mit der Maßstabszahl n. Beispiel Wanderkarte 1:25.000: 8 cm × 25.000 = 200.000 cm = 2 km in der Natur."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie ermittle ich den Maßstab aus zwei Längen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Teile die reale Länge durch die Plan-Länge (beide in derselben Einheit). Beispiel: 12 m real, 24 cm auf dem Plan → 1.200 cm ÷ 24 cm = 50, also Maßstab 1:50."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welchen Maßstab hat die Modellbahn Spur H0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Spur H0 hat den Maßstab 1:87 (Spurweite 16,5 mm), festgelegt in der MOROP-Norm NEM 010. Weitere Nenngrößen: N 1:160, TT 1:120, Z 1:220, Spur 0 1:45, Spur 1 1:32."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Maßstäbe sind bei technischen Zeichnungen genormt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach DIN ISO 5455 sind die Verkleinerungsmaßstäbe 1:2, 1:5, 1:10, 1:20, 1:50, 1:100, 1:200, 1:500, 1:1000, 1:2000, 1:5000, 1:10000 sowie die Vergrößerungen 2:1, 5:1, 10:1, 20:1, 50:1 vorgesehen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt der Maßstab auch für Flächen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein, nicht direkt. Der Längenmaßstab 1:n gilt nur für Strecken. Flächen verkleinern sich im Quadrat (1:n²), Volumen sogar in der dritten Potenz (1:n³). Ein 1:100-Modell hat z. B. nur 1/10.000 der Grundfläche des Originals."
+        }
+      }
+    ]
+  })} />
+</Layout>
