@@ -1,0 +1,386 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HoaiHonorarRechner from '../components/rechner/HoaiHonorarRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "HOAI-Honorar-Rechner 2026 – Architektenhonorar nach HOAI berechnen";
+const description = "Architekten- und Ingenieurhonorar für Gebäude nach HOAI 2021 (§§ 13, 35) berechnen: aus anrechenbaren Kosten, Honorarzone I–V und Honorarsatz (Basis/Mittel/oben). Kostenloser Rechner mit linearer Interpolation, Leistungsphasen-Anteil und 19 % USt – netto und brutto.";
+const keywords = "HOAI Rechner, HOAI Honorar berechnen, Architektenhonorar Rechner, HOAI 2021 Honorartafel, anrechenbare Kosten HOAI, Honorarzone Gebäude, Architektenkosten Hausbau, HOAI § 35 Tabelle, Ingenieurhonorar berechnen, Architektenhonorar Neubau";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "HOAI-Honorar-Rechner", url: "/hoai-honorar-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'HOAI-Honorar-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-600 to-amber-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">HOAI-Honorar-Rechner 2026</h1>
+            <p class="text-orange-200 text-sm">Architektenhonorar für Gebäude nach HOAI berechnen – netto &amp; brutto</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> HOAI 2021 (Honorarordnung für Architekten und Ingenieure i.d.F. v. 02.12.2020, gültig seit 01.01.2021) – Honorartafel § 35 (Gebäude und Innenräume), § 13 Interpolation, § 34 Leistungsphasen</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> anrechenbare Kosten nach DIN 276, Honorarzone I–V, Basis-/Mittel-/oberer Satz, lineare Interpolation der Tafelwerte, optional Leistungsphasen-Anteil und 19 % Umsatzsteuer – Ausweis netto und brutto</p>
+            <p><strong>Nicht berücksichtigt:</strong> Umbau-/Modernisierungszuschlag (§ 6 Abs. 2 / § 36), Nebenkosten (§ 14), besondere Leistungen, Honorare für Freianlagen/Ingenieurbauwerke/Tragwerksplanung/TGA (§§ 39/44/49/56 – eigene Tafeln) sowie Umsatzsteuer-Befreiungen – der Rechner liefert die HOAI-Standardberechnung als Schätzung ohne Gewähr und ersetzt keine Honorarberatung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <HoaiHonorarRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Architektenhonorar berechnen: So funktioniert die HOAI</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Was ein Architekt oder Ingenieur für die Planung eines Gebäudes kostet, richtet sich nach der
+            <strong>Honorarordnung für Architekten und Ingenieure (HOAI)</strong>. Mit unserem
+            HOAI-Honorar-Rechner ermitteln Sie das voraussichtliche Honorar für Grundleistungen bei Gebäuden
+            und Innenräumen nach der amtlichen Honorartafel des § 35 HOAI – aus den anrechenbaren Kosten, der
+            Honorarzone und dem gewählten Honorarsatz.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die drei Bausteine des HOAI-Honorars</h3>
+          <p>Das Honorar nach der HOAI-Tafel ergibt sich immer aus drei Faktoren:</p>
+          <div class="bg-orange-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Anrechenbare Kosten</strong> = die maßgeblichen Herstellungskosten des Gebäudes nach DIN 276 (i. d. R. Kostengruppen 300 + 400)</li>
+              <li><strong>Honorarzone (I–V)</strong> = der Schwierigkeitsgrad der Planung; Zone III steht für durchschnittliche Anforderungen</li>
+              <li><strong>Honorarsatz</strong> = der Wert innerhalb der Zone, von Basissatz (unterer Wert) über Mittelsatz bis zum oberen Satz</li>
+            </ul>
+          </div>
+          <p>
+            Aus den anrechenbaren Kosten und der Honorarzone liest der Rechner den unteren (von) und oberen
+            (bis) Tafelwert aus § 35 HOAI ab. Liegen die Kosten zwischen zwei Tafelstufen, wird der Wert nach
+            <strong>§ 13 HOAI linear interpoliert</strong>. Auf das so ermittelte Nettohonorar kommt – falls
+            der Architekt umsatzsteuerpflichtig ist – noch die Umsatzsteuer von 19 %.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die fünf Honorarzonen</h3>
+          <p>
+            Die Honorarzone richtet sich nach den Planungsanforderungen (§ 35 Abs. 6 HOAI):
+            <strong>Zone I</strong> = sehr geringe, <strong>Zone II</strong> = geringe,
+            <strong>Zone III</strong> = durchschnittliche, <strong>Zone IV</strong> = hohe und
+            <strong>Zone V</strong> = sehr hohe Anforderungen. Ein normales Einfamilienhaus liegt meist in
+            Zone III, ein anspruchsvolles Wohn- oder Geschäftshaus in Zone IV. Der Rechner ist auf Zone III
+            voreingestellt, weil das der häufigste Fall ist.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Basis-, Mittel- und oberer Satz</h3>
+          <p>
+            Jede Tafelzelle hat einen unteren Wert (von) und einen oberen Wert (bis). Der
+            <strong>Basissatz</strong> ist der untere, der <strong>obere Satz</strong> der obere Wert, der
+            <strong>Mittelsatz</strong> ist das arithmetische Mittel aus beiden. In der Praxis wird häufig der
+            Mittelsatz vereinbart; er ist deshalb voreingestellt. Über die drei Schaltflächen können Sie ein
+            günstigeres oder höheres Szenario durchspielen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Leistungsphasen nach § 34 HOAI</h3>
+          <p>
+            Das volle Honorar deckt alle neun Leistungsphasen ab – von der Grundlagenermittlung (2 %) über
+            die Entwurfs- (15 %) und Ausführungsplanung (25 %) bis zur Objektüberwachung (32 %). Wird nur ein
+            Teil beauftragt, gilt nur der entsprechende Prozentsatz. Über den Schieberegler
+            „Leistungsphasen-Anteil“ können Sie eine Teilbeauftragung abbilden. Wer die Gesamtkosten des
+            Bauvorhabens im Blick behalten will, kann ergänzend den
+            <a href="/baunebenkosten-rechner" class="text-orange-600 hover:text-orange-800 underline">Baunebenkosten-Rechner</a>
+            oder den
+            <a href="/baufinanzierung-rechner" class="text-orange-600 hover:text-orange-800 underline">Baufinanzierungs-Rechner</a>
+            nutzen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnung -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Rechenbeispiel</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          Anrechenbare Kosten 350.000 €, Honorarzone III, Mittelsatz, volle Leistung (100 %):
+        </p>
+
+        <div class="space-y-4">
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Schritt 1: Stützstellen aus § 35 HOAI</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">300.000 € – Zone III von / bis:</div>
+              <div class="font-medium text-gray-800">39.981 € / 49.864 €</div>
+              <div class="text-gray-600">500.000 € – Zone III von / bis:</div>
+              <div class="font-medium text-gray-800">62.900 € / 78.449 €</div>
+            </div>
+          </div>
+
+          <div class="bg-orange-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Schritt 2: § 13 Interpolation</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Faktor t = (350.000 − 300.000) / (500.000 − 300.000):</div>
+              <div class="font-medium text-gray-800">0,25</div>
+              <div class="text-gray-600">III von = 39.981 + 0,25 × (62.900 − 39.981):</div>
+              <div class="font-medium text-gray-800">45.710,75 €</div>
+              <div class="text-gray-600">III bis = 49.864 + 0,25 × (78.449 − 49.864):</div>
+              <div class="font-medium text-gray-800">57.010,25 €</div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Schritt 3: Mittelsatz &amp; USt</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Mittelsatz = (45.710,75 + 57.010,25) / 2:</div>
+              <div class="font-bold text-orange-700">51.360,50 € netto</div>
+              <div class="text-gray-600">+ 19 % Umsatzsteuer:</div>
+              <div class="font-medium text-gray-800">9.758,50 €</div>
+              <div class="text-gray-600 font-semibold">Honorar inkl. 19 % USt:</div>
+              <div class="font-bold text-orange-700">61.119,00 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-orange-50 border border-orange-200 rounded-lg p-3 mt-4 text-sm text-orange-800">
+          <strong>💡 Hinweis:</strong> Das Honorar von 51.360,50 € netto deckt alle neun Leistungsphasen ab.
+          Bei Teilbeauftragung gilt nur der entsprechende Prozentsatz nach § 34 HOAI.
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Tafelwerte als verbindlichen Preis verstehen</h3>
+            <p>Seit dem EuGH-Urteil von 2019 und der HOAI-Novelle 2021 sind die Mindest- und Höchstsätze
+            <strong>nicht mehr verbindlich</strong>. Die Tafel ist nur noch eine Orientierung – das Honorar
+            wird im Architektenvertrag frei vereinbart.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: Anrechenbare Kosten mit Baukosten verwechseln</h3>
+            <p>Anrechenbare Kosten sind nicht automatisch die gesamten Baukosten. Maßgeblich sind die nach
+            DIN 276 anrechenbaren Kostengruppen (i. d. R. 300 + 400). Grundstück, Erschließung und bestimmte
+            Außenanlagen gehören in der Regel nicht dazu.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Falsche Honorarzone wählen</h3>
+            <p>Die Honorarzone hat großen Einfluss auf das Honorar. Wer ein durchschnittliches Wohnhaus in
+            Zone V einordnet, überschätzt das Honorar deutlich. Im Zweifel ist Zone III der realistische
+            Ausgangspunkt für ein normales Gebäude.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Kosten außerhalb der Tafel</h3>
+            <p>Unter 25.000 € und über 25.000.000 € anrechenbaren Kosten enthält die HOAI-Tafel keine Werte –
+            das Honorar ist dann frei zu vereinbaren. Der Rechner rechnet in diesem Fall mit der nächsten
+            Tafelgrenze und weist darauf hin.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: Zuschläge und Nebenkosten</h3>
+            <p>Umbauten und Modernisierungen können einen Zuschlag rechtfertigen (§ 6 Abs. 2 / § 36 HOAI).
+            Außerdem kommen Nebenkosten (§ 14) und besondere Leistungen hinzu. Diese sind im Rechner nicht
+            enthalten und werden im Vertrag gesondert vereinbart.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Architektenhonorar nach HOAI</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet sich das Architektenhonorar nach der HOAI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Honorar ergibt sich aus drei Faktoren: den anrechenbaren Kosten des Gebäudes (nach DIN 276), der Honorarzone (I–V) und dem Honorarsatz innerhalb der Zone (Basis-, Mittel- oder oberer Satz). Aus anrechenbaren Kosten und Honorarzone wird über die Honorartafel des § 35 HOAI der Tafelwert abgelesen. Liegen die Kosten zwischen zwei Tafelstufen, wird der Wert nach § 13 HOAI linear interpoliert. Auf das Nettohonorar kommen ggf. 19 % Umsatzsteuer.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sind anrechenbare Kosten bei der HOAI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Anrechenbare Kosten sind die für die Honorarberechnung maßgeblichen Herstellungskosten des Gebäudes nach DIN 276. In der Regel zählen dazu die Kostengruppen 300 (Bauwerk – Baukonstruktionen) und 400 (Bauwerk – technische Anlagen). Grundstückskosten, Erschließung und bestimmte Außenanlagen gehören üblicherweise nicht dazu. Aus den anrechenbaren Kosten wird über die Honorartafel des § 35 HOAI das Honorar ermittelt.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die Honorarzone bei der HOAI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Honorarzone beschreibt die Planungsanforderungen eines Gebäudes (§ 35 Abs. 6 HOAI) und reicht von Zone I (sehr geringe Anforderungen) bis Zone V (sehr hohe Anforderungen). Zone III steht für durchschnittliche Anforderungen und ist der häufigste Fall, etwa bei einem normalen Wohnhaus. Je höher die Zone, desto höher das Honorar bei gleichen anrechenbaren Kosten.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet die Interpolation nach § 13 HOAI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Honorartafel des § 35 HOAI nennt nur bestimmte Stützstellen für die anrechenbaren Kosten, zum Beispiel 300.000 € und 500.000 €. Liegen die tatsächlichen Kosten dazwischen, ist der Honorarwert nach § 13 HOAI durch lineare Interpolation zu ermitteln. Dabei wird zwischen den beiden benachbarten Tafelwerten anteilig umgerechnet, je nachdem wo die anrechenbaren Kosten zwischen den Stützstellen liegen.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die HOAI-Honorare noch verbindlich?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Seit dem EuGH-Urteil vom 04.07.2019 (Rechtssache C-377/17) und der HOAI-Novelle 2021 sind die früheren Mindest- und Höchstsätze nicht mehr verbindlich. Architekten- und Ingenieurhonorare können seither frei vereinbart werden. Die Honorartafel des § 35 HOAI dient nur noch als Orientierung. Das berechnete Ergebnis ist deshalb eine Schätzung, kein verbindlicher Preis.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Architekt für ein Haus mit 350.000 € Baukosten?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei 350.000 € anrechenbaren Kosten, Honorarzone III und Mittelsatz liegt das Honorar für alle neun Leistungsphasen nach der HOAI-Tafel bei rund 51.360,50 € netto, also etwa 61.119,00 € inklusive 19 % Umsatzsteuer. Wird nur ein Teil der Leistungsphasen beauftragt, sinkt das Honorar entsprechend (§ 34 HOAI). Da die HOAI-Sätze seit 2021 unverbindlich sind, ist das tatsächliche Honorar Verhandlungssache.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/baunebenkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧾</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baunebenkosten-Rechner</p>
+          </a>
+          <a href="/baufinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baufinanzierungs-Rechner</p>
+          </a>
+          <a href="/baugenehmigung-kosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📋</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Baugenehmigungskosten-Rechner</p>
+          </a>
+          <a href="/bodengutachten-kosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🪨</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Bodengutachten-Kosten-Rechner</p>
+          </a>
+          <a href="/daemmung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧥</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dämmstärke-Rechner</p>
+          </a>
+          <a href="/grundstuecksflaeche-preis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏞️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Grundstücksflächen-Preis-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "HOAI-Honorar-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/hoai-honorar-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet sich das Architektenhonorar nach der HOAI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Honorar ergibt sich aus drei Faktoren: den anrechenbaren Kosten des Gebäudes (nach DIN 276), der Honorarzone (I–V) und dem Honorarsatz innerhalb der Zone (Basis-, Mittel- oder oberer Satz). Aus anrechenbaren Kosten und Honorarzone wird über die Honorartafel des § 35 HOAI der Tafelwert abgelesen. Liegen die Kosten zwischen zwei Tafelstufen, wird der Wert nach § 13 HOAI linear interpoliert. Auf das Nettohonorar kommen ggf. 19 % Umsatzsteuer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was sind anrechenbare Kosten bei der HOAI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anrechenbare Kosten sind die für die Honorarberechnung maßgeblichen Herstellungskosten des Gebäudes nach DIN 276. In der Regel zählen dazu die Kostengruppen 300 (Bauwerk – Baukonstruktionen) und 400 (Bauwerk – technische Anlagen). Grundstückskosten, Erschließung und bestimmte Außenanlagen gehören üblicherweise nicht dazu. Aus den anrechenbaren Kosten wird über die Honorartafel des § 35 HOAI das Honorar ermittelt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die Honorarzone bei der HOAI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Honorarzone beschreibt die Planungsanforderungen eines Gebäudes (§ 35 Abs. 6 HOAI) und reicht von Zone I (sehr geringe Anforderungen) bis Zone V (sehr hohe Anforderungen). Zone III steht für durchschnittliche Anforderungen und ist der häufigste Fall, etwa bei einem normalen Wohnhaus. Je höher die Zone, desto höher das Honorar bei gleichen anrechenbaren Kosten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet die Interpolation nach § 13 HOAI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Honorartafel des § 35 HOAI nennt nur bestimmte Stützstellen für die anrechenbaren Kosten, zum Beispiel 300.000 € und 500.000 €. Liegen die tatsächlichen Kosten dazwischen, ist der Honorarwert nach § 13 HOAI durch lineare Interpolation zu ermitteln. Dabei wird zwischen den beiden benachbarten Tafelwerten anteilig umgerechnet, je nachdem wo die anrechenbaren Kosten zwischen den Stützstellen liegen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind die HOAI-Honorare noch verbindlich?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Seit dem EuGH-Urteil vom 04.07.2019 (Rechtssache C-377/17) und der HOAI-Novelle 2021 sind die früheren Mindest- und Höchstsätze nicht mehr verbindlich. Architekten- und Ingenieurhonorare können seither frei vereinbart werden. Die Honorartafel des § 35 HOAI dient nur noch als Orientierung. Das berechnete Ergebnis ist deshalb eine Schätzung, kein verbindlicher Preis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Architekt für ein Haus mit 350.000 € Baukosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei 350.000 € anrechenbaren Kosten, Honorarzone III und Mittelsatz liegt das Honorar für alle neun Leistungsphasen nach der HOAI-Tafel bei rund 51.360,50 € netto, also etwa 61.119,00 € inklusive 19 % Umsatzsteuer. Wird nur ein Teil der Leistungsphasen beauftragt, sinkt das Honorar entsprechend (§ 34 HOAI). Da die HOAI-Sätze seit 2021 unverbindlich sind, ist das tatsächliche Honorar Verhandlungssache."
+        }
+      }
+    ]
+  })} />
+</Layout>

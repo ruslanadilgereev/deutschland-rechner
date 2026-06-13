@@ -2871,6 +2871,16 @@ export const rechnerListe: Rechner[] = [
     quellen: ['https://recht.nrw.de/lrgv/rechtsverordnung/25042026-allgemeine-verwaltungsgebuehrenordnung-nrw-avwgebo-nrw', 'https://recht.nrw.de/lmi/owa/br_vbl_detail_text?anw_nr=7&vd_id=22532&ver=10&val=22532&sg=0&menu=0&vd_back=N&amtlich=1', 'https://www.gesetze-rechtsprechung.sh.juris.de/jportal/?quelle=jlink&query=BauGebV+SH&psml=bsshoprod.psml&max=true&aiz=true'],
   },
   {
+    id: 'hoai-honorar',
+    name: 'HOAI-Honorar-Rechner',
+    beschreibung: 'Architekten- und Ingenieurhonorar für Gebäude nach HOAI 2021 (§§ 13, 35) aus anrechenbaren Kosten, Honorarzone und Honorarsatz berechnen.',
+    icon: '📐',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'HOAI Rechner, HOAI Honorar berechnen, Architektenhonorar Rechner, HOAI 2021 Honorartafel, anrechenbare Kosten HOAI, Honorarzone Gebäude, Architektenkosten Hausbau, HOAI § 35 Tabelle, Ingenieurhonorar berechnen, Architektenhonorar Neubau',
+    quellen: ['https://www.gesetze-im-internet.de/hoai_2013/__13.html', 'https://www.gesetze-im-internet.de/hoai_2013/__34.html', 'https://www.gesetze-im-internet.de/hoai_2013/__35.html'],
+  },
+  {
     id: 'daemmung',
     name: 'Dämmstärke-Rechner (U-Wert & GEG)',
     beschreibung: 'Nötige Dämmstärke für Ziel-U-Wert & GEG',
