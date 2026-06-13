@@ -1480,6 +1480,20 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'ruerup-rente',
+    name: 'Rürup-/Basisrente-Rechner',
+    beschreibung: 'Steuerersparnis und Netto-Aufwand der Rürup-/Basisrente über den Sonderausgabenabzug (§ 10 EStG) berechnen.',
+    icon: '🧾',
+    kategorie: 'finanzen',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__10.html',
+      'https://www.gesetze-im-internet.de/estg/__22.html',
+      'https://www.gesetze-im-internet.de/svbezgrv_2026/BJNR1160A0025.html',
+    ],
+    seoKeywords: 'rürup rente rechner, basisrente rechner, rürup steuervorteil, basisrente steuer absetzen, sonderausgabenabzug altersvorsorge, rürup höchstbetrag 2026, basisrente selbstständige, rürup steuerersparnis berechnen, altersvorsorgeaufwendungen rechner',
+  },
+  {
     id: 'betriebsrente',
     name: 'Betriebsrente- & Entgeltumwandlung-Rechner (bAV)',
     beschreibung: 'Berechnen Sie Steuer- und SV-Ersparnis bei der Entgeltumwandlung (bAV), den 15 % Arbeitgeberzuschuss und die KV-/PV-Abzüge sowie nachgelagerte Besteuerung in der Auszahlphase – Stand 2026.',

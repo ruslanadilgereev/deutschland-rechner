@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RuerupRenteRechner from '../components/rechner/RuerupRenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Rürup-/Basisrente-Rechner – Steuerersparnis & Netto-Aufwand 2026";
+const description = "Rürup-/Basisrente-Rechner: Steuerersparnis und Netto-Aufwand über den Sonderausgabenabzug (§ 10 EStG) berechnen. Höchstbetrag 2026, Grenzsteuersatz, Förderquote. Kostenlos.";
+const keywords = "rürup rente rechner, basisrente rechner, rürup steuervorteil, basisrente steuer absetzen, sonderausgabenabzug altersvorsorge, rürup höchstbetrag 2026, basisrente selbstständige, rürup steuerersparnis berechnen, altersvorsorgeaufwendungen rechner";
+
+// FAQ – einzige Quelle der Wahrheit für sichtbares FAQ und FAQPage-Schema (1:1-Parität)
+const faqs = [
+  {
+    q: "Was ist die Rürup-/Basisrente?",
+    a: "Die Rürup-Rente – offiziell Basisrente – ist eine staatlich geförderte private Altersvorsorge. Anders als die Riester-Rente arbeitet sie nicht mit Zulagen, sondern ausschließlich mit einem Steuervorteil: Die eingezahlten Beiträge sind als Sonderausgaben nach § 10 Abs. 1 Nr. 2 Buchst. b in Verbindung mit Abs. 3 EStG absetzbar. Sie richtet sich vor allem an Selbstständige und Gutverdiener, die keine Riester-Zulagen erhalten."
+  },
+  {
+    q: "Wie hoch ist der Höchstbetrag der Rürup-Rente 2026?",
+    a: "Für das Jahr 2026 sind Altersvorsorgeaufwendungen bis zu 30.826 Euro bei Einzelveranlagung und bis zu 61.652 Euro bei Zusammenveranlagung als Sonderausgaben absetzbar. Dieser Höchstbetrag entspricht dem Höchstbeitrag zur knappschaftlichen Rentenversicherung: Die Beitragsbemessungsgrenze von 124.800 Euro multipliziert mit dem Beitragssatz von 24,7 Prozent ergibt 30.825,60 Euro, aufgerundet auf 30.826 Euro (§ 10 Abs. 3 EStG)."
+  },
+  {
+    q: "Wie viel Prozent der Rürup-Beiträge kann ich absetzen?",
+    a: "Seit dem Kalenderjahr 2023 sind Altersvorsorgeaufwendungen zu 100 Prozent als Sonderausgaben abziehbar (§ 10 Abs. 3 Satz 6 EStG). Bis 2022 galt eine schrittweise ansteigende Abzugsquote. Heute können Sie also den vollen Beitrag bis zum Höchstbetrag steuerlich geltend machen – die tatsächliche Steuerersparnis ergibt sich dann aus Ihrem persönlichen Grenzsteuersatz."
+  },
+  {
+    q: "Wie berechne ich die Steuerersparnis der Basisrente?",
+    a: "Die Steuerersparnis ergibt sich, indem der absetzbare Betrag mit dem persönlichen Grenzsteuersatz multipliziert wird: Steuerersparnis = min(Beitrag; Höchstbetrag) × 100 % × Grenzsteuersatz. Bei einem Beitrag von 6.000 Euro und einem Grenzsteuersatz von 42 Prozent beträgt die Ersparnis 6.000 × 0,42 = 2.520 Euro. Der Netto-Aufwand ist dann der Beitrag abzüglich der Steuerersparnis, hier also 6.000 − 2.520 = 3.480 Euro."
+  },
+  {
+    q: "Was passiert mit Beiträgen über dem Höchstbetrag?",
+    a: "Beiträge, die über dem Höchstbetrag von 30.826 Euro (Ledige) bzw. 61.652 Euro (Zusammenveranlagung) liegen, werden steuerlich nicht berücksichtigt. Zahlen Sie zum Beispiel als Lediger 35.000 Euro ein, sind nur 30.826 Euro abziehbar; die übersteigenden 4.174 Euro bringen keinen zusätzlichen Steuervorteil. Zu beachten ist außerdem, dass derselbe Höchstbetrag auch durch Beiträge zur gesetzlichen Rentenversicherung oder zu einem Versorgungswerk mitgefüllt wird."
+  },
+  {
+    q: "Wird die spätere Rürup-Rente besteuert?",
+    a: "Ja, die Auszahlphase unterliegt der nachgelagerten Besteuerung nach § 22 Nr. 1 Satz 3 EStG. Der Besteuerungsanteil richtet sich nach dem Jahr des Rentenbeginns: Bei Rentenbeginn im Jahr 2026 sind 84 Prozent der Rente steuerpflichtig. Der Anteil steigt um 0,5 Prozentpunkte pro Jahr und erreicht bei einem Rentenbeginn ab 2058 die vollen 100 Prozent. Dieser Effekt ist im Rechner nicht eingerechnet, der nur die Steuerersparnis in der Einzahlphase ermittelt."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Rürup-/Basisrente-Rechner", url: "/ruerup-rente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <Breadcrumb items={[{ name: "Startseite", href: "/" }, { name: "Rürup-/Basisrente-Rechner" }]} />
+
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧾</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rürup-/Basisrente-Rechner</h1>
+            <p class="text-orange-100 text-sm">Steuerersparnis & Netto-Aufwand über den Sonderausgabenabzug (§ 10 EStG)</p>
+          </div>
+        </div>
+        <p class="text-orange-100 text-xs mt-3">
+          Höchstbetrag 2026: 30.826 € (Ledige) / 61.652 € (Zusammenveranlagung). Beiträge seit 2023 zu 100 % absetzbar.
+        </p>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RuerupRenteRechner client:load />
+    </div>
+
+    <!-- Trust Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-2">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <strong>✅ Zuletzt aktualisiert am 13. Juni 2026.</strong>
+        <div class="mt-2">
+          <strong>Grundlage:</strong> § 10 Abs. 1 Nr. 2 Buchst. b in Verbindung mit Abs. 3 EStG (Sonderausgabenabzug
+          Altersvorsorgeaufwendungen/Basisrente), § 22 Nr. 1 S. 3 EStG (nachgelagerte Besteuerung). Der Höchstbetrag 2026
+          entspricht dem Höchstbeitrag zur knappschaftlichen Rentenversicherung (BBG 124.800 € × 24,7 % = 30.825,60 €,
+          aufgerundet auf 30.826 €), Beitragsbemessungsgrenze laut SVBezGrV 2026.
+        </div>
+        <div class="mt-2 text-xs text-blue-600">
+          <strong>Berücksichtigt:</strong> Höchstbetrag 30.826 € (Ledige) / 61.652 € (Zusammenveranlagung), 100 % Abzug seit
+          2023, persönlicher Grenzsteuersatz, Steuerersparnis, Netto-Aufwand, Förderquote.<br/>
+          <strong>Nicht berücksichtigt:</strong> Nachgelagerte Besteuerung in der Auszahlphase (Hinweis: Besteuerungsanteil bei
+          Rentenbeginn 2026 = 84 %), Solidaritätszuschlag/Kirchensteuer-Effekt auf die Ersparnis, individuell gekürzte
+          Höchstbeträge bei Beamten/Arbeitnehmern mit steuerfreiem Arbeitgeberanteil (§ 10 Abs. 3 S. 4 EStG) sowie Beiträge zur
+          gesetzlichen Rentenversicherung/zum Versorgungswerk, die denselben Höchstbetrag mitfüllen.
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rürup-/Basisrente 2026: Steuerersparnis, Höchstbetrag & Netto-Aufwand</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Rürup-Rente</strong> (offiziell <strong>Basisrente</strong>) ist eine staatlich geförderte
+            private Altersvorsorge, deren Förderung ausschließlich über den <strong>Sonderausgabenabzug</strong> nach
+            § 10 Abs. 1 Nr. 2 Buchst. b EStG läuft. Mit unserem <strong>Rürup-/Basisrente-Rechner</strong> ermitteln Sie
+            die jährliche Steuerersparnis, den tatsächlichen Netto-Aufwand und Ihre persönliche Förderquote. Den
+            passenden Grenzsteuersatz finden Sie über den
+            <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rürup, Riester oder Altersvorsorgedepot?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Rürup/Basisrente:</strong> reiner Sonderausgabenabzug ohne Zulagen – ideal für <strong>Selbstständige und Gutverdiener</strong> mit hohem Grenzsteuersatz.</li>
+            <li><strong>Riester-Rente:</strong> Zulagenmodell, das schrittweise ausläuft und durch das Altersvorsorgedepot ersetzt wird.</li>
+            <li><strong>Altersvorsorgedepot:</strong> das neue Zulagenmodell ab 2027 – siehe <a href="/altersvorsorgedepot-rechner" class="text-blue-600 hover:underline">Altersvorsorgedepot-Rechner</a>.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Höchstbetrag 2026</h3>
+          <p>
+            Für 2026 sind Altersvorsorgeaufwendungen bis zu <strong>30.826 €</strong> (Einzelveranlagung) bzw.
+            <strong>61.652 €</strong> (Zusammenveranlagung) als Sonderausgaben absetzbar. Der Betrag leitet sich aus dem
+            Höchstbeitrag zur knappschaftlichen Rentenversicherung ab: Die Beitragsbemessungsgrenze von 124.800 €
+            multipliziert mit dem Beitragssatz von 24,7 % ergibt 30.825,60 €, aufgerundet auf <strong>30.826 €</strong>.
+            Seit 2023 sind die Beiträge zu <strong>100 %</strong> abziehbar (§ 10 Abs. 3 S. 6 EStG).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm space-y-1">
+            <div><strong>Steuerersparnis = min(Beitrag; Höchstbetrag) × 100 % × Grenzsteuersatz</strong></div>
+            <div><strong>Netto-Aufwand = Beitrag − Steuerersparnis</strong></div>
+            <div><strong>Förderquote = Steuerersparnis ÷ Beitrag × 100</strong></div>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 1: Ledig, 6.000 € Beitrag, 42 % Grenzsteuersatz</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>abziehbar = min(6.000 €; 30.826 €) × 100 % = <strong>6.000 €</strong></li>
+            <li>Steuerersparnis = 6.000 € × 0,42 = <strong>2.520 €</strong></li>
+            <li>Netto-Aufwand = 6.000 € − 2.520 € = <strong>3.480 €</strong></li>
+            <li>Förderquote = 2.520 € ÷ 6.000 € = <strong>42 %</strong></li>
+          </ul>
+          <p>
+            Das Finanzamt trägt also 42 % des Beitrags über die Steuerersparnis mit – der Beitrag liegt deutlich unter
+            dem Höchstbetrag und wird voll berücksichtigt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 2: Ledig, 35.000 € Beitrag, 42 % (über Höchstbetrag)</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>abziehbar = min(35.000 €; 30.826 €) × 100 % = <strong>30.826 €</strong> (gedeckelt!)</li>
+            <li>Steuerersparnis = 30.826 € × 0,42 = <strong>12.946,92 €</strong></li>
+            <li><strong>4.174 €</strong> (= 35.000 € − 30.826 €) werden steuerlich nicht berücksichtigt.</li>
+          </ul>
+          <p>
+            Wichtig: Derselbe Höchstbetrag wird auch durch Beiträge zur gesetzlichen Rentenversicherung oder zu einem
+            Versorgungswerk mitgefüllt. Wer das Depot zur Schließung der Rentenlücke nutzt, kann zunächst die
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">gesetzliche Rente berechnen</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Nachgelagerte Besteuerung in der Auszahlphase</h3>
+          <p>
+            Der Steuervorteil in der Einzahlphase hat eine Kehrseite: Die spätere Rente unterliegt der
+            <strong>nachgelagerten Besteuerung</strong> nach § 22 Nr. 1 S. 3 EStG. Bei Rentenbeginn im Jahr 2026 sind
+            <strong>84 %</strong> der Rente steuerpflichtig; der Anteil steigt um 0,5 Prozentpunkte pro Jahr auf
+            <strong>100 % bei Rentenbeginn 2058</strong>. Dieser Effekt ist im Rechner nicht eingerechnet.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Typische Fehler & Sonderfälle</h2>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Höchstbetrag doppelt verplant:</strong> Derselbe Höchstbetrag (30.826 € / 61.652 €) wird auch durch Beiträge zur gesetzlichen Rentenversicherung und zum Versorgungswerk mitgefüllt – die Rürup-Beiträge zählen nicht zusätzlich obendrauf.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Beiträge über dem Höchstbetrag eingezahlt:</strong> Alles über 30.826 € (Ledige) bzw. 61.652 € (Zusammenveranlagung) bringt keinen zusätzlichen Steuervorteil.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Gekürzter Höchstbetrag bei Beamten/Arbeitnehmern:</strong> Wer einen steuerfreien Arbeitgeberanteil oder eine Beamtenversorgung hat, dem wird der Höchstbetrag nach § 10 Abs. 3 S. 4 EStG gekürzt.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Nachgelagerte Besteuerung vergessen:</strong> Die spätere Rente ist steuerpflichtig (Besteuerungsanteil bei Rentenbeginn 2026 = 84 %). Der Rechner zeigt nur die Ersparnis in der Einzahlphase.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-500 mt-0.5">•</span>
+            <span><strong>Soli und Kirchensteuer nicht eingerechnet:</strong> Der zusätzliche Effekt auf Solidaritätszuschlag und Kirchensteuer kann die tatsächliche Ersparnis leicht erhöhen – er ist im Rechner nicht enthalten.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufige Fragen (FAQ)</h2>
+        <div class="space-y-3">
+          {faqs.map((faq) => (
+            <details class="group border border-gray-200 rounded-lg">
+              <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+                {faq.q}
+                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">{faq.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/altersvorsorgedepot-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💼</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Altersvorsorgedepot-Rechner</p>
+          </a>
+          <a href="/renten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👴</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Renten-Rechner</p>
+          </a>
+          <a href="/einkommensteuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🧮</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einkommensteuer-Rechner</p>
+          </a>
+          <a href="/betriebsrente-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💰</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Betriebsrente-Rechner (bAV)</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zuletzt aktualisiert -->
+    <div class="max-w-2xl mx-auto px-4 mt-6 mb-4">
+      <p class="text-xs text-gray-400 text-center">Zuletzt aktualisiert: 13. Juni 2026 · Alle Angaben ohne Gewähr · Grundlage § 10 / § 22 EStG, Höchstbetrag laut SVBezGrV 2026</p>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rürup-/Basisrente-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/ruerup-rente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} />
+</Layout>
