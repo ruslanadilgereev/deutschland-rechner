@@ -90,13 +90,12 @@ for (const r of candidates) {
   // Guard 1: schon einen sichtbar-gemachten Block? -> skip
   if (src.includes('FAQ Section (sichtbar)')) { log.push(`[SKIP] ${slug}: already has visible FAQ marker`); skipped++; continue; }
 
-  // Guard 2: erscheint die erste Frage bereits sichtbar im Body (ohne Script-Bloecke)? -> skip
-  // Achtung: Schemas sind selbstschliessende <script .../> Tags -> beide Formen strippen.
-  const bodyNoScripts = src
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<script\b[\s\S]*?\/>/gi, '');
-  const firstQProbe = faqs[0].q.slice(0, 30);
-  if (firstQProbe && bodyNoScripts.includes(firstQProbe)) { log.push(`[SKIP] ${slug}: question already visible in body`); skipped++; continue; }
+  // Guard 2: hat die Seite bereits ein sichtbares Akkordeon (<details>) oder einen
+  // expliziten FAQ-Abschnitt? -> skip (sonst Doppelung). Eine zufaellige Content-H3,
+  // die einer Schema-Frage gleicht, ist KEIN FAQ-Block und darf hier nicht blockieren.
+  if (/<details\b/i.test(src) || /H(?:ä|ae|&auml;)ufig(?:e| gestellte) Fragen/i.test(src)) {
+    log.push(`[SKIP] ${slug}: already has visible FAQ/accordion`); skipped++; continue;
+  }
 
   // Injektion vor dem letzten </main>
   const idx = src.lastIndexOf('</main>');
