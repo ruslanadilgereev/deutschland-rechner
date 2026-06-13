@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LuftfeuchtigkeitRechner from '../components/rechner/LuftfeuchtigkeitRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Luftfeuchtigkeit-/Taupunkt-Rechner – Taupunkt, Dampfdruck & absolute Feuchte";
+const description = "Taupunkt, absolute Luftfeuchtigkeit und Sättigungsdampfdruck aus Temperatur und relativer Feuchte berechnen – mit Magnus-Formel und Schimmelrisiko-Hinweis für kalte Wände.";
+const keywords = "Luftfeuchtigkeit Rechner, Taupunkt berechnen, Taupunkt Rechner, absolute Luftfeuchtigkeit, relative Luftfeuchtigkeit umrechnen, Sättigungsdampfdruck, Magnus Formel, Schimmel Taupunkt, Kondensation Wand, g pro m3 Luftfeuchte";
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Luftfeuchtigkeit-/Taupunkt-Rechner", url: "/luftfeuchtigkeit-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Luftfeuchtigkeit-/Taupunkt-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-sky-500 to-blue-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-sky-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💧</span>
+          <div>
+            <h1 class="text-2xl font-bold">Luftfeuchtigkeit-/Taupunkt-Rechner</h1>
+            <p class="text-sky-100 text-sm">Taupunkt, Dampfdruck &amp; absolute Feuchte – plus Schimmelrisiko</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <LuftfeuchtigkeitRechner client:load />
+    </div>
+
+    <RechnerTrust
+      quellen="Magnus-Formel (Koeffizienten nach Sonntag 1990, WMO-empfohlen); ideales Gasgesetz für Wasserdampf; DWD-Wetterlexikon"
+      aktualisiert="13. Juni 2026"
+    />
+
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Vom Hygrometer zum Taupunkt: was der Rechner umrechnet</h2>
+        <p>
+          Ein Hygrometer zeigt dir die <strong>relative Luftfeuchte</strong> in Prozent. Für Bauphysik,
+          Schimmelvorsorge und Raumklima ist aber oft entscheidend, wie viel Wasser die Luft <em>absolut</em>
+          enthält (in g/m³) und bei welcher Oberflächentemperatur dieses Wasser <strong>kondensiert</strong> –
+          das ist der Taupunkt. Dieser Rechner wandelt Lufttemperatur und relative Feuchte in Taupunkt,
+          Dampfdruck und absolute Luftfeuchtigkeit um und vergleicht den Taupunkt auf Wunsch mit der
+          Temperatur einer kalten Wand oder Fensterlaibung.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Die Formeln</h2>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+          <div>E(T) = 6,112 · e^(17,62 · T / (243,12 + T))   [hPa]</div>
+          <div>e = (rF / 100) · E(T)   [hPa]</div>
+          <div>v = ln(e / 6,112)</div>
+          <div>τ = 243,12 · v / (17,62 − v)   [°C]</div>
+          <div>AF = 216,7 · e / (T + 273,15)   [g/m³]</div>
+          <div>AFmax = 216,7 · E(T) / (T + 273,15)   [g/m³]</div>
+        </div>
+        <p>
+          Verwendet wird die <strong>Magnus-Formel</strong> mit den Koeffizienten nach Sonntag (1990),
+          die von der WMO empfohlen werden und über ebenen Wasseroberflächen für −45 °C bis +60 °C
+          gelten. Die absolute Luftfeuchtigkeit folgt aus dem idealen Gasgesetz für Wasserdampf
+          (216,7 ≈ Mw·100000 / Rw mit Rw = 461,52 J/(kg·K)).
+        </p>
+
+        <h3>Rechenbeispiel: 20 °C und 50 % relative Feuchte</h3>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          E(20) = 6,112 · e^(17,62·20 / 263,12) = <strong>23,33 hPa</strong><br/>
+          e = 0,50 · 23,33 = <strong>11,66 hPa</strong><br/>
+          v = ln(11,66 / 6,112) = 0,646 → τ = 243,12·0,646 / (17,62−0,646) = <strong>9,3 °C</strong><br/>
+          AF = 216,7 · 11,66 / 293,15 = <strong>8,6 g/m³</strong><br/>
+          AFmax = 216,7 · 23,33 / 293,15 = <strong>17,3 g/m³</strong>
+        </div>
+        <p>
+          Eine Wand, die kälter als 9,3 °C ist, würde in diesem Raumklima beschlagen. Liegt die
+          Wandoberfläche dagegen klar über dem Taupunkt, ist keine Kondensation zu erwarten.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Schimmelrisiko: Taupunkt gegen Oberflächentemperatur</h2>
+        <p>
+          Schimmel braucht Feuchtigkeit an der Bauteiloberfläche. Sobald eine Oberfläche den Taupunkt
+          der Raumluft erreicht oder unterschreitet, schlägt sich dort Wasser nieder. Als bauphysikalische
+          Faustregel kann Schimmelpilzwachstum bereits ab etwa <strong>80 % relativer Feuchte an der
+          Oberfläche</strong> beginnen (DIN 4108-2 nennt 80 % Oberflächenfeuchte als Kriterium) – also
+          schon bevor sichtbares Tauwasser entsteht. Der Rechner argumentiert primär über den Taupunkt:
+          liegt die Oberfläche nur knapp darüber, ist bei Wärmebrücken Vorsicht geboten.
+        </p>
+
+        <h3>Was hilft gegen zu hohe Luftfeuchte?</h3>
+        <p>
+          Heizen senkt die <strong>relative</strong> Feuchte (warme Luft kann mehr Wasser aufnehmen),
+          Stoßlüften transportiert feuchte Luft nach draußen, und gut gedämmte Bauteile haben wärmere
+          Oberflächen – siehe <a href="/u-wert-rechner">U-Wert-Rechner</a> für Wärmebrücken und
+          <a href="/heizkosten-rechner"> Heizkosten-Rechner</a> für die Heizseite. Für reine
+          Geometrie-Umrechnungen am Bau gibt es außerdem den <a href="/gefaelle-rechner">Gefälle-Rechner</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Typische Fehler &amp; Sonderfälle</h2>
+        <ul>
+          <li><strong>Relative und absolute Feuchte verwechseln:</strong> 60 % bei 25 °C sind deutlich mehr Gramm Wasser pro m³ als 60 % bei 10 °C – die relative Feuchte allein sagt nichts über die Wassermenge.</li>
+          <li><strong>0 % eingeben:</strong> Bei einer relativen Feuchte von 0 % ist der Taupunkt nicht definiert; der Rechner begrenzt die Eingabe daher auf 1–100 %.</li>
+          <li><strong>Falsche Oberflächentemperatur:</strong> Wärmebrücken (Ecken, Fensterlaibungen, Betonstürze) sind oft mehrere Grad kälter als die übrige Wand – dort tritt Tauwasser zuerst auf.</li>
+          <li><strong>Gültigkeitsbereich:</strong> Die hier genutzten Magnus-Koeffizienten gelten über Wasser für −45 °C bis +60 °C; bei Frost (Reifpunkt über Eis) weichen die Werte etwas ab.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen zur Luftfeuchtigkeit</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist der Taupunkt?</summary>
+          <p class="mt-3">
+            Der Taupunkt ist die Temperatur, auf die man die Luft abkühlen müsste, damit der enthaltene
+            Wasserdampf zu kondensieren beginnt – die relative Feuchte erreicht dann 100 %. Trifft Luft auf
+            eine Oberfläche, die kälter als ihr Taupunkt ist, schlägt sich dort Wasser nieder. Bei 20 °C und
+            50 % relativer Feuchte liegt der Taupunkt bei rund 9,3 °C.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie berechnet man den Taupunkt aus Temperatur und relativer Feuchte?</summary>
+          <p class="mt-3">
+            Über die Magnus-Formel: Zuerst den Sättigungsdampfdruck E(T) = 6,112 · e^(17,62·T / (243,12+T))
+            und daraus den aktuellen Dampfdruck e = (rF/100) · E(T). Dann mit v = ln(e / 6,112) der Taupunkt
+            τ = 243,12 · v / (17,62 − v). Die Koeffizienten stammen von Sonntag (1990) und werden von der WMO
+            empfohlen.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen relativer und absoluter Luftfeuchtigkeit?</summary>
+          <p class="mt-3">
+            Die relative Luftfeuchtigkeit (in %) gibt an, zu wie viel Prozent die Luft bei der aktuellen
+            Temperatur mit Wasserdampf gesättigt ist. Die absolute Luftfeuchtigkeit (in g/m³) gibt die
+            tatsächliche Wassermenge pro Kubikmeter Luft an. Warme Luft kann viel mehr Wasser aufnehmen als
+            kalte: Bei 20 °C und 50 % sind das etwa 8,6 g/m³.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Ab welcher Luftfeuchtigkeit droht Schimmel?</summary>
+          <p class="mt-3">
+            Als bauphysikalische Faustregel kann Schimmel bereits ab etwa 80 % relativer Feuchte an der
+            Bauteiloberfläche beginnen (DIN 4108-2 nennt 80 % Oberflächenfeuchte als Kriterium) – also schon
+            vor sichtbarem Tauwasser. Entscheidend ist die Feuchte direkt an der Oberfläche, nicht in der
+            Raummitte. Liegt eine Oberfläche am oder unter dem Taupunkt, ist das Risiko akut.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Warum beschlägt eine kalte Wand oder ein Fenster?</summary>
+          <p class="mt-3">
+            Weil ihre Oberfläche kälter als der Taupunkt der Raumluft ist. Die Luft an der kalten Fläche
+            kühlt ab, kann den Wasserdampf nicht mehr halten und gibt ihn als Tauwasser ab. Kalte
+            Fensterscheiben und Wärmebrücken in Außenecken sind deshalb die typischen ersten Stellen für
+            Kondensat und Schimmel.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Senkt Heizen die Luftfeuchtigkeit?</summary>
+          <p class="mt-3">
+            Heizen senkt die relative Luftfeuchte, nicht die absolute Wassermenge: Warme Luft kann mehr
+            Wasser aufnehmen, dieselbe Wassermenge entspricht dann einem niedrigeren Prozentwert. Um die
+            absolute Feuchte zu senken, muss man lüften und die feuchte Luft durch trockenere Außenluft
+            ersetzen.
+          </p>
+        </details>
+      </article>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="luftfeuchtigkeit" slugs={['u-wert', 'heizkosten', 'gefaelle', 'dachneigung']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": title,
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/luftfeuchtigkeit-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Was ist der Taupunkt?", "acceptedAnswer": { "@type": "Answer", "text": "Der Taupunkt ist die Temperatur, auf die man die Luft abkühlen müsste, damit der enthaltene Wasserdampf zu kondensieren beginnt – die relative Feuchte erreicht dann 100 %. Trifft Luft auf eine Oberfläche, die kälter als ihr Taupunkt ist, schlägt sich dort Wasser nieder. Bei 20 °C und 50 % relativer Feuchte liegt der Taupunkt bei rund 9,3 °C." } },
+      { "@type": "Question", "name": "Wie berechnet man den Taupunkt aus Temperatur und relativer Feuchte?", "acceptedAnswer": { "@type": "Answer", "text": "Über die Magnus-Formel: Zuerst den Sättigungsdampfdruck E(T) = 6,112 · e^(17,62·T / (243,12+T)) und daraus den aktuellen Dampfdruck e = (rF/100) · E(T). Dann mit v = ln(e / 6,112) der Taupunkt τ = 243,12 · v / (17,62 − v). Die Koeffizienten stammen von Sonntag (1990) und werden von der WMO empfohlen." } },
+      { "@type": "Question", "name": "Was ist der Unterschied zwischen relativer und absoluter Luftfeuchtigkeit?", "acceptedAnswer": { "@type": "Answer", "text": "Die relative Luftfeuchtigkeit (in %) gibt an, zu wie viel Prozent die Luft bei der aktuellen Temperatur mit Wasserdampf gesättigt ist. Die absolute Luftfeuchtigkeit (in g/m³) gibt die tatsächliche Wassermenge pro Kubikmeter Luft an. Warme Luft kann viel mehr Wasser aufnehmen als kalte: Bei 20 °C und 50 % sind das etwa 8,6 g/m³." } },
+      { "@type": "Question", "name": "Ab welcher Luftfeuchtigkeit droht Schimmel?", "acceptedAnswer": { "@type": "Answer", "text": "Als bauphysikalische Faustregel kann Schimmel bereits ab etwa 80 % relativer Feuchte an der Bauteiloberfläche beginnen (DIN 4108-2 nennt 80 % Oberflächenfeuchte als Kriterium) – also schon vor sichtbarem Tauwasser. Entscheidend ist die Feuchte direkt an der Oberfläche, nicht in der Raummitte. Liegt eine Oberfläche am oder unter dem Taupunkt, ist das Risiko akut." } },
+      { "@type": "Question", "name": "Warum beschlägt eine kalte Wand oder ein Fenster?", "acceptedAnswer": { "@type": "Answer", "text": "Weil ihre Oberfläche kälter als der Taupunkt der Raumluft ist. Die Luft an der kalten Fläche kühlt ab, kann den Wasserdampf nicht mehr halten und gibt ihn als Tauwasser ab. Kalte Fensterscheiben und Wärmebrücken in Außenecken sind deshalb die typischen ersten Stellen für Kondensat und Schimmel." } },
+      { "@type": "Question", "name": "Senkt Heizen die Luftfeuchtigkeit?", "acceptedAnswer": { "@type": "Answer", "text": "Heizen senkt die relative Luftfeuchte, nicht die absolute Wassermenge: Warme Luft kann mehr Wasser aufnehmen, dieselbe Wassermenge entspricht dann einem niedrigeren Prozentwert. Um die absolute Feuchte zu senken, muss man lüften und die feuchte Luft durch trockenere Außenluft ersetzen." } }
+    ]
+  })} />
+</Layout>

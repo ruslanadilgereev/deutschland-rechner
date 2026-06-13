@@ -2911,6 +2911,16 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Gefälle berechnen, Gefälle Rechner, Prozent in Grad, Gefälle cm pro m, Abwasserrohr Gefälle, Rampe Gefälle, Promille umrechnen, Gefälle Verhältnis',
   },
   {
+    id: 'luftfeuchtigkeit',
+    name: 'Luftfeuchtigkeit-/Taupunkt-Rechner',
+    beschreibung: 'Taupunkt, absolute Luftfeuchtigkeit und Dampfdruck aus Temperatur und relativer Feuchte berechnen',
+    icon: '💧',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Luftfeuchtigkeit Rechner, Taupunkt berechnen, absolute Luftfeuchtigkeit, relative Luftfeuchtigkeit umrechnen, Sättigungsdampfdruck, Magnus Formel, Schimmel Taupunkt, Kondensation Wand',
+    quellen: ['https://www.dwd.de/DE/service/lexikon/Functions/glossar.html?lv3=100598&lv2=100578'],
+  },
+  {
     id: 'treppe',
     name: 'Treppen-Rechner',
     beschreibung: 'Stufenzahl, Steigung, Auftritt & Schrittmaß nach DIN 18065 berechnen',
