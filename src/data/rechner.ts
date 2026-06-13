@@ -712,6 +712,22 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Erwerbsminderungsrente Rechner, EM Rente berechnen',
   },
   {
+    id: 'uebergangsgeld',
+    name: 'Übergangsgeld-Rechner',
+    beschreibung: 'Übergangsgeld bei Reha nach § 66 SGB IX berechnen',
+    icon: '🔄',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Übergangsgeld Rechner, Übergangsgeld berechnen, Übergangsgeld Höhe, Übergangsgeld Reha, Übergangsgeld 2026, Übergangsgeld Rentenversicherung, SGB IX 66',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_9_2018/__66.html',
+      'https://www.gesetze-im-internet.de/sgb_9_2018/__67.html',
+      'https://www.gesetze-im-internet.de/sgb_9_2018/__68.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__21.html',
+      'https://www.gesetze-im-internet.de/svbezgrv_2026/BJNR1160A0025.html',
+    ],
+  },
+  {
     id: 'witwenrente',
     name: 'Witwenrente-Rechner',
     beschreibung: 'Hinterbliebenenrente berechnen',
