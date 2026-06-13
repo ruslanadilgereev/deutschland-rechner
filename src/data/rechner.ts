@@ -193,6 +193,22 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'ausbildungsverguetung',
+    name: 'Azubi-Gehalt-/Ausbildungsvergütung-Rechner',
+    beschreibung: 'Mindestausbildungsvergütung (MiAV) je Ausbildungsjahr und Beginn-Jahr berechnen (2026)',
+    icon: '🎓',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'Ausbildungsvergütung Rechner, Azubi Gehalt Rechner, Mindestausbildungsvergütung 2026, MiAV 2026, Azubi Lohn, Ausbildungsgehalt berechnen',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bbig_2005/__17.html',
+      'https://www.gesetze-im-internet.de/sgb_4/__20.html',
+      'https://www.bibb.de/de/199658.php',
+      'https://www.bibb.de/de/pressemitteilung_212952.php',
+      'https://www.bibb.de/de/pressemitteilung_199964.php',
+    ],
+  },
+  {
     id: 'kurzarbeitergeld',
     name: 'Kurzarbeitergeld-Rechner',
     beschreibung: 'KuG-Anspruch berechnen',
