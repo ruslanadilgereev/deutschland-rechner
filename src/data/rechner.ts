@@ -1891,6 +1891,15 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Kreis Rechner, Kreisumfang berechnen, Umfang berechnen, Kreisfläche berechnen, Durchmesser berechnen, Radius berechnen, Fläche berechnen, Geometrie Rechner, Rechteck Umfang, Dreieck Fläche',
   },
   {
+    id: 'zylinder-volumen',
+    name: 'Zylinder-Volumen-Rechner',
+    beschreibung: 'Volumen eines Zylinders (Liter, m³, cm³) aus Radius/Durchmesser & Höhe – plus Mantel- & Oberfläche',
+    icon: '🛢️',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Zylinder Volumen Rechner, Zylindervolumen berechnen, Volumen Zylinder, Liter berechnen Zylinder, Regentonne Liter, Pool Liter berechnen, Tank Volumen, Rohr Volumen, Mantelfläche Zylinder, Oberfläche Zylinder, m3 berechnen Zylinder',
+  },
+  {
     id: 'entfernung',
     name: 'Entfernungs-Rechner',
     beschreibung: 'Entfernung zwischen Städten (km)',

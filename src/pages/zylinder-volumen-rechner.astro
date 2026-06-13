@@ -1,0 +1,392 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZylinderVolumenRechner from '../components/rechner/ZylinderVolumenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Zylinder-Volumen-Rechner – Liter, m³ & cm³ eines Zylinders berechnen";
+const description = "Volumen eines Zylinders berechnen: aus Radius oder Durchmesser und Höhe das Volumen in Litern, m³ und cm³ plus Mantel- und Oberfläche. Mit Formel V = π·r²·h, Beispielen und Praxis-Presets (Regentonne, Pool, Tank).";
+const keywords = "Zylinder Volumen Rechner, Zylindervolumen berechnen, Volumen Zylinder, Liter berechnen Zylinder, Regentonne Liter, Pool Liter berechnen, Tank Volumen, Rohr Volumen, Mantelfläche Zylinder, Oberfläche Zylinder, m3 berechnen Zylinder";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Zylinder-Volumen-Rechner", url: "/zylinder-volumen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Zylinder-Volumen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🛢️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Zylinder-Volumen-Rechner</h1>
+            <p class="text-orange-100 text-sm">Liter, m³ &amp; cm³ eines Zylinders berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Geometrische Standardformel für den geraden Kreiszylinder: Volumen V = π · r² · h. Liter = V[m³] × 1.000 (1 m³ = 1.000 Liter = 1.000.000 cm³). Mantelfläche = 2 · π · r · h, Gesamtoberfläche = 2 · π · r · (r + h). Gerechnet wird mit der vollen Kreiszahl π.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Gerader Kreiszylinder mit konstantem Durchmesser; Eingabe als Radius oder Durchmesser, Höhe in cm oder m; Ausgabe in Litern, m³ und cm³ sowie Mantel- und Oberfläche.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Wandstärke des Behälters (gerechnet wird das geometrische Innen-/Außenmaß je nach eingegebenen Werten), konische, ovale oder liegende Tanks mit Teilfüllung, Wölbböden, Einbauten. Praxis-Presets sind typische Richtwerte, keine Herstellerangaben – Maße immer selbst nachmessen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ZylinderVolumenRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zylinder-Volumen berechnen – Liter, m³ und cm³</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Zylinder-Volumen-Rechner</strong> ermitteln Sie, wie viel in einen
+            runden Behälter passt – ob <strong>Regentonne, Pool, Heizungs-Pufferspeicher, Tank,
+            Rohr oder Säulen-Aquarium</strong>. Sie geben Durchmesser (oder Radius) und Höhe ein und
+            erhalten das Volumen direkt in <strong>Litern, Kubikmetern (m³) und Kubikzentimetern (cm³)</strong>,
+            dazu die Mantel- und die Gesamtoberfläche. Für den flachen Kreis (2D, Fläche und Umfang)
+            nutzen Sie den
+            <a href="/kreis-rechner" class="text-blue-600 hover:text-blue-800 underline">Kreis-Rechner</a>,
+            für eckige Räume (Quader Länge × Breite × Höhe) den
+            <a href="/raumhoehe-volumen-rechner" class="text-blue-600 hover:text-blue-800 underline">Raumvolumen-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel</h3>
+          <p>Der Rechner nutzt die geometrische Standardformel für den geraden Kreiszylinder:</p>
+          <div class="bg-blue-50 p-4 rounded-lg my-4">
+            <ul class="space-y-2 text-sm">
+              <li><strong>Volumen</strong> V = π · r² · h</li>
+              <li><strong>Radius</strong> r = Durchmesser d ÷ 2</li>
+              <li><strong>Mantelfläche</strong> (Seitenwand) = 2 · π · r · h</li>
+              <li><strong>Grundfläche</strong> (ein Kreis) = π · r²</li>
+              <li><strong>Gesamtoberfläche</strong> = 2 · π · r · (r + h) = 2·π·r² + 2·π·r·h (Mantel + 2 Deckel)</li>
+            </ul>
+          </div>
+          <p>
+            Setzen Sie alle Längen in derselben Einheit ein. Der Rechner normalisiert intern auf
+            Meter und gibt das Volumen anschließend in den gängigen Einheiten aus. Dabei gilt:
+            <strong>1 m³ = 1.000 Liter = 1.000.000 cm³</strong> und <strong>1 Liter = 1.000 cm³ = 1 dm³</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Radius oder Durchmesser?</h3>
+          <p>
+            Bei runden Behältern misst man in der Praxis meist den <strong>Durchmesser</strong> (die
+            volle Breite). Der Radius ist die Hälfte davon: <strong>r = d ÷ 2</strong>. Im Rechner
+            schalten Sie zwischen beiden Eingaben um – intern wird stets mit dem Radius gerechnet.
+            Achten Sie darauf, ob Sie das Innen- oder Außenmaß messen: Für das Fassungsvermögen
+            (Liter) zählt das Innenmaß, die Wandstärke bleibt unberücksichtigt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Von Litern zu Kubikmetern</h3>
+          <p>
+            Ein Kubikmeter Wasser entspricht genau <strong>1.000 Litern</strong>. Eine Regentonne mit
+            rund 0,25 m³ fasst also etwa 250 Liter, ein 11,3 m³ großer Aufstellpool rund 11.300 Liter.
+            Wer das Volumen für Heizung, Bewässerung oder Befüllung braucht, rechnet meist in Litern;
+            für größere Tanks und Silos ist die Angabe in m³ üblich. Beide Werte gibt der Rechner
+            parallel aus.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mantel- und Oberfläche</h3>
+          <p>
+            Die <strong>Mantelfläche</strong> ist die umlaufende Seitenwand des Zylinders
+            (2 · π · r · h) – relevant etwa für eine Folierung oder den Anstrich der Außenwand. Die
+            <strong>Gesamtoberfläche</strong> kommt mit den beiden Kreisdeckeln hinzu
+            (2 · π · r · (r + h)). Brauchen Sie nur die Grundfläche oder den Umfang eines einzelnen
+            Kreises, hilft der
+            <a href="/kreis-rechner" class="text-blue-600 hover:text-blue-800 underline">Kreis-Rechner</a>.
+            Zum reinen Umrechnen von Einheiten nutzen Sie den
+            <a href="/einheiten-rechner" class="text-blue-600 hover:text-blue-800 underline">Einheiten-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beispielrechnungen -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Beispielrechnungen</h2>
+        <p class="text-gray-600 text-sm mb-4">
+          So setzen sich Volumen und Flächen zusammen (gerechnet mit der vollen Kreiszahl π):
+        </p>
+
+        <div class="space-y-4">
+          <!-- Beispiel 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 1: Regentonne</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">Durchmesser 0,60 m (r = 0,30 m), Höhe 0,90 m</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-green-700">π · 0,30² · 0,90 = 0,2545 m³ = 254,5 Liter</div>
+              <div class="text-gray-600">Mantelfläche:</div>
+              <div class="font-medium text-gray-800">2 · π · 0,30 · 0,90 ≈ 1,70 m²</div>
+              <div class="text-gray-600">Oberfläche:</div>
+              <div class="font-medium text-gray-800">2 · π · 0,30 · (0,30 + 0,90) ≈ 2,26 m²</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 2 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 2: Standmaß in Zentimetern</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">Radius 10 cm, Höhe 30 cm</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-green-700">π · 10² · 30 = 9.424,78 cm³ = 9,42 Liter</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 3 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 3: Heizungs-Pufferspeicher</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">Durchmesser 0,79 m (r = 0,395 m), Höhe 1,65 m</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-green-700">≈ 808,8 Liter (entspricht etwa einem 800-Liter-Speicher)</div>
+            </div>
+          </div>
+
+          <!-- Beispiel 4 -->
+          <div class="bg-blue-50 rounded-lg p-4">
+            <h3 class="font-semibold text-gray-800 mb-2">Beispiel 4: Aufstellpool (rund)</h3>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="text-gray-600">Maße:</div>
+              <div class="font-medium text-gray-800">Durchmesser 3,66 m (r = 1,83 m), Höhe 1,07 m</div>
+              <div class="text-gray-600">Volumen:</div>
+              <div class="font-medium text-green-700">≈ 11.257 Liter (≈ 11,3 m³)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 1: Durchmesser statt Radius eingeben</h3>
+            <p>Wer im Radius-Modus versehentlich den vollen Durchmesser einträgt, erhält das
+            vierfache Volumen (das Quadrat des Radius geht ein). Prüfen Sie immer, ob der Umschalter
+            auf „Durchmesser“ oder „Radius“ steht – r ist die Hälfte des Durchmessers.</p>
+          </div>
+
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 2: cm und m mischen</h3>
+            <p>Alle Längen einer Eingabe müssen dieselbe Einheit haben. Geben Sie Durchmesser in
+            Metern und die Höhe versehentlich in Zentimetern ein, ist das Ergebnis um den Faktor 100
+            falsch. Stellen Sie den Einheiten-Schalter einmal passend ein und messen Sie alles in
+            derselben Einheit.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fehler 3: Wandstärke ignorieren oder doppelt zählen</h3>
+            <p>Für das Fassungsvermögen in Litern zählt das lichte Innenmaß. Messen Sie außen, fällt
+            das Volumen je nach Wandstärke etwas zu groß aus. Bei dünnwandigen Tonnen ist der
+            Unterschied klein, bei dickwandigen Tanks kann er ins Gewicht fallen.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: liegender oder teilgefüllter Tank</h3>
+            <p>Der Rechner gilt für den stehenden, vollständig gefüllten Kreiszylinder. Ein liegender
+            Tank, der nur teilweise gefüllt ist, hat einen Kreisabschnitt als Querschnitt – das lässt
+            sich mit der einfachen Formel nicht abbilden und erfordert eine gesonderte Berechnung.</p>
+          </div>
+
+          <div class="border-l-4 border-blue-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Sonderfall: konische oder ovale Form, Wölbboden</h3>
+            <p>Behälter, die sich nach oben verjüngen, ovale Querschnitte haben oder gewölbte Böden
+            besitzen, sind keine geraden Kreiszylinder. Das berechnete Volumen ist dann nur ein
+            Näherungswert. Für genaue Angaben ziehen Sie die Herstellerdaten heran.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">❓ Häufig gestellte Fragen zum Zylinder-Volumen</h2>
+
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man das Volumen eines Zylinders?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Volumen eines geraden Kreiszylinders ergibt sich aus <strong>V = π · r² · h</strong>, wobei r der Radius und h die Höhe ist. Den Radius erhalten Sie aus dem Durchmesser über r = d ÷ 2. Ein Zylinder mit Durchmesser 0,60 m (r = 0,30 m) und 0,90 m Höhe hat also π · 0,30² · 0,90 = 0,2545 m³.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie rechne ich das Zylinder-Volumen in Liter um?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Berechnen Sie das Volumen zunächst in Kubikmetern und multiplizieren Sie mit 1.000, denn <strong>1 m³ = 1.000 Liter</strong>. Eine Regentonne mit 0,2545 m³ fasst demnach rund 254,5 Liter. Es gilt außerdem 1 Liter = 1.000 cm³ = 1 dm³.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Liter passen in eine Regentonne?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das hängt von Durchmesser und Höhe ab. Eine typische runde Regentonne mit 0,60 m Durchmesser und 0,90 m Höhe fasst etwa <strong>254,5 Liter</strong>: V = π · 0,30² · 0,90 = 0,2545 m³ = 254,5 Liter. Messen Sie das Innenmaß Ihrer Tonne und geben Sie es in den Rechner ein.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechne ich die Mantel- und Oberfläche eines Zylinders?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Mantelfläche (umlaufende Seitenwand) ist <strong>2 · π · r · h</strong>. Die Gesamtoberfläche kommt mit den beiden Kreisdeckeln hinzu: <strong>2 · π · r · (r + h)</strong>. Bei einer Tonne mit r = 0,30 m und h = 0,90 m ergibt das eine Mantelfläche von rund 1,70 m² und eine Gesamtoberfläche von etwa 2,26 m².</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Radius und Durchmesser?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Durchmesser ist die volle Breite des Kreises, der Radius die Hälfte davon: <strong>r = d ÷ 2</strong>. In der Praxis misst man bei runden Behältern meist den Durchmesser. Der Rechner lässt Sie zwischen beiden Eingaben umschalten und rechnet intern immer mit dem Radius.</p>
+            </div>
+          </details>
+
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Rechnet der Zylinder-Rechner auch in Zentimetern?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Über den Einheiten-Schalter wählen Sie cm oder m. Wichtig ist nur, dass alle Längen einer Eingabe dieselbe Einheit haben. Ein Zylinder mit Radius 10 cm und 30 cm Höhe hat π · 10² · 30 = 9.424,78 cm³, also etwa 9,42 Liter.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/kreis-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⭕</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kreis-Rechner</p>
+          </a>
+          <a href="/raumhoehe-volumen-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📦</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Raumvolumen-Rechner</p>
+          </a>
+          <a href="/einheiten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📏</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Einheiten-Rechner</p>
+          </a>
+          <a href="/dreisatz-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔢</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Dreisatz-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">％</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zylinder-Volumen-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/zylinder-volumen-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man das Volumen eines Zylinders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Volumen eines geraden Kreiszylinders ergibt sich aus V = π · r² · h, wobei r der Radius und h die Höhe ist. Den Radius erhalten Sie aus dem Durchmesser über r = d ÷ 2. Ein Zylinder mit Durchmesser 0,60 m (r = 0,30 m) und 0,90 m Höhe hat also π · 0,30² · 0,90 = 0,2545 m³."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie rechne ich das Zylinder-Volumen in Liter um?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Berechnen Sie das Volumen zunächst in Kubikmetern und multiplizieren Sie mit 1.000, denn 1 m³ = 1.000 Liter. Eine Regentonne mit 0,2545 m³ fasst demnach rund 254,5 Liter. Es gilt außerdem 1 Liter = 1.000 cm³ = 1 dm³."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Liter passen in eine Regentonne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das hängt von Durchmesser und Höhe ab. Eine typische runde Regentonne mit 0,60 m Durchmesser und 0,90 m Höhe fasst etwa 254,5 Liter: V = π · 0,30² · 0,90 = 0,2545 m³ = 254,5 Liter. Messen Sie das Innenmaß Ihrer Tonne und geben Sie es in den Rechner ein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich die Mantel- und Oberfläche eines Zylinders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Mantelfläche (umlaufende Seitenwand) ist 2 · π · r · h. Die Gesamtoberfläche kommt mit den beiden Kreisdeckeln hinzu: 2 · π · r · (r + h). Bei einer Tonne mit r = 0,30 m und h = 0,90 m ergibt das eine Mantelfläche von rund 1,70 m² und eine Gesamtoberfläche von etwa 2,26 m²."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Radius und Durchmesser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Durchmesser ist die volle Breite des Kreises, der Radius die Hälfte davon: r = d ÷ 2. In der Praxis misst man bei runden Behältern meist den Durchmesser. Der Rechner lässt Sie zwischen beiden Eingaben umschalten und rechnet intern immer mit dem Radius."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Rechnet der Zylinder-Rechner auch in Zentimetern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Über den Einheiten-Schalter wählen Sie cm oder m. Wichtig ist nur, dass alle Längen einer Eingabe dieselbe Einheit haben. Ein Zylinder mit Radius 10 cm und 30 cm Höhe hat π · 10² · 30 = 9.424,78 cm³, also etwa 9,42 Liter."
+        }
+      }
+    ]
+  })} />
+</Layout>
