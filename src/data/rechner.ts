@@ -688,6 +688,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'riester-kuendigen',
+    name: 'Riester kündigen & Auszahlung-Rechner',
+    beschreibung: 'Rückzahlung von Zulagen & Steuervorteil bei Kündigung berechnen',
+    icon: '📉',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Riester kündigen, Riester Kündigung Auszahlung, Riester schädliche Verwendung, Riester Zulagen Rückzahlung, Riester kündigen wieviel bekomme ich, Riester Auszahlung Steuer, Riester Kündigung Verlust, Riester vorzeitig auszahlen',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__93.html',
+      'https://www.gesetze-im-internet.de/estg/__94.html',
+      'https://www.gesetze-im-internet.de/estg/__22.html',
+      'https://www.gesetze-im-internet.de/estg/__10a.html',
+    ],
+  },
+  {
     id: 'erwerbsminderungsrente',
     name: 'Erwerbsminderungsrente-Rechner',
     beschreibung: 'EM-Rente berechnen',

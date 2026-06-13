@@ -1,0 +1,328 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RiesterKuendigenRechner from '../components/rechner/RiesterKuendigenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Riester kündigen Rechner 2026 – Auszahlung & Rückzahlung berechnen";
+const description = "Riester kündigen-Rechner: Wie viel bleibt nach Rückzahlung der Zulagen & Steuervorteile (§ 93 EStG) plus Steuer auf Erträge (§ 22 Nr. 5 EStG)? Jetzt Netto-Auszahlung schätzen.";
+const keywords = "Riester kündigen, Riester Kündigung Auszahlung, Riester schädliche Verwendung, Riester Zulagen Rückzahlung, Riester kündigen wieviel bekomme ich, Riester Auszahlung Steuer, Riester Kündigung Verlust, Riester vorzeitig auszahlen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Riester kündigen Rechner", url: "/riester-kuendigen-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-rose-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-rose-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📉</span>
+          <div>
+            <h1 class="text-2xl font-bold">Riester kündigen & Auszahlung-Rechner</h1>
+            <p class="text-rose-100 text-sm">Rückzahlung von Zulagen &amp; Steuervorteil bei Kündigung berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RiesterKuendigenRechner client:load />
+    </div>
+
+    <!-- Trust Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-rose-50 border border-rose-200 rounded-xl p-4 text-xs text-rose-900">
+        <p class="font-semibold mb-1">📋 Grundlage & Transparenz</p>
+        <p class="mb-2"><strong>Zuletzt aktualisiert am 13. Juni 2026.</strong></p>
+        <p class="mb-2">
+          <strong>Grundlage:</strong> § 93 EStG (schädliche Verwendung, Rückzahlungsbetrag), § 94 EStG
+          (Einbehalt durch Anbieter, Abführung an die ZfA), § 22 Nr. 5 EStG (Besteuerung der Auszahlung),
+          § 10a EStG (gesondert festgestellte Steuerermäßigung).
+        </p>
+        <p class="mb-2">
+          <strong>Berücksichtigt:</strong> Rückzahlung erhaltener Zulagen (Grund- + Kinderzulagen),
+          Rückzahlung der gesondert festgestellten Steuerermäßigung nach § 10a, geschätzte Besteuerung der
+          Erträge mit dem persönlichen Grenzsteuersatz, Netto nach Anbieter-Einbehalt.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> vertragsindividuelle Stornokosten/Abschlusskosten des
+          Anbieters, exakter Ertragsanteil (nur Schätzung Kapital − Eigenbeiträge), Solidaritätszuschlag
+          und Kirchensteuer, Wohn-Riester-Sonderfälle (§ 92a), Versorgungsausgleich, Reform ab 2027 (pAV).
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Riester kündigen 2026: Wie viel Geld bleibt nach Rückzahlung & Steuer?</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer seinen Riester-Vertrag <strong>kündigt und das Kapital auszahlen lässt</strong>, löst die
+            sogenannte <strong>„schädliche Verwendung"</strong> nach § 93 EStG aus. Mit diesem Rechner
+            schätzen Sie, wie viel von Ihrem Riester-Guthaben nach der Rückzahlung der staatlichen Förderung
+            und nach Versteuerung der Erträge tatsächlich übrig bleibt. Den Aufbau der Förderung in der
+            Ansparphase berechnet dagegen unser
+            <a href="/riester-rechner" class="text-rose-600 hover:underline">Riester-Rechner</a> — dieser
+            Rechner hier deckt ausschließlich die <strong>Kündigungs- bzw. Auszahlungsphase</strong> ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was passiert bei der Kündigung? Zwei getrennte Vorgänge</h3>
+          <p>
+            Bei einer schädlichen Verwendung passieren rechtlich <strong>zwei voneinander getrennte
+            Dinge</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>
+              <strong>1. Rückzahlungsbetrag nach § 93 Abs. 1 Satz 1 EStG:</strong> Zurückgezahlt werden die
+              auf das ausgezahlte Vermögen entfallenden <strong>Zulagen</strong> und die nach § 10a Abs. 4
+              gesondert festgestellten Beträge (= die zusätzliche Steuerermäßigung aus dem
+              Sonderausgabenabzug). Nach § 94 Abs. 1 EStG <strong>behält der Anbieter diesen
+              Rückzahlungsbetrag direkt vom Kapital ein</strong> und führt ihn an die Zentrale Zulagenstelle
+              für Altersvermögen (ZfA) ab. Sie erhalten also Kapital <em>minus</em> Rückzahlungsbetrag.
+            </li>
+            <li>
+              <strong>2. Besteuerung nach § 22 Nr. 5 Satz 3 EStG:</strong> Die während der Laufzeit erzielten
+              <strong>Erträge und Wertsteigerungen</strong> sind als sonstige Einkünfte mit Ihrem
+              persönlichen Steuersatz nachzuversteuern. Das <strong>eingezahlte Eigenkapital selbst wird
+              nicht besteuert</strong> — nur die Erträge. Diese Steuer zahlen Sie separat über die
+              Einkommensteuererklärung (sie wird nicht vom Anbieter einbehalten).
+            </li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Formel</h3>
+          <div class="bg-gray-50 rounded-lg p-4 my-3">
+            <p class="text-sm text-gray-800">
+              <strong>Netto-Auszahlung = Vertragsguthaben − (erhaltene Zulagen + Steuerermäßigung § 10a)
+              − Grenzsteuersatz × (Vertragsguthaben − Eigenbeiträge)</strong>
+            </p>
+          </div>
+          <p>
+            Der Klammerausdruck <em>erhaltene Zulagen + Steuerermäßigung § 10a</em> ist der
+            Rückzahlungsbetrag nach § 93, den der Anbieter einbehält. Der letzte Term schätzt die Steuer auf
+            die Erträge nach § 22 Nr. 5.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel</h3>
+          <div class="bg-gray-50 rounded-lg p-4 my-3">
+            <p class="font-semibold text-gray-800 mb-2">
+              Vertragsguthaben 15.000 €, erhaltene Zulagen 2.625 € (15 Jahre × 175 € Grundzulage),
+              Steuerermäßigung 0 €, Eigenbeiträge 9.000 €, Grenzsteuersatz 30 %:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-sm">
+              <li>Rückzahlung § 93 = 2.625 € (Anbieter behält ein) → Auszahlung vom Anbieter = 12.375 €</li>
+              <li>Erträge (Schätzung) = 15.000 − 9.000 = 6.000 € → Ertragsteuer = 6.000 × 30 % = 1.800 €</li>
+              <li>Netto bleibt: 12.375 − 1.800 = <strong>10.575 €</strong> (Verlustquote ≈ 29,5 %)</li>
+            </ul>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kleinbetragsrente: die wichtige Ausnahme</h3>
+          <p>
+            Eine <strong>Kleinbetragsrente</strong> darf förderunschädlich abgefunden werden — hier greift
+            die schädliche Verwendung also nicht. Nach § 93 Abs. 3 Nr. 2 EStG liegt eine Kleinbetragsrente
+            vor, wenn die monatliche Rente <strong>1,5 % der monatlichen Bezugsgröße</strong> nach § 18
+            SGB IV nicht übersteigt. Bei einer bundeseinheitlichen Bezugsgröße von 3.955 €/Monat (2026) sind
+            das <strong>59,33 €/Monat</strong>. Kurz: <strong>Kleinbetragsrenten bis 59 €/Monat dürfen 2026
+            förderunschädlich abgefunden werden.</strong>
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Förderunschädliche Alternativen zur Kündigung</h3>
+          <p>
+            Bevor Sie kündigen, lohnt sich der Blick auf Wege, bei denen die Förderung <strong>nicht</strong>
+            zurückgezahlt werden muss:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Anbieterwechsel:</strong> Übertragung auf einen anderen zertifizierten Riester-Vertrag</li>
+            <li><strong>Beitragsfreistellung (Ruhenlassen):</strong> Beiträge auf 0 € setzen, Vertrag bleibt bestehen — keine Rückzahlung, bisherige Zulagen bleiben erhalten</li>
+            <li><strong>Versorgungsausgleich:</strong> Teilung des Guthabens bei Scheidung</li>
+            <li><strong>Wohn-Riester-Entnahme</strong> für selbstgenutztes Wohneigentum nach § 92a EStG</li>
+            <li><strong>Auszahlung im Rentenalter</strong> als lebenslange Rente (zzgl. bis zu 30 % Teilkapital)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Besteuerung der Auszahlung im Detail</h3>
+          <p>
+            Riester unterliegt der <strong>nachgelagerten Besteuerung</strong>: In der Ansparphase wurden
+            Beiträge gefördert, dafür sind die Leistungen später steuerpflichtig. Bei der schädlichen
+            Verwendung greift § 22 Nr. 5 Satz 3 EStG — nur die <strong>Erträge und Wertsteigerungen</strong>
+            werden mit dem persönlichen Steuersatz erfasst, nicht das eingezahlte Kapital. Wer das Geld
+            stattdessen reinvestieren möchte, kann den Ertrag eines klassischen Sparplans mit unserem
+            <a href="/etf-sparplan-rechner" class="text-rose-600 hover:underline">ETF-Sparplan-Rechner</a>
+            durchrechnen oder das ab 2027 mögliche
+            <a href="/altersvorsorgedepot-rechner" class="text-rose-600 hover:underline">Altersvorsorgedepot</a>
+            betrachten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Typische Fehler & Sonderfälle</h2>
+
+        <div class="bg-red-50 border border-red-200 rounded-lg p-4 my-3">
+          <ol class="list-decimal pl-5 space-y-2 text-sm text-red-900">
+            <li><strong>Kündigung mit Beitragsfreistellung verwechseln:</strong> Eine Beitragsfreistellung ist <strong>keine</strong> schädliche Verwendung — Sie zahlen einfach nichts mehr ein, behalten aber Förderung und Kapital. Nur die echte Kapitalauszahlung löst die Rückzahlung aus.</li>
+            <li><strong>Stornokosten vergessen:</strong> Viele Verträge (besonders Versicherungen) haben hohe Abschluss- und Stornokosten. Diese mindern die Auszahlung zusätzlich und sind in dieser Schätzung <strong>nicht</strong> enthalten.</li>
+            <li><strong>Ertragsanteil falsch einschätzen:</strong> „Kapital − Eigenbeiträge" überschätzt die Erträge, weil auch die Zulagen im Kapital stecken. Den genauen steuerpflichtigen Anteil weist erst die Auszahlungsbescheinigung des Anbieters aus.</li>
+            <li><strong>Zwei Belastungen verwechseln:</strong> Der Rückzahlungsbetrag (§ 93) wird vom Anbieter einbehalten, die Ertragsteuer (§ 22 Nr. 5) zahlen Sie selbst über die Steuererklärung. Beides trifft Sie, aber zu unterschiedlichen Zeitpunkten.</li>
+            <li><strong>Kleinbetragsrente übersehen:</strong> Liegt die erreichbare Monatsrente unter 59 €/Monat (2026), darf der Anbieter förderunschädlich abfinden — dann fällt <strong>keine</strong> Rückzahlung an.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (Collapsible) -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufig gestellte Fragen zur Riester-Kündigung</h2>
+        <div class="space-y-3">
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+              Was bekomme ich, wenn ich meinen Riester-Vertrag kündige?
+              <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Sie erhalten das Vertragsguthaben abzüglich des Rückzahlungsbetrags nach § 93 EStG, den der Anbieter direkt einbehält und an die ZfA abführt. Der Rückzahlungsbetrag umfasst alle erhaltenen Zulagen und die in Anspruch genommene Steuerermäßigung nach § 10a. Zusätzlich müssen Sie die Erträge des Vertrags später über die Steuererklärung versteuern. Vom Vertragsguthaben bleibt daher deutlich weniger übrig als der reine Guthabenstand.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+              Was ist eine schädliche Verwendung bei Riester?
+              <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Eine schädliche Verwendung nach § 93 EStG liegt vor, wenn das geförderte Riester-Kapital nicht für die Altersvorsorge genutzt wird — typisch ist die Kündigung mit vorzeitiger Kapitalauszahlung. In diesem Fall werden die erhaltenen Zulagen und die Steuerermäßigung nach § 10a zurückgefordert. Nicht schädlich sind dagegen ein Anbieterwechsel, die Beitragsfreistellung, die Übertragung im Versorgungsausgleich und die Wohn-Riester-Entnahme nach § 92a EStG.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+              Welche Zulagen muss ich bei einer Riester-Kündigung zurückzahlen?
+              <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Nach § 93 Abs. 1 Satz 1 EStG umfasst der Rückzahlungsbetrag die auf das ausgezahlte Vermögen entfallenden Zulagen — also alle erhaltenen Grund- und Kinderzulagen — sowie die nach § 10a Abs. 4 gesondert festgestellten Beträge, das heißt die zusätzliche Steuerermäßigung aus dem Sonderausgabenabzug. Der Anbieter behält diesen Betrag nach § 94 EStG vom Kapital ein und führt ihn an die Zentrale Zulagenstelle für Altersvermögen ab.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+              Muss ich die Riester-Auszahlung versteuern?
+              <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Bei der schädlichen Verwendung sind nach § 22 Nr. 5 Satz 3 EStG die während der Laufzeit erzielten Erträge und Wertsteigerungen als sonstige Einkünfte mit dem persönlichen Steuersatz zu versteuern. Das eingezahlte Eigenkapital selbst wird nicht besteuert, nur die Erträge. Diese Steuer wird nicht vom Anbieter einbehalten, sondern fällt separat über die Einkommensteuererklärung an.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+              Lohnt sich eine Beitragsfreistellung statt einer Kündigung?
+              <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              In den meisten Fällen ja. Bei einer Beitragsfreistellung setzen Sie Ihre Beiträge auf 0 €, der Vertrag bleibt aber bestehen. Es entsteht keine schädliche Verwendung, daher müssen weder Zulagen noch Steuervorteile zurückgezahlt werden und das angesparte Kapital bleibt für die spätere Rente erhalten. So vermeiden Sie sowohl den Rückzahlungsbetrag als auch mögliche Stornokosten der Kündigung.
+            </div>
+          </details>
+          <details class="group border border-gray-200 rounded-lg">
+            <summary class="flex justify-between items-center cursor-pointer p-4 font-medium text-gray-800 hover:bg-gray-50">
+              Wann darf eine Kleinbetragsrente förderunschädlich abgefunden werden?
+              <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              Nach § 93 Abs. 3 Nr. 2 EStG gilt die Abfindung einer Kleinbetragsrente nicht als schädliche Verwendung, wenn die monatliche Rente 1,5 % der monatlichen Bezugsgröße nach § 18 SGB IV nicht übersteigt. Bei einer bundeseinheitlichen Bezugsgröße von 3.955 €/Monat im Jahr 2026 entspricht das 59,33 €/Monat. Kleinbetragsrenten bis 59 €/Monat dürfen 2026 also förderunschädlich abgefunden werden, ohne dass Zulagen oder Steuervorteile zurückgezahlt werden müssen.
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Riester kündigen & Auszahlung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/riester-kuendigen-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was bekomme ich, wenn ich meinen Riester-Vertrag kündige?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sie erhalten das Vertragsguthaben abzüglich des Rückzahlungsbetrags nach § 93 EStG, den der Anbieter direkt einbehält und an die ZfA abführt. Der Rückzahlungsbetrag umfasst alle erhaltenen Zulagen und die in Anspruch genommene Steuerermäßigung nach § 10a. Zusätzlich müssen Sie die Erträge des Vertrags später über die Steuererklärung versteuern. Vom Vertragsguthaben bleibt daher deutlich weniger übrig als der reine Guthabenstand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist eine schädliche Verwendung bei Riester?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine schädliche Verwendung nach § 93 EStG liegt vor, wenn das geförderte Riester-Kapital nicht für die Altersvorsorge genutzt wird — typisch ist die Kündigung mit vorzeitiger Kapitalauszahlung. In diesem Fall werden die erhaltenen Zulagen und die Steuerermäßigung nach § 10a zurückgefordert. Nicht schädlich sind dagegen ein Anbieterwechsel, die Beitragsfreistellung, die Übertragung im Versorgungsausgleich und die Wohn-Riester-Entnahme nach § 92a EStG."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Zulagen muss ich bei einer Riester-Kündigung zurückzahlen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach § 93 Abs. 1 Satz 1 EStG umfasst der Rückzahlungsbetrag die auf das ausgezahlte Vermögen entfallenden Zulagen — also alle erhaltenen Grund- und Kinderzulagen — sowie die nach § 10a Abs. 4 gesondert festgestellten Beträge, das heißt die zusätzliche Steuerermäßigung aus dem Sonderausgabenabzug. Der Anbieter behält diesen Betrag nach § 94 EStG vom Kapital ein und führt ihn an die Zentrale Zulagenstelle für Altersvermögen ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich die Riester-Auszahlung versteuern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei der schädlichen Verwendung sind nach § 22 Nr. 5 Satz 3 EStG die während der Laufzeit erzielten Erträge und Wertsteigerungen als sonstige Einkünfte mit dem persönlichen Steuersatz zu versteuern. Das eingezahlte Eigenkapital selbst wird nicht besteuert, nur die Erträge. Diese Steuer wird nicht vom Anbieter einbehalten, sondern fällt separat über die Einkommensteuererklärung an."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich eine Beitragsfreistellung statt einer Kündigung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In den meisten Fällen ja. Bei einer Beitragsfreistellung setzen Sie Ihre Beiträge auf 0 €, der Vertrag bleibt aber bestehen. Es entsteht keine schädliche Verwendung, daher müssen weder Zulagen noch Steuervorteile zurückgezahlt werden und das angesparte Kapital bleibt für die spätere Rente erhalten. So vermeiden Sie sowohl den Rückzahlungsbetrag als auch mögliche Stornokosten der Kündigung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann darf eine Kleinbetragsrente förderunschädlich abgefunden werden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach § 93 Abs. 3 Nr. 2 EStG gilt die Abfindung einer Kleinbetragsrente nicht als schädliche Verwendung, wenn die monatliche Rente 1,5 % der monatlichen Bezugsgröße nach § 18 SGB IV nicht übersteigt. Bei einer bundeseinheitlichen Bezugsgröße von 3.955 €/Monat im Jahr 2026 entspricht das 59,33 €/Monat. Kleinbetragsrenten bis 59 €/Monat dürfen 2026 also förderunschädlich abgefunden werden, ohne dass Zulagen oder Steuervorteile zurückgezahlt werden müssen."
+        }
+      }
+    ]
+  })} />
+</Layout>
