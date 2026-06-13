@@ -3,9 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import KreditRechner from '../components/rechner/KreditRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Kreditrechner – Monatsrate, Zinsen & Tilgungsplan";
-const description = "Kreditrechner: Monatsrate, Zinsen & Tilgungsplan berechnen. Ratenkredit & endfälliges Darlehen vergleichen. Kostenlos & ohne Anmeldung.";
-const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate, Zinsen berechnen, Darlehensrechner, Effektivzins, Annuitätendarlehen, Kredit Vergleich, Monatsrate berechnen";
+const title = "Kreditrechner – Privatkredit-, Raten- & Darlehensrechner";
+const description = "Kreditrechner für Privatkredit, Ratenkredit & Darlehen: monatliche Rate, effektiven Jahreszins & Tilgungsplan berechnen. Auch zum Umschulden. Kostenlos & ohne Anmeldung.";
+const keywords = "Kreditrechner, Privatkredit Rechner, Ratenkredit Rechner, Darlehensrechner, Ratenrechner, monatliche Rate berechnen, Kredit umschulden Rechner, Umschuldung Rechner, effektiver Jahreszins Rechner, Tilgungsplan, Annuitätendarlehen";
 ---
 
 <Layout 
@@ -30,8 +30,8 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
         <div class="flex items-center gap-3">
           <span class="text-4xl">💳</span>
           <div>
-            <h1 class="text-2xl font-bold">Kreditrechner</h1>
-            <p class="text-blue-100 text-sm">Rate, Zinsen & Tilgungsplan berechnen</p>
+            <h1 class="text-2xl font-bold">Kreditrechner – Privatkredit-, Raten- & Darlehensrechner</h1>
+            <p class="text-blue-100 text-sm">Monatliche Rate, effektiven Jahreszins & Tilgungsplan berechnen</p>
           </div>
         </div>
       </div>
@@ -44,14 +44,21 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
 <!-- SEO Content Section -->
     <div class="max-w-2xl mx-auto px-4 mt-8">
       <div class="bg-white rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Kreditrechner: Alles zur Kreditberechnung</h2>
-        
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kreditrechner: Privatkredit, Ratenkredit & Darlehen berechnen</h2>
+
         <div class="prose prose-sm text-gray-600 space-y-4">
           <p>
-            Mit unserem <strong>Kreditrechner</strong> berechnen Sie schnell und kostenlos die monatliche 
-            Rate, Gesamtzinsen und einen detaillierten <strong>Tilgungsplan</strong> für Ihren Kredit. 
-            Egal ob Ratenkredit, Autokredit oder Konsumentenkredit – unser Rechner zeigt Ihnen 
-            transparent alle Kosten.
+            Mit unserem <strong>Kreditrechner</strong> berechnen Sie schnell und kostenlos die
+            <strong>monatliche Rate</strong>, Gesamtzinsen, den effektiven Jahreszins und einen detaillierten
+            <strong>Tilgungsplan</strong> für Ihren Kredit. Egal ob <strong>Privatkredit</strong>,
+            Ratenkredit, Autokredit oder Konsumentenkredit – der Rechner zeigt Ihnen transparent alle Kosten,
+            kostenlos und <strong>ohne Anmeldung</strong>.
+          </p>
+          <p>
+            Je nach gesuchter Aufgabe dient das Tool zugleich als <strong>Ratenrechner</strong> (Fokus auf
+            der monatlichen Rate) und als <strong>Darlehensrechner</strong> (Fokus auf Laufzeit, Zins und
+            Tilgungsverlauf) – die zugrunde liegende Annuitätenrechnung ist dieselbe. „Ratenkredit",
+            „Privatkredit" und „Konsumentenkredit" sind dabei gängige Synonyme für denselben Kredittyp.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie funktioniert ein Ratenkredit?</h3>
@@ -89,10 +96,30 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
             <li><strong>Effektivzins:</strong> Enthält alle Kosten (Bearbeitungsgebühren, Kontoführung)</li>
           </ul>
           <p>
-            Nach der <strong>Preisangabenverordnung (PAngV)</strong> müssen Banken den Effektivzins 
+            Nach der <strong>Preisangabenverordnung (PAngV)</strong> müssen Banken den Effektivzins
             angeben. So können Sie Kreditangebote fair vergleichen.
           </p>
-          
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Effektiver Jahreszins (PAngV): Formel</h3>
+          <p>
+            Der <strong>effektive Jahreszins</strong> ist nach § 6 PAngV in Verbindung mit der dort
+            verankerten Berechnungsmethode (Anhang) der Maßstab für den Kreditvergleich. Er ergibt sich
+            aus der finanzmathematischen Gleichung, bei der die Summe aller abgezinsten Auszahlungen der
+            Summe aller abgezinsten Rückzahlungen entspricht:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg text-center my-4">
+            <code class="text-sm font-mono">∑ Auszahlung<sub>k</sub> / (1 + i<sub>eff</sub>)^t<sub>k</sub> = ∑ Rate<sub>m</sub> / (1 + i<sub>eff</sub>)^s<sub>m</sub></code>
+          </div>
+          <p>
+            Dabei ist <em>i<sub>eff</sub></em> der gesuchte effektive Jahreszins und <em>t</em> bzw. <em>s</em>
+            der Zeitabstand der jeweiligen Zahlung (in Jahren) ab Auszahlung. Weil der Effektivzins zusätzlich
+            zum Nominalzins alle laufzeitabhängigen Kosten und den Zahlungsrhythmus einrechnet, lässt er sich
+            nicht direkt umstellen, sondern wird iterativ (z. B. per Newton-Verfahren) ermittelt – genau das
+            übernimmt unser <strong>effektiver-Jahreszins-Rechner</strong> für Sie. Bei einem Kredit ohne
+            Zusatzkosten und mit monatlich gleicher Rate liegt der Effektivzins nur geringfügig über dem
+            Nominalzins (Effekt der unterjährigen Verzinsung).
+          </p>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Aktuelle Kreditzinsen 2026</h3>
           <p>
             Die Zinsen für Ratenkredite hängen von verschiedenen Faktoren ab:
@@ -147,10 +174,33 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
             <li>Oft 5-10% der Kreditsumme pro Jahr kostenfrei möglich</li>
           </ul>
           <p>
-            <strong>Vorfälligkeitsentschädigung:</strong> Bei vorzeitiger Kündigung kann die Bank 
+            <strong>Vorfälligkeitsentschädigung:</strong> Bei vorzeitiger Kündigung kann die Bank
             eine Entschädigung verlangen (max. 1% der Restschuld, bei unter 1 Jahr: 0,5%).
           </p>
-          
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Kredit umschulden / ablösen</h3>
+          <p>
+            <strong>Umschulden</strong> bedeutet, einen bestehenden Kredit durch einen neuen, günstigeren
+            Kredit abzulösen. Lohnt sich vor allem, wenn der aktuelle Zinssatz deutlich über den heutigen
+            Konditionen liegt oder Sie mehrere Kredite zu einem Ratenkredit zusammenfassen möchten. So
+            rechnen Sie eine Umschuldung durch:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Mit unserem Rechner die <strong>neue Monatsrate</strong> und Gesamtkosten für die Restschuld zum neuen Zins ermitteln</li>
+            <li>Gegen die verbleibenden Kosten des Altkredits (inkl. möglicher Vorfälligkeitsentschädigung) stellen</li>
+            <li>Liegt die Ersparnis darüber, ist die Umschuldung sinnvoll</li>
+          </ul>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+            <p class="text-blue-800 text-sm mb-2">
+              <strong>Sie wollen einen laufenden Immobilienkredit ablösen?</strong> Für die Anschlussfinanzierung
+              nach Ablauf der Zinsbindung (Prolongation, Umschuldung oder Forward-Darlehen) nutzen Sie den
+              spezialisierten Rechner:
+            </p>
+            <a href="/anschlussfinanzierung-rechner" class="inline-flex items-center gap-2 font-semibold text-blue-700 underline">
+              → Anschlussfinanzierung-Rechner: Immobilienkredit umschulden &amp; ablösen
+            </a>
+          </div>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Tipps für die Kreditaufnahme</h3>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>Mehrere Angebote vergleichen:</strong> Effektivzins ist entscheidend</li>
@@ -240,6 +290,10 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
             <span class="text-2xl">🚗</span>
             <p class="font-medium text-gray-800 text-sm mt-1">Autofinanzierung-Rechner</p>
           </a>
+          <a href="/anschlussfinanzierung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🔄</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Anschlussfinanzierung-Rechner</p>
+          </a>
         </div>
       </div>
     </div>
@@ -283,6 +337,24 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
             <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Kreditzinsen sind aktuell üblich?</summary>
             <div class="px-4 pb-4 text-sm text-gray-600">
               <p>Ratenkredite kosten 2026 etwa 5-10% Effektivzins bei guter Bonität. Autokredite sind oft günstiger (3-6%), da das Fahrzeug als Sicherheit dient. Der individuelle Zinssatz hängt von Bonität, Laufzeit und Kreditsumme ab.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen Ratenrechner und Darlehensrechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Im Kern berechnen beide dasselbe: einen Annuitätenkredit. „Ratenrechner" betont die monatliche Rate, „Darlehensrechner" eher Laufzeit, Zins und Tilgungsverlauf. Auch „Privatkredit-Rechner" und „Ratenkredit-Rechner" meinen denselben Kredittyp. Unser Kreditrechner deckt alle diese Anwendungsfälle ab.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann lohnt sich eine Umschuldung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Eine Umschuldung lohnt sich, wenn der neue Effektivzins so weit unter dem alten liegt, dass die Zinsersparnis eine mögliche Vorfälligkeitsentschädigung (max. 1% der Restschuld, bei unter 12 Monaten Restlaufzeit: 0,5%) übersteigt. Berechnen Sie dazu die neue Monatsrate für die Restschuld zum neuen Zins und vergleichen Sie die Gesamtkosten. Für Immobilienkredite nutzen Sie den Anschlussfinanzierung-Rechner.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man den effektiven Jahreszins?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der effektive Jahreszins wird nach der Preisangabenverordnung (PAngV) so bestimmt, dass die abgezinste Summe aller Auszahlungen der abgezinsten Summe aller Rückzahlungen entspricht. Er enthält neben dem Nominalzins auch alle laufzeitabhängigen Kosten und den Zahlungsrhythmus und wird iterativ ermittelt. Genau das übernimmt der Rechner – Sie geben nur Kreditsumme, Zins und Laufzeit ein.</p>
             </div>
           </details>
         </div>
@@ -361,6 +433,30 @@ const keywords = "Kreditrechner, Ratenkredit berechnen, Tilgungsplan, Kreditrate
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Ratenkredite kosten 2026 etwa 5-10% Effektivzins bei guter Bonität. Autokredite sind oft günstiger (3-6%), da das Fahrzeug als Sicherheit dient. Der individuelle Zinssatz hängt von Bonität, Laufzeit und Kreditsumme ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Ratenrechner und Darlehensrechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Im Kern berechnen beide dasselbe: einen Annuitätenkredit. „Ratenrechner\" betont die monatliche Rate, „Darlehensrechner\" eher Laufzeit, Zins und Tilgungsverlauf. Auch „Privatkredit-Rechner\" und „Ratenkredit-Rechner\" meinen denselben Kredittyp. Unser Kreditrechner deckt alle diese Anwendungsfälle ab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann lohnt sich eine Umschuldung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Umschuldung lohnt sich, wenn der neue Effektivzins so weit unter dem alten liegt, dass die Zinsersparnis eine mögliche Vorfälligkeitsentschädigung (max. 1% der Restschuld, bei unter 12 Monaten Restlaufzeit: 0,5%) übersteigt. Berechnen Sie dazu die neue Monatsrate für die Restschuld zum neuen Zins und vergleichen Sie die Gesamtkosten. Für Immobilienkredite nutzen Sie den Anschlussfinanzierung-Rechner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man den effektiven Jahreszins?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der effektive Jahreszins wird nach der Preisangabenverordnung (PAngV) so bestimmt, dass die abgezinste Summe aller Auszahlungen der abgezinsten Summe aller Rückzahlungen entspricht. Er enthält neben dem Nominalzins auch alle laufzeitabhängigen Kosten und den Zahlungsrhythmus und wird iterativ ermittelt. Genau das übernimmt der Rechner – Sie geben nur Kreditsumme, Zins und Laufzeit ein."
         }
       }
     ]
