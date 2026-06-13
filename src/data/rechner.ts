@@ -1513,6 +1513,22 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'unternehmensbewertung',
+    name: 'Unternehmensbewertung-Rechner (vereinfachtes Ertragswertverfahren)',
+    beschreibung: 'Schätzt den Ertragswert eines Unternehmens nach dem vereinfachten Ertragswertverfahren des Finanzamts (§§ 199–203 BewG) für Erbschaft-/Schenkungsteuerzwecke.',
+    icon: '💼',
+    kategorie: 'finanzen',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/bewg/__200.html',
+      'https://www.gesetze-im-internet.de/bewg/__201.html',
+      'https://www.gesetze-im-internet.de/bewg/__202.html',
+      'https://www.gesetze-im-internet.de/bewg/__203.html',
+      'https://www.gesetze-im-internet.de/bewg/__11.html',
+    ],
+    seoKeywords: 'Unternehmensbewertung Rechner, vereinfachtes Ertragswertverfahren, Unternehmenswert berechnen, BewG Unternehmensbewertung, Ertragswert Unternehmen, Kapitalisierungsfaktor 13,75, Erbschaftsteuer Unternehmenswert, Schenkungsteuer Anteile bewerten',
+  },
+  {
     id: 'inflations',
     name: 'Inflations-Rechner',
     beschreibung: 'Kaufkraftverlust berechnen',
