@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GefaelleRechner from '../components/rechner/GefaelleRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Gefälle-Rechner – Prozent, Grad, Promille & cm/m umrechnen";
+const description = "Gefälle berechnen und umrechnen: Prozent, Grad, Promille, cm/m und Verhältnis 1:n aus Höhe und Länge. Mit Richtwerten für Abwasserrohr, Rampe und Terrasse.";
+const keywords = "Gefälle Rechner, Gefälle berechnen, Gefälle umrechnen, Steigung in Prozent, Grad in Prozent, Prozent in Grad, Gefälle Abwasserrohr, Gefälle Rampe, cm pro Meter Gefälle, Promille Gefälle, Gefälle in Grad";
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Gefälle-Rechner", url: "/gefaelle-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Wohnen & Immobilien', href: '/wohnen-immobilien' },
+    { name: 'Gefälle-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Gefälle-Rechner: Prozent, Grad, Promille &amp; cm/m</h1>
+            <p class="text-emerald-100 text-sm">Gefälle umrechnen – für Rohr, Rampe, Terrasse &amp; Weg</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GefaelleRechner client:load />
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Gefälle berechnen und in jede Einheit umrechnen</h2>
+        <p>
+          Gefälle (oder Steigung) ist nichts anderes als das Verhältnis von <strong>Höhenunterschied zu
+          horizontaler Strecke</strong>. Je nach Gewerk wird es in unterschiedlichen Einheiten angegeben:
+          Bauzeichner nutzen Prozent, Dachdecker Grad, der Tiefbau rechnet in Promille oder cm pro Meter,
+          und Normen geben oft ein Verhältnis wie 1:50 an. Dieser Rechner wandelt alle Einheiten
+          ineinander um – egal ob du Höhe und Länge kennst oder bereits ein Gefälle in Prozent bzw. Grad hast.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Die Formeln</h2>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+          <div>Gefälle [%] = Höhe ÷ Länge × 100</div>
+          <div>Gefälle [°] = arctan(Höhe ÷ Länge)</div>
+          <div>Promille [‰] = Prozent × 10</div>
+          <div>cm pro Meter = Prozent (1 % = 1 cm/m)</div>
+          <div>Verhältnis = 1 : (100 ÷ Prozent)</div>
+        </div>
+        <p>
+          Wichtig: <strong>100 % Gefälle entsprechen 45°</strong>, nicht 90°. Bei 100 % fällt die Strecke
+          auf 1 Meter Länge um genau 1 Meter – Höhe und Länge sind dann gleich groß.
+        </p>
+
+        <h3>Beispiel 1: Abwasserrohr (Höhe und Länge bekannt)</h3>
+        <p>Eine Grundleitung fällt auf 10 m Länge um 5 cm (= 0,05 m). Welches Gefälle ist das?</p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Prozent = 0,05 ÷ 10 × 100 = <strong>0,5 %</strong> (= 0,5 cm/m)<br/>
+          Verhältnis = 1 : (100 ÷ 0,5) = <strong>1 : 200</strong>
+        </div>
+        <p>
+          Das entspricht dem Regelgefälle für belüftete Grundleitungen (DIN EN 12056-2 / DIN 1986-100, als
+          Orientierung). Unbelüftete Anschlussleitungen werden oft mit rund 1 % verlegt.
+        </p>
+
+        <h3>Beispiel 2: Rampe (Gefälle in Prozent bekannt)</h3>
+        <p>Eine barrierefreie Rampe darf höchstens 6 % Steigung haben. Wie viele Grad sind das, und wie viel Höhe auf 8 m?</p>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm">
+          Grad = arctan(6 ÷ 100) = <strong>3,43°</strong><br/>
+          Nötiger Fall auf 8 m = 8 × 0,06 = <strong>0,48 m (48 cm)</strong>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Prozent ↔ Grad – die wichtigsten Werte</h2>
+        <div class="overflow-x-auto my-4 not-prose">
+          <table class="min-w-full text-sm">
+            <thead class="bg-gray-100"><tr><th class="px-4 py-2 text-left">Prozent</th><th class="px-4 py-2 text-left">Grad</th><th class="px-4 py-2 text-left">Verhältnis</th></tr></thead>
+            <tbody>
+              <tr class="border-b"><td class="px-4 py-2">0,5 %</td><td class="px-4 py-2">0,29°</td><td class="px-4 py-2">1 : 200</td></tr>
+              <tr class="border-b"><td class="px-4 py-2">1 %</td><td class="px-4 py-2">0,57°</td><td class="px-4 py-2">1 : 100</td></tr>
+              <tr class="border-b"><td class="px-4 py-2">2 %</td><td class="px-4 py-2">1,15°</td><td class="px-4 py-2">1 : 50</td></tr>
+              <tr class="border-b"><td class="px-4 py-2">6 %</td><td class="px-4 py-2">3,43°</td><td class="px-4 py-2">1 : 16,7</td></tr>
+              <tr class="border-b"><td class="px-4 py-2">10 %</td><td class="px-4 py-2">5,71°</td><td class="px-4 py-2">1 : 10</td></tr>
+              <tr><td class="px-4 py-2">100 %</td><td class="px-4 py-2">45°</td><td class="px-4 py-2">1 : 1</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Für die spezielle <strong>Dachneigung</strong> (mit Verhältnis x:12 und Sparrenlänge) nutzt du
+          besser den <a href="/dachneigung-rechner">Dachneigungs-Rechner</a> – dieser Gefälle-Rechner ist
+          für Rohre, Rampen, Wege und Entwässerung gedacht.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen zum Gefälle</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie rechne ich Gefälle in Prozent um?</summary>
+          <p class="mt-3">
+            Teile den Höhenunterschied durch die horizontale Strecke und multipliziere mit 100:
+            <strong>Gefälle [%] = Höhe ÷ Länge × 100</strong>. Fällt eine Strecke auf 10 m um 0,2 m, sind
+            das 0,2 ÷ 10 × 100 = 2 %. Beide Maße müssen in derselben Einheit angegeben sein.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie rechne ich Prozent in Grad um (und umgekehrt)?</summary>
+          <p class="mt-3">
+            Von Prozent zu Grad: <strong>Grad = arctan(Prozent ÷ 100)</strong>. Von Grad zu Prozent:
+            <strong>Prozent = tan(Grad) × 100</strong>. Beispiel: 2 % = 1,15°, und 45° = 100 %. Der
+            Rechner macht die Umrechnung in beide Richtungen automatisch.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Welches Gefälle braucht ein Abwasserrohr?</summary>
+          <p class="mt-3">
+            Als Orientierung (DIN EN 12056-2 / DIN 1986-100): belüftete Grundleitungen rund 0,5 cm/m
+            (= 0,5 % bzw. 1:200), unbelüftete Anschlussleitungen häufig etwa 1 %. Zu viel Gefälle ist
+            ebenfalls ungünstig, weil das Wasser den Feststoffen davonläuft. Maßgeblich ist die Fachplanung;
+            die DIN-Normen sind kostenpflichtig.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was bedeutet 2 % Gefälle in cm pro Meter?</summary>
+          <p class="mt-3">
+            1 % Gefälle entspricht genau 1 cm pro Meter. Also sind <strong>2 % = 2 cm pro Meter</strong>.
+            Auf einer 4 m langen Terrasse ergibt das einen Höhenunterschied von 8 cm. Die 2-%-Regel gilt
+            als üblicher Richtwert für die Entwässerung von Terrassen und Balkonen.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Sind 100 % Gefälle senkrecht?</summary>
+          <p class="mt-3">
+            Nein. <strong>100 % entsprechen 45°</strong> – die Strecke fällt auf 1 m Länge um 1 m. Senkrecht
+            (90°) wäre rechnerisch unendliches Prozent-Gefälle, weil die horizontale Länge gegen null geht.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie steil darf eine barrierefreie Rampe sein?</summary>
+          <p class="mt-3">
+            Als Orientierung nach DIN 18040 gilt für barrierefreie Rampen eine maximale Längsneigung von
+            <strong>6 % (etwa 3,4°)</strong>. Steilere Rampen sind ohne fremde Hilfe mit Rollstuhl kaum zu
+            bewältigen. Verbindliche Vorgaben ergeben sich aus der jeweiligen Landesbauordnung und der
+            Fachplanung.
+          </p>
+        </details>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Trigonometrie (Gefälle = Höhe/Länge); DIN-Richtwerte als Orientierung: DIN EN 12056-2 / DIN 1986-100 (Abwasser), DIN 18040 (Rampen)" aktualisiert="Juni 2026" />
+
+    <VerwandteRechner aktuellerSlug="gefaelle" slugs={['dachneigung', 'dachflaeche', 'rollrasen', 'wohnflaeche']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": title,
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/gefaelle-rechner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Wie rechne ich Gefälle in Prozent um?", "acceptedAnswer": { "@type": "Answer", "text": "Teile den Höhenunterschied durch die horizontale Strecke und multipliziere mit 100: Gefälle [%] = Höhe ÷ Länge × 100. Fällt eine Strecke auf 10 m um 0,2 m, sind das 0,2 ÷ 10 × 100 = 2 %. Beide Maße müssen in derselben Einheit angegeben sein." } },
+      { "@type": "Question", "name": "Wie rechne ich Prozent in Grad um (und umgekehrt)?", "acceptedAnswer": { "@type": "Answer", "text": "Von Prozent zu Grad: Grad = arctan(Prozent ÷ 100). Von Grad zu Prozent: Prozent = tan(Grad) × 100. Beispiel: 2 % = 1,15°, und 45° = 100 %. Der Rechner macht die Umrechnung in beide Richtungen automatisch." } },
+      { "@type": "Question", "name": "Welches Gefälle braucht ein Abwasserrohr?", "acceptedAnswer": { "@type": "Answer", "text": "Als Orientierung (DIN EN 12056-2 / DIN 1986-100): belüftete Grundleitungen rund 0,5 cm/m (= 0,5 % bzw. 1:200), unbelüftete Anschlussleitungen häufig etwa 1 %. Zu viel Gefälle ist ebenfalls ungünstig, weil das Wasser den Feststoffen davonläuft. Maßgeblich ist die Fachplanung; die DIN-Normen sind kostenpflichtig." } },
+      { "@type": "Question", "name": "Was bedeutet 2 % Gefälle in cm pro Meter?", "acceptedAnswer": { "@type": "Answer", "text": "1 % Gefälle entspricht genau 1 cm pro Meter. Also sind 2 % = 2 cm pro Meter. Auf einer 4 m langen Terrasse ergibt das einen Höhenunterschied von 8 cm. Die 2-%-Regel gilt als üblicher Richtwert für die Entwässerung von Terrassen und Balkonen." } },
+      { "@type": "Question", "name": "Sind 100 % Gefälle senkrecht?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. 100 % entsprechen 45° – die Strecke fällt auf 1 m Länge um 1 m. Senkrecht (90°) wäre rechnerisch unendliches Prozent-Gefälle, weil die horizontale Länge gegen null geht." } },
+      { "@type": "Question", "name": "Wie steil darf eine barrierefreie Rampe sein?", "acceptedAnswer": { "@type": "Answer", "text": "Als Orientierung nach DIN 18040 gilt für barrierefreie Rampen eine maximale Längsneigung von 6 % (etwa 3,4°). Steilere Rampen sind ohne fremde Hilfe mit Rollstuhl kaum zu bewältigen. Verbindliche Vorgaben ergeben sich aus der jeweiligen Landesbauordnung und der Fachplanung." } }
+    ]
+  })} />
+</Layout>

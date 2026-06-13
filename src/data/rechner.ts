@@ -2750,6 +2750,15 @@ export const rechnerListe: Rechner[] = [
     quellen: ['https://www.dinmedia.de/de/norm/din-18531-1/391197155', 'https://www.dinmedia.de/de/norm/din-18338/310833375', 'https://www.dinmedia.de/en/standard/din-en-1304/187600851'],
   },
   {
+    id: 'gefaelle',
+    name: 'Gefälle-Rechner',
+    beschreibung: 'Gefälle in Prozent, Grad, Promille, cm/m und 1:n umrechnen',
+    icon: '📐',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Gefälle berechnen, Gefälle Rechner, Prozent in Grad, Gefälle cm pro m, Abwasserrohr Gefälle, Rampe Gefälle, Promille umrechnen, Gefälle Verhältnis',
+  },
+  {
     id: 'heizoel',
     name: 'Heizöl-Verbrauch-Rechner',
     beschreibung: 'Liter, Kosten und Tankreichweite berechnen',
