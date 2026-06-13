@@ -1844,6 +1844,19 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'whr',
+    name: 'WHR-/Taille-Hüft-Verhältnis-Rechner',
+    beschreibung: 'Taille-Hüft-Verhältnis nach WHO-Schwellenwerten bewerten',
+    icon: '📏',
+    kategorie: 'gesundheit',
+    fertig: true,
+    seoKeywords: 'WHR Rechner, Taille-Hüft-Verhältnis, Waist-Hip-Ratio, Taillen Hüft Quotient, Bauchumfang Hüftumfang, Apfeltyp Birnentyp, WHO Schwellenwert, viszerales Fett berechnen',
+    quellen: [
+      'https://iris.who.int/handle/10665/44583',
+      'https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight',
+    ],
+  },
+  {
     id: 'grundumsatz',
     name: 'Grundumsatz-Rechner',
     beschreibung: 'Grundumsatz & Leistungsumsatz berechnen',

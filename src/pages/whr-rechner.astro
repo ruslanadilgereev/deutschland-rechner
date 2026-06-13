@@ -1,0 +1,317 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhrRechner from '../components/rechner/WhrRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "WHR-Rechner – Taille-Hüft-Verhältnis berechnen (WHO)";
+const description = "WHR-Rechner: Taille-Hüft-Verhältnis (Waist-Hip-Ratio) aus Taillen- und Hüftumfang berechnen und nach WHO-Schwellenwerten (Mann ≥0,90 / Frau ≥0,85) bewerten. Apfel- oder Birnentyp? Kostenlos.";
+const keywords = "WHR Rechner, Taille-Hüft-Verhältnis, Waist-Hip-Ratio berechnen, Taillen Hüft Quotient, Bauchumfang Hüftumfang Verhältnis, Apfeltyp Birnentyp, WHO Schwellenwert WHR, viszerales Bauchfett";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "WHR-Rechner", url: "/whr-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📏</span>
+          <div>
+            <h1 class="text-2xl font-bold">WHR-Rechner – Taille-Hüft-Verhältnis berechnen</h1>
+            <p class="text-orange-100 text-sm">Waist-Hip-Ratio nach WHO-Schwellenwerten – kostenlos & sofort</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WhrRechner client:load />
+    </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> WHO Expert Consultation „Waist Circumference and Waist–Hip Ratio" (Genf, 8.–11. Dezember 2008; Bericht 2011, ISBN 9789241501491). WHR = Taillenumfang ÷ Hüftumfang; Schwellenwert für substanziell erhöhtes Risiko: Mann ≥ 0,90, Frau ≥ 0,85.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Geschlecht, Taillenumfang, Hüftumfang; Bewertung nach den beiden WHO-Schwellenwerten.</p>
+            <p class="mb-2"><strong>Nicht berücksichtigt:</strong> Alter, ethnische Herkunft (WHO-Cut-offs sind populationsabhängig), Schwangerschaft, Muskelmasse, individuelle Konstitution. Der WHR ist ein Screening-Maß, kein klinischer Diagnose-Score.</p>
+            <p class="text-xs text-green-700"><strong>Hinweis:</strong> Orientierungswert, ersetzt keine ärztliche Diagnose; bei gesundheitlichen Fragen den Arzt konsultieren.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">WHR-Rechner: Taille-Hüft-Verhältnis verstehen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Nicht nur <em>wie viel</em> Fett der Körper trägt, sondern vor allem <em>wo</em> es sitzt,
+            entscheidet über das gesundheitliche Risiko. Das <strong>Taille-Hüft-Verhältnis (WHR,
+            Waist-Hip-Ratio)</strong> misst genau das: Es setzt den Taillenumfang ins Verhältnis zum
+            Hüftumfang und zeigt so, ob das Fett eher am Bauch (Apfeltyp) oder an Hüfte und Gesäß
+            (Birnentyp) verteilt ist. Anders als der <a href="/bmi-rechner" class="text-orange-600 hover:underline">BMI</a>,
+            der nur Gewicht und Größe kennt, und anders als der <a href="/koerperfett-rechner" class="text-orange-600 hover:underline">Körperfettanteil</a>,
+            der die Gesamtmenge schätzt, beschreibt der WHR die <strong>Fettverteilung</strong> – genau
+            das macht ihn zu einem aussagekräftigen Screening-Maß für viszerales Bauchfett.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die WHR-Formel</h3>
+          <p>
+            Das Taille-Hüft-Verhältnis ist ein einfacher Quotient – ganz ohne Konstanten:
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 text-sm">
+            <code class="font-mono">WHR = Taillenumfang (cm) ÷ Hüftumfang (cm)</code>
+          </div>
+          <p>
+            Das Ergebnis ist eine dimensionslose Zahl, üblicherweise mit zwei Nachkommastellen
+            angegeben (z.B. 0,90).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">WHO-Schwellenwerte</h3>
+          <p>
+            Die WHO definiert pro Geschlecht genau einen Cut-off für ein „substanziell erhöhtes Risiko
+            metabolischer Komplikationen":
+          </p>
+          <div class="overflow-x-auto my-4">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-4 py-2 text-left">Geschlecht</th>
+                  <th class="px-4 py-2 text-left">Substanziell erhöhtes Risiko ab</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b"><td class="px-4 py-2">Mann</td><td class="px-4 py-2">WHR &#8805; 0,90</td></tr>
+                <tr><td class="px-4 py-2">Frau</td><td class="px-4 py-2">WHR &#8805; 0,85</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Unterhalb des Cut-offs gilt das viszerale (Bauch-)Fett als relativ niedrig, ab dem Cut-off
+            als substanziell erhöht. Ergänzend nennt die WHO auch Schwellen für den reinen
+            <strong>Taillenumfang</strong> (Europide): erhöhtes Risiko ab 94 cm (Mann) bzw. 80 cm (Frau),
+            deutlich erhöht ab 102 cm (Mann) bzw. 88 cm (Frau).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel</h3>
+          <p>
+            <strong>Beispiel 1 (Mann):</strong> Taille 95 cm, Hüfte 100 cm → WHR = 95 ÷ 100 = 0,95.
+            Da 0,95 &#8805; 0,90, liegt der Wert über dem WHO-Schwellenwert für Männer → „Erhöhtes Risiko".
+          </p>
+          <p>
+            <strong>Beispiel 2 (Frau):</strong> Taille 72 cm, Hüfte 98 cm → WHR = 72 ÷ 98 = 0,73.
+            Da 0,73 &lt; 0,85, liegt der Wert unter dem WHO-Schwellenwert für Frauen → „Niedriges Risiko".
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So messen Sie richtig</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Taille:</strong> In der Mitte zwischen unterer Rippenbogenkante und Oberkante des Beckenkamms (alternativ auf Höhe des Bauchnabels), entspannt nach dem Ausatmen</li>
+            <li><strong>Hüfte:</strong> An der breitesten Stelle des Gesäßes</li>
+            <li><strong>Tipp:</strong> Maßband waagerecht und straff, aber ohne einzudrücken; morgens nüchtern und immer zur gleichen Zeit messen</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Apfeltyp und Birnentyp</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Apfeltyp (hohe WHR):</strong> Viel Taille relativ zur Hüfte = androide/abdominale Fettverteilung → metabolisch ungünstiger</li>
+            <li><strong>Birnentyp (niedrige WHR):</strong> Hüfte/Gesäß betont = gynoide Fettverteilung → metabolisch günstiger</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">WHR, BMI oder Körperfettanteil?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong><a href="/whr-rechner" class="text-orange-600 hover:underline">WHR</a>:</strong> misst die Fettverteilung (Apfel-/Birnentyp), nicht die Gesamtmenge</li>
+            <li><strong><a href="/bmi-rechner" class="text-orange-600 hover:underline">BMI</a>:</strong> Gewicht ÷ Größe² – sagt nichts über die Fettverteilung aus</li>
+            <li><strong><a href="/koerperfett-rechner" class="text-orange-600 hover:underline">Körperfettanteil</a>:</strong> Navy-Formel schätzt den Gesamt-Körperfettanteil</li>
+            <li><strong><a href="/idealgewicht-rechner" class="text-orange-600 hover:underline">Idealgewicht</a>:</strong> optimales Gewicht nach Körpergröße</li>
+          </ul>
+
+          <p>
+            <strong>Disclaimer:</strong> Dieser WHR-Rechner liefert eine Orientierung nach den
+            Screening-Schwellenwerten der WHO (Expert Consultation 2008) und ist ausdrücklich
+            keine Steuer-/Rechtsberatung und keine ärztliche Diagnose. Das Taille-Hüft-Verhältnis ist
+            ein einfaches Screening-Maß; die WHO-Cut-offs (Mann ≥ 0,90, Frau ≥ 0,85) sind
+            populationsabhängig und berücksichtigen weder Alter, ethnische Herkunft, Schwangerschaft
+            noch individuelle Konstitution. Bei gesundheitlichen Fragen oder einem erhöhten Wert wenden
+            Sie sich an Ihren Arzt oder Ihre Ärztin. Kein klinischer Akut-Score.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Taille an der falschen Stelle gemessen</h3>
+            <p>Häufig wird die Taille an der schmalsten Stelle oder mit eingezogenem Bauch gemessen.
+            Richtig ist die Mitte zwischen unterer Rippe und Beckenkamm (oder auf Nabelhöhe), entspannt
+            nach dem normalen Ausatmen. Schon wenige Zentimeter Abweichung verschieben den WHR und können
+            über die WHO-Schwelle entscheiden.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">WHR mit BMI verwechselt</h3>
+            <p>Der WHR und der BMI messen Unterschiedliches: Der BMI bewertet das Gewicht im Verhältnis
+            zur Größe, der WHR die Fettverteilung. Eine normalgewichtige Person kann einen erhöhten WHR
+            haben („normalgewichtig, aber bauchbetont") – und umgekehrt. Beide Werte ergänzen sich,
+            ersetzen sich aber nicht.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Cut-offs als absolute Wahrheit gelesen</h3>
+            <p>Die WHO-Schwellenwerte (Mann ≥ 0,90, Frau ≥ 0,85) sind populationsabhängig und wurden
+            überwiegend an europiden Bevölkerungen abgeleitet. Für andere ethnische Gruppen, in der
+            Schwangerschaft oder bei sehr muskulösen bzw. sehr großen/kleinen Menschen sind sie nur
+            eingeschränkt aussagekräftig.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">WHR als Diagnose missverstanden</h3>
+            <p>Ein erhöhter WHR ist ein Hinweis, keine Diagnose. Er ersetzt keine ärztliche Untersuchung
+            und keinen klinischen Score. Bei einem erhöhten Wert oder gesundheitlichen Fragen ist das
+            Gespräch mit dem Arzt oder der Ärztin der richtige nächste Schritt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) - aus FAQ-Schema sichtbar gemacht -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet man das Taille-Hüft-Verhältnis (WHR)?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Taille-Hüft-Verhältnis (WHR) berechnet man, indem man den Taillenumfang durch den Hüftumfang teilt: WHR = Taille ÷ Hüfte. Beispiel: Taille 95 cm, Hüfte 100 cm ergibt einen WHR von 0,95. Das Ergebnis ist eine dimensionslose Zahl mit meist zwei Nachkommastellen.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher WHR-Wert ist gesund?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nach der WHO gilt ein substanziell erhöhtes Risiko für metabolische Komplikationen ab einem WHR von 0,90 bei Männern und 0,85 bei Frauen. Unterhalb dieser Schwellenwerte ist das viszerale Bauchfett relativ niedrig. Die Cut-offs sind populationsabhängig und berücksichtigen weder Alter noch ethnische Herkunft.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen WHR und BMI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der BMI setzt das Gewicht ins Verhältnis zur Körpergröße und sagt nichts über die Fettverteilung aus. Der WHR misst dagegen, wo das Fett sitzt – am Bauch (Apfeltyp) oder an Hüfte und Gesäß (Birnentyp). Eine normalgewichtige Person kann trotzdem einen erhöhten WHR haben. Beide Werte ergänzen sich.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeuten Apfeltyp und Birnentyp?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein hoher WHR (viel Taille relativ zur Hüfte) entspricht dem Apfeltyp mit androider, abdominaler Fettverteilung – metabolisch ungünstiger und mit höherem Risiko für Typ-2-Diabetes und Herz-Kreislauf-Erkrankungen. Ein niedriger WHR (Hüfte und Gesäß betont) entspricht dem Birnentyp mit gynoider Fettverteilung, die als metabolisch günstiger gilt.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie messe ich Taille und Hüfte richtig?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Taille misst man in der Mitte zwischen der unteren Rippenbogenkante und der Oberkante des Beckenkamms (alternativ auf Höhe des Bauchnabels), entspannt nach dem normalen Ausatmen. Die Hüfte misst man an der breitesten Stelle des Gesäßes. Das Maßband waagerecht und straff, aber ohne einzudrücken halten; idealerweise morgens nüchtern und immer zur gleichen Zeit messen.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist der WHR eine ärztliche Diagnose?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der WHR ist ein einfaches Screening-Maß und kein klinischer Diagnose-Score. Er liefert eine Orientierung, ersetzt aber keine ärztliche Untersuchung. Bei einem erhöhten Wert oder gesundheitlichen Fragen sollten Sie Ihren Arzt oder Ihre Ärztin konsultieren.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "WHR-Rechner – Taille-Hüft-Verhältnis berechnen (WHO)",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/whr-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet man das Taille-Hüft-Verhältnis (WHR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Taille-Hüft-Verhältnis (WHR) berechnet man, indem man den Taillenumfang durch den Hüftumfang teilt: WHR = Taille ÷ Hüfte. Beispiel: Taille 95 cm, Hüfte 100 cm ergibt einen WHR von 0,95. Das Ergebnis ist eine dimensionslose Zahl mit meist zwei Nachkommastellen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher WHR-Wert ist gesund?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nach der WHO gilt ein substanziell erhöhtes Risiko für metabolische Komplikationen ab einem WHR von 0,90 bei Männern und 0,85 bei Frauen. Unterhalb dieser Schwellenwerte ist das viszerale Bauchfett relativ niedrig. Die Cut-offs sind populationsabhängig und berücksichtigen weder Alter noch ethnische Herkunft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen WHR und BMI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der BMI setzt das Gewicht ins Verhältnis zur Körpergröße und sagt nichts über die Fettverteilung aus. Der WHR misst dagegen, wo das Fett sitzt – am Bauch (Apfeltyp) oder an Hüfte und Gesäß (Birnentyp). Eine normalgewichtige Person kann trotzdem einen erhöhten WHR haben. Beide Werte ergänzen sich."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeuten Apfeltyp und Birnentyp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein hoher WHR (viel Taille relativ zur Hüfte) entspricht dem Apfeltyp mit androider, abdominaler Fettverteilung – metabolisch ungünstiger und mit höherem Risiko für Typ-2-Diabetes und Herz-Kreislauf-Erkrankungen. Ein niedriger WHR (Hüfte und Gesäß betont) entspricht dem Birnentyp mit gynoider Fettverteilung, die als metabolisch günstiger gilt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie messe ich Taille und Hüfte richtig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Taille misst man in der Mitte zwischen der unteren Rippenbogenkante und der Oberkante des Beckenkamms (alternativ auf Höhe des Bauchnabels), entspannt nach dem normalen Ausatmen. Die Hüfte misst man an der breitesten Stelle des Gesäßes. Das Maßband waagerecht und straff, aber ohne einzudrücken halten; idealerweise morgens nüchtern und immer zur gleichen Zeit messen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist der WHR eine ärztliche Diagnose?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der WHR ist ein einfaches Screening-Maß und kein klinischer Diagnose-Score. Er liefert eine Orientierung, ersetzt aber keine ärztliche Untersuchung. Bei einem erhöhten Wert oder gesundheitlichen Fragen sollten Sie Ihren Arzt oder Ihre Ärztin konsultieren."
+        }
+      }
+    ]
+  })} />
+</Layout>
