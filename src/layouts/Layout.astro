@@ -63,14 +63,10 @@ const canonicalUrl = rawCanonical !== '/' && rawCanonical.endsWith('/') ? rawCan
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
-    <!-- Critical CSS inline to prevent FOUC (Flash of Unstyled Content) -->
+    <!-- Critical above-the-fold CSS inline. Tailwind/global.css wird von Astro als
+         render-blocking <link> gebündelt und verhindert FOUC bereits – kein opacity-Gate
+         nötig (das machte die Seite ohne JS dauerhaft unsichtbar). -->
     <style is:inline>
-      html:not(.ready) body {
-        opacity: 0;
-      }
-      html.ready body {
-        opacity: 1;
-      }
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
@@ -162,7 +158,6 @@ const canonicalUrl = rawCanonical !== '/' && rawCanonical.endsWith('/') ? rawCan
     <Header />
     <slot />
     <Footer />
-    <script is:inline>document.documentElement.classList.add('ready');</script>
   </body>
 </html>
 
