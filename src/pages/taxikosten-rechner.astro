@@ -1,0 +1,326 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TaxikostenRechner from '../components/rechner/TaxikostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Taxikosten-Rechner – Taxipreis schätzen";
+const description = "Taxikosten-Rechner: Taxipreis nach Strecke & Wartezeit schätzen. Mit Tarifen für Berlin, Hamburg, München, Köln & Frankfurt. Kostenlos!";
+const keywords = "Taxikosten Rechner, Taxipreis berechnen, Taxikosten berechnen, Taxitarif Berlin, Taxitarif Hamburg, Taxitarif München, Taxitarif Köln, Taxitarif Frankfurt, Taxameter Tarif, was kostet ein Taxi, Taxi Preis pro km, Taxi Grundpreis, Taxifahrt Kosten, Taxi Rechner Deutschland, Taxikosten schätzen";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Taxikosten-Rechner", url: "/taxikosten-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚕</span>
+          <div>
+            <h1 class="text-2xl font-bold">Taxikosten-Rechner</h1>
+            <p class="text-amber-100 text-sm">Taxipreis nach Strecke & Wartezeit schätzen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TaxikostenRechner client:load />
+    </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> Taxameter-Tarifmodell nach § 51 PBefG (kommunal per Rechtsverordnung festgesetzt): geschätzter Fahrpreis = Grundpreis + (Strecke × km-Tarif) + (Wartezeit × Zeit-Tarif). Stadt-Presets für Berlin (Stand ab 20.12.2022), Hamburg (ab 01.02.2025), München (Stand 2025), Köln (ab 01.06.2026) und Frankfurt a.M. (Stand 2025) – Orientierung ohne Gewähr.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Grundpreis, gefahrene Strecke mit km-Tarif und optionale Wartezeit mit Zeit-Tarif (€/min); editierbare Tarif-Felder; Hinweis auf Großraumtaxi-Zuschläge je Stadt.</p>
+            <p><strong>Nicht berücksichtigt:</strong> gestaffelte km-Tarife (Berlin/Hamburg/Köln teurer auf kurzer Strecke – hier vereinfachter Standardkilometer), Nacht-/Feiertags- und Funkzuschläge, Gepäck- und Tierzuschläge, Festpreise/Tarifkorridore bei Vorbestellung sowie App-Vermittlungsdienste mit eigener Preisgestaltung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Taxikosten-Rechner: Taxipreis vorab schätzen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit unserem <strong>Taxikosten-Rechner</strong> schätzen Sie vorab, was eine Taxifahrt
+            ungefähr kostet. Sie geben die <strong>Strecke</strong> und optional die <strong>Wartezeit</strong>
+            ein, wählen eine Stadt – und erhalten sofort den geschätzten Fahrpreis aus Grundpreis,
+            Kilometer- und Zeittarif. Wichtig vorweg: Taxitarife sind in Deutschland <strong>kommunal</strong>
+            geregelt. Es gibt <strong>keine bundeseinheitliche amtliche Tariftabelle</strong> – maßgeblich
+            ist immer der Taxameter vor Ort.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der Taxipreis berechnet?</h3>
+          <p>
+            Der Taxipreis setzt sich aus drei Bausteinen zusammen: einem festen Grundpreis (Einstieg),
+            einem Kilometertarif für die gefahrene Strecke und einem Zeittarif für die Standzeit
+            (Stau, Ampel, Warten). Die Formel lautet:
+          </p>
+          <div class="bg-amber-50 p-4 rounded-xl my-4">
+            <p class="font-mono text-center text-amber-800 font-bold">
+              Grundpreis + (Strecke in km × km-Tarif) + (Wartezeit in min × Zeit-Tarif) = Fahrpreis
+            </p>
+          </div>
+
+          <h4 class="font-semibold text-gray-800">Beispielrechnung (Berlin):</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Grundpreis: <strong>4,30 €</strong></li>
+            <li>Strecke: <strong>8 km</strong> × 2,80 €/km = 22,40 €</li>
+            <li>Wartezeit: <strong>0 min</strong></li>
+            <li>Rechnung: 4,30 + 22,40 = <strong>26,70 € (ca.)</strong></li>
+            <li>Mit 5 min Warten: + 5 × 0,50 € = <strong>29,20 €</strong></li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Taxitarife in deutschen Großstädten</h3>
+          <p>
+            Diese Werte dienen nur als Orientierung (ohne Gewähr) und können sich jederzeit ändern.
+            Berlin, Hamburg und Köln haben zudem <strong>gestaffelte Kilometertarife</strong> –
+            die ersten Kilometer sind teurer als lange Strecken:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Berlin:</strong> 4,30 € Grundpreis · ca. 2,80 €/km (gestaffelt 2,80 / 2,60 / 2,10 € ab 7 km) · 0,50 €/min (ab 20.12.2022)</li>
+            <li><strong>Hamburg:</strong> 4,50 € Grundpreis · ca. 2,70 €/km (bis 9 km 2,70 €, ab 9 km 2,00 €) · 0,63 €/min (ab 01.02.2025)</li>
+            <li><strong>München:</strong> 5,90 € Grundpreis · 2,70 €/km · 0,65 €/min (Stand 2025)</li>
+            <li><strong>Köln:</strong> 4,90 € Grundpreis · 2,90 €/km · 0,60 €/min (ab 01.06.2026)</li>
+            <li><strong>Frankfurt a.M.:</strong> 4,00 € Grundpreis · 2,40 €/km · 0,63 €/min (Stand 2025)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum gibt es keinen bundesweiten Taxitarif?</h3>
+          <p>
+            Nach <strong>§ 51 Personenbeförderungsgesetz (PBefG)</strong> werden die Beförderungsentgelte
+            im Taxenverkehr von der jeweiligen <strong>Landesregierung bzw. der von ihr beauftragten Behörde</strong>
+            per Rechtsverordnung festgesetzt – in der Praxis also pro Stadt bzw. Landkreis. Deshalb
+            unterscheiden sich Grundpreis, Kilometer- und Zeittarif von Ort zu Ort teils deutlich.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Zuschläge: Großraumtaxi, Nacht & Gepäck</h3>
+          <p>
+            Über den reinen Fahrpreis hinaus können je nach Stadt Zuschläge anfallen. Ein
+            <strong>Großraumtaxi</strong> kostet in Berlin und Köln ca. +6 €, in Frankfurt +7 €,
+            in Hamburg +8 € (ab mehr als 4 Personen) und in München +10 €. In vielen Tarifen gibt es
+            außerdem Zuschläge für Vorbestellung, Gepäck oder Tiere – diese sind im Rechner nicht enthalten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vorbestellung & Festpreise</h3>
+          <p>
+            Seit der PBefG-Reform können Kommunen für <strong>vorbestellte Fahrten</strong> Tarifkorridore
+            oder Festpreise zulassen. Wer telefonisch oder per App bestellt, zahlt dann unter Umständen
+            einen vorab vereinbarten Festpreis statt des laufenden Taxameter-Tarifs. Heran-
+            beförderungs- bzw. Anfahrtskosten können ebenfalls hinzukommen.
+          </p>
+          <p>
+            Für die reinen Spritkosten einer eigenen Autofahrt nutzen Sie unseren
+            <a href="/spritkosten-rechner" class="text-blue-600 hover:underline">Spritkosten-Rechner</a>,
+            für die Distanz zwischen zwei Städten den
+            <a href="/entfernung-rechner" class="text-blue-600 hover:underline">Entfernungs-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex gap-2">
+            <span>❌</span>
+            <span><strong>Wartezeit vergessen:</strong> In der Stadt steht das Taxi oft im Stau oder an der Ampel. Während dieser Standzeit läuft der Zeittarif – das kann eine kurze Fahrt spürbar verteuern.</span>
+          </li>
+          <li class="flex gap-2">
+            <span>❌</span>
+            <span><strong>Gestaffelten km-Tarif unterschätzt:</strong> In Berlin, Hamburg und Köln sind die ersten Kilometer teurer. Dieser Rechner nutzt einen vereinfachten Standardkilometer – auf sehr kurzen oder sehr langen Strecken weicht der echte Taxameter-Preis leicht ab.</span>
+          </li>
+          <li class="flex gap-2">
+            <span>❌</span>
+            <span><strong>Zuschläge nicht eingeplant:</strong> Großraumtaxi, Gepäck, Tiere oder Vorbestellung können extra kosten und sind in der Hauptrechnung nicht enthalten.</span>
+          </li>
+          <li class="flex gap-2">
+            <span>❌</span>
+            <span><strong>Alte Tarife verwendet:</strong> Tarife werden regelmäßig per Rechtsverordnung angepasst. Die Presets haben den angegebenen Stand – prüfen Sie bei Bedarf den aktuell gültigen Tarif Ihrer Stadt.</span>
+          </li>
+          <li class="flex gap-2">
+            <span>❌</span>
+            <span><strong>App-Dienste gleichgesetzt:</strong> Vermittlungs-Apps mit eigener Preisgestaltung folgen nicht zwingend dem kommunalen Taxameter-Tarif – der hier geschätzte Preis gilt für klassische Taxen.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">📊 Verwandte Rechner</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/spritkosten-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">⛽</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Spritkosten-Rechner</p>
+          </a>
+          <a href="/entfernung-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📍</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Entfernungs-Rechner</p>
+          </a>
+          <a href="/flugzeit-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">✈️</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Flugzeit-Rechner</p>
+          </a>
+          <a href="/trinkgeld-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">💶</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Trinkgeld-Rechner</p>
+          </a>
+          <a href="/kfz-steuer-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🚙</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Kfz-Steuer-Rechner</p>
+          </a>
+          <a href="/prozent-rechner" class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">%</span>
+            <p class="font-medium text-gray-800 text-sm mt-1">Prozent-Rechner</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie werden Taxikosten berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Taxipreis setzt sich zusammen aus: Grundpreis + (Strecke in km × km-Tarif) + (Wartezeit in min × Zeit-Tarif). Beispiel Berlin: 4,30 € Grundpreis + 8 km × 2,80 €/km = 26,70 € (ca.). Mit 5 Minuten Warten kommen 5 × 0,50 € = 2,50 € hinzu, also 29,20 €.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gibt es einen bundeseinheitlichen Taxitarif?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Nach § 51 PBefG werden Taxitarife kommunal von der jeweiligen Landesregierung bzw. der beauftragten Behörde per Rechtsverordnung festgesetzt. Deshalb unterscheiden sich Grundpreis, Kilometer- und Zeittarif von Stadt zu Stadt. Eine bundeseinheitliche amtliche Tariftabelle gibt es nicht.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Taxi pro Kilometer?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Kilometertarif liegt je nach Stadt etwa zwischen 2,40 und 2,90 € pro Kilometer (Orientierung ohne Gewähr): Berlin ca. 2,80 €, Hamburg ca. 2,70 €, München 2,70 €, Köln 2,90 €, Frankfurt 2,40 €. In Berlin, Hamburg und Köln ist der Tarif gestaffelt – die ersten Kilometer sind teurer.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kostet Wartezeit im Taxi extra?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ja. Während Standzeiten (Stau, Ampel, Warten) läuft ein Zeittarif weiter. Er liegt je nach Stadt bei etwa 0,50 bis 0,65 € pro Minute (z. B. Berlin 0,50 €/min = 30 €/h, München 0,65 €/min = 39 €/h). Bei Stadtfahrten kann die Wartezeit den Preis spürbar erhöhen.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Großraumtaxi extra?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Für ein Großraumtaxi fällt je nach Stadt ein Zuschlag an (Orientierung): Berlin und Köln ca. +6 €, Frankfurt +7 €, Hamburg +8 € (ab mehr als 4 Personen) und München +10 €. Dieser Zuschlag ist in der Hauptberechnung des Rechners nicht enthalten.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist die Schätzung des Rechners?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner nutzt einen vereinfachten Standardkilometer und die hinterlegten Stadt-Presets als Orientierung (ohne Gewähr). Gestaffelte Stadttarife, Nacht- oder Funkzuschläge sowie Festpreise bei Vorbestellung können abweichen. Maßgeblich ist immer der aktuelle Taxameter-Tarif vor Ort.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Taxikosten-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/taxikosten-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie werden Taxikosten berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Taxipreis setzt sich zusammen aus: Grundpreis + (Strecke in km × km-Tarif) + (Wartezeit in min × Zeit-Tarif). Beispiel Berlin: 4,30 € Grundpreis + 8 km × 2,80 €/km = 26,70 € (ca.). Mit 5 Minuten Warten kommen 5 × 0,50 € = 2,50 € hinzu, also 29,20 €."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es einen bundeseinheitlichen Taxitarif?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Nach § 51 PBefG werden Taxitarife kommunal von der jeweiligen Landesregierung bzw. der beauftragten Behörde per Rechtsverordnung festgesetzt. Deshalb unterscheiden sich Grundpreis, Kilometer- und Zeittarif von Stadt zu Stadt. Eine bundeseinheitliche amtliche Tariftabelle gibt es nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Taxi pro Kilometer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Kilometertarif liegt je nach Stadt etwa zwischen 2,40 und 2,90 € pro Kilometer (Orientierung ohne Gewähr): Berlin ca. 2,80 €, Hamburg ca. 2,70 €, München 2,70 €, Köln 2,90 €, Frankfurt 2,40 €. In Berlin, Hamburg und Köln ist der Tarif gestaffelt – die ersten Kilometer sind teurer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kostet Wartezeit im Taxi extra?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Während Standzeiten (Stau, Ampel, Warten) läuft ein Zeittarif weiter. Er liegt je nach Stadt bei etwa 0,50 bis 0,65 € pro Minute (z. B. Berlin 0,50 €/min = 30 €/h, München 0,65 €/min = 39 €/h). Bei Stadtfahrten kann die Wartezeit den Preis spürbar erhöhen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Großraumtaxi extra?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für ein Großraumtaxi fällt je nach Stadt ein Zuschlag an (Orientierung): Berlin und Köln ca. +6 €, Frankfurt +7 €, Hamburg +8 € (ab mehr als 4 Personen) und München +10 €. Dieser Zuschlag ist in der Hauptberechnung des Rechners nicht enthalten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist die Schätzung des Rechners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner nutzt einen vereinfachten Standardkilometer und die hinterlegten Stadt-Presets als Orientierung (ohne Gewähr). Gestaffelte Stadttarife, Nacht- oder Funkzuschläge sowie Festpreise bei Vorbestellung können abweichen. Maßgeblich ist immer der aktuelle Taxameter-Tarif vor Ort."
+        }
+      }
+    ]
+  })} />
+</Layout>

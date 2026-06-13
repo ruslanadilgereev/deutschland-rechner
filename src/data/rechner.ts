@@ -1760,6 +1760,22 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'taxikosten',
+    name: 'Taxikosten-Rechner',
+    beschreibung: 'Taxipreis nach Strecke & Wartezeit schätzen (Tarife je Stadt)',
+    icon: '🚕',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Taxikosten Rechner, Taxipreis berechnen, Taxikosten berechnen, Taxitarif Berlin, Taxitarif Hamburg, Taxitarif München, Taxitarif Köln, Taxitarif Frankfurt, was kostet ein Taxi, Taxi Preis pro km',
+    quellen: [
+      'https://www.gesetze-im-internet.de/pbefg/__51.html',
+      'https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2022/pressemitteilung.1262657.php',
+      'https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/die-themen-der-behoerde/fuer-taxi-fahrgaeste/taxi-fahrpreise-410302',
+      'https://www.stadt-koeln.de/politik-und-verwaltung/presse/mitteilungen/28285/index.html',
+      'http://gesetze.berlin.de/jportal/?aiz=true&max=true&psml=bsbeprod.psml&quelle=jlink&query=TaxO+BE',
+    ],
+  },
+  {
     id: 'iban',
     name: 'IBAN-Rechner',
     beschreibung: 'IBAN generieren, prüfen & zerlegen',
