@@ -829,6 +829,23 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Kaufnebenkosten Rechner, Nebenkosten Hauskauf, Notar Grundbuch Kosten',
   },
   {
+    id: 'mietrendite',
+    name: 'Mietrendite-Rechner',
+    beschreibung: 'Brutto-/Nettorendite & Kaufpreisfaktor einer Immobilie berechnen',
+    icon: '🏘️',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Mietrendite Rechner, Mietrendite berechnen, Bruttomietrendite, Nettomietrendite, Kaufpreisfaktor, Immobilienrendite, Eigenkapitalrendite Immobilie, Cashflow Immobilie',
+    quellen: [
+      'https://www.gesetze-im-internet.de/grestg_1983/__11.html',
+      'https://www.gesetze-im-internet.de/immowertv_2022/__32.html',
+      'https://www.gesetze-im-internet.de/immowertv_2022/',
+      'https://www.gesetze-im-internet.de/gnotkg/',
+      'https://www.gesetze-im-internet.de/bgb/__656c.html',
+      'https://www.gesetze-im-internet.de/bgb/__556.html',
+    ],
+  },
+  {
     id: 'notarkosten',
     name: 'Notarkosten-Rechner',
     beschreibung: 'Notar- und Grundbuchkosten nach GNotKG berechnen',
