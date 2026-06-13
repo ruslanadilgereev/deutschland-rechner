@@ -261,6 +261,20 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'probezeit',
+    name: 'Probezeit-Rechner',
+    beschreibung: 'Probezeit-Ende & verkürzte 2-Wochen-Kündigungsfrist (§ 622 BGB)',
+    icon: '📋',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'Probezeit Rechner, Probezeit berechnen, Probezeit Ende, Probezeit Kündigungsfrist, Kündigung Probezeit, Probezeit 6 Monate, § 622 BGB, Probezeit 2 Wochen Frist, Probezeit Dauer, Kündigung in der Probezeit',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__622.html',
+      'https://www.gesetze-im-internet.de/bgb/__188.html',
+      'https://www.gesetze-im-internet.de/bgb/__187.html',
+    ],
+  },
+  {
     id: 'ueberstunden',
     name: 'Überstunden-Rechner',
     beschreibung: 'Überstunden-Vergütung berechnen',

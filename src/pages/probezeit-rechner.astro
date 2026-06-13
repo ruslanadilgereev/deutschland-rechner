@@ -1,0 +1,294 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProbezeitRechner from '../components/rechner/ProbezeitRechner.tsx';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Probezeit-Rechner: Ende & Kündigungsfrist (§ 622 BGB)";
+const description = "Probezeit berechnen: Ende der Probezeit, verkürzte 2-Wochen-Kündigungsfrist und Übergang zur 4-Wochen-Grundfrist nach § 622 BGB. Kostenlos & sofort.";
+const keywords = "Probezeit Rechner, Probezeit berechnen, Probezeit Ende, Probezeit Kündigungsfrist, Kündigung Probezeit, Probezeit 6 Monate, § 622 BGB, Probezeit 2 Wochen Frist, Probezeit Dauer, Kündigung in der Probezeit";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Probezeit-Rechner", url: "/probezeit-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt', href: '/arbeit-gehalt' },
+    { name: 'Probezeit-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Probezeit-Rechner</h1>
+            <p class="text-orange-100 text-sm">Probezeit-Ende & 2-Wochen-Kündigungsfrist nach § 622 BGB</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ProbezeitRechner client:load />
+    </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 13. Juni 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 622 BGB – während einer vereinbarten Probezeit (längstens 6 Monate) verkürzte Kündigungsfrist von 2 Wochen (Abs. 3); nach Ende der Probezeit gesetzliche Grundkündigungsfrist von 4 Wochen zum 15. oder zum Ende eines Kalendermonats (Abs. 1). Fristberechnung nach §§ 187–188 BGB.</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> vereinbarte Probezeitdauer (max. 6 Monate), verkürzte 2-Wochen-Frist (§ 622 Abs. 3), Übergang zur Grundfrist (4 Wochen zum 15./Monatsende, § 622 Abs. 1), taggenaue Datumsarithmetik.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Staffelung nach Betriebszugehörigkeit (§ 622 Abs. 2), abweichende tarif-/einzelvertragliche Fristen, Sonderkündigungsschutz (Schwerbehinderung, Schwangerschaft, Betriebsrat), Kündigung aus wichtigem Grund (§ 626 BGB), Führerschein-Probezeit (StVG).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Probezeit-Rechner: Ende und Kündigungsfrist berechnen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem <strong>Probezeit-Rechner</strong> ermitteln Sie taggenau, wann Ihre Probezeit endet,
+            welche <strong>verkürzte Kündigungsfrist</strong> während der Probezeit gilt und ab wann die
+            gesetzliche Grundkündigungsfrist greift. Alle Berechnungen folgen <strong>§ 622 BGB</strong>
+            sowie den Fristregeln der §§ 187–188 BGB.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie lange darf eine Probezeit dauern?</h3>
+          <p>
+            Nach <strong>§ 622 Abs. 3 BGB</strong> darf eine vereinbarte Probezeit <strong>höchstens
+            sechs Monate</strong> dauern. Kürzere Probezeiten – etwa drei oder vier Monate – sind zulässig.
+            Eine Probezeit muss ausdrücklich vereinbart sein; ohne Vereinbarung gilt von Anfang an die
+            normale Kündigungsfrist.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Kündigungsfrist gilt in der Probezeit?</h3>
+          <p>
+            Während der Probezeit kann das Arbeitsverhältnis mit einer Frist von <strong>zwei Wochen</strong>
+            gekündigt werden (§ 622 Abs. 3 BGB) – und zwar von beiden Seiten. Anders als bei der Grundfrist
+            gibt es <strong>keinen festen Kündigungstermin</strong>: Die 2-Wochen-Frist läuft taggenau und
+            kann zu jedem beliebigen Kalendertag enden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was gilt nach der Probezeit? (Grundkündigungsfrist)</h3>
+          <p>
+            Ab dem Tag <strong>nach Ende der Probezeit</strong> gilt die gesetzliche Grundkündigungsfrist nach
+            § 622 Abs. 1 BGB: <strong>vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats</strong>.
+            Mit zunehmender Betriebszugehörigkeit verlängert sich die Frist für eine Arbeitgeberkündigung
+            stufenweise (§ 622 Abs. 2 BGB) – diese Staffelung bildet dieser Rechner bewusst nicht ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So wird das Probezeit-Ende berechnet (Formel)</h3>
+          <p>
+            Das Ende der Probezeit ergibt sich aus dem Eintrittsdatum plus der vereinbarten Monatszahl,
+            abzüglich eines Tages:
+          </p>
+          <p>
+            <code class="bg-gray-100 px-2 py-1 rounded">Probezeit-Ende = Eintrittsdatum + Probezeit-Monate − 1 Tag</code>
+          </p>
+          <p>
+            Beginnt das Arbeitsverhältnis am 01.07., umfasst eine 6-Monats-Probezeit die Zeit bis
+            einschließlich 31.12. – das gleichnamige Datum 01.01. gehört bereits nicht mehr zur Probezeit.
+            Fehlt im Zielmonat der maßgebende Tag (z. B. 31. → Februar), endet die Frist mit Ablauf des
+            letzten Tages dieses Monats (§ 188 Abs. 3 BGB).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Eintritt 01.03.2026, Probezeit 6 Monate</h3>
+          <div class="bg-cyan-50 p-4 rounded-lg my-4 text-sm text-gray-800">
+            <p>Eintrittsdatum: <strong>01.03.2026</strong>, vereinbarte Probezeit: 6 Monate.</p>
+            <p>Probezeit-Ende: 01.03. + 6 Monate = 01.09.2026, minus 1 Tag = <strong>31.08.2026</strong> (letzter Tag der Probezeit).</p>
+            <p>Verkürzte Kündigungsfrist während der Probezeit: <strong>2 Wochen</strong> (§ 622 Abs. 3 BGB).</p>
+            <p>Spätester Zugang einer Probezeit-Kündigung: <strong>31.08.2026</strong>; die Frist läuft dann (Beginn 01.09., + 14 Tage) bis <strong>14.09.2026</strong>.</p>
+            <p>Ab dem <strong>01.09.2026</strong> gilt die gesetzliche Grundkündigungsfrist von 4 Wochen zum 15. oder zum Ende eines Kalendermonats.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <div class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Typische Fehler &amp; Sonderfälle</h2>
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+          <li><strong>Probezeit über 6 Monate vereinbart:</strong> Eine über sechs Monate hinausgehende Probezeit-Kündigungsfrist ist unwirksam – nach Ablauf der zulässigen Höchstdauer gilt automatisch die Grundfrist nach § 622 Abs. 1 BGB.</li>
+          <li><strong>Zugang statt Absenden:</strong> Maßgeblich ist nicht das Absenden, sondern der <strong>Zugang</strong> der Kündigung. Sie muss spätestens am letzten Tag der Probezeit zugehen; die 2-Wochen-Frist darf danach in die feste Anstellung hineinlaufen.</li>
+          <li><strong>Eintritt am Monatsletzten:</strong> Beginnt das Arbeitsverhältnis z. B. am 31.08., kann sich das gerechnete Probezeit-Ende durch die unterschiedliche Monatslänge verschieben (§ 188 Abs. 3 BGB) – das Ergebnis ist eine Schätzung.</li>
+          <li><strong>Verwechslung mit der Führerschein-Probezeit:</strong> Die zweijährige Probezeit für Fahranfänger nach dem StVG hat mit der arbeitsrechtlichen Probezeit nichts zu tun.</li>
+          <li><strong>Sonderkündigungsschutz:</strong> Bei Schwangerschaft, Schwerbehinderung oder Betriebsratsmitgliedschaft gelten besondere Schutzvorschriften, die auch in der Probezeit greifen können – sie sind hier nicht abgebildet.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Häufige Fragen zur Probezeit</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie lange darf eine Probezeit höchstens dauern?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Eine vereinbarte Probezeit darf nach § 622 Abs. 3 BGB längstens sechs Monate dauern. Kürzere Probezeiten, etwa drei oder vier Monate, sind zulässig. Eine längere Probezeit-Kündigungsfrist ist unwirksam – nach Ablauf der zulässigen Höchstdauer gilt die Grundkündigungsfrist nach § 622 Abs. 1 BGB.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welche Kündigungsfrist gilt während der Probezeit?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Während einer vereinbarten Probezeit kann das Arbeitsverhältnis mit einer Frist von zwei Wochen gekündigt werden (§ 622 Abs. 3 BGB) – von beiden Seiten. Es gibt keinen festen Kündigungstermin: Die 2-Wochen-Frist läuft taggenau und kann zu jedem beliebigen Kalendertag enden.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Wie berechne ich das Ende meiner Probezeit?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Das Probezeit-Ende ergibt sich aus dem Eintrittsdatum plus der vereinbarten Monatszahl, minus einem Tag. Beispiel: Eintritt am 01.03.2026 plus 6 Monate ergibt den 01.09.2026, minus 1 Tag ist der 31.08.2026 der letzte Tag der Probezeit. Fehlt im Zielmonat der maßgebende Tag (z. B. 31. im Februar), endet die Frist mit Ablauf des letzten Tages dieses Monats (§ 188 Abs. 3 BGB).</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Bis wann muss eine Kündigung in der Probezeit zugehen?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Die Kündigung muss spätestens am letzten Tag der Probezeit zugehen; die 2-Wochen-Frist darf danach noch in die feste Anstellung hineinlaufen. Maßgeblich ist der Zugang der Kündigung innerhalb der Probezeit, nicht das Absenden. Geht eine Probezeit-Kündigung am letzten Probezeit-Tag zu, beginnt die Frist am Folgetag und endet 14 Tage später.</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Welche Kündigungsfrist gilt nach der Probezeit?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Ab dem Tag nach Ende der Probezeit gilt die gesetzliche Grundkündigungsfrist nach § 622 Abs. 1 BGB: vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats. Mit zunehmender Betriebszugehörigkeit verlängert sich die Frist für eine Arbeitgeberkündigung stufenweise (§ 622 Abs. 2 BGB).</p>
+          </div>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 my-3 bg-white">
+          <summary class="font-semibold cursor-pointer text-gray-900">Ist die arbeitsrechtliche Probezeit dasselbe wie die Führerschein-Probezeit?</summary>
+          <div class="mt-3 text-gray-700">
+            <p>Nein. Dieser Rechner behandelt ausschließlich die arbeitsrechtliche Probezeit nach § 622 BGB. Die zweijährige Probezeit für Fahranfänger nach dem Straßenverkehrsgesetz (StVG) ist davon unabhängig und hat eigene Regeln.</p>
+          </div>
+        </details>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6 text-gray-900">Methodik &amp; Quellen</h2>
+        <p class="text-gray-700">
+          Die Berechnung folgt § 622 BGB (Grundfrist 4 Wochen zum 15./Monatsende; während der Probezeit
+          verkürzte Frist von 2 Wochen, Probezeit höchstens 6 Monate) und den Fristregeln der §§ 187–188 BGB.
+          Abweichende Fristen können sich aus Tarif- oder Arbeitsvertrag ergeben. Sonderkündigungsschutz
+          (z. B. bei Schwerbehinderung, Schwangerschaft, Betriebsratsmitgliedschaft) und die außerordentliche
+          Kündigung aus wichtigem Grund (§ 626 BGB) bleiben unberücksichtigt. Nicht zu verwechseln mit der
+          Führerschein-Probezeit nach StVG. Im Zweifel anwaltliche Beratung einholen. Berechnungen laufen
+          vollständig im Browser – keine Daten verlassen Ihr Gerät. Zuletzt aktualisiert: 13. Juni 2026.
+        </p>
+        <p class="text-sm text-gray-500">
+          Quellen:
+          <a href="https://www.gesetze-im-internet.de/bgb/__622.html" class="text-orange-600 hover:underline">§ 622 BGB</a>,
+          <a href="https://www.gesetze-im-internet.de/bgb/__187.html" class="text-orange-600 hover:underline">§ 187 BGB</a>,
+          <a href="https://www.gesetze-im-internet.de/bgb/__188.html" class="text-orange-600 hover:underline">§ 188 BGB</a>
+          (gesetze-im-internet.de).
+        </p>
+      </div>
+    </div>
+
+    <!-- Trust-Block -->
+    <div class="max-w-3xl mx-auto px-4">
+      <RechnerTrust quellen="§ 622 BGB (Kündigungsfristen, Probezeit), §§ 187–188 BGB (Fristberechnung)" aktualisiert="13. Juni 2026" />
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner aktuellerSlug="probezeit" slugs={['urlaubstage', 'abfindung', 'arbeitstage', 'tage']} kategorie="arbeit" />
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Probezeit-Rechner – Probezeit-Ende & Kündigungsfrist berechnen",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/probezeit-rechner",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie lange darf eine Probezeit höchstens dauern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine vereinbarte Probezeit darf nach § 622 Abs. 3 BGB längstens sechs Monate dauern. Kürzere Probezeiten, etwa drei oder vier Monate, sind zulässig. Eine längere Probezeit-Kündigungsfrist ist unwirksam – nach Ablauf der zulässigen Höchstdauer gilt die Grundkündigungsfrist nach § 622 Abs. 1 BGB."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kündigungsfrist gilt während der Probezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Während einer vereinbarten Probezeit kann das Arbeitsverhältnis mit einer Frist von zwei Wochen gekündigt werden (§ 622 Abs. 3 BGB) – von beiden Seiten. Es gibt keinen festen Kündigungstermin: Die 2-Wochen-Frist läuft taggenau und kann zu jedem beliebigen Kalendertag enden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich das Ende meiner Probezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Probezeit-Ende ergibt sich aus dem Eintrittsdatum plus der vereinbarten Monatszahl, minus einem Tag. Beispiel: Eintritt am 01.03.2026 plus 6 Monate ergibt den 01.09.2026, minus 1 Tag ist der 31.08.2026 der letzte Tag der Probezeit. Fehlt im Zielmonat der maßgebende Tag (z. B. 31. im Februar), endet die Frist mit Ablauf des letzten Tages dieses Monats (§ 188 Abs. 3 BGB)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bis wann muss eine Kündigung in der Probezeit zugehen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Kündigung muss spätestens am letzten Tag der Probezeit zugehen; die 2-Wochen-Frist darf danach noch in die feste Anstellung hineinlaufen. Maßgeblich ist der Zugang der Kündigung innerhalb der Probezeit, nicht das Absenden. Geht eine Probezeit-Kündigung am letzten Probezeit-Tag zu, beginnt die Frist am Folgetag und endet 14 Tage später."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Kündigungsfrist gilt nach der Probezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab dem Tag nach Ende der Probezeit gilt die gesetzliche Grundkündigungsfrist nach § 622 Abs. 1 BGB: vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats. Mit zunehmender Betriebszugehörigkeit verlängert sich die Frist für eine Arbeitgeberkündigung stufenweise (§ 622 Abs. 2 BGB)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die arbeitsrechtliche Probezeit dasselbe wie die Führerschein-Probezeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Dieser Rechner behandelt ausschließlich die arbeitsrechtliche Probezeit nach § 622 BGB. Die zweijährige Probezeit für Fahranfänger nach dem Straßenverkehrsgesetz (StVG) ist davon unabhängig und hat eigene Regeln."
+        }
+      }
+    ]
+  })} />
+</Layout>
