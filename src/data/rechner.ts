@@ -1678,6 +1678,15 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Dreisatz Rechner, Dreisatz berechnen, Dreisatzrechner online',
   },
   {
+    id: 'kreis',
+    name: 'Kreis- & Geometrie-Rechner',
+    beschreibung: 'Umfang, Durchmesser, Radius & Fläche – plus Rechteck, Quadrat, Dreieck',
+    icon: '⭕',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Kreis Rechner, Kreisumfang berechnen, Umfang berechnen, Kreisfläche berechnen, Durchmesser berechnen, Radius berechnen, Fläche berechnen, Geometrie Rechner, Rechteck Umfang, Dreieck Fläche',
+  },
+  {
     id: 'entfernung',
     name: 'Entfernungs-Rechner',
     beschreibung: 'Entfernung zwischen Städten (km)',
