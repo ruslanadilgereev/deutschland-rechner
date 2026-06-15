@@ -553,8 +553,8 @@ export default function BaufinanzierungRechner() {
             </a>
           </li>
           <li>
-            <a href="https://www.gesetze-im-internet.de/preisabg/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-              § 6 PAngV – Berechnung des effektiven Jahreszinses
+            <a href="https://www.gesetze-im-internet.de/pangv_2022/__16.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              § 16 PAngV – Berechnung des effektiven Jahreszinses
             </a>
           </li>
           <li>

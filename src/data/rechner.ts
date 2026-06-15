@@ -435,7 +435,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/erbstg_1974/',
       'https://www.gesetze-im-internet.de/bewg/',
-      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html',
+      'https://www.gesetze-im-internet.de/erbstg_1974/',
     ],
   },
   {
@@ -449,7 +449,7 @@ export const rechnerListe: Rechner[] = [
     quellen: [
       'https://www.gesetze-im-internet.de/erbstg_1974/',
       'https://www.gesetze-im-internet.de/bewg/',
-      'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html',
+      'https://www.gesetze-im-internet.de/erbstg_1974/',
     ],
   },
   {
@@ -996,7 +996,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Baufinanzierung Rechner, Hypothekenrechner, Immobilienkredit Rechner, Baukredit Rechner, Tilgungsrechner, Annuitätendarlehen, Baufinanzierung 2026, monatliche Rate berechnen, Restschuld berechnen, Zinsbindung, Sondertilgung, Hausfinanzierung, Bauzinsen 2026',
     quellen: [
       'https://www.gesetze-im-internet.de/bgb/__489.html',
-      'https://www.gesetze-im-internet.de/preisabg/',
+      'https://www.gesetze-im-internet.de/pangv_2022/__16.html',
       'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
       'https://www.bafin.de/',
       'https://www.gesetze-im-internet.de/bgb/__491.html',
@@ -1683,7 +1683,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Flugzeit Rechner, Flugdauer berechnen, wie lange fliegen, Zeitverschiebung Flug, Flugzeit Frankfurt New York, Flugzeit München Bangkok',
     quellen: [
       'https://www.iana.org/time-zones',
-      'https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-441/gesetzliche-zeit.html',
+      'https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-441/darstellung-der-gesetzlichen-zeit.html',
     ],
   },
   {
@@ -1695,7 +1695,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Zeitzonen Rechner, Zeitunterschied berechnen, Uhrzeit weltweit, Zeitzone umrechnen, CET EST PST JST, Weltzeituhr, Sommerzeit Winterzeit, MEZ MESZ',
     quellen: [
-      'https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-441/gesetzliche-zeit.html',
+      'https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-441/darstellung-der-gesetzlichen-zeit.html',
       'https://www.iana.org/time-zones',
     ],
   },

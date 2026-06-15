@@ -793,12 +793,12 @@ export default function AutofinanzierungRechner() {
             BGB § 491 – Verbraucherdarlehensvertrag
           </a>
           <a
-            href="https://www.gesetze-im-internet.de/preisabg/"
+            href="https://www.gesetze-im-internet.de/pangv_2022/__16.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            PAngV § 6 – Effektiver Jahreszins
+            § 16 PAngV – Effektiver Jahreszins (Verbraucherdarlehen)
           </a>
           <a
             href="https://www.bafin.de/"

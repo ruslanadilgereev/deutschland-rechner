@@ -442,12 +442,12 @@ export function TreppeRechner() {
           </a>
           ,{' '}
           <a
-            href="https://www.normenportal-barrierefreiheit.de/resource/blob/1253920/03ba5bd33b4c0d9592d3d776b1919701/90716-006-din-18065-data.pdf"
+            href="https://www.dinmedia.de/de/norm/din-18065/322316050"
             target="_blank"
             rel="noopener"
             className="underline"
           >
-            Normenportal Barrierefreiheit – DIN 18065
+            DIN Media – DIN 18065:2020-08 (Gebäudetreppen)
           </a>
           ,{' '}
           <a

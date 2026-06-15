@@ -291,12 +291,12 @@ export default function JobRadRechner() {
             § 3 Nr. 37 EStG – Steuerfreie Dienstrad-Überlassung
           </a>
           <a
-            href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2019-12-09-steuerliche-behandlung-der-ueberlassung-von-fahrraedern.html"
+            href="https://lsth.bundesfinanzministerium.de/lsth/2025/B-Anhaenge/Anhang-24/IV/IV-5/anhang-24-IV-5.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMF – Steuerliche Behandlung der Überlassung von (Elektro-)Fahrrädern
+            BMF (Lohnsteuer-Handbuch) – Überlassung von (Elektro-)Fahrrädern
           </a>
         </div>
       </div>

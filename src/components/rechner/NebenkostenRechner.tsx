@@ -14,7 +14,7 @@ import { useState, useMemo } from 'react';
  * Quellen:
  * - https://www.gesetze-im-internet.de/betrkv/
  * - https://www.mieterbund.de
- * - https://www.heizspiegel.de
+ * - https://www.umweltbundesamt.de/daten/umweltzustand-trends/private-haushalte-konsum/wohnen/energieverbrauch-privater-haushalte
  */
 
 // ============================================================================

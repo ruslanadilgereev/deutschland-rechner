@@ -866,12 +866,12 @@ export default function ErbschaftsteuerRechner() {
             Bewertungsgesetz (BewG) – Immobilienbewertung
           </a>
           <a 
-            href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Erbschaft_Schenkungsteuer/erbschaft_schenkungsteuer.html"
+            href="https://www.gesetze-im-internet.de/erbstg_1974/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMF – Erbschaft- und Schenkungsteuer
+            ErbStG – Erbschaftsteuer- und Schenkungsteuergesetz
           </a>
         </div>
       </div>
