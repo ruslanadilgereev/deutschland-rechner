@@ -2038,6 +2038,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Lebenserwartung Rechner, Lebenserwartung berechnen, wie alt werde ich, statistische Lebenserwartung, Lebenserwartung Deutschland, Sterbetafel, Destatis Lebenserwartung, Lebensstil Lebenserwartung',
     quellen: [
+      'https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/kohortensterbetafeln.html',
       'https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/_inhalt.html',
       'https://www.rki.de/',
       'https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates/ghe-life-expectancy-and-healthy-life-expectancy',

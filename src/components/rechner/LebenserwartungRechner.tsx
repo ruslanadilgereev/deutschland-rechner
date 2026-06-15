@@ -1,17 +1,38 @@
 import { useState, useMemo } from 'react';
 
-// Destatis Sterbetafel 2021/2023 - Fernere Lebenserwartung nach Alter und Geschlecht
-// Quelle: Statistisches Bundesamt, Periodensterbetafeln für Deutschland
+// Destatis GENERATIONENSTERBETAFEL (Kohortensterbetafel) für Deutschland, Geburtsjahrgänge 1923–2023.
+// Fernere Lebenserwartung (ex) nach Alter und Geschlecht. Anders als die Periodensterbetafel (Momentaufnahme
+// eines Kalenderjahres) berücksichtigt die Generationentafel den künftigen Rückgang der Sterblichkeit und
+// unterschätzt die Lebenserwartung daher nicht systematisch.
+// Werte als "Diagonale": für das aktuelle Alter x (Bezugsjahr 2026) wird der Geburtsjahrgang 2026−x verwendet
+// (gekappt auf den jüngsten verfügbaren Jahrgang 2023).
+// Quelle: Statistisches Bundesamt, Statistischer Bericht "Kohortensterbetafeln für Deutschland 1923–2023" (12621).
+// VARIANTE 1 = konservativ (Sterblichkeitsrückgang endet 2070). VARIANTE 2 = anhaltender Rückgang (optimistisch).
+
+// Variante 1 (konservativ) — Basis der Schätzung
 const LEBENSERWARTUNG_MAENNER: Record<number, number> = {
-  0: 78.3, 1: 77.6, 5: 73.7, 10: 68.7, 15: 63.8, 20: 58.9, 25: 54.1, 30: 49.3, 
-  35: 44.5, 40: 39.8, 45: 35.2, 50: 30.7, 55: 26.4, 60: 22.2, 65: 18.2, 
-  70: 14.5, 75: 11.2, 80: 8.3, 85: 6.0, 90: 4.3, 95: 3.1, 100: 2.3
+  0: 80.8, 1: 80.0, 5: 76.0, 10: 71.0, 15: 66.0, 20: 60.9, 25: 55.9, 30: 50.9,
+  35: 45.9, 40: 40.9, 45: 36.0, 50: 31.2, 55: 26.6, 60: 22.2, 65: 18.3,
+  70: 14.6, 75: 11.3, 80: 8.3, 85: 5.7, 90: 3.7, 95: 2.5, 100: 1.8
 };
 
 const LEBENSERWARTUNG_FRAUEN: Record<number, number> = {
-  0: 83.2, 1: 82.4, 5: 78.5, 10: 73.5, 15: 68.5, 20: 63.6, 25: 58.7, 30: 53.8,
-  35: 48.9, 40: 44.0, 45: 39.2, 50: 34.5, 55: 29.9, 60: 25.4, 65: 21.1,
-  70: 17.0, 75: 13.2, 80: 9.8, 85: 6.9, 90: 4.7, 95: 3.3, 100: 2.4
+  0: 85.3, 1: 84.5, 5: 80.6, 10: 75.5, 15: 70.5, 20: 65.5, 25: 60.5, 30: 55.5,
+  35: 50.5, 40: 45.5, 45: 40.5, 50: 35.6, 55: 30.7, 60: 26.0, 65: 21.6,
+  70: 17.4, 75: 13.5, 80: 9.9, 85: 6.7, 90: 4.4, 95: 2.8, 100: 2.0
+};
+
+// Variante 2 (optimistisch, anhaltender Sterblichkeitsrückgang) — oberes Szenario des Spektrums
+const LEBENSERWARTUNG_MAENNER_V2: Record<number, number> = {
+  0: 89.8, 1: 89.0, 5: 84.8, 10: 79.1, 15: 73.4, 20: 67.7, 25: 62.1, 30: 56.4,
+  35: 50.8, 40: 45.2, 45: 39.7, 50: 34.3, 55: 29.1, 60: 24.2, 65: 19.8,
+  70: 15.7, 75: 12.0, 80: 8.7, 85: 5.9, 90: 3.8, 95: 2.5, 100: 1.8
+};
+
+const LEBENSERWARTUNG_FRAUEN_V2: Record<number, number> = {
+  0: 92.8, 1: 92.0, 5: 87.9, 10: 82.4, 15: 76.8, 20: 71.3, 25: 65.8, 30: 60.3,
+  35: 54.7, 40: 49.2, 45: 43.8, 50: 38.4, 55: 33.1, 60: 28.0, 65: 23.2,
+  70: 18.6, 75: 14.3, 80: 10.4, 85: 7.0, 90: 4.5, 95: 2.9, 100: 2.0
 };
 
 // Interpolation der Lebenserwartung für jedes Alter
@@ -116,9 +137,12 @@ export default function LebenserwartungRechner() {
   const ergebnis = useMemo(() => {
     if (alter < 0 || alter > 110) return null;
 
-    // Basis-Lebenserwartung aus Sterbetafeln
+    // Basis-Lebenserwartung aus der Generationensterbetafel (Variante 1, konservativ)
     const tabelle = geschlecht === 'mann' ? LEBENSERWARTUNG_MAENNER : LEBENSERWARTUNG_FRAUEN;
     const basisErwartung = interpoliereLebenswartung(alter, tabelle);
+    // Variante 2 (optimistisch) als oberes Szenario
+    const tabelleV2 = geschlecht === 'mann' ? LEBENSERWARTUNG_MAENNER_V2 : LEBENSERWARTUNG_FRAUEN_V2;
+    const basisErwartungV2 = interpoliereLebenswartung(alter, tabelleV2);
     
     // Lebensstil-Anpassungen berechnen
     const anpassungen = [
@@ -137,9 +161,13 @@ export default function LebenserwartungRechner() {
     // Angepasste Lebenserwartung (mit Ober- und Untergrenzen)
     const verbleibendeJahre = Math.max(0, basisErwartung + gesamtAnpassung);
     const geschaetztesAlter = Math.min(120, alter + verbleibendeJahre);
-    
-    // Vergleich mit Durchschnitt
-    const durchschnittErwartung = geschlecht === 'mann' ? 78.3 : 83.2;
+
+    // Optimistisches Szenario (Variante 2): gleiche Lebensstil-Anpassung auf die höhere Basis
+    const verbleibendeJahreV2 = Math.max(0, basisErwartungV2 + gesamtAnpassung);
+    const geschaetztesAlterV2 = Math.min(120, alter + verbleibendeJahreV2);
+
+    // Vergleich mit dem statistischen Mittel (Generationensterbetafel V1, Lebenserwartung bei Geburt)
+    const durchschnittErwartung = geschlecht === 'mann' ? 80.8 : 85.3;
     const differenzZuDurchschnitt = geschaetztesAlter - durchschnittErwartung;
     
     // Positive und negative Faktoren trennen
@@ -151,6 +179,9 @@ export default function LebenserwartungRechner() {
       basisErwartung,
       verbleibendeJahre,
       geschaetztesAlter,
+      basisErwartungV2,
+      verbleibendeJahreV2,
+      geschaetztesAlterV2,
       gesamtAnpassung,
       anpassungen,
       positiveFaktoren,
@@ -385,8 +416,13 @@ export default function LebenserwartungRechner() {
             <div className="text-center mb-6">
               <div className="inline-block px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
                 <div className="text-5xl font-bold">{formatNumber(ergebnis.geschaetztesAlter, 0)} Jahre</div>
-                <div className="text-sm opacity-90">Geschätztes Lebensalter</div>
+                <div className="text-sm opacity-90">Geschätztes Lebensalter (Generationentafel, Variante 1)</div>
               </div>
+              <p className="text-sm text-gray-500 mt-3">
+                Optimistisches Szenario (Variante 2, anhaltender Sterblichkeitsrückgang):{' '}
+                <strong className="text-gray-700">{formatNumber(ergebnis.geschaetztesAlterV2, 0)} Jahre</strong>.
+                Destatis stellt beide Varianten als Spektrum dar.
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
@@ -411,7 +447,7 @@ export default function LebenserwartungRechner() {
             {/* Lebensstil-Einfluss */}
             <div className="p-4 bg-gray-50 rounded-lg">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-gray-600">Statistische Basis (Alter {alter})</span>
+                <span className="text-gray-600">Generationentafel-Basis (Alter {alter}, V1)</span>
                 <span className="font-semibold text-gray-800">{formatNumber(ergebnis.basisErwartung)} Jahre</span>
               </div>
               <div className="flex justify-between items-center">
@@ -553,20 +589,23 @@ export default function LebenserwartungRechner() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 bg-blue-50 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-blue-700">78,3</div>
-                  <div className="text-sm text-blue-600">Ø Lebenserwartung Männer</div>
+                  <div className="text-2xl font-bold text-blue-700">80,8</div>
+                  <div className="text-sm text-blue-600">Männer (Geburt, Generationentafel V1)</div>
                 </div>
                 <div className="p-4 bg-pink-50 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-pink-700">83,2</div>
-                  <div className="text-sm text-pink-600">Ø Lebenserwartung Frauen</div>
+                  <div className="text-2xl font-bold text-pink-700">85,3</div>
+                  <div className="text-sm text-pink-600">Frauen (Geburt, Generationentafel V1)</div>
                 </div>
               </div>
 
               <div className="p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">
-                  Die durchschnittliche Lebenserwartung in Deutschland ist in den letzten Jahrzehnten 
-                  kontinuierlich gestiegen. Frauen leben im Schnitt etwa 5 Jahre länger als Männer. 
-                  Ihr individueller Lebensstil kann diese Werte um mehrere Jahre beeinflussen.
+                  Diese Werte stammen aus der <strong>Generationensterbetafel</strong> (Kohorte) und liegen
+                  rund 2 Jahre über den oft zitierten Periodenwerten (78,3 / 83,2), weil die Generationentafel
+                  den künftigen Rückgang der Sterblichkeit einrechnet. Im optimistischen Szenario (Variante 2)
+                  erreichen heute Geborene sogar rund 90 (Männer) bzw. 93 Jahre (Frauen). Frauen leben im
+                  Schnitt etwa 5 Jahre länger als Männer; Ihr Lebensstil kann diese Werte um mehrere Jahre
+                  verschieben.
                 </p>
               </div>
             </div>
@@ -608,9 +647,15 @@ export default function LebenserwartungRechner() {
               <div className="p-4 bg-gray-50 rounded-lg">
                 <h3 className="font-semibold text-gray-800 mb-2">Datengrundlage</h3>
                 <p>
-                  Die Basis-Lebenserwartung stammt aus den <strong>Periodensterbetafeln des Statistischen 
-                  Bundesamts (Destatis)</strong> für Deutschland 2021/2023. Diese geben die fernere 
-                  Lebenserwartung für jedes Alter und Geschlecht an.
+                  Die Basis-Lebenserwartung stammt aus der <strong>Generationensterbetafel
+                  (Kohortensterbetafel) des Statistischen Bundesamts (Destatis)</strong>, Geburtsjahrgänge
+                  1923–2023. Anders als eine <em>Periodensterbetafel</em> – die nur die Sterblichkeit eines
+                  einzelnen Kalenderjahres als Momentaufnahme abbildet und die Lebenserwartung dadurch
+                  systematisch unterschätzt – rechnet die Generationentafel den künftigen Rückgang der
+                  Sterblichkeit (Trend) mit ein. Für Ihr aktuelles Alter <em>x</em> verwenden wir den
+                  zugehörigen Geburtsjahrgang (Bezugsjahr 2026, also Jahrgang 2026−<em>x</em>). Grundlage ist
+                  die konservative <strong>Variante 1</strong>; die optimistische Variante 2 wird als oberes
+                  Szenario ausgewiesen.
                 </p>
               </div>
 
@@ -643,9 +688,22 @@ export default function LebenserwartungRechner() {
 
             <ul className="space-y-2 text-sm">
               <li>
-                <a 
-                  href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/_inhalt.html" 
-                  target="_blank" 
+                <a
+                  href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/kohortensterbetafeln.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-600 hover:underline flex items-center gap-1"
+                >
+                  Statistisches Bundesamt – Generationensterbetafeln (Kohorte) 1923–2023
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Sterbefaelle-Lebenserwartung/_inhalt.html"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:underline flex items-center gap-1"
                 >
