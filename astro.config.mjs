@@ -46,4 +46,8 @@ export default defineConfig({
     }),
   ],
   output: 'static',
+  // CSS inline in den <head> statt als render-blocking <link> – verhindert das
+  // kurze Aufblitzen von ungestyltem HTML (FOUC) beim ersten Paint, weil keine
+  // externe CSS-Ressource mehr abgewartet werden muss.
+  build: { inlineStylesheets: 'always' },
 });
