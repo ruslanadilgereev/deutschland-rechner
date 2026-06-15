@@ -774,15 +774,6 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
-    id: 'rentensteuer',
-    name: 'Rentenabzüge-Rechner',
-    beschreibung: 'Abzüge bei vorzeitiger Rente',
-    icon: '➖',
-    kategorie: 'soziales',
-    fertig: true,
-    seoKeywords: 'Rentenabzüge Rechner, Rente mit 63, vorzeitige Rente Abzüge',
-  },
-  {
     id: 'muetterrente',
     name: 'Mütterrente-Rechner',
     beschreibung: 'Kindererziehungszeiten & Zusatzrente berechnen',
@@ -2184,7 +2175,7 @@ export const rechnerListe: Rechner[] = [
     icon: '⏰',
     kategorie: 'arbeit',
     fertig: true,
-    seoKeywords: 'Frührente Rechner, Rente mit 63, vorzeitige Rente Abschläge, Rentenabschlag berechnen, 45 Beitragsjahre, Regelaltersgrenze, abschlagsfreie Rente',
+    seoKeywords: 'Frührente Rechner, Rente mit 63, vorzeitige Rente Abschläge, Rentenabzüge Rechner, Rentenabschlag berechnen, 45 Beitragsjahre, Regelaltersgrenze, abschlagsfreie Rente',
     quellen: [
       'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Kurz-vor-der-Rente/Wann-kann-ich-in-Rente-gehen/Wann-kann-ich-in-Rente-gehen_detailseite.html',
       'https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Altersrente-fuer-langjaehrig-Versicherte/Altersrente_fuer_langjaehrig_Versicherte.html',
