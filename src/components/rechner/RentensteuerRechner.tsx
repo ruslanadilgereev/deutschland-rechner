@@ -14,6 +14,10 @@ const WERBUNGSKOSTEN_PAUSCHALE_RENTE = 102;
 const SONDERAUSGABEN_PAUSCHBETRAG = 36;
 const SONDERAUSGABEN_PAUSCHBETRAG_VERHEIRATET = 72;
 
+// Sparer-Pauschbetrag (§20 Abs. 9 EStG): steuerfreier Betrag für Kapitalerträge
+const SPARER_PAUSCHBETRAG = 1000;
+const SPARER_PAUSCHBETRAG_VERHEIRATET = 2000;
+
 // Kranken-/Pflegeversicherung auf Rente (ca. AN-Anteil)
 const KV_BEITRAG = 0.073; // 7,3% + Zusatzbeitrag
 const KV_ZUSATZBEITRAG = 0.0145; // Ø Zusatzbeitrag 2,9% / 2 (Rentner zahlt Hälfte, seit 2019)
@@ -170,6 +174,8 @@ export default function RentensteuerRechner() {
   const [betriebsrente, setBetriebsrente] = useState(0);
   const [hatAndereEinkuenfte, setHatAndereEinkuenfte] = useState(false);
   const [andereEinkuenfte, setAndereEinkuenfte] = useState(0);
+  const [hatKapitalertraege, setHatKapitalertraege] = useState(false);
+  const [kapitalertraege, setKapitalertraege] = useState(0);
   
   // Persönliches
   const [verheiratet, setVerheiratet] = useState(false);
@@ -213,12 +219,20 @@ export default function RentensteuerRechner() {
     const einkuenftePriRente = steuerpflichtigePrivateRente;
     const einkuenfteBetriebsrente = betriebsrenteJahr;
     const sonstigeEinkuenfte = hatAndereEinkuenfte ? andereEinkuenfte : 0;
-    
+
+    // Kapitalerträge: nur der Teil oberhalb des Sparer-Pauschbetrags (§20 Abs. 9 EStG)
+    // ist steuerpflichtig. 1.000 € (Einzel) / 2.000 € (Zusammenveranlagung) bleiben frei.
+    const sparerPauschbetrag = verheiratet ? SPARER_PAUSCHBETRAG_VERHEIRATET : SPARER_PAUSCHBETRAG;
+    const kapitalertraegeBrutto = hatKapitalertraege ? kapitalertraege : 0;
+    const sparerPauschbetragAbzug = Math.min(kapitalertraegeBrutto, sparerPauschbetrag);
+    const kapitalertraegeSteuerpflichtig = Math.max(0, kapitalertraegeBrutto - sparerPauschbetrag);
+
     // Partner bei Zusammenveranlagung
     const partnerJahreseinkommen = verheiratet ? partnerEinkommen * 12 : 0;
-    
-    const gesamteinkuenfte = einkuenfteGesRente + einkuenftePriRente + 
+
+    const gesamteinkuenfte = einkuenfteGesRente + einkuenftePriRente +
                              einkuenfteBetriebsrente + sonstigeEinkuenfte +
+                             kapitalertraegeSteuerpflichtig +
                              partnerJahreseinkommen;
     
     // === 5. Abzüge ===
@@ -285,9 +299,10 @@ export default function RentensteuerRechner() {
     const nettoGesamtMonatlich = bruttoGesamtMonatlich - steuerMonatlich - (svBeitraegeJahr / 12);
     
     // === 11. Muss Steuererklärung abgegeben werden? ===
-    const pflichtVeranlagung = zvE > grundfreibetrag || 
-                               kirchensteuerSatz > 0 || 
+    const pflichtVeranlagung = zvE > grundfreibetrag ||
+                               kirchensteuerSatz > 0 ||
                                hatAndereEinkuenfte ||
+                               kapitalertraegeSteuerpflichtig > 0 ||
                                (verheiratet && partnerEinkommen > 0);
     
     return {
@@ -309,6 +324,9 @@ export default function RentensteuerRechner() {
       // Einkünfte
       gesamteinkuenfte,
       sonstigeEinkuenfte,
+      kapitalertraegeBrutto,
+      kapitalertraegeSteuerpflichtig,
+      sparerPauschbetragAbzug,
       partnerJahreseinkommen,
       
       // Abzüge
@@ -349,6 +367,7 @@ export default function RentensteuerRechner() {
     };
   }, [monatlicheRente, jahrRentenbeginn, hatPrivateRente, privateRente, ertragsanteilAlter,
       hatBetriebsrente, betriebsrente, hatAndereEinkuenfte, andereEinkuenfte,
+      hatKapitalertraege, kapitalertraege,
       verheiratet, partnerEinkommen, kirchensteuerSatz, hatKinder, alter,
       krankheitskosten, pflegekosten, spenden]);
 
@@ -660,6 +679,48 @@ export default function RentensteuerRechner() {
             </div>
           )}
         </div>
+
+        {/* Kapitalerträge */}
+        <div className="mb-4">
+          <label className="flex items-center gap-3 cursor-pointer mb-3">
+            <input
+              type="checkbox"
+              checked={hatKapitalertraege}
+              onChange={(e) => setHatKapitalertraege(e.target.checked)}
+              className="w-5 h-5 rounded border-gray-300 text-teal-500 focus:ring-teal-500"
+            />
+            <div>
+              <span className="text-gray-700 font-medium">Kapitalerträge</span>
+              <span className="text-xs text-gray-500 block">Zinsen, Dividenden, Fondserträge (jährlich) – Sparer-Pauschbetrag wird automatisch abgezogen</span>
+            </div>
+          </label>
+
+          {hatKapitalertraege && (
+            <div className="p-4 bg-gray-50 rounded-xl space-y-2">
+              <div className="relative">
+                <input
+                  type="number"
+                  value={kapitalertraege}
+                  onChange={(e) => setKapitalertraege(Math.max(0, Number(e.target.value)))}
+                  className="w-full text-xl font-bold text-center py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-teal-500 focus:ring-0 outline-none"
+                  min="0"
+                  step="100"
+                  placeholder="Kapitalerträge im Jahr"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">€/Jahr</span>
+              </div>
+              <p className="text-xs text-gray-500">
+                Sparer-Pauschbetrag {verheiratet ? '2.000 €' : '1.000 €'} steuerfrei (§20 Abs. 9 EStG).
+                Steuerpflichtig: {formatEuroRound(ergebnis.kapitalertraegeSteuerpflichtig)}.
+              </p>
+              <p className="text-xs text-gray-400">
+                Hinweis: Kapitalerträge unterliegen normalerweise der Abgeltungsteuer (25 %). Hier
+                fließen sie vereinfacht in den persönlichen Tarif ein – das lohnt sich nur bei der
+                Günstigerprüfung (niedriger Grenzsteuersatz).
+              </p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Result Section */}
@@ -776,6 +837,19 @@ export default function RentensteuerRechner() {
               <span className="text-gray-600">Weitere Einkünfte</span>
               <span className="text-gray-900">+ {formatEuro(ergebnis.sonstigeEinkuenfte)}</span>
             </div>
+          )}
+
+          {ergebnis.kapitalertraegeBrutto > 0 && (
+            <>
+              <div className="flex justify-between py-2 border-b border-gray-100">
+                <span className="text-gray-600">Kapitalerträge (brutto)</span>
+                <span className="text-gray-900">+ {formatEuro(ergebnis.kapitalertraegeBrutto)}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
+                <span>− Sparer-Pauschbetrag (§20 Abs. 9 EStG)</span>
+                <span>{formatEuro(ergebnis.sparerPauschbetragAbzug)}</span>
+              </div>
+            </>
           )}
           
           {ergebnis.partnerJahreseinkommen > 0 && (
@@ -1051,6 +1125,14 @@ export default function RentensteuerRechner() {
             className="block text-sm text-blue-600 hover:underline"
           >
             § 22 EStG – Arten der sonstigen Einkünfte (Rentenbesteuerung)
+          </a>
+          <a
+            href="https://www.gesetze-im-internet.de/estg/__20.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 20 EStG – Kapitaleinkünfte &amp; Sparer-Pauschbetrag (Abs. 9)
           </a>
           <a 
             href="https://www.gesetze-im-internet.de/estg/__32a.html"
