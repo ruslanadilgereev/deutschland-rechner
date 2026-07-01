@@ -10,29 +10,33 @@ const PAUSCHALEN_INLAND = {
   anUndAbreise: 14, // An- und Abreisetag bei mehrtägiger Reise
 };
 
-// Auslandspauschalen 2025/2026 (Auszug der wichtigsten Länder)
-// Quelle: BMF-Schreiben zu Auslandsreisekosten
+// Auslandspauschalen 2026 (Auszug der wichtigsten Länder)
+// Quelle: BMF-Schreiben vom 5. Dezember 2025 (Reisekosten ab 1.1.2026)
+// ab24 = Abwesenheit >= 24 Std.; mehr8 = An-/Abreisetag bzw. > 8 Std.
+// Bei Ländern mit Städte-Staffelung ist der Wert "im Übrigen" hinterlegt,
+// außer wo eine konkrete Stadt im Namen genannt ist (London/New York/Peking/Tokio).
 const PAUSCHALEN_AUSLAND: Record<string, { land: string; ab24: number; mehr8: number }> = {
-  AT: { land: 'Österreich', ab24: 50, mehr8: 25 },
-  BE: { land: 'Belgien', ab24: 59, mehr8: 30 },
-  CH: { land: 'Schweiz', ab24: 77, mehr8: 39 },
-  CZ: { land: 'Tschechien', ab24: 35, mehr8: 18 },
-  DK: { land: 'Dänemark', ab24: 75, mehr8: 38 },
-  ES: { land: 'Spanien', ab24: 44, mehr8: 22 },
-  FR: { land: 'Frankreich', ab24: 58, mehr8: 29 },
-  GB: { land: 'Großbritannien (London)', ab24: 66, mehr8: 33 },
-  GR: { land: 'Griechenland', ab24: 40, mehr8: 20 },
-  IT: { land: 'Italien', ab24: 52, mehr8: 26 },
-  NL: { land: 'Niederlande', ab24: 53, mehr8: 27 },
-  PL: { land: 'Polen', ab24: 36, mehr8: 18 },
-  PT: { land: 'Portugal', ab24: 38, mehr8: 19 },
-  SE: { land: 'Schweden', ab24: 61, mehr8: 31 },
-  US: { land: 'USA (New York)', ab24: 66, mehr8: 33 },
-  CN: { land: 'China (Peking)', ab24: 51, mehr8: 26 },
-  JP: { land: 'Japan (Tokio)', ab24: 62, mehr8: 31 },
-  AE: { land: 'VAE (Dubai)', ab24: 56, mehr8: 28 },
-  TR: { land: 'Türkei', ab24: 39, mehr8: 20 },
-  XX: { land: 'Sonstige Länder', ab24: 39, mehr8: 20 },
+  AT: { land: 'Österreich', ab24: 50, mehr8: 33 },
+  BE: { land: 'Belgien', ab24: 59, mehr8: 40 },
+  CH: { land: 'Schweiz', ab24: 70, mehr8: 47 },
+  CZ: { land: 'Tschechien', ab24: 32, mehr8: 21 },
+  DK: { land: 'Dänemark', ab24: 75, mehr8: 50 },
+  ES: { land: 'Spanien', ab24: 34, mehr8: 23 },
+  FR: { land: 'Frankreich', ab24: 53, mehr8: 36 },
+  GB: { land: 'Großbritannien (London)', ab24: 66, mehr8: 44 },
+  GR: { land: 'Griechenland', ab24: 36, mehr8: 24 },
+  IT: { land: 'Italien', ab24: 42, mehr8: 28 },
+  NL: { land: 'Niederlande', ab24: 58, mehr8: 39 },
+  PL: { land: 'Polen', ab24: 34, mehr8: 23 },
+  PT: { land: 'Portugal', ab24: 32, mehr8: 21 },
+  SE: { land: 'Schweden', ab24: 66, mehr8: 44 },
+  US: { land: 'USA (New York)', ab24: 66, mehr8: 44 },
+  CN: { land: 'China (Peking)', ab24: 57, mehr8: 38 },
+  JP: { land: 'Japan (Tokio)', ab24: 50, mehr8: 33 },
+  AE: { land: 'VAE (Dubai)', ab24: 81, mehr8: 54 },
+  TR: { land: 'Türkei', ab24: 24, mehr8: 16 },
+  // Nicht erfasste Länder: laut BMF gilt der Pauschbetrag für Luxemburg.
+  XX: { land: 'Sonstige Länder', ab24: 63, mehr8: 42 },
 };
 
 // Übernachtungspauschalen (pauschal, ohne Nachweis)
@@ -669,7 +673,7 @@ export default function VerpflegungsmehraufwandRechner() {
 
       {/* Pauschalen-Übersicht */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📋 Aktuelle Pauschalen 2025/2026</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📋 Aktuelle Pauschalen 2026</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="bg-blue-50 rounded-xl p-4">
@@ -789,8 +793,8 @@ export default function VerpflegungsmehraufwandRechner() {
               <span className="text-xl">🌐</span>
               <div>
                 <p className="font-medium text-gray-800">Offizielle Pauschalen</p>
-                <a 
-                  href="https://www.bundesfinanzministerium.de/"
+                <a
+                  href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2025-12-05-steuerliche-behandlung-reisekosten-2026.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline text-xs"
@@ -814,13 +818,13 @@ export default function VerpflegungsmehraufwandRechner() {
           >
             § 9 EStG – Werbungskosten
           </a>
-          <a 
-            href="https://www.bundesfinanzministerium.de/"
+          <a
+            href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2025-12-05-steuerliche-behandlung-reisekosten-2026.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            BMF – Steuerliche Behandlung von Reisekosten
+            BMF-Schreiben vom 5.12.2025 – Reisekosten ab 1.1.2026
           </a>
         </div>
       </div>

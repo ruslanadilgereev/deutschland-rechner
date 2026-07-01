@@ -2165,7 +2165,7 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Verpflegungsmehraufwand Rechner, Spesen Rechner, Dienstreise Pauschale, Verpflegungspauschale 2025, Reisekosten absetzen, Tagespauschale Dienstreise',
     quellen: [
       'https://www.gesetze-im-internet.de/estg/__9.html',
-      'https://www.bundesfinanzministerium.de/',
+      'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Lohnsteuer/2025-12-05-steuerliche-behandlung-reisekosten-2026.html',
     ],
   },
   {
