@@ -684,6 +684,8 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/estg/__22.html',
       'https://www.gesetze-im-internet.de/estg/__20.html',
       'https://www.gesetze-im-internet.de/estg/__32a.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__226.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__229.html',
       'https://www.bmf-steuerrechner.de',
       'https://www.bundesfinanzministerium.de',
     ],

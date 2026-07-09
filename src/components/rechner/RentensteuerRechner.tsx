@@ -24,6 +24,10 @@ const KV_ZUSATZBEITRAG = 0.0145; // Ø Zusatzbeitrag 2,9% / 2 (Rentner zahlt Hä
 const PV_BEITRAG = 0.036; // 3,6% — Rentner tragen den PV-Beitrag allein (2026)
 const PV_ZUSCHLAG_KINDERLOS = 0.006; // +0,6% für Kinderlose ab 23
 
+// Betriebsrente/Versorgungsbezüge (§229 SGB V): voller KV-Satz, Rentner trägt allein
+const KV_VOLL_VERSORGUNG = 0.175; // 14,6% + Ø Zusatzbeitrag 2,9%
+const KV_FREIBETRAG_VERSORGUNG_MONAT = 197.75; // §226 Abs. 2 SGB V 2026 = Bezugsgröße 3.955 € / 20 (nur KV, nicht PV)
+
 // Steuertarif 2026 Zonen (§32a EStG)
 const TARIFZONEN_2026 = {
   zone1Ende: 17799,   // Ende Zone 1 (14-24%)
@@ -172,6 +176,7 @@ export default function RentensteuerRechner() {
   const [ertragsanteilAlter, setErtragsanteilAlter] = useState(65);
   const [hatBetriebsrente, setHatBetriebsrente] = useState(false);
   const [betriebsrente, setBetriebsrente] = useState(0);
+  const [istRiester, setIstRiester] = useState(false);
   const [hatAndereEinkuenfte, setHatAndereEinkuenfte] = useState(false);
   const [andereEinkuenfte, setAndereEinkuenfte] = useState(0);
   const [hatKapitalertraege, setHatKapitalertraege] = useState(false);
@@ -253,14 +258,25 @@ export default function RentensteuerRechner() {
     
     // Kranken-/Pflegeversicherung als Sonderausgaben
     // Beiträge auf die gesetzliche Rente (Basisbeiträge KV+PV)
+    const pvSatz = PV_BEITRAG + (!hatKinder && alter >= 23 ? PV_ZUSCHLAG_KINDERLOS : 0);
     const kvAnteil = jahresrenteBrutto * (KV_BEITRAG + KV_ZUSATZBEITRAG);
-    let pvAnteil = jahresrenteBrutto * PV_BEITRAG;
-    if (!hatKinder && alter >= 23) {
-      pvAnteil += jahresrenteBrutto * PV_ZUSCHLAG_KINDERLOS;
-    }
-    const svBeitraegeJahr = kvAnteil + pvAnteil;
-    
-    // Vorsorgeaufwendungen sind abzugsfähig
+    const pvAnteil = jahresrenteBrutto * pvSatz;
+
+    // Beiträge auf die Betriebsrente (Versorgungsbezug, §229 SGB V): voller KV-Satz auf den
+    // Teil über dem Freibetrag (§226 Abs. 2 SGB V), PV ohne Freibetrag auf den vollen Betrag.
+    // Bis zur Freigrenze (= Freibetragshöhe) bleibt der Versorgungsbezug ganz beitragsfrei.
+    // Riester-Renten sind in der Auszahlphase KV-/PV-frei (§229 Abs. 1 Satz 1 Nr. 5 SGB V).
+    const betriebsrenteMonat = hatBetriebsrente ? betriebsrente : 0;
+    const betriebsrenteSvPflichtig = !istRiester && betriebsrenteMonat > KV_FREIBETRAG_VERSORGUNG_MONAT;
+    const kvBetriebsrenteJahr = betriebsrenteSvPflichtig
+      ? (betriebsrenteMonat - KV_FREIBETRAG_VERSORGUNG_MONAT) * 12 * KV_VOLL_VERSORGUNG
+      : 0;
+    const pvBetriebsrenteJahr = betriebsrenteSvPflichtig ? betriebsrenteJahr * pvSatz : 0;
+    const svBetriebsrenteJahr = kvBetriebsrenteJahr + pvBetriebsrenteJahr;
+
+    const svBeitraegeJahr = kvAnteil + pvAnteil + svBetriebsrenteJahr;
+
+    // Vorsorgeaufwendungen sind abzugsfähig (inkl. KV/PV auf die Betriebsrente)
     const vorsorgeabzug = svBeitraegeJahr;
     
     // === 6. Zu versteuerndes Einkommen (zvE) ===
@@ -286,11 +302,13 @@ export default function RentensteuerRechner() {
     const steuerMonatlich = steuernGesamt / 12;
     const kvMonatlich = kvAnteil / 12;
     const pvMonatlich = pvAnteil / 12;
-    
+    const kvBetriebsrenteMonatlich = kvBetriebsrenteJahr / 12;
+    const pvBetriebsrenteMonatlich = pvBetriebsrenteJahr / 12;
+    const svGesamtMonatlich = svBeitraegeJahr / 12;
+
     // === 10. Netto-Rente ===
-    // Nur auf die gesetzliche Rente bezogen
-    const abzuegeAufRenteMonatlich = (svBeitraegeJahr / 12) + steuerMonatlich;
-    const nettoRenteMonatlich = monatlicheRente - (svBeitraegeJahr / 12) - steuerMonatlich;
+    // Gesetzliche Rente + Betriebsrente abzüglich Steuern und SV-Beiträgen
+    const nettoRenteMonatlich = monatlicheRente + betriebsrenteMonat - svGesamtMonatlich - steuerMonatlich;
     
     // Gesamtes monatliches Einkommen nach Steuern
     const bruttoGesamtMonatlich = jahresrenteBrutto / 12 + privateRenteJahr / 12 + 
@@ -353,6 +371,11 @@ export default function RentensteuerRechner() {
       steuerMonatlich,
       kvMonatlich,
       pvMonatlich,
+      kvBetriebsrenteMonatlich,
+      pvBetriebsrenteMonatlich,
+      svGesamtMonatlich,
+      svBetriebsrenteJahr,
+      betriebsrenteSvPflichtig,
       svBeitraegeJahr,
       nettoRenteMonatlich,
       bruttoGesamtMonatlich,
@@ -366,7 +389,7 @@ export default function RentensteuerRechner() {
       jahrRentenbeginn,
     };
   }, [monatlicheRente, jahrRentenbeginn, hatPrivateRente, privateRente, ertragsanteilAlter,
-      hatBetriebsrente, betriebsrente, hatAndereEinkuenfte, andereEinkuenfte,
+      hatBetriebsrente, betriebsrente, istRiester, hatAndereEinkuenfte, andereEinkuenfte,
       hatKapitalertraege, kapitalertraege,
       verheiratet, partnerEinkommen, kirchensteuerSatz, hatKinder, alter,
       krankheitskosten, pflegekosten, spenden]);
@@ -631,21 +654,35 @@ export default function RentensteuerRechner() {
             />
             <div>
               <span className="text-gray-700 font-medium">Betriebsrente / Riester-Rente</span>
-              <span className="text-xs text-gray-500 block">Voll steuerpflichtig (nachgelagerte Besteuerung)</span>
+              <span className="text-xs text-gray-500 block">Voll steuerpflichtig; Betriebsrenten zudem KV-/PV-pflichtig (§229 SGB V)</span>
             </div>
           </label>
-          
+
           {hatBetriebsrente && (
-            <div className="relative">
-              <input
-                type="number"
-                value={betriebsrente}
-                onChange={(e) => setBetriebsrente(Math.max(0, Number(e.target.value)))}
-                className="w-full text-xl font-bold text-center py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-teal-500 focus:ring-0 outline-none"
-                min="0"
-                step="25"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">€/Monat</span>
+            <div className="p-4 bg-gray-50 rounded-xl space-y-3">
+              <div className="relative">
+                <input
+                  type="number"
+                  value={betriebsrente}
+                  onChange={(e) => setBetriebsrente(Math.max(0, Number(e.target.value)))}
+                  className="w-full text-xl font-bold text-center py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-teal-500 focus:ring-0 outline-none"
+                  min="0"
+                  step="25"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">€/Monat</span>
+              </div>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={istRiester}
+                  onChange={(e) => setIstRiester(e.target.checked)}
+                  className="w-5 h-5 rounded border-gray-300 text-teal-500 focus:ring-teal-500"
+                />
+                <div>
+                  <span className="text-gray-700 font-medium text-sm">Es ist eine Riester-Rente</span>
+                  <span className="text-xs text-gray-500 block">Riester-Auszahlungen sind KV-/PV-beitragsfrei (§229 Abs. 1 Nr. 5 SGB V)</span>
+                </div>
+              </label>
             </div>
           )}
         </div>
@@ -767,24 +804,66 @@ export default function RentensteuerRechner() {
             <span className="text-gray-600">Brutto-Rente (gesetzlich)</span>
             <span className="font-bold text-gray-900">{formatEuro(ergebnis.monatlicheRente)}</span>
           </div>
-          
+
+          {hatBetriebsrente && betriebsrente > 0 && (
+            <div className="flex justify-between py-2 border-b border-gray-100">
+              <span className="text-gray-600">+ {istRiester ? 'Riester-Rente' : 'Betriebsrente'} (brutto)</span>
+              <span className="font-bold text-gray-900">{formatEuro(betriebsrente)}</span>
+            </div>
+          )}
+
           <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
-            <span>− Krankenversicherung (ca. {((KV_BEITRAG + KV_ZUSATZBEITRAG) * 100).toFixed(2)}%)</span>
+            <span>− Krankenversicherung gesetzl. Rente (ca. {((KV_BEITRAG + KV_ZUSATZBEITRAG) * 100).toFixed(2).replace('.', ',')}%)</span>
             <span>{formatEuro(ergebnis.kvMonatlich)}</span>
           </div>
-          
+
           <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
-            <span>− Pflegeversicherung ({!hatKinder && alter >= 23 ? '4,2%' : '3,6%'})</span>
+            <span>− Pflegeversicherung gesetzl. Rente ({!hatKinder && alter >= 23 ? '4,2%' : '3,6%'})</span>
             <span>{formatEuro(ergebnis.pvMonatlich)}</span>
           </div>
-          
+
+          {hatBetriebsrente && betriebsrente > 0 && ergebnis.betriebsrenteSvPflichtig && (
+            <>
+              <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
+                <span>− Krankenversicherung Betriebsrente (17,5% über Freibetrag {formatEuro(KV_FREIBETRAG_VERSORGUNG_MONAT)})</span>
+                <span>{formatEuro(ergebnis.kvBetriebsrenteMonatlich)}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
+                <span>− Pflegeversicherung Betriebsrente ({!hatKinder && alter >= 23 ? '4,2%' : '3,6%'}, ohne Freibetrag)</span>
+                <span>{formatEuro(ergebnis.pvBetriebsrenteMonatlich)}</span>
+              </div>
+            </>
+          )}
+
+          {hatBetriebsrente && betriebsrente > 0 && !ergebnis.betriebsrenteSvPflichtig && (
+            <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
+              <span>
+                {istRiester
+                  ? 'Riester-Rente KV-/PV-beitragsfrei (§229 Abs. 1 Nr. 5 SGB V)'
+                  : `Betriebsrente KV-/PV-beitragsfrei (bis Freigrenze ${formatEuro(KV_FREIBETRAG_VERSORGUNG_MONAT)}/Monat)`}
+              </span>
+              <span>0,00 €</span>
+            </div>
+          )}
+
+          {hatBetriebsrente && betriebsrente > 0 && (
+            <div className="flex justify-between py-2 border-b border-gray-200 text-red-700 font-semibold">
+              <span>= SV-Beiträge gesamt (KV + PV)</span>
+              <span>{formatEuro(ergebnis.svGesamtMonatlich)}</span>
+            </div>
+          )}
+
           <div className="flex justify-between py-2 border-b border-gray-100 text-red-600">
             <span>− Einkommensteuer + Soli {kirchensteuerSatz > 0 ? '+ KiSt' : ''}</span>
             <span>{formatEuro(ergebnis.steuerMonatlich)}</span>
           </div>
-          
+
           <div className="flex justify-between py-3 bg-teal-100 -mx-6 px-6 rounded-b-xl">
-            <span className="font-bold text-teal-800">= Netto-Rente</span>
+            <span className="font-bold text-teal-800">
+              {hatBetriebsrente && betriebsrente > 0
+                ? `= Netto (gesetzl. Rente + ${istRiester ? 'Riester-Rente' : 'Betriebsrente'})`
+                : '= Netto-Rente'}
+            </span>
             <span className="font-bold text-2xl text-teal-900">{formatEuro(ergebnis.nettoRenteMonatlich)}</span>
           </div>
         </div>
@@ -1020,6 +1099,10 @@ export default function RentensteuerRechner() {
           </li>
           <li className="flex gap-2">
             <span>•</span>
+            <span><strong>Betriebsrente &amp; KVdR:</strong> Die KV-/PV-Beiträge auf die Betriebsrente (voller Satz über dem Freibetrag von 197,75 €/Monat) gelten für in der KVdR Pflichtversicherte — freiwillig oder privat Versicherte weichen ab</span>
+          </li>
+          <li className="flex gap-2">
+            <span>•</span>
             <span><strong>Zumutbare Belastung:</strong> Bei außergewöhnlichen Belastungen wird ein Eigenanteil abgezogen (vereinfacht dargestellt)</span>
           </li>
         </ul>
@@ -1142,7 +1225,23 @@ export default function RentensteuerRechner() {
           >
             § 32a EStG – Einkommensteuer-Tarif 2026
           </a>
-          <a 
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_5/__226.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 226 SGB V – Beitragspflichtige Einnahmen &amp; KV-Freibetrag auf Versorgungsbezüge
+          </a>
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_5/__229.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 229 SGB V – Versorgungsbezüge (Betriebsrente) in der Krankenversicherung
+          </a>
+          <a
             href="https://www.bmf-steuerrechner.de"
             target="_blank"
             rel="noopener noreferrer"
