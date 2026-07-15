@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-type Modus = 'prozentwert' | 'prozentsatz' | 'veraenderung';
+type Modus = 'prozentwert' | 'prozentsatz' | 'grundwert' | 'veraenderung';
 
 const MODI = [
   {
@@ -15,6 +15,13 @@ const MODI = [
     icon: '📊',
     title: 'Prozentsatz berechnen',
     subtitle: 'X ist wieviel % von Y?',
+    beispiel: '30 ist 15% von 200'
+  },
+  {
+    id: 'grundwert' as const,
+    icon: '🔍',
+    title: 'Grundwert berechnen',
+    subtitle: 'X ist Y% – von welchem Wert?',
     beispiel: '30 ist 15% von 200'
   },
   {
@@ -36,7 +43,11 @@ export default function ProzentRechner() {
   // Prozentsatz: X ist wieviel % von Y
   const [teil, setTeil] = useState(30);
   const [ganzes, setGanzes] = useState(200);
-  
+
+  // Grundwert: X ist Y% – von welchem Wert?
+  const [gwTeil, setGwTeil] = useState(30);
+  const [gwProzent, setGwProzent] = useState(15);
+
   // Veränderung: Von X auf Y
   const [alterWert, setAlterWert] = useState(100);
   const [neuerWert, setNeuerWert] = useState(120);
@@ -57,6 +68,14 @@ export default function ProzentRechner() {
         prozentsatz,
         formel: `${teil} ist ${prozentsatz.toLocaleString('de-DE', { maximumFractionDigits: 4 })}% von ${ganzes}`
       };
+    } else if (modus === 'grundwert') {
+      // Grundwert = Prozentwert ÷ (Prozentsatz / 100)
+      if (gwProzent === 0) return { grundwertErgebnis: 0, formel: 'Division durch 0 nicht möglich' };
+      const grundwertErgebnis = gwTeil / (gwProzent / 100);
+      return {
+        grundwertErgebnis,
+        formel: `${gwTeil} ist ${gwProzent}% von ${grundwertErgebnis.toLocaleString('de-DE', { maximumFractionDigits: 4 })}`
+      };
     } else {
       // Prozentuale Veränderung = ((Neuer Wert - Alter Wert) / Alter Wert) × 100
       if (alterWert === 0) return { veraenderung: 0, formel: 'Division durch 0 nicht möglich' };
@@ -69,7 +88,7 @@ export default function ProzentRechner() {
         formel: `Von ${alterWert} auf ${neuerWert} = ${vorzeichen}${veraenderung.toLocaleString('de-DE', { maximumFractionDigits: 4 })}%`
       };
     }
-  }, [modus, prozent, grundwert, teil, ganzes, alterWert, neuerWert]);
+  }, [modus, prozent, grundwert, teil, ganzes, gwTeil, gwProzent, alterWert, neuerWert]);
 
   const formatNumber = (n: number, decimals = 2) => 
     n.toLocaleString('de-DE', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
@@ -186,6 +205,40 @@ export default function ProzentRechner() {
           </div>
         )}
 
+        {modus === 'grundwert' && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-3 gap-3 items-end">
+              <label className="col-span-1">
+                <span className="text-sm text-gray-600 block mb-1">Bekannter Wert</span>
+                <input
+                  type="number"
+                  value={gwTeil}
+                  onChange={(e) => setGwTeil(parseFloat(e.target.value) || 0)}
+                  className="w-full px-4 py-3 text-xl font-bold text-center border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                  step="0.01"
+                />
+              </label>
+              <div className="text-center text-2xl text-gray-400 pb-3">sind</div>
+              <label className="col-span-1">
+                <span className="text-sm text-gray-600 block mb-1">Prozentsatz</span>
+                <div className="relative">
+                  <input
+                    type="number"
+                    value={gwProzent}
+                    onChange={(e) => setGwProzent(parseFloat(e.target.value) || 0)}
+                    className="w-full px-4 py-3 text-xl font-bold text-center border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                    step="0.01"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">%</span>
+                </div>
+              </label>
+            </div>
+            <div className="text-center text-gray-500 text-sm">
+              {gwTeil} sind {gwProzent}% von welchem Grundwert?
+            </div>
+          </div>
+        )}
+
         {modus === 'veraenderung' && (
           <div className="space-y-4">
             <div className="grid grid-cols-3 gap-3 items-end">
@@ -266,6 +319,28 @@ export default function ProzentRechner() {
           </>
         )}
 
+        {modus === 'grundwert' && (
+          <>
+            <div className="text-4xl font-bold mb-3">
+              {formatNumber(ergebnis.grundwertErgebnis || 0)}
+            </div>
+            <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-blue-100">Bekannter Wert (Prozentwert)</span>
+                <span className="font-semibold">{formatNumber(gwTeil)}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-blue-100">Prozentsatz</span>
+                <span className="font-semibold">{gwProzent}%</span>
+              </div>
+              <div className="border-t border-white/20 pt-2 flex justify-between items-center">
+                <span className="text-blue-100 font-medium">= Grundwert (100%)</span>
+                <span className="text-xl font-bold">{formatNumber(ergebnis.grundwertErgebnis || 0)}</span>
+              </div>
+            </div>
+          </>
+        )}
+
         {modus === 'veraenderung' && (
           <>
             <div className={`text-4xl font-bold mb-3 ${(ergebnis.veraenderung || 0) >= 0 ? '' : 'text-red-200'}`}>
@@ -319,6 +394,17 @@ export default function ProzentRechner() {
               </code>
               <p className="mt-3 text-blue-700">
                 <strong>Beispiel:</strong> ({teil} ÷ {ganzes}) × 100 = {formatNumber(ergebnis.prozentsatz || 0)}%
+              </p>
+            </div>
+          )}
+          {modus === 'grundwert' && (
+            <div className="p-4 bg-blue-50 rounded-xl">
+              <p className="font-semibold text-blue-800 mb-2">Grundwert berechnen:</p>
+              <code className="block bg-blue-100 p-3 rounded text-blue-900 font-mono text-sm">
+                Grundwert = Prozentwert ÷ (Prozentsatz ÷ 100)
+              </code>
+              <p className="mt-3 text-blue-700">
+                <strong>Beispiel:</strong> {gwTeil} ÷ ({gwProzent} ÷ 100) = {formatNumber(ergebnis.grundwertErgebnis || 0)}
               </p>
             </div>
           )}
