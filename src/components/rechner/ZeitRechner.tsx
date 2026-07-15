@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
-type Modus = 'addieren' | 'differenz';
+type Modus = 'addieren' | 'differenz' | 'abjetzt';
 
 interface ZeitEingabe {
   stunden: number;
@@ -23,6 +23,13 @@ const MODI = [
     subtitle: 'Zeit zwischen zwei Uhrzeiten',
     beispiel: '08:00 bis 17:30 = 9:30',
   },
+  {
+    id: 'abjetzt' as const,
+    icon: '⏰',
+    title: 'Ab jetzt rechnen',
+    subtitle: 'Jetzt plus/minus Stunden und Minuten',
+    beispiel: 'jetzt + 72 Stunden = Datum & Uhrzeit',
+  },
 ];
 
 export default function ZeitRechner() {
@@ -38,6 +45,15 @@ export default function ZeitRechner() {
   const [startZeit, setStartZeit] = useState<ZeitEingabe>({ stunden: 8, minuten: 0, sekunden: 0 });
   const [endZeit, setEndZeit] = useState<ZeitEingabe>({ stunden: 17, minuten: 30, sekunden: 0 });
   const [ueberMitternacht, setUeberMitternacht] = useState(false);
+
+  // Modus: Ab jetzt — "jetzt" erst nach dem Mount setzen (statischer Build, kein Hydration-Mismatch)
+  const [abJetztStunden, setAbJetztStunden] = useState(72);
+  const [abJetztMinuten, setAbJetztMinuten] = useState(0);
+  const [abJetztRichtung, setAbJetztRichtung] = useState<'+' | '-'>('+');
+  const [jetzt, setJetzt] = useState<Date | null>(null);
+  useEffect(() => {
+    setJetzt(new Date());
+  }, []);
 
   // Hilfsfunktionen
   const zeitZuSekunden = (zeit: ZeitEingabe): number => {
@@ -115,6 +131,31 @@ export default function ZeitRechner() {
       dezimalStunden,
     };
   }, [startZeit, endZeit, ueberMitternacht]);
+
+  // Berechnung: Ab jetzt
+  const ergebnisAbJetzt = useMemo(() => {
+    if (!jetzt) return null;
+    const gesamtMinuten = abJetztStunden * 60 + abJetztMinuten;
+    const vorzeichen = abJetztRichtung === '+' ? 1 : -1;
+    const ziel = new Date(jetzt.getTime() + vorzeichen * gesamtMinuten * 60 * 1000);
+
+    const tage = Math.floor(gesamtMinuten / 1440);
+    const restStunden = Math.floor((gesamtMinuten % 1440) / 60);
+    const restMinuten = gesamtMinuten % 60;
+    const umrechnungTeile: string[] = [];
+    if (tage > 0) umrechnungTeile.push(`${tage} Tag${tage !== 1 ? 'e' : ''}`);
+    if (restStunden > 0) umrechnungTeile.push(`${restStunden} Std`);
+    if (restMinuten > 0) umrechnungTeile.push(`${restMinuten} Min`);
+
+    return {
+      ziel,
+      zielDatum: ziel.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' }),
+      zielUhrzeit: ziel.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
+      jetztDatum: jetzt.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+      jetztUhrzeit: jetzt.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
+      umrechnung: umrechnungTeile.length > 0 ? umrechnungTeile.join(' ') : '0 Min',
+    };
+  }, [jetzt, abJetztStunden, abJetztMinuten, abJetztRichtung]);
 
   // Zeiteingabe-Komponente
   const ZeitInput = ({
@@ -340,6 +381,113 @@ export default function ZeitRechner() {
               </div>
             </label>
           </div>
+        </div>
+      )}
+
+      {/* Eingabefelder: Ab jetzt */}
+      {modus === 'abjetzt' && (
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+          <h3 className="font-bold text-gray-800 mb-4">📝 Dauer eingeben</h3>
+
+          <div className="space-y-4">
+            <div className="flex gap-1">
+              <button
+                onClick={() => setAbJetztRichtung('+')}
+                className={`flex-1 px-3 py-2 rounded-lg text-sm font-bold transition-all ${
+                  abJetztRichtung === '+'
+                    ? 'bg-green-500 text-white'
+                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                }`}
+              >
+                + in der Zukunft
+              </button>
+              <button
+                onClick={() => setAbJetztRichtung('-')}
+                className={`flex-1 px-3 py-2 rounded-lg text-sm font-bold transition-all ${
+                  abJetztRichtung === '-'
+                    ? 'bg-red-500 text-white'
+                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                }`}
+              >
+                − in der Vergangenheit
+              </button>
+            </div>
+
+            <div className="flex gap-2 items-center">
+              <div className="flex-1">
+                <input
+                  type="number"
+                  min="0"
+                  max="9999"
+                  value={abJetztStunden}
+                  onChange={(e) => setAbJetztStunden(Math.max(0, parseInt(e.target.value) || 0))}
+                  className="w-full px-3 py-3 text-lg font-bold text-center border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                />
+                <span className="text-xs text-gray-400 block text-center mt-1">Stunden</span>
+              </div>
+              <span className="text-2xl font-bold text-gray-400 pb-5">:</span>
+              <div className="flex-1">
+                <input
+                  type="number"
+                  min="0"
+                  max="59"
+                  value={abJetztMinuten}
+                  onChange={(e) => setAbJetztMinuten(Math.min(59, Math.max(0, parseInt(e.target.value) || 0)))}
+                  className="w-full px-3 py-3 text-lg font-bold text-center border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+                />
+                <span className="text-xs text-gray-400 block text-center mt-1">Minuten</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {[24, 48, 72, 96].map((h) => (
+                <button
+                  key={h}
+                  onClick={() => { setAbJetztStunden(h); setAbJetztMinuten(0); }}
+                  className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
+                    abJetztStunden === h && abJetztMinuten === 0
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {h} Std
+                </button>
+              ))}
+              <button
+                onClick={() => setJetzt(new Date())}
+                className="ml-auto px-3 py-1 rounded-lg text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all"
+              >
+                🔄 Jetzt aktualisieren
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Ergebnis: Ab jetzt */}
+      {modus === 'abjetzt' && (
+        <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg p-6 text-white mb-6">
+          <h3 className="text-sm font-medium text-blue-100 mb-2">
+            Jetzt {abJetztRichtung === '+' ? 'plus' : 'minus'} {abJetztStunden} Std{abJetztMinuten > 0 ? ` ${abJetztMinuten} Min` : ''} ist:
+          </h3>
+          {ergebnisAbJetzt ? (
+            <>
+              <div className="text-3xl font-bold mb-1">{ergebnisAbJetzt.zielDatum}</div>
+              <div className="text-4xl font-bold mb-3">{ergebnisAbJetzt.zielUhrzeit} Uhr</div>
+              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-blue-100">Ausgangszeit (jetzt)</span>
+                  <span className="font-semibold">{ergebnisAbJetzt.jetztDatum}, {ergebnisAbJetzt.jetztUhrzeit} Uhr</span>
+                </div>
+                <div className="border-t border-white/20 pt-2 flex justify-between items-center">
+                  <span className="text-blue-100">{abJetztStunden} Std{abJetztMinuten > 0 ? ` ${abJetztMinuten} Min` : ''} entsprechen</span>
+                  <span className="font-semibold">{ergebnisAbJetzt.umrechnung}</span>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="text-2xl font-bold">…</div>
+          )}
         </div>
       )}
 
