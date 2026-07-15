@@ -1003,7 +1003,7 @@ export const rechnerListe: Rechner[] = [
     icon: '📊',
     kategorie: 'wohnen',
     fertig: true,
-    seoKeywords: 'Tilgungsrechner, Tilgungsplan berechnen, Kredit Tilgung',
+    seoKeywords: 'Tilgungsrechner, Tilgungsplan berechnen, Kredit Tilgung, Annuitätendarlehen Rechner, Annuitätenrechner, Zins und Tilgungsrechner',
   },
   {
     id: 'eigenkapital',
