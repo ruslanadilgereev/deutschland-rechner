@@ -82,9 +82,14 @@ const keywords = "Lohnsteuer Rechner, Lohnsteuer berechnen, Lohnsteuer 2026, Ste
             Ja. Das Bundesfinanzministerium stellt für Entwickler eine offizielle Schnittstelle bereit: Über die
             BMF-Steuerrechner-API auf <a href="https://www.bmf-steuerrechner.de" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">bmf-steuerrechner.de</a> lässt
             sich die amtliche Lohnsteuerberechnung nach Programmablaufplan (PAP) in eigene Anwendungen einbinden,
-            zum Beispiel in Lohnabrechnungssoftware. Wenn Sie keine technische Integration brauchen, sondern nur
+            zum Beispiel in Lohnabrechnungssoftware. Die Abfrage läuft als XML-Webservice: Man übergibt die
+            PAP-Eingangsparameter – u. a. <code>RE4</code> (Jahresbruttolohn in Cent), <code>STKL</code>
+            (Steuerklasse 1–6) und <code>LZZ</code> (Lohnzahlungszeitraum) – und erhält als Antwort u. a.
+            <code>LSTLZZ</code> (Lohnsteuer für den Zeitraum). Das BMF veröffentlicht den PAP jedes Jahr neu;
+            die jeweils gültige Version samt Parameterdoku finden Sie direkt auf bmf-steuerrechner.de.
+            Wenn Sie keine technische Integration brauchen, sondern nur
             Ihre Lohnsteuer überschlagen möchten, genügt der Rechner oben auf dieser Seite – direkt im Browser,
-            ohne Anmeldung.
+            ohne Anmeldung. Er implementiert denselben PAP 2026 clientseitig.
           </p>
         </div>
       </div>
