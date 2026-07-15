@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 // Grundrente-Rechner 2026 - Quellen: Deutsche Rentenversicherung, BMAS
 // Stand: Werte ab 01.01.2026
 const GRUNDRENTE_2026 = {
-  rentenwert: 40.79,           // € pro Entgeltpunkt (ab 01.07.2025)
+  rentenwert: 42.52,           // € pro Entgeltpunkt (ab 01.07.2026, § 1 RWBestV 2026)
   maxEntgeltpunkte: 0.8,       // Maximale Aufwertung auf 0,8 EP
   abzug: 0.125,                // 12,5% Abzug von der Aufwertung
   minGrundrentenzeiten: 33,    // Mindestens 33 Jahre
@@ -13,14 +13,14 @@ const GRUNDRENTE_2026 = {
   minVerdienst: 1299,          // € brutto/Monat (30% des Durchschnitts)
   maxVerdienst: 3463,          // € brutto/Monat (80% des Durchschnitts)
   
-  // Freibeträge für Einkommensprüfung (2026)
-  freibetragAlleinstehend: 1492,  // € zu versteuerndes Einkommen/Monat (DRV 2026)
-  freibetragPaar: 2327,           // € zu versteuerndes Einkommen/Monat (DRV 2026)
-  
+  // Freibeträge für Einkommensprüfung (§ 97a SGB VI: 36,56- bzw. 57,03-facher Rentenwert, ab 01.07.2026)
+  freibetragAlleinstehend: 1555,  // € zu versteuerndes Einkommen/Monat (36,56 × 42,52 €, aufgerundet)
+  freibetragPaar: 2425,           // € zu versteuerndes Einkommen/Monat (57,03 × 42,52 €, aufgerundet)
+
   // Anrechnungsstufen
   anrechnungsstufe1: 0.60,        // 60% werden angerechnet bis zur 2. Grenze
-  stufe1Grenze: 417,              // € über Freibetrag (Alleinstehend): 1.909 - 1.492 = 417
-  stufe1GrenzePaar: 417,          // € über Freibetrag (Paare): 2.744 - 2.327 = 417
+  stufe1Grenze: 435,              // € über Freibetrag (Alleinstehend): 1.990 - 1.555 = 435 (46,78 × Rentenwert)
+  stufe1GrenzePaar: 436,          // € über Freibetrag (Paare): 2.861 - 2.425 = 436 (67,27 × Rentenwert)
 };
 
 interface GrundrenteErgebnis {

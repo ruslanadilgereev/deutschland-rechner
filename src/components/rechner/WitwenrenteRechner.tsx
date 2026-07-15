@@ -1,18 +1,18 @@
 import { useState, useMemo } from 'react';
 
-// === OFFIZIELLE WERTE 2026 (Stand: 1. Juli 2025 - 30. Juni 2026) ===
+// === OFFIZIELLE WERTE 2026 (Stand: ab 1. Juli 2026) ===
 // Quelle: Deutsche Rentenversicherung, § 46 SGB VI, § 97 SGB VI
 
-// Aktueller Rentenwert (bundeseinheitlich ab 01.07.2025)
-const RENTENWERT_2025 = 40.79; // Euro pro Entgeltpunkt
+// Aktueller Rentenwert (bundeseinheitlich ab 01.07.2026, § 1 RWBestV 2026, BGBl. 2026 I Nr. 178)
+const RENTENWERT_2026 = 42.52; // Euro pro Entgeltpunkt
 
 // Freibeträge für Einkommensanrechnung (§ 97 SGB VI)
 const FREIBETRAG_FAKTOR = 26.4; // 26,4-faches des Rentenwerts
 const FREIBETRAG_KIND_FAKTOR = 5.6; // 5,6-faches pro Kind
 
 // Berechnete Freibeträge
-const FREIBETRAG_BASIS = RENTENWERT_2025 * FREIBETRAG_FAKTOR; // 1.076,86 €
-const FREIBETRAG_PRO_KIND = RENTENWERT_2025 * FREIBETRAG_KIND_FAKTOR; // 228,42 €
+const FREIBETRAG_BASIS = RENTENWERT_2026 * FREIBETRAG_FAKTOR; // 1.122,53 €
+const FREIBETRAG_PRO_KIND = RENTENWERT_2026 * FREIBETRAG_KIND_FAKTOR; // 238,11 €
 
 // Rentenartfaktoren (§ 67 SGB VI, § 255 SGB VI)
 const RENTENARTFAKTOR_GROSS_NEU = 0.55; // 55% (neues Recht ab 2002)
@@ -174,7 +174,7 @@ export default function WitwenrenteRechner() {
       // Konstanten
       freibetragBasis: FREIBETRAG_BASIS,
       freibetragProKind: FREIBETRAG_PRO_KIND,
-      rentenwert: RENTENWERT_2025,
+      rentenwert: RENTENWERT_2026,
     };
   }, [renteVerstorbener, alterHinterbliebener, hatKinder, anzahlKinder, kinderUnter18, 
       istErwerbsgemindert, eigeneRente, arbeitseinkommen, rentenbezugAb2011, altesRecht, sterbevierteljahr]);

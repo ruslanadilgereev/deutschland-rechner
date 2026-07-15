@@ -93,7 +93,7 @@ export default function MinijobRechner() {
     const rentenPunkteJahr = rentenversicherungspflicht 
       ? (bruttolohn * 12 / 51944) // Durchschnittsentgelt 2026: 51.944€ (vorläufig, Bundesregierung)
       : 0;
-    const rentenProMonat = rentenPunkteJahr * 40.79; // Rentenwert 2026: 40,79€ (einheitlich seit 01.07.2025)
+    const rentenProMonat = rentenPunkteJahr * 42.52; // Rentenwert 2026: 42,52€ (seit 01.07.2026, § 1 RWBestV 2026)
 
     return {
       // Arbeitgeber

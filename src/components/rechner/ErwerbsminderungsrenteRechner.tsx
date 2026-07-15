@@ -13,8 +13,8 @@ import { useState, useMemo } from 'react';
 // Quelle: https://www.gesetze-im-internet.de/sgb_6/
 // ============================================================================
 
-// Aktueller Rentenwert (gültig 1.7.2025 - 30.6.2026)
-const RENTENWERT = 40.79;
+// Aktueller Rentenwert (ab 01.07.2026, § 1 RWBestV 2026)
+const RENTENWERT = 42.52;
 
 // Durchschnittsentgelt 2026 für Entgeltpunkte-Berechnung
 // Quelle: Deutsche Rentenversicherung

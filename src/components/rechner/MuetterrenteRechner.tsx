@@ -17,8 +17,8 @@ import { useState, useMemo } from 'react';
  * - § 70 SGB VI (Entgeltpunkte pro Monat: 0,0833)
  */
 const MUETTERRENTE_2026 = {
-  // Aktueller Rentenwert (ab 01.07.2025 bundeseinheitlich)
-  rentenwert: 40.79,
+  // Aktueller Rentenwert (ab 01.07.2026 bundeseinheitlich, § 1 RWBestV 2026)
+  rentenwert: 42.52,
   
   // Entgeltpunkte für Kindererziehungszeiten
   entgeltpunkteVor1992: 2.5,  // Aktuell (Mütterrente II)
@@ -399,7 +399,7 @@ export default function MuetterrenteRechner() {
             § 56 SGB VI – Kindererziehungszeiten
           </a>
           <p className="text-xs text-gray-500 mt-2">
-            Rentenwert ab 01.07.2025: 40,79 € (bundeseinheitlich) | Stand: Januar 2026
+            Rentenwert ab 01.07.2026: 42,52 € (bundeseinheitlich) | Stand: Juli 2026
           </p>
         </div>
       </div>

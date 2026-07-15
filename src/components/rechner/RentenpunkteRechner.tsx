@@ -2,10 +2,9 @@ import { useState } from 'react';
 
 // Rentenpunkte / Entgeltpunkte 2026
 // Quelle: Deutsche Rentenversicherung – Sozialversicherungsrechengrößen 2026,
-// Rentenanpassung 2026 (Renten steigen zum 1. Juli 2026 um 4,24 %)
+// Rentenanpassung 2026 (Renten zum 1. Juli 2026 um 4,24 % gestiegen, § 1 RWBestV 2026)
 const DURCHSCHNITTSENTGELT_2026 = 51944; // € vorläufiges Durchschnittsentgelt 2026 (1 EP)
-const RENTENWERT_AKTUELL = 40.79; // € pro Entgeltpunkt (seit 1. Juli 2025)
-const RENTENWERT_AB_JULI_2026 = 42.52; // € pro Entgeltpunkt (ab 1. Juli 2026, +4,24 %)
+const RENTENWERT_AKTUELL = 42.52; // € pro Entgeltpunkt (seit 1. Juli 2026, +4,24 %)
 const BBG_RV_2026 = 101400; // € Beitragsbemessungsgrenze Rente 2026 (bundeseinheitlich)
 const MAX_EP_PRO_JAHR = BBG_RV_2026 / DURCHSCHNITTSENTGELT_2026; // ≈ 1,9521 EP
 
@@ -21,7 +20,6 @@ export default function RentenpunkteRechner() {
 
   const epGesamt = epProJahr * jahre;
   const monatsRenteHeute = epGesamt * RENTENWERT_AKTUELL;
-  const monatsRenteAbJuli2026 = epGesamt * RENTENWERT_AB_JULI_2026;
   const jahresRenteHeute = monatsRenteHeute * 12;
 
   const fmt = (n: number) =>
@@ -123,14 +121,6 @@ export default function RentenpunkteRechner() {
 
           <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
             <div className="flex justify-between items-center">
-              <span className="text-emerald-100">Monatsrente ab Juli 2026</span>
-              <span className="text-xl font-bold">{fmt(monatsRenteAbJuli2026)} €</span>
-            </div>
-            <p className="text-xs text-emerald-200 mt-1">mit Rentenwert 42,52 € (+4,24 %)</p>
-          </div>
-
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-            <div className="flex justify-between items-center">
               <span className="text-emerald-100">Jahresrente (Rentenwert heute)</span>
               <span className="text-xl font-bold">{fmt(jahresRenteHeute)} €</span>
             </div>
@@ -168,11 +158,7 @@ export default function RentenpunkteRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Aktueller Rentenwert:</strong> 40,79 € pro Entgeltpunkt (seit 1. Juli 2025)</span>
-          </li>
-          <li className="flex gap-2">
-            <span>✓</span>
-            <span><strong>Ab 1. Juli 2026:</strong> 42,52 € pro Entgeltpunkt (Rentenanpassung +4,24 %)</span>
+            <span><strong>Aktueller Rentenwert:</strong> 42,52 € pro Entgeltpunkt (seit 1. Juli 2026, Rentenanpassung +4,24 %)</span>
           </li>
           <li className="flex gap-2">
             <span>✓</span>

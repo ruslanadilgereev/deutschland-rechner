@@ -80,8 +80,8 @@ export default function SabbaticalRechner() {
     const entgeltpunkteVerlust = entgeltpunkteVorher - entgeltpunkteNachher;
     const entgeltpunkteVerlustGesamt = entgeltpunkteVerlust * (gesamtMonate / 12);
     
-    // Aktueller Rentenwert (seit 01.07.2025)
-    const rentenwert = 40.79; // €/EP/Monat
+    // Aktueller Rentenwert (seit 01.07.2026, § 1 RWBestV 2026)
+    const rentenwert = 42.52; // €/EP/Monat
     const rentenVerlustMonatlich = entgeltpunkteVerlustGesamt * rentenwert;
     
     // === 8. Zeitangaben formatieren ===
@@ -507,7 +507,7 @@ export default function SabbaticalRechner() {
         </div>
         
         <p className="text-xs text-gray-500 mt-4">
-          Berechnung basiert auf Durchschnittsentgelt 51.944€ (vorläufig 2026) und aktuellem Rentenwert 40,79€ (seit 01.07.2025).
+          Berechnung basiert auf Durchschnittsentgelt 51.944€ (vorläufig 2026) und aktuellem Rentenwert 42,52€ (seit 01.07.2026).
           Die tatsächliche Auswirkung hängt von vielen Faktoren ab.
         </p>
       </div>

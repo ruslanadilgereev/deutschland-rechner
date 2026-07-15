@@ -19,8 +19,8 @@ const ATZ_2026 = {
   // Durchschnittsentgelt für Rentenpunkte 2026 (vorläufig)
   durchschnittsentgelt: 47450,    // €/Jahr
   
-  // Aktueller Rentenwert (gültig 01.07.2025–30.06.2026)
-  aktuellerRentenwert: 40.79,     // €/Entgeltpunkt/Monat
+  // Aktueller Rentenwert (ab 01.07.2026, § 1 RWBestV 2026)
+  aktuellerRentenwert: 42.52,     // €/Entgeltpunkt/Monat
 };
 
 interface AtzErgebnis {

@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
 
 // Renten-Rechner 2026 - Quellen: Deutsche Rentenversicherung, BMAS
-// Stand: Rentenwert ab 1. Juli 2025 (bundeseinheitlich)
+// Stand: Rentenwert ab 1. Juli 2026 (bundeseinheitlich, § 1 RWBestV 2026)
 const RENTEN_2026 = {
-  rentenwert: 40.79,           // € pro Entgeltpunkt (ab 01.07.2025)
+  rentenwert: 42.52,           // € pro Entgeltpunkt (ab 01.07.2026)
   durchschnittsentgelt: 51944, // € pro Jahr für 1 Entgeltpunkt (2026)
   beitragssatz: 18.6,          // % vom Bruttolohn (Arbeitnehmer + Arbeitgeber)
   beitragsbemessungsgrenze: 8450, // € pro Monat (bundeseinheitlich, 2026)

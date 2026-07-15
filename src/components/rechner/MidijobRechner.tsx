@@ -255,7 +255,7 @@ export default function MidijobRechner() {
     // ABER: Mindestregel - AN erwirbt Punkte auf vollem Brutto (seit 2022)
     const durchschnittsentgelt2026 = 50493; // Vorläufiges Durchschnittsentgelt 2026
     const rentenpunkteJahr = (bruttolohn * 12) / durchschnittsentgelt2026;
-    const rentenwert2026 = 40.79; // Aktueller Rentenwert (seit Juli 2025)
+    const rentenwert2026 = 42.52; // Aktueller Rentenwert (seit 01.07.2026, § 1 RWBestV 2026)
     const renteProMonat = rentenpunkteJahr * rentenwert2026;
 
     return {
@@ -665,7 +665,7 @@ export default function MidijobRechner() {
             </div>
           </div>
           <p className="text-xs text-blue-600">
-            Berechnung: ({formatEuro(bruttolohn)} × 12) ÷ 50.493€ = {ergebnis.rentenpunkteJahr.toFixed(3)} Punkte × 40,79€ Rentenwert
+            Berechnung: ({formatEuro(bruttolohn)} × 12) ÷ 50.493€ = {ergebnis.rentenpunkteJahr.toFixed(3)} Punkte × 42,52€ Rentenwert
           </p>
         </div>
       </div>
