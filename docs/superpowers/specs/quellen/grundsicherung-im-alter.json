@@ -1,0 +1,351 @@
+{
+  "slug": "grundsicherung-im-alter",
+  "name": "Grundsicherung im Alter-Rechner",
+  "verdict": "CONFIRMED",
+  "research": {
+    "slug": "grundsicherung-im-alter",
+    "calcRule": "Gesamtbedarf = Regelbedarf (Regelbedarfsstufe nach Anlage zu §28 SGB XII) + Mehrbedarfe (§30 SGB XII) + Bedarfe fuer Unterkunft und Heizung in angemessener/tatsaechlicher Hoehe (§42 Nr.4 iVm §42a SGB XII) + ggf. Kranken-/Pflegeversicherungsbeitraege (§42 Nr.2). Leistungsanspruch = Gesamtbedarf minus anrechenbares Einkommen (§82 SGB XII, nach Absetzung der Freibetraege) minus einzusetzendes Vermoegen. Einkommensanrechnung: Vom Erwerbseinkommen 30% absetzen (max. 50% der RBS 1); zusaetzliche Altersvorsorge/weitere Alterseinkuenfte: 100 EUR + 30% des uebersteigenden Betrags freilassen (max. 50% der RBS 1). Regelbedarf RBS 1 (Alleinstehende) = 563 EUR/Monat 2026; RBS 2 (Ehe-/Lebenspartner im gemeinsamen Haushalt) = 506 EUR/Monat 2026 (jeweils via Besitzschutz gegenueber der rechnerischen Fortschreibung auf 557 EUR gehalten).",
+    "inputs": [
+      "Familienstand/Wohnsituation (bestimmt Regelbedarfsstufe 1 oder 2)",
+      "Tatsaechliche angemessene Kosten der Unterkunft (Kaltmiete + Nebenkosten) pro Monat",
+      "Tatsaechliche angemessene Heizkosten pro Monat",
+      "Merkzeichen G bzw. volle Erwerbsminderung (Mehrbedarf 17%)",
+      "Dezentrale Warmwassererzeugung ja/nein (Mehrbedarf 2,3% der RBS)",
+      "Kostenaufwaendige Ernaehrung aus medizinischen Gruenden (Mehrbedarf, individuell)",
+      "Monatliches Renteneinkommen (gesetzliche Rente)",
+      "Monatliches Erwerbseinkommen (falls vorhanden)",
+      "Einkuenfte aus zusaetzlicher/privater Altersvorsorge",
+      "Geburtsjahr (fuer Pruefung Altersgrenze §41)",
+      "Vorhandenes Vermoegen (Vermoegensfreibetrag §90 pruefen)"
+    ],
+    "outputs": [
+      "Gesamtbedarf pro Monat (Regelbedarf + Mehrbedarfe + KdU)",
+      "Anrechenbares Einkommen nach Freibetraegen",
+      "Monatlicher Grundsicherungsanspruch (Auszahlbetrag)",
+      "Hinweis ob Anspruch dem Grunde nach besteht (Altersgrenze/Erwerbsminderung erfuellt)"
+    ],
+    "notes": "Fuer 2026 gelten die Regelbedarfsstufen unveraendert gegenueber 2024/2025, da die rechnerische Fortschreibung (2,25% Basis- + 1,8% ergaenzende Fortschreibung -> 557 EUR fuer RBS 1) niedriger als der aktuelle Betrag ausfiel und daher der gesetzliche Besitzschutz nach §28a Abs.5 SGB XII greift. Amtliche Rechtsgrundlage: RBSFV 2026 (BGBl 2025 Nr. 243) und Anlage zu §28 SGB XII. Die Bedarfe fuer Unterkunft und Heizung sind kommunal/individuell (angemessene tatsaechliche Aufwendungen) und koennen nicht als bundeseinheitlicher Festbetrag angegeben werden - der Rechner braucht dafuer eine Nutzereingabe. Altersgrenze §41: 67 Jahre fuer ab 1964 Geborene (gestaffelt darunter), oder volle dauerhafte Erwerbsminderung ab 18.",
+    "sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_12/__41.html",
+        "title": "§41 SGB XII - Leistungsberechtigte",
+        "section": "§41 Abs.1-4",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "Anspruchsvoraussetzungen dem Grunde nach: Altersgrenze (67 J. ab Jg.1964, gestaffelt), volle dauerhafte Erwerbsminderung ab 18 J., gewoehnlicher Aufenthalt Inland, fehlende Deckung des Lebensunterhalts aus Einkommen/Vermoegen nach §43"
+      },
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_12/__42.html",
+        "title": "§42 SGB XII - Bedarfe",
+        "section": "§42 Nr.1-5",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "Zusammensetzung des Bedarfs: Nr.1 Regelsaetze nach Anlage zu §28, Nr.2 Mehrbedarfe + KV/PV-Beitraege, Nr.4 Bedarfe fuer Unterkunft und Heizung (iVm §42a)"
+      },
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_12/__42a.html",
+        "title": "§42a SGB XII - Bedarfe fuer Unterkunft und Heizung",
+        "section": "§42a Abs.1-2",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "Bedarfe fuer Unterkunft und Heizung werden in angemessener (tatsaechlicher) Hoehe anerkannt; Definition Wohnung; Bemessung bei Mehrpersonenhaushalt/WG/besonderen Wohnformen"
+      },
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "title": "§30 SGB XII - Mehrbedarfe",
+        "section": "§30 Abs.1,2,3,7",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "Mehrbedarfssaetze: 17% der maßgebenden Regelbedarfsstufe bei Merkzeichen G / voller Erwerbsminderung (Abs.1); 17% werdende Muetter (Abs.2); Alleinerziehende 36%/12% (Abs.3); dezentrale Warmwassererzeugung 2,3% RBS 1-2 (Abs.7)"
+      },
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_12/__82.html",
+        "title": "§82 SGB XII - Begriff des Einkommens",
+        "section": "§82 Abs.3,4",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "Einkommensfreibetraege: 30% des Erwerbseinkommens absetzbar, max. 50% der RBS 1; zusaetzliche Altersvorsorge/weitere Alterseinkuenfte 100 EUR + 30% des uebersteigenden Betrags frei, max. 50% der RBS 1"
+      },
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "title": "Anlage zu §28 SGB XII - Regelbedarfsstufen",
+        "section": "Anlage (Tabelle Regelbedarfsstufen 1-6)",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "EUR-Betraege aller Regelbedarfsstufen: RBS1 563, RBS2 506, RBS3 451, RBS4 471, RBS5 390, RBS6 357 (2025 und via Besitzschutz 2026 identisch)"
+      },
+      {
+        "url": "https://www.gesetze-im-internet.de/rbsfv_2026/__1.html",
+        "title": "§1 RBSFV 2026 - Fortschreibungssaetze",
+        "section": "§1 Abs.1-2",
+        "format": "html",
+        "accessible": true,
+        "whatItProves": "Amtliche Verordnung: Basisfortschreibung 2,25%, ergaenzende Fortschreibung 1,8%; da rechnerisch niedriger, gelten die fuer 2025 geltenden Eurobetraege auch zum 1.1.2026 (Besitzschutz)"
+      },
+      {
+        "url": "https://www.bmas.de/SharedDocs/Downloads/DE/Publikationen/a-206k-infoblatt-fortschreibung-der-regelbedarfe-ab-2026.pdf?__blob=publicationFile&v=2",
+        "title": "BMAS Infoblatt Fortschreibung der Regelbedarfe zum 1. Januar 2026",
+        "section": "Vergleich Fortschreibung RBS 1",
+        "format": "pdf",
+        "accessible": true,
+        "whatItProves": "Amtliche Bestaetigung RBS 1 = 563,00 EUR fuer 2026 (Besitzschutz); rechnerische Fortschreibung haette 557,00 EUR ergeben; Stand September 2025"
+      }
+    ],
+    "values": [
+      {
+        "key": "regelbedarfsstufe_1_2026",
+        "value": "563",
+        "unit": "EUR/Monat",
+        "asOf": "2026",
+        "quote": "RBS 1 = 563,00 Euro (Besitzschutz)",
+        "sourceUrl": "https://www.bmas.de/SharedDocs/Downloads/DE/Publikationen/a-206k-infoblatt-fortschreibung-der-regelbedarfe-ab-2026.pdf?__blob=publicationFile&v=2",
+        "sourceSection": "Vergleich der Fortschreibung fuer die Regelbedarfsstufe 1, Spalte Fortschreibung zum 1. Januar 2026"
+      },
+      {
+        "key": "regelbedarfsstufe_2_2026",
+        "value": "506",
+        "unit": "EUR/Monat",
+        "asOf": "2026",
+        "quote": "2026 | Stufe 2 | 506 €",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSection": "Anlage zu §28 SGB XII, Regelbedarfsstufe 2"
+      },
+      {
+        "key": "regelbedarfsstufe_3_2026",
+        "value": "451",
+        "unit": "EUR/Monat",
+        "asOf": "2026",
+        "quote": "2026 | Stufe 3 | 451 €",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSection": "Anlage zu §28 SGB XII, Regelbedarfsstufe 3"
+      },
+      {
+        "key": "regelbedarfsstufe_4_2026",
+        "value": "471",
+        "unit": "EUR/Monat",
+        "asOf": "2026",
+        "quote": "2026 | Stufe 4 | 471 €",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSection": "Anlage zu §28 SGB XII, Regelbedarfsstufe 4"
+      },
+      {
+        "key": "regelbedarfsstufe_5_2026",
+        "value": "390",
+        "unit": "EUR/Monat",
+        "asOf": "2026",
+        "quote": "2026 | Stufe 5 | 390 €",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSection": "Anlage zu §28 SGB XII, Regelbedarfsstufe 5"
+      },
+      {
+        "key": "regelbedarfsstufe_6_2026",
+        "value": "357",
+        "unit": "EUR/Monat",
+        "asOf": "2026",
+        "quote": "2026 | Stufe 6 | 357 €",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSection": "Anlage zu §28 SGB XII, Regelbedarfsstufe 6"
+      },
+      {
+        "key": "mehrbedarf_merkzeichen_g_erwerbsminderung",
+        "value": "17",
+        "unit": "% der maßgebenden Regelbedarfsstufe",
+        "asOf": "2026",
+        "quote": "17 vom Hundert der maßgebenden Regelbedarfsstufe (bei Merkzeichen G)",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "sourceSection": "§30 Abs.1 SGB XII"
+      },
+      {
+        "key": "mehrbedarf_warmwasser_dezentral_rbs1_2",
+        "value": "2,3",
+        "unit": "% der Regelbedarfsstufe (RBS 1-2)",
+        "asOf": "2026",
+        "quote": "2,3% (Regelbedarfsstufen 1-2) fuer dezentrale Warmwassererzeugung",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "sourceSection": "§30 Abs.7 SGB XII"
+      },
+      {
+        "key": "mehrbedarf_werdende_mutter",
+        "value": "17",
+        "unit": "% der maßgebenden Regelbedarfsstufe",
+        "asOf": "2026",
+        "quote": "17 vom Hundert der maßgebenden Regelbedarfsstufe (ab 12. Schwangerschaftswoche)",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "sourceSection": "§30 Abs.2 SGB XII"
+      },
+      {
+        "key": "einkommensfreibetrag_erwerbseinkommen",
+        "value": "30",
+        "unit": "% des Erwerbseinkommens, max. 50% der RBS 1",
+        "asOf": "2026",
+        "quote": "30 vom Hundert des Einkommens aus selbstaendiger und nichtselbstaendiger Taetigkeit, jedoch maximal 50% der Regelbedarfsstufe 1",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__82.html",
+        "sourceSection": "§82 Abs.3 SGB XII"
+      },
+      {
+        "key": "freibetrag_zusaetzliche_altersvorsorge",
+        "value": "100 EUR + 30% des uebersteigenden Betrags",
+        "unit": "EUR/Monat, max. 50% der RBS 1",
+        "asOf": "2026",
+        "quote": "100 Euro monatlich plus 30 vom Hundert der darueber liegenden Betraege, maximal 50% der Regelbedarfsstufe 1",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__82.html",
+        "sourceSection": "§82 Abs.4/5 SGB XII (zusaetzliche Altersvorsorge)"
+      },
+      {
+        "key": "altersgrenze_ab_jahrgang_1964",
+        "value": "67",
+        "unit": "Jahre",
+        "asOf": "2026",
+        "quote": "Ab Jahrgang 1964: Altersgrenze bei 67 Jahren",
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__41.html",
+        "sourceSection": "§41 Abs.2 SGB XII"
+      },
+      {
+        "key": "fortschreibung_basis_2026",
+        "value": "2,25",
+        "unit": "%",
+        "asOf": "ab 01.01.2026",
+        "quote": "Basisfortschreibung: 2,25 Prozent",
+        "sourceUrl": "https://www.gesetze-im-internet.de/rbsfv_2026/__1.html",
+        "sourceSection": "§1 Abs.1 RBSFV 2026"
+      },
+      {
+        "key": "fortschreibung_ergaenzend_2026",
+        "value": "1,8",
+        "unit": "%",
+        "asOf": "ab 01.01.2026",
+        "quote": "Ergaenzende Fortschreibung: 1,8 Prozent",
+        "sourceUrl": "https://www.gesetze-im-internet.de/rbsfv_2026/__1.html",
+        "sourceSection": "§1 Abs.1 RBSFV 2026"
+      }
+    ],
+    "unconfirmed": [
+      "Grundrentenfreibetrag nach §82a SGB XII (zusaetzlicher Freibetrag fuer Renteneinkommen bei mind. 33 Jahren Grundrentenzeiten: Grundfreibetrag + 30% der uebersteigenden Rente, gedeckelt) - wurde nicht gefetcht, muss noch an §82a SGB XII belegt werden. Relevant fuer Rentner im Grundsicherungsrechner.",
+      "Vermoegensfreibetrag: Nach §90 Abs.2 Nr.9 SGB XII iVm §1 der Verordnung zu §90 SGB XII (Schonvermoegen, aktuell 10.000 EUR pro Person) - Paragraph wurde nicht gefetcht, Betrag unbestaetigt.",
+      "Konkreter EUR-Betrag des ernaehrungsbedingten Mehrbedarfs (§30 Abs.5): keine prozentuale/pauschale gesetzliche Festlegung; individuelle Bemessung nach medizinischer Notwendigkeit (Orientierung an DV-Empfehlungen, keine amtliche Primaerquelle mit Festbetrag).",
+      "Bedarfe fuer Unterkunft und Heizung (§42 Nr.4/§42a): kein bundeseinheitlicher Festbetrag - 'angemessene' Kosten werden kommunal durch Mietobergrenzen/Schluessige Konzepte definiert; muss als Nutzereingabe (tatsaechliche Miete/Heizkosten) modelliert werden.",
+      "Kranken- und Pflegeversicherungsbeitraege (§42 Nr.2 iVm §32 SGB XII): Uebernahme angemessener Beitraege - konkrete Betraege abhaengig vom Versicherungsstatus, nicht als Festwert belegt.",
+      "Exakte EUR-Betraege RBS2-RBS6 fuer 2026 stammen aus der WebFetch-Zusammenfassung der Anlage zu §28 SGB XII; nur RBS1 (563 EUR) wurde zusaetzlich durch das BMAS-Infoblatt-PDF im Volltext gegenbestaetigt. RBS2-6 sind plausibel (Besitzschutz = 2025-Werte), aber sollten idealerweise am Volltext der Anlage/RBSFV 2026 §2 nochmals verifiziert werden."
+    ]
+  },
+  "verify": {
+    "slug": "grundsicherung-im-alter",
+    "verdict": "CONFIRMED",
+    "checks": [
+      {
+        "key": "regelbedarfsstufe_1_2026",
+        "claimed": "563 EUR/Monat",
+        "matches": true,
+        "sourceUrl": "https://www.bmas.de/SharedDocs/Downloads/DE/Publikationen/a-206k-infoblatt-fortschreibung-der-regelbedarfe-ab-2026.pdf?__blob=publicationFile&v=2",
+        "sourceSays": "PDF-Tabelle 'Vergleich der Fortschreibung fuer die Regelbedarfsstufe 1', Spalte Fortschreibung zum 1. Januar 2026: 'RBS 1 = 563,00 Euro (Besitzschutz)'; rechnerische ergaenzende Fortschreibung waere 557,00 Euro. Zusaetzlich in der Anlage zu §28 SGB XII (Primaerrecht) mit 563 Euro bestaetigt.",
+        "note": "An amtlicher Primaerquelle (BMAS-Infoblatt) UND am Gesetzestext bestaetigt."
+      },
+      {
+        "key": "regelbedarfsstufe_2_2026",
+        "claimed": "506 EUR/Monat",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSays": "Anlage zu §28 SGB XII: Regelbedarfsstufe 2 = 506 Euro, gueltig ab 1. Januar 2025 unveraendert durch 1. Januar 2026.",
+        "note": ""
+      },
+      {
+        "key": "regelbedarfsstufe_3_2026",
+        "claimed": "451 EUR/Monat",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSays": "Anlage zu §28 SGB XII: Regelbedarfsstufe 3 = 451 Euro, unveraendert 2025/2026.",
+        "note": ""
+      },
+      {
+        "key": "regelbedarfsstufe_4_2026",
+        "claimed": "471 EUR/Monat",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSays": "Anlage zu §28 SGB XII: Regelbedarfsstufe 4 = 471 Euro, unveraendert 2025/2026.",
+        "note": ""
+      },
+      {
+        "key": "regelbedarfsstufe_5_2026",
+        "claimed": "390 EUR/Monat",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSays": "Anlage zu §28 SGB XII: Regelbedarfsstufe 5 = 390 Euro, unveraendert 2025/2026.",
+        "note": ""
+      },
+      {
+        "key": "regelbedarfsstufe_6_2026",
+        "claimed": "357 EUR/Monat",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+        "sourceSays": "Anlage zu §28 SGB XII: Regelbedarfsstufe 6 = 357 Euro, unveraendert 2025/2026.",
+        "note": ""
+      },
+      {
+        "key": "mehrbedarf_merkzeichen_g_erwerbsminderung",
+        "claimed": "17 % der maßgebenden Regelbedarfsstufe",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "sourceSays": "§30 Abs.1 SGB XII: 'ein Mehrbedarf von 17 vom Hundert der massgebenden Regelbedarfsstufe' (Merkzeichen G / voll erwerbsgemindert).",
+        "note": ""
+      },
+      {
+        "key": "mehrbedarf_warmwasser_dezentral_rbs1_2",
+        "claimed": "2,3 % der Regelbedarfsstufe (RBS 1-2)",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "sourceSays": "§30 Abs.7 SGB XII: '2,3 Prozent der Regelbedarfsstufen 1 und 2' fuer dezentrale Warmwassererzeugung.",
+        "note": ""
+      },
+      {
+        "key": "mehrbedarf_werdende_mutter",
+        "claimed": "17 % der maßgebenden Regelbedarfsstufe",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__30.html",
+        "sourceSays": "§30 Abs.2 SGB XII: 'ein Mehrbedarf von 17 vom Hundert der massgebenden Regelbedarfsstufe' fuer werdende Muetter nach der 12. Schwangerschaftswoche.",
+        "note": ""
+      },
+      {
+        "key": "einkommensfreibetrag_erwerbseinkommen",
+        "claimed": "30 % des Erwerbseinkommens, max. 50% der RBS 1",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__82.html",
+        "sourceSays": "§82 Abs.3 SGB XII: 'ein Betrag in Hoehe von 30 vom Hundert des Einkommens aus selbstaendiger und nichtselbstaendiger Taetigkeit ... hoechstens jedoch 50 vom Hundert der Regelbedarfsstufe 1'.",
+        "note": "Recherche nennt Abs.3 korrekt (Zitat sagte Abs.3)."
+      },
+      {
+        "key": "freibetrag_zusaetzliche_altersvorsorge",
+        "claimed": "100 EUR + 30% des uebersteigenden Betrags, max. 50% der RBS 1",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__82.html",
+        "sourceSays": "§82 Abs.4 SGB XII: '100 Euro monatlich aus einer zusaetzlichen Altersvorsorge ... zuzueglich 30 vom Hundert des diesen Betrag uebersteigenden Einkommens ... hoechstens jedoch 50 vom Hundert der Regelbedarfsstufe 1'.",
+        "note": "Recherche gibt '§82 Abs.4/5' an; die einschlaegige Regelung steht in Abs.4 (Abs.5 definiert 'zusaetzliche Altersvorsorge'). Inhaltlich korrekt."
+      },
+      {
+        "key": "altersgrenze_ab_jahrgang_1964",
+        "claimed": "67 Jahre ab Jahrgang 1964",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/sgb_12/__41.html",
+        "sourceSays": "§41 Abs.2 SGB XII: Anhebungstabelle, Geburtsjahr 'ab 1964' -> Anhebung um 24 Monate -> Altersgrenze 67 Jahre.",
+        "note": ""
+      },
+      {
+        "key": "fortschreibung_basis_2026",
+        "claimed": "2,25 %",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/rbsfv_2026/__1.html",
+        "sourceSays": "§1 RBSFV 2026: 'Die Veraenderungsrate fuer die Basisfortschreibung ... zum 1. Januar 2026 betraegt 2,25 Prozent.' (auch im BMAS-Infoblatt bestaetigt).",
+        "note": ""
+      },
+      {
+        "key": "fortschreibung_ergaenzend_2026",
+        "claimed": "1,8 %",
+        "matches": true,
+        "sourceUrl": "https://www.gesetze-im-internet.de/rbsfv_2026/__1.html",
+        "sourceSays": "§1 RBSFV 2026: 'Die Veraenderungsrate fuer die ergaenzende Fortschreibung ... zum 1. Januar 2026 betraegt 1,8 Prozent.'",
+        "note": "RBSFV weist auf §28a Abs.5 SGB XII (Besitzschutz) hin, da rechnerisch niedrigere Betraege -> 2025er Werte gelten fort. Deckt sich mit calcRule."
+      }
+    ],
+    "issues": [],
+    "missingSources": []
+  }
+}
