@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import RechnerFeedback from '../RechnerFeedback';
 
 // === OFFIZIELLE WERTE (Stand: Kalenderjahr 2026) ===
 // Rechtsgrundlage: § 45 SGB V (Kinderkrankengeld), § 47 SGB V, § 223 SGB V
@@ -113,8 +112,6 @@ export default function KinderkrankengeldRechner() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <RechnerFeedback rechnerName="Kinderkrankengeld-Rechner" rechnerSlug="kinderkrankengeld" />
-
       {/* Input Section */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
         {/* Erwerbsart */}
