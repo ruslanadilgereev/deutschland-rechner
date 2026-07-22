@@ -1,0 +1,385 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import GradDerBehinderungRechner from '../components/rechner/GradDerBehinderungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Grad-der-Behinderung-Rechner 2026 – GdB & Behindertenpauschbetrag";
+const description = "GdB und Behindertenpauschbetrag berechnen: Gesamt-GdB aus Einzel-GdB schätzen (VersMedV) und Pauschbetrag nach § 33b EStG (384 € bis 7.400 €) ermitteln. Kostenlos!";
+const keywords = "Grad der Behinderung Rechner, GdB Rechner, Behindertenpauschbetrag Rechner, GdB berechnen, Gesamt GdB, GdB Tabelle, Behindertenpauschbetrag 2026, GdB Pauschbetrag, Schwerbehinderung Steuer, GdB 50 Steuer, Merkzeichen H Blind, Pauschbetrag Behinderung EStG";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Grad-der-Behinderung-Rechner", url: "/grad-der-behinderung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">♿</span>
+          <div>
+            <h1 class="text-2xl font-bold">Grad-der-Behinderung-Rechner</h1>
+            <p class="text-blue-100 text-sm">GdB schätzen &amp; Behindertenpauschbetrag 2026 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <GradDerBehinderungRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
+          <span><strong class="text-gray-800">Zuletzt aktualisiert:</strong> Juli 2026</span>
+          <span><strong class="text-gray-800">Grundlage:</strong> § 33b EStG · VersMedV (Anlage zu § 2)</span>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4 text-sm">
+          <div class="bg-green-50 rounded-xl p-4">
+            <p class="font-semibold text-green-800 mb-1">✓ Berücksichtigt</p>
+            <ul class="text-green-700 space-y-1">
+              <li>• Näherung des Gesamt-GdB aus mehreren Einzel-GdB</li>
+              <li>• Behindertenpauschbetrag-Staffel (GdB 20–100)</li>
+              <li>• Erhöhter Pauschbetrag 7.400 € bei H/Bl/TBl</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="font-semibold text-gray-800 mb-1">✗ Nicht berücksichtigt</p>
+            <ul class="text-gray-600 space-y-1">
+              <li>• Verbindliche Feststellung (nur Versorgungsamt)</li>
+              <li>• Fahrtkosten-, Hinterbliebenen-, Pflege-Pauschbetrag</li>
+              <li>• Individuelle Wechselwirkungen der Störungen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Grad der Behinderung (GdB) &amp; Behindertenpauschbetrag 2026</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Grad der Behinderung (GdB)</strong> ist ein Maß für die Auswirkungen einer
+            Behinderung auf die Teilhabe am Leben in der Gemeinschaft. Er wird in Zehnerschritten von
+            20 bis 100 festgestellt. Ab einem GdB von 50 gilt man als <strong>schwerbehindert</strong>.
+            Mit unserem <strong>GdB-Rechner</strong> schätzen Sie den Gesamt-GdB aus Ihren Einzel-GdB
+            und ermitteln den <strong>Behindertenpauschbetrag</strong> nach § 33b EStG.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Pauschbeträge nach § 33b Abs. 3 EStG gelten seit
+            dem Veranlagungszeitraum 2021 unverändert fort. Die Regeln zur Bildung des Gesamt-GdB
+            stehen in der Versorgungsmedizin-Verordnung (VersMedV), Anlage zu § 2, Teil A Nr. 3.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der Gesamt-GdB gebildet?</h3>
+          <p>
+            Liegen mehrere Gesundheitsstörungen vor, werden die Einzel-GdB <strong>nicht addiert</strong>.
+            Die VersMedV (Teil A Nr. 3.2) verbietet Addition und Mittelung ausdrücklich. Stattdessen
+            geht man vom <strong>höchsten Einzel-GdB</strong> aus und prüft, ob weitere Störungen die
+            Gesamtbeeinträchtigung wesentlich verstärken (also um mindestens 10 erhöhen).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Warum ist der GdB-Rechner nur eine Näherung?</h3>
+          <p>
+            Der Gesamt-GdB ist eine <strong>ärztlich-gutachterliche Gesamtschau</strong>, keine
+            Rechenformel. Wie stark eine zweite oder dritte Störung den Gesamt-GdB erhöht, hängt von
+            den wechselseitigen Beziehungen ab (Nr. 3.3): Überschneiden sich die Beeinträchtigungen,
+            erhöht sich der GdB oft gar nicht; wirken sie sich unabhängig aus, kann er steigen. Ein
+            Online-Rechner kann das nicht abschließend beurteilen – <strong>verbindlich entscheidet
+            das Versorgungsamt</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Einzel-GdB erhöhen den Gesamt-GdB?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>GdB 10:</strong> Erhöht den Gesamt-GdB in der Regel nicht – auch nicht mehrere zusammen (Nr. 3.5).</li>
+            <li><strong>GdB 20:</strong> Führt vielfach nicht zu einer wesentlichen Zunahme, ist aber im Einzelfall zu prüfen (Nr. 3.5).</li>
+            <li><strong>GdB ab 30:</strong> Kann den Gesamt-GdB spürbar erhöhen, wenn eine wesentliche Verstärkung vorliegt.</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist der Behindertenpauschbetrag?</h3>
+          <p>
+            Der <strong>Behindertenpauschbetrag</strong> nach § 33b Abs. 3 EStG ist ein jährlicher
+            Steuerfreibetrag, der behinderungsbedingte Mehraufwendungen pauschal abgilt – ohne
+            Einzelnachweis. Die Höhe richtet sich nach dem Gesamt-GdB und reicht von <strong>384 €
+            (GdB 20)</strong> bis <strong>2.840 € (GdB 100)</strong>. Er wird in der
+            Einkommensteuererklärung (Anlage außergewöhnliche Belastungen) geltend gemacht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Behindertenpauschbetrag-Tabelle (§ 33b EStG)</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Grad der Behinderung</th>
+                  <th class="text-right p-2 border border-gray-200">Pauschbetrag / Jahr</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">GdB 20</td><td class="text-right p-2 border border-gray-200">384 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 30</td><td class="text-right p-2 border border-gray-200">620 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 40</td><td class="text-right p-2 border border-gray-200">860 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 50</td><td class="text-right p-2 border border-gray-200">1.140 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 60</td><td class="text-right p-2 border border-gray-200">1.440 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 70</td><td class="text-right p-2 border border-gray-200">1.780 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 80</td><td class="text-right p-2 border border-gray-200">2.120 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 90</td><td class="text-right p-2 border border-gray-200">2.460 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">GdB 100</td><td class="text-right p-2 border border-gray-200">2.840 €</td></tr>
+                <tr class="bg-blue-50 font-semibold"><td class="p-2 border border-gray-200">Merkzeichen H, Bl oder TBl</td><td class="text-right p-2 border border-gray-200">7.400 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Gesamt-GdB und Pauschbetrag Schritt für Schritt</h3>
+          <p>
+            Angenommen, es liegen drei Gesundheitsstörungen mit den Einzel-GdB <strong>50, 30 und
+            10</strong> vor. So läuft die näherungsweise Beurteilung ab:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Wert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Höchster Einzel-GdB (Ausgangswert, Nr. 3.2)</td><td class="text-right p-2 border border-gray-200">50</td></tr>
+                <tr><td class="p-2 border border-gray-200">Zweite Störung GdB 30 → wesentliche Verstärkung möglich (+10)</td><td class="text-right p-2 border border-gray-200">60</td></tr>
+                <tr><td class="p-2 border border-gray-200">Dritte Störung GdB 10 → erhöht i.d.R. nicht (Nr. 3.5)</td><td class="text-right p-2 border border-gray-200">±0</td></tr>
+                <tr class="bg-blue-50 font-semibold"><td class="p-2 border border-gray-200">≈ Gesamt-GdB (Näherung, Versorgungsamt entscheidet)</td><td class="text-right p-2 border border-gray-200">50–60</td></tr>
+                <tr><td class="p-2 border border-gray-200">Behindertenpauschbetrag bei GdB 60 (§ 33b Abs. 3 Satz 2)</td><td class="text-right p-2 border border-gray-200">1.440 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Wichtig: Die tatsächliche Erhöhung von 50 auf 60 ist nicht garantiert – überschneiden sich
+            die beiden Beeinträchtigungen, kann der Gesamt-GdB auch bei 50 bleiben. Der Pauschbetrag
+            richtet sich immer nach dem <strong>vom Versorgungsamt festgestellten</strong> Gesamt-GdB.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ab wann gilt man als schwerbehindert?</h3>
+          <p>
+            Ab einem <strong>Gesamt-GdB von 50</strong> gilt man als schwerbehindert und kann einen
+            <strong>Schwerbehindertenausweis</strong> beantragen. Damit sind zahlreiche Nachteilsausgleiche
+            verbunden – etwa zusätzliche Urlaubstage, besonderer Kündigungsschutz und je nach Merkzeichen
+            steuerliche oder verkehrsbezogene Vergünstigungen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was bedeuten die Merkzeichen H, Bl und TBl?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>H (hilflos):</strong> Dauernder Bedarf fremder Hilfe für häufig und regelmäßig wiederkehrende Alltagsverrichtungen (§ 33b Abs. 3 Satz 4 EStG).</li>
+            <li><strong>Bl (blind):</strong> Blindheit im gesetzlichen Sinn.</li>
+            <li><strong>TBl (taubblind):</strong> Kombination von Blindheit und Taubheit.</li>
+          </ul>
+          <p>
+            In allen drei Fällen beträgt der Pauschbetrag <strong>7.400 €</strong> pro Jahr – die
+            GdB-Staffel wird dann <strong>nicht zusätzlich</strong> gewährt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der GdB festgestellt?</h3>
+          <p>
+            Der GdB wird auf <strong>Antrag beim Versorgungsamt</strong> (bzw. der zuständigen Behörde
+            nach SGB IX) festgestellt. Ärztliche Befunde werden ausgewertet und die Einzel-GdB nach den
+            Versorgungsmedizinischen Grundsätzen zu einem Gesamt-GdB zusammengeführt. Der Bescheid ist
+            verbindlich; gegen ihn kann Widerspruch eingelegt werden.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Behindertenpauschbetrag in der Steuererklärung</h3>
+          <p>
+            Der Pauschbetrag mindert das zu versteuernde Einkommen und damit die
+            <a href="/einkommensteuer-rechner" class="text-blue-600 hover:underline">Einkommensteuer</a>.
+            Die konkrete Steuerersparnis hängt vom persönlichen Steuersatz ab und lässt sich mit dem
+            <a href="/steuererstattung-rechner" class="text-blue-600 hover:underline">Steuererstattungs-Rechner</a>
+            abschätzen. Der Pauschbetrag wird pro Jahr gewährt, auch wenn der GdB erst unterjährig
+            festgestellt wurde.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">GdB und Pflegegrad – nicht dasselbe</h3>
+          <p>
+            Der GdB nach SGB IX und der <a href="/pflegegrad-rechner" class="text-blue-600 hover:underline">Pflegegrad</a>
+            nach SGB XI sind zwei getrennte Systeme mit eigenen Begutachtungsverfahren. Ein hoher GdB
+            bedeutet nicht automatisch einen hohen Pflegegrad und umgekehrt – beide müssen separat
+            beantragt und festgestellt werden.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird der Gesamt-GdB berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Gesamt-GdB wird nicht durch Addition der Einzel-GdB gebildet – Addition und Mittelung sind laut Versorgungsmedizin-Verordnung (Teil A Nr. 3.2) ausdrücklich unzulässig. Man geht vom höchsten Einzel-GdB aus und prüft, ob weitere Störungen die Gesamtbeeinträchtigung wesentlich verstärken, also um mindestens 10 erhöhen. Das Ergebnis ist eine gutachterliche Gesamtschau, die verbindlich das Versorgungsamt trifft.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie genau ist dieser GdB-Rechner?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Rechner liefert nur eine unverbindliche Näherung bzw. Orientierungsspanne. Da der Gesamt-GdB eine ärztlich-gutachterliche Gesamtschau ist und von den wechselseitigen Beziehungen der Beeinträchtigungen abhängt, kann keine Formel den exakten Wert bestimmen. Verbindlich festgestellt wird der Gesamt-GdB ausschließlich vom Versorgungsamt.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Behindertenpauschbetrag 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Behindertenpauschbetrag nach § 33b Abs. 3 EStG reicht von 384 € bei GdB 20 über 1.140 € bei GdB 50 bis 2.840 € bei GdB 100. Bei den Merkzeichen H (hilflos), Bl (blind) oder TBl (taubblind) beträgt er 7.400 € pro Jahr; die GdB-Staffel wird dann nicht zusätzlich gewährt.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab welchem GdB gilt man als schwerbehindert?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ab einem Gesamt-GdB von 50 gilt man als schwerbehindert und kann einen Schwerbehindertenausweis beantragen. Damit sind Nachteilsausgleiche wie zusätzlicher Urlaub, besonderer Kündigungsschutz und je nach Merkzeichen steuerliche Vergünstigungen verbunden.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Erhöht ein zusätzlicher GdB von 10 den Gesamt-GdB?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>In der Regel nicht. Nach Teil A Nr. 3.5 der Versorgungsmedizin-Verordnung führen zusätzliche leichte Funktionsbeeinträchtigungen mit einem GdB von 10 – von Ausnahmefällen abgesehen – nicht zu einer Zunahme des Gesamt-GdB, auch dann nicht, wenn mehrere davon nebeneinander bestehen. Auch ein GdB von 20 führt vielfach nicht zu einer wesentlichen Zunahme.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet das Merkzeichen H?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Merkzeichen H steht für „hilflos". Hilflos ist nach § 33b Abs. 3 Satz 4 EStG, wer für eine Reihe von häufig und regelmäßig wiederkehrenden Verrichtungen zur Sicherung der persönlichen Existenz im Ablauf jedes Tages dauernd fremder Hilfe bedarf. Bei Merkzeichen H beträgt der Pauschbetrag 7.400 € pro Jahr.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wo beantrage ich die Feststellung des GdB?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Feststellung des Grades der Behinderung wird auf Antrag beim zuständigen Versorgungsamt (bzw. der nach SGB IX zuständigen Behörde Ihres Bundeslandes) beantragt. Dort werden die ärztlichen Befunde ausgewertet und die Einzel-GdB zu einem verbindlichen Gesamt-GdB zusammengeführt. Dieser Rechner ist ein unabhängiges, kostenloses Angebot und keine amtliche Feststellung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="grad-der-behinderung" slugs={['steuererstattung', 'einkommensteuer', 'pflegegrad']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einzel-GdB einfach addiert</h3>
+            <p>Zwei GdB von 30 ergeben keinen Gesamt-GdB von 60. Addition und Mittelung sind laut VersMedV unzulässig – der Gesamt-GdB liegt meist deutlich unter der Summe der Einzelwerte.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">GdB mit Pflegegrad verwechselt</h3>
+            <p>Der GdB (SGB IX) und der Pflegegrad (SGB XI) sind zwei getrennte Systeme. Ein GdB 80 bedeutet nicht automatisch Pflegegrad 3 – beides muss separat festgestellt werden.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pauschbetrag doppelt angesetzt</h3>
+            <p>Bei Merkzeichen H, Bl oder TBl gilt der erhöhte Pauschbetrag von 7.400 €. Die GdB-Staffel (z. B. 2.120 € bei GdB 80) darf dann nicht zusätzlich in Anspruch genommen werden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grad-der-Behinderung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/grad-der-behinderung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie wird der Gesamt-GdB berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Gesamt-GdB wird nicht durch Addition der Einzel-GdB gebildet – Addition und Mittelung sind laut Versorgungsmedizin-Verordnung (Teil A Nr. 3.2) ausdrücklich unzulässig. Man geht vom höchsten Einzel-GdB aus und prüft, ob weitere Störungen die Gesamtbeeinträchtigung wesentlich verstärken, also um mindestens 10 erhöhen. Das Ergebnis ist eine gutachterliche Gesamtschau, die verbindlich das Versorgungsamt trifft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie genau ist dieser GdB-Rechner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Rechner liefert nur eine unverbindliche Näherung bzw. Orientierungsspanne. Da der Gesamt-GdB eine ärztlich-gutachterliche Gesamtschau ist und von den wechselseitigen Beziehungen der Beeinträchtigungen abhängt, kann keine Formel den exakten Wert bestimmen. Verbindlich festgestellt wird der Gesamt-GdB ausschließlich vom Versorgungsamt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Behindertenpauschbetrag 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Behindertenpauschbetrag nach § 33b Abs. 3 EStG reicht von 384 € bei GdB 20 über 1.140 € bei GdB 50 bis 2.840 € bei GdB 100. Bei den Merkzeichen H (hilflos), Bl (blind) oder TBl (taubblind) beträgt er 7.400 € pro Jahr; die GdB-Staffel wird dann nicht zusätzlich gewährt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab welchem GdB gilt man als schwerbehindert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ab einem Gesamt-GdB von 50 gilt man als schwerbehindert und kann einen Schwerbehindertenausweis beantragen. Damit sind Nachteilsausgleiche wie zusätzlicher Urlaub, besonderer Kündigungsschutz und je nach Merkzeichen steuerliche Vergünstigungen verbunden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Erhöht ein zusätzlicher GdB von 10 den Gesamt-GdB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In der Regel nicht. Nach Teil A Nr. 3.5 der Versorgungsmedizin-Verordnung führen zusätzliche leichte Funktionsbeeinträchtigungen mit einem GdB von 10 – von Ausnahmefällen abgesehen – nicht zu einer Zunahme des Gesamt-GdB, auch dann nicht, wenn mehrere davon nebeneinander bestehen. Auch ein GdB von 20 führt vielfach nicht zu einer wesentlichen Zunahme."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet das Merkzeichen H?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Merkzeichen H steht für „hilflos\". Hilflos ist nach § 33b Abs. 3 Satz 4 EStG, wer für eine Reihe von häufig und regelmäßig wiederkehrenden Verrichtungen zur Sicherung der persönlichen Existenz im Ablauf jedes Tages dauernd fremder Hilfe bedarf. Bei Merkzeichen H beträgt der Pauschbetrag 7.400 € pro Jahr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo beantrage ich die Feststellung des GdB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Feststellung des Grades der Behinderung wird auf Antrag beim zuständigen Versorgungsamt (bzw. der nach SGB IX zuständigen Behörde Ihres Bundeslandes) beantragt. Dort werden die ärztlichen Befunde ausgewertet und die Einzel-GdB zu einem verbindlichen Gesamt-GdB zusammengeführt. Dieser Rechner ist ein unabhängiges, kostenloses Angebot und keine amtliche Feststellung."
+        }
+      }
+    ]
+  })} />
+</Layout>
