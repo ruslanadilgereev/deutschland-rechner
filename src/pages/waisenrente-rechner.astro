@@ -1,0 +1,389 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import WaisenrenteRechner from '../components/rechner/WaisenrenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Waisenrente-Rechner 2026 – Halbwaise & Vollwaise berechnen";
+const description = "Waisenrente berechnen 2026: Halbwaisenrente 10 %, Vollwaisenrente 20 % der Versichertenrente + Zuschlag nach § 78 SGB VI. Keine Einkommensanrechnung. Kostenlos!";
+const keywords = "Waisenrente Rechner, Halbwaisenrente berechnen, Vollwaisenrente, Waisenrente 2026, Waisenrente Höhe, Waisenrente Alter, Waisenrente Ausbildung, Waisenrente Einkommen, Waisenrente § 48 SGB VI, Halbwaisenrente Höhe, Waisenrente Anspruch";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Waisenrente-Rechner", url: "/waisenrente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">👼</span>
+          <div>
+            <h1 class="text-2xl font-bold">Waisenrente-Rechner</h1>
+            <p class="text-purple-100 text-sm">Halb- & Vollwaisenrente 2026 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WaisenrenteRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+          <div>
+            <span class="block text-xs font-semibold text-gray-400 uppercase">Zuletzt aktualisiert</span>
+            <span class="text-gray-800 font-medium">Juli 2026</span>
+          </div>
+          <div>
+            <span class="block text-xs font-semibold text-gray-400 uppercase">Grundlage</span>
+            <span class="text-gray-800 font-medium">§§ 48, 64, 67, 78, 97 SGB VI · RWBestV 2026</span>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4 text-sm">
+          <div class="bg-green-50 rounded-xl p-4">
+            <p class="font-semibold text-green-800 mb-1">✓ Berücksichtigt</p>
+            <ul class="text-green-700 space-y-1 list-disc pl-4">
+              <li>Rentenartfaktor Halbwaise 0,1 / Vollwaise 0,2</li>
+              <li>Aktueller Rentenwert 42,52 € (ab 01.07.2026)</li>
+              <li>Zuschlag nach § 78 SGB VI (als Näherung)</li>
+              <li>Altersgrenzen 18 bzw. 27 Jahre</li>
+            </ul>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-4">
+            <p class="font-semibold text-amber-800 mb-1">✗ Nicht berücksichtigt</p>
+            <ul class="text-amber-700 space-y-1 list-disc pl-4">
+              <li>Steuer- und KV-/PV-Abzüge (Netto)</li>
+              <li>Zugangsfaktor unter 1,0 (Sonderfälle)</li>
+              <li>Exakte rentenrechtliche Zeiten des § 78-Zuschlags</li>
+              <li>Waisenrente aus Unfall-/Beamtenversorgung</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Waisenrente 2026: Höhe, Anspruch & Berechnung</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Waisenrente</strong> ist eine Hinterbliebenenrente der gesetzlichen
+            Rentenversicherung für Kinder, deren Elternteil oder Eltern verstorben sind. Man
+            unterscheidet die <strong>Halbwaisenrente</strong> (ein Elternteil lebt noch) und die
+            <strong>Vollwaisenrente</strong> (beide Elternteile verstorben). Mit unserem
+            <strong>Waisenrente-Rechner</strong> berechnen Sie die Höhe schnell und kostenlos.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf dem aktuellen Rentenwert von
+            <strong>42,52 €</strong> (gültig ab 01.07.2026, § 1 RWBestV 2026). Zuvor lag der Rentenwert
+            bei 40,79 € – die Anhebung entspricht +4,24 %.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Halbwaisenrente oder Vollwaisenrente?</h3>
+          <p>
+            Ausgangswert ist immer die <strong>Versichertenrente</strong> des verstorbenen Elternteils.
+            Davon erhält die Waise einen festen Prozentsatz (den Rentenartfaktor nach § 67 SGB VI):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Halbwaisenrente:</strong> 10 % der Versichertenrente (§ 67 Nr. 7 SGB VI)</li>
+            <li><strong>Vollwaisenrente:</strong> 20 % der Versichertenrente (§ 67 Nr. 8 SGB VI)</li>
+          </ul>
+          <p class="mt-3">
+            Grundlage ist die Rente des Verstorbenen – Sie können sie mit dem
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">Renten-Rechner</a> oder über
+            die <a href="/rentenpunkte-rechner" class="text-blue-600 hover:underline">Entgeltpunkte im Rentenpunkte-Rechner</a> abschätzen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Rentenformel (§ 64 SGB VI)</h3>
+          <p>
+            Wie jede gesetzliche Rente wird auch die Waisenrente nach der Rentenformel berechnet:
+          </p>
+          <p class="bg-gray-50 rounded-lg p-3 font-mono text-sm text-center">
+            Monatsbetrag = persönliche Entgeltpunkte × Rentenartfaktor × aktueller Rentenwert
+          </p>
+          <p>
+            Da die Versichertenrente selbst bereits „Entgeltpunkte × 1,0 × Rentenwert" ist, vereinfacht
+            sich die Waisenrente zu: <strong>Versichertenrente × Rentenartfaktor (0,1 bzw. 0,2)</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Halbwaisenrente Schritt für Schritt</h3>
+          <p>
+            Angenommen, die Versichertenrente des verstorbenen Elternteils beträgt
+            <strong>1.500 €</strong> im Monat (frei gewähltes Beispiel):
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Wert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Versichertenrente des Verstorbenen</td><td class="text-right p-2 border border-gray-200">1.500,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Rentenartfaktor Halbwaise (<a href="https://www.gesetze-im-internet.de/sgb_6/__67.html" target="_blank" rel="noopener" class="text-blue-600 hover:underline">§ 67 Nr. 7 SGB VI</a>)</td><td class="text-right p-2 border border-gray-200">0,1</td></tr>
+                <tr class="bg-purple-50 font-semibold"><td class="p-2 border border-gray-200">Grundbetrag Halbwaisenrente = 1.500 × 0,1</td><td class="text-right p-2 border border-gray-200">150,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Zum Vergleich Vollwaise = 1.500 × 0,2</td><td class="text-right p-2 border border-gray-200">300,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Die Halbwaise erhält also rund <strong>150 € brutto/Monat</strong>, eine Vollwaise rund
+            <strong>300 €</strong>. Hinzu kommt ggf. der Zuschlag nach § 78 SGB VI (siehe unten).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der Zuschlag nach § 78 SGB VI</h3>
+          <p>
+            Zusätzlich zum Grundbetrag gibt es einen <strong>Zuschlag an Entgeltpunkten</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Halbwaise:</strong> 0,0833 Entgeltpunkte je Kalendermonat (§ 78 Abs. 2 SGB VI)</li>
+            <li><strong>Vollwaise:</strong> 0,075 Entgeltpunkte je Kalendermonat des Elternteils mit der höchsten Rente (§ 78 Abs. 3 SGB VI)</li>
+          </ul>
+          <p>
+            Wichtig: Der genaue Zuschlag lässt sich aus einer bloßen Rentenhöhe <strong>nicht exakt
+            berechnen</strong> – er hängt von den Kalendermonaten mit rentenrechtlichen Zeiten des
+            Verstorbenen ab. Unser Rechner bietet dafür ein optionales Feld an und weist den Wert
+            ausdrücklich als <strong>Näherung</strong> aus. Verbindlich rechnet die Deutsche
+            Rentenversicherung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Keine Einkommensanrechnung bei der Waisenrente</h3>
+          <p>
+            Ein entscheidender Unterschied zur <a href="/witwenrente-rechner" class="text-blue-600 hover:underline">Witwenrente</a>:
+            Bei der Waisenrente wird <strong>kein eigenes Einkommen angerechnet</strong>. § 97 SGB VI
+            nennt nur Witwen-, Witwer- und Erziehungsrente. Ausbildungsvergütung, ein Nebenjob oder
+            eine Ausbildungsbeihilfe kürzen die Waisenrente also <strong>nicht</strong>. Die früher
+            geltende Einkommensanrechnung auf Waisenrenten ab 18 wurde abgeschafft.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bis zu welchem Alter gibt es Waisenrente?</h3>
+          <p>
+            Die Waisenrente wird nach <strong>§ 48 Abs. 4 SGB VI</strong> längstens gezahlt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Bis zum 18. Lebensjahr</strong> – grundsätzlich ohne weitere Bedingung</li>
+            <li><strong>Bis zum 27. Lebensjahr</strong>, wenn die Waise sich in Schul- oder Berufsausbildung befindet, eine Übergangszeit von höchstens vier Monaten überbrückt, einen Freiwilligendienst leistet oder wegen einer Behinderung außerstande ist, sich selbst zu unterhalten</li>
+          </ul>
+          <p>
+            Eine anerkannte Schul- oder Berufsausbildung liegt nur vor, wenn sie <strong>mehr als 20
+            Stunden pro Woche</strong> in Anspruch nimmt (§ 48 Abs. 4 Satz 2 SGB VI).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzungen für den Anspruch</h3>
+          <p>
+            Damit ein Anspruch auf Waisenrente entsteht, müssen folgende Bedingungen erfüllt sein:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Der verstorbene Elternteil hat die <strong>allgemeine Wartezeit</strong> von 5 Jahren erfüllt (oder sie gilt als vorzeitig erfüllt)</li>
+            <li>Die Waise ist ein <strong>Kind des Verstorbenen</strong> (auch Adoptiv-, Stief- oder Pflegekind unter Voraussetzungen)</li>
+            <li>Die <strong>Altersgrenze</strong> von 18 bzw. 27 Jahren ist noch nicht überschritten</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Waisenrente und Witwen-/Witwerrente</h3>
+          <p>
+            Waisenrente und Witwen- bzw. Witwerrente können <strong>gleichzeitig</strong> bezogen
+            werden. Für jedes waisenrentenberechtigte Kind erhöht sich zudem der Freibetrag bei der
+            Einkommensanrechnung der Witwen-/Witwerrente um das <strong>5,6-fache des aktuellen
+            Rentenwerts</strong> (§ 97 Abs. 2 SGB VI) – das entlastet den überlebenden Elternteil.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Waisenrente beantragen</h3>
+          <p>
+            Die Waisenrente muss bei der <strong>Deutschen Rentenversicherung</strong> beantragt
+            werden – online über das eService-Portal, telefonisch (kostenlos unter 0800 1000 4800)
+            oder in einer Beratungsstelle. Bei minderjährigen Waisen stellen die gesetzlichen
+            Vertreter den Antrag. Benötigt werden u. a. Sterbeurkunde, Geburtsurkunde der Waise und
+            ggf. Ausbildungsnachweise.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wird die Waisenrente versteuert?</h3>
+          <p>
+            Auch die Waisenrente gehört als Rente wegen Todes grundsätzlich zu den steuerpflichtigen
+            Einkünften. In der Praxis bleibt sie jedoch meist steuerfrei, weil die Beträge unterhalb
+            des steuerlichen Grundfreibetrags liegen. Wie viel von einer Rente nach Steuern übrig
+            bleibt, zeigt allgemein der
+            <a href="/rentensteuer-rechner" class="text-blue-600 hover:underline">Rentensteuer-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einkommensanrechnung fälschlich angenommen</h3>
+            <p>Viele erwarten, dass ein Nebenjob oder die Ausbildungsvergütung die Waisenrente kürzt – das ist seit Abschaffung der Anrechnung nicht mehr der Fall. § 97 SGB VI gilt nur für Witwen-, Witwer- und Erziehungsrente, nicht für Waisen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Zuschlag nach § 78 überschätzt</h3>
+            <p>Der Zuschlag lässt sich nicht aus der Rentenhöhe allein berechnen. Er hängt von den rentenrechtlichen Zeiten des Verstorbenen ab. Der Rechner weist ihn nur als Näherung aus – maßgeblich ist der Bescheid der Rentenversicherung.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Altersgrenze 27 ohne Ausbildung erwartet</h3>
+            <p>Über 18 gibt es Waisenrente nur bei Ausbildung (mehr als 20 Std./Woche), Übergangszeit, Freiwilligendienst oder Behinderung. Ohne einen dieser Gründe endet der Anspruch mit dem 18. Geburtstag.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Halbwaisenrente 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Halbwaisenrente beträgt 10 % der Versichertenrente des verstorbenen Elternteils (Rentenartfaktor 0,1 nach § 67 Nr. 7 SGB VI). Bei einer Versichertenrente von 1.500 € sind das rund 150 € brutto im Monat. Hinzu kommt der Zuschlag nach § 78 SGB VI.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Vollwaisenrente 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Vollwaisenrente beträgt 20 % der Versichertenrente (Rentenartfaktor 0,2 nach § 67 Nr. 8 SGB VI). Maßgeblich ist die Rente des Elternteils mit der höchsten Versichertenrente. Bei 1.500 € Versichertenrente sind das rund 300 € brutto im Monat plus Zuschlag nach § 78 SGB VI.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Bis zu welchem Alter gibt es Waisenrente?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Waisenrente wird grundsätzlich bis zur Vollendung des 18. Lebensjahres gezahlt. Bei Schul- oder Berufsausbildung, einer Übergangszeit von höchstens vier Monaten, einem Freiwilligendienst oder wegen einer Behinderung verlängert sich der Anspruch bis zur Vollendung des 27. Lebensjahres (§ 48 Abs. 4 SGB VI).</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wird eigenes Einkommen auf die Waisenrente angerechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Anders als bei der Witwen- oder Witwerrente wird eigenes Einkommen der Waise nicht angerechnet. § 97 SGB VI nennt nur Witwen-, Witwer- und Erziehungsrente. Ausbildungsvergütung, Nebenjob oder eine Ausbildungsbeihilfe kürzen die Waisenrente daher nicht.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Zuschlag nach § 78 SGB VI?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zusätzlich zum Grundbetrag gibt es einen Zuschlag an Entgeltpunkten: 0,0833 EP je Kalendermonat bei der Halbwaisenrente (§ 78 Abs. 2) bzw. 0,075 EP je Kalendermonat bei der Vollwaisenrente (§ 78 Abs. 3). Der genaue Betrag hängt von den rentenrechtlichen Zeiten des Verstorbenen ab und lässt sich nur näherungsweise schätzen.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird die Waisenrente berechnet?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Waisenrente folgt der Rentenformel (§ 64 SGB VI): persönliche Entgeltpunkte × Rentenartfaktor × aktueller Rentenwert. Vereinfacht ergibt sich der Grundbetrag als Versichertenrente × Rentenartfaktor (0,1 bei Halbwaise, 0,2 bei Vollwaise). Beispiel: 1.500 € Versichertenrente × 0,1 = 150 € Halbwaisenrente. Dazu kommt der Zuschlag nach § 78 SGB VI.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gibt es einen offiziellen Waisenrenten-Rechner der Deutschen Rentenversicherung?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Zuständig für die Waisenrente ist die Deutsche Rentenversicherung – sie berät kostenlos unter 0800 1000 4800 und erteilt verbindliche Auskünfte. Unser Waisenrente-Rechner ist ein unabhängiges, kostenloses Angebot und kein offizieller Rechner der Deutschen Rentenversicherung. Den Antrag stellen Sie direkt bei der Deutschen Rentenversicherung.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="waisenrente" slugs={['witwenrente', 'renten', 'rentenpunkte', 'grundrente']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Waisenrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/waisenrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Halbwaisenrente 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Halbwaisenrente beträgt 10 % der Versichertenrente des verstorbenen Elternteils (Rentenartfaktor 0,1 nach § 67 Nr. 7 SGB VI). Bei einer Versichertenrente von 1.500 € sind das rund 150 € brutto im Monat. Hinzu kommt der Zuschlag nach § 78 SGB VI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Vollwaisenrente 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Vollwaisenrente beträgt 20 % der Versichertenrente (Rentenartfaktor 0,2 nach § 67 Nr. 8 SGB VI). Maßgeblich ist die Rente des Elternteils mit der höchsten Versichertenrente. Bei 1.500 € Versichertenrente sind das rund 300 € brutto im Monat plus Zuschlag nach § 78 SGB VI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bis zu welchem Alter gibt es Waisenrente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Waisenrente wird grundsätzlich bis zur Vollendung des 18. Lebensjahres gezahlt. Bei Schul- oder Berufsausbildung, einer Übergangszeit von höchstens vier Monaten, einem Freiwilligendienst oder wegen einer Behinderung verlängert sich der Anspruch bis zur Vollendung des 27. Lebensjahres (§ 48 Abs. 4 SGB VI)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird eigenes Einkommen auf die Waisenrente angerechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Anders als bei der Witwen- oder Witwerrente wird eigenes Einkommen der Waise nicht angerechnet. § 97 SGB VI nennt nur Witwen-, Witwer- und Erziehungsrente. Ausbildungsvergütung, Nebenjob oder eine Ausbildungsbeihilfe kürzen die Waisenrente daher nicht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Zuschlag nach § 78 SGB VI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zusätzlich zum Grundbetrag gibt es einen Zuschlag an Entgeltpunkten: 0,0833 EP je Kalendermonat bei der Halbwaisenrente (§ 78 Abs. 2) bzw. 0,075 EP je Kalendermonat bei der Vollwaisenrente (§ 78 Abs. 3). Der genaue Betrag hängt von den rentenrechtlichen Zeiten des Verstorbenen ab und lässt sich nur näherungsweise schätzen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wird die Waisenrente berechnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Waisenrente folgt der Rentenformel (§ 64 SGB VI): persönliche Entgeltpunkte × Rentenartfaktor × aktueller Rentenwert. Vereinfacht ergibt sich der Grundbetrag als Versichertenrente × Rentenartfaktor (0,1 bei Halbwaise, 0,2 bei Vollwaise). Beispiel: 1.500 € Versichertenrente × 0,1 = 150 € Halbwaisenrente. Dazu kommt der Zuschlag nach § 78 SGB VI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es einen offiziellen Waisenrenten-Rechner der Deutschen Rentenversicherung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zuständig für die Waisenrente ist die Deutsche Rentenversicherung – sie berät kostenlos unter 0800 1000 4800 und erteilt verbindliche Auskünfte. Unser Waisenrente-Rechner ist ein unabhängiges, kostenloses Angebot und kein offizieller Rechner der Deutschen Rentenversicherung. Den Antrag stellen Sie direkt bei der Deutschen Rentenversicherung."
+        }
+      }
+    ]
+  })} />
+</Layout>
