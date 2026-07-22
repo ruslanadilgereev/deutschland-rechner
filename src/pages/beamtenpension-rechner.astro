@@ -1,0 +1,364 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import BeamtenpensionRechner from '../components/rechner/BeamtenpensionRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Beamtenpension-Rechner 2026 – Ruhegehalt berechnen";
+const description = "Beamtenpension berechnen 2026: Ruhegehalt nach § 14 BeamtVG mit Ruhegehaltssatz 1,79375 %/Jahr, Höchstsatz 71,75 %, Versorgungsabschlag & Mindestversorgung. Kostenlos.";
+const keywords = "Beamtenpension Rechner, Ruhegehalt berechnen, Beamtenpension berechnen, Ruhegehaltssatz, Pension Beamte 2026, Versorgungsabschlag, BeamtVG, Mindestversorgung Beamte, Beamtenversorgung Rechner, Pension Berechnung Beamter";
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Beamtenpension-Rechner", url: "/beamtenpension-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-slate-500 to-gray-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-slate-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Beamtenpension / Ruhegehalt-Rechner</h1>
+            <p class="text-slate-100 text-sm">Ruhegehalt nach BeamtVG 2026 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm text-slate-900">
+        <div class="flex flex-wrap gap-x-4 gap-y-1">
+          <span>📅 Zuletzt aktualisiert: Juli 2026</span>
+          <span>📖 Rechtsgrundlage: §§ 4, 5, 14 BeamtVG (Beamtenversorgungsgesetz des Bundes)</span>
+        </div>
+        <p class="mt-2"><strong>✅ Berücksichtigt:</strong> Ruhegehaltssatz 1,79375 % je Dienstjahr, Höchstsatz 71,75 %, Faktor 0,9901 auf die ruhegehaltfähigen Dienstbezüge, Versorgungsabschlag 0,3 % je Monat (Deckel 10,8 % bzw. 14,4 %), Mindestversorgung 35 % / 65 % aus A 4 + 30,68 €, Wartezeit 5 Jahre</p>
+        <p class="mt-1"><strong>⚠️ Nicht berücksichtigt:</strong> individuelle Anrechnungs-/Ruhens­vorschriften (§§ 53–56 BeamtVG), Einkommensteuer auf die Pension (→ <a href="/rentensteuer-rechner" class="underline hover:text-blue-700">Rentensteuer-Rechner</a>), Beihilfe/Krankenversicherung, länderspezifische Abweichungen (LBeamtVG), aktuelle EUR-Besoldungsbeträge (Anlage IV BBesG)</p>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BeamtenpensionRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Beamtenpension 2026: So wird das Ruhegehalt berechnet</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Beamtenpension</strong> heißt im Gesetz <strong>Ruhegehalt</strong>. Sie tritt
+            an die Stelle der gesetzlichen Rente und richtet sich für Bundesbeamte nach dem
+            <strong>Beamtenversorgungsgesetz (BeamtVG)</strong>. Mit unserem
+            <strong>Beamtenpension-Rechner</strong> ermitteln Sie Ihr voraussichtliches Ruhegehalt aus
+            Dienstzeit und ruhegehaltfähigen Dienstbezügen – transparent und Schritt für Schritt.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf dem amtlichen Gesetzestext
+            (§§ 4, 5, 14 BeamtVG). Die konkreten EUR-Besoldungsbeträge (Grundgehalt, Endstufe A 4)
+            geben Sie selbst ein, da sie sich mit jeder Besoldungsanpassung ändern.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird die Beamtenpension berechnet?</h3>
+          <p>
+            Das Ruhegehalt ergibt sich aus zwei Größen (§ 4 Abs. 3 BeamtVG):
+            <strong>Ruhegehaltssatz × ruhegehaltfähige Dienstbezüge</strong>. Anschließend wird bei
+            vorzeitigem Ruhestand ein Versorgungsabschlag abgezogen, und es wird geprüft, ob die
+            gesetzliche Mindestversorgung greift.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ruhegehaltssatz: 1,79375 % pro Dienstjahr</h3>
+          <p>
+            Für <strong>jedes Jahr</strong> ruhegehaltfähiger Dienstzeit gibt es
+            <strong>1,79375 %</strong> (§ 14 Abs. 1 BeamtVG). Unvollständige Jahre werden anteilig
+            berücksichtigt. Der Satz wird kaufmännisch auf zwei Nachkommastellen gerundet.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Höchstsatz 71,75 % – wann ist er erreicht?</h3>
+          <p>
+            Der Ruhegehaltssatz ist auf <strong>71,75 %</strong> gedeckelt. Diesen Höchstsatz erreicht
+            man nach genau <strong>40 Dienstjahren</strong> (40 × 1,79375 % = 71,75 %). Weitere
+            Dienstjahre erhöhen die Pension nicht mehr.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Ruhegehaltfähige Dienstbezüge (§ 5 BeamtVG)</h3>
+          <p>
+            Bemessungsgrundlage sind nicht die letzten Netto-Bezüge, sondern die
+            <strong>ruhegehaltfähigen Dienstbezüge</strong>. Dazu zählen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Grundgehalt</strong> der letzten Besoldungsgruppe/-stufe</li>
+            <li><strong>Familienzuschlag der Stufe 1</strong> (nur Stufe 1 ist ruhegehaltfähig)</li>
+            <li>im Besoldungsrecht als ruhegehaltfähig bezeichnete Bezüge, ggf. Leistungsbezüge (§ 33 BBesG)</li>
+          </ul>
+          <p>
+            Diese Summe wird mit dem <strong>Faktor 0,9901</strong> vervielfältigt (§ 5 Abs. 1 BeamtVG).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Versorgungsabschlag bei vorzeitigem Ruhestand</h3>
+          <p>
+            Wer <strong>vor der gesetzlichen Altersgrenze</strong> in den Ruhestand geht, muss einen
+            Versorgungsabschlag hinnehmen: <strong>0,3 % je Monat</strong> bzw. 3,6 % je Jahr
+            (§ 14 Abs. 3 BeamtVG). Der Abschlag ist gedeckelt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>10,8 %</strong> bei Antragsruhestand / Erreichen einer besonderen Altersgrenze (Fälle Nr. 1 und 3)</li>
+            <li><strong>14,4 %</strong> bei Ruhestand wegen Dienstunfähigkeit (Fall Nr. 2)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Ruhegehalt Schritt für Schritt</h3>
+          <p>
+            Beispiel: Ein Bundesbeamter mit <strong>4.200 € Grundgehalt</strong>, <strong>35
+            Dienstjahren</strong> geht per Antrag <strong>24 Monate vor der Altersgrenze</strong> in den
+            Ruhestand (Deckel 10,8 %). Der Grundgehaltsbetrag ist ein frei gewähltes Beispiel – die
+            amtlichen Werte stehen in der Anlage IV BBesG:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Wert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Grundgehalt (Bemessungsbasis)</td><td class="text-right p-2 border border-gray-200">4.200,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Ruhegehaltfähige Dienstbezüge (× 0,9901)</td><td class="text-right p-2 border border-gray-200">4.158,42 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Ruhegehaltssatz: 35 × 1,79375 %</td><td class="text-right p-2 border border-gray-200">62,78 %</td></tr>
+                <tr><td class="p-2 border border-gray-200">Bruttoruhegehalt (62,78 % × 4.158,42 €)</td><td class="text-right p-2 border border-gray-200">2.610,66 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Versorgungsabschlag: 24 × 0,3 %</td><td class="text-right p-2 border border-gray-200">−7,20 %</td></tr>
+                <tr><td class="p-2 border border-gray-200">Abschlagsbetrag</td><td class="text-right p-2 border border-gray-200">−187,97 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Mindestversorgung (35 % + 30,68 €)</td><td class="text-right p-2 border border-gray-200">1.486,13 €</td></tr>
+                <tr class="bg-slate-100 font-semibold"><td class="p-2 border border-gray-200">Endgültiges Ruhegehalt (brutto)</td><td class="text-right p-2 border border-gray-200">2.422,69 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Die Mindestversorgung (1.486,13 €) liegt unter dem errechneten Ruhegehalt und greift hier
+            daher nicht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Mindestversorgung: die gesetzliche Untergrenze</h3>
+          <p>
+            Fällt das errechnete Ruhegehalt sehr niedrig aus, greift die
+            <strong>Mindestversorgung</strong> (§ 14 Abs. 4 BeamtVG). Sie beträgt den höheren der beiden
+            Werte:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Amtsunabhängig:</strong> 35 % der ruhegehaltfähigen Dienstbezüge</li>
+            <li><strong>Amtsabhängig:</strong> 65 % der ruhegehaltfähigen Dienstbezüge aus der Endstufe A 4</li>
+          </ul>
+          <p>
+            Beide werden jeweils um <strong>30,68 €</strong> erhöht. Dieser Erhöhungsbetrag wird durch
+            Besoldungsanpassungen dynamisiert – er ist im Rechner als Näherung hinterlegt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wartezeit: mindestens 5 Jahre Dienstzeit</h3>
+          <p>
+            Ein Ruhegehalt gibt es nur, wenn eine <strong>Dienstzeit von mindestens fünf Jahren</strong>
+            abgeleistet wurde (§ 4 Abs. 1 BeamtVG). Diese Wartezeit entfällt, wenn die Dienstunfähigkeit
+            Folge einer Dienstbeschädigung ist.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Bund oder Land: unterschiedliche Regeln</h3>
+          <p>
+            Unser Rechner bildet das <strong>Bundesrecht (BeamtVG)</strong> ab. Für Landes- und
+            Kommunalbeamte gilt das jeweilige <strong>Landesbeamtenversorgungsgesetz (LBeamtVG)</strong>.
+            Die Grundstruktur (Ruhegehaltssatz, Abschlag, Mindestversorgung) ist ähnlich, einzelne Sätze
+            und Beträge können jedoch abweichen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Beamtenpension und Steuern</h3>
+          <p>
+            Die Beamtenpension ist als Versorgungsbezug voll <strong>einkommensteuerpflichtig</strong> –
+            anders als die gesetzliche Rente, die nur mit ihrem Besteuerungsanteil erfasst wird. Es gibt
+            allerdings einen (abschmelzenden) Versorgungsfreibetrag. Wie viel netto bleibt, hängt vom
+            persönlichen Steuersatz ab; einen ersten Eindruck gibt der
+            <a href="/rentensteuer-rechner" class="text-blue-600 hover:underline">Rentensteuer-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Unterschied Pension und Rente</h3>
+          <p>
+            Beamte zahlen keine Beiträge zur gesetzlichen Rentenversicherung und erhalten daher keine
+            Rente, sondern ein Ruhegehalt aus dem Dienstverhältnis. Wer beides hatte (z. B. frühere
+            Angestelltentätigkeit), kann seine gesetzliche Rente separat mit dem
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">Renten-Rechner</a> schätzen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Beamtenpension 2026?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Das Ruhegehalt beträgt 1,79375 % je Jahr ruhegehaltfähiger Dienstzeit, höchstens 71,75 % der ruhegehaltfähigen Dienstbezüge (§ 14 Abs. 1 BeamtVG). Bei 40 Dienstjahren wird der Höchstsatz von 71,75 % erreicht. Die ruhegehaltfähigen Dienstbezüge (Grundgehalt + Familienzuschlag Stufe 1) werden zuvor mit dem Faktor 0,9901 vervielfältigt.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann erreiche ich den Höchstsatz von 71,75 %?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Der Höchstruhegehaltssatz von 71,75 % ist nach 40 ruhegehaltfähigen Dienstjahren erreicht, denn 40 × 1,79375 % = 71,75 % (§ 14 Abs. 1 BeamtVG). Weitere Dienstjahre erhöhen das Ruhegehalt nicht mehr.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Versorgungsabschlag bei vorzeitigem Ruhestand?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Bei Ruhestand vor der gesetzlichen Altersgrenze mindert sich das Ruhegehalt um 0,3 % je Monat (3,6 % je Jahr) nach § 14 Abs. 3 BeamtVG. Der Abschlag ist gedeckelt: höchstens 10,8 % bei Antragsruhestand (Fälle Nr. 1 und 3) und höchstens 14,4 % bei Dienstunfähigkeit (Fall Nr. 2).</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sind ruhegehaltfähige Dienstbezüge?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ruhegehaltfähig sind das Grundgehalt der letzten Besoldungsgruppe/-stufe, der Familienzuschlag der Stufe 1 sowie im Besoldungsrecht als ruhegehaltfähig bezeichnete Bezüge (§ 5 Abs. 1 BeamtVG). Diese Summe wird mit dem Faktor 0,9901 vervielfältigt und bildet die Bemessungsgrundlage für das Ruhegehalt.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Mindestversorgung für Beamte?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Die Mindestversorgung beträgt nach § 14 Abs. 4 BeamtVG mindestens 35 % der ruhegehaltfähigen Dienstbezüge (amtsunabhängig) oder 65 % der Bezüge aus der Endstufe A 4 (amtsabhängig) – maßgeblich ist der höhere Betrag. Beide werden um 30,68 € erhöht. Dieser Erhöhungsbetrag wird durch Besoldungsanpassungen dynamisiert.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Dienstjahre brauche ich für einen Pensionsanspruch?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Ein Ruhegehalt wird nur gewährt, wenn eine Dienstzeit von mindestens fünf Jahren abgeleistet wurde (Wartezeit nach § 4 Abs. 1 BeamtVG). Diese Wartezeit entfällt, wenn die Dienstunfähigkeit die Folge einer Dienstbeschädigung ist.</p>
+            </div>
+          </details>
+          <details class="border border-gray-200 rounded-lg">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gelten diese Werte auch für Landesbeamte?</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600">
+              <p>Nein. Der Rechner bildet das Bundesrecht (BeamtVG) ab. Landes- und Kommunalbeamte unterliegen dem jeweiligen Landesbeamtenversorgungsgesetz (LBeamtVG), das teils abweichende Sätze und Beträge enthält. Die Grundstruktur ist ähnlich, verbindlich ist jedoch das jeweilige Landesrecht bzw. die zuständige Versorgungsstelle.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="beamtenpension" slugs={['renten', 'rentensteuer', 'rentenpunkte']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Nettobezüge statt ruhegehaltfähiger Dienstbezüge angesetzt</h3>
+            <p>Grundlage ist nicht das Nettogehalt, sondern das Grundgehalt plus Familienzuschlag Stufe 1 – multipliziert mit 0,9901. Nur die Stufe 1 des Familienzuschlags ist ruhegehaltfähig, höhere Stufen bleiben außen vor.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Versorgungsabschlag falsch gedeckelt</h3>
+            <p>Der Abschlag beträgt 0,3 % je Monat, ist aber gedeckelt: 10,8 % beim Antragsruhestand, 14,4 % bei Dienstunfähigkeit. Wer den falschen Deckel nutzt, rechnet die Pension zu niedrig oder zu hoch.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Bund und Land verwechselt</h3>
+            <p>Die hier verbauten Werte gelten für Bundesbeamte. Für Landesbeamte kann das Landesrecht (LBeamtVG) abweichen – vom Erhöhungsbetrag der Mindestversorgung bis zu Sonderregelungen. Verbindlich ist stets die zuständige Versorgungsstelle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Beamtenpension-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/beamtenpension-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Beamtenpension 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Ruhegehalt beträgt 1,79375 % je Jahr ruhegehaltfähiger Dienstzeit, höchstens 71,75 % der ruhegehaltfähigen Dienstbezüge (§ 14 Abs. 1 BeamtVG). Bei 40 Dienstjahren wird der Höchstsatz von 71,75 % erreicht. Die ruhegehaltfähigen Dienstbezüge (Grundgehalt + Familienzuschlag Stufe 1) werden zuvor mit dem Faktor 0,9901 vervielfältigt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann erreiche ich den Höchstsatz von 71,75 %?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Höchstruhegehaltssatz von 71,75 % ist nach 40 ruhegehaltfähigen Dienstjahren erreicht, denn 40 × 1,79375 % = 71,75 % (§ 14 Abs. 1 BeamtVG). Weitere Dienstjahre erhöhen das Ruhegehalt nicht mehr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Versorgungsabschlag bei vorzeitigem Ruhestand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei Ruhestand vor der gesetzlichen Altersgrenze mindert sich das Ruhegehalt um 0,3 % je Monat (3,6 % je Jahr) nach § 14 Abs. 3 BeamtVG. Der Abschlag ist gedeckelt: höchstens 10,8 % bei Antragsruhestand (Fälle Nr. 1 und 3) und höchstens 14,4 % bei Dienstunfähigkeit (Fall Nr. 2)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was sind ruhegehaltfähige Dienstbezüge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ruhegehaltfähig sind das Grundgehalt der letzten Besoldungsgruppe/-stufe, der Familienzuschlag der Stufe 1 sowie im Besoldungsrecht als ruhegehaltfähig bezeichnete Bezüge (§ 5 Abs. 1 BeamtVG). Diese Summe wird mit dem Faktor 0,9901 vervielfältigt und bildet die Bemessungsgrundlage für das Ruhegehalt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Mindestversorgung für Beamte?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Mindestversorgung beträgt nach § 14 Abs. 4 BeamtVG mindestens 35 % der ruhegehaltfähigen Dienstbezüge (amtsunabhängig) oder 65 % der Bezüge aus der Endstufe A 4 (amtsabhängig) – maßgeblich ist der höhere Betrag. Beide werden um 30,68 € erhöht. Dieser Erhöhungsbetrag wird durch Besoldungsanpassungen dynamisiert."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Dienstjahre brauche ich für einen Pensionsanspruch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ein Ruhegehalt wird nur gewährt, wenn eine Dienstzeit von mindestens fünf Jahren abgeleistet wurde (Wartezeit nach § 4 Abs. 1 BeamtVG). Diese Wartezeit entfällt, wenn die Dienstunfähigkeit die Folge einer Dienstbeschädigung ist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gelten diese Werte auch für Landesbeamte?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nein. Der Rechner bildet das Bundesrecht (BeamtVG) ab. Landes- und Kommunalbeamte unterliegen dem jeweiligen Landesbeamtenversorgungsgesetz (LBeamtVG), das teils abweichende Sätze und Beträge enthält. Die Grundstruktur ist ähnlich, verbindlich ist jedoch das jeweilige Landesrecht bzw. die zuständige Versorgungsstelle."
+        }
+      }
+    ]
+  })} />
+</Layout>
