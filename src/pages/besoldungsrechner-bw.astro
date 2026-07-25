@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import BesoldungsRechnerBW from '../components/rechner/BesoldungsRechnerBW.tsx';
+import besoldung from '../data/besoldung-bw.json';
+
+const title = "Besoldungsrechner BW: Tabelle ab 01.04.2026 (+2,82 %)";
+const description = "Besoldungstabelle Baden-Württemberg ab 01.04.2026: alle Grundgehälter der Landesbesoldungsordnungen A 7 bis A 16, B 1 bis B 11 und W nach der amtlichen LBV-Tabelle (Erhöhung 2,82 %). Mit Rechner für Gruppe und Erfahrungsstufe.";
+const keywords = "Besoldungsrechner BW, Besoldungstabelle BW, Besoldungstabelle BW 2026, Besoldung Baden-Württemberg, Besoldungsrechner Baden-Württemberg, A13 BW, Lehrer Besoldung BW, LBesGBW, LBV Besoldungstabelle, Beamte Gehalt Baden-Württemberg";
+
+type GruppeA = { startStufe: number; werte: number[] };
+const aGruppen = Object.entries(besoldung.grundgehaltA) as [string, GruppeA][];
+const bGruppen = Object.entries(besoldung.grundgehaltB) as [string, number][];
+const wGruppen = Object.entries(besoldung.grundgehaltW) as [string, number][];
+const maxStufe = 10;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Besoldungsrechner BW", url: "/besoldungsrechner-bw" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Besoldungsrechner Baden-Württemberg</h1>
+      <p class="text-amber-100 text-sm mt-1">Amtliche Grundgehaltssätze ab 01.04.2026 (Erhöhung 2,82 %) | LBesO A, B und W</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Baden-Württemberg hat die Besoldungsanpassung bereits umgesetzt: Seit dem <strong>1. April 2026</strong> gelten
+      die um <strong>2,82 %</strong> erhöhten Grundgehaltssätze nach der amtlichen Tabelle des Landesamts für
+      Besoldung und Versorgung (LBV). Damit ist BW schneller als der Bund, wo die Anpassung 2025/2026 noch im
+      Gesetzgebungsverfahren steckt – zum Vergleich lohnt der
+      <a href="/besoldungsrechner-bund" class="text-amber-700 hover:underline">Besoldungsrechner Bund</a>.
+    </p>
+
+    <BesoldungsRechnerBW client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungstabelle BW ab 01.04.2026 – Landesbesoldungsordnung A</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2 pr-2">Gruppe</th>
+              {Array.from({ length: maxStufe }, (_, i) => <th class="py-2 text-right">St. {i + 1}</th>)}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {aGruppen.map(([g, d]) => (
+              <tr class="text-gray-700">
+                <td class="py-1.5 font-medium">{g}</td>
+                {Array.from({ length: maxStufe }, (_, i) => {
+                  const stufe = i + 1;
+                  const idx = stufe - d.startStufe;
+                  const v = idx >= 0 && idx < d.werte.length ? d.werte[idx] : null;
+                  return <td class="py-1.5 text-right">{v !== null ? fmt(v) : "–"}</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: {besoldung.meta.quelle}, Rechtsgrundlage {besoldung.meta.rechtsgrundlage}. Beträge in Euro/Monat,
+        ohne Familienzuschlag und Zulagen. „–" = Erfahrungsstufe in dieser Gruppe nicht besetzt.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-lg font-bold text-gray-800 mb-3">LBesO B (Festgehälter)</h2>
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-gray-100">
+            {bGruppen.map(([g, v]) => (
+              <tr class="text-gray-700"><td class="py-1.5 font-medium">{g}</td><td class="py-1.5 text-right">{fmt(v)} €</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-lg font-bold text-gray-800 mb-3">LBesO W (Professuren)</h2>
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-gray-100">
+            {wGruppen.map(([g, v]) => (
+              <tr class="text-gray-700"><td class="py-1.5 font-medium">{g}</td><td class="py-1.5 text-right">{fmt(v)} €</td></tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="text-xs text-gray-500 mt-3">W-Besoldung zuzüglich Leistungsbezüge nach LBesGBW.</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was verdient ein Lehrer (A 13) in Baden-Württemberg?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ein verbeamteter Lehrer in A 13 startet in Baden-Württemberg in Erfahrungsstufe 3 mit 5.332,12 € Grundgehalt und erreicht in der Endstufe 6.534,50 € pro Monat (Stand 01.04.2026). Hinzu kommen je nach Familienstand der Familienzuschlag sowie ggf. die Strukturzulage.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum beginnen manche Gruppen erst bei Stufe 2, 3 oder 4?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das ist die baden-württembergische Tabellensystematik: Höhere Besoldungsgruppen steigen direkt in höheren Erfahrungsstufen ein (A 12 ab Stufe 2, A 13 und A 14 ab Stufe 3, A 15 und A 16 ab Stufe 4). Der Stufenaufstieg folgt anfangs im 3-Jahres-, später im 4-Jahres-Rhythmus.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist die Erhöhung 2026 in BW schon in der Tabelle enthalten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja. Die Tabelle enthält die Erhöhung um 2,82 % zum 1. April 2026, die das LBV amtlich veröffentlicht hat. Baden-Württemberg ist damit weiter als der Bund, dessen Anpassung 2025/2026 im Juli 2026 noch nicht verkündet ist.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was verdient ein Lehrer (A 13) in Baden-Württemberg?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In A 13 startet ein verbeamteter Lehrer in BW mit 5.332,12 € Grundgehalt (Stufe 3) und erreicht in der Endstufe 6.534,50 € pro Monat (Stand 01.04.2026), zuzüglich Familienzuschlag und ggf. Strukturzulage." }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum beginnen manche Besoldungsgruppen in BW erst bei Stufe 2, 3 oder 4?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die baden-württembergische Systematik lässt höhere Gruppen direkt in höheren Erfahrungsstufen einsteigen: A 12 ab Stufe 2, A 13/A 14 ab Stufe 3, A 15/A 16 ab Stufe 4." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die Besoldungserhöhung 2026 in Baden-Württemberg schon enthalten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, die amtliche LBV-Tabelle enthält die Erhöhung um 2,82 % zum 01.04.2026." }
+      }
+    ]
+  })} />
+</Layout>
