@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import BesoldungsRechnerBund from '../components/rechner/BesoldungsRechnerBund.tsx';
+import besoldung from '../data/besoldung-bund.json';
+
+const title = "Besoldungsrechner Bund 2026: Tabelle A 3 bis B 11";
+const description = "Besoldungstabelle Bund: alle Grundgehälter A 3 bis A 16 (8 Stufen) und B 1 bis B 11 nach Anlage IV BBesG, gültig ab 01.03.2024. Plus Klartext zum Stand der Besoldungsanpassung 2025/2026 und den Abschlagszahlungen. Gilt auch für Soldaten.";
+const keywords = "Besoldungsrechner Bund, Besoldungstabelle Bund, Besoldungstabelle Bund 2026, Besoldung Bund, A9 Besoldung, A13 Besoldung, Bundesbesoldung, Besoldungstabelle Bundeswehr, Besoldungsrechner Bundeswehr, Grundgehalt Beamte Bund, BBesG Anlage IV, Besoldungserhöhung 2026";
+
+const aGruppen = Object.entries(besoldung.grundgehaltA) as [string, number[]][];
+const bGruppen = Object.entries(besoldung.grundgehaltB) as [string, number][];
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Besoldungsrechner Bund", url: "/besoldungsrechner-bund" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Besoldungsrechner Bund: Grundgehälter nach BBesG</h1>
+      <p class="text-indigo-100 text-sm mt-1">Amtliche Tabelle (Anlage IV BBesG) für Bundesbeamte und Soldaten | inkl. Stand der Anpassung 2025/2026</p>
+    </div>
+
+    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 text-sm text-yellow-800">
+      <strong>Stand der Besoldungserhöhung (Juli 2026):</strong> Die Übertragung des Tarifabschlusses vom April 2025
+      auf Beamte und Soldaten des Bundes sowie die Umsetzung der Alimentations-Rechtsprechung sind noch
+      <strong> nicht im Bundesgesetzblatt verkündet</strong> – es gilt weiterhin die Tabelle ab 01.03.2024.
+      Seit September 2025 zahlt der Bund <strong>Abschlagszahlungen</strong> auf die künftige Erhöhung; nach der
+      Verkündung folgt die Spitzabrechnung. Anders als manche Portale zeigen wir keine Entwurfswerte als endgültige
+      Tabellen an. Sobald die neuen Beträge verkündet sind, steht hier taggleich die aktualisierte Tabelle.
+    </div>
+
+    <BesoldungsRechnerBund client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungstabelle Bund – Besoldungsordnung A (Grundgehalt/Monat)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2 pr-2">Gruppe</th>
+              {[1,2,3,4,5,6,7,8].map((s) => <th class="py-2 text-right">St. {s}</th>)}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {aGruppen.map(([g, stufen]) => (
+              <tr class="text-gray-700">
+                <td class="py-1.5 font-medium">{g}</td>
+                {stufen.map((v) => <td class="py-1.5 text-right">{fmt(v)}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: Anlage IV Bundesbesoldungsgesetz, gültig ab {besoldung.meta.gueltigAb} ({besoldung.meta.fundstelle}).
+        Beträge in Euro/Monat, ohne Familienzuschlag und Zulagen.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungsordnung B (Festgehälter/Monat)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-md">
+          <thead><tr class="text-left text-gray-500 border-b"><th class="py-2">Gruppe</th><th class="py-2 text-right">Grundgehalt</th></tr></thead>
+          <tbody class="divide-y divide-gray-100">
+            {bGruppen.map(([g, v]) => (
+              <tr class="text-gray-700"><td class="py-1.5 font-medium">{g}</td><td class="py-1.5 text-right">{fmt(v)} €</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum gibt es noch keine Besoldungstabelle „ab Mai 2026"?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Weil das zugehörige Gesetz (Anpassung der Bundesbesoldung 2025/2026 samt amtsangemessener Alimentation) im Juli 2026 noch nicht im Bundesgesetzblatt verkündet ist. Bis dahin gilt rechtlich die Tabelle ab 01.03.2024. Damit Beamte und Soldaten nicht warten müssen, zahlt der Bund seit September 2025 Abschläge auf die erwartete Erhöhung; nach der Verkündung wird spitzabgerechnet und nachgezahlt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt diese Tabelle auch für Soldatinnen und Soldaten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja. Die Besoldung der Bundeswehr richtet sich nach dem Bundesbesoldungsgesetz; Soldaten werden nach denselben Besoldungsordnungen A und B besoldet (zuzüglich soldatenspezifischer Zulagen wie dem Wehrsold-Zuschlag bei besonderen Verwendungen).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kommt zum Grundgehalt noch dazu?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Je nach Familienstand der Familienzuschlag (Anlage V BBesG), außerdem Amts- und Stellenzulagen sowie ggf. Auslands- oder Erschwerniszulagen. Netto bleiben Beamte ohne Sozialversicherungsbeiträge, zahlen aber Kranken- und Pflegeversicherung selbst (Beihilfe plus private Restkostenversicherung) – zum Vergleich lohnt der <a href="/pkv-gkv-rechner" class="text-indigo-600 hover:underline">PKV-GKV-Rechner</a>. Die spätere Pension berechnet der <a href="/beamtenpension-rechner" class="text-indigo-600 hover:underline">Beamtenpension-Rechner</a>.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie funktionieren die Erfahrungsstufen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">In der Besoldungsordnung A steigt das Grundgehalt mit der Dienstzeit über acht Erfahrungsstufen (§ 27 BBesG). Der Aufstieg erfolgt nach 2, 3 oder 4 Jahren je Stufe; Zeiten ohne Anspruch können den Aufstieg verzögern. B-Besoldung (ab Abteilungsleitung/Staatssekretäre) kennt keine Stufen, sondern Festgehälter.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Warum gibt es noch keine Besoldungstabelle ab Mai 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Das Gesetz zur Anpassung der Bundesbesoldung 2025/2026 ist im Juli 2026 noch nicht im Bundesgesetzblatt verkündet. Rechtlich gilt die Tabelle ab 01.03.2024; seit September 2025 zahlt der Bund Abschläge auf die erwartete Erhöhung, nach der Verkündung wird nachgezahlt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt die Besoldungstabelle des Bundes auch für Soldaten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, die Besoldung der Bundeswehr richtet sich nach dem Bundesbesoldungsgesetz mit denselben Besoldungsordnungen A und B." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kommt zum Grundgehalt der Beamten noch dazu?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Familienzuschlag nach Anlage V BBesG sowie Amts-, Stellen- und ggf. Auslands- oder Erschwerniszulagen." }
+      }
+    ]
+  })} />
+</Layout>
