@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import GoaeRechner from '../components/rechner/GoaeRechner';
+
+const title = "GOÄ-Rechner 2026: Arztrechnung einfach prüfen";
+const description = "GOÄ-Gebühren berechnen: Punktzahl × Punktwert (5,82873 Cent) × Steigerungsfaktor. Mit Rechner, gängigen Ziffern (Beratung 10,72 €, Check-up 34,86 €) und den Regeln zu Faktor 2,3 und 3,5.";
+const keywords = "GOÄ Rechner, GOÄ Gebühren berechnen, Arztrechnung prüfen, GOÄ Punktwert, GOÄ Faktor 2,3, GOÄ Steigerungsfaktor, GOÄ Ziffer 1, Privatrechnung Arzt prüfen, IGeL Kosten, GOÄ Höchstsatz 3,5";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "GOÄ-Rechner", url: "/goae-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-sky-700 to-blue-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">GOÄ-Rechner: Privatärztliche Gebühren prüfen</h1>
+      <p class="text-sky-100 text-sm mt-1">Punktzahl × 5,82873 Cent × Faktor | Regelspanne bis 2,3 | Höchstsatz 3,5</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Jede Position einer Privatrechnung folgt derselben Formel der
+      <strong>Gebührenordnung für Ärzte (GOÄ)</strong>: Punktzahl der Leistung ×
+      Punktwert von <strong>5,82873 Cent</strong> × Steigerungsfaktor. Eine normale Beratung
+      (Ziffer 1, 80 Punkte) kostet zum Regelsatz 2,3 also <strong>10,72 €</strong>, der
+      Check-up-Ganzkörperstatus (Ziffer 8) 34,86 €. Mit dem Rechner prüfen Sie jede
+      Rechnungsposition in Sekunden.
+    </p>
+
+    <div class="mb-6">
+      <GoaeRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Der Steigerungsfaktor: Was ist erlaubt?</h2>
+      <div class="overflow-x-auto mb-3">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Leistungsart</th>
+              <th class="py-2 text-right">Regelspanne</th>
+              <th class="py-2 text-right">mit Begründung bis</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Persönliche Leistungen (Beratung, Untersuchung, OP)</td><td class="text-right">1,0 bis 2,3</td><td class="text-right font-mono">3,5</td></tr>
+            <tr><td class="py-2">Technische Leistungen (Abschnitte A, E, O)</td><td class="text-right">1,0 bis 1,8</td><td class="text-right font-mono">2,5</td></tr>
+            <tr><td class="py-2">Laborleistungen (Abschnitt M, Nr. 437)</td><td class="text-right">1,0 bis 1,15</td><td class="text-right font-mono">1,3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-gray-700">
+        Innerhalb der Regelspanne bestimmt die Ärztin oder der Arzt den Faktor nach Schwierigkeit und
+        Zeitaufwand (§ 5 Abs. 2 GOÄ). <strong>Über dem Schwellenwert (2,3 / 1,8 / 1,15) muss die Rechnung
+        die Überschreitung je Leistung schriftlich und verständlich begründen</strong> (§ 12 Abs. 3 GOÄ);
+        eine Standard-Floskel genügt nicht. Über dem Höchstsatz (3,5 / 2,5 / 1,3) geht es nur mit einer
+        individuellen Honorarvereinbarung nach § 2 GOÄ, die vor der Behandlung schriftlich geschlossen wurde.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Für wen gilt die GOÄ?</h2>
+      <p class="text-sm text-gray-700">
+        Die GOÄ gilt für alle ärztlichen Leistungen außerhalb der gesetzlichen Krankenversicherung:
+        für <strong>Privatversicherte und Beihilfeberechtigte</strong>, für <strong>Selbstzahler</strong>
+        und für <strong>IGeL-Leistungen</strong> (individuelle Gesundheitsleistungen) bei Kassenpatienten.
+        Kassenleistungen rechnet die Praxis dagegen nach dem EBM direkt mit der Krankenkasse ab, dafür
+        bekommen Sie keine Rechnung. Wichtig bei IGeL: Auch hier muss nach GOÄ abgerechnet werden,
+        Pauschalpreise ohne Ziffern sind unzulässig.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Gilt schon die "neue GOÄ"?</h2>
+      <p class="text-sm text-gray-700">
+        Nein. Die seit Jahren zwischen Bundesärztekammer, PKV-Verband und Bundesgesundheitsministerium
+        diskutierte GOÄ-Novelle ist mit Stand Juli 2026 <strong>nicht in Kraft</strong>. Es gilt weiterhin
+        die GOÄ in der Fassung von 1996 mit dem unveränderten Punktwert von 5,82873 Cent. Sobald eine
+        Novelle verkündet wird, aktualisieren wir diesen Rechner.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet sich eine GOÄ-Gebühr?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Punktzahl der Leistung × Punktwert (5,82873 Cent) × Steigerungsfaktor, kaufmännisch auf den Cent gerundet. Beispiel Ziffer 1 (Beratung, 80 Punkte): 80 × 5,82873 Cent = 4,66 € einfacher Satz, beim Faktor 2,3 also 10,72 €.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet der Faktor 2,3 auf der Arztrechnung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">2,3 ist der Regelhöchstsatz für persönliche Leistungen: Bis zu diesem Faktor darf ohne besondere Begründung abgerechnet werden, wenn Schwierigkeit und Zeitaufwand das rechtfertigen. Ein höherer Faktor (bis 3,5) verlangt eine schriftliche, auf die einzelne Leistung bezogene Begründung in der Rechnung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Darf der Arzt mehr als den 3,5-fachen Satz verlangen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nur mit einer abweichenden Vereinbarung nach § 2 GOÄ: einem individuellen Honorarvertrag, der vor der Behandlung schriftlich geschlossen wird und den Sie freiwillig unterschreiben. Ohne diese Vereinbarung ist beim Höchstsatz Schluss (3,5 bzw. 2,5 für technische und 1,3 für Laborleistungen).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt die GOÄ auch für Kassenpatienten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Für normale Kassenleistungen nicht, die laufen über den EBM. Nach GOÄ abgerechnet werden aber IGeL-Selbstzahlerleistungen, Wunschleistungen und Behandlungen ohne Krankenversicherungsschutz. Auch dann gelten Punktwert, Faktoren und Begründungspflichten.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Meine Rechnung erscheint zu hoch. Was kann ich tun?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Prüfen Sie je Position Ziffer, Punktzahl und Faktor mit dem Rechner. Fehlt bei Faktoren über 2,3 die Begründung oder wirkt sie formelhaft, fordern Sie eine Erläuterung an (§ 12 Abs. 3 GOÄ). Privatversicherte können die Rechnung auch von ihrer Versicherung prüfen lassen; die Ärztekammern bieten ebenfalls GOÄ-Auskünfte an.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: Gebührenordnung für Ärzte (GOÄ), insbesondere § 2, § 5 und § 12 sowie Anlage
+      (Gebührenverzeichnis), abrufbar über gesetze-im-internet.de. Punktzahlen dem amtlichen
+      Gebührenverzeichnis entnommen, Eurobeträge aus dem Punktwert nach § 5 Abs. 1 GOÄ berechnet.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet sich eine GOÄ-Gebühr?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Punktzahl der Leistung × Punktwert (5,82873 Cent) × Steigerungsfaktor, kaufmännisch auf den Cent gerundet. Beispiel Ziffer 1 (Beratung, 80 Punkte): 80 × 5,82873 Cent = 4,66 € einfacher Satz, beim Faktor 2,3 also 10,72 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet der Faktor 2,3 auf der Arztrechnung?",
+        "acceptedAnswer": { "@type": "Answer", "text": "2,3 ist der Regelhöchstsatz für persönliche Leistungen. Ein höherer Faktor bis 3,5 verlangt eine schriftliche, auf die einzelne Leistung bezogene Begründung in der Rechnung (§ 12 Abs. 3 GOÄ)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Darf der Arzt mehr als den 3,5-fachen Satz verlangen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nur mit einer abweichenden Vereinbarung nach § 2 GOÄ, die vor der Behandlung schriftlich geschlossen wird. Ohne sie ist beim Höchstsatz Schluss: 3,5 für persönliche, 2,5 für technische und 1,3 für Laborleistungen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt die GOÄ auch für Kassenpatienten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Für Kassenleistungen nicht (EBM-Abrechnung). Nach GOÄ abgerechnet werden IGeL-Selbstzahlerleistungen, Wunschleistungen und Behandlungen ohne Versicherungsschutz." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt schon die neue GOÄ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, die GOÄ-Novelle ist mit Stand Juli 2026 nicht in Kraft. Es gilt die GOÄ in der Fassung von 1996 mit dem Punktwert 5,82873 Cent." }
+      }
+    ]
+  })} />
+</Layout>
