@@ -560,7 +560,7 @@ export default function MidijobRechner() {
                 <span className="opacity-70 ml-1">(für AN-Anteil)</span>
               </p>
               <p className="text-purple-600 text-xs mt-2">
-                Offizieller Faktor F (2025) = {ergebnis.faktorF} | Gesamtbeitragssatz = {ergebnis.gesamtBeitragssatz}%
+                Offizieller Faktor F (2026) = {ergebnis.faktorF} | Gesamtbeitragssatz = {ergebnis.gesamtBeitragssatz}%
               </p>
             </div>
           )}
@@ -696,7 +696,7 @@ export default function MidijobRechner() {
           </li>
           <li className="flex gap-2">
             <span>✓</span>
-            <span><strong>Früher "Gleitzone":</strong> Bis 2019 hieß es "Gleitzone" (450-850€)</span>
+            <span><strong>Früher "Gleitzone":</strong> Bis Juni 2019 hieß es "Gleitzone" (zuletzt 450,01-850€)</span>
           </li>
         </ul>
       </div>
@@ -822,7 +822,7 @@ export default function MidijobRechner() {
               <span className="text-xl">📞</span>
               <div>
                 <p className="font-medium text-gray-800">DRV Service-Telefon</p>
-                <a href="tel:08001000480700" className="text-blue-600 hover:underline font-mono">0800 1000 4800</a>
+                <a href="tel:080010004800" className="text-blue-600 hover:underline font-mono">0800 1000 4800</a>
                 <p className="text-xs text-gray-500">Kostenfrei, Mo-Do 7:30-19:30, Fr 7:30-15:30</p>
               </div>
             </div>
