@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Weihnachtsgeld-Pfändung 2026: 795 € sind unpfändbar";
+const description = "Weihnachtsgeld bei Pfändung und Privatinsolvenz 2026: Bis 795 € sind nach § 850a Nr. 4 ZPO unpfändbar (Hälfte des aufgerundeten Freibetrags). Mit Beispielrechnung, P-Konto-Antrag und den Schritten für die Lohnpfändung.";
+const keywords = "Weihnachtsgeld Pfändung, Weihnachtsgeld pfändbar, Pfändungsrechner mit Weihnachtsgeld, Weihnachtsgeld Pfändungsrechner 2026, P-Konto Weihnachtsgeld Antrag, Weihnachtsgeld Privatinsolvenz, Musterbrief Weihnachtsgeld P-Konto, § 850a ZPO Weihnachtsgeld, Weihnachtsgeld unpfändbar";
+
+// § 850a Nr. 4 ZPO: unpfändbar bis zur Hälfte des auf volle 10 € aufgerundeten
+// Freibetrags nach § 850c Abs. 1 (2026: 1.587,40 € → 1.590 € → 795,00 €).
+const FREIBETRAG = 1587.40;
+const AUFGERUNDET = Math.ceil(FREIBETRAG / 10) * 10;
+const MAX_UNPFAENDBAR = AUFGERUNDET / 2;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const beispiele = [500, 795, 1200, 2000].map((wg) => ({
+  wg,
+  unpf: Math.min(wg, MAX_UNPFAENDBAR),
+  rest: Math.max(0, wg - MAX_UNPFAENDBAR),
+}));
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Weihnachtsgeld-Pfändung", url: "/weihnachtsgeld-pfaendung" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-red-700 to-rose-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Weihnachtsgeld bei Pfändung: Was bleibt 2026 geschützt?</h1>
+      <p class="text-red-100 text-sm mt-1">§ 850a Nr. 4 ZPO | unpfändbar bis {fmt(MAX_UNPFAENDBAR)} € | gilt auch in der Privatinsolvenz</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Gute Nachricht für alle mit Lohnpfändung oder in der Privatinsolvenz: Die Weihnachtsvergütung ist 2026
+      <strong>bis {fmt(MAX_UNPFAENDBAR)} € unpfändbar</strong>. Der Betrag ergibt sich aus § 850a Nr. 4 ZPO:
+      die Hälfte des auf volle 10 € aufgerundeten monatlichen Pfändungsfreibetrags
+      ({fmt(FREIBETRAG)} € → {AUFGERUNDET} € → {fmt(MAX_UNPFAENDBAR)} €). Nur der darüber liegende Teil
+      zählt zum pfändbaren Einkommen – wie viel davon tatsächlich gepfändet wird, zeigt der
+      <a href="/pfaendungsrechner" class="text-red-700 hover:underline">Pfändungsrechner</a>.
+    </p>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Beispiele: Weihnachtsgeld und Pfändungsschutz 2026</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-xl">
+          <thead><tr class="text-left text-gray-500 border-b"><th class="py-2">Weihnachtsgeld</th><th class="py-2 text-right">davon unpfändbar</th><th class="py-2 text-right">zählt zum pfändbaren Einkommen</th></tr></thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            {beispiele.map((b) => (
+              <tr>
+                <td class="py-2 font-medium">{fmt(b.wg)} €</td>
+                <td class="py-2 text-right text-green-700 font-semibold">{fmt(b.unpf)} €</td>
+                <td class="py-2 text-right">{fmt(b.rest)} €</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Der übersteigende Teil wird dem November- bzw. Dezember-Einkommen zugerechnet und nach der normalen
+        Pfändungstabelle (§ 850c ZPO) behandelt – er ist also nicht automatisch komplett weg.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">So sichern Sie Ihr Weihnachtsgeld (je nach Situation)</h2>
+      <div class="space-y-4 text-sm text-gray-700">
+        <div>
+          <h3 class="font-semibold text-gray-800">Bei Lohnpfändung (Arbeitgeber rechnet ab)</h3>
+          <p>Der Arbeitgeber muss § 850a Nr. 4 ZPO von sich aus beachten und die {fmt(MAX_UNPFAENDBAR)} € beim
+          pfändbaren Betrag herausrechnen. Prüfen Sie die Novemberabrechnung; bei Fehlern hilft ein Hinweis an
+          die Lohnbuchhaltung auf § 850a Nr. 4 ZPO.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">Auf dem P-Konto (Geld ist schon auf dem Konto)</h3>
+          <p>Die Bank kennt den Grund der Gutschrift nicht. Damit das Weihnachtsgeld zusätzlich zum
+          Grundfreibetrag geschützt wird, brauchen Sie eine <strong>Freigabe durch das Vollstreckungsgericht</strong>
+          (§ 906 Abs. 2 ZPO) oder eine erweiterte Bescheinigung. Stellen Sie den Antrag am besten, sobald der
+          Zahltermin feststeht – formlos mit Verweis auf § 850a Nr. 4 ZPO, Kontoauszug und Lohnabrechnung als Nachweis.
+          Mehr dazu im <a href="/p-konto-freibetrag-rechner" class="text-red-700 hover:underline">P-Konto-Freibetrag-Rechner</a>.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">In der Privatinsolvenz</h3>
+          <p>Auch hier gilt § 850a Nr. 4 ZPO: Bis {fmt(MAX_UNPFAENDBAR)} € gehören nicht zur Insolvenzmasse.
+          Informieren Sie Ihre Insolvenzverwaltung bzw. stellen Sie beim Insolvenzgericht den Freigabeantrag,
+          bevor das Weihnachtsgeld ausgezahlt wird. Wie viel von Ihrem laufenden Einkommen abgeführt wird,
+          zeigt der <a href="/privatinsolvenz-rechner" class="text-red-700 hover:underline">Privatinsolvenz-Rechner</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Weihnachtsgeld ist 2026 unpfändbar?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bis {fmt(MAX_UNPFAENDBAR)} €. Die Grenze berechnet sich als Hälfte des auf volle 10 € aufgerundeten Pfändungsfreibetrags (2026: {fmt(FREIBETRAG)} € → {AUFGERUNDET} € → {fmt(MAX_UNPFAENDBAR)} €) und steigt daher mit jeder Freibetrags-Anpassung zum 1. Juli automatisch mit.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich für den Schutz etwas beantragen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bei der Lohnpfändung nicht – der Arbeitgeber muss die Grenze von sich aus beachten. Auf dem P-Konto dagegen ja: Dort ist ein Freigabebeschluss des Vollstreckungsgerichts oder eine erweiterte Bescheinigung nötig, weil die Bank die Herkunft der Gutschrift nicht kennt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt der Schutz auch für Urlaubsgeld?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Urlaubsgeld ist nach § 850a Nr. 2 ZPO sogar in voller Höhe unpfändbar, soweit es den üblichen Rahmen nicht übersteigt – es gilt also eine andere, großzügigere Regel als beim Weihnachtsgeld.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie viel Weihnachtsgeld ist 2026 unpfändbar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bis 795,00 €: die Hälfte des auf volle 10 € aufgerundeten Pfändungsfreibetrags (1.587,40 € → 1.590 € → 795 €) nach § 850a Nr. 4 ZPO. Der Betrag steigt mit jeder Freibetrags-Anpassung zum 1. Juli automatisch." }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich den Weihnachtsgeld-Schutz beantragen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei der Lohnpfändung nicht (der Arbeitgeber muss § 850a Nr. 4 ZPO beachten); auf dem P-Konto ist ein Freigabebeschluss des Vollstreckungsgerichts nach § 906 ZPO oder eine erweiterte Bescheinigung nötig." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist Urlaubsgeld pfändbar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Urlaubsgeld ist nach § 850a Nr. 2 ZPO in voller Höhe unpfändbar, soweit es den üblichen Rahmen nicht übersteigt." }
+      }
+    ]
+  })} />
+</Layout>
