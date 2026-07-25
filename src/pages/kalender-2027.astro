@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Kalender 2027 mit Feiertagen und Kalenderwochen";
+const description = "Kalender 2027: alle 12 Monate mit gesetzlichen Feiertagen je Bundesland, Kalenderwochen und Brückentage-Tipps. Ostern am 28. März, Pfingsten am 16./17. Mai 2027. Kostenlos und druckfreundlich.";
+const keywords = "Kalender 2027, Jahreskalender 2027, Kalender 2027 mit Feiertagen, Feiertage 2027, Kalenderwochen 2027, Ostern 2027, Pfingsten 2027, Brückentage 2027, Kalender 2027 zum Ausdrucken";
+
+// Gesetzliche Feiertage 2027. Bewegliche Termine aus Ostersonntag 28.03.2027 abgeleitet
+// (verifiziert); Länderkürzel = Geltungsbereich nach den Feiertagsgesetzen der Länder.
+const feiertage: Record<string, { name: string; laender: string }> = {
+  "2027-01-01": { name: "Neujahr", laender: "bundesweit" },
+  "2027-01-06": { name: "Heilige Drei Könige", laender: "BW, BY, ST" },
+  "2027-03-08": { name: "Internationaler Frauentag", laender: "BE, MV" },
+  "2027-03-26": { name: "Karfreitag", laender: "bundesweit" },
+  "2027-03-28": { name: "Ostersonntag", laender: "BB (gesetzl.), sonst Festtag" },
+  "2027-03-29": { name: "Ostermontag", laender: "bundesweit" },
+  "2027-05-01": { name: "Tag der Arbeit", laender: "bundesweit" },
+  "2027-05-06": { name: "Christi Himmelfahrt", laender: "bundesweit" },
+  "2027-05-16": { name: "Pfingstsonntag", laender: "BB (gesetzl.), sonst Festtag" },
+  "2027-05-17": { name: "Pfingstmontag", laender: "bundesweit" },
+  "2027-05-27": { name: "Fronleichnam", laender: "BW, BY, HE, NW, RP, SL (teils SN, TH)" },
+  "2027-08-15": { name: "Mariä Himmelfahrt", laender: "SL, kath. Gemeinden BY" },
+  "2027-09-20": { name: "Weltkindertag", laender: "TH" },
+  "2027-10-03": { name: "Tag der Deutschen Einheit", laender: "bundesweit" },
+  "2027-10-31": { name: "Reformationstag", laender: "BB, HB, HH, MV, NI, SH, SN, ST, TH" },
+  "2027-11-01": { name: "Allerheiligen", laender: "BW, BY, NW, RP, SL" },
+  "2027-11-17": { name: "Buß- und Bettag", laender: "SN" },
+  "2027-12-25": { name: "1. Weihnachtstag", laender: "bundesweit" },
+  "2027-12-26": { name: "2. Weihnachtstag", laender: "bundesweit" },
+};
+
+const monatsnamen = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+const wochentage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+
+function iso(d: Date) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+// ISO-Kalenderwoche
+function kw(d: Date) {
+  const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+  return Math.ceil(((t.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+}
+
+// 12 Monats-Grids generieren: Wochen (Mo-So) mit Tag, Feiertag, Sonntag, KW
+const monate = monatsnamen.map((name, mIdx) => {
+  const first = new Date(2027, mIdx, 1);
+  const daysInMonth = new Date(2027, mIdx + 1, 0).getDate();
+  const startOffset = (first.getDay() + 6) % 7; // Mo=0
+  const wochen: Array<{ kw: number; tage: Array<{ tag: number | null; feiertag: string | null; sonntag: boolean }> }> = [];
+  let woche: Array<{ tag: number | null; feiertag: string | null; sonntag: boolean }> = Array.from({ length: startOffset }, () => ({ tag: null, feiertag: null, sonntag: false }));
+  for (let t = 1; t <= daysInMonth; t++) {
+    const d = new Date(2027, mIdx, t);
+    woche.push({ tag: t, feiertag: feiertage[iso(d)]?.name ?? null, sonntag: d.getDay() === 0 });
+    if (woche.length === 7) {
+      wochen.push({ kw: kw(new Date(2027, mIdx, t)), tage: woche });
+      woche = [];
+    }
+  }
+  if (woche.length) {
+    while (woche.length < 7) woche.push({ tag: null, feiertag: null, sonntag: false });
+    wochen.push({ kw: kw(new Date(2027, mIdx, daysInMonth)), tage: woche });
+  }
+  return { name, wochen };
+});
+
+const feiertagsListe = Object.entries(feiertage).map(([datum, f]) => {
+  const d = new Date(datum + "T00:00:00");
+  const wt = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"][d.getDay()];
+  return { datum: d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" }), wt, ...f };
+});
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Kalender 2027", url: "/kalender-2027" }]} />
+
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Kalender 2027 mit Feiertagen und Kalenderwochen</h1>
+      <p class="text-blue-100 text-sm mt-1">Alle 12 Monate, gesetzliche Feiertage je Bundesland, ISO-Kalenderwochen – druckfreundlich</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Der Jahreskalender 2027 startet an einem <strong>Freitag</strong>. Ostern fällt auf den
+      <strong>28./29. März 2027</strong>, Pfingsten auf den <strong>16./17. Mai 2027</strong> –
+      beide früh im Jahr. Besonderheit 2027: Der <strong>Tag der Deutschen Einheit (3. Oktober) ist ein Sonntag</strong>
+      und bringt daher keinen zusätzlichen freien Arbeitstag. Wie Sie die verbleibenden Feiertage optimal
+      verlängern, zeigt der <a href="/brueckentage-rechner" class="text-blue-600 hover:underline">Brückentage-Rechner</a>;
+      die Zahl der Arbeitstage je Monat liefert der <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage-Rechner</a>.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 print:grid-cols-3">
+      {monate.map((m) => (
+        <div class="bg-white rounded-xl shadow p-3">
+          <h2 class="text-center font-semibold text-gray-800 mb-2">{m.name} 2027</h2>
+          <table class="w-full text-xs">
+            <thead>
+              <tr class="text-gray-500">
+                <th class="font-normal text-left pl-1">KW</th>
+                {wochentage.map((w) => <th class={w === "So" ? "text-red-500 font-normal" : "font-normal"}>{w}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {m.wochen.map((w) => (
+                <tr>
+                  <td class="text-gray-400 pl-1">{w.kw}</td>
+                  {w.tage.map((t) => (
+                    <td class={`text-center py-0.5 ${t.feiertag ? "bg-blue-100 text-blue-800 font-semibold rounded" : t.sonntag ? "text-red-500" : "text-gray-700"}`} title={t.feiertag ?? undefined}>
+                      {t.tag ?? ""}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Gesetzliche Feiertage 2027 im Überblick</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Datum</th><th class="py-2">Wochentag</th><th class="py-2">Feiertag</th><th class="py-2">Gilt in</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {feiertagsListe.map((f) => (
+              <tr class={f.wt === "Sonntag" ? "text-gray-500" : "text-gray-700"}>
+                <td class="py-2 font-medium">{f.datum}</td>
+                <td class="py-2">{f.wt}</td>
+                <td class="py-2">{f.name}</td>
+                <td class="py-2">{f.laender}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Rechtsgrundlage sind die Feiertagsgesetze der Bundesländer. Grau dargestellte Feiertage fallen 2027 auf einen Sonntag.
+        Ostersonntag und Pfingstsonntag sind nur in Brandenburg gesetzliche Feiertage.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann sind Ostern und Pfingsten 2027?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ostersonntag ist der 28. März 2027 (Karfreitag 26. März, Ostermontag 29. März). Pfingstsonntag ist der 16. Mai, Pfingstmontag der 17. Mai 2027. Christi Himmelfahrt fällt auf Donnerstag, den 6. Mai 2027 – ein klassischer Brückentag-Kandidat.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Feiertage fallen 2027 auf ein Wochenende?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Gleich mehrere: Der Tag der Arbeit (1. Mai) ist ein Samstag, der Tag der Deutschen Einheit (3. Oktober) und der Reformationstag (31. Oktober) sind Sonntage, Mariä Himmelfahrt (15. August) ebenfalls, und der 1./2. Weihnachtstag fallen auf Samstag und Sonntag. Für Arbeitnehmer ist 2027 dadurch ein vergleichsweise ungünstiges Feiertagsjahr – umso wichtiger ist die Brückentag-Planung um Himmelfahrt (6. Mai) und Fronleichnam (27. Mai).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Kalenderwochen hat 2027?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">2027 hat 52 Kalenderwochen. Die KW 1 beginnt nach ISO 8601 am Montag, dem 4. Januar 2027 (der 1. bis 3. Januar gehören noch zur KW 53 des Jahres 2026). Das Jahr endet mit der KW 52.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wo finde ich Brückentage und Arbeitstage für 2027?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der <a href="/brueckentage-rechner" class="text-blue-600 hover:underline">Brückentage-Rechner</a> zeigt für Ihr Bundesland, wie Sie mit wenigen Urlaubstagen lange Auszeiten erreichen. Die genaue Zahl der Arbeitstage je Monat und Bundesland berechnet der <a href="/arbeitstage-rechner" class="text-blue-600 hover:underline">Arbeitstage-Rechner</a>, den Urlaubsanspruch der <a href="/urlaubstage-rechner" class="text-blue-600 hover:underline">Urlaubstage-Rechner</a>.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wann sind Ostern und Pfingsten 2027?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ostersonntag ist der 28. März 2027 (Karfreitag 26. März, Ostermontag 29. März). Pfingstsonntag ist der 16. Mai, Pfingstmontag der 17. Mai 2027. Christi Himmelfahrt fällt auf Donnerstag, den 6. Mai 2027." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Feiertage fallen 2027 auf ein Wochenende?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der 1. Mai (Samstag), der 3. Oktober, der 31. Oktober und der 15. August (Sonntage) sowie der 25. und 26. Dezember (Samstag und Sonntag). 2027 ist dadurch ein vergleichsweise ungünstiges Feiertagsjahr für Arbeitnehmer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Kalenderwochen hat 2027?",
+        "acceptedAnswer": { "@type": "Answer", "text": "2027 hat 52 Kalenderwochen. Die KW 1 beginnt nach ISO 8601 am Montag, dem 4. Januar 2027." }
+      }
+    ]
+  })} />
+</Layout>
