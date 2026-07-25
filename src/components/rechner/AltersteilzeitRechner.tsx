@@ -16,8 +16,8 @@ const ATZ_2026 = {
   // Beitragsbemessungsgrenze RV 2026 (bundeseinheitlich)
   bbgRVMonat: 8450,               // €/Monat
   
-  // Durchschnittsentgelt für Rentenpunkte 2026 (vorläufig)
-  durchschnittsentgelt: 47450,    // €/Jahr
+  // Durchschnittsentgelt für Rentenpunkte 2026 (vorläufig, § 1 Abs. 2 SVBezGrV 2026)
+  durchschnittsentgelt: 51944,    // €/Jahr
   
   // Aktueller Rentenwert (ab 01.07.2026, § 1 RWBestV 2026)
   aktuellerRentenwert: 42.52,     // €/Entgeltpunkt/Monat

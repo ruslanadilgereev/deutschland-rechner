@@ -17,8 +17,8 @@ import { useState, useMemo } from 'react';
 const RENTENWERT = 42.52;
 
 // Durchschnittsentgelt 2026 für Entgeltpunkte-Berechnung
-// Quelle: Deutsche Rentenversicherung
-const DURCHSCHNITTSENTGELT_2026 = 50493; // vorläufig
+// Quelle: § 1 Abs. 2 Sozialversicherungsrechengrößen-Verordnung 2026 (BGBl. 2025 Nr. 278)
+const DURCHSCHNITTSENTGELT_2026 = 51944; // vorläufig
 
 // Historische Durchschnittsentgelte für Entgeltpunkte-Schätzung
 const DURCHSCHNITTSENTGELTE: Record<number, number> = {
@@ -26,8 +26,8 @@ const DURCHSCHNITTSENTGELTE: Record<number, number> = {
   2005: 29202, 2006: 29494, 2007: 29951, 2008: 30625, 2009: 30506,
   2010: 31144, 2011: 32100, 2012: 33002, 2013: 33659, 2014: 34514,
   2015: 35363, 2016: 36267, 2017: 37103, 2018: 38212, 2019: 39301,
-  2020: 40551, 2021: 41541, 2022: 42053, 2023: 43142, 2024: 45358,
-  2025: 48570, 2026: 50493,
+  2020: 40551, 2021: 41541, 2022: 42053, 2023: 43142, 2024: 47085,
+  2025: 50493, 2026: 51944,
 };
 
 // Beitragsbemessungsgrenze RV 2026 (bundesweit einheitlich)
