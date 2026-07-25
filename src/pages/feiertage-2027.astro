@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Feiertage 2027: alle Termine je Bundesland";
+const description = "Alle gesetzlichen Feiertage 2027 in Deutschland: Termine, Wochentage und Bundesland-Übersicht. Ostern 28. März, Himmelfahrt 6. Mai, Pfingsten 17. Mai 2027. Welche Feiertage aufs Wochenende fallen und wo Brückentage lohnen.";
+const keywords = "Feiertage 2027, gesetzliche Feiertage 2027, Feiertage 2027 Bayern, Feiertage 2027 NRW, Feiertage 2027 Baden-Württemberg, Ostern 2027, Pfingsten 2027, Himmelfahrt 2027, Fronleichnam 2027, Feiertage 2027 Bundesländer";
+
+// Termine identisch mit /kalender-2027 (dort verifiziert; bewegliche Feste aus Ostersonntag 28.03.2027)
+const feiertage = [
+  { datum: "01.01.2027", wt: "Freitag", name: "Neujahr", wo: "bundesweit" },
+  { datum: "06.01.2027", wt: "Mittwoch", name: "Heilige Drei Könige", wo: "BW, BY, ST" },
+  { datum: "08.03.2027", wt: "Montag", name: "Internationaler Frauentag", wo: "BE, MV" },
+  { datum: "26.03.2027", wt: "Freitag", name: "Karfreitag", wo: "bundesweit" },
+  { datum: "28.03.2027", wt: "Sonntag", name: "Ostersonntag", wo: "nur BB gesetzlich" },
+  { datum: "29.03.2027", wt: "Montag", name: "Ostermontag", wo: "bundesweit" },
+  { datum: "01.05.2027", wt: "Samstag", name: "Tag der Arbeit", wo: "bundesweit" },
+  { datum: "06.05.2027", wt: "Donnerstag", name: "Christi Himmelfahrt", wo: "bundesweit" },
+  { datum: "16.05.2027", wt: "Sonntag", name: "Pfingstsonntag", wo: "nur BB gesetzlich" },
+  { datum: "17.05.2027", wt: "Montag", name: "Pfingstmontag", wo: "bundesweit" },
+  { datum: "27.05.2027", wt: "Donnerstag", name: "Fronleichnam", wo: "BW, BY, HE, NW, RP, SL; teils SN, TH" },
+  { datum: "15.08.2027", wt: "Sonntag", name: "Mariä Himmelfahrt", wo: "SL; kath. Gemeinden in BY" },
+  { datum: "20.09.2027", wt: "Montag", name: "Weltkindertag", wo: "TH" },
+  { datum: "03.10.2027", wt: "Sonntag", name: "Tag der Deutschen Einheit", wo: "bundesweit" },
+  { datum: "31.10.2027", wt: "Sonntag", name: "Reformationstag", wo: "BB, HB, HH, MV, NI, SH, SN, ST, TH" },
+  { datum: "01.11.2027", wt: "Montag", name: "Allerheiligen", wo: "BW, BY, NW, RP, SL" },
+  { datum: "17.11.2027", wt: "Mittwoch", name: "Buß- und Bettag", wo: "SN" },
+  { datum: "25.12.2027", wt: "Samstag", name: "1. Weihnachtstag", wo: "bundesweit" },
+  { datum: "26.12.2027", wt: "Sonntag", name: "2. Weihnachtstag", wo: "bundesweit" },
+];
+
+// Zusatz-Feiertage je Land (über die 9 bundesweiten hinaus), nach den Feiertagsgesetzen der Länder
+const laender = [
+  { name: "Baden-Württemberg", extra: "Heilige Drei Könige, Fronleichnam, Allerheiligen" },
+  { name: "Bayern", extra: "Heilige Drei Könige, Fronleichnam, Allerheiligen; in überwiegend katholischen Gemeinden zusätzlich Mariä Himmelfahrt, in Augsburg das Friedensfest (08.08.)" },
+  { name: "Berlin", extra: "Internationaler Frauentag" },
+  { name: "Brandenburg", extra: "Reformationstag; Oster- und Pfingstsonntag sind gesetzliche Feiertage" },
+  { name: "Bremen", extra: "Reformationstag" },
+  { name: "Hamburg", extra: "Reformationstag" },
+  { name: "Hessen", extra: "Fronleichnam" },
+  { name: "Mecklenburg-Vorpommern", extra: "Reformationstag, Internationaler Frauentag" },
+  { name: "Niedersachsen", extra: "Reformationstag" },
+  { name: "Nordrhein-Westfalen", extra: "Fronleichnam, Allerheiligen" },
+  { name: "Rheinland-Pfalz", extra: "Fronleichnam, Allerheiligen" },
+  { name: "Saarland", extra: "Fronleichnam, Allerheiligen, Mariä Himmelfahrt" },
+  { name: "Sachsen", extra: "Reformationstag, Buß- und Bettag; Fronleichnam in einzelnen kath. Gemeinden" },
+  { name: "Sachsen-Anhalt", extra: "Heilige Drei Könige, Reformationstag" },
+  { name: "Schleswig-Holstein", extra: "Reformationstag" },
+  { name: "Thüringen", extra: "Weltkindertag, Reformationstag; Fronleichnam in einzelnen kath. Gemeinden" },
+];
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Feiertage 2027", url: "/feiertage-2027" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Feiertage 2027 in Deutschland</h1>
+      <p class="text-emerald-100 text-sm mt-1">Alle gesetzlichen Feiertage mit Wochentag und Bundesland-Übersicht</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Deutschland hat 2027 <strong>neun bundesweite gesetzliche Feiertage</strong>, die Bundesländer ergänzen
+      bis zu vier weitere. Wermutstropfen: 2027 fallen ungewöhnlich viele Feiertage auf ein Wochenende,
+      darunter der <strong>1. Mai (Samstag)</strong>, der <strong>Tag der Deutschen Einheit (Sonntag)</strong> und
+      beide <strong>Weihnachtstage (Samstag/Sonntag)</strong>. Umso wertvoller sind Himmelfahrt (Donnerstag, 6. Mai)
+      und Fronleichnam (Donnerstag, 27. Mai) für <a href="/brueckentage-rechner" class="text-emerald-700 hover:underline">Brückentage</a>.
+      Den kompletten Jahresüberblick gibt es im <a href="/kalender-2027" class="text-emerald-700 hover:underline">Kalender 2027</a>.
+    </p>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Alle Feiertage 2027 mit Datum und Wochentag</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Datum</th><th class="py-2">Wochentag</th><th class="py-2">Feiertag</th><th class="py-2">Gilt in</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {feiertage.map((f) => (
+              <tr class={f.wt === "Sonntag" || f.wt === "Samstag" ? "text-gray-500" : "text-gray-700"}>
+                <td class="py-2 font-medium">{f.datum}</td>
+                <td class="py-2">{f.wt}</td>
+                <td class="py-2">{f.name}</td>
+                <td class="py-2">{f.wo}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">Grau: fällt 2027 auf ein Wochenende. Rechtsgrundlage sind die Feiertagsgesetze der Bundesländer.</p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Feiertage 2027 nach Bundesland</h2>
+      <p class="text-sm text-gray-600 mb-3">Alle Länder haben die neun bundesweiten Feiertage. Zusätzlich gelten:</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2">Bundesland</th><th class="py-2">Zusätzliche Feiertage 2027</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {laender.map((l) => (
+              <tr class="text-gray-700"><td class="py-2 font-medium whitespace-nowrap pr-4">{l.name}</td><td class="py-2">{l.extra}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welches Bundesland hat 2027 die meisten Feiertage?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bayern führt mit bis zu 13 gesetzlichen Feiertagen (in überwiegend katholischen Gemeinden inklusive Mariä Himmelfahrt; Augsburg feiert zusätzlich das Friedensfest). Baden-Württemberg und das Saarland folgen mit 12. Berlin und die norddeutschen Länder ohne Zusatzfeiertage liegen bei 10, reine Basisländer bei 9 plus je nach Land einem Zusatztag.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viele Feiertage fallen 2027 auf ein Wochenende?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Sechs Termine mit Gewicht: 1. Mai (Samstag), Mariä Himmelfahrt (Sonntag), Tag der Deutschen Einheit (Sonntag), Reformationstag (Sonntag) sowie der 1. und 2. Weihnachtstag (Samstag und Sonntag). Diese Tage bringen Arbeitnehmern 2027 keinen zusätzlichen freien Werktag.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann sind die wichtigsten Feiertage 2027?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Karfreitag 26. März, Ostermontag 29. März, Christi Himmelfahrt 6. Mai, Pfingstmontag 17. Mai, Fronleichnam 27. Mai, Tag der Deutschen Einheit 3. Oktober (Sonntag), Weihnachten 25./26. Dezember (Samstag/Sonntag).</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Welches Bundesland hat 2027 die meisten Feiertage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bayern führt mit bis zu 13 gesetzlichen Feiertagen (in überwiegend katholischen Gemeinden inklusive Mariä Himmelfahrt), gefolgt von Baden-Württemberg und dem Saarland mit 12." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Feiertage fallen 2027 auf ein Wochenende?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sechs: 1. Mai (Samstag), Mariä Himmelfahrt, Tag der Deutschen Einheit und Reformationstag (Sonntage) sowie der 1. und 2. Weihnachtstag (Samstag und Sonntag)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann sind die wichtigsten Feiertage 2027?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Karfreitag 26. März, Ostermontag 29. März, Christi Himmelfahrt 6. Mai, Pfingstmontag 17. Mai, Fronleichnam 27. Mai, Tag der Deutschen Einheit 3. Oktober, Weihnachten 25./26. Dezember 2027." }
+      }
+    ]
+  })} />
+</Layout>
