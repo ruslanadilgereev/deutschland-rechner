@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import PfaendungsRechner from '../components/rechner/PfaendungsRechner.tsx';
+import pf from '../data/pfaendung-2026.json';
+
+const title = "Pfändungsrechner 2026: Freigrenze 1.587,40 € seit 1. Juli";
+const description = "Pfändungsrechner mit den amtlichen Pfändungsfreigrenzen ab 01.07.2026: Grundfreibetrag 1.587,40 €, Erhöhung je Unterhaltspflicht, pfändbarer Betrag nach § 850c ZPO. Kostenlos berechnen, mit Pfändungstabelle und P-Konto-Hinweisen.";
+const keywords = "Pfändungsrechner, Pfändungsfreigrenze 2026, Pfändungstabelle 2026, Pfändungsrechner 2026, pfändbares Einkommen berechnen, Pfändungsfreigrenze, Lohnpfändung Rechner, Gehaltspfändung, § 850c ZPO, Pfändungstabelle rechner, P-Konto Freibetrag";
+
+const M = pf.monatlich;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+// Beispielrechnungen (Formel § 850c Abs. 3, Werte ab 01.07.2026) – im Frontmatter berechnet
+function pfaendbar(netto: number, personen: number) {
+  const frei = M.grundbetrag + (personen >= 1 ? M.erhoehungErstePerson : 0) + Math.max(0, personen - 1) * M.erhoehungWeiterePerson;
+  const anteil = ({ 0: 0.7, 1: 0.5, 2: 0.4, 3: 0.3, 4: 0.2, 5: 0.1 } as Record<number, number>)[Math.min(personen, 5)];
+  if (netto <= frei) return { frei, pf: 0 };
+  const bis = Math.min(netto, M.obergrenzeVollPfaendbar);
+  let p = (bis - frei) * anteil;
+  if (netto > M.obergrenzeVollPfaendbar) p += netto - M.obergrenzeVollPfaendbar;
+  return { frei, pf: Math.round(p * 100) / 100 };
+}
+const beispiele = [
+  { netto: 1500, personen: 0 },
+  { netto: 2200, personen: 0 },
+  { netto: 2600, personen: 1 },
+  { netto: 3200, personen: 2 },
+].map((b) => ({ ...b, ...pfaendbar(b.netto, b.personen) }));
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Pfändungsrechner", url: "/pfaendungsrechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Pfändungsrechner 2026: Was darf gepfändet werden?</h1>
+      <p class="text-red-100 text-sm mt-1">Amtliche Pfändungsfreigrenzen seit 01.07.2026 | § 850c ZPO | inkl. Unterhaltspflichten</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Seit dem <strong>1. Juli 2026</strong> liegt der unpfändbare Grundbetrag bei
+      <strong>{fmt(M.grundbetrag)} € netto pro Monat</strong> (vorher {fmt(pf.vorjahr.grundbetragMonatlich)} €).
+      Für die erste unterhaltsberechtigte Person kommen {fmt(M.erhoehungErstePerson)} € hinzu, für jede weitere
+      {fmt(M.erhoehungWeiterePerson)} € (bis zur fünften). Einkommen oberhalb von {fmt(M.obergrenzeVollPfaendbar)} €
+      ist voll pfändbar. Der Rechner wendet die Formel des § 850c ZPO mit den Werten der
+      Pfändungsfreigrenzenbekanntmachung 2026 an.
+    </p>
+
+    <PfaendungsRechner client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Pfändungsfreigrenzen 2026 im Überblick</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-xl">
+          <thead><tr class="text-left text-gray-500 border-b"><th class="py-2">Position (§ 850c ZPO)</th><th class="py-2 text-right">monatlich</th><th class="py-2 text-right">wöchentlich</th></tr></thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Unpfändbarer Grundbetrag</td><td class="py-2 text-right font-semibold">{fmt(M.grundbetrag)} €</td><td class="py-2 text-right">{fmt(pf.woechentlich.grundbetrag)} €</td></tr>
+            <tr><td class="py-2">+ erste unterhaltsberechtigte Person</td><td class="py-2 text-right">{fmt(M.erhoehungErstePerson)} €</td><td class="py-2 text-right">{fmt(pf.woechentlich.erhoehungErstePerson)} €</td></tr>
+            <tr><td class="py-2">+ zweite bis fünfte Person (je)</td><td class="py-2 text-right">{fmt(M.erhoehungWeiterePerson)} €</td><td class="py-2 text-right">{fmt(pf.woechentlich.erhoehungWeiterePerson)} €</td></tr>
+            <tr><td class="py-2">Voll pfändbar ab</td><td class="py-2 text-right">{fmt(M.obergrenzeVollPfaendbar)} €</td><td class="py-2 text-right">{fmt(pf.woechentlich.obergrenzeVollPfaendbar)} €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">Quelle: {pf.meta.quelle}. {pf.meta.hinweis}</p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Beispiele: So viel ist pfändbar (seit 01.07.2026)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead><tr class="text-left text-gray-500 border-b"><th class="py-2">Netto/Monat</th><th class="py-2">Unterhaltspflichten</th><th class="py-2 text-right">Freibetrag</th><th class="py-2 text-right">pfändbar</th></tr></thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            {beispiele.map((b) => (
+              <tr>
+                <td class="py-2 font-medium">{fmt(b.netto)} €</td>
+                <td class="py-2">{b.personen}</td>
+                <td class="py-2 text-right">{fmt(b.frei)} €</td>
+                <td class="py-2 text-right font-semibold text-red-600">{fmt(b.pf)} €</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Pfändungsfreigrenze 2026?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Seit dem 1. Juli 2026 sind {fmt(M.grundbetrag)} € netto pro Monat unpfändbar (ohne Unterhaltspflichten). Mit einer unterhaltsberechtigten Person steigt der Freibetrag auf {fmt(M.grundbetrag + M.erhoehungErstePerson)} €, mit zwei auf {fmt(M.grundbetrag + M.erhoehungErstePerson + M.erhoehungWeiterePerson)} €. Die Grenzen werden jedes Jahr zum 1. Juli angepasst – die nächste Anpassung kommt zum 1. Juli 2027.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zur P-Konto-Freigrenze?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Tabelle des § 850c ZPO gilt für die Lohn- und Gehaltspfändung beim Arbeitgeber. Auf dem Pfändungsschutzkonto (P-Konto) gilt ein eigener Grundfreibetrag in gleicher Höhe, der sich durch Bescheinigungen (z. B. für Unterhaltspflichten oder Kindergeld) erhöhen lässt (§§ 899 ff. ZPO). Wer beides hat, sollte die Freibeträge aufeinander abstimmen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zählen Weihnachtsgeld und Überstunden mit?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Teilweise: Überstundenvergütung ist zur Hälfte unpfändbar, Weihnachtsvergütung bis zur Hälfte des monatlichen Arbeitseinkommens, maximal bis zu einem gesetzlichen Höchstbetrag (§ 850a ZPO). Urlaubsgeld ist in der Regel ganz unpfändbar.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert bei Einkommen über {fmt(M.obergrenzeVollPfaendbar)} €?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Alles oberhalb dieser Obergrenze ist voll pfändbar. Für den Bereich zwischen Freibetrag und Obergrenze gilt die anteilige Regel: 30 % des Mehrbetrags bleiben Ihnen ohne Unterhaltspflichten, plus 20 Prozentpunkte für die erste und je 10 für jede weitere unterhaltsberechtigte Person.</div>
+        </details>
+      </div>
+      <p class="text-sm text-gray-600 mt-4">
+        Verwandte Rechner: <a href="/privatinsolvenz-rechner" class="text-red-700 hover:underline">Privatinsolvenz</a> ·
+        <a href="/kredit-rechner" class="text-red-700 hover:underline">Kredit</a> ·
+        <a href="/brutto-netto-rechner" class="text-red-700 hover:underline">Brutto-Netto</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Pfändungsfreigrenze 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Seit dem 1. Juli 2026 sind 1.587,40 € netto pro Monat unpfändbar (ohne Unterhaltspflichten); mit einer unterhaltsberechtigten Person 2.184,82 €, mit zwei 2.517,65 €. Anpassung jährlich zum 1. Juli (Pfändungsfreigrenzenbekanntmachung 2026, BGBl. 2026 I Nr. 80)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Pfändungstabelle und P-Konto-Freigrenze?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die Tabelle des § 850c ZPO gilt für die Lohnpfändung beim Arbeitgeber; auf dem P-Konto gilt ein eigener Grundfreibetrag in gleicher Höhe, erhöhbar durch Bescheinigungen (§§ 899 ff. ZPO)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Weihnachtsgeld und Überstunden pfändbar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Überstundenvergütung ist zur Hälfte unpfändbar, Weihnachtsvergütung bis zur Hälfte des monatlichen Arbeitseinkommens bis zu einem gesetzlichen Höchstbetrag (§ 850a ZPO), Urlaubsgeld in der Regel ganz." }
+      }
+    ]
+  })} />
+</Layout>
