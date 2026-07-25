@@ -14,7 +14,7 @@ import { useState, useMemo } from 'react';
  */
 
 // ============================================================================
-// OFFIZIELLE WERTE 2025 (§32a EStG - Steuerfortentwicklungsgesetz)
+// OFFIZIELLE WERTE 2026 (§32a EStG - Steuerfortentwicklungsgesetz)
 // ============================================================================
 const STEUERJAHR = 2026;
 

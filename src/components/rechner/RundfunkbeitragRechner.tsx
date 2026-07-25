@@ -429,8 +429,8 @@ export default function RundfunkbeitragRechner() {
             eingereicht (Az. 1 BvR 2524/24). Das Bundesverfassungsgericht wird voraussichtlich 2026 entscheiden.
           </p>
           <p>
-            <strong>Ausblick:</strong> Die KEF schlägt für 2027 einen Beitrag von 18,64€ vor (25. KEF-Bericht 
-            wird Ende Februar 2026 erwartet).
+            <strong>Ausblick:</strong> Der 25. KEF-Bericht (vorgelegt am 20. Februar 2026) empfiehlt
+            ab 01.01.2027 einen Beitrag von 18,64€. Die Entscheidung liegt bei den Bundesländern.
           </p>
         </div>
       </div>
@@ -609,7 +609,7 @@ export default function RundfunkbeitragRechner() {
             Rundfunkbeitrag.de – Offizielles Portal des Beitragsservice
           </a>
           <a 
-            href="https://www.gesetze-im-internet.de/"
+            href="https://www.gesetze-bayern.de/Content/Document/RBeitrStV"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"

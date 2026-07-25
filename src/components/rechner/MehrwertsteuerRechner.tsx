@@ -308,7 +308,7 @@ export default function MehrwertsteuerRechner() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {[10, 50, 100, 500, 1000].map((netto) => (
+              {[10, 50, 100, 250, 500, 1000].map((netto) => (
                 <tr key={netto} className="hover:bg-gray-50">
                   <td className="py-2 font-medium">{netto.toLocaleString('de-DE')} €</td>
                   <td className="py-2 text-right text-gray-600">{(netto * 0.19).toLocaleString('de-DE', { minimumFractionDigits: 2 })} €</td>
@@ -339,13 +339,13 @@ export default function MehrwertsteuerRechner() {
           >
             Bundesfinanzministerium – Umsatzsteuer
           </a>
-          <a 
-            href="https://www.ihk.de/"
+          <a
+            href="https://www.gesetze-im-internet.de/ustg_1980/__12.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            IHK – Umsatzsteuer für Unternehmen
+            § 12 UStG – Steuersätze (Gesetze im Internet)
           </a>
         </div>
       </div>
