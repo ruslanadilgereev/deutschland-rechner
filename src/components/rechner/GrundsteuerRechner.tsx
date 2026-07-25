@@ -6,7 +6,7 @@ type Bundesland = typeof BUNDESLAENDER[number]['id'];
 const BUNDESLAENDER = [
   { id: 'bw', name: 'Baden-Württemberg', modell: 'bodenwert', hebesatzSchnitt: 478 },
   { id: 'by', name: 'Bayern', modell: 'flaeche', hebesatzSchnitt: 387 },
-  { id: 'be', name: 'Berlin', modell: 'bundesmodell', hebesatzSchnitt: 810 },
+  { id: 'be', name: 'Berlin', modell: 'bundesmodell', hebesatzSchnitt: 470 },
   { id: 'bb', name: 'Brandenburg', modell: 'bundesmodell', hebesatzSchnitt: 416 },
   { id: 'hb', name: 'Bremen', modell: 'bundesmodell', hebesatzSchnitt: 695 },
   { id: 'hh', name: 'Hamburg', modell: 'flaeche', hebesatzSchnitt: 540 },
@@ -119,7 +119,7 @@ export default function GrundsteuerRechner() {
       const bodenwert = bodenrichtwert * grundstuecksflaeche;
       
       // Gebäudewert (vereinfacht): Wohnfläche × pauschaler Wert × Altersabschlag
-      const altersFaktor = Math.max(0.3, 1 - (2025 - baujahr) * 0.01); // Max 70% Abschlag
+      const altersFaktor = Math.max(0.3, 1 - (2026 - baujahr) * 0.01); // Max 70% Abschlag
       const gebaeudeRohwert = istUnbebaut ? 0 : wohnflaeche * 2000; // Pauschale
       const gebaeudewert = gebaeudeRohwert * altersFaktor;
       
@@ -132,7 +132,7 @@ export default function GrundsteuerRechner() {
       berechnungsweg = [
         { label: 'Bodenwert (Bodenrichtwert × Fläche)', wert: `${bodenrichtwert.toLocaleString('de-DE')} € × ${grundstuecksflaeche} m² = ${bodenwert.toLocaleString('de-DE')} €` },
         ...(istUnbebaut ? [] : [
-          { label: `Gebäudewert (vereinfacht, Alter: ${2025 - baujahr} J.)`, wert: `${gebaeudewert.toLocaleString('de-DE', { maximumFractionDigits: 0 })} €` },
+          { label: `Gebäudewert (vereinfacht, Alter: ${2026 - baujahr} J.)`, wert: `${gebaeudewert.toLocaleString('de-DE', { maximumFractionDigits: 0 })} €` },
         ]),
         { label: 'Grundsteuerwert (Summe)', wert: `${grundsteuerwert.toLocaleString('de-DE', { maximumFractionDigits: 0 })} €` },
         { label: `× Steuermesszahl (${istWohnen ? '0,31‰' : '0,34‰'})`, wert: `= ${grundsteuermessbetrag.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` },
@@ -371,10 +371,10 @@ export default function GrundsteuerRechner() {
               <input
                 type="number"
                 value={baujahr}
-                onChange={(e) => setBaujahr(Math.max(1800, Math.min(2025, Number(e.target.value))))}
+                onChange={(e) => setBaujahr(Math.max(1800, Math.min(2026, Number(e.target.value))))}
                 className="w-full text-2xl font-bold text-center py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-yellow-500 focus:ring-0 outline-none"
                 min="1800"
-                max="2025"
+                max="2026"
               />
             </div>
             <input
@@ -383,10 +383,10 @@ export default function GrundsteuerRechner() {
               onChange={(e) => setBaujahr(Number(e.target.value))}
               className="w-full mt-3 accent-yellow-500"
               min="1900"
-              max="2025"
+              max="2026"
             />
             <p className="text-xs text-gray-500 mt-1">
-              Alter: {2025 - baujahr} Jahre (Altersabschlag wird berücksichtigt)
+              Alter: {2026 - baujahr} Jahre (Altersabschlag wird berücksichtigt)
             </p>
           </div>
         )}
