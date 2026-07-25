@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import GerichtsvollzieherRechner from '../components/rechner/GerichtsvollzieherRechner';
+
+const title = "Was kostet der Gerichtsvollzieher? Kosten 2026";
+const description = "Gerichtsvollzieher-Kosten 2026 nach GvKostG berechnen: Zustellung ab 6,60 €, Vermögensauskunft 39,50 €, Pfändung 31,20 €, dazu Auslagenpauschale und Wegegeld. Mit Rechner und Beispielen.";
+const keywords = "Gerichtsvollzieher Kosten, was kostet ein Gerichtsvollzieher, Gerichtsvollzieher Gebühren 2026, GvKostG, Kosten Zustellung Gerichtsvollzieher, Vermögensauskunft Kosten, Zwangsvollstreckung Kosten, Wegegeld Gerichtsvollzieher";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Gerichtsvollzieher-Kosten", url: "/gerichtsvollzieher-kosten" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Gerichtsvollzieher: Kosten 2026 berechnen</h1>
+      <p class="text-emerald-100 text-sm mt-1">Gebühren nach GvKostG | plus Auslagenpauschale (Nr. 716) und Wegegeld (Nr. 711)</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Die Kosten des Gerichtsvollziehers sind bundesweit einheitlich im
+      <strong>Gerichtsvollzieherkostengesetz (GvKostG)</strong> festgelegt. Jede Amtshandlung hat
+      eine feste Gebühr; dazu kommen eine <strong>Auslagenpauschale von 20 % der Gebühren</strong>
+      (mindestens 3 €, höchstens 10 €) und je nach Anfahrt ein <strong>Wegegeld zwischen 3,25 €
+      und 16,25 €</strong>. Eine einfache Zustellung kostet so ab 6,60 €, die Abnahme der
+      Vermögensauskunft rund 50 €.
+    </p>
+
+    <div class="mb-6">
+      <GerichtsvollzieherRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Die wichtigsten Gebühren im Überblick</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Amtshandlung</th>
+              <th class="py-2">KV-Nr.</th>
+              <th class="py-2 text-right">Gebühr</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Persönliche Zustellung</td><td>100</td><td class="text-right font-mono">12,00 €</td></tr>
+            <tr><td class="py-2">Sonstige Zustellung (z.B. per Post)</td><td>102</td><td class="text-right font-mono">3,60 €</td></tr>
+            <tr><td class="py-2">Vorpfändung (§ 845 ZPO)</td><td>200</td><td class="text-right font-mono">19,20 €</td></tr>
+            <tr><td class="py-2">Bewirkung einer Pfändung</td><td>205</td><td class="text-right font-mono">31,20 €</td></tr>
+            <tr><td class="py-2">Versuch einer gütlichen Erledigung</td><td>207</td><td class="text-right font-mono">19,20 €</td></tr>
+            <tr><td class="py-2">Abnahme der Vermögensauskunft</td><td>260</td><td class="text-right font-mono">39,50 €</td></tr>
+            <tr><td class="py-2">Nicht erledigte Amtshandlung</td><td>604</td><td class="text-right font-mono">18,00 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: Kostenverzeichnis zum GvKostG (Anlage zu § 9), Stand Juli 2026. Beim kombinierten
+        Vollstreckungsauftrag ermäßigt sich die Gebühr für den gütlichen Erledigungsversuch auf 9,60 € (Nr. 208).
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Drei typische Beispiele</h2>
+      <div class="space-y-4 text-sm text-gray-700">
+        <div>
+          <h3 class="font-semibold text-gray-800">Zustellung eines Titels (persönlich, Anfahrt bis 10 km)</h3>
+          <p>12,00 € Gebühr + 3,00 € Auslagenpauschale + 3,25 € Wegegeld = <strong>18,25 €</strong>.
+          Bei der Zustellung per Post (Nr. 102) fällt kein Wegegeld an: 3,60 € + 3,00 € = <strong>6,60 €</strong>.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">Vollstreckungsauftrag mit Vermögensauskunft (bis 10 km)</h3>
+          <p>Gütlicher Erledigungsversuch ermäßigt 9,60 € (Nr. 208) + Vermögensauskunft 39,50 € (Nr. 260)
+          = 49,10 € Gebühren, dazu 9,82 € Auslagenpauschale (20 %) + 3,25 € Wegegeld =
+          <strong>62,17 €</strong>.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-800">Erfolgloser Pfändungsversuch (bis 10 km)</h3>
+          <p>18,00 € (Nr. 604) + 3,60 € Auslagenpauschale + 3,25 € Wegegeld = <strong>24,85 €</strong>.
+          Auch ein erfolgloser Versuch kostet also Geld, das der Gläubiger zunächst trägt.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wer zahlt den Gerichtsvollzieher?</h2>
+      <p class="text-sm text-gray-700">
+        Der Gläubiger zahlt die Kosten als Vorschuss. Sie gehören aber zu den notwendigen
+        <strong>Kosten der Zwangsvollstreckung und fallen damit dem Schuldner zur Last
+        (§ 788 ZPO)</strong>: Der Gerichtsvollzieher zieht sie zusammen mit der Hauptforderung ein.
+        Ist beim Schuldner nichts zu holen, bleibt der Gläubiger auf den Kosten sitzen. Was pfändbar
+        ist, zeigen der <a href="/pfaendungsrechner" class="text-emerald-700 hover:underline">Pfändungsrechner</a>
+        und der <a href="/p-konto-freibetrag-rechner" class="text-emerald-700 hover:underline">P-Konto-Freibetrag-Rechner</a>;
+        den Weg zum Titel erklärt der <a href="/mahnbescheid-kosten" class="text-emerald-700 hover:underline">Mahnbescheid-Kosten-Rechner</a>.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet eine Zustellung durch den Gerichtsvollzieher?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die persönliche Zustellung kostet 12 € Gebühr (Nr. 100 KV GvKostG), die Zustellung per Post 3,60 € (Nr. 102). Dazu kommen die Auslagenpauschale von mindestens 3 € und bei persönlicher Zustellung das Wegegeld, insgesamt also meist zwischen 6,60 € und rund 20 €.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet die Vermögensauskunft?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Abnahme der Vermögensauskunft kostet 39,50 € (Nr. 260 KV GvKostG). Mit Auslagenpauschale (7,90 €) und Wegegeld liegt der Gesamtbetrag typischerweise um die 50 €. Hat der Schuldner die Auskunft in den letzten zwei Jahren bereits abgegeben, wird die Gebühr nicht erneut erhoben.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer muss die Gerichtsvollzieherkosten bezahlen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der Gläubiger zahlt einen Vorschuss. Als Kosten der Zwangsvollstreckung fallen die Beträge aber nach § 788 ZPO dem Schuldner zur Last und werden mit der Forderung beigetrieben. Bleibt die Vollstreckung erfolglos, trägt sie im Ergebnis der Gläubiger.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kostet auch ein erfolgloser Vollstreckungsversuch?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja. Für eine nicht erledigte Amtshandlung, etwa einen erfolglosen Pfändungsversuch, fallen 18 € an (Nr. 604 KV GvKostG), plus Auslagenpauschale und Wegegeld.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist das Wegegeld?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Eine Auslage für die Anfahrt des Gerichtsvollziehers (Nr. 711 KV GvKostG), gestaffelt nach Luftlinien-Entfernung: 3,25 € bis 10 km, 6,50 € bis 20 km, 9,75 € bis 30 km, 13 € bis 40 km und 16,25 € darüber. Für Zustellungen per Post oder als elektronisches Dokument fällt kein Wegegeld an.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: Gerichtsvollzieherkostengesetz (GvKostG) mit Kostenverzeichnis (Anlage zu § 9),
+      § 788 ZPO, abrufbar über gesetze-im-internet.de. Stand: Juli 2026.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet eine Zustellung durch den Gerichtsvollzieher?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die persönliche Zustellung kostet 12 € Gebühr (Nr. 100 KV GvKostG), die Zustellung per Post 3,60 € (Nr. 102). Dazu kommen die Auslagenpauschale von mindestens 3 € und gegebenenfalls Wegegeld, insgesamt meist zwischen 6,60 € und rund 20 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet die Vermögensauskunft?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die Abnahme der Vermögensauskunft kostet 39,50 € (Nr. 260 KV GvKostG). Mit Auslagenpauschale (7,90 €) und Wegegeld liegt der Gesamtbetrag typischerweise um die 50 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer muss die Gerichtsvollzieherkosten bezahlen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Gläubiger zahlt einen Vorschuss. Als Kosten der Zwangsvollstreckung fallen die Beträge nach § 788 ZPO dem Schuldner zur Last und werden mit der Forderung beigetrieben. Bleibt die Vollstreckung erfolglos, trägt sie im Ergebnis der Gläubiger." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kostet auch ein erfolgloser Vollstreckungsversuch?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, für eine nicht erledigte Amtshandlung wie einen erfolglosen Pfändungsversuch fallen 18 € an (Nr. 604 KV GvKostG), plus Auslagenpauschale und Wegegeld." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist das Wegegeld beim Gerichtsvollzieher?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Eine Auslage für die Anfahrt (Nr. 711 KV GvKostG), gestaffelt nach Luftlinie: 3,25 € bis 10 km, 6,50 € bis 20 km, 9,75 € bis 30 km, 13 € bis 40 km, 16,25 € darüber. Für Zustellungen per Post oder als elektronisches Dokument fällt kein Wegegeld an." }
+      }
+    ]
+  })} />
+</Layout>
