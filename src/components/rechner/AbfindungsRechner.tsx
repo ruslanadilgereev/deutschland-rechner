@@ -173,13 +173,6 @@ export default function AbfindungsRechner() {
     const effektiverSteuersatz = (gesamtAbzuege / abfindung) * 100;
     const ersparterSteuersatz = ((ersparnisFuenftelregelung > 0 ? ersparnisFuenftelregelung : 0) / abfindung) * 100;
     
-    // 11. Grenzsteuersatz
-    const grenzsteuersatzOhne = zvENachKinderfreibetrag > 277825 ? 45 
-      : zvENachKinderfreibetrag > 66760 ? 42 
-      : zvENachKinderfreibetrag > 17005 ? (176.64 * 2 * ((zvENachKinderfreibetrag - 17005) / 10000) + 2397) / 100 + 24 
-      : zvENachKinderfreibetrag > GRUNDFREIBETRAG_2026 ? 14 + (932.30 * 2 * ((zvENachKinderfreibetrag - GRUNDFREIBETRAG_2026) / 10000) + 1400) / 100
-      : 0;
-    
     return {
       // Abfindung
       abfindungBrutto: abfindung,
@@ -212,7 +205,6 @@ export default function AbfindungsRechner() {
       nettoAbfindung,
       effektiverSteuersatz,
       ersparterSteuersatz,
-      grenzsteuersatz: grenzsteuersatzOhne,
     };
   }, [bruttoMonatsgehalt, beschaeftigungsjahre, alterBeiAustritt, abfindungsBerechnungsart, abfindungsFaktor, abfindungsBetrag, jahresbrutto, steuerklasse, kirchensteuer, bundesland, kinderfreibetraege]);
 
