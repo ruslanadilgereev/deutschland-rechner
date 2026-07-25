@@ -1,46 +1,45 @@
 import { useState, useMemo } from 'react';
 
 // ============================================================================
-// Pfändungsfreigrenzen 2025/2026 nach § 850c ZPO
+// Pfändungsfreigrenzen nach § 850c ZPO
 // ============================================================================
 // Rechtsgrundlage: Zivilprozessordnung (ZPO)
 // - § 850c ZPO: Pfändungsgrenzen für Arbeitseinkommen
 // - § 850d ZPO: Pfändungsschutz bei Unterhaltspfändung (Sonderfall)
 //
-// Pfändungsfreigrenzen ab 01.07.2025 (gültig auch 2026)
-// Quelle: Pfändungsfreigrenzenbekanntmachung 2025
-// BGBl. 2025 I Nr. 110
-// https://www.recht.bund.de/bgbl/1/2025/110/VO.html
+// Pfändungsfreigrenzen seit 01.07.2026 (jährliche Anpassung zum 1. Juli)
+// Quelle: Pfändungsfreigrenzenbekanntmachung 2026 vom 19.03.2026
+// BGBl. 2026 I Nr. 80
 //
 // Bei einer Privatinsolvenz (Verbraucherinsolvenz) wird ein Teil des
 // Einkommens gepfändet. Der pfändungsfreie Betrag sichert das Existenzminimum.
 // ============================================================================
 
-// Grundfreibetrag seit 01.07.2025 (unverändert für 2026)
-// § 850c Abs. 1 ZPO, aufgerundet nach § 850c Abs. 5 S. 1 Nr. 1 ZPO
+// Pfändungsfreigrenzen seit 01.07.2026
+// Quelle: Pfändungsfreigrenzenbekanntmachung 2026 vom 19.03.2026 (BGBl. 2026 I Nr. 80), § 850c ZPO
 const PFAENDUNGSFREIGRENZEN_2026 = {
-  // Grundfreibetrag ohne Unterhaltspflichten
-  grundfreibetrag: 1559.99,
-  
+  // Grundfreibetrag ohne Unterhaltspflichten (§ 850c Abs. 1 Nr. 1 ZPO)
+  grundfreibetrag: 1587.40,
+
   // Erhöhung für die erste unterhaltsberechtigte Person (§ 850c Abs. 2 S. 1 Nr. 1 ZPO)
-  erhoehung_erste_person: 585.23,
-  
+  erhoehung_erste_person: 597.42,
+
   // Erhöhung für jede weitere unterhaltsberechtigte Person (§ 850c Abs. 2 S. 2 Nr. 1 ZPO)
-  erhoehung_weitere_person: 326.04,
-  
-  // Höchstbetrag: Alles über diesem Betrag ist voll pfändbar
-  hoechstbetrag: 4766.99,
+  erhoehung_weitere_person: 332.83,
+
+  // Höchstbetrag: Alles über diesem Betrag ist voll pfändbar (§ 850c Abs. 3 S. 3 Nr. 1 ZPO)
+  hoechstbetrag: 4866.30,
 };
 
-// Pfändungsfreigrenzen je nach Anzahl der Unterhaltsberechtigten
-// Quelle: Pfändungstabelle ab 01.07.2025
+// Pfändungsfreigrenzen je nach Anzahl der Unterhaltsberechtigten (Summen der obigen Beträge)
+// Die amtliche Tabelle arbeitet in 10-Euro-Stufen; Tabellenwerte können daher minimal abweichen.
 const FREIGRENZEN_NACH_UNTERHALT = [
-  1559.99,  // 0 Unterhaltsberechtigte
-  2149.99,  // 1 Unterhaltsberechtigter
-  2469.99,  // 2 Unterhaltsberechtigte
-  2799.99,  // 3 Unterhaltsberechtigte
-  3119.99,  // 4 Unterhaltsberechtigte
-  3449.99,  // 5+ Unterhaltsberechtigte
+  1587.40,  // 0 Unterhaltsberechtigte
+  2184.82,  // 1 Unterhaltsberechtigter
+  2517.65,  // 2 Unterhaltsberechtigte
+  2850.48,  // 3 Unterhaltsberechtigte
+  3183.31,  // 4 Unterhaltsberechtigte
+  3516.14,  // 5+ Unterhaltsberechtigte
 ];
 
 // Anteil des Mehrverdienstes über Freigrenze, der NICHT gepfändet wird
@@ -323,7 +322,7 @@ export default function PrivatinsolvenzRechner() {
 
       {/* Pfändungsfreigrenzen-Tabelle */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-4">📋 Pfändungsfreigrenzen 2025/2026</h3>
+        <h3 className="font-bold text-gray-800 mb-4">📋 Pfändungsfreigrenzen seit 01.07.2026</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -357,7 +356,7 @@ export default function PrivatinsolvenzRechner() {
           </table>
         </div>
         <p className="text-xs text-gray-500 mt-3">
-          Gültig seit 01.07.2025 • Alles über {formatEuro(PFAENDUNGSFREIGRENZEN_2026.hoechstbetrag + 0.01)} ist voll pfändbar
+          Gültig seit 01.07.2026 • Einkommen über {formatEuro(PFAENDUNGSFREIGRENZEN_2026.hoechstbetrag)} ist in voller Höhe pfändbar
         </p>
       </div>
 
@@ -524,12 +523,12 @@ export default function PrivatinsolvenzRechner() {
             § 850c ZPO – Pfändungsgrenzen für Arbeitseinkommen
           </a>
           <a 
-            href="https://www.recht.bund.de/bgbl/1/2025/110/VO.html"
+            href="https://www.recht.bund.de/bgbl/1/2026/80/VO.html"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-sm text-blue-600 hover:underline"
           >
-            Pfändungsfreigrenzenbekanntmachung 2025 (BGBl. 2025 I Nr. 110)
+            Pfändungsfreigrenzenbekanntmachung 2026 (BGBl. 2026 I Nr. 80)
           </a>
           <a
             href="https://freibetragsrechner.justiz.nrw.de/"

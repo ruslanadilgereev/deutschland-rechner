@@ -3,12 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import PrivatinsolvenzRechner from '../components/rechner/PrivatinsolvenzRechner';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Privatinsolvenz-Rechner – Pfändungsfreigrenze berechnen";
-const description = "Privatinsolvenz-Rechner: Pfändungsfreigrenze und pfändbaren Betrag berechnen. Aktuelle Pfändungsfreigrenzen 2025/2026 nach § 850c ZPO.";
-const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbares Einkommen, Verbraucherinsolvenz, Pfändungstabelle, § 850c ZPO, Restschuldbefreiung, Wohlverhaltensphase, Schuldnerberatung";
+const title = "Privatinsolvenz-Rechner: pfändbarer Betrag & 3-Jahres-Summe";
+const description = "Privatinsolvenz-Rechner: Pfändungsfreigrenze und pfändbaren Betrag berechnen, plus Hochrechnung über die 36 Monate der Wohlverhaltensphase. Mit den Pfändungsfreigrenzen seit 01.07.2026 nach § 850c ZPO.";
+const keywords = "Privatinsolvenz Rechner, Privatinsolvenz Rechner 3 Jahre, Pfändungsrechner Privatinsolvenz, Pfändungsfreigrenze 2026, pfändbares Einkommen, Verbraucherinsolvenz, Pfändungstabelle, § 850c ZPO, Restschuldbefreiung, Wohlverhaltensphase, Schuldnerberatung";
 ---
 
-<Layout 
+<Layout
+  noTitleSuffix
   title={title}
   description={description}
   keywords={keywords}
@@ -50,7 +51,7 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
           <p>
             Mit unserem <strong>Privatinsolvenz-Rechner</strong> berechnen Sie, wie viel von Ihrem 
             Einkommen gepfändet werden kann und wie viel Ihnen bleibt. Die Berechnung basiert auf 
-            den aktuellen <strong>Pfändungsfreigrenzen ab 01.07.2025</strong> nach § 850c ZPO.
+            den aktuellen <strong>Pfändungsfreigrenzen seit 01.07.2026</strong> nach § 850c ZPO.
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist eine Privatinsolvenz?</h3>
@@ -64,24 +65,36 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
             Seit 2020 beträgt die Wohlverhaltensphase nur noch <strong>3 Jahre</strong> (statt 6 Jahre).
           </p>
           
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pfändungsfreigrenzen 2025/2026</h3>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Pfändungsfreigrenzen seit 01.07.2026</h3>
           <p>
-            Die <strong>Pfändungsfreigrenzen</strong> nach § 850c ZPO werden jährlich zum 1. Juli 
-            angepasst. Aktuell gelten (ab 01.07.2025):
+            Die <strong>Pfändungsfreigrenzen</strong> nach § 850c ZPO werden jährlich zum 1. Juli
+            angepasst. Seit dem 01.07.2026 gelten (Pfändungsfreigrenzenbekanntmachung 2026, BGBl. 2026 I Nr. 80):
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Grundfreibetrag:</strong> 1.559,99 € (ohne Unterhaltspflichten)</li>
-            <li><strong>Mit 1 Unterhaltspflicht:</strong> 2.149,99 €</li>
-            <li><strong>Mit 2 Unterhaltspflichten:</strong> 2.469,99 €</li>
-            <li><strong>Mit 3 Unterhaltspflichten:</strong> 2.799,99 €</li>
-            <li><strong>Mit 4 Unterhaltspflichten:</strong> 3.119,99 €</li>
-            <li><strong>Mit 5+ Unterhaltspflichten:</strong> 3.449,99 €</li>
+            <li><strong>Grundfreibetrag:</strong> 1.587,40 € (ohne Unterhaltspflichten)</li>
+            <li><strong>Mit 1 Unterhaltspflicht:</strong> 2.184,82 €</li>
+            <li><strong>Mit 2 Unterhaltspflichten:</strong> 2.517,65 €</li>
+            <li><strong>Mit 3 Unterhaltspflichten:</strong> 2.850,48 €</li>
+            <li><strong>Mit 4 Unterhaltspflichten:</strong> 3.183,31 €</li>
+            <li><strong>Mit 5+ Unterhaltspflichten:</strong> 3.516,14 €</li>
           </ul>
           <p>
-            Alles unterhalb dieser Grenzen ist <strong>unpfändbar</strong> und bleibt Ihnen für den 
-            Lebensunterhalt.
+            Alles unterhalb dieser Grenzen ist <strong>unpfändbar</strong> und bleibt Ihnen für den
+            Lebensunterhalt. Die amtliche Tabelle rechnet in 10-€-Stufen; Details und den aktuellen
+            pfändbaren Betrag liefert der <a href="/pfaendungsrechner" class="text-purple-600 hover:underline">Pfändungsrechner</a>.
           </p>
           
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die 3-Jahres-Rechnung: Was kommt in 36 Monaten zusammen?</h3>
+          <p>
+            Die Privatinsolvenz dauert seit der Reform von 2020 regulär <strong>36 Monate</strong>
+            (§§ 287 Abs. 2, 300 InsO). Über die gesamte Wohlverhaltensphase wird jeden Monat der pfändbare
+            Betrag an die Insolvenzverwaltung abgeführt. Beispiel: Bei 2.200 € netto ohne Unterhaltspflichten
+            sind seit dem 01.07.2026 monatlich 428,82 € pfändbar ((2.200 − 1.587,40) × 70 %) – über
+            36 Monate also rund <strong>15.438 €</strong>. Steigt Ihr Einkommen, steigt der Abführungsbetrag;
+            unpfändbare Bestandteile wie das <a href="/weihnachtsgeld-pfaendung" class="text-purple-600 hover:underline">Weihnachtsgeld bis 795 €</a>
+            bleiben dabei außen vor.
+          </p>
+
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie wird der pfändbare Betrag berechnet?</h3>
           <p>
             Das Einkommen über der Pfändungsfreigrenze wird <strong>nicht vollständig gepfändet</strong>. 
@@ -101,13 +114,13 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
             <strong>Beispiel:</strong> Nettoeinkommen 2.500 €, 1 unterhaltsberechtigtes Kind
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Pfändungsfreigrenze: 2.149,99 €</li>
-            <li>Über Freigrenze: 2.500 € - 2.149,99 € = 350,01 €</li>
-            <li>Davon unpfändbar (50%): 175,01 €</li>
-            <li>Pfändbarer Betrag: 350,01 € - 175,01 € = <strong>175,00 €</strong></li>
+            <li>Pfändungsfreigrenze: 2.184,82 €</li>
+            <li>Über Freigrenze: 2.500 € - 2.184,82 € = 315,18 €</li>
+            <li>Davon unpfändbar (50%): 157,59 €</li>
+            <li>Pfändbarer Betrag: 315,18 € - 157,59 € = <strong>157,59 €</strong></li>
           </ul>
           <p>
-            Ihnen bleiben also <strong>2.325 €</strong> (Freigrenze + unpfändbarer Mehrverdienst).
+            Ihnen bleiben also rund <strong>2.342 €</strong> (Freigrenze + unpfändbarer Mehrverdienst).
           </p>
           
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Ablauf der Privatinsolvenz</h3>
@@ -171,7 +184,7 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
             Girokontos in ein P-Konto.
           </p>
           <ul class="list-disc pl-5 space-y-1">
-            <li>Grundfreibetrag: 1.559,99 € monatlich geschützt</li>
+            <li>Grundfreibetrag: 1.587,40 € monatlich geschützt (seit 01.07.2026)</li>
             <li>Erhöhung durch Bescheinigung (z.B. bei Unterhaltspflichten)</li>
             <li>Nur ein P-Konto pro Person erlaubt</li>
           </ul>
@@ -287,9 +300,9 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
         <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
         <div class="space-y-4">
           <details class="border border-gray-200 rounded-lg">
-            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Pfändungsfreigrenze 2025?</summary>
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist die Pfändungsfreigrenze 2026?</summary>
             <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Die Pfändungsfreigrenze liegt ab 01.07.2025 bei 1.559,99 € monatlich für Personen ohne Unterhaltspflichten. Mit Unterhaltspflichten erhöht sich der Freibetrag: Mit 1 Person auf 2.149,99 €, mit 2 Personen auf 2.469,99 €.</p>
+              <p>Die Pfändungsfreigrenze liegt seit dem 01.07.2026 bei 1.587,40 € monatlich für Personen ohne Unterhaltspflichten. Mit Unterhaltspflichten erhöht sich der Freibetrag: Mit 1 Person auf 2.184,82 €, mit 2 Personen auf 2.517,65 €.</p>
             </div>
           </details>
           <details class="border border-gray-200 rounded-lg">
@@ -301,13 +314,13 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
           <details class="border border-gray-200 rounded-lg">
             <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert mit meinem Gehalt bei Privatinsolvenz?</summary>
             <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Das Gehalt bis zur Pfändungsfreigrenze bleibt Ihnen. Vom Mehrverdienst wird je nach Unterhaltspflichten ein Teil gepfändet (30-70%). Beispiel: Bei 2.500 € netto und 1 Kind werden etwa 175 € gepfändet, 2.325 € bleiben Ihnen.</p>
+              <p>Das Gehalt bis zur Pfändungsfreigrenze bleibt Ihnen. Vom Mehrverdienst wird je nach Unterhaltspflichten ein Teil gepfändet (10 bis 70 Prozent). Beispiel: Bei 2.500 € netto und 1 Kind werden seit dem 01.07.2026 etwa 158 € gepfändet, rund 2.342 € bleiben Ihnen.</p>
             </div>
           </details>
           <details class="border border-gray-200 rounded-lg">
             <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist ein P-Konto?</summary>
             <div class="px-4 pb-4 text-sm text-gray-600">
-              <p>Ein Pfändungsschutzkonto (P-Konto) schützt Ihr Guthaben bis zur Pfändungsfreigrenze vor Kontopfändung. Jeder hat Anspruch auf Umwandlung seines Girokontos. Der Grundfreibetrag von 1.559,99 € ist automatisch geschützt.</p>
+              <p>Ein Pfändungsschutzkonto (P-Konto) schützt Ihr Guthaben bis zur Pfändungsfreigrenze vor Kontopfändung. Jeder hat Anspruch auf Umwandlung seines Girokontos. Der Grundfreibetrag von 1.587,40 € ist automatisch geschützt.</p>
             </div>
           </details>
           <details class="border border-gray-200 rounded-lg">
@@ -354,10 +367,10 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Wie hoch ist die Pfändungsfreigrenze 2025?",
+        "name": "Wie hoch ist die Pfändungsfreigrenze 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Pfändungsfreigrenze liegt ab 01.07.2025 bei 1.559,99 € monatlich für Personen ohne Unterhaltspflichten. Mit Unterhaltspflichten erhöht sich der Freibetrag: Mit 1 Person auf 2.149,99 €, mit 2 Personen auf 2.469,99 €."
+          "text": "Die Pfändungsfreigrenze liegt seit dem 01.07.2026 bei 1.587,40 € monatlich für Personen ohne Unterhaltspflichten. Mit Unterhaltspflichten erhöht sich der Freibetrag: Mit 1 Person auf 2.184,82 €, mit 2 Personen auf 2.517,65 €."
         }
       },
       {
@@ -373,7 +386,7 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
         "name": "Was passiert mit meinem Gehalt bei Privatinsolvenz?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Das Gehalt bis zur Pfändungsfreigrenze bleibt Ihnen. Vom Mehrverdienst wird je nach Unterhaltspflichten ein Teil gepfändet (30-70%). Beispiel: Bei 2.500 € netto und 1 Kind werden etwa 175 € gepfändet, 2.325 € bleiben Ihnen."
+          "text": "Das Gehalt bis zur Pfändungsfreigrenze bleibt Ihnen. Vom Mehrverdienst wird je nach Unterhaltspflichten ein Teil gepfändet (10 bis 70 Prozent). Beispiel: Bei 2.500 € netto und 1 Kind werden seit dem 01.07.2026 etwa 158 € gepfändet, rund 2.342 € bleiben Ihnen."
         }
       },
       {
@@ -381,7 +394,7 @@ const keywords = "Privatinsolvenz Rechner, Pfändungsfreigrenze 2025, pfändbare
         "name": "Was ist ein P-Konto?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ein Pfändungsschutzkonto (P-Konto) schützt Ihr Guthaben bis zur Pfändungsfreigrenze vor Kontopfändung. Jeder hat Anspruch auf Umwandlung seines Girokontos. Der Grundfreibetrag von 1.559,99 € ist automatisch geschützt."
+          "text": "Ein Pfändungsschutzkonto (P-Konto) schützt Ihr Guthaben bis zur Pfändungsfreigrenze vor Kontopfändung. Jeder hat Anspruch auf Umwandlung seines Girokontos. Der Grundfreibetrag von 1.587,40 € ist automatisch geschützt."
         }
       },
       {
