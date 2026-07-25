@@ -9,18 +9,21 @@ interface Props {
   keywords?: string;
   canonical?: string;
   ogImage?: string;
+  /** A/B-Test Title-Suffix (Backlog 2026-07-20): true = ohne " | Deutschlandrechner" ausliefern */
+  noTitleSuffix?: boolean;
 }
 
-const { 
-  title, 
-  description = "Alle deutschen Rechner auf einen Blick. Kindergeld, Bürgergeld, Brutto-Netto und mehr – kostenlos und aktuell für 2026.", 
+const {
+  title,
+  description = "Alle deutschen Rechner auf einen Blick. Kindergeld, Bürgergeld, Brutto-Netto und mehr – kostenlos und aktuell für 2026.",
   keywords = "Rechner, Deutschland, Kindergeld, Bürgergeld, Brutto Netto, Elterngeld, Steuer, 2026",
   canonical,
-  ogImage = "/og-default.png"
+  ogImage = "/og-default.png",
+  noTitleSuffix = false
 } = Astro.props;
 
 const siteUrl = "https://www.deutschland-rechner.de";
-const fullTitle = title === "Alle Rechner" ? "Deutschlandrechner – Alle deutschen Rechner 2026" : `${title} | Deutschlandrechner`;
+const fullTitle = title === "Alle Rechner" ? "Deutschlandrechner – Alle deutschen Rechner 2026" : noTitleSuffix ? title : `${title} | Deutschlandrechner`;
 // Canonical immer OHNE Trailing-Slash (Slash-Variante wird via vercel.json 308-redirected)
 const rawCanonical = canonical || Astro.url.pathname;
 const canonicalUrl = rawCanonical !== '/' && rawCanonical.endsWith('/') ? rawCanonical.slice(0, -1) : rawCanonical;
