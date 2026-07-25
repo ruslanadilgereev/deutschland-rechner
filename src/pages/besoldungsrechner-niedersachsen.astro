@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import BesoldungsRechnerNiedersachsen from '../components/rechner/BesoldungsRechnerNiedersachsen.tsx';
+import besoldung from '../data/besoldung-niedersachsen.json';
+
+const title = "Besoldungsrechner Niedersachsen: Tabelle ab 01.04.2026";
+const description = "Besoldungstabelle Niedersachsen ab 01.04.2026: alle Grundgehälter A 5 bis A 16 und B 1 bis B 10 nach der amtlichen NLBV-Tabelle (Erhöhung 2,8 %, mindestens 100 Euro). Mit Rechner für Besoldungsgruppe und Erfahrungsstufe.";
+const keywords = "Besoldungsrechner Niedersachsen, Besoldungstabelle Niedersachsen, Besoldungstabelle Niedersachsen 2026, Besoldung Niedersachsen, A13 Niedersachsen Lehrer, NBesG, NLBV Besoldungstabelle, Beamte Gehalt Niedersachsen, Polizei Besoldung Niedersachsen";
+
+type GruppeA = { startStufe: number; werte: number[] };
+const aGruppen = Object.entries(besoldung.grundgehaltA) as [string, GruppeA][];
+const bGruppen = Object.entries(besoldung.grundgehaltB) as [string, number][];
+const maxStufe = 12;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Besoldungsrechner Niedersachsen", url: "/besoldungsrechner-niedersachsen" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-rose-600 to-red-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Besoldungsrechner Niedersachsen</h1>
+      <p class="text-rose-100 text-sm mt-1">Amtliche NLBV-Tabelle ab 01.04.2026 (Erhöhung 2,8 %, mindestens 100 €)</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Niedersachsen hat die Besoldungserhöhung bereits umgesetzt: Seit dem <strong>1. April 2026</strong> gelten
+      die um <strong>2,8 % (mindestens 100 €)</strong> angehobenen Grundgehälter nach der amtlichen Tabelle des
+      Niedersächsischen Landesamts für Bezüge und Versorgung. Zum Ländervergleich:
+      <a href="/besoldungsrechner-bund" class="text-rose-700 hover:underline">Bund</a>,
+      <a href="/besoldungsrechner-bw" class="text-rose-700 hover:underline">Baden-Württemberg</a>,
+      <a href="/besoldungsrechner-nrw" class="text-rose-700 hover:underline">NRW</a> und
+      <a href="/besoldungsrechner-bayern" class="text-rose-700 hover:underline">Bayern</a>.
+    </p>
+
+    <BesoldungsRechnerNiedersachsen client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungstabelle Niedersachsen – Besoldungsordnung A (ab 01.04.2026)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2 pr-2">Gruppe</th>
+              {Array.from({ length: maxStufe }, (_, i) => <th class="py-2 text-right">St. {i + 1}</th>)}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {aGruppen.map(([g, d]) => (
+              <tr class="text-gray-700">
+                <td class="py-1.5 font-medium">{g}</td>
+                {Array.from({ length: maxStufe }, (_, i) => {
+                  const stufe = i + 1;
+                  const idx = stufe - d.startStufe;
+                  const v = idx >= 0 && idx < d.werte.length ? d.werte[idx] : null;
+                  return <td class="py-1.5 text-right">{v !== null ? fmt(v) : "–"}</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: {besoldung.meta.quelle}. Beträge in Euro/Monat ohne Familienzuschlag und Zulagen;
+        „–" = Erfahrungsstufe in dieser Gruppe nicht besetzt.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 max-w-md">
+      <h2 class="text-lg font-bold text-gray-800 mb-3">Besoldungsordnung B (Festgehälter)</h2>
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-gray-100">
+          {bGruppen.map(([g, v]) => (
+            <tr class="text-gray-700"><td class="py-1.5 font-medium">{g}</td><td class="py-1.5 text-right">{fmt(v)} €</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was verdient ein Lehrer (A 13) in Niedersachsen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ein verbeamteter Lehrer in A 13 startet in Niedersachsen in Erfahrungsstufe 4 mit 4.937,05 € Grundgehalt und erreicht in Stufe 12 6.323,19 € pro Monat (Tabelle ab 01.04.2026), zuzüglich Familienzuschlag und allgemeiner Stellenzulage.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ist die Besoldungserhöhung 2026 schon enthalten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja. Die NLBV-Tabelle enthält die Erhöhung um 2,8 % (Grundgehälter mindestens +100 €) zum 1. April 2026. Auch der Familienzuschlag wurde angehoben (Stufe 1: 162,26 € für A 5 bis A 8, 170,36 € für die übrigen Gruppen).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie liegt Niedersachsen im Ländervergleich?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Niedersachsen liegt im Mittelfeld: Ein A-13-Grundgehalt in der Endstufe beträgt hier 6.323,19 €, in Bayern 6.342,19 € (Tabelle ab 10/2026), in Baden-Württemberg 6.534,50 € und in NRW 6.174,04 € zzgl. 3,36 % Abschlag. Die Rechner der anderen Dienstherren sind oben verlinkt.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was verdient ein Lehrer (A 13) in Niedersachsen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In A 13 startet ein verbeamteter Lehrer in Niedersachsen in Stufe 4 mit 4.937,05 € Grundgehalt und erreicht in Stufe 12 6.323,19 € pro Monat (NLBV-Tabelle ab 01.04.2026)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist die Besoldungserhöhung 2026 in Niedersachsen schon enthalten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, die Tabelle enthält die Erhöhung um 2,8 % (mindestens 100 €) zum 01.04.2026." }
+      }
+    ]
+  })} />
+</Layout>
