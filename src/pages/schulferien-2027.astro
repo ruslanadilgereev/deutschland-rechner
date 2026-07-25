@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Schulferien 2027: Sommerferien aller Bundesländer";
+const description = "Sommerferien 2027 je Bundesland: amtliche Termine aus der KMK-Sommerferienregelung. Hessen, Rheinland-Pfalz und das Saarland starten am 28. Juni, Bayern endet am 13. September 2027. Mit Ferienplanungs-Tipps.";
+const keywords = "Schulferien 2027, Sommerferien 2027, Sommerferien 2027 NRW, Sommerferien 2027 Bayern, Sommerferien 2027 Baden-Württemberg, Sommerferien 2027 Niedersachsen, Ferien 2027, Ferientermine 2027, KMK Sommerferien";
+
+// Amtliche Quelle: KMK, Langfristige Sommerferienregelung 2025-2030,
+// Beschluss vom 09.12.2021 (kmk.org/ferienkalender). Erster und letzter Ferientag.
+const sommerferien = [
+  { land: "Hessen", von: "28.06.2027", bis: "06.08.2027" },
+  { land: "Rheinland-Pfalz", von: "28.06.2027", bis: "06.08.2027" },
+  { land: "Saarland", von: "28.06.2027", bis: "06.08.2027" },
+  { land: "Berlin", von: "01.07.2027", bis: "14.08.2027" },
+  { land: "Brandenburg", von: "01.07.2027", bis: "14.08.2027" },
+  { land: "Hamburg", von: "01.07.2027", bis: "11.08.2027" },
+  { land: "Schleswig-Holstein", von: "03.07.2027", bis: "14.08.2027" },
+  { land: "Mecklenburg-Vorpommern", von: "05.07.2027", bis: "14.08.2027" },
+  { land: "Bremen", von: "08.07.2027", bis: "18.08.2027" },
+  { land: "Niedersachsen", von: "08.07.2027", bis: "18.08.2027" },
+  { land: "Sachsen", von: "10.07.2027", bis: "20.08.2027" },
+  { land: "Sachsen-Anhalt", von: "10.07.2027", bis: "20.08.2027" },
+  { land: "Thüringen", von: "10.07.2027", bis: "20.08.2027" },
+  { land: "Nordrhein-Westfalen", von: "19.07.2027", bis: "31.08.2027" },
+  { land: "Baden-Württemberg", von: "29.07.2027", bis: "11.09.2027" },
+  { land: "Bayern", von: "02.08.2027", bis: "13.09.2027" },
+];
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Schulferien 2027", url: "/schulferien-2027" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Schulferien 2027: Sommerferien aller Bundesländer</h1>
+      <p class="text-amber-100 text-sm mt-1">Amtliche Termine nach der KMK-Sommerferienregelung, sortiert nach Ferienstart</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Die <strong>Sommerferien 2027</strong> beginnen am <strong>28. Juni</strong> in Hessen, Rheinland-Pfalz
+      und dem Saarland und enden am <strong>13. September</strong> in Bayern. Die Termine stammen aus der
+      langfristigen Sommerferienregelung der Kultusministerkonferenz (Beschluss vom 09.12.2021) und sind damit
+      amtlich festgelegt. Für die Urlaubsplanung lohnt der Blick auf
+      <a href="/brueckentage-rechner" class="text-orange-700 hover:underline">Brückentage</a> und den
+      <a href="/kalender-2027" class="text-orange-700 hover:underline">Kalender 2027 mit Feiertagen</a> –
+      den Resturlaub berechnet der <a href="/urlaubstage-rechner" class="text-orange-700 hover:underline">Urlaubstage-Rechner</a>.
+    </p>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Sommerferien 2027 nach Bundesland (sortiert nach Start)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Bundesland</th><th class="py-2">Erster Ferientag</th><th class="py-2">Letzter Ferientag</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {sommerferien.map((f) => (
+              <tr class="text-gray-700">
+                <td class="py-2 font-medium">{f.land}</td>
+                <td class="py-2">{f.von}</td>
+                <td class="py-2">{f.bis}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: Kultusministerkonferenz, Langfristige Sommerferienregelung 2025–2030 (Beschluss vom 09.12.2021).
+        Angegeben ist jeweils der erste und letzte Ferientag. Auf den niedersächsischen Nordseeinseln sowie auf
+        Sylt, Föhr, Amrum, Helgoland und den Halligen gelten Sonderregelungen.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Herbst-, Weihnachts-, Oster- und Pfingstferien 2027</h2>
+      <p class="text-sm text-gray-600">
+        Die übrigen Ferientermine legen die Bundesländer einzeln fest und melden sie an die
+        Kultusministerkonferenz; die amtlichen Übersichten je Schuljahr veröffentlicht die KMK unter
+        <a href="https://www.kmk.org/service/ferien.html" target="_blank" rel="noopener noreferrer" class="text-orange-700 hover:underline">kmk.org/service/ferien</a>.
+        Wir ergänzen diese Seite, sobald wir die Termine für alle Länder geprüft haben – bis dahin verlinken wir
+        bewusst nur die amtliche Quelle statt ungeprüfte Daten zu übernehmen.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer hat 2027 zuerst Sommerferien?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Hessen, Rheinland-Pfalz und das Saarland starten gemeinsam am 28. Juni 2027. Es folgen Berlin, Brandenburg und Hamburg am 1. Juli. Schlusslicht ist Bayern mit Ferienbeginn am 2. August 2027.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann enden die Sommerferien 2027?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Am frühesten in Hessen, Rheinland-Pfalz und dem Saarland (6. August 2027), am spätesten in Bayern (13. September 2027) und Baden-Württemberg (11. September 2027).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum haben die Bundesländer unterschiedliche Ferientermine?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das rollierende System entzerrt den Reiseverkehr und die Auslastung der Urlaubsorte. Die Länder sind dafür in Gruppen eingeteilt, die Reihenfolge verschiebt sich von Jahr zu Jahr. Bayern und Baden-Württemberg liegen traditionell immer am Ende des Ferienkorridors.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wer hat 2027 zuerst Sommerferien?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hessen, Rheinland-Pfalz und das Saarland starten am 28. Juni 2027, gefolgt von Berlin, Brandenburg und Hamburg am 1. Juli. Bayern beginnt als letztes Land am 2. August 2027." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann enden die Sommerferien 2027?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Am frühesten am 6. August 2027 (Hessen, Rheinland-Pfalz, Saarland), am spätesten am 13. September 2027 in Bayern." }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum haben die Bundesländer unterschiedliche Ferientermine?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Das rollierende System der Kultusministerkonferenz entzerrt Reiseverkehr und Urlaubsorte. Die Reihenfolge der Ländergruppen wechselt jährlich; Bayern und Baden-Württemberg liegen stets am Ende." }
+      }
+    ]
+  })} />
+</Layout>
