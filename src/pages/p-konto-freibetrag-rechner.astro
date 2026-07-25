@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import PKontoRechner from '../components/rechner/PKontoRechner.tsx';
+import pf from '../data/pfaendung-2026.json';
+
+const title = "P-Konto-Freibetrag 2026: Rechner + Bescheinigung";
+const description = "P-Konto-Freibetrag berechnen: Grundfreibetrag 1.587,40 € seit 01.07.2026, Erhöhungsbeträge für Unterhaltspflichten und Kindergeld nach §§ 899-903 ZPO. Mit Anleitung zur Bescheinigung und gerichtlichen Festsetzung.";
+const keywords = "P-Konto Freibetrag Rechner, P-Konto Freibetrag 2026, Pfändungsschutzkonto Freibetrag, P-Konto Bescheinigung, P-Konto Freibetrag erhöhen, Antrag Freigabe unpfändbarer Beträge, P-Konto Kindergeld, § 902 ZPO, P-Konto Grundfreibetrag";
+
+const M = pf.monatlich;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "P-Konto-Freibetrag-Rechner", url: "/p-konto-freibetrag-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">P-Konto-Freibetrag 2026 berechnen</h1>
+      <p class="text-teal-100 text-sm mt-1">Grundfreibetrag {fmt(M.grundbetrag)} € seit 01.07.2026 | Erhöhungen mit Bescheinigung nach § 903 ZPO</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Auf dem <strong>Pfändungsschutzkonto (P-Konto)</strong> ist seit dem 1. Juli 2026 ein Grundfreibetrag von
+      <strong>{fmt(M.grundbetrag)} € pro Kalendermonat</strong> automatisch geschützt (§ 899 ZPO in Verbindung mit
+      der Pfändungsfreigrenzenbekanntmachung 2026). Wer Unterhalt zahlt oder Kindergeld erhält, kann den Schutz
+      deutlich erhöhen – dafür braucht die Bank eine Bescheinigung. Der Rechner zeigt Ihren geschützten Betrag;
+      die Lohnpfändung selbst berechnet der <a href="/pfaendungsrechner" class="text-teal-700 hover:underline">Pfändungsrechner</a>.
+    </p>
+
+    <PKontoRechner client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">So erhöhen Sie Ihren P-Konto-Freibetrag (3 Schritte)</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Bescheinigung besorgen (§ 903 ZPO):</strong> Arbeitgeber, Familienkasse, Sozialleistungsträger, anerkannte Schuldnerberatungsstellen sowie Rechtsanwälte und Steuerberater dürfen die Erhöhungsbeträge bescheinigen. Schuldnerberatungsstellen stellen die Bescheinigung in der Regel kostenlos aus.</li>
+        <li><strong>Bei der Bank einreichen:</strong> Die Bank muss die bescheinigten Beträge ab dem zweiten auf die Vorlage folgenden Geschäftstag beachten.</li>
+        <li><strong>Notfalls zum Vollstreckungsgericht (§ 905 ZPO):</strong> Stellt niemand die Bescheinigung aus oder lehnt die Bank ab, setzt das Vollstreckungsgericht (bei Sozialleistungen auch die Vollstreckungsstelle des öffentlichen Gläubigers) den Freibetrag auf Antrag fest.</li>
+      </ol>
+      <p class="text-xs text-gray-500 mt-3">
+        Zusätzlich unpfändbar auf dem P-Konto: einmalige Sozialleistungen, Nachzahlungen bis 500 € sowie nicht
+        verbrauchtes Guthaben aus den drei Vormonaten (Ansparung, § 899 Abs. 2 ZPO).
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der P-Konto-Freibetrag 2026?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der automatische Grundfreibetrag beträgt seit dem 1. Juli 2026 {fmt(M.grundbetrag)} € pro Monat. Mit Bescheinigung erhöht er sich um {fmt(M.erhoehungErstePerson)} € für die erste und {fmt(M.erhoehungWeiterePerson)} € für jede weitere Person, der Sie Unterhalt gewähren (bis zur fünften), plus Kindergeld und bestimmte Sozialleistungen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert mit Guthaben über dem Freibetrag?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Es wird nicht sofort an den Gläubiger ausgekehrt, sondern zunächst in den Folgemonat übertragen (Moratorium). Nicht verbrauchtes geschütztes Guthaben können Sie bis zu drei Monate ansparen. Erst danach wird überschüssiges Guthaben an den pfändenden Gläubiger ausgezahlt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wandle ich mein Girokonto in ein P-Konto um?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Jeder kann von seiner Bank verlangen, das Girokonto binnen vier Geschäftstagen in ein P-Konto umzuwandeln (§ 850k ZPO) – auch nachdem eine Pfändung bereits eingegangen ist. Die Umwandlung ist kostenlos; pro Person ist nur ein P-Konto zulässig.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der P-Konto-Freibetrag 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der automatische Grundfreibetrag beträgt seit dem 1. Juli 2026 1.587,40 € pro Monat; mit Bescheinigung nach § 903 ZPO erhöht er sich um 597,42 € für die erste und 332,83 € für jede weitere unterhaltsberechtigte Person plus Kindergeld." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie wandle ich mein Girokonto in ein P-Konto um?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die Bank muss das Girokonto auf Verlangen binnen vier Geschäftstagen kostenlos in ein P-Konto umwandeln (§ 850k ZPO), auch nach Eingang einer Pfändung." }
+      }
+    ]
+  })} />
+</Layout>
