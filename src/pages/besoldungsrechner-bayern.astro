@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import BesoldungsRechnerBayern from '../components/rechner/BesoldungsRechnerBayern.tsx';
+import besoldung from '../data/besoldung-bayern.json';
+
+const title = "Besoldungsrechner Bayern: Tabelle ab 01.10.2026";
+const description = "Besoldungstabelle Bayern: alle Grundgehälter A 3 bis A 16 nach der vom Landesamt für Finanzen veröffentlichten Tabelle (gültig ab 01.10.2026, vorbehaltlich Landtag). Mit Rechner für Besoldungsgruppe und Erfahrungsstufe nach BayBesG.";
+const keywords = "Besoldungsrechner Bayern, Besoldungstabelle Bayern, Besoldungstabelle Bayern 2026, Besoldung Bayern, A13 Bayern Lehrer, BayBesG, LfF Besoldungstabelle, Beamte Gehalt Bayern, Polizei Besoldung Bayern, Besoldungserhöhung Bayern 2026";
+
+type GruppeA = { startStufe: number; werte: number[] };
+const aGruppen = Object.entries(besoldung.grundgehaltA) as [string, GruppeA][];
+const maxStufe = 11;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Besoldungsrechner Bayern", url: "/besoldungsrechner-bayern" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Besoldungsrechner Bayern</h1>
+      <p class="text-sky-100 text-sm mt-1">Grundgehaltssätze nach Anlage 3 BayBesG | Tabelle ab 01.10.2026 (LfF)</p>
+    </div>
+
+    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 text-sm text-yellow-800">
+      <strong>Stand in Bayern (Juli 2026):</strong> Das Landesamt für Finanzen hat die Besoldungstabelle
+      <strong> gültig ab 01.10.2026</strong> bereits veröffentlicht – sie steht noch unter dem Vorbehalt der
+      Zustimmung des Bayerischen Landtags zum Anpassungsgesetz. Bis zum 30.09.2026 gilt die Fassung ab
+      01.02.2025 (abrufbar im
+      <a href="https://www.lff.bayern.de/themen/besoldung/besoldungstabellen/besoldungstabellen-archiv/" target="_blank" rel="noopener noreferrer" class="underline">LfF-Tabellenarchiv</a>).
+      Sobald der Landtag zugestimmt hat, entfernen wir diesen Hinweis.
+    </div>
+
+    <BesoldungsRechnerBayern client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungstabelle Bayern – Besoldungsordnung A (ab 01.10.2026)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2 pr-2">Gruppe</th>
+              {Array.from({ length: maxStufe - 1 }, (_, i) => <th class="py-2 text-right">St. {i + 2}</th>)}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {aGruppen.map(([g, d]) => (
+              <tr class="text-gray-700">
+                <td class="py-1.5 font-medium">{g}</td>
+                {Array.from({ length: maxStufe - 1 }, (_, i) => {
+                  const stufe = i + 2;
+                  const idx = stufe - d.startStufe;
+                  const v = idx >= 0 && idx < d.werte.length ? d.werte[idx] : null;
+                  return <td class="py-1.5 text-right">{v !== null ? fmt(v) : "–"}</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: {besoldung.meta.quelle}, gültig ab {besoldung.meta.gueltigAb}. Beträge in Euro/Monat ohne
+        Orts-/Familienzuschlag und Zulagen; „–" = Erfahrungsstufe in dieser Gruppe nicht besetzt.
+        Bayerische Systematik: Die Stufen beginnen bei Stufe 2 (A 3 bis A 10) bzw. höher.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was verdient ein Lehrer (A 13) in Bayern?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nach der Tabelle ab 01.10.2026 verdient ein verbeamteter Lehrer in A 13 zwischen 5.395,56 € (Stufe 5) und 6.342,19 € (Stufe 11) Grundgehalt pro Monat, zuzüglich Orts- und Familienzuschlag. Bayern besoldet Grund- und Mittelschullehrkräfte seit der Anhebung ebenfalls nach A 13.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum beginnt die bayerische Tabelle erst bei Stufe 2?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das ist die Systematik des Bayerischen Besoldungsgesetzes: Der Einstieg erfolgt je nach Besoldungsgruppe in Stufe 2 (A 3 bis A 10), Stufe 3 (A 11), Stufe 4 (A 12), Stufe 5 (A 13/A 14) oder Stufe 6 (A 15/A 16). Der Stufenaufstieg folgt zunächst im 2-, dann im 3- und 4-Jahres-Rhythmus.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie schneidet Bayern im Ländervergleich ab?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bayern zählt traditionell zu den bestzahlenden Dienstherren. Zum direkten Vergleich: <a href="/besoldungsrechner-bund" class="text-sky-700 hover:underline">Bund</a>, <a href="/besoldungsrechner-bw" class="text-sky-700 hover:underline">Baden-Württemberg</a> und <a href="/besoldungsrechner-nrw" class="text-sky-700 hover:underline">Nordrhein-Westfalen</a>.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was verdient ein Lehrer (A 13) in Bayern?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nach der Tabelle ab 01.10.2026 zwischen 5.395,56 € (Stufe 5) und 6.342,19 € (Stufe 11) Grundgehalt pro Monat, zuzüglich Orts- und Familienzuschlag." }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum beginnt die bayerische Besoldungstabelle erst bei Stufe 2?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die BayBesG-Systematik lässt Gruppen versetzt einsteigen: A 3 bis A 10 in Stufe 2, A 11 in Stufe 3, A 12 in Stufe 4, A 13/A 14 in Stufe 5, A 15/A 16 in Stufe 6." }
+      }
+    ]
+  })} />
+</Layout>
