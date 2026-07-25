@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import BesoldungsRechnerNRW from '../components/rechner/BesoldungsRechnerNRW.tsx';
+import besoldung from '../data/besoldung-nrw.json';
+
+const title = "Besoldungsrechner NRW: Tabelle + Abschlag 3,36 %";
+const description = "Besoldungstabelle NRW: alle Grundgehälter A 5 bis A 16 nach der amtlichen LBV-Tabelle (gültig ab 01.02.2025) plus die seit 01.04.2026 gezahlten Abschläge von 3,36 %. Rechner für Besoldungsgruppe und Erfahrungsstufe.";
+const keywords = "Besoldungsrechner NRW, Besoldungstabelle NRW, Besoldungstabelle NRW 2026, Besoldung NRW, A12 NRW, A13 NRW Lehrer, Besoldungserhöhung NRW 2026, LBesG NRW, LBV NRW Besoldung, Beamte Gehalt NRW, Polizei Besoldung NRW";
+
+type GruppeA = { startStufe: number; werte: number[] };
+const aGruppen = Object.entries(besoldung.grundgehaltA) as [string, GruppeA][];
+const maxStufe = 12;
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Besoldungsrechner NRW", url: "/besoldungsrechner-nrw" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-green-700 to-emerald-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Besoldungsrechner Nordrhein-Westfalen</h1>
+      <p class="text-green-100 text-sm mt-1">Amtliche Grundgehälter (LBesO A) + aktuell gezahlter Abschlag von 3,36 %</p>
+    </div>
+
+    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 text-sm text-yellow-800">
+      <strong>So ist der Stand in NRW (Juli 2026):</strong> Verkündet ist die Besoldungstabelle
+      <strong> gültig ab 01.02.2025</strong>. Die Übertragung der Tarifeinigung vom 14.02.2026 (u. a.
+      <strong> +3,36 % ab 01.04.2026</strong>, mindestens 100 €) ist als Gesetz noch in Arbeit – seit den
+      Juli-Bezügen zahlt das LBV die Erhöhung aber bereits rückwirkend als <strong>Abschlag</strong>
+      (Runderlass des Finanzministeriums vom 18.05.2026, MB.NRW 2026 Nr. 132). Unser Rechner zeigt deshalb
+      beide Werte: den verkündeten Tabellenwert und den aktuell gezahlten Betrag.
+    </div>
+
+    <BesoldungsRechnerNRW client:load />
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungstabelle NRW – Landesbesoldungsordnung A (ab 01.02.2025)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2 pr-2">Gruppe</th>
+              {Array.from({ length: maxStufe }, (_, i) => <th class="py-2 text-right">St. {i + 1}</th>)}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {aGruppen.map(([g, d]) => (
+              <tr class="text-gray-700">
+                <td class="py-1.5 font-medium">{g}</td>
+                {Array.from({ length: maxStufe }, (_, i) => {
+                  const stufe = i + 1;
+                  const idx = stufe - d.startStufe;
+                  const v = idx >= 0 && idx < d.werte.length ? d.werte[idx] : null;
+                  return <td class="py-1.5 text-right">{v !== null ? fmt(v) : "–"}</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: {besoldung.meta.quelle}. Beträge in Euro/Monat ohne Familienzuschlag und Zulagen;
+        „–" = Erfahrungsstufe in dieser Gruppe nicht besetzt. Auf alle Werte zahlt NRW seit 01.04.2026
+        einen Abschlag von +3,36 % (Spalte im Rechner oben).
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was verdient ein Lehrer (A 13) in NRW?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ein verbeamteter Lehrer in A 13 startet in NRW in Erfahrungsstufe 5 mit 5.051,74 € Grundgehalt (Tabelle ab 01.02.2025) und erreicht in Stufe 12 6.174,04 €. Inklusive des seit April 2026 gezahlten Abschlags von 3,36 % sind das aktuell rund 5.221 € bis 6.381 € – zuzüglich Familienzuschlag.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann kommt die Besoldungserhöhung 2026 in NRW?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Landesregierung hat am 05.05.2026 den Gesetzentwurf zur Anpassung 2026 bis 2028 beschlossen (1:1-Übertragung der Tarifeinigung vom 14.02.2026). Bis zur Verkündung zahlt das LBV die Erhöhung von 3,36 % (mindestens 100 €) rückwirkend zum 01.04.2026 als Abschlag mit den Juli-Bezügen. Nach Inkrafttreten des Gesetzes veröffentlichen wir hier die neuen amtlichen Tabellen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie unterscheiden sich Bund und Länder bei der Besoldung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Seit der Föderalismusreform besolden die Länder ihre Beamten selbst – Tabellen, Stufen und Zulagen unterscheiden sich deutlich. Zum Vergleich: <a href="/besoldungsrechner-bund" class="text-green-700 hover:underline">Besoldungsrechner Bund</a> und <a href="/besoldungsrechner-bw" class="text-green-700 hover:underline">Besoldungsrechner Baden-Württemberg</a>.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was verdient ein Lehrer (A 13) in NRW?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In A 13 startet ein verbeamteter Lehrer in NRW in Stufe 5 mit 5.051,74 € Grundgehalt (Tabelle ab 01.02.2025) bis 6.174,04 € in Stufe 12; inklusive des Abschlags von 3,36 % seit April 2026 aktuell rund 5.221 € bis 6.381 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann kommt die Besoldungserhöhung 2026 in NRW?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Gesetzentwurf (Beschluss 05.05.2026) überträgt die Tarifeinigung vom 14.02.2026 1:1; bis zur Verkündung zahlt das LBV seit den Juli-Bezügen einen Abschlag von 3,36 % rückwirkend zum 01.04.2026 (MB.NRW 2026 Nr. 132)." }
+      }
+    ]
+  })} />
+</Layout>
