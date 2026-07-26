@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import PflegeheimEigenanteilRechner from '../components/rechner/PflegeheimEigenanteilRechner';
+
+const title = "Pflegeheim-Eigenanteil berechnen: Das zahlen Sie selbst";
+const description = "Pflegeheim-Kosten 2026 berechnen: Pflegekasse zahlt je nach Pflegegrad 805 bis 2.096 €, der Leistungszuschlag senkt den Eigenanteil um 15 bis 75 % je nach Wohndauer (§ 43c SGB XI). Mit Rechner für Ihren Heimvertrag.";
+const keywords = "Pflegeheim Eigenanteil Rechner, Pflegeheim Kosten berechnen, Eigenanteil Pflegeheim 2026, einrichtungseinheitlicher Eigenanteil, EEE Pflegeheim, Leistungszuschlag § 43c, Pflegeheim was zahlt die Kasse, Pflegegrad Heimkosten, Hilfe zur Pflege";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Pflegeheim-Eigenanteil", url: "/pflegeheim-eigenanteil-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-emerald-600 to-green-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Pflegeheim: Eigenanteil richtig berechnen</h1>
+      <p class="text-emerald-100 text-sm mt-1">Pflegekasse 805-2.096 € je nach Pflegegrad | Zuschlag 15-75 % nach Wohndauer (§ 43c SGB XI)</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Die Pflegeversicherung ist eine Teilkasko: Sie zahlt im Heim einen <strong>festen Betrag je
+      Pflegegrad</strong> (805 € bis 2.096 €), den Rest trägt der Bewohner. Der pflegebedingte
+      Eigenanteil wird durch den <strong>Leistungszuschlag</strong> mit wachsender Wohndauer um
+      15, 30, 50 oder 75 Prozent gedrückt; Unterkunft, Verpflegung und Investitionskosten bleiben
+      dagegen ungekürzt. Der Rechner arbeitet mit den Bausteinen aus Ihrem Heimvertrag.
+    </p>
+
+    <div class="mb-6">
+      <PflegeheimEigenanteilRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Was zahlt die Pflegekasse im Heim? (Stand 2026)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-md">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2">Pflegegrad</th><th class="py-2 text-right">Kassenleistung/Monat</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Pflegegrad 1</td><td class="text-right font-mono">131 € (Zuschuss)</td></tr>
+            <tr><td class="py-2">Pflegegrad 2</td><td class="text-right font-mono">805 €</td></tr>
+            <tr><td class="py-2">Pflegegrad 3</td><td class="text-right font-mono">1.319 €</td></tr>
+            <tr><td class="py-2">Pflegegrad 4</td><td class="text-right font-mono">1.855 €</td></tr>
+            <tr><td class="py-2">Pflegegrad 5</td><td class="text-right font-mono">2.096 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: § 43 SGB XI. Der pflegebedingte Eigenanteil ist in jedem Haus für alle Pflegegrade
+        2-5 gleich hoch (einrichtungseinheitlicher Eigenanteil, EEE): Ein höherer Pflegegrad
+        bedeutet daher nicht automatisch höhere Eigenkosten.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Der Leistungszuschlag: Je länger im Heim, desto weniger Eigenanteil</h2>
+      <p class="text-sm text-gray-700 mb-3">
+        Auf den pflegebedingten Eigenanteil zahlt die Pflegekasse zusätzlich (§ 43c SGB XI):
+      </p>
+      <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+        <li><strong>15 %</strong> im ersten Jahr im Heim</li>
+        <li><strong>30 %</strong> nach mehr als 12 Monaten</li>
+        <li><strong>50 %</strong> nach mehr als 24 Monaten</li>
+        <li><strong>75 %</strong> nach mehr als 36 Monaten</li>
+      </ul>
+      <p class="text-sm text-gray-700 mt-3">
+        Der Zuschlag gilt nur für die Pflegegrade 2-5 und nur für den Pflegeanteil: Unterkunft und
+        Verpflegung, Investitionskosten und Ausbildungsumlage bleiben immer voll beim Bewohner.
+        Deshalb sinkt die Rechnung nach drei Jahren spürbar, aber nie auf null.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wenn das Geld nicht reicht</h2>
+      <p class="text-sm text-gray-700">
+        Reichen Rente und Vermögen nicht, springt das Sozialamt mit <strong>Hilfe zur Pflege</strong>
+        ein (§§ 61 ff. SGB XII); geschützt bleiben ein Schonvermögen und ein Barbetrag zur
+        persönlichen Verfügung. Kinder müssen erst ab einem Jahresbruttoeinkommen von mehr als
+        100.000 € zum Unterhalt herangezogen werden (§ 94 Abs. 1a SGB XII). Zusätzlich lohnt der
+        Blick auf Wohngeld für Heimbewohner und, je nach Bundesland, auf Landespflegegeld oder
+        Investitionskosten-Förderung.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Pflegeheim im Monat?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das Heimentgelt besteht aus pflegebedingten Kosten, Unterkunft/Verpflegung und Investitionskosten und unterscheidet sich stark nach Haus und Bundesland. Ihr tatsächlicher Eigenanteil ergibt sich aus dem Heimvertrag abzüglich Kassenleistung und Leistungszuschlag; genau das rechnet der Rechner oben.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zahlt man bei Pflegegrad 5 mehr Eigenanteil als bei Pflegegrad 2?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nein. Der pflegebedingte Eigenanteil ist einrichtungseinheitlich für die Pflegegrade 2-5 gleich (EEE); die höheren Pflegekosten schwererer Grade fängt die höhere Kassenleistung auf. Nur Pflegegrad 1 fällt aus dem System (131 € Zuschuss).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann steigt der Leistungszuschlag?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Automatisch mit der Wohndauer: über 12 Monate 30 %, über 24 Monate 50 %, über 36 Monate 75 % des pflegebedingten Eigenanteils. Auch angebrochene Monate zählen mit; die Kasse rechnet den Zuschlag direkt mit dem Heim ab.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Müssen Kinder für das Pflegeheim der Eltern zahlen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nur bei einem Jahresbruttoeinkommen über 100.000 € (§ 94 Abs. 1a SGB XII). Darunter holt sich das Sozialamt bei der Hilfe zur Pflege nichts von den Kindern; Schwiegerkinder-Einkommen zählt nicht.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was sind Investitionskosten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der Anteil für Gebäude, Instandhaltung und Ausstattung des Heims, den die Einrichtung auf die Bewohner umlegt. Er variiert stark (und wird in einigen Bundesländern bezuschusst); zusammen mit Unterkunft/Verpflegung bleibt er auch nach Jahren im Heim ungekürzt.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 43, 43c SGB XI (Leistungsbeträge bestätigt durch die Bekanntmachung nach § 30
+      SGB XI, geltend seit 01.01.2025); §§ 61 ff., 94 SGB XII, gesetze-im-internet.de.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was zahlt die Pflegekasse im Pflegeheim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Je Kalendermonat 805 € (Pflegegrad 2), 1.319 € (PG 3), 1.855 € (PG 4), 2.096 € (PG 5); bei Pflegegrad 1 einen Zuschuss von 131 € (§ 43 SGB XI)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Leistungszuschlag im Pflegeheim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "15 % des pflegebedingten Eigenanteils im ersten Jahr, 30 % nach 12, 50 % nach 24 und 75 % nach 36 Monaten Wohndauer (§ 43c SGB XI); Unterkunft, Verpflegung und Investitionskosten bleiben ungekürzt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Zahlt man bei höherem Pflegegrad mehr Eigenanteil?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, der pflegebedingte Eigenanteil ist je Einrichtung für die Pflegegrade 2-5 einheitlich (einrichtungseinheitlicher Eigenanteil)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Müssen Kinder für das Pflegeheim der Eltern zahlen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nur bei einem Jahresbruttoeinkommen über 100.000 € (§ 94 Abs. 1a SGB XII); darunter greift die Hilfe zur Pflege ohne Rückgriff auf die Kinder." }
+      }
+    ]
+  })} />
+</Layout>
