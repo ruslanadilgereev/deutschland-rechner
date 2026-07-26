@@ -1,26 +1,11 @@
 import { useMemo, useState } from 'react';
 import gkg from '../../data/gkg-gebuehren.json';
+import { streitwertGebuehr } from '../../lib/gkg';
 
 // Gerichtskosten des Mahnbescheids: 0,5-Gebühr nach Nr. 1100 KV GKG,
-// mindestens 38,00 € (Stand KostBRÄG 2025). Wertgebühr nach § 34 GKG,
-// Formel gegen die amtliche Anlage 2 verifiziert (siehe gkg-gebuehren.json).
-const GRUND = gkg.grundgebuehr;
-const STUFEN = gkg.stufen;
+// mindestens 38,00 € (Stand KostBRÄG 2025). Wertgebühr nach § 34 GKG
+// aus src/lib/gkg.ts (gegen die amtliche Anlage 2 verifiziert).
 const MAHN = gkg.mahnverfahren;
-
-// Volle Wertgebühr (1,0) nach § 34 Abs. 1 GKG
-export function streitwertGebuehr(streitwert: number): number {
-  let gebuehr = GRUND.gebuehr;
-  let untere = GRUND.bisStreitwert;
-  for (const stufe of STUFEN) {
-    if (streitwert <= untere) break;
-    const obere = stufe.bisStreitwert ?? Infinity;
-    const anteil = Math.min(streitwert, obere) - untere;
-    gebuehr += Math.ceil(anteil / stufe.schritt) * stufe.erhoehung;
-    untere = obere;
-  }
-  return Math.round(gebuehr * 100) / 100;
-}
 
 function mahnbescheidKosten(streitwert: number) {
   const volleGebuehr = streitwertGebuehr(streitwert);

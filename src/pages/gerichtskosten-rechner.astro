@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import GerichtskostenRechner from '../components/rechner/GerichtskostenRechner';
+
+const title = "Gerichtskosten-Rechner: Zivilprozess nach Streitwert";
+const description = "Gerichtskosten für Klage, Berufung und Mahnverfahren berechnen: Wertgebühr nach § 34 GKG × Gebührensatz (3,0 / 4,0 / 5,0). Beispiel: 5.000 € Streitwert = 511,50 € Gerichtskosten in der 1. Instanz. Stand KostBRÄG 2025.";
+const keywords = "Gerichtskosten Rechner, Gerichtskosten berechnen, Gerichtskosten Zivilprozess, Gerichtskosten Streitwert, GKG Rechner, Gerichtskostentabelle 2026, Gerichtskosten Klage, Gerichtskosten Berufung, Gerichtskostenvorschuss";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Gerichtskosten-Rechner", url: "/gerichtskosten-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-indigo-700 to-blue-900 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Gerichtskosten berechnen: Klage, Berufung, Mahnverfahren</h1>
+      <p class="text-indigo-100 text-sm mt-1">Wertgebühr nach § 34 GKG × Gebührensatz | Gebührentabelle i.d.F. KostBRÄG 2025</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Die Gerichtskosten im Zivilprozess folgen einer festen Systematik: Aus dem
+      <strong>Streitwert</strong> ergibt sich die Wertgebühr nach § 34 GKG, die je nach Verfahren
+      mit einem <strong>Gebührensatz</strong> multipliziert wird: 3,0 für die Klage in erster
+      Instanz, 4,0 für die Berufung, 5,0 für die Revision und nur 0,5 für den
+      <a href="/mahnbescheid-kosten" class="text-indigo-700 hover:underline">Mahnbescheid</a>.
+      Bei 5.000 € Streitwert kostet die Klage damit 511,50 €, die früh zurückgenommene Klage
+      nur 170,50 €.
+    </p>
+
+    <div class="mb-6">
+      <GerichtskostenRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Der Vorschuss: Ohne Zahlung keine Zustellung</h2>
+      <p class="text-sm text-gray-700">
+        In bürgerlichen Rechtsstreitigkeiten wird die Klage erst zugestellt, nachdem die
+        3,0-Verfahrensgebühr gezahlt ist (§ 12 GKG). Wer klagt, muss die Gerichtskosten also
+        <strong>vollständig vorstrecken</strong>. Wer den Prozess am Ende verliert, trägt die Kosten
+        des Rechtsstreits einschließlich der Gegenseite (§ 91 ZPO); bei teilweisem Obsiegen werden
+        sie entsprechend gequotelt. Ging dem Prozess ein Mahnverfahren voraus, wird dessen
+        0,5-Gebühr auf die 3,0-Gebühr angerechnet.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Sparen durch frühe Erledigung</h2>
+      <p class="text-sm text-gray-700">
+        Endet das Verfahren früh, ermäßigt sich die Gebühr deutlich: Bei Klagerücknahme vor dem
+        Schluss der mündlichen Verhandlung, Anerkenntnis- oder Verzichtsurteil oder einem
+        gerichtlichen Vergleich sinkt die 3,0-Gebühr auf <strong>1,0</strong> (Nr. 1211 KV GKG),
+        bei 5.000 € Streitwert also von 511,50 € auf 170,50 €. In der Berufung fällt die
+        4,0-Gebühr auf 1,0, wenn das Rechtsmittel vor Eingang der Begründung zurückgenommen wird
+        (Nr. 1221 KV GKG). Ein Vergleich spart daher oft nicht nur Nerven, sondern auch den
+        Großteil der Gerichtsgebühren.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch sind die Gerichtskosten bei 5.000 € Streitwert?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Wertgebühr beträgt 170,50 €. Für die Klage in erster Instanz fällt die 3,0-Gebühr an, also 511,50 €. In der Berufung wären es 682 € (4,0-fach), im Mahnverfahren nur 85,25 € (0,5-fach).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer muss die Gerichtskosten zahlen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Vorstrecken muss sie, wer klagt: Ohne Zahlung der 3,0-Gebühr wird die Klage nicht zugestellt (§ 12 GKG). Am Ende trägt die unterlegene Partei die Kosten des Rechtsstreits (§ 91 ZPO); bei teilweisem Erfolg wird gequotelt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert mit den Gerichtskosten bei einem Vergleich?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Endet das gesamte Verfahren durch gerichtlichen Vergleich, ermäßigt sich die 3,0-Verfahrensgebühr auf 1,0 (Nr. 1211 KV GKG). Zwei Drittel der Gerichtsgebühr entfallen also; wie die verbleibenden Kosten verteilt werden, regeln die Parteien meist im Vergleich selbst.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die Anwaltskosten in den Gerichtskosten enthalten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nein. Der Rechner zeigt nur die Gerichtsgebühren nach dem GKG. Anwaltsvergütungen (RVG) kommen für jede beauftragte Seite hinzu und übersteigen die Gerichtskosten regelmäßig; vor Landgerichten (Streitwert über 5.000 €) besteht Anwaltszwang.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kommen noch weitere Kosten dazu?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Möglich sind Auslagen des Gerichts, vor allem Sachverständigengutachten und Zeugenentschädigungen; sie werden zusätzlich zu den Gebühren erhoben und können bei Bau- oder Verkehrssachen erheblich sein. Wer nicht zahlen kann, kann Prozesskostenhilfe beantragen.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: Gerichtskostengesetz (GKG), insbesondere § 12, § 34 mit Anlage 2 (Gebührentabelle,
+      Fundstelle BGBl. 2025 I Nr. 109) und Anlage 1 Kostenverzeichnis Nr. 1100, 1210, 1211, 1220,
+      1221, 1230; § 91 ZPO. Abrufbar über gesetze-im-internet.de. Verwandte Rechner:
+      <a href="/mahnbescheid-kosten" class="text-indigo-700 hover:underline">Mahnbescheid-Kosten</a> und
+      <a href="/gerichtsvollzieher-kosten" class="text-indigo-700 hover:underline">Gerichtsvollzieher-Kosten</a>.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die Gerichtskosten bei 5.000 € Streitwert?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die Wertgebühr beträgt 170,50 €; die Klage in erster Instanz kostet mit der 3,0-Gebühr 511,50 €, die Berufung 682 €, das Mahnverfahren 85,25 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer muss die Gerichtskosten zahlen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Kläger muss sie vorstrecken (§ 12 GKG: Zustellung erst nach Zahlung); am Ende trägt die unterlegene Partei die Kosten des Rechtsstreits (§ 91 ZPO)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert mit den Gerichtskosten bei einem Vergleich?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei Beendigung des gesamten Verfahrens durch gerichtlichen Vergleich ermäßigt sich die 3,0-Verfahrensgebühr auf 1,0 (Nr. 1211 KV GKG)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind die Anwaltskosten in den Gerichtskosten enthalten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, Anwaltsvergütungen nach dem RVG kommen hinzu; vor den Landgerichten besteht Anwaltszwang." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche weiteren Kosten können im Prozess anfallen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Auslagen des Gerichts wie Sachverständigengutachten und Zeugenentschädigungen werden zusätzlich zu den Gebühren erhoben." }
+      }
+    ]
+  })} />
+</Layout>
