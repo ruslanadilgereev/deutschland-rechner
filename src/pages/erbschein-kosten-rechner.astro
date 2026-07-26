@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import ErbscheinRechner from '../components/rechner/ErbscheinRechner';
+
+const title = "Erbschein-Kosten berechnen: Gebühren nach Nachlasswert";
+const description = "Was kostet ein Erbschein? Gebühren nach GNotKG Tabelle B berechnen: bei 100.000 € Nachlass 273 € Verfahrensgebühr, mit eidesstattlicher Versicherung 546 €. Mit Rechner, Tabelle und Spar-Tipps (notarielles Testament).";
+const keywords = "Erbschein Kosten, Erbschein Kosten Rechner, was kostet ein Erbschein, Erbschein Gebühren Tabelle, Erbschein beantragen Kosten, GNotKG Tabelle B, Nachlasswert Erbschein, eidesstattliche Versicherung Erbschein, Erbschein 100000 Euro";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Erbschein-Kosten", url: "/erbschein-kosten-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-amber-700 to-yellow-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Erbschein: Kosten nach Nachlasswert berechnen</h1>
+      <p class="text-amber-100 text-sm mt-1">1,0-Gebühr nach Tabelle B GNotKG | plus gleiche Gebühr für die eidesstattliche Versicherung</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Der Erbschein kostet zwei Gebühren aus dem <strong>reinen Nachlasswert</strong> (Vermögen
+      minus Schulden des Erblassers): eine <strong>1,0-Verfahrensgebühr</strong> nach Tabelle B des
+      GNotKG und im Regelfall eine <strong>gleich hohe Gebühr für die eidesstattliche
+      Versicherung</strong>. Bei 100.000 € Nachlass sind das 273 € plus 273 € =
+      <strong>546 €</strong>. Der Rechner zeigt Ihre Beträge exakt.
+    </p>
+
+    <div class="mb-6">
+      <ErbscheinRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wovon werden die Gebühren berechnet?</h2>
+      <p class="text-sm text-gray-700">
+        Geschäftswert ist der <strong>Wert des Nachlasses im Zeitpunkt des Erbfalls</strong>;
+        die vom Erblasser herrührenden Verbindlichkeiten (z.B. Restschuld der Immobilie,
+        Konsumkredite) werden abgezogen (§ 40 GNotKG). Ein Haus mit 400.000 € Wert und 250.000 €
+        Restschuld zählt also nur mit 150.000 €. Beantragt man einen Teil-Erbschein oder betrifft
+        der Erbschein nur einen Miterben-Anteil, zählt entsprechend nur dieser Anteil.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Braucht man den Erbschein überhaupt? Die Spar-Frage</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Notarielles Testament oder Erbvertrag</strong> plus Eröffnungsprotokoll ersetzt den Erbschein bei Grundbuchamt und meist auch bei Banken, dann entfallen die Gebühren komplett.</li>
+        <li><strong>Bankvollmacht über den Tod hinaus:</strong> Mit einer transmortalen Vollmacht kommen Bevollmächtigte ohne Erbschein an die Konten.</li>
+        <li><strong>Privates (handschriftliches) Testament</strong> reicht Banken oft nicht, dann führt am Erbschein selten ein Weg vorbei.</li>
+        <li><strong>Gemeinschaftlicher Erbschein:</strong> Mehrere Miterben brauchen nicht mehrere Erbscheine; ein gemeinschaftlicher Erbschein für alle kostet die Gebühren nur einmal.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Erbschein bei 100.000 € Nachlass?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">273 € Verfahrensgebühr plus 273 € für die eidesstattliche Versicherung, zusammen 546 € (Tabelle B GNotKG). Bei 500.000 € sind es 935 € + 935 € = 1.870 €.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum fallen zwei Gebühren an?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das Erbscheinsverfahren selbst kostet eine 1,0-Gebühr (Nr. 12210 KV GNotKG). Für die Abnahme der eidesstattlichen Versicherung, mit der Sie Ihre Angaben bekräftigen, wird eine gesonderte Gebühr in gleicher Höhe erhoben. Verzichtet das Nachlassgericht ausnahmsweise auf die Versicherung, bleibt es bei einer Gebühr.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Werden Schulden vom Nachlasswert abgezogen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, alle vom Erblasser herrührenden Verbindlichkeiten mindern den Geschäftswert (§ 40 GNotKG), etwa Immobilienkredite oder offene Rechnungen. Bestattungskosten gehören nicht dazu, sie entstehen erst nach dem Erbfall.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wo und wie beantrage ich den Erbschein?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Beim Nachlassgericht (Amtsgericht am letzten Wohnsitz des Verstorbenen), persönlich mit eidesstattlicher Versicherung vor Ort oder über einen Notar, der den Antrag beurkundet. Beim Notar fallen dessen Gebühren nach denselben Tabellen an; die Gerichtsgebühr für das Verfahren kommt hinzu.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich mir den Erbschein sparen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Oft ja: Ein notarielles Testament oder ein Erbvertrag mit gerichtlichem Eröffnungsprotokoll ersetzt den Erbschein gegenüber Grundbuchamt und in der Regel auch Banken. Auch eine über den Tod hinaus geltende Kontovollmacht macht ihn häufig entbehrlich.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: § 34 (Tabelle B), § 40 GNotKG sowie Anlage 1 Kostenverzeichnis Nr. 12210-12212,
+      gesetze-im-internet.de. Verwandte Rechner:
+      <a href="/gerichtskosten-rechner" class="text-amber-700 hover:underline">Gerichtskosten</a> und
+      <a href="/prozesskosten-rechner" class="text-amber-700 hover:underline">Prozesskosten</a>.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Erbschein bei 100.000 € Nachlass?",
+        "acceptedAnswer": { "@type": "Answer", "text": "273 € Verfahrensgebühr plus 273 € für die eidesstattliche Versicherung, zusammen 546 € (Tabelle B GNotKG); bei 500.000 € insgesamt 1.870 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum fallen beim Erbschein zwei Gebühren an?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Eine 1,0-Gebühr für das Erbscheinsverfahren (Nr. 12210 KV GNotKG) und eine gesonderte Gebühr in gleicher Höhe für die Abnahme der eidesstattlichen Versicherung." }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden Schulden vom Nachlasswert abgezogen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, die vom Erblasser herrührenden Verbindlichkeiten mindern den Geschäftswert (§ 40 GNotKG); Bestattungskosten zählen nicht dazu." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann man sich den Erbschein sparen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oft ja: Ein notarielles Testament oder ein Erbvertrag mit Eröffnungsprotokoll ersetzt den Erbschein bei Grundbuchamt und meist auch bei Banken; ebenso hilft eine transmortale Kontovollmacht." }
+      }
+    ]
+  })} />
+</Layout>
