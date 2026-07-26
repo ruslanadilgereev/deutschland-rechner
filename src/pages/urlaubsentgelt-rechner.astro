@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import UrlaubsentgeltRechner from '../components/rechner/UrlaubsentgeltRechner';
+
+const title = "Urlaubsentgelt berechnen: die 13-Wochen-Regel";
+const description = "Urlaubsentgelt nach § 11 BUrlG berechnen: Durchschnittsverdienst der letzten 13 Wochen ohne Überstunden, Zuschläge zählen mit. Mit Rechner für festen und schwankenden Lohn und dem Unterschied zum Urlaubsgeld.";
+const keywords = "Urlaubsentgelt berechnen, Urlaubsentgelt Rechner, § 11 BUrlG, 13 Wochen Durchschnitt Urlaub, Urlaubsentgelt Überstunden, Urlaubsentgelt Zuschläge, Urlaubsgeld Urlaubsentgelt Unterschied, Urlaubslohn berechnen, Referenzprinzip Urlaub";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Urlaubsentgelt-Rechner", url: "/urlaubsentgelt-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Urlaubsentgelt: Lohn im Urlaub richtig berechnen</h1>
+      <p class="text-amber-100 text-sm mt-1">§ 11 BUrlG | Durchschnitt der letzten 13 Wochen | ohne Überstunden, mit Zuschlägen</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Im Urlaub läuft der Lohn weiter, aber in welcher Höhe? Das <strong>Urlaubsentgelt</strong>
+      bemisst sich nach dem <strong>durchschnittlichen Arbeitsverdienst der letzten 13 Wochen</strong>
+      vor Urlaubsbeginn, ohne die Vergütung für Überstunden (§ 11 BUrlG). Beim festen Monatsgehalt
+      ändert sich dadurch nichts; spannend wird es bei Stundenlohn, Schichtzulagen und Provisionen.
+      Der Rechner ermittelt beides.
+    </p>
+
+    <div class="mb-6">
+      <UrlaubsentgeltRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Urlaubsentgelt vs. Urlaubsgeld: der wichtigste Unterschied</h2>
+      <p class="text-sm text-gray-700">
+        Das <strong>Urlaubsentgelt</strong> ist die gesetzlich geschuldete Lohnfortzahlung während
+        des Urlaubs, sie steht jedem Arbeitnehmer zu und ist vor Urlaubsantritt auszuzahlen
+        (§ 11 Abs. 2 BUrlG). Das <strong>Urlaubsgeld</strong> ist dagegen eine zusätzliche,
+        freiwillige Sonderzahlung, auf die nur ein Anspruch besteht, wenn Arbeits- oder
+        Tarifvertrag sie vorsehen. Wer "kein Urlaubsgeld" bekommt, bekommt also trotzdem
+        selbstverständlich seinen normalen Lohn im Urlaub.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Was zählt in die 13 Wochen und was nicht?</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2">Vergütungsbestandteil</th><th class="py-2 text-right">zählt mit?</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Grundlohn / Gehalt</td><td class="text-right font-semibold text-green-700">ja</td></tr>
+            <tr><td class="py-2">Nacht-, Sonn- und Feiertagszuschläge, Schichtzulagen</td><td class="text-right font-semibold text-green-700">ja</td></tr>
+            <tr><td class="py-2">Provisionen und leistungsabhängige Vergütung</td><td class="text-right font-semibold text-green-700">ja</td></tr>
+            <tr><td class="py-2">Vergütung für Überstunden</td><td class="text-right font-semibold text-red-700">nein (§ 11 Abs. 1 S. 1)</td></tr>
+            <tr><td class="py-2">Kurzarbeit / Arbeitsausfall / unverschuldete Fehlzeiten</td><td class="text-right font-semibold text-gray-600">werden herausgerechnet</td></tr>
+            <tr><td class="py-2">Dauerhafte Gehaltserhöhung im Referenzzeitraum</td><td class="text-right font-semibold text-green-700">neuer Lohn gilt sofort</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Sachbezüge (z.B. Verpflegung), die im Urlaub nicht weitergewährt werden, sind für die
+        Urlaubsdauer angemessen in bar abzugelten (§ 11 Abs. 1 S. 4 BUrlG).
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie wird das Urlaubsentgelt berechnet?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Gesamtverdienst der letzten 13 Wochen vor Urlaubsbeginn (ohne Überstundenvergütung) geteilt durch die Arbeitstage in diesem Zeitraum, mal Urlaubstage. Bei einer 5-Tage-Woche also: 13-Wochen-Verdienst ÷ 65 × Urlaubstage.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zählen Überstunden ins Urlaubsentgelt?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nein, die zusätzlich für Überstunden gezahlte Vergütung bleibt ausdrücklich außen vor (§ 11 Abs. 1 S. 1 BUrlG). Zuschläge für Nacht-, Sonn- und Feiertagsarbeit im Rahmen der normalen Arbeitszeit zählen dagegen mit.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was gilt bei Kurzarbeit im Referenzzeitraum?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Verdienstkürzungen durch Kurzarbeit, Arbeitsausfälle oder unverschuldete Fehlzeiten bleiben für die Berechnung außer Betracht (§ 11 Abs. 1 S. 3 BUrlG): Es zählt der Verdienst, den Sie ohne die Kürzung erzielt hätten. Kurzarbeit drückt das Urlaubsentgelt also nicht.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wann muss das Urlaubsentgelt ausgezahlt werden?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Vor Antritt des Urlaubs (§ 11 Abs. 2 BUrlG). In der Praxis läuft es meist mit der normalen Gehaltsabrechnung; bei stark schwankendem Lohn lohnt der Blick, ob der 13-Wochen-Durchschnitt korrekt angesetzt wurde.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert mit offenem Urlaub bei Kündigung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Kann der Urlaub wegen Beendigung des Arbeitsverhältnisses nicht mehr genommen werden, ist er abzugelten (§ 7 Abs. 4 BUrlG), pro Tag nach derselben 13-Wochen-Formel wie das Urlaubsentgelt.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 3, 7, 11 Bundesurlaubsgesetz (BUrlG), gesetze-im-internet.de. Tarifverträge
+      können abweichende, für Beschäftigte günstigere Berechnungen vorsehen. Stand: Juli 2026.
+      Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie wird das Urlaubsentgelt berechnet?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Gesamtverdienst der letzten 13 Wochen vor Urlaubsbeginn ohne Überstundenvergütung, geteilt durch die Arbeitstage des Zeitraums, mal Urlaubstage (§ 11 BUrlG). Bei 5-Tage-Woche: Verdienst ÷ 65 × Urlaubstage." }
+      },
+      {
+        "@type": "Question",
+        "name": "Zählen Überstunden ins Urlaubsentgelt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, Überstundenvergütung bleibt außen vor; Zuschläge für Nacht-, Sonn- und Feiertagsarbeit der normalen Arbeitszeit zählen mit." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was gilt bei Kurzarbeit im Referenzzeitraum?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Kürzungen durch Kurzarbeit, Arbeitsausfälle oder unverschuldete Fehlzeiten bleiben außer Betracht (§ 11 Abs. 1 S. 3 BUrlG); gerechnet wird mit dem Verdienst ohne die Kürzung." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Urlaubsgeld und Urlaubsentgelt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Urlaubsentgelt ist die gesetzliche Lohnfortzahlung im Urlaub; Urlaubsgeld ist eine freiwillige Zusatzzahlung, die nur bei vertraglicher oder tariflicher Regelung zusteht." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert mit offenem Urlaub bei Kündigung?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nicht mehr nehmbarer Urlaub ist abzugelten (§ 7 Abs. 4 BUrlG), je Tag nach der 13-Wochen-Formel des Urlaubsentgelts." }
+      }
+    ]
+  })} />
+</Layout>
