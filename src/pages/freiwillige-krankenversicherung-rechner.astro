@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import FreiwilligeKvRechner from '../components/rechner/FreiwilligeKvRechner';
+
+const title = "Freiwillige Krankenversicherung: Beitrag 2026 berechnen";
+const description = "GKV-Beitrag für freiwillig Versicherte und Selbstständige 2026 berechnen: 14,0/14,6 % plus Zusatzbeitrag und Pflegeversicherung, Mindestbeitrag ab 278 €, Höchstbeitrag bis rund 1.261 €. Mit Mindestbemessung nach § 240 SGB V.";
+const keywords = "freiwillige Krankenversicherung Rechner, freiwillige gesetzliche Krankenversicherung Beitrag, GKV Selbstständige Beitrag 2026, Mindestbeitrag Krankenversicherung, Krankenkassenbeitrag Selbstständige, § 240 SGB V, Höchstbeitrag GKV 2026, freiwillig versichert Kosten";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Freiwillige Krankenversicherung", url: "/freiwillige-krankenversicherung-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-lime-700 to-green-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Freiwillige Krankenversicherung: Beitrag berechnen</h1>
+      <p class="text-lime-100 text-sm mt-1">Für Selbstständige & freiwillig Versicherte | Mindestbeitrag ab 278,17 € | Stand 2026</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Wer nicht pflichtversichert ist, vor allem <strong>Selbstständige</strong>, Beamte oder
+      Gutverdiener nach dem Ausscheiden aus der Pflicht, kann sich freiwillig gesetzlich versichern.
+      Der Beitrag richtet sich nach der <strong>gesamten wirtschaftlichen Leistungsfähigkeit</strong>
+      (§ 240 SGB V): Gewinn, Mieten, Kapitalerträge, alles zählt. 2026 gilt eine
+      Mindestbemessung von 1.318,33 € und die Beitragsbemessungsgrenze von 5.812,50 € im Monat;
+      der Monatsbeitrag liegt damit zwischen rund <strong>278 €</strong> und
+      <strong>1.261 €</strong> inklusive Pflegeversicherung.
+    </p>
+
+    <div class="mb-6">
+      <FreiwilligeKvRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">So setzt sich der Beitrag zusammen</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Krankenversicherung:</strong> 14,0 % (ermäßigter Satz ohne Krankengeld-Anspruch, § 243 SGB V) oder 14,6 % (allgemeiner Satz mit Krankengeld, § 241 SGB V), jeweils plus kassenindividueller Zusatzbeitrag (Durchschnitt 2026: 2,9 %).</li>
+        <li><strong>Pflegeversicherung:</strong> 3,6 %, für Kinderlose ab 23 Jahren 4,2 %; Eltern mit mehreren Kindern unter 25 zahlen je Kind ab dem zweiten 0,25 Punkte weniger (§ 55 SGB XI).</li>
+        <li><strong>Kein Arbeitgeberanteil:</strong> Freiwillig Versicherte tragen den vollen Beitrag selbst. Rentner erhalten auf die gesetzliche Rente einen Zuschuss der Rentenversicherung, Selbstständige nicht.</li>
+        <li><strong>Bemessungsfenster 2026:</strong> mindestens 1.318,33 € (ein Drittel der Bezugsgröße von 3.955 €), höchstens 5.812,50 € (Beitragsbemessungsgrenze). Einnahmen darüber sind beitragsfrei.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Beitrag 2026 auf einen Blick (ohne Krankengeld, Zusatzbeitrag 2,9 %)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Monatliche Einnahmen</th>
+              <th class="py-2 text-right">KV (16,9 %)</th>
+              <th class="py-2 text-right">PV (4,2 % kinderlos)</th>
+              <th class="py-2 text-right">Gesamt</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">bis 1.318,33 € (Mindestbeitrag)</td><td class="text-right font-mono">222,80 €</td><td class="text-right font-mono">55,37 €</td><td class="text-right font-mono font-bold">278,17 €</td></tr>
+            <tr><td class="py-2">2.000 €</td><td class="text-right font-mono">338,00 €</td><td class="text-right font-mono">84,00 €</td><td class="text-right font-mono font-bold">422,00 €</td></tr>
+            <tr><td class="py-2">3.000 €</td><td class="text-right font-mono">507,00 €</td><td class="text-right font-mono">126,00 €</td><td class="text-right font-mono font-bold">633,00 €</td></tr>
+            <tr><td class="py-2">4.000 €</td><td class="text-right font-mono">676,00 €</td><td class="text-right font-mono">168,00 €</td><td class="text-right font-mono font-bold">844,00 €</td></tr>
+            <tr><td class="py-2">ab 5.812,50 € (Höchstbeitrag)</td><td class="text-right font-mono">982,31 €</td><td class="text-right font-mono">244,13 €</td><td class="text-right font-mono font-bold">1.226,44 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Mit Krankengeld-Anspruch (14,6 %) liegt der Höchstbeitrag bei 1.261,32 €. Eltern zahlen in
+        der Pflegeversicherung weniger als der kinderlose Beispielwert.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Mindestbeitrag zur freiwilligen Krankenversicherung 2026?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Rund 278 € im Monat (222,80 € KV zum ermäßigten Satz mit 2,9 % Zusatzbeitrag plus 55,37 € PV für Kinderlose). Grundlage ist die Mindestbemessung von 1.318,33 €, ein Drittel der monatlichen Bezugsgröße; sie gilt auch bei geringeren oder gar keinen Einnahmen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Einnahmen zählen für den Beitrag?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die gesamte wirtschaftliche Leistungsfähigkeit (§ 240 SGB V): Arbeitseinkommen und Gewinn, Miet- und Pachteinnahmen, Kapitalerträge, Renten und Versorgungsbezüge. Anders als bei Pflichtversicherten sind also auch private Einkünfte beitragspflichtig.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen 14,0 und 14,6 Prozent?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">14,0 % ist der ermäßigte Satz ohne Krankengeld-Anspruch (§ 243 SGB V), der Standard für Selbstständige. Wer per Wahlerklärung Krankengeld ab der 7. Woche absichern will, zahlt den allgemeinen Satz von 14,6 % (§ 241 SGB V), bei Höchstbemessung rund 35 € mehr im Monat.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie werden Beiträge bei Selbstständigen festgesetzt?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Zunächst vorläufig nach dem letzten Einkommensteuerbescheid; nach Vorlage des Bescheids für das Beitragsjahr rechnet die Kasse endgültig ab. Nachzahlungen oder Erstattungen sind daher normal, Rücklagen einplanen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann ich den Beitrag senken?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Hebel sind eine Kasse mit niedrigem Zusatzbeitrag, der Verzicht auf Krankengeld, nachgewiesen niedrigere Einnahmen (aktueller Steuerbescheid oder Vorauszahlungsbescheid) und bei Eltern die PV-Abschläge. Unter die Mindestbemessung kommt man nur mit Familienversicherung über den Ehepartner.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 240, 241, 243 SGB V; § 55 SGB XI (Satz 3,6 % gemäß Anpassungsverordnung nach
+      § 55 Abs. 1a SGB XI); Sozialversicherungsrechengrößen-Verordnung 2026 (Bezugsgröße
+      3.955 €/Monat, Beitragsbemessungsgrenze 5.812,50 €/Monat), abrufbar über
+      gesetze-im-internet.de. Durchschnittlicher Zusatzbeitragssatz 2026: 2,9 %. Stand: Juli 2026.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist der Mindestbeitrag zur freiwilligen Krankenversicherung 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Rund 278 € monatlich (KV 222,80 € + PV 55,37 € für Kinderlose) auf Basis der Mindestbemessung von 1.318,33 €; sie gilt auch bei geringeren Einnahmen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Einnahmen zählen für den Beitrag?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die gesamte wirtschaftliche Leistungsfähigkeit nach § 240 SGB V: Gewinn, Mieten, Kapitalerträge, Renten und Versorgungsbezüge." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen 14,0 und 14,6 Prozent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "14,0 % gilt ohne Krankengeld-Anspruch (§ 243 SGB V), 14,6 % mit Krankengeld per Wahlerklärung (§ 241 SGB V); dazu kommt jeweils der Zusatzbeitrag der Kasse." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Höchstbeitrag 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An der Beitragsbemessungsgrenze von 5.812,50 €: 1.226,44 € ohne bzw. 1.261,32 € mit Krankengeld (Zusatzbeitrag 2,9 %, PV kinderlos)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie werden Beiträge bei Selbstständigen festgesetzt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Vorläufig nach dem letzten Einkommensteuerbescheid, endgültig nach Vorlage des Bescheids für das Beitragsjahr; Nachzahlungen oder Erstattungen sind üblich." }
+      }
+    ]
+  })} />
+</Layout>
