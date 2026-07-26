@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import MutterschaftsgeldRechner from '../components/rechner/MutterschaftsgeldRechner';
+
+const title = "Mutterschaftsgeld berechnen: Kasse + Arbeitgeberzuschuss";
+const description = "Mutterschaftsgeld 2026 berechnen: 13 € pro Tag von der Krankenkasse plus Arbeitgeberzuschuss bis zum vollen Netto (§§ 19, 20 MuSchG). Mit Rechner für die 99 Tage Schutzfrist, Privatversicherte (210 €) und Frühgeburt-Regel.";
+const keywords = "Mutterschaftsgeld Rechner, Mutterschaftsgeld berechnen, Mutterschaftsgeld Höhe, Arbeitgeberzuschuss Mutterschaftsgeld, Mutterschaftsgeld privat versichert 210 Euro, Mutterschutz Geld, Mutterschaftsgeld Schutzfrist, § 20 MuSchG, Mutterschaftsgeld Krankenkasse 13 Euro";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Mutterschaftsgeld-Rechner", url: "/mutterschaftsgeld-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-pink-600 to-rose-700 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Mutterschaftsgeld: So viel gibt es in der Schutzfrist</h1>
+      <p class="text-pink-100 text-sm mt-1">13 €/Tag von der Kasse + Arbeitgeberzuschuss bis zum Netto | §§ 19, 20 MuSchG</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Während der Mutterschutzfristen (6 Wochen vor der Geburt, 8 danach) fließt kein normales
+      Gehalt, sondern <strong>Mutterschaftsgeld</strong>: Die gesetzliche Krankenkasse zahlt
+      <strong>höchstens 13 € pro Kalendertag</strong>, und der Arbeitgeber stockt mit einem
+      Zuschuss auf das <strong>durchschnittliche Netto der letzten drei Monate</strong> auf
+      (§ 20 MuSchG). Unterm Strich kommt also in der Regel das gewohnte Netto an. Der Rechner
+      zeigt beide Bausteine für die gesamten 99 Tage.
+    </p>
+
+    <div class="mb-6">
+      <MutterschaftsgeldRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Die zwei Bausteine im Detail</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          <strong>1. Mutterschaftsgeld der Krankenkasse (§ 19 MuSchG):</strong> GKV-Mitglieder
+          erhalten es für die Schutzfristen plus Entbindungstag, gedeckelt auf 13 € je Kalendertag.
+          Wer <strong>privat oder in der GKV nur familienversichert</strong> ist, bekommt stattdessen
+          einmalig höchstens <strong>210 €</strong>, auf Antrag beim Bundesamt für Soziale Sicherung.
+        </p>
+        <p>
+          <strong>2. Arbeitgeberzuschuss (§ 20 MuSchG):</strong> Der Arbeitgeber zahlt die Differenz
+          zwischen 13 € und dem durchschnittlichen kalendertäglichen Nettoentgelt der letzten drei
+          abgerechneten Monate (Summe geteilt durch 90). Diesen Zuschuss erhalten auch privat
+          versicherte Arbeitnehmerinnen, er macht bei den meisten den Löwenanteil aus. Bei mehreren
+          Jobs zählen alle Entgelte zusammen.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wie lange läuft die Zahlung?</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Regelfall:</strong> 6 Wochen vor dem errechneten Termin + Entbindungstag + 8 Wochen danach = <strong>99 Kalendertage</strong>.</li>
+        <li><strong>Früh- und Mehrlingsgeburten</strong> (sowie bei festgestellter Behinderung des Kindes): 12 Wochen nach der Geburt = <strong>127 Tage</strong>.</li>
+        <li><strong>Kommt das Kind früher</strong> als errechnet, verlängert sich die Frist nach der Geburt um die vorne verpassten Tage; es gehen also keine Tage verloren (§ 3 MuSchG).</li>
+        <li><strong>Steuerlich:</strong> Mutterschaftsgeld und Zuschuss sind steuerfrei, zählen aber beim Progressionsvorbehalt mit und stehen deshalb in der Steuererklärung.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist das Mutterschaftsgeld?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Von der gesetzlichen Krankenkasse höchstens 13 € pro Kalendertag. Zusammen mit dem Arbeitgeberzuschuss ergibt sich in der Regel das volle durchschnittliche Netto der letzten drei Monate. Beispiel: Bei 2.400 € Netto sind das 80 € pro Tag, also 13 € Kasse plus 67 € Arbeitgeber.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bekommen privat Versicherte?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Einmalig höchstens 210 € vom Bundesamt für Soziale Sicherung (§ 19 Abs. 2 MuSchG), das gilt auch für in der GKV familienversicherte Arbeitnehmerinnen. Der Arbeitgeberzuschuss auf das volle Netto abzüglich 13 €/Tag bleibt davon unberührt, die Lücke ist also überschaubar.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer zahlt bei Minijobs und geringem Verdienst?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Liegt das kalendertägliche Netto unter 13 €, zahlt die Kasse nur bis zur Höhe des Nettos und es gibt keinen Arbeitgeberzuschuss. Bei mehreren Beschäftigungen werden die Entgelte für den Zuschuss zusammengerechnet und anteilig auf die Arbeitgeber verteilt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich das Mutterschaftsgeld beantragen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja: bei der Krankenkasse mit der ärztlichen Bescheinigung über den voraussichtlichen Entbindungstermin (frühestens 7 Wochen vor Termin), bzw. beim Bundesamt für Soziale Sicherung für die 210 €. Der Arbeitgeberzuschuss läuft über die normale Entgeltabrechnung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie geht es nach der Schutzfrist weiter?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Mit dem Ende der Schutzfrist endet das Mutterschaftsgeld; ab dann greift bei Bedarf das Elterngeld, wobei Mutterschaftsgeld und Zuschuss auf zeitgleiches Basiselterngeld angerechnet werden. Die Elternzeit muss spätestens 7 Wochen vor ihrem Beginn angemeldet werden.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 3, 19, 20 Mutterschutzgesetz (MuSchG), gesetze-im-internet.de. Stand: Juli 2026.
+      Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist das Mutterschaftsgeld?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Von der gesetzlichen Krankenkasse höchstens 13 € pro Kalendertag; der Arbeitgeberzuschuss füllt bis zum durchschnittlichen Netto der letzten drei Monate auf (§ 20 MuSchG). In der Regel kommt so das gewohnte Netto an." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bekommen privat Versicherte als Mutterschaftsgeld?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Einmalig höchstens 210 € vom Bundesamt für Soziale Sicherung (§ 19 Abs. 2 MuSchG); der Arbeitgeberzuschuss bleibt unberührt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange wird Mutterschaftsgeld gezahlt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Für die Schutzfristen plus Entbindungstag: regulär 99 Kalendertage (6 Wochen vor, 8 Wochen nach der Geburt), bei Früh- und Mehrlingsgeburten 127 Tage (12 Wochen danach)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist das Mutterschaftsgeld steuerfrei?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, Mutterschaftsgeld und Arbeitgeberzuschuss sind steuerfrei, unterliegen aber dem Progressionsvorbehalt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wird das Mutterschaftsgeld auf das Elterngeld angerechnet?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, Mutterschaftsgeld und Zuschuss werden auf zeitgleich zustehendes Basiselterngeld angerechnet." }
+      }
+    ]
+  })} />
+</Layout>
