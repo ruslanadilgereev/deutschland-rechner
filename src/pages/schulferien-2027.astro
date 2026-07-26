@@ -2,9 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 
-const title = "Schulferien 2027: Sommerferien aller Bundesländer";
-const description = "Sommerferien 2027 je Bundesland: amtliche Termine aus der KMK-Sommerferienregelung. Hessen, Rheinland-Pfalz und das Saarland starten am 28. Juni, Bayern endet am 13. September 2027. Mit Ferienplanungs-Tipps.";
-const keywords = "Schulferien 2027, Sommerferien 2027, Sommerferien 2027 NRW, Sommerferien 2027 Bayern, Sommerferien 2027 Baden-Württemberg, Sommerferien 2027 Niedersachsen, Ferien 2027, Ferientermine 2027, KMK Sommerferien";
+const title = "Schulferien 2027: alle Termine je Bundesland";
+const description = "Schulferien 2027 komplett: Winter-, Oster-, Pfingst-, Sommer-, Herbst- und Weihnachtsferien aller 16 Bundesländer aus den amtlichen KMK-Ferienkalendern. Sommerferien vom 28. Juni (Hessen) bis 13. September (Bayern).";
+const keywords = "Schulferien 2027, Sommerferien 2027, Herbstferien 2027, Osterferien 2027, Winterferien 2027, Pfingstferien 2027, Weihnachtsferien 2027, Sommerferien 2027 NRW, Sommerferien 2027 Bayern, Ferien 2027, Ferientermine 2027, KMK Ferienkalender";
+import uebrige from '../data/schulferien-2027-uebrige.json';
+const LAENDER16 = Object.keys(uebrige.herbst2027);
+const FW = uebrige.winter2027 as Record<string, string>;
+const FO = uebrige.ostern2027 as Record<string, string>;
+const FP = uebrige.pfingsten2027 as Record<string, string>;
+const FH = uebrige.herbst2027 as Record<string, string>;
+const FX = uebrige.weihnachten2027 as Record<string, string>;
 
 // Amtliche Quelle: KMK, Langfristige Sommerferienregelung 2025-2030,
 // Beschluss vom 09.12.2021 (kmk.org/ferienkalender). Erster und letzter Ferientag.
@@ -33,8 +40,8 @@ const sommerferien = [
 
   <div class="max-w-4xl mx-auto px-4 py-8">
     <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl p-6 mb-6">
-      <h1 class="text-2xl font-bold">Schulferien 2027: Sommerferien aller Bundesländer</h1>
-      <p class="text-amber-100 text-sm mt-1">Amtliche Termine nach der KMK-Sommerferienregelung, sortiert nach Ferienstart</p>
+      <h1 class="text-2xl font-bold">Schulferien 2027: alle Termine je Bundesland</h1>
+      <p class="text-amber-100 text-sm mt-1">Winter, Ostern, Pfingsten, Sommer, Herbst und Weihnachten – amtliche KMK-Termine</p>
     </div>
 
     <p class="text-gray-700 mb-6">
@@ -71,6 +78,43 @@ const sommerferien = [
         Quelle: Kultusministerkonferenz, Langfristige Sommerferienregelung 2025–2030 (Beschluss vom 09.12.2021).
         Angegeben ist jeweils der erste und letzte Ferientag. Auf den niedersächsischen Nordseeinseln sowie auf
         Sylt, Föhr, Amrum, Helgoland und den Halligen gelten Sonderregelungen.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Winter-, Oster-, Pfingst-, Herbst- und Weihnachtsferien 2027</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2 pr-2">Bundesland</th>
+              <th class="py-2 pr-2">Winter</th>
+              <th class="py-2 pr-2">Ostern/Frühjahr</th>
+              <th class="py-2 pr-2">Himmelfahrt/Pfingsten</th>
+              <th class="py-2 pr-2">Herbst</th>
+              <th class="py-2">Weihnachten 27/28</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            {LAENDER16.map((land) => (
+              <tr>
+                <td class="py-2 pr-2 font-medium">{land}</td>
+                <td class="py-2 pr-2">{FW[land]}</td>
+                <td class="py-2 pr-2">{FO[land]}</td>
+                <td class="py-2 pr-2">{FP[land]}</td>
+                <td class="py-2 pr-2">{FH[land]}</td>
+                <td class="py-2">{FX[land]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: KMK-Ferienkalender für die Schuljahre 2026/2027 und 2027/2028 (Stand 09.10.2025).
+        Alle Termine im Jahr 2027; Weihnachtsferien reichen teils ins Jahr 2028. Baden-Württemberg
+        und Bayern führen ihre Februar-/Frühjahrstermine in der Spalte Ostern/Frühjahr; "—" bedeutet:
+        keine landesweiten Ferien in dieser Kategorie. Die Termine legen die Länder selbst fest,
+        einzelne bewegliche Ferientage kommen hinzu.
       </p>
     </div>
 
