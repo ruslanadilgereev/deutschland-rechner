@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import vpi from '../data/vpi-monatswerte.json';
+
+const title = "VPI-Tabelle: Verbraucherpreisindex 2015 bis 2026";
+const description = "Verbraucherpreisindex (VPI) Deutschland als Tabelle: alle amtlichen Monatswerte von 2015 bis Juni 2026 (Basis 2020 = 100) plus Inflationsraten der letzten Monate. Quelle: Statistisches Bundesamt.";
+const keywords = "VPI Tabelle, Verbraucherpreisindex Tabelle, VPI 2026, VPI Monatswerte, Verbraucherpreisindex 2020=100, VPI Indexmiete, Inflationsrate Tabelle, Destatis VPI, Preisindex Tabelle";
+
+const MONATSNAMEN = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+const MONATSNAMEN_LANG = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+const werte = vpi.werte as Record<string, number>;
+const keys = Object.keys(werte).sort();
+
+// Jahres-Matrix (Zeile = Jahr, 12 Monatsspalten + Jahresmittel wenn komplett)
+const jahre: { jahr: number; monate: (number | null)[]; jd: number | null }[] = [];
+const startJahr = Number(keys[0].slice(0, 4));
+const endJahr = Number(keys[keys.length - 1].slice(0, 4));
+for (let j = endJahr; j >= startJahr; j--) {
+  const monate = Array.from({ length: 12 }, (_, i) => werte[`${j}-${String(i + 1).padStart(2, '0')}`] ?? null);
+  const voll = monate.every((v) => v !== null);
+  const jd = voll ? Math.round((monate as number[]).reduce((a, b) => a + b, 0) / 12 * 10) / 10 : null;
+  jahre.push({ jahr: j, monate, jd });
+}
+
+// Letzte 13 Monate mit Vorjahres-Inflationsrate
+const letzte13 = keys.slice(-13).reverse().map((k) => {
+  const [j, m] = k.split('-').map(Number);
+  const vorjahr = werte[`${j - 1}-${String(m).padStart(2, '0')}`];
+  const rate = vorjahr ? Math.round((werte[k] / vorjahr - 1) * 1000) / 10 : null;
+  return { label: `${MONATSNAMEN_LANG[m - 1]} ${j}`, wert: werte[k], rate };
+});
+const aktuell = letzte13[0];
+
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "VPI-Tabelle", url: "/vpi-tabelle" }]} />
+
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-teal-700 to-cyan-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">VPI-Tabelle: Verbraucherpreisindex Deutschland</h1>
+      <p class="text-teal-100 text-sm mt-1">Alle Monatswerte seit 2015 | Basis 2020 = 100 | aktuell: {aktuell.label} = {fmt(aktuell.wert)}</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Der <strong>Verbraucherpreisindex (VPI)</strong> des Statistischen Bundesamtes misst die
+      Preisentwicklung aller Waren und Dienstleistungen des privaten Konsums. Im
+      {aktuell.label} steht er bei <strong>{fmt(aktuell.wert)} Punkten</strong> (Basis 2020 = 100),
+      das sind {aktuell.rate !== null ? (aktuell.rate > 0 ? '+' : '') + fmt(aktuell.rate) : '-'} %
+      gegenüber dem Vorjahresmonat. Die Tabelle unten enthält alle amtlichen Monatswerte seit 2015,
+      wie sie z.B. für <a href="/indexmiete-rechner" class="text-teal-700 hover:underline">Indexmietverträge</a>
+      und Wertsicherungsklauseln gebraucht werden.
+    </p>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">VPI-Monatswerte {startJahr} bis {endJahr} (Basis 2020 = 100)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-gray-50 text-gray-500">
+              <th class="text-left py-2 px-2 rounded-tl-lg">Jahr</th>
+              {MONATSNAMEN.map((m) => <th class="py-2 px-1 text-right">{m}</th>)}
+              <th class="py-2 px-2 text-right rounded-tr-lg">Ø Jahr</th>
+            </tr>
+          </thead>
+          <tbody>
+            {jahre.map((z) => (
+              <tr class="border-b border-gray-100">
+                <td class="py-1.5 px-2 font-bold text-gray-800">{z.jahr}</td>
+                {z.monate.map((v) => (
+                  <td class="py-1.5 px-1 text-right font-mono text-gray-700">{v !== null ? fmt(v) : '–'}</td>
+                ))}
+                <td class="py-1.5 px-2 text-right font-mono font-bold text-gray-800">{z.jd !== null ? fmt(z.jd) : '–'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: Statistisches Bundesamt (Destatis), VPI für Deutschland, Basis 2020 = 100; Monatswerte
+        bis Juni 2025 aus dem Statistischen Bericht "Lange Reihen", danach aus der laufenden
+        Destatis-Veröffentlichung (abgerufen 26.07.2026). Jahresdurchschnitt aus den zwölf
+        Monatsindizes berechnet.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Die letzten 13 Monate mit Inflationsrate</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Monat</th>
+              <th class="py-2 text-right">VPI (2020 = 100)</th>
+              <th class="py-2 text-right">Veränderung zum Vorjahresmonat</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            {letzte13.map((m) => (
+              <tr>
+                <td class="py-2">{m.label}</td>
+                <td class="py-2 text-right font-mono font-bold">{fmt(m.wert)}</td>
+                <td class="py-2 text-right font-mono">{m.rate !== null ? (m.rate > 0 ? '+' : '') + fmt(m.rate) + ' %' : '–'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wofür braucht man die VPI-Tabelle?</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          <strong>Indexmiete (§ 557b BGB):</strong> Bei Indexmietverträgen ändert sich die Miete im
+          Verhältnis zweier VPI-Stände. Ob eine Erhöhungserklärung korrekt gerechnet ist, prüfen Sie
+          mit den Werten dieser Tabelle oder direkt im
+          <a href="/indexmiete-rechner" class="text-teal-700 hover:underline">Indexmiete-Rechner</a>.
+        </p>
+        <p>
+          <strong>Wertsicherungsklauseln:</strong> Gewerbemieten, Erbbauzinsen und langfristige
+          Verträge sind häufig an den VPI gekoppelt; auch hier zählt der Quotient zweier Monatswerte.
+        </p>
+        <p>
+          <strong>Kaufkraft und Planung:</strong> Die Indexreihe zeigt, wie stark Preise über die
+          Jahre gestiegen sind. Was ein Betrag von früher heute wert ist, rechnet der
+          <a href="/inflations-rechner" class="text-teal-700 hover:underline">Inflationsrechner</a> aus.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der VPI aktuell?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Im {aktuell.label} liegt der Verbraucherpreisindex für Deutschland bei {fmt(aktuell.wert)} Punkten (Basis 2020 = 100), das entspricht {aktuell.rate !== null ? (aktuell.rate > 0 ? '+' : '') + fmt(aktuell.rate) : '-'} % gegenüber dem Vorjahresmonat. Destatis veröffentlicht den Folgemonat jeweils um den 10. des Monats.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was bedeutet Basis 2020 = 100?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der Durchschnitt des Jahres 2020 ist auf 100 normiert; ein Stand von {fmt(aktuell.wert)} heißt also: Das Preisniveau liegt {fmt(aktuell.wert - 100)} % über dem von 2020. Destatis stellt die Basis etwa alle fünf Jahre um; für Verhältnisrechnungen wie die Indexmiete ist die Basis egal, solange beide Werte aus derselben Reihe stammen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher VPI-Wert gilt für meine Indexmiete?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der Monatswert des VPI für Deutschland zum Zeitpunkt der letzten Mietfestlegung und der aktuelle Monatswert. Die neue Miete ergibt sich aus altem Betrag × neuer Index ÷ alter Index; Details und die Sperrfrist prüft der Indexmiete-Rechner.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Warum weichen ältere VPI-Tabellen ab?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ältere Veröffentlichungen nutzen frühere Basisjahre (2015 = 100 oder 2010 = 100). Dieselben Monate haben dort andere Zahlenwerte; die Preisentwicklung dahinter ist identisch. Mischen Sie nie Werte aus verschiedenen Basisreihen in einer Rechnung.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quelle: Statistisches Bundesamt (Destatis), Verbraucherpreisindex für Deutschland
+      (Basis 2020 = 100). Stand: Juli 2026, Werte bis Juni 2026.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der VPI aktuell?",
+        "acceptedAnswer": { "@type": "Answer", "text": `Im ${aktuell.label} liegt der Verbraucherpreisindex für Deutschland bei ${fmt(aktuell.wert)} Punkten (Basis 2020 = 100), ${aktuell.rate !== null ? (aktuell.rate > 0 ? '+' : '') + fmt(aktuell.rate) : '-'} % gegenüber dem Vorjahresmonat.` }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet Basis 2020 = 100?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Jahresdurchschnitt 2020 ist auf 100 normiert; höhere Werte zeigen den Preisanstieg seit 2020. Für Verhältnisrechnungen wie die Indexmiete ist die Basis unerheblich, solange beide Werte aus derselben Reihe stammen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher VPI-Wert gilt für die Indexmiete?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Monatswert bei der letzten Mietfestlegung und der aktuelle Monatswert des VPI für Deutschland: neue Miete = alte Miete × neuer Index ÷ alter Index." }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum weichen ältere VPI-Tabellen ab?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ältere Tabellen nutzen frühere Basisjahre (z.B. 2015 = 100). Werte verschiedener Basisreihen dürfen nicht in einer Rechnung gemischt werden." }
+      }
+    ]
+  })} />
+</Layout>
