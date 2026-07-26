@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RentenabschlagAusgleichRechner from '../components/rechner/RentenabschlagAusgleichRechner';
+
+const title = "Rentenabschlag ausgleichen: Kosten der Sonderzahlung";
+const description = "Ausgleichszahlung nach § 187a SGB VI berechnen: Was kostet es, den Rentenabschlag (0,3 % je Monat) durch Sonderzahlung auszugleichen? Mit Rechengrößen 2026 (9.661,58 € je Entgeltpunkt) und Beispiel: 2 Jahre früher = rund 28.200 €.";
+const keywords = "Rentenabschlag ausgleichen, Ausgleichszahlung Rente, § 187a SGB VI, Sonderzahlung Rentenversicherung, Rentenabschläge zurückkaufen, Rente mit 63 Abschlag ausgleichen, V0210, Ausgleichsbetrag Rentenminderung, Rentenabschlag Rechner";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Rentenabschlag ausgleichen", url: "/rentenabschlag-ausgleichen-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-orange-700 to-amber-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Rentenabschlag ausgleichen: Was kostet die Sonderzahlung?</h1>
+      <p class="text-orange-100 text-sm mt-1">§ 187a SGB VI | ab 50 Jahren möglich | 2026: 9.661,58 € je Entgeltpunkt</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Wer vor der Regelaltersgrenze in Rente geht, zahlt dafür mit einem
+      <strong>lebenslangen Abschlag von 0,3 % pro Monat</strong> (bis zu 14,4 % bei vier Jahren).
+      Ab dem 50. Geburtstag dürfen Sie diese Minderung durch <strong>Sonderzahlungen an die
+      Rentenversicherung ausgleichen</strong> (§ 187a SGB VI), auf einmal oder in Teilbeträgen.
+      Der Rechner zeigt mit den amtlichen Rechengrößen 2026, wie teuer der volle Ausgleich wird.
+    </p>
+
+    <div class="mb-6">
+      <RentenabschlagAusgleichRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">So rechnet die Rentenversicherung</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          <strong>1. Abschlag:</strong> Je Monat vorzeitigen Rentenbeginns sinkt der Zugangsfaktor
+          um 0,003 (§ 77 SGB VI). Zwei Jahre früher bedeuten also 7,2 % weniger Rente, dauerhaft.
+        </p>
+        <p>
+          <strong>2. Preis je Entgeltpunkt:</strong> Für jeden auszugleichenden Entgeltpunkt ist der
+          Betrag zu zahlen, der sich aus Beitragssatz × vorläufigem Durchschnittsentgelt ergibt
+          (§ 187 Abs. 3 SGB VI). 2026: 18,6 % × 51.944 € = <strong>9.661,58 €</strong>.
+        </p>
+        <p>
+          <strong>3. Mehrbedarf durch den Zugangsfaktor:</strong> Auch die nachgezahlten
+          Entgeltpunkte werden beim vorzeitigen Rentenbeginn mit dem geminderten Zugangsfaktor
+          multipliziert. Deshalb braucht es etwas mehr Punkte als die reine Minderung; der Rechner
+          berücksichtigt das automatisch.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Lohnt sich der Ausgleich?</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Amortisation:</strong> Die Zahlung entspricht nominal rund 19 bis 21 Jahren der vermiedenen Rentenminderung; durch die jährlichen Rentenanpassungen auf den ausgeglichenen Teil verkürzt sich das real, wer lange lebt, profitiert.</li>
+        <li><strong>Steuerbonus:</strong> Die Beiträge sind als Altersvorsorgeaufwendungen absetzbar (§ 10 EStG); verteilt über mehrere Jahre gezahlt, lässt sich der Steuervorteil maximieren.</li>
+        <li><strong>Flexibilität:</strong> Wer trotz Zahlung bis zur Regelaltersgrenze arbeitet, verliert nichts: Die zusätzlichen Entgeltpunkte erhöhen dann einfach die Rente.</li>
+        <li><strong>Alternative:</strong> Dasselbe Kapital privat anzulegen kann je nach Zins und Lebenserwartung besser abschneiden; die Ausgleichszahlung ist dafür ein lebenslang wertgesichertes Zusatzeinkommen.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Rentenabschlag bei vorzeitiger Rente?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">0,3 % je Monat des vorzeitigen Beginns (§ 77 SGB VI): 12 Monate früher = 3,6 %, 24 Monate = 7,2 %, 48 Monate = 14,4 %. Der Abschlag gilt lebenslang, auch über die Regelaltersgrenze hinaus.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet es, 2 Jahre Abschlag auszugleichen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bei 1.600 € erwarteter Monatsrente: rund 28.200 € (7,2 % Abschlag, Rechengrößen 2026). Der genaue Betrag hängt von Ihren Entgeltpunkten ab und steht in der besonderen Rentenauskunft der DRV.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann und wie beantrage ich die Ausgleichszahlung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ab Vollendung des 50. Lebensjahres. Erster Schritt ist die besondere Rentenauskunft bei der Deutschen Rentenversicherung (Vordruck V0210); sie nennt den maximalen Ausgleichsbetrag verbindlich. Gezahlt werden kann in einer Summe oder in Teilbeträgen über mehrere Jahre.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert, wenn ich doch nicht früher in Rente gehe?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die eingezahlten Beiträge verfallen nicht: Die zusätzlichen Entgeltpunkte erhöhen dann die reguläre Rente. Eine Rückzahlung ist allerdings nicht vorgesehen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Sind die Ausgleichszahlungen steuerlich absetzbar?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, als Altersvorsorgeaufwendungen nach § 10 EStG (zusammen mit anderen Rentenbeiträgen bis zum jährlichen Höchstbetrag). Wer die Zahlung auf mehrere Jahre verteilt, nutzt den Abzug mehrfach und senkt die Steuerlast in der Regel deutlich.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 77, 109, 187, 187a SGB VI; SV-Rechengrößen-Verordnung 2026 (vorläufiges
+      Durchschnittsentgelt 51.944 €); Rentenwertbestimmungsverordnung 2026 (aktueller Rentenwert
+      42,52 € ab 01.07.2026), jeweils gesetze-im-internet.de. Verwandt:
+      <a href="/pension-netto-rechner" class="text-orange-700 hover:underline">Pension netto</a>.
+      Stand: Juli 2026. Keine Rentenberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Rentenabschlag bei vorzeitiger Rente?",
+        "acceptedAnswer": { "@type": "Answer", "text": "0,3 % je Monat des vorzeitigen Beginns (§ 77 SGB VI): 24 Monate früher = 7,2 %, 48 Monate = 14,4 %. Der Abschlag gilt lebenslang." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet es, 2 Jahre Rentenabschlag auszugleichen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei 1.600 € erwarteter Monatsrente rund 28.200 € (Rechengrößen 2026: 9.661,58 € je Entgeltpunkt). Verbindlich ist die besondere Rentenauskunft der DRV (V0210)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann kann ich Rentenabschläge ausgleichen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ab Vollendung des 50. Lebensjahres (§ 187a SGB VI), nach besonderer Rentenauskunft der Deutschen Rentenversicherung; Zahlung in einer Summe oder in Teilbeträgen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was passiert mit der Zahlung, wenn ich doch regulär in Rente gehe?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die zusätzlichen Entgeltpunkte bleiben erhalten und erhöhen die reguläre Rente; eine Rückzahlung gibt es nicht." }
+      },
+      {
+        "@type": "Question",
+        "name": "Sind Ausgleichszahlungen steuerlich absetzbar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, als Altersvorsorgeaufwendungen nach § 10 EStG; über mehrere Jahre verteilt lässt sich der Steuervorteil mehrfach nutzen." }
+      }
+    ]
+  })} />
+</Layout>
