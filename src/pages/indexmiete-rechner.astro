@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import IndexmieteRechner from '../components/rechner/IndexmieteRechner';
+import vpi from '../data/vpi-monatswerte.json';
+
+const title = "Indexmiete-Rechner: Mieterhöhung nach VPI prüfen";
+const description = "Indexmiete nach § 557b BGB berechnen: neue Miete = alte Miete × VPI-Änderung. Mit amtlichen Destatis-Monatswerten bis Juni 2026, 12-Monats-Sperrfrist-Check und allen Regeln zur Erhöhungserklärung.";
+const keywords = "Indexmiete Rechner, Indexmietvertrag berechnen, Mieterhöhung Indexmiete, § 557b BGB, VPI Mieterhöhung, Verbraucherpreisindex Miete, Indexmiete prüfen, Indexmieterhöhung 2026";
+
+const MONATSNAMEN = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const werte = vpi.werte as Record<string, number>;
+const keys = Object.keys(werte).sort();
+const letzte13 = keys.slice(-13).map((k) => {
+  const [j, m] = k.split('-');
+  return { label: `${MONATSNAMEN[Number(m) - 1]} ${j}`, wert: werte[k] };
+});
+const neuester = letzte13[letzte13.length - 1];
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Indexmiete-Rechner", url: "/indexmiete-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-cyan-700 to-teal-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Indexmiete-Rechner: Erhöhung nach VPI prüfen</h1>
+      <p class="text-cyan-100 text-sm mt-1">§ 557b BGB | amtlicher Verbraucherpreisindex (Destatis) | Stand: {neuester.label} = {neuester.wert.toLocaleString('de-DE')}</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Bei einem <strong>Indexmietvertrag</strong> folgt die Miete dem vom Statistischen Bundesamt
+      ermittelten <strong>Verbraucherpreisindex (VPI)</strong>: neue Miete = bisherige Miete ×
+      neuer Indexstand ÷ alter Indexstand (§ 557b BGB). Mehr darf der Vermieter nicht verlangen,
+      und zwischen zwei Anpassungen muss mindestens ein Jahr liegen. Der Rechner nutzt die
+      amtlichen Destatis-Monatswerte bis {neuester.label} und prüft die Sperrfrist gleich mit.
+    </p>
+
+    <div class="mb-6">
+      <IndexmieteRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Die Regeln der Indexmiete (§ 557b BGB)</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Schriftliche Vereinbarung:</strong> Die Indexbindung muss im Mietvertrag schriftlich vereinbart sein; maßgeblich ist der VPI für Deutschland.</li>
+        <li><strong>Ein Jahr Ruhe:</strong> Die Miete muss jeweils mindestens ein Jahr unverändert bleiben. Erst danach ist die nächste Anpassung möglich.</li>
+        <li><strong>Textform-Erklärung:</strong> Die Änderung wird erst wirksam, wenn sie in Textform erklärt wird, unter Angabe der eingetretenen Indexänderung und der neuen Miete oder der Erhöhung als Geldbetrag. Die geänderte Miete gilt ab Beginn des übernächsten Monats nach Zugang.</li>
+        <li><strong>Keine doppelten Erhöhungen:</strong> Erhöhungen auf die ortsübliche Vergleichsmiete (§ 558 BGB) sind ausgeschlossen; Modernisierungsumlagen (§ 559 BGB) nur eingeschränkt, wenn der Vermieter die Maßnahme nicht zu vertreten hatte.</li>
+        <li><strong>Mietpreisbremse nur am Anfang:</strong> Die §§ 556d ff. BGB gelten nur für die Ausgangsmiete, nicht für spätere Indexanpassungen.</li>
+        <li><strong>Beide Richtungen:</strong> Fällt der Index, kann auch die Mieterseite die Anpassung nach unten verlangen.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Beispielrechnung</h2>
+      <p class="text-sm text-gray-700">
+        Kaltmiete 1.000 €, zuletzt festgelegt im Juni 2024 (VPI 119,4). Im Juni 2026 steht der VPI
+        bei 124,6. Neue Miete: 1.000 € × 124,6 ÷ 119,4 = <strong>1.043,55 €</strong>, ein Plus von
+        4,36 Prozent. Verlangt die Erhöhungserklärung mehr, ist sie in dieser Höhe unwirksam;
+        prüfen Sie die angegebenen Indexstände immer gegen die amtliche Destatis-Reihe (Tabelle unten).
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">VPI Deutschland: die letzten 13 Monate (2020 = 100)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-md">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2">Monat</th><th class="py-2 text-right">Indexstand</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            {letzte13.slice().reverse().map((m) => (
+              <tr><td class="py-2">{m.label}</td><td class="py-2 text-right font-mono font-bold">{m.wert.toLocaleString('de-DE', { minimumFractionDigits: 1 })}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: Statistisches Bundesamt (Destatis), Verbraucherpreisindex für Deutschland, Basis 2020 = 100.
+        Wie sich die Inflation langfristig auf die Kaufkraft auswirkt, zeigt der
+        <a href="/inflations-rechner" class="text-cyan-700 hover:underline">Inflationsrechner</a>.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie berechnet sich die Indexmieterhöhung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Neue Miete = bisherige Miete × neuer VPI-Stand ÷ VPI-Stand bei der letzten Mietfestlegung. Beispiel: 1.000 € × 124,6 ÷ 119,4 = 1.043,55 €. Prozentuale Aufschläge, die davon abweichen, sind unzulässig.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie oft darf die Indexmiete erhöht werden?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Miete muss jeweils mindestens ein Jahr unverändert bleiben (§ 557b Abs. 2 BGB). Häufiger als jährlich geht es also nicht, und die Erhöhung wirkt erst ab dem übernächsten Monat nach Zugang der Textform-Erklärung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gilt die Mietpreisbremse bei der Indexmiete?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nur für die Ausgangsmiete beim Vertragsschluss (§ 557b Abs. 4 BGB). Spätere Indexanpassungen sind von der Mietpreisbremse nicht erfasst, deshalb kann eine Indexmiete in Inflationsphasen schneller steigen als eine Vergleichsmieten-Erhöhung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Kann die Indexmiete auch sinken?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja. Die Miete folgt dem Index in beide Richtungen, und die Änderungserklärung nach § 557b Abs. 3 BGB steht auch der Mieterseite offen. Fällt der VPI unter den Stand der letzten Festlegung, kann die Absenkung verlangt werden.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welcher Index gilt für die Indexmiete?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Der vom Statistischen Bundesamt ermittelte Verbraucherpreisindex für Deutschland (aktuell Basis 2020 = 100). Für die Berechnung ist die Basis egal, weil nur das Verhältnis zweier Indexstände zählt; beide Werte müssen aber aus derselben Basisreihe stammen.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: § 557b BGB (gesetze-im-internet.de); Verbraucherpreisindex des Statistischen
+      Bundesamtes (destatis.de), Monatswerte Basis 2020 = 100, abgerufen am 26.07.2026.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie berechnet sich die Indexmieterhöhung?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Neue Miete = bisherige Miete × neuer VPI-Stand ÷ VPI-Stand bei der letzten Mietfestlegung. Beispiel: 1.000 € × 124,6 ÷ 119,4 = 1.043,55 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie oft darf die Indexmiete erhöht werden?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Höchstens jährlich: Die Miete muss jeweils mindestens ein Jahr unverändert bleiben (§ 557b Abs. 2 BGB). Die Erhöhung wirkt ab dem übernächsten Monat nach Zugang der Textform-Erklärung." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gilt die Mietpreisbremse bei der Indexmiete?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nur für die Ausgangsmiete (§ 557b Abs. 4 BGB), nicht für spätere Indexanpassungen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann die Indexmiete auch sinken?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, die Miete folgt dem Index in beide Richtungen; bei gefallenem VPI kann die Mieterseite die Absenkung verlangen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welcher Index gilt für die Indexmiete?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Der Verbraucherpreisindex für Deutschland des Statistischen Bundesamtes (aktuell Basis 2020 = 100); für die Berechnung zählt nur das Verhältnis zweier Indexstände derselben Basisreihe." }
+      }
+    ]
+  })} />
+</Layout>
