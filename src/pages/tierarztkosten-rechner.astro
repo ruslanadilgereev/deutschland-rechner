@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import TierarztkostenRechner from '../components/rechner/TierarztkostenRechner';
+
+const title = "Tierarztkosten-Rechner: GOT-Gebühren für Hund & Katze";
+const description = "Tierarztkosten nach GOT 2022 berechnen: 1- bis 3-facher Satz, im Notdienst 2- bis 4-fach plus 50 € Notdienstgebühr. Mit Rechner und den amtlichen Gebühren für Untersuchung (23,62 €), Impfung, Kastration und Zahnstein.";
+const keywords = "Tierarztkosten Rechner, GOT Rechner, Tierarzt Gebühren 2026, GOT Tierarzt Tabelle, was kostet Tierarzt, Kastration Katze Kosten, Kastration Kater Kosten, Tierarzt Notdienst Kosten, Notdienstgebühr Tierarzt, Zahnsteinentfernung Hund Kosten";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Tierarztkosten-Rechner", url: "/tierarztkosten-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-rose-700 to-pink-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Tierarztkosten: GOT-Gebühren berechnen</h1>
+      <p class="text-rose-100 text-sm mt-1">GOT 2022 | 1- bis 3-facher Satz | Notdienst: 2- bis 4-fach + 50 € Notdienstgebühr</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Tierärztinnen und Tierärzte rechnen verbindlich nach der <strong>Gebührenordnung für
+      Tierärzte (GOT)</strong> ab, seit der Reform 2022 mit deutlich höheren Sätzen als früher.
+      Jede Leistung hat einen festen einfachen Satz, der je nach Schwierigkeit, Zeitaufwand und
+      Umständen mit dem <strong>1- bis 3-fachen</strong> berechnet wird. Die allgemeine
+      Untersuchung von Hund oder Katze kostet damit zwischen 23,62 € und 70,86 € netto,
+      dazu kommen 19 % Umsatzsteuer, Medikamente und Material.
+    </p>
+
+    <div class="mb-6">
+      <TierarztkostenRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wovon hängt der Gebührensatz ab?</h2>
+      <p class="text-sm text-gray-700 mb-3">
+        Innerhalb des Rahmens vom 1- bis 3-fachen Satz entscheidet die Praxis nach billigem
+        Ermessen (§ 2 GOT). Die Verordnung nennt als Kriterien ausdrücklich:
+      </p>
+      <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+        <li>Schwierigkeit der Leistung (z.B. unkooperatives oder aggressives Tier)</li>
+        <li>Zeitaufwand</li>
+        <li>Zeitpunkt der Leistung (Abend, Wochenende außerhalb des Notdienstes)</li>
+        <li>Wert des Tieres</li>
+        <li>örtliche Verhältnisse (z.B. Großstadtpraxis mit hohen Mieten)</li>
+      </ul>
+      <p class="text-sm text-gray-700 mt-3">
+        Ein Satz über dem 3-fachen ist nur im tierärztlichen Notdienst (§ 4 GOT) oder in den
+        Sonderfällen des § 5 GOT zulässig.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Notdienst: 50 € extra plus doppelter Mindestsatz</h2>
+      <p class="text-sm text-gray-700">
+        Im tierärztlichen Notdienst, also <strong>nachts (18 bis 8 Uhr), am Wochenende (Freitag 18 Uhr
+        bis Montag 8 Uhr) und an Feiertagen</strong>, gilt nach § 4 GOT: Die Gebührensätze betragen
+        mindestens das <strong>2-fache</strong> und bis zum <strong>4-fachen</strong>, zusätzlich wird
+        einmal je Behandlung eine <strong>Notdienstgebühr von 50 €</strong> fällig, auch wenn mehrere
+        Tiere desselben Halters versorgt werden. Eine einfache Untersuchung von Hund oder Katze kostet
+        im Notdienst also mindestens 47,24 € plus 50 € Notdienstgebühr, zusammen mit Umsatzsteuer
+        über 115 €, bevor eine einzige Behandlung stattgefunden hat.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">GOT-Gebühren für Hund und Katze (einfacher Satz, netto)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Leistung</th>
+              <th class="py-2 text-right">1-fach</th>
+              <th class="py-2 text-right">2-fach</th>
+              <th class="py-2 text-right">3-fach</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Allgemeine Untersuchung mit Beratung (Nr. 16)</td><td class="text-right font-mono">23,62 €</td><td class="text-right font-mono">47,24 €</td><td class="text-right font-mono">70,86 €</td></tr>
+            <tr><td class="py-2">Injektion, z.B. Impfung (Nr. 221)</td><td class="text-right font-mono">11,50 €</td><td class="text-right font-mono">23,00 €</td><td class="text-right font-mono">34,50 €</td></tr>
+            <tr><td class="py-2">Röntgenaufnahme, je (Nr. 166)</td><td class="text-right font-mono">26,53 €</td><td class="text-right font-mono">53,06 €</td><td class="text-right font-mono">79,59 €</td></tr>
+            <tr><td class="py-2">Ultraschall (Nr. 180)</td><td class="text-right font-mono">58,92 €</td><td class="text-right font-mono">117,84 €</td><td class="text-right font-mono">176,76 €</td></tr>
+            <tr><td class="py-2">Zahnstein mit Scaling + Politur (Nr. 932)</td><td class="text-right font-mono">61,97 €</td><td class="text-right font-mono">123,94 €</td><td class="text-right font-mono">185,91 €</td></tr>
+            <tr><td class="py-2">Kastration Kater (Nr. 378)</td><td class="text-right font-mono">30,32 €</td><td class="text-right font-mono">60,64 €</td><td class="text-right font-mono">90,96 €</td></tr>
+            <tr><td class="py-2">Kastration Kätzin, Ovariohysterektomie (Nr. 605)</td><td class="text-right font-mono">89,00 €</td><td class="text-right font-mono">178,00 €</td><td class="text-right font-mono">267,00 €</td></tr>
+            <tr><td class="py-2">Kastration Rüde (Nr. 377)</td><td class="text-right font-mono">70,60 €</td><td class="text-right font-mono">141,20 €</td><td class="text-right font-mono">211,80 €</td></tr>
+            <tr><td class="py-2">Kastration Hündin, Ovariohysterektomie (Nr. 604)</td><td class="text-right font-mono">192,00 €</td><td class="text-right font-mono">384,00 €</td><td class="text-right font-mono">576,00 €</td></tr>
+            <tr><td class="py-2">Euthanasie durch Injektion (Nr. 208)</td><td class="text-right font-mono">30,78 €</td><td class="text-right font-mono">61,56 €</td><td class="text-right font-mono">92,34 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Alle Werte: amtliches Gebührenverzeichnis der GOT, netto. OP-Positionen ohne Narkose,
+        Medikamente, Verbrauchsmaterial und Nachsorge.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Warum ist die Rechnung höher als die GOT-Tabelle?</h2>
+      <p class="text-sm text-gray-700">
+        Drei Gründe: Erstens kommen auf alle Gebühren <strong>19 % Umsatzsteuer</strong>. Zweitens
+        darf die Praxis neben den Gebühren <strong>Arzneimittel, verbrauchtes und abgegebenes
+        Material sowie Auslagen</strong> berechnen (§ 7 GOT). Drittens besteht eine Behandlung fast
+        immer aus mehreren Positionen: Eine Kastration umfasst z.B. Untersuchung, Narkose
+        (eigene Positionen), die OP selbst, Medikamente und Nachkontrolle. Die Rechnung muss jede
+        Position mit ihrer GOT-Nummer ausweisen (§ 7 Abs. 4 GOT), so können Sie jede Zeile mit dem
+        Rechner nachprüfen. Übrigens: Auch Humanmediziner-Rechnungen können Sie prüfen, mit dem
+        <a href="/goae-rechner" class="text-rose-700 hover:underline">GOÄ-Rechner</a>.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Darf der Tierarzt einfach den 3-fachen Satz nehmen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, wenn Schwierigkeit, Zeitaufwand, Zeitpunkt, Wert des Tieres oder örtliche Verhältnisse das rechtfertigen (§ 2 GOT). Der Satz muss nach billigem Ermessen bestimmt werden; ein pauschaler Höchstsatz für alles ist angreifbar. Mehr als der 3-fache Satz ist nur im Notdienst oder in den Sonderfällen des § 5 GOT zulässig.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet der Tierarzt-Notdienst?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Im Notdienst (nachts 18 bis 8 Uhr, Wochenende Freitag 18 Uhr bis Montag 8 Uhr, Feiertage) gilt der 2- bis 4-fache Gebührensatz, dazu einmal je Behandlung 50 € Notdienstgebühr (§ 4 GOT). Untersuchung Hund/Katze im Notdienst: mindestens 47,24 € plus 50 €, zuzüglich Umsatzsteuer.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet die Kastration einer Katze?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die reine OP-Position: Kater 30,32 €, Kätzin 56,48 € (Ovarektomie) bzw. 89,00 € (Ovariohysterektomie) beim einfachen Satz, netto. Dazu kommen Untersuchung, Narkose, Medikamente, Material und Umsatzsteuer, real liegen Gesamtrechnungen deshalb deutlich höher.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Darf der Tierarzt billiger sein als die GOT?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nein. Die GOT ist eine verbindliche Rechtsverordnung: Der einfache Satz ist die Untergrenze. Dauerhafte Rabatte unter dem 1-fachen Satz sind unzulässig, auch das schützt vor Dumping-Wettbewerb zulasten der Tiergesundheit.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss die Rechnung die GOT-Nummern enthalten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja. Nach § 7 Abs. 4 GOT muss die Rechnung u.a. Datum, Tierart, Diagnose, jede Leistung mit ihrer Nummer aus dem Gebührenverzeichnis und die Umsatzsteuer ausweisen. Arzneimittel und Material sind gesondert aufzuführen.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: GOT in der Fassung von 2022 (§§ 2, 4, 5, 7 und Anlage Gebührenverzeichnis),
+      abrufbar über gesetze-im-internet.de. Stand: Juli 2026.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Darf der Tierarzt einfach den 3-fachen Satz nehmen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, wenn Schwierigkeit, Zeitaufwand, Zeitpunkt, Wert des Tieres oder örtliche Verhältnisse das rechtfertigen (§ 2 GOT). Mehr als der 3-fache Satz ist nur im Notdienst oder in den Sonderfällen des § 5 GOT zulässig." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet der Tierarzt-Notdienst?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Im Notdienst (nachts 18-8 Uhr, Wochenende Freitag 18 Uhr bis Montag 8 Uhr, Feiertage) gilt der 2- bis 4-fache Gebührensatz plus einmalig 50 € Notdienstgebühr (§ 4 GOT). Untersuchung Hund/Katze: mindestens 47,24 € plus 50 €, zuzüglich Umsatzsteuer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet die Kastration einer Katze?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Reine OP-Position beim einfachen Satz (netto): Kater 30,32 €, Kätzin 56,48 € (Ovarektomie) bzw. 89,00 € (Ovariohysterektomie). Dazu kommen Untersuchung, Narkose, Medikamente, Material und Umsatzsteuer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Darf der Tierarzt billiger sein als die GOT?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, die GOT ist verbindlich: Der einfache Satz ist die Untergrenze, dauerhafte Rabatte darunter sind unzulässig." }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss die Tierarztrechnung die GOT-Nummern enthalten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, nach § 7 Abs. 4 GOT muss die Rechnung Datum, Tierart, Diagnose, jede Leistung mit GOT-Nummer und die Umsatzsteuer ausweisen." }
+      }
+    ]
+  })} />
+</Layout>
