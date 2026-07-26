@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import VerletztengeldRechner from '../components/rechner/VerletztengeldRechner';
+
+const title = "Verletztengeld berechnen: 80 % nach dem Arbeitsunfall";
+const description = "Verletztengeld nach Arbeitsunfall oder Berufskrankheit berechnen: 80 % des Regelentgelts, höchstens das Netto (§ 47 SGB VII). Mit Rechner, Vergleich zum Krankengeld (rund 10 % mehr) und den Regeln zu Beginn und Dauer.";
+const keywords = "Verletztengeld Rechner, Verletztengeld berechnen, Verletztengeld Höhe, Verletztengeld Arbeitsunfall, Verletztengeld Berufsgenossenschaft, Verletztengeld vs Krankengeld, 80 Prozent Regelentgelt, § 47 SGB VII, Wegeunfall Verletztengeld, Verletztengeld Dauer";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Verletztengeld-Rechner", url: "/verletztengeld-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-red-700 to-orange-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Verletztengeld: Lohnersatz nach dem Arbeitsunfall</h1>
+      <p class="text-red-100 text-sm mt-1">80 % des Regelentgelts, höchstens das Netto (§ 47 SGB VII) | zahlt die Berufsgenossenschaft</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Nach einem <strong>Arbeitsunfall, Wegeunfall oder einer Berufskrankheit</strong> gibt es
+      statt Krankengeld das großzügigere <strong>Verletztengeld</strong> der gesetzlichen
+      Unfallversicherung: <strong>80 % des Bruttoentgelts</strong> (Regelentgelt), gedeckelt auf
+      das Nettoentgelt. Das sind rund 10 % mehr als beim Krankengeld. Der Rechner zeigt beide
+      Beträge im direkten Vergleich.
+    </p>
+
+    <div class="mb-6">
+      <VerletztengeldRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wann gibt es Verletztengeld?</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          Voraussetzung ist ein <strong>Versicherungsfall der Unfallversicherung</strong>: ein
+          Arbeitsunfall, ein Wegeunfall (auf dem direkten Weg zur oder von der Arbeit) oder eine
+          anerkannte Berufskrankheit, plus Arbeitsunfähigkeit infolge dieses Falls (§ 45 SGB VII).
+        </p>
+        <p>
+          <strong>Ablauf:</strong> In den ersten sechs Wochen zahlt der Arbeitgeber die normale
+          Entgeltfortzahlung. Danach übernimmt die Berufsgenossenschaft bzw. Unfallkasse das
+          Verletztengeld; ausgezahlt wird es in der Regel über die Krankenkasse. Es beginnt mit der
+          ärztlichen Feststellung der Arbeitsunfähigkeit (§ 46 SGB VII) und läuft, bis Sie wieder
+          arbeitsfähig sind, eine Reha-Maßnahme endet oder feststeht, dass die Erwerbstätigkeit
+          nicht wieder aufgenommen werden kann, längstens 78 Wochen.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Verletztengeld vs. Krankengeld</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2"></th><th class="py-2">Verletztengeld</th><th class="py-2">Krankengeld</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2 font-medium">Anlass</td><td>Arbeits-/Wegeunfall, Berufskrankheit</td><td>sonstige Krankheit</td></tr>
+            <tr><td class="py-2 font-medium">Höhe</td><td>80 % vom Brutto, max. 100 % Netto</td><td>70 % vom Brutto, max. 90 % Netto</td></tr>
+            <tr><td class="py-2 font-medium">Träger</td><td>Berufsgenossenschaft / Unfallkasse</td><td>Krankenkasse</td></tr>
+            <tr><td class="py-2 font-medium">Zuzahlungen Heilbehandlung</td><td>keine (BG zahlt alles)</td><td>übliche Zuzahlungen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Details zum Krankengeld im <a href="/krankengeld-rechner" class="text-red-700 hover:underline">Krankengeld-Rechner</a>.
+        Deshalb ist die korrekte Unfallmeldung als Arbeitsunfall bares Geld wert.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist das Verletztengeld?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">80 % des Regelentgelts (Brutto der letzten Abrechnung, kalendertäglich), höchstens aber das kalendertägliche Netto (§ 47 SGB VII). Beispiel: 3.600 € brutto / 2.400 € netto → 96 € wären 80 %, gezahlt werden 80 € pro Tag (Netto-Deckel), also 2.400 € im Monat vor Sozialabzügen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Werden vom Verletztengeld noch Beiträge abgezogen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, Ihre Anteile zur Renten-, Arbeitslosen- und Pflegeversicherung; krankenversicherungsfrei ist die Leistung. Netto kommt daher etwas weniger an als der Rechnerwert. Steuerlich ist das Verletztengeld steuerfrei mit Progressionsvorbehalt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie lange wird Verletztengeld gezahlt?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bis zur Wiederherstellung der Arbeitsfähigkeit, längstens 78 Wochen. Endet es, weil mit der Wiederaufnahme der Arbeit nicht mehr zu rechnen ist, prüft die Berufsgenossenschaft Übergangsgeld (bei Reha) oder eine Verletztenrente.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zählt der Wegeunfall auch?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, Unfälle auf dem unmittelbaren Weg zwischen Wohnung und Arbeit sind Versicherungsfälle der gesetzlichen Unfallversicherung, ebenso anerkannte Berufskrankheiten. Wichtig ist, den Unfall dem Arbeitgeber zu melden und beim Durchgangsarzt (D-Arzt) behandeln zu lassen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was gilt für Selbstständige?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Freiwillig bei der BG versicherte Unternehmer erhalten Verletztengeld auf Basis ihres Arbeitseinkommens (Vorjahres-Einkommen ÷ 360); die Satzung kann für die ersten 13 Wochen Einschränkungen vorsehen (§ 46 Abs. 2 SGB VII). Maßgeblich ist die Versicherungssumme bei der Berufsgenossenschaft.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 45, 46, 47 SGB VII; § 47 SGB V (Krankengeld-Vergleich), gesetze-im-internet.de.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist das Verletztengeld?",
+        "acceptedAnswer": { "@type": "Answer", "text": "80 % des kalendertäglichen Regelentgelts (Brutto), höchstens das kalendertägliche Netto (§ 47 SGB VII). Damit liegt es rund 10 % über dem Krankengeld." }
+      },
+      {
+        "@type": "Question",
+        "name": "Werden vom Verletztengeld Beiträge abgezogen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, die Anteile zur Renten-, Arbeitslosen- und Pflegeversicherung; die Leistung selbst ist steuerfrei mit Progressionsvorbehalt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange wird Verletztengeld gezahlt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bis zur Wiederherstellung der Arbeitsfähigkeit, längstens 78 Wochen; danach kommen Übergangsgeld oder Verletztenrente in Betracht." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es Verletztengeld auch beim Wegeunfall?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, Unfälle auf dem direkten Arbeitsweg und anerkannte Berufskrankheiten sind Versicherungsfälle der gesetzlichen Unfallversicherung." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen Verletztengeld und Krankengeld?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Verletztengeld: 80 % vom Brutto (max. 100 % Netto) von der Berufsgenossenschaft bei Arbeitsunfall/Berufskrankheit; Krankengeld: 70 % vom Brutto (max. 90 % Netto) von der Krankenkasse bei sonstiger Krankheit." }
+      }
+    ]
+  })} />
+</Layout>
