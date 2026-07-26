@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import PensionNettoRechner from '../components/rechner/PensionNettoRechner';
+
+const title = "Pension netto: Was bleibt von der Beamtenpension?";
+const description = "Netto-Pension 2026 berechnen: Beamtenversorgung abzüglich Einkommensteuer (Versorgungsfreibetrag nach Kohorte), Soli und Kranken-/Pflegeversicherung. Beispiel: 3.500 € brutto = rund 2.354 € netto (GKV). Mit Ruhegehaltssatz-Erklärung.";
+const keywords = "Pension netto Rechner, Beamtenpension netto, Pension versteuern, Versorgungsbezüge Steuer, Ruhegehalt netto, Versorgungsfreibetrag 2026, Pension Krankenversicherung, Beamtenpension Abzüge, 71,75 Prozent Ruhegehalt";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Pension netto", url: "/pension-netto-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-stone-600 to-stone-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Pension netto: Abzüge von der Beamtenversorgung</h1>
+      <p class="text-stone-200 text-sm mt-1">Einkommensteuer + Soli + Kranken-/Pflegeversicherung | Tarif und Freibeträge 2026</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Die Beamtenpension ist, anders als die gesetzliche Rente, <strong>in voller Höhe
+      steuerpflichtig</strong>; abgezogen werden nur der <strong>Versorgungsfreibetrag</strong>
+      (je nach Jahr des Ruhestandsbeginns, 2026er Kohorte: 12,8 %, max. 960 € plus 288 € Zuschlag)
+      und kleine Pauschbeträge. Dazu kommt die Kranken- und Pflegeversicherung, als Pensionär
+      meist privat mit Beihilfe oder freiwillig gesetzlich zum vollen Beitragssatz. Der Rechner
+      zeigt, was monatlich übrig bleibt.
+    </p>
+
+    <div class="mb-6">
+      <PensionNettoRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wie hoch ist die Brutto-Pension überhaupt?</h2>
+      <p class="text-sm text-gray-700">
+        Das Ruhegehalt beträgt <strong>1,79375 % der ruhegehaltfähigen Dienstbezüge je Jahr
+        ruhegehaltfähiger Dienstzeit, höchstens 71,75 %</strong> (§ 14 BeamtVG); den Höchstsatz
+        erreicht man also nach 40 Dienstjahren. Bei vorzeitigem Ruhestand mindert sich das
+        Ruhegehalt um 3,6 % pro Jahr des früheren Beginns (Versorgungsabschlag). Maßgeblich sind
+        die Bezüge der letzten Besoldungsgruppe, die Werte liefern die
+        <a href="/besoldungsrechner-bund" class="text-stone-700 hover:underline">Besoldungsrechner</a>.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Pension vs. Rente: die drei großen Unterschiede</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Besteuerung:</strong> Die Pension ist voll steuerpflichtiger Arbeitslohn (nur Versorgungsfreibetrag + 102 € Pauschbetrag); die gesetzliche Rente geht 2026 nur mit ihrem Besteuerungsanteil in die Steuer ein.</li>
+        <li><strong>Krankenversicherung:</strong> Rentner kommen meist in die günstige Krankenversicherung der Rentner (halber Beitragssatz plus Zuschuss); Pensionäre zahlen die PKV-Prämie (mit erhöhter Beihilfe von in der Regel 70 %) oder als freiwillig Versicherte den vollen GKV-Beitrag allein.</li>
+        <li><strong>Niveau:</strong> Dafür liegt die Pension mit bis zu 71,75 % der letzten Bezüge deutlich über dem Rentenniveau, netto bleibt trotz höherer Abzüge meist mehr.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Beispielrechnung 2026</h2>
+      <p class="text-sm text-gray-700">
+        Brutto-Pension 3.500 €, Ruhestandsbeginn 2026, freiwillig gesetzlich versichert
+        (Zusatzbeitrag 2,9 %, ohne Kinderlosenzuschlag), keine Kirchensteuer:
+        Versorgungsfreibetrag 960 € + 288 € Zuschlag, zu versteuern bleiben 31.500 €
+        (nach Abzug der KV/PV-Beiträge von 759,50 €/Monat als Vorsorgeaufwand).
+        Einkommensteuer: 4.643 € im Jahr (387 €/Monat), Soli: 0 €.
+        <strong>Netto: rund 2.354 € im Monat.</strong>
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wird die Beamtenpension voll versteuert?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, Versorgungsbezüge sind voll steuerpflichtige Einkünfte aus nichtselbstständiger Arbeit. Abgezogen werden der Versorgungsfreibetrag samt Zuschlag (abhängig vom Jahr des Ruhestandsbeginns, § 19 Abs. 2 EStG) sowie 102 € Werbungskosten-Pauschbetrag; der Freibetrag schmilzt für neue Jahrgänge bis 2058 auf null ab.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie hoch ist der Versorgungsfreibetrag 2026?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Für Pensionäre mit Ruhestandsbeginn 2026: 12,8 % der Versorgungsbezüge, höchstens 960 € im Jahr, plus 288 € Zuschlag. Wer früher in den Ruhestand ging, behält die höheren Werte seiner Kohorte dauerhaft (z.B. Beginn 2020: 16 %, max. 1.200 € + 360 €).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was zahlen Pensionäre für die Krankenversicherung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die meisten sind privat versichert: Im Ruhestand steigt der Beihilfesatz in der Regel auf 70 %, die PKV-Restkostenprämie sinkt entsprechend. Freiwillig gesetzlich Versicherte zahlen dagegen den vollen Beitragssatz (14,6 % plus Zusatzbeitrag plus Pflegeversicherung) auf die Pension bis zur Beitragsbemessungsgrenze, ohne Arbeitgeber- oder Kassenzuschuss.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel Pension bekommt man maximal?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Höchstens 71,75 % der ruhegehaltfähigen Dienstbezüge (§ 14 BeamtVG), erreicht nach 40 Dienstjahren mit 1,79375 % pro Jahr. Bei vorzeitigem Ruhestand gilt ein Abschlag von 3,6 % pro Jahr, maximal je nach Fallgruppe begrenzt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Fällt auf die Pension Solidaritätszuschlag an?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nur bei hohen Pensionen: Der Soli wird 2026 erst erhoben, wenn die Einkommensteuer 20.350 € (Einzelveranlagung) übersteigt, das entspricht Pensionen weit jenseits üblicher Versorgungsbezüge. Für die große Mehrheit der Pensionäre beträgt er 0 €.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: § 14 BeamtVG; § 19 Abs. 2, § 32a EStG (Tarif 2026, Grundfreibetrag 12.348 €);
+      § 3 SolzG; § 55 SGB XI; SV-Rechengrößen 2026, jeweils gesetze-im-internet.de.
+      Jahressteuer-Näherung ohne weitere Einkünfte. Stand: Juli 2026. Keine Steuerberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wird die Beamtenpension voll versteuert?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, Versorgungsbezüge sind voll steuerpflichtig; abgezogen werden nur Versorgungsfreibetrag samt Zuschlag (nach Kohorte, § 19 Abs. 2 EStG) und 102 € Werbungskosten-Pauschbetrag." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist der Versorgungsfreibetrag 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei Ruhestandsbeginn 2026: 12,8 % der Bezüge, höchstens 960 € jährlich, plus 288 € Zuschlag; frühere Kohorten behalten ihre höheren Werte dauerhaft." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was zahlen Pensionäre für die Krankenversicherung?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Meist PKV-Restkostenprämie bei in der Regel 70 % Beihilfe; freiwillig gesetzlich Versicherte zahlen den vollen Beitragssatz plus Zusatzbeitrag und Pflegeversicherung allein." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel Pension bekommt man maximal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Höchstens 71,75 % der ruhegehaltfähigen Dienstbezüge nach 40 Dienstjahren (§ 14 BeamtVG, 1,79375 % je Jahr); bei vorzeitigem Ruhestand 3,6 % Abschlag pro Jahr." }
+      },
+      {
+        "@type": "Question",
+        "name": "Fällt auf die Pension Solidaritätszuschlag an?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Erst wenn die Einkommensteuer die Freigrenze von 20.350 € (2026, Einzelveranlagung) übersteigt; für die meisten Pensionen beträgt der Soli 0 €." }
+      }
+    ]
+  })} />
+</Layout>
