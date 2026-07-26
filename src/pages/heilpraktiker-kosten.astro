@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import HeilpraktikerRechner from '../components/rechner/HeilpraktikerRechner';
+
+const title = "Heilpraktiker-Kosten: Was erstatten Beihilfe & PKV?";
+const description = "Heilpraktiker-Kosten und Erstattung berechnen: Honorare sind frei vereinbar, die GebüH von 1985 ist nur Orientierung. Verbindlich sind die Beihilfe-Höchstbeträge der Anlage 2 BBhV, z.B. Akupunktur 23 €, Erstanamnese 80 €. Mit Erstattungs-Rechner.";
+const keywords = "Heilpraktiker Kosten, was kostet Heilpraktiker, GebüH, Gebührenverzeichnis Heilpraktiker, Heilpraktiker Beihilfe, Heilpraktiker Erstattung, Anlage 2 BBhV, Heilpraktiker Krankenkasse, Akupunktur Kosten, Osteopathie Heilpraktiker Kosten";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Heilpraktiker-Kosten", url: "/heilpraktiker-kosten" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-violet-700 to-purple-800 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Heilpraktiker-Kosten und Erstattung berechnen</h1>
+      <p class="text-violet-100 text-sm mt-1">Honorare frei vereinbar | GebüH als Orientierung | verbindliche Höchstbeträge nur bei der Beihilfe</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Anders als bei Ärzten (GOÄ) und Tierärzten (GOT) gibt es für Heilpraktiker
+      <strong>keine verbindliche Gebührenordnung</strong>: Die Honorare sind frei vereinbar, das oft
+      zitierte <strong>Gebührenverzeichnis für Heilpraktiker (GebüH) von 1985</strong> ist nur eine
+      unverbindliche Orientierung des Berufsstandes. Rechtlich fest stehen dagegen die Beträge, die
+      die <strong>Beihilfe des Bundes</strong> maximal anerkennt (Anlage 2 BBhV), und daran orientieren
+      sich auch viele private Tarife. Der Rechner zeigt, was von Ihrer Rechnung erstattet wird und was
+      Sie selbst tragen.
+    </p>
+
+    <div class="mb-6">
+      <HeilpraktikerRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Wer zahlt überhaupt für den Heilpraktiker?</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          <strong>Gesetzliche Krankenkassen zahlen grundsätzlich nichts.</strong> Heilpraktikerleistungen
+          gehören nicht zum GKV-Leistungskatalog; einzelne Kassen bezuschussen allenfalls freiwillig
+          bestimmte Naturheilverfahren über Bonus- oder Satzungsleistungen.
+        </p>
+        <p>
+          <strong>Beihilfeberechtigte (Beamte)</strong> bekommen Heilpraktikerleistungen anerkannt,
+          aber nur bis zu den Höchstbeträgen der Anlage 2 BBhV und multipliziert mit dem persönlichen
+          Bemessungssatz (50, 70 oder 80 Prozent, § 46 BBhV). Landesbeihilfen weichen teils ab.
+        </p>
+        <p>
+          <strong>Private Krankenversicherung und Zusatzversicherungen</strong> erstatten je nach Tarif:
+          manche voll nach GebüH, manche mit Jahreslimits, manche gar nicht. Ein Blick in die
+          Tarifbedingungen lohnt vor der Behandlung.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Beihilfe-Höchstbeträge für typische Leistungen (Anlage 2 BBhV)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b">
+              <th class="py-2">Nr.</th>
+              <th class="py-2">Leistung</th>
+              <th class="py-2 text-right">Höchstbetrag</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">2a</td><td>Homöopathische Erstanamnese (mind. 1 Stunde)</td><td class="text-right font-mono">80,00 €</td></tr>
+            <tr><td class="py-2">9.1</td><td>Hausbesuch bei Tag</td><td class="text-right font-mono">24,00 €</td></tr>
+            <tr><td class="py-2">21.1</td><td>Akupunktur inkl. Pulsdiagnose</td><td class="text-right font-mono">23,00 €</td></tr>
+            <tr><td class="py-2">35.2</td><td>Osteopathische Behandlung (Schulter/Wirbelsäule)</td><td class="text-right font-mono">21,00 €</td></tr>
+            <tr><td class="py-2">4</td><td>Eingehende Beratung (mind. 15 Minuten)</td><td class="text-right font-mono">18,50 €</td></tr>
+            <tr><td class="py-2">34.2</td><td>Gezielter chiropraktischer Eingriff (Wirbelsäule)</td><td class="text-right font-mono">17,00 €</td></tr>
+            <tr><td class="py-2">1</td><td>Eingehende Untersuchung</td><td class="text-right font-mono">12,50 €</td></tr>
+            <tr><td class="py-2">24.1</td><td>Eigenblutinjektion</td><td class="text-right font-mono">11,00 €</td></tr>
+            <tr><td class="py-2">26.2</td><td>Aderlass</td><td class="text-right font-mono">12,00 €</td></tr>
+            <tr><td class="py-2">27.3</td><td>Schröpfen (unblutig)</td><td class="text-right font-mono">5,00 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: Anlage 2 BBhV (zu § 6 Abs. 5 S. 4). Die Marktpreise der Heilpraktiker liegen häufig
+        deutlich darüber, die Differenz ist dann Eigenanteil.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Warum die Rechnung meist höher ist als die Erstattung</h2>
+      <p class="text-sm text-gray-700">
+        Die GebüH-Beträge stammen aus dem Jahr 1985 und wurden nie angepasst; viele Praxen rechnen
+        deshalb nach frei vereinbarten Sätzen oder nach Zeitaufwand ab. Erstattet wird trotzdem
+        höchstens der Betrag der Anlage 2 BBhV bzw. der im PKV-Tarif vereinbarte Rahmen. Ein Beispiel:
+        Kostet die Akupunktur-Sitzung 45 €, erkennt die Bundesbeihilfe nur 23 € an; bei 50 %
+        Bemessungssatz erhalten Sie 11,50 € zurück und tragen 33,50 € selbst. Heilbehandlungen sind
+        dabei in der Regel umsatzsteuerfrei. Vor Behandlungsbeginn lohnt daher immer die Frage nach
+        einem schriftlichen Kostenplan.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zahlt die gesetzliche Krankenkasse den Heilpraktiker?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Grundsätzlich nein, Heilpraktikerleistungen sind keine GKV-Leistung. Einzelne Kassen gewähren freiwillige Zuschüsse zu bestimmten Naturheilverfahren über Bonusprogramme oder Satzungsleistungen; das ist aber die Ausnahme und begrenzt.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist die GebüH und ist sie verbindlich?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das Gebührenverzeichnis für Heilpraktiker von 1985 ist ein vom Berufsstand erstelltes Verzeichnis, keine Rechtsverordnung. Heilpraktiker dürfen ihre Honorare frei vereinbaren. Verbindlich sind die GebüH-Nummern nur mittelbar: Beihilfe und viele PKV-Tarife knüpfen ihre Höchstbeträge an diese Systematik.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wie viel erstattet die Beihilfe beim Heilpraktiker?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Bundesbeihilfe erkennt Aufwendungen bis zu den Höchstbeträgen der Anlage 2 BBhV an (z.B. Akupunktur 23 €, homöopathische Erstanamnese 80 €) und zahlt davon den persönlichen Bemessungssatz von 50, 70 oder 80 Prozent. Alles über dem Höchstbetrag ist Eigenanteil.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet eine Behandlung beim Heilpraktiker?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Das legt jede Praxis selbst fest, üblich sind Abrechnungen nach GebüH-Nummern mit frei vereinbarten, meist deutlich höheren Sätzen oder nach Zeitaufwand. Verlangen Sie vor Beginn einen schriftlichen Kostenplan; seriöse Praxen geben ihn ohne Zögern.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Gelten die Beihilfe-Beträge auch für Landesbeamte?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nicht automatisch. Die Anlage 2 BBhV gilt für die Bundesbeihilfe; die Länder haben eigene Beihilfeverordnungen, die häufig ähnliche, aber nicht identische Höchstbeträge und Regeln vorsehen. Maßgeblich ist die Beihilfestelle des jeweiligen Dienstherrn.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: Bundesbeihilfeverordnung (BBhV), insbesondere § 6 Abs. 5, § 46 und Anlage 2,
+      abrufbar über gesetze-im-internet.de. Verwandte Rechner:
+      <a href="/goae-rechner" class="text-violet-700 hover:underline">GOÄ-Rechner (Arzt)</a> und
+      <a href="/tierarztkosten-rechner" class="text-violet-700 hover:underline">Tierarztkosten-Rechner (GOT)</a>.
+      Stand: Juli 2026. Keine Rechts- oder Gesundheitsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Zahlt die gesetzliche Krankenkasse den Heilpraktiker?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Grundsätzlich nein, Heilpraktikerleistungen sind keine GKV-Leistung. Einzelne Kassen gewähren freiwillige, begrenzte Zuschüsse über Bonusprogramme oder Satzungsleistungen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist die GebüH und ist sie verbindlich?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Das Gebührenverzeichnis für Heilpraktiker von 1985 ist ein Verzeichnis des Berufsstandes, keine Rechtsverordnung. Honorare sind frei vereinbar; Beihilfe und viele PKV-Tarife nutzen die GebüH-Systematik aber für ihre Höchstbeträge." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viel erstattet die Beihilfe beim Heilpraktiker?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die Bundesbeihilfe erkennt Aufwendungen bis zu den Höchstbeträgen der Anlage 2 BBhV an (z.B. Akupunktur 23 €, homöopathische Erstanamnese 80 €) und zahlt davon den Bemessungssatz von 50, 70 oder 80 Prozent." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet eine Behandlung beim Heilpraktiker?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die Honorare sind frei vereinbar, oft nach GebüH-Nummern mit höheren Sätzen oder nach Zeitaufwand. Vor Behandlungsbeginn empfiehlt sich ein schriftlicher Kostenplan." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gelten die Beihilfe-Höchstbeträge auch für Landesbeamte?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nicht automatisch: Die Anlage 2 BBhV gilt für die Bundesbeihilfe. Die Länder haben eigene Beihilfeverordnungen mit ähnlichen, aber nicht identischen Regeln." }
+      }
+    ]
+  })} />
+</Layout>
