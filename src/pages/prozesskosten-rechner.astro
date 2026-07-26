@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import ProzesskostenRechner from '../components/rechner/ProzesskostenRechner';
+
+const title = "Prozesskosten-Rechner: Was kostet ein Zivilprozess?";
+const description = "Prozesskosten für die 1. Instanz berechnen: Gerichtskosten (GKG) plus Anwaltsgebühren beider Seiten (RVG). Beispiel 5.000 € Streitwert: rund 2.670 € Gesamtrisiko. Mit Vergleichs-Szenario, Stand KostBRÄG 2025.";
+const keywords = "Prozesskosten Rechner, Prozesskostenrechner, was kostet ein Prozess, Zivilprozess Kosten, Anwaltskosten Rechner, RVG Rechner, Prozessrisiko berechnen, Klage Kosten, Prozesskosten Streitwert, Anwalt und Gerichtskosten";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Prozesskosten-Rechner", url: "/prozesskosten-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-slate-700 to-gray-900 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Prozesskosten-Rechner: Zivilprozess 1. Instanz</h1>
+      <p class="text-slate-300 text-sm mt-1">Gerichtskosten (GKG) + Anwaltsvergütung beider Seiten (RVG) | wer verliert, zahlt alles (§ 91 ZPO)</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Das wahre Kostenrisiko eines Zivilprozesses ist die Summe aus <strong>Gerichtskosten</strong>
+      und den <strong>Anwaltsvergütungen beider Seiten</strong>, denn die unterlegene Partei trägt
+      am Ende alles (§ 91 ZPO). Bei 5.000 € Streitwert sind das schnell rund
+      <strong>2.670 €</strong>, mehr als die Hälfte des Streitwerts. Der Rechner zeigt das
+      Gesamtrisiko und daneben, was ein gerichtlicher Vergleich typischerweise kostet.
+    </p>
+
+    <div class="mb-6">
+      <ProzesskostenRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">So setzen sich die Prozesskosten zusammen</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          <strong>Gerichtskosten:</strong> 3,0-Verfahrensgebühr nach dem Streitwert
+          (§ 34 GKG, Details im <a href="/gerichtskosten-rechner" class="text-slate-700 hover:underline font-medium">Gerichtskosten-Rechner</a>).
+          Sie sind bei Klageerhebung als Vorschuss zu zahlen (§ 12 GKG).
+        </p>
+        <p>
+          <strong>Anwaltsvergütung je Seite (RVG):</strong> 1,3-Verfahrensgebühr (VV 3100) plus
+          1,2-Terminsgebühr (VV 3104) auf die Wertgebühr nach § 13 RVG, dazu 20 €
+          Auslagenpauschale (VV 7002) und 19 % Umsatzsteuer. Bei einem gerichtlichen Vergleich
+          kommt die 1,0-Einigungsgebühr (VV 1003) hinzu.
+        </p>
+        <p>
+          <strong>Mögliche Extras:</strong> Sachverständigengutachten und Zeugenentschädigungen
+          (Gerichtsauslagen) sowie Kosten der Zwangsvollstreckung, falls der Schuldner nicht zahlt
+          (dann hilft der <a href="/gerichtsvollzieher-kosten" class="text-slate-700 hover:underline">Gerichtsvollzieher-Kosten-Rechner</a>).
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Beispiel: Streitwert 5.000 €</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2">Position</th><th class="py-2 text-right">streitig (Urteil)</th><th class="py-2 text-right">Vergleich</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Gerichtskosten</td><td class="text-right font-mono">511,50 €</td><td class="text-right font-mono">170,50 €</td></tr>
+            <tr><td class="py-2">Eigener Anwalt (inkl. USt)</td><td class="text-right font-mono">1.078,44 €</td><td class="text-right font-mono">1.500,29 €</td></tr>
+            <tr><td class="py-2">Gegnerischer Anwalt</td><td class="text-right font-mono">1.078,44 €</td><td class="text-right font-mono">trägt Gegner selbst</td></tr>
+            <tr class="font-semibold text-gray-800"><td class="py-2">Belastung</td><td class="text-right font-mono">2.668,38 € bei Niederlage</td><td class="text-right font-mono">1.585,54 € (Kostenaufhebung)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Vergleichs-Spalte: Gerichtsgebühr ermäßigt sich auf 1,0 (Nr. 1211 KV GKG); beim Vergleich
+        gelten die Kosten im Zweifel als gegeneinander aufgehoben (§ 98 ZPO), jede Seite trägt ihren
+        Anwalt und die halben Gerichtskosten. Trotz Einigungsgebühr ist die Eigenbelastung meist
+        deutlich kleiner als das Niederlage-Risiko.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was kostet ein Prozess um 5.000 €?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">In der ersten Instanz: 511,50 € Gerichtskosten plus je rund 1.078 € pro Anwalt (inkl. USt). Wer verliert, zahlt alles zusammen, rund 2.670 €. Dazu können Gerichtsauslagen wie Gutachten kommen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer zahlt die Prozesskosten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die unterlegene Partei trägt die gesamten Kosten des Rechtsstreits einschließlich der notwendigen Kosten der Gegenseite (§ 91 ZPO). Bei teilweisem Obsiegen werden die Kosten im Verhältnis des Erfolgs gequotelt (§ 92 ZPO).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Brauche ich einen Anwalt?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Vor dem Amtsgericht (Streitwert bis 5.000 €) können Sie sich selbst vertreten. Ab 5.000,01 € ist das Landgericht zuständig, dort herrscht Anwaltszwang (§ 78 ZPO). Auch die Gegenseite wird ihre Anwaltskosten bei Sieg von Ihnen erstattet verlangen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist, wenn ich mir den Prozess nicht leisten kann?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Bei geringem Einkommen und Vermögen kommt Prozesskostenhilfe in Betracht (§§ 114 ff. ZPO): Sie deckt Gerichtskosten und den eigenen Anwalt ganz oder gegen Raten. Achtung: Die Anwaltskosten der Gegenseite müssen Sie bei einer Niederlage trotzdem erstatten. Alternativ prüfen: Rechtsschutzversicherung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich ein Vergleich finanziell?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Oft ja: Die Gerichtsgebühr sinkt von 3,0 auf 1,0, und statt des vollen Niederlage-Risikos trägt jede Seite im Zweifel nur die eigenen Anwaltskosten und die halben Gerichtskosten (§ 98 ZPO). Die zusätzliche Einigungsgebühr des Anwalts ist meist kleiner als das ersparte Risiko.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: RVG (§ 13, Anlage 1 VV Nr. 1003, 3100, 3104, 7002, 7008, Anlage 2 i.d.F.
+      BGBl. 2025 I Nr. 109), GKG (§ 12, § 34, KV Nr. 1210/1211), §§ 78, 91, 92, 98 ZPO,
+      abrufbar über gesetze-im-internet.de. Ohne Gerichtsauslagen und außergerichtliche Gebühren.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet ein Prozess um 5.000 €?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Erste Instanz: 511,50 € Gerichtskosten plus je rund 1.078 € pro Anwalt (inkl. USt). Die unterlegene Partei zahlt alles zusammen, rund 2.670 €, zuzüglich eventueller Gerichtsauslagen wie Gutachten." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wer zahlt die Prozesskosten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Die unterlegene Partei trägt die gesamten Kosten einschließlich der notwendigen Kosten der Gegenseite (§ 91 ZPO); bei teilweisem Obsiegen wird gequotelt (§ 92 ZPO)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Brauche ich für eine Klage einen Anwalt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Vor dem Amtsgericht (bis 5.000 € Streitwert) nicht; vor dem Landgericht (darüber) besteht Anwaltszwang (§ 78 ZPO)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist, wenn ich mir den Prozess nicht leisten kann?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei geringem Einkommen kommt Prozesskostenhilfe in Betracht (§§ 114 ff. ZPO); sie deckt Gerichtskosten und den eigenen Anwalt, nicht aber die Erstattungspflicht gegenüber der Gegenseite bei Niederlage." }
+      },
+      {
+        "@type": "Question",
+        "name": "Lohnt sich ein Vergleich finanziell?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oft ja: Die Gerichtsgebühr sinkt von 3,0 auf 1,0, und bei Kostenaufhebung (§ 98 ZPO) trägt jede Seite nur die eigenen Anwaltskosten und die halben Gerichtskosten." }
+      }
+    ]
+  })} />
+</Layout>
