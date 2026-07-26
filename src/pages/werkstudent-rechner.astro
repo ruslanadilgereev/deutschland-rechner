@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import WerkstudentRechner from '../components/rechner/WerkstudentRechner';
+
+const title = "Werkstudent: Netto-Gehalt und die 20-Stunden-Regel";
+const description = "Werkstudenten-Gehalt netto berechnen: Dank Werkstudentenprivileg nur 9,3 % Rentenversicherung, keine KV/PV/AV-Beiträge. Mit 20-Stunden-Regel, Minijob-Grenze 603 € (2026) und Steuer-Check ab wann Lohnsteuer anfällt.";
+const keywords = "Werkstudent Rechner, Werkstudent netto, Werkstudent Gehalt netto, Werkstudentenprivileg, Werkstudent 20 Stunden Regel, Werkstudent Sozialversicherung, Werkstudent Steuern, Werkstudent Rentenversicherung, Werkstudent Minijob Unterschied, Werkstudent Semesterferien";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Werkstudent-Rechner", url: "/werkstudent-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-teal-600 to-cyan-700 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Werkstudent: Was bleibt netto vom Gehalt?</h1>
+      <p class="text-teal-100 text-sm mt-1">Nur 9,3 % Rentenversicherung | keine KV-, PV-, AV-Beiträge | max. 20 Std./Woche in der Vorlesungszeit</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Werkstudenten sind die günstigsten Beschäftigten Deutschlands, für beide Seiten: Dank
+      <strong>Werkstudentenprivileg</strong> fallen keine Beiträge zur Kranken-, Pflege- und
+      Arbeitslosenversicherung an, nur der <strong>Rentenversicherungs-Anteil von 9,3 %</strong>
+      wird abgezogen. Und weil der Grundfreibetrag (12.348 € im Jahr 2026) selten überschritten
+      wird, bleibt vom Brutto meist fast alles übrig. Der Rechner zeigt es konkret.
+    </p>
+
+    <div class="mb-6">
+      <WerkstudentRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Die 20-Stunden-Regel</h2>
+      <p class="text-sm text-gray-700">
+        Das Privileg gilt für <strong>ordentlich Studierende</strong>, solange das Studium im
+        Vordergrund steht (§ 6 Abs. 1 Nr. 3 SGB V, § 27 Abs. 4 SGB III). Nach ständiger Praxis
+        heißt das: <strong>höchstens 20 Stunden pro Woche während der Vorlesungszeit</strong>.
+        Mehr ist erlaubt in den <strong>Semesterferien</strong> sowie bei Arbeit am Abend oder am
+        Wochenende, insgesamt aber nur befristet (mehr als 20 Stunden in höchstens 26 Wochen im
+        Jahr). Wer dauerhaft darüber liegt, wird voll sozialversicherungspflichtig, und beim
+        Überschreiten der Jahresarbeitszeit droht zusätzlich der Verlust der günstigen
+        studentischen Krankenversicherung.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Werkstudent oder Minijob? Der Vergleich 2026</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-2xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2"></th><th class="py-2">Minijob (bis 603 €)</th><th class="py-2">Werkstudent (darüber)</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2 font-medium">Verdienstgrenze</td><td>603 €/Monat (2026)</td><td>keine, nur 20-Std.-Regel</td></tr>
+            <tr><td class="py-2 font-medium">Rentenversicherung</td><td>3,6 % Eigenanteil (Befreiung möglich)</td><td>9,3 % Arbeitnehmeranteil</td></tr>
+            <tr><td class="py-2 font-medium">KV / PV / AV</td><td>keine</td><td>keine</td></tr>
+            <tr><td class="py-2 font-medium">Lohnsteuer</td><td>meist pauschal durch Arbeitgeber</td><td>nach Steuerklasse, oft 0 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Die Minijob-Grenze ist dynamisch: Mindestlohn (2026: 13,90 €) × 130 ÷ 3, auf volle Euro
+        aufgerundet = 603 € (§ 8 Abs. 1a SGB IV). Zum 01.01.2027 steigt sie mit dem Mindestlohn
+        (14,60 €) auf 633 €.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Welche Abzüge hat ein Werkstudent?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nur den Arbeitnehmeranteil zur Rentenversicherung (9,3 %) und gegebenenfalls Lohnsteuer. Kranken-, Pflege- und Arbeitslosenversicherung fallen aus dem Werkstudentenjob nicht an; krankenversichert bleiben Sie über die Familienversicherung (bis 25) oder die studentische Krankenversicherung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Ab wann zahlt ein Werkstudent Steuern?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Faustregel: Bei rund 1.200 € Monatsbrutto und Steuerklasse I bleibt die Jahressteuer wegen des Grundfreibetrags (12.348 €) bei 0 €. Behält der Arbeitgeber monatlich Lohnsteuer ein (z.B. bei schwankendem Lohn), gibt es sie über die Steuererklärung zurück.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Darf ich in den Semesterferien mehr als 20 Stunden arbeiten?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Ja, in der vorlesungsfreien Zeit dürfen Sie Vollzeit arbeiten, ohne das Privileg zu verlieren. Insgesamt gilt: mehr als 20 Wochenstunden in höchstens 26 Wochen innerhalb eines Jahres, sonst gelten Sie nicht mehr als ordentlich Studierender im Sinne der Sozialversicherung.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was passiert mit BAföG und Familienversicherung?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Beides hat eigene Einkommensgrenzen, die unabhängig vom Werkstudentenprivileg gelten: Beim BAföG mindert Einkommen oberhalb des Freibetrags die Förderung, und die kostenlose Familienversicherung endet bei regelmäßig zu hohem Gesamteinkommen. Vor einer Aufstockung der Stunden lohnt der Blick auf beide Grenzen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Lohnt sich die Rentenversicherung als Werkstudent überhaupt?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Die Beiträge sind nicht verloren: Sie zählen als vollwertige Pflichtbeitragszeiten für die spätere Rente und für Wartezeiten (z.B. Erwerbsminderungsschutz). Anders als beim Minijob gibt es beim Werkstudentenjob keine Befreiungsmöglichkeit.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: § 6 Abs. 1 Nr. 3 SGB V, § 27 Abs. 4 SGB III, § 8 Abs. 1a SGB IV (Geringfügigkeitsgrenze),
+      § 32a EStG (Tarif 2026), gesetze-im-internet.de. Verwandt:
+      <a href="/stundenlohn-rechner" class="text-teal-700 hover:underline">Stundenlohn-Rechner</a>.
+      Stand: Juli 2026. Keine Rechts- oder Steuerberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Welche Abzüge hat ein Werkstudent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nur 9,3 % Rentenversicherung und ggf. Lohnsteuer; Kranken-, Pflege- und Arbeitslosenversicherung fallen dank Werkstudentenprivileg nicht an (§ 6 Abs. 1 Nr. 3 SGB V, § 27 Abs. 4 SGB III)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ab wann zahlt ein Werkstudent Steuern?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei Steuerklasse I bleibt die Jahressteuer bis etwa 1.200 € Monatsbrutto wegen des Grundfreibetrags von 12.348 € (2026) bei 0 €; einbehaltene Lohnsteuer gibt es über die Steuererklärung zurück." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie viele Stunden darf ein Werkstudent arbeiten?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In der Vorlesungszeit höchstens 20 Stunden pro Woche; in den Semesterferien mehr, insgesamt mehr als 20 Stunden aber nur in höchstens 26 Wochen im Jahr." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wo liegt die Minijob-Grenze 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bei 603 € im Monat: Mindestlohn 13,90 € × 130 ÷ 3, auf volle Euro aufgerundet (§ 8 Abs. 1a SGB IV); 2027 steigt sie auf 633 €." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann sich ein Werkstudent von der Rentenversicherung befreien lassen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, die Befreiungsmöglichkeit gibt es nur im Minijob; die Werkstudenten-Beiträge zählen dafür als vollwertige Pflichtbeitragszeiten." }
+      }
+    ]
+  })} />
+</Layout>
