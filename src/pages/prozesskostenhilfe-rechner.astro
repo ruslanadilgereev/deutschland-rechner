@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import ProzesskostenhilfeRechner from '../components/rechner/ProzesskostenhilfeRechner';
+
+const title = "Prozesskostenhilfe-Rechner: Anspruch & Rate prüfen";
+const description = "Prozesskostenhilfe 2026 berechnen: einzusetzendes Einkommen nach § 115 ZPO mit den aktuellen Freibeträgen (619 € Partei, 282 € Erwerbstätigkeit), ratenfrei oder Monatsrate, maximal 48 Raten. Mit PKH-Rechner und Beispielen.";
+const keywords = "Prozesskostenhilfe Rechner, PKH Rechner, Prozesskostenhilfe berechnen, Anspruch Prozesskostenhilfe, PKH Freibeträge 2026, einzusetzendes Einkommen § 115 ZPO, Prozesskostenhilfe Raten, Verfahrenskostenhilfe Rechner, PKH ratenfrei";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Prozesskostenhilfe-Rechner", url: "/prozesskostenhilfe-rechner" }]} />
+
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-gradient-to-r from-fuchsia-700 to-purple-900 text-white rounded-2xl p-6 mb-6">
+      <h1 class="text-2xl font-bold">Prozesskostenhilfe: Anspruch und Rate berechnen</h1>
+      <p class="text-fuchsia-100 text-sm mt-1">§§ 114 ff. ZPO | Freibeträge der PKHB 2026 | ratenfrei oder bis zu 48 Monatsraten</p>
+    </div>
+
+    <p class="text-gray-700 mb-6">
+      Wer sich einen Prozess nicht leisten kann, hat Anspruch auf <strong>Prozesskostenhilfe
+      (PKH)</strong>: Der Staat übernimmt Gerichtskosten und die eigene Anwältin oder den eigenen
+      Anwalt, ganz oder gegen Monatsraten. Ob und wie viel Sie zahlen müssen, entscheidet das
+      <strong>einzusetzende Einkommen</strong> nach § 115 ZPO: Nettoeinkommen minus Freibeträge
+      minus Wohnkosten. Der Rechner nutzt die aktuellen Freibeträge der
+      Prozesskostenhilfebekanntmachung 2026.
+    </p>
+
+    <div class="mb-6">
+      <ProzesskostenhilfeRechner client:load />
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Die Freibeträge 2026 (Bund)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm max-w-xl">
+          <thead>
+            <tr class="text-left text-gray-500 border-b"><th class="py-2">Freibetrag</th><th class="py-2 text-right">Betrag/Monat</th></tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 text-gray-700">
+            <tr><td class="py-2">Partei (Sie selbst)</td><td class="text-right font-mono">619 €</td></tr>
+            <tr><td class="py-2">Zuschlag bei Erwerbstätigkeit</td><td class="text-right font-mono">282 €</td></tr>
+            <tr><td class="py-2">Ehe- oder Lebenspartner</td><td class="text-right font-mono">619 €</td></tr>
+            <tr><td class="py-2">Unterhaltsberechtigte Erwachsene</td><td class="text-right font-mono">496 €</td></tr>
+            <tr><td class="py-2">Jugendliche (15 bis unter 18)</td><td class="text-right font-mono">518 €</td></tr>
+            <tr><td class="py-2">Kinder (7 bis unter 15)</td><td class="text-right font-mono">429 €</td></tr>
+            <tr><td class="py-2">Kinder (bis 6)</td><td class="text-right font-mono">393 €</td></tr>
+            <tr><td class="py-2">Wohnkosten (Miete + Heizung)</td><td class="text-right font-mono">in voller Höhe</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Quelle: PKHB 2026. In der Landeshauptstadt München sowie den Landkreisen München und
+        Fürstenfeldbruck gelten wegen höherer Regelsätze leicht höhere Freibeträge.
+        Eigenes Einkommen der Unterhaltsberechtigten mindert deren Freibetrag.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Ratenfrei, Raten oder keine PKH: die Staffel</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+        <li><strong>Einzusetzendes Einkommen unter 20 €:</strong> Die halbe Rate läge unter 10 €, es wird keine Rate festgesetzt: <strong>PKH ohne Raten</strong>.</li>
+        <li><strong>Bis 600 €:</strong> Monatsrate = die Hälfte des einzusetzenden Einkommens, auf volle Euro abgerundet.</li>
+        <li><strong>Über 600 €:</strong> Monatsrate = 300 € plus der volle Betrag über 600 €; PKH lohnt dann oft nur noch bei teuren Verfahren.</li>
+        <li><strong>Deckel:</strong> Höchstens 48 Monatsraten, und nie mehr als die tatsächlichen Prozesskosten. Übersteigen die Kosten voraussichtlich nicht einmal vier Monatsraten, wird PKH nicht bewilligt (§ 115 Abs. 4 ZPO).</li>
+        <li><strong>Vermögen:</strong> Zumutbares Vermögen ist einzusetzen (§ 115 Abs. 3 ZPO i.V.m. § 90 SGB XII); geschützt sind insbesondere angemessener Hausrat, ein selbst genutztes angemessenes Eigenheim und kleinere Barbeträge.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Zwei Beispiele</h2>
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>
+          <strong>Ratenfrei:</strong> Alleinstehend, erwerbstätig, 1.320 € netto, 400 € Warmmiete.
+          Einzusetzendes Einkommen: 1.320 − 619 − 282 − 400 = 19 €. Die halbe Rate läge unter 10 €,
+          also PKH ohne Raten.
+        </p>
+        <p>
+          <strong>Mit Raten:</strong> Alleinstehend, erwerbstätig, 1.900 € netto, 450 € Warmmiete.
+          Einzusetzendes Einkommen: 1.900 − 619 − 282 − 450 = 549 €. Monatsrate: 274 €. Kostet der
+          Prozess z.B. 2.670 € (<a href="/prozesskosten-rechner" class="text-fuchsia-700 hover:underline">Prozesskosten-Rechner</a>,
+          5.000 € Streitwert), sind die Kosten nach rund 10 Raten getilgt.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">❓ Häufig gestellte Fragen</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Wer hat Anspruch auf Prozesskostenhilfe?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Wer die Prozesskosten nach den persönlichen und wirtschaftlichen Verhältnissen nicht, nur zum Teil oder nur in Raten aufbringen kann, sofern die Rechtsverfolgung hinreichende Erfolgsaussicht hat und nicht mutwillig ist (§ 114 ZPO). Beides prüft das Gericht anhand des PKH-Antrags mit der Erklärung über die Verhältnisse.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Deckt die PKH auch die Anwaltskosten der Gegenseite?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Nein, das ist die wichtigste Lücke: PKH übernimmt Gerichtskosten und den eigenen beigeordneten Anwalt. Verlieren Sie den Prozess, müssen Sie die Anwaltskosten der Gegenseite trotzdem aus eigener Tasche erstatten (§ 123 ZPO).</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Muss ich die PKH später zurückzahlen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Möglich: Das Gericht kann die Entscheidung bis vier Jahre nach Verfahrensende überprüfen. Verbessern sich Ihre Verhältnisse wesentlich (z.B. deutlich höheres Einkommen oder Vermögenszufluss aus dem Prozess), können nachträglich Raten festgesetzt werden. Änderungen müssen Sie von sich aus mitteilen.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Was ist der Unterschied zwischen PKH und Beratungshilfe?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Beratungshilfe deckt die außergerichtliche Beratung und Vertretung (Antrag beim Amtsgericht, Eigenanteil 15 €); Prozesskostenhilfe gilt für das gerichtliche Verfahren. In Familiensachen heißt die PKH Verfahrenskostenhilfe (VKH) und folgt denselben Regeln.</div>
+        </details>
+        <details class="border border-gray-200 rounded-lg">
+          <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">Zählt das Kindergeld zum Einkommen?</summary>
+          <div class="px-4 pb-4 text-sm text-gray-600">Kindergeld gehört zu den Einkünften und ist beim Einkommen anzugeben; zugleich mindert eigenes Einkommen eines unterhaltsberechtigten Kindes dessen Freibetrag. Wie es zugerechnet wird, entscheidet das Gericht im Einzelfall, geben Sie im Antrag einfach alles vollständig an.</div>
+        </details>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mb-6">
+      Quellen: §§ 114, 115, 123 ZPO; Prozesskostenhilfebekanntmachung 2026 (Beträge ab 01.01.2026),
+      gesetze-im-internet.de. Verwandt:
+      <a href="/prozesskosten-rechner" class="text-fuchsia-700 hover:underline">Prozesskosten-Rechner</a> und
+      <a href="/gerichtskosten-rechner" class="text-fuchsia-700 hover:underline">Gerichtskosten-Rechner</a>.
+      Stand: Juli 2026. Keine Rechtsberatung.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wer hat Anspruch auf Prozesskostenhilfe?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Wer die Prozesskosten nach den persönlichen und wirtschaftlichen Verhältnissen nicht oder nur teilweise aufbringen kann, bei hinreichender Erfolgsaussicht der Rechtsverfolgung (§ 114 ZPO)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Deckt die Prozesskostenhilfe die Anwaltskosten der Gegenseite?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nein, bei einer Niederlage müssen die gegnerischen Anwaltskosten trotz PKH selbst erstattet werden (§ 123 ZPO)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann ist die PKH ratenfrei?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Wenn das einzusetzende Einkommen nach § 115 ZPO so gering ist, dass die halbe Rate unter 10 € läge; sonst werden Monatsraten festgesetzt (höchstens 48)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Muss ich die Prozesskostenhilfe zurückzahlen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bis vier Jahre nach Verfahrensende kann das Gericht bei wesentlich verbesserten Verhältnissen nachträglich Raten festsetzen; Änderungen sind mitzuteilen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch sind die PKH-Freibeträge 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Partei 619 €, Erwerbstätigen-Zuschlag 282 €, Ehe-/Lebenspartner 619 €, Kinder je nach Alter 393 bis 518 €, unterhaltsberechtigte Erwachsene 496 €; Wohnkosten zusätzlich in voller Höhe (PKHB 2026)." }
+      }
+    ]
+  })} />
+</Layout>
