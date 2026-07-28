@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import { rechnerListe } from '../data/rechner';
+import { rechnerListe, rechnerPfad } from '../data/rechner';
 
 const title = "Familie & Kinder 2026 — kostenlose Rechner für Eltern in Deutschland";
 const description = "Kindergeld, Elterngeld, Unterhalt, Kinderzuschlag und mehr — kostenlose Rechner für deutsche Familien, aktuell 2026.";
@@ -107,7 +107,7 @@ const collectionSchema = {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {familieRechner.map(r => (
           <a
-            href={r.fertig ? `/${r.id}-rechner` : '#'}
+            href={r.fertig ? rechnerPfad(r) : '#'}
             class={`bg-white rounded-xl shadow-md ${r.fertig ? 'hover:shadow-lg' : 'opacity-50 cursor-not-allowed'} transition-shadow p-4 flex items-start gap-3 group`}
           >
             <span class="text-2xl mt-0.5">{r.icon}</span>

@@ -1,11 +1,12 @@
 import type { Rechner } from '../data/rechner';
+import { rechnerPfad } from '../data/rechner';
 
 interface Props {
   rechner: Rechner;
 }
 
 export default function RechnerCard({ rechner }: Props) {
-  const href = rechner.fertig ? `/${rechner.id}-rechner` : '#';
+  const href = rechner.fertig ? rechnerPfad(rechner) : '#';
   const isDisabled = !rechner.fertig;
 
   return (

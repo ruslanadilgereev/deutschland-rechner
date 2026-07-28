@@ -7,7 +7,15 @@ export interface Rechner {
   fertig: boolean;
   quellen?: string[];
   seoKeywords?: string; // Für Cronjob-Priorisierung
+  // Abweichender URL-Pfad. Ohne slug gilt das Standardmuster /<id>-rechner.
+  // Nötig für Seiten wie /pfaendungsrechner oder /mahnbescheid-kosten, die
+  // sonst gar nicht ins Verzeichnis (und damit nicht in Grid, Kategorie-Hubs,
+  // Footer und VerwandteRechner) eingetragen werden könnten.
+  slug?: string;
 }
+
+/** Pfad einer Rechner-Seite: expliziter slug, sonst das Muster /<id>-rechner. */
+export const rechnerPfad = (r: Rechner) => `/${r.slug ?? `${r.id}-rechner`}`;
 
 export const kategorien = {
   familie: { name: 'Familie & Kinder', icon: '👨‍👩‍👧‍👦', color: 'bg-pink-500' },
@@ -3892,6 +3900,104 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/sgb_6/__42.html',
       'https://www.gesetze-im-internet.de/sgb_6/__64.html',
     ],
+  },
+  // Seiten mit abweichendem URL-Slug (siehe slug-Feld oben): standen bisher
+  // nicht im Verzeichnis und waren dadurch nur ueber Kontext-Links erreichbar.
+  {
+    id: 'pfaendung',
+    slug: 'pfaendungsrechner',
+    name: 'Pfändungsrechner',
+    beschreibung: 'Pfändbares Einkommen nach den Freigrenzen ab 01.07.2026 (§ 850c ZPO)',
+    icon: '🔒',
+    kategorie: 'finanzen',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/zpo/__850c.html'],
+  },
+  {
+    id: 'weihnachtsgeld-pfaendung',
+    slug: 'weihnachtsgeld-pfaendung',
+    name: 'Weihnachtsgeld-Pfändung-Rechner',
+    beschreibung: 'Unpfändbarer Anteil des Weihnachtsgeldes (§ 850a Nr. 4 ZPO)',
+    icon: '🎁',
+    kategorie: 'finanzen',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/zpo/__850a.html'],
+  },
+  {
+    id: 'mahnbescheid-kosten',
+    slug: 'mahnbescheid-kosten',
+    name: 'Mahnbescheid-Kosten-Rechner',
+    beschreibung: 'Gerichtskosten des Mahnverfahrens nach Streitwert (Nr. 1100 KV GKG)',
+    icon: '📨',
+    kategorie: 'finanzen',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/gkg_2004/anlage_1.html'],
+  },
+  {
+    id: 'gerichtsvollzieher-kosten',
+    slug: 'gerichtsvollzieher-kosten',
+    name: 'Gerichtsvollzieher-Kosten-Rechner',
+    beschreibung: 'Gebühren und Auslagen der Vollstreckung nach dem GvKostG',
+    icon: '📑',
+    kategorie: 'finanzen',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/gvkostg/anlage.html'],
+  },
+  {
+    id: 'heilpraktiker-kosten',
+    slug: 'heilpraktiker-kosten',
+    name: 'Heilpraktiker-Kosten-Rechner',
+    beschreibung: 'Erstattung durch Beihilfe und PKV nach Anlage 2 BBhV',
+    icon: '🌿',
+    kategorie: 'gesundheit',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/bbhv/anlage_2.html'],
+  },
+  {
+    id: 'besoldung-bund',
+    slug: 'besoldungsrechner-bund',
+    name: 'Besoldungsrechner Bund',
+    beschreibung: 'Grundgehalt A 3 bis B 11 nach der Bundesbesoldungstabelle',
+    icon: '🏛️',
+    kategorie: 'arbeit',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/bbesg/anlage_iv.html'],
+  },
+  {
+    id: 'besoldung-bayern',
+    slug: 'besoldungsrechner-bayern',
+    name: 'Besoldungsrechner Bayern',
+    beschreibung: 'Grundgehalt nach der bayerischen Besoldungstabelle ab 01.10.2026',
+    icon: '🥨',
+    kategorie: 'arbeit',
+    fertig: true,
+  },
+  {
+    id: 'besoldung-bw',
+    slug: 'besoldungsrechner-bw',
+    name: 'Besoldungsrechner Baden-Württemberg',
+    beschreibung: 'Grundgehalt nach der Landestabelle BW ab 01.04.2026',
+    icon: '🦁',
+    kategorie: 'arbeit',
+    fertig: true,
+  },
+  {
+    id: 'besoldung-niedersachsen',
+    slug: 'besoldungsrechner-niedersachsen',
+    name: 'Besoldungsrechner Niedersachsen',
+    beschreibung: 'Grundgehalt nach der NLBV-Tabelle ab 01.04.2026',
+    icon: '🐴',
+    kategorie: 'arbeit',
+    fertig: true,
+  },
+  {
+    id: 'besoldung-nrw',
+    slug: 'besoldungsrechner-nrw',
+    name: 'Besoldungsrechner NRW',
+    beschreibung: 'Grundgehalt nach der Landestabelle NRW inklusive Abschlag',
+    icon: '⚒️',
+    kategorie: 'arbeit',
+    fertig: true,
   },
   {
     id: 'pflegeunterstuetzungsgeld',

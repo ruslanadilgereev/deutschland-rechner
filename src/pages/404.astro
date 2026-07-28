@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { rechnerListe, kategorien } from '../data/rechner';
+import { rechnerListe, rechnerPfad, kategorien } from '../data/rechner';
 
 // Beliebte Rechner für die 404-Seite
 const beliebteIds = ['brutto-netto', 'kindergeld', 'elterngeld', 'einkommensteuer', 'baufinanzierung', 'mietpreisbremse'];
@@ -65,7 +65,7 @@ const kategorieHubs: { key: keyof typeof kategorien; slug: string }[] = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {beliebteRechner.map((rechner) => (
           <a
-            href={`/${rechner.id}-rechner`}
+            href={rechnerPfad(rechner)}
             class="block p-4 rounded-2xl bg-white shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             <div class="flex items-center gap-4">

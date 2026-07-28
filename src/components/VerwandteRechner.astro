@@ -1,5 +1,5 @@
 ---
-import { rechnerListe, type Rechner } from '../data/rechner';
+import { rechnerListe, rechnerPfad, type Rechner } from '../data/rechner';
 
 interface Props {
   aktuellerSlug: string;
@@ -51,7 +51,7 @@ if (slugs && slugs.length > 0) {
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {auswahl.map((rechner) => (
           <a
-            href={`/${rechner.id}-rechner`}
+            href={rechnerPfad(rechner)}
             class="block border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all rounded-xl p-4 bg-white"
           >
             <div class="flex items-start gap-3">
