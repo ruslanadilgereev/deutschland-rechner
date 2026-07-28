@@ -1,0 +1,368 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import BerufsausbildungsbeihilfeRechner from '../components/rechner/BerufsausbildungsbeihilfeRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "BAB-Rechner 2026 – Berufsausbildungsbeihilfe berechnen";
+const description = "Berufsausbildungsbeihilfe berechnen 2026: BAB-Bedarf 822 €, Fahrkosten, Einkommensanrechnung nach § 67 SGB III & Elternfreibeträge. Jetzt BAB-Anspruch kostenlos prüfen!";
+const keywords = "BAB Rechner, Berufsausbildungsbeihilfe Rechner, BAB berechnen, Berufsausbildungsbeihilfe 2026, BAB Höhe, BAB Anspruch, BAB Azubi eigene Wohnung, BAB Einkommensanrechnung, BAB Agentur für Arbeit, BAB Antrag, Ausbildung Förderung, BAB Elterneinkommen";
+
+// FAQ – wird sichtbar UND im FAQPage-Schema wortgleich verwendet
+const faqs = [
+  {
+    frage: "Wie hoch ist die Berufsausbildungsbeihilfe 2026?",
+    antwort: "Der Bedarf für den Lebensunterhalt beträgt bei einer Berufsausbildung mit eigener Wohnung 822 € pro Monat (442 € Grundbedarf + 380 € Unterkunft, § 61 SGB III i.V.m. § 13 BAföG). Dazu kommen Fahrkosten, 16 € Arbeitskleidungspauschale und 160 € je Kind für Kinderbetreuung. Von diesem Gesamtbedarf wird eigenes Einkommen sowie Einkommen von Ehegatte und Eltern oberhalb der Freibeträge abgezogen – der Rest ist Ihre monatliche BAB."
+  },
+  {
+    frage: "Wer hat Anspruch auf BAB?",
+    antwort: "Anspruch haben Auszubildende in einer betrieblichen oder außerbetrieblichen Berufsausbildung sowie Teilnehmer einer berufsvorbereitenden Bildungsmaßnahme (BvB) nach § 56 SGB III. Bei einer Berufsausbildung müssen Sie außerhalb des Elternhaushalts wohnen und die Ausbildungsstätte darf von der Elternwohnung nicht in angemessener Zeit erreichbar sein (§ 60 SGB III). Diese Erreichbarkeitsprüfung entfällt unter anderem, wenn Sie 18 Jahre oder älter, verheiratet sind oder mit einem Kind zusammenleben."
+  },
+  {
+    frage: "Wird die Ausbildungsvergütung auf die BAB angerechnet?",
+    antwort: "Ja. Von der Brutto-Ausbildungsvergütung wird zunächst die Sozialpauschale von 22,3 % abgezogen (§ 21 Abs. 2 BAföG), zusätzlich bleiben 85 € pro Monat anrechnungsfrei (§ 67 Abs. 2 Nr. 3 SGB III). Der Rest mindert den BAB-Anspruch. Beispiel: 900 € brutto − 200,70 € Sozialpauschale − 85 € Freibetrag = 614,30 € Anrechnung."
+  },
+  {
+    frage: "Wie viel dürfen meine Eltern verdienen, damit ich BAB bekomme?",
+    antwort: "Verheiratete, zusammenlebende Eltern haben einen Freibetrag von 2.540 € pro Monat (§ 25 Abs. 1 BAföG), bei BAB kommen 901 € Zusatzfreibetrag hinzu (§ 67 Abs. 2 Nr. 3 SGB III) – zusammen 3.441 €. Je weiteres unterhaltsberechtigtes Kind erhöht sich der Freibetrag um 770 €. Vom übersteigenden Einkommen bleiben zusätzlich 50 % plus 5 % je Kind anrechnungsfrei (§ 25 Abs. 4 BAföG). Maßgeblich ist das Einkommen nach BAföG-Begriff, in der Regel aus dem vorletzten Kalenderjahr."
+  },
+  {
+    frage: "Bekomme ich BAB, wenn ich bei meinen Eltern wohne?",
+    antwort: "Bei einer Berufsausbildung grundsätzlich nein: BAB gibt es nur, wenn Sie außerhalb des Elternhaushalts wohnen (§ 60 SGB III). Anders bei berufsvorbereitenden Bildungsmaßnahmen (BvB): Hier wird auch im Elternhaushalt gefördert – der Bedarf beträgt dann 276 € pro Monat, außerhalb des Elternhaushalts 666 € (§ 62 SGB III i.V.m. § 12 BAföG)."
+  },
+  {
+    frage: "Wie wird die Berufsausbildungsbeihilfe berechnet?",
+    antwort: "In drei Schritten: 1. Gesamtbedarf ermitteln – 822 € Lebensunterhalt (eigene Wohnung) plus Fahrkosten (Pendelfahrten max. 588 €), 16 € Arbeitskleidung und 160 € je Kind. 2. Einkommen anrechnen – zuerst die eigene Ausbildungsvergütung (nach 22,3 % Sozialpauschale und 85 € Freibetrag), dann Einkommen von Ehegatte und Eltern über den Freibeträgen. 3. BAB = Gesamtbedarf minus anzurechnendes Einkommen. Beispiel: 918 € Bedarf − 614,30 € Anrechnung aus 900 € Vergütung = 303,70 € BAB pro Monat."
+  },
+  {
+    frage: "Wird bei einer BvB-Maßnahme Einkommen angerechnet?",
+    antwort: "Nein. Bei berufsvorbereitenden Bildungsmaßnahmen (BvB) findet keine Einkommensanrechnung statt (§ 67 Abs. 4 SGB III) – die BAB entspricht dem vollen Gesamtbedarf. Zusätzlich werden bei BvB auch Beiträge zur Kranken- und Pflegeversicherung übernommen, wenn kein anderweitiger Schutz besteht (§ 64 Abs. 3a SGB III)."
+  },
+  {
+    frage: "Gibt es einen offiziellen BAB-Rechner der Agentur für Arbeit?",
+    antwort: "Ja, die Bundesagentur für Arbeit bietet unter babrechner.arbeitsagentur.de einen amtlichen BAB-Rechner an. Unser Rechner ist ein unabhängiges, kostenloses Angebot und liefert eine Schätzung auf Basis der gesetzlichen Bedarfssätze und Freibeträge. Den Antrag stellen Sie bei Ihrer örtlichen Agentur für Arbeit – am besten vor Ausbildungsbeginn, denn rückwirkend wird höchstens ab dem Monat der Antragstellung gezahlt."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "BAB-Rechner", url: "/berufsausbildungsbeihilfe-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-cyan-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎓</span>
+          <div>
+            <h1 class="text-2xl font-bold">BAB-Rechner</h1>
+            <p class="text-cyan-100 text-sm">Berufsausbildungsbeihilfe 2026 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trust-Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div class="text-sm text-green-800">
+            <p class="font-semibold mb-1">Rechtlich fundiert & aktuell – Stand: Juli 2026</p>
+            <p>
+              Berechnung nach <strong>§§ 56–68 SGB III</strong> (Berufsausbildungsbeihilfe)
+              i.V.m. den <strong>BAföG-Bedarfssätzen und Freibeträgen</strong> (§§ 12, 13, 21, 23, 25 BAföG).
+              Berücksichtigt den <strong>Bedarf von 822 €</strong> (442 € + 380 €) bei eigener Wohnung,
+              den <strong>Azubi-Freibetrag 389 €</strong> ab 01.01.2026 (BGBl. 2025 I Nr. 279)
+              und den <strong>BAB-Zusatzfreibetrag 901 €</strong> beim Elterneinkommen.
+            </p>
+            <p class="mt-1 text-xs text-green-700">
+              <strong>Berücksichtigt:</strong> Grundbedarf + Unterkunft, Wohnheim-Regel (+115 €), BvB-Sätze (276 €/666 €), Fahrkosten mit 588-€-Deckel, Arbeitskleidungs- und Kinderbetreuungspauschale, Sozialpauschale 22,3 %, Freibeträge von Azubi-, Ehegatten- und Elterneinkommen, Geschwister-Aufteilung.
+              <strong>Nicht berücksichtigt:</strong> Kindergeld-Behandlung, amtliche Rundungsregeln, Einkommens-Aktualisierungsanträge (§ 24 BAföG), Vorausleistung im Detail, Fachliche Weisungen der BA.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <BerufsausbildungsbeihilfeRechner client:load />
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Berufsausbildungsbeihilfe 2026: Geld vom Staat für Azubis</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Berufsausbildungsbeihilfe (BAB)</strong> ist eine Leistung der Agentur für Arbeit
+            nach <strong>§ 56 SGB III</strong>. Sie unterstützt Auszubildende, deren Ausbildungsvergütung
+            nicht reicht, um eine eigene Wohnung, Fahrkosten und den Lebensunterhalt zu bezahlen – und
+            Teilnehmer <strong>berufsvorbereitender Bildungsmaßnahmen (BvB)</strong>. Mit unserem
+            <strong>BAB-Rechner</strong> schätzen Sie Ihren monatlichen Anspruch in wenigen Minuten.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf den aktuellen Bedarfssätzen
+            des BAföG (442 € Grundbedarf + 380 € Unterkunft, § 13 BAföG), auf die § 61 SGB III dynamisch
+            verweist, sowie dem ab 01.01.2026 geltenden Azubi-Freibetrag von 389 € (BGBl. 2025 I Nr. 279).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer hat Anspruch auf BAB? (§§ 56, 60 SGB III)</h3>
+          <p>
+            BAB gibt es für zwei Gruppen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Azubis in Berufsausbildung</strong> (betrieblich oder außerbetrieblich) – aber nur, wenn sie <strong>außerhalb des Elternhaushalts</strong> wohnen und die Ausbildungsstätte von der Elternwohnung nicht in angemessener Zeit erreichbar ist (§ 60 SGB III)</li>
+            <li><strong>Teilnehmer einer BvB-Maßnahme</strong> – hier auch im Elternhaushalt</li>
+          </ul>
+          <p>
+            Die Erreichbarkeitsprüfung entfällt u. a. bei Auszubildenden <strong>ab 18 Jahren</strong>,
+            Verheirateten und Azubis, die mit einem Kind zusammenleben. Studierende erhalten kein BAB –
+            für sie gilt das <a href="/bafoeg-rechner" class="text-blue-600 hover:underline">BAföG (zum BAföG-Rechner)</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BAB-Bedarf 2026: Diese Beträge stehen Azubis zu</h3>
+          <p>
+            Der Gesamtbedarf setzt sich nach §§ 61–64 SGB III zusammen aus:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Lebensunterhalt:</strong> 442 € Grundbedarf + 380 € Unterkunft = <strong>822 €/Monat</strong> bei eigener Wohnung (§ 61 Abs. 1 SGB III i.V.m. § 13 Abs. 1 Nr. 1, Abs. 2 Nr. 2 BAföG)</li>
+            <li><strong>Fahrkosten:</strong> Pendelfahrten und ggf. eine Familienheimfahrt pro Monat (§ 63 SGB III)</li>
+            <li><strong>Arbeitskleidung:</strong> Pauschal 16 €/Monat (§ 64 Abs. 1 SGB III)</li>
+            <li><strong>Kinderbetreuung:</strong> 160 €/Monat je aufsichtsbedürftigem Kind (§ 64 Abs. 3 SGB III)</li>
+          </ul>
+          <p>
+            Die Bedarfssätze folgen automatisch den BAföG-Erhöhungen (§ 66 SGB III i.V.m. § 35 BAföG) –
+            steigt das BAföG, steigt auch die BAB.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Fahrkosten: Pendelfahrten und Familienheimfahrten (§ 63 SGB III)</h3>
+          <p>
+            Als Fahrkosten zählen die Fahrten zwischen Unterkunft, Ausbildungsstätte und Berufsschule –
+            Maßstab sind die Kosten des <strong>ÖPNV in der günstigsten Klasse</strong>, sonst die
+            Wegstreckenentschädigung nach § 5 Abs. 1 BRKG. Pendelfahrten werden höchstens bis zu dem
+            Betrag berücksichtigt, der nach § 86 SGB III für auswärtige Unterbringung gezahlt würde:
+            <strong>588 €/Monat</strong> (420 € Unterbringung + 168 € Verpflegung). Bei erforderlicher
+            auswärtiger Unterbringung kommen An-/Abreise und <strong>eine Familienheimfahrt pro Monat</strong> dazu.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einkommensanrechnung: So wird die Ausbildungsvergütung angerechnet</h3>
+          <p>
+            Nach <strong>§ 67 SGB III</strong> wird Einkommen in dieser Reihenfolge angerechnet:
+            zuerst das des Azubis, dann das des Ehegatten/Lebenspartners, zuletzt das der Eltern.
+            Für die Ausbildungsvergütung gilt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Sozialpauschale:</strong> 22,3 % Abzug vom Brutto (max. 17.200 €/Jahr, § 21 Abs. 2 Nr. 1 BAföG)</li>
+            <li><strong>Vergütungsfreibetrag:</strong> 85 €/Monat bleiben anrechnungsfrei (§ 67 Abs. 2 Nr. 3 SGB III)</li>
+            <li><strong>Keine Werbungskosten:</strong> Anders als beim BAföG werden keine Werbungskosten abgezogen (§ 67 Abs. 2 Nr. 1 SGB III)</li>
+          </ul>
+          <p>
+            Sonstiges Einkommen wie ein Nebenjob bleibt bis zum Freibetrag von <strong>389 €/Monat</strong>
+            (ab 01.01.2026) anrechnungsfrei; für Waisenrenten gelten 190 €/Monat (§ 23 Abs. 4 Nr. 1 BAföG).
+            Wie viel netto von der Vergütung übrig bleibt, zeigt der
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Elterneinkommen: Freibeträge nach § 25 BAföG</h3>
+          <p>
+            Vom Einkommen der Eltern (BAföG-Begriff, i. d. R. vorletztes Kalenderjahr) bleiben anrechnungsfrei:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>2.540 €/Monat</strong> bei verheirateten, zusammenlebenden Eltern (sonst je 1.690 €)</li>
+            <li><strong>+ 901 €</strong> BAB-Zusatzfreibetrag (§ 67 Abs. 2 Nr. 3 SGB III)</li>
+            <li><strong>+ 770 €</strong> je weiteres unterhaltsberechtigtes Kind, das nicht in förderfähiger Ausbildung steht</li>
+            <li><strong>+ 50 % + 5 % je Kind</strong> des übersteigenden Einkommens (§ 25 Abs. 4 BAföG)</li>
+          </ul>
+          <p>
+            Stehen mehrere Kinder gleichzeitig in geförderter Ausbildung (BAföG oder BAB), wird das
+            anzurechnende Elterneinkommen <strong>zu gleichen Teilen aufgeteilt</strong> (§ 11 Abs. 4 BAföG).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: BAB Schritt für Schritt berechnet</h3>
+          <p>
+            Beispiel: Azubi, 19 Jahre, eigene Wohnung, <strong>900 € Brutto-Ausbildungsvergütung</strong>,
+            80 € Fahrkosten, Eltern verheiratet mit <strong>3.200 € Monatseinkommen</strong> (BAföG-Begriff),
+            keine Geschwister in Förderung:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Betrag</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Grundbedarf (§ 13 Abs. 1 Nr. 1 BAföG)</td><td class="text-right p-2 border border-gray-200">442,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">+ Unterkunftsbedarf (§ 13 Abs. 2 Nr. 2 BAföG)</td><td class="text-right p-2 border border-gray-200">380,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">+ Fahrkosten Pendelfahrten (§ 63 SGB III)</td><td class="text-right p-2 border border-gray-200">80,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">+ Arbeitskleidungspauschale (§ 64 Abs. 1 SGB III)</td><td class="text-right p-2 border border-gray-200">16,00 €</td></tr>
+                <tr class="bg-cyan-50 font-semibold"><td class="p-2 border border-gray-200">= Gesamtbedarf</td><td class="text-right p-2 border border-gray-200">918,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Ausbildungsvergütung brutto</td><td class="text-right p-2 border border-gray-200">900,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">− Sozialpauschale 22,3 % (§ 21 Abs. 2 BAföG)</td><td class="text-right p-2 border border-gray-200">−200,70 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">− Vergütungsfreibetrag (§ 67 Abs. 2 Nr. 3 SGB III)</td><td class="text-right p-2 border border-gray-200">−85,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">= Anrechnung aus Vergütung</td><td class="text-right p-2 border border-gray-200">614,30 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Elterneinkommen 3.200 € &lt; Freibetrag 3.441 € (2.540 € + 901 €)</td><td class="text-right p-2 border border-gray-200">0,00 €</td></tr>
+                <tr class="bg-cyan-50 font-semibold"><td class="p-2 border border-gray-200">BAB = 918,00 € − 614,30 €</td><td class="text-right p-2 border border-gray-200">303,70 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bei einer höheren Vergütung von z. B. <strong>1.200 € brutto</strong> ergäbe sich eine
+            Anrechnung von 847,40 € (1.200 € − 267,60 € − 85 €) – die BAB sänke auf rund 70,60 €.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BvB: Berufsvorbereitende Bildungsmaßnahmen ohne Einkommensanrechnung</h3>
+          <p>
+            Bei einer <strong>BvB-Maßnahme</strong> gelten eigene Bedarfssätze (§ 62 SGB III i.V.m. § 12 BAföG):
+            <strong>276 €/Monat</strong> im Elternhaushalt, <strong>666 €/Monat</strong> außerhalb.
+            Der große Vorteil: Bei BvB findet <strong>keine Einkommensanrechnung</strong> statt
+            (§ 67 Abs. 4 SGB III) – weder eigenes Einkommen noch das der Eltern mindert die BAB.
+            Zusätzlich übernimmt die Agentur für Arbeit bei BvB die Kranken- und Pflegeversicherungsbeiträge,
+            wenn kein anderweitiger Schutz besteht.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wohnheim oder Internat: Sonderregel mit 115-€-Pauschale</h3>
+          <p>
+            Wohnen Sie in einem <strong>Wohnheim oder Internat mit voller Verpflegung</strong>, gilt statt
+            der Pauschale von 822 € eine andere Rechnung: Als Bedarf werden die <strong>vereinbarten
+            Entgelte für Unterbringung und Verpflegung</strong> angesetzt, zuzüglich <strong>115 €/Monat</strong>
+            für sonstige Bedürfnisse (§ 61 Abs. 2, § 62 Abs. 3 SGB III). Kostet das Wohnheim z. B.
+            400 €/Monat, beträgt der Lebensunterhalts-Bedarf 515 €.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Blockunterricht: Bedarf bleibt gleich (§ 65 SGB III)</h3>
+          <p>
+            Während des <strong>Berufsschul-Blockunterrichts</strong> wird der Bedarf so berechnet wie in
+            Zeiten ohne Berufsschule – zusätzliche Unterbringungskosten am Schulort ändern die BAB also
+            nicht automatisch. Eine Förderung <strong>allein für den Blockunterricht</strong> ist
+            ausgeschlossen (§ 65 SGB III).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Vorausleistung: Wenn Eltern nicht zahlen (§ 68 SGB III)</h3>
+          <p>
+            Wird Ihnen wegen des Elterneinkommens BAB gekürzt, die Eltern zahlen den angerechneten
+            Unterhalt aber tatsächlich nicht, können Sie bei der Agentur für Arbeit
+            <strong>Vorausleistung</strong> beantragen: Die BAB wird dann ohne die Elternanrechnung
+            gezahlt, und der Unterhaltsanspruch gegen die Eltern geht auf die Agentur für Arbeit über.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BAB beantragen: So geht's bei der Agentur für Arbeit</h3>
+          <p>
+            Die BAB wird bei der <strong>örtlichen Agentur für Arbeit</strong> beantragt – online über
+            das Portal der Bundesagentur oder vor Ort. Wichtig:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Früh beantragen:</strong> Rückwirkend wird höchstens ab dem Monat der Antragstellung gezahlt</li>
+            <li><strong>Unterlagen:</strong> Ausbildungsvertrag, Mietvertrag, Einkommensnachweise der Eltern (i. d. R. vorletztes Kalenderjahr)</li>
+            <li><strong>Bewilligungszeitraum:</strong> BAB wird in der Regel für 18 Monate bewilligt, danach Folgeantrag</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">BAB und andere Leistungen: Kindergeld, BAföG & Co.</h3>
+          <p>
+            BAB und <a href="/kindergeld-rechner" class="text-blue-600 hover:underline">Kindergeld</a> können
+            parallel bezogen werden – das Kindergeld erhalten weiterhin die Eltern. Für schulische
+            Ausbildungen und Studium gilt statt BAB das
+            <a href="/bafoeg-rechner" class="text-blue-600 hover:underline">BAföG</a>. Ob Ihre Vergütung
+            branchenüblich ist, zeigt der
+            <a href="/ausbildungsverguetung-rechner" class="text-blue-600 hover:underline">Ausbildungsvergütung-Rechner</a>.
+            Reicht die BAB nicht, kann ergänzend Wohngeld oder Bürgergeld in Betracht kommen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) - wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="berufsausbildungsbeihilfe" slugs={['bafoeg', 'ausbildungsverguetung', 'kindergeld']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Zu spät beantragt</h3>
+            <p>BAB wird höchstens ab dem Monat der Antragstellung gezahlt – wer erst Monate nach Ausbildungsbeginn beantragt, verschenkt Geld. Am besten den Antrag schon vor dem ersten Ausbildungstag stellen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Falsches Elterneinkommen angesetzt</h3>
+            <p>Maßgeblich ist nicht das aktuelle Bruttogehalt, sondern das Einkommen nach BAföG-Begriff aus dem vorletzten Kalenderjahr. Ist das Einkommen inzwischen deutlich gesunken, lohnt ein Aktualisierungsantrag.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">BAB trotz Wohnen bei den Eltern erwartet</h3>
+            <p>Bei einer Berufsausbildung gibt es BAB nur außerhalb des Elternhaushalts (§ 60 SGB III). Nur bei BvB-Maßnahmen wird auch im Elternhaushalt gefördert (276 €/Monat).</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Ausbildung im Elternbetrieb unterschätzt</h3>
+            <p>Wer im Betrieb der Eltern oder des Ehegatten ausgebildet wird, muss mindestens die tarifliche bzw. ortsübliche Bruttovergütung ansetzen lassen (§ 67 Abs. 3 SGB III) – auch wenn tatsächlich weniger gezahlt wird.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BAB-Rechner 2026 – Berufsausbildungsbeihilfe",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/berufsausbildungsbeihilfe-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data (wortgleich zur sichtbaren FAQ) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.antwort
+      }
+    }))
+  })} />
+</Layout>

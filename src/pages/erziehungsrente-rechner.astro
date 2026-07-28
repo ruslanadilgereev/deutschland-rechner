@@ -1,0 +1,352 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import ErziehungsrenteRechner from '../components/rechner/ErziehungsrenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Erziehungsrente-Rechner 2026 – Höhe & Anspruch nach § 47 SGB VI";
+const description = "Erziehungsrente berechnen 2026: Rente für Geschiedene nach dem Tod des Ex-Partners (§ 47 SGB VI). Rentenartfaktor 1,0, Freibetrag 1.122,53 €, Einkommensanrechnung. Kostenlos!";
+const keywords = "Erziehungsrente Rechner, Erziehungsrente berechnen, Erziehungsrente 2026, Erziehungsrente Höhe, Erziehungsrente Voraussetzungen, Erziehungsrente § 47 SGB VI, Rente nach Tod des geschiedenen Ehegatten, Erziehungsrente geschieden, Erziehungsrente Einkommensanrechnung, Erziehungsrente Freibetrag, Erziehungsrente Anspruch";
+
+const faqs = [
+  {
+    frage: "Was ist die Erziehungsrente?",
+    antwort: "Die Erziehungsrente (§ 47 SGB VI) ist eine Rente wegen Todes für Geschiedene: Stirbt der geschiedene Ehegatte und erziehen Sie ein Kind unter 18 Jahren, erhalten Sie eine Rente aus Ihrer EIGENEN Rentenversicherung. Der Rentenartfaktor beträgt 1,0 (§ 67 Nr. 4 SGB VI) – die Erziehungsrente entspricht damit der Höhe Ihrer eigenen bisher erworbenen Rentenanwartschaft, gekürzt um eine mögliche Einkommensanrechnung."
+  },
+  {
+    frage: "Wer hat Anspruch auf Erziehungsrente?",
+    antwort: "Nach § 47 Abs. 1 SGB VI müssen alle Voraussetzungen gleichzeitig erfüllt sein: 1. Die Ehe wurde nach dem 30.06.1977 geschieden und der geschiedene Ehegatte ist gestorben. 2. Sie erziehen ein eigenes Kind oder ein Kind des Geschiedenen unter 18 Jahren (ohne Altersgrenze bei einem Kind mit Behinderung). 3. Sie haben nicht wieder geheiratet. 4. Sie haben bis zum Tod des Geschiedenen die allgemeine Wartezeit von 5 Jahren erfüllt. Der Anspruch besteht nur bis zum Erreichen der Regelaltersgrenze."
+  },
+  {
+    frage: "Wie hoch ist die Erziehungsrente 2026?",
+    antwort: "Die Erziehungsrente wird nach der Rentenformel (§ 64 SGB VI) aus Ihren eigenen Entgeltpunkten berechnet: Entgeltpunkte × Zugangsfaktor × Rentenartfaktor 1,0 × aktueller Rentenwert 42,52 € (ab 01.07.2026). Beispiel: 30 Entgeltpunkte × 1,0 × 1,0 × 42,52 € = 1.275,60 € brutto im Monat – davon geht ggf. noch die Einkommensanrechnung nach § 97 SGB VI ab."
+  },
+  {
+    frage: "Wie lange wird die Erziehungsrente gezahlt?",
+    antwort: "Die Erziehungsrente wird längstens bis zum Erreichen der Regelaltersgrenze gezahlt (§ 47 Abs. 1 SGB VI). Außerdem endet sie, wenn kein Kind unter 18 Jahren mehr erzogen wird (Ausnahme: ein Kind, das wegen Behinderung außerstande ist, sich selbst zu unterhalten – hier gilt keine Altersgrenze) oder wenn Sie wieder heiraten."
+  },
+  {
+    frage: "Wird eigenes Einkommen auf die Erziehungsrente angerechnet?",
+    antwort: "Ja. § 97 SGB VI nennt die Erziehungsrente ausdrücklich neben Witwen- und Witwerrente. Eigenes Einkommen über dem Freibetrag von 1.122,53 € netto (26,4 × Rentenwert 42,52 €, ab Juli 2026) wird zu 40 % auf die Rente angerechnet. Je waisenrentenberechtigtem Kind erhöht sich der Freibetrag um 238,11 € (5,6 × Rentenwert)."
+  },
+  {
+    frage: "Was ist der Unterschied zwischen Erziehungsrente und Witwenrente?",
+    antwort: "Die Witwenrente wird aus der Versicherung des VERSTORBENEN Ehepartners abgeleitet (55 % bzw. 25 % von dessen Rente) und setzt eine bestehende Ehe zum Todeszeitpunkt voraus. Die Erziehungsrente gibt es dagegen nach dem Tod des GESCHIEDENEN Ex-Partners und sie wird zu 100 % (Rentenartfaktor 1,0) aus Ihrer eigenen Versicherung berechnet – Ihre eigenen Entgeltpunkte bestimmen die Höhe."
+  },
+  {
+    frage: "Gibt es einen offiziellen Erziehungsrente-Rechner der Deutschen Rentenversicherung?",
+    antwort: "Zuständig für die Erziehungsrente ist die Deutsche Rentenversicherung – sie berät kostenlos unter 0800 1000 4800 und erteilt verbindliche Auskünfte. Unser Erziehungsrente-Rechner ist ein unabhängiges, kostenloses Angebot und kein offizieller Rechner der Deutschen Rentenversicherung. Den Antrag stellen Sie direkt bei der Deutschen Rentenversicherung."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Erziehungsrente-Rechner", url: "/erziehungsrente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-purple-500 to-pink-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">👩‍👧</span>
+          <div>
+            <h1 class="text-2xl font-bold">Erziehungsrente-Rechner</h1>
+            <p class="text-purple-100 text-sm">Rente für Geschiedene nach § 47 SGB VI berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ErziehungsrenteRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <div class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+          <div>
+            <span class="block text-xs font-semibold text-gray-400 uppercase">Zuletzt aktualisiert</span>
+            <span class="text-gray-800 font-medium">Juli 2026</span>
+          </div>
+          <div>
+            <span class="block text-xs font-semibold text-gray-400 uppercase">Grundlage</span>
+            <span class="text-gray-800 font-medium">§§ 46, 47, 50, 64, 67, 97 SGB VI · RWBestV 2026</span>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4 text-sm">
+          <div class="bg-green-50 rounded-xl p-4">
+            <p class="font-semibold text-green-800 mb-1">✓ Berücksichtigt</p>
+            <ul class="text-green-700 space-y-1 list-disc pl-4">
+              <li>Rentenartfaktor 1,0 (§ 67 Nr. 4 SGB VI)</li>
+              <li>Aktueller Rentenwert 42,52 € (ab 01.07.2026)</li>
+              <li>Freibetrag 1.122,53 € + 238,11 € je Kind (§ 97 SGB VI)</li>
+              <li>Anrechnung von 40 % über dem Freibetrag</li>
+              <li>Alle Anspruchsvoraussetzungen des § 47 Abs. 1 als Checkliste</li>
+            </ul>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-4">
+            <p class="font-semibold text-amber-800 mb-1">✗ Nicht berücksichtigt</p>
+            <ul class="text-amber-700 space-y-1 list-disc pl-4">
+              <li>KV-/PV-Beiträge und Steuern (Netto)</li>
+              <li>Exakte Netto-Ermittlung nach § 18a/§ 18b SGB IV (nur pauschale Näherung)</li>
+              <li>Abschläge nach § 77 SGB VI (Zugangsfaktor nur manuell)</li>
+              <li>Zurechnungszeiten (§ 59 SGB VI)</li>
+              <li>Erziehungsrente nach Rentensplitting (§ 47 Abs. 3 SGB VI)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Erziehungsrente 2026: Rente für Geschiedene mit Kind</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Erziehungsrente</strong> ist die unbekannteste Rente wegen Todes: Sie sichert
+            <strong>Geschiedene</strong> ab, deren Ex-Partner verstorben ist und die ein Kind erziehen.
+            Anders als die Witwenrente wird sie aus der <strong>eigenen Rentenversicherung</strong>
+            berechnet. Mit unserem <strong>Erziehungsrente-Rechner</strong> prüfen Sie den Anspruch
+            nach § 47 SGB VI und berechnen die Höhe inklusive Einkommensanrechnung.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf dem aktuellen Rentenwert von
+            <strong>42,52 €</strong> (gültig ab 01.07.2026, § 1 RWBestV 2026); daraus ergeben sich der
+            Freibetrag von 1.122,53 € und der Kinderzuschlag von 238,11 € je Kind.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Erziehungsrente?</h3>
+          <p>
+            Die Erziehungsrente nach <strong>§ 47 SGB VI</strong> ersetzt den Unterhalt, den der
+            verstorbene geschiedene Ehegatte für das gemeinsame Kind bzw. den erziehenden Elternteil
+            geleistet hätte. Sie ist eine <strong>Rente wegen Todes</strong> – wird aber komplett aus
+            Ihrer eigenen Versicherung gezahlt, mit dem vollen <strong>Rentenartfaktor 1,0</strong>
+            (§ 67 Nr. 4 SGB VI), also wie eine Altersrente.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzungen nach § 47 SGB VI</h3>
+          <p>
+            Alle vier Voraussetzungen müssen gleichzeitig erfüllt sein:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Scheidung nach dem 30.06.1977</strong> und Tod des geschiedenen Ehegatten</li>
+            <li><strong>Kindererziehung:</strong> eigenes Kind oder Kind des Geschiedenen unter 18 Jahren (ohne Altersgrenze bei einem Kind mit Behinderung, § 46 Abs. 2 SGB VI)</li>
+            <li><strong>Keine Wiederheirat</strong></li>
+            <li><strong>Allgemeine Wartezeit</strong> von 5 Jahren (§ 50 Abs. 1 SGB VI) bis zum Tod des Geschiedenen erfüllt – mit Ihren eigenen Versicherungszeiten</li>
+          </ul>
+          <p>
+            Der Anspruch besteht außerdem nur <strong>bis zum Erreichen der Regelaltersgrenze</strong> –
+            danach greift die eigene Altersrente.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erziehungsrente kommt aus der eigenen Versicherung</h3>
+          <p>
+            Der wichtigste Unterschied zur <a href="/witwenrente-rechner" class="text-blue-600 hover:underline">Witwenrente</a>:
+            Bei der Erziehungsrente zählen <strong>Ihre eigenen Entgeltpunkte</strong>, nicht die des
+            Verstorbenen. Wie viele Entgeltpunkte Sie haben, steht in Ihrer jährlichen
+            Renteninformation – oder Sie schätzen sie mit dem
+            <a href="/rentenpunkte-rechner" class="text-blue-600 hover:underline">Rentenpunkte-Rechner</a> ab.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Rentenformel (§ 64 SGB VI)</h3>
+          <p>
+            Wie jede gesetzliche Rente wird die Erziehungsrente nach der Rentenformel berechnet:
+          </p>
+          <p class="bg-gray-50 rounded-lg p-3 font-mono text-sm text-center">
+            Monatsrente = Entgeltpunkte × Zugangsfaktor × 1,0 × 42,52 €
+          </p>
+          <p>
+            Der Rentenartfaktor der Erziehungsrente beträgt <strong>1,0</strong> (§ 67 Nr. 4 SGB VI) –
+            im Gegensatz zur großen Witwenrente (0,55) oder kleinen Witwenrente (0,25). Der aktuelle
+            Rentenwert liegt seit dem 01.07.2026 bei <strong>42,52 €</strong> pro Entgeltpunkt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Erziehungsrente Schritt für Schritt</h3>
+          <p>
+            Beispiel: Eine Geschiedene mit <strong>30 eigenen Entgeltpunkten</strong> erzieht ein
+            waisenrentenberechtigtes Kind und verdient <strong>2.500 € brutto</strong> im Monat. Das
+            anrechenbare Netto wird pauschal ermittelt (40 % Abzug vom Brutto, § 18b SGB IV – Näherung):
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Betrag</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">30 EP × 1,0 × 1,0 × 42,52 € = Brutto-Erziehungsrente (<a href="https://www.gesetze-im-internet.de/sgb_6/__64.html" target="_blank" rel="noopener" class="text-blue-600 hover:underline">§ 64 SGB VI</a>)</td><td class="text-right p-2 border border-gray-200">1.275,60 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Arbeitseinkommen brutto (Beispiel)</td><td class="text-right p-2 border border-gray-200">2.500,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Pauschalabzug 40 % → anrechenbares Netto</td><td class="text-right p-2 border border-gray-200">1.500,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Freibetrag 1.122,53 € + 238,11 € (1 Kind)</td><td class="text-right p-2 border border-gray-200">1.360,64 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Übersteigender Betrag (1.500,00 − 1.360,64)</td><td class="text-right p-2 border border-gray-200">139,36 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Davon 40 % Anrechnung (Kürzung, <a href="https://www.gesetze-im-internet.de/sgb_6/__97.html" target="_blank" rel="noopener" class="text-blue-600 hover:underline">§ 97 SGB VI</a>)</td><td class="text-right p-2 border border-gray-200">−55,74 €</td></tr>
+                <tr class="bg-purple-50 font-semibold"><td class="p-2 border border-gray-200">Erziehungsrente nach Einkommensanrechnung</td><td class="text-right p-2 border border-gray-200">1.219,86 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Liegt das anrechenbare Netto <strong>unter dem Freibetrag</strong>, wird die
+            Erziehungsrente ungekürzt gezahlt.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einkommensanrechnung nach § 97 SGB VI</h3>
+          <p>
+            § 97 Abs. 1 SGB VI nennt die Erziehungsrente ausdrücklich neben Witwen- und Witwerrente:
+            Eigenes Einkommen wird angerechnet, soweit es den Freibetrag übersteigt.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Freibetrag:</strong> 26,4 × aktueller Rentenwert = 1.122,53 € (ab Juli 2026)</li>
+            <li><strong>+ Kinderzuschlag:</strong> 5,6 × Rentenwert = 238,11 € je waisenrentenberechtigtem Kind</li>
+            <li><strong>Anrechnung:</strong> 40 % des Betrags über dem Freibetrag kürzen die Rente</li>
+          </ul>
+          <p>
+            Das tatsächliche Nettogehalt (berechenbar mit dem
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>)
+            ist dabei nicht maßgeblich – die Rentenversicherung kürzt das Brutto pauschal nach
+            § 18a/§ 18b SGB IV.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Freibetrag und Kinderzuschlag 2026</h3>
+          <p>
+            Der Freibetrag ist dynamisch an den Rentenwert gekoppelt und steigt mit jeder
+            Rentenanpassung. Seit dem 01.07.2026 gilt: 26,4 × 42,52 € = <strong>1.122,53 €</strong>.
+            Mit einem waisenrentenberechtigten Kind sind es 1.360,64 €, mit zwei Kindern 1.598,75 €.
+            Ein Verdienst bis etwa 1.870 € brutto (ohne Kind) bleibt damit anrechnungsfrei.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie lange wird die Erziehungsrente gezahlt?</h3>
+          <p>
+            Die Erziehungsrente ist mehrfach befristet:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Längstens <strong>bis zur Regelaltersgrenze</strong> (§ 47 Abs. 1 SGB VI)</li>
+            <li>Solange ein <strong>Kind unter 18</strong> erzogen wird – bei einem Kind, das wegen Behinderung außerstande ist, sich selbst zu unterhalten, ohne Altersgrenze (§ 46 Abs. 2 SGB VI)</li>
+            <li>Bis zu einer <strong>Wiederheirat</strong></li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wiederheirat: Wann der Anspruch endet</h3>
+          <p>
+            Wer wieder heiratet, verliert den Anspruch auf Erziehungsrente – § 47 Abs. 1 Nr. 3 SGB VI
+            fordert ausdrücklich, dass Berechtigte „nicht wieder geheiratet haben". Anders als bei der
+            Witwenrente ist für die Erziehungsrente keine Abfindung bei Wiederheirat im Gesetz
+            vorgesehen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erziehungsrente nach Rentensplitting</h3>
+          <p>
+            Auch <strong>verwitwete Ehegatten und überlebende Lebenspartner</strong> können eine
+            Erziehungsrente erhalten, wenn sie ein <strong>Rentensplitting</strong> durchgeführt haben
+            (§ 47 Abs. 3 SGB VI) – denn mit dem Splitting entfällt der Anspruch auf Witwen- oder
+            Witwerrente. Diese Variante bildet der Rechner nicht gesondert ab; die Rentenformel ist
+            aber dieselbe.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Antrag bei der Deutschen Rentenversicherung</h3>
+          <p>
+            Die Erziehungsrente wird nur auf <strong>Antrag</strong> gezahlt – zuständig ist die
+            Deutsche Rentenversicherung (Hotline 0800 1000 4800, kostenlos). Hilfreiche Unterlagen:
+            Scheidungsurteil, Sterbeurkunde des Ex-Partners, Geburtsurkunde des Kindes und der eigene
+            Versicherungsverlauf. Die eigene Altersrente können Sie parallel mit dem
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">Renten-Rechner</a> abschätzen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Mit der Witwenrente verwechselt</h3>
+            <p>Die Erziehungsrente wird aus den EIGENEN Entgeltpunkten berechnet (Rentenartfaktor 1,0), nicht aus der Rente des Verstorbenen. Wer hier die Rente des Ex-Partners einsetzt, rechnet komplett falsch.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einkommensanrechnung übersehen</h3>
+            <p>Eigenes Einkommen über dem Freibetrag von 1.122,53 € netto wird zu 40 % angerechnet (§ 97 SGB VI). Ein Vollzeitgehalt kann die Erziehungsrente deutlich kürzen oder ganz aufzehren.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Befristung ignoriert</h3>
+            <p>Die Rente endet, wenn das jüngste Kind 18 wird (Ausnahme: Kind mit Behinderung), bei Wiederheirat – und spätestens mit der Regelaltersgrenze. Sie ist eine Übergangsleistung, keine Dauerrente.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Wartezeit vergessen</h3>
+            <p>Sie selbst müssen die allgemeine Wartezeit von 5 Jahren (§ 50 Abs. 1 SGB VI) bis zum Tod des Geschiedenen erfüllt haben – mit eigenen Beitragszeiten, Kindererziehungszeiten zählen mit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="erziehungsrente" slugs={['witwenrente', 'waisenrente', 'renten', 'hinterbliebenenrente']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Erziehungsrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/erziehungsrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.antwort
+      }
+    }))
+  })} />
+</Layout>

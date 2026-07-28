@@ -3835,6 +3835,77 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     quellen: ['https://www.gesetze-im-internet.de/sgb_11/__43.html', 'https://www.gesetze-im-internet.de/sgb_11/__43c.html'],
   },
+  {
+    id: 'berufsausbildungsbeihilfe',
+    name: 'Berufsausbildungsbeihilfe-Rechner (BAB)',
+    beschreibung: 'BAB-Bedarf, Fahrkosten und Einkommensanrechnung (§§ 60-67 SGB III)',
+    icon: '🎒',
+    kategorie: 'soziales',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_3/__60.html',
+      'https://www.gesetze-im-internet.de/sgb_3/__61.html',
+      'https://www.gesetze-im-internet.de/sgb_3/__67.html',
+    ],
+  },
+  {
+    id: 'hinterbliebenenrente',
+    name: 'Hinterbliebenenrente-Rechner',
+    beschreibung: 'Witwen-, Waisen- und Erziehungsrente nach Rentenartfaktor (§ 67 SGB VI)',
+    icon: '💐',
+    kategorie: 'soziales',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_6/__46.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__67.html',
+    ],
+  },
+  {
+    id: 'erziehungsrente',
+    name: 'Erziehungsrente-Rechner',
+    beschreibung: 'Rente für Geschiedene nach dem Tod des Ex-Partners (§ 47 SGB VI)',
+    icon: '👨‍👧',
+    kategorie: 'soziales',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_6/__47.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__97.html',
+    ],
+  },
+  {
+    id: 'rentensplitting',
+    name: 'Rentensplitting-Rechner',
+    beschreibung: 'Entgeltpunkte zwischen Ehegatten aufteilen (§§ 120a-120e SGB VI)',
+    icon: '➗',
+    kategorie: 'soziales',
+    fertig: true,
+    quellen: ['https://www.gesetze-im-internet.de/sgb_6/__120a.html'],
+  },
+  {
+    id: 'teilrente',
+    name: 'Teilrente-Rechner',
+    beschreibung: 'Teilrente frei wählen und weiterarbeiten (§ 42 SGB VI)',
+    icon: '🧩',
+    kategorie: 'soziales',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_6/__42.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__64.html',
+    ],
+  },
+  {
+    id: 'pflegeunterstuetzungsgeld',
+    name: 'Pflegeunterstützungsgeld-Rechner',
+    beschreibung: 'Lohnersatz für bis zu 10 Tage Pflege-Auszeit (§ 44a SGB XI)',
+    icon: '🫂',
+    kategorie: 'gesundheit',
+    fertig: true,
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_11/__44a.html',
+      'https://www.gesetze-im-internet.de/pflegezg/__2.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__45.html',
+    ],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

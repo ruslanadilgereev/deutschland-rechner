@@ -1,0 +1,349 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import TeilrenteRechner from '../components/rechner/TeilrenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Teilrente-Rechner 2026 – 10 bis 99,99 % der Rente berechnen";
+const description = "Teilrente berechnen 2026: Prozentsatz frei wählbar von 10 bis 99,99 % (§ 42 SGB VI), Hinzuverdienst ohne Grenze seit 2023. Jetzt Teilrente & Gesamteinkommen berechnen!";
+const keywords = "Teilrente Rechner, Teilrente berechnen, Teilrente 2026, Teilrente Hinzuverdienst, Teilrente 99 Prozent, Teilrente 99,99 Prozent, Teilrente Altersrente, Teilrente beantragen, Teilrente Höhe, Vollrente Teilrente Unterschied, Teilrente Prozentsatz";
+
+// FAQ einmal definieren – sichtbare FAQ und FAQPage-Schema bleiben dadurch wortgleich
+const faqs = [
+  {
+    frage: "Was ist eine Teilrente?",
+    antwort: "Die Teilrente ist eine Altersrente, die Sie nach § 42 SGB VI nicht in voller Höhe, sondern nur zu einem selbst gewählten Anteil beziehen. Der Anteil muss mindestens 10 Prozent der Vollrente betragen; nach der Verwaltungspraxis der Deutschen Rentenversicherung sind höchstens 99,99 Prozent möglich. Beispiel: Bei 1.600 € Vollrente und 50 Prozent Teilrente erhalten Sie 800 € im Monat."
+  },
+  {
+    frage: "Wie hoch darf die Teilrente 2026 sein?",
+    antwort: "Die Teilrente muss mindestens 10 Prozent der Vollrente betragen (§ 42 Abs. 1 SGB VI) und darf nach der Verwaltungspraxis der Deutschen Rentenversicherung höchstens 99,99 Prozent erreichen. Innerhalb dieser Spanne ist der Prozentsatz frei wählbar."
+  },
+  {
+    frage: "Wie wird die Teilrente berechnet?",
+    antwort: "In zwei Schritten: 1. Die Vollrente ergibt sich aus der Rentenformel des § 64 SGB VI: persönliche Entgeltpunkte × Rentenartfaktor 1,0 (Altersrente, § 67 SGB VI) × aktueller Rentenwert von 42,52 € (ab 01.07.2026). 2. Die Teilrente ist der gewählte Prozentsatz davon. Beispiel: 40 Entgeltpunkte ergeben 1.700,80 € Vollrente – bei 50 Prozent Teilrente sind das 850,40 € im Monat."
+  },
+  {
+    frage: "Wie viel darf ich neben der Teilrente hinzuverdienen?",
+    antwort: "Unbegrenzt. Die Hinzuverdienstgrenzen für Altersrenten wurden zum 1. Januar 2023 aufgehoben. Sie können neben einer Voll- oder Teilrente in beliebigem Umfang weiterarbeiten, ohne dass die Rente gekürzt wird."
+  },
+  {
+    frage: "Steht die Obergrenze von 99,99 Prozent im Gesetz?",
+    antwort: "Nein. § 42 Abs. 1 SGB VI nennt nur die Untergrenze von mindestens 10 Prozent der Vollrente. Die Obergrenze von 99,99 Prozent ist amtliche Verwaltungspraxis der Deutschen Rentenversicherung und folgt daraus, dass die Teilrente unter der Vollrente liegen muss."
+  },
+  {
+    frage: "Warum wählen manche eine Teilrente von 99,99 Prozent?",
+    antwort: "Wer eine Teilrente bezieht, gilt rechtlich nicht als Vollrentner – daran können im Einzelfall Vorteile geknüpft sein, etwa für pflegende Angehörige. Ob sich das in Ihrem Fall lohnt, hängt von Ihrer persönlichen Situation ab und sollte vor dem Antrag mit der Deutschen Rentenversicherung geklärt werden. Dieser Rechner bewertet solche Folgewirkungen nicht."
+  },
+  {
+    frage: "Gibt es einen offiziellen Teilrente-Rechner der Deutschen Rentenversicherung?",
+    antwort: "Zuständig für die Teilrente ist die Deutsche Rentenversicherung – sie berät kostenlos unter 0800 1000 4800 und erteilt verbindliche Auskünfte. Unser Teilrente-Rechner ist ein unabhängiges, kostenloses Angebot und kein offizieller Rechner der Deutschen Rentenversicherung. Die Teilrente beantragen Sie direkt bei der Deutschen Rentenversicherung."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Teilrente-Rechner", url: "/teilrente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-yellow-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⏳</span>
+          <div>
+            <h1 class="text-2xl font-bold">Teilrente-Rechner</h1>
+            <p class="text-amber-100 text-sm">Altersrente als Teilrente 2026 berechnen – 10 bis 99,99 %</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TeilrenteRechner client:load />
+    </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 22. Juli 2026</p>
+            <p class="mb-1"><strong>Grundlage:</strong> § 42 Abs. 1 SGB VI (Teilrente mindestens 10 % der Vollrente), Rentenformel nach § 64 SGB VI mit Rentenartfaktor 1,0 (§ 67 SGB VI), aktueller Rentenwert 42,52 € ab 01.07.2026 (§ 1 RWBestV 2026) sowie DRV-FAQ (Obergrenze 99,99 %, Wegfall der Hinzuverdienstgrenzen zum 01.01.2023).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Vollrente (direkt eingegeben oder aus persönlichen Entgeltpunkten berechnet), frei wählbarer Teilrenten-Prozentsatz von 10 bis 99,99 %, nicht in Anspruch genommener Restanteil, Hinzuverdienst als reine Information ohne Kürzung.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Steuern sowie Kranken- und Pflegeversicherungsbeiträge auf die Rente, Abschläge oder Zuschläge bei vorgezogenem bzw. aufgeschobenem Rentenbeginn (der Zugangsfaktor muss bereits in den Entgeltpunkten stecken) und Folgewirkungen der Teilrente auf die Sozialversicherung, z. B. bei pflegenden Angehörigen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Teilrente 2026: Rente flexibel in Teilen beziehen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit der <strong>Teilrente</strong> beziehen Sie Ihre Altersrente nicht in voller Höhe,
+            sondern nur zu einem selbst gewählten Prozentsatz – von 10 bis 99,99 Prozent der
+            Vollrente. Mit unserem <strong>Teilrente-Rechner</strong> berechnen Sie in Sekunden,
+            wie hoch Ihre Teilrente ausfällt, welcher Anteil Ihrer Rente übrig bleibt und wie viel
+            Gesamteinkommen Sie zusammen mit einem Hinzuverdienst erreichen.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf dem aktuellen Rentenwert
+            von <strong>42,52 €</strong> pro Entgeltpunkt (gültig ab 01.07.2026, § 1 RWBestV 2026)
+            und der Rentenformel des § 64 SGB VI.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was ist die Teilrente nach § 42 SGB VI?</h3>
+          <p>
+            Nach <strong>§ 42 Abs. 1 SGB VI</strong> können Versicherte eine Rente wegen Alters
+            „in voller Höhe (Vollrente) oder als Teilrente in Höhe von mindestens 10 Prozent der
+            Vollrente" in Anspruch nehmen. Sie entscheiden also selbst, ob Sie Ihre komplette
+            Altersrente beziehen oder nur einen Teil davon – zum Beispiel, weil Sie noch
+            weiterarbeiten und den Renteneintritt fließend gestalten möchten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Teilrente 2026: frei wählbar zwischen 10 und 99,99 Prozent</h3>
+          <p>
+            Die zulässige Spanne für den Teilrenten-Prozentsatz:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Untergrenze 10 %:</strong> steht wörtlich im Gesetz (§ 42 Abs. 1 SGB VI)</li>
+            <li><strong>Obergrenze 99,99 %:</strong> steht <em>nicht</em> im Gesetzestext – sie ist amtliche Verwaltungspraxis der Deutschen Rentenversicherung (DRV-FAQ) und folgt daraus, dass die Teilrente unter der Vollrente liegen muss</li>
+          </ul>
+          <p>
+            Innerhalb dieser Spanne ist der Prozentsatz frei wählbar. Welche Schrittweite
+            (z. B. 0,01-Prozent-Schritte) im Antrag zulässig ist, ist amtlich nicht spezifiziert.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">So wird die Teilrente berechnet: die Formel</h3>
+          <p>
+            Die Berechnung folgt in zwei Schritten der gesetzlichen Rentenformel:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Schritt 1 – Vollrente</strong> (§ 64 SGB VI): persönliche Entgeltpunkte (inkl. Zugangsfaktor) × Rentenartfaktor 1,0 (Altersrente, § 67 SGB VI) × aktueller Rentenwert 42,52 € (ab 01.07.2026)</li>
+            <li><strong>Schritt 2 – Teilrente</strong> (§ 42 SGB VI): gewählter Prozentsatz × Vollrente</li>
+          </ul>
+          <p>
+            Alternativ können Sie im Rechner Ihre Voll-Bruttorente direkt eingeben – sie steht in
+            Ihrer Renteninformation. Ihre Vollrente können Sie auch mit dem
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">Renten-Rechner</a> ermitteln.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Teilrente Schritt für Schritt</h3>
+          <p>
+            Angenommen, Ihre Vollrente beträgt <strong>1.600 € brutto</strong> und Sie wählen eine
+            Teilrente von <strong>50 Prozent</strong>, daneben verdienen Sie <strong>2.500 € brutto</strong>
+            hinzu (frei gewähltes Beispiel):
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Betrag</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Vollrente (brutto)</td><td class="text-right p-2 border border-gray-200">1.600,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Gewählter Teilrenten-Prozentsatz</td><td class="text-right p-2 border border-gray-200">50 %</td></tr>
+                <tr><td class="p-2 border border-gray-200">Teilrente = 50 % × 1.600 €</td><td class="text-right p-2 border border-gray-200">800,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Nicht in Anspruch genommener Anteil (50 %)</td><td class="text-right p-2 border border-gray-200">800,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Hinzuverdienst brutto (keine Anrechnung, keine Kürzung)</td><td class="text-right p-2 border border-gray-200">2.500,00 €</td></tr>
+                <tr class="bg-amber-50 font-semibold"><td class="p-2 border border-gray-200">Gesamteinkommen brutto / Monat</td><td class="text-right p-2 border border-gray-200">3.300,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Wichtig: Der Hinzuverdienst kürzt die Teilrente <strong>nicht</strong> – die
+            Hinzuverdienstgrenzen für Altersrenten sind seit dem 01.01.2023 aufgehoben.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Verschiedene Prozentsätze im Vergleich</h3>
+          <p>
+            So verändert der gewählte Prozentsatz die monatliche Teilrente – Basis ist wieder eine
+            Vollrente von 1.600 €:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Prozentsatz</th>
+                  <th class="text-right p-2 border border-gray-200">Teilrente</th>
+                  <th class="text-right p-2 border border-gray-200">Restanteil</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">10 % (Minimum, § 42 SGB VI)</td><td class="text-right p-2 border border-gray-200">160,00 €</td><td class="text-right p-2 border border-gray-200">1.440,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">30 %</td><td class="text-right p-2 border border-gray-200">480,00 €</td><td class="text-right p-2 border border-gray-200">1.120,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">50 %</td><td class="text-right p-2 border border-gray-200">800,00 €</td><td class="text-right p-2 border border-gray-200">800,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">70 %</td><td class="text-right p-2 border border-gray-200">1.120,00 €</td><td class="text-right p-2 border border-gray-200">480,00 €</td></tr>
+                <tr class="bg-amber-50"><td class="p-2 border border-gray-200">99,99 % (Maximum, DRV)</td><td class="text-right p-2 border border-gray-200">1.599,84 €</td><td class="text-right p-2 border border-gray-200">0,16 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Hinzuverdienst neben der Teilrente: keine Grenze seit 2023</h3>
+          <p>
+            Zum <strong>1. Januar 2023</strong> wurden die Hinzuverdienstgrenzen für
+            (vorgezogene) Altersrenten aufgehoben. Seitdem gilt: Altersrenten können unabhängig
+            von der Höhe des Hinzuverdienstes in voller Höhe bezogen werden – das gilt für die
+            Vollrente genauso wie für jede Teilrente. Auch der aktuelle <strong>§ 34 SGB VI</strong>
+            enthält keinerlei Hinzuverdienstregelung mehr. Ein Hinzuverdienst-Feld in unserem
+            Rechner ist deshalb rein informativ und kürzt das Ergebnis nie.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wozu noch Teilrente, wenn es keine Hinzuverdienstgrenze mehr gibt?</h3>
+          <p>
+            Vor 2023 diente die Teilrente vor allem dazu, unter der Hinzuverdienstgrenze zu
+            bleiben. Dieser Grund ist entfallen – die Teilrente bleibt aber laut Deutscher
+            Rentenversicherung weiterhin wählbar. Heute nutzen sie Versicherte z. B., um den
+            Übergang in den Ruhestand zu strecken: Wer weiterarbeitet und nur einen Teil der Rente
+            bezieht, lässt den Rest seines Rentenanspruchs vorerst ungenutzt. Ob und welche
+            weiteren Vorteile (etwa sozialversicherungsrechtliche) sich im Einzelfall ergeben,
+            klären Sie am besten direkt mit der Deutschen Rentenversicherung.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Teilrente mit 99,99 Prozent: Was steckt dahinter?</h3>
+          <p>
+            Die maximale Teilrente von <strong>99,99 Prozent</strong> ist fast eine Vollrente –
+            bei 40 Entgeltpunkten (Vollrente 40 × 1,0 × 42,52 € = 1.700,80 €) beträgt sie
+            1.700,63 €, es fehlen nur 0,17 € zur vollen Rente. Der Punkt dabei: Wer eine
+            Teilrente bezieht, gilt rechtlich <strong>nicht als Vollrentner</strong>. Daran können
+            im Einzelfall Vorteile geknüpft sein, die häufig im Zusammenhang mit pflegenden
+            Angehörigen diskutiert werden. Diese Folgewirkungen sind nicht Teil dieses Rechners –
+            lassen Sie sich dazu vor dem Antrag von der Deutschen Rentenversicherung beraten.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Der nicht in Anspruch genommene Anteil</h3>
+          <p>
+            Wählen Sie z. B. 60 Prozent Teilrente, bleiben 40 Prozent Ihrer Vollrente zunächst
+            ungenutzt. Unser Rechner weist diesen Restanteil in Prozent und Euro aus, damit Sie
+            sehen, auf wie viel monatliche Rente Sie während der Teilrente verzichten. Wann und
+            wie Sie später auf die Vollrente umstellen, klären Sie mit der Deutschen
+            Rentenversicherung – auch ein Wechsel des Prozentsatzes ist ein Antrag an die DRV.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Teilrente beantragen: So gehen Sie vor</h3>
+          <p>
+            Die Teilrente wird bei der <strong>Deutschen Rentenversicherung</strong> beantragt:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Online:</strong> über das eService-Portal der DRV</li>
+            <li><strong>Vor Ort:</strong> in einer Beratungsstelle der Rentenversicherung</li>
+            <li><strong>Telefonisch beraten lassen:</strong> kostenlos unter 0800 1000 4800</li>
+          </ul>
+          <p>
+            Geben Sie im Antrag den gewünschten Prozentsatz an. Klären Sie vorab die Folgen für
+            Ihren individuellen Fall – etwa den passenden Zeitpunkt in Kombination mit dem
+            <a href="/renteneintrittsalter-rechner" class="text-blue-600 hover:underline">Renteneintrittsalter</a>
+            oder Abschlägen bei <a href="/fruehrente-rechner" class="text-blue-600 hover:underline">Frührente</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Teilrente, Steuern und Sozialabgaben</h3>
+          <p>
+            Unser Rechner zeigt <strong>Bruttowerte</strong>. Von der Teilrente gehen – wie von
+            jeder gesetzlichen Rente – noch Beiträge zur Kranken- und Pflegeversicherung ab, und
+            sie unterliegt der Einkommensteuer. Wie viel von einer Rente nach Steuern übrig
+            bleibt, zeigt der
+            <a href="/rentensteuer-rechner" class="text-blue-600 hover:underline">Rentensteuer-Rechner</a>;
+            das Nettogehalt aus einem Hinzuverdienst berechnen Sie mit dem
+            <a href="/brutto-netto-rechner" class="text-blue-600 hover:underline">Brutto-Netto-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) - wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+    <VerwandteRechner aktuellerSlug="teilrente" slugs={['renten', 'fruehrente', 'renteneintrittsalter', 'altersteilzeit']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Angst vor Rentenkürzung durch Hinzuverdienst</h3>
+            <p>Viele rechnen noch mit den alten Hinzuverdienstgrenzen. Die gibt es bei Altersrenten seit dem 01.01.2023 nicht mehr: Sie dürfen neben Voll- oder Teilrente unbegrenzt verdienen, ohne dass die Rente gekürzt wird.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">99,99 Prozent für eine Gesetzesnorm gehalten</h3>
+            <p>Im Gesetz (§ 42 Abs. 1 SGB VI) steht nur die Untergrenze von 10 Prozent. Die Obergrenze von 99,99 Prozent ist Verwaltungspraxis der Deutschen Rentenversicherung – die Teilrente muss lediglich unter der Vollrente bleiben.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Brutto mit Netto verwechselt</h3>
+            <p>Der Rechner zeigt die Brutto-Teilrente. Kranken- und Pflegeversicherungsbeiträge sowie ggf. Steuern gehen davon noch ab – planen Sie Ihr Budget nicht mit dem Bruttowert.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Folgewirkungen der Teilrente ignoriert</h3>
+            <p>Ob sich eine Teilrente (z. B. 99,99 %) im Einzelfall lohnt – etwa für pflegende Angehörige oder mit Blick auf Abschläge und spätere Zuschläge – hängt von Ihrer Situation ab. Lassen Sie sich vor dem Antrag von der Deutschen Rentenversicherung beraten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Teilrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/teilrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data (wortgleich zur sichtbaren FAQ) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.antwort
+      }
+    }))
+  })} />
+</Layout>

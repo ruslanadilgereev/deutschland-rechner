@@ -1,0 +1,357 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import PflegeunterstuetzungsgeldRechner from '../components/rechner/PflegeunterstuetzungsgeldRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Pflegeunterstützungsgeld-Rechner 2026 – Höhe & 10 Tage Anspruch";
+const description = "Pflegeunterstützungsgeld 2026 berechnen: 90 % vom Netto, max. 135,63 €/Tag, bis zu 10 Arbeitstage je Kalenderjahr bei akutem Pflegefall (§ 44a SGB XI). Kostenlos prüfen!";
+const keywords = "Pflegeunterstützungsgeld Rechner, Pflegeunterstützungsgeld 2026, Pflegeunterstützungsgeld berechnen, Pflegeunterstützungsgeld Höhe, kurzzeitige Arbeitsverhinderung, akuter Pflegefall Freistellung, 10 Tage Pflege Freistellung, Pflegeunterstützungsgeld beantragen, Pflegeunterstützungsgeld Pflegekasse, § 44a SGB XI";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie hoch ist das Pflegeunterstützungsgeld 2026?",
+    antwort: "Das Pflegeunterstützungsgeld beträgt 90 % des ausgefallenen Nettoarbeitsentgelts je Arbeitstag – bzw. 100 %, wenn Sie in den vorangegangenen 12 Kalendermonaten eine beitragspflichtige Einmalzahlung wie Weihnachts- oder Urlaubsgeld erhalten haben. Es ist 2026 auf höchstens 135,63 € je Arbeitstag gedeckelt (70 % der kalendertäglichen Beitragsbemessungsgrenze). Beispiel: Bei 2.400 € Monatsnetto und 20 Arbeitstagen im Monat sind das 108 € pro Freistellungstag."
+  },
+  {
+    frage: "Wie viele Tage Pflegeunterstützungsgeld gibt es pro Jahr?",
+    antwort: "Beschäftigte haben Anspruch auf Pflegeunterstützungsgeld für bis zu 10 Arbeitstage je Kalenderjahr (§ 44a Abs. 3 SGB XI). Machen mehrere Beschäftigte den Anspruch für denselben pflegebedürftigen Angehörigen geltend, ist der Anspruch für diesen Pflegebedürftigen auf insgesamt 10 Arbeitstage je Kalenderjahr begrenzt – die Tage können also z. B. unter Geschwistern aufgeteilt werden."
+  },
+  {
+    frage: "Wer zahlt das Pflegeunterstützungsgeld?",
+    antwort: "Das Pflegeunterstützungsgeld zahlt die Pflegekasse des pflegebedürftigen Angehörigen – bei privat Pflegeversicherten das private Versicherungsunternehmen. Der Antrag ist unverzüglich zu stellen, zusammen mit einer ärztlichen Bescheinigung (oder der Bescheinigung einer Pflegefachperson) über die akut aufgetretene Pflegesituation. Wichtig: Zuständig ist nicht Ihre eigene Krankenkasse, sondern die Kasse des Pflegebedürftigen."
+  },
+  {
+    frage: "Muss der Arbeitgeber die Freistellung genehmigen?",
+    antwort: "Nein. Nach § 2 PflegeZG haben Beschäftigte das Recht, bis zu 10 Arbeitstage der Arbeit fernzubleiben, wenn dies erforderlich ist, um für einen pflegebedürftigen nahen Angehörigen in einer akut aufgetretenen Pflegesituation die Pflege zu organisieren oder sicherzustellen. Sie müssen dem Arbeitgeber die Verhinderung und ihre voraussichtliche Dauer aber unverzüglich mitteilen. Der Arbeitgeber muss die Freistellungstage nicht bezahlen – dafür gibt es das Pflegeunterstützungsgeld der Pflegekasse."
+  },
+  {
+    frage: "Was ist der Unterschied zwischen Pflegeunterstützungsgeld und Pflegezeit?",
+    antwort: "Das Pflegeunterstützungsgeld ist eine Lohnersatzleistung für die kurzzeitige Arbeitsverhinderung von bis zu 10 Arbeitstagen bei einem akuten Pflegefall. Die Pflegezeit (§ 3 PflegeZG) ist dagegen eine bis zu 6-monatige vollständige oder teilweise Freistellung für die häusliche Pflege – ohne Lohnersatzleistung und ohne Anspruch bei Arbeitgebern mit in der Regel 15 oder weniger Beschäftigten. Zusätzlich gibt es die Familienpflegezeit (§ 2 FPfZG): teilweise Freistellung bis zu 24 Monate bei mindestens 15 Wochenstunden Restarbeitszeit. Pflegezeit und Familienpflegezeit dürfen zusammen 24 Monate je Pflegebedürftigem nicht überschreiten."
+  },
+  {
+    frage: "Bekommen Selbständige Pflegeunterstützungsgeld?",
+    antwort: "Wird das Pflegeunterstützungsgeld aus Arbeitseinkommen berechnet – etwa bei freiwillig gesetzlich versicherten Selbständigen –, beträgt es 70 % des erzielten regelmäßigen Arbeitseinkommens, soweit es der Beitragsberechnung unterliegt (§ 45 Abs. 2 Satz 4 SGB V). Auch hier gilt der Höchstbetrag von 135,63 € je Arbeitstag (2026). Die Details klären Sie am besten direkt mit der Pflegekasse des Pflegebedürftigen."
+  },
+  {
+    frage: "Wie wird das Pflegeunterstützungsgeld berechnet?",
+    antwort: "Die Berechnung läuft in drei Schritten: 1. Ausgefallenes Nettoarbeitsentgelt je Arbeitstag ermitteln (vereinfacht: Monatsnetto geteilt durch Arbeitstage im Monat). 2. Davon 90 % ansetzen – oder 100 % bei beitragspflichtiger Einmalzahlung in den letzten 12 Monaten. 3. Auf den Höchstbetrag von 135,63 € je Arbeitstag deckeln (2026) und mit der Zahl der Freistellungstage multiplizieren. Beispiel: 2.400 € Netto ÷ 20 Arbeitstage = 120 € je Tag, davon 90 % = 108 €, für 5 Tage also 540 € brutto."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Pflegeunterstützungsgeld-Rechner", url: "/pflegeunterstuetzungsgeld-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-teal-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🫂</span>
+          <div>
+            <h1 class="text-2xl font-bold">Pflegeunterstützungsgeld-Rechner</h1>
+            <p class="text-teal-100 text-sm">Lohnersatz beim akuten Pflegefall 2026 berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PflegeunterstuetzungsgeldRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> Juli 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">§ 44a Abs. 3 SGB XI (Pflegeunterstützungsgeld), § 45 Abs. 2 &amp; § 223 Abs. 3 SGB V (Höhe &amp; Deckelung), § 2 PflegeZG, SV-Rechengrößen-Verordnung 2026 (JAEG 69.750 €).</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">90 %/100 % vom Netto bzw. 70 % vom Arbeitseinkommen, Höchstbetrag 135,63 €/Arbeitstag (2026), max. 10 Arbeitstage je Kalenderjahr, Restanspruch.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Arbeitnehmeranteile zur Renten-/Arbeitslosen-/Pflegeversicherung auf das Pflegeunterstützungsgeld, exakte Netto-Ermittlung nach den GKV-Verfahrensregeln, tarifliche Entgeltfortzahlung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Pflegeunterstützungsgeld 2026: Lohnersatz beim akuten Pflegefall</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wird ein naher Angehöriger plötzlich pflegebedürftig, dürfen Beschäftigte nach
+            <strong>§ 2 PflegeZG</strong> bis zu zehn Arbeitstage der Arbeit fernbleiben, um die Pflege
+            zu organisieren. Für diese Tage gibt es das <strong>Pflegeunterstützungsgeld</strong> nach
+            <strong>§ 44a Abs. 3 SGB XI</strong> – eine Lohnersatzleistung der Pflegekasse. Mit unserem
+            <strong>Pflegeunterstützungsgeld-Rechner</strong> ermitteln Sie die Höhe pro Arbeitstag,
+            den Gesamtbetrag und Ihren Restanspruch im Kalenderjahr.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf § 44a Abs. 3 SGB XI i.V.m.
+            § 45 Abs. 2 SGB V und der Jahresarbeitsentgeltgrenze 2026 von <strong>69.750 €</strong>
+            (SV-Rechengrößen-Verordnung 2026); daraus ergibt sich der Tages-Höchstbetrag von
+            <strong>135,63 €</strong>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wie hoch ist das Pflegeunterstützungsgeld?</h3>
+          <p>
+            Die Höhe richtet sich über den Verweis in § 44a Abs. 3 Satz 4 SGB XI nach den
+            Kinderkrankengeld-Regeln des <strong>§ 45 Abs. 2 Satz 3 bis 5 SGB V</strong>:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>90 %</strong> des ausgefallenen Nettoarbeitsentgelts aus beitragspflichtigem Arbeitsentgelt (Regelfall)</li>
+            <li><strong>100 %</strong>, wenn in den vorangegangenen 12 Kalendermonaten beitragspflichtiges einmalig gezahltes Arbeitsentgelt (z. B. Weihnachts- oder Urlaubsgeld, § 23a SGB IV) bezogen wurde</li>
+            <li><strong>70 %</strong> des regelmäßigen beitragspflichtigen Arbeitseinkommens bei Berechnung aus Arbeitseinkommen (Selbständige)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Höchstbetrag 2026: 135,63 € pro Arbeitstag</h3>
+          <p>
+            Das Pflegeunterstützungsgeld darf <strong>70 % der Beitragsbemessungsgrenze nach
+            § 223 Abs. 3 SGB V</strong> nicht überschreiten. Diese Grenze beträgt je Kalendertag
+            1/360 der Jahresarbeitsentgeltgrenze nach § 6 Abs. 7 SGB V – für 2026 also
+            69.750 € ÷ 360 = 193,75 €. Daraus folgt der Höchstbetrag:
+            <strong>0,7 × 193,75 € = 135,625 €</strong>, kaufmännisch gerundet
+            <strong>135,63 € je Arbeitstag</strong> (eine gesetzliche Rundungsregel ist dafür nicht
+            ausdrücklich normiert; unser Rechner rechnet intern mit dem ungerundeten Wert).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Pflegeunterstützungsgeld Schritt für Schritt</h3>
+          <p>
+            Angenommen, Ihr ausgefallenes Nettoarbeitsentgelt beträgt <strong>2.400 € im Monat</strong>
+            bei <strong>20 Arbeitstagen</strong>, Sie hatten keine Einmalzahlung und nehmen
+            <strong>5 Freistellungstage</strong> (frei gewähltes Beispiel; die Umrechnung Monatsnetto ÷
+            Arbeitstage ist eine Näherung – die exakte Ermittlung regeln die Verfahrensvereinbarungen
+            der Pflegekassen):
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Schritt</th>
+                  <th class="text-right p-2 border border-gray-200">Betrag</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Monatsnetto ÷ 20 Arbeitstage = Netto je Arbeitstag</td><td class="text-right p-2 border border-gray-200">120,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Davon 90 % (<a href="https://www.gesetze-im-internet.de/sgb_5/__45.html" target="_blank" rel="noopener" class="text-blue-600 hover:underline">§ 45 Abs. 2 S. 3 SGB V</a>)</td><td class="text-right p-2 border border-gray-200">108,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Vergleich mit Höchstbetrag 135,63 € → keine Kürzung</td><td class="text-right p-2 border border-gray-200">108,00 €</td></tr>
+                <tr class="bg-teal-50 font-semibold"><td class="p-2 border border-gray-200">× 5 Freistellungstage = Gesamtbetrag (brutto)</td><td class="text-right p-2 border border-gray-200">540,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 2: Wenn die Deckelung greift</h3>
+          <p>
+            Bei <strong>4.000 € Monatsnetto</strong> und 20 Arbeitstagen ergäben 90 % von 200 € je Tag
+            eigentlich <strong>180 €</strong> – das übersteigt den Höchstbetrag. Gezahlt werden dann nur
+            <strong>135,63 € je Arbeitstag</strong>; für 5 Tage sind das <strong>678,13 €</strong>
+            (gerechnet mit dem ungerundeten Höchstbetrag von 135,625 €). Gutverdiener erhalten also
+            spürbar weniger als 90 % ihres Nettoausfalls.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer hat Anspruch auf Pflegeunterstützungsgeld?</h3>
+          <p>
+            Anspruchsberechtigt sind <strong>Beschäftigte im Sinne des § 7 Abs. 1 PflegeZG</strong> –
+            Arbeitnehmerinnen und Arbeitnehmer, Auszubildende und arbeitnehmerähnliche Personen –, die
+            wegen einer <strong>akut aufgetretenen Pflegesituation</strong> eines nahen Angehörigen der
+            Arbeit fernbleiben und für diese Tage <strong>keine Entgeltfortzahlung</strong> vom
+            Arbeitgeber und kein Kinderkranken- oder Verletztengeld beanspruchen können
+            (§ 44a Abs. 3 S. 1 SGB XI).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Was gilt als akut aufgetretene Pflegesituation?</h3>
+          <p>
+            § 2 PflegeZG setzt voraus, dass die Freistellung <strong>erforderlich</strong> ist, um in
+            einer akut aufgetretenen Pflegesituation eine <strong>bedarfsgerechte Pflege zu
+            organisieren</strong> oder die <strong>pflegerische Versorgung sicherzustellen</strong> –
+            typischerweise nach einem Schlaganfall, Sturz oder einer plötzlichen Verschlechterung des
+            Gesundheitszustands. Die Pflegebedürftigkeit (bzw. voraussichtliche Pflegebedürftigkeit) und
+            die Erforderlichkeit sind durch eine <strong>ärztliche Bescheinigung</strong> oder die
+            Bescheinigung einer Pflegefachperson nachzuweisen.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wer zählt als naher Angehöriger?</h3>
+          <p>
+            Nahe Angehörige nach <strong>§ 7 Abs. 3 PflegeZG</strong> sind unter anderem:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Großeltern, Eltern, Schwiegereltern und Stiefeltern</li>
+            <li>Ehegatten, Lebenspartner und Partner einer eheähnlichen oder lebenspartnerschaftsähnlichen Gemeinschaft</li>
+            <li>Geschwister sowie Ehegatten und Lebenspartner der Geschwister</li>
+            <li>Kinder, Adoptiv- und Pflegekinder (auch des Partners), Schwieger- und Enkelkinder</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">10 Arbeitstage je Kalenderjahr: die Grenzen</h3>
+          <p>
+            Der Anspruch besteht für <strong>bis zu zehn Arbeitstage je Kalenderjahr</strong> je
+            Beschäftigtem (§ 44a Abs. 3 S. 1 SGB XI). Machen <strong>mehrere Beschäftigte</strong> den
+            Anspruch für denselben Pflegebedürftigen geltend – etwa mehrere Geschwister für ein
+            Elternteil –, ist das Pflegeunterstützungsgeld für diesen Pflegebedürftigen auf
+            <strong>insgesamt zehn Arbeitstage je Kalenderjahr</strong> begrenzt (S. 2). Die Tage können
+            aufgeteilt werden. Ob ein Beschäftigter für zwei verschiedene Pflegebedürftige jeweils
+            eigene zehn Tage erhält, ergibt sich nicht eindeutig aus dem Gesetzeswortlaut – das klären
+            Sie im Zweifel mit der Pflegekasse.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">100 % statt 90 %: die Einmalzahlungs-Regel</h3>
+          <p>
+            Haben Sie in den <strong>zwölf Kalendermonaten vor der Freistellung</strong>
+            beitragspflichtiges <strong>einmalig gezahltes Arbeitsentgelt</strong> bezogen – etwa
+            Weihnachtsgeld, Urlaubsgeld oder eine Prämie (§ 23a SGB IV) –, beträgt das
+            Pflegeunterstützungsgeld <strong>100 % statt 90 %</strong> des ausgefallenen
+            Nettoarbeitsentgelts. Der Höchstbetrag von 135,63 € je Arbeitstag gilt aber auch dann.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Selbständige: 70 % vom Arbeitseinkommen</h3>
+          <p>
+            Erfolgt die Berechnung aus <strong>Arbeitseinkommen</strong> – relevant vor allem für
+            freiwillig gesetzlich versicherte Selbständige –, beträgt das Pflegeunterstützungsgeld
+            <strong>70 % des erzielten regelmäßigen Arbeitseinkommens</strong>, soweit es der
+            Beitragsberechnung unterliegt (§ 45 Abs. 2 S. 4 SGB V). Auch hier greift die Deckelung auf
+            135,63 € je Arbeitstag (2026).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Wann besteht kein Anspruch?</h3>
+          <p>
+            Kein Pflegeunterstützungsgeld gibt es, <strong>soweit für die Freistellungstage
+            Entgeltfortzahlung vom Arbeitgeber</strong> besteht – etwa nach § 616 BGB, Tarifvertrag oder
+            Arbeitsvertrag – oder soweit <strong>Kinderkrankengeld bzw. Verletztengeld</strong> bei
+            Erkrankung oder Unfall eines Kindes beansprucht werden kann (§ 44a Abs. 3 S. 1 SGB XI). Für
+            ein krankes Kind ist das <a href="/kinderkrankengeld-rechner" class="text-blue-600 hover:underline">Kinderkrankengeld</a>
+            die richtige Leistung, bei eigener Krankheit das
+            <a href="/krankengeld-rechner" class="text-blue-600 hover:underline">Krankengeld</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Antrag: So beantragen Sie das Pflegeunterstützungsgeld</h3>
+          <p>
+            Der Antrag ist <strong>unverzüglich</strong> zu stellen – und zwar bei der
+            <strong>Pflegekasse des pflegebedürftigen Angehörigen</strong> (bei privat
+            Pflegeversicherten beim privaten Versicherungsunternehmen), nicht bei Ihrer eigenen
+            Krankenkasse (§ 44a Abs. 3 S. 3 SGB XI). Beizufügen ist die <strong>ärztliche
+            Bescheinigung</strong> (oder die Bescheinigung einer Pflegefachperson) über die akute
+            Pflegesituation. Die Verdienstausfall-Daten liefert in der Praxis der Arbeitgeber zu.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Abgrenzung: Pflegezeit und Familienpflegezeit</h3>
+          <p>
+            Das Pflegeunterstützungsgeld deckt nur den <strong>akuten Kurzzeitfall</strong> ab. Für
+            längere Pflege gibt es zwei weitere Instrumente – beide <strong>ohne</strong>
+            Lohnersatzleistung wie das Pflegeunterstützungsgeld:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Pflegezeit (§ 3, 4 PflegeZG):</strong> vollständige oder teilweise Freistellung bis zu 6 Monate je Pflegebedürftigem; kein Anspruch bei Arbeitgebern mit in der Regel 15 oder weniger Beschäftigten; Ankündigung 10 Arbeitstage vorher in Textform</li>
+            <li><strong>Familienpflegezeit (§ 2 FPfZG):</strong> teilweise Freistellung bis zu 24 Monate bei mindestens 15 Wochenstunden Restarbeitszeit; kein Anspruch bei Arbeitgebern mit in der Regel 25 oder weniger Beschäftigten</li>
+          </ul>
+          <p>
+            Pflegezeit und Familienpflegezeit dürfen zusammen <strong>24 Monate je pflegebedürftigem
+            Angehörigen</strong> nicht überschreiten (§ 4 PflegeZG). Für die laufende häusliche Pflege
+            gibt es außerdem das <a href="/pflegegeld-rechner" class="text-blue-600 hover:underline">Pflegegeld</a>
+            und die <a href="/verhinderungspflege-rechner" class="text-blue-600 hover:underline">Verhinderungspflege</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Antrag bei der falschen Kasse gestellt</h3>
+            <p>Zuständig ist die Pflegekasse (bzw. das private Versicherungsunternehmen) des pflegebedürftigen Angehörigen – nicht Ihre eigene Krankenkasse. Der Antrag ist zudem unverzüglich zu stellen, mit ärztlicher Bescheinigung.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Entgeltfortzahlung des Arbeitgebers übersehen</h3>
+            <p>Zahlt der Arbeitgeber für die Freistellungstage weiter – etwa nach § 616 BGB oder Tarifvertrag –, besteht insoweit kein Anspruch auf Pflegeunterstützungsgeld. Prüfen Sie zuerst Arbeits- und Tarifvertrag.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pflegeunterstützungsgeld mit Pflegezeit verwechselt</h3>
+            <p>Das Pflegeunterstützungsgeld gibt es nur für die kurzzeitige Arbeitsverhinderung von bis zu 10 Arbeitstagen im akuten Fall. Die bis zu 6-monatige Pflegezeit und die bis zu 24-monatige Familienpflegezeit sind Freistellungen ohne diese Lohnersatzleistung.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Gemeinsamen 10-Tage-Deckel ignoriert</h3>
+            <p>Teilen sich mehrere Angehörige die Organisation der Pflege für dieselbe pflegebedürftige Person, stehen ihnen zusammen höchstens 10 Arbeitstage Pflegeunterstützungsgeld je Kalenderjahr für diese Person zu – eine frühzeitige Abstimmung in der Familie vermeidet Ablehnungen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="pflegeunterstuetzungsgeld" slugs={['verhinderungspflege', 'pflegegeld', 'kinderkrankengeld', 'krankengeld']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pflegeunterstützungsgeld-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/pflegeunterstuetzungsgeld-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data (aus demselben faqs-Array wie die sichtbare FAQ) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.antwort
+      }
+    }))
+  })} />
+</Layout>

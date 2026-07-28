@@ -1,0 +1,338 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import HinterbliebenenrenteRechner from '../components/rechner/HinterbliebenenrenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Hinterbliebenenrente-Rechner 2026 – Rente wegen Todes";
+const description = "Hinterbliebenenrente berechnen 2026: Witwenrente 55 %/25 %, Waisenrente 10 %/20 %, Erziehungsrente & Sterbevierteljahr nach § 67 SGB VI. Kostenlos prüfen!";
+const keywords = "Hinterbliebenenrente Rechner, Hinterbliebenenrente berechnen, Rente wegen Todes, Hinterbliebenenrente Höhe, Hinterbliebenenrente 2026, Witwenrente oder Waisenrente, Rentenartfaktor, Sterbevierteljahr, Halbwaisenrente, Vollwaisenrente, Erziehungsrente, Hinterbliebenenrente Anspruch";
+
+// FAQ: eine Quelle für sichtbare FAQ und FAQPage-Schema (wortgleich)
+const faqs = [
+  {
+    frage: "Was ist die Hinterbliebenenrente?",
+    antwort: "Hinterbliebenenrente (Rente wegen Todes) ist der Oberbegriff für Witwen- bzw. Witwerrente, Waisenrente und Erziehungsrente aus der gesetzlichen Rentenversicherung (§§ 46–48 SGB VI). Sie ersetzt den Unterhalt, den die verstorbene Person geleistet hat. Voraussetzung ist in der Regel, dass der Verstorbene die allgemeine Wartezeit von 5 Jahren erfüllt hat (§ 50 SGB VI)."
+  },
+  {
+    frage: "Wie hoch ist die Hinterbliebenenrente 2026?",
+    antwort: "Die Höhe richtet sich nach dem Rentenartfaktor (§ 67 SGB VI): große Witwenrente 55 %, kleine Witwenrente 25 %, Halbwaisenrente 10 % und Vollwaisenrente 20 % der Versichertenrente des Verstorbenen. Im Sterbevierteljahr werden 100 % gezahlt. Beispiel: Bei 1.600 € Versichertenrente beträgt die große Witwenrente 880 € brutto vor Einkommensanrechnung."
+  },
+  {
+    frage: "Was ist der Unterschied zwischen großer und kleiner Witwenrente?",
+    antwort: "Die große Witwenrente (55 %) erhält, wer das 47. Lebensjahr vollendet hat, ein Kind erzieht oder erwerbsgemindert ist (§ 46 Abs. 2 SGB VI); sie wird unbefristet gezahlt. Sonst gibt es nur die kleine Witwenrente (25 %), befristet auf längstens 24 Kalendermonate. Für Todesfälle vor 2029 gilt übergangsweise eine niedrigere Altersgrenze (2026: 46 Jahre und 6 Monate)."
+  },
+  {
+    frage: "Wie lange wird die kleine Witwenrente gezahlt?",
+    antwort: "Die kleine Witwenrente wird längstens für 24 Kalendermonate nach Ablauf des Monats gezahlt, in dem der Versicherte verstorben ist (§ 46 Abs. 1 Satz 2 SGB VI). Danach endet der Anspruch – anders als bei der großen Witwenrente, die unbefristet läuft, solange nicht wieder geheiratet wird."
+  },
+  {
+    frage: "Wie hoch ist die Waisenrente?",
+    antwort: "Die Halbwaisenrente beträgt 10 %, die Vollwaisenrente 20 % der Rente des verstorbenen Elternteils (Rentenartfaktor 0,1 bzw. 0,2 nach § 67 SGB VI). Gezahlt wird bis zum 18. Geburtstag, bei Schul- oder Berufsausbildung, Freiwilligendienst oder Behinderung bis zur Vollendung des 27. Lebensjahres (§ 48 SGB VI)."
+  },
+  {
+    frage: "Was ist die Erziehungsrente?",
+    antwort: "Die Erziehungsrente (§ 47 SGB VI) erhalten Geschiedene, deren Ex-Partner verstorben ist, wenn die Scheidung nach dem 30. Juni 1977 lag, sie ein Kind erziehen, nicht wieder geheiratet und selbst die Wartezeit von 5 Jahren erfüllt haben. Sie wird mit dem vollen Rentenartfaktor 1,0 aus der eigenen Versicherung berechnet und läuft längstens bis zur Regelaltersgrenze."
+  },
+  {
+    frage: "Was ist das Sterbevierteljahr?",
+    antwort: "In den ersten drei Kalendermonaten nach dem Sterbemonat wird die Witwen- oder Witwerrente mit dem Rentenartfaktor 1,0 gezahlt – also 100 % der Versichertenrente des Verstorbenen (§ 67 SGB VI). Erst danach gelten 55 % (große Witwenrente) bzw. 25 % (kleine Witwenrente)."
+  },
+  {
+    frage: "Wird eigenes Einkommen auf die Hinterbliebenenrente angerechnet?",
+    antwort: "Ja: Eigenes Einkommen oberhalb eines Freibetrags wird auf Witwen- und Erziehungsrenten angerechnet (§ 97 SGB VI). Dieser Rechner zeigt bewusst den Brutto-Betrag vor Einkommensanrechnung – die Netto-Berechnung der Witwenrente inklusive Einkommensanrechnung übernimmt der Witwenrente-Rechner."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Hinterbliebenenrente-Rechner", url: "/hinterbliebenenrente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-slate-500 to-purple-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-purple-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🕯️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Hinterbliebenenrente-Rechner</h1>
+            <p class="text-purple-100 text-sm">Rente wegen Todes 2026: Witwen-, Waisen- & Erziehungsrente</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <HinterbliebenenrenteRechner client:load />
+    </div>
+
+    <!-- Trust-Block (E-E-A-T) -->
+    <div class="max-w-2xl mx-auto px-4 mt-4">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+        <div class="flex items-start gap-3">
+          <span class="text-xl mt-0.5">✅</span>
+          <div>
+            <p class="font-semibold mb-1">Zuletzt aktualisiert am 22. Juli 2026 (Stand: Juli 2026)</p>
+            <p class="mb-1"><strong>Grundlage:</strong> §§ 46, 47, 48, 50, 64 und 67 SGB VI (Renten wegen Todes, Wartezeiten, Rentenformel, Rentenartfaktoren) sowie der aktuelle Rentenwert von 42,52 € ab 01.07.2026 (§ 1 RWBestV 2026).</p>
+            <p class="mb-1"><strong>Berücksichtigt:</strong> Rentenartfaktoren aller Renten wegen Todes (große Witwenrente 55 %, kleine Witwenrente 25 %, Halbwaisenrente 10 %, Vollwaisenrente 20 %, Erziehungsrente und Sterbevierteljahr 100 %), Anspruchsvoraussetzungen (Altersgrenze, Kindererziehung, Erwerbsminderung, Mindestehedauer 1 Jahr, Wiederheirat, allgemeine Wartezeit 5 Jahre, Waisen-Altersgrenzen 18/27) und die Befristung der kleinen Witwenrente auf 24 Kalendermonate.</p>
+            <p><strong>Nicht berücksichtigt:</strong> Einkommensanrechnung (§ 97 SGB VI), Kranken- und Pflegeversicherungsbeiträge, Zugangsfaktor-Abschläge, Zuschläge für Kindererziehung (§ 78a SGB VI), altes Hinterbliebenenrecht (60 % für Todesfälle/Ehen vor 2002), die stufenweise Anhebung der Altersgrenze (§ 242a SGB VI – der Rechner nutzt konservativ 47 Jahre) sowie die Rentenabfindung bei Wiederheirat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Hinterbliebenenrente 2026: Alle Renten wegen Todes im Überblick</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Stirbt ein Ehepartner, ein geschiedener Ehegatte oder ein Elternteil, zahlt die gesetzliche
+            Rentenversicherung eine <strong>Hinterbliebenenrente</strong> – im Gesetz „Rente wegen Todes"
+            genannt. Unser <strong>Hinterbliebenenrente-Rechner</strong> zeigt Ihnen, welche Rentenart für
+            Sie in Frage kommt (Witwenrente, Waisenrente oder Erziehungsrente), welcher Rentenartfaktor
+            gilt und wie hoch die Rente überschlägig ausfällt.
+          </p>
+          <p class="text-sm text-gray-500">
+            <strong>Stand: Juli 2026</strong> – die Berechnung basiert auf dem aktuellen Rentenwert von
+            <strong>42,52 €</strong> je Entgeltpunkt (gültig ab 01.07.2026, § 1 RWBestV 2026) und den
+            Rentenartfaktoren des § 67 SGB VI.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Welche Renten wegen Todes gibt es?</h3>
+          <p>
+            Das SGB VI kennt vier Hinterbliebenenrenten, geregelt in den §§ 46 bis 48:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Große Witwen-/Witwerrente</strong> (§ 46 Abs. 2 SGB VI): 55 % der Versichertenrente</li>
+            <li><strong>Kleine Witwen-/Witwerrente</strong> (§ 46 Abs. 1 SGB VI): 25 %, befristet auf 24 Kalendermonate</li>
+            <li><strong>Erziehungsrente</strong> (§ 47 SGB VI): 100 % – aber aus der eigenen Versicherung</li>
+            <li><strong>Halb-/Vollwaisenrente</strong> (§ 48 SGB VI): 10 % bzw. 20 % für Kinder</li>
+          </ul>
+          <p>
+            Eingetragene Lebenspartner sind Ehegatten gleichgestellt (§ 46 Abs. 4 SGB VI).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Rentenformel: So berechnet sich jede Hinterbliebenenrente</h3>
+          <p>
+            Alle Renten wegen Todes folgen derselben Formel des <strong>§ 64 SGB VI</strong>:
+          </p>
+          <p class="bg-gray-50 rounded-lg p-3 font-mono text-xs sm:text-sm">
+            Monatsrente = Entgeltpunkte × Zugangsfaktor × Rentenartfaktor × aktueller Rentenwert (42,52 €)
+          </p>
+          <p>
+            Die Rentenarten unterscheiden sich dabei nur im <strong>Rentenartfaktor</strong> (§ 67 SGB VI).
+            Deshalb gilt als gute Näherung: <strong>Hinterbliebenenrente ≈ Rente des Verstorbenen ×
+            Rentenartfaktor</strong>. Die Rente des Verstorbenen können Sie mit dem
+            <a href="/renten-rechner" class="text-blue-600 hover:underline">Renten-Rechner</a> ermitteln.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rentenartfaktoren: Der entscheidende Unterschied</h3>
+          <p>
+            § 67 SGB VI legt für jede Rente wegen Todes einen eigenen Faktor fest: 1,0 im
+            Sterbevierteljahr, danach 0,55 (große Witwenrente) bzw. 0,25 (kleine Witwenrente),
+            1,0 für die Erziehungsrente sowie 0,1 (Halbwaisenrente) und 0,2 (Vollwaisenrente).
+            Multipliziert mit der Versichertenrente ergibt sich daraus die Brutto-Hinterbliebenenrente.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel: Hinterbliebenenrenten aus 1.600 € Versichertenrente</h3>
+          <p>
+            Angenommen, der Verstorbene hatte (oder hätte) eine monatliche Rente von <strong>1.600 €</strong>.
+            Dann ergeben sich folgende Brutto-Beträge vor Einkommensanrechnung:
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left p-2 border border-gray-200">Rentenart</th>
+                  <th class="text-right p-2 border border-gray-200">Faktor</th>
+                  <th class="text-right p-2 border border-gray-200">Monatsrente (brutto)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border border-gray-200">Sterbevierteljahr (Monate 1–3)</td><td class="text-right p-2 border border-gray-200">1,0</td><td class="text-right p-2 border border-gray-200">1.600,00 €</td></tr>
+                <tr class="bg-purple-50 font-semibold"><td class="p-2 border border-gray-200">Große Witwenrente</td><td class="text-right p-2 border border-gray-200">0,55</td><td class="text-right p-2 border border-gray-200">880,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Kleine Witwenrente (max. 24 Monate)</td><td class="text-right p-2 border border-gray-200">0,25</td><td class="text-right p-2 border border-gray-200">400,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Halbwaisenrente</td><td class="text-right p-2 border border-gray-200">0,1</td><td class="text-right p-2 border border-gray-200">160,00 €</td></tr>
+                <tr><td class="p-2 border border-gray-200">Vollwaisenrente</td><td class="text-right p-2 border border-gray-200">0,2</td><td class="text-right p-2 border border-gray-200">320,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Die Erziehungsrente fehlt bewusst in der Tabelle: Sie wird nicht aus der Rente des
+            Verstorbenen, sondern mit Faktor 1,0 aus der <strong>eigenen Versicherung</strong> des
+            Hinterbliebenen berechnet (§ 47 i. V. m. § 64 SGB VI).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Große oder kleine Witwenrente?</h3>
+          <p>
+            Die <strong>große Witwenrente</strong> (55 %) erhalten hinterbliebene Ehe- und Lebenspartner,
+            wenn mindestens eine dieser Voraussetzungen des § 46 Abs. 2 SGB VI erfüllt ist:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Alter:</strong> das 47. Lebensjahr ist vollendet (Übergangsrecht: für Todesfälle vor 2029 gilt eine niedrigere Grenze, 2026: 46 Jahre und 6 Monate)</li>
+            <li><strong>Kindererziehung:</strong> ein eigenes Kind oder ein Kind des Verstorbenen unter 18 wird erzogen (bei behindertem Kind ohne Altersgrenze)</li>
+            <li><strong>Erwerbsminderung:</strong> der Hinterbliebene ist erwerbsgemindert</li>
+          </ul>
+          <p>
+            Ist keine Voraussetzung erfüllt, bleibt nur die <strong>kleine Witwenrente</strong> (25 %) –
+            und die ist auf <strong>24 Kalendermonate</strong> befristet (§ 46 Abs. 1 Satz 2 SGB VI).
+            Die detaillierte Netto-Berechnung mit Einkommensanrechnung bietet der
+            <a href="/witwenrente-rechner" class="text-blue-600 hover:underline">Witwenrente-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Das Sterbevierteljahr: 100 % für drei Monate</h3>
+          <p>
+            Bis zum Ende des <strong>dritten Kalendermonats</strong> nach dem Sterbemonat gilt für
+            Witwen- und Witwerrenten der Rentenartfaktor <strong>1,0</strong> (§ 67 Nr. 5 und 6 SGB VI) –
+            Hinterbliebene erhalten also drei Monate lang <strong>100 % der Versichertenrente</strong>.
+            Beispiel: Bei 1.600 € Versichertenrente werden im Sterbevierteljahr 1.600 € gezahlt, danach
+            880 € (große) bzw. 400 € (kleine Witwenrente).
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Waisenrente: Halbwaise und Vollwaise</h3>
+          <p>
+            Kinder erhalten nach § 48 SGB VI eine <strong>Halbwaisenrente</strong> (10 %), wenn noch ein
+            unterhaltspflichtiger Elternteil lebt, oder eine <strong>Vollwaisenrente</strong> (20 %), wenn
+            beide Eltern verstorben sind. Berechtigt sind auch Stief- und Pflegekinder sowie im Haushalt
+            aufgenommene Enkel und Geschwister. Die Rente läuft bis zum <strong>18. Geburtstag</strong>,
+            bei Schul-/Berufsausbildung, Freiwilligendienst oder Behinderung bis zur Vollendung des
+            <strong>27. Lebensjahres</strong> – Details im
+            <a href="/waisenrente-rechner" class="text-blue-600 hover:underline">Waisenrente-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Erziehungsrente: Die unbekannte Rente für Geschiedene</h3>
+          <p>
+            Die <strong>Erziehungsrente</strong> (§ 47 SGB VI) springt ein, wenn der <strong>geschiedene</strong>
+            Ex-Partner stirbt und der Hinterbliebene ein Kind erzieht. Voraussetzungen: Scheidung nach dem
+            30. Juni 1977, Erziehung eines eigenen Kindes oder eines Kindes des Geschiedenen, keine
+            Wiederheirat und die eigene Wartezeit von 5 Jahren. Besonderheit: Sie wird mit dem vollen
+            Rentenartfaktor <strong>1,0 aus der eigenen Versicherung</strong> gezahlt – längstens bis zur
+            Regelaltersgrenze.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Voraussetzungen: Wartezeit, Ehedauer, Wiederheirat</h3>
+          <p>
+            Für alle Renten wegen Todes gelten Grundvoraussetzungen:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Der Verstorbene muss die <strong>allgemeine Wartezeit von 5 Jahren</strong> erfüllt haben (§ 50 Abs. 1 SGB VI)</li>
+            <li>Bei Ehen unter <strong>einem Jahr</strong> wird eine Versorgungsehe vermutet – dann besteht kein Anspruch, außer die Vermutung wird widerlegt (§ 46 Abs. 2a SGB VI)</li>
+            <li>Nach <strong>Wiederheirat</strong> entfällt der Anspruch auf Witwen- und Erziehungsrente</li>
+            <li>Wurde <strong>Rentensplitting</strong> durchgeführt, ist die Witwenrente ausgeschlossen (§ 46 Abs. 2b SGB VI)</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Einkommensanrechnung: Warum das Ergebnis „brutto" ist</h3>
+          <p>
+            Eigenes Einkommen oberhalb eines Freibetrags wird auf Witwen- und Erziehungsrenten
+            angerechnet (§ 97 SGB VI) – zusätzlich gehen Kranken- und Pflegeversicherungsbeiträge ab.
+            Dieser Hub-Rechner weist deshalb bewusst den <strong>Brutto-Betrag vor Einkommensanrechnung</strong>
+            aus. Die vollständige Netto-Berechnung mit Freibetrag und 40-%-Anrechnung finden Sie im
+            <a href="/witwenrente-rechner" class="text-blue-600 hover:underline">Witwenrente-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Antrag: So beantragen Sie die Hinterbliebenenrente</h3>
+          <p>
+            Renten wegen Todes werden nicht automatisch gezahlt – sie müssen bei der
+            <strong>Deutschen Rentenversicherung</strong> beantragt werden (Formular R0500 für
+            Hinterbliebenenrenten). Benötigt werden u. a. Sterbeurkunde mit Heiratsvermerk,
+            Heiratsurkunde und die Rentenversicherungsnummer des Verstorbenen. Kostenlose Beratung:
+            0800 1000 4800.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) - wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="hinterbliebenenrente" slugs={['witwenrente', 'waisenrente', 'erziehungsrente', 'renten']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Brutto mit Auszahlungsbetrag verwechselt</h3>
+            <p>Die Faktoren 55 %/25 %/10 %/20 % ergeben den Brutto-Betrag. Davon gehen noch Einkommensanrechnung (§ 97 SGB VI) sowie Kranken- und Pflegeversicherungsbeiträge ab – die tatsächliche Auszahlung liegt oft deutlich niedriger.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Befristung der kleinen Witwenrente übersehen</h3>
+            <p>Die kleine Witwenrente endet nach längstens 24 Kalendermonaten (§ 46 Abs. 1 SGB VI). Wer die Voraussetzungen der großen Witwenrente später erfüllt (z. B. Altersgrenze), sollte rechtzeitig neu prüfen und beantragen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Erziehungsrente als Geschiedener nicht gekannt</h3>
+            <p>Viele Geschiedene wissen nicht, dass ihnen beim Tod des Ex-Partners eine Erziehungsrente mit vollem Faktor 1,0 zustehen kann (§ 47 SGB VI) – aus der eigenen Versicherung, solange sie ein Kind erziehen und nicht wieder geheiratet haben.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Waisenrente ab 18 nicht verlängert</h3>
+            <p>Ab dem 18. Geburtstag läuft die Waisenrente nur weiter, wenn Ausbildung, Freiwilligendienst oder Behinderung nachgewiesen werden – dann bis maximal 27 (§ 48 Abs. 4 SGB VI). Der Nachweis muss aktiv erbracht werden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hinterbliebenenrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/hinterbliebenenrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data (wortgleich zur sichtbaren FAQ) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.antwort
+      }
+    }))
+  })} />
+</Layout>
