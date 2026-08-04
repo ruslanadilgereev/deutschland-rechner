@@ -1,0 +1,327 @@
+---
+import Layout from '../layouts/Layout.astro';
+import JahressonderzahlungRechner from '../components/rechner/JahressonderzahlungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Jahressonderzahlung-Rechner 2026 – TVöD & TV-L";
+const description = "Jahressonderzahlung 2026 berechnen: TVöD VKA 85 %, Bund 95/90/75 %, TV-L nach Entgeltgruppe. Mit Zwölftelung, Freistellungstagen und Vorjahresvergleich.";
+const keywords = "Jahressonderzahlung Rechner, Jahressonderzahlung TVöD, Weihnachtsgeld TVöD, TVöD Jahressonderzahlung 2026, Jahressonderzahlung TV-L, Jahressonderzahlung berechnen, Weihnachtsgeld öffentlicher Dienst, TVöD Sonderzahlung, Jahressonderzahlung VKA, Jahressonderzahlung Bund";
+
+const faq = [
+  {
+    frage: "Wie hoch ist die Jahressonderzahlung 2026 im TVöD?",
+    antwort: "Im TVöD VKA (Kommunen) beträgt sie ab 2026 einheitlich 85 % des durchschnittlichen Monatsentgelts aus Juli, August und September. In Krankenhäusern (BT-K) und Pflege- und Betreuungseinrichtungen (BT-B) sind es in den Entgeltgruppen 1 bis 8 abweichend 90 %. Im TVöD Bund gilt eine Staffelung: 95 % in den Entgeltgruppen 1 bis 8, 90 % in 9a bis 12 und 75 % in 13 bis 15."
+  },
+  {
+    frage: "Wann wird die Jahressonderzahlung ausgezahlt?",
+    antwort: "Die Jahressonderzahlung wird mit dem Tabellenentgelt für November ausgezahlt, also in aller Regel Ende November. Das gilt sowohl im TVöD als auch im TV-L."
+  },
+  {
+    frage: "Wer hat Anspruch auf die Jahressonderzahlung?",
+    antwort: "Anspruch hat, wer am 1. Dezember des jeweiligen Jahres im Arbeitsverhältnis steht. Wer vorher ausscheidet, etwa zum 30. November, hat keinen Anspruch mehr, auch wenn er das ganze Jahr über beschäftigt war."
+  },
+  {
+    frage: "Welche Monate zählen für die Berechnung?",
+    antwort: "Bemessungsgrundlage ist das durchschnittlich gezahlte monatliche Entgelt der Kalendermonate Juli, August und September. Überstundenentgelt, Leistungszulagen und Leistungsprämien bleiben dabei außer Betracht. Beginnt das Arbeitsverhältnis erst am 1. Oktober oder später, ist das Entgelt des ersten vollen Beschäftigungsmonats maßgeblich."
+  },
+  {
+    frage: "Was passiert bei unterjährigem Beschäftigungsbeginn?",
+    antwort: "Für jeden Kalendermonat, in dem kein Anspruch auf Entgelt bestand, vermindert sich die Jahressonderzahlung um ein Zwölftel. Wer beispielsweise zum 1. April eingestellt wurde, erhält neun Zwölftel des Betrags."
+  },
+  {
+    frage: "Kürzen Elternzeit und Mutterschutz die Jahressonderzahlung?",
+    antwort: "Nein. Kalendermonate, in denen ausschließlich wegen Beschäftigungsverboten nach dem Mutterschutzgesetz oder wegen Elternzeit im Geburtsjahr des Kindes kein Entgelt gezahlt wurde, führen nicht zur Kürzung um ein Zwölftel. Gleiches gilt für Zeiten des Wehr- oder Zivildienstes."
+  },
+  {
+    frage: "Was ändert sich 2026 gegenüber 2025?",
+    antwort: "Durch die Tarifeinigung vom 6. April 2025 steigt die Jahressonderzahlung ab dem Kalenderjahr 2026. Im TVöD VKA wurden die zuvor gestaffelten Sätze von 84,51 %, 70,28 % und 51,78 % auf einheitlich 85 % angehoben. Im TVöD Bund stiegen die Sätze von 90, 80 und 60 % auf 95, 90 und 75 %. Im TV-L ändert sich nichts, dort sind die Bemessungssätze seit der Tarifrunde 2019 eingefroren."
+  },
+  {
+    frage: "Kann ich die Jahressonderzahlung in freie Tage umwandeln?",
+    antwort: "Im TVöD können Beschäftigte bei Bund und Kommunen seit 2026 nach § 29a einen Teil der Jahressonderzahlung in bis zu drei zusätzliche Freistellungstage umwandeln. Der Antrag ist bis zum 1. September zu stellen. Je Tag werden rund 5,4 % der Jahressonderzahlung einbehalten. In Krankenhäusern und Pflegeeinrichtungen steht diese Option nicht offen, dafür gilt dort der höhere Bemessungssatz von 90 %."
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Jahressonderzahlung-Rechner 2026",
+      "url": "https://www.deutschland-rechner.de/jahressonderzahlung-rechner",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "description": description,
+      "inLanguage": "de-DE",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Beschäftigte im öffentlichen Dienst",
+        "geographicArea": { "@type": "Country", "name": "Deutschland" },
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faq.map((f) => ({
+        "@type": "Question",
+        "name": f.frage,
+        "acceptedAnswer": { "@type": "Answer", "text": f.antwort },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Jahressonderzahlung-Rechner", url: "/jahressonderzahlung-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Arbeit & Gehalt', href: '/arbeit-gehalt' },
+    { name: 'Jahressonderzahlung-Rechner' }
+  ]} />
+
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-teal-600 to-cyan-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-teal-100 hover:text-white mb-4 transition-colors">
+          <span aria-hidden="true">←</span> Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl" aria-hidden="true">🏛️</span>
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold">Jahressonderzahlung-Rechner 2026</h1>
+            <p class="text-teal-100 mt-1">TVöD VKA, TVöD Bund und TV-L</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="py-8">
+      <JahressonderzahlungRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4">
+      <RechnerTrust
+        quellen="§ 20 und § 29a TVöD (VKA und Bund), § 20 TV-L, Tarifeinigung Bund/VKA vom 06.04.2025"
+        aktualisiert="August 2026"
+      />
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Grundlage dieser Berechnung</h2>
+        <div class="space-y-4 text-gray-700 text-sm">
+          <div>
+            <p class="font-medium text-gray-800 mb-1">Berücksichtigt</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Bemessungssätze 2026 für TVöD VKA, TVöD Bund und TV-L je Entgeltgruppe</li>
+              <li>erhöhter Satz von 90 % für die Entgeltgruppen 1 bis 8 in den Besonderen Teilen K und B</li>
+              <li>Bemessungszeitraum Juli bis September, wahlweise als Durchschnitt oder je Monat</li>
+              <li>Zwölftelung bei Kalendermonaten ohne Entgeltanspruch</li>
+              <li>Umwandlung in bis zu drei Freistellungstage nach § 29a TVöD</li>
+              <li>Vergleich mit dem Bemessungssatz des Vorjahres</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-medium text-gray-800 mb-1">Nicht berücksichtigt</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Lohnsteuer und Sozialabgaben, der Rechner weist den Bruttobetrag aus</li>
+              <li>abweichende landesbezirkliche oder betriebliche Regelungen</li>
+              <li>der TV-H (Hessen) und der TV-V, TV-N sowie weitere Spartentarifverträge</li>
+              <li>Überstundenentgelt, Leistungszulagen und Leistungsprämien, die nicht in die Bemessung eingehen</li>
+              <li>Besitzstandszulagen und Zulagen, die nicht Teil des Tabellenentgelts sind</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">So wird die Jahressonderzahlung berechnet</h2>
+        <p class="text-gray-700 text-sm mb-4">
+          Die Formel ist in allen drei Tarifwerken dieselbe, nur der Bemessungssatz unterscheidet sich:
+        </p>
+        <div class="bg-gray-50 rounded-xl p-4 mb-4 text-sm font-mono text-gray-800">
+          Jahressonderzahlung = Ø Entgelt (Juli–September) × Bemessungssatz × Monate mit Entgelt / 12
+        </div>
+
+        <h3 class="font-bold text-gray-800 mt-6 mb-2">Bemessungssätze TVöD VKA (Kommunen) ab 2026</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-gray-50 text-left">
+                <th class="p-2 border-b border-gray-200">Entgeltgruppe</th>
+                <th class="p-2 border-b border-gray-200">ab 2026</th>
+                <th class="p-2 border-b border-gray-200">bis 2025</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-2 border-b border-gray-100">EG 1–8</td><td class="p-2 border-b border-gray-100 font-medium">85 %</td><td class="p-2 border-b border-gray-100 text-gray-500">84,51 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">EG 9a–12</td><td class="p-2 border-b border-gray-100 font-medium">85 %</td><td class="p-2 border-b border-gray-100 text-gray-500">70,28 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">EG 13–15</td><td class="p-2 border-b border-gray-100 font-medium">85 %</td><td class="p-2 border-b border-gray-100 text-gray-500">51,78 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">EG 1–8 in BT-K / BT-B</td><td class="p-2 border-b border-gray-100 font-medium">90 %</td><td class="p-2 border-b border-gray-100 text-gray-500">84,51 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">
+          Die Vereinheitlichung auf 85 % ist die größte Änderung. Besonders die höheren Entgeltgruppen
+          gewinnen deutlich: In EG 13–15 steigt der Satz um mehr als 33 Prozentpunkte.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-6 mb-2">Bemessungssätze TVöD Bund ab 2026</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-gray-50 text-left">
+                <th class="p-2 border-b border-gray-200">Entgeltgruppe</th>
+                <th class="p-2 border-b border-gray-200">ab 2026</th>
+                <th class="p-2 border-b border-gray-200">bis 2025</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-2 border-b border-gray-100">EG 1–8</td><td class="p-2 border-b border-gray-100 font-medium">95 %</td><td class="p-2 border-b border-gray-100 text-gray-500">90 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">EG 9a–12</td><td class="p-2 border-b border-gray-100 font-medium">90 %</td><td class="p-2 border-b border-gray-100 text-gray-500">80 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">EG 13–15</td><td class="p-2 border-b border-gray-100 font-medium">75 %</td><td class="p-2 border-b border-gray-100 text-gray-500">60 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="font-bold text-gray-800 mt-6 mb-2">Bemessungssätze TV-L (Länder)</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-gray-50 text-left">
+                <th class="p-2 border-b border-gray-200">Entgeltgruppe</th>
+                <th class="p-2 border-b border-gray-200">Bemessungssatz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-2 border-b border-gray-100">E 1–4</td><td class="p-2 border-b border-gray-100 font-medium">87,43 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">E 5–8</td><td class="p-2 border-b border-gray-100 font-medium">88,14 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">E 9a–11</td><td class="p-2 border-b border-gray-100 font-medium">74,35 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">E 12–13</td><td class="p-2 border-b border-gray-100 font-medium">46,47 %</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">E 14–15</td><td class="p-2 border-b border-gray-100 font-medium">32,53 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">
+          Die krummen Werte stammen daher, dass die Sätze in der Tarifrunde 2019 auf dem Stand von 2018
+          eingefroren und seither nicht an die Tabellenerhöhungen angepasst wurden. Ein Unterschied
+          zwischen West und Ost besteht seit 2019 nicht mehr.
+        </p>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Rechenbeispiele</h2>
+
+        <h3 class="font-bold text-gray-800 mb-2">Beispiel 1: Kommune, EG 9a</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          Durchschnittliches Entgelt Juli bis September: 3.400 €, ganzjährig beschäftigt.
+        </p>
+        <ul class="text-sm text-gray-700 space-y-1 mb-5">
+          <li>3.400 € × 85 % = <strong>2.890,00 €</strong> brutto</li>
+          <li>2025 wären es 70,28 % gewesen: 2.389,52 €</li>
+          <li>Unterschied: <strong>+500,48 €</strong></li>
+        </ul>
+
+        <h3 class="font-bold text-gray-800 mb-2">Beispiel 2: Bund, EG 13</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          Durchschnittliches Entgelt Juli bis September: 5.500 €, ganzjährig beschäftigt.
+        </p>
+        <ul class="text-sm text-gray-700 space-y-1 mb-5">
+          <li>5.500 € × 75 % = <strong>4.125,00 €</strong> brutto</li>
+          <li>2025 wären es 60 % gewesen: 3.300,00 €</li>
+          <li>Unterschied: <strong>+825,00 €</strong></li>
+        </ul>
+
+        <h3 class="font-bold text-gray-800 mb-2">Beispiel 3: Land, E 11, Eintritt zum 1. April</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          Durchschnittliches Entgelt Juli bis September: 4.000 €, neun Monate mit Entgeltanspruch.
+        </p>
+        <ul class="text-sm text-gray-700 space-y-1 mb-5">
+          <li>4.000 € × 74,35 % = 2.974,00 €</li>
+          <li>gezwölftelt: 2.974,00 € × 9/12 = <strong>2.230,50 €</strong> brutto</li>
+        </ul>
+
+        <h3 class="font-bold text-gray-800 mb-2">Beispiel 4: Umwandlung in Freistellungstage</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          Ausgangswert wie in Beispiel 1: 2.890,00 € bei einer Kommune.
+        </p>
+        <ul class="text-sm text-gray-700 space-y-1">
+          <li>je Freistellungstag rund 5,4 %: 2.890 € × 5,4 % = 156,06 €</li>
+          <li>bei drei Tagen: 468,18 € weniger</li>
+          <li>Auszahlung: <strong>2.421,82 €</strong> plus drei zusätzliche freie Tage</li>
+        </ul>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Typische Fehler &amp; Sonderfälle</h2>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Fehler 1: Das Novembergehalt als Grundlage nehmen</h3>
+        <p class="text-gray-700 text-sm">
+          Ausgezahlt wird im November, berechnet wird aber aus Juli, August und September. Wer im
+          Oktober eine Stufensteigerung oder eine Höhergruppierung erhält, sieht diese in der
+          Jahressonderzahlung des laufenden Jahres noch nicht.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Fehler 2: Überstunden mitrechnen</h3>
+        <p class="text-gray-700 text-sm">
+          Überstundenentgelt, Leistungszulagen und Leistungsprämien gehören nicht zum
+          Bemessungsentgelt. Wer im Sommer viele Überstunden hatte, kommt deshalb auf einen
+          niedrigeren Wert als die Gehaltsabrechnung dieser Monate vermuten lässt.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Fehler 3: Den Stichtag übersehen</h3>
+        <p class="text-gray-700 text-sm">
+          Wer zum 30. November ausscheidet, hat keinen Anspruch, obwohl er elf Monate gearbeitet hat.
+          Ein Tag später, zum 1. Dezember, entsteht der Anspruch dagegen vollständig, gekürzt nur um
+          die Zwölftel ohne Entgelt. Bei einem geplanten Wechsel lohnt der Blick auf das Austrittsdatum.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Sonderfall: Teilzeit</h3>
+        <p class="text-gray-700 text-sm">
+          Teilzeitbeschäftigte müssen nichts gesondert umrechnen. Da das tatsächlich gezahlte Entgelt
+          der Monate Juli bis September die Grundlage bildet, ist die Teilzeitquote darin bereits
+          enthalten.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Sonderfall: Eintritt im vierten Quartal</h3>
+        <p class="text-gray-700 text-sm">
+          Beginnt das Arbeitsverhältnis am 1. Oktober oder später, gibt es keinen Bemessungszeitraum
+          Juli bis September. Dann tritt an dessen Stelle das Entgelt des ersten vollen
+          Kalendermonats der Beschäftigung.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Sonderfall: Krankenhaus und Pflege</h3>
+        <p class="text-gray-700 text-sm">
+          In den Besonderen Teilen K und B steht die Umwandlung in Freistellungstage nicht offen.
+          Als Ausgleich gilt dort in den Entgeltgruppen 1 bis 8 der höhere Bemessungssatz von 90 %.
+          Die Entgeltgruppen der Pflegetabelle (P) und des Sozial- und Erziehungsdienstes (S) folgen
+          im TVöD VKA dem allgemeinen Satz von 85 %.
+        </p>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufig gestellte Fragen</h2>
+        <div class="space-y-3">
+          {faq.map((f) => (
+            <details class="border border-gray-200 rounded-xl p-4">
+              <summary class="font-medium text-gray-800 cursor-pointer">{f.frage}</summary>
+              <p class="mt-3 text-sm text-gray-700">{f.antwort}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner
+        aktuellerSlug="jahressonderzahlung"
+        slugs={['tvoed', 'tv-l', 'weihnachtsgeld', 'brutto-netto']}
+        kategorie="arbeit"
+      />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Layout>

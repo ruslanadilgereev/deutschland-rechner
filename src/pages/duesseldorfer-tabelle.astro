@@ -1,0 +1,452 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UnterhaltsRechner from '../components/rechner/UnterhaltsRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Düsseldorfer Tabelle 2026 – alle Sätze, Zahlbeträge & Rechner";
+const description = "Düsseldorfer Tabelle 2026 komplett: alle 15 Einkommensgruppen, Zahlbeträge nach Kindergeldabzug, Selbstbehalte und Bedarfskontrollbeträge. Mit Unterhaltsrechner.";
+const keywords = "Düsseldorfer Tabelle 2026, Düsseldorfer Tabelle, Kindesunterhalt Tabelle, Unterhaltstabelle 2026, Düsseldorfer Tabelle Rechner, Mindestunterhalt 2026, Zahlbetrag Kindesunterhalt, Selbstbehalt Unterhalt 2026, Bedarfskontrollbetrag, Düsseldorfer Tabelle Zahlbeträge";
+
+// Düsseldorfer Tabelle, gültig ab 01.01.2026 (OLG Düsseldorf).
+// Werte gegen das amtliche PDF DT_2026.pdf geprüft; die Bedarfssätze der
+// Altersstufen 1 bis 3 wurden zusätzlich über die Formel
+// aufgerundet(Mindestbedarf × Prozentsatz) nach § 1612a Abs. 2 S. 2 BGB
+// nachgerechnet (0 Abweichungen). Die Zahlbeträge sind Bedarf abzüglich
+// Kindergeldanteil und stimmen mit dem Anhang "Tabelle Zahlbeträge" überein.
+const KINDERGELD = 259;
+const KG_HALB = 129.5;
+
+interface Gruppe {
+  nr: number;
+  von: number;
+  bis: number;
+  prozent: number;
+  saetze: [number, number, number, number];
+  bkb: string;
+}
+
+const TABELLE: Gruppe[] = [
+  { nr: 1,  von: 0,    bis: 2100,  prozent: 100, saetze: [486, 558, 653, 698],    bkb: '1.200 / 1.450' },
+  { nr: 2,  von: 2101, bis: 2500,  prozent: 105, saetze: [511, 586, 686, 733],    bkb: '1.750' },
+  { nr: 3,  von: 2501, bis: 2900,  prozent: 110, saetze: [535, 614, 719, 768],    bkb: '1.850' },
+  { nr: 4,  von: 2901, bis: 3300,  prozent: 115, saetze: [559, 642, 751, 803],    bkb: '1.950' },
+  { nr: 5,  von: 3301, bis: 3700,  prozent: 120, saetze: [584, 670, 784, 838],    bkb: '2.050' },
+  { nr: 6,  von: 3701, bis: 4100,  prozent: 128, saetze: [623, 715, 836, 894],    bkb: '2.150' },
+  { nr: 7,  von: 4101, bis: 4500,  prozent: 136, saetze: [661, 759, 889, 950],    bkb: '2.250' },
+  { nr: 8,  von: 4501, bis: 4900,  prozent: 144, saetze: [700, 804, 941, 1006],   bkb: '2.350' },
+  { nr: 9,  von: 4901, bis: 5300,  prozent: 152, saetze: [739, 849, 993, 1061],   bkb: '2.450' },
+  { nr: 10, von: 5301, bis: 5700,  prozent: 160, saetze: [778, 893, 1045, 1117],  bkb: '2.550' },
+  { nr: 11, von: 5701, bis: 6400,  prozent: 168, saetze: [817, 938, 1098, 1173],  bkb: '2.850' },
+  { nr: 12, von: 6401, bis: 7200,  prozent: 176, saetze: [856, 983, 1150, 1229],  bkb: '3.250' },
+  { nr: 13, von: 7201, bis: 8200,  prozent: 184, saetze: [895, 1027, 1202, 1285], bkb: '3.750' },
+  { nr: 14, von: 8201, bis: 9700,  prozent: 192, saetze: [934, 1072, 1254, 1341], bkb: '4.350' },
+  { nr: 15, von: 9701, bis: 11200, prozent: 200, saetze: [972, 1116, 1306, 1396], bkb: '5.050' },
+];
+
+const eur = (n: number) => n.toLocaleString('de-DE');
+const eur2 = (n: number) =>
+  n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const spanne = (g: Gruppe) =>
+  g.nr === 1 ? `bis ${eur(g.bis)}` : `${eur(g.von)} – ${eur(g.bis)}`;
+
+// Zahlbeträge werden berechnet, nicht abgetippt: Bedarf minus halbes
+// Kindergeld (minderjährig) bzw. minus volles Kindergeld (volljährig).
+const zahlbetrag = (g: Gruppe): [number, number, number, number] => [
+  g.saetze[0] - KG_HALB,
+  g.saetze[1] - KG_HALB,
+  g.saetze[2] - KG_HALB,
+  g.saetze[3] - KINDERGELD,
+];
+
+const faq = [
+  {
+    frage: "Was ist die Düsseldorfer Tabelle?",
+    antwort: "Die Düsseldorfer Tabelle ist eine Unterhaltsleitlinie des Oberlandesgerichts Düsseldorf, die seit 1962 in Abstimmung mit den anderen Oberlandesgerichten und dem Deutschen Familiengerichtstag erstellt wird. Sie ist kein Gesetz, sondern eine Orientierungshilfe, die von allen Familiengerichten in Deutschland zur Bemessung des Kindesunterhalts herangezogen wird. Die aktuelle Fassung gilt seit dem 1. Januar 2026."
+  },
+  {
+    frage: "Wie hoch ist der Mindestunterhalt 2026?",
+    antwort: "Der Mindestunterhalt beträgt 2026 monatlich 486 Euro für Kinder von 0 bis 5 Jahren, 558 Euro für Kinder von 6 bis 11 Jahren und 653 Euro für Kinder von 12 bis 17 Jahren. Diese Beträge ergeben sich aus der Mindestunterhaltsverordnung und stehen in Einkommensgruppe 1 der Tabelle. Für volljährige Kinder im Haushalt der Eltern nennt die Tabelle in der ersten Gruppe 698 Euro; das ist rechtlich kein Mindestunterhalt, sondern der Bedarfssatz der vierten Altersstufe."
+  },
+  {
+    frage: "Was ist der Unterschied zwischen Bedarf und Zahlbetrag?",
+    antwort: "Der Bedarf ist der Tabellenbetrag. Was tatsächlich überwiesen wird, ist der Zahlbetrag: Davon wird noch das Kindergeld abgezogen. Bei minderjährigen Kindern wird das halbe Kindergeld angerechnet, also 129,50 Euro, bei volljährigen Kindern das volle Kindergeld von 259 Euro. Beispiel: Bei einem Bedarf von 558 Euro liegt der Zahlbetrag für ein minderjähriges Kind bei 428,50 Euro."
+  },
+  {
+    frage: "Welches Einkommen zählt für die Einstufung?",
+    antwort: "Maßgeblich ist das bereinigte Nettoeinkommen. Vom Nettogehalt werden noch berufsbedingte Aufwendungen, Schulden aus der Zeit des Zusammenlebens und Beiträge zur zusätzlichen Altersvorsorge abgezogen. Deshalb weicht der Betrag, der für die Tabelle gilt, oft von der Zahl auf der Gehaltsabrechnung ab. Boni, Steuererstattungen und Nebeneinkünfte zählen grundsätzlich mit."
+  },
+  {
+    frage: "Was ist der Bedarfskontrollbetrag?",
+    antwort: "Der Bedarfskontrollbetrag steht in der letzten Spalte und sorgt für eine ausgewogene Verteilung zwischen unterhaltspflichtiger Person und Kind. Bleibt nach Abzug des Unterhalts weniger als dieser Betrag übrig, wird in die nächstniedrigere Einkommensgruppe zurückgestuft, gegebenenfalls mehrfach. In Gruppe 1 gilt statt des Bedarfskontrollbetrags der notwendige Selbstbehalt von 1.200 Euro beziehungsweise 1.450 Euro."
+  },
+  {
+    frage: "Wie viel muss mir selbst bleiben?",
+    antwort: "Gegenüber minderjährigen und privilegierten volljährigen Kindern gilt der notwendige Selbstbehalt: 1.450 Euro für Erwerbstätige und 1.200 Euro für Nichterwerbstätige, darin enthalten sind bis zu 520 Euro Warmmiete. Gegenüber anderen volljährigen Kindern gilt der angemessene Selbstbehalt von 1.750 Euro. Diese Beträge wurden zum 1. Januar 2026 nicht erhöht."
+  },
+  {
+    frage: "Die Tabelle geht nur bis 11.200 Euro. Was gilt bei höherem Einkommen?",
+    antwort: "Einkommensgruppe 15 endet bei 11.200 Euro Nettoeinkommen. Darüber hinaus wird die Tabelle nicht einfach fortgeschrieben. Nach der Rechtsprechung des Bundesgerichtshofs ist der Bedarf des Kindes dann im Einzelfall konkret darzulegen, wobei die Tabellenbeträge als Ausgangspunkt dienen können. In solchen Fällen ist anwaltliche Beratung sinnvoll."
+  },
+  {
+    frage: "Gilt die Tabelle auch beim Wechselmodell?",
+    antwort: "Nur eingeschränkt. Die Düsseldorfer Tabelle geht vom Residenzmodell aus, bei dem das Kind überwiegend bei einem Elternteil lebt und der andere Barunterhalt zahlt. Beim echten Wechselmodell mit annähernd gleicher Betreuung sind beide Eltern barunterhaltspflichtig, und der Unterhalt wird nach den zusammengerechneten Einkommen ermittelt. Die Berechnung ist dann deutlich komplexer als die reine Tabellenanwendung."
+  },
+  {
+    frage: "Was hat sich 2026 gegenüber 2025 geändert?",
+    antwort: "Die Bedarfssätze sind in allen 15 Einkommensgruppen gestiegen, je nach Zelle um 4 bis 10 Euro. In Gruppe 1 stieg der Mindestunterhalt von 482 auf 486 Euro, von 554 auf 558 Euro und von 649 auf 653 Euro. Das Kindergeld stieg von 255 auf 259 Euro, wodurch sich der anzurechnende Anteil bei Minderjährigen von 127,50 auf 129,50 Euro erhöht. Die Einkommensgrenzen, die Prozentsätze, die Bedarfskontrollbeträge und sämtliche Selbstbehalte blieben unverändert. Neu aufgenommen wurde eine bezifferte Regelung zum Elternunterhalt und erstmals eine eigene Regelung zum Enkelunterhalt."
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Düsseldorfer Tabelle 2026 mit Unterhaltsrechner",
+      "url": "https://www.deutschland-rechner.de/duesseldorfer-tabelle",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "description": description,
+      "inLanguage": "de-DE",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Unterhaltspflichtige und Unterhaltsberechtigte",
+        "geographicArea": { "@type": "Country", "name": "Deutschland" },
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faq.map((f) => ({
+        "@type": "Question",
+        "name": f.frage,
+        "acceptedAnswer": { "@type": "Answer", "text": f.antwort },
+      })),
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Düsseldorfer Tabelle 2026", url: "/duesseldorfer-tabelle" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Familie & Kinder', href: '/familie-kinder' },
+    { name: 'Düsseldorfer Tabelle 2026' }
+  ]} />
+
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-rose-600 to-pink-700 text-white py-6 px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-rose-100 hover:text-white mb-4 transition-colors">
+          <span aria-hidden="true">←</span> Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl" aria-hidden="true">⚖️</span>
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold">Düsseldorfer Tabelle 2026</h1>
+            <p class="text-rose-100 mt-1">Gültig seit 1. Januar 2026 · alle Sätze, Zahlbeträge und Selbstbehalte</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Die Tabelle steht bewusst ganz oben: Wer danach sucht, will sie sehen. -->
+    <section class="max-w-4xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-1">Die Tabelle: Bedarfssätze 2026</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Alle Beträge in Euro pro Monat. Die Sätze gelten für zwei Unterhaltsberechtigte;
+          bei einer abweichenden Zahl wird herauf- oder herabgestuft.
+        </p>
+        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table class="w-full text-sm border-collapse min-w-[640px]">
+            <thead>
+              <tr class="bg-rose-50 text-left">
+                <th class="p-2 border-b-2 border-rose-200 font-semibold">Gr.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold">Nettoeinkommen</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">0–5 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">6–11 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">12–17 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">ab 18 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">%</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">Bedarfs&shy;kontroll&shy;betrag</th>
+              </tr>
+            </thead>
+            <tbody>
+              {TABELLE.map((g) => (
+                <tr class={g.nr % 2 === 0 ? 'bg-gray-50/60' : ''}>
+                  <td class="p-2 border-b border-gray-100 text-gray-500">{g.nr}</td>
+                  <td class="p-2 border-b border-gray-100 whitespace-nowrap">{spanne(g)}</td>
+                  <td class="p-2 border-b border-gray-100 text-right font-medium">{eur(g.saetze[0])}</td>
+                  <td class="p-2 border-b border-gray-100 text-right font-medium">{eur(g.saetze[1])}</td>
+                  <td class="p-2 border-b border-gray-100 text-right font-medium">{eur(g.saetze[2])}</td>
+                  <td class="p-2 border-b border-gray-100 text-right font-medium">{eur(g.saetze[3])}</td>
+                  <td class="p-2 border-b border-gray-100 text-right text-gray-500">{g.prozent}</td>
+                  <td class="p-2 border-b border-gray-100 text-right text-gray-500 whitespace-nowrap">{g.bkb}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">
+          In Gruppe 1 tritt an die Stelle des Bedarfskontrollbetrags der notwendige Selbstbehalt
+          von 1.200 € (nicht erwerbstätig) beziehungsweise 1.450 € (erwerbstätig).
+          Die Tabelle endet bei 11.200 € Nettoeinkommen und wird darüber hinaus nicht fortgeschrieben.
+        </p>
+      </div>
+    </section>
+
+    <!-- Zahlbeträge: das, was tatsächlich überwiesen wird -->
+    <section class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-1">Zahlbeträge nach Kindergeldabzug</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Das ist der Betrag, der tatsächlich überwiesen wird. Vom Bedarf wird bei minderjährigen
+          Kindern das halbe Kindergeld abgezogen ({eur2(KG_HALB)} €), bei volljährigen das volle
+          ({eur2(KINDERGELD)} €). Kindergeld 2026: {eur(KINDERGELD)} € je Kind.
+        </p>
+        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table class="w-full text-sm border-collapse min-w-[560px]">
+            <thead>
+              <tr class="bg-rose-50 text-left">
+                <th class="p-2 border-b-2 border-rose-200 font-semibold">Gr.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold">Nettoeinkommen</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">0–5 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">6–11 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">12–17 J.</th>
+                <th class="p-2 border-b-2 border-rose-200 font-semibold text-right">ab 18 J.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {TABELLE.map((g) => {
+                const z = zahlbetrag(g);
+                return (
+                  <tr class={g.nr % 2 === 0 ? 'bg-gray-50/60' : ''}>
+                    <td class="p-2 border-b border-gray-100 text-gray-500">{g.nr}</td>
+                    <td class="p-2 border-b border-gray-100 whitespace-nowrap">{spanne(g)}</td>
+                    <td class="p-2 border-b border-gray-100 text-right font-medium">{eur2(z[0])}</td>
+                    <td class="p-2 border-b border-gray-100 text-right font-medium">{eur2(z[1])}</td>
+                    <td class="p-2 border-b border-gray-100 text-right font-medium">{eur2(z[2])}</td>
+                    <td class="p-2 border-b border-gray-100 text-right font-medium">{eur2(z[3])}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">
+          Die Spalte „ab 18 J." gilt für volljährige Kinder, die noch im Haushalt eines Elternteils
+          wohnen. Für Studierende mit eigenem Hausstand nennt die Tabelle stattdessen einen
+          Bedarf von 990 € einschließlich bis zu 440 € Warmmiete.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rechner: den Fall direkt durchrechnen -->
+    <section class="max-w-4xl mx-auto px-4 mt-6">
+      <div class="bg-rose-50 border border-rose-200 rounded-2xl p-4 sm:p-6 mb-2">
+        <h2 class="text-xl font-bold text-gray-800 mb-1">Ihren Fall direkt berechnen</h2>
+        <p class="text-sm text-gray-700">
+          Der Rechner ordnet Ihr bereinigtes Nettoeinkommen der richtigen Gruppe zu, wendet die
+          Altersstufe an, zieht das Kindergeld ab und prüft den Selbstbehalt.
+        </p>
+      </div>
+      <UnterhaltsRechner client:load />
+    </section>
+
+    <div class="max-w-4xl mx-auto px-4">
+      <RechnerTrust
+        quellen="Düsseldorfer Tabelle des OLG Düsseldorf, Stand 01.01.2026; § 1612a und § 1612b BGB; § 66 EStG"
+        aktualisiert="August 2026"
+      />
+
+      <!-- Selbstbehalte: vollständig, das hat sonst niemand -->
+      <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-1">Selbstbehalte 2026 im Überblick</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Der Selbstbehalt ist der Betrag, der der unterhaltspflichtigen Person mindestens bleiben
+          muss. Zum 1. Januar 2026 wurde keiner dieser Sätze erhöht.
+        </p>
+        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table class="w-full text-sm border-collapse min-w-[560px]">
+            <thead>
+              <tr class="bg-gray-50 text-left">
+                <th class="p-2 border-b-2 border-gray-200 font-semibold">Gegenüber wem</th>
+                <th class="p-2 border-b-2 border-gray-200 font-semibold text-right">erwerbstätig</th>
+                <th class="p-2 border-b-2 border-gray-200 font-semibold text-right">nicht erwerbstätig</th>
+                <th class="p-2 border-b-2 border-gray-200 font-semibold text-right">davon Warmmiete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-2 border-b border-gray-100">Minderjährige und privilegierte volljährige Kinder</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium">1.450 €</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium">1.200 €</td>
+                <td class="p-2 border-b border-gray-100 text-right text-gray-500">bis 520 €</td>
+              </tr>
+              <tr class="bg-gray-50/60">
+                <td class="p-2 border-b border-gray-100">Andere volljährige Kinder (angemessener Selbstbehalt)</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium" colspan="2">1.750 €</td>
+                <td class="p-2 border-b border-gray-100 text-right text-gray-500">bis 650 €</td>
+              </tr>
+              <tr>
+                <td class="p-2 border-b border-gray-100">Getrennt lebender oder geschiedener Ehegatte</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium">1.600 €</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium">1.475 €</td>
+                <td class="p-2 border-b border-gray-100 text-right text-gray-500">bis 580 €</td>
+              </tr>
+              <tr class="bg-gray-50/60">
+                <td class="p-2 border-b border-gray-100">Eltern (Elternunterhalt)</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium" colspan="2">2.650 € + 70 % des übersteigenden Einkommens</td>
+                <td class="p-2 border-b border-gray-100 text-right text-gray-500">davon 1.000 €</td>
+              </tr>
+              <tr>
+                <td class="p-2 border-b border-gray-100">Enkel (Enkelunterhalt, neu 2026)</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium" colspan="2">2.650 € + 50 % des übersteigenden Einkommens</td>
+                <td class="p-2 border-b border-gray-100 text-right text-gray-500">davon 1.000 €</td>
+              </tr>
+              <tr class="bg-gray-50/60">
+                <td class="p-2 border-b border-gray-100">Mutter oder Vater eines nichtehelichen Kindes (§ 1615l BGB)</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium">1.600 €</td>
+                <td class="p-2 border-b border-gray-100 text-right font-medium">1.475 €</td>
+                <td class="p-2 border-b border-gray-100 text-right text-gray-500">–</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">
+          Beim Eltern- und Enkelunterhalt genügt der Sockelbetrag allein nicht: Vom Einkommen
+          oberhalb der 2.650 € bleiben zusätzlich 70 % (Eltern) beziehungsweise 50 % (Enkel)
+          anrechnungsfrei. Lebt ein Ehegatte im gemeinsamen Haushalt, gilt für ihn ein
+          Mindestbetrag von 2.120 € einschließlich 800 € Warmmiete.
+        </p>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">So wird die Tabelle angewendet</h2>
+        <ol class="space-y-3 text-sm text-gray-700 list-decimal list-inside">
+          <li>
+            <strong>Bereinigtes Nettoeinkommen ermitteln.</strong> Vom Netto werden berufsbedingte
+            Aufwendungen, ehebedingte Schulden und zusätzliche Altersvorsorge abgezogen. Dieser
+            Wert, nicht das Bruttogehalt, bestimmt die Einkommensgruppe.
+          </li>
+          <li>
+            <strong>Einkommensgruppe ablesen.</strong> Die Zeile mit der passenden Spanne
+            bestimmt die Bedarfssätze. Die Sätze gelten für zwei Unterhaltsberechtigte.
+          </li>
+          <li>
+            <strong>Altersstufe wählen.</strong> Maßgeblich ist das Alter des Kindes. Der Wechsel
+            in die nächste Stufe erfolgt am Ersten des Monats, in dem das Kind 6, 12 oder 18 wird.
+          </li>
+          <li>
+            <strong>Bedarfskontrollbetrag prüfen.</strong> Bleibt nach Abzug des Unterhalts
+            weniger übrig, wird eine Gruppe zurückgestuft, notfalls mehrfach.
+          </li>
+          <li>
+            <strong>Kindergeld abziehen.</strong> Bei Minderjährigen die Hälfte, bei Volljährigen
+            das volle Kindergeld. Erst danach steht der Zahlbetrag fest.
+          </li>
+        </ol>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Was sich 2026 geändert hat</h2>
+        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table class="w-full text-sm border-collapse min-w-[480px]">
+            <thead>
+              <tr class="bg-gray-50 text-left">
+                <th class="p-2 border-b-2 border-gray-200 font-semibold">Wert</th>
+                <th class="p-2 border-b-2 border-gray-200 font-semibold text-right">2025</th>
+                <th class="p-2 border-b-2 border-gray-200 font-semibold text-right">2026</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-2 border-b border-gray-100">Mindestunterhalt 0–5 Jahre</td><td class="p-2 border-b border-gray-100 text-right text-gray-500">482 €</td><td class="p-2 border-b border-gray-100 text-right font-medium">486 €</td></tr>
+              <tr class="bg-gray-50/60"><td class="p-2 border-b border-gray-100">Mindestunterhalt 6–11 Jahre</td><td class="p-2 border-b border-gray-100 text-right text-gray-500">554 €</td><td class="p-2 border-b border-gray-100 text-right font-medium">558 €</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">Mindestunterhalt 12–17 Jahre</td><td class="p-2 border-b border-gray-100 text-right text-gray-500">649 €</td><td class="p-2 border-b border-gray-100 text-right font-medium">653 €</td></tr>
+              <tr class="bg-gray-50/60"><td class="p-2 border-b border-gray-100">Bedarfssatz ab 18 Jahren (Gruppe 1)</td><td class="p-2 border-b border-gray-100 text-right text-gray-500">693 €</td><td class="p-2 border-b border-gray-100 text-right font-medium">698 €</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">Kindergeld</td><td class="p-2 border-b border-gray-100 text-right text-gray-500">255 €</td><td class="p-2 border-b border-gray-100 text-right font-medium">259 €</td></tr>
+              <tr class="bg-gray-50/60"><td class="p-2 border-b border-gray-100">Anrechnung bei Minderjährigen</td><td class="p-2 border-b border-gray-100 text-right text-gray-500">127,50 €</td><td class="p-2 border-b border-gray-100 text-right font-medium">129,50 €</td></tr>
+              <tr><td class="p-2 border-b border-gray-100">Selbstbehalte</td><td class="p-2 border-b border-gray-100 text-right text-gray-500" colspan="2">unverändert</td></tr>
+              <tr class="bg-gray-50/60"><td class="p-2 border-b border-gray-100">Einkommensgrenzen und Prozentsätze</td><td class="p-2 border-b border-gray-100 text-right text-gray-500" colspan="2">unverändert</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-gray-700 mt-4">
+          In den höheren Gruppen fallen die Steigerungen etwas größer aus, je nach Zelle zwischen
+          4 und 10 Euro. Inhaltlich neu ist außerdem, dass der Elternunterhalt erstmals mit
+          2.650 Euro beziffert wird und dass es erstmals eine eigene Regelung zum Enkelunterhalt gibt.
+        </p>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Typische Fehler</h2>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Den Tabellenbetrag für den Zahlbetrag halten</h3>
+        <p class="text-sm text-gray-700">
+          Der häufigste Irrtum. In der Tabelle steht der Bedarf, überwiesen wird der Zahlbetrag
+          nach Kindergeldabzug. Zwischen 558 € Bedarf und 428,50 € Zahlbetrag liegen 129,50 €.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Mit dem Bruttogehalt einsteigen</h3>
+        <p class="text-sm text-gray-700">
+          Maßgeblich ist das bereinigte Nettoeinkommen. Wer mit dem Brutto in die Tabelle geht,
+          landet mehrere Gruppen zu hoch.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Den Bedarfskontrollbetrag übersehen</h3>
+        <p class="text-sm text-gray-700">
+          Bei mehreren Kindern greift die Rückstufung schnell. Ohne diese Prüfung fällt der
+          errechnete Unterhalt zu hoch aus.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Die Tabelle über 11.200 € hinaus verlängern</h3>
+        <p class="text-sm text-gray-700">
+          Gruppe 15 ist das Ende. Bei höherem Einkommen ist der Bedarf konkret darzulegen, die
+          Sätze lassen sich nicht linear fortschreiben.
+        </p>
+
+        <h3 class="font-bold text-gray-800 mt-4 mb-1">Die Tabelle für ein echtes Wechselmodell nutzen</h3>
+        <p class="text-sm text-gray-700">
+          Die Tabelle unterstellt das Residenzmodell. Bei annähernd gleicher Betreuung sind beide
+          Eltern barunterhaltspflichtig und es wird anders gerechnet.
+        </p>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Häufig gestellte Fragen</h2>
+        <div class="space-y-3">
+          {faq.map((f) => (
+            <details class="border border-gray-200 rounded-xl p-4">
+              <summary class="font-medium text-gray-800 cursor-pointer">{f.frage}</summary>
+              <p class="mt-3 text-sm text-gray-700">{f.antwort}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <div class="bg-gray-50 rounded-2xl p-4 sm:p-6 mb-6 text-sm text-gray-600">
+        <p>
+          <strong>Hinweis:</strong> Die Düsseldorfer Tabelle ist eine Leitlinie, kein Gesetz.
+          Familiengerichte wenden sie regelmäßig an, im Einzelfall sind aber Abweichungen möglich,
+          etwa über die regionalen Unterhaltsleitlinien der Oberlandesgerichte. Diese Seite ist
+          eine Orientierung und ersetzt keine Rechtsberatung.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4">
+      <VerwandteRechner
+        aktuellerSlug="duesseldorfer-tabelle"
+        slugs={['unterhalt', 'ehegattenunterhalt', 'kindergeld', 'kinderzuschlag']}
+        kategorie="familie"
+      />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Layout>

@@ -65,6 +65,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'duesseldorfer-tabelle',
+    slug: 'duesseldorfer-tabelle',
+    name: 'Düsseldorfer Tabelle 2026',
+    beschreibung: 'Alle Bedarfssätze, Zahlbeträge und Selbstbehalte im Überblick',
+    icon: '⚖️',
+    kategorie: 'familie',
+    fertig: true,
+    seoKeywords: 'Düsseldorfer Tabelle 2026, Düsseldorfer Tabelle, Kindesunterhalt Tabelle, Unterhaltstabelle 2026, Mindestunterhalt 2026, Zahlbetrag Kindesunterhalt, Selbstbehalt Unterhalt 2026',
+    quellen: [
+      'https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/index.php',
+      'https://www.gesetze-im-internet.de/bgb/__1612a.html',
+      'https://www.gesetze-im-internet.de/bgb/__1612b.html',
+    ],
+  },
+  {
     id: 'kinderzuschlag',
     name: 'Kinderzuschlag-Rechner',
     beschreibung: 'Kinderzuschlag-Anspruch prüfen (bis 292€/Kind)',
@@ -439,7 +454,7 @@ export const rechnerListe: Rechner[] = [
     icon: '📜',
     kategorie: 'steuern',
     fertig: true,
-    seoKeywords: 'Erbschaftsteuer Rechner, Erbschaftsteuer Freibetrag, Erbschaft versteuern, Erbschaftsteuer 2025, Erbschaftsteuer Steuerklasse',
+    seoKeywords: 'Erbschaftsteuer Rechner, Erbschaftssteuer Rechner, Erbschaftsteuer Freibetrag, Erbschaftssteuer berechnen, Erbschaft versteuern, Erbschaftsteuer 2026, Erbschaftsteuer Steuerklasse',
     quellen: [
       'https://www.gesetze-im-internet.de/erbstg_1974/',
       'https://www.gesetze-im-internet.de/bewg/',
@@ -2471,6 +2486,20 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Weihnachtsgeld Rechner, Weihnachtsgeld netto, Weihnachtsgeld berechnen, Weihnachtsgeld Steuer, wie viel Weihnachtsgeld bleibt, Sonderzahlung netto',
     quellen: [],
+  },
+  {
+    id: 'jahressonderzahlung',
+    name: 'Jahressonderzahlung-Rechner',
+    beschreibung: 'Jahressonderzahlung nach TVöD und TV-L berechnen',
+    icon: '🏛️',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'Jahressonderzahlung Rechner, Jahressonderzahlung TVöD, Weihnachtsgeld TVöD, TVöD Jahressonderzahlung 2026, Jahressonderzahlung TV-L, Jahressonderzahlung berechnen, Weihnachtsgeld öffentlicher Dienst',
+    quellen: [
+      'https://www.vka.de/',
+      'https://www.tdl-online.de/',
+      'https://www.bmi.bund.de/',
+    ],
   },
   {
     id: 'rendite',
