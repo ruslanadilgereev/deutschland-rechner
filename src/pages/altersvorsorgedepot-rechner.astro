@@ -20,7 +20,11 @@ const faqs = [
   },
   {
     q: "Wie hoch ist die Kinderzulage?",
-    a: "Für jedes zulageberechtigte Kind gibt es 1 Euro Kinderzulage je gespartem Euro bis zu einem Eigenbeitrag von 300 Euro pro Kind. Die volle Kinderzulage von 300 Euro pro Kind und Jahr erhalten Sie also, wenn Sie mindestens 300 Euro (rund 25 Euro im Monat) je Kind einzahlen. Auch für die Kinderzulage gilt der Mindesteigenbeitrag von 120 Euro pro Jahr."
+    a: "Für jedes Kind, für das Kindergeld festgesetzt wird, gibt es 1 Euro Kinderzulage je gespartem Euro – höchstens 300 Euro pro Kind und Jahr. Die volle Kinderzulage erhalten Sie also ab einem Eigenbeitrag von 300 Euro im Jahr, das entspricht rund 25 Euro im Monat. Auch für die Kinderzulage gilt der Mindesteigenbeitrag von 120 Euro pro Jahr."
+  },
+  {
+    q: "Brauche ich bei mehreren Kindern einen höheren Eigenbeitrag?",
+    a: "Nein. Nach § 85 Absatz 1 EStG in der ab 2027 geltenden Fassung wird die Kinderzulage für jedes Kind aus denselben Altersvorsorgebeiträgen berechnet. Ein Eigenbeitrag von 300 Euro im Jahr löst damit die volle Kinderzulage für jedes einzelne Kind aus: bei zwei Kindern 600 Euro, bei drei Kindern 900 Euro Kinderzulage – jeweils bei unveränderten 300 Euro Eigenbeitrag. Es ist ein verbreiteter Irrtum, dass je Kind 300 Euro eingezahlt werden müssten. Der geförderte Höchstbeitrag von 1.800 Euro begrenzt lediglich den Eigenbeitrag, nicht die Summe der Zulagen; kinderreiche Familien stoßen deshalb nicht an diese Grenze."
   },
   {
     q: "Was ist der Berufseinsteigerbonus?",
@@ -79,15 +83,17 @@ const faqs = [
     <!-- Trust Block -->
     <div class="max-w-2xl mx-auto px-4 mt-2">
       <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
-        <strong>✅ Zuletzt aktualisiert am 13. Juni 2026.</strong>
+        <strong>✅ Zuletzt aktualisiert am 9. August 2026.</strong>
         <div class="mt-2">
-          <strong>Grundlage:</strong> Reform der steuerlich geförderten privaten Altersvorsorge (Altersvorsorgedepot),
-          beschlossen vom Bundesrat am 8. Mai 2026; Förderparameter laut Bundesministerium der Finanzen (BMF) und
+          <strong>Grundlage:</strong> Gesetz zur Reform der steuerlich geförderten privaten Altersvorsorge
+          (BGBl. 2026 I Nr. 156, ausgegeben am 29. Mai 2026) – §§ 84 bis 86 EStG in der ab dem Beitragsjahr 2027
+          geltenden Fassung; ergänzend die Erläuterungen des Bundesministeriums der Finanzen (BMF) und der
           Bundesregierung. Produkte sind für Verbraucher ab dem 1. Januar 2027 verfügbar.
         </div>
         <div class="mt-2 text-xs text-blue-600">
           <strong>Berücksichtigt:</strong> Gestaffelte Grundzulage (50 % bis 360 €, 25 % bis 1.800 €, max. 540 €/Jahr),
-          Kinderzulage (1 € je Euro bis 300 € Eigenbeitrag je Kind), einmaliger Berufseinsteigerbonus (200 €),
+          Kinderzulage (1 € je Euro, max. 300 € je Kind – berechnet für jedes Kind aus demselben Eigenbeitrag),
+          einmaliger Berufseinsteigerbonus (200 €),
           Mindesteigenbeitrag 120 €/Jahr, geförderter Höchstbeitrag 1.800 €/Jahr, Endkapital mit Zinseszins.<br/>
           <strong>Nicht berücksichtigt:</strong> Konkrete Produktkosten und Gebühren, nachgelagerte Besteuerung in der
           Auszahlphase, individuelle Steuersituation, Kursschwankungen bzw. negative Renditen sowie exakte
@@ -115,19 +121,23 @@ const faqs = [
           <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Zulagen im Überblick</h3>
           <ul class="list-disc pl-5 space-y-1">
             <li><strong>Grundzulage (gestaffelt):</strong> 50 Cent je Euro auf die ersten 360 € (= bis 180 €), danach 25 Cent je Euro bis 1.800 € (= bis 360 €). Maximal <strong>540 € pro Jahr</strong>.</li>
-            <li><strong>Kinderzulage:</strong> 1 € je gespartem Euro bis 300 € Eigenbeitrag pro Kind – also bis zu <strong>300 € je Kind und Jahr</strong>.</li>
+            <li><strong>Kinderzulage:</strong> 1 € je gespartem Euro, höchstens <strong>300 € je Kind und Jahr</strong>. Der Satz gilt <strong>für jedes Kind auf denselben Eigenbeitrag</strong> – 300 € im Jahr reichen also unabhängig von der Kinderzahl für die volle Kinderzulage.</li>
             <li><strong>Berufseinsteigerbonus:</strong> einmalig <strong>200 €</strong> bei Vertragsabschluss vor dem 25. Geburtstag.</li>
             <li><strong>Mindesteigenbeitrag:</strong> <strong>120 € pro Jahr</strong> sind nötig, damit überhaupt eine Zulage fließt.</li>
             <li><strong>Geförderter Höchstbeitrag:</strong> <strong>1.800 € pro Jahr</strong> – darüber hinaus ist eine Einzahlung möglich, wird aber nicht zusätzlich gefördert.</li>
           </ul>
 
-          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formel für die Grundzulage</h3>
-          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm">
-            <strong>Grundzulage = min(E; 360) × 0,50 + max(0; min(E; 1.800) − 360) × 0,25</strong>
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Die Formeln für Grund- und Kinderzulage</h3>
+          <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm space-y-2">
+            <div><strong>Grundzulage = min(E; 360) × 0,50 + max(0; min(E; 1.800) − 360) × 0,25</strong></div>
+            <div><strong>Kinderzulage = min(E; 300) × K</strong></div>
           </div>
           <p>
-            Dabei ist <strong>E</strong> der jährliche Eigenbeitrag. Liegt E unter 120 €, entfällt die Förderung. Die
-            Förderquote zeigt, wie viel Prozent der Staat auf Ihren Eigenbeitrag drauflegt:
+            Dabei ist <strong>E</strong> der jährliche Eigenbeitrag und <strong>K</strong> die Zahl der
+            kindergeldberechtigten Kinder. Liegt E unter 120 €, entfällt die Förderung. Entscheidend ist, dass
+            <strong>K in der Kinderzulage multipliziert und nicht in den Eigenbeitrag hineingerechnet</strong> wird:
+            Die Zahl der Kinder erhöht die Zulage, nicht den nötigen Eigenbeitrag. Die Förderquote zeigt, wie viel
+            Prozent der Staat auf Ihren Eigenbeitrag drauflegt:
             <strong>Förderquote = (Grundzulage + Kinderzulage) ÷ Eigenbeitrag × 100</strong>.
           </p>
 
@@ -150,13 +160,31 @@ const faqs = [
           </p>
           <ul class="list-disc pl-5 space-y-1">
             <li>Grundzulage = 360 × 0,50 + (600 − 360) × 0,25 = 180 € + 60 € = <strong>240 €</strong></li>
-            <li>Kinderzulage = min(600 €; 1 × 300 €) = <strong>300 € (1 Kind)</strong> – 600 € Eigenbeitrag reichen für die volle Kinderzulage</li>
+            <li>Kinderzulage = min(600 €; 300 €) × 1 = <strong>300 €</strong> – schon 300 € Eigenbeitrag reichen für die volle Kinderzulage</li>
             <li>Zulage gesamt = 240 € + 300 € = <strong>540 €</strong></li>
             <li>Förderquote = 540 € ÷ 600 € = <strong>90 %</strong></li>
           </ul>
           <p>
             Familien mit Kindern profitieren überproportional: Bei nur 600 € Eigenbeitrag verdoppelt sich der Einsatz
             durch die Zulagen fast.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-6">Rechenbeispiel 3: 300 € Eigenbeitrag, 3 Kinder</h3>
+          <p>
+            Dieses Beispiel zeigt, warum die Kinderzahl den nötigen Eigenbeitrag <strong>nicht</strong> erhöht. Bei
+            <strong>300 € pro Jahr</strong> (25 € im Monat) und drei Kindern ergibt sich:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Grundzulage = 300 × 0,50 = <strong>150 €</strong> (die zweite Stufe greift erst ab 360 €)</li>
+            <li>Kinderzulage = min(300 €; 300 €) × 3 Kinder = <strong>900 €</strong></li>
+            <li>Zulage gesamt = 150 € + 900 € = <strong>1.050 €</strong></li>
+            <li>Förderquote = 1.050 € ÷ 300 € = <strong>350 %</strong></li>
+          </ul>
+          <p>
+            Der geförderte Höchstbeitrag von 1.800 € begrenzt nur den <strong>Eigenbeitrag</strong>, nicht die Summe
+            der Zulagen. Deshalb laufen auch kinderreiche Haushalte nicht gegen diese Grenze: Für die volle
+            Kinderzulage genügen 300 € Eigenbeitrag – bei einem Kind ebenso wie bei zehn. Genau darin liegt der
+            Kern der Reform, die ausdrücklich auf „geringe bis mittlere Eigenbeiträge“ zielt.
           </p>
 
           <h3 class="text-lg font-semibold text-gray-800 mt-6">So wirkt der Zinseszins</h3>
@@ -187,7 +215,7 @@ const faqs = [
           </li>
           <li class="flex items-start gap-2">
             <span class="text-orange-500 mt-0.5">•</span>
-            <span><strong>Kinderzulage als „extra" eingeplant:</strong> Die Kinderzulage wird aus demselben Eigenbeitrag berechnet. Für die volle Zulage je Kind sind 300 € Eigenbeitrag pro Kind nötig.</span>
+            <span><strong>300 € Eigenbeitrag <em>je Kind</em> eingeplant:</strong> Ein verbreiteter Irrtum. Nach § 85 Absatz 1 EStG wird die Kinderzulage <strong>für jedes Kind aus denselben Altersvorsorgebeiträgen</strong> berechnet. 300 € Eigenbeitrag im Jahr lösen deshalb die volle Kinderzulage für <strong>alle</strong> Kinder aus: bei drei Kindern 900 € Zulage für 300 € Einsatz. Wären dagegen 300 € je Kind nötig, würden kinderreiche Familien am geförderten Höchstbeitrag von 1.800 € scheitern – genau das wollte der Gesetzgeber vermeiden.</span>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-orange-500 mt-0.5">•</span>
@@ -238,7 +266,7 @@ const faqs = [
 
     <!-- Zuletzt aktualisiert -->
     <div class="max-w-2xl mx-auto px-4 mt-6 mb-4">
-      <p class="text-xs text-gray-400 text-center">Zuletzt aktualisiert: 13. Juni 2026 · Alle Angaben ohne Gewähr · Förderparameter laut BMF und Bundesregierung (Reform beschlossen am 8. Mai 2026)</p>
+      <p class="text-xs text-gray-400 text-center">Zuletzt aktualisiert: 9. August 2026 · Alle Angaben ohne Gewähr · Förderparameter nach §§ 84–86 EStG n. F. (BGBl. 2026 I Nr. 156)</p>
     </div>
   </main>
 

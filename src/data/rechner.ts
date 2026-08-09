@@ -1505,6 +1505,7 @@ export const rechnerListe: Rechner[] = [
     fertig: true,
     seoKeywords: 'Altersvorsorgedepot Rechner, Altersvorsorgedepot, geförderte Altersvorsorge Rechner, Riester Nachfolger, Grundzulage Rechner, Kinderzulage Altersvorsorge, Berufseinsteigerbonus, private Altersvorsorge 2027, Förderzulage berechnen, Altersvorsorge Reform 2026, Zulagen Rechner, Altersvorsorgedepot Förderung, staatliche Förderung Altersvorsorge',
     quellen: [
+      'https://www.recht.bund.de/bgbl/1/2026/156/VO.html',
       'https://www.bundesfinanzministerium.de/Content/DE/FAQ/reform-der-privaten-altersvorsorge.html',
       'https://www.bundesregierung.de/breg-de/aktuelles/reform-private-altersvorsorge-2400072',
       'https://www.bundesfinanzministerium.de/Monatsberichte/Ausgabe/2026/01/Inhalte/Kapitel-2-Analysen/2-2-neustart-fuer-die-private-altersvorsorge.html',

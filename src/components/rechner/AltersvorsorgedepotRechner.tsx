@@ -8,10 +8,15 @@ const GRUNDZULAGE_STUFE2_GRENZE = 1800;     // Euro Eigenbeitrag (gefördert ins
 const GRUNDZULAGE_STUFE2_QUOTE = 0.25;      // 25 Cent pro Euro von 360,01 € bis 1.800 €
 const GRUNDZULAGE_MAX = 540;                // Euro/Jahr (= 180 + 360)
 
-// Kinderzulage (pro Kind)
-const KINDERZULAGE_GRENZE_PRO_KIND = 300;   // Euro Eigenbeitrag pro Kind
-const KINDERZULAGE_QUOTE = 1.0;             // 1 € Zulage pro eingezahltem Euro (bis 300 €)
-const KINDERZULAGE_MAX_PRO_KIND = 300;      // Euro/Kind/Jahr
+// Kinderzulage (§ 85 Abs. 1 EStG n. F., BGBl. 2026 I Nr. 156):
+// "Für jedes Kind [...] beträgt die Kinderzulage jährlich 100 Prozent der im Beitragsjahr bis zu
+// einer Höhe von 1 800 Euro geleisteten Altersvorsorgebeiträge; die Kinderzulage beträgt jedoch
+// höchstens 300 Euro pro Kind."
+// Bemessungsgrundlage sind DIESELBEN Beiträge wie bei der Grundzulage; der Satz wird für JEDES
+// Kind erneut angewandt. Es ist also kein eigener Eigenbeitrag von 300 € je Kind nötig.
+const KINDERZULAGE_QUOTE = 1.0;             // 100 % je eingezahltem Euro
+const KINDERZULAGE_BEMESSUNGSGRENZE = 1800; // Euro Eigenbeitrag als Bemessungsgrundlage
+const KINDERZULAGE_MAX_PRO_KIND = 300;      // Euro/Kind/Jahr (Höchstbetrag je Kind)
 
 // Berufseinsteigerbonus (einmalig)
 const BERUFSEINSTEIGERBONUS = 200;          // Euro einmalig, wenn Vertrag vor dem 25. Geburtstag
@@ -76,11 +81,15 @@ export default function AltersvorsorgedepotRechner() {
       grundzulage = Math.min(stufe1 + stufe2, GRUNDZULAGE_MAX);
     }
 
-    // 2) Kinderzulage pro Jahr (1 € je Euro bis 300 €/Kind, aus demselben Eigenbeitrag)
+    // 2) Kinderzulage pro Jahr: 100 % desselben Eigenbeitrags – für jedes Kind erneut,
+    //    je Kind gedeckelt auf 300 €. Die Kinderzahl erhöht den nötigen Eigenbeitrag nicht.
     let kinderzulage = 0;
     if (K > 0 && E >= MINDEST_EIGENBEITRAG) {
-      const eigenbeitragFuerKinder = Math.min(E, K * KINDERZULAGE_GRENZE_PRO_KIND);
-      kinderzulage = Math.min(eigenbeitragFuerKinder * KINDERZULAGE_QUOTE, K * KINDERZULAGE_MAX_PRO_KIND);
+      const zulageProKind = Math.min(
+        Math.min(E, KINDERZULAGE_BEMESSUNGSGRENZE) * KINDERZULAGE_QUOTE,
+        KINDERZULAGE_MAX_PRO_KIND
+      );
+      kinderzulage = zulageProKind * K;
     }
 
     // 3) Berufseinsteigerbonus (einmalig, nur in Jahr 1)
@@ -185,7 +194,8 @@ export default function AltersvorsorgedepotRechner() {
               step="1"
             />
             <p className="text-xs text-gray-500 mt-1">
-              Volle Kinderzulage (300 €/Kind) ab 300 € Eigenbeitrag je Kind und Jahr.
+              Ab 300 € Eigenbeitrag im Jahr (25 €/Monat) gibt es die volle Kinderzulage von 300 € –
+              und zwar für jedes Kind. Mehr Kinder erfordern keinen höheren Eigenbeitrag.
             </p>
           </div>
 
@@ -449,7 +459,7 @@ export default function AltersvorsorgedepotRechner() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-orange-500 mt-0.5">•</span>
-            <span>Für jedes Kind gibt es <strong>1 € je gespartem Euro bis 300 €</strong> – also bis zu <strong>300 € Kinderzulage</strong> pro Kind und Jahr.</span>
+            <span>Für <strong>jedes</strong> Kind gibt es 1 € je gespartem Euro, höchstens <strong>300 € pro Kind und Jahr</strong>. Maßgeblich ist derselbe Eigenbeitrag – 300 € im Jahr genügen also für die volle Kinderzulage sämtlicher Kinder.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-orange-500 mt-0.5">•</span>
@@ -500,6 +510,11 @@ export default function AltersvorsorgedepotRechner() {
       <div className="bg-gray-50 rounded-2xl p-6">
         <h3 className="font-semibold text-gray-700 mb-3">📚 Quellen & Rechtliche Grundlagen</h3>
         <ul className="space-y-1 text-sm text-gray-600">
+          <li>
+            <a href="https://www.recht.bund.de/bgbl/1/2026/156/VO.html" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline">
+              BGBl. 2026 I Nr. 156 – Gesetz zur Reform der steuerlich geförderten privaten Altersvorsorge (§§ 84–86 EStG n. F.)
+            </a>
+          </li>
           <li>
             <a href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/reform-der-privaten-altersvorsorge.html" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline">
               BMF – FAQ: Reform der geförderten privaten Altersvorsorge
