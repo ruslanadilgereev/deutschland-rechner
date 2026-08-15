@@ -26,7 +26,7 @@ const PAP_2026 = {
   PVSATZAN_SACHSEN: 0.023,
   PVSATZAN_KINDERLOS: 0.006,
   PVSATZAN_KINDABSCHLAG: 0.0025,
-  KVSATZAN_BASIS: 0.07,
+  KVSATZAN_BASIS: 0.073,
   GFB: 12348,
   ZONE2_KOEFF1: 914.51,
   ZONE2_KOEFF2: 1400,
@@ -472,7 +472,7 @@ export function GehaltserhoehungRechner() {
   const [kinderlos, setKinderlos] = useState(true);
   const [kirchensteuer, setKirchensteuer] = useState(false);
   const [bundesland, setBundesland] = useState('NW');
-  const [anzahlKinder, setAnzahlKinder] = useState(0);
+  const [anzahlKinder, setAnzahlKinder] = useState(1);
   const [kvZusatzbeitrag, setKvZusatzbeitrag] = useState(2.9);
 
   const ergebnis = useMemo(() => {
@@ -679,7 +679,7 @@ export function GehaltserhoehungRechner() {
                 onClick={() => setAnzahlKinder(Math.max(1, anzahlKinder - 1))}
                 className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 font-bold"
               >−</button>
-              <span className="text-2xl font-bold w-12 text-center">{anzahlKinder || 1}</span>
+              <span className="text-2xl font-bold w-12 text-center">{anzahlKinder}</span>
               <button
                 onClick={() => setAnzahlKinder(Math.min(10, anzahlKinder + 1))}
                 className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 font-bold"

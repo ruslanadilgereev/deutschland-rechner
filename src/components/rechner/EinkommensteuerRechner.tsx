@@ -177,10 +177,11 @@ export default function EinkommensteuerRechner() {
                           aussergewoehnlich + behinderungsPauschbetrag;
     
     // Ohne Kinderfreibetrag (für Günstigerprüfung)
-    const zvEOhneKinder = Math.max(0, einkuenfteGesamt - abzuegeGesamt);
-    
+    // zvE wird gem. § 32a Abs. 1 S. 6 EStG auf volle Euro abgerundet
+    const zvEOhneKinder = Math.floor(Math.max(0, einkuenfteGesamt - abzuegeGesamt));
+
     // Mit Kinderfreibetrag
-    const zvE = Math.max(0, einkuenfteGesamt - abzuegeGesamt - kinderfreibetragWert);
+    const zvE = Math.floor(Math.max(0, einkuenfteGesamt - abzuegeGesamt - kinderfreibetragWert));
     
     // 7. Einkommensteuer berechnen
     const einkommensteuerOhneKinder = berechneEinkommensteuer(zvEOhneKinder, verheiratet);

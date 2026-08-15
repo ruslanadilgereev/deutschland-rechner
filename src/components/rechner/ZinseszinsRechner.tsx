@@ -125,7 +125,7 @@ export default function ZinseszinsRechner() {
     n.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' Jahre';
 
   // Für Balkendiagramm
-  const einzahlungsAnteil = (ergebnis.gesamtEinzahlungen / ergebnis.endwert) * 100;
+  const einzahlungsAnteil = ergebnis.endwert > 0 ? (ergebnis.gesamtEinzahlungen / ergebnis.endwert) * 100 : 0;
   const zinsenAnteil = 100 - einzahlungsAnteil;
 
   return (
