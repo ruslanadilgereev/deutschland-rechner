@@ -118,7 +118,7 @@ export default function SparRechner() {
   }, [berechne]);
 
   // Für Balkendiagramm: max Wert ermitteln
-  const maxVergleich = vergleich.length > 0 ? Math.max(...vergleich.map(v => v.endkapital)) : 1;
+  const maxVergleich = Math.max(1, ...vergleich.map(v => v.endkapital));
 
   // Berechne Beispiel: 100€/Monat über verschiedene Zeiträume
   const beispielVergleich = [
@@ -318,7 +318,7 @@ export default function SparRechner() {
               <div className="h-8 bg-gray-100 rounded-lg overflow-hidden">
                 <div 
                   className="h-full bg-blue-500 rounded-lg transition-all duration-500"
-                  style={{ width: `${(result.einzahlungen / result.endkapital) * 100}%` }}
+                  style={{ width: `${result.endkapital > 0 ? (result.einzahlungen / result.endkapital) * 100 : 0}%` }}
                 ></div>
               </div>
             </div>
@@ -332,7 +332,7 @@ export default function SparRechner() {
               <div className="h-8 bg-gray-100 rounded-lg overflow-hidden">
                 <div 
                   className="h-full bg-amber-500 rounded-lg transition-all duration-500"
-                  style={{ width: `${(result.zinsen / result.endkapital) * 100}%` }}
+                  style={{ width: `${result.endkapital > 0 ? (result.zinsen / result.endkapital) * 100 : 0}%` }}
                 ></div>
               </div>
             </div>

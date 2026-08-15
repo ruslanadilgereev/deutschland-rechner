@@ -32,7 +32,11 @@ const PAP_2026 = {
   PVSATZAN_KINDABSCHLAG: 0.0025, // Abschlag pro Kind (2-5 Kinder)
   
   // Krankenversicherung
-  KVSATZAN_BASIS: 0.07,     // KV-Satz AN Basis (14% / 2)
+  // Ermäßigter Beitragssatz § 243 SGB V (14,0 %) / 2 – so schreibt es
+  // § 39b Abs. 2 S. 5 Nr. 3 Buchst. b EStG für die Vorsorgepauschale vor.
+  // NICHT der allgemeine Satz nach § 241 SGB V (14,6 % → 0,073), der nur
+  // für den tatsächlichen SV-Abzug gilt.
+  KVSATZAN_BASIS: 0.07,
   
   // Steuertarif
   GFB: 12348,              // Grundfreibetrag §32a EStG
@@ -582,7 +586,7 @@ export default function BruttoNettoRechner() {
   const [kinderlos, setKinderlos] = useState(true);
   const [kirchensteuer, setKirchensteuer] = useState(false);
   const [bundesland, setBundesland] = useState('NW');
-  const [anzahlKinder, setAnzahlKinder] = useState(0);
+  const [anzahlKinder, setAnzahlKinder] = useState(1);
   const [kvZusatzbeitrag, setKvZusatzbeitrag] = useState(2.9); // Durchschnitt 2026
 
   // Berechne Monatswert für die Anzeige
@@ -776,7 +780,7 @@ export default function BruttoNettoRechner() {
                 onClick={() => setAnzahlKinder(Math.max(1, anzahlKinder - 1))}
                 className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 font-bold"
               >−</button>
-              <span className="text-2xl font-bold w-12 text-center">{anzahlKinder || 1}</span>
+              <span className="text-2xl font-bold w-12 text-center">{anzahlKinder}</span>
               <button
                 onClick={() => setAnzahlKinder(Math.min(10, anzahlKinder + 1))}
                 className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 font-bold"
