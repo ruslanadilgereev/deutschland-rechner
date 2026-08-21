@@ -4,10 +4,13 @@ import { useState, useMemo } from 'react';
 // Stand: Aktuelle Regelaltersgrenzen nach SGB VI
 
 const FRUEHRENTE_2026 = {
-  abschlagProMonat: 0.3,       // % Abzug pro Monat vor Regelaltersgrenze
+  abschlagProMonat: 0.3,       // % Abzug pro Monat vor Regelaltersgrenze (§ 77 Abs. 2 SGB VI)
   maxAbschlag: 14.4,           // % maximaler Abschlag (48 Monate × 0,3%)
   fruehestesRentenalter: 63,   // Frühestmöglicher Rentenbeginn (mit 35 Beitragsjahren)
   durchschnittlicheRentenbezugsdauer: 20, // Jahre (statistische Annahme)
+  rentenwert: 42.52,           // €/Entgeltpunkt ab 01.07.2026 (§ 1 RWBestV 2026)
+  durchschnittsentgelt: 51944, // €/Jahr, vorläufig 2026 (§ 1 Abs. 2 SVBezGrV 2026)
+  bbgMonat: 8450,              // € Beitragsbemessungsgrenze RV 2026
 };
 
 // Regelaltersgrenze nach Geburtsjahr (volle Tabelle ab 1947)
@@ -63,6 +66,34 @@ interface FruehrenteErgebnis {
   istMoeglich: boolean;
   alter45Jahre: { jahre: number; monate: number };
   kannAbschlagsfrei: boolean;
+  fehlendeEntgeltpunkte: number;
+  verlustDurchFehlendeBeitraege: number;
+  renteVorAbschlag: number;
+  gesamtminderungProzent: number;
+}
+
+// Entgeltpunkte, die fehlen, weil bis zur Regelaltersgrenze keine Beiträge mehr fließen.
+// Die Renteninformation rechnet bis zur Regelaltersgrenze hoch und unterstellt dabei
+// weiterlaufende Beiträge - wer früher aufhört, erreicht diesen Betrag nie.
+function fehlendeEP(monateVorRegelalter: number, bruttoBisRente: number): number {
+  const jahresentgelt = Math.min(bruttoBisRente * 12, FRUEHRENTE_2026.bbgMonat * 12);
+  return (monateVorRegelalter / 12) * (jahresentgelt / FRUEHRENTE_2026.durchschnittsentgelt);
+}
+
+// Tatsächliche Rente bei vorgezogenem Beginn. Reihenfolge nach § 77 SGB VI: der
+// Zugangsfaktor wirkt auf die tatsächlich erworbenen Entgeltpunkte, also erst die
+// fehlenden Punkte abziehen (§ 63 SGB VI), dann den Abschlag darauf anwenden.
+function renteBeiVorbezug(
+  erwarteteRente: number,
+  monateVorRegelalter: number,
+  abschlagProzent: number,
+  bruttoBisRente: number
+): number {
+  const verlust = Math.min(
+    fehlendeEP(monateVorRegelalter, bruttoBisRente) * FRUEHRENTE_2026.rentenwert,
+    erwarteteRente
+  );
+  return (erwarteteRente - verlust) * (1 - abschlagProzent / 100);
 }
 
 function berechneFruehrente(
@@ -70,7 +101,8 @@ function berechneFruehrente(
   gewuenschtesAlterJahre: number,
   gewuenschtesAlterMonate: number,
   erwarteteRente: number,
-  hat45Beitragsjahre: boolean
+  hat45Beitragsjahre: boolean,
+  bruttoBisRente: number
 ): FruehrenteErgebnis {
   const regelaltersgrenze = getRegelaltersgrenze(geburtsJahr);
   const alter45Jahre = getAlter45Jahre(geburtsJahr);
@@ -97,10 +129,24 @@ function berechneFruehrente(
     );
   }
   
-  // Rente nach Abschlag
-  const renteMitAbschlag = erwarteteRente * (1 - abschlagProzent / 100);
+  // Der Abschlag ist nur ein Teil der Minderung. Zusätzlich fehlen die Entgeltpunkte der
+  // Jahre, in denen bis zur Regelaltersgrenze keine Beiträge mehr gezahlt werden.
+  const fehlendeEntgeltpunkte = fehlendeEP(monateVorRegelalter, bruttoBisRente);
+  const verlustDurchFehlendeBeitraege = Math.min(
+    fehlendeEntgeltpunkte * FRUEHRENTE_2026.rentenwert,
+    erwarteteRente
+  );
+  const renteVorAbschlag = erwarteteRente - verlustDurchFehlendeBeitraege;
+  const renteMitAbschlag = renteBeiVorbezug(
+    erwarteteRente,
+    monateVorRegelalter,
+    abschlagProzent,
+    bruttoBisRente
+  );
   const rentenminderungProMonat = erwarteteRente - renteMitAbschlag;
-  
+  const gesamtminderungProzent =
+    erwarteteRente > 0 ? (rentenminderungProMonat / erwarteteRente) * 100 : 0;
+
   // Gesamtverlust über Rentenbezugsdauer
   const gesamtverlustProJahr = rentenminderungProMonat * 12;
   const gesamtverlust20Jahre = gesamtverlustProJahr * FRUEHRENTE_2026.durchschnittlicheRentenbezugsdauer;
@@ -118,6 +164,10 @@ function berechneFruehrente(
     istMoeglich,
     alter45Jahre,
     kannAbschlagsfrei,
+    fehlendeEntgeltpunkte,
+    verlustDurchFehlendeBeitraege,
+    renteVorAbschlag,
+    gesamtminderungProzent,
   };
 }
 
@@ -128,6 +178,7 @@ export default function FruehrenteRechner() {
   const [gewuenschtesAlterMonate, setGewuenschtesAlterMonate] = useState(0);
   const [erwarteteRente, setErwarteteRente] = useState(1800);
   const [hat45Beitragsjahre, setHat45Beitragsjahre] = useState(false);
+  const [bruttoBisRente, setBruttoBisRente] = useState(4300);
 
   const ergebnis = useMemo(() => {
     return berechneFruehrente(
@@ -135,9 +186,10 @@ export default function FruehrenteRechner() {
       gewuenschtesAlterJahre,
       gewuenschtesAlterMonate,
       erwarteteRente,
-      hat45Beitragsjahre
+      hat45Beitragsjahre,
+      bruttoBisRente
     );
-  }, [geburtsJahr, gewuenschtesAlterJahre, gewuenschtesAlterMonate, erwarteteRente, hat45Beitragsjahre]);
+  }, [geburtsJahr, gewuenschtesAlterJahre, gewuenschtesAlterMonate, erwarteteRente, hat45Beitragsjahre, bruttoBisRente]);
 
   const formatEuro = (n: number) => 
     n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
@@ -259,7 +311,41 @@ export default function FruehrenteRechner() {
             className="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
           />
           <p className="text-xs text-gray-500 mt-1 text-center">
-            💡 Die erwartete Rente finden Sie in Ihrer jährlichen <strong>Renteninformation</strong>
+            💡 In Ihrer jährlichen <strong>Renteninformation</strong> ist das der Betrag
+            „Rente wegen Alters&ldquo; <strong>zur Regelaltersgrenze</strong>. Er unterstellt, dass Sie
+            bis dahin weiter einzahlen.
+          </p>
+        </div>
+
+        {/* Bruttogehalt bis zum Rentenbeginn */}
+        <div className="mb-6">
+          <label className="block mb-2">
+            <span className="text-gray-700 font-medium">Ihr aktuelles Bruttogehalt</span>
+            <span className="text-xs text-gray-500 ml-2">(monatlich, 0 € wenn Sie nicht mehr arbeiten)</span>
+          </label>
+          <div className="relative">
+            <input
+              type="number"
+              value={bruttoBisRente}
+              onChange={(e) => setBruttoBisRente(Math.max(0, Number(e.target.value)))}
+              className="w-full text-3xl font-bold text-center py-4 px-4 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:ring-0 outline-none"
+              min="0"
+              step="100"
+            />
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">€</span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="8450"
+            step="100"
+            value={bruttoBisRente}
+            onChange={(e) => setBruttoBisRente(Number(e.target.value))}
+            className="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
+          />
+          <p className="text-xs text-gray-500 mt-1 text-center">
+            💡 Daraus ergibt sich, wie viele <strong>Entgeltpunkte Ihnen fehlen</strong>, weil Sie
+            bis zur Regelaltersgrenze keine Beiträge mehr zahlen. Das kommt zum Abschlag hinzu.
           </p>
         </div>
 
@@ -303,9 +389,16 @@ export default function FruehrenteRechner() {
               <div className="mb-4">
                 <p className="text-green-100 text-sm mb-1">Ihre Rente mit {gewuenschtesAlterJahre} Jahren {gewuenschtesAlterMonate > 0 ? `+ ${gewuenschtesAlterMonate} Monaten` : ''}</p>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-bold">{formatEuro(erwarteteRente)}</span>
+                  <span className="text-5xl font-bold">{formatEuro(ergebnis.renteVorAbschlag)}</span>
                   <span className="text-xl text-green-200">/ Monat</span>
                 </div>
+                {ergebnis.verlustDurchFehlendeBeitraege > 0 && (
+                  <p className="text-green-200 text-sm mt-2">
+                    statt {formatEuro(erwarteteRente)} laut Renteninformation. Abschlag zahlen Sie
+                    keinen, aber {ergebnis.fehlendeEntgeltpunkte.toFixed(2).replace('.', ',')} Entgeltpunkte
+                    fehlen, weil Sie bis zur Regelaltersgrenze nicht mehr einzahlen.
+                  </p>
+                )}
               </div>
 
               <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
@@ -331,7 +424,8 @@ export default function FruehrenteRechner() {
                   <span className="text-xl text-orange-200">/ Monat</span>
                 </div>
                 <p className="text-orange-200 text-sm mt-2">
-                  statt {formatEuro(erwarteteRente)} (ohne Abschlag)
+                  statt {formatEuro(erwarteteRente)} laut Renteninformation
+                  {' '}(insgesamt &minus;{ergebnis.gesamtminderungProzent.toFixed(1).replace('.', ',')}&nbsp;%)
                 </p>
               </div>
 
@@ -347,6 +441,48 @@ export default function FruehrenteRechner() {
                   <p className="text-orange-200 text-xs mt-1">lebenslang</p>
                 </div>
               </div>
+
+              {ergebnis.verlustDurchFehlendeBeitraege > 0 && (
+                <div className="mt-4 bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                  <p className="text-orange-100 text-sm font-medium mb-2">
+                    So kommt die Minderung zustande
+                  </p>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-orange-100">Rente laut Renteninformation</span>
+                      <span className="font-bold">{formatEuro(erwarteteRente)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-orange-100">
+                        &minus; fehlende Beitragsjahre ({ergebnis.fehlendeEntgeltpunkte.toFixed(2).replace('.', ',')} Entgeltpunkte)
+                      </span>
+                      <span className="font-bold">&minus;{formatEuro(ergebnis.verlustDurchFehlendeBeitraege)}</span>
+                    </div>
+                    <div className="flex justify-between border-t border-white/20 pt-1">
+                      <span className="text-orange-100">= tatsächlich erreichte Rente</span>
+                      <span className="font-bold">{formatEuro(ergebnis.renteVorAbschlag)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-orange-100">
+                        &minus; Abschlag {ergebnis.abschlagProzent.toFixed(1).replace('.', ',')}&nbsp;% darauf
+                      </span>
+                      <span className="font-bold">
+                        &minus;{formatEuro(ergebnis.renteVorAbschlag - ergebnis.renteMitAbschlag)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between border-t border-white/20 pt-1">
+                      <span className="text-orange-100 font-medium">= Ihre Rente</span>
+                      <span className="font-bold">{formatEuro(ergebnis.renteMitAbschlag)}</span>
+                    </div>
+                  </div>
+                  <p className="text-orange-200 text-xs mt-3">
+                    Der Abschlag nach § 77 SGB VI ist nur ein Teil. Weil Sie bis zur
+                    Regelaltersgrenze keine Beiträge mehr zahlen, fehlen zusätzlich Entgeltpunkte.
+                    Beziehen Sie stattdessen Arbeitslosengeld I, laufen die Beiträge aus 80 % Ihres
+                    bisherigen Entgelts weiter (§ 166 Abs. 1 Nr. 2 SGB VI).
+                  </p>
+                </div>
+              )}
             </div>
           ) : (
             // Regelaltersgrenze erreicht oder später
@@ -440,7 +576,12 @@ export default function FruehrenteRechner() {
                       -{Math.min((ergebnis.regelalterMonate - 63 * 12) * 0.3, 14.4).toFixed(1)}%
                     </td>
                     <td className="text-right py-3 px-2 font-bold">
-                      {formatEuro(erwarteteRente * (1 - Math.min((ergebnis.regelalterMonate - 63 * 12) * 0.3, 14.4) / 100))}
+                      {formatEuro(renteBeiVorbezug(
+                        erwarteteRente,
+                        ergebnis.regelalterMonate - 63 * 12,
+                        Math.min((ergebnis.regelalterMonate - 63 * 12) * 0.3, 14.4),
+                        bruttoBisRente
+                      ))}
                     </td>
                   </tr>
                   
@@ -470,7 +611,14 @@ export default function FruehrenteRechner() {
                       </td>
                       <td className="text-right py-3 px-2 font-medium">{formatAlter(ergebnis.alter45Jahre)}</td>
                       <td className="text-right py-3 px-2 text-green-600 font-medium">0%</td>
-                      <td className="text-right py-3 px-2 font-bold">{formatEuro(erwarteteRente)}</td>
+                      <td className="text-right py-3 px-2 font-bold">
+                        {formatEuro(renteBeiVorbezug(
+                          erwarteteRente,
+                          Math.max(0, ergebnis.regelalterMonate - (ergebnis.alter45Jahre.jahre * 12 + ergebnis.alter45Jahre.monate)),
+                          0,
+                          bruttoBisRente
+                        ))}
+                      </td>
                     </tr>
                   )}
                   
@@ -695,7 +843,39 @@ export default function FruehrenteRechner() {
       <div className="p-4 bg-gray-50 rounded-xl">
         <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Quellen</h4>
         <div className="space-y-1">
-          <a 
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_6/__77.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 77 SGB VI – Zugangsfaktor (0,003 Abschlag pro vorgezogenem Monat)
+          </a>
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_6/__63.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 63 SGB VI – Rentenhöhe aus Entgeltpunkten
+          </a>
+          <a
+            href="https://www.gesetze-im-internet.de/sgb_6/__166.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            § 166 Abs. 1 Nr. 2 SGB VI – Beiträge bei Arbeitslosengeld (80 % des Entgelts)
+          </a>
+          <a
+            href="https://www.gesetze-im-internet.de/rwbestv_2026/BJNR0B20A0026.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-sm text-blue-600 hover:underline"
+          >
+            RWBestV 2026 – aktueller Rentenwert 42,52 € ab 01.07.2026
+          </a>
+          <a
             href="https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Kurz-vor-der-Rente/Wann-kann-ich-in-Rente-gehen/Wann-kann-ich-in-Rente-gehen_detailseite.html"
             target="_blank"
             rel="noopener noreferrer"
