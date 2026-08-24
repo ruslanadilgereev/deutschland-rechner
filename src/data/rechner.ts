@@ -460,6 +460,20 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'zumutbare-belastung',
+    name: 'Zumutbare-Belastung-Rechner',
+    beschreibung: 'Außergewöhnliche Belastungen: absetzbaren Anteil nach § 33 EStG berechnen',
+    icon: '🏥',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'zumutbare Belastung Rechner, außergewöhnliche Belastungen Rechner, zumutbare Belastung Tabelle, zumutbare Eigenbelastung berechnen, Krankheitskosten absetzen, zumutbare Belastung 2026',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__33.html',
+      'https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/STRE201710063/',
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+    ],
+  },
+  {
     id: 'mieteinnahmen-versteuern',
     name: 'Mieteinnahmen-versteuern-Rechner',
     beschreibung: 'Steuer auf Vermietung & Verpachtung (§ 21 EStG) berechnen',

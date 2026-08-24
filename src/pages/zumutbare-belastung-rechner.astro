@@ -1,0 +1,344 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZumutbareBelastungRechner from '../components/rechner/ZumutbareBelastungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Zumutbare Belastung Rechner 2026 – außergewöhnliche Belastungen";
+const description = "Zumutbare Belastung nach § 33 EStG berechnen: Wie viel Ihrer außergewöhnlichen Belastungen (Krankheitskosten, Pflege, Zahnersatz) absetzbar ist – stufenweise nach BFH, mit Tabelle.";
+const keywords = "zumutbare Belastung Rechner, außergewöhnliche Belastungen Rechner, zumutbare Belastung berechnen, zumutbare Belastung Tabelle, zumutbare Eigenbelastung, außergewöhnliche Belastungen Steuer, Krankheitskosten absetzen, zumutbare Belastung 2026, § 33 EStG Rechner";
+
+const faq = [
+  {
+    frage: "Was ist die zumutbare Belastung?",
+    antwort: "Die zumutbare Belastung ist der Eigenanteil, den Sie bei außergewöhnlichen Belastungen (z. B. Krankheitskosten) selbst tragen müssen (§ 33 Abs. 3 EStG). Nur der Teil der Kosten, der darüber liegt, mindert das zu versteuernde Einkommen. Sie beträgt je nach Einkommen, Familienstand und Kinderzahl 1 bis 7 Prozent des Gesamtbetrags der Einkünfte.",
+  },
+  {
+    frage: "Wie wird die zumutbare Belastung 2026 berechnet?",
+    antwort: "Stufenweise: Für den Einkommensteil bis 15.340 Euro gilt der niedrigste Prozentsatz, für den Teil bis 51.130 Euro der mittlere, darüber der höchste. Beispiel: Alleinstehend ohne Kinder mit 40.000 Euro Einkünften: 15.340 × 5 % + 24.660 × 6 % = 2.246 Euro. Seit dem BFH-Urteil VI R 75/14 (2017) wird nicht mehr das gesamte Einkommen mit einem einzigen Prozentsatz belastet.",
+  },
+  {
+    frage: "Welche Kosten zählen zu den außergewöhnlichen Belastungen?",
+    antwort: "Typisch sind Krankheitskosten (Zuzahlungen, Zahnersatz, Brille, Medikamente auf Rezept), Pflege- und Pflegeheimkosten, Kurkosten, Fahrtkosten zu Behandlungen, behinderungsbedingte Umbauten und Beerdigungskosten (soweit sie den Nachlass übersteigen). Nicht dazu zählen vorbeugende Maßnahmen ohne medizinische Notwendigkeit oder rezeptfreie Präparate ohne Verordnung.",
+  },
+  {
+    frage: "Lohnt es sich, Krankheitskosten in einem Jahr zu bündeln?",
+    antwort: "Ja. Die zumutbare Belastung fällt in jedem Jahr neu an. Wer planbare Ausgaben wie Zahnersatz, Brille und Hörgerät in ein Kalenderjahr legt, überspringt die Hürde einmal statt zweimal und setzt deutlich mehr ab. Entscheidend ist das Zahlungsdatum, nicht das Rechnungsdatum.",
+  },
+  {
+    frage: "Gilt die zumutbare Belastung auch beim Behinderten-Pauschbetrag?",
+    antwort: "Nein. Pauschbeträge nach § 33b EStG (Behinderten-, Hinterbliebenen- und Pflege-Pauschbetrag) werden ohne Abzug einer zumutbaren Belastung gewährt. Wer statt des Pauschbetrags die tatsächlichen Kosten einzeln geltend macht, muss dagegen die zumutbare Belastung überschreiten – durchrechnen lohnt sich.",
+  },
+  {
+    frage: "Wo trage ich außergewöhnliche Belastungen in der Steuererklärung ein?",
+    antwort: "In der Anlage Außergewöhnliche Belastungen. Krankheits-, Pflege- und Kurkosten kommen in die Zeilen für allgemeine außergewöhnliche Belastungen; das Finanzamt zieht die zumutbare Belastung automatisch ab. Belege müssen nicht mehr mitgeschickt, aber aufbewahrt werden.",
+  },
+];
+
+// Prozentsätze § 33 Abs. 3 EStG
+const prozentTabelle = [
+  { gruppe: "Ohne Kinder, Grundtarif", s1: "5 %", s2: "6 %", s3: "7 %" },
+  { gruppe: "Ohne Kinder, Splittingtarif", s1: "4 %", s2: "5 %", s3: "6 %" },
+  { gruppe: "1 oder 2 Kinder", s1: "2 %", s2: "3 %", s3: "4 %" },
+  { gruppe: "3 oder mehr Kinder", s1: "1 %", s2: "1 %", s3: "2 %" },
+];
+
+// Euro-Werte stufenweise berechnet (BFH-Methode, siehe Komponente)
+const euroTabelle = [
+  { gde: "20.000 €", ledig: "1.046 €", paar: "846 €", zweiKinder: "446 €", dreiKinder: "200 €" },
+  { gde: "30.000 €", ledig: "1.646 €", paar: "1.346 €", zweiKinder: "746 €", dreiKinder: "300 €" },
+  { gde: "40.000 €", ledig: "2.246 €", paar: "1.846 €", zweiKinder: "1.046 €", dreiKinder: "400 €" },
+  { gde: "50.000 €", ledig: "2.846 €", paar: "2.346 €", zweiKinder: "1.346 €", dreiKinder: "500 €" },
+  { gde: "60.000 €", ledig: "3.535 €", paar: "2.935 €", zweiKinder: "1.735 €", dreiKinder: "688 €" },
+  { gde: "80.000 €", ledig: "4.935 €", paar: "4.135 €", zweiKinder: "2.535 €", dreiKinder: "1.088 €" },
+  { gde: "100.000 €", ledig: "6.335 €", paar: "5.335 €", zweiKinder: "3.335 €", dreiKinder: "1.488 €" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Zumutbare-Belastung-Rechner", url: "/zumutbare-belastung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-teal-600 to-cyan-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-teal-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏥</span>
+          <div>
+            <h1 class="text-2xl font-bold">Zumutbare Belastung Rechner 2026</h1>
+            <p class="text-teal-200 text-sm">Außergewöhnliche Belastungen: Was davon absetzbar ist</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ZumutbareBelastungRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> § 33 Abs. 3 EStG (Stufengrenzen 15.340 € / 51.130 €, Sätze 1–7 %),
+          stufenweise Berechnung nach BFH-Urteil vom 19.01.2017 (VI R 75/14), Grenzsteuersatz-Schätzung
+          nach § 32a EStG (Tarif 2026).
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Alle drei GdE-Stufen mit anteiliger Berechnung, Familienstand
+          (Grund-/Splittingtarif), Kinderstaffel (0 / 1–2 / 3+), Abrundung auf volle Euro, geschätzte
+          Steuerersparnis über den Grenzsteuersatz.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Pauschbeträge nach § 33b EStG (gelten ohne zumutbare
+          Belastung), Unterhalts-Höchstbeträge nach § 33a EStG, haushaltsnahe Dienstleistungen und
+          Handwerkerleistungen nach § 35a EStG (eigene Steuerermäßigung), Abweichungen zwischen GdE und zvE.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zumutbare Belastung: Die Hürde vor dem Steuerabzug</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Krankheitskosten, Zahnersatz, Pflege oder Beerdigung: Solche <strong>außergewöhnlichen
+            Belastungen</strong> (§ 33 EStG) mindern die Steuer – aber erst oberhalb der
+            <strong>zumutbaren Belastung</strong>. Diesen Eigenanteil müssen Sie je nach Einkommen,
+            Familienstand und Kinderzahl selbst tragen: zwischen <strong>1 und 7 Prozent</strong> des
+            Gesamtbetrags der Einkünfte.
+          </p>
+
+          <div class="bg-teal-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-teal-800 font-semibold mb-2">📐 Rechenbeispiel (BFH-Stufenmethode):</p>
+            <p class="text-xs text-teal-700">
+              Alleinstehend, keine Kinder, 40.000 € Gesamtbetrag der Einkünfte, 5.000 € Krankheitskosten:<br/>
+              Stufe 1: 15.340 € × 5 % = 767,00 € · Stufe 2: 24.660 € × 6 % = 1.479,60 €<br/>
+              Zumutbare Belastung: <strong>2.246 €</strong> → absetzbar: 5.000 € − 2.246 € =
+              <strong>2.754 €</strong>. Nach der alten Methode (6 % von 40.000 € = 2.400 €) wären nur
+              2.600 € absetzbar gewesen – die Stufenmethode bringt hier 154 € mehr Abzug.
+            </p>
+          </div>
+
+          <p>
+            Wichtig: Seit dem <strong>BFH-Urteil VI R 75/14</strong> (19.01.2017) wird stufenweise
+            gerechnet. Nur der Einkommensteil <em>über</em> einer Stufengrenze trägt den höheren
+            Prozentsatz. Ältere Rechner und Tabellen, die den Gesamtbetrag mit einem einzigen Satz
+            multiplizieren, ermitteln eine zu hohe zumutbare Belastung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prozentsatz-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Zumutbare Belastung: Tabelle der Prozentsätze (§ 33 Abs. 3 EStG)</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-teal-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">Familienstand / Kinder</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">GdE bis 15.340 €</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">bis 51.130 €</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">über 51.130 €</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {prozentTabelle.map((zeile) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3">{zeile.gruppe}</td>
+                  <td class="py-2 px-3 text-right">{zeile.s1}</td>
+                  <td class="py-2 px-3 text-right">{zeile.s2}</td>
+                  <td class="py-2 px-3 text-right">{zeile.s3}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Die Sätze gelten je Stufe anteilig (BFH-Methode). „Kinder" sind Kinder mit Anspruch auf
+          Kindergeld oder Kinderfreibetrag; die Kinder-Staffeln gelten unabhängig vom Tarif.
+        </p>
+      </div>
+    </div>
+
+    <!-- Euro-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Zumutbare Belastung in Euro: Beispielwerte 2026</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Stufenweise berechnete Euro-Beträge – erst Kosten oberhalb dieses Werts wirken steuerlich.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-teal-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">GdE</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Ledig, 0 Kinder</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Paar, 0 Kinder</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">1–2 Kinder</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">3+ Kinder</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {euroTabelle.map((zeile) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3">{zeile.gde}</td>
+                  <td class="py-2 px-3 text-right">{zeile.ledig}</td>
+                  <td class="py-2 px-3 text-right">{zeile.paar}</td>
+                  <td class="py-2 px-3 text-right">{zeile.zweiKinder}</td>
+                  <td class="py-2 px-3 text-right font-medium text-teal-700">{zeile.dreiKinder}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Tarif-Zuordnung: „Ledig" = Grundtarif, „Paar" = Splittingtarif; Kinder-Spalten unabhängig vom
+          Tarif. Auffällig: Mit 3+ Kindern liegt die Hürde selbst bei 100.000 € Einkünften unter 1.500 €.
+        </p>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Kosten übers Jahr verteilen statt bündeln</h3>
+            <p>
+              Die Hürde gilt pro Kalenderjahr. Zahnersatz im Dezember und Brille im Januar heißt: zweimal
+              zumutbare Belastung überwinden. Planbare Ausgaben in ein Jahr legen – es zählt das
+              Zahlungsdatum.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Gar nicht erst eintragen</h3>
+            <p>
+              Viele lassen Krankheitskosten weg, weil „das eh nichts bringt". Ob die Hürde überschritten
+              ist, hängt aber von Einkommen und Kinderzahl ab – mit Kindern liegt sie oft unter 1.000 €.
+              Eintragen kostet nichts, das Finanzamt rechnet automatisch.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pauschbetrag und Einzelnachweis verwechseln</h3>
+            <p>
+              Der Behinderten-Pauschbetrag (§ 33b EStG) kommt ohne zumutbare Belastung. Wer stattdessen
+              tatsächliche Kosten einzeln ansetzt, muss die Hürde nehmen. Bei hohen Kosten kann der
+              Einzelnachweis trotzdem besser sein – beides durchrechnen.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pflegeheim: Haushaltsersparnis vergessen</h3>
+            <p>
+              Bei dauerhafter Heimunterbringung wegen Pflegebedürftigkeit sind die Kosten abziehbar,
+              werden aber um eine Haushaltsersparnis gekürzt, wenn der eigene Haushalt aufgelöst wurde.
+              Details im <a href="/pflegeheim-eigenanteil-rechner" class="text-teal-600 hover:underline font-medium">Pflegeheim-Eigenanteil-Rechner</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/einkommensteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors">
+            <span>🧾</span>
+            <span class="text-gray-700 font-medium">Einkommensteuer-Rechner</span>
+          </a>
+          <a href="/steuererstattung-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors">
+            <span>💶</span>
+            <span class="text-gray-700 font-medium">Steuererstattung-Rechner</span>
+          </a>
+          <a href="/pflegeheim-eigenanteil-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors">
+            <span>🏥</span>
+            <span class="text-gray-700 font-medium">Pflegeheim-Eigenanteil-Rechner</span>
+          </a>
+          <a href="/zuzahlung-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors">
+            <span>💊</span>
+            <span class="text-gray-700 font-medium">Zuzahlung-Rechner (Belastungsgrenze)</span>
+          </a>
+          <a href="/ehegattensplitting-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors">
+            <span>💍</span>
+            <span class="text-gray-700 font-medium">Ehegattensplitting-Rechner</span>
+          </a>
+          <a href="/progressionsvorbehalt-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors">
+            <span>📈</span>
+            <span class="text-gray-700 font-medium">Progressionsvorbehalt-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zumutbare Belastung Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/zumutbare-belastung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
