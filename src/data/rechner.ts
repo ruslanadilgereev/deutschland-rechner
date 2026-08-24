@@ -445,6 +445,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'progressionsvorbehalt',
+    name: 'Progressionsvorbehalt-Rechner',
+    beschreibung: 'Steuernachzahlung durch Elterngeld, Krankengeld & ALG I berechnen',
+    icon: '📈',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Progressionsvorbehalt Rechner, Progressionsvorbehalt berechnen, Steuernachzahlung Krankengeld, Elterngeld Steuernachzahlung Tabelle, 1 Jahr Krankengeld Steuernachzahlung, Lohnersatzleistungen Steuer, Progressionsvorbehalt Tabelle',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__32b.html',
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+      'https://www.gesetze-im-internet.de/estg/__46.html',
+      'https://www.gesetze-im-internet.de/solzg_1995/__3.html',
+    ],
+  },
+  {
     id: 'mieteinnahmen-versteuern',
     name: 'Mieteinnahmen-versteuern-Rechner',
     beschreibung: 'Steuer auf Vermietung & Verpachtung (§ 21 EStG) berechnen',

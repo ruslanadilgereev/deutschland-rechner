@@ -1,0 +1,375 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProgressionsvorbehaltRechner from '../components/rechner/ProgressionsvorbehaltRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Progressionsvorbehalt-Rechner 2026: Steuernachzahlung berechnen";
+const description = "Progressionsvorbehalt-Rechner 2026: Steuernachzahlung durch Elterngeld, Krankengeld, ALG I & Kurzarbeitergeld berechnen – mit Nachzahlungs-Tabellen und § 32b-Formel.";
+const keywords = "Progressionsvorbehalt Rechner, Progressionsvorbehalt berechnen, Progressionsvorbehalt Rechner 2026, Steuernachzahlung Krankengeld, 1 Jahr Krankengeld Steuernachzahlung, Elterngeld Steuernachzahlung Tabelle, Steuernachzahlung Elterngeld, Progressionsvorbehalt Tabelle, Lohnersatzleistungen Steuer, Steuernachzahlung Kurzarbeitergeld, Progressionsvorbehalt Elterngeld";
+
+const faq = [
+  {
+    frage: "Was ist der Progressionsvorbehalt?",
+    antwort: "Lohnersatzleistungen wie Elterngeld, Krankengeld, ALG I oder Kurzarbeitergeld sind steuerfrei, erhöhen aber nach § 32b EStG den Steuersatz auf das übrige Einkommen. Das Finanzamt rechnet die Leistung dem Einkommen fiktiv zu, ermittelt daraus den besonderen Steuersatz und wendet diesen höheren Satz auf das tatsächliche zu versteuernde Einkommen an.",
+  },
+  {
+    frage: "Wie hoch ist die Steuernachzahlung nach 1 Jahr Krankengeld?",
+    antwort: "Das hängt vom übrigen Einkommen ab. Wer im Krankengeld-Jahr keine weiteren steuerpflichtigen Einkünfte hat (auch keinen zusammen veranlagten Partner mit Einkommen), zahlt 0 Euro – der Progressionsvorbehalt läuft ins Leere. Mit 20.000 bis 50.000 Euro übrigem zvE führen 15.000 Euro Krankengeld dagegen zu rund 1.700 bis 1.900 Euro Mehrsteuer. Da auf Krankengeld keine Lohnsteuer einbehalten wird, kommt der Betrag als Nachzahlung.",
+  },
+  {
+    frage: "Wie viel Steuern muss ich für das Elterngeld nachzahlen?",
+    antwort: "Bei 10.000 Euro Elterngeld und Zusammenveranlagung liegt die Mehrsteuer je nach Einkommen meist bei 1.270 bis 1.500 Euro, also rund 13 bis 15 Prozent der Leistung. Relativ am teuersten ist der Progressionsvorbehalt bei mittleren Einkommen um 30.000 Euro zvE, weil dort die Progression am steilsten steigt.",
+  },
+  {
+    frage: "Muss ich wegen Lohnersatzleistungen eine Steuererklärung abgeben?",
+    antwort: "Ja, sobald die Lohnersatzleistungen im Jahr mehr als 410 Euro betragen, besteht Pflicht zur Abgabe einer Steuererklärung (§ 46 Abs. 2 Nr. 1 EStG). Die auszahlenden Stellen melden die Beträge elektronisch ans Finanzamt – die Leistung zu verschweigen funktioniert nicht.",
+  },
+  {
+    frage: "Welche Leistungen unterliegen dem Progressionsvorbehalt?",
+    antwort: "Unter anderem: Arbeitslosengeld I, Kurzarbeitergeld, Krankengeld, Kinderkrankengeld, Verletztengeld, Übergangsgeld, Mutterschaftsgeld, Elterngeld und Insolvenzgeld (§ 32b Abs. 1 Nr. 1 EStG) sowie bestimmte ausländische Einkünfte. Nicht darunter fallen z. B. Bürgergeld und die frühere Sozialhilfe – sie bleiben ohne steuerliche Wirkung.",
+  },
+  {
+    frage: "Kann die Einzelveranlagung den Progressionsvorbehalt entschärfen?",
+    antwort: "Ja, in bestimmten Konstellationen. Bei Zusammenveranlagung erhöht die Lohnersatzleistung den Steuersatz auf das gesamte gemeinsame Einkommen – also auch auf das des Partners. Verdient der Partner viel, kann die Einzelveranlagung günstiger sein: Die Leistung wirkt dann nur auf das (oft niedrige) eigene Einkommen. Beide Varianten durchrechnen lohnt sich.",
+  },
+];
+
+// Werte aus den Tarifformeln 2026 generiert (siehe Komponente) – Elterngeld 10.000 €, Zusammenveranlagung
+const elterngeldTabelle = [
+  { zvE: "20.000 €", mehr: "580 €", anteil: "5,8 %" },
+  { zvE: "30.000 €", mehr: "1.484 €", anteil: "14,8 %" },
+  { zvE: "40.000 €", mehr: "1.419 €", anteil: "14,2 %" },
+  { zvE: "50.000 €", mehr: "1.327 €", anteil: "13,3 %" },
+  { zvE: "60.000 €", mehr: "1.286 €", anteil: "12,9 %" },
+  { zvE: "80.000 €", mehr: "1.288 €", anteil: "12,9 %" },
+  { zvE: "100.000 €", mehr: "1.354 €", anteil: "13,5 %" },
+];
+
+// Krankengeld 15.000 €, Einzelveranlagung
+const krankengeldTabelle = [
+  { zvE: "0 €", mehr: "0 €", anteil: "0,0 %" },
+  { zvE: "10.000 €", mehr: "1.140 €", anteil: "7,6 %" },
+  { zvE: "20.000 €", mehr: "1.670 €", anteil: "11,1 %" },
+  { zvE: "30.000 €", mehr: "1.672 €", anteil: "11,1 %" },
+  { zvE: "40.000 €", mehr: "1.770 €", anteil: "11,8 %" },
+  { zvE: "50.000 €", mehr: "1.917 €", anteil: "12,8 %" },
+];
+
+const leistungen = [
+  { name: "Arbeitslosengeld I", link: "/arbeitslosengeld-rechner" },
+  { name: "Krankengeld", link: "/krankengeld-rechner" },
+  { name: "Elterngeld", link: "/elterngeld-rechner" },
+  { name: "Kurzarbeitergeld", link: "/kurzarbeitergeld-rechner" },
+  { name: "Mutterschaftsgeld", link: "/mutterschaftsgeld-rechner" },
+  { name: "Übergangsgeld", link: "/uebergangsgeld-rechner" },
+  { name: "Verletztengeld", link: "/verletztengeld-rechner" },
+  { name: "Kinderkrankengeld", link: "/kinderkrankengeld-rechner" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Progressionsvorbehalt-Rechner", url: "/progressionsvorbehalt-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-600 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Progressionsvorbehalt-Rechner 2026</h1>
+            <p class="text-orange-200 text-sm">Steuernachzahlung durch Elterngeld, Krankengeld & Co. berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ProgressionsvorbehaltRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> Progressionsvorbehalt nach § 32b EStG, Einkommensteuertarif 2026
+          nach § 32a EStG (Grundfreibetrag 12.348 €), Pflichtveranlagung nach § 46 Abs. 2 Nr. 1 EStG
+          (410-€-Grenze), Solidaritätszuschlag nach § 3, § 4 SolzG 1995.
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Besonderer Steuersatz mit Abrundung auf vier Dezimalstellen
+          (Verwaltungspraxis), Grund- und Splittingtarif, Minderung um den Arbeitnehmer-Pauschbetrag
+          (1.230 €) bei fehlendem Arbeitslohn, Soli mit Milderungszone, Kirchensteuer.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Negative Progressionseinkünfte (z. B. ausländische
+          Verluste), Kinderfreibeträge, Fünftelregelung, Beitragsanteile zur Sozialversicherung auf
+          Lohnersatzleistungen, unterjährige Lohnsteuer-Effekte.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Progressionsvorbehalt: Warum „steuerfrei" trotzdem Steuern kostet</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Lohnersatzleistungen sind <strong>steuerfrei</strong> – auf Elterngeld, Krankengeld oder
+            Arbeitslosengeld selbst wird keine Einkommensteuer erhoben. Trotzdem stehen sie in
+            § 32b EStG unter <strong>Progressionsvorbehalt</strong>: Sie erhöhen den Steuersatz, mit dem
+            das übrige Einkommen besteuert wird. Weil auf die Leistungen keine Lohnsteuer einbehalten
+            wird, endet das für viele Bezieher in einer <strong>Steuernachzahlung</strong>.
+          </p>
+
+          <div class="bg-orange-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-orange-800 font-semibold mb-2">📐 So rechnet das Finanzamt (§ 32b EStG):</p>
+            <ol class="text-xs text-orange-700 space-y-1 list-decimal list-inside">
+              <li>zvE + Lohnersatzleistung = fiktives zvE</li>
+              <li>Steuer auf das fiktive zvE ÷ fiktives zvE = <strong>besonderer Steuersatz</strong></li>
+              <li>Besonderer Steuersatz × tatsächliches zvE = festgesetzte Steuer</li>
+            </ol>
+            <p class="text-xs text-orange-700 mt-2">
+              Rechenbeispiel (Einzelveranlagung 2026): 40.000 € zvE + 10.000 € Arbeitslosengeld →
+              fiktives zvE 50.000 €, Steuer darauf 10.548 €, besonderer Steuersatz 21,0960 %.
+              Angewendet auf 40.000 € ergibt das 8.438 € statt 7.209 € –
+              <strong>1.229 € Mehrsteuer</strong> durch die eigentlich steuerfreie Leistung.
+            </p>
+          </div>
+
+          <h3 class="font-semibold text-gray-800">Diese Leistungen unterliegen dem Progressionsvorbehalt</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 not-prose">
+            {leistungen.map((l) => (
+              <a href={l.link} class="flex items-center gap-2 p-2 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors text-sm text-gray-700">
+                <span class="text-orange-500">→</span> {l.name}
+              </a>
+            ))}
+          </div>
+          <p class="text-xs text-gray-500">
+            Ebenfalls erfasst: Insolvenzgeld und bestimmte ausländische Einkünfte. <strong>Nicht</strong> unter
+            Progressionsvorbehalt stehen Bürgergeld und Wohngeld.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Krankengeld-Sektion -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">1 Jahr Krankengeld: Wie hoch ist die Steuernachzahlung?</h2>
+        <div class="prose prose-sm text-gray-600 space-y-3">
+          <p>
+            Die häufigste Sorge nach langer Krankheit: Wie viel will das Finanzamt zurück? Die Antwort
+            hängt fast nur davon ab, <strong>welche weiteren Einkünfte</strong> im Krankengeld-Jahr
+            zusammenkommen – eigener Arbeitslohn vor der Erkrankung, Einkünfte des zusammen veranlagten
+            Partners, Vermietung oder Rente.
+          </p>
+          <p>
+            <strong>Wichtigster Fall:</strong> Wer das ganze Jahr Krankengeld bezog und sonst (fast) kein
+            zu versteuerndes Einkommen hat, zahlt <strong>0 € nach</strong> – ein Steuersatz auf null
+            Einkommen ergibt null Steuer. Abgeben muss man die Erklärung trotzdem (410-€-Grenze).
+          </p>
+        </div>
+        <div class="overflow-x-auto mt-4">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-orange-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">Übriges zvE</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Mehrsteuer bei 15.000 € Krankengeld</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Anteil an der Leistung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {krankengeldTabelle.map((zeile) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3">{zeile.zvE}</td>
+                  <td class="py-2 px-3 text-right font-medium text-orange-700">{zeile.mehr}</td>
+                  <td class="py-2 px-3 text-right">{zeile.anteil}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Einzelveranlagung, Tarif 2026, ohne Soli/Kirchensteuer. Bei ganzjährigem Krankengeld ohne
+          Arbeitslohn mindert der Arbeitnehmer-Pauschbetrag (1.230 €) die anzusetzende Leistung.
+        </p>
+      </div>
+    </div>
+
+    <!-- Elterngeld-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Elterngeld-Steuernachzahlung: Tabelle 2026</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Mehrsteuer durch 10.000 € Elterngeld bei Zusammenveranlagung – je nach gemeinsamem zvE.
+          Als Faustregel: <strong>13 bis 15 % des Elterngelds</strong> als Rücklage für die
+          Nachzahlung einplanen.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-orange-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">Gemeinsames zvE</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Mehrsteuer bei 10.000 € Elterngeld</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Anteil an der Leistung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {elterngeldTabelle.map((zeile) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3">{zeile.zvE}</td>
+                  <td class="py-2 px-3 text-right font-medium text-orange-700">{zeile.mehr}</td>
+                  <td class="py-2 px-3 text-right">{zeile.anteil}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Zusammenveranlagung, Tarif 2026, ohne Soli/Kirchensteuer. Auffällig: Relativ am teuersten ist
+          der Progressionsvorbehalt bei mittleren Einkommen (~30.000 € zvE), weil die Progression dort
+          am steilsten steigt.
+        </p>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Keine Rücklage gebildet</h3>
+            <p>
+              Auf Lohnersatzleistungen wird keine Lohnsteuer einbehalten – die Mehrsteuer kommt komplett
+              als Nachzahlung, oft über 1.000 €. Faustregel: 10–15 % der Leistung zurücklegen.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Steuerklasse 3/5 plus Elterngeld</h3>
+            <p>
+              Doppelter Effekt: Bei Steuerklasse 5 wurde ohnehin zu wenig Lohnsteuer auf das
+              Partnereinkommen einbehalten, und das Elterngeld hebt den Steuersatz zusätzlich. Die
+              Kombination produziert die höchsten Nachzahlungen.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einzelveranlagung nicht geprüft</h3>
+            <p>
+              Bei hohem Partnereinkommen kann die Einzelveranlagung den Progressionsvorbehalt entschärfen –
+              die Leistung wirkt dann nur auf das eigene, meist niedrige Einkommen. Gegenrechnen mit dem
+              <a href="/ehegattensplitting-rechner" class="text-orange-600 hover:underline font-medium">Ehegattensplitting-Rechner</a>.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Steuererklärung nicht abgegeben</h3>
+            <p>
+              Ab 410 € Lohnersatzleistung im Jahr ist die Erklärung Pflicht. Die Zahlstellen melden
+              elektronisch ans Finanzamt – wer nicht abgibt, wird geschätzt und zahlt Zuschläge.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/elterngeld-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors">
+            <span>👶</span>
+            <span class="text-gray-700 font-medium">Elterngeld-Rechner</span>
+          </a>
+          <a href="/krankengeld-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors">
+            <span>🏥</span>
+            <span class="text-gray-700 font-medium">Krankengeld-Rechner</span>
+          </a>
+          <a href="/arbeitslosengeld-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors">
+            <span>💼</span>
+            <span class="text-gray-700 font-medium">Arbeitslosengeld-Rechner</span>
+          </a>
+          <a href="/kurzarbeitergeld-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors">
+            <span>🏭</span>
+            <span class="text-gray-700 font-medium">Kurzarbeitergeld-Rechner</span>
+          </a>
+          <a href="/einkommensteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors">
+            <span>🧾</span>
+            <span class="text-gray-700 font-medium">Einkommensteuer-Rechner</span>
+          </a>
+          <a href="/ehegattensplitting-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-orange-50 transition-colors">
+            <span>💍</span>
+            <span class="text-gray-700 font-medium">Ehegattensplitting-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Progressionsvorbehalt-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/progressionsvorbehalt-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
