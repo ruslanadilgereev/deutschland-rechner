@@ -430,6 +430,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'ehegattensplitting',
+    name: 'Ehegattensplitting-Rechner',
+    beschreibung: 'Splittingvorteil 2026: Einzel- vs. Zusammenveranlagung vergleichen',
+    icon: '💍',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Ehegattensplitting Rechner, Ehegattensplitting Rechner 2026, Splittingvorteil berechnen, Splittingtabelle 2026, Splittingtarif, Zusammenveranlagung Einzelveranlagung, Steuervorteil Heirat',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+      'https://www.gesetze-im-internet.de/estg/__26.html',
+      'https://www.gesetze-im-internet.de/estg/__26b.html',
+      'https://www.gesetze-im-internet.de/solzg_1995/__3.html',
+    ],
+  },
+  {
     id: 'mieteinnahmen-versteuern',
     name: 'Mieteinnahmen-versteuern-Rechner',
     beschreibung: 'Steuer auf Vermietung & Verpachtung (§ 21 EStG) berechnen',

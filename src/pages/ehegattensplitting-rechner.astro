@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EhegattensplittingRechner from '../components/rechner/EhegattensplittingRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Ehegattensplitting-Rechner 2026 – Splittingvorteil berechnen";
+const description = "Ehegattensplitting-Rechner 2026: Splittingvorteil aus beiden Einkommen berechnen – mit Splittingtabelle, Soli & Kirchensteuer. Einzel- vs. Zusammenveranlagung im Vergleich.";
+const keywords = "Ehegattensplitting Rechner, Ehegattensplitting Rechner 2026, Splittingvorteil berechnen, Splittingtabelle 2026, Splittingtarif Rechner, Zusammenveranlagung oder Einzelveranlagung, Ehegattensplitting berechnen, Steuervorteil Heirat, Splittingverfahren, Veranlagungsrechner";
+
+const faq = [
+  {
+    frage: "Wie funktioniert das Ehegattensplitting?",
+    antwort: "Beim Splittingverfahren (§ 32a Abs. 5 EStG) wird das gemeinsame zu versteuernde Einkommen halbiert, darauf die Einkommensteuer nach Grundtarif berechnet und das Ergebnis verdoppelt. Durch die Progression zahlen Paare mit unterschiedlich hohen Einkommen so weniger Steuer als bei zwei Einzelveranlagungen. Bei exakt gleichen Einkommen beträgt der Vorteil 0 Euro.",
+  },
+  {
+    frage: "Wie hoch ist der maximale Splittingvorteil 2026?",
+    antwort: "Der Splittingvorteil wächst mit dem Einkommensunterschied. Bei einem Alleinverdiener mit 100.000 € zvE beträgt er 9.768 € pro Jahr, im Bereich um 150.000 bis 250.000 € liegt das Plateau bei 11.136 €. Das theoretische Maximum von rund 19.470 € wird erst erreicht, wenn die Reichensteuer (45 %) greift – also bei sehr hohen Einkommen ab etwa 556.000 €.",
+  },
+  {
+    frage: "Was ist der Unterschied zwischen Splittingtabelle und Grundtabelle?",
+    antwort: "Die Grundtabelle gilt für Einzelveranlagte, die Splittingtabelle für zusammen veranlagte Paare. Die Splittingtabelle enthält für dasselbe zu versteuernde Einkommen immer eine niedrigere oder gleich hohe Steuer, weil das Einkommen rechnerisch auf beide Partner verteilt wird.",
+  },
+  {
+    frage: "Hat die Steuerklasse etwas mit dem Ehegattensplitting zu tun?",
+    antwort: "Nur indirekt. Die Steuerklassen (z. B. 3/5 oder 4/4) bestimmen nur, wie viel Lohnsteuer unterjährig einbehalten wird. Die endgültige Jahressteuer wird bei Zusammenveranlagung immer nach dem Splittingtarif berechnet – unabhängig von der Steuerklassen-Kombination. Die Wahl der Steuerklasse verändert also nicht die Steuerlast, sondern nur die Verteilung übers Jahr.",
+  },
+  {
+    frage: "Wann lohnt sich die Einzelveranlagung trotz Ehe?",
+    antwort: "In Sonderfällen: wenn ein Partner Lohnersatzleistungen mit Progressionsvorbehalt bezieht (Elterngeld, Krankengeld, ALG I), bei hohen außerordentlichen Einkünften mit Fünftelregelung (z. B. Abfindung), bei Kirchensteuer-Konstellationen (besonderes Kirchgeld) oder zur Verlustverrechnung. Ein Vergleich beider Varianten lohnt sich – das Finanzamt wählt nicht automatisch die günstigere.",
+  },
+  {
+    frage: "Gilt das Ehegattensplitting auch für eingetragene Lebenspartnerschaften und im Heiratsjahr?",
+    antwort: "Ja. Eingetragene Lebenspartner sind seit 2013 gleichgestellt. Im Jahr der Heirat gilt das Splitting rückwirkend für das gesamte Kalenderjahr – auch wenn die Hochzeit erst am 31. Dezember stattfindet.",
+  },
+];
+
+const splittingtabelle = [
+  { zvE: "20.000 €", est: "0 €", satz: "0,0 %", vorteilMax: "1.570 €" },
+  { zvE: "30.000 €", est: "871 €", satz: "2,9 %", vorteilMax: "3.346 €" },
+  { zvE: "40.000 €", est: "3.141 €", satz: "7,9 %", vorteilMax: "4.068 €" },
+  { zvE: "50.000 €", est: "5.701 €", satz: "11,4 %", vorteilMax: "4.847 €" },
+  { zvE: "60.000 €", est: "8.434 €", satz: "14,1 %", vorteilMax: "5.799 €" },
+  { zvE: "70.000 €", est: "11.340 €", satz: "16,2 %", vorteilMax: "6.924 €" },
+  { zvE: "80.000 €", est: "14.419 €", satz: "18,0 %", vorteilMax: "8.045 €" },
+  { zvE: "90.000 €", est: "17.671 €", satz: "19,6 %", vorteilMax: "8.993 €" },
+  { zvE: "100.000 €", est: "21.096 €", satz: "21,1 %", vorteilMax: "9.768 €" },
+  { zvE: "120.000 €", est: "28.466 €", satz: "23,7 %", vorteilMax: "10.798 €" },
+  { zvE: "150.000 €", est: "40.728 €", satz: "27,2 %", vorteilMax: "11.136 €" },
+  { zvE: "200.000 €", est: "61.728 €", satz: "30,9 %", vorteilMax: "11.136 €" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Ehegattensplitting-Rechner", url: "/ehegattensplitting-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💍</span>
+          <div>
+            <h1 class="text-2xl font-bold">Ehegattensplitting-Rechner 2026</h1>
+            <p class="text-emerald-200 text-sm">Splittingvorteil berechnen: Einzel- vs. Zusammenveranlagung</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <EhegattensplittingRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> Einkommensteuertarif 2026 nach § 32a EStG (Grundfreibetrag 12.348 €),
+          Splittingverfahren nach § 32a Abs. 5 i. V. m. § 26, § 26b EStG, Solidaritätszuschlag nach
+          § 3 und § 4 SolzG 1995 (Freigrenze 20.350 € / 40.700 €).
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Grund- und Splittingtarif 2026, Abrundung des zvE und des
+          Steuerbetrags auf volle Euro, Solidaritätszuschlag mit Milderungszone, Kirchensteuer (8 %/9 %).
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Progressionsvorbehalt (Elterngeld, Krankengeld, ALG I),
+          Kinderfreibeträge und Günstigerprüfung, Fünftelregelung für Abfindungen, besonderes Kirchgeld,
+          Kirchensteuer als Sonderausgabe im Folgejahr, Verlustvor- und -rückträge.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Ehegattensplitting 2026: So entsteht der Splittingvorteil</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Verheiratete und eingetragene Lebenspartner können sich <strong>zusammen veranlagen</strong> lassen
+            (§ 26b EStG). Dann gilt der <strong>Splittingtarif</strong>: Das gemeinsame zu versteuernde Einkommen
+            wird halbiert, die Steuer auf die Hälfte berechnet und verdoppelt (§ 32a Abs. 5 EStG). Weil der
+            Steuertarif progressiv ist, sinkt die Gesamtsteuer immer dann, wenn beide Partner
+            <strong>unterschiedlich viel</strong> verdienen.
+          </p>
+
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-emerald-800 font-semibold mb-2">📐 Die Splitting-Formel:</p>
+            <p class="text-sm text-emerald-700 font-mono">
+              Steuer = 2 × ESt( (zvE&nbsp;A + zvE&nbsp;B) ÷ 2 )
+            </p>
+            <p class="text-xs text-emerald-700 mt-2">
+              Rechenbeispiel: Partner A hat 80.000 € zvE, Partner B 20.000 €. Einzeln veranlagt zahlen sie
+              22.464 € + 1.570 € = <strong>24.034 €</strong>. Zusammen veranlagt: 2 × ESt(50.000 €) =
+              <strong>21.096 €</strong>. Der Splittingvorteil beträgt <strong>2.938 €</strong> pro Jahr –
+              ohne Soli- und Kirchensteuereffekte.
+            </p>
+          </div>
+
+          <p>
+            Der Vorteil ist umso größer, je weiter die Einkommen auseinanderliegen. Verdienen beide exakt
+            gleich viel, beträgt er <strong>0 €</strong>. Beim Alleinverdiener-Paar mit 100.000 € zvE sind es
+            <strong>9.768 €</strong>. Zusätzlich profitieren Paare beim <strong>Solidaritätszuschlag</strong>:
+            Bei Zusammenveranlagung verdoppelt sich die Soli-Freigrenze auf 40.700 € Einkommensteuer – ein
+            Alleinverdiener mit 100.000 € zvE spart so nochmals rund 1.251 € Soli gegenüber der Einzelveranlagung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Splittingtabelle 2026 -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Splittingtabelle 2026</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Einkommensteuer nach Splittingtarif für zusammen veranlagte Paare (ohne Soli und Kirchensteuer).
+          Die letzte Spalte zeigt den maximalen Splittingvorteil, wenn ein Partner das gesamte Einkommen
+          allein erzielt (Vergleich zur Grundtabelle).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-emerald-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">Gemeinsames zvE</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">ESt (Splitting)</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Ø-Satz</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Max. Vorteil</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {splittingtabelle.map((zeile) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3">{zeile.zvE}</td>
+                  <td class="py-2 px-3 text-right">{zeile.est}</td>
+                  <td class="py-2 px-3 text-right">{zeile.satz}</td>
+                  <td class="py-2 px-3 text-right font-medium text-emerald-700">{zeile.vorteilMax}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Werte berechnet nach § 32a EStG 2026 (Grundfreibetrag 12.348 €), zvE und Steuerbetrag auf volle
+          Euro abgerundet.
+        </p>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Steuerklasse 3/5 mit Splittingvorteil verwechseln</h3>
+            <p>
+              Die Steuerklassen-Kombination ändert nur den unterjährigen Lohnsteuerabzug, nicht die
+              Jahressteuer. Der Splittingvorteil entsteht allein durch die Zusammenveranlagung. Wer mit 3/5
+              „mehr Netto" hat, zahlt die Differenz bei der Steuererklärung nach, wenn zu wenig einbehalten wurde.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Lohnersatzleistungen ignorieren</h3>
+            <p>
+              Elterngeld, Krankengeld oder ALG I sind steuerfrei, erhöhen aber über den
+              <strong>Progressionsvorbehalt</strong> den Steuersatz auf das übrige Einkommen – bei
+              Zusammenveranlagung auch den des Partners. In solchen Jahren kann die Einzelveranlagung
+              günstiger sein. Beide Varianten durchrechnen!
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Brutto statt zvE eingeben</h3>
+            <p>
+              Das zu versteuernde Einkommen liegt deutlich unter dem Brutto (Werbungskosten,
+              Vorsorgeaufwendungen, Sonderausgaben). Wer das Brutto eingibt, überschätzt die Steuer und
+              den Splittingvorteil. Das zvE steht im letzten Steuerbescheid.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/einkommensteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>🧾</span>
+            <span class="text-gray-700 font-medium">Einkommensteuer-Rechner</span>
+          </a>
+          <a href="/steuerklassen-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>💑</span>
+            <span class="text-gray-700 font-medium">Steuerklassen-Rechner</span>
+          </a>
+          <a href="/brutto-netto-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>💰</span>
+            <span class="text-gray-700 font-medium">Brutto-Netto-Rechner</span>
+          </a>
+          <a href="/rentensplitting-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>👵</span>
+            <span class="text-gray-700 font-medium">Rentensplitting-Rechner</span>
+          </a>
+          <a href="/kirchensteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>⛪</span>
+            <span class="text-gray-700 font-medium">Kirchensteuer-Rechner</span>
+          </a>
+          <a href="/steuererstattung-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>💶</span>
+            <span class="text-gray-700 font-medium">Steuererstattung-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ehegattensplitting-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/ehegattensplitting-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
