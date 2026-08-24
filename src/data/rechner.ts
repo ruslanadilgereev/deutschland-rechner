@@ -474,6 +474,21 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'aktivrente',
+    name: 'Aktivrente-Rechner',
+    beschreibung: '2.000 €/Monat steuerfrei nach der Regelaltersgrenze: Ersparnis & Netto',
+    icon: '👷',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Aktivrente Rechner, Aktivrente Rechner 2026, Aktivrente berechnen, Aktivrente Steuerfalle, Aktivrente Voraussetzungen, Aktivrente Sozialabgaben, steuerfrei arbeiten Rente, 2000 Euro steuerfrei Rentner',
+    quellen: [
+      'https://www.gesetze-im-internet.de/estg/__3.html',
+      'https://www.recht.bund.de/',
+      'https://www.gesetze-im-internet.de/sgb_6/__5.html',
+      'https://www.gesetze-im-internet.de/estg/__32a.html',
+    ],
+  },
+  {
     id: 'mieteinnahmen-versteuern',
     name: 'Mieteinnahmen-versteuern-Rechner',
     beschreibung: 'Steuer auf Vermietung & Verpachtung (§ 21 EStG) berechnen',

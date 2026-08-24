@@ -1,0 +1,285 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AktivrenteRechner from '../components/rechner/AktivrenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Aktivrente-Rechner 2026 – 2.000 € steuerfrei neben der Rente";
+const description = "Aktivrente-Rechner 2026: Steuerersparnis und Netto beim Arbeiten nach der Regelaltersgrenze berechnen – 2.000 €/Monat steuerfrei, mit KV/PV-Abgaben und Vergleich mit/ohne Freibetrag.";
+const keywords = "Aktivrente Rechner, Aktivrente Rechner 2026, Aktivrente berechnen, Aktivrente 2026, Aktivrente Steuerfalle, Aktivrente Voraussetzungen, Aktivrente Sozialabgaben, Aktivrente Beispiel, steuerfrei arbeiten Rente, 2000 Euro steuerfrei Rentner, Aktivrente Brutto Netto";
+
+const faq = [
+  {
+    frage: "Was ist die Aktivrente?",
+    antwort: "Seit dem 1. Januar 2026 bleibt Arbeitslohn aus einer sozialversicherungspflichtigen Beschäftigung nach Erreichen der Regelaltersgrenze bis zu 2.000 Euro pro Monat steuerfrei (§ 3 Nr. 21 EStG, Aktivrentengesetz). Die gesetzliche Rente kann parallel in voller Höhe bezogen werden und bleibt selbst steuerpflichtig wie bisher.",
+  },
+  {
+    frage: "Wer erfüllt die Voraussetzungen für die Aktivrente?",
+    antwort: "Entscheidend sind zwei Dinge: das Erreichen der Regelaltersgrenze (je nach Jahrgang 66 bis 67 Jahre) und eine sozialversicherungspflichtige Beschäftigung als Arbeitnehmer. Minijobs sind ausgeschlossen – sie sind aber ohnehin steuerfrei. Wer vorgezogen in Rente gegangen ist, profitiert erst ab Erreichen der Regelaltersgrenze.",
+  },
+  {
+    frage: "Welche Abzüge bleiben bei der Aktivrente?",
+    antwort: "Steuerfrei heißt nicht abgabenfrei: Kranken- und Pflegeversicherungsbeiträge fallen auf den vollen Lohn an (AN-Anteil rund 10 bis 11 Prozent). Renten- und Arbeitslosenversicherungsbeiträge zahlen Arbeitnehmer nach der Regelaltersgrenze dagegen nicht mehr. Bei 2.000 Euro Monatsbrutto bleiben so gut 1.780 Euro übrig.",
+  },
+  {
+    frage: "Was ist die sogenannte Aktivrente-Steuerfalle?",
+    antwort: "Zwei Effekte werden oft übersehen: Erstens ist nur der Arbeitslohn bis 2.000 Euro/Monat steuerfrei – jeder Euro darüber wird normal versteuert und trifft wegen der weiter steuerpflichtigen Rente oft auf einen hohen Grenzsteuersatz. Zweitens bleibt die Rente selbst voll steuerpflichtig; wer mehr verdient, rutscht mit dem Gesamteinkommen in höhere Progressionszonen. Der Freibetrag selbst löst aber keinen Progressionsvorbehalt aus.",
+  },
+  {
+    frage: "Gilt die Aktivrente auch für Pensionäre und Selbstständige?",
+    antwort: "Der Freibetrag knüpft an die Regelaltersgrenze und eine sozialversicherungspflichtige Beschäftigung an – nicht an den Bezug einer gesetzlichen Rente. Ein Pensionär, der als Arbeitnehmer sozialversicherungspflichtig arbeitet, kann daher profitieren. Selbstständige Einkünfte sind nicht begünstigt, da kein Arbeitslohn vorliegt.",
+  },
+  {
+    frage: "Lohnt sich die Aktivrente mehr als ein Minijob?",
+    antwort: "Meist ja, wenn mehr Arbeit möglich ist: Der Minijob ist 2026 auf 603 Euro/Monat begrenzt, die Aktivrente stellt bis 2.000 Euro/Monat steuerfrei. Auf den Aktivrente-Lohn fallen zwar KV/PV-Beiträge an, dafür ist das steuerfreie Volumen mehr als dreimal so hoch. Beide lassen sich nicht für dieselbe Beschäftigung kombinieren.",
+  },
+];
+
+// Ersparnis-Beispiele aus den verifizierten Formeln (übriges zvE 15.000 €, einzeln)
+const beispielTabelle = [
+  { brutto: "1.000 €", ersparnis: "2.620 €" },
+  { brutto: "1.500 €", ersparnis: "4.286 €" },
+  { brutto: "2.000 €", ersparnis: "6.077 €" },
+  { brutto: "2.500 €", ersparnis: "6.913 €" },
+  { brutto: "3.000 €", ersparnis: "7.412 €" },
+  { brutto: "4.000 €", ersparnis: "8.409 €" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Aktivrente-Rechner", url: "/aktivrente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">👷</span>
+          <div>
+            <h1 class="text-2xl font-bold">Aktivrente-Rechner 2026</h1>
+            <p class="text-amber-100 text-sm">2.000 € monatlich steuerfrei: Ersparnis & Netto berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AktivrenteRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> § 3 Nr. 21 EStG i. d. F. des Aktivrentengesetzes (in Kraft seit
+          01.01.2026): 2.000 €/Monat Lohnsteuerfreiheit ohne Progressionsvorbehalt; Einkommensteuertarif
+          2026 (§ 32a EStG); RV-Versicherungsfreiheit nach Regelaltersgrenze (§ 5 Abs. 4 SGB VI);
+          SV-Werte 2026 (KV 14,6 % + Zusatzbeitrag, PV 3,6 %/4,2 %, BBG KV/PV 69.750 €).
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Freibetrags-Deckelung auf 24.000 €/Jahr, AN-Pauschbetrag auf
+          den steuerpflichtigen Lohnteil, Grund-/Splittingtarif, Soli, KV/PV-Arbeitnehmeranteile mit
+          einstellbarem Zusatzbeitrag und BBG-Deckelung, Wegfall von RV/ALV-Beiträgen.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Kirchensteuer, Vorsorgeaufwands-Abzug beim zvE,
+          Altersentlastungsbetrag, freiwillige RV-Beiträge (Opt-in), Arbeitgeberkosten, betriebliche
+          Altersvorsorge. Unterjährige Beschäftigung: Der Freibetrag gilt pro Beschäftigungsmonat.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Aktivrente 2026: Arbeiten neben der Rente ohne Lohnsteuer</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit der <strong>Aktivrente</strong> will der Gesetzgeber Weiterarbeiten im Rentenalter
+            attraktiver machen: Wer die <strong>Regelaltersgrenze</strong> erreicht hat und
+            sozialversicherungspflichtig als Arbeitnehmer arbeitet, erhält seit dem 1. Januar 2026 bis zu
+            <strong>2.000 € Monatslohn steuerfrei</strong> (§ 3 Nr. 21 EStG). Die Rente kann parallel
+            ungekürzt bezogen werden – eine Hinzuverdienstgrenze gibt es bei der Regelaltersrente ohnehin
+            nicht mehr.
+          </p>
+
+          <div class="bg-amber-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-amber-800 font-semibold mb-2">📐 Rechenbeispiel:</p>
+            <p class="text-xs text-amber-700">
+              2.000 € Monatsbrutto (24.000 €/Jahr), daneben 15.000 € steuerpflichtige Rente
+              (Einzelveranlagung): Ohne Aktivrente wären auf den Lohn samt Rente
+              <strong>6.512 €</strong> Einkommensteuer fällig. Mit Aktivrente bleibt der komplette Lohn
+              steuerfrei – es bleiben nur <strong>435 €</strong> Steuer auf die Rente.
+              <strong>Ersparnis: 6.077 € pro Jahr.</strong> Abgezogen werden vom Lohn nur noch KV- und
+              PV-Beiträge (~2.532 €/Jahr).
+            </p>
+          </div>
+
+          <h3 class="font-semibold text-gray-800">Ersparnis je nach Verdienst</h3>
+          <div class="not-prose overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-amber-50 text-left">
+                  <th class="py-2 px-3 font-semibold text-gray-700">Monatsbrutto</th>
+                  <th class="py-2 px-3 font-semibold text-gray-700 text-right">Steuerersparnis pro Jahr</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600">
+                {beispielTabelle.map((zeile) => (
+                  <tr class="border-b border-gray-100">
+                    <td class="py-2 px-3">{zeile.brutto}</td>
+                    <td class="py-2 px-3 text-right font-medium text-amber-700">{zeile.ersparnis}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">
+            Annahme: 15.000 € übriges zvE (steuerpflichtiger Rententeil), Einzelveranlagung, Tarif 2026.
+            Ab 2.000 € Brutto wächst die Ersparnis langsamer, weil nur noch der Rest über dem Freibetrag
+            entlastet wird.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Vorgezogene Rente mit Regelaltersgrenze verwechseln</h3>
+            <p>
+              Wer mit 63 oder 64 vorgezogen in Rente geht und weiterarbeitet, bekommt den Freibetrag
+              <strong>noch nicht</strong> – er greift erst ab Erreichen der Regelaltersgrenze. Bis dahin
+              wird der Lohn normal versteuert. Wann Sie so weit sind, zeigt der
+              <a href="/renteneintrittsalter-rechner" class="text-amber-600 hover:underline font-medium">Renteneintrittsalter-Rechner</a>.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">„Steuerfrei" mit „abgabenfrei" verwechseln</h3>
+            <p>
+              KV- und PV-Beiträge werden vom vollen Bruttolohn abgezogen – auch vom steuerfreien Teil.
+              Bei 2.000 € Brutto sind das rund 210 €/Monat. Netto bleiben also gut 1.790 €, nicht 2.000 €.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Rente für steuerfrei halten</h3>
+            <p>
+              Die Aktivrente stellt nur den <strong>Arbeitslohn</strong> steuerfrei. Der steuerpflichtige
+              Teil der Rente bleibt zu versteuern und kann weiterhin eine Steuererklärung nötig machen –
+              Details im <a href="/rentensteuer-rechner" class="text-amber-600 hover:underline font-medium">Rentensteuer-Rechner</a>.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Minijob gleichzeitig für dieselbe Stelle erwarten</h3>
+            <p>
+              Der Freibetrag gilt nur für sozialversicherungspflichtige Beschäftigungen – ein Minijob
+              (603 €/Monat, 2026) ist ausgeschlossen, aber ohnehin steuerfrei. Rechenvergleich im
+              <a href="/minijob-rechner" class="text-amber-600 hover:underline font-medium">Minijob-Rechner</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/rentensteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-amber-50 transition-colors">
+            <span>👵</span>
+            <span class="text-gray-700 font-medium">Rentensteuer-Rechner</span>
+          </a>
+          <a href="/renteneintrittsalter-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-amber-50 transition-colors">
+            <span>📅</span>
+            <span class="text-gray-700 font-medium">Renteneintrittsalter-Rechner</span>
+          </a>
+          <a href="/brutto-netto-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-amber-50 transition-colors">
+            <span>💰</span>
+            <span class="text-gray-700 font-medium">Brutto-Netto-Rechner</span>
+          </a>
+          <a href="/minijob-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-amber-50 transition-colors">
+            <span>🪙</span>
+            <span class="text-gray-700 font-medium">Minijob-Rechner</span>
+          </a>
+          <a href="/fruehrente-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-amber-50 transition-colors">
+            <span>🏖️</span>
+            <span class="text-gray-700 font-medium">Frührente-Rechner</span>
+          </a>
+          <a href="/renten-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-amber-50 transition-colors">
+            <span>📈</span>
+            <span class="text-gray-700 font-medium">Renten-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Aktivrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/aktivrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
