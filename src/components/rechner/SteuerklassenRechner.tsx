@@ -432,12 +432,23 @@ export default function SteuerklassenRechner() {
       };
     });
     
+    // Faktor nach § 39f EStG: Y (voraussichtliche ESt, Splittingverfahren) ÷ X
+    // (Summe der Lohnsteuer beider bei IV/IV), drei Nachkommastellen ohne
+    // Rundung; eingetragen wird der Faktor nur, wenn er kleiner als 1 ist.
+    const ivIv = kombinationen.find(k => k.sk1 === 4 && k.sk2 === 4);
+    const summeLohnsteuerIV = ivIv ? ivIv.steuer1.lohnsteuer + ivIv.steuer2.lohnsteuer : 0;
+    const faktorRoh = summeLohnsteuerIV > 0 ? Math.floor((tatsaechlicheSteuer / summeLohnsteuerIV) * 1000) / 1000 : null;
+    const faktor = faktorRoh !== null && faktorRoh < 1 ? faktorRoh : null;
+
     return {
       alleinstehend: false,
       kombinationen: kombinationenMitNachzahlung,
       beste: kombinationenMitNachzahlung.find(k => k.name === beste.name)!,
       sv1,
       sv2,
+      faktor,
+      summeLohnsteuerIV,
+      splittingSteuer: Math.round(tatsaechlicheSteuer),
     };
   }, [brutto1, brutto2, kinder, kirchensteuer, bundesland, alleinstehend]);
 
@@ -810,6 +821,23 @@ export default function SteuerklassenRechner() {
               </div>
             </div>
           </div>
+
+          {/* Faktor nach § 39f EStG */}
+          {!ergebnis.alleinstehend && 'faktor' in ergebnis && ergebnis.faktor !== null && (
+            <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+              <h3 className="font-bold text-gray-800 mb-3">🧮 Ihr Faktor für Steuerklasse IV/IV (§ 39f EStG)</h3>
+              <p className="text-4xl font-bold text-indigo-600 mb-3">{ergebnis.faktor.toFixed(3).replace('.', ',')}</p>
+              <p className="text-sm text-gray-600">
+                Berechnung: voraussichtliche Einkommensteuer nach Splittingtarif
+                ({formatEuro('splittingSteuer' in ergebnis ? ergebnis.splittingSteuer : 0)}) ÷ Summe der
+                Lohnsteuer beider Partner bei IV/IV ({formatEuro('summeLohnsteuerIV' in ergebnis ? ergebnis.summeLohnsteuerIV : 0)}),
+                auf drei Nachkommastellen abgeschnitten. Mit diesem Faktor wird die monatliche Lohnsteuer
+                beider Partner multipliziert – der Lohnsteuerabzug trifft die Jahressteuer dann fast exakt,
+                Nachzahlungen entfallen weitgehend. Beantragung beim Finanzamt, gilt bis zu zwei Jahre;
+                eine Steuererklärung ist Pflicht.
+              </p>
+            </div>
+          )}
         </>
       )}
 
