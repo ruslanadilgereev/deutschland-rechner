@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DeckungsbeitragRechner from '../components/rechner/DeckungsbeitragRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Deckungsbeitrag-Rechner – DB, Break-Even & Formel";
+const description = "Deckungsbeitrag berechnen: Stück-DB, Gesamt-Deckungsbeitrag, DB-Quote und Break-Even-Menge mit Formeln und Rechenbeispiel – für Gründer, Studium und Kalkulation.";
+const keywords = "Deckungsbeitrag Rechner, Deckungsbeitrag berechnen, Deckungsbeitrag Formel, Stückdeckungsbeitrag, Deckungsbeitragsrechnung, DB Quote, Break-Even-Point berechnen, Gewinnschwelle, variable Kosten, Fixkosten, DB 1 berechnen";
+
+const faq = [
+  {
+    frage: "Wie berechnet man den Deckungsbeitrag?",
+    antwort: "Deckungsbeitrag = Umsatz minus variable Kosten. Pro Stück: Stückdeckungsbeitrag = Verkaufspreis minus variable Stückkosten. Beispiel: Bei 50 € Preis und 30 € variablen Kosten beträgt der Stück-DB 20 €; bei 1.000 verkauften Stück ergibt das 20.000 € Gesamt-Deckungsbeitrag (DB I).",
+  },
+  {
+    frage: "Was sagt der Deckungsbeitrag aus?",
+    antwort: "Er zeigt, wie viel ein Produkt zur Deckung der Fixkosten beiträgt. Erst wenn der Gesamt-Deckungsbeitrag die Fixkosten übersteigt, entsteht Gewinn. Ein positiver Deckungsbeitrag lohnt sich deshalb kurzfristig auch dann, wenn das Produkt nach Vollkostenrechnung Verlust macht – es deckt zumindest einen Teil der ohnehin anfallenden Fixkosten.",
+  },
+  {
+    frage: "Wie berechnet man den Break-Even-Point?",
+    antwort: "Break-Even-Menge = Fixkosten geteilt durch Stückdeckungsbeitrag. Beispiel: 15.000 € Fixkosten und 20 € Stück-DB ergeben 750 Stück Gewinnschwelle. Ab dem 751. Stück ist jeder weitere Stückdeckungsbeitrag Gewinn. Als Umsatz: Break-Even-Menge mal Verkaufspreis.",
+  },
+  {
+    frage: "Was ist der Unterschied zwischen DB I und DB II?",
+    antwort: "DB I ist der Umsatz minus variable Kosten. In der mehrstufigen Deckungsbeitragsrechnung zieht der DB II zusätzlich die produktfixen Kosten ab (z. B. Werkzeuge für genau dieses Produkt), der DB III die bereichsfixen Kosten. So sieht man, welche Produkte und Sparten wirklich zum Unternehmensergebnis beitragen.",
+  },
+  {
+    frage: "Welche Kosten sind variabel, welche fix?",
+    antwort: "Variable Kosten steigen mit der Menge: Material, Fertigungslöhne, Provisionen, Versand, Transaktionsgebühren. Fixkosten fallen unabhängig von der Menge an: Miete, Gehälter, Versicherungen, Abschreibungen, Software-Abos. Mischkosten (z. B. Strom) werden für die Rechnung in einen fixen und einen variablen Teil aufgespalten.",
+  },
+  {
+    frage: "Was ist eine gute Deckungsbeitragsquote?",
+    antwort: "Die DB-Quote (Stück-DB geteilt durch Preis) ist stark branchenabhängig: Software und Dienstleistungen erreichen oft 70 bis 90 Prozent, Handel je nach Sortiment eher 20 bis 50 Prozent, Gastronomie um 60 bis 75 Prozent beim Wareneinsatz. Entscheidend ist, dass die Quote hoch genug ist, um Fixkosten und Gewinnziel bei realistischer Menge zu decken.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Deckungsbeitrag-Rechner", url: "/deckungsbeitrag-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-600 to-green-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📊</span>
+          <div>
+            <h1 class="text-2xl font-bold">Deckungsbeitrag-Rechner</h1>
+            <p class="text-emerald-200 text-sm">Stück-DB, DB-Quote & Break-Even-Punkt berechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DeckungsbeitragRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> Einstufige Deckungsbeitragsrechnung (Teilkostenrechnung):
+          DB = Umsatz − variable Kosten, Break-Even-Menge = Fixkosten ÷ Stückdeckungsbeitrag.
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Stück- und Gesamt-Deckungsbeitrag, DB-Quote,
+          Break-Even-Menge (auf ganze Stück aufgerundet) und -Umsatz, Betriebsergebnis, Warnung bei
+          negativem Stückdeckungsbeitrag, Cent-genaue Eingaben.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Mehrstufige DB-Rechnung (DB II/III), Engpass- und
+          Sortimentsoptimierung, Umsatzsteuer, Skonti/Rabatte, Steuern auf den Gewinn.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Deckungsbeitrag berechnen: Formel & Beispiel</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Der <strong>Deckungsbeitrag</strong> ist die zentrale Größe der Teilkostenrechnung: der
+            Betrag, der nach Abzug der variablen Kosten vom Umsatz übrig bleibt – zur
+            <strong>Deckung der Fixkosten</strong> und darüber hinaus als Gewinn.
+          </p>
+
+          <div class="bg-emerald-50 p-4 rounded-lg my-4">
+            <p class="text-sm text-emerald-800 font-semibold mb-2">📐 Die Formeln:</p>
+            <ul class="text-xs text-emerald-700 space-y-1 font-mono">
+              <li><strong>Stück-DB</strong> = Verkaufspreis − variable Stückkosten</li>
+              <li><strong>DB I</strong> = Stück-DB × Menge = Umsatz − variable Kosten</li>
+              <li><strong>DB-Quote</strong> = Stück-DB ÷ Verkaufspreis × 100</li>
+              <li><strong>Break-Even-Menge</strong> = Fixkosten ÷ Stück-DB</li>
+            </ul>
+            <p class="text-xs text-emerald-700 mt-2">
+              Rechenbeispiel: Preis 50 €, variable Kosten 30 €, 1.000 Stück, 15.000 € Fixkosten →
+              Stück-DB <strong>20 €</strong>, DB I <strong>20.000 €</strong>, DB-Quote
+              <strong>40 %</strong>, Break-Even bei <strong>750 Stück</strong>, Betriebsergebnis
+              <strong>+5.000 €</strong>.
+            </p>
+          </div>
+
+          <p>
+            Wichtig für Preisentscheidungen: Kurzfristig lohnt jeder Auftrag mit
+            <strong>positivem Deckungsbeitrag</strong>, selbst wenn er nach Vollkosten „Verlust" macht –
+            die Fixkosten laufen ohnehin weiter. Dauerhaft müssen die Deckungsbeiträge aller Produkte
+            aber sämtliche Fixkosten plus Gewinnziel tragen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Brutto- und Nettopreise mischen</h3>
+            <p>
+              Die Umsatzsteuer ist ein durchlaufender Posten und gehört nicht in die DB-Rechnung. Wer den
+              Bruttopreis mit Netto-Kosten verrechnet, überschätzt den Deckungsbeitrag um 19 %.
+              Umrechnung im <a href="/mehrwertsteuer-rechner" class="text-emerald-600 hover:underline font-medium">Mehrwertsteuer-Rechner</a>.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fixkosten auf das Stück umlegen</h3>
+            <p>
+              Wer Fixkosten pro Stück verteilt (Vollkostenrechnung), lehnt bei schwacher Auslastung
+              Aufträge ab, die die Kasse eigentlich verbessern würden. Für kurzfristige Entscheidungen
+              zählt allein: Ist der Stück-DB positiv?
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Eigenen Lohn vergessen</h3>
+            <p>
+              Gründer setzen ihren Unternehmerlohn oft weder fix noch variabel an – der Break-Even wirkt
+              dann trügerisch niedrig. Den eigenen Lebensunterhalt als Fixkosten einplanen; zur
+              Einordnung hilft der <a href="/stundenlohn-rechner" class="text-emerald-600 hover:underline font-medium">Stundenlohn-Rechner</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/stundenlohn-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>⏱️</span>
+            <span class="text-gray-700 font-medium">Stundenlohn-Rechner</span>
+          </a>
+          <a href="/mehrwertsteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>🧾</span>
+            <span class="text-gray-700 font-medium">Mehrwertsteuer-Rechner</span>
+          </a>
+          <a href="/gewerbesteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>🏭</span>
+            <span class="text-gray-700 font-medium">Gewerbesteuer-Rechner</span>
+          </a>
+          <a href="/einkommensteuer-selbststaendige-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>💼</span>
+            <span class="text-gray-700 font-medium">Einkommensteuer für Selbstständige</span>
+          </a>
+          <a href="/prozent-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>➗</span>
+            <span class="text-gray-700 font-medium">Prozent-Rechner</span>
+          </a>
+          <a href="/marge-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors">
+            <span>📈</span>
+            <span class="text-gray-700 font-medium">Marge-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Deckungsbeitrag-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/deckungsbeitrag-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>

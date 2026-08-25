@@ -1512,6 +1512,19 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'deckungsbeitrag',
+    name: 'Deckungsbeitrag-Rechner',
+    beschreibung: 'Stück-DB, DB-Quote & Break-Even-Punkt berechnen',
+    icon: '📊',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'Deckungsbeitrag Rechner, Deckungsbeitrag berechnen, Deckungsbeitrag Formel, Stückdeckungsbeitrag, Break-Even-Point berechnen, Gewinnschwelle, Deckungsbeitragsrechnung',
+    quellen: [
+      'https://www.existenzgruender.de/DE/Gruendung-vorbereiten/Businessplan/Businessplan-erstellen/inhalt.html',
+      'https://www.gesetze-im-internet.de/hgb/__253.html',
+    ],
+  },
+  {
     id: 'zins',
     name: 'Zinsrechner',
     beschreibung: 'Zinsen, Zinssatz, Laufzeit oder Kapital berechnen – mit Tageszinsen',
