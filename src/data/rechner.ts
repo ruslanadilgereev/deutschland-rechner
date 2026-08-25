@@ -3978,6 +3978,19 @@ export const rechnerListe: Rechner[] = [
     quellen: ['https://www.gesetze-im-internet.de/sgb_6/__187a.html'],
   },
   {
+    id: 'urlaubsabgeltung',
+    name: 'Urlaubsabgeltung-Rechner',
+    beschreibung: 'Resturlaub bei Kündigung auszahlen lassen – 13-Wochen-Formel nach § 7/§ 11 BUrlG',
+    icon: '🏖️',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'Urlaubsabgeltung berechnen, Urlaubsabgeltung Rechner, Urlaub auszahlen lassen, Resturlaub auszahlen, Urlaubsabgeltung Kündigung, Urlaubsabgeltung Formel',
+    quellen: [
+      'https://www.gesetze-im-internet.de/burlg/__7.html',
+      'https://www.gesetze-im-internet.de/burlg/__11.html',
+    ],
+  },
+  {
     id: 'urlaubsentgelt',
     name: 'Urlaubsentgelt-Rechner',
     beschreibung: 'Lohn im Urlaub nach der 13-Wochen-Regel (§ 11 BUrlG)',

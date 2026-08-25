@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UrlaubsabgeltungRechner from '../components/rechner/UrlaubsabgeltungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Urlaubsabgeltung berechnen: Resturlaub auszahlen lassen";
+const description = "Urlaubsabgeltung berechnen nach § 7 Abs. 4 BUrlG: offene Urlaubstage bei Kündigung auszahlen lassen – 13-Wochen-Formel, Rechenbeispiel, Steuer-Hinweis und die häufigsten Fehler.";
+const keywords = "Urlaubsabgeltung berechnen, Urlaubsabgeltung Rechner, Urlaubsabgeltung, Urlaub auszahlen lassen, Urlaub auszahlen Rechner, Resturlaub auszahlen, Urlaubsabgeltung Kündigung, Urlaubsabgeltung Formel, Urlaubsabgeltung Steuer, § 7 BUrlG";
+
+const faq = [
+  {
+    frage: "Wie berechnet man die Urlaubsabgeltung?",
+    antwort: "Nach dem Referenzprinzip des § 11 BUrlG: Verdienst der letzten 13 Wochen geteilt durch die Arbeitstage in diesen 13 Wochen ergibt das Urlaubsentgelt pro Tag – bei einer 5-Tage-Woche also Monatsbrutto × 3 ÷ 65. Multipliziert mit den offenen Urlaubstagen ergibt sich die Brutto-Abgeltung. Beispiel: 3.900 € Brutto, 5-Tage-Woche, 10 Resttage → 180 € × 10 = 1.800 €.",
+  },
+  {
+    frage: "Wann habe ich Anspruch auf Urlaubsabgeltung?",
+    antwort: "Nur wenn das Arbeitsverhältnis endet und der Urlaub deshalb nicht mehr genommen werden kann (§ 7 Abs. 4 BUrlG) – etwa bei Kündigung, Aufhebungsvertrag oder Befristungsende. Im laufenden Arbeitsverhältnis darf Urlaub grundsätzlich nicht ausgezahlt werden; er dient der Erholung.",
+  },
+  {
+    frage: "Ist die Urlaubsabgeltung steuerfrei?",
+    antwort: "Nein. Die Abgeltung ist normaler Arbeitslohn: Auf sie fallen Lohnsteuer und Sozialversicherungsbeiträge an, meist als sonstiger Bezug im Auszahlungsmonat. Vom Bruttobetrag des Rechners kommt netto entsprechend weniger an.",
+  },
+  {
+    frage: "Wie viele Resttage stehen mir bei Kündigung zu?",
+    antwort: "Bei Ausscheiden in der zweiten Jahreshälfte (nach erfüllter Wartezeit) besteht der volle gesetzliche Jahresurlaub, in der ersten Jahreshälfte ein Zwölftel pro vollem Beschäftigungsmonat. Tarif- oder Arbeitsverträge regeln oft eine anteilige Kürzung auch für die zweite Jahreshälfte – für den Mehrurlaub über das gesetzliche Minimum hinaus ist das zulässig.",
+  },
+  {
+    frage: "Verfällt nicht genommener Urlaub oder wird er abgegolten?",
+    antwort: "Solange das Arbeitsverhältnis läuft, kann Urlaub zum Jahresende bzw. 31. März verfallen – allerdings nur, wenn der Arbeitgeber zuvor konkret auf den drohenden Verfall hingewiesen hat (EuGH/BAG-Rechtsprechung). Endet das Arbeitsverhältnis, wandelt sich der noch bestehende Anspruch in Geld: die Abgeltung.",
+  },
+  {
+    frage: "Zählen Überstunden und Weihnachtsgeld in die Berechnung?",
+    antwort: "Nein. § 11 BUrlG nimmt Überstundenvergütungen ausdrücklich aus, und einmalige Leistungen wie Weihnachts- oder Urlaubsgeld gehören nicht zum maßgeblichen Verdienst. Bei schwankendem Lohn (Schichtzulagen, Provisionen) zählt der Durchschnitt der letzten 13 Wochen.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Urlaubsabgeltung-Rechner", url: "/urlaubsabgeltung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Urlaubsabgeltung berechnen</h1>
+            <p class="text-orange-100 text-sm">Resturlaub bei Kündigung auszahlen lassen – § 7 Abs. 4 BUrlG</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <UrlaubsabgeltungRechner client:load />
+
+      <RechnerTrust quellen="§ 7 Abs. 4 BUrlG (Abgeltungsanspruch), § 11 BUrlG (13-Wochen-Referenzprinzip), BAG-/EuGH-Rechtsprechung zum Urlaubsverfall" aktualisiert="August 2026" />
+
+      <!-- Direktantwort -->
+      <div class="bg-orange-50 border border-orange-100 rounded-2xl p-5 mb-6">
+        <h2 class="text-base font-bold text-gray-800 mb-2">Wie viel Geld gibt es pro nicht genommenem Urlaubstag?</h2>
+        <p class="text-sm text-gray-700">
+          <strong>Pro offenem Urlaubstag gibt es das Urlaubsentgelt eines Arbeitstags</strong> – nach
+          der 13-Wochen-Formel des § 11 BUrlG: Monatsbrutto × 3 ÷ (13 × Arbeitstage pro Woche). Bei
+          3.900 € Brutto und 5-Tage-Woche sind das <strong>180 € brutto pro Tag</strong>; zehn offene
+          Tage ergeben 1.800 €. Voraussetzung: Das Arbeitsverhältnis endet – im laufenden Job darf
+          Urlaub nicht ausgezahlt werden.
+        </p>
+      </div>
+
+      <!-- SEO Content -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Urlaub auszahlen lassen: Wann und wie viel</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            <strong>Urlaubsabgeltung</strong> gibt es nur zum Ende des Arbeitsverhältnisses: Wer bei
+            Kündigung, Aufhebungsvertrag oder Befristungsende noch offene Urlaubstage hat, bekommt sie
+            in Geld abgegolten (§ 7 Abs. 4 BUrlG). Der Anspruch entsteht automatisch – er muss aber
+            oft aktiv geltend gemacht werden, bevor vertragliche <strong>Ausschlussfristen</strong>
+            (häufig 3 Monate) ihn verfallen lassen.
+          </p>
+          <div class="bg-orange-50 p-4 rounded-lg">
+            <p class="text-sm text-orange-800 font-semibold mb-2">📐 Die Formel:</p>
+            <p class="text-xs text-orange-800 font-mono">
+              Abgeltung = (Monatsbrutto × 3) ÷ (13 × Arbeitstage/Woche) × offene Urlaubstage
+            </p>
+            <p class="text-xs text-orange-800 mt-2">
+              Rechenbeispiel: 3.500 € Brutto, 5-Tage-Woche, 7 Resttage →
+              10.500 ÷ 65 = 161,54 €/Tag × 7 = <strong>1.130,78 € brutto</strong>.
+            </p>
+          </div>
+          <p>
+            Wichtig für die Erwartung: Die Abgeltung ist <strong>brutto</strong> und wird wie normaler
+            Arbeitslohn versteuert und verbeitragt. Wie viel netto von einer Einmalzahlung übrig
+            bleibt, zeigt der <a href="/brutto-netto-rechner" class="text-orange-700 hover:underline">Brutto-Netto-Rechner</a>;
+            das laufende Urlaubsentgelt während des Urlaubs behandelt der
+            <a href="/urlaubsentgelt-rechner" class="text-orange-700 hover:underline">Urlaubsentgelt-Rechner</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Typische Fehler -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Auszahlung im laufenden Job erwarten</h3>
+            <p>Solange das Arbeitsverhältnis besteht, ist Urlaub Erholungszeit und darf nicht ausgezahlt werden – die Abgeltung gibt es nur bei Beendigung.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Ausschlussfristen verpassen</h3>
+            <p>Arbeits- und Tarifverträge enthalten oft Fristen von drei Monaten, innerhalb derer die Abgeltung schriftlich geltend gemacht werden muss – sonst verfällt der Anspruch trotz § 7 Abs. 4 BUrlG.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Netto mit Brutto verwechseln</h3>
+            <p>1.800 € Abgeltung heißt nicht 1.800 € aufs Konto: Als sonstiger Bezug wird die Zahlung voll versteuert und verbeitragt – je nach Steuerklasse bleiben oft nur 55–70 % übrig.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Überstunden in die Formel packen</h3>
+            <p>§ 11 BUrlG klammert Überstundenvergütungen ausdrücklich aus – gerechnet wird mit dem regulären Verdienst der letzten 13 Wochen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ sichtbar -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <VerwandteRechner aktuellerSlug="urlaubsabgeltung" slugs={['urlaubsentgelt', 'urlaubstage', 'abfindung', 'brutto-netto']} />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Urlaubsabgeltung-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/urlaubsabgeltung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwort }
+    }))
+  })} />
+</Layout>
