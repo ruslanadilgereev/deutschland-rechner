@@ -2066,6 +2066,15 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Kreis Rechner, Kreisumfang berechnen, Umfang berechnen, Kreisfläche berechnen, Durchmesser berechnen, Radius berechnen, Fläche berechnen, Geometrie Rechner, Rechteck Umfang, Dreieck Fläche',
   },
   {
+    id: 'volumen',
+    name: 'Volumen-Rechner',
+    beschreibung: 'Volumen von Quader, Würfel, Zylinder, Kugel, Kegel & Pyramide – in cm³, Litern & m³',
+    icon: '🧊',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Volumen Rechner, Volumen berechnen, Quader Volumen, Würfel Volumen, Kugel Volumen berechnen, Kegel Volumen, Pyramide Volumen, Rauminhalt berechnen, Liter berechnen, Kubikmeter berechnen, cm3 in Liter, Volumen Formel',
+  },
+  {
     id: 'zylinder-volumen',
     name: 'Zylinder-Volumen-Rechner',
     beschreibung: 'Volumen eines Zylinders (Liter, m³, cm³) aus Radius/Durchmesser & Höhe – plus Mantel- & Oberfläche',

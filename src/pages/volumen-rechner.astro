@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VolumenRechner from '../components/rechner/VolumenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Volumen berechnen – Quader, Würfel, Zylinder, Kugel & Kegel";
+const description = "Volumen berechnen für Quader, Würfel, Zylinder, Kugel, Kegel und Pyramide – mit Ergebnis in cm³, Litern und m³. Alle Formeln (V = l·b·h, 4/3·π·r³ …) mit Beispielen. Kostenlos & sofort.";
+const keywords = "Volumen Rechner, Volumen berechnen, Quader Volumen, Würfel Volumen, Kugel Volumen berechnen, Kegel Volumen, Pyramide Volumen, Zylinder Volumen, Rauminhalt berechnen, Liter berechnen, cm3 in Liter, Kubikmeter berechnen, Volumen Formel";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Volumen-Rechner", url: "/volumen-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Volumen-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-orange-500 to-amber-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧊</span>
+          <div>
+            <h1 class="text-2xl font-bold">Volumen berechnen</h1>
+            <p class="text-orange-100 text-sm">Quader, Würfel, Zylinder, Kugel, Kegel &amp; Pyramide – in cm³, Litern &amp; m³</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <VolumenRechner client:load />
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Das Volumen der sechs wichtigsten Körper</h2>
+        <p>
+          Ob Aquarium, Umzugskarton, Regentonne oder Matheaufgabe – am Ende ist es immer dieselbe Frage:
+          <strong>Wie viel passt hinein?</strong> Dieser Rechner beherrscht die sechs Standardkörper der
+          Geometrie und liefert das Ergebnis gleich dreifach: im Kubikmaß Ihrer Eingabe-Einheit
+          (cm³ oder m³), in <strong>Litern</strong> und in <strong>Kubikmetern</strong>. Körper wählen,
+          Maße eintragen, fertig.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Die Volumen-Formeln</h2>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+          <div>Quader: V = l · b · h</div>
+          <div>Würfel: V = a³</div>
+          <div>Zylinder: V = π · r² · h</div>
+          <div>Kugel: V = 4/3 · π · r³</div>
+          <div>Kegel: V = 1/3 · π · r² · h</div>
+          <div>Pyramide (quadratisch): V = 1/3 · a² · h</div>
+        </div>
+        <p>
+          Zwei Merksätze machen die Formeln leichter: Der <strong>Kegel ist genau ein Drittel</strong> des
+          Zylinders mit gleichem Radius und gleicher Höhe – und die <strong>Pyramide ein Drittel</strong>
+          des Quaders über derselben Grundfläche. Wer den Zylinder kann, kann also auch den Kegel.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Rechenbeispiele</h2>
+        <p>
+          <strong>Aquarium (Quader):</strong> 100 cm lang, 40 cm breit, 50 cm hoch →
+          100 · 40 · 50 = 200.000 cm³ = <strong>200 Liter</strong>.
+        </p>
+        <p>
+          <strong>Regentonne (Zylinder):</strong> 50 cm Durchmesser (Radius 25 cm), 100 cm hoch →
+          π · 25² · 100 ≈ 196.350 cm³ ≈ <strong>196 Liter</strong>.
+        </p>
+        <p>
+          <strong>Kugel:</strong> Radius 10 cm → 4/3 · π · 10³ ≈ 4.189 cm³ ≈ <strong>4,19 Liter</strong>.
+        </p>
+        <p>
+          <strong>Kegel:</strong> Radius 3, Höhe 4 → 1/3 · π · 9 · 4 ≈ 37,70 – exakt ein Drittel des
+          Zylinders mit denselben Maßen (113,10).
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Kubik, Liter, Kubikmeter – die Umrechnung</h2>
+        <p>
+          Die drei Volumeneinheiten hängen über den Faktor 1.000 zusammen:
+          <strong>1.000 cm³ = 1 Liter</strong> und <strong>1.000 Liter = 1 m³</strong>.
+          Ein Milliliter ist dasselbe wie ein Kubikzentimeter. Deshalb gilt: Maße in Zentimetern
+          eingeben und das Ergebnis durch 1.000 teilen ergibt Liter – der Rechner zeigt beide Werte
+          automatisch an.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">❓ Häufige Fragen zum Volumen</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie berechne ich das Volumen eines Quaders?</summary>
+          <p class="mt-3">
+            Länge mal Breite mal Höhe: V = l · b · h. Beispiel Aquarium: 100 cm · 40 cm · 50 cm =
+            200.000 cm³, das sind 200 Liter. Wichtig ist nur, dass alle drei Maße in derselben Einheit
+            vorliegen.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie rechne ich cm³ in Liter um?</summary>
+          <p class="mt-3">
+            Durch 1.000 teilen: 1.000 cm³ = 1 Liter (und 1 cm³ = 1 ml). In die andere Richtung:
+            1.000 Liter = 1 m³. Der Rechner zeigt zu jedem Ergebnis automatisch die Liter- und
+            m³-Umrechnung an.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie berechnet man das Volumen einer Kugel?</summary>
+          <p class="mt-3">
+            Mit V = 4/3 · π · r³ – also vier Drittel mal Pi mal Radius hoch drei. Beispiel: Eine Kugel
+            mit 10 cm Radius fasst 4/3 · π · 1.000 ≈ 4.189 cm³, rund 4,19 Liter. Achtung: In die Formel
+            gehört der Radius, nicht der Durchmesser – wer den Durchmesser einsetzt, erhält das
+            Achtfache.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen Volumen und Rauminhalt?</summary>
+          <p class="mt-3">
+            Keiner – beide Begriffe bezeichnen dasselbe: den Raum, den ein Körper einnimmt, gemessen in
+            cm³, Litern oder m³. In der Schule ist meist vom Rauminhalt die Rede, im Alltag vom Volumen
+            oder Fassungsvermögen.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie viele Liter passen in eine Regentonne?</summary>
+          <p class="mt-3">
+            Eine Regentonne ist ein Zylinder: V = π · r² · h. Bei 50 cm Durchmesser (Radius 25 cm) und
+            1 m Höhe sind das π · 625 · 100 ≈ 196.350 cm³ ≈ 196 Liter. Für Tanks, Rohre und Tonnen mit
+            zusätzlicher Mantel- und Oberflächenberechnung gibt es den spezialisierten
+            <a href="/zylinder-volumen-rechner">Zylinder-Volumen-Rechner</a>.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">In welcher Einheit muss ich die Maße eingeben?</summary>
+          <p class="mt-3">
+            Wahlweise in Zentimetern oder Metern – der Schalter oben im Rechner legt die Einheit fest,
+            und die Liter- bzw. m³-Umrechnung passt sich automatisch an. Entscheidend ist nur, dass alle
+            Maße eines Körpers dieselbe Einheit haben: Wer Länge in Metern und Höhe in Zentimetern
+            mischt, bekommt ein falsches Ergebnis.
+          </p>
+        </details>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Geometrie / Standard-Schulmathematik (Volumenformeln für Quader, Würfel, Zylinder, Kugel, Kegel, Pyramide), Kreiszahl π" aktualisiert="August 2026" />
+
+    <VerwandteRechner aktuellerSlug="volumen" slugs={['zylinder-volumen', 'kreis', 'rechteck', 'raumhoehe-volumen']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Radius und Durchmesser verwechselt</h3>
+            <p>In die Formeln für Zylinder, Kugel und Kegel gehört der Radius (der halbe Durchmesser). Wer den Durchmesser einsetzt, erhält beim Zylinder das Vierfache und bei der Kugel das Achtfache des echten Volumens.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einheiten gemischt</h3>
+            <p>Alle Maße eines Körpers müssen in derselben Einheit vorliegen. Wer die Länge in Metern und die Höhe in Zentimetern eingibt, liegt um den Faktor 100 daneben – der häufigste Fehler bei Volumenaufgaben.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Außenmaß statt Innenmaß</h3>
+            <p>Für das Fassungsvermögen eines Behälters (Aquarium, Tonne, Karton) zählen die Innenmaße. Bei dickwandigen Gefäßen ist das reale Füllvolumen spürbar kleiner als das mit Außenmaßen gerechnete – und der Füllstand liegt selten bei 100 %.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": title,
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/volumen-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Wie berechne ich das Volumen eines Quaders?", "acceptedAnswer": { "@type": "Answer", "text": "Länge mal Breite mal Höhe: V = l · b · h. Beispiel Aquarium: 100 cm · 40 cm · 50 cm = 200.000 cm³, das sind 200 Liter. Wichtig ist nur, dass alle drei Maße in derselben Einheit vorliegen." } },
+      { "@type": "Question", "name": "Wie rechne ich cm³ in Liter um?", "acceptedAnswer": { "@type": "Answer", "text": "Durch 1.000 teilen: 1.000 cm³ = 1 Liter (und 1 cm³ = 1 ml). In die andere Richtung: 1.000 Liter = 1 m³. Der Rechner zeigt zu jedem Ergebnis automatisch die Liter- und m³-Umrechnung an." } },
+      { "@type": "Question", "name": "Wie berechnet man das Volumen einer Kugel?", "acceptedAnswer": { "@type": "Answer", "text": "Mit V = 4/3 · π · r³ – vier Drittel mal Pi mal Radius hoch drei. Beispiel: Eine Kugel mit 10 cm Radius fasst 4/3 · π · 1.000 ≈ 4.189 cm³, rund 4,19 Liter. In die Formel gehört der Radius, nicht der Durchmesser – wer den Durchmesser einsetzt, erhält das Achtfache." } },
+      { "@type": "Question", "name": "Was ist der Unterschied zwischen Volumen und Rauminhalt?", "acceptedAnswer": { "@type": "Answer", "text": "Keiner – beide Begriffe bezeichnen dasselbe: den Raum, den ein Körper einnimmt, gemessen in cm³, Litern oder m³. In der Schule ist meist vom Rauminhalt die Rede, im Alltag vom Volumen oder Fassungsvermögen." } },
+      { "@type": "Question", "name": "Wie viele Liter passen in eine Regentonne?", "acceptedAnswer": { "@type": "Answer", "text": "Eine Regentonne ist ein Zylinder: V = π · r² · h. Bei 50 cm Durchmesser (Radius 25 cm) und 1 m Höhe sind das π · 625 · 100 ≈ 196.350 cm³ ≈ 196 Liter. Für Tanks, Rohre und Tonnen mit Mantel- und Oberflächenberechnung gibt es den spezialisierten Zylinder-Volumen-Rechner." } },
+      { "@type": "Question", "name": "In welcher Einheit muss ich die Maße eingeben?", "acceptedAnswer": { "@type": "Answer", "text": "Wahlweise in Zentimetern oder Metern – der Schalter im Rechner legt die Einheit fest, die Liter- bzw. m³-Umrechnung passt sich automatisch an. Alle Maße eines Körpers müssen dieselbe Einheit haben: Meter und Zentimeter gemischt ergibt ein falsches Ergebnis." } }
+    ]
+  })} />
+</Layout>
