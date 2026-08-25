@@ -2012,6 +2012,15 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Dreisatz Rechner, Dreisatz berechnen, Dreisatzrechner online',
   },
   {
+    id: 'dreieck',
+    name: 'Dreieck-Rechner',
+    beschreibung: 'Fläche, Umfang, Winkel & Höhen – Heron-Formel, Pythagoras, Kosinussatz',
+    icon: '📐',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Dreieck Rechner, Dreieck Fläche berechnen, Flächeninhalt Dreieck, Umfang Dreieck, Heron Formel, rechtwinkliges Dreieck berechnen, Hypotenuse berechnen, Dreieck Winkel berechnen',
+  },
+  {
     id: 'kreis',
     name: 'Kreis- & Geometrie-Rechner',
     beschreibung: 'Umfang, Durchmesser, Radius & Fläche – plus Rechteck, Quadrat, Dreieck',

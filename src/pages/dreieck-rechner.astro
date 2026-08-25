@@ -1,0 +1,263 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DreieckRechner from '../components/rechner/DreieckRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Dreieck-Rechner: Fläche, Umfang & Winkel berechnen";
+const description = "Dreieck berechnen: Flächeninhalt aus drei Seiten (Heron-Formel), Grundseite × Höhe oder Katheten – mit Umfang, Winkeln (Kosinussatz), Höhen und allen Formeln samt Beispiel.";
+const keywords = "Dreieck Rechner, Dreieck Fläche berechnen, Flächeninhalt Dreieck, Umfang Dreieck, Dreieck berechnen, Heron Formel, Fläche Dreieck Formel, rechtwinkliges Dreieck berechnen, Hypotenuse berechnen, Dreieck Winkel berechnen, Höhe Dreieck";
+
+const faq = [
+  {
+    frage: "Wie berechnet man die Fläche eines Dreiecks?",
+    antwort: "Standardformel: Fläche = Grundseite × Höhe ÷ 2. Sind nur die drei Seiten bekannt, hilft die Heron-Formel: s = (a+b+c)/2, Fläche = √(s·(s−a)·(s−b)·(s−c)). Beim rechtwinkligen Dreieck genügt Kathete × Kathete ÷ 2. Beispiel: Ein Dreieck mit den Seiten 3, 4 und 5 hat die Fläche 6.",
+  },
+  {
+    frage: "Wie berechnet man den Umfang eines Dreiecks?",
+    antwort: "Der Umfang ist einfach die Summe der drei Seitenlängen: U = a + b + c. Beim 3-4-5-Dreieck also 12. Sind nicht alle Seiten bekannt, müssen sie zuerst bestimmt werden – beim rechtwinkligen Dreieck etwa die Hypotenuse über den Satz des Pythagoras.",
+  },
+  {
+    frage: "Was ist die Heron-Formel?",
+    antwort: "Die Heron-Formel (nach Heron von Alexandria) berechnet die Fläche allein aus den drei Seiten: Zuerst den halben Umfang s = (a+b+c)/2 bilden, dann A = √(s·(s−a)·(s−b)·(s−c)). Sie funktioniert für jedes Dreieck – ohne dass eine Höhe bekannt sein muss.",
+  },
+  {
+    frage: "Wie berechnet man die Winkel eines Dreiecks aus den Seiten?",
+    antwort: "Mit dem Kosinussatz: cos α = (b² + c² − a²) ÷ (2·b·c), analog für die anderen Winkel. Der dritte Winkel folgt aus der Winkelsumme von 180 Grad. Beim 3-4-5-Dreieck ergeben sich 36,9°, 53,1° und 90° – es ist rechtwinklig.",
+  },
+  {
+    frage: "Wann bilden drei Seiten kein gültiges Dreieck?",
+    antwort: "Wenn die Dreiecksungleichung verletzt ist: Jede Seite muss kürzer sein als die Summe der beiden anderen. Aus 1, 1 und 5 lässt sich kein Dreieck bilden; bei 1, 2 und 3 entsteht nur eine entartete Strecke ohne Fläche. Der Rechner meldet solche Kombinationen.",
+  },
+  {
+    frage: "Wie berechnet man ein rechtwinkliges Dreieck?",
+    antwort: "Aus den beiden Katheten a und b folgt die Fläche mit a·b÷2 und die Hypotenuse mit dem Satz des Pythagoras: c = √(a² + b²). Die Katheten 3 und 4 ergeben Fläche 6 und Hypotenuse 5. Die spitzen Winkel lassen sich anschließend über den Kosinussatz oder den Tangens bestimmen.",
+  },
+];
+
+// Werte aus den verifizierten Formeln (Heron / Pythagoras / Kosinussatz)
+const beispielTabelle = [
+  { typ: "Rechtwinklig (3-4-5)", flaeche: "6", umfang: "12", winkel: "36,9° / 53,1° / 90°" },
+  { typ: "Gleichseitig (a = 2)", flaeche: "1,73", umfang: "6", winkel: "60° / 60° / 60°" },
+  { typ: "Allgemein (2,5 / 3,5 / 4)", flaeche: "4,33", umfang: "10", winkel: "38,2° / 60° / 81,8°" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Dreieck-Rechner", url: "/dreieck-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-violet-600 to-purple-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-violet-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📐</span>
+          <div>
+            <h1 class="text-2xl font-bold">Dreieck-Rechner</h1>
+            <p class="text-violet-200 text-sm">Fläche, Umfang, Winkel & Höhen – aus Seiten oder Grundseite × Höhe</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <DreieckRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> Elementargeometrie – Heron-Formel für die Fläche aus drei Seiten,
+          Grundseite-mal-Höhe-Formel, Satz des Pythagoras und Kosinussatz für Winkel.
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Drei Eingabewege (drei Seiten, Grundseite + Höhe,
+          rechtwinklig über Katheten), Prüfung der Dreiecksungleichung, Winkel auf 0,1° und Längen auf
+          zwei Dezimalstellen gerundet, beliebige Längeneinheiten.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Konstruktionen aus Winkeln plus einer Seite
+          (Sinussatz-Fälle), Innkreis-/Umkreisradius, sphärische Dreiecke.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Dreieck berechnen: Alle Formeln auf einen Blick</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-violet-50 p-4 rounded-lg">
+            <p class="text-sm text-violet-800 font-semibold mb-2">📐 Die vier Kernformeln:</p>
+            <ul class="text-xs text-violet-700 space-y-1 font-mono">
+              <li><strong>Fläche (Standard):</strong> A = g × h ÷ 2</li>
+              <li><strong>Fläche (Heron):</strong> A = √(s·(s−a)·(s−b)·(s−c)), s = (a+b+c)/2</li>
+              <li><strong>Umfang:</strong> U = a + b + c</li>
+              <li><strong>Hypotenuse:</strong> c = √(a² + b²)</li>
+            </ul>
+            <p class="text-xs text-violet-700 mt-2">
+              Rechenbeispiel 3-4-5-Dreieck: s = 6, A = √(6·3·2·1) = <strong>6</strong>,
+              U = <strong>12</strong>. Der Kosinussatz liefert die Winkel 36,9°, 53,1° und 90° –
+              das 3-4-5-Dreieck ist das bekannteste rechtwinklige Dreieck.
+            </p>
+          </div>
+
+          <h3 class="font-semibold text-gray-800">Beispiele aus dem Rechner</h3>
+          <div class="not-prose overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-violet-50 text-left">
+                  <th class="py-2 px-3 font-semibold text-gray-700">Dreieck</th>
+                  <th class="py-2 px-3 font-semibold text-gray-700 text-right">Fläche</th>
+                  <th class="py-2 px-3 font-semibold text-gray-700 text-right">Umfang</th>
+                  <th class="py-2 px-3 font-semibold text-gray-700 text-right">Winkel</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600">
+                {beispielTabelle.map((zeile) => (
+                  <tr class="border-b border-gray-100">
+                    <td class="py-2 px-3">{zeile.typ}</td>
+                    <td class="py-2 px-3 text-right font-medium text-violet-700">{zeile.flaeche}</td>
+                    <td class="py-2 px-3 text-right">{zeile.umfang}</td>
+                    <td class="py-2 px-3 text-right">{zeile.winkel}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Seite statt Höhe einsetzen</h3>
+            <p>
+              In A = g·h÷2 ist h die <strong>senkrechte</strong> Höhe auf die Grundseite, nicht die
+              Nachbarseite. Nur beim rechtwinkligen Dreieck ist eine Kathete zugleich die Höhe auf die
+              andere – deshalb funktioniert dort Kathete × Kathete ÷ 2.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einheiten mischen</h3>
+            <p>
+              Alle Längen in derselben Einheit eingeben (nicht Meter und Zentimeter mischen). Die Fläche
+              ergibt sich in der Einheit zum Quadrat – aus Metern werden Quadratmeter.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Unmögliche Seitenkombinationen</h3>
+            <p>
+              Drei Längen ergeben nur dann ein Dreieck, wenn jede kürzer ist als die Summe der beiden
+              anderen (Dreiecksungleichung). Der Rechner prüft das automatisch und erklärt, warum
+              z. B. 1, 1, 5 nicht funktioniert.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/kreis-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors">
+            <span>⭕</span>
+            <span class="text-gray-700 font-medium">Kreis-Rechner</span>
+          </a>
+          <a href="/zylinder-volumen-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors">
+            <span>🛢️</span>
+            <span class="text-gray-700 font-medium">Zylinder-Volumen-Rechner</span>
+          </a>
+          <a href="/gefaelle-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors">
+            <span>📉</span>
+            <span class="text-gray-700 font-medium">Gefälle-Rechner</span>
+          </a>
+          <a href="/prozent-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors">
+            <span>➗</span>
+            <span class="text-gray-700 font-medium">Prozent-Rechner</span>
+          </a>
+          <a href="/dreisatz-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors">
+            <span>🔢</span>
+            <span class="text-gray-700 font-medium">Dreisatz-Rechner</span>
+          </a>
+          <a href="/dachflaeche-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors">
+            <span>🏠</span>
+            <span class="text-gray-700 font-medium">Dachfläche-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dreieck-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/dreieck-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
