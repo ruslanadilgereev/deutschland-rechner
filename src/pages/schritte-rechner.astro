@@ -1,0 +1,279 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchritteRechner from '../components/rechner/SchritteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Schritte-Rechner: Schritte in km umrechnen (+ Zeit & Kalorien)";
+const description = "Schritte in km umrechnen und zurück: mit Schrittlänge aus Körpergröße, Gehzeit und Kalorienverbrauch. Plus Tabelle von 1.000 bis 30.000 Schritten – wie weit sind 10.000 Schritte?";
+const keywords = "Schritte in km, Schritte in km umrechnen, Schritte Rechner, wie viele Schritte sind 1 km, 10.000 Schritte in km, wie viele Schritte am Tag, Schritte in Kilometer, Schrittlänge berechnen, 10000 Schritte Kalorien, km in Schritte";
+
+const faq = [
+  {
+    frage: "Wie viele km sind 10.000 Schritte?",
+    antwort: "Je nach Schrittlänge etwa 6,8 bis 7,7 Kilometer: Bei 165 cm Körpergröße rund 6,8 km, bei 175 cm rund 7,3 km, bei 185 cm rund 7,7 km. Als Faustregel entsprechen 10.000 Schritte ungefähr 7 Kilometern und bei moderatem Tempo (5 km/h) knapp 90 Minuten Gehzeit.",
+  },
+  {
+    frage: "Wie viele Schritte sind 1 km?",
+    antwort: "Etwa 1.300 bis 1.500 Schritte. Die genaue Zahl hängt von der Schrittlänge ab: Bei 72,6 cm Schrittlänge (175 cm Körpergröße) sind es rund 1.377 Schritte pro Kilometer, bei kürzeren Schritten entsprechend mehr.",
+  },
+  {
+    frage: "Wie berechne ich meine Schrittlänge?",
+    antwort: "Faustformel beim Gehen: Körpergröße in cm mal 0,415 (Männer) bzw. mal 0,413 (Frauen). Bei 175 cm ergibt das etwa 72,6 cm. Genauer wird es mit einer Messung: eine bekannte Strecke (z. B. 100 m) abgehen, Schritte zählen und die Strecke durch die Schrittzahl teilen.",
+  },
+  {
+    frage: "Wie viele Schritte am Tag sind gesund?",
+    antwort: "Die 10.000-Schritte-Regel stammt ursprünglich aus dem Marketing eines japanischen Schrittzähler-Herstellers. Die WHO empfiehlt statt einer Schrittzahl mindestens 150 bis 300 Minuten moderate Bewegung pro Woche. Studien zeigen deutliche Gesundheitseffekte bereits ab etwa 7.000 bis 8.000 Schritten täglich – mehr schadet aber nicht.",
+  },
+  {
+    frage: "Wie viele Kalorien verbrennen 10.000 Schritte?",
+    antwort: "Bei 75 kg Körpergewicht und moderatem Tempo rund 380 kcal (MET-Berechnung: Gehen mit 5 km/h entspricht etwa 3,5 MET). Schwerere Personen und schnelleres Tempo verbrauchen mehr, langsames Schlendern weniger. Der Wert ist eine Näherung – Fitness-Tracker rechnen ähnlich.",
+  },
+  {
+    frage: "Zählen Schrittzähler und Smartphone genau?",
+    antwort: "Handgelenk-Tracker und Smartphones messen Schritte über Beschleunigungssensoren und liegen im Alltag meist innerhalb von etwa 5 bis 10 Prozent Abweichung. Fehlerquellen sind Radfahren (zu wenig gezählt), starkes Gestikulieren (zu viel) und die Umrechnung in Kilometer, die von der hinterlegten Schrittlänge abhängt – dort lohnt es sich, die gemessene eigene Schrittlänge einzutragen.",
+  },
+];
+
+// Werte aus den verifizierten Formeln: Schrittlänge 68,1 / 72,6 / 76,8 cm
+// (Körpergröße 165 w / 175 m / 185 m), Gehzeit bei 5 km/h für 175 cm
+const tabelle = [
+  { schritte: "1.000", klein: "0,68 km", mittel: "0,73 km", gross: "0,77 km", zeit: "9 min" },
+  { schritte: "2.000", klein: "1,36 km", mittel: "1,45 km", gross: "1,54 km", zeit: "17 min" },
+  { schritte: "3.000", klein: "2,04 km", mittel: "2,18 km", gross: "2,30 km", zeit: "26 min" },
+  { schritte: "4.000", klein: "2,72 km", mittel: "2,90 km", gross: "3,07 km", zeit: "35 min" },
+  { schritte: "5.000", klein: "3,41 km", mittel: "3,63 km", gross: "3,84 km", zeit: "44 min" },
+  { schritte: "6.000", klein: "4,09 km", mittel: "4,36 km", gross: "4,61 km", zeit: "52 min" },
+  { schritte: "7.000", klein: "4,77 km", mittel: "5,08 km", gross: "5,38 km", zeit: "61 min" },
+  { schritte: "8.000", klein: "5,45 km", mittel: "5,81 km", gross: "6,14 km", zeit: "70 min" },
+  { schritte: "10.000", klein: "6,81 km", mittel: "7,26 km", gross: "7,68 km", zeit: "87 min" },
+  { schritte: "12.000", klein: "8,17 km", mittel: "8,71 km", gross: "9,22 km", zeit: "105 min" },
+  { schritte: "15.000", klein: "10,21 km", mittel: "10,89 km", gross: "11,52 km", zeit: "131 min" },
+  { schritte: "20.000", klein: "13,62 km", mittel: "14,52 km", gross: "15,36 km", zeit: "174 min" },
+  { schritte: "25.000", klein: "17,02 km", mittel: "18,15 km", gross: "19,20 km", zeit: "218 min" },
+  { schritte: "30.000", klein: "20,43 km", mittel: "21,78 km", gross: "23,04 km", zeit: "261 min" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Schritte-Rechner", url: "/schritte-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-lime-600 to-green-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-lime-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚶</span>
+          <div>
+            <h1 class="text-2xl font-bold">Schritte-Rechner</h1>
+            <p class="text-lime-200 text-sm">Schritte in km umrechnen – mit Gehzeit & Kalorien</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SchritteRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> Schrittlängen-Faustformel Körpergröße × 0,415 (Männer) bzw.
+          × 0,413 (Frauen), Kalorien MET-basiert (Gehen moderat ≈ 3,5 MET), Bewegungsempfehlungen der
+          WHO (150–300 Min./Woche moderate Aktivität).
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Beide Richtungen (Schritte ↔ km), Schrittlänge automatisch
+          oder gemessen, einstellbares Gehtempo (Gehzeit) und Körpergewicht (Kalorien).
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Steigung und Gelände, Laufen/Joggen (andere
+          Schrittlänge und MET-Werte), individuelle Gangbild-Unterschiede, Tracker-Messfehler.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content: Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Schritte in km: Tabelle von 1.000 bis 30.000 Schritten</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Umrechnung für drei typische Schrittlängen – 68,1 cm (ca. 165 cm Körpergröße), 72,6 cm
+          (ca. 175 cm) und 76,8 cm (ca. 185 cm) – plus Gehzeit bei 5 km/h:
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-lime-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">Schritte</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">≈ 165 cm</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">≈ 175 cm</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">≈ 185 cm</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Gehzeit</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {tabelle.map((zeile) => (
+                <tr class={`border-b border-gray-100 ${zeile.schritte === "10.000" ? "bg-lime-50/50 font-medium" : ""}`}>
+                  <td class="py-2 px-3">{zeile.schritte}</td>
+                  <td class="py-2 px-3 text-right">{zeile.klein}</td>
+                  <td class="py-2 px-3 text-right">{zeile.mittel}</td>
+                  <td class="py-2 px-3 text-right">{zeile.gross}</td>
+                  <td class="py-2 px-3 text-right">{zeile.zeit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Werte aus der Faustformel berechnet, Gehzeit bezogen auf die mittlere Spalte. Merkhilfe:
+          <strong>10.000 Schritte ≈ 7 km ≈ 1,5 Stunden Gehen</strong>.
+        </p>
+
+        <div class="prose prose-sm text-gray-600 space-y-4 mt-6">
+          <h3 class="font-semibold text-gray-800">Woher kommt die 10.000-Schritte-Regel?</h3>
+          <p>
+            Aus der Werbung: Ein japanischer Hersteller vermarktete 1964 seinen Schrittzähler
+            „Manpo-kei" („10.000-Schritte-Messer"). Eine wissenschaftliche Herleitung gab es nie.
+            Die WHO empfiehlt statt einer Schrittzahl <strong>150 bis 300 Minuten moderate
+            Bewegung pro Woche</strong>; Studien zeigen deutliche Effekte auf die Gesundheit bereits ab
+            etwa 7.000 bis 8.000 Schritten täglich. Die runde Zahl ist also ein gutes Ziel, aber keine
+            magische Grenze.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Tracker-Kilometer für bare Münze nehmen</h3>
+            <p>
+              Die km-Angabe des Trackers ist nur so gut wie die hinterlegte Schrittlänge. Wer seine echte
+              Schrittlänge misst (100 m abgehen, Schritte zählen) und einträgt, reduziert den Fehler
+              deutlich.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Gehen und Laufen mischen</h3>
+            <p>
+              Beim Joggen ist der Schritt deutlich länger und der Kalorienverbrauch pro km höher als beim
+              Gehen. Dieser Rechner gilt fürs Gehen – für Laufeinheiten liefert der
+              <a href="/kalorienverbrauch-rechner" class="text-lime-700 hover:underline font-medium">Kalorienverbrauch-Rechner</a> passendere Werte.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Kalorien überschätzen</h3>
+            <p>
+              380 kcal für 10.000 Schritte klingen viel, entsprechen aber nur etwa einem belegten
+              Brötchen. Fürs Abnehmen zählt die Gesamtbilanz – dabei hilft der
+              <a href="/kaloriendefizit-rechner" class="text-lime-700 hover:underline font-medium">Kaloriendefizit-Rechner</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/kalorienverbrauch-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-lime-50 transition-colors">
+            <span>🔥</span>
+            <span class="text-gray-700 font-medium">Kalorienverbrauch-Rechner</span>
+          </a>
+          <a href="/kaloriendefizit-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-lime-50 transition-colors">
+            <span>⚖️</span>
+            <span class="text-gray-700 font-medium">Kaloriendefizit-Rechner</span>
+          </a>
+          <a href="/bmi-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-lime-50 transition-colors">
+            <span>📏</span>
+            <span class="text-gray-700 font-medium">BMI-Rechner</span>
+          </a>
+          <a href="/idealgewicht-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-lime-50 transition-colors">
+            <span>🎯</span>
+            <span class="text-gray-700 font-medium">Idealgewicht-Rechner</span>
+          </a>
+          <a href="/entfernung-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-lime-50 transition-colors">
+            <span>🗺️</span>
+            <span class="text-gray-700 font-medium">Entfernung-Rechner</span>
+          </a>
+          <a href="/lebenserwartung-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-lime-50 transition-colors">
+            <span>⏳</span>
+            <span class="text-gray-700 font-medium">Lebenserwartung-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Schritte-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/schritte-rechner",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>

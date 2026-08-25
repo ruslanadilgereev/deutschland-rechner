@@ -1512,6 +1512,19 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'schritte',
+    name: 'Schritte-Rechner',
+    beschreibung: 'Schritte in km umrechnen – mit Gehzeit und Kalorien',
+    icon: '🚶',
+    kategorie: 'gesundheit',
+    fertig: true,
+    seoKeywords: 'Schritte in km, Schritte in km umrechnen, Schritte Rechner, wie viele Schritte sind 1 km, 10000 Schritte in km, Schrittlänge berechnen, wie viele Schritte am Tag',
+    quellen: [
+      'https://www.who.int/publications/i/item/9789240015128',
+      'https://www.gesundheitsinformation.de/koerperliche-aktivitaet.html',
+    ],
+  },
+  {
     id: 'deckungsbeitrag',
     name: 'Deckungsbeitrag-Rechner',
     beschreibung: 'Stück-DB, DB-Quote & Break-Even-Punkt berechnen',
