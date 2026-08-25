@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
+
+const title = "Witwenrente 2026: Höhe, Ehedauer, eigene Rente & die Abschaffungs-Debatte";
+const description = "Witwenrente einfach erklärt: große (55 %/60 %) und kleine Witwenrente (25 %), Mindestehedauer 1 Jahr, Einkommensanrechnung mit Freibetrag 1.122,53 €, Sterbevierteljahr – und was an den Abschaffungs-Gerüchten dran ist.";
+const keywords = "Witwenrente, Witwenrente 2026, Witwenrente vor dem Aus, Witwenrente abgeschafft, Witwenrente wie lange verheiratet, Witwenrente eigene Rente, große Witwenrente, kleine Witwenrente, Witwenrente Ehedauer, Witwenrente Einkommensanrechnung, Witwenrente Freibetrag, Sterbevierteljahr";
+const lastUpdated = "26. August 2026";
+
+const faqItems = [
+  {
+    q: "Wird die Witwenrente abgeschafft?",
+    a: "Nein – Stand August 2026 ist keine Abschaffung beschlossen, es gibt keinen Gesetzentwurf dazu. In Reformdebatten wird die Hinterbliebenenrente zwar immer wieder diskutiert (etwa der Vorschlag, sie durch das Rentensplitting zu ersetzen), das betrifft aber Konzepte für die Zukunft. Wer bereits Witwen- oder Witwerrente bezieht oder dessen Partner verstorben ist, ist von solchen Debatten nicht betroffen – Bestandsschutz ist in allen diskutierten Modellen vorgesehen."
+  },
+  {
+    q: "Wie lange muss man verheiratet gewesen sein, um Witwenrente zu bekommen?",
+    a: "Mindestens ein Jahr. Dauerte die Ehe (oder eingetragene Lebenspartnerschaft) kürzer, vermutet das Gesetz eine Versorgungsehe und schließt den Anspruch aus (§ 46 Abs. 2a SGB VI). Die Vermutung kann widerlegt werden, wenn besondere Umstände gegen eine Versorgungsabsicht sprechen – der klassische Fall ist der Unfalltod, der bei der Heirat nicht absehbar war. Es zählen dann die konkreten Umstände des Einzelfalls."
+  },
+  {
+    q: "Wie hoch ist die Witwenrente?",
+    a: "Die große Witwenrente beträgt 55 % der Rente des Verstorbenen (nach altem Recht 60 %), die kleine Witwenrente 25 % – befristet auf 24 Monate. Beispiel: Bei 1.800 € Versichertenrente sind das 990 € große bzw. 450 € kleine Witwenrente, jeweils vor Einkommensanrechnung und Sozialabgaben."
+  },
+  {
+    q: "Bekomme ich die Witwenrente zusätzlich zu meiner eigenen Rente?",
+    a: "Ja, beide Renten werden nebeneinander gezahlt – aber die eigene Rente wird angerechnet (§ 97 SGB VI): Die eigene Bruttorente wird pauschal um 14 % auf ein Netto umgerechnet (§ 18b SGB IV); liegt dieses über dem Freibetrag von 1.122,53 € (ab Juli 2026), werden 40 % des übersteigenden Betrags von der Witwenrente abgezogen. Beispiel: 1.500 € eigene Bruttorente ergeben rund 1.290 € angerechnetes Netto, 167,47 € liegen über dem Freibetrag – die Witwenrente sinkt um 66,99 €."
+  },
+  {
+    q: "Was ist der Unterschied zwischen großer und kleiner Witwenrente?",
+    a: "Die große Witwenrente (55 %/60 %) erhält, wer mindestens 46 Jahre und 6 Monate alt ist (Grenze 2026, sie steigt schrittweise auf 47), ein Kind unter 18 erzieht oder erwerbsgemindert ist – sie läuft unbefristet. Wer keine dieser Voraussetzungen erfüllt, bekommt nur die kleine Witwenrente von 25 %, und die nach neuem Recht nur für 24 Monate."
+  },
+  {
+    q: "Was ist das Sterbevierteljahr?",
+    a: "In den ersten drei Kalendermonaten nach dem Tod wird die volle Versichertenrente des Verstorbenen gezahlt (100 % statt 55 %/25 %) – und ohne Einkommensanrechnung. Das soll die Übergangszeit finanziell abfedern. Ab dem vierten Monat gelten dann der normale Prozentsatz und die Anrechnung."
+  },
+  {
+    q: "Verliere ich die Witwenrente, wenn ich wieder heirate?",
+    a: "Ja, mit der Wiederheirat endet der Anspruch. Dafür gibt es auf Antrag eine Abfindung in Höhe von 24 Monatsrenten der bisherigen Witwenrente. Wird die neue Ehe später geschieden oder aufgelöst, kann die Witwenrente nach dem früheren Partner wieder aufleben."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Ratgeber", url: "/ratgeber" }, { name: "Witwenrente", url: "/ratgeber/witwenrente" }]} />
+  <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Ratgeber', href: '/ratgeber' }, { name: 'Witwenrente' }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-slate-600 to-purple-700 text-white py-8 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">Witwenrente 2026: Wie viel es gibt – und was an den Gerüchten dran ist</h1>
+        <p class="text-purple-100 text-sm">Aktualisiert am {lastUpdated} – geprüft anhand offizieller Quellen</p>
+      </div>
+    </header>
+    <article class="max-w-3xl mx-auto px-4 py-8 prose prose-lg prose-headings:text-gray-900 prose-a:text-purple-700 hover:prose-a:underline prose-strong:text-gray-900">
+
+      <p>
+        Die Witwen- bzw. Witwerrente ersetzt einen Teil der Rente, die der verstorbene Ehepartner
+        bekommen hat oder bekommen hätte. Drei Fragen entscheiden über den Anspruch und die Höhe:
+        <strong>Wie lange war die Ehe?</strong> <strong>Große oder kleine Witwenrente?</strong> Und:
+        <strong>Wie viel eigenes Einkommen wird angerechnet?</strong> Dazu kommt seit Jahren ein
+        Dauergerücht – „die Witwenrente steht vor dem Aus". Der Reihe nach.
+      </p>
+
+      <h2>Steht die Witwenrente vor dem Aus?</h2>
+      <p>
+        <strong>Nein – Stand August 2026 ist keine Abschaffung beschlossen</strong>, und es liegt auch
+        kein Gesetzentwurf dazu vor. Was es gibt, sind wiederkehrende <em>Reformdebatten</em>: In
+        Gutachten und Kommissionsberichten wird seit Jahren diskutiert, die Hinterbliebenenrente
+        langfristig durch das <strong>Rentensplitting</strong> zu ersetzen – ein Modell, bei dem
+        Ehepaare die in der Ehe erworbenen Rentenansprüche untereinander aufteilen. Dieses
+        Rentensplitting existiert schon heute (§ 120a SGB VI) als <em>freiwillige Alternative</em> zur
+        Witwenrente. Zwei Dinge sind dabei sicher: Erstens würde jede echte Reform nur mit langen
+        Übergangsfristen kommen, und zweitens sehen alle diskutierten Modelle
+        <strong>Bestandsschutz</strong> für laufende Renten vor. Wer heute Witwenrente bezieht oder
+        beantragt, muss sich von den Schlagzeilen also nicht verunsichern lassen.
+      </p>
+
+      <h2>Wie lange muss man verheiratet gewesen sein?</h2>
+      <p>
+        Die Ehe (oder eingetragene Lebenspartnerschaft) muss <strong>mindestens ein Jahr</strong>
+        bestanden haben. Dauerte sie kürzer, vermutet das Gesetz eine sogenannte
+        <strong>Versorgungsehe</strong> – also eine Heirat vor allem zur Absicherung – und schließt
+        den Anspruch aus (§ 46 Abs. 2a SGB VI). Diese Vermutung ist aber <strong>widerlegbar</strong>:
+        Sprechen die besonderen Umstände des Falls gegen eine Versorgungsabsicht, gibt es die Rente
+        auch bei kürzerer Ehe. Der klassische anerkannte Fall ist der <strong>Unfalltod</strong>, der
+        bei der Heirat nicht absehbar war; auch eine lange geplante Hochzeit, die erst nach plötzlicher
+        schwerer Diagnose stattfand, kann je nach Einzelfall anerkannt werden. Wichtig außerdem: Die
+        Ehe muss zum Zeitpunkt des Todes rechtsgültig bestanden haben – Geschiedene haben keinen
+        Witwenrenten-Anspruch (für sie kann stattdessen eine Erziehungsrente in Frage kommen), und
+        unverheiratete Partner gehen ganz leer aus, egal wie lange die Beziehung dauerte.
+      </p>
+
+      <h2>Große oder kleine Witwenrente – und wie viel Prozent?</h2>
+      <ul>
+        <li><strong>Große Witwenrente: 55 %</strong> der Rente des Verstorbenen (nach altem Recht 60 %) – unbefristet</li>
+        <li><strong>Kleine Witwenrente: 25 %</strong> – nach neuem Recht befristet auf 24 Monate</li>
+      </ul>
+      <p>
+        Die <strong>große</strong> Witwenrente gibt es, wenn Sie mindestens <strong>46 Jahre und
+        6 Monate</strong> alt sind (Grenze 2026; sie steigt schrittweise auf 47), ein Kind unter 18
+        erziehen oder erwerbsgemindert sind. Sonst bleibt die <strong>kleine</strong> Witwenrente.
+        Das <strong>alte Recht mit 60 %</strong> gilt weiterhin, wenn der Partner vor dem 01.01.2002
+        verstorben ist oder die Ehe vor dem 01.01.2002 geschlossen wurde und mindestens ein Ehegatte
+        vor dem 02.01.1962 geboren ist. Beispiel: Bei 1.800 € Versichertenrente des Verstorbenen sind
+        das 990 € große bzw. 450 € kleine Witwenrente – vor Anrechnung und Sozialabgaben. Ihre
+        persönlichen Werte rechnet der <a href="/witwenrente-rechner">Witwenrente-Rechner</a> aus.
+      </p>
+
+      <h2>Eigene Rente plus Witwenrente: die Einkommensanrechnung</h2>
+      <p>
+        Beide Renten werden nebeneinander gezahlt – aber die eigene Rente (und anderes Einkommen)
+        wird auf die Witwenrente <strong>angerechnet</strong> (§ 97 SGB VI). So läuft die Rechnung:
+      </p>
+      <ul>
+        <li>Die eigene <strong>Bruttorente</strong> wird pauschal um 14 % gekürzt und so in ein anrechenbares Netto umgerechnet (§ 18b SGB IV)</li>
+        <li>Davon bleibt der <strong>Freibetrag von 1.122,53 €</strong> (26,4 × Rentenwert 42,52 €, ab Juli 2026) anrechnungsfrei – plus <strong>238,11 €</strong> je waisenrentenberechtigtem Kind</li>
+        <li>Vom übersteigenden Betrag werden <strong>40 %</strong> von der Witwenrente abgezogen</li>
+      </ul>
+      <p>
+        <strong>Beispiel:</strong> 1.500 € eigene Bruttorente → rund 1.290 € anrechenbares Netto →
+        167,47 € über dem Freibetrag → die Witwenrente sinkt um <strong>66,99 €</strong>. Liegt das
+        anrechenbare Netto unter dem Freibetrag, wird nichts gekürzt. Kleine eigene Renten lassen die
+        Witwenrente also unangetastet; erst bei höheren eigenen Einkünften schmilzt sie ab.
+      </p>
+
+      <h2>Sterbevierteljahr: drei Monate volle Rente</h2>
+      <p>
+        In den <strong>ersten drei Kalendermonaten</strong> nach dem Tod zahlt die Rentenversicherung
+        die <strong>volle Versichertenrente</strong> des Verstorbenen – ohne Einkommensanrechnung.
+        Erst danach greifen die 55 % bzw. 25 % und die Anrechnung. Den Antrag stellen Sie bei der
+        Deutschen Rentenversicherung; das Sterbevierteljahr kann über den Rentenservice der Deutschen
+        Post als Vorschuss beantragt werden, wenn der Verstorbene bereits Rente bezog.
+      </p>
+
+      <h2>Brutto ist nicht netto</h2>
+      <p>
+        Von der Witwenrente gehen wie von jeder Rente noch <strong>Kranken- und
+        Pflegeversicherungsbeiträge</strong> ab, und sie unterliegt mit ihrem Besteuerungsanteil der
+        Einkommensteuer. Was nach Anrechnung und Abzügen wirklich ankommt, zeigt der
+        <a href="/witwenrente-rechner">Witwenrente-Rechner</a>; ob sich daneben eine
+        <a href="/rentensteuer-rechner">Steuererklärung als Rentner</a> lohnt, klärt der
+        Rentensteuer-Rechner.
+      </p>
+
+      <h2 id="faq">Häufige Fragen zur Witwenrente</h2>
+      <div class="not-prose space-y-3">
+        {faqItems.map((item) => (
+          <details class="border border-gray-200 rounded-lg bg-white">
+            <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.q}</summary>
+            <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.a}</p></div>
+          </details>
+        ))}
+      </div>
+
+      <h2>Quellen</h2>
+      <ul class="text-sm">
+        <li><a href="https://www.gesetze-im-internet.de/sgb_6/__46.html" target="_blank" rel="noopener noreferrer">§ 46 SGB VI – Witwenrente und Witwerrente (inkl. Mindestehedauer Abs. 2a)</a></li>
+        <li><a href="https://www.gesetze-im-internet.de/sgb_6/__97.html" target="_blank" rel="noopener noreferrer">§ 97 SGB VI – Einkommensanrechnung auf Renten wegen Todes</a></li>
+        <li><a href="https://www.gesetze-im-internet.de/sgb_4/__18b.html" target="_blank" rel="noopener noreferrer">§ 18b SGB IV – Berücksichtigung des Einkommens</a></li>
+        <li><a href="https://www.gesetze-im-internet.de/sgb_6/__120a.html" target="_blank" rel="noopener noreferrer">§ 120a SGB VI – Rentensplitting unter Ehegatten</a></li>
+        <li><a href="https://www.deutsche-rentenversicherung.de/" target="_blank" rel="noopener noreferrer">Deutsche Rentenversicherung – Hinterbliebenenrente</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <!-- Article-Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "datePublished": "2026-08-26",
+    "dateModified": "2026-08-26",
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" },
+    "publisher": { "@type": "Organization", "name": "Deutschland-Rechner" },
+    "mainEntityOfPage": "https://www.deutschland-rechner.de/ratgeber/witwenrente"
+  })} />
+
+  <!-- FAQ-Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": { "@type": "Answer", "text": item.a }
+    }))
+  })} />
+</Layout>
