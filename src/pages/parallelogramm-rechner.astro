@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ParallelogrammRechner from '../components/rechner/ParallelogrammRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Parallelogramm-Rechner: Fläche & Umfang berechnen";
+const description = "Parallelogramm berechnen: Fläche A = g·h (Grundseite × Höhe) und Umfang U = 2·(g+b) – mit Plausibilitätsprüfung, Formeln, Beispiel und den typischen Fehlern.";
+const keywords = "Parallelogramm Rechner, Parallelogramm Fläche berechnen, Flächeninhalt Parallelogramm, Umfang Parallelogramm, Parallelogramm Formel, Parallelogramm berechnen, Grundseite Höhe Parallelogramm";
+
+const faq = [
+  {
+    frage: "Wie berechnet man die Fläche eines Parallelogramms?",
+    antwort: "Fläche = Grundseite × Höhe (A = g·h). Wichtig: h ist der senkrechte Abstand der beiden Grundseiten, nicht der schräge Schenkel. Ein Parallelogramm mit Grundseite 6 und Höhe 3 hat die Fläche 18 – unabhängig davon, wie schräg es ist.",
+  },
+  {
+    frage: "Wie berechnet man den Umfang eines Parallelogramms?",
+    antwort: "Umfang = 2 × (Grundseite + Schenkel), also U = 2·(g+b), weil gegenüberliegende Seiten gleich lang sind. Mit g = 6 und b = 4 ergibt sich U = 20.",
+  },
+  {
+    frage: "Warum darf man nicht Seite mal Seite rechnen?",
+    antwort: "Grundseite × Schenkel ergibt nur beim Rechteck die Fläche. Beim schrägen Parallelogramm ist die Höhe kürzer als der Schenkel (h = b × sin α) – Seite mal Seite überschätzt die Fläche. Genau deshalb prüft der Rechner, dass die Höhe nicht länger als der Schenkel ist.",
+  },
+  {
+    frage: "Was ist der Zusammenhang zwischen Parallelogramm und Rechteck?",
+    antwort: "Das Rechteck ist der Sonderfall des Parallelogramms mit rechten Winkeln – dann ist die Höhe genau gleich dem Schenkel (h = b). Schert man ein Rechteck seitlich, bleibt die Fläche gleich, solange Grundseite und Höhe unverändert bleiben (Scherungsprinzip).",
+  },
+  {
+    frage: "Wie hängen Parallelogramm und Dreieck zusammen?",
+    antwort: "Jede Diagonale teilt das Parallelogramm in zwei deckungsgleiche Dreiecke – daher stammt die Dreiecksformel A = g·h÷2: ein halbes Parallelogramm. Umgekehrt lassen sich zwei gleiche Dreiecke immer zu einem Parallelogramm zusammenlegen.",
+  },
+  {
+    frage: "Was ist eine Raute und wie berechnet man sie?",
+    antwort: "Die Raute (Rhombus) ist ein Parallelogramm mit vier gleich langen Seiten. Ihre Fläche lässt sich wie hier mit Grundseite × Höhe berechnen – oder alternativ über die Diagonalen: A = e·f÷2.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Parallelogramm-Rechner", url: "/parallelogramm-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-teal-600 to-emerald-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-teal-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">▱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Parallelogramm-Rechner</h1>
+            <p class="text-teal-200 text-sm">Fläche aus Grundseite × Höhe, Umfang aus beiden Seiten</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ParallelogrammRechner client:load />
+
+      <RechnerTrust quellen="Elementargeometrie (A = g·h, U = 2·(g+b), Scherungsprinzip)" aktualisiert="August 2026" />
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Parallelogramm berechnen: Formeln & Beispiel</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-teal-50 p-4 rounded-lg">
+            <ul class="text-xs text-teal-800 space-y-1 font-mono">
+              <li><strong>Fläche:</strong> A = g × h  (Höhe, nicht Schenkel!)</li>
+              <li><strong>Umfang:</strong> U = 2 × (g + b)</li>
+              <li><strong>Höhe aus Fläche:</strong> h = A ÷ g</li>
+            </ul>
+            <p class="text-xs text-teal-800 mt-2">
+              Beispiel g = 6, b = 4, h = 3: Fläche <strong>18</strong>, Umfang <strong>20</strong>.
+              Mit h = b = 4 würde ein Rechteck entstehen (Fläche 24) – je schräger das Parallelogramm,
+              desto kleiner die Fläche bei gleichen Seiten.
+            </p>
+          </div>
+          <p>
+            Das Scherungsprinzip macht das Parallelogramm zum Schlüssel vieler Flächenformeln: Die
+            <a href="/dreieck-rechner" class="text-teal-700 hover:underline">Dreiecksfläche</a> ist ein
+            halbes Parallelogramm, und auch die <a href="/trapez-rechner" class="text-teal-700 hover:underline">Trapezformel</a>
+            lässt sich darauf zurückführen.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Schenkel statt Höhe einsetzen</h3>
+            <p>Der häufigste Fehler: g × b rechnen. Das stimmt nur beim Rechteck – beim schrägen Parallelogramm ist die Fläche kleiner. Immer die senkrechte Höhe verwenden.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Höhe länger als der Schenkel</h3>
+            <p>Geometrisch unmöglich (h = b·sin α ≤ b). Der Rechner meldet solche Eingaben, statt eine falsche Fläche auszugeben.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Umfang aus Grundseite und Höhe</h3>
+            <p>Für den Umfang braucht es beide Seitenlängen (g und b) – die Höhe hilft dort nicht weiter.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <VerwandteRechner aktuellerSlug="parallelogramm" slugs={['trapez', 'dreieck', 'rechteck', 'quadrat']} />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Parallelogramm-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/parallelogramm-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwort }
+    }))
+  })} />
+</Layout>

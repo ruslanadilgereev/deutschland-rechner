@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TrapezRechner from '../components/rechner/TrapezRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Trapez-Rechner: Fläche, Mittellinie & Umfang berechnen";
+const description = "Trapez berechnen: Fläche A = (a+c)/2 · h aus den parallelen Seiten und der Höhe, dazu Mittellinie und Umfang – mit Formeln, Beispiel und typischen Fehlern.";
+const keywords = "Trapez Rechner, Trapez Fläche berechnen, Flächeninhalt Trapez, Umfang Trapez, Trapez Formel, Trapez berechnen, Mittellinie Trapez, parallele Seiten Trapez";
+
+const faq = [
+  {
+    frage: "Wie berechnet man die Fläche eines Trapezes?",
+    antwort: "Fläche = Mittelwert der parallelen Seiten mal Höhe: A = (a+c)÷2 × h. Beispiel: a = 8, c = 4, h = 3 ergibt (8+4)÷2 × 3 = 18. Anschaulich: Das Trapez wird gedanklich zum Parallelogramm mit der Mittellinie als Grundseite.",
+  },
+  {
+    frage: "Was ist die Mittellinie eines Trapezes?",
+    antwort: "Die Mittellinie m verbindet die Mittelpunkte der beiden Schenkel und ist genau der Mittelwert der parallelen Seiten: m = (a+c)÷2. Mit ihr wird die Flächenformel besonders einfach: A = m × h.",
+  },
+  {
+    frage: "Wie berechnet man den Umfang eines Trapezes?",
+    antwort: "Umfang = Summe aller vier Seiten: U = a + b + c + d. Anders als bei Rechteck oder Parallelogramm sind beim allgemeinen Trapez alle vier Seiten verschieden lang – für den Umfang müssen daher auch die beiden Schenkel bekannt sein.",
+  },
+  {
+    frage: "Welche Seiten sind beim Trapez parallel?",
+    antwort: "Per Definition genau ein Paar: die Grundseiten a (unten) und c (oben). Die Höhe h ist ihr senkrechter Abstand. Die beiden übrigen Seiten b und d heißen Schenkel; sind sie gleich lang, spricht man vom gleichschenkligen Trapez.",
+  },
+  {
+    frage: "Was passiert, wenn beide parallelen Seiten gleich lang sind?",
+    antwort: "Dann ist das Trapez ein Parallelogramm – die Formel geht nahtlos über: (a+a)÷2 × h = a × h. Der Rechner weist auf diesen Sonderfall hin.",
+  },
+  {
+    frage: "Wo braucht man Trapez-Berechnungen im Alltag?",
+    antwort: "Bei Dachflächen und Giebeln, Grundstücken mit nicht-parallelen Grenzen, Böschungen und Gräben im Tiefbau sowie bei Zuschnitten (z. B. Markisen). Für zusammengesetzte Dachformen hilft ergänzend der Dachflächen-Rechner.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Trapez-Rechner", url: "/trapez-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-rose-600 to-red-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-rose-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⏢</span>
+          <div>
+            <h1 class="text-2xl font-bold">Trapez-Rechner</h1>
+            <p class="text-rose-200 text-sm">Fläche aus parallelen Seiten & Höhe – plus Mittellinie und Umfang</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <TrapezRechner client:load />
+
+      <RechnerTrust quellen="Elementargeometrie (A = (a+c)/2 · h, Mittellinie m = (a+c)/2)" aktualisiert="August 2026" />
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Trapez berechnen: Formeln & Beispiel</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-rose-50 p-4 rounded-lg">
+            <ul class="text-xs text-rose-800 space-y-1 font-mono">
+              <li><strong>Fläche:</strong> A = (a + c) ÷ 2 × h</li>
+              <li><strong>Mittellinie:</strong> m = (a + c) ÷ 2</li>
+              <li><strong>Umfang:</strong> U = a + b + c + d</li>
+            </ul>
+            <p class="text-xs text-rose-800 mt-2">
+              Beispiel a = 8, c = 4, h = 3: Mittellinie <strong>6</strong>, Fläche
+              <strong>18</strong>. Mit den Schenkeln b = d = 3,5 (gleichschenklig) beträgt der Umfang
+              <strong>19</strong>.
+            </p>
+          </div>
+          <p>
+            Die Trapezformel ist der Allrounder unter den Flächenformeln: Mit a = c wird daraus das
+            <a href="/parallelogramm-rechner" class="text-rose-700 hover:underline">Parallelogramm</a>,
+            und Dachflächen oder Giebel bestehen oft aus Trapezen und
+            <a href="/dreieck-rechner" class="text-rose-700 hover:underline">Dreiecken</a> –
+            zusammengesetzt im <a href="/dachflaeche-rechner" class="text-rose-700 hover:underline">Dachflächen-Rechner</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Schenkel statt Höhe verwenden</h3>
+            <p>Wie beim Parallelogramm gilt: h ist der senkrechte Abstand der parallelen Seiten. Der schräge Schenkel ist länger und führt zu einer zu großen Fläche.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Falsche Seiten addieren</h3>
+            <p>In die Flächenformel gehören nur die beiden parallelen Seiten a und c – nicht die Schenkel. Die Schenkel braucht man ausschließlich für den Umfang.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Mittellinie mit Höhe verwechseln</h3>
+            <p>Die Mittellinie verläuft parallel zu a und c (waagerecht), die Höhe senkrecht dazu. m × h ergibt die Fläche – m ersetzt die Höhe aber nicht.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <VerwandteRechner aktuellerSlug="trapez" slugs={['parallelogramm', 'dreieck', 'rechteck', 'dachflaeche']} />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Trapez-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/trapez-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwort }
+    }))
+  })} />
+</Layout>
