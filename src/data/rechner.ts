@@ -1512,6 +1512,20 @@ export const rechnerListe: Rechner[] = [
     ],
   },
   {
+    id: 'zins',
+    name: 'Zinsrechner',
+    beschreibung: 'Zinsen, Zinssatz, Laufzeit oder Kapital berechnen – mit Tageszinsen',
+    icon: '💶',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'Zinsrechner, Zinsen berechnen, Zinsrechnung Formel, Tageszinsen berechnen, Zinstage, Zinssatz berechnen, einfache Verzinsung, Zinsformel',
+    quellen: [
+      'https://www.gesetze-im-internet.de/bgb/__246.html',
+      'https://www.gesetze-im-internet.de/bgb/__248.html',
+      'https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen',
+    ],
+  },
+  {
     id: 'zinseszins',
     name: 'Zinseszins-Rechner',
     beschreibung: 'Vermögenswachstum berechnen',

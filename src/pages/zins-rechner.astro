@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZinsRechner from '../components/rechner/ZinsRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Zinsrechner – Zinsen berechnen mit Formel (Tages- & Jahreszinsen)";
+const description = "Zinsrechner: Zinsen, Zinssatz, Laufzeit oder Kapital berechnen – einfache Verzinsung mit allen Formeln, Tageszinsen nach 30/360 und act/365 sowie Zinseszins-Vergleich.";
+const keywords = "Zinsrechner, Zinsen berechnen, Zinsrechnung Formel, Zinsrechnung Formeln, Zinsen berechnen Formel, Tageszinsen berechnen, Zinstage, Jahreszinsen, Zinssatz berechnen, Zinsrechner Tagesgeld, einfache Verzinsung, Zinsformel";
+
+const faq = [
+  {
+    frage: "Wie lautet die Formel zur Zinsberechnung?",
+    antwort: "Die Grundformel der einfachen Verzinsung lautet: Zinsen = Kapital × Zinssatz ÷ 100 × Laufzeit in Jahren (Z = K · p/100 · t). Für Monatszinsen wird die Laufzeit als Monate ÷ 12 eingesetzt, für Tageszinsen als Zinstage ÷ 360 (deutsche Methode) oder ÷ 365. Die Formel lässt sich nach jeder Größe umstellen – der Rechner übernimmt das automatisch.",
+  },
+  {
+    frage: "Was ist der Unterschied zwischen einfacher Verzinsung und Zinseszins?",
+    antwort: "Bei der einfachen Verzinsung werden die Zinsen jedes Jahr ausgezahlt und nicht wieder angelegt – die Zinsen bleiben jedes Jahr gleich. Beim Zinseszins bleiben die Zinsen auf dem Konto und werden mitverzinst, das Kapital wächst exponentiell. Bei 10.000 € und 3 % über 2 Jahre macht das 600 € (einfach) gegenüber 609 € (Zinseszins) – über lange Zeiträume wird der Unterschied gewaltig.",
+  },
+  {
+    frage: "Wie viele Zinstage hat ein Jahr – 360 oder 365?",
+    antwort: "Das legt die Zinsmethode fest: Deutsche Banken rechnen traditionell mit der 30/360-Methode (jeder Monat 30 Tage, das Jahr 360 Zinstage), am Geldmarkt gilt meist act/360 (echte Tage, Basis 360), im englischen Raum act/365. Bei gleicher Tageszahl ergibt die Basis 360 etwas höhere Zinsen als 365. Welche Methode gilt, steht im Preis- und Leistungsverzeichnis der Bank.",
+  },
+  {
+    frage: "Wie hoch ist der gesetzliche Zinssatz?",
+    antwort: "Der gesetzliche Zinssatz nach § 246 BGB beträgt 4 Prozent pro Jahr und gilt, wenn Zinsen geschuldet werden, ohne dass ein Satz vereinbart wurde. Davon zu unterscheiden ist der deutlich höhere Verzugszinssatz nach § 288 BGB (5 bzw. 9 Prozentpunkte über dem Basiszinssatz) – dafür gibt es den Verzugszinsen-Rechner.",
+  },
+  {
+    frage: "Warum wirbt meine Bank mit Zinssatz p. a. – was heißt das?",
+    antwort: "p. a. steht für per annum, also pro Jahr. Ein Tagesgeldkonto mit 3 % p. a. bringt bei 10.000 € nach einem vollen Jahr 300 € – nach einem Monat entsprechend nur rund ein Zwölftel davon (25 €). Aktionszinsen gelten oft nur für wenige Monate; für den Vergleich zählt immer der aufs Jahr gerechnete Satz.",
+  },
+  {
+    frage: "Werden auf Zinserträge Steuern fällig?",
+    antwort: "Ja. Zinserträge oberhalb des Sparerpauschbetrags (1.000 € pro Person, 2.000 € bei Zusammenveranlagung) unterliegen der Abgeltungsteuer von 25 % plus Soli und ggf. Kirchensteuer. Die Bank führt die Steuer automatisch ab, wenn kein ausreichender Freistellungsauftrag vorliegt – Details im Kapitalertragsteuer-Rechner.",
+  },
+];
+
+// Beispielwerte aus den verifizierten Formeln (10.000 €, 3,65 % p. a.)
+const methodenTabelle = [
+  { methode: "30/360 (deutsche Methode)", tage: "180 Zinstage", zins: "182,50 €" },
+  { methode: "act/360 (Euro-Geldmarkt)", tage: "90 Zinstage", zins: "91,25 €" },
+  { methode: "act/365 (englische Methode)", tage: "73 Zinstage", zins: "73,00 €" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Zinsrechner", url: "/zins-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-sky-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sky-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💶</span>
+          <div>
+            <h1 class="text-2xl font-bold">Zinsrechner</h1>
+            <p class="text-sky-200 text-sm">Zinsen, Zinssatz, Laufzeit oder Kapital berechnen – mit Tageszinsen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ZinsRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> Einfache (lineare) Verzinsung Z = K · p/100 · t mit Umstellung
+          nach allen vier Größen; Tageszinsen nach den marktüblichen Zinstage-Methoden 30/360, act/360
+          und act/365; gesetzlicher Zinssatz § 246 BGB, Zinseszinsverbot § 248 BGB.
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> Jahres- und Tageszinsen, Basis 360/365, Zinseszins-Vergleich
+          für mehrjährige Zeiträume, kaufmännische Rundung auf Cent.
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Abgeltungsteuer und Sparerpauschbetrag
+          (Kapitalertragsteuer-Rechner), unterjährige Zinsgutschriften mit Wiederanlage
+          (Zinseszins-Rechner), Staffel- und variable Zinsen, Gebühren.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content: Formeln -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Zinsrechnung: Alle Formeln auf einen Blick</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-sky-50 p-4 rounded-lg">
+            <p class="text-sm text-sky-800 font-semibold mb-2">📐 Die vier Umstellungen der Zinsformel:</p>
+            <ul class="text-xs text-sky-700 space-y-1 font-mono">
+              <li><strong>Zinsen:</strong> Z = K × p ÷ 100 × t</li>
+              <li><strong>Zinssatz:</strong> p = Z × 100 ÷ (K × t)</li>
+              <li><strong>Laufzeit:</strong> t = Z × 100 ÷ (K × p)</li>
+              <li><strong>Kapital:</strong> K = Z × 100 ÷ (p × t)</li>
+            </ul>
+            <p class="text-xs text-sky-700 mt-2">
+              K = Kapital, p = Zinssatz in % pro Jahr, t = Laufzeit in Jahren, Z = Zinsen.
+              Beispiel: 10.000 € × 3 ÷ 100 × 2 = <strong>600 €</strong> Zinsen in zwei Jahren.
+            </p>
+          </div>
+
+          <h3 class="font-semibold text-gray-800">Monats- und Tageszinsen</h3>
+          <p>
+            Für kürzere Zeiträume wird die Laufzeit anteilig eingesetzt: Monate ÷ 12 bzw.
+            Zinstage ÷ 360 oder ÷ 365 – je nach <strong>Zinstage-Methode</strong>:
+          </p>
+          <div class="not-prose overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-sky-50 text-left">
+                  <th class="py-2 px-3 font-semibold text-gray-700">Methode</th>
+                  <th class="py-2 px-3 font-semibold text-gray-700">Beispiel-Zeitraum</th>
+                  <th class="py-2 px-3 font-semibold text-gray-700 text-right">Zinsen (10.000 €, 3,65 %)</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600">
+                {methodenTabelle.map((zeile) => (
+                  <tr class="border-b border-gray-100">
+                    <td class="py-2 px-3">{zeile.methode}</td>
+                    <td class="py-2 px-3">{zeile.tage}</td>
+                    <td class="py-2 px-3 text-right font-medium text-sky-700">{zeile.zins}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hub: Der richtige Zinsrechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Der passende Zinsrechner für Ihren Fall</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/zinseszins-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>📈</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Zinseszins-Rechner</span>
+              <span class="text-xs text-gray-400">Mehrjährige Anlage mit Wiederanlage</span>
+            </div>
+          </a>
+          <a href="/spar-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>🐷</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Spar-Rechner</span>
+              <span class="text-xs text-gray-400">Monatliche Sparraten</span>
+            </div>
+          </a>
+          <a href="/kredit-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>🏦</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Kredit-Rechner</span>
+              <span class="text-xs text-gray-400">Ratenkredit mit Tilgung</span>
+            </div>
+          </a>
+          <a href="/verzugszinsen-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>⚖️</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Verzugszinsen-Rechner</span>
+              <span class="text-xs text-gray-400">§ 288 BGB, Basiszinssatz</span>
+            </div>
+          </a>
+          <a href="/dispo-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>💳</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Dispo-Rechner</span>
+              <span class="text-xs text-gray-400">Überziehungszinsen taggenau</span>
+            </div>
+          </a>
+          <a href="/kapitalertragsteuer-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>🧾</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Kapitalertragsteuer-Rechner</span>
+              <span class="text-xs text-gray-400">Steuer auf Zinserträge</span>
+            </div>
+          </a>
+          <a href="/bereitstellungszinsen-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>🏗️</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Bereitstellungszinsen-Rechner</span>
+              <span class="text-xs text-gray-400">Baufinanzierung</span>
+            </div>
+          </a>
+          <a href="/mietkaution-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-sky-50 transition-colors">
+            <span>🔑</span>
+            <div>
+              <span class="text-gray-700 font-medium block">Mietkaution-Rechner</span>
+              <span class="text-xs text-gray-400">Kautionszinsen</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Basis 360 und 365 verwechseln</h3>
+            <p>
+              Dieselben 90 Tage ergeben mit Basis 360 mehr Zinsen als mit Basis 365. Wer die Methode
+              seiner Bank nicht kennt, rechnet schnell einige Prozent daneben – die Methode steht im
+              Preis- und Leistungsverzeichnis.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Zinseszins bei mehrjährigen Anlagen vergessen</h3>
+            <p>
+              Die einfache Formel gilt nur, wenn Zinsen jährlich ausgezahlt werden. Bleiben sie auf dem
+              Konto, wächst das Kapital exponentiell – dann führt die einfache Rechnung zu systematisch
+              zu niedrigen Ergebnissen.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Aktionszins aufs Jahr hochrechnen</h3>
+            <p>
+              „3,5 % p. a. für 4 Monate" bringt nicht 350 €, sondern nur rund 117 € auf 10.000 € – der
+              Satz gilt pro Jahr, die Laufzeit ist aber kürzer. Danach fällt der Zins meist deutlich.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zinsrechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/zins-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
