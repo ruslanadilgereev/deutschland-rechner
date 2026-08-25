@@ -2067,6 +2067,20 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Bruchrechner, Brüche berechnen, Brüche kürzen, Brüche addieren, Brüche subtrahieren, Brüche multiplizieren, Brüche dividieren, ggT, kgV, Bruch in Dezimalzahl',
   },
   {
+    id: 'notenschluessel',
+    name: 'Notenschlüssel-Rechner',
+    beschreibung: 'IHK-Notenschlüssel & Punkte-Noten-Tabelle für jede Punktzahl',
+    icon: '📝',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Notenschlüssel Rechner, IHK Notenschlüssel, Notenschlüssel berechnen, Punkte Noten Rechner, Punkte in Noten umrechnen, Noten Punkte Tabelle, linearer Notenschlüssel',
+    quellen: [
+      'https://www.dihk.de/de/themen-und-positionen/fachkraefte/aus-und-weiterbildung/pruefungen',
+      'https://www.gesetze-im-internet.de/bbig_2005/__37.html',
+      'https://www.kmk.org/themen/allgemeinbildende-schulen.html',
+    ],
+  },
+  {
     id: 'notendurchschnitt',
     name: 'Notendurchschnitt-Rechner',
     beschreibung: 'Schulnoten-Durchschnitt berechnen',

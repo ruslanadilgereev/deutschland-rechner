@@ -1,0 +1,258 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NotenschluesselRechner from '../components/rechner/NotenschluesselRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Notenschlüssel-Rechner – IHK-Notenschlüssel & Punkte in Noten";
+const description = "Notenschlüssel berechnen: IHK-Notenschlüssel (100-Punkte-Tabelle) und linearer Schul-Notenschlüssel mit Sockel – Punkte in Noten umrechnen, mit fertiger Punkte-Noten-Tabelle.";
+const keywords = "Notenschlüssel Rechner, Notenschlüssel berechnen, IHK Notenschlüssel, Notenschlüssel IHK, Punkte Noten Rechner, Punkte in Noten umrechnen, Noten Punkte Tabelle, Notenschlüssel Tabelle, IHK Notenschlüssel NRW, IHK Notenschlüssel Bayern, linearer Notenschlüssel, Notenschlüssel mit Sockel";
+
+const faq = [
+  {
+    frage: "Wie funktioniert der IHK-Notenschlüssel?",
+    antwort: "IHK-Prüfungen werden auf einer 100-Punkte-Skala bewertet: 92 bis 100 Punkte = Note 1 (sehr gut), 81 bis unter 92 = Note 2 (gut), 67 bis unter 81 = Note 3 (befriedigend), 50 bis unter 67 = Note 4 (ausreichend), 30 bis unter 50 = Note 5 (mangelhaft), unter 30 = Note 6 (ungenügend). Bestanden ist eine Prüfung ab 50 Punkten.",
+  },
+  {
+    frage: "Ist der IHK-Notenschlüssel in NRW, Bayern und anderen Bundesländern gleich?",
+    antwort: "Ja. Der 100-Punkte-Schlüssel stammt aus der Musterprüfungsordnung des DIHK und wird von den Industrie- und Handelskammern bundesweit einheitlich angewendet – der IHK-Notenschlüssel in NRW, Bayern, Baden-Württemberg oder Hamburg ist identisch. Unterschiede gibt es nur zwischen Kammerarten (z. B. weicht die Handwerkskammer teils ab).",
+  },
+  {
+    frage: "Wie berechne ich einen linearen Notenschlüssel für eine Klassenarbeit?",
+    antwort: "Sie legen fest, ab wie viel Prozent der Punkte es die Note 4 gibt (Sockel, üblich 45 bis 60 Prozent). Oberhalb des Sockels verläuft die Skala linear bis zur Note 1 bei voller Punktzahl, unterhalb linear bis zur Note 6 bei null Punkten. Der Rechner erstellt daraus die komplette Punkte-Noten-Tabelle für Ihre Maximalpunktzahl.",
+  },
+  {
+    frage: "Gibt es einen bundeseinheitlichen Notenschlüssel für Schulen?",
+    antwort: "Nein. Die Leistungsbewertung an Schulen ist Ländersache, und innerhalb der Länder entscheiden oft Schule oder Fachkonferenz über den Schlüssel. Verbreitet sind lineare Schlüssel mit einem Sockel um 50 Prozent sowie strengere Varianten in Abschlussklassen. Verbindlich ist immer die Vorgabe der eigenen Schule.",
+  },
+  {
+    frage: "Ab wie viel Punkten ist eine IHK-Prüfung bestanden?",
+    antwort: "Ab 50 von 100 Punkten (Note 4, ausreichend). Bei weniger als 50 Punkten ist der Prüfungsteil nicht bestanden; je nach Prüfungsordnung sind mündliche Ergänzungsprüfungen möglich, wenn das Gesamtergebnis dadurch noch bestanden werden kann.",
+  },
+  {
+    frage: "Wie rechne ich Punkte in Prozent und Noten um?",
+    antwort: "Prozent = erreichte Punkte geteilt durch Maximalpunkte mal 100. Die Note folgt dann aus dem gewählten Schlüssel: Beim IHK-Schlüssel entscheiden feste Prozentgrenzen, beim linearen Schlüssel die Lage zwischen Sockel und Maximum. Der Rechner nimmt Ihnen beides ab und zeigt die Grenzen für Ihre Punktzahl.",
+  },
+];
+
+// IHK-Tabelle (bundeseinheitlich, 100 Punkte)
+const ihkTabelle = [
+  { punkte: "92 – 100", note: "1", wort: "sehr gut" },
+  { punkte: "81 – unter 92", note: "2", wort: "gut" },
+  { punkte: "67 – unter 81", note: "3", wort: "befriedigend" },
+  { punkte: "50 – unter 67", note: "4", wort: "ausreichend" },
+  { punkte: "30 – unter 50", note: "5", wort: "mangelhaft" },
+  { punkte: "0 – unter 30", note: "6", wort: "ungenügend" },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Notenschlüssel-Rechner", url: "/notenschluessel-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-indigo-200 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📝</span>
+          <div>
+            <h1 class="text-2xl font-bold">Notenschlüssel-Rechner</h1>
+            <p class="text-indigo-200 text-sm">IHK-Notenschlüssel & linearer Schlüssel: Punkte in Noten umrechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <NotenschluesselRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T -->
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-xs text-gray-600 space-y-2">
+        <p>🗓️ <strong>Zuletzt aktualisiert am 25. August 2026</strong></p>
+        <p>
+          <strong>Grundlage:</strong> 100-Punkte-Notenschlüssel der IHK-Prüfungen (Musterprüfungsordnung
+          des DIHK auf Basis § 37 ff. BBiG), linearer Notenschlüssel mit Sockel als verbreitetes
+          schulisches Bewertungsmodell (Leistungsbewertung ist Ländersache, KMK).
+        </p>
+        <p>
+          <strong>Berücksichtigt:</strong> IHK-Grenzen exakt (92/81/67/50/30), beliebige
+          Maximalpunktzahlen, halbe Punkte, Dezimalnoten und komplette Punkte-Noten-Tabellen; beim
+          linearen Schlüssel einstellbarer Sockel (30–70 %).
+        </p>
+        <p>
+          <strong>Nicht berücksichtigt:</strong> Abweichende Kammer-Schlüssel (z. B. Handwerkskammern),
+          Oberstufen-Punktesystem 0–15 (dafür: Abi-Schnitt-Rechner), Notentendenzen (+/−),
+          fachspezifische Sonderregeln einzelner Prüfungsordnungen.
+        </p>
+      </div>
+    </div>
+
+    <!-- SEO Content: IHK-Tabelle -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">IHK-Notenschlüssel: Die offizielle Tabelle</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Für IHK-Abschluss- und Fortbildungsprüfungen gilt bundesweit derselbe 100-Punkte-Schlüssel –
+          in NRW, Bayern und allen übrigen Ländern identisch:
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-indigo-50 text-left">
+                <th class="py-2 px-3 font-semibold text-gray-700">Punkte (von 100)</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">Note</th>
+                <th class="py-2 px-3 font-semibold text-gray-700">Bezeichnung</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {ihkTabelle.map((zeile) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-2 px-3">{zeile.punkte}</td>
+                  <td class="py-2 px-3 text-right font-medium text-gray-800">{zeile.note}</td>
+                  <td class="py-2 px-3">{zeile.wort}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Bestanden ab 50 Punkten. Auffällig streng: Für die Note 1 braucht es 92 %, während viele
+          Schul-Schlüssel schon bei ~87 % die 1 vergeben.
+        </p>
+
+        <div class="prose prose-sm text-gray-600 space-y-4 mt-6">
+          <h3 class="font-semibold text-gray-800">Linearer Notenschlüssel: Die Formel</h3>
+          <p>
+            Für Klassenarbeiten wird meist ein <strong>linearer Schlüssel mit Sockel</strong> verwendet:
+            Bei der Maximalpunktzahl gibt es die Note 1, am Sockel (z. B. 50 % der Punkte) die Note 4,
+            bei 0 Punkten die Note 6 – dazwischen verläuft die Note linear. Mit dem Rechner oben
+            erstellen Sie daraus in Sekunden die fertige Tabelle für jede Punktzahl – auch mit halben
+            Punkten.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">IHK-Schlüssel auf die Schule übertragen</h3>
+            <p>
+              Der IHK-Schlüssel ist deutlich strenger als übliche Schul-Schlüssel (Note 1 erst ab 92 %).
+              Wer eine Klassenarbeit nach IHK bewertet, produziert schlechtere Noten als beabsichtigt –
+              für die Schule den linearen Modus verwenden.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Prozente statt Punkte eintragen</h3>
+            <p>
+              Der Rechner erwartet Punkte. Bei einer Arbeit mit 60 Punkten und 75 % Leistung also 45
+              eintragen, nicht 75 – sonst stimmt die Note nur zufällig.
+            </p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Oberstufen-Punkte verwechseln</h3>
+            <p>
+              Das 15-Punkte-System der Oberstufe (15 = 1+) ist kein Notenschlüssel im Sinne dieser
+              Tabelle. Für Abitur-Durchschnitt und Punkteumrechnung gibt es den
+              <a href="/abi-schnitt-rechner" class="text-indigo-600 hover:underline font-medium">Abi-Schnitt-Rechner</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ sichtbar -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{item.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Verwandte Rechner -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">🔗 Verwandte Rechner</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/notendurchschnitt-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors">
+            <span>📚</span>
+            <span class="text-gray-700 font-medium">Notendurchschnitt-Rechner</span>
+          </a>
+          <a href="/abi-schnitt-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors">
+            <span>🎓</span>
+            <span class="text-gray-700 font-medium">Abi-Schnitt-Rechner</span>
+          </a>
+          <a href="/prozent-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors">
+            <span>➗</span>
+            <span class="text-gray-700 font-medium">Prozent-Rechner</span>
+          </a>
+          <a href="/dreisatz-rechner" class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg hover:bg-indigo-50 transition-colors">
+            <span>🔢</span>
+            <span class="text-gray-700 font-medium">Dreisatz-Rechner</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Notenschlüssel-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/notenschluessel-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.antwort
+      }
+    }))
+  })} />
+</Layout>
