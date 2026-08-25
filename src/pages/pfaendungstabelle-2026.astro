@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import pf from '../data/pfaendung-2026.json';
+
+const title = "Pfändungstabelle 2026: Freigrenzen & pfändbare Beträge";
+const description = "Pfändungstabelle 2026 (gültig ab 01.07.): Pfändungsfreigrenze 1.587,40 €, pfändbare Beträge nach § 850c ZPO je Netto und Unterhaltspflichten – Lohnpfändungstabelle zum Nachschlagen, mit Ausblick 2027.";
+const keywords = "Pfändungstabelle 2026, Pfändungsfreigrenze 2026, Pfändungstabelle, Lohnpfändungstabelle 2026, Pfändungstabelle ab 01.07.2026, pfändbarer Betrag Tabelle, Pfändungsfreigrenze 2026 Tabelle, Pfändungstabelle 2027, § 850c ZPO Tabelle";
+
+// Berechnung identisch zur PfaendungsRechner-Komponente (per Test-Script
+// gegen Handrechnungs-Stützstellen verifiziert) – gleiche Datenquelle,
+// damit Tabelle und Rechner bei der jährlichen Juli-Anpassung synchron bleiben.
+const M = pf.monatlich;
+const ANTEILE = pf.pfaendbarerAnteilVomMehrbetrag as Record<string, number>;
+
+function freibetrag(personen: number): number {
+  const p = Math.min(Math.max(personen, 0), 5);
+  return M.grundbetrag
+    + (p >= 1 ? M.erhoehungErstePerson : 0)
+    + Math.max(0, p - 1) * M.erhoehungWeiterePerson;
+}
+
+function pfaendbar(netto: number, personen: number): number {
+  const p = Math.min(Math.max(personen, 0), 5);
+  const frei = freibetrag(p);
+  const anteil = ANTEILE[String(p)];
+  let x = 0;
+  if (netto > frei) {
+    const bisObergrenze = Math.min(netto, M.obergrenzeVollPfaendbar);
+    x = (bisObergrenze - frei) * anteil;
+    if (netto > M.obergrenzeVollPfaendbar) x += netto - M.obergrenzeVollPfaendbar;
+  }
+  return Math.max(0, Math.round(x * 100) / 100);
+}
+
+const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+// Tabellenzeilen: Netto 1.600–4.900 € in 100-€-Schritten, Spalten 0–3 Unterhaltspflichten
+const nettoStufen = Array.from({ length: 34 }, (_, i) => 1600 + i * 100);
+const zeilen = nettoStufen.map((netto) => ({
+  netto,
+  werte: [0, 1, 2, 3].map((p) => pfaendbar(netto, p)),
+}));
+
+const faq = [
+  {
+    frage: "Wie hoch ist die Pfändungsfreigrenze 2026?",
+    antwort: "Der unpfändbare Grundbetrag liegt seit dem 1. Juli 2026 bei 1.587,40 € netto pro Monat (Pfändungsfreigrenzenbekanntmachung 2026, § 850c ZPO). Mit Unterhaltspflichten steigt der Freibetrag: um 597,42 € für die erste und je 332,83 € für die zweite bis fünfte Person – bei zwei Unterhaltspflichten sind also 2.517,65 € geschützt.",
+  },
+  {
+    frage: "Wie lese ich die Pfändungstabelle?",
+    antwort: "Suchen Sie Ihre Zeile über das monatliche Nettoeinkommen und die Spalte über die Zahl der Personen, denen Sie gesetzlich Unterhalt leisten (Ehepartner, Kinder). Der Wert ist der monatlich pfändbare Betrag bei einer Lohnpfändung – der Rest bleibt Ihnen. Beispiel: 2.500 € netto mit einer Unterhaltspflicht → 157,59 € pfändbar.",
+  },
+  {
+    frage: "Gilt die Tabelle für die Lohnpfändung und das P-Konto gleichermaßen?",
+    antwort: "Die Tabelle nach § 850c ZPO gilt für die Lohn- und Gehaltspfändung beim Arbeitgeber. Auf dem Pfändungsschutzkonto (P-Konto) gilt ein eigener Grundfreibetrag in gleicher Höhe, der über Bescheinigungen (Unterhaltspflichten, Kindergeld) erhöht wird – die Erhöhungsbeträge weichen dort leicht ab (§§ 899 ff. ZPO).",
+  },
+  {
+    frage: "Ab welchem Einkommen ist alles über der Grenze voll pfändbar?",
+    antwort: "Oberhalb von 4.866,30 € netto monatlich ist der übersteigende Teil in voller Höhe pfändbar. Zwischen Freibetrag und dieser Obergrenze wird nur ein Anteil des Mehrbetrags gepfändet: 70 % ohne Unterhaltspflichten, 50/40/30/20/10 % mit einer bis fünf Personen.",
+  },
+  {
+    frage: "Warum weichen amtliche Tabellenwerte um wenige Euro ab?",
+    antwort: "Die amtliche Tabelle arbeitet mit 10-Euro-Einkommensstufen, diese Übersicht rechnet die Formel des § 850c ZPO zentgenau. Dadurch können einzelne Werte um wenige Euro von der amtlichen Stufen-Tabelle abweichen – maßgeblich für den Arbeitgeber ist die amtliche Tabelle.",
+  },
+  {
+    frage: "Wann kommt die Pfändungstabelle 2027?",
+    antwort: "Die Pfändungsfreigrenzen werden jährlich zum 1. Juli angepasst und vorab im Bundesgesetzblatt bekannt gemacht. Die Tabelle 2026 gilt bis zum 30. Juni 2027; die neuen Werte ab 01.07.2027 stehen noch nicht fest und werden hier nach der Bekanntmachung ergänzt.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Pfändungstabelle 2026", url: "/pfaendungstabelle-2026" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Finanzen & Kredit', href: '/finanzen-kredit' },
+    { name: 'Pfändungstabelle 2026' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-red-700 to-rose-800 text-white py-6 px-4">
+      <div class="max-w-3xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-red-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📋</span>
+          <div>
+            <h1 class="text-2xl font-bold">Pfändungstabelle 2026</h1>
+            <p class="text-red-200 text-sm">Pfändbare Beträge nach § 850c ZPO – gültig ab 01.07.2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-3xl mx-auto px-4 py-6">
+      <!-- Direktantwort -->
+      <div class="bg-red-50 border border-red-100 rounded-2xl p-5 mb-6">
+        <h2 class="text-base font-bold text-gray-800 mb-2">Die Pfändungsfreigrenze 2026 auf einen Blick</h2>
+        <p class="text-sm text-gray-700">
+          Seit dem 1. Juli 2026 sind <strong>{fmt(M.grundbetrag)} € netto pro Monat unpfändbar</strong>
+          (Grundbetrag ohne Unterhaltspflichten). Je unterhaltsberechtigter Person steigt der Freibetrag –
+          um {fmt(M.erhoehungErstePerson)} € für die erste, je {fmt(M.erhoehungWeiterePerson)} € für die
+          zweite bis fünfte. Vom Einkommen über dem Freibetrag ist nur ein Anteil pfändbar (70 % bis 10 %);
+          erst oberhalb von {fmt(M.obergrenzeVollPfaendbar)} € ist der übersteigende Teil voll pfändbar.
+          Ihren exakten Betrag liefert der <a href="/pfaendungsrechner" class="text-red-700 font-semibold hover:underline">Pfändungsrechner</a>.
+        </p>
+      </div>
+
+      <!-- Die große Tabelle -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Pfändungstabelle: monatlich pfändbare Beträge</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Nettoeinkommen × Zahl der Unterhaltspflichten (UP) – berechnet nach der Formel des
+          § 850c ZPO mit den Werten ab 01.07.2026:
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-red-50 text-left sticky top-0">
+                <th class="py-2 px-3 font-semibold text-gray-700">Netto/Monat</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">0 UP</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">1 UP</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">2 UP</th>
+                <th class="py-2 px-3 font-semibold text-gray-700 text-right">3 UP</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              {zeilen.map((z) => (
+                <tr class="border-b border-gray-100">
+                  <td class="py-1.5 px-3 font-medium text-gray-800">{z.netto.toLocaleString('de-DE')} €</td>
+                  {z.werte.map((w) => (
+                    <td class={`py-1.5 px-3 text-right ${w === 0 ? 'text-emerald-600' : ''}`}>{w === 0 ? '0,00' : fmt(w)} €</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Grün = nichts pfändbar. {pf.meta.hinweis} Quelle: {pf.meta.quelle}.
+        </p>
+      </div>
+
+      <!-- Parameter-Box -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Die Freibeträge hinter der Tabelle</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm max-w-xl">
+            <tbody class="divide-y divide-gray-100 text-gray-700">
+              <tr><td class="py-2">Unpfändbarer Grundbetrag</td><td class="py-2 text-right font-semibold">{fmt(M.grundbetrag)} €</td></tr>
+              <tr><td class="py-2">Freibetrag mit 1 Unterhaltspflicht</td><td class="py-2 text-right">{fmt(freibetrag(1))} €</td></tr>
+              <tr><td class="py-2">Freibetrag mit 2 Unterhaltspflichten</td><td class="py-2 text-right">{fmt(freibetrag(2))} €</td></tr>
+              <tr><td class="py-2">Freibetrag mit 3 Unterhaltspflichten</td><td class="py-2 text-right">{fmt(freibetrag(3))} €</td></tr>
+              <tr><td class="py-2">Voll pfändbar oberhalb von</td><td class="py-2 text-right">{fmt(M.obergrenzeVollPfaendbar)} €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-gray-600 mt-4">
+          Zum Weihnachtsgeld gilt eine eigene Grenze – Details in
+          <a href="/weihnachtsgeld-pfaendung" class="text-red-700 hover:underline">Weihnachtsgeld &amp; Pfändung</a>;
+          für das Konto greift der P-Konto-Schutz im
+          <a href="/p-konto-freibetrag-rechner" class="text-red-700 hover:underline">P-Konto-Freibetrag-Rechner</a>.
+        </p>
+      </div>
+
+      <!-- FAQ sichtbar -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwort }
+    }))
+  })} />
+</Layout>
