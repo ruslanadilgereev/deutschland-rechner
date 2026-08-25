@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RechteckRechner from '../components/rechner/RechteckRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Rechteck-Rechner: Fläche, Umfang & Diagonale berechnen";
+const description = "Rechteck berechnen: Flächeninhalt A = a·b, Umfang U = 2·(a+b) und Diagonale – auch rückwärts aus Fläche oder Umfang. Mit Formeln, Beispielen und Fehler-Check.";
+const keywords = "Rechteck Rechner, Rechteck Fläche berechnen, Flächeninhalt Rechteck, Umfang Rechteck, Rechteck berechnen, Diagonale Rechteck, Rechteck Formel, Umfang berechnen Rechteck, Seite aus Fläche berechnen";
+
+const faq = [
+  {
+    frage: "Wie berechnet man die Fläche eines Rechtecks?",
+    antwort: "Fläche = Länge × Breite (A = a · b). Ein Rechteck mit 4 m und 6 m Seitenlänge hat also 24 m² Fläche. Wichtig: Beide Seiten in derselben Einheit einsetzen – das Ergebnis ist dann diese Einheit zum Quadrat.",
+  },
+  {
+    frage: "Wie berechnet man den Umfang eines Rechtecks?",
+    antwort: "Umfang = 2 × (Länge + Breite), also U = 2·(a+b). Beim 4-mal-6-Rechteck: 2 × 10 = 20. Der Umfang ist die Strecke einmal komplett um die Figur herum – relevant z. B. für Zäune, Leisten oder Rahmen.",
+  },
+  {
+    frage: "Wie lang ist die Diagonale eines Rechtecks?",
+    antwort: "Nach dem Satz des Pythagoras: d = √(a² + b²). Beim Rechteck mit den Seiten 3 und 4 misst die Diagonale genau 5. Beide Diagonalen eines Rechtecks sind gleich lang und halbieren einander.",
+  },
+  {
+    frage: "Wie berechnet man eine Seite aus Fläche oder Umfang?",
+    antwort: "Aus der Fläche: b = A ÷ a (24 ÷ 4 = 6). Aus dem Umfang: b = U ÷ 2 − a (20 ÷ 2 − 4 = 6). Der Rechner übernimmt beide Rückrechnungen und meldet, wenn die Kombination unmöglich ist – etwa wenn der Umfang kleiner als zwei mal die bekannte Seite ist.",
+  },
+  {
+    frage: "Was ist der Unterschied zwischen Rechteck und Quadrat?",
+    antwort: "Das Quadrat ist der Spezialfall des Rechtecks mit vier gleich langen Seiten. Dadurch vereinfachen sich die Formeln zu A = a² und U = 4·a. Für Quadrate gibt es den eigenen Quadrat-Rechner mit Rückrechnung aus Fläche, Umfang oder Diagonale.",
+  },
+  {
+    frage: "Wofür braucht man die Rechteck-Formeln im Alltag?",
+    antwort: "Ständig: Wohnfläche und Quadratmeter ausrechnen, Farbe und Tapeten kalkulieren (Fläche), Sockelleisten und Zäune (Umfang) oder prüfen, ob ein Möbelstück diagonal durch eine Tür passt (Diagonale). Für Raum-Aufmaße hilft ergänzend der Wohnflächen-Rechner.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Rechteck-Rechner", url: "/rechteck-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-cyan-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-cyan-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">▭</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rechteck-Rechner</h1>
+            <p class="text-cyan-200 text-sm">Fläche, Umfang & Diagonale – auch rückwärts aus A oder U</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <RechteckRechner client:load />
+
+      <RechnerTrust quellen="Elementargeometrie (A = a·b, U = 2·(a+b), Satz des Pythagoras für die Diagonale)" aktualisiert="August 2026" />
+
+      <!-- SEO Content -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rechteck berechnen: Formeln & Beispiel</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-cyan-50 p-4 rounded-lg">
+            <ul class="text-xs text-cyan-800 space-y-1 font-mono">
+              <li><strong>Fläche:</strong> A = a × b</li>
+              <li><strong>Umfang:</strong> U = 2 × (a + b)</li>
+              <li><strong>Diagonale:</strong> d = √(a² + b²)</li>
+              <li><strong>Seite aus Fläche:</strong> b = A ÷ a</li>
+              <li><strong>Seite aus Umfang:</strong> b = U ÷ 2 − a</li>
+            </ul>
+            <p class="text-xs text-cyan-800 mt-2">
+              Beispiel 4 × 6: Fläche <strong>24</strong>, Umfang <strong>20</strong>, Diagonale
+              <strong>7,21</strong>. Das 3-×-4-Rechteck hat die berühmte Diagonale <strong>5</strong>
+              (Satz des Pythagoras).
+            </p>
+          </div>
+          <p>
+            Das Rechteck ist die häufigste Alltagsform: Räume, Grundstücke, Bildschirme, Papier. Für
+            Quadratmeter-Aufmaße mit mehreren Teilflächen lohnt der
+            <a href="/wohnflaeche-rechner" class="text-cyan-700 hover:underline">Wohnflächen-Rechner</a>,
+            für gleichseitige Formen der <a href="/quadrat-rechner" class="text-cyan-700 hover:underline">Quadrat-Rechner</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Typische Fehler -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fläche und Umfang verwechseln</h3>
+            <p>Für Farbe und Boden zählt die Fläche (m²), für Leisten und Zäune der Umfang (m). Gleiche Zahlenwerte wie beim 4-×-6-Rechteck (A 24, U 20) verleiten zum Vertauschen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Einheiten mischen</h3>
+            <p>4 m × 60 cm ist nicht 240: erst in eine Einheit umrechnen (4 m × 0,6 m = 2,4 m²).</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Unmögliche Umfang-Kombination</h3>
+            <p>Aus U = 8 und a = 5 gibt es kein Rechteck – die Rückrechnung ergäbe eine negative Seite. Der Rechner prüft das automatisch.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ sichtbar -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <VerwandteRechner aktuellerSlug="rechteck" slugs={['quadrat', 'dreieck', 'kreis', 'wohnflaeche']} />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rechteck-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/rechteck-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwort }
+    }))
+  })} />
+</Layout>

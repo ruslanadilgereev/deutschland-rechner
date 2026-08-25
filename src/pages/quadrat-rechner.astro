@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuadratRechner from '../components/rechner/QuadratRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Quadrat-Rechner: Fläche, Umfang & Diagonale berechnen";
+const description = "Quadrat berechnen: Fläche A = a², Umfang U = 4·a, Diagonale d = a·√2 – aus jedem der vier Werte rückrechenbar. Mit allen Formeln, Beispielen und Rückwegen.";
+const keywords = "Quadrat Rechner, Quadrat Fläche berechnen, Flächeninhalt Quadrat, Umfang Quadrat, Quadrat berechnen, Diagonale Quadrat, Quadrat Formel, Seitenlänge aus Fläche, Wurzel Fläche";
+
+const faq = [
+  {
+    frage: "Wie berechnet man die Fläche eines Quadrats?",
+    antwort: "Fläche = Seitenlänge zum Quadrat (A = a²). Ein Quadrat mit 5 m Seite hat 25 m² Fläche. Umgekehrt liefert die Wurzel aus der Fläche die Seitenlänge: √25 = 5.",
+  },
+  {
+    frage: "Wie berechnet man den Umfang eines Quadrats?",
+    antwort: "Umfang = 4 × Seitenlänge (U = 4·a), beim 5er-Quadrat also 20. Aus dem Umfang zurück zur Seite geht es mit a = U ÷ 4.",
+  },
+  {
+    frage: "Wie lang ist die Diagonale eines Quadrats?",
+    antwort: "Diagonale = Seite × √2 (d = a·√2 ≈ a × 1,414). Beim 5er-Quadrat sind das rund 7,07. Der Faktor √2 folgt aus dem Satz des Pythagoras mit zwei gleich langen Katheten.",
+  },
+  {
+    frage: "Wie komme ich von der Fläche zur Seitenlänge?",
+    antwort: "Wurzel ziehen: a = √A. Aus 2 m² Fläche ergibt sich eine Seite von rund 1,41 m – nicht 1 m, wie oft geschätzt wird. Der Rechner nimmt jeden der vier Werte (Seite, Fläche, Umfang, Diagonale) als Ausgangspunkt.",
+  },
+  {
+    frage: "Ist jedes Quadrat ein Rechteck?",
+    antwort: "Ja. Das Quadrat ist das Rechteck mit vier gleich langen Seiten – und zugleich eine Raute mit rechten Winkeln. Deshalb gelten alle Rechteck-Formeln auch fürs Quadrat, sie vereinfachen sich nur (a = b).",
+  },
+  {
+    frage: "Wofür braucht man Quadrat-Berechnungen im Alltag?",
+    antwort: "Quadratmeter sind buchstäblich Quadrate mit 1 m Seite: Fliesen, Rasenflächen, quadratische Räume und Grundstücke. Die Diagonale hilft beim rechtwinkligen Abstecken (Schnurgerüst): Stimmen beide Diagonalen überein, sind die Ecken rechtwinklig.",
+  },
+];
+---
+
+<Layout noTitleSuffix
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Quadrat-Rechner", url: "/quadrat-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-fuchsia-600 to-pink-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-fuchsia-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">◻️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Quadrat-Rechner</h1>
+            <p class="text-fuchsia-200 text-sm">Fläche, Umfang & Diagonale – aus jedem Wert rückrechenbar</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <QuadratRechner client:load />
+
+      <RechnerTrust quellen="Elementargeometrie (A = a², U = 4·a, d = a·√2 nach Pythagoras)" aktualisiert="August 2026" />
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Quadrat berechnen: Formeln & Rückwege</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <div class="bg-fuchsia-50 p-4 rounded-lg">
+            <ul class="text-xs text-fuchsia-800 space-y-1 font-mono">
+              <li><strong>Fläche:</strong> A = a² — Rückweg a = √A</li>
+              <li><strong>Umfang:</strong> U = 4 × a — Rückweg a = U ÷ 4</li>
+              <li><strong>Diagonale:</strong> d = a × √2 — Rückweg a = d ÷ √2</li>
+            </ul>
+            <p class="text-xs text-fuchsia-800 mt-2">
+              Beispiel a = 5: Fläche <strong>25</strong>, Umfang <strong>20</strong>, Diagonale
+              <strong>7,07</strong>. Und rückwärts: Aus 2 m² Fläche folgt die Seite
+              <strong>1,41 m</strong> (√2).
+            </p>
+          </div>
+          <p>
+            Das Quadrat ist der Spezialfall des <a href="/rechteck-rechner" class="text-fuchsia-700 hover:underline">Rechtecks</a>
+            mit vier gleichen Seiten. Für zusammengesetzte Flächen aus mehreren Räumen hilft der
+            <a href="/wohnflaeche-rechner" class="text-fuchsia-700 hover:underline">Wohnflächen-Rechner</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fläche verdoppeln ≠ Seite verdoppeln</h3>
+            <p>Die doppelte Seitenlänge ergibt die vierfache Fläche (a² wächst quadratisch). Wer die Fläche verdoppeln will, multipliziert die Seite nur mit √2 ≈ 1,414.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Diagonale als Seite verwenden</h3>
+            <p>Die Diagonale ist immer länger als die Seite (Faktor √2). Ein „quadratischer" Tisch mit 1 m Diagonale hat nur rund 71 cm Kantenlänge.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Quadratmeter mit Metern verwechseln</h3>
+            <p>25 m² Fläche heißt nicht 25 m Seitenlänge – die Seite ist √25 = 5 m. Gerade bei Grundstücksangaben ein häufiger Denkfehler.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faq.map((item) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{item.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{item.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <VerwandteRechner aktuellerSlug="quadrat" slugs={['rechteck', 'dreieck', 'kreis', 'wohnflaeche']} />
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quadrat-Rechner",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/quadrat-rechner",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((item) => ({
+      "@type": "Question",
+      "name": item.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwort }
+    }))
+  })} />
+</Layout>
