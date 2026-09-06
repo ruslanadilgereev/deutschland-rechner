@@ -21,6 +21,9 @@ const NORM_PULVER: Record<Sieb, { wert: number; toleranz: number }> = {
 const NORM_BEZUGSZEIT = { wert: 25, toleranz: 5 };
 const NORM_DRUCK = { wert: 9, toleranz: 1 };
 
+// Relative Toleranz, innerhalb derer ein Brühverhältnis als getroffen gilt
+const TOLERANZ_VERHAELTNIS = 0.1;
+
 const GETRAENKE: Getraenk[] = [
   { id: 'single-espresso', name: 'Single Espresso', espresso: 20, cup: 20, sollVerhaeltnis: 2.5, hinweis: '20 g Espresso, 20-ml-Tasse' },
   { id: 'doppelter-espresso', name: 'Doppelter Espresso', espresso: 40, cup: 40, sollVerhaeltnis: 2.5, hinweis: '40 g Espresso, 40-ml-Tasse' },
@@ -50,12 +53,66 @@ const runde = (n: number) => Math.round(n * 2) / 2;
 const fmt = (n: number, dezimalen = 1) =>
   n.toLocaleString('de-DE', { minimumFractionDigits: dezimalen, maximumFractionDigits: dezimalen });
 
+/** Blaues Diagnose-Feld – überall gleiche Optik */
+function Diagnose({ text }: { text: string }) {
+  return (
+    <div className="rounded-xl p-4 border-l-4 bg-blue-50 border-blue-500">
+      <p className="font-semibold text-blue-900">{text}</p>
+    </div>
+  );
+}
+
+/** Küchenwaage mit Häufchen Espressopulver */
+function WaageMitPulver({ wert }: { wert: number }) {
+  return (
+    <svg viewBox="0 0 400 150" className="w-full mt-5" role="img" aria-label="Espressopulver auf einer Küchenwaage">
+      <path d="M112,90 Q145,44 200,42 Q255,44 288,90 Z" fill="#4a2c17" />
+      <path d="M112,90 Q145,44 200,42 Q225,50 236,90 Z" fill="#5d3a20" opacity="0.7" />
+      <ellipse cx="200" cy="90" rx="88" ry="9" fill="#3b2415" />
+      <circle cx="168" cy="74" r="2.4" fill="#2f1c10" opacity="0.6" />
+      <circle cx="212" cy="66" r="2" fill="#2f1c10" opacity="0.5" />
+      <circle cx="243" cy="80" r="2.2" fill="#2f1c10" opacity="0.55" />
+      <circle cx="186" cy="60" r="1.8" fill="#7a4a28" opacity="0.7" />
+      <rect x="70" y="90" width="260" height="11" rx="5" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="2" />
+      <rect x="60" y="101" width="280" height="32" rx="9" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="2" />
+      <rect x="246" y="108" width="78" height="19" rx="3" fill="#1f2937" />
+      <text x="285" y="122" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#86efac">
+        {fmt(wert)} g
+      </text>
+      <circle cx="96" cy="117" r="8" fill="none" stroke="#9ca3af" strokeWidth="2" />
+      <rect x="84" y="133" width="26" height="6" rx="3" fill="#9ca3af" />
+      <rect x="290" y="133" width="26" height="6" rx="3" fill="#9ca3af" />
+    </svg>
+  );
+}
+
+/** Küchenwaage mit weißer Espressotasse */
+function WaageMitTasse({ wert }: { wert: number }) {
+  return (
+    <svg viewBox="0 0 400 150" className="w-full mt-5" role="img" aria-label="Weiße Espressotasse auf einer Küchenwaage">
+      <path d="M160,44 h80 l-9,46 h-62 z" fill="#ffffff" stroke="#4a2c17" strokeWidth="2.5" />
+      <path d="M240,52 a13,13 0 0 1 0,26" fill="none" stroke="#4a2c17" strokeWidth="2.5" />
+      <rect x="165" y="49" width="70" height="9" rx="3" fill="#6f4423" opacity="0.55" />
+      <rect x="70" y="90" width="260" height="11" rx="5" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="2" />
+      <rect x="60" y="101" width="280" height="32" rx="9" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="2" />
+      <rect x="246" y="108" width="78" height="19" rx="3" fill="#1f2937" />
+      <text x="285" y="122" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#86efac">
+        {fmt(wert)} g
+      </text>
+      <circle cx="96" cy="117" r="8" fill="none" stroke="#9ca3af" strokeWidth="2" />
+      <rect x="84" y="133" width="26" height="6" rx="3" fill="#9ca3af" />
+      <rect x="290" y="133" width="26" height="6" rx="3" fill="#9ca3af" />
+    </svg>
+  );
+}
+
 export default function SiebtraegerRechner() {
   const [sieb, setSieb] = useState<Sieb>('double');
   const [drinkId, setDrinkId] = useState<DrinkId>('single-espresso');
   const [voll, setVoll] = useState(false);
   const [pulver, setPulver] = useState(NORM_PULVER.double.wert);
   const [espresso, setEspresso] = useState(NORM_PULVER.double.wert);
+  const [optionalAktiv, setOptionalAktiv] = useState(false);
   const [druck, setDruck] = useState<Druck>('optimal');
   const [bezugszeit, setBezugszeit] = useState(NORM_BEZUGSZEIT.wert);
 
@@ -96,41 +153,122 @@ export default function SiebtraegerRechner() {
   const ergebnis = useMemo(() => {
     const espressoGesamt = espresso * tassen;
     const bruehverhaeltnis = espressoGesamt / pulver;
-    const massenstrom = espressoGesamt / bezugszeit;
 
-    const normEspressoGesamt = getraenk.espresso * tassen;
-    const hoherWorstCase = normEspressoGesamt / (NORM_BEZUGSZEIT.wert - NORM_BEZUGSZEIT.toleranz);
-    const niedrigerWorstCase = normEspressoGesamt / (NORM_BEZUGSZEIT.wert + NORM_BEZUGSZEIT.toleranz);
+    // Alle Durchfluss-Angaben beziehen sich auf eine Tasse
+    const normProTasse = getraenk.espresso;
+    const oberesLimit = normProTasse / (NORM_BEZUGSZEIT.wert - NORM_BEZUGSZEIT.toleranz);
+    const unteresLimit = normProTasse / (NORM_BEZUGSZEIT.wert + NORM_BEZUGSZEIT.toleranz);
+    const fluss = espresso / bezugszeit;
 
-    let mahlgrad: { richtung: 'feiner' | 'groeber' | 'keine'; text: string };
-    if (druck === 'niedrig' && massenstrom > hoherWorstCase) {
-      mahlgrad = { richtung: 'feiner', text: 'Kaffeepulver muss feiner gemahlen werden' };
-    } else if (druck === 'hoch' && massenstrom < niedrigerWorstCase) {
-      mahlgrad = { richtung: 'groeber', text: 'Kaffeepulver muss gröber gemahlen werden' };
+    // Brühverhältnis gegen das Soll des Getränks
+    const sollVerhaeltnis = getraenk.sollVerhaeltnis;
+    const verhaeltnisUnten = sollVerhaeltnis * (1 - TOLERANZ_VERHAELTNIS);
+    const verhaeltnisOben = sollVerhaeltnis * (1 + TOLERANZ_VERHAELTNIS);
+    let verhaeltnisStatus: 'ok' | 'hoch' | 'niedrig';
+    if (bruehverhaeltnis > verhaeltnisOben) verhaeltnisStatus = 'hoch';
+    else if (bruehverhaeltnis < verhaeltnisUnten) verhaeltnisStatus = 'niedrig';
+    else verhaeltnisStatus = 'ok';
+
+    const verhaeltnisText =
+      verhaeltnisStatus === 'ok'
+        ? `Das Brühverhältnis liegt im Soll für ${getraenk.name} (1:${fmt(sollVerhaeltnis, 2)}).`
+        : verhaeltnisStatus === 'hoch'
+          ? `Das Brühverhältnis ist zu hoch – Soll für ${getraenk.name} ist 1:${fmt(sollVerhaeltnis, 2)}.`
+          : `Das Brühverhältnis ist zu niedrig – Soll für ${getraenk.name} ist 1:${fmt(sollVerhaeltnis, 2)}.`;
+
+    // Mahlgrad: der Durchfluss entscheidet, der Druck darf nicht widersprechen
+    let mahlgradStatus: 'ok' | 'feiner' | 'groeber' | 'unklar';
+    if (fluss > oberesLimit) mahlgradStatus = druck === 'hoch' ? 'unklar' : 'feiner';
+    else if (fluss < unteresLimit) mahlgradStatus = druck === 'niedrig' ? 'unklar' : 'groeber';
+    else mahlgradStatus = 'ok';
+
+    const mahlgradText =
+      mahlgradStatus === 'feiner'
+        ? 'Kaffeepulver muss feiner gemahlen werden'
+        : mahlgradStatus === 'groeber'
+          ? 'Kaffeepulver muss gröber gemahlen werden'
+          : mahlgradStatus === 'unklar'
+            ? 'Druck und Durchfluss widersprechen sich – der Mahlgrad ist hier nicht die Ursache.'
+            : 'Der Mahlgrad passt: Das Espresso-Gewicht pro Sekunde liegt zwischen dem unteren und oberen Limit.';
+
+    // Bezugszeit: welche Zeit hätte das Norm-Gewicht bzw. 1:2 in dieser Tasse ergeben?
+    const zielProTasse1zu2 = (2 * pulver) / tassen;
+    const zeitFuerNormgewicht = fluss > 0 ? normProTasse / fluss : 0;
+    const zeitFuer1zu2 = fluss > 0 ? zielProTasse1zu2 / fluss : 0;
+
+    let zeitStatus: 'ok' | 'laenger' | 'kuerzer';
+    if (Math.abs(bezugszeit - zeitFuerNormgewicht) < 0.5) zeitStatus = 'ok';
+    else if (bezugszeit < zeitFuerNormgewicht) zeitStatus = 'laenger';
+    else zeitStatus = 'kuerzer';
+
+    const zeitText =
+      zeitStatus === 'ok'
+        ? `Die Bezugszeit passt: ${fmt(espresso)} g in der Tasse entsprechen dem Normwert von ${fmt(normProTasse)} g.`
+        : zeitStatus === 'laenger'
+          ? `Länger extrahieren: Für ${fmt(normProTasse)} g in der Tasse wären bei diesem Durchfluss ${fmt(zeitFuerNormgewicht)} s nötig.`
+          : `Kürzer extrahieren: Für ${fmt(normProTasse)} g in der Tasse hätten bei diesem Durchfluss ${fmt(zeitFuerNormgewicht)} s gereicht.`;
+
+    // Dosierung gegen die Sieb-Toleranz
+    const n = NORM_PULVER[sieb];
+    const pulverOk = pulver >= n.wert - n.toleranz && pulver <= n.wert + n.toleranz;
+
+    // Nächster Schritt
+    let naechsterSchritt: string;
+    let allesOk = false;
+    if (!optionalAktiv) {
+      const offen: string[] = [];
+      if (!pulverOk) offen.push(`die Dosierung auf ${fmt(n.wert)} g ± ${fmt(n.toleranz)} g bringen`);
+      if (verhaeltnisStatus !== 'ok') offen.push('das Brühverhältnis korrigieren');
+      naechsterSchritt =
+        (offen.length > 0
+          ? `Zuerst ${offen.join(' und ')}. `
+          : 'Dosierung und Brühverhältnis sind im Soll. ') +
+        'Für die Mahlgrad- und Bezugszeit-Diagnose fehlen noch Brühdruck und Bezugszeit – bitte die optionalen Angaben oben aktivieren.';
+    } else if (mahlgradStatus === 'feiner') {
+      naechsterSchritt = 'Zuerst den Mahlgrad anpassen: feiner mahlen. Erst danach die Bezugszeit nachjustieren.';
+    } else if (mahlgradStatus === 'groeber') {
+      naechsterSchritt = 'Zuerst den Mahlgrad anpassen: gröber mahlen. Erst danach die Bezugszeit nachjustieren.';
+    } else if (mahlgradStatus === 'unklar') {
+      naechsterSchritt =
+        'Druck und Durchfluss passen nicht zusammen. Prüfen Sie Pumpe, Tamper-Druck und Bohnenmenge, bevor Sie am Mahlgrad drehen.';
+    } else if (zeitStatus !== 'ok') {
+      naechsterSchritt = `Der Mahlgrad passt. Als Nächstes die Bezugszeit einstellen: ${
+        zeitStatus === 'laenger' ? 'länger' : 'kürzer'
+      } extrahieren, bis ${fmt(normProTasse)} g in der Tasse sind (rund ${fmt(zeitFuerNormgewicht)} s).`;
+    } else if (!pulverOk) {
+      naechsterSchritt = `Mahlgrad und Bezugszeit passen. Die Dosierung liegt außerhalb von ${fmt(n.wert)} g ± ${fmt(n.toleranz)} g – als Nächstes das Kaffeepulver anpassen.`;
+    } else if (verhaeltnisStatus !== 'ok') {
+      naechsterSchritt = `Mahlgrad, Bezugszeit und Dosierung passen. Nur das Brühverhältnis liegt noch ${
+        verhaeltnisStatus === 'hoch' ? 'über' : 'unter'
+      } dem Soll von 1:${fmt(sollVerhaeltnis, 2)}.`;
     } else {
-      mahlgrad = { richtung: 'keine', text: 'Aus Druck und Massenstrom ergibt sich keine eindeutige Mahlgrad-Korrektur.' };
+      naechsterSchritt = 'Alles OK – Dosierung, Brühverhältnis, Mahlgrad und Bezugszeit liegen innerhalb der Toleranz.';
+      allesOk = true;
     }
-
-    const zeitFuerNormgewicht = massenstrom > 0 ? normEspressoGesamt / massenstrom : 0;
-    const zeitFuerZweiZuEins = massenstrom > 0 ? (2 * pulver) / massenstrom : 0;
-
-    const abweichungVerhaeltnis = bruehverhaeltnis - getraenk.sollVerhaeltnis;
-    const pulverNorm = NORM_PULVER[sieb].wert;
 
     return {
       espressoGesamt,
       bruehverhaeltnis,
-      massenstrom,
-      normEspressoGesamt,
-      hoherWorstCase,
-      niedrigerWorstCase,
-      mahlgrad,
+      verhaeltnisStatus,
+      verhaeltnisText,
+      sollVerhaeltnis,
+      fluss,
+      oberesLimit,
+      unteresLimit,
+      normProTasse,
+      mahlgradStatus,
+      mahlgradText,
+      zeitStatus,
+      zeitText,
       zeitFuerNormgewicht,
-      zeitFuerZweiZuEins,
-      abweichungVerhaeltnis,
-      pulverNorm,
+      zeitFuer1zu2,
+      zielProTasse1zu2,
+      pulverOk,
+      pulverNorm: n.wert,
+      naechsterSchritt,
+      allesOk,
     };
-  }, [espresso, tassen, pulver, bezugszeit, getraenk, druck, sieb]);
+  }, [espresso, tassen, pulver, bezugszeit, getraenk, druck, sieb, optionalAktiv]);
 
   const vergleich = (wert: number, norm: number) => {
     const diff = wert - norm;
@@ -142,7 +280,6 @@ export default function SiebtraegerRechner() {
 
   const pulverVergleich = vergleich(pulver, ergebnis.pulverNorm);
   const espressoVergleich = vergleich(espresso, getraenk.espresso);
-  const verhaeltnisVergleich = vergleich(ergebnis.bruehverhaeltnis, getraenk.sollVerhaeltnis);
 
   const auswahlKarte = (g: Getraenk, aktiv: boolean, onClick: () => void, zusatz?: string) => (
     <button
@@ -212,7 +349,7 @@ export default function SiebtraegerRechner() {
 
         {/* Siebträger-Grafik */}
         <svg
-          viewBox="0 0 400 180"
+          viewBox="0 0 400 150"
           className="w-full mt-5"
           role="img"
           aria-label={
@@ -223,30 +360,21 @@ export default function SiebtraegerRechner() {
                 : 'Siebträger mit zwei Auslässen nach links und rechts'
           }
         >
-          {/* Brühgruppe */}
           <rect x="120" y="6" width="160" height="18" rx="4" fill="#2f1c10" />
-          {/* Siebträger-Körper */}
           <polygon points="132,24 268,24 250,62 150,62" fill="#4a2c17" />
-          {/* Griff */}
           <rect x="268" y="34" width="104" height="16" rx="8" fill="#2f1c10" />
           <rect x="262" y="30" width="14" height="24" rx="3" fill="#4a2c17" />
 
           {sieb === 'single' ? (
             <>
-              {/* ein Auslass links */}
               <polygon points="170,62 200,62 194,80 176,80" fill="#3b2415" />
               <rect x="183" y="80" width="4" height="26" fill="#8b5a2b" opacity="0.85" />
-              {/* Tasse links */}
               <path d="M158,108 h54 l-6,30 h-42 z" fill="#ffffff" stroke="#4a2c17" strokeWidth="2.5" />
               <path d="M212,114 a10,10 0 0 1 0,18" fill="none" stroke="#4a2c17" strokeWidth="2.5" />
               <rect x="162" y="112" width="46" height="7" rx="2" fill="#6f4423" opacity="0.55" />
-              <text x="185" y="156" textAnchor="middle" fontSize="11" fill="#6b7280">
-                linker Auslass
-              </text>
             </>
           ) : (
             <>
-              {/* zwei Auslässe */}
               <polygon points="152,62 182,62 176,80 158,80" fill="#3b2415" />
               <polygon points="218,62 248,62 242,80 224,80" fill="#3b2415" />
               <rect x="165" y="80" width="4" height={voll ? 30 : 26} fill="#8b5a2b" opacity="0.85" />
@@ -254,29 +382,18 @@ export default function SiebtraegerRechner() {
 
               {voll ? (
                 <>
-                  {/* eine breite Tasse unter beiden Auslässen */}
                   <path d="M140,112 h120 l-9,32 h-102 z" fill="#ffffff" stroke="#4a2c17" strokeWidth="2.5" />
                   <path d="M260,118 a11,11 0 0 1 0,20" fill="none" stroke="#4a2c17" strokeWidth="2.5" />
                   <rect x="145" y="116" width="110" height="8" rx="2" fill="#6f4423" opacity="0.55" />
-                  <text x="200" y="162" textAnchor="middle" fontSize="11" fill="#6b7280">
-                    beide Auslässe in eine Tasse
-                  </text>
                 </>
               ) : (
                 <>
-                  {/* zwei Tassen */}
                   <path d="M140,108 h54 l-6,30 h-42 z" fill="#ffffff" stroke="#4a2c17" strokeWidth="2.5" />
                   <path d="M194,114 a10,10 0 0 1 0,18" fill="none" stroke="#4a2c17" strokeWidth="2.5" />
                   <rect x="144" y="112" width="46" height="7" rx="2" fill="#6f4423" opacity="0.55" />
                   <path d="M206,108 h54 l-6,30 h-42 z" fill="#ffffff" stroke="#4a2c17" strokeWidth="2.5" />
                   <path d="M260,114 a10,10 0 0 1 0,18" fill="none" stroke="#4a2c17" strokeWidth="2.5" />
                   <rect x="210" y="112" width="46" height="7" rx="2" fill="#6f4423" opacity="0.55" />
-                  <text x="167" y="156" textAnchor="middle" fontSize="11" fill="#6b7280">
-                    linker Auslass
-                  </text>
-                  <text x="233" y="156" textAnchor="middle" fontSize="11" fill="#6b7280">
-                    rechter Auslass
-                  </text>
                 </>
               )}
             </>
@@ -368,6 +485,7 @@ export default function SiebtraegerRechner() {
             <span>{fmt(pulverGrenzen.min)} g</span>
             <span>{fmt(pulverGrenzen.max)} g</span>
           </div>
+          <WaageMitPulver wert={pulver} />
         </label>
       </div>
 
@@ -415,96 +533,107 @@ export default function SiebtraegerRechner() {
               Zwei Tassen à {fmt(espresso)} g = <strong>{fmt(ergebnis.espressoGesamt)} g</strong> Gesamtbezug
             </p>
           )}
+          <WaageMitTasse wert={espresso} />
         </label>
       </div>
 
-      {/* Druck */}
+      {/* Optionale Angaben */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Brühdruck <span className="font-normal text-gray-400">(optional)</span>
-        </label>
-        <div className="flex gap-2">
-          {(
-            [
-              { id: 'niedrig' as const, label: 'zu gering', sub: `< ${NORM_DRUCK.wert - NORM_DRUCK.toleranz} bar` },
-              { id: 'optimal' as const, label: 'etwa optimal', sub: `${NORM_DRUCK.wert} bar` },
-              { id: 'hoch' as const, label: 'zu hoch', sub: `> ${NORM_DRUCK.wert + NORM_DRUCK.toleranz} bar` },
-            ] as const
-          ).map((d) => (
-            <button
-              key={d.id}
-              onClick={() => setDruck(d.id)}
-              className={`flex-1 py-2 px-2 rounded-lg text-sm font-medium transition-all ${
-                druck === d.id
-                  ? 'bg-[#4a2c17] text-white shadow-md'
-                  : 'bg-gray-100 text-gray-600 hover:bg-[#f0e6dc] hover:text-[#4a2c17]'
-              }`}
-            >
-              <span className="block">{d.label}</span>
-              <span className={`block text-xs ${druck === d.id ? 'text-[#d9c3ae]' : 'text-gray-400'}`}>{d.sub}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Bezugszeit */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <label className="block">
-          <span className="text-gray-700 font-medium">
-            Bezugszeit (Sekunden) <span className="font-normal text-gray-400">(optional)</span>
-          </span>
-          <div className="mt-3 flex items-center justify-center gap-6">
-            <button
-              type="button"
-              onClick={() => setBezugszeit(Math.max(10, bezugszeit - 1))}
-              className="w-14 h-14 rounded-full bg-gray-100 text-2xl font-bold text-gray-600 hover:bg-gray-200 active:scale-95 transition-all disabled:opacity-40"
-              disabled={bezugszeit <= 10}
-              aria-label="Bezugszeit verringern"
-            >
-              −
-            </button>
-            <span className="text-5xl font-bold text-[#4a2c17] w-28 text-center">{bezugszeit}</span>
-            <button
-              type="button"
-              onClick={() => setBezugszeit(Math.min(45, bezugszeit + 1))}
-              className="w-14 h-14 rounded-full bg-[#4a2c17] text-2xl font-bold text-white hover:bg-[#5d3a20] active:scale-95 transition-all disabled:opacity-40"
-              disabled={bezugszeit >= 45}
-              aria-label="Bezugszeit erhöhen"
-            >
-              +
-            </button>
-          </div>
+        <label className="flex items-center gap-3 cursor-pointer">
           <input
-            type="range"
-            min={10}
-            max={45}
-            step={1}
-            value={bezugszeit}
-            onChange={(e) => setBezugszeit(parseInt(e.target.value, 10))}
-            className="w-full mt-5 accent-[#4a2c17]"
-            aria-label="Bezugszeit in Sekunden"
+            type="checkbox"
+            checked={optionalAktiv}
+            onChange={(e) => setOptionalAktiv(e.target.checked)}
+            className="w-5 h-5 accent-[#4a2c17]"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
-            <span>10 s</span>
-            <span>45 s</span>
-          </div>
-          <p className="text-xs text-gray-500 mt-2">
-            Normwert: {NORM_BEZUGSZEIT.wert} s ± {NORM_BEZUGSZEIT.toleranz} s
-          </p>
+          <span className="text-gray-700 font-medium">Brühdruck und Bezugszeit angeben</span>
+          <span className="text-xs text-gray-400">(optional)</span>
         </label>
+
+        {optionalAktiv && (
+          <div className="mt-6 space-y-6">
+            {/* Druck */}
+            <div>
+              <span className="block text-sm font-medium text-gray-700 mb-2">Brühdruck</span>
+              <div className="flex gap-2">
+                {(
+                  [
+                    { id: 'niedrig' as const, label: 'zu gering', sub: `< ${NORM_DRUCK.wert - NORM_DRUCK.toleranz} bar` },
+                    { id: 'optimal' as const, label: 'etwa optimal', sub: `${NORM_DRUCK.wert} bar` },
+                    { id: 'hoch' as const, label: 'zu hoch', sub: `> ${NORM_DRUCK.wert + NORM_DRUCK.toleranz} bar` },
+                  ] as const
+                ).map((d) => (
+                  <button
+                    key={d.id}
+                    onClick={() => setDruck(d.id)}
+                    className={`flex-1 py-2 px-2 rounded-lg text-sm font-medium transition-all ${
+                      druck === d.id
+                        ? 'bg-[#4a2c17] text-white shadow-md'
+                        : 'bg-gray-100 text-gray-600 hover:bg-[#f0e6dc] hover:text-[#4a2c17]'
+                    }`}
+                  >
+                    <span className="block">{d.label}</span>
+                    <span className={`block text-xs ${druck === d.id ? 'text-[#d9c3ae]' : 'text-gray-400'}`}>{d.sub}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Bezugszeit */}
+            <label className="block">
+              <span className="text-gray-700 font-medium">Bezugszeit (Sekunden)</span>
+              <div className="mt-3 flex items-center justify-center gap-6">
+                <button
+                  type="button"
+                  onClick={() => setBezugszeit(Math.max(10, bezugszeit - 1))}
+                  className="w-14 h-14 rounded-full bg-gray-100 text-2xl font-bold text-gray-600 hover:bg-gray-200 active:scale-95 transition-all disabled:opacity-40"
+                  disabled={bezugszeit <= 10}
+                  aria-label="Bezugszeit verringern"
+                >
+                  −
+                </button>
+                <span className="text-5xl font-bold text-[#4a2c17] w-28 text-center">{bezugszeit}</span>
+                <button
+                  type="button"
+                  onClick={() => setBezugszeit(Math.min(45, bezugszeit + 1))}
+                  className="w-14 h-14 rounded-full bg-[#4a2c17] text-2xl font-bold text-white hover:bg-[#5d3a20] active:scale-95 transition-all disabled:opacity-40"
+                  disabled={bezugszeit >= 45}
+                  aria-label="Bezugszeit erhöhen"
+                >
+                  +
+                </button>
+              </div>
+              <input
+                type="range"
+                min={10}
+                max={45}
+                step={1}
+                value={bezugszeit}
+                onChange={(e) => setBezugszeit(parseInt(e.target.value, 10))}
+                className="w-full mt-5 accent-[#4a2c17]"
+                aria-label="Bezugszeit in Sekunden"
+              />
+              <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <span>10 s</span>
+                <span>45 s</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                Normwert: {NORM_BEZUGSZEIT.wert} s ± {NORM_BEZUGSZEIT.toleranz} s
+              </p>
+            </label>
+          </div>
+        )}
       </div>
 
       {/* Ergebnis: Brühverhältnis */}
       <div className="bg-gradient-to-br from-[#4a2c17] to-[#7a4a28] rounded-2xl shadow-lg p-6 text-white mb-6">
-        <h3 className="text-sm font-medium text-[#e2d0bf] mb-1">Brühverhältnis</h3>
-        <div className="flex items-baseline gap-2">
+        <h3 className="text-sm font-medium text-[#e2d0bf] mb-1 text-center">Brühverhältnis</h3>
+        <div className="text-center">
           <span className="text-5xl font-bold">1:{fmt(ergebnis.bruehverhaeltnis, 2)}</span>
         </div>
-        <p className="mt-3 text-sm text-[#f0e4d8]">
-          {verhaeltnisVergleich.diff === 0
-            ? `Das entspricht genau dem Soll-Verhältnis für ${getraenk.name} (1:${fmt(getraenk.sollVerhaeltnis, 2)}).`
-            : `Das Brühverhältnis ist ${verhaeltnisVergleich.diff > 0 ? 'höher' : 'niedriger'} als der Normwert für ${getraenk.name} (1:${fmt(getraenk.sollVerhaeltnis, 2)}).`}
-        </p>
+        <div className="mt-4">
+          <Diagnose text={ergebnis.verhaeltnisText} />
+        </div>
         <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm space-y-2 text-sm mt-4">
           <div className="flex justify-between">
             <span className="text-[#e2d0bf]">Gesamtbezug</span>
@@ -514,67 +643,60 @@ export default function SiebtraegerRechner() {
             <span className="text-[#e2d0bf]">Kaffeepulver</span>
             <span className="font-semibold">{fmt(pulver)} g</span>
           </div>
-          <div className="flex justify-between">
-            <span className="text-[#e2d0bf]">Massenstrom</span>
-            <span className="font-semibold">{fmt(ergebnis.massenstrom, 2)} g/s</span>
-          </div>
         </div>
       </div>
 
       {/* Mahlgrad-Diagnose */}
+      {optionalAktiv && (
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+          <h3 className="font-bold text-gray-800 mb-3">Mahlgrad-Diagnose</h3>
+          <Diagnose text={ergebnis.mahlgradText} />
+          <div className="mt-4 space-y-1 text-sm text-gray-600">
+            <div className="flex justify-between">
+              <span>Espresso-Gewicht pro Sekunde</span>
+              <span className="font-medium">{fmt(ergebnis.fluss, 2)} g/s</span>
+            </div>
+            <div className="flex justify-between">
+              <span>oberes Limit ({NORM_BEZUGSZEIT.wert - NORM_BEZUGSZEIT.toleranz} s)</span>
+              <span className="font-medium">{fmt(ergebnis.oberesLimit, 2)} g/s</span>
+            </div>
+            <div className="flex justify-between">
+              <span>unteres Limit ({NORM_BEZUGSZEIT.wert + NORM_BEZUGSZEIT.toleranz} s)</span>
+              <span className="font-medium">{fmt(ergebnis.unteresLimit, 2)} g/s</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bezugszeit-Diagnose */}
+      {optionalAktiv && (
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+          <h3 className="font-bold text-gray-800 mb-3">Bezugszeit-Diagnose</h3>
+          <Diagnose text={ergebnis.zeitText} />
+          <div className="mt-4 space-y-1 text-sm text-gray-600">
+            <div className="flex justify-between">
+              <span>Zeit für {fmt(ergebnis.normProTasse)} g in der Tasse</span>
+              <span className="font-medium">{fmt(ergebnis.zeitFuerNormgewicht)} s</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Zeit für 1:2 ({fmt(ergebnis.zielProTasse1zu2)} g in der Tasse)</span>
+              <span className="font-medium">{fmt(ergebnis.zeitFuer1zu2)} s</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Nächster Schritt */}
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">Mahlgrad-Diagnose</h3>
+        <h3 className="font-bold text-gray-800 mb-3">Nächster Schritt</h3>
         <div
           className={`rounded-xl p-4 border-l-4 ${
-            ergebnis.mahlgrad.richtung === 'feiner'
-              ? 'bg-amber-50 border-amber-500'
-              : ergebnis.mahlgrad.richtung === 'groeber'
-                ? 'bg-sky-50 border-sky-500'
-                : 'bg-gray-50 border-gray-300'
+            ergebnis.allesOk ? 'bg-emerald-50 border-emerald-500' : 'bg-amber-50 border-amber-500'
           }`}
         >
-          <p
-            className={`font-semibold ${
-              ergebnis.mahlgrad.richtung === 'feiner'
-                ? 'text-amber-800'
-                : ergebnis.mahlgrad.richtung === 'groeber'
-                  ? 'text-sky-800'
-                  : 'text-gray-600'
-            }`}
-          >
-            {ergebnis.mahlgrad.text}
+          <p className={`font-semibold ${ergebnis.allesOk ? 'text-emerald-900' : 'text-amber-900'}`}>
+            {ergebnis.naechsterSchritt}
           </p>
-        </div>
-        <div className="mt-4 space-y-1 text-sm text-gray-600">
-          <div className="flex justify-between">
-            <span>Massenstrom</span>
-            <span className="font-medium">{fmt(ergebnis.massenstrom, 2)} g/s</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Worst Case hoch ({NORM_BEZUGSZEIT.wert - NORM_BEZUGSZEIT.toleranz} s)</span>
-            <span className="font-medium">{fmt(ergebnis.hoherWorstCase, 2)} g/s</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Worst Case niedrig ({NORM_BEZUGSZEIT.wert + NORM_BEZUGSZEIT.toleranz} s)</span>
-            <span className="font-medium">{fmt(ergebnis.niedrigerWorstCase, 2)} g/s</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Bezugszeiten */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-        <h3 className="font-bold text-gray-800 mb-3">Bezugszeit bei gleichem Massenstrom</h3>
-        <div className="space-y-3 text-sm text-gray-700">
-          <div className="flex justify-between items-baseline border-b border-gray-100 pb-2">
-            <span>
-              für das Norm-Espressogewicht ({fmt(ergebnis.normEspressoGesamt)} g)
-            </span>
-            <span className="text-lg font-bold text-[#4a2c17]">{fmt(ergebnis.zeitFuerNormgewicht)} s</span>
-          </div>
-          <div className="flex justify-between items-baseline">
-            <span>für ein Brühverhältnis von 1:2 ({fmt(2 * pulver)} g)</span>
-            <span className="text-lg font-bold text-[#4a2c17]">{fmt(ergebnis.zeitFuerZweiZuEins)} s</span>
-          </div>
         </div>
       </div>
 
@@ -605,7 +727,7 @@ export default function SiebtraegerRechner() {
         <p className="font-medium text-gray-700 mb-1">Grundlage</p>
         <ul className="list-disc list-inside space-y-1">
           <li>Norm- und Toleranzwerte der Siebträger-Zubereitung: Dosierung {fmt(NORM_PULVER.single.wert)} g ± {fmt(NORM_PULVER.single.toleranz)} g (Single) bzw. {fmt(NORM_PULVER.double.wert)} g ± {fmt(NORM_PULVER.double.toleranz)} g (Double), Brühdruck {NORM_DRUCK.wert} bar ± {NORM_DRUCK.toleranz} bar, Bezugszeit {NORM_BEZUGSZEIT.wert} s ± {NORM_BEZUGSZEIT.toleranz} s</li>
-          <li>Brühverhältnis und Massenstrom als reine Massenbilanz (Physik)</li>
+          <li>Brühverhältnis und Espresso-Gewicht pro Sekunde als reine Massenbilanz (Physik)</li>
         </ul>
       </div>
     </div>
