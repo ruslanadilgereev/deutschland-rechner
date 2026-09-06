@@ -2075,6 +2075,15 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Volumen Rechner, Volumen berechnen, Quader Volumen, Würfel Volumen, Kugel Volumen berechnen, Kegel Volumen, Pyramide Volumen, Rauminhalt berechnen, Liter berechnen, Kubikmeter berechnen, cm3 in Liter, Volumen Formel',
   },
   {
+    id: 'siebtraeger',
+    name: 'Siebträger-Rechner',
+    beschreibung: 'Espresso mit Siebträger-Maschine zubereiten',
+    icon: '☕',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Siebträger Rechner, Espresso Brühverhältnis, Brühverhältnis berechnen, Espresso Rezept, Kaffeepulver Menge Espresso, Bezugszeit Espresso, Massenstrom Espresso, Ristretto Verhältnis, doppelter Espresso Gramm, Espresso Mahlgrad einstellen',
+  },
+  {
     id: 'zylinder-volumen',
     name: 'Zylinder-Volumen-Rechner',
     beschreibung: 'Volumen eines Zylinders (Liter, m³, cm³) aus Radius/Durchmesser & Höhe – plus Mantel- & Oberfläche',
