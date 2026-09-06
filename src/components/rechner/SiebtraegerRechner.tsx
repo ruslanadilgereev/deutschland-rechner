@@ -54,8 +54,8 @@ export default function SiebtraegerRechner() {
   const [sieb, setSieb] = useState<Sieb>('double');
   const [drinkId, setDrinkId] = useState<DrinkId>('single-espresso');
   const [voll, setVoll] = useState(false);
-  const [pulver, setPulver] = useState(16);
-  const [espresso, setEspresso] = useState(16);
+  const [pulver, setPulver] = useState(NORM_PULVER.double.wert);
+  const [espresso, setEspresso] = useState(NORM_PULVER.double.wert);
   const [druck, setDruck] = useState<Druck>('optimal');
   const [bezugszeit, setBezugszeit] = useState(NORM_BEZUGSZEIT.wert);
 
@@ -74,11 +74,10 @@ export default function SiebtraegerRechner() {
     [getraenk]
   );
 
-  // Auswahl wechseln: Pulver auf die nötige Dosis, Espresso auf 2:1 zurücksetzen
+  // Auswahl wechseln: Pulver auf die Normdosis des Siebs, Espresso auf 2:1 zurücksetzen
   const uebernehmeAuswahl = (naechsterSieb: Sieb, naechsteId: DrinkId, naechstesVoll: boolean) => {
     const naechsteTassen = naechsterSieb === 'double' && !naechstesVoll ? 2 : 1;
-    const g = getraenkVon(naechsteId);
-    const neuesPulver = runde(noetigeDosis(g, naechsteTassen));
+    const neuesPulver = NORM_PULVER[naechsterSieb].wert;
     setSieb(naechsterSieb);
     setDrinkId(naechsteId);
     setVoll(naechstesVoll);
