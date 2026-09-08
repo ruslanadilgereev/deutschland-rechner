@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiebtraegerRechner from '../components/rechner/SiebtraegerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RechnerTrust from '../components/RechnerTrust.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+
+const title = "Siebträger-Rechner – Brühverhältnis, Bezugszeit & Mahlgrad";
+const description = "Espresso mit der Siebträger-Maschine: Brühverhältnis aus Kaffeepulver und Espresso-Gewicht berechnen, Durchfluss prüfen und den Mahlgrad korrigieren. Für Single- und Double-Shot-Sieb, Single Espresso, Doppelten Espresso und Ristretto.";
+const keywords = "Siebträger Rechner, Espresso Brühverhältnis, Brühverhältnis berechnen, Espresso Rezept, Kaffeepulver Menge Espresso, Bezugszeit Espresso, Espresso Durchfluss, Ristretto Verhältnis, doppelter Espresso Gramm, Espresso Mahlgrad einstellen";
+---
+
+<Layout noTitleSuffix title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Siebträger-Rechner", url: "/siebtraeger-rechner" }]} />
+  <Breadcrumb items={[
+    { name: 'Home', href: '/' },
+    { name: 'Alltag & Lifestyle', href: '/alltag-lifestyle' },
+    { name: 'Siebträger-Rechner' }
+  ]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-[#4a2c17] to-[#7a4a28] text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-[#e2d0bf] hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">☕</span>
+          <div>
+            <h1 class="text-2xl font-bold">Siebträger-Rechner</h1>
+            <p class="text-[#e2d0bf] text-sm">Espresso mit Siebträger-Maschine zubereiten</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SiebtraegerRechner client:load />
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 mt-8">
+      <article class="prose prose-lg max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mt-12 mb-6">Espresso ist eine Rechenaufgabe mit drei Zahlen</h2>
+        <p>
+          Ein guter Espresso hängt an drei Größen, die sich gegenseitig bedingen: der
+          <strong>Kaffeepulver-Menge</strong> im Sieb, dem <strong>Espresso-Gewicht</strong> in der Tasse und
+          der <strong>Bezugszeit</strong>. Wer nur an einer Schraube dreht, verschiebt automatisch die anderen
+          beiden. Dieser Rechner macht den Zusammenhang sichtbar: Er zeigt das Brühverhältnis, vergleicht es
+          mit dem Sollwert des gewählten Getränks und leitet aus Durchfluss und Brühdruck eine Mahlgrad-Empfehlung ab.
+        </p>
+        <p>
+          Ausgangspunkt ist das <strong>Sieb</strong>. Ein Single-Shot-Sieb fasst rund 8 g Kaffeepulver und hat
+          einen Auslass, ein Double-Shot-Sieb fasst rund 17 g und läuft über zwei Auslässe. Weil beide Auslässe
+          von derselben Pumpe und derselben Bezugszeit gespeist werden, kommt aus beiden immer <em>dasselbe
+          Gewicht</em>. Zwei verschiedene Getränke gleichzeitig – etwa links ein Ristretto und rechts ein Single
+          Espresso – sind deshalb physikalisch nicht möglich.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Die Formeln</h2>
+        <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+          <div>Brühverhältnis = Espresso-Gewicht (gesamt) ÷ Kaffeepulver-Gewicht</div>
+          <div>Espresso-Gewicht pro Sekunde [g/s] = Espresso-Gewicht (eine Tasse) ÷ Bezugszeit</div>
+          <div>Bezugszeit [s] = Ziel-Espresso-Gewicht (eine Tasse) ÷ Espresso-Gewicht pro Sekunde</div>
+        </div>
+        <p>
+          Entscheidend ist das Wort <strong>gesamt</strong>: Läuft der Siebträger mit zwei Tassen, zählt für das
+          Brühverhältnis die Summe aus beiden Auslässen gegen die Pulvermenge im Sieb. Zwei Tassen à 20 g aus
+          einem Double-Shot-Sieb mit 16 g Dosis ergeben also 40 g ÷ 16 g = 1:2,5 – und nicht etwa 1:1,25.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Normwerte und Toleranzen</h2>
+        <div class="not-prose overflow-x-auto my-4">
+          <table class="w-full text-sm border border-gray-200 rounded-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="text-left p-3 border-b border-gray-200">Parameter</th>
+                <th class="text-right p-3 border-b border-gray-200">Normwert</th>
+                <th class="text-right p-3 border-b border-gray-200">Toleranz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-3 border-b border-gray-100">Kaffeepulver Single-Shot-Sieb</td><td class="p-3 text-right border-b border-gray-100">8 g</td><td class="p-3 text-right border-b border-gray-100">± 1 g</td></tr>
+              <tr><td class="p-3 border-b border-gray-100">Kaffeepulver Double-Shot-Sieb</td><td class="p-3 text-right border-b border-gray-100">17 g</td><td class="p-3 text-right border-b border-gray-100">± 2 g</td></tr>
+              <tr><td class="p-3 border-b border-gray-100">Wassertemperatur</td><td class="p-3 text-right border-b border-gray-100">91 °C</td><td class="p-3 text-right border-b border-gray-100">± 3 °C</td></tr>
+              <tr><td class="p-3 border-b border-gray-100">Brühdruck</td><td class="p-3 text-right border-b border-gray-100">9 bar</td><td class="p-3 text-right border-b border-gray-100">± 1 bar</td></tr>
+              <tr><td class="p-3 border-b border-gray-100">Bezugszeit</td><td class="p-3 text-right border-b border-gray-100">25 s</td><td class="p-3 text-right border-b border-gray-100">± 5 s</td></tr>
+              <tr><td class="p-3">Espresso-Temperatur in der Tasse</td><td class="p-3 text-right">67 °C</td><td class="p-3 text-right">± 3 °C</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Welches Getränk passt in welches Sieb?</h2>
+        <p>
+          Der Rechner bietet nur Kombinationen an, die sich tatsächlich brühen lassen. Der Test dahinter ist
+          simpel: Die Pulvermenge, die ein Getränk bei seinem Soll-Brühverhältnis braucht, muss in die Toleranz
+          des Siebs passen. Für das Espresso-Gewicht gilt je Getränk eine Toleranz von 12,5 % des Normgewichts –
+          dieselbe relative Spanne, die das Single-Shot-Sieb mit 8 g ± 1 g vorgibt.
+        </p>
+        <div class="not-prose overflow-x-auto my-4">
+          <table class="w-full text-sm border border-gray-200 rounded-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="text-left p-3 border-b border-gray-200">Getränk</th>
+                <th class="text-right p-3 border-b border-gray-200">Espresso</th>
+                <th class="text-right p-3 border-b border-gray-200">Soll-Verhältnis</th>
+                <th class="text-left p-3 border-b border-gray-200">Möglich mit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="p-3 border-b border-gray-100">Single Espresso</td><td class="p-3 text-right border-b border-gray-100">20 g ± 2,5 g</td><td class="p-3 text-right border-b border-gray-100">1:2,5</td><td class="p-3 border-b border-gray-100">Single-Sieb (8 g) · Double-Sieb als zwei Tassen (16 g)</td></tr>
+              <tr><td class="p-3 border-b border-gray-100">Ristretto</td><td class="p-3 text-right border-b border-gray-100">12 g ± 1,5 g</td><td class="p-3 text-right border-b border-gray-100">1:1,5</td><td class="p-3 border-b border-gray-100">Single-Sieb (8 g) · Double-Sieb als zwei Tassen (16 g)</td></tr>
+              <tr><td class="p-3">Doppelter Espresso</td><td class="p-3 text-right">40 g ± 5 g</td><td class="p-3 text-right">1:2,5</td><td class="p-3">Double-Sieb, beide Auslässe in eine Tasse (16 g)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Daraus folgt zweierlei: Ein <strong>doppelter Espresso lässt sich nicht aus dem Single-Shot-Sieb</strong>
+          ziehen – 40 g aus 8 g wären ein Verhältnis von 1:5 und damit eine dünne, überextrahierte Brühe. Und ein
+          <strong>einzelner Espresso allein lässt sich nicht aus dem Double-Shot-Sieb</strong> ziehen: Für 20 g
+          Espresso bräuchte man 8 g Pulver, das füllt kein 17-g-Sieb. Zwei Tassen gleichzeitig sind dagegen kein
+          Problem.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Rechenbeispiele</h2>
+        <p>
+          <strong>Doppelter Espresso:</strong> 17 g Pulver im Double-Shot-Sieb, beide Auslässe in eine Tasse,
+          40 g Espresso in 25 s → Brühverhältnis 40 ÷ 17 = <strong>1:2,35</strong>, Espresso-Gewicht pro
+          Sekunde 40 ÷ 25 = <strong>1,6 g/s</strong>. Beides im Soll.
+        </p>
+        <p>
+          <strong>Zwei Single Espressi:</strong> 17 g Pulver, links und rechts je 20 g → 40 g gesamt,
+          Verhältnis <strong>1:2,35</strong>. Pro Tasse sind es 20 g – genau die Norm für einen Single Espresso.
+          Bei 25 s Bezugszeit läuft pro Tasse 20 ÷ 25 = <strong>0,8 g/s</strong>, mitten zwischen unterem und
+          oberem Limit.
+        </p>
+        <p>
+          <strong>Ristretto:</strong> 8 g im Single-Shot-Sieb, 12 g Espresso → 12 ÷ 8 =
+          <strong>1:1,5</strong>. Das ist bewusst kurz gezogen und gilt für den Ristretto als Sollwert – nicht
+          als „zu wenig“.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Mahlgrad: feiner oder gröber?</h2>
+        <p>
+          Der Mahlgrad ist die einzige Stellschraube, die den Widerstand im Sieb verändert. Ausschlaggebend ist
+          das <strong>Espresso-Gewicht pro Sekunde</strong> – also wie schnell die Tasse voll wird. Die beiden
+          Limits ergeben sich aus dem Norm-Espressogewicht und der Bezugszeit-Toleranz: oberes Limit =
+          Norm ÷ 20 s, unteres Limit = Norm ÷ 30 s.
+        </p>
+        <ul>
+          <li>
+            <strong>Über dem oberen Limit</strong> – der Kaffee läuft zu schnell, das Pulver setzt der Pumpe zu
+            wenig Widerstand entgegen: <strong>feiner mahlen</strong>.
+          </li>
+          <li>
+            <strong>Unter dem unteren Limit</strong> – der Kaffee läuft zu langsam, das Pulver bremst zu stark:
+            <strong>gröber mahlen</strong>.
+          </li>
+          <li>
+            <strong>Zwischen den Limits</strong>: Der Mahlgrad passt, hier ist nichts zu tun.
+          </li>
+        </ul>
+        <p>
+          Der <strong>Brühdruck</strong> dient dabei als Gegenprobe. Er bestätigt den Befund, wenn er in dieselbe
+          Richtung zeigt – zu geringer Druck bei zu schnellem Durchfluss, zu hoher Druck bei zu langsamem. Zeigt
+          er dagegen in die Gegenrichtung, etwa hoher Druck bei zu schnellem Durchfluss, hält sich der Rechner
+          zurück: Dann ist der Mahlgrad nicht die Ursache, sondern meistens Pumpe, Tamper-Druck oder Bohnenmenge.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-6">Häufige Fragen</h2>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist das Brühverhältnis beim Espresso?</summary>
+          <p class="mt-3">
+            Das Brühverhältnis ist der Quotient aus Espresso-Gewicht in der Tasse und Kaffeepulver-Gewicht im
+            Sieb, geschrieben als 1:X. Aus 16 g Pulver und 40 g Espresso wird 40 ÷ 16 = 1:2,5. Läuft die Maschine
+            mit zwei Tassen, zählt die Summe aus beiden Auslässen gegen die Pulvermenge im Sieb.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Warum kann ich keinen einzelnen Espresso mit dem Double-Shot-Sieb ziehen?</summary>
+          <p class="mt-3">
+            Weil ein Single Espresso mit 20 g Espresso bei seinem Soll-Verhältnis von 1:2,5 nur rund 8 g
+            Kaffeepulver braucht. Ein Double-Shot-Sieb ist auf 17 g ± 2 g ausgelegt und wäre mit 8 g nicht
+            annähernd gefüllt – das Wasser würde den Puck durchbrechen. Zwei Tassen gleichzeitig funktionieren
+            dagegen: 2 × 20 g aus 16 g Pulver ergeben 1:2,5.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Kann ich links einen Ristretto und rechts einen Espresso beziehen?</summary>
+          <p class="mt-3">
+            Nein. Beide Auslässe hängen an derselben Pumpe und werden zur selben Zeit gestoppt, also läuft in
+            beide Tassen dasselbe Gewicht. Ein Ristretto (12 g) und ein Single Espresso (20 g) gleichzeitig sind
+            deshalb nicht möglich – der Rechner koppelt die beiden Seiten aus genau diesem Grund.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie viel Kaffeepulver gehört in den Siebträger?</summary>
+          <p class="mt-3">
+            In ein Single-Shot-Sieb rund 8 g ± 1 g, in ein Double-Shot-Sieb rund 17 g ± 2 g. Die genaue Menge
+            hängt vom Sieb ab – entscheidend ist, dass der Puck das Sieb füllt, ohne beim Einspannen an die
+            Brühgruppe zu stoßen.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wann muss ich feiner, wann gröber mahlen?</summary>
+          <p class="mt-3">
+            Feiner mahlen, wenn der Kaffee zu schnell läuft – wenn also mehr Espresso pro Sekunde in die
+            Tasse fließt als das obere Limit (Norm-Espressogewicht ÷ 20 s). Gröber mahlen, wenn er unter dem
+            unteren Limit (Norm ÷ 30 s) bleibt. Der Brühdruck ist die Gegenprobe: Widerspricht er dem
+            Durchfluss – etwa hoher Druck bei zu schnellem Bezug –, liegt die Ursache meist woanders: bei der
+            Bohnenmenge, beim Tampern oder bei der Maschine.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Wie lange sollte ein Espresso laufen?</summary>
+          <p class="mt-3">
+            Als Normwert gelten 25 Sekunden mit einer Toleranz von ± 5 Sekunden, gemessen ab dem Start der
+            Pumpe. Der Rechner zeigt zusätzlich, welche Bezugszeit bei unverändertem Durchfluss zum
+            Norm-Espressogewicht in der Tasse bzw. zu einem Verhältnis von 1:2 geführt hätte.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-3">
+          <summary class="font-semibold cursor-pointer">Was ist der Unterschied zwischen Ristretto und Espresso?</summary>
+          <p class="mt-3">
+            Die Pulvermenge ist gleich, das Espresso-Gewicht nicht: Ein Ristretto wird mit rund 12 g aus 8 g
+            Pulver kürzer gezogen (1:1,5), ein Single Espresso mit 20 g (1:2,5). Der Ristretto schmeckt dadurch
+            konzentrierter und säureärmer, der Espresso ausgewogener.
+          </p>
+        </details>
+      </article>
+    </div>
+
+    <RechnerTrust quellen="Norm- und Toleranzwerte der Siebträger-Zubereitung (Sieb-Dosierung, Brühdruck, Bezugszeit, Brühtemperatur); Brühverhältnis und Durchfluss als Massenbilanz" aktualisiert="September 2026" />
+
+    <VerwandteRechner aktuellerSlug="siebtraeger" slugs={['einheiten', 'volumen', 'dreisatz', 'prozent']} />
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler &amp; Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Espresso in Millilitern statt Gramm gemessen</h3>
+            <p>Das Brühverhältnis ist ein Massenverhältnis. Wer die Tasse nach Volumen befüllt, misst die Crema mit – und die besteht überwiegend aus Gas. Zuverlässig wird es nur mit einer Waage unter der Tasse.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Nur eine Tasse gegen die volle Pulvermenge gerechnet</h3>
+            <p>Beim Double-Shot-Sieb mit zwei Tassen zählt die Summe beider Auslässe. Wer nur eine Tasse (20 g) gegen 16 g Pulver rechnet, kommt auf 1:1,25 und hält einen völlig normalen Bezug für einen Ristretto.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Ristretto am Espresso-Sollwert gemessen</h3>
+            <p>Ein Ristretto ist mit 1:1,5 absichtlich kurz gezogen. Gegen die Espresso-Faustregel 1:2 gehalten, wirkt jeder korrekte Ristretto wie ein Fehler – deshalb vergleicht der Rechner jedes Getränk mit seinem eigenen Sollwert.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Mahlgrad und Bohnenmenge gleichzeitig verändert</h3>
+            <p>Wer beides auf einmal verstellt, kann die Wirkung nicht mehr zuordnen. Immer nur eine Größe ändern, neu beziehen, wiegen – und erst dann die nächste.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": title,
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/siebtraeger-rechner",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Was ist das Brühverhältnis beim Espresso?", "acceptedAnswer": { "@type": "Answer", "text": "Das Brühverhältnis ist der Quotient aus Espresso-Gewicht in der Tasse und Kaffeepulver-Gewicht im Sieb, geschrieben als 1:X. Aus 16 g Pulver und 40 g Espresso wird 40 ÷ 16 = 1:2,5. Läuft die Maschine mit zwei Tassen, zählt die Summe aus beiden Auslässen gegen die Pulvermenge im Sieb." } },
+      { "@type": "Question", "name": "Warum kann ich keinen einzelnen Espresso mit dem Double-Shot-Sieb ziehen?", "acceptedAnswer": { "@type": "Answer", "text": "Weil ein Single Espresso mit 20 g Espresso bei seinem Soll-Verhältnis von 1:2,5 nur rund 8 g Kaffeepulver braucht. Ein Double-Shot-Sieb ist auf 17 g ± 2 g ausgelegt und wäre mit 8 g nicht annähernd gefüllt – das Wasser würde den Puck durchbrechen. Zwei Tassen gleichzeitig funktionieren dagegen: 2 × 20 g aus 16 g Pulver ergeben 1:2,5." } },
+      { "@type": "Question", "name": "Kann ich links einen Ristretto und rechts einen Espresso beziehen?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Beide Auslässe hängen an derselben Pumpe und werden zur selben Zeit gestoppt, also läuft in beide Tassen dasselbe Gewicht. Ein Ristretto (12 g) und ein Single Espresso (20 g) gleichzeitig sind deshalb nicht möglich – der Rechner koppelt die beiden Seiten aus genau diesem Grund." } },
+      { "@type": "Question", "name": "Wie viel Kaffeepulver gehört in den Siebträger?", "acceptedAnswer": { "@type": "Answer", "text": "In ein Single-Shot-Sieb rund 8 g ± 1 g, in ein Double-Shot-Sieb rund 17 g ± 2 g. Die genaue Menge hängt vom Sieb ab – entscheidend ist, dass der Puck das Sieb füllt, ohne beim Einspannen an die Brühgruppe zu stoßen." } },
+      { "@type": "Question", "name": "Wann muss ich feiner, wann gröber mahlen?", "acceptedAnswer": { "@type": "Answer", "text": "Feiner mahlen, wenn der Kaffee zu schnell läuft – wenn also mehr Espresso pro Sekunde in die Tasse fließt als das obere Limit (Norm-Espressogewicht ÷ 20 s). Gröber mahlen, wenn er unter dem unteren Limit (Norm ÷ 30 s) bleibt. Der Brühdruck ist die Gegenprobe: Widerspricht er dem Durchfluss – etwa hoher Druck bei zu schnellem Bezug –, liegt die Ursache meist woanders: bei der Bohnenmenge, beim Tampern oder bei der Maschine." } },
+      { "@type": "Question", "name": "Wie lange sollte ein Espresso laufen?", "acceptedAnswer": { "@type": "Answer", "text": "Als Normwert gelten 25 Sekunden mit einer Toleranz von ± 5 Sekunden, gemessen ab dem Start der Pumpe. Der Rechner zeigt zusätzlich, welche Bezugszeit bei unverändertem Durchfluss zum Norm-Espressogewicht in der Tasse bzw. zu einem Verhältnis von 1:2 geführt hätte." } },
+      { "@type": "Question", "name": "Was ist der Unterschied zwischen Ristretto und Espresso?", "acceptedAnswer": { "@type": "Answer", "text": "Die Pulvermenge ist gleich, das Espresso-Gewicht nicht: Ein Ristretto wird mit rund 12 g aus 8 g Pulver kürzer gezogen (1:1,5), ein Single Espresso mit 20 g (1:2,5). Der Ristretto schmeckt dadurch konzentrierter und säureärmer, der Espresso ausgewogener." } }
+    ]
+  })} />
+</Layout>
