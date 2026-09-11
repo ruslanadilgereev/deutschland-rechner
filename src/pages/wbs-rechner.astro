@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import WbsRechner from '../components/rechner/WbsRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "WBS-Rechner Berlin 2026 – Anspruch auf Wohnberechtigungsschein prüfen (WBS 100/140/160/180/220)";
+const description = "Wohnberechtigungsschein Berlin berechnen: Einkommensgrenzen nach § 9 WoFG, Berliner Stufen WBS 140, 160, 180 und 220, Pauschalabzüge je 10 % (§ 23 WoFG), Freibeträge nach § 24 WoFG und Wohnungsgröße. In einer Minute wissen, welchen WBS Sie bekommen.";
+const keywords = "WBS Rechner Berlin, Wohnberechtigungsschein Berlin Einkommensgrenze, WBS 140 Einkommensgrenze, WBS 160 Berlin, WBS 180 Berlin, WBS 220 Berlin, Wohnberechtigungsschein berechnen, WBS Anspruch prüfen, WoFG Einkommensgrenze 2026, WBS beantragen Berlin, Sozialwohnung Berlin Voraussetzungen";
+
+const faqs = [
+  {
+    frage: "Wie hoch darf mein Einkommen für einen WBS in Berlin sein?",
+    antwort: "Maßgeblich ist das bereinigte Jahreseinkommen des Haushalts, nicht das Brutto. Die Bundesgrenze nach § 9 Abs. 2 WoFG beträgt 12.000 € für eine Person, 18.000 € für zwei Personen, plus 4.100 € je weitere Person und plus 500 € je Kind. Berlin erlaubt Überschreitungen: WBS 140 (+40 %) bedeutet 16.800 € für Singles und 25.200 € für Paare, WBS 160 19.200/28.800 €, WBS 180 21.600/32.400 € und WBS 220 26.400/39.600 €. Weil vom Brutto erst Werbungskosten und bis zu 30 % Pauschalabzüge abgehen, entspricht die WBS-220-Grenze für einen Single etwa 38.900 € Bruttogehalt, die WBS-140-Grenze etwa 25.200 €."
+  },
+  {
+    frage: "Was ist der Unterschied zwischen WBS 100, 140, 160, 180 und 220?",
+    antwort: "Die Zahl gibt an, um wie viel Prozent das Haushaltseinkommen die Bundesgrenze des § 9 Abs. 2 WoFG überschreiten darf: WBS 100 gar nicht, WBS 140 um bis zu 40 %, WBS 160 um bis zu 60 %, WBS 180 um bis zu 80 % und WBS 220 um bis zu 120 %. Für den klassischen Sozialwohnungsbestand reicht in Berlin der WBS 140. Neuere, mit einkommensorientierten Zuschüssen geförderte Wohnungen dürfen auch mit WBS 160 oder 180 bezogen werden, das zweite Fördersegment der Neubauförderung seit 2025 mit WBS 220. Wer einen niedrigen WBS hat, darf sich auch auf Wohnungen mit höherer Stufe bewerben, nicht umgekehrt."
+  },
+  {
+    frage: "Welches Einkommen zählt beim WBS – brutto oder netto?",
+    antwort: "Weder noch. Das WoFG rechnet mit einem eigenen Begriff: Ausgangspunkt ist das Bruttoeinkommen der nächsten zwölf Monate ab Antragstellung (§ 22 WoFG), davon werden Werbungskosten abgezogen (Arbeitnehmer mindestens die Pauschale von 1.230 €). Vom Rest gehen pauschal jeweils 10 % ab, wenn Sie Einkommensteuer zahlen, Pflichtbeiträge zur Kranken- und Pflegeversicherung leisten und Pflichtbeiträge zur Rentenversicherung zahlen (§ 23 WoFG), also maximal 30 %. Kindergeld zählt nicht zum Einkommen, Elterngeld nur oberhalb von 300 € monatlich. Am Ende werden Freibeträge nach § 24 WoFG abgezogen."
+  },
+  {
+    frage: "Welche Freibeträge gibt es beim Wohnberechtigungsschein?",
+    antwort: "§ 24 WoFG nennt fünf Freibeträge: 4.500 € für jeden schwerbehinderten Menschen mit GdB 100 oder mit GdB mindestens 80 und häuslicher Pflegebedürftigkeit; 2.100 € für pflegebedürftige Schwerbehinderte mit GdB unter 80; 4.000 € für junge Ehepaare (beide unter 40) bis zum Ende des fünften Kalenderjahres nach der Heirat; 600 € je Kind unter zwölf bei erwerbstätigen oder in Ausbildung befindlichen Alleinerziehenden; und bis zu 600 € je Kind zwischen 16 und 24 mit eigenem Einkommen. Zusätzlich werden gesetzliche Unterhaltszahlungen an Personen außerhalb des Haushalts abgezogen, bei fehlendem Titel bis zu 3.000 € (auswärts untergebrachte Auszubildende, sonstige Personen) oder 6.000 € (getrennt lebende Ehegatten)."
+  },
+  {
+    frage: "Wie groß darf die Wohnung mit WBS in Berlin sein?",
+    antwort: "Grundregel: ein Wohnraum je Haushaltsmitglied. Ein Paar mit zwei Kindern darf also eine Vier-Zimmer-Wohnung beziehen. Einzelpersonen dürfen seit dem 1. Mai 2018 auch Eineinhalb- oder Zwei-Zimmer-Wohnungen bis 50 m² anmieten. Zusätzlicher Wohnraum wird anerkannt bei Behinderung oder wesentlicher gesundheitlicher Beeinträchtigung, wenn der Beruf nur in einem separaten Raum ausgeübt werden kann oder wenn Alleinstehende ab 65 eine mindestens Drei-Zimmer-Wohnung in Berlin freimachen. Die Küche zählt in Berlin nicht als Wohnraum."
+  },
+  {
+    frage: "Wie lange gilt der WBS und was kostet er?",
+    antwort: "Der Wohnberechtigungsschein wird nach § 27 Abs. 2 WoFG für ein Jahr ausgestellt. In Berlin gilt er für das gesamte Stadtgebiet, unabhängig davon, welches Bezirksamt ihn erteilt hat. Der Antrag ist gebührenfrei und kann online, per Post oder im Bürgeramt gestellt werden; zuständig ist der Bezirk, in dem Sie gemeldet sind. Wer noch nicht in Berlin wohnt, wendet sich an ein Wohnungsamt seiner Wahl. Nach Ablauf muss der WBS neu beantragt werden, weil sich Einkommen und Haushaltsgröße geändert haben können."
+  },
+  {
+    frage: "Was ist ein WBS mit besonderem Wohnbedarf?",
+    antwort: "Ein Teil der Berliner Sozialwohnungen ist Haushalten mit besonderem Wohnbedarf vorbehalten (§ 27 Abs. 5 WoFG). Er wird anerkannt, wenn Sie seit mindestens einem Jahr mit Hauptwohnsitz in Berlin gemeldet sind und zum Beispiel mit Kindern in zu kleinen Verhältnissen leben (für drei Personen weniger als zwei Wohnräume, für vier oder fünf Personen weniger als drei), eine Schwerbehinderung ab GdB 50 die Wohnung objektiv ungeeignet macht, Sie in einer Einrichtung oder Behelfsunterkunft untergebracht sind, Sie ab 65 eine unterbelegte Wohnung aufgeben oder das Jobcenter zum Umzug in eine angemessene Wohnung aufgefordert hat."
+  },
+  {
+    frage: "Gelten die Berliner Einkommensgrenzen auch in anderen Bundesländern?",
+    antwort: "Nein. § 9 Abs. 3 WoFG ermächtigt jedes Land, eigene Grenzen festzulegen, und fast alle haben das getan. Hamburg, Nordrhein-Westfalen, Bayern (mit eigenem Gesetz, BayWoFG) und Baden-Württemberg rechnen mit anderen Stufen und teils anderen Grundbeträgen. Die Berliner Prozentstufen 140, 160, 180 und 220 gelten nur für Wohnungen in Berlin. Die Einkommensermittlung nach §§ 20 bis 24 WoFG ist dagegen bundeseinheitlich, sodass die Zwischenergebnisse des Rechners überall verwendbar sind."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "WBS-Rechner Berlin", url: "/wbs-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-blue-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏢</span>
+          <div>
+            <h1 class="text-2xl font-bold">WBS-Rechner Berlin</h1>
+            <p class="text-blue-100 text-sm">Wohnberechtigungsschein: Einkommensgrenze, WBS-Stufe und Wohnungsgröße prüfen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WbsRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 9 Abs. 2 WoFG (Einkommensgrenzen 12.000/18.000/+4.100/+500 €), §§ 20–23 WoFG (Gesamteinkommen, Jahreseinkommen, Pauschalabzüge je 10 %), § 24 WoFG (Freibeträge), § 27 WoFG (Erteilung, Geltungsdauer, Wohnungsgröße), Berliner Einkommensgrenzen der Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen (WBS 140/160/180/220).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Haushaltsgröße und Kinderzuschlag, Einkommen von bis zu zwei Erwachsenen mit Werbungskosten und den drei Pauschalabzügen, alle fünf Freibeträge des § 24 Abs. 1 WoFG, Unterhaltsleistungen, Einstufung in alle fünf Berliner Stufen, angemessene Raumzahl.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Sonderregeln einzelner Einkommensarten nach § 21 Abs. 2 und 3 WoFG (z. B. hälftige Anrechnung von Pflegegeld oder BAföG-Zuschüssen), Einkünfte weiterer Erwachsener, Härtefall-WBS nach § 27 Abs. 3 Satz 4 WoFG, besonderer Wohnbedarf, Grenzen anderer Bundesländer.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wohnberechtigungsschein in Berlin: Wer ihn bekommt und wie gerechnet wird</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>Der Wohnberechtigungsschein (WBS) ist die Eintrittskarte für die Berliner Sozialwohnungen und für einen wachsenden Bestand neu geförderter Wohnungen der landeseigenen Gesellschaften und Genossenschaften. Ohne WBS darf ein Vermieter eine gebundene Wohnung nicht überlassen (§ 27 Abs. 1 WoFG). Ob Sie einen WBS bekommen, hängt ausschließlich vom Einkommen des Haushalts ab, und genau hier entstehen die meisten Missverständnisse: Das Gesetz rechnet weder mit dem Brutto noch mit dem Netto, sondern mit einem eigenen Einkommensbegriff, der in den §§ 20 bis 24 des Wohnraumförderungsgesetzes (WoFG) definiert ist.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Schritt 1: Die Bundesgrenze nach § 9 Abs. 2 WoFG</h3>
+          <p>Ausgangspunkt ist die bundesgesetzliche Einkommensgrenze: 12.000 € für einen Einpersonenhaushalt, 18.000 € für einen Zweipersonenhaushalt, zuzüglich 4.100 € für jede weitere Person. Für jedes Kind im Sinne des § 32 Abs. 1 bis 5 EStG (also jedes Kind, für das Kindergeld gezahlt wird) kommen weitere 500 € hinzu. Eine vierköpfige Familie mit zwei Kindern hat damit eine Bundesgrenze von 18.000 + 2 × 4.100 + 2 × 500 = 27.200 €. Diese Zahl ist die Basis, auf die Berlin seine Prozentstufen aufsetzt.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Schritt 2: Die Berliner Stufen 140, 160, 180 und 220</h3>
+          <p>Weil die Bundesgrenzen seit 2002 nicht angepasst wurden und in Berlin kaum noch jemand darunter liegt, hat das Land von der Öffnungsklausel des § 9 Abs. 3 WoFG Gebrauch gemacht. Die Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen veröffentlicht vier Überschreitungsstufen:</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead><tr class="border-b-2 border-gray-200"><th class="text-left py-2">Stufe</th><th class="text-right py-2">1 Person</th><th class="text-right py-2">2 Personen</th><th class="text-right py-2">je weitere</th><th class="text-right py-2">je Kind</th></tr></thead>
+              <tbody>
+                <tr class="border-b border-gray-100"><td class="py-2">WBS 100 (Bundesgrenze)</td><td class="text-right">12.000 €</td><td class="text-right">18.000 €</td><td class="text-right">4.100 €</td><td class="text-right">500 €</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2">WBS 140 (+40 %)</td><td class="text-right">16.800 €</td><td class="text-right">25.200 €</td><td class="text-right">5.740 €</td><td class="text-right">700 €</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2">WBS 160 (+60 %)</td><td class="text-right">19.200 €</td><td class="text-right">28.800 €</td><td class="text-right">6.560 €</td><td class="text-right">800 €</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-2">WBS 180 (+80 %)</td><td class="text-right">21.600 €</td><td class="text-right">32.400 €</td><td class="text-right">7.380 €</td><td class="text-right">900 €</td></tr>
+                <tr><td class="py-2">WBS 220 (+120 %)</td><td class="text-right">26.400 €</td><td class="text-right">39.600 €</td><td class="text-right">9.020 €</td><td class="text-right">1.100 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Für fast alle Wohnungen des klassischen Sozialwohnungsbestands genügt der WBS 140. Seit dem Wohnungsbauprogrammjahr 2015 werden Neubauten teils mit einkommensorientierten Zuschüssen gefördert; diese Wohnungen sind für Haushalte mit WBS 160 oder WBS 180 vorgesehen. Die Stufe WBS 220 gehört zum zweiten Fördersegment der Berliner Neubauförderung und zielt auf mittlere Einkommen, die auf dem freien Markt trotzdem keine bezahlbare Wohnung finden. Der Rechner zeigt Ihnen die niedrigste Stufe, die Sie erfüllen; auf Wohnungen höherer Stufen dürfen Sie sich damit ebenfalls bewerben.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Schritt 3: Vom Brutto zum maßgeblichen Einkommen</h3>
+          <p>Das Jahreseinkommen ist nach § 21 Abs. 1 WoFG die Summe der positiven Einkünfte im Sinne des Einkommensteuerrechts, also Brutto minus Werbungskosten. Arbeitnehmer setzen mindestens den Arbeitnehmer-Pauschbetrag von 1.230 € (§ 9a EStG) ab, höhere tatsächliche Werbungskosten wie Fahrtkosten werden anerkannt. Maßgeblich ist nach § 22 WoFG das Einkommen, das in den zwölf Monaten ab Antragstellung zu erwarten ist; wenn das nicht abschätzbar ist, darf das Bezirksamt vom Einkommen der letzten zwölf Monate ausgehen. Zum Einkommen gehören neben Gehalt auch Renten, Arbeitslosengeld, Krankengeld, Unterhalt und Elterngeld oberhalb von 300 € monatlich. Kindergeld zählt nicht.</p>
+          <p>Von dieser Zwischensumme zieht § 23 WoFG pauschal jeweils 10 % ab, wenn Sie Einkommensteuer zahlen, Pflichtbeiträge zur gesetzlichen Kranken- und Pflegeversicherung leisten und Pflichtbeiträge zur gesetzlichen Rentenversicherung entrichten. Ein sozialversicherungspflichtig Beschäftigter kommt damit auf 30 % Abzug, ein Beamter mit privater Krankenversicherung nur auf 10 % plus tatsächliche Beiträge bis zur jeweiligen 10-%-Grenze (§ 23 Abs. 2), ein Rentner ohne Steuerpflicht auf 10 %. Wer im Minijob arbeitet, zahlt weder Steuern noch eigene Pflichtbeiträge und erhält gar keinen Pauschalabzug.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel 1: Paar, ein Einkommen</h3>
+          <p>Zwei Personen ohne Kinder, ein Bruttogehalt von 32.000 €, die zweite Person ohne Einkommen. Einkünfte: 32.000 − 1.230 = 30.770 €. Abzüglich 30 % Pauschale (9.231 €) bleiben 21.539 €. Die Bundesgrenze für zwei Personen liegt bei 18.000 €, die WBS-140-Grenze bei 25.200 €. Das Paar bekommt einen WBS 140 mit 3.661 € Luft und darf sich auf zwei Wohnräume bewerben. Das ist die Voreinstellung des Rechners.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel 2: Familie mit zwei Kindern</h3>
+          <p>Vier Personen, davon zwei Kinder, Bruttogehälter 45.000 € und 20.000 €. Person 1: 45.000 − 1.230 = 43.770, minus 30 % = 30.639 €. Person 2: 20.000 − 1.230 = 18.770, minus 30 % = 13.139 €. Summe 43.778 €. Bundesgrenze 27.200 €, WBS 160 erlaubt 43.520 €, WBS 180 erlaubt 48.960 €. Die Familie verfehlt den WBS 160 um 258 €, bekommt aber einen WBS 180 für vier Wohnräume. Würde ein Elternteil 500 € höhere Werbungskosten nachweisen, sänke das Einkommen um 350 € und der WBS 160 wäre erreicht: Fahrtkosten, Fortbildungen und Arbeitsmittel lohnen sich hier doppelt.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel 3: Alleinerziehend mit Freibetrag</h3>
+          <p>Drei Personen, ein Kind unter zwölf, berufstätige alleinerziehende Mutter mit 38.000 € brutto, das zweite Kind ist 14. Einkünfte 36.770 €, nach 30 % Abzug 25.739 €. Freibetrag nach § 24 Abs. 1 Nr. 4 WoFG für das Kind unter zwölf: 600 €. Gesamteinkommen 25.139 €. Bundesgrenze 18.000 + 4.100 + 2 × 500 = 23.100 €, WBS 140 erlaubt 32.340 €. Ergebnis: WBS 140 für drei Wohnräume. Der Freibetrag ist hier nicht entscheidend, kann aber an der Grenze zwischen zwei Stufen den Ausschlag geben.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Wohnungsgröße und Geltungsdauer</h3>
+          <p>Der WBS nennt neben der Einkommensstufe die angemessene Wohnungsgröße (§ 27 Abs. 4 WoFG). In Berlin gilt: ein Wohnraum je Haushaltsmitglied, für Einzelpersonen seit Mai 2018 bis zu zwei Zimmer mit höchstens 50 m². Abweichungen sind möglich bei Behinderung, aus beruflichen Gründen (Arbeitszimmer zur Existenzsicherung) oder zur Vermeidung besonderer Härten. Der Schein gilt ein Jahr, ist gebührenfrei und wird vom Bezirksamt des Wohnorts ausgestellt; der Antrag ist auch online möglich. Wer erst nach Berlin ziehen will, kann sich an ein beliebiges Berliner Wohnungsamt wenden.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Was der WBS nicht ist</h3>
+          <p>Ein WBS garantiert keine Wohnung, er berechtigt nur zur Anmietung gebundener Wohnungen. Die Wartelisten der Berliner Wohnungsbaugesellschaften sind lang; ein WBS mit besonderem Wohnbedarf (Dringlichkeit) verbessert die Chancen. Der WBS hat auch nichts mit dem Wohngeld zu tun: Wohngeld ist ein Mietzuschuss nach dem Wohngeldgesetz mit eigenen Einkommensgrenzen, der WBS eine Zugangsberechtigung. Beides kann nebeneinander bestehen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Nettogehalt statt Brutto eingegeben</h3><p>Der Rechner zieht Werbungskosten und Pauschalabzüge selbst ab. Wer sein Netto einträgt, rechnet die Abzüge doppelt und landet in einer zu niedrigen Stufe, die das Bezirksamt nicht bestätigen wird.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kindergeld zum Einkommen gezählt</h3><p>Kindergeld ist kein Einkommen im Sinne des WoFG. Elterngeld zählt nur mit dem Teil über 300 € im Monat, Unterhaltsvorschuss und Unterhalt für die Kinder dagegen voll.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Einkommen des Partners vergessen</h3><p>Gerechnet wird der ganze Haushalt (§ 18 WoFG): Ehegatten, Lebenspartner, Partner einer auf Dauer angelegten Lebensgemeinschaft, Kinder, Eltern und weitere Verwandte, die zusammenziehen wollen. Auch Einkommen volljähriger Kinder zählt mit.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Minijob und Rente mit 30 % Abzug gerechnet</h3><p>Die drei Pauschalabzüge gibt es nur, wenn die jeweilige Leistung tatsächlich erbracht wird. Minijobber ohne eigene Beiträge und ohne Steuerpflicht bekommen keinen Abzug, gesetzlich versicherte Rentner in der Regel nur 10 % für Kranken- und Pflegeversicherung, Beamte 10 % für Steuern plus tatsächliche Beiträge bis 10 %.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Einmalzahlungen ignoriert</h3><p>Weihnachtsgeld, Urlaubsgeld, Boni und Abfindungen gehören zum Bruttojahreseinkommen. Das Bezirksamt prüft die Gehaltsabrechnungen der letzten zwölf Monate oder eine Arbeitgeberbescheinigung, in der diese Beträge enthalten sind.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Berliner Grenzen in Brandenburg angewendet</h3><p>Wer nach Potsdam oder Bernau ziehen möchte, braucht einen Brandenburger WBS mit anderen Grenzen. Der Berliner WBS gilt nur für Wohnungen in Berlin, und umgekehrt.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="wbs" slugs={['wohngeld', 'mietpreisbremse', 'wohnflaeche', 'nebenkosten']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "WBS-Rechner Berlin 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/wbs-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

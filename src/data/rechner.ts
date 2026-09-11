@@ -4433,6 +4433,36 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'VBL Rechner, VBLklassik Rente berechnen, VBL Versorgungspunkte, VBL Altersfaktor Tabelle, Zusatzversorgung öffentlicher Dienst',
     quellen: ['https://www.vbl.de/de/berechnung', 'https://www.vbl.de/documents/d/vbl/vbl-satzung-33-anderung'],
   },
+  {
+    id: 'wbs',
+    name: 'WBS-Rechner Berlin',
+    beschreibung: 'Wohnberechtigungsschein: Einkommensgrenze, WBS-Stufe 100/140/160/180/220 und Wohnungsgröße prüfen',
+    icon: '🏢',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'WBS Rechner Berlin, Wohnberechtigungsschein Einkommensgrenze, WBS 140, WBS 160, WBS 180, WBS 220, Wohnberechtigungsschein berechnen',
+    quellen: ['https://www.gesetze-im-internet.de/wofg/__9.html', 'https://www.gesetze-im-internet.de/wofg/__21.html', 'https://www.gesetze-im-internet.de/wofg/__23.html', 'https://www.gesetze-im-internet.de/wofg/__24.html', 'https://www.gesetze-im-internet.de/wofg/__27.html', 'https://www.berlin.de/sen/wohnen/wissen-fuer-mieter/berliner-mietratgeber/wohnberechtigungsschein/'],
+  },
+  {
+    id: 'erbbaurecht',
+    name: 'Erbbaurecht-Rechner',
+    beschreibung: 'Erbbauzins oder Grundstückskauf: Gesamtkosten, Grunderwerbsteuer und Break-even im Vergleich',
+    icon: '🏗️',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Erbbaurecht Rechner, Erbbauzins berechnen, Erbbaurecht oder Kauf, Erbpacht Rechner, Erbbaurecht Grunderwerbsteuer, Erbbaurecht lohnt sich',
+    quellen: ['https://www.gesetze-im-internet.de/erbbauv/__9a.html', 'https://www.gesetze-im-internet.de/erbbauv/__27.html', 'https://www.gesetze-im-internet.de/grestg_1983/__2.html', 'https://www.gesetze-im-internet.de/bewg/anlage_9a.html', 'https://www.gesetze-im-internet.de/gnotkg/__49.html'],
+  },
+  {
+    id: 'schadenrueckkauf',
+    name: 'Schadenrückkauf-Rechner',
+    beschreibung: 'Kfz-Schaden selbst zahlen oder Rückstufung hinnehmen? Mehrbeitrag gegen Erstattung mit 6-Monats-Frist',
+    icon: '🚗',
+    kategorie: 'auto',
+    fertig: true,
+    seoKeywords: 'Schadenrückkauf Rechner, Kfz Schaden selbst zahlen oder Versicherung, Rückstufung berechnen, Schaden zurückkaufen Frist, SF Klasse Rückstufung Mehrbeitrag',
+    quellen: ['https://www.gdv.de/resource/blob/6178/ec39e06d2f552aca5f35f19277c94603/01-allgemeine-bedingungen-fuer-die-kfz-versicherung-akb-2015--data.pdf', 'https://www.gesetze-im-internet.de/vvg_2008/__115.html'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import SchadenrueckkaufRechner from '../components/rechner/SchadenrueckkaufRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Schadenrückkauf-Rechner 2026 – Kfz-Schaden selbst zahlen oder Rückstufung hinnehmen?";
+const description = "Kfz-Schadenrückkauf berechnen: Mehrbeitrag durch die SF-Rückstufung über die nächsten Jahre gegen den Erstattungsbetrag der Versicherung stellen. Mit 6-Monats-Frist nach I.5 AKB, Break-even-Jahr und Beitragsverlauf für Haftpflicht und Vollkasko.";
+const keywords = "Schadenrückkauf Rechner, Kfz Schaden selbst zahlen oder Versicherung, Rückstufung Kfz Versicherung berechnen, Schadenrückkauf lohnt sich, Schaden zurückkaufen Frist 6 Monate, SF Klasse Rückstufung Mehrbeitrag, Rückkauf Haftpflichtschaden, Vollkasko Schaden selbst bezahlen, Schadenfreiheitsrabatt retten";
+
+const faqs = [
+  {
+    frage: "Was ist der Schadenrückkauf bei der Kfz-Versicherung?",
+    antwort: "Nach einem Haftpflichtschaden reguliert Ihre Versicherung den Schaden des Unfallgegners und stuft Ihren Vertrag zum nächsten 1. Januar in eine schlechtere Schadenfreiheitsklasse zurück. Abschnitt I.5 der Allgemeinen Bedingungen für die Kfz-Versicherung (AKB) gibt Ihnen das Recht, die gezahlte Entschädigung freiwillig zu erstatten. Dann gilt der Vertrag als schadenfrei, die Rückstufung entfällt. Die Versicherung muss Sie nach Abschluss der Regulierung über die Höhe des Erstattungsbetrags informieren; ab dieser Mitteilung haben Sie sechs Monate Zeit. Die Musterbedingungen des GDV sehen den Rückkauf bis 500 € Entschädigung vor, die meisten Versicherer erlauben ihn auch bei höheren Beträgen und in der Vollkasko."
+  },
+  {
+    frage: "Wann lohnt sich der Rückkauf?",
+    antwort: "Wenn der Mehrbeitrag, den die Rückstufung über die kommenden Jahre kostet, höher ist als der Erstattungsbetrag. Im Beispiel des Rechners kostet die Haftpflicht 600 € bei 35 Prozent Beitragssatz; ohne Schaden sinkt der Satz im nächsten Jahr auf 34 Prozent (583 €), nach der Rückstufung steigt er auf 55 Prozent (943 €). Der Mehrbeitrag von 360 € im ersten Jahr schmilzt über zehn Jahre ab, summiert sich mit 3 Prozent allgemeiner Beitragssteigerung aber auf rund 2.170 €. Bei 900 € Erstattung lohnt sich der Rückkauf mit gut 1.270 € Vorteil; schon im dritten Jahr übersteigt der Mehrbeitrag den Rückkaufbetrag. Bei 2.500 € Erstattung wäre das Zahlen der Versicherung günstiger."
+  },
+  {
+    frage: "Wie lange wirkt eine Rückstufung nach?",
+    antwort: "Länger als die meisten denken. Bei einem Schaden wird der Vertrag je nach Versicherer und SF-Klasse um mehrere Klassen zurückgestuft, zum Beispiel von SF 15 auf SF 6. Beide Verläufe, mit und ohne Schaden, steigen danach jedes schadenfreie Jahr um eine Klasse. Der Abstand in Klassen bleibt also gleich; er verschwindet erst, wenn beide Verläufe die höchste Klasse erreicht haben. In Euro wird der Abstand trotzdem kleiner, weil die Beitragssätze in hohen SF-Klassen dicht beieinanderliegen. Realistisch sind acht bis fünfzehn Jahre spürbarer Mehrbeitrag. Der Rechner lässt Sie die Dauer und den Verlauf (abschmelzend oder konstant) selbst wählen."
+  },
+  {
+    frage: "Woher bekomme ich die Beitragssätze für den Rechner?",
+    antwort: "Aus den Tarifbedingungen Ihres Versicherers: Dort steht eine Tabelle, die jeder SF-Klasse einen Beitragssatz in Prozent zuordnet, und eine Rückstufungstabelle, die zeigt, in welche Klasse Sie nach einem, zwei oder mehr Schäden fallen. Der aktuelle Beitragssatz steht auch auf der Beitragsrechnung. Der Beitragssatz nächstes Jahr ohne Schaden ist der Wert der nächstbesseren Klasse, der Satz nach Rückstufung der Wert der Klasse aus der Rückstufungstabelle. Die GDV-Musterbedingungen enthalten für diese Tabellen nur Platzhalter, weil jeder Versicherer eigene Werte verwendet. Alternativ nennt das Rückkauf-Schreiben vieler Versicherer den Mehrbeitrag direkt."
+  },
+  {
+    frage: "Kann ich verhindern, dass die Versicherung überhaupt zahlt?",
+    antwort: "Bei der Haftpflicht nicht. Der Geschädigte hat nach § 115 VVG einen Direktanspruch gegen Ihren Versicherer und kann sich unmittelbar an ihn wenden. Sie sind außerdem verpflichtet, den Schaden zu melden. Wer den Unfallgegner stattdessen privat auszahlt, riskiert, dass dieser später doch die Versicherung einschaltet, etwa wenn sich Folgeschäden zeigen. Der sichere Weg ist: Schaden melden, regulieren lassen, das Rückkauf-Schreiben abwarten und dann anhand des tatsächlichen Erstattungsbetrags entscheiden. Erst die Mitteilung setzt die Sechs-Monats-Frist in Gang."
+  },
+  {
+    frage: "Gilt der Rückkauf auch für Vollkasko-Schäden?",
+    antwort: "Die GDV-Musterbedingungen regeln den Rückkauf in I.5 nur für die Kfz-Haftpflicht. In der Praxis bieten fast alle Versicherer ihn auch in der Vollkasko an, oft unter derselben Nummer in ihren eigenen AKB. Beim Kaskoschaden gilt: Erstattet wird nur, was die Versicherung tatsächlich gezahlt hat, also der Schaden abzüglich Ihrer Selbstbeteiligung. Und häufig ist es klüger, den Schaden gar nicht erst zu melden, wenn er die Selbstbeteiligung nur knapp übersteigt. Anders als in der Haftpflicht gibt es in der Kasko keinen Geschädigten mit Direktanspruch, Sie entscheiden allein."
+  },
+  {
+    frage: "Was bringt ein Rabattschutz im Vergleich?",
+    antwort: "Der Rabattschutz ist ein Tarifbaustein, bei dem ein Schaden pro Jahr keine Rückstufung auslöst. Er kostet einen laufenden Beitragsaufschlag und wirkt nur beim aktuellen Versicherer: Beim Wechsel wird der Vertrag mit dem tatsächlichen Schadenverlauf übernommen, der geschützte Schaden zählt dann doch. Wer Rabattschutz hat, braucht den Rückkauf nicht. Für alle anderen ist der Rückkauf die flexible Variante: Sie zahlen nur, wenn wirklich etwas passiert ist, und können nach dem Schreiben des Versicherers in Ruhe rechnen."
+  },
+  {
+    frage: "Was passiert bei zwei Schäden im selben Jahr?",
+    antwort: "Die Rückstufung fällt deutlich härter aus: Die Rückstufungstabellen sehen für zwei Schäden im Kalenderjahr eine Einstufung nahe der Klasse 0 oder darunter vor, bei drei und mehr Schäden noch tiefer. Der Mehrbeitrag pro Jahr kann sich dann verdoppeln oder verdreifachen, und die Erholung dauert entsprechend länger. Rechnen Sie in diesem Fall mit dem Beitragssatz aus der Spalte für zwei Schäden. Häufig lohnt es sich, den kleineren der beiden Schäden zurückzukaufen, damit nur noch ein Schaden zählt."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Schadenrückkauf-Rechner", url: "/schadenrueckkauf-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚗</span>
+          <div>
+            <h1 class="text-2xl font-bold">Schadenrückkauf-Rechner</h1>
+            <p class="text-orange-100 text-sm">Kfz-Schaden selbst zahlen oder Rückstufung hinnehmen: Mehrbeitrag gegen Erstattung rechnen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SchadenrueckkaufRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">GDV-Musterbedingungen AKB 2015 (Stand 30.04.2025): Abschnitt I (SF-System), I.3.2 Besserstufung, I.4 schadenfreier/schadenbelasteter Verlauf, I.5 Rückkauf innerhalb von sechs Monaten nach Mitteilung (Muster: bis 500 €); § 115 VVG (Direktanspruch).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Ihre Beitragssätze mit und ohne Rückstufung, Grundbeitrag aus aktuellem Beitrag, abschmelzender oder konstanter Mehrbeitrag über wählbare Dauer, allgemeine Beitragssteigerung, Break-even-Jahr, Fristende sechs Monate nach Mitteilung, Hinweis auf die 500-€-Mustergrenze.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Versichererspezifische SF- und Rückstufungstabellen (müssen eingegeben werden), Rabattschutz, weitere Schäden im Zeitraum, Versicherer- oder Fahrzeugwechsel, Zinsen auf den Rückkaufbetrag, Selbstbeteiligung in der Kasko.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Schaden zurückkaufen oder nicht: Die Rechnung hinter der Entscheidung</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>Ein kleiner Parkrempler, 900 € Blechschaden am fremden Auto, die Versicherung zahlt. Ein paar Wochen später kommt ein Brief: Sie könnten den Betrag erstatten und würden dann so gestellt, als wäre nichts passiert. Die Frage, ob sich das lohnt, ist eine reine Rechenaufgabe, aber eine mit Tücken: Der Mehrbeitrag durch die Rückstufung fällt nicht einmal an, sondern viele Jahre lang, und er hängt von Tabellen ab, die bei jedem Versicherer anders aussehen.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Wie das SF-System funktioniert</h3>
+          <p>In der Kfz-Haftpflicht und der Vollkasko richtet sich Ihr Beitrag nach der Schadenfreiheitsklasse (SF-Klasse). Jedes Kalenderjahr ohne gemeldeten Schaden bringt eine Klasse mehr (I.3.2 AKB), und jede Klasse hat einen Beitragssatz in Prozent des Grundbeitrags: je höher die Klasse, desto niedriger der Satz, wobei die Abstände zwischen den Klassen nach oben hin immer kleiner werden. Meldet der Versicherer für ein Jahr eine Entschädigung oder bildet er eine Rückstellung, ist der Verlauf schadenbelastet (I.4.2), und der Vertrag wird zum nächsten 1. Januar nach der Rückstufungstabelle des Versicherers zurückgestuft, häufig um mehrere Klassen. Die genauen Sätze und Rückstufungen sind in den Musterbedingungen des GDV nur als Platzhalter angelegt; jeder Versicherer füllt sie selbst.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Das Rückkaufrecht nach I.5 AKB</h3>
+          <p>Nach Abschluss der Regulierung informiert Sie der Versicherer über die Höhe seiner Entschädigung. Erstatten Sie diesen Betrag innerhalb von sechs Monaten nach der Mitteilung, wird der Vertrag als schadenfrei behandelt. Zwei Details sind wichtig: Erstens gilt der Betrag aus der Mitteilung; muss der Versicherer später noch mehr zahlen, etwa weil der Unfallgegner Folgeschäden geltend macht, erhöht das den Erstattungsbetrag nicht mehr. Zweitens sieht das GDV-Muster den Rückkauf nur bis 500 € vor; die meisten Versicherer haben diese Grenze angehoben oder gestrichen und dehnen das Recht auf die Vollkasko aus. Ein Blick in die eigenen AKB oder ein Anruf klärt das.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel: 900 € Schaden bei SF 15</h3>
+          <p>Ihr Haftpflichtbeitrag beträgt 600 € bei 35 Prozent Beitragssatz. Der Grundbeitrag (100 Prozent) ist also 1.714 €. Ohne Schaden würden Sie nächstes Jahr in die nächste Klasse mit 34 Prozent aufsteigen: 583 €. Nach der Rückstufung liegt Ihr Satz laut Tabelle bei 55 Prozent: 943 €. Mehrbeitrag im ersten Jahr: 360 €. Weil beide Verläufe jedes Jahr eine Klasse besser werden und die Sätze oben enger zusammenrücken, schmilzt der Mehrbeitrag ab; der Rechner nimmt einen linearen Rückgang über zehn Jahre an und rechnet 3 Prozent allgemeine Beitragssteigerung ein. Ergebnis: 2.169 € Mehrbeitrag insgesamt, davon 999 € bereits nach drei Jahren. Der Rückkauf für 900 € spart also rund 1.270 €. Das ist die Voreinstellung des Rechners.</p>
+          <p>Wählen Sie stattdessen "bleibt konstant" ohne Beitragssteigerung, kommen 3.600 € Mehrbeitrag heraus; die Wahrheit liegt je nach Tarif dazwischen. Bei 2.500 € Erstattung dreht sich das Ergebnis unter den Ausgangsannahmen: 2.169 € Mehrbeitrag sind weniger als 2.500 €, die Versicherung zahlen zu lassen ist um 331 € günstiger. Wer einen jungen Vertrag mit hohen Beitragssätzen hat, etwa 900 € Beitrag bei 60 Prozent und Rückstufung auf 85 Prozent, zahlt 450 € Mehrbeitrag allein im ersten Jahr und sollte fast jeden Schaden unter 2.000 € zurückkaufen.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Die Frist im Blick behalten</h3>
+          <p>Die sechs Monate laufen ab der Mitteilung des Versicherers, nicht ab dem Unfall und nicht ab der Zahlung an den Geschädigten. Tragen Sie das Datum des Schreibens in den Rechner ein, und er zeigt Ihnen den letzten Tag. Viele Versicherer nennen im Schreiben zusätzlich den voraussichtlichen Mehrbeitrag; dieser Wert ist präziser als jede Schätzung, weil er auf der echten Tabelle beruht. Vergleichen Sie ihn direkt mit dem Erstattungsbetrag.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Warum die Dauer so wichtig ist</h3>
+          <p>Der häufigste Fehler ist, nur das erste Jahr zu betrachten. 360 € Mehrbeitrag gegen 900 € Erstattung sieht nach einem klaren Nein aus. Erst die Summe über die Jahre zeigt das wahre Bild. Wer den Vertrag ohnehin bald kündigt, das Auto abmeldet oder im Alter weniger fährt, kann eine kürzere Dauer eintragen; beim Wechsel zu einem anderen Versicherer wird der Schadenverlauf allerdings übernommen (I.6 AKB), die Rückstufung reist also mit. Umgekehrt trifft die Rückstufung Fahrer mit hohem Grundbeitrag, teurem Fahrzeug oder Zweitwagen besonders hart, weil sich jeder Prozentpunkt in mehr Euro übersetzt.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Gesamtbeitrag statt Spartenbeitrag eingegeben</h3><p>Die Rückstufung trifft nur die Sparte, in der der Schaden reguliert wurde: Haftpflicht oder Vollkasko. Teilkasko kennt keine SF-Klassen. Rechnen Sie mit dem Beitrag und Beitragssatz genau dieser Sparte.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Frist ab Unfalldatum gerechnet</h3><p>Die sechs Monate beginnen mit der Mitteilung des Versicherers über die Höhe der Entschädigung. Wer kein Schreiben bekommen hat, sollte nachfragen; ohne Mitteilung läuft die Frist nicht.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Beide Sparten betroffen</h3><p>Wenn beim Unfall auch das eigene Auto beschädigt wurde und die Vollkasko zahlt, werden Haftpflicht und Vollkasko getrennt zurückgestuft. Rechnen Sie beide Sparten einzeln; der Rückkauf kann sich in einer lohnen und in der anderen nicht.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Rückkauf mit Rabattschutz kombiniert</h3><p>Mit Rabattschutz bleibt die SF-Klasse beim ersten Schaden im Jahr ohnehin erhalten. Ein Rückkauf bringt dann nur etwas, wenn Sie den Rabattschutz für einen zweiten Schaden im selben Jahr aufsparen oder einen Versichererwechsel planen, bei dem der geschützte Schaden mitzählt.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Schaden verschwiegen, um zu sparen</h3><p>Die Meldepflicht besteht unabhängig davon, ob Sie später zurückkaufen. Der Geschädigte kann sich nach § 115 VVG direkt an Ihren Versicherer wenden. Melden, regulieren lassen und dann entscheiden ist der sichere Weg.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Rückstellung übersehen</h3><p>Auch wenn der Versicherer noch nicht gezahlt, aber eine Rückstellung gebildet hat, gilt das Jahr als schadenbelastet (I.4.2.1). Wird der Schaden später doch nicht reguliert, erfolgt keine Rückstufung; das Rückkauf-Schreiben kommt erst nach Abschluss der Regulierung.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="schadenrueckkauf" slugs={['versicherung-auto', 'bussgeld', 'kfz-steuer', 'unfallrente']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Schadenrückkauf-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/schadenrueckkauf-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

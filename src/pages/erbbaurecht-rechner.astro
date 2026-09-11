@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import ErbbaurechtRechner from '../components/rechner/ErbbaurechtRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Erbbaurecht-Rechner 2026 – Erbbauzins oder Grundstückskauf: Was ist günstiger?";
+const description = "Erbbaurecht vs. Kauf berechnen: Erbbauzins mit Wertsicherung, Grunderwerbsteuer auf den kapitalisierten Erbbauzins (Anlage 9a BewG), Notarkosten, Kapitalkosten des Kaufs und Wertentwicklung des Bodens. Break-even-Jahr und Kostenvergleich über 5 bis 100 Jahre.";
+const keywords = "Erbbaurecht Rechner, Erbbauzins berechnen, Erbbaurecht oder Kauf, Erbbaurecht Vergleich Kauf, Erbbauzins Höhe Prozent, Erbbaurecht Grunderwerbsteuer, Erbbaurecht lohnt sich, Erbbauzins Anpassung, Erbpacht Rechner, Erbbaurecht Nachteile, Erbbaurecht 99 Jahre";
+
+const faqs = [
+  {
+    frage: "Wie hoch ist der Erbbauzins üblicherweise?",
+    antwort: "Das Gesetz schreibt keine Höhe vor; der Erbbauzins ist frei verhandelbar (§ 9 ErbbauRG) und wird als Prozentsatz des Bodenwerts pro Jahr vereinbart. Kirchliche Stiftungen und Kommunen, die den Großteil der Erbbaurechte vergeben, verlangen für Wohnzwecke meist zwischen 2 und 5 Prozent, in Neuverträgen oft 3 bis 4 Prozent; einige Städte fördern Familien mit reduzierten Sätzen. Bei einem Bodenwert von 250.000 € bedeutet ein Erbbauzins von 3 Prozent 7.500 € im Jahr oder 625 € im Monat. Entscheidend für den Vergleich mit dem Kauf ist, ob dieser Satz unter dem Sollzins liegt, den Sie für ein Grundstücksdarlehen zahlen würden."
+  },
+  {
+    frage: "Darf der Erbbauzins erhöht werden?",
+    antwort: "Nur, wenn der Vertrag eine Anpassungsklausel enthält, was heute Standard ist. Für Wohngebäude begrenzt § 9a ErbbauRG die Erhöhung: Sie darf nicht unbillig sein und regelmäßig nicht über die Änderung der allgemeinen wirtschaftlichen Verhältnisse seit Vertragsschluss hinausgehen, also im Kern die Entwicklung der Lebenshaltungskosten und Einkommen. Eine Anpassung allein an gestiegene Bodenwerte ist bei Wohnnutzung unzulässig. Erhöhungen sind frühestens drei Jahre nach Vertragsschluss und danach frühestens drei Jahre nach der letzten Erhöhung möglich. Die meisten Verträge koppeln den Erbbauzins an den Verbraucherpreisindex."
+  },
+  {
+    frage: "Fällt beim Erbbaurecht Grunderwerbsteuer an?",
+    antwort: "Ja. Erbbaurechte stehen nach § 2 Abs. 2 Nr. 1 GrEStG den Grundstücken gleich. Bemessungsgrundlage ist nicht der Bodenwert, sondern der kapitalisierte Erbbauzins: der Jahreswert multipliziert mit dem Vervielfältiger aus Anlage 9a zum Bewertungsgesetz, der von der Laufzeit abhängt (30 Jahre: 14,933; 50 Jahre: 17,397; 99 Jahre: 18,589; über 101 Jahre: 18,6). Bei 7.500 € Erbbauzins und 99 Jahren Laufzeit ergibt das einen Kapitalwert von 139.418 €, in Berlin also 8.365 € Grunderwerbsteuer, gegenüber 15.000 € beim Kauf des Grundstücks für 250.000 €. Beim Kauf des Gebäudes auf dem Erbbaugrundstück kommt die Steuer auf den Gebäudepreis hinzu."
+  },
+  {
+    frage: "Was passiert, wenn das Erbbaurecht ausläuft?",
+    antwort: "Das Erbbaurecht erlischt mit Ablauf der vereinbarten Zeit, das Gebäude geht auf den Grundstückseigentümer über. Dafür schuldet er nach § 27 ErbbauRG eine Entschädigung, deren Höhe im Vertrag geregelt sein kann. Dient das Erbbaurecht dem Wohnbedürfnis minderbemittelter Bevölkerungskreise, muss die Entschädigung mindestens zwei Drittel des Verkehrswerts des Gebäudes betragen; in anderen Fällen sind auch niedrigere Vereinbarungen zulässig. Der Eigentümer kann die Entschädigung abwenden, indem er das Erbbaurecht für die restliche Standdauer des Gebäudes verlängert. In der Praxis werden auslaufende Erbbaurechte meist verlängert oder das Grundstück wird dem Erbbauberechtigten zum Kauf angeboten."
+  },
+  {
+    frage: "Wann lohnt sich das Erbbaurecht gegenüber dem Kauf?",
+    antwort: "Als Faustregel dann, wenn der Erbbauzins deutlich unter dem Finanzierungszins liegt und die Bodenwerte in der Lage nicht stark steigen. Beim Kauf zahlen Sie auf das gebundene Kapital (Kaufpreis plus Nebenkosten) jedes Jahr den Sollzins, bekommen dafür aber die Wertsteigerung des Bodens und am Ende ein schuldenfreies Grundstück. Im Beispiel des Rechners (250.000 € Bodenwert, 3 Prozent Erbbauzins mit 2 Prozent Anpassung, 3,5 Prozent Sollzins, 1,5 Prozent Bodenwertsteigerung) ist der Kauf über 30 Jahre rund 149.000 € günstiger und überholt das Erbbaurecht bereits im vierten Jahr. Mit 2 Prozent Erbbauzins und stagnierenden Bodenwerten dreht sich das Bild: Dann spart das Erbbaurecht über 30 Jahre rund 94.000 €."
+  },
+  {
+    frage: "Kann ich ein Erbbaurecht verkaufen oder beleihen?",
+    antwort: "Ja, das Erbbaurecht ist ein grundstücksgleiches Recht mit eigenem Erbbaugrundbuch; es kann verkauft, vererbt und mit Grundschulden belastet werden. Allerdings sehen fast alle Verträge nach § 5 ErbbauRG vor, dass Verkauf und Belastung der Zustimmung des Grundstückseigentümers bedürfen, die er nicht ohne ausreichenden Grund verweigern darf; sonst kann das Amtsgericht sie ersetzen (§ 7 ErbbauRG). Banken bewerten Erbbaurechte vorsichtiger als Volleigentum: Die Restlaufzeit muss die Darlehenslaufzeit deutlich übersteigen, und der Beleihungswert liegt unter dem eines gekauften Grundstücks. Bei Restlaufzeiten unter 30 bis 40 Jahren wird der Wiederverkauf schwierig, weil Käufer kaum noch eine Finanzierung erhalten."
+  },
+  {
+    frage: "Wer zahlt beim Erbbaurecht Grundsteuer und Erschließungskosten?",
+    antwort: "Grundsteuerschuldner ist der Erbbauberechtigte, nicht der Grundstückseigentümer: § 261 BewG rechnet den Grundsteuerwert von Grundstück und Erbbaurecht dem Erbbauberechtigten zu, und § 10 GrStG macht denjenigen zum Schuldner, dem der Steuergegenstand zugerechnet ist. Auch Erschließungsbeiträge, Anliegerkosten und Versicherungen werden vertraglich üblicherweise auf den Erbbauberechtigten übertragen (§ 2 Nr. 3 ErbbauRG). Wirtschaftlich stehen Sie damit wie ein Eigentümer da, nur ohne Bodenwertzuwachs. Der Rechner lässt diese Posten außen vor, weil sie in beiden Varianten in ähnlicher Höhe anfallen."
+  },
+  {
+    frage: "Was ist der Heimfall?",
+    antwort: "Der Heimfall ist die vertraglich vereinbarte Pflicht, das Erbbaurecht vorzeitig auf den Grundstückseigentümer zurückzuübertragen, wenn bestimmte Voraussetzungen eintreten (§ 2 Nr. 4 ErbbauRG), etwa Insolvenz, vertragswidrige Nutzung oder Zahlungsverzug. Beim Erbbauzins kann der Heimfall nach § 9 Abs. 4 ErbbauRG erst verlangt werden, wenn der Erbbauberechtigte mit mindestens zwei Jahresbeträgen im Rückstand ist. Auch beim Heimfall ist eine angemessene Vergütung für das Erbbaurecht zu zahlen (§ 32 ErbbauRG); bei Wohnzwecken für minderbemittelte Kreise darf sie nicht ausgeschlossen werden und muss mindestens zwei Drittel des gemeinen Werts des Erbbaurechts betragen."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Erbbaurecht-Rechner", url: "/erbbaurecht-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏗️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Erbbaurecht-Rechner</h1>
+            <p class="text-emerald-100 text-sm">Erbbauzins gegen Grundstückskauf: Gesamtkosten, Break-even und Nebenkosten im Vergleich</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ErbbaurechtRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">ErbbauRG §§ 2, 5, 9, 9a (Anpassung frühestens nach 3 Jahren, Billigkeitsgrenze), 27 (Entschädigung); GrEStG § 2 Abs. 2 Nr. 1, § 8 Abs. 1 mit Anlage 9a BewG (Vervielfältiger); § 49 Abs. 2 GNotKG (Geschäftswert 80 %); Grunderwerbsteuersätze der Länder 2026.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Erbbauzins mit periodischer Wertsicherung, Grunderwerbsteuer auf den kapitalisierten Erbbauzins nach Laufzeit, Notar/Grundbuch beider Varianten, Kapitalkosten des Kaufs (Darlehenszins oder entgangene Rendite), Wertentwicklung des Bodens, kumulierter Verlauf mit Break-even-Jahr, Monatsraten.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Gebäudeentschädigung bei Ablauf, Heimfall, Zustimmungsvorbehalte, steuerliche Abzugsfähigkeit des Erbbauzinses bei Vermietung, Zinsänderungsrisiko nach Zinsbindung, Beleihungsabschläge der Banken, Grundsteuer und Erschließung, Verkaufserlös bei kurzer Restlaufzeit.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Erbbaurecht oder Kauf: So rechnen Sie richtig</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>Beim Erbbaurecht (umgangssprachlich Erbpacht) kaufen Sie das Grundstück nicht, sondern erhalten für meist 75 bis 99 Jahre das Recht, darauf ein Gebäude zu errichten und zu nutzen (§ 1 ErbbauRG). Dafür zahlen Sie einen jährlichen Erbbauzins an den Grundstückseigentümer, in der Regel eine Kirche, eine Stiftung oder eine Kommune. Das Haus gehört Ihnen, der Boden nicht. Der Reiz liegt auf der Hand: Wer den Bodenwert nicht finanzieren muss, braucht bei einem 250.000-Euro-Grundstück ein Viertelmillion weniger Darlehen. Ob das unterm Strich günstiger ist, hängt von vier Größen ab, die der Rechner gegeneinander stellt.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">1. Der Erbbauzins und seine Anpassung</h3>
+          <p>Der Erbbauzins wird als Prozentsatz des Bodenwerts vereinbart. Weil er über Jahrzehnte läuft, enthält fast jeder Vertrag eine Wertsicherungsklausel, die den Zins an den Verbraucherpreisindex koppelt. § 9a ErbbauRG setzt für Wohnzwecke die Grenze: Erhöhungen dürfen nicht über die Änderung der allgemeinen wirtschaftlichen Verhältnisse hinausgehen, eine Anpassung an gestiegene Bodenpreise ist unzulässig, und zwischen zwei Erhöhungen müssen mindestens drei Jahre liegen. Der Rechner passt den Erbbauzins deshalb in einem wählbaren Intervall ab drei Jahren an eine Inflationsrate an. Bei 2 Prozent Inflation und 7.500 € Startzins zahlen Sie im 30. Jahr 12.802 €; über 30 Jahre summiert sich der Erbbauzins auf 298.256 €, deutlich mehr als der Bodenwert von 250.000 €.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">2. Nebenkosten beider Varianten</h3>
+          <p>Ein verbreiteter Irrtum ist, dass das Erbbaurecht keine Grunderwerbsteuer auslöst. Tatsächlich stellt § 2 Abs. 2 Nr. 1 GrEStG Erbbaurechte den Grundstücken gleich. Besteuert wird die Gegenleistung, und das ist der kapitalisierte Erbbauzins: Jahreswert mal Vervielfältiger aus Anlage 9a zum Bewertungsgesetz. Der Faktor steigt mit der Laufzeit und erreicht bei 99 Jahren 18,589. Bei 7.500 € Erbbauzins beträgt der Kapitalwert 139.418 €, die Berliner Grunderwerbsteuer von 6 Prozent darauf 8.365 €. Der Kauf desselben Grundstücks kostet 15.000 € Grunderwerbsteuer. Die Notar- und Grundbuchkosten bemessen sich beim Erbbaurecht nach 80 Prozent des Grundstückswerts (§ 49 Abs. 2 GNotKG), beim Kauf nach dem vollen Kaufpreis.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">3. Kapitalkosten des Kaufs</h3>
+          <p>Wer das Grundstück kauft, bindet Kapital: den Kaufpreis plus Nebenkosten, im Beispiel 268.750 €. Dieses Kapital kostet jedes Jahr den Sollzins, entweder als Darlehenszins oder, soweit Eigenkapital eingesetzt wird, als entgangene Rendite. Der Rechner setzt dafür einen einheitlichen Satz an, sodass die Finanzierungsstruktur das Ergebnis nicht verzerrt. Bei 3,5 Prozent sind das 9.406 € im Jahr, über 30 Jahre 282.188 €. Die Tilgung zählt nicht zu den Kosten, denn sie baut Vermögen auf: Am Ende gehört das Grundstück Ihnen. Zur Orientierung zeigt der Rechner trotzdem die Monatsrate, mit der ein Volldarlehen im Betrachtungszeitraum getilgt wäre, im Beispiel 1.218 € gegenüber 625 € Erbbauzins im ersten Jahr.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">4. Wertentwicklung des Bodens</h3>
+          <p>Der entscheidende Unterschied: Beim Kauf gehört Ihnen jeder Euro Bodenwertsteigerung, beim Erbbaurecht profitiert allein der Grundstückseigentümer und erhöht über die Wertsicherung sogar noch den Erbbauzins. Schon 1,5 Prozent Wertsteigerung im Jahr machen aus 250.000 € nach 30 Jahren 390.770 €, ein Zuwachs von 140.770 €, den der Rechner von den Kaufkosten abzieht. In Lagen mit stagnierenden Bodenpreisen fällt dieser Vorteil weg, und das Erbbaurecht wird deutlich attraktiver.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel: Berlin, 250.000 € Bodenwert</h3>
+          <p>Erbbauzins 3 Prozent (7.500 €), Anpassung 2 Prozent alle drei Jahre, Laufzeit 99 Jahre, Betrachtung 30 Jahre, Sollzins 3,5 Prozent, Wertsteigerung 1,5 Prozent. Erbbaurecht: 298.256 € Erbbauzins + 8.365 € Grunderwerbsteuer + 3.000 € Notar = 309.621 €. Kauf: 18.750 € Nebenkosten + 282.188 € Kapitalkosten − 140.770 € Wertzuwachs = 160.167 €. Der Kauf ist über 30 Jahre 149.453 € günstiger und liegt bereits ab dem vierten Jahr vorn. Das ist die Voreinstellung des Rechners.</p>
+          <p>Ändern Sie den Erbbauzins auf 2 Prozent und die Wertsteigerung auf 0, kippt das Ergebnis: Erbbaurecht 207.414 € gegen Kauf 300.938 €, das Erbbaurecht spart 93.524 € und bleibt über den gesamten Zeitraum vorn. Mit 1,5 Prozent Erbbauzins bei 4 Prozent Sollzins und 1,5 Prozent Wertsteigerung ist das Erbbaurecht trotz Bodenwertzuwachs noch 44.170 € günstiger. Die Faustregel lautet deshalb: Das Erbbaurecht lohnt sich, wenn der Erbbauzins spürbar unter dem Sollzins liegt oder der Bodenwert kaum steigt.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Was der Rechner nicht abbildet</h3>
+          <p>Am Ende der Laufzeit fällt das Gebäude an den Grundstückseigentümer, der nach § 27 ErbbauRG eine Entschädigung zahlt, bei Wohnzwecken für minderbemittelte Kreise mindestens zwei Drittel des Verkehrswerts. Bei einem Betrachtungszeitraum weit unter der Laufzeit spielt das keine Rolle, beim Weiterverkauf mit kurzer Restlaufzeit aber sehr wohl: Ein Erbbaurecht mit 25 Jahren Restlaufzeit ist kaum noch finanzierbar und verliert entsprechend an Wert. Auch die Zustimmung des Eigentümers zu Verkauf und Belastung (§ 5 ErbbauRG), die vorsichtigere Beleihung durch Banken und die Frage, ob nach Ablauf verlängert wird, gehören in die Entscheidung. Wer vermietet, kann den Erbbauzins als Werbungskosten absetzen, während beim Kauf nur die Darlehenszinsen abziehbar sind.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Nur die Monatsrate verglichen</h3><p>625 € Erbbauzins gegen 1.218 € Kreditrate sieht nach einem klaren Sieg aus. Die Kreditrate enthält aber rund 430 € Tilgung, die Ihr Vermögen bildet, und der Erbbauzins steigt über die Jahre. Vergleichen Sie Kosten, nicht Liquidität.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Grunderwerbsteuer beim Erbbaurecht vergessen</h3><p>Sie fällt auf den kapitalisierten Erbbauzins an, bei 99 Jahren Laufzeit mit dem Faktor 18,589. Wer zusätzlich ein bestehendes Haus auf dem Erbbaugrundstück kauft, zahlt die Steuer auf Gebäudepreis plus Kapitalwert.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Anpassungsklausel überlesen</h3><p>Ein Erbbauzins, der an den Verbraucherpreisindex gekoppelt ist, verdoppelt sich bei 2 Prozent Inflation in 35 Jahren. Prüfen Sie Schwellenwert, Intervall und Bezugsindex im Vertrag und tragen Sie die Werte im Rechner ein.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Restlaufzeit ignoriert</h3><p>Beim Kauf eines bestehenden Erbbaurechts zählt die Restlaufzeit, nicht die ursprüngliche. Unter 40 Jahren wird die Finanzierung schwierig, unter 30 Jahren der spätere Verkauf. Tragen Sie die Restlaufzeit als Laufzeit ein; sie bestimmt auch den Vervielfältiger für die Grunderwerbsteuer.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Bodenwert mit Kaufpreis der Immobilie verwechselt</h3><p>Erbbauzins und Vergleich beziehen sich allein auf den Boden. Der Gebäudewert ist in beiden Varianten gleich und gehört nicht in den Rechner. Den Bodenwert liefert der Bodenrichtwert des Gutachterausschusses mal Grundstücksfläche.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Zinsbindung als Dauerzins gerechnet</h3><p>Der Sollzins gilt meist nur 10 bis 15 Jahre. Rechnen Sie den Vergleich mit einem vorsichtigen Durchschnittszins über den gesamten Zeitraum, nicht mit dem aktuellen Angebot.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="erbbaurecht" slugs={['grunderwerbsteuer', 'notarkosten', 'baufinanzierung', 'grundsteuer']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Erbbaurecht-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/erbbaurecht-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>
