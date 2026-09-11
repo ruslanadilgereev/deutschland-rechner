@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import PflegeRentenpunkteRechner from '../components/rechner/PflegeRentenpunkteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Pflege-Rentenpunkte-Rechner 2026 – Rente für pflegende Angehörige berechnen";
+const description = "Wie viel Rente bringt die Pflege von Angehörigen? Rentenpunkte 2026 je Pflegegrad berechnen: Beiträge der Pflegekasse nach § 166 SGB VI, Rentenplus je Pflegejahr, Voraussetzungen prüfen. Kostenlos!";
+const keywords = "Rentenpunkte Pflege Angehörige, Rente für Pflege berechnen, Pflege Rentenpunkte Rechner, Rentenbeiträge Pflegeperson 2026, Pflegegrad 3 Rentenpunkte, Pflegegrad 4 Rente, Pflegegrad 5 Rentenpunkte, Pflege Rente Anspruch, Rentenversicherung Pflegeperson, § 44 SGB XI Rentenbeiträge, pflegende Angehörige Rente 2026";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie viel Rente bringt ein Jahr Pflege von Angehörigen 2026?",
+    antwort: "Das hängt vom Pflegegrad und der bezogenen Leistung ab. Bei Pflegegrad 3 mit Pflegegeld zahlt die Pflegekasse Beiträge auf 43 % der Bezugsgröße (1.700,65 € im Monat). Ein volles Pflegejahr bringt so 0,3929 Entgeltpunkte – beim Rentenwert von 42,52 € sind das 16,71 € Bruttorente im Monat, lebenslang. Die Spanne reicht 2026 von 7,34 € (Pflegegrad 2, nur Sachleistung) bis 38,85 € (Pflegegrad 5, nur Pflegegeld) je Pflegejahr."
+  },
+  {
+    frage: "Welche Voraussetzungen gelten für Rentenbeiträge der Pflegekasse?",
+    antwort: "Nach § 44 Abs. 1 SGB XI müssen vier Bedingungen erfüllt sein: Die gepflegte Person hat mindestens Pflegegrad 2, Sie pflegen wenigstens 10 Stunden pro Woche an regelmäßig mindestens 2 Tagen in häuslicher Umgebung, Sie sind daneben nicht mehr als 30 Stunden pro Woche erwerbstätig und Sie beziehen noch keine Vollrente wegen Alters nach Erreichen der Regelaltersgrenze. Die Pflege darf nicht erwerbsmäßig sein – ein Entgelt bis zur Höhe des Pflegegeldes ist unschädlich. Ob die Stunden erreicht werden, stellt der Medizinische Dienst fest."
+  },
+  {
+    frage: "Muss ich die Rentenbeiträge für die Pflege selbst beantragen?",
+    antwort: "Bei der Rentenversicherung nicht. Die Pflegekasse der gepflegten Person prüft die Voraussetzungen mit einem Fragebogen zur sozialen Sicherung der Pflegeperson, meldet Sie beim Rentenversicherungsträger an und überweist die Beiträge direkt (§ 44 Abs. 3 SGB XI). Sinnvoll ist, den Fragebogen gleich beim Antrag auf Pflegeleistungen auszufüllen – rückwirkend werden Beiträge nur ab Beginn der nachgewiesenen Pflegetätigkeit gezahlt. Ist die gepflegte Person privat pflegeversichert, zahlt das Versicherungsunternehmen nach denselben Regeln."
+  },
+  {
+    frage: "Bekomme ich Rentenpunkte, wenn ich neben der Pflege arbeite?",
+    antwort: "Ja, solange Sie regelmäßig nicht mehr als 30 Stunden pro Woche erwerbstätig sind (§ 3 Satz 3 SGB VI). Die Pflege-Beiträge kommen dann zusätzlich zu den Beiträgen aus Ihrem Job – Sie sammeln in demselben Jahr Entgeltpunkte aus beiden Quellen. Erst bei mehr als 30 Wochenstunden entfällt die Versicherungspflicht als Pflegeperson komplett. Ein Minijob oder eine Teilzeitstelle ist also unschädlich."
+  },
+  {
+    frage: "Was passiert, wenn sich mehrere Angehörige die Pflege teilen?",
+    antwort: "Dann werden die Beiträge nach dem Anteil an der gesamten Pflegetätigkeit aufgeteilt (§ 44 Abs. 1 Satz 3 SGB XI, § 166 Abs. 3 SGB VI). Pflegen zwei Geschwister eine Mutter mit Pflegegrad 4 (Pflegegeld) zu je 50 %, bekommt jede Person Beiträge auf 35 % statt 70 % der Bezugsgröße. Jede Pflegeperson muss dabei für sich die Mindestgrenze von 10 Wochenstunden erreichen. Machen die Beteiligten keine oder widersprüchliche Angaben, teilt die Pflegekasse zu gleichen Teilen auf."
+  },
+  {
+    frage: "Zählen Pflegezeiten für die Wartezeit und die Rente mit 63?",
+    antwort: "Ja. Pflegezeiten mit Beiträgen der Pflegekasse sind Pflichtbeitragszeiten. Sie zählen für die allgemeine Wartezeit von 5 Jahren, für die Wartezeit von 35 Jahren (Altersrente für langjährig Versicherte) und für die 45 Jahre der Altersrente für besonders langjährig Versicherte. Wer noch nie in die Rentenversicherung eingezahlt hat, kann allein durch Pflege einen eigenen Rentenanspruch erwerben."
+  },
+  {
+    frage: "Gibt es die Rentenbeiträge auch bei Pflegegrad 1?",
+    antwort: "Nein. Rentenbeiträge zahlt die Pflegekasse nur für die Pflege von Personen mit mindestens Pflegegrad 2 (§ 44 Abs. 1 Satz 1 SGB XI). Bei Pflegegrad 1 gibt es weder Pflegegeld noch Beiträge zur Renten-, Unfall- oder Arbeitslosenversicherung für die Pflegeperson. Pflegen Sie mehrere Personen, können die Pflegezeiten aber addiert werden, um die 10-Stunden-Grenze zu erreichen – sofern jede gepflegte Person mindestens Pflegegrad 2 hat."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Pflege-Rentenpunkte-Rechner", url: "/pflege-rentenpunkte-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🤲</span>
+          <div>
+            <h1 class="text-2xl font-bold">Pflege-Rentenpunkte-Rechner</h1>
+            <p class="text-emerald-100 text-sm">Wie viel Rente bringt die Pflege von Angehörigen? Stand 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PflegeRentenpunkteRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">§ 166 Abs. 2 &amp; 3 SGB VI (Prozentsätze der Bezugsgröße), § 44 SGB XI, § 3 Satz 1 Nr. 1a SGB VI, § 70 SGB VI, SV-Rechengrößen-Verordnung 2026 (Bezugsgröße 3.955 €, Durchschnittsentgelt 51.944 €), Rentenwert 42,52 € ab 1.7.2026.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Alle 12 Kombinationen aus Pflegegrad 2–5 und Pflegegeld/Kombination/Sachleistung, Aufteilung bei Mehrfachpflege, Beitragssatz 18,6 %, Hochrechnung über die Pflegedauer, Voraussetzungs-Check (10 h/2 Tage, 30-Stunden-Grenze, Altersvollrente).</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Künftige Rentenanpassungen und Durchschnittsentgelte, Zuschläge nach § 70 Abs. 3a SGB VI für die Pflege eines Kindes, Beiträge an berufsständische Versorgungswerke (§ 44 Abs. 2 SGB XI), Abzüge für Kranken-/Pflegeversicherung und Steuern auf die Rente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rente für pflegende Angehörige 2026: So viel bringt die Pflege</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer einen Angehörigen zu Hause pflegt, arbeitet oft weniger oder gar nicht mehr – und
+            verliert damit Rentenansprüche. Der Gesetzgeber gleicht das aus: Die <strong>Pflegekasse zahlt
+            Rentenbeiträge für die Pflegeperson</strong>, ohne dass diese selbst etwas einzahlt
+            (§ 44 SGB XI). Wie hoch die Beiträge sind, regelt <strong>§ 166 Abs. 2 SGB VI</strong> in einer
+            festen Tabelle: Je höher der Pflegegrad und je mehr die Angehörigen selbst pflegen (statt
+            eines Pflegedienstes), desto höher die Beitragsbemessungsgrundlage – und desto mehr
+            Rentenpunkte.
+          </p>
+          <p>
+            Unser <strong>Pflege-Rentenpunkte-Rechner</strong> übersetzt diese Tabelle in eine konkrete
+            Geldfrage: Wie viel zusätzliche Monatsrente entsteht aus einem, zwei oder fünf Jahren Pflege?
+            Anders als der allgemeine <a href="/rentenpunkte-rechner">Rentenpunkte-Rechner</a>, der
+            Entgeltpunkte aus Ihrem Gehalt berechnet, prüft dieser Rechner zuerst die Voraussetzungen und
+            rechnet dann mit den Rechengrößen 2026.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Beitragstabelle nach § 166 Abs. 2 SGB VI</h3>
+          <p>
+            Bemessungsgrundlage ist jeweils ein Prozentsatz der <strong>Bezugsgröße</strong> (2026:
+            3.955 € im Monat). Auf diesen Betrag zahlt die Pflegekasse den vollen Beitragssatz von 18,6 %.
+          </p>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Pflegegrad</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Nur Pflegegeld</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Kombinationsleistung</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Nur Sachleistung</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-2 px-3 border-b font-medium">PG 2</td><td class="py-2 px-3 border-b text-right">27,0 % = 1.067,85 €</td><td class="py-2 px-3 border-b text-right">22,95 % = 907,67 €</td><td class="py-2 px-3 border-b text-right">18,9 % = 747,50 €</td></tr>
+                <tr><td class="py-2 px-3 border-b font-medium">PG 3</td><td class="py-2 px-3 border-b text-right">43,0 % = 1.700,65 €</td><td class="py-2 px-3 border-b text-right">36,55 % = 1.445,55 €</td><td class="py-2 px-3 border-b text-right">30,1 % = 1.190,45 €</td></tr>
+                <tr><td class="py-2 px-3 border-b font-medium">PG 4</td><td class="py-2 px-3 border-b text-right">70,0 % = 2.768,50 €</td><td class="py-2 px-3 border-b text-right">59,5 % = 2.353,22 €</td><td class="py-2 px-3 border-b text-right">49,0 % = 1.937,95 €</td></tr>
+                <tr><td class="py-2 px-3 font-medium">PG 5</td><td class="py-2 px-3 text-right">100 % = 3.955,00 €</td><td class="py-2 px-3 text-right">85,0 % = 3.361,75 €</td><td class="py-2 px-3 text-right">70,0 % = 2.768,50 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Monatliche Beitragsbemessungsgrundlage 2026 bei 100 % Pflegeanteil. Bei Kombinationsleistung gilt der Mittelwert-Satz unabhängig davon, wie die Kombination im Einzelfall aufgeteilt ist.</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Von der Bemessungsgrundlage zur Rente: die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Bemessung/Jahr = Bezugsgröße × Prozentsatz × 12 × Pflegeanteil</div>
+            <div>Entgeltpunkte = Bemessung/Jahr ÷ Durchschnittsentgelt (2026: 51.944 €)</div>
+            <div>Rentenplus/Monat = Entgeltpunkte × Rentenwert (42,52 €)</div>
+          </div>
+          <p>
+            <strong>Rechenbeispiel Pflegegrad 3, Pflegegeld, 2 Jahre Pflege:</strong> 3.955 € × 43 % = 1.700,65 €
+            im Monat, im Jahr 20.407,80 €. Geteilt durch das Durchschnittsentgelt ergibt das
+            <strong>0,3929 Entgeltpunkte pro Pflegejahr</strong>, nach zwei Jahren 0,7858 Punkte. Multipliziert
+            mit dem Rentenwert: <strong>33,41 € mehr Bruttorente im Monat</strong> – lebenslang. Die Pflegekasse
+            überweist dafür 316,32 € Beitrag pro Monat, also über die zwei Jahre 7.591,68 €.
+          </p>
+          <p>
+            <strong>Beispiel Pflegegrad 5, Pflegegeld, 5 Jahre:</strong> Die volle Bezugsgröße ergibt 0,9137
+            Entgeltpunkte je Jahr – fast so viel wie ein Durchschnittsverdiener. Nach fünf Jahren sind das
+            4,57 Punkte und rund <strong>194 € Monatsrente</strong>.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die vier Voraussetzungen im Detail</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Pflegegrad 2 bis 5</strong> der gepflegten Person – bei Pflegegrad 1 gibt es keine Beiträge.</li>
+            <li><strong>Mindestens 10 Stunden pro Woche</strong>, verteilt auf regelmäßig mindestens 2 Tage, in häuslicher Umgebung. Die Pflege mehrerer Personen wird zusammengerechnet (Additionspflege).</li>
+            <li><strong>Höchstens 30 Stunden Erwerbstätigkeit</strong> pro Woche daneben. Wer mehr arbeitet, ist als Pflegeperson nicht versicherungspflichtig (§ 3 Satz 3 SGB VI).</li>
+            <li><strong>Keine Vollrente wegen Alters nach der Regelaltersgrenze.</strong> Wer vorzeitig in Rente ist, bekommt bis zur Regelaltersgrenze weiter Beiträge – sie erhöhen die Rente zum nächsten 1. Juli.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Was Sie zusätzlich bekommen</h3>
+          <p>
+            Die Rentenbeiträge sind nur ein Teil des Pakets: Pflegepersonen sind während der Pflegetätigkeit
+            beitragsfrei in der <strong>gesetzlichen Unfallversicherung</strong> versichert (§ 2 Abs. 1 Nr. 17 SGB VII)
+            und – wenn sie unmittelbar vor der Pflege arbeitslosenversichert waren oder Arbeitslosengeld bezogen
+            haben – auch in der <strong>Arbeitslosenversicherung</strong> (§ 26 Abs. 2b SGB III). Zum
+            <a href="/pflegegeld-rechner">Pflegegeld</a> selbst kommt bei akutem Pflegebedarf das
+            <a href="/pflegeunterstuetzungsgeld-rechner">Pflegeunterstützungsgeld</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Fragebogen der Pflegekasse nicht ausgefüllt</h3>
+            <p>Ohne den Fragebogen zur sozialen Sicherung der Pflegeperson weiß die Pflegekasse nicht, wer pflegt – und zahlt nichts. Beiträge gibt es nur ab dem nachgewiesenen Beginn der Pflegetätigkeit, nicht pauschal rückwirkend. Am besten gleich beim Antrag auf Pflegeleistungen mit einreichen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">31 Wochenstunden Job: alles weg</h3>
+            <p>Die 30-Stunden-Grenze ist eine harte Kante. Wer regelmäßig mehr als 30 Stunden pro Woche erwerbstätig ist, bekommt gar keine Pflege-Beiträge – nicht anteilig weniger. Bei schwankender Arbeitszeit zählt die regelmäßige, vertraglich vereinbarte Stundenzahl.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Wechsel von Pflegegeld zur Kombinationsleistung übersehen</h3>
+            <p>Kommt ein ambulanter Pflegedienst dazu, sinkt die Bemessungsgrundlage automatisch – bei Pflegegrad 3 von 43 % auf 36,55 % der Bezugsgröße, bei reiner Sachleistung auf 30,1 %. Die Entlastung durch den Dienst kostet also Rentenpunkte; das sollte in die Entscheidung einfließen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Unterbrechung durch Krankenhaus oder Reha</h3>
+            <p>Kurze Unterbrechungen lassen die Beitragszahlung weiterlaufen – etwa ein Krankenhausaufenthalt der gepflegten Person von wenigen Wochen oder Ihr eigener Urlaub von bis zu sechs Wochen im Jahr. Bei längeren Unterbrechungen endet die Versicherungspflicht und beginnt erst mit der Pflege neu; die genauen Fristen erklärt die Pflegekasse.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Versorgungswerk statt Rentenversicherung</h3>
+            <p>Ärzte, Anwälte, Architekten und andere Kammerberufe, die von der Rentenversicherungspflicht befreit sind, bekommen die Beiträge auf Antrag an ihr berufsständisches Versorgungswerk gezahlt (§ 44 Abs. 2 SGB XI). Der Rechner zeigt in diesem Fall nur die Beitragshöhe, nicht die Leistung des Versorgungswerks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="pflege-rentenpunkte" slugs={['rentenpunkte', 'pflegegeld', 'pflegegrad', 'pflegeunterstuetzungsgeld']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pflege-Rentenpunkte-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/pflege-rentenpunkte-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>

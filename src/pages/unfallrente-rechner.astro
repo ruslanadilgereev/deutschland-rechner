@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import UnfallrenteRechner from '../components/rechner/UnfallrenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Unfallrente-Rechner 2026 – BG-Rente nach MdE berechnen";
+const description = "Unfallrente der Berufsgenossenschaft berechnen: Vollrente = 2/3 des Jahresarbeitsverdienstes, Teilrente nach MdE (20–100 %), Schwerverletztenzulage, Mindest-/Höchst-JAV 2026 nach § 85 SGB VII. Kostenlos!";
+const keywords = "Unfallrente Rechner, BG Rente berechnen, Berufsgenossenschaft Rente 20 Prozent, Unfallrente Höhe, MdE Rente Tabelle, Verletztenrente berechnen, Unfallrente 30 MdE, Jahresarbeitsverdienst Unfallversicherung, Unfallrente steuerfrei, Schwerverletztenzulage, Unfallrente 2026";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie wird die Unfallrente der Berufsgenossenschaft berechnet?",
+    antwort: "Aus zwei Größen: dem Jahresarbeitsverdienst (JAV) und der Minderung der Erwerbsfähigkeit (MdE). Die Vollrente beträgt zwei Drittel des JAV, die Teilrente den MdE-Prozentsatz davon (§ 56 Abs. 3 SGB VII). Beispiel: Bei 42.000 € JAV ist die Vollrente 28.000 € im Jahr (2.333,33 € im Monat). Bei 30 % MdE gibt es 30 % davon, also 700 € monatlich. Der JAV ist der Bruttoverdienst der 12 Kalendermonate vor dem Unfallmonat inklusive Sonderzahlungen."
+  },
+  {
+    frage: "Wie viel Unfallrente gibt es bei 20 Prozent MdE?",
+    antwort: "20 % der Vollrente, also 20 % von zwei Dritteln des Jahresarbeitsverdienstes – das sind 13,33 % des JAV im Jahr. Bei 42.000 € JAV ergibt das 5.600 € jährlich bzw. 466,67 € im Monat. 20 % ist zugleich die Mindestgrenze: Unter 20 % MdE gibt es keine Rente, es sei denn, mehrere Versicherungsfälle mit je mindestens 10 % erreichen zusammen 20 % (Stützrente, § 56 Abs. 1 SGB VII)."
+  },
+  {
+    frage: "Was ist der Mindest- und Höchst-Jahresarbeitsverdienst?",
+    antwort: "Der JAV wird nach unten und oben begrenzt (§ 85 SGB VII). Mindestens gelten für Erwachsene ab 18 Jahren 60 % der Bezugsgröße (2026: 28.476 €), für 25- bis unter 30-Jährige 75 % (35.595 €). Für Kinder und Jugendliche gelten 25 %, 33⅓ % bzw. 40 %. Höchstens zählt das Zweifache der Bezugsgröße (2026: 94.920 €), sofern die Satzung der Berufsgenossenschaft keine höhere Grenze vorsieht – viele BGs tun das. Geringverdiener, Teilzeitkräfte und Studierende profitieren vom Mindest-JAV."
+  },
+  {
+    frage: "Wer bekommt die Schwerverletztenzulage von 10 Prozent?",
+    antwort: "Versicherte mit einer MdE von mindestens 50 % (oder mehreren Renten, die zusammen 50 % erreichen), die infolge des Versicherungsfalls keiner Erwerbstätigkeit mehr nachgehen können und keinen Anspruch auf eine Rente der gesetzlichen Rentenversicherung haben (§ 57 SGB VII). Die Rente erhöht sich dann um 10 %. Wer trotz hoher MdE weiterarbeitet oder eine Erwerbsminderungs- bzw. Altersrente bezieht, bekommt die Zulage nicht."
+  },
+  {
+    frage: "Ist die Unfallrente steuerfrei?",
+    antwort: "Ja. Leistungen aus der gesetzlichen Unfallversicherung – also auch die Verletztenrente – sind nach § 3 Nr. 1 Buchst. a EStG steuerfrei und unterliegen nicht dem Progressionsvorbehalt. Sie wird aber auf andere Renten angerechnet: Trifft die Unfallrente mit einer Rente der gesetzlichen Rentenversicherung zusammen, ruht die gesetzliche Rente, soweit beide zusammen den Grenzbetrag von 70 % des Jahresarbeitsverdienstes übersteigen (§ 93 SGB VI)."
+  },
+  {
+    frage: "Kann ich mir die Unfallrente auszahlen lassen?",
+    antwort: "Bei einer MdE unter 40 % können Sie auf Antrag mit dem Kapitalwert der Rente abgefunden werden (§ 76 SGB VII). Die BG bewilligt das nur, wenn nicht zu erwarten ist, dass die MdE wesentlich sinkt. Verschlimmern sich die Unfallfolgen später wesentlich, wird insoweit wieder Rente gezahlt. Bei MdE ab 40 % ist nur eine Teilabfindung für maximal zehn Jahre möglich (§ 78 SGB VII) – die Rente läuft danach wieder in voller Höhe."
+  },
+  {
+    frage: "Ab wann wird die Unfallrente gezahlt und wie lange ist sie vorläufig?",
+    antwort: "Die Rente beginnt am Tag nach dem Ende des Verletztengeldes – oder am Tag nach dem Unfall, wenn kein Verletztengeld gezahlt wurde (§ 72 SGB VII). Voraussetzung ist, dass die MdE über die 26. Woche nach dem Unfall hinaus besteht. In den ersten drei Jahren setzt die BG die Rente als vorläufige Entschädigung fest und kann die MdE jederzeit neu bewerten; spätestens nach drei Jahren wird sie zur Rente auf unbestimmte Zeit (§ 62 SGB VII). Zum 1. Juli wird sie wie die gesetzlichen Renten angepasst – 2026 um 4,24 %."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Unfallrente-Rechner", url: "/unfallrente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-orange-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🩹</span>
+          <div>
+            <h1 class="text-2xl font-bold">Unfallrente-Rechner</h1>
+            <p class="text-orange-100 text-sm">Rente der Berufsgenossenschaft nach Jahresarbeitsverdienst und MdE, Stand 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <UnfallrenteRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">§ 56 SGB VII (Vollrente 2/3 JAV, Teilrente nach MdE, 20-%-Grenze), § 57 (Schwerverletztenzulage), § 82 (JAV-Regelberechnung), § 85 (Mindest-/Höchst-JAV), § 76 (Abfindung), SV-Rechengrößen-Verordnung 2026 (Bezugsgröße 47.460 €).</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Mindest-JAV nach Alter (25 %/33⅓ %/40 %/60 %/75 % der Bezugsgröße), gesetzlicher und satzungsmäßiger Höchst-JAV, Stützrente ab 10 % je Fall, Zulage +10 % ab 50 % MdE, Vergleichstabelle 20–100 %, Abfindungshinweis unter 40 %.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Feststellung der MdE (nur durch die BG), JAV-Sonderregeln (§§ 83, 86, 87, 90 SGB VII: Ausbildung, Berufsanfänger, Neufestsetzung nach Altersstufen), Hinterbliebenenrenten, Anrechnung auf Erwerbsminderungs-/Altersrente (§ 93 SGB VI), Pflegegeld der BG.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Unfallrente 2026: Was die Berufsgenossenschaft nach einem Arbeitsunfall zahlt</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Nach einem Arbeitsunfall, Wegeunfall oder einer anerkannten Berufskrankheit zahlt die
+            <strong>gesetzliche Unfallversicherung</strong> (Berufsgenossenschaft oder Unfallkasse) eine
+            <strong>Verletztenrente</strong>, wenn die Erwerbsfähigkeit über die 26. Woche hinaus um mindestens
+            20 % gemindert bleibt. Sie ist keine Erwerbsminderungsrente: Die Unfallrente entschädigt die
+            <em>abstrakte</em> Minderung der Erwerbsfähigkeit auf dem gesamten Arbeitsmarkt – unabhängig
+            davon, ob Sie weiterarbeiten oder wie viel Sie tatsächlich verdienen.
+          </p>
+          <p>
+            Die Berechnung folgt einer festen Formel aus <strong>§ 56 Abs. 3 SGB VII</strong>, die unser
+            <strong>Unfallrente-Rechner</strong> exakt nachbildet. Die einzige Stellschraube, die Sie nicht selbst
+            kennen, ist die MdE – sie stellt die Berufsgenossenschaft anhand ärztlicher Gutachten fest. Übernehmen
+            Sie den Wert aus Ihrem Bescheid oder rechnen Sie Szenarien durch.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Formel: JAV × 2/3 × MdE</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Vollrente/Jahr = Jahresarbeitsverdienst × 2/3</div>
+            <div>Teilrente/Jahr = Vollrente × MdE in %</div>
+            <div>Monatsrente = Teilrente/Jahr ÷ 12</div>
+            <div>Schwerverletzte (§ 57): Monatsrente × 1,10</div>
+          </div>
+          <p>
+            <strong>Rechenbeispiel:</strong> Ein Dachdecker verdiente in den 12 Monaten vor dem Unfall 42.000 € brutto
+            inklusive Weihnachtsgeld. Die BG stellt 30 % MdE fest. Vollrente: 42.000 € × 2/3 = 28.000 € im Jahr.
+            Teilrente: 30 % davon = 8.400 € im Jahr, also <strong>700 € im Monat</strong> – steuerfrei und lebenslang,
+            solange die MdE bestehen bleibt. Bei 50 % MdE wären es 1.166,67 €, mit Schwerverletztenzulage 1.283,33 €.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der Jahresarbeitsverdienst: Was zählt hinein?</h3>
+          <p>
+            Der JAV ist der <strong>Gesamtbetrag aller Arbeitsentgelte und Arbeitseinkommen in den zwölf
+            Kalendermonaten vor dem Unfallmonat</strong> (§ 82 Abs. 1 SGB VII) – brutto, inklusive Urlaubs- und
+            Weihnachtsgeld, Überstunden und Zuschlägen, ohne Obergrenze der Beitragsbemessungsgrenze. Monate ohne
+            Verdienst (etwa Krankheit ohne Lohnfortzahlung) werden mit dem Durchschnitt der übrigen Monate aufgefüllt
+            (§ 82 Abs. 2). Für Selbständige gilt das Arbeitseinkommen, bei Unternehmern der in der Satzung
+            festgelegte Versicherungsbetrag.
+          </p>
+          <p>
+            Zwei Schranken korrigieren unfaire Ergebnisse: Der <strong>Mindest-JAV</strong> schützt Geringverdiener –
+            für Erwachsene 60 % der Bezugsgröße (2026: 28.476 €), für 25- bis unter 30-Jährige sogar 75 % (35.595 €),
+            weil in diesem Alter typischerweise noch Aufstiegschancen bestehen. Der <strong>Höchst-JAV</strong>
+            deckelt Spitzenverdiener beim Zweifachen der Bezugsgröße (94.920 €), sofern die Satzung der jeweiligen BG
+            nichts Höheres bestimmt – was bei den meisten gewerblichen Berufsgenossenschaften der Fall ist.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">MdE-Tabelle: typische Richtwerte</h3>
+          <p>
+            Die MdE wird nach den Auswirkungen auf dem gesamten Gebiet des Erwerbslebens bemessen (§ 56 Abs. 2 SGB VII).
+            In der Praxis orientieren sich Gutachter an unfallmedizinischen Erfahrungswerten, zum Beispiel: Verlust
+            eines Daumens rund 20 %, Verlust des Unterschenkels rund 40 %, Verlust eines Auges 25–30 %, Verlust der Hand
+            50–55 %. Besondere berufliche Kenntnisse, die nicht mehr genutzt werden können, erhöhen die MdE. Die
+            verbindliche Feststellung trifft allein der Unfallversicherungsträger – meist erst nach Abschluss der
+            Heilbehandlung.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Unfallrente und andere Renten</h3>
+          <p>
+            Die Unfallrente wird zusätzlich zum Gehalt gezahlt und ist <strong>steuerfrei</strong>
+            (§ 3 Nr. 1 Buchst. a EStG). Beim Zusammentreffen mit einer <a href="/erwerbsminderungsrente-rechner">Erwerbsminderungsrente</a>
+            oder Altersrente wird allerdings die gesetzliche Rente gekürzt, soweit beide zusammen 70 % des JAV
+            übersteigen (§ 93 SGB VI). Wer vor der Rente <a href="/verletztengeld-rechner">Verletztengeld</a> oder
+            <a href="/krankengeld-rechner">Krankengeld</a> bezieht, sollte die Reihenfolge der Leistungen mit der BG klären.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Nettolohn statt Bruttoverdienst eingegeben</h3>
+            <p>Der JAV ist ein Bruttowert – alle Arbeitsentgelte der zwölf Monate vor dem Unfallmonat inklusive Sonderzahlungen. Wer sein Netto eingibt, unterschätzt die Rente um rund ein Drittel.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">MdE mit Grad der Behinderung verwechselt</h3>
+            <p>Der <a href="/grad-der-behinderung-rechner" class="text-blue-600 hover:underline">GdB nach SGB IX</a> und die MdE nach SGB VII sind verschiedene Maßstäbe. Ein GdB von 50 bedeutet nicht automatisch eine MdE von 50 %. Die Unfallrente richtet sich ausschließlich nach der von der BG festgestellten MdE.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">19 % MdE – knapp daneben ist auch vorbei</h3>
+            <p>Unter 20 % gibt es keine Rente, außer ein weiterer Versicherungsfall mit mindestens 10 % stützt den Anspruch. Bei einer MdE knapp unter 20 % lohnt sich ein Widerspruch mit eigenem Gutachten – der Sprung von 0 € auf mehrere Hundert Euro im Monat ist erheblich.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Höchst-JAV der eigenen BG nicht geprüft</h3>
+            <p>Das Gesetz nennt nur die Untergrenze für die Obergrenze: das Zweifache der Bezugsgröße. Die Satzungen vieler Berufsgenossenschaften setzen deutlich höhere Höchst-JAV. Gutverdiener sollten den Wert aus der Satzung ihrer BG in den Rechner eintragen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Abfindung ohne Blick auf die Lebenserwartung</h3>
+            <p>Die Abfindung bei MdE unter 40 % entspricht dem Kapitalwert der Rente nach der Abfindungsverordnung. Bei einer Verschlimmerung wird zwar wieder Rente gezahlt, aber nur für den Mehrbetrag. Wer jung ist und eine hohe Lebenserwartung hat, fährt mit der laufenden – jährlich angepassten – Rente oft besser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="unfallrente" slugs={['verletztengeld', 'erwerbsminderungsrente', 'krankengeld', 'pflegegrad']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unfallrente-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/unfallrente-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>

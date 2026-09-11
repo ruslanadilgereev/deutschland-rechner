@@ -4231,6 +4231,40 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/sgb_5/__45.html',
     ],
   },
+  // ═══════════════════════════════════════════════════════════════
+  // WELLE E (2026-09-11): Geldfragen, die bestehende Rechner nicht beantworten –
+  // jeder Wert gegen den Normtext (gesetze-im-internet) verifiziert
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: 'pflege-rentenpunkte',
+    name: 'Pflege-Rentenpunkte-Rechner',
+    beschreibung: 'Wie viel Rente bringt die Pflege von Angehörigen? Beiträge der Pflegekasse je Pflegegrad',
+    icon: '🤲',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Rentenpunkte Pflege Angehörige, Rente für Pflege berechnen, Pflegegrad 3 Rentenpunkte, Rentenbeiträge Pflegeperson 2026, pflegende Angehörige Rente',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_6/__166.html',
+      'https://www.gesetze-im-internet.de/sgb_11/__44.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__3.html',
+      'https://www.gesetze-im-internet.de/svbezgrv_2026/BJNR1160A0025.html',
+    ],
+  },
+  {
+    id: 'unfallrente',
+    name: 'Unfallrente-Rechner',
+    beschreibung: 'BG-Rente nach Arbeitsunfall: 2/3 des Jahresarbeitsverdienstes × MdE',
+    icon: '🩹',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Unfallrente Rechner, BG Rente berechnen, Berufsgenossenschaft Rente 20 Prozent, Verletztenrente MdE, Unfallrente Höhe 2026',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_7/__56.html',
+      'https://www.gesetze-im-internet.de/sgb_7/__57.html',
+      'https://www.gesetze-im-internet.de/sgb_7/__82.html',
+      'https://www.gesetze-im-internet.de/sgb_7/__85.html',
+    ],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 
