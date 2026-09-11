@@ -59,22 +59,27 @@ const MEHRBETRAG_PRO_PERSON: Record<Mietstufe, number> = {
 // E-4 = geteilt durch 10.000
 // E-5 = geteilt durch 100.000
 const KOEFFIZIENTEN: Record<number, { a: number; b: number; c: number }> = {
-  1:  { a: 4.000e-2,   b: 4.991e-4,  c: 4.620e-5 },  // 0.04, 0.0004991, 0.0000462
-  2:  { a: 3.000e-2,   b: 3.716e-4,  c: 3.450e-5 },  // 0.03, 0.0003716, 0.0000345
-  3:  { a: 2.000e-2,   b: 3.035e-4,  c: 2.780e-5 },  // 0.02, 0.0003035, 0.0000278
-  4:  { a: 1.000e-2,   b: 2.251e-4,  c: 2.000e-5 },  // 0.01, 0.0002251, 0.00002
-  5:  { a: 0,          b: 1.985e-4,  c: 1.950e-5 },  // 0, 0.0001985, 0.0000195
-  6:  { a: -1.000e-2,  b: 1.792e-4,  c: 1.880e-5 },  // -0.01, 0.0001792, 0.0000188
-  7:  { a: -2.000e-2,  b: 1.657e-4,  c: 1.870e-5 },  // -0.02, 0.0001657, 0.0000187
-  8:  { a: -3.000e-2,  b: 1.648e-4,  c: 1.870e-5 },  // -0.03, 0.0001648, 0.0000187
-  9:  { a: -4.000e-2,  b: 1.432e-4,  c: 1.880e-5 },  // -0.04, 0.0001432, 0.0000188
-  10: { a: -6.000e-2,  b: 1.300e-4,  c: 1.880e-5 },  // -0.06, 0.00013, 0.0000188
-  11: { a: -9.000e-2,  b: 1.188e-4,  c: 2.220e-5 },  // -0.09, 0.0001188, 0.0000222
-  12: { a: -1.200e-1,  b: 1.152e-4,  c: 2.510e-5 },  // -0.12, 0.0001152, 0.0000251
+  // Anlage 2 zu § 19 Abs. 1 WoGG in der Fassung BGBl. 2024 I Nr. 314 (Wohngeldanpassung 2025)
+  1:  { a: 4.000e-2,   b: 4.797e-4,  c: 4.080e-5 },
+  2:  { a: 3.000e-2,   b: 3.571e-4,  c: 3.040e-5 },
+  3:  { a: 2.000e-2,   b: 2.917e-4,  c: 2.450e-5 },
+  4:  { a: 1.000e-2,   b: 2.163e-4,  c: 1.760e-5 },
+  5:  { a: 0,          b: 1.907e-4,  c: 1.720e-5 },
+  6:  { a: -1.000e-2,  b: 1.722e-4,  c: 1.660e-5 },
+  7:  { a: -2.000e-2,  b: 1.592e-4,  c: 1.650e-5 },
+  8:  { a: -3.000e-2,  b: 1.583e-4,  c: 1.650e-5 },
+  9:  { a: -4.000e-2,  b: 1.376e-4,  c: 1.660e-5 },
+  10: { a: -6.000e-2,  b: 1.249e-4,  c: 1.660e-5 },
+  11: { a: -9.000e-2,  b: 1.141e-4,  c: 1.960e-5 },
+  12: { a: -1.200e-1,  b: 1.107e-4,  c: 2.210e-5 },
 };
 
+// Anlage 3 Nr. 1 zu § 19 WoGG: Mindestwerte für M und Y je Haushaltsgröße
+const MIN_M = [54, 67, 79, 92, 103, 103, 115, 128, 140, 152, 187, 298];
+const MIN_Y = [396, 679, 906, 1132, 1358, 1585, 1811, 2037, 2264, 2490, 2717, 2943];
+
 // Zusatzbetrag für jedes weitere Haushaltsmitglied ab 13. Person (§ 19 Abs. 3 WoGG)
-const ZUSATZ_AB_13_PERSON = 57; // Euro pro Person
+const ZUSATZ_AB_13_PERSON = 65; // Euro pro Person (§ 19 Abs. 3 WoGG)
 
 // ============================================================================
 // FREIBETRÄGE vom Einkommen nach § 17 WoGG
@@ -83,15 +88,15 @@ const FREIBETRAEGE = {
   // Werbungskostenpauschale (jährlich, § 16 Abs. 1 Nr. 2 WoGG)
   werbungskosten_pauschal: 1230, // 102.50€/Monat
   
-  // Erwerbstätigenfreibetrag (§ 17 Nr. 3 WoGG): 10% vom Brutto, max. 100€/Monat = 1200€/Jahr
-  erwerbstaetig_prozent: 0.10,
-  erwerbstaetig_max_jahr: 1200,
+  // Pauschalabzug § 16 WoGG: je 10 % für Steuern vom Einkommen, Pflichtbeiträge KV/PV und RV
+  // Erwerbstätige: alle drei (30 %); sonst (z. B. Rentner) nur KV/PV (10 %)
+  pauschal_erwerbstaetig: 0.30,
+  pauschal_sonst: 0.10,
   
-  // Schwerbehinderten-Pauschbetrag (§ 17 Nr. 4 WoGG, jährlich)
-  schwerbehindert_50_80: 1800,   // GdB 50-80
-  schwerbehindert_80_100: 2100,  // GdB 80-100 oder häusliche Pflege
-  
-  // Alleinerziehenden-Freibetrag (§ 17 Nr. 5 WoGG, jährlich pro Kind)
+  // Schwerbehinderten-Freibetrag (§ 17 Nr. 1 WoGG, jährlich): GdB 100 oder GdB unter 100 mit Pflegebedürftigkeit
+  schwerbehindert: 1800,
+
+  // Alleinerziehenden-Freibetrag (§ 17 Nr. 3 WoGG, jährlich, einmal je Haushalt)
   alleinerziehend: 1320,
 };
 
@@ -157,23 +162,20 @@ export default function WohngeldRechner() {
     // Werbungskostenpauschale (§ 16 Abs. 1 Nr. 2 WoGG)
     const werbungskosten = FREIBETRAEGE.werbungskosten_pauschal;
     
-    // Erwerbstätigenfreibetrag: 10% vom Brutto, max. 1200€/Jahr (§ 17 Nr. 3 WoGG)
-    const erwerbstaetigenfreibetrag = istErwerbstaetig 
-      ? Math.min(jahresbrutto * FREIBETRAEGE.erwerbstaetig_prozent, FREIBETRAEGE.erwerbstaetig_max_jahr)
-      : 0;
+    // Pauschalabzug § 16 WoGG auf das Einkommen nach Werbungskosten: 30 % (erwerbstätig) bzw. 10 % (sonst)
+    const erwerbstaetigenfreibetrag = Math.max(0, jahresbrutto - werbungskosten)
+      * (istErwerbstaetig ? FREIBETRAEGE.pauschal_erwerbstaetig : FREIBETRAEGE.pauschal_sonst);
     
-    // Freibeträge für Schwerbehinderte (§ 17 Nr. 4 WoGG)
+    // Freibeträge für Schwerbehinderte (§ 17 Nr. 1 WoGG)
+    // § 17 Nr. 1 WoGG: nur bei GdB 100 oder GdB unter 100 mit Pflegebedürftigkeit
     let schwerbehindertenfreibetrag = 0;
-    if (schwerbehindert === '50-80') {
-      schwerbehindertenfreibetrag = FREIBETRAEGE.schwerbehindert_50_80;
-    } else if (schwerbehindert === '80-100') {
-      schwerbehindertenfreibetrag = FREIBETRAEGE.schwerbehindert_80_100;
+    if (schwerbehindert === '80-100') {
+      schwerbehindertenfreibetrag = FREIBETRAEGE.schwerbehindert;
     }
     
-    // Alleinerziehenden-Freibetrag (§ 17 Nr. 5 WoGG)
-    const alleinerziehendenfreibetrag = alleinerziehend 
-      ? FREIBETRAEGE.alleinerziehend * Math.max(1, anzahlKinder)
-      : 0;
+    // Alleinerziehenden-Freibetrag (§ 17 Nr. 3 WoGG)
+    // § 17 Nr. 3 WoGG: 1.320 € einmal je Haushalt (nicht je Kind)
+    const alleinerziehendenfreibetrag = alleinerziehend ? FREIBETRAEGE.alleinerziehend : 0;
     
     const gesamtfreibetraege = werbungskosten + erwerbstaetigenfreibetrag + 
                                schwerbehindertenfreibetrag + alleinerziehendenfreibetrag;
@@ -201,8 +203,9 @@ export default function WohngeldRechner() {
     const anzahlPersonen = Math.min(haushaltsgroesse, 12);
     const koeff = KOEFFIZIENTEN[anzahlPersonen];
     
-    const M = beruecksichtigteMiete;
-    const Y = anrechenbaresEinkommenMonat;
+    // Anlage 3 Nr. 1: Werte unterhalb der Mindestwerte werden durch diese ersetzt
+    const M = Math.max(beruecksichtigteMiete, MIN_M[anzahlPersonen - 1]);
+    const Y = Math.max(anrechenbaresEinkommenMonat, MIN_Y[anzahlPersonen - 1]);
     
     // Rechenschritte nach Anlage 3 zu § 19 WoGG
     // z1 = a + b × M + c × Y
@@ -223,9 +226,9 @@ export default function WohngeldRechner() {
       zusatzAbPerson13 = (haushaltsgroesse - 12) * ZUSATZ_AB_13_PERSON;
     }
     
-    // Aufrunden auf vollen Euro (Anlage 3, Nr. 3)
+    // Kaufmännisch auf vollen Euro runden (Anlage 3 Nr. 3: unter 0,50 ab-, ab 0,50 aufrunden)
     // Mindest-Wohngeld: 10€, Maximum: berücksichtigte Miete
-    let wohngeldMonatlich = Math.ceil(z4) + zusatzAbPerson13;
+    let wohngeldMonatlich = Math.round(z4) + zusatzAbPerson13;
     
     // Wohngeld darf nicht höher als die berücksichtigte Miete sein
     wohngeldMonatlich = Math.min(wohngeldMonatlich, M);
@@ -441,7 +444,7 @@ export default function WohngeldRechner() {
             </span>
           </button>
           <p className="text-xs text-gray-500 mt-2">
-            Erwerbstätige erhalten einen Freibetrag von 10% (max. 100€/Monat)
+            Erwerbstätige: Pauschalabzug 30 % für Steuern, Kranken-/Pflege- und Rentenversicherung (§ 16 WoGG); sonst 10 %
           </p>
         </div>
 
@@ -473,7 +476,7 @@ export default function WohngeldRechner() {
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                GdB 50-80
+                GdB 50-80 (kein Freibetrag)
               </button>
               <button
                 onClick={() => setSchwerbehindert('80-100')}
@@ -483,7 +486,7 @@ export default function WohngeldRechner() {
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                GdB 80-100
+                GdB 100 / pflegebedürftig
               </button>
             </div>
           </div>
@@ -500,7 +503,7 @@ export default function WohngeldRechner() {
             >
               <span>👨‍👧 Alleinerziehend</span>
               <span className={alleinerziehend ? 'opacity-80' : ''}>
-                {alleinerziehend ? '+110€/Monat pro Kind' : ''}
+                {alleinerziehend ? '+110€/Monat Freibetrag' : ''}
               </span>
             </button>
           </div>
@@ -601,19 +604,19 @@ export default function WohngeldRechner() {
           </div>
           {ergebnis.erwerbstaetigenfreibetrag > 0 && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-              <span>− Erwerbstätigenfreibetrag 10% (§ 17 Nr. 3)</span>
+              <span>− Pauschalabzug {istErwerbstaetig ? '30' : '10'} % (§ 16)</span>
               <span>{formatEuro(ergebnis.erwerbstaetigenfreibetrag)}</span>
             </div>
           )}
           {ergebnis.schwerbehindertenfreibetrag > 0 && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-              <span>− Schwerbehindertenfreibetrag (§ 17 Nr. 4)</span>
+              <span>− Schwerbehindertenfreibetrag (§ 17 Nr. 1)</span>
               <span>{formatEuro(ergebnis.schwerbehindertenfreibetrag)}</span>
             </div>
           )}
           {ergebnis.alleinerziehendenfreibetrag > 0 && (
             <div className="flex justify-between py-2 border-b border-gray-100 text-green-600">
-              <span>− Alleinerziehenden-Freibetrag (§ 17 Nr. 5)</span>
+              <span>− Alleinerziehenden-Freibetrag (§ 17 Nr. 3)</span>
               <span>{formatEuro(ergebnis.alleinerziehendenfreibetrag)}</span>
             </div>
           )}
@@ -678,7 +681,7 @@ export default function WohngeldRechner() {
           
           {/* Ergebnis */}
           <div className="flex justify-between py-3 bg-purple-100 -mx-6 px-6 rounded-b-xl mt-4">
-            <span className="font-bold text-purple-800">Wohngeld pro Monat (aufgerundet)</span>
+            <span className="font-bold text-purple-800">Wohngeld pro Monat (gerundet)</span>
             <span className="font-bold text-2xl text-purple-900">{formatEuro(ergebnis.wohngeldMonatlich)}</span>
           </div>
         </div>
