@@ -29,7 +29,7 @@ const noGoogle = args.includes('--no-google');
 const allMode = args.includes('--all');
 const sinceIdx = args.indexOf('--since');
 const sinceRef = sinceIdx >= 0 ? args[sinceIdx + 1] : null;
-const slugs = args.filter((a, i) => !a.startsWith('--') && i !== sinceIdx + 1);
+const slugs = args.filter((a, i) => !a.startsWith('--') && !(sinceIdx >= 0 && i === sinceIdx + 1));
 
 async function fetchSitemapUrls() {
   const idx = await (await fetch(`${SITE_URL}/sitemap-index.xml`)).text();
