@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import VblRechner from '../components/rechner/VblRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "VBL-Rechner 2026 – VBLklassik-Betriebsrente aus Versorgungspunkten berechnen";
+const description = "VBLklassik-Rente berechnen: Versorgungspunkte aus Entgelt und Altersfaktor (Punktemodell § 36 VBL-Satzung), 4 € je Punkt, Prognose bis zur Rente, Abschlag 0,3 % je Monat, Wartezeit 60 Monate. Mit der Jahresmitteilung in einer Minute.";
+const keywords = "VBL Rechner, VBLklassik Rente berechnen, VBL Versorgungspunkte berechnen, VBL Altersfaktor Tabelle, VBL Betriebsrente Höhe, Zusatzversorgung öffentlicher Dienst Rechner, VBL Jahresmitteilung verstehen, VBL Rente 4 Euro pro Punkt, VBL Wartezeit 60 Monate, VBL Abschlag vorzeitig";
+
+const faqs = [
+  {
+    frage: "Wie berechnet die VBL die Betriebsrente?",
+    antwort: "Nach dem Punktemodell (§ 36 VBL-Satzung): Ein Zwölftel Ihres zusatzversorgungspflichtigen Jahresentgelts wird durch das Referenzentgelt von 1.000 € geteilt und mit dem Altersfaktor Ihres Alters im jeweiligen Jahr multipliziert – das ergibt die Versorgungspunkte des Jahres. Alle Punkte werden addiert und mit dem Messbetrag von 4,00 € multipliziert. Beispiel: 48.000 € Jahresentgelt mit 41 Jahren (Altersfaktor 1,5): 4.000 ÷ 1.000 × 1,5 = 6 Punkte, also 24 € Monatsrente für dieses eine Jahr. Über ein Berufsleben kommen so mehrere Hundert Euro zusammen."
+  },
+  {
+    frage: "Was ist der Altersfaktor und warum sinkt er?",
+    antwort: "Der Altersfaktor bildet die Verzinsung ab: Ein Euro, der mit 20 eingezahlt wird, hat bis zur Rente länger Zeit, Zinsen zu erwirtschaften, als ein Euro mit 60. Deshalb beträgt der Faktor mit 17 Jahren 3,1, mit 30 Jahren 2,0, mit 40 Jahren 1,5, mit 50 Jahren 1,1 und ab 64 Jahren 0,8. Eingerechnet sind 3,25 % Zins in der Anwartschaftsphase und 5,25 % in der Rentenphase. Maßgeblich ist das Alter im Kalenderjahr, also Kalenderjahr minus Geburtsjahr – nicht der Geburtstag."
+  },
+  {
+    frage: "Wie viel VBL-Rente bekomme ich nach 30 oder 40 Jahren?",
+    antwort: "Als Faustregel: Wer mit 27 im öffentlichen Dienst anfängt und bis 67 bleibt, sammelt bei konstant 48.000 € Jahresentgelt rund 214 Versorgungspunkte – etwa 855 € Betriebsrente im Monat brutto; mit 2 % jährlicher Gehaltssteigerung sind es rund 300 Punkte oder 1.200 €. Wer erst mit 37 einsteigt, kommt in 30 Jahren auf rund 136 Punkte (544 €) bzw. 176 Punkte mit Steigerung. Die Prognose im Rechner zeigt Ihren individuellen Wert; die verbindliche Zahl steht in der Rentenauskunft der VBL."
+  },
+  {
+    frage: "Was bedeuten Startgutschrift und Bonuspunkte in der Jahresmitteilung?",
+    antwort: "Die Startgutschrift ist die Übertragung Ihrer bis Ende 2001 im alten Gesamtversorgungssystem erworbenen Anwartschaft in Versorgungspunkte – sie steht als fester Betrag in der Jahresmitteilung. Bonuspunkte sind Gutschriften aus Überschüssen der Kapitalanlage, über die der Verantwortliche Aktuar jährlich entscheidet; in Niedrigzinsjahren gab es keine. Beide zählen zur Punktesumme und werden mit 4 € je Punkt verrentet. Geben Sie im Rechner die Gesamtsumme aus der Jahresmitteilung als bisherige Punkte ein."
+  },
+  {
+    frage: "Welche Abzüge gibt es von der VBL-Rente?",
+    antwort: "Erstens ein Abschlag bei vorzeitigem Rentenbeginn: 0,3 % je Monat vor der Regelaltersgrenze, höchstens 10,8 % (§ 35 VBL-Satzung) – wie bei der gesetzlichen Rente. Zweitens Kranken- und Pflegeversicherungsbeiträge: Gesetzlich versicherte Rentner zahlen auf Betriebsrenten den vollen Beitragssatz, seit 2020 aber erst oberhalb eines Freibetrags von einem Zwanzigstel der Bezugsgröße (2026: 197,75 €). Drittens Steuern: Der aus Umlagen finanzierte Teil wird mit dem Ertragsanteil besteuert, steuerlich geförderte Beitragsanteile nachgelagert in voller Höhe."
+  },
+  {
+    frage: "Was passiert, wenn ich den öffentlichen Dienst vor der Rente verlasse?",
+    antwort: "Die Anwartschaft bleibt erhalten, sobald die Wartezeit von 60 Umlage- oder Beitragsmonaten erfüllt ist (§ 34 VBL-Satzung). Wer früher ausscheidet, verliert den Anspruch auf Betriebsrente – kann sich aber die eigenen Beiträge erstatten lassen. Als beitragsfrei Versicherter erhalten Sie die bis zum Ausscheiden erworbenen Punkte später als Rente; neue Punkte kommen nicht hinzu, auch keine Bonuspunkte aus Überschüssen. Bei einem Wechsel zu einem anderen Arbeitgeber des öffentlichen Dienstes (Länder, Kommunen mit eigener Zusatzversorgungskasse) werden die Anwartschaften übergeleitet."
+  },
+  {
+    frage: "Wie viel zahle ich in die VBL ein?",
+    antwort: "Im Abrechnungsverband West wird die VBLklassik über eine Umlage von 6,90 % des zusatzversorgungspflichtigen Entgelts finanziert – 5,49 % trägt der Arbeitgeber, 1,41 % die Beschäftigten – plus einem zusätzlichen Arbeitnehmerbeitrag von 0,40 %; Beschäftigte zahlen also 1,81 %. Im Abrechnungsverband Ost gilt eine Mischfinanzierung: Arbeitgeberumlage 1,06 % (ab 2027: 2,59 %) und ein Kapitaldeckungsbeitrag von 6,25 %, davon 2,00 % Arbeitgeber, 2,00 % Arbeitnehmer und 2,25 % zusätzlicher Arbeitnehmerbeitrag. Für die Rentenhöhe spielt die Beitragshöhe keine Rolle – das Punktemodell rechnet allein mit Entgelt und Altersfaktor (Stand VBL, 2023)."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "VBL-Rechner", url: "/vbl-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-teal-600 to-cyan-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-teal-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">VBLklassik-Rechner</h1>
+            <p class="text-teal-100 text-sm">Betriebsrente des öffentlichen Dienstes aus Versorgungspunkten – mit Prognose bis zur Rente</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <VblRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">VBL-Satzung § 36 (Punktemodell: Referenzentgelt 1.000 €, Messbetrag 4 €, Altersfaktortabelle), § 35 (Abschlag 0,3 %/Monat, max. 10,8 %), § 34 (Wartezeit 60 Monate), § 39 (Anpassung 1 %); § 226 Abs. 2 SGB V (Freibetrag Betriebsrente).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Vollständige Altersfaktortabelle 17 bis 64+, jahrweise Prognose mit sinkendem Faktor und Gehaltssteigerung, bereits erworbene Punkte inkl. Startgutschrift, Abschlag bei vorzeitigem Bezug, Wartezeitprüfung.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Bonuspunkte aus Überschüssen, soziale Komponenten (Elternzeit, Erwerbsminderung), Rentenanpassung von 1 % im Bezug, Steuern und Sozialabgaben auf die Rente, VBLextra/VBLdynamik (freiwillige Versicherung), Hinterbliebenenrenten, Abrechnungsverband-spezifische Beitragssätze.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">VBLklassik: Die Zusatzrente des öffentlichen Dienstes verstehen</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Rund fünf Millionen Beschäftigte von Bund und Ländern sind bei der <strong>Versorgungsanstalt des
+            Bundes und der Länder</strong> pflichtversichert – Angestellte an Universitäten, in Ministerien, Kliniken,
+            Schulen. Die VBLklassik ist ihre Betriebsrente und ersetzt seit 2002 das alte Gesamtversorgungssystem
+            durch ein <strong>Punktemodell</strong>: Jedes Jahr werden Versorgungspunkte gutgeschrieben, jeder Punkt
+            ist bei Rentenbeginn 4 € im Monat wert. Die Jahresmitteilung weist die Punkte aus, sagt aber nicht, was
+            am Ende herauskommt. Unser Rechner rechnet die Punkte in eine Prognose um – nach der Formel der
+            VBL-Satzung, mit der offiziellen Altersfaktortabelle.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Punkte je Jahr = (Jahresentgelt ÷ 12) ÷ 1.000 € × Altersfaktor</div>
+            <div>Betriebsrente/Monat = Summe aller Punkte × 4,00 €</div>
+            <div>Vorzeitig: − 0,3 % je Monat, max. 10,8 %</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Eine Verwaltungsangestellte, Jahrgang 1985, verdient 48.000 € im Jahr und hat laut
+            Jahresmitteilung bereits 40 Punkte. 2026 ist sie 41 – Altersfaktor 1,5 – und erwirbt 4.000 ÷ 1.000 × 1,5 =
+            <strong>6,00 Punkte</strong> (24 € Monatsrente). Steigt ihr Gehalt jährlich um 2 % und arbeitet sie bis 67, kommen
+            bis dahin rund 139 weitere Punkte hinzu: insgesamt etwa 179 Punkte, also rund <strong>716 € Betriebsrente</strong>
+            im Monat, brutto, vor Abzügen. Würde sie mit 64 gehen, kostete das 10,8 % Abschlag und die drei fehlenden
+            Beitragsjahre.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Altersfaktortabelle</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead><tr class="bg-gray-50"><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Alter</th><th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Faktor</th><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Alter</th><th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Faktor</th><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Alter</th><th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Faktor</th></tr></thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-1 px-3 border-b">17</td><td class="py-1 px-3 border-b text-right">3,1</td><td class="py-1 px-3 border-b">33</td><td class="py-1 px-3 border-b text-right">1,9</td><td class="py-1 px-3 border-b">49</td><td class="py-1 px-3 border-b text-right">1,2</td></tr>
+                <tr><td class="py-1 px-3 border-b">20</td><td class="py-1 px-3 border-b text-right">2,8</td><td class="py-1 px-3 border-b">35</td><td class="py-1 px-3 border-b text-right">1,7</td><td class="py-1 px-3 border-b">50–52</td><td class="py-1 px-3 border-b text-right">1,1</td></tr>
+                <tr><td class="py-1 px-3 border-b">23</td><td class="py-1 px-3 border-b text-right">2,5</td><td class="py-1 px-3 border-b">37–39</td><td class="py-1 px-3 border-b text-right">1,6</td><td class="py-1 px-3 border-b">53–56</td><td class="py-1 px-3 border-b text-right">1,0</td></tr>
+                <tr><td class="py-1 px-3 border-b">25</td><td class="py-1 px-3 border-b text-right">2,4</td><td class="py-1 px-3 border-b">40–41</td><td class="py-1 px-3 border-b text-right">1,5</td><td class="py-1 px-3 border-b">57–61</td><td class="py-1 px-3 border-b text-right">0,9</td></tr>
+                <tr><td class="py-1 px-3">30</td><td class="py-1 px-3 text-right">2,0</td><td class="py-1 px-3">44–46</td><td class="py-1 px-3 text-right">1,3</td><td class="py-1 px-3">ab 62</td><td class="py-1 px-3 text-right">0,8</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Auszug; der Rechner enthält die vollständige Tabelle der VBL (§ 36 Abs. 3 Satzung). Alter = Kalenderjahr minus Geburtsjahr.</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Was der Altersfaktor für Ihre Entscheidungen bedeutet</h3>
+          <p>
+            Weil frühe Jahre so viel mehr Punkte bringen, wiegt eine Teilzeitphase mit 30 schwerer als mit 55 – bei
+            gleichem Entgeltverzicht. Umgekehrt lohnt sich ein später Wechsel in den öffentlichen Dienst für die VBL
+            kaum noch: Mit 58 bringt ein Jahr mit 48.000 € nur 3,6 Punkte, also 14,40 € Monatsrente. Die freiwillige
+            Versicherung VBLextra mit Entgeltumwandlung kann das ergänzen; Ihren Netto-Effekt zeigt der
+            <a href="/betriebsrente-rechner">Betriebsrente-Rechner</a>. Wie sich die VBL-Rente zur gesetzlichen Rente
+            verhält, ermittelt der <a href="/rentenpunkte-rechner">Rentenpunkte-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Abschlag, Wartezeit, Anpassung</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Abschlag:</strong> Die Betriebsrente wird gekürzt, wenn Sie die gesetzliche Rente vorzeitig beziehen – 0,3 % je Monat, maximal 10,8 % (§ 35). Der Abschlag folgt dem Zugangsfaktor der gesetzlichen Rente, eine abschlagsfreie Rente nach 45 Jahren gibt es also auch bei der VBL abschlagsfrei.</li>
+            <li><strong>Wartezeit:</strong> 60 Umlage- oder Beitragsmonate (§ 34); bei Arbeitsunfall entfällt sie.</li>
+            <li><strong>Anpassung:</strong> Laufende Renten steigen jedes Jahr zum 1. Juli um 1 % (§ 39) – deutlich weniger als die gesetzliche Rente.</li>
+            <li><strong>Auszahlung:</strong> Antrag zusammen mit der gesetzlichen Rente über den Arbeitgeber; Kleinstrenten bis zu einem Grenzbetrag werden abgefunden.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Nettogehalt eingegeben</h3><p>Das zusatzversorgungspflichtige Entgelt ist ein Bruttowert – Grundgehalt, Zulagen und Jahressonderzahlung, begrenzt durch die Beitragsbemessungsgrenze. Es steht auf der Jahresmitteilung und in der Regel auf der Dezember-Gehaltsabrechnung.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Punkte mit Euro verwechselt</h3><p>Die Jahresmitteilung nennt Versorgungspunkte, nicht Euro. Erst die Multiplikation mit dem Messbetrag von 4 € ergibt die Monatsrente – 100 Punkte sind 400 € im Monat, nicht 100 €.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Alter am Geburtstag gerechnet</h3><p>Der Altersfaktor richtet sich nach dem Alter, das Sie im Kalenderjahr erreichen (Jahr minus Geburtsjahr). Wer im Dezember 1985 geboren ist, gilt 2026 für die VBL das ganze Jahr als 41.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Beitragsfreie Zeiten vergessen</h3><p>Nach dem Ausscheiden aus dem öffentlichen Dienst kommen keine Punkte mehr hinzu. Die Prognose gilt nur bei durchgehender Pflichtversicherung bis zum Rentenalter.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kommunale Kassen statt VBL</h3><p>Beschäftigte von Städten und Gemeinden sind meist bei einer kommunalen Zusatzversorgungskasse (z. B. KVBW, Bayerische Versorgungskammer) versichert. Das Punktemodell ist tarifvertraglich gleich (ATV-K), Details wie Bonuspunkte und Beiträge weichen aber ab.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="vbl" slugs={['betriebsrente', 'rentenpunkte', 'tvoed', 'tv-l']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "VBLklassik-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/vbl-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

@@ -4403,6 +4403,36 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Modernisierungsumlage Rechner, Mieterhöhung Modernisierung berechnen, § 559 BGB, Kappungsgrenze Modernisierung 3 Euro, Modernisierungsumlage Heizung',
     quellen: ['https://www.gesetze-im-internet.de/bgb/__559.html', 'https://www.gesetze-im-internet.de/bgb/__559e.html', 'https://www.gesetze-im-internet.de/bgb/__559a.html', 'https://www.gesetze-im-internet.de/bgb/__555b.html'],
   },
+  {
+    id: 'ksk-beitrag',
+    name: 'KSK-Beitragsrechner',
+    beschreibung: 'Monatsbeitrag an die Künstlersozialkasse aus dem gemeldeten Arbeitseinkommen (§§ 15–16a KSVG)',
+    icon: '🎨',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'KSK Beitrag berechnen, Künstlersozialkasse Beitragsrechner, Künstlersozialkasse Beitrag Höhe 2026, KSK Mindesteinkommen 3900, Künstlersozialversicherung Rechner',
+    quellen: ['https://www.gesetze-im-internet.de/ksvg/__15.html', 'https://www.gesetze-im-internet.de/ksvg/__16.html', 'https://www.gesetze-im-internet.de/ksvg/__16a.html', 'https://www.gesetze-im-internet.de/ksvg/__3.html'],
+  },
+  {
+    id: 'anhaengelast',
+    name: 'Anhängelast- & Führerschein-Check',
+    beschreibung: 'Darf ich diesen Anhänger ziehen? Klasse B/B96/BE, Anhängelast und Stützlast prüfen',
+    icon: '🚗',
+    kategorie: 'auto',
+    fertig: true,
+    seoKeywords: 'Anhängelast Rechner, Anhängelast berechnen, Anhänger Führerschein B BE B96, welchen Anhänger darf ich ziehen, Stützlast berechnen',
+    quellen: ['https://www.gesetze-im-internet.de/fev_2010/__6.html', 'https://www.gesetze-im-internet.de/stvzo_2012/__42.html', 'https://www.gesetze-im-internet.de/stvzo_2012/__44.html'],
+  },
+  {
+    id: 'vbl',
+    name: 'VBLklassik-Rechner',
+    beschreibung: 'Betriebsrente des öffentlichen Dienstes aus Versorgungspunkten und Altersfaktor',
+    icon: '🏛️',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'VBL Rechner, VBLklassik Rente berechnen, VBL Versorgungspunkte, VBL Altersfaktor Tabelle, Zusatzversorgung öffentlicher Dienst',
+    quellen: ['https://www.vbl.de/de/berechnung', 'https://www.vbl.de/documents/d/vbl/vbl-satzung-33-anderung'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

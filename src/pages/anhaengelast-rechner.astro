@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import AnhaengelastRechner from '../components/rechner/AnhaengelastRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Anhängelast-Rechner – Darf ich diesen Anhänger mit meinem Führerschein ziehen?";
+const description = "Anhängelast und Führerschein prüfen: Klasse B, B96 oder BE nötig? Zulässige Gesamtmasse der Kombination nach § 6 FeV, technische Anhängelast gebremst/ungebremst und Stützlast nach §§ 42, 44 StVZO – mit den Feldern aus dem Fahrzeugschein.";
+const keywords = "Anhängelast Rechner, Anhängelast berechnen, Anhänger Führerschein B BE B96, welchen Anhänger darf ich ziehen, Anhängelast gebremst ungebremst, Stützlast berechnen, zulässige Gesamtmasse Kombination 3500 kg, Anhänger Klasse B 750 kg, Wohnwagen Führerschein BE, Anhängelast Fahrzeugschein Feld O.1";
+
+const faqs = [
+  {
+    frage: "Welchen Anhänger darf ich mit Führerschein Klasse B ziehen?",
+    antwort: "Jeden Anhänger mit einer zulässigen Gesamtmasse bis 750 kg – und schwerere Anhänger, solange die zulässigen Gesamtmassen von Zugfahrzeug und Anhänger zusammen 3.500 kg nicht überschreiten (§ 6 Abs. 1 FeV). Beispiel: Ein Kombi mit 2.100 kg zGM darf mit Klasse B einen Anhänger bis 1.400 kg zGM ziehen. Gerechnet wird mit den Papierwerten, nicht mit der tatsächlichen Beladung – ein leerer 1.800-kg-Anhänger hinter demselben Kombi ist mit Klasse B verboten, auch wenn die Waage 3.000 kg zeigt."
+  },
+  {
+    frage: "Was bringt B96 und wann brauche ich BE?",
+    antwort: "B96 ist keine eigene Klasse, sondern eine Erweiterung der Klasse B (Schlüsselzahl 96) nach einer Fahrerschulung ohne Prüfung: Damit darf die Kombination bis 4.250 kg zGM wiegen, wenn der Anhänger über 750 kg liegt. Klasse BE erlaubt Anhänger bis 3.500 kg zGM hinter einem Zugfahrzeug der Klasse B – insgesamt also bis 7.000 kg. Für Wohnwagen über 1.400 kg oder Pferdeanhänger ist BE der Normalfall. Wer die alte Klasse 3 (vor 1999) hat, darf über die Umstellung auf C1E sogar Anhänger über 3.500 kg bis 12 t Zuggewicht ziehen."
+  },
+  {
+    frage: "Wie berechne ich die tatsächliche Anhängelast?",
+    antwort: "Anhängelast ist die Masse, die auf der Anhängerachse liegt – also das tatsächliche Gesamtgewicht des beladenen Anhängers minus der Stützlast, die auf der Kupplung des Zugfahrzeugs ruht. Sie darf den Herstellerwert im Fahrzeugschein nicht überschreiten: Feld O.1 für gebremste, Feld O.2 für ungebremste Anhänger (§ 42 StVZO). Beispiel: Ein beladener Anhänger von 1.100 kg mit 60 kg Stützlast hat eine Anhängelast von 1.040 kg – bei 1.500 kg in Feld O.1 bleiben 460 kg Reserve."
+  },
+  {
+    frage: "Wie hoch muss die Stützlast sein?",
+    antwort: "Mindestens 4 % der tatsächlichen Anhängermasse, höchstens sind 25 kg nötig (§ 44 Abs. 3 StVZO) – bei einem 1.100-kg-Anhänger also mindestens 25 kg. Nach oben begrenzt der kleinere Wert von zulässiger Stützlast des Zugfahrzeugs (Feld 13 im Fahrzeugschein) und der Anhängerkupplung bzw. des Anhängers. In der Praxis liegt die beste Stützlast nahe am erlaubten Maximum: Sie stabilisiert das Gespann. Zu wenig Stützlast führt zum gefährlichen Pendeln bei hohem Tempo."
+  },
+  {
+    frage: "Zählt die Stützlast zum Gewicht des Autos?",
+    antwort: "Ja. Die Stützlast drückt auf die Anhängerkupplung und damit auf die Hinterachse des Zugfahrzeugs. Sie zählt zur Zuladung des Autos – Insassen, Gepäck und Stützlast dürfen zusammen die zulässige Gesamtmasse (Feld F.1) und die zulässige Hinterachslast (Feld 8.2) nicht überschreiten. Für die Fahrerlaubnisfrage bleibt sie dagegen außen vor: Die zGM der Kombination ist die Summe der zGM beider Fahrzeuge ohne Stützlast (§ 6 Abs. 1 Satz 2 FeV)."
+  },
+  {
+    frage: "Was passiert bei Überladung oder falscher Fahrerlaubnis?",
+    antwort: "Überladung kostet nach Bußgeldkatalog je nach Prozentsatz zwischen 10 € und 235 € plus Punkte; ab 20 % Überschreitung gibt es einen Punkt in Flensburg, bei Gespannen über 7,5 t gelten strengere Sätze. Fahren ohne die erforderliche Fahrerlaubnisklasse ist dagegen eine Straftat nach § 21 StVG: Geldstrafe oder bis zu einem Jahr Freiheitsstrafe, dazu kann die Kfz-Haftpflicht den Fahrer bei einem Unfall in Regress nehmen. Wer B hat und mit einer 3.600-kg-Kombination fährt, riskiert also deutlich mehr als ein Bußgeld."
+  },
+  {
+    frage: "Darf ich mit dem Anhänger 100 km/h fahren?",
+    antwort: "Nur mit der 100-km/h-Plakette nach der 9. Ausnahmeverordnung zur StVO. Voraussetzungen unter anderem: Zugfahrzeug mit ABS, Anhängerreifen jünger als sechs Jahre mit Geschwindigkeitsindex L, Anhänger mit Stoßdämpfern und ein Verhältnis von Anhängermasse zu Leermasse des Zugfahrzeugs bis 1,1 (mit Stabilisierungseinrichtung 1,2, gebremst). Ohne Plakette gelten 80 km/h auf Autobahnen und Kraftfahrstraßen, 80 km/h außerorts."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Anhängelast-Rechner", url: "/anhaengelast-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-sky-600 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-sky-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🚗</span>
+          <div>
+            <h1 class="text-2xl font-bold">Anhängelast- und Führerschein-Check</h1>
+            <p class="text-sky-100 text-sm">Darf ich diese Kombination aus Auto und Anhänger fahren? Fahrerlaubnis, Anhängelast, Stützlast</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AnhaengelastRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 6 Abs. 1 FeV (Klassen B, BE, C1E; zGM der Kombination als Summe ohne Stützlast), Anlage 9 FeV Schlüsselzahl 96 (bis 4.250 kg), § 42 StVZO (Anhängelast, 3.500-kg-Grenze, ungebremst 750 kg / halbe Leermasse), § 44 Abs. 3 StVZO (Stützlast 4 %, max. 25 kg Mindestwert).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Fahrerlaubnis B/B96/BE/alte Klasse 3 nach Papierwerten, Herstellerangaben O.1/O.2 und Feld 13, Geländewagen-Faktor 1,5, tatsächliche Anhängelast (Masse minus Stützlast), Überladung des Anhängers, Stützlastkorridor, Zuladung des Zugfahrzeugs inklusive Stützlast, Reserve.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Achslasten (Felder 7/8), D-Wert der Kupplung, Auflastungen, Sattelanhänger und Lkw-Züge, Schlüsselzahlen wie 79.06, Sonderregeln der alten Klasse 3 im Detail (Zugfahrzeug bis 7,5 t, dreiachsige Züge), Fahrerlaubnisse aus dem Ausland, Tempo-100-Zulassung.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Anhänger ziehen: Zwei getrennte Fragen, die ständig vermischt werden</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            „Darf ich das ziehen?“ hat zwei Antworten, die nichts miteinander zu tun haben: Die
+            <strong>Fahrerlaubnis</strong> richtet sich ausschließlich nach den <em>zulässigen</em> Gesamtmassen aus
+            den Papieren – egal, wie leer der Anhänger ist. Die <strong>Technik</strong> richtet sich nach dem
+            <em>tatsächlichen</em> Gewicht – egal, was im Führerschein steht. Wer beides verwechselt, fährt entweder
+            ohne gültige Fahrerlaubnis (Straftat) oder überladen (Bußgeld). Unser Check prüft beide Ebenen und
+            die Stützlast mit den Werten aus der Zulassungsbescheinigung Teil I.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Fahrerlaubnis: Welche Klasse für welches Gespann</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Klasse</th>
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Anhänger (zGM)</th>
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Kombination (zGM)</th>
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Typisch</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-2 px-3 border-b font-medium">B</td><td class="py-2 px-3 border-b">bis 750 kg immer; darüber nur, wenn …</td><td class="py-2 px-3 border-b">… Summe ≤ 3.500 kg</td><td class="py-2 px-3 border-b">Kleiner Kastenanhänger, leichter Wohnwagen hinter Kleinwagen</td></tr>
+                <tr><td class="py-2 px-3 border-b font-medium">B96</td><td class="py-2 px-3 border-b">über 750 kg</td><td class="py-2 px-3 border-b">3.501 – 4.250 kg</td><td class="py-2 px-3 border-b">Mittlerer Wohnwagen hinter SUV; Schulung ohne Prüfung</td></tr>
+                <tr><td class="py-2 px-3 border-b font-medium">BE</td><td class="py-2 px-3 border-b">bis 3.500 kg</td><td class="py-2 px-3 border-b">bis 7.000 kg</td><td class="py-2 px-3 border-b">Pferdeanhänger, großer Wohnwagen, Autotransporter</td></tr>
+                <tr><td class="py-2 px-3 font-medium">Klasse 3 (vor 1999)</td><td class="py-2 px-3">auch über 3.500 kg (C1E)</td><td class="py-2 px-3">bis 12.000 kg</td><td class="py-2 px-3">Besitzstand; Umtausch in Kartenführerschein mit C1E + Schlüsselzahlen</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">zGM = zulässige Gesamtmasse aus Feld F.1 der Zulassungsbescheinigung. Die Kombination ist die Summe beider Werte ohne Stützlast (§ 6 Abs. 1 Satz 2 FeV).</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Technik: Anhängelast und Stützlast</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Anhängelast = tatsächliche Anhängermasse − Stützlast ≤ Feld O.1 (gebremst) / O.2 (ungebremst)</div>
+            <div>Stützlast: ≥ 4 % der Anhängermasse (max. 25 kg nötig), ≤ min(Feld 13, Kupplung)</div>
+            <div>Zugfahrzeug: Beladung + Stützlast ≤ Feld F.1</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Ein Kombi mit 2.100 kg zGM, 1.550 kg Leermasse, 1.500 kg gebremster Anhängelast und
+            80 kg Stützlast zieht einen Anhänger mit 1.300 kg zGM, beladen 1.100 kg, Stützlast 60 kg. Fahrerlaubnis:
+            2.100 + 1.300 = 3.400 kg – Klasse B reicht. Anhängelast: 1.100 − 60 = 1.040 kg von 1.500 kg erlaubt.
+            Stützlast: mindestens 25 kg, höchstens 80 kg – 60 kg passt. Zugfahrzeug: 1.850 + 60 = 1.910 kg von 2.100 kg.
+            <strong>Alles im grünen Bereich.</strong> Wäre der Anhänger ein 1.500-kg-Wohnwagen, wäre die Kombination
+            3.600 kg – dann B96 oder BE nötig, obwohl die Technik das Gespann problemlos zulässt.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Ungebremste Anhänger</h3>
+          <p>
+            Anhänger ohne eigene Bremse dürfen höchstens 750 kg wiegen und nicht mehr als die Hälfte der um 75 kg
+            erhöhten Leermasse des Zugfahrzeugs (§ 42 Abs. 2 StVZO) – bei einem Kleinwagen mit 1.100 kg Leermasse also
+            nur 587 kg. Der Wert in Feld O.2 berücksichtigt das bereits; er ist bei kleinen Autos oft deutlich niedriger
+            als 750 kg.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Wo die Werte im Fahrzeugschein stehen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>F.1</strong> technisch zulässige Gesamtmasse, <strong>F.2</strong> im Zulassungsstaat zulässige Gesamtmasse (meist gleich)</li>
+            <li><strong>G</strong> Masse des fahrbereiten Fahrzeugs (Leermasse inkl. 75 kg Fahrer und 90 % Tank)</li>
+            <li><strong>O.1</strong> technisch zulässige Anhängelast gebremst, <strong>O.2</strong> ungebremst</li>
+            <li><strong>13</strong> Stützlast in kg</li>
+            <li><strong>7.1–7.3 / 8.1–8.2</strong> zulässige Achslasten – für die Beladung des Zugfahrzeugs relevant</li>
+          </ul>
+          <p>
+            Wie viel das Gespann beim Fahren verbraucht, schätzt der <a href="/spritkosten-rechner">Spritkosten-Rechner</a>;
+            das Überladungs-Bußgeld finden Sie im <a href="/bussgeld-rechner">Bußgeld-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Mit dem tatsächlichen Gewicht die Fahrerlaubnis geprüft</h3><p>Für die Führerscheinfrage zählt nur die zGM aus den Papieren. Ein leer gefahrener 1.600-kg-Anhänger hinter einem 2.000-kg-Auto braucht B96 oder BE – der Polizei ist die Waage egal.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Anhängelast mit Anhängermasse gleichgesetzt</h3><p>Die Stützlast ruht auf dem Auto, nicht auf der Anhängerachse. Ein 1.550-kg-Anhänger mit 75 kg Stützlast hat 1.475 kg Anhängelast und passt hinter ein Auto mit 1.500 kg in Feld O.1.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kupplung nachgerüstet, Feld 13 fehlt</h3><p>Bei nachgerüsteten Anhängerkupplungen steht die Stützlast oft nur auf dem Typenschild der Kupplung. Maßgeblich ist der kleinere Wert von Fahrzeughersteller und Kupplungshersteller.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Anhängelast auflasten lassen</h3><p>Manche Hersteller erlauben eine höhere Anhängelast per Einzelabnahme (§ 21 StVZO) oder bei Steigungen bis 8 % statt 12 %. Das ändert Feld O.1, nicht aber die Fahrerlaubnisgrenzen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Elektroauto mit hoher zGM</h3><p>E-Autos haben durch die Batterie oft 2.500 kg und mehr zGM. Damit bleibt für Klasse B nur ein Anhänger bis 1.000 kg zGM – ein 1.200-kg-Wohnwagen braucht B96, obwohl das Auto ihn technisch spielend zieht.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="anhaengelast" slugs={['bussgeld', 'spritkosten', 'kfz-steuer', 'versicherung-auto']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Anhängelast- und Führerschein-Check", "description": description,
+    "url": "https://www.deutschland-rechner.de/anhaengelast-rechner", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

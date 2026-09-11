@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import KskBeitragRechner from '../components/rechner/KskBeitragRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "KSK-Beitragsrechner 2026 – Künstlersozialkasse: Beiträge berechnen";
+const description = "Künstlersozialkasse 2026: Monatsbeitrag aus Ihrem gemeldeten Arbeitseinkommen berechnen – hälftige Renten-, Kranken- und Pflegeversicherung nach §§ 15–16a KSVG, Zusatzbeitrag, Kinderlosenzuschlag, Beitragsbemessungsgrenzen, Mindesteinkommen 3.900 €.";
+const keywords = "KSK Beitrag berechnen, Künstlersozialkasse Beitragsrechner, Künstlersozialkasse Beitrag Höhe 2026, KSK Beitrag Einkommen, Künstlersozialkasse Mindesteinkommen 3900, KSK Rentenversicherung Krankenversicherung Beitrag, Künstlersozialversicherung Rechner, KSK Berufsanfänger, Künstlersozialabgabe 2026 4,9 Prozent";
+
+const faqs = [
+  {
+    frage: "Wie hoch ist der KSK-Beitrag bei 24.000 € Jahreseinkommen?",
+    antwort: "Bei 2.000 € gemeldetem Arbeitseinkommen im Monat zahlen Sie 2026 rund 409 € an die Künstlersozialkasse: 186 € Rentenversicherung (9,3 %), 175 € Krankenversicherung (7,3 % plus 1,45 % hälftiger Zusatzbeitrag bei 2,9 %) und 48 € Pflegeversicherung (1,8 % plus 0,6 % Kinderlosenzuschlag). Das sind etwa 20,5 % des Einkommens – ein angestellter Arbeitnehmer mit gleichem Brutto zahlt denselben Anteil. Ohne KSK müsste ein Selbständiger für denselben Schutz gut das Doppelte aufbringen."
+  },
+  {
+    frage: "Warum zahlen KSK-Versicherte nur die Hälfte der Beiträge?",
+    antwort: "Das Künstlersozialversicherungsgesetz stellt selbständige Künstler und Publizisten Arbeitnehmern gleich: Sie tragen nur den „Arbeitnehmeranteil“ von 50 % (§§ 15, 16, 16a KSVG). Die andere Hälfte finanziert die KSK aus einem Bundeszuschuss von 20 % und der Künstlersozialabgabe von 30 %, die Verwerter – Verlage, Agenturen, Galerien, Unternehmen mit Werbeaufträgen – auf ihre Honorarzahlungen entrichten. Der Abgabesatz sinkt 2026 auf 4,9 % (2025: 5,0 %)."
+  },
+  {
+    frage: "Welches Einkommen muss ich der KSK melden?",
+    antwort: "Das voraussichtliche Arbeitseinkommen des kommenden Jahres aus der künstlerischen oder publizistischen Tätigkeit – also den Gewinn nach Abzug der Betriebsausgaben, geschätzt bis zum 1. Dezember (§ 12 KSVG). Die Beiträge werden ausschließlich aus dieser Schätzung berechnet; eine Nachberechnung am Jahresende gibt es nicht, aber die KSK überprüft stichprobenartig anhand der Steuerbescheide. Ändert sich das Einkommen im Jahr, können Sie die Schätzung ab dem Folgemonat korrigieren lassen. Die Meldung ist nach oben durch die Beitragsbemessungsgrenze der Rentenversicherung (101.400 €) begrenzt."
+  },
+  {
+    frage: "Was passiert, wenn ich weniger als 3.900 € im Jahr verdiene?",
+    antwort: "Dann sind Sie versicherungsfrei (§ 3 Abs. 1 KSVG) und werden nicht über die KSK versichert – Sie müssen sich anderweitig krankenversichern. Zwei Ausnahmen: Berufsanfänger dürfen in den ersten drei Jahren nach Aufnahme der Tätigkeit beliebig wenig verdienen (§ 3 Abs. 2), und wer bereits versichert ist, darf die Grenze in sechs Kalenderjahren zweimal unterschreiten, ohne den Schutz zu verlieren (§ 3 Abs. 3). Ein drittes Unterschreiten beendet die Versicherungspflicht."
+  },
+  {
+    frage: "Was ändert sich beim KSK-Beitrag, wenn ich Kinder habe?",
+    antwort: "Nur in der Pflegeversicherung. Kinderlose ab 23 zahlen den Zuschlag von 0,6 Prozentpunkten in voller Höhe selbst; ab dem zweiten Kind unter 25 gibt es je Kind einen Abschlag von 0,25 Prozentpunkten, höchstens für vier weitere Kinder (§ 55 Abs. 3 SGB XI). Bei 2.000 € Einkommen macht der Unterschied zwischen kinderlos (2,4 %) und zwei Kindern (1,55 %) 17 € im Monat aus. Renten- und Krankenversicherungsbeitrag bleiben unverändert."
+  },
+  {
+    frage: "Kann ich mich als KSK-Mitglied privat krankenversichern?",
+    antwort: "Ja, in zwei Fällen: Berufsanfänger können sich innerhalb von drei Monaten nach Beginn der Versicherungspflicht von der Kranken- und Pflegeversicherungspflicht befreien lassen, ebenso wer voraussichtlich über der Jahresarbeitsentgeltgrenze (2026: 77.400 €) verdient (§ 6 KSVG). Die KSK zahlt dann einen Beitragszuschuss zur privaten Versicherung in Höhe des halben Beitrags, den sie bei gesetzlicher Versicherung tragen würde (§ 10 KSVG). Die Befreiung ist unwiderruflich – ein Wechsel zurück in die GKV über die KSK ist ausgeschlossen."
+  },
+  {
+    frage: "Welche Berufe nimmt die Künstlersozialkasse auf?",
+    antwort: "Selbständige aus den vier Bereichen Musik, darstellende Kunst, bildende Kunst und Wort – vom Musiker über Schauspieler, Maler, Fotograf, Grafik- und Webdesigner bis zu Journalisten, Autoren, Übersetzern und Lektoren. Entscheidend ist der schöpferische oder publizistische Kern der Tätigkeit; reine Technik, Handwerk oder Vertrieb genügen nicht. Die KSK prüft anhand von Auftragsnachweisen, Website und Ausbildung. Wer mehr als einen sozialversicherungspflichtigen Mitarbeiter beschäftigt oder daneben hauptberuflich angestellt ist, fällt heraus."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "KSK-Beitragsrechner", url: "/ksk-beitrag-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-fuchsia-600 to-purple-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-fuchsia-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎨</span>
+          <div>
+            <h1 class="text-2xl font-bold">KSK-Beitragsrechner</h1>
+            <p class="text-fuchsia-100 text-sm">Was Künstler und Publizisten 2026 monatlich an die Künstlersozialkasse zahlen</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KskBeitragRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§§ 15, 16, 16a KSVG (hälftige Beitragsanteile), § 3 KSVG (Mindesteinkommen 3.900 €, Berufsanfänger), § 12 KSVG (Meldung), § 241/§ 243 SGB V (14,6 %/14,0 %), § 55 SGB XI (Pflege 3,6 %, Zuschlag/Abschläge), SV-Rechengrößen-Verordnung 2026, Künstlersozialabgabe-Verordnung 2026 (4,9 %).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Beitragsbemessungsgrenzen RV 8.450 € und KV/PV 5.812,50 €, allgemeiner/ermäßigter KV-Satz, kassenindividueller Zusatzbeitrag, Kinderlosenzuschlag und Kinderabschläge, Versicherungsfreiheit unter 3.900 € mit Berufsanfänger-Ausnahme, Vergleich mit der freiwilligen Versicherung ohne KSK.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Beitragszuschuss für privat Versicherte (§ 10 KSVG), Befreiungen (§ 6 KSVG), Nebeneinkünfte und Vorrangregeln (§§ 4, 5 KSVG), Ruhen bei Zahlungsrückstand, Beiträge bei Rentenbezug, Zusatzversorgung (VG Bild-Kunst, GEMA), Steuern.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Künstlersozialkasse 2026: Sozialversicherung zum halben Preis</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die Künstlersozialkasse ist keine eigene Krankenkasse und keine eigene Rentenversicherung, sondern eine
+            <strong>Einzugsstelle</strong>: Sie meldet selbständige Künstler und Publizisten bei der gesetzlichen
+            Renten-, Kranken- und Pflegeversicherung an und zieht die Beiträge ein. Der Clou: Versicherte zahlen
+            nur die Hälfte – wie ein Arbeitnehmer. Den „Arbeitgeberanteil“ übernehmen Bund und Verwerter. Unser
+            Rechner ermittelt den Monatsbeitrag aus dem Einkommen, das Sie der KSK melden, mit allen Sätzen 2026.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Beitragsformel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Rente = Einkommen/12 × 18,6 % ÷ 2 = 9,3 % (bis 8.450 €/Monat)</div>
+            <div>Kranken = Einkommen/12 × (14,6 % + Zusatzbeitrag) ÷ 2 (bis 5.812,50 €/Monat)</div>
+            <div>Pflege = Einkommen/12 × (3,6 % ÷ 2 + 0,6 % kinderlos − 0,25 % je Kind ab dem 2.)</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Eine freie Illustratorin meldet 24.000 € Jahresgewinn, ist 35, kinderlos und bei
+            einer Kasse mit 2,9 % Zusatzbeitrag. Monatlich: 186 € Rente, 175 € Krankenversicherung, 48 € Pflege –
+            <strong>409 € an die KSK</strong>, 4.908 € im Jahr. Dafür erwirbt sie 2026 rund 0,46 Entgeltpunkte
+            (24.000 ÷ 51.944), also rund 19,65 € Monatsrente pro Beitragsjahr, und ist mit Krankengeld ab dem
+            43. Tag abgesichert. Als freiwillig versicherte Selbständige ohne KSK würde sie für dieselbe Absicherung
+            rund 818 € zahlen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Mindesteinkommen, Berufsanfänger, Schwankungen</h3>
+          <p>
+            Die Versicherungspflicht setzt ein Jahreseinkommen über <strong>3.900 €</strong> voraus (§ 3 Abs. 1 KSVG). In den
+            ersten drei Jahren nach Aufnahme der Tätigkeit spielt die Grenze keine Rolle – Berufsanfänger sind auch mit
+            minimalem Einkommen versichert und zahlen entsprechend kleine Beiträge. Danach darf die Grenze in sechs
+            Kalenderjahren zweimal unterschritten werden. Wer sein Einkommen unterjährig anders einschätzt, meldet
+            das der KSK; die Änderung gilt ab dem Folgemonat. Wichtig: Die Beiträge basieren allein auf der
+            Schätzung – zu niedrige Meldungen fliegen bei den Stichproben auf und werden mit Nachforderungen und
+            Bußgeld geahndet.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Wer die andere Hälfte zahlt</h3>
+          <p>
+            Der Bund steuert 20 % der Beiträge bei, die restlichen 30 % kommen über die <strong>Künstlersozialabgabe</strong>
+            von allen Unternehmen, die künstlerische oder publizistische Leistungen verwerten – vom Verlag bis zum
+            Handwerksbetrieb, der eine Werbeagentur beauftragt. Der Abgabesatz beträgt 2026 4,9 % der gezahlten
+            Honorare; die Bagatellgrenze für gelegentliche Aufträge steigt auf 1.000 € im Jahr. Für die Versicherten
+            ist das unsichtbar: Ihr Auftraggeber darf die Abgabe nicht vom Honorar abziehen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Zusatzbeitrag: der Hebel bei der Kassenwahl</h3>
+          <p>
+            KSK-Versicherte können ihre Krankenkasse frei wählen. Da der hälftige Zusatzbeitrag direkt in den Beitrag
+            einfließt, lohnt sich der Vergleich: Zwischen einer Kasse mit 1,8 % und einer mit 4,0 % Zusatzbeitrag liegen
+            bei 2.000 € Einkommen 22 € im Monat. Den vollen Beitrag ohne KSK zeigt der
+            <a href="/freiwillige-krankenversicherung-rechner">Rechner für die freiwillige Krankenversicherung</a>,
+            die Rentenwirkung der Beiträge der <a href="/rentenpunkte-rechner">Rentenpunkte-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Umsatz statt Gewinn gemeldet</h3><p>Maßgeblich ist das Arbeitseinkommen, also der steuerliche Gewinn nach Betriebsausgaben – nicht der Umsatz und nicht die Einnahmen. Wer den Umsatz meldet, zahlt deutlich zu viel.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Zu niedrig geschätzt</h3><p>Die KSK vergleicht Meldungen mit Einkommensteuerbescheiden. Liegt das tatsächliche Einkommen deutlich über der Schätzung, drohen Beitragsnachforderungen für bis zu vier Jahre und ein Bußgeld. Realistisch schätzen und unterjährig korrigieren.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Nebenjob über 603 €</h3><p>Wer daneben mehr als geringfügig angestellt ist, verliert in der Regel die KSK-Pflicht in der Kranken- und Pflegeversicherung – die Rentenversicherung über die KSK kann bestehen bleiben. Jede Änderung der Erwerbssituation ist meldepflichtig.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Zwei Monate Rückstand</h3><p>Bei Zahlungsrückstand von zwei Monatsbeiträgen mahnt die KSK; zwei Wochen später ruhen die Leistungen der Krankenversicherung (§ 16 Abs. 2 KSVG). Lastschrift einrichten.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Befreiung von der Krankenversicherung bereut</h3><p>Die Befreiung nach § 6 KSVG zugunsten einer privaten Versicherung ist unwiderruflich. Wer später wenig verdient oder Kinder bekommt, kommt über die KSK nicht mehr in die GKV zurück.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="ksk-beitrag" slugs={['freiwillige-krankenversicherung', 'rentenpunkte', 'krankenkassenbeitrag', 'einkommensteuer-selbststaendige']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "KSK-Beitragsrechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/ksk-beitrag-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>
