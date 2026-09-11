@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import KitaGebuehrenRechner from '../components/rechner/KitaGebuehrenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Kita-Gebühren-Rechner 2026 – Elternbeitrag in Berlin, Hamburg, München, Köln und Stuttgart";
+const description = "Kita-Kosten nach Stadt berechnen: Elternbeitrag und Essensgeld für Krippe und Kindergarten in Berlin (beitragsfrei), Hamburg (Tabellen A–D), München (Krippengebühr nach Einkünften), Köln (Elternbeitragssatzung 2025) und Stuttgart (Anlage 1 ab 8/2026). Mit Städtevergleich und Geschwisterregeln.";
+const keywords = "Kita Gebühren Rechner, Kita Kosten nach Stadt, Elternbeitrag Kita berechnen, Kita Gebühren Hamburg Tabelle, Kita Gebühren München Krippe, Elternbeitrag Köln 2025, Kita Gebühren Stuttgart 2026, Kita Berlin kostenlos Essensgeld, Krippe Kosten Vergleich Städte, Kindergarten Beitrag Einkommen";
+
+const faqs = [
+  {
+    frage: "Was kostet ein Kita-Platz in Berlin?",
+    antwort: "Die Betreuung in Kitas und Kindertagespflege ist in Berlin seit August 2018 für alle Kinder von der Geburt bis zur Einschulung beitragsfrei, unabhängig von Einkommen und Betreuungsumfang. Eltern zahlen nur einen Verpflegungsanteil von 23 € im Monat, wenn das Kind ein Mittagessen bekommt; mit berlinpass-BuT entfällt auch dieser. Für Extras wie Bio-Essen, Sport- oder Sprachangebote dürfen Kitas seit 2025 Zuzahlungen von höchstens 100 € im Monat verlangen, und jeder Träger muss auf Wunsch einen zuzahlungsfreien Platz anbieten."
+  },
+  {
+    frage: "Wie berechnet Hamburg den Elternbeitrag?",
+    antwort: "Bis zu fünf Stunden täglich sind bis zur Einschulung beitragsfrei. Wer sechs, acht, zehn oder zwölf Stunden bucht, zahlt nach den Tabellen A bis D der Sozialbehörde, gestaffelt nach dem monatlichen Netto-Familieneinkommen (Zeilen von unter 1.023 € bis ab 3.375 €) und der Familiengröße (zwei bis sechs Personen). Der Beitrag liegt zwischen 4 € (Mindestsatz, 6 Stunden) und 204 € (Höchstsatz, 10 oder 12 Stunden); bei 8 Stunden zwischen 11 € und 191 €. Das Mittagessen ist enthalten. Kindergeld und Elterngeld bis 300 € zählen nicht zum Einkommen, Werbungskosten und Versicherungsbeiträge werden abgezogen."
+  },
+  {
+    frage: "Warum ist der Kindergarten in München gebührenfrei, die Krippe aber nicht?",
+    antwort: "Der Freistaat Bayern zahlt für Kindergartenkinder ab drei Jahren einen Beitragszuschuss von 100 € im Monat. Die städtische Besuchsgebühr für den Kindergarten liegt je nach Buchungszeit bei 38 bis 100 € und wird damit vollständig verrechnet, es bleibt nur das Verpflegungsgeld von 105 €. Für Krippenkinder gibt es diesen Zuschuss nicht; hier gilt die Gebührentabelle nach Jahreseinkünften und Buchungszeit, von 100 € (bis 60.000 € Einkünfte) bis 250 € (über 80.000 €, über 9 Stunden). Ersatzweise können Familien mit geringem Einkommen das Bayerische Krippengeld von bis zu 100 € beantragen, allerdings nur für Kinder, die vor dem 1. Januar 2025 geboren wurden."
+  },
+  {
+    frage: "Welche Einkommensstufen gelten in Köln?",
+    antwort: "Die Kölner Elternbeitragssatzung vom 17. April 2025 kennt zehn Stufen nach dem Jahreseinkommen: bis 24.542 € (Stufe 1, beitragsfrei), bis 36.813, 49.084, 61.355, 78.000, 100.000, 120.000, 140.000, 160.000 € und darüber. Maßgeblich ist die Summe der positiven Einkünfte im Sinne des Einkommensteuergesetzes, Kinderbetreuungskosten werden abgezogen, bei Beamten kommen 10 Prozent hinzu. Die Beiträge sind nach Alter (unter 2, 2 bis unter 3, ab 3 Jahre) und Wochenstunden (25, 35, 45) gestaffelt: Ein Kind unter zwei Jahren mit 45 Stunden kostet in Stufe 5 (bis 78.000 €) 409,29 €, in Stufe 10 (über 160.000 €) 830,02 € im Monat. Ab dem Kindergartenjahr nach dem vierten Geburtstag sind alle Kinder beitragsfrei."
+  },
+  {
+    frage: "Wie funktioniert die Staffelung in Stuttgart?",
+    antwort: "Stuttgart rechnet in seinen städtischen Kitas nicht nach Einkommen, sondern nach Betreuungsart und Zahl der Kinder unter 18 im Haushalt. Ab 1. August 2026 kostet ein Ganztagsplatz (8 Stunden) für ein Kleinkind unter drei Jahren 243 € bei einem Kind, 202 € bei zwei, 138 € bei drei und 131 € ab vier Kindern; ein Kindergartenkind 160, 120, 58 bzw. 52 €. Mit der Stuttgarter FamilienCard sinkt der Beitrag deutlich (Kleinkind Ganztag 146 €, ab drei Kindern 0 €), mit Bonuscard entfällt er ganz. Dazu kommen 77 € Essensgeld. Gezahlt werden elf Monatsbeiträge im Jahr, der August ist beitragsfrei. Die Satzung sieht bereits jährliche Erhöhungen bis 2031 vor."
+  },
+  {
+    frage: "Was passiert, wenn mehrere Kinder gleichzeitig in der Kita sind?",
+    antwort: "Jede Stadt hat eine eigene Geschwisterregel. Hamburg: Nur das jüngste Kind zahlt den vollen Beitrag, das ältere ein Drittel (mindestens den Mindestsatz), jedes weitere nur den Mindestsatz. Köln: Es wird nur ein Zahlkind berechnet, und zwar das mit dem höchsten Beitrag; Geschwister sind frei. München: Kinder mit Ordnungsnummer 2 (ein älteres Geschwisterkind mit Kindergeld) rutschen eine Einkommensstufe tiefer, ab Ordnungsnummer 3 entfällt die Besuchsgebühr, wobei das ältere Kind nicht in einer Kita sein muss. Stuttgart: Die Tabelle staffelt nach der Zahl der Kinder unter 18 im Haushalt, ab drei Kindern mit FamilienCard ist der Platz beitragsfrei. Berlin: ohnehin beitragsfrei."
+  },
+  {
+    frage: "Zahlen Familien mit Bürgergeld oder Wohngeld Kita-Gebühren?",
+    antwort: "In Hamburg sind Familien, die Bürgergeld, Sozialhilfe, Leistungen nach dem Asylbewerberleistungsgesetz, Kinderzuschlag oder Wohngeld beziehen, seit August 2019 vollständig beitragsfrei. Köln stellt dieselben Gruppen für die Monate des Leistungsbezugs beitragsfrei (§ 4 Abs. 5 der Satzung). München befreit Münchenpass-Inhaber und Leistungsbezieher und übernimmt auf Antrag auch das Verpflegungsgeld über das Bildungs- und Teilhabepaket. Stuttgart befreit Inhaber der Bonuscard + Kultur vom Elternbeitrag. In Berlin entfällt mit berlinpass-BuT der Verpflegungsanteil. Das Mittagessen wird in allen Städten über die Leistungen für Bildung und Teilhabe (§ 28 SGB II) übernommen."
+  },
+  {
+    frage: "Gelten die Tabellen auch für Kitas freier Träger?",
+    antwort: "In Berlin und Hamburg ja, weil dort alle Kitas im Gutscheinsystem nach denselben Regeln abrechnen. In Köln gilt die Elternbeitragssatzung für alle Kitas und die Kindertagespflege, weil der Beitrag an die Stadt gezahlt wird, nicht an den Träger. In München und Stuttgart gelten die Tabellen nur für städtische Einrichtungen; freie Träger legen ihre Entgelte selbst fest. In München halten viele davon über die Münchner Kita-Förderung das städtische Niveau, in Stuttgart übernimmt die Stadt bei Bedürftigkeit maximal die städtischen Sätze plus 40 Prozent. Elterninitiativen und private Kitas können überall abweichen."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Kita-Gebühren-Rechner", url: "/kita-gebuehren-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-rose-500 to-pink-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-rose-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🧸</span>
+          <div>
+            <h1 class="text-2xl font-bold">Kita-Gebühren-Rechner</h1>
+            <p class="text-rose-100 text-sm">Elternbeitrag und Essensgeld in Berlin, Hamburg, München, Köln und Stuttgart</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KitaGebuehrenRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">Berlin: SenBJF Kostenbeteiligung (beitragsfrei seit 2018, 23 € Verpflegung). Hamburg: Broschüre „Elternbeiträge“ der Sozialbehörde, Tabellen A–D (Netto-Familieneinkommen × Familiengröße). München: Kita-Gebührensatzung und Gebührenübersicht 2026. Köln: Elternbeitragssatzung vom 17.04.2025 (§§ 4, 8, 9). Stuttgart: Satzung 4/6, Anlage 1 (1.8.2026–31.7.2027).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Alter (Krippe/Kindergarten, Köln dreistufig), tägliche Betreuungszeit mit Zuordnung zu den Stadt-Modellen, Einkommensstaffeln, Familiengröße, Geschwisterregeln aller fünf Städte, FamilienCard, Beitragsfreiheit bei Sozialleistungen, Essensgeld, Jahreskosten (Stuttgart 11 Monate).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Kindertagespflege, Hort und Vorschulklassen, Härtefälle, Zuzahlungen freier Träger, Kölner Beamtenzuschlag und Kinderfreibeträge ab dem dritten Kind, Bayerisches Krippengeld, Stuttgarter Früh-/Spätbetreuung über 2 Stunden, andere Städte und Landkreise.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Kita-Gebühren im Städtevergleich: Fünf Systeme, fünf Ergebnisse</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>Es gibt in Deutschland keine bundeseinheitliche Kita-Gebühr. § 90 SGB VIII erlaubt den Kommunen, Kostenbeiträge zu erheben und nach Einkommen, Kinderzahl und Betreuungszeit zu staffeln; einige Länder haben die Beiträge ganz oder teilweise abgeschafft. Das Ergebnis ist ein Flickenteppich, in dem dieselbe Familie mit demselben Kind je nach Wohnort zwischen 23 € und über 800 € im Monat zahlt. Der Rechner bildet fünf große Städte mit ihren amtlichen Tabellen ab und zeigt auf einen Blick, was Ihre Eingaben in jeder Stadt kosten würden.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Berlin: beitragsfrei, nur Essen</h3>
+          <p>Berlin hat die Elternbeiträge schrittweise abgeschafft und ist seit August 2018 in allen Altersstufen beitragsfrei. Geblieben ist ein Verpflegungsanteil von 23 € im Monat für das Mittagessen. Weil manche Träger anfingen, den Wegfall der Gebühren durch Zuzahlungen für Sport, Bio-Essen oder Sprachkurse auszugleichen, gilt seit 2025 eine Obergrenze von 100 € im Monat; Eltern haben ein Recht auf einen zuzahlungsfreien Platz und können Zuzahlungsvereinbarungen mit einem Monat Frist kündigen.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Hamburg: fünf Stunden frei, danach nach Nettoeinkommen</h3>
+          <p>Hamburgs Kita-Gutschein deckt fünf Stunden täglich beitragsfrei ab. Für sechs, acht, zehn oder zwölf Stunden gilt je eine Tabelle (A bis D) mit 48 Einkommenszeilen und fünf Spalten für die Familiengröße. Grundlage ist das monatliche Nettoeinkommen aller Familienmitglieder, anteilig inklusive Weihnachts- und Urlaubsgeld, ohne Kindergeld und ohne die ersten 300 € Elterngeld; abgezogen werden Fahrtkosten, Arbeitsmittel und angemessene Versicherungsbeiträge. Beispiel aus dem Rechner: Ein Paar mit einem Kind und 4.200 € netto zahlt für acht Stunden den Höchstsatz von 191 €; mit 2.500 € netto, zwei Kindern und zehn Stunden sind es 86 €. Das Mittagessen ist in allen Beiträgen enthalten, und wer ohnehin den Höchstsatz zahlt, muss keine Einkommensnachweise vorlegen.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">München: Krippe nach Einkünften, Kindergarten frei</h3>
+          <p>In den städtischen Münchner Kitas und den Einrichtungen der Münchner Kita-Förderung richtet sich die Krippengebühr nach den Jahreseinkünften der Eltern (Gesamtbetrag der Einkünfte laut Steuerbescheid des vorletzten Jahres) und der täglichen Buchungszeit: 100 € pauschal bis 60.000 €, dann gestaffelt bis 250 € für über 80.000 € und über neun Stunden. Ab dem dritten Geburtstag übernimmt der bayerische Beitragszuschuss von 100 € die Besuchsgebühr komplett. In allen Fällen kommt das Verpflegungsgeld von 105 € hinzu, das mit 21 Essenstagen im Monat kalkuliert ist. Achtung: Der Stadtrat bereitet eine Erhöhung zum 1. September 2027 vor (Krippe bis 330 €, Kindergarten bis 174 €, Verpflegung 140 €); für das Kita-Jahr 2026/27 bleibt alles wie bisher.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Köln: zehn Einkommensstufen, drei Altersgruppen</h3>
+          <p>Köln hat zum 1. August 2025 eine neue Elternbeitragssatzung in Kraft gesetzt. Sie gilt für alle Kitas und die Kindertagespflege im Stadtgebiet, weil der Beitrag an das Jugendamt fließt. Zehn Einkommensstufen von bis 24.542 € (beitragsfrei) bis über 160.000 € treffen auf drei Altersgruppen und drei Betreuungsumfänge. Die Spanne ist die größte im Vergleich: Ein Kind unter zwei Jahren mit 45 Wochenstunden kostet in Stufe 2 (bis 36.813 €) 148,18 €, in Stufe 10 830,02 €. Kinder ab drei Jahren zahlen deutlich weniger, und ab dem Kindergartenjahr nach dem vierten Geburtstag gilt die landesweite Beitragsfreiheit für die letzten beiden Jahre vor der Einschulung. Die Verpflegung ist nicht Teil der Satzung, sondern wird vom jeweiligen Träger festgelegt.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Stuttgart: einkommensunabhängig, nach Kinderzahl</h3>
+          <p>Stuttgart verzichtet in seinen rund 190 städtischen Kitas auf eine Einkommensprüfung. Die Anlage 1 zur Satzung 4/6, gültig vom 1. August 2026 bis 31. Juli 2027, staffelt nach Betreuungsform (verlängerte Öffnungszeit 6 oder 7 Stunden, Ganztag 8 Stunden, jeweils mit bis zu zwei Stunden Früh- und Spätbetreuung) und nach der Zahl der Kinder unter 18 im Haushalt. Für Kinder unter drei Jahren ist ein Kleinkindzuschlag von 75 € (FamilienCard 43 €) enthalten, der bei mehreren Kleinkindern nur einmal anfällt. Sozial gestaffelt wird über zwei Karten: Mit der FamilienCard (gegen Aufladung) sinkt der Beitrag, ab drei Kindern auf null; mit der Bonuscard + Kultur entfällt er ganz. Das Essensgeld beträgt einheitlich 77 €. Bezahlt werden elf Monate, der August ist beitragsfrei, weshalb der Rechner die Jahreskosten mit 11 statt 12 Monaten ausweist.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel: Zweijähriges Kind, acht Stunden</h3>
+          <p>Paar mit einem Kind, 4.200 € netto im Monat, 75.000 € Jahreseinkünfte, Mittagessen gebucht. Berlin: 0 € Beitrag plus 23 € Essen. Hamburg: Tabelle B, drei Personen, Zeile ab 3.375 €: 191 € inklusive Essen. München: Krippe, bis 80.000 €, bis 8 Stunden: 198 € plus 105 € Verpflegung, zusammen 303 €. Köln: 2 bis unter 3 Jahre, 45 Wochenstunden, Stufe 5: 341,07 € ohne Verpflegung. Stuttgart: Kleinkind, Ganztag 8 Stunden, ein Kind: 243 € plus 77 € Essen, zusammen 320 €, bei elf Monaten 3.520 € im Jahr. Das ist die Voreinstellung des Rechners. Wird das Kind drei, dreht sich das Bild: München und Berlin kosten dann nur noch das Essen, Köln 256,36 € und Stuttgart 237 € inklusive Essen.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Welches Einkommen zählt?</h3>
+          <p>Hamburg fragt nach dem monatlichen Nettoeinkommen, München nach dem Gesamtbetrag der Einkünfte aus dem Steuerbescheid, Köln nach der Summe der positiven Einkünfte des laufenden Kalenderjahres, also jeweils Brutto minus Werbungskosten. Wer den Städtevergleich nutzen will, gibt deshalb beide Werte ein. Faustregel für Angestellte: Die Jahreseinkünfte liegen etwa beim Bruttojahresgehalt minus 1.230 € Arbeitnehmer-Pauschbetrag je Person, das Nettoeinkommen bei 60 bis 70 Prozent des Bruttos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Brutto und Netto verwechselt</h3><p>Hamburg rechnet mit dem Nettoeinkommen pro Monat, München und Köln mit Jahreseinkünften vor Steuern. Wer in Hamburg das Brutto einträgt, landet fast immer im Höchstsatz.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Falsches Jahr in München</h3><p>Für die Ermäßigung zählt das Einkommen des vorletzten Jahres: Für das Kita-Jahr 2026/27 die Einkünfte 2024. Wer gerade weniger verdient (Elternzeit, Teilzeit), kann bei der Zentralen Gebührenstelle eine Zumutbarkeitsprüfung beantragen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Ermäßigung nicht beantragt</h3><p>In München, Hamburg und Stuttgart gibt es einkommens- oder kartenabhängige Ermäßigungen nur auf Antrag, in München jedes Kita-Jahr neu. Ohne Antrag oder Nachweis wird der Höchstsatz festgesetzt, in Köln nach § 6 der Satzung ebenfalls.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Buchungszeit zu großzügig</h3><p>Jede Stunde mehr kostet in München und Hamburg sofort eine Stufe mehr, in Köln der Sprung von 35 auf 45 Wochenstunden in den oberen Stufen 80 bis 170 €. Buchen Sie, was Sie brauchen; in Hamburg reicht der beitragsfreie Fünf-Stunden-Gutschein für viele Teilzeitfamilien.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kölner Stichtag übersehen</h3><p>Beitragsfrei wird ein Kind erst ab dem Kindergartenjahr, das auf den vierten Geburtstag folgt, und nur wenn der Geburtstag bis zum 30. September liegt. Ein im Oktober geborenes Kind zahlt ein Jahr länger.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Umzug in den Speckgürtel</h3><p>Die Tabellen gelten nur im Stadtgebiet. Potsdam, Norderstedt, Fürstenfeldbruck, Bergisch Gladbach oder Esslingen haben eigene Satzungen, oft mit ganz anderen Beträgen. Prüfen Sie vor dem Umzug die Gebührensatzung der Zielgemeinde.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="kita-gebuehren" slugs={['kindergeld', 'elterngeld', 'kinderzuschlag', 'wohngeld']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Kita-Gebühren-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/kita-gebuehren-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

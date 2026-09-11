@@ -4463,6 +4463,16 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Schadenrückkauf Rechner, Kfz Schaden selbst zahlen oder Versicherung, Rückstufung berechnen, Schaden zurückkaufen Frist, SF Klasse Rückstufung Mehrbeitrag',
     quellen: ['https://www.gdv.de/resource/blob/6178/ec39e06d2f552aca5f35f19277c94603/01-allgemeine-bedingungen-fuer-die-kfz-versicherung-akb-2015--data.pdf', 'https://www.gesetze-im-internet.de/vvg_2008/__115.html'],
   },
+  {
+    id: 'kita-gebuehren',
+    name: 'Kita-Gebühren-Rechner',
+    beschreibung: 'Elternbeitrag und Essensgeld in Berlin, Hamburg, München, Köln und Stuttgart im Vergleich',
+    icon: '🧸',
+    kategorie: 'familie',
+    fertig: true,
+    seoKeywords: 'Kita Gebühren Rechner, Kita Kosten nach Stadt, Elternbeitrag Kita berechnen, Kita Gebühren Hamburg, Kita Gebühren München, Elternbeitrag Köln, Kita Gebühren Stuttgart',
+    quellen: ['https://www.berlin.de/sen/jugend/familie-und-kinder/kindertagesbetreuung/kostenbeteiligung/', 'https://www.hamburg.de/politik-und-verwaltung/behoerden/bsfb/familie/kinderbetreuung/elterninformationen/elternbeitrag-hoehe-35372', 'https://stadt.muenchen.de/infos/kosten-kita-platz.html', 'https://www.stadt-koeln.de/mediaasset/content/satzungen/elternbeitraege_20250417.pdf', 'https://www.stuttgart.de/rathaus/verwaltung/stadtrecht/4/anlagen-1-bis-5-zu-4-6-verzeichnis-der-kostenbeitraege-und-des-essensgeldes-pro-monat'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 
