@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import WitwengeldRechner from '../components/rechner/WitwengeldRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Witwengeld-Rechner für Bundesbeamte 2026 – Hinterbliebenenversorgung berechnen";
+const description = "Witwengeld nach dem Beamtenversorgungsgesetz berechnen: 55 % (bzw. 60 %) des Ruhegehalts, Mindestwitwengeld, Kürzung bei Altersunterschied, Waisengeld, Sterbegeld. Auch beim Tod aktiver Bundesbeamter mit Zurechnungszeit und Versorgungsabschlag.";
+const keywords = "Witwengeld Rechner, Witwenpension berechnen, Witwenrente Beamte Rechner, Witwengeld Höhe Bundesbeamte, Hinterbliebenenversorgung Beamte berechnen, Witwengeld 55 Prozent, Witwergeld Beamter, Waisengeld Beamte, Sterbegeld Beamte, Witwengeld Mindestversorgung, BeamtVG § 20, Witwengeld aktiver Beamter verstorben";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie hoch ist das Witwengeld für Hinterbliebene von Bundesbeamten?",
+    antwort: "55 % des Ruhegehalts, das der oder die Verstorbene bezogen hat oder bei Versetzung in den Ruhestand am Todestag hätte beziehen können (§ 20 Abs. 1 BeamtVG). Beispiel: Bei einem Ruhegehalt von 2.800 € beträgt das Witwengeld 1.540 € brutto im Monat. Für Ehen, die vor dem 1. Januar 2002 geschlossen wurden und in denen mindestens ein Ehegatte vor dem 2. Januar 1962 geboren ist, gilt weiter der alte Satz von 60 % (§ 69e Abs. 5 BeamtVG). Mindestens gibt es das Mindestwitwengeld: 60 % der amtsunabhängigen Mindestversorgung zuzüglich 30,68 € – nach der Bundesbesoldungstabelle ab März 2024 rund 1.250 €."
+  },
+  {
+    frage: "Wie wird das Witwengeld berechnet, wenn der Beamte noch im Dienst war?",
+    antwort: "Dann wird ein fiktives Ruhegehalt ermittelt: so, als wäre die verstorbene Person am Todestag wegen Dienstunfähigkeit in den Ruhestand versetzt worden. Die ruhegehaltfähigen Dienstbezüge werden mit 0,9901 vervielfältigt (§ 5 BeamtVG), der Ruhegehaltssatz beträgt 1,79375 % je Dienstjahr, höchstens 71,75 % (§ 14 Abs. 1). Stirbt der Beamte vor dem 60. Geburtstag, wird die Zeit bis 60 zu zwei Dritteln als Zurechnungszeit hinzugerechnet (§ 13); stirbt er vor 65, gilt ein Versorgungsabschlag von 3,6 % je Jahr, höchstens 10,8 % (§ 14 Abs. 3). Beispiel: 5.200 € Dienstbezüge, 28 Dienstjahre, Tod mit 56 – Ruhegehaltssatz 55,01 %, Abschlag 10,8 %, fiktives Ruhegehalt 2.526 €, Witwengeld 1.389 €."
+  },
+  {
+    frage: "Wann wird das Witwengeld gekürzt oder gar nicht gezahlt?",
+    antwort: "Kein Witwengeld gibt es, wenn die Ehe kürzer als ein Jahr dauerte und die Vermutung einer Versorgungsehe nicht widerlegt wird, oder wenn die Ehe erst nach dem Ruhestand geschlossen wurde und der Ruhestandsbeamte dabei die Regelaltersgrenze schon erreicht hatte – dann gibt es allenfalls einen Unterhaltsbeitrag (§§ 19, 22 BeamtVG). Gekürzt wird bei mehr als 20 Jahren Altersunterschied ohne gemeinsames Kind: 5 % je angefangenes Jahr über 20, höchstens 50 %; nach fünf Ehejahren wächst der Betrag um 5 % je weiterem Jahr wieder auf (§ 20 Abs. 2). Zusätzlich greifen Ruhensregelungen bei eigenem Einkommen, eigener Versorgung oder Rente (§§ 53–55)."
+  },
+  {
+    frage: "Bekommen die Kinder zusätzlich Waisengeld?",
+    antwort: "Ja. Halbwaisen erhalten 12 %, Vollwaisen 20 % des Ruhegehalts (§ 24 BeamtVG) – bis 18 ohne weitere Voraussetzung, bis 27 während Schul- oder Berufsausbildung. Witwen- und Waisengeld dürfen zusammen das Ruhegehalt nicht übersteigen; sonst werden alle Bezüge im gleichen Verhältnis gekürzt (§ 25). Bei einem Ruhegehalt von 2.526 € und vier Halbwaisen würden 1.389 € Witwengeld plus 4 × 303 € Waisengeld die Grenze überschreiten und anteilig gekappt."
+  },
+  {
+    frage: "Was ist das Sterbegeld und wer bekommt es?",
+    antwort: "Beim Tod eines Beamten oder Ruhestandsbeamten erhalten der hinterbliebene Ehegatte und die Abkömmlinge ein Sterbegeld in Höhe des Zweifachen der Dienst- bzw. Versorgungsbezüge des Sterbemonats, in einer Summe (§ 18 BeamtVG). Bei 2.800 € Ruhegehalt sind das 5.600 €. Die Bezüge für den Sterbemonat selbst verbleiben zusätzlich den Erben. Sind keine Ehegatten oder Kinder vorhanden, können Verwandte oder die Personen, die die Bestattungskosten getragen haben, ein Kostensterbegeld bis zur Höhe ihrer Aufwendungen beantragen."
+  },
+  {
+    frage: "Was passiert mit dem Witwengeld bei Wiederheirat?",
+    antwort: "Der Anspruch erlischt mit der neuen Ehe. Dafür gibt es eine Witwenabfindung in Höhe des 24-Fachen des zuletzt gezahlten Witwengeldes in einer Summe (§ 21 BeamtVG) – bei 1.540 € im Monat also 36.960 €, steuerfrei nach § 3 Nr. 3 EStG. Wird die neue Ehe später aufgelöst, lebt der Anspruch auf Witwengeld wieder auf (§ 61 Abs. 3); die Abfindung wird dann, soweit sie auf die Zeit nach dem Wiederaufleben entfällt, in Raten einbehalten."
+  },
+  {
+    frage: "Gilt der Rechner auch für Landesbeamte, Lehrer und Polizisten der Länder?",
+    antwort: "Nur eingeschränkt. Der Rechner bildet das Beamtenversorgungsgesetz des Bundes ab, das für Bundesbeamte, Richter des Bundes, Berufssoldaten und Bundesminister gilt. Die Länder haben seit der Föderalismusreform eigene Versorgungsgesetze (z. B. LBeamtVG NRW, BayBeamtVG). Die Grundstruktur – 55 % des Ruhegehalts, Waisengeld 12/20 %, Mindestversorgung – ist meist gleich, im Detail weichen Faktoren, Zurechnungszeiten, Abschläge und Besoldungstabellen aber ab. Für Landesbeamte liefert der Rechner daher nur eine Näherung."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Witwengeld-Rechner", url: "/witwengeld-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-slate-300 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Witwengeld-Rechner für Bundesbeamte</h1>
+            <p class="text-slate-300 text-sm">Hinterbliebenenversorgung nach dem Beamtenversorgungsgesetz, Stand 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WitwengeldRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">BeamtVG (Bund): § 20 (55 %, Mindestwitwengeld, Altersunterschied), § 19 (Ausschlüsse), § 69e Abs. 5 (60 % Altfälle), § 14 (Ruhegehaltssatz, Abschlag, Mindestversorgung), § 13 (Zurechnungszeit), § 5 (Faktor 0,9901), §§ 18, 21, 24, 25 (Sterbegeld, Abfindung, Waisengeld, Höchstgrenze); Merkblatt Hinterbliebenenversorgung der Generalzolldirektion; Bundesbesoldungstabelle A 4 ab 1.3.2024.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Ruhestandsbeamte (Ruhegehalt aus dem Bescheid) und aktive Beamte (fiktive Versetzung in den Ruhestand wegen Dienstunfähigkeit mit Zurechnungszeit, Versorgungsabschlag, Mindestversorgung), 55/60 %, Kürzung und Wiederaufstockung bei Altersunterschied, Mindestwitwengeld, Halbwaisengeld, § 25-Deckel, Sterbegeld, Witwenabfindung.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Ruhensregelungen bei Einkommen, Versorgung und Rente (§§ 53–55), Kinderzuschlag (§ 50c), Versorgungsausgleich (§ 57), Unterhaltsbeiträge (§ 22), Vollwaisen mit mehreren Versorgungsurhebern, Landesversorgungsrecht, Besoldungsanpassung 2025/2026 (noch nicht verkündet), Steuern und Beihilfe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Witwengeld statt Witwenrente: Wie Beamtenhinterbliebene versorgt werden</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Stirbt eine Beamtin oder ein Beamter, gibt es für den Ehepartner keine
+            <a href="/witwenrente-rechner">Witwenrente</a> der Deutschen Rentenversicherung, sondern
+            <strong>Witwengeld</strong> vom Dienstherrn. Die Logik ist eine andere: Statt persönlicher Entgeltpunkte
+            zählt das <strong>Ruhegehalt</strong> des Verstorbenen, und statt Freibeträgen mit 40-%-Anrechnung
+            gelten die Ruhensregelungen des Beamtenversorgungsgesetzes. Auch das Sterbevierteljahr der Rente
+            existiert nicht – dafür gibt es das Sterbegeld in Höhe von zwei Monatsbezügen.
+          </p>
+          <p>
+            Unser <strong>Witwengeld-Rechner</strong> rechnet nach dem Beamtenversorgungsgesetz des Bundes und deckt
+            beide Fälle ab: den Tod eines Ruhestandsbeamten, dessen Ruhegehalt aus dem Bescheid bekannt ist, und den
+            Tod im aktiven Dienst, bei dem das Ruhegehalt erst fiktiv berechnet werden muss. Wer wissen will, was
+            netto übrig bleibt, findet den Steuerabzug im <a href="/pension-netto-rechner">Pension-Netto-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Grundformel: 55 % des Ruhegehalts</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Witwengeld = Ruhegehalt × 55 % (Altfälle: 60 %)</div>
+            <div>mindestens: 60 % × (65 % A 4 Endstufe × 0,9901) + 30,68 €</div>
+            <div>Halbwaise = Ruhegehalt × 12 % · Vollwaise × 20 %</div>
+            <div>Witwen- + Waisengeld ≤ Ruhegehalt</div>
+          </div>
+          <p>
+            <strong>Beispiel Ruhestandsbeamter:</strong> Ein Zollbeamter im Ruhestand bezog 2.800 € Ruhegehalt. Seine
+            Witwe erhält <strong>1.540 € Witwengeld</strong> im Monat, ein noch studierender Sohn 336 € Waisengeld.
+            Zusammen 1.876 € – deutlich unter dem Ruhegehalt, die Höchstgrenze greift nicht. Einmalig kommen
+            5.600 € Sterbegeld hinzu.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Tod im aktiven Dienst: das fiktive Ruhegehalt</h3>
+          <p>
+            War der Verstorbene noch im Dienst, wird so gerechnet, als wäre er <strong>am Todestag wegen
+            Dienstunfähigkeit in den Ruhestand versetzt</strong> worden. Das hat drei Folgen: Erstens werden die
+            ruhegehaltfähigen Dienstbezüge mit dem Faktor 0,9901 vervielfältigt (§ 5 Abs. 1 BeamtVG). Zweitens bekommt,
+            wer vor dem 60. Geburtstag stirbt, eine <strong>Zurechnungszeit</strong> von zwei Dritteln der Zeit bis 60
+            (§ 13) – ein 50-Jähriger also 6,67 zusätzliche Dienstjahre. Drittens gilt ein
+            <strong>Versorgungsabschlag</strong> von 3,6 % je Jahr vor Vollendung des 65. Lebensjahres, gedeckelt auf
+            10,8 % (§ 14 Abs. 3); er entfällt ab 63 mit 40 Dienstjahren.
+          </p>
+          <p>
+            <strong>Beispiel:</strong> Ein Bundespolizist (A 11, 5.200 € ruhegehaltfähige Bezüge) stirbt mit 56 nach
+            28 Dienstjahren. Zurechnungszeit 2,67 Jahre, Ruhegehaltssatz 30,67 × 1,79375 % = 55,01 %. Aus
+            5.148,52 € (nach Faktor) ergeben sich 2.832 €, nach 10,8 % Abschlag <strong>2.526 € fiktives Ruhegehalt</strong>.
+            Witwengeld: 55 % = <strong>1.389 €</strong>. Bei einem jüngeren Kollegen mit weniger Dienstjahren greift oft die
+            amtsunabhängige Mindestversorgung (65 % der A-4-Endstufe plus 30,68 €) und damit das Mindestwitwengeld.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Kürzung bei großem Altersunterschied</h3>
+          <p>
+            War die Witwe mehr als 20 Jahre jünger und ist aus der Ehe kein Kind hervorgegangen, wird das Witwengeld
+            um 5 % je angefangenes Jahr über 20 gekürzt, höchstens um 50 % (§ 20 Abs. 2). Bei 25 Jahren Unterschied
+            also um 25 %. Nach fünf Ehejahren wächst der Betrag um 5 % je weiterem angefangenen Ehejahr wieder auf –
+            nach zehn Ehejahren ist die 25-%-Kürzung ausgeglichen. Das Mindestwitwengeld darf dabei nie unterschritten
+            werden.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Was der Rechner nicht abbildet: Ruhensregelungen</h3>
+          <p>
+            Bezieht die Witwe eigenes Erwerbseinkommen, eine eigene Pension oder eine gesetzliche Rente, ruht das
+            Witwengeld teilweise, soweit die Summe eine Höchstgrenze übersteigt – bei Erwerbseinkommen die Endstufe
+            der Besoldungsgruppe des Verstorbenen (§ 53), bei Renten eine Grenze aus der fiktiven Höchstversorgung
+            (§ 55). Mindestens 20 % des Witwengeldes bleiben immer erhalten. Diese Anrechnung ist individuell und
+            gehört in den Versorgungsbescheid – der Rechner zeigt den Grundanspruch vor Anrechnung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Grundgehalt statt ruhegehaltfähiger Dienstbezüge</h3>
+            <p>Ruhegehaltfähig sind Grundgehalt, Familienzuschlag der Stufe 1 und als ruhegehaltfähig bezeichnete Zulagen (z. B. Polizeizulage nach Übergangsrecht), nicht aber Erschwerniszulagen oder Mehrarbeitsvergütung. Wer nur das Grundgehalt eingibt, unterschätzt das Witwengeld; wer die Bruttobezüge mit allen Zulagen nimmt, überschätzt es.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Netto-Ruhegehalt eingegeben</h3>
+            <p>Das Witwengeld bemisst sich nach dem Brutto-Ruhegehalt vor Steuern und Beihilfe-Eigenanteil. Es ist selbst steuerpflichtig – der Versorgungsfreibetrag nach § 19 Abs. 2 EStG richtet sich nach dem Jahr des erstmaligen Bezugs der Witwe.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Versorgungsehe: Heirat auf dem Krankenbett</h3>
+            <p>Dauerte die Ehe unter einem Jahr, vermutet das Gesetz eine Versorgungsehe. Die Vermutung ist widerlegbar – etwa bei Unfalltod oder wenn die Heirat lange geplant war –, aber die Hinterbliebenen tragen die Beweislast. Ehen vor 2002 unterlagen nur einer Dreimonatsfrist.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Versorgungsausgleich vergessen</h3>
+            <p>Wurde der Verstorbene geschieden und ein Versorgungsausgleich durchgeführt, ist das Witwengeld der zweiten Ehefrau entsprechend gekürzt (§ 57 BeamtVG). Die geschiedene Frau kann unter Umständen einen Unterhaltsbeitrag beanspruchen (§ 22 Abs. 2).</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Dienstunfall als Todesursache</h3>
+            <p>Stirbt ein Beamter an den Folgen eines Dienstunfalls, gilt die Unfallfürsorge: Das Witwengeld wird aus dem höheren Unfallruhegehalt berechnet (mindestens 66⅔ % der ruhegehaltfähigen Dienstbezüge, § 36 Abs. 3 BeamtVG) und Waisen erhalten mehr. Dieser Fall ist im Rechner nicht abgebildet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="witwengeld" slugs={['witwenrente', 'pension-netto', 'hinterbliebenenrente', 'besoldung-bund']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Witwengeld-Rechner für Bundesbeamte 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/witwengeld-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>

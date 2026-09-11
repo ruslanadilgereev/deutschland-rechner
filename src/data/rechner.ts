@@ -4327,6 +4327,22 @@ export const rechnerListe: Rechner[] = [
       'https://www.aufstiegs-bafoeg.de/aufstiegsbafoeg/de/die-foerderung/wie-wird-gefoerdert/wie-wird-gefoerdert_node.html',
     ],
   },
+  {
+    id: 'witwengeld',
+    name: 'Witwengeld-Rechner (Bundesbeamte)',
+    beschreibung: 'Hinterbliebenenversorgung nach BeamtVG: 55 % des Ruhegehalts, Waisengeld, Sterbegeld',
+    icon: '🏛️',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Witwengeld Rechner, Witwenpension berechnen, Witwenrente Beamte Rechner, Witwengeld Höhe Bundesbeamte, Hinterbliebenenversorgung Beamte',
+    quellen: [
+      'https://www.gesetze-im-internet.de/beamtvg/__20.html',
+      'https://www.gesetze-im-internet.de/beamtvg/__19.html',
+      'https://www.gesetze-im-internet.de/beamtvg/__14.html',
+      'https://www.gesetze-im-internet.de/beamtvg/__13.html',
+      'https://www.gesetze-im-internet.de/beamtvg/__24.html',
+    ],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 
