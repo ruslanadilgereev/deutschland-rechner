@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import KrankengeldAussteuerungRechner from '../components/rechner/KrankengeldAussteuerungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Krankengeld-Aussteuerung berechnen – Wann enden die 78 Wochen? (§ 48 SGB V)";
+const description = "Aussteuerung beim Krankengeld taggenau berechnen: 78 Wochen (546 Tage) innerhalb der 3-Jahres-Blockfrist, Vorerkrankungen wegen derselben Krankheit, Entgeltfortzahlung mitgezählt. Mit Datum, Resttagen und neuem Anspruch nach § 48 SGB V.";
+const keywords = "Krankengeld Aussteuerung berechnen, Krankengeld Aussteuerung Datum, 78 Wochen Krankengeld berechnen, Krankengeld Blockfrist Rechner, Krankengeld Ende berechnen, Aussteuerung Krankenkasse wann, Krankengeld dieselbe Krankheit Vorerkrankung, Krankengeld 546 Tage, Krankengeld Blockfrist 3 Jahre, nach Aussteuerung Arbeitslosengeld Nahtlosigkeit";
+
+const faqs = [
+  {
+    frage: "Wie lange bekomme ich Krankengeld und wann werde ich ausgesteuert?",
+    antwort: "Krankengeld gibt es wegen derselben Krankheit für längstens 78 Wochen – das sind 546 Kalendertage – innerhalb eines Zeitraums von drei Jahren, gerechnet ab dem ersten Tag der Arbeitsunfähigkeit wegen dieser Krankheit (§ 48 Abs. 1 SGB V). Die sechs Wochen Entgeltfortzahlung des Arbeitgebers zählen mit, sodass die Kasse selbst meist nur 72 Wochen zahlt. Beispiel: Arbeitsunfähig seit 2. Februar 2026 ohne Vorerkrankungen – die Aussteuerung erfolgt am 1. August 2027, das Krankengeld läuft ab 16. März 2026."
+  },
+  {
+    frage: "Was ist die Blockfrist beim Krankengeld?",
+    antwort: "Die Blockfrist ist der Dreijahreszeitraum, in dem die 78 Wochen gelten. Sie beginnt mit dem ersten Tag der Arbeitsunfähigkeit wegen der betreffenden Krankheit – nicht mit dem Beginn des Krankengeldbezugs – und endet exakt drei Jahre später. Alle Zeiten der Arbeitsunfähigkeit wegen derselben Krankheit innerhalb dieser Frist werden zusammengerechnet, auch Zeiten mit Lohnfortzahlung. Nach Ablauf beginnt eine neue Blockfrist, in der unter bestimmten Voraussetzungen erneut 78 Wochen möglich sind."
+  },
+  {
+    frage: "Zählen frühere Krankschreibungen wegen derselben Krankheit mit?",
+    antwort: "Ja, das ist der häufigste Grund für eine frühere Aussteuerung als erwartet. Alle Zeiten der Arbeitsunfähigkeit wegen derselben Krankheit innerhalb der Blockfrist werden addiert – auch kurze Krankschreibungen mit Entgeltfortzahlung vor einem Jahr. Wer 2025 wegen eines Bandscheibenvorfalls 92 Tage krank war und 2026 erneut deswegen ausfällt, hat nur noch 454 Tage. Ob es „dieselbe Krankheit“ ist, entscheidet die Krankenkasse nach den ärztlichen Diagnosen; auch unterschiedliche Diagnosen mit gemeinsamem Grundleiden gelten als dieselbe Krankheit."
+  },
+  {
+    frage: "Bekomme ich nach der Aussteuerung erneut Krankengeld für dieselbe Krankheit?",
+    antwort: "Erst in der nächsten Blockfrist und nur unter zwei Bedingungen (§ 48 Abs. 2 SGB V): Sie müssen bei der erneuten Arbeitsunfähigkeit mit Krankengeldanspruch versichert sein, und Sie müssen in der Zwischenzeit mindestens sechs Monate nicht wegen dieser Krankheit arbeitsunfähig gewesen sein und erwerbstätig oder der Arbeitsvermittlung zur Verfügung gestanden haben. Wer nach der Aussteuerung dauerhaft krank bleibt, erfüllt das nicht – dann bleibt nur Arbeitslosengeld nach der Nahtlosigkeitsregelung oder die Erwerbsminderungsrente."
+  },
+  {
+    frage: "Was passiert, wenn eine zweite Krankheit hinzukommt?",
+    antwort: "Kommt während der laufenden Arbeitsunfähigkeit eine weitere Krankheit hinzu, verlängert sie den Anspruch nicht (§ 48 Abs. 1 Satz 2 SGB V) – die 78 Wochen laufen einfach weiter. Anders, wenn die erste Arbeitsunfähigkeit bereits beendet war und Sie später wegen einer völlig anderen Krankheit erneut ausfallen: Dann beginnt für diese Krankheit eine eigene Blockfrist mit eigenen 78 Wochen. Ein lückenloser Übergang von einer Krankheit in die nächste ohne einen Tag Arbeitsfähigkeit dazwischen gilt aber als hinzugetretene Krankheit."
+  },
+  {
+    frage: "Was mache ich nach der Aussteuerung, wenn ich weiter krank bin?",
+    antwort: "Melden Sie sich spätestens drei Monate vor dem Aussteuerungsdatum bei der Agentur für Arbeit arbeitsuchend und beantragen Sie Arbeitslosengeld nach § 145 SGB III (Nahtlosigkeitsregelung). Die Agentur zahlt dann trotz Arbeitsunfähigkeit, bis die Rentenversicherung über einen Reha- oder Rentenantrag entschieden hat. Parallel sollten Sie einen Antrag auf medizinische Rehabilitation oder Erwerbsminderungsrente stellen – häufig fordert die Krankenkasse schon vorher nach § 51 SGB V dazu auf. Die Krankenversicherung läuft während des Arbeitslosengeldbezugs weiter."
+  },
+  {
+    frage: "Zählen Wochenenden und Feiertage zu den 78 Wochen?",
+    antwort: "Ja. Krankengeld wird für Kalendertage gezahlt, und auch die 78 Wochen sind Kalenderwochen – 546 Tage inklusive Wochenenden und Feiertagen. Ebenso zählen Zeiten, in denen der Anspruch ruht oder versagt wird (Entgeltfortzahlung, Urlaubsabgeltung, verspätete Krankmeldung), wie Bezugszeiten mit (§ 48 Abs. 3 SGB V). Nur Zeiten ohne jeden Anspruch – etwa als Privatversicherter oder während des Verletztengeldbezugs der Berufsgenossenschaft – bleiben außen vor."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Krankengeld-Aussteuerung-Rechner", url: "/krankengeld-aussteuerung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-red-500 to-rose-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-red-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🗓️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Krankengeld-Aussteuerung berechnen</h1>
+            <p class="text-red-100 text-sm">Wann sind die 78 Wochen wegen derselben Krankheit verbraucht? Blockfrist nach § 48 SGB V</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KrankengeldAussteuerungRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 48 SGB V (78 Wochen je 3 Jahre, hinzugetretene Krankheit, neuer Anspruch, Anrechnung ruhender Zeiten), § 46 SGB V (Beginn), § 3 EFZG (6 Wochen Entgeltfortzahlung), § 145 SGB III (Nahtlosigkeit), § 51 SGB V (Reha-Aufforderung).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Taggenaue Blockfrist ab dem frühesten AU-Tag, beliebig viele Vorerkrankungszeiten innerhalb der Blockfrist, Entgeltfortzahlung als angerechnete Zeit, laufende oder befristete aktuelle AU, Restanspruch zum heutigen Tag, Beginn der nächsten Blockfrist und frühester neuer Anspruch.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Ob Diagnosen als „dieselbe Krankheit“ gelten (Entscheidung der Kasse), Zeiten ohne Anspruch (PKV, Verletztengeld), Höhe des Krankengeldes, Krankengeld bei Kinderkrankheit, Sonderregeln für Selbständige mit Wahltarif, Ruhen wegen verspäteter AU-Meldung.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Aussteuerung beim Krankengeld: 78 Wochen sind nicht 78 Wochen Krankengeld</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            „Ausgesteuert“ heißt: Die Krankenkasse stellt die Zahlung des <a href="/krankengeld-rechner">Krankengeldes</a>
+            ein, weil die Höchstdauer erreicht ist – auch wenn Sie weiter krank sind. Die Regel klingt einfach: 78 Wochen
+            in drei Jahren. Die Fallstricke stecken im Detail: Die Frist läuft ab dem <strong>ersten Krankheitstag</strong>,
+            nicht ab dem ersten Krankengeld-Tag. Die sechs Wochen Lohnfortzahlung zählen mit. Und jede frühere
+            Krankschreibung wegen derselben Krankheit in den letzten drei Jahren verkürzt die Zeit. Unser Rechner bildet
+            genau diese Logik ab und nennt das Datum, ab dem Sie mit anderen Leistungen planen müssen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">So rechnet die Krankenkasse</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Blockfrist = erster AU-Tag wegen dieser Krankheit + 3 Jahre</div>
+            <div>Verbraucht = alle AU-Tage wegen dieser Krankheit in der Blockfrist (inkl. Entgeltfortzahlung)</div>
+            <div>Aussteuerung = Tag, an dem 546 verbrauchte Tage erreicht sind</div>
+          </div>
+          <p>
+            <strong>Beispiel ohne Vorerkrankung:</strong> Arbeitsunfähig ab Montag, 2. Februar 2026. Blockfrist bis
+            1. Februar 2029. Entgeltfortzahlung bis 15. März, Krankengeld ab 16. März 2026. Tag 546 ist der
+            <strong>1. August 2027</strong> – die Aussteuerung. Die Kasse zahlt also 504 Tage, genau 72 Wochen.
+          </p>
+          <p>
+            <strong>Beispiel mit Vorerkrankung:</strong> Dieselbe Person war wegen desselben Rückenleidens schon vom 1. März bis
+            31. Mai 2025 krankgeschrieben – 92 Tage. Die Blockfrist beginnt damit am 1. März 2025 und endet am 28. Februar
+            2028. Von den 546 Tagen sind 92 verbraucht, es bleiben 454: Aussteuerung bereits am <strong>1. Mai 2027</strong>,
+            drei Monate früher.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Dieselbe Krankheit oder eine neue?</h3>
+          <p>
+            Der Begriff „dieselbe Krankheit“ ist weiter, als viele denken: Es kommt auf das Grundleiden an, nicht auf die
+            Diagnose auf dem gelben Schein. Ein Bandscheibenvorfall L4/L5 und spätere Rückenschmerzen L5/S1 sind meist dieselbe
+            Krankheit; eine Depression und ein Burn-out ebenfalls. Kommt während der laufenden Arbeitsunfähigkeit eine
+            weitere Krankheit hinzu, verlängert das nichts. Erst eine <strong>neue Krankheit nach wiederhergestellter
+            Arbeitsfähigkeit</strong> löst eine eigene Blockfrist aus. Und für dieselbe Krankheit gibt es in der nächsten
+            Blockfrist neue 78 Wochen nur, wenn Sie zwischendurch mindestens sechs Monate nicht deswegen arbeitsunfähig
+            waren und gearbeitet haben oder arbeitsuchend gemeldet waren.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der Fahrplan vor der Aussteuerung</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Etwa 6 Monate vorher:</strong> Die Krankenkasse fordert oft nach § 51 SGB V zum Reha-Antrag auf – mit Frist von zehn Wochen. Wer nicht reagiert, verliert das Krankengeld sofort.</li>
+            <li><strong>3 Monate vorher:</strong> Arbeitsuchend melden bei der Agentur für Arbeit und Arbeitslosengeld nach § 145 SGB III beantragen. Das Arbeitsverhältnis muss dafür nicht gekündigt sein.</li>
+            <li><strong>Parallel:</strong> Antrag auf <a href="/erwerbsminderungsrente-rechner">Erwerbsminderungsrente</a> prüfen, wenn absehbar ist, dass Sie dauerhaft weniger als sechs Stunden täglich arbeiten können. Das Arbeitslosengeld überbrückt bis zur Entscheidung.</li>
+            <li><strong>Nach der Aussteuerung:</strong> Die Mitgliedschaft in der Krankenkasse bleibt über das Arbeitslosengeld oder – ohne Leistungen – als freiwillige Versicherung bestehen; Beiträge klären.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Ab dem ersten Krankengeld-Tag gerechnet</h3><p>Die Blockfrist und die 78 Wochen laufen ab dem ersten Tag der Arbeitsunfähigkeit – die sechs Wochen Entgeltfortzahlung sind schon Teil der 546 Tage. Wer erst ab der ersten Krankengeldzahlung zählt, verplant sich um sechs Wochen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kurze Vorerkrankungen vergessen</h3><p>Auch eine zweiwöchige Krankschreibung wegen derselben Krankheit vor zwei Jahren wird abgezogen. Die Kasse kennt alle Diagnosen aus den AU-Bescheinigungen – Sie sollten sie auch kennen. Fragen Sie nach dem Versicherungsverlauf.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Reha-Aufforderung ignoriert</h3><p>Nach § 51 SGB V kann die Kasse eine Frist von zehn Wochen zum Reha-Antrag setzen. Läuft sie ab, ruht das Krankengeld – unabhängig von den 78 Wochen. Der Reha-Antrag gilt zudem als Rentenantrag, wenn die Reha die Erwerbsfähigkeit nicht wiederherstellt.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Lücke in der Krankschreibung</h3><p>Die Folgebescheinigung muss spätestens am nächsten Werktag nach dem Ende der vorherigen ausgestellt sein. Eine Lücke von einem Tag kann den Krankengeldanspruch beenden – und bei Arbeitslosen auch die Mitgliedschaft mit Krankengeldanspruch.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Verletztengeld statt Krankengeld</h3><p>Nach einem Arbeitsunfall zahlt die Berufsgenossenschaft Verletztengeld – diese Zeiten zählen nicht auf die 78 Wochen Krankengeld (§ 48 Abs. 3 Satz 3 SGB V). Für das Verletztengeld gilt eine eigene Höchstdauer von 78 Wochen.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="krankengeld-aussteuerung" slugs={['krankengeld', 'erwerbsminderungsrente', 'arbeitslosengeld', 'verletztengeld']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Krankengeld-Aussteuerung-Rechner", "description": description,
+    "url": "https://www.deutschland-rechner.de/krankengeld-aussteuerung-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

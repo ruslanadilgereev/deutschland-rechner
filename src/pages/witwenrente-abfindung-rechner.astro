@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import WitwenrenteAbfindungRechner from '../components/rechner/WitwenrenteAbfindungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Witwenrente-Abfindung bei Wiederheirat berechnen – 24-fache Rente (§ 107 SGB VI)";
+const description = "Wiederheirat mit Witwenrente: Abfindung berechnen – das 24-Fache der durchschnittlichen Witwenrente der letzten 12 Monate, bei kleiner Witwenrente nur die Restmonate, Sonderregel bei Heirat kurz nach dem Tod. Steuerfrei nach § 3 Nr. 3 EStG.";
+const keywords = "Witwenrente Abfindung Wiederheirat, Witwenrente Abfindung berechnen, Rentenabfindung Wiederheirat Höhe, Witwenrente heiraten Abfindung 24 fach, § 107 SGB VI, Witwenrente wieder heiraten was passiert, Witwenrente Abfindung kleine Witwenrente, Witwenrente Wiederaufleben, Abfindung Witwenrente steuerfrei, Witwerrente Abfindung";
+
+const faqs = [
+  {
+    frage: "Wie hoch ist die Abfindung der Witwenrente bei Wiederheirat?",
+    antwort: "Bei der ersten Wiederheirat wird die Witwen- oder Witwerrente mit dem 24-Fachen des Monatsbetrags abgefunden (§ 107 Abs. 1 SGB VI). Monatsbetrag ist der Durchschnitt der in den letzten zwölf Kalendermonaten geleisteten Witwenrente – also nach Einkommensanrechnung. Beispiel: Bei durchschnittlich 950 € im Monat beträgt die Abfindung 22.800 €. Sie wird in einer Summe gezahlt und ist steuerfrei."
+  },
+  {
+    frage: "Was gilt bei der kleinen Witwenrente?",
+    antwort: "Die kleine Witwenrente ist auf 24 Monate befristet. Deshalb wird das 24-Fache um die Zahl der Monate vermindert, für die bereits kleine Witwenrente geleistet wurde (§ 107 Abs. 1 Satz 3 SGB VI). Wer nach sechs Monaten kleiner Witwenrente heiratet, bekommt noch 18 Monatsbeträge als Abfindung; nach Ablauf der 24 Monate gibt es nichts mehr. Bei Ehen, die vor 2002 geschlossen wurden und in denen ein Partner vor dem 2. Januar 1962 geboren ist, ist die kleine Witwenrente unbefristet – dann gilt das volle 24-Fache."
+  },
+  {
+    frage: "Welcher Betrag zählt, wenn ich kurz nach dem Tod wieder heirate?",
+    antwort: "Heiraten Sie vor Ablauf des 15. Kalendermonats nach dem Tod, gibt es noch keine zwölf Monate mit gekürzter Rente – die ersten drei Monate nach dem Sterbemonat (Sterbevierteljahr) wird ja die volle Versichertenrente gezahlt. Dann ist Monatsbetrag der Durchschnitt der Witwenrente, die nach Ablauf des dritten Monats nach dem Sterbemonat zu leisten war; bei Heirat noch davor der Betrag, der im vierten Monat nach dem Sterbemonat zu zahlen wäre (§ 107 Abs. 2 Satz 2 und 3 SGB VI). Das Sterbevierteljahr erhöht die Abfindung also nicht."
+  },
+  {
+    frage: "Muss ich die Abfindung versteuern oder auf andere Leistungen anrechnen lassen?",
+    antwort: "Die Rentenabfindung nach § 107 SGB VI ist steuerfrei (§ 3 Nr. 3 Buchst. a EStG) und beitragsfrei in der Sozialversicherung. Sie unterliegt auch nicht dem Progressionsvorbehalt. Beim Grundsicherungsgeld oder bei der Grundsicherung im Alter zählt die Abfindung allerdings als Vermögen bzw. einmalige Einnahme – wer solche Leistungen bezieht, sollte das vor der Heirat mit dem Jobcenter oder Sozialamt klären."
+  },
+  {
+    frage: "Bekomme ich die Witwenrente zurück, wenn die neue Ehe scheitert?",
+    antwort: "Ja. Wird die neue Ehe aufgelöst oder für nichtig erklärt oder stirbt der neue Partner, lebt der Anspruch auf Witwenrente aus der ersten Ehe auf Antrag wieder auf (§ 46 Abs. 3 SGB VI). Angerechnet werden dann aber Unterhalts- und Rentenansprüche, die Sie aus der aufgelösten zweiten Ehe haben oder bei Geltendmachung hätten. Eine erneute Abfindung bei einer weiteren Heirat gibt es nicht – § 107 gilt nur für die erste Wiederheirat."
+  },
+  {
+    frage: "Lohnt sich die Abfindung oder verliere ich Geld?",
+    antwort: "Rechnerisch ersetzt die Abfindung genau zwei Jahre Witwenrente. Wer nach der Heirat statistisch noch 20 oder 30 Jahre lebt, verzichtet auf entsprechend viele Rentenjahre – bei 950 € im Monat sind das über 20 Jahre rund 228.000 € vor Rentenanpassungen. Die Abfindung ist deshalb kein Ausgleich, sondern eine Starthilfe. Wer die Rente behalten will, kann ohne Trauschein zusammenleben: Eine nichteheliche Lebensgemeinschaft berührt die Witwenrente nicht, auch das Einkommen des Partners wird nicht angerechnet."
+  },
+  {
+    frage: "Gilt die Abfindung auch für eingetragene Lebenspartnerschaften und für Witwer?",
+    antwort: "Ja. Witwerrenten werden genauso abgefunden wie Witwenrenten. Als erste Wiederheirat gelten auch die erste Begründung einer Lebenspartnerschaft nach dem Tod des Versicherten, die erste Heirat nach einer Lebenspartnerschaft und die erste Begründung einer Lebenspartnerschaft nach einer Ehe (§ 107 Abs. 3 SGB VI). Für Beamtenhinterbliebene gilt die parallele Regel des § 21 BeamtVG – ebenfalls das 24-Fache des Witwengeldes."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Witwenrente-Abfindung-Rechner", url: "/witwenrente-abfindung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-violet-600 to-purple-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-violet-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💍</span>
+          <div>
+            <h1 class="text-2xl font-bold">Witwenrente-Abfindung bei Wiederheirat</h1>
+            <p class="text-violet-100 text-sm">Was die Rentenversicherung einmalig zahlt, wenn Sie wieder heiraten (§ 107 SGB VI)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <WitwenrenteAbfindungRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 107 SGB VI (Rentenabfindung bei Wiederheirat: 24-Fach, Monatsbetrag, kleine Witwenrente, Lebenspartnerschaft), § 46 Abs. 3 SGB VI (Wiederaufleben), § 3 Nr. 3 Buchst. a EStG (Steuerfreiheit).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Große und kleine Witwenrente, Restmonate der kleinen Witwenrente, Sonderregel bei Heirat vor Ablauf des 15. Monats nach dem Tod, Ausschluss bei zweiter Wiederheirat.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Exakte Durchschnittsbildung durch die Rentenversicherung (Rentenanpassung zum 1. Juli innerhalb der zwölf Monate), Witwengeld nach Beamtenrecht (§ 21 BeamtVG), Hinterbliebenenrenten der Unfallversicherung (§ 80 SGB VII), Anrechnung beim Wiederaufleben.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Wieder heiraten mit Witwenrente: Abfindung statt Rente</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Mit dem Monat der Heirat endet die <a href="/witwenrente-rechner">Witwenrente</a> – dafür zahlt die
+            Rentenversicherung eine <strong>Abfindung in Höhe von 24 Monatsbeträgen</strong> (§ 107 SGB VI). Sie soll
+            den Übergang erleichtern, ist aber kein Ersatz für die lebenslange Rente. Unser Rechner ermittelt den
+            Betrag nach den drei Regeln des Gesetzes: dem Zwölfmonats-Durchschnitt, der Sonderregel für Heiraten kurz
+            nach dem Todesfall und der Kürzung bei der befristeten kleinen Witwenrente.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Große Witwenrente: Abfindung = 24 × Ø Witwenrente der letzten 12 Monate</div>
+            <div>Kleine Witwenrente: Abfindung = (24 − bereits bezogene Monate) × Ø Witwenrente</div>
+            <div>Heirat vor dem 15. Monat nach dem Tod: Ø der Rente nach dem Sterbevierteljahr</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Eine Witwe bezieht seit drei Jahren 950 € große Witwenrente und heiratet im Oktober.
+            Abfindung: 24 × 950 € = <strong>22.800 €</strong>, ausgezahlt in einer Summe, steuerfrei. Ab November gibt es
+            keine Witwenrente mehr. Hätte sie eine kleine Witwenrente von 430 € und diese bereits 6 Monate bezogen,
+            wären es 18 × 430 € = 7.740 €.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Warum der Zwölfmonats-Durchschnitt zählt</h3>
+          <p>
+            Die Witwenrente schwankt: Zum 1. Juli wird sie angepasst, und eigenes Einkommen der Witwe wird oberhalb des
+            Freibetrags zu 40 % angerechnet. Damit weder ein zufällig hoher noch ein zufällig niedriger Monat entscheidet,
+            nimmt das Gesetz den Durchschnitt der letzten zwölf Kalendermonate vor der Heirat. Wer in dieser Zeit wegen
+            Einkommens nur eine gekürzte Rente erhielt, bekommt entsprechend weniger Abfindung – die ungekürzte Rente
+            spielt keine Rolle.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Sonderregel bei früher Wiederheirat</h3>
+          <p>
+            In den ersten drei Monaten nach dem Sterbemonat zahlt die Rentenversicherung die volle Rente des Verstorbenen
+            (Sterbevierteljahr). Würde dieser Betrag in den Durchschnitt einfließen, wäre die Abfindung bei früher Heirat
+            künstlich hoch. Deshalb gilt bei einer Heirat vor Ablauf des 15. Kalendermonats nach dem Tod nur der
+            Durchschnitt der bereits gekürzten Witwenrente ab dem vierten Monat – und bei einer Heirat noch innerhalb
+            des Sterbevierteljahres der Betrag, der im vierten Monat zu zahlen wäre.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Abfindung oder Rente – die nüchterne Rechnung</h3>
+          <p>
+            24 Monatsbeträge klingen nach viel, sind aber schnell verbraucht. Eine 60-jährige Witwe hat statistisch noch
+            rund 25 Jahre vor sich – bei 950 € im Monat entgehen ihr über 280.000 € Witwenrente, Rentenanpassungen nicht
+            eingerechnet. Dazu kommt die <a href="/hinterbliebenenrente-rechner">Hinterbliebenenrente</a> im Gesamtbild:
+            Halbwaisenrenten der Kinder laufen unabhängig von der Heirat weiter. Wer die finanzielle Absicherung behalten
+            will, hat nur eine Alternative: nicht standesamtlich heiraten. Endet die neue Ehe, lebt die alte Witwenrente
+            zwar wieder auf, aber nur nach Anrechnung dessen, was aus der zweiten Ehe an Unterhalt oder Rente zusteht.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Heirat nicht gemeldet</h3><p>Die Witwenrente endet kraft Gesetzes mit dem Heiratsmonat. Wer die Rentenversicherung nicht informiert, muss alle danach gezahlten Renten zurückzahlen – die Abfindung wird damit verrechnet. Die Meldepflicht besteht unverzüglich.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Mit der ungekürzten Rente gerechnet</h3><p>Maßgeblich ist die tatsächlich geleistete Rente nach Einkommensanrechnung. Wer neben der Witwenrente gut verdient und deshalb nur 300 € Rente erhält, bekommt 7.200 € Abfindung – nicht 24-mal die ungekürzte Rente.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Zweite Wiederheirat</h3><p>Die Abfindung gibt es nur einmal. Wer nach einer gescheiterten zweiten Ehe die wiederaufgelebte Witwenrente bezieht und ein drittes Mal heiratet, verliert die Rente ohne Abfindung.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Erziehungsrente und Waisenrente verwechselt</h3><p>Die Abfindung nach § 107 gilt nur für Witwen- und Witwerrenten. Erziehungsrenten enden mit der Wiederheirat ohne Abfindung; Waisenrenten der Kinder laufen unverändert weiter.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Grundsicherung oder Grundsicherungsgeld</h3><p>Die Abfindung ist steuerfrei, zählt aber bei bedürftigkeitsabhängigen Leistungen als Vermögen. Wer Grundsicherung im Alter bezieht, sollte die Folgen vorher mit dem Sozialamt klären.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="witwenrente-abfindung" slugs={['witwenrente', 'hinterbliebenenrente', 'witwengeld', 'erziehungsrente']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Witwenrente-Abfindung-Rechner", "description": description,
+    "url": "https://www.deutschland-rechner.de/witwenrente-abfindung-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

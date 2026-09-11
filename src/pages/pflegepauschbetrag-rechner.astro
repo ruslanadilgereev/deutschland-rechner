@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import PflegePauschbetragRechner from '../components/rechner/PflegePauschbetragRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Pflegepauschbetrag-Rechner 2026 – Steuerersparnis je Pflegegrad berechnen";
+const description = "Pflege-Pauschbetrag 2026: 600 € (Pflegegrad 2), 1.100 € (Pflegegrad 3), 1.800 € (Pflegegrad 4/5). Berechnen Sie Ihre tatsächliche Steuerersparnis nach § 33b Abs. 6 EStG – mit Aufteilung bei mehreren Pflegepersonen und Vergleich zu § 33.";
+const keywords = "Pflegepauschbetrag Rechner, Pflegepauschbetrag 2026, Pflege-Pauschbetrag Steuerersparnis, Pflegepauschbetrag Pflegegrad 3, Pflegepauschbetrag Pflegegrad 4, Pflegepauschbetrag 1800 Euro, § 33b EStG Pflege, Pflegepauschbetrag mehrere Pflegepersonen, Pflegepauschbetrag Pflegegeld Einnahmen, Pflege Angehörige Steuer absetzen";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie hoch ist der Pflegepauschbetrag 2026?",
+    antwort: "Der Pflege-Pauschbetrag richtet sich nach dem Pflegegrad der gepflegten Person (§ 33b Abs. 6 Satz 3 EStG): 600 € bei Pflegegrad 2, 1.100 € bei Pflegegrad 3 und 1.800 € bei Pflegegrad 4 oder 5. Ist die Person hilflos (Merkzeichen H), gibt es die 1.800 € unabhängig vom Pflegegrad. Bei Pflegegrad 1 gibt es keinen Pauschbetrag. Die Beträge gelten seit dem Veranlagungszeitraum 2021 und sind unverändert; sie sind Jahresbeträge und werden nicht gezwölftelt."
+  },
+  {
+    frage: "Wie viel Steuern spare ich durch den Pflegepauschbetrag wirklich?",
+    antwort: "Der Pauschbetrag ist kein Steuerabzug, sondern mindert das zu versteuernde Einkommen. Die Ersparnis hängt deshalb vom persönlichen Grenzsteuersatz ab. Bei 45.000 € zu versteuerndem Einkommen (Grundtarif 2026) spart der Pauschbetrag für Pflegegrad 3 rund 365 €, der für Pflegegrad 4/5 rund 595 € – inklusive Solidaritätszuschlag. Bei 20.000 € Einkommen sind es 270 € bzw. 439 €, bei einem Ehepaar mit 80.000 € gemeinsam 346 € bzw. 566 €. Kirchensteuer erhöht die Ersparnis um 8 bzw. 9 % der Einkommensteuerdifferenz."
+  },
+  {
+    frage: "Bekomme ich den Pflegepauschbetrag, wenn ich das Pflegegeld erhalte?",
+    antwort: "Nur, wenn Sie das Pflegegeld nicht für sich behalten. Voraussetzung ist, dass Sie für die Pflege keine Einnahmen erhalten (§ 33b Abs. 6 Satz 1 EStG). Leitet die pflegebedürftige Person ihr Pflegegeld an Sie weiter, ist das eine Einnahme – es sei denn, Sie verwenden es nachweislich vollständig für die Pflege, etwa für Pflegehilfsmittel, Fahrtkosten oder Zuzahlungen. Unschädlich ist ausdrücklich das Pflegegeld, das Eltern für ihr behindertes Kind erhalten (Satz 2). Beiträge der Pflegekasse zur Rentenversicherung sind keine Einnahmen."
+  },
+  {
+    frage: "Was passiert, wenn sich mehrere Angehörige die Pflege teilen?",
+    antwort: "Dann wird der Pauschbetrag durch die Zahl der Pflegepersonen geteilt, die die Voraussetzungen erfüllen (§ 33b Abs. 6 Satz 9 EStG). Pflegen zwei Geschwister ihre Mutter mit Pflegegrad 4, bekommt jedes Kind 900 €. Entscheidend ist nicht, wie viel jeder tatsächlich pflegt, sondern wie viele Personen den Pauschbetrag beanspruchen. Wer die Pflege allein trägt, sollte deshalb vermeiden, dass ein nur gelegentlich helfender Angehöriger ebenfalls den Pauschbetrag beantragt."
+  },
+  {
+    frage: "Pauschbetrag oder tatsächliche Kosten – was ist besser?",
+    antwort: "Der Pauschbetrag gilt anstelle des Abzugs tatsächlicher Kosten nach § 33 EStG; beides zusammen geht nicht. Tatsächliche Kosten lohnen sich nur, wenn sie nach Abzug der zumutbaren Belastung (1 bis 7 % des Gesamtbetrags der Einkünfte, je nach Kinderzahl und Familienstand) höher sind als der Pauschbetrag. Bei 45.000 € Einkommen ohne Kinder liegt die zumutbare Belastung bei rund 2.550 €; erst darüber wirken Kosten. Der Rechner vergleicht beide Wege, wenn Sie Ihre nachgewiesenen Kosten eingeben. Vorteil des Pauschbetrags: keine Belege nötig."
+  },
+  {
+    frage: "Kann ich den Pflegepauschbetrag rückwirkend beantragen?",
+    antwort: "Ja, für alle noch offenen Steuerjahre. Wer nicht zur Abgabe verpflichtet ist, kann die Erklärung vier Jahre rückwirkend abgeben – für 2022 also noch bis Ende 2026. Bereits bestandskräftige Bescheide lassen sich nur innerhalb der Einspruchsfrist von einem Monat ändern. Der Pauschbetrag wird in der Anlage Außergewöhnliche Belastungen eingetragen; seit 2021 ist die Steuer-Identifikationsnummer der gepflegten Person anzugeben. Für Jahre bis 2020 galten noch die alten Regeln: 924 € und nur bei Hilflosigkeit oder Pflegegrad 4/5."
+  },
+  {
+    frage: "Gilt der Pauschbetrag auch, wenn ein Pflegedienst hilft oder die Person im Heim lebt?",
+    antwort: "Ein ambulanter Pflegedienst neben Ihrer eigenen Pflege ist unschädlich, solange Sie selbst persönlich und nicht nur gelegentlich pflegen. Lebt die Person dagegen in einem Pflegeheim, fehlt in der Regel die persönliche Pflege in Ihrer oder ihrer Wohnung – dann gibt es keinen Pauschbetrag. Besuche und Organisation reichen nicht. Heimkosten, die Sie für Angehörige tragen, können stattdessen als Unterhaltsleistungen (§ 33a EStG) oder außergewöhnliche Belastung (§ 33 EStG) abziehbar sein."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Pflegepauschbetrag-Rechner", url: "/pflegepauschbetrag-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-rose-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💶</span>
+          <div>
+            <h1 class="text-2xl font-bold">Pflegepauschbetrag-Rechner</h1>
+            <p class="text-rose-100 text-sm">Was der Pflege-Pauschbetrag nach § 33b EStG bei Ihrem Steuersatz wirklich spart, Stand 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <PflegePauschbetragRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">§ 33b Abs. 6 EStG (Pflege-Pauschbetrag 600/1.100/1.800 €, Hilflosigkeit, Aufteilung), § 33 Abs. 3 EStG (zumutbare Belastung, stufenweise nach BFH VI R 75/14), § 32a EStG Tarif 2026, §§ 3, 4 SolzG.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Alle drei Pauschbeträge, Merkzeichen H, Teilung durch bis zu 4 Pflegepersonen, Ausschluss bei Einnahmen, exakte Steuerdifferenz (Grund-/Splittingtarif, Soli mit Milderungszone, Kirchensteuer 8/9 %), Vergleich mit tatsächlichen Kosten nach § 33 inkl. zumutbarer Belastung.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Progressionsvorbehalt, Behinderten-Pauschbetrag der gepflegten Person (Übertragung nach Abs. 5), Unterhaltsleistungen nach § 33a EStG, haushaltsnahe Dienstleistungen (§ 35a), Unterschied zwischen Gesamtbetrag der Einkünfte und zu versteuerndem Einkommen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Pflegepauschbetrag 2026: Pauschale statt Belege – und was sie bringt</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Wer einen Angehörigen unentgeltlich pflegt, kann den <strong>Pflege-Pauschbetrag</strong> nach
+            § 33b Abs. 6 EStG ansetzen – ohne einen einzigen Beleg. Seit 2021 ist er nach Pflegegrad gestaffelt
+            und deutlich höher als die früheren 924 €. Viele pflegende Angehörige wissen aber nicht, dass ein
+            Pauschbetrag von 1.800 € nicht 1.800 € Steuerersparnis bedeutet: Er senkt nur das zu versteuernde
+            Einkommen. Unser Rechner ermittelt die <strong>tatsächliche Ersparnis</strong> bei Ihrem
+            Einkommen – und prüft, ob nachgewiesene Kosten mehr bringen würden.
+          </p>
+          <p>
+            Wer die Rentenseite der Pflege wissen will, findet sie im
+            <a href="/pflege-rentenpunkte-rechner">Pflege-Rentenpunkte-Rechner</a>; das steuerfreie
+            <a href="/pflegegeld-rechner">Pflegegeld</a> selbst berechnet der Pflegegeld-Rechner.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die drei Stufen des Pauschbetrags</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Pflegegrad der gepflegten Person</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Pauschbetrag</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Ersparnis bei 30.000 € zvE</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">bei 45.000 € zvE</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-2 px-3 border-b">Pflegegrad 1</td><td class="py-2 px-3 border-b text-right">–</td><td class="py-2 px-3 border-b text-right">–</td><td class="py-2 px-3 border-b text-right">–</td></tr>
+                <tr><td class="py-2 px-3 border-b">Pflegegrad 2</td><td class="py-2 px-3 border-b text-right">600 €</td><td class="py-2 px-3 border-b text-right">169 €</td><td class="py-2 px-3 border-b text-right">199 €</td></tr>
+                <tr><td class="py-2 px-3 border-b">Pflegegrad 3</td><td class="py-2 px-3 border-b text-right">1.100 €</td><td class="py-2 px-3 border-b text-right">308 €</td><td class="py-2 px-3 border-b text-right">365 €</td></tr>
+                <tr><td class="py-2 px-3">Pflegegrad 4, 5 oder hilflos (H)</td><td class="py-2 px-3 text-right">1.800 €</td><td class="py-2 px-3 text-right">502 €</td><td class="py-2 px-3 text-right">595 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Ersparnis = Einkommensteuer plus Solidaritätszuschlag, Grundtarif 2026, ohne Kirchensteuer. Die Ersparnis steigt mit dem Grenzsteuersatz – bei 42 % Spitzensteuersatz sind es bis zu 756 € plus Soli.</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Voraussetzungen nach § 33b Abs. 6 EStG</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Persönliche Pflege</strong> in Ihrer Wohnung oder der Wohnung der gepflegten Person – innerhalb der EU oder des EWR. Organisation, Besuche oder Bezahlen eines Heims reichen nicht.</li>
+            <li><strong>Keine Einnahmen</strong> für die Pflege im Kalenderjahr. Behalten Sie weitergeleitetes Pflegegeld für sich, entfällt der Pauschbetrag komplett – nicht anteilig.</li>
+            <li><strong>Pflegegrad mindestens 2</strong> oder Hilflosigkeit (Merkzeichen H); der Nachweis erfolgt über den Bescheid der Pflegekasse oder den Schwerbehindertenausweis.</li>
+            <li><strong>Steuer-ID der gepflegten Person</strong> in der Steuererklärung (Satz 8).</li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Rechenbeispiel: Tochter pflegt Vater mit Pflegegrad 4</h3>
+          <p>
+            Die Tochter hat 45.000 € zu versteuerndes Einkommen, ist ledig und pflegt ihren Vater an den
+            Wochenenden; unter der Woche kommt ein Pflegedienst. Sie behält nichts vom Pflegegeld. Pauschbetrag:
+            1.800 €. Ihre Einkommensteuer sinkt von 8.835 € auf 8.240 € – <strong>595 € Ersparnis</strong>;
+            Solidaritätszuschlag fällt bei ihr ohnehin nicht an (Freigrenze 20.350 €). Teilt sie sich die Pflege mit ihrem Bruder, der den Pauschbetrag ebenfalls
+            beantragt, bekommt jeder 900 € Pauschbetrag – bei ihr rund 300 € Ersparnis.
+          </p>
+          <p>
+            Hätte sie im selben Jahr 4.000 € nachweisbare Fahrt- und Hilfsmittelkosten, wäre der Weg über § 33 EStG
+            zu prüfen: Nach Abzug der zumutbaren Belastung von rund 2.550 € blieben 1.450 € abziehbar – weniger als
+            der Pauschbetrag. Erst ab rund 4.350 € Kosten kippt der Vergleich.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Kombinationen, die erlaubt sind</h3>
+          <p>
+            Der Pauschbetrag lässt sich mit dem <strong>Behinderten-Pauschbetrag</strong> der gepflegten Person
+            kombinieren, wenn dieser auf Sie übertragen wird (nur bei Kindern, Abs. 5). Zahlen Sie zusätzlich
+            einen Pflegedienst oder eine Haushaltshilfe im Haushalt der gepflegten Person, kommt die Steuerermäßigung
+            für <strong>haushaltsnahe Dienstleistungen</strong> (§ 35a EStG, 20 % bis 4.000 €) infrage. Und wer
+            Unterhalt für einen Angehörigen im Heim zahlt, nutzt § 33a EStG. Der Pflege-Pauschbetrag schließt nur
+            den Abzug derselben Pflegekosten nach § 33 aus.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pflegegeld aufs eigene Konto</h3>
+            <p>Lässt sich die Pflegeperson das Pflegegeld überweisen und nutzt es frei, gilt das als Einnahme – der Pauschbetrag entfällt ganz. Sicher ist, wer das Pflegegeld auf dem Konto der gepflegten Person belässt oder die Verwendung für Pflegezwecke belegen kann.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pauschbetrag als Steuerabzug verstanden</h3>
+            <p>1.800 € Pauschbetrag heißt nicht 1.800 € weniger Steuern. Bei einem Grenzsteuersatz von 30 % sind es rund 540 €. Wer mit dem vollen Betrag plant, wird bei der Erstattung enttäuscht.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Gelegentliche Helfer teilen mit</h3>
+            <p>Beantragt auch die Schwester den Pauschbetrag, obwohl sie nur alle paar Wochen aushilft, wird trotzdem halbiert. Sprechen Sie sich in der Familie ab, wer den Pauschbetrag geltend macht.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Steuer-ID vergessen</h3>
+            <p>Ohne die Identifikationsnummer der gepflegten Person in der Anlage Außergewöhnliche Belastungen wird der Pauschbetrag nicht gewährt. Die ID steht auf jedem Steuerbescheid oder Schreiben des Bundeszentralamts für Steuern.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Pflege im Ausland außerhalb der EU</h3>
+            <p>Die Wohnung, in der gepflegt wird, muss in der EU oder im EWR liegen. Wer Eltern in der Türkei oder der Schweiz pflegt, bekommt den Pauschbetrag nicht – für die Schweiz gilt das EWR-Abkommen nicht.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="pflegepauschbetrag" slugs={['pflege-rentenpunkte', 'pflegegeld', 'zumutbare-belastung', 'einkommensteuer']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Pflegepauschbetrag-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/pflegepauschbetrag-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

@@ -4343,6 +4343,36 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/beamtvg/__24.html',
     ],
   },
+  {
+    id: 'pflegepauschbetrag',
+    name: 'Pflegepauschbetrag-Rechner',
+    beschreibung: 'Steuerersparnis durch den Pflege-Pauschbetrag (600/1.100/1.800 €) bei Ihrem Steuersatz',
+    icon: '💶',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Pflegepauschbetrag Rechner, Pflegepauschbetrag 2026, Pflege-Pauschbetrag Steuerersparnis, Pflegepauschbetrag Pflegegrad 3, § 33b EStG Pflege',
+    quellen: ['https://www.gesetze-im-internet.de/estg/__33b.html', 'https://www.gesetze-im-internet.de/estg/__33.html', 'https://www.gesetze-im-internet.de/estg/__32a.html'],
+  },
+  {
+    id: 'witwenrente-abfindung',
+    name: 'Witwenrente-Abfindung bei Wiederheirat',
+    beschreibung: 'Einmalige Abfindung (24-fache Rente) bei Wiederheirat nach § 107 SGB VI',
+    icon: '💍',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Witwenrente Abfindung Wiederheirat, Witwenrente Abfindung berechnen, Rentenabfindung Wiederheirat, § 107 SGB VI, Witwenrente heiraten',
+    quellen: ['https://www.gesetze-im-internet.de/sgb_6/__107.html', 'https://www.gesetze-im-internet.de/sgb_6/__46.html', 'https://www.gesetze-im-internet.de/estg/__3.html'],
+  },
+  {
+    id: 'krankengeld-aussteuerung',
+    name: 'Krankengeld-Aussteuerung-Rechner',
+    beschreibung: 'Wann enden die 78 Wochen Krankengeld? Blockfrist und Vorerkrankungen nach § 48 SGB V',
+    icon: '🗓️',
+    kategorie: 'gesundheit',
+    fertig: true,
+    seoKeywords: 'Krankengeld Aussteuerung berechnen, 78 Wochen Krankengeld berechnen, Krankengeld Blockfrist Rechner, Krankengeld Ende Datum, Aussteuerung Krankenkasse',
+    quellen: ['https://www.gesetze-im-internet.de/sgb_5/__48.html', 'https://www.gesetze-im-internet.de/entgfg/__3.html', 'https://www.gesetze-im-internet.de/sgb_3/__145.html'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 
