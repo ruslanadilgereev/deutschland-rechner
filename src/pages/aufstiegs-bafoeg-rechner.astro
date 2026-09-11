@@ -1,0 +1,268 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import AufstiegsBafoegRechner from '../components/rechner/AufstiegsBafoegRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Aufstiegs-BAföG-Rechner 2026 – Meister, Techniker & Fachwirt: Kosten nach Förderung";
+const description = "Aufstiegs-BAföG berechnen: 50 % Zuschuss auf bis zu 15.000 € Lehrgangsgebühren, KfW-Darlehen, 50 % Erlass bei bestandener Prüfung, Unterhaltsbeitrag bis 1.019 €/Monat als Vollzuschuss. Ihr tatsächlicher Eigenanteil nach AFBG – kostenlos.";
+const keywords = "Aufstiegs BAföG Rechner, Meister BAföG Rechner, Aufstiegs BAföG berechnen, Fachwirt Kosten nach Förderung, Techniker Förderung AFBG, Meister BAföG Höhe 2026, Aufstiegs BAföG Unterhaltsbeitrag, AFBG Darlehen Erlass, Meisterbonus, Aufstiegs BAföG Rückzahlung, Aufstiegs BAföG Vollzeit Teilzeit, Aufstiegs BAföG Reform 2027";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie viel Aufstiegs-BAföG bekomme ich für Meister, Techniker oder Fachwirt?",
+    antwort: "Für Lehrgangs- und Prüfungsgebühren bis 15.000 € gibt es 50 % als Zuschuss, die anderen 50 % als zinsgünstiges KfW-Darlehen (§ 12 AFBG) – unabhängig von Einkommen und Vermögen. Bestehen Sie die Prüfung, werden 50 % des noch nicht fälligen Darlehens erlassen. Beispiel Meisterkurs für 9.500 €: 4.750 € Zuschuss, 4.750 € Darlehen, davon 2.375 € erlassen – Ihr Eigenanteil sinkt auf 2.375 €, also 25 % der Kosten. Bei Vollzeit kommt ein Unterhaltsbeitrag von bis zu 1.019 € im Monat hinzu, der nicht zurückgezahlt werden muss."
+  },
+  {
+    frage: "Wie hoch ist der Unterhaltsbeitrag beim Aufstiegs-BAföG in Vollzeit?",
+    antwort: "Für Alleinstehende bis zu 1.019 € im Monat: 442 € Grundbedarf, 380 € Wohnpauschale, 102 € Kranken- und 35 € Pflegeversicherungszuschlag sowie 60 € Erhöhungsbetrag (§ 10 Abs. 2 AFBG i.V.m. § 13, 13a BAföG). Verheiratete erhalten 235 € mehr, je Kind mit Kindergeldanspruch weitere 235 €. Der Unterhaltsbeitrag wird seit 2020 vollständig als Zuschuss gezahlt. Er hängt aber von Einkommen und Vermögen ab: Eigenes Einkommen ist bis 353 € im Monat anrechnungsfrei, Vermögen bis 45.000 €."
+  },
+  {
+    frage: "Gibt es den Unterhaltsbeitrag auch bei Teilzeit oder berufsbegleitend?",
+    antwort: "Nein. Den Beitrag zum Lebensunterhalt gibt es nur bei Maßnahmen in Vollzeitform – mindestens 25 Unterrichtsstunden an vier Werktagen pro Woche (§ 2 Abs. 3 AFBG). Wer berufsbegleitend zum Fachwirt oder Techniker geht, erhält den Maßnahmebeitrag zu den Gebühren in voller Höhe (50 % Zuschuss, 50 % Darlehen mit Erlass), aber keinen Unterhalt. Alleinerziehende bekommen den Kinderbetreuungszuschlag von 150 € je Kind unter 14 in Voll- und Teilzeit."
+  },
+  {
+    frage: "Wann und wie muss ich das Aufstiegs-BAföG-Darlehen zurückzahlen?",
+    antwort: "Das KfW-Darlehen ist während der Fortbildung und zwei Jahre danach – höchstens sechs Jahre – zins- und tilgungsfrei (§ 13 Abs. 3 AFBG). Danach zahlen Sie es innerhalb von zehn Jahren in monatlichen Raten von mindestens 128 € zurück; der Zins orientiert sich am 6-Monats-EURIBOR plus 1 % Verwaltungskosten, ab Rückzahlungsbeginn zuzüglich bis zu 0,7 % Risikozuschlag. Vorzeitige Rückzahlung ist jederzeit möglich. Bei geringem Einkommen können Sie sich bis zu fünf Jahre von der Rückzahlung freistellen lassen (§ 13a AFBG)."
+  },
+  {
+    frage: "Wie funktioniert der Darlehenserlass bei Existenzgründung?",
+    antwort: "Wer innerhalb von drei Jahren nach Ende der Fortbildung ein Unternehmen gründet oder übernimmt, es als Haupterwerb mindestens drei Jahre führt und die Prüfung bestanden hat, bekommt das noch nicht fällige Restdarlehen für die Lehrgangs- und Prüfungsgebühren zu 100 % erlassen (§ 13b Abs. 2 AFBG). Zusammen mit dem Bestehenserlass sind die Gebühren dann bis auf den Eigenanteil von 50 % Zuschuss komplett abgedeckt – beim 9.500-€-Meisterkurs zahlen Sie am Ende nichts vom Darlehen zurück. Raten und Zinsen in den ersten drei Jahren nach der Gründung werden auf Antrag gestundet."
+  },
+  {
+    frage: "Zählt ein Zuschuss meines Arbeitgebers gegen die Förderung?",
+    antwort: "Derzeit ja: Leistungen aus öffentlichen Mitteln, vom Arbeitgeber oder von Fördereinrichtungen für denselben Zweck mindern die förderfähigen Kosten (§ 10 Abs. 1 Satz 2 AFBG). Zahlt der Betrieb 2.000 € zu einem 9.500-€-Lehrgang, werden nur 7.500 € gefördert. Das soll sich ändern: Der Regierungsentwurf zum Fünften AFBG-Änderungsgesetz (Kabinettbeschluss 15. Juli 2026) sieht vor, dass Arbeitgeberzuschüsse ab dem 1. August 2027 nicht mehr angerechnet werden."
+  },
+  {
+    frage: "Was ändert die Aufstiegs-BAföG-Reform 2027?",
+    antwort: "Nach dem am 15. Juli 2026 vom Bundeskabinett beschlossenen Entwurf soll ab 1. August 2027 gelten: Höchstbetrag für Lehrgangs- und Prüfungsgebühren 18.000 € statt 15.000 €, Förderung des Meisterstücks bis 4.000 € statt 2.000 €, Darlehenserlass bei bestandener Prüfung 60 % statt 50 %, Kinderbetreuungszuschlag 160 € statt 150 € und keine Anrechnung von Arbeitgeberzuschüssen mehr. Das Gesetz muss noch durch Bundestag und Bundesrat. Bis dahin gilt das aktuelle Recht – wer vorher beginnt, wird nach den heutigen Regeln gefördert."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Aufstiegs-BAföG-Rechner", url: "/aufstiegs-bafoeg-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🎓</span>
+          <div>
+            <h1 class="text-2xl font-bold">Aufstiegs-BAföG-Rechner</h1>
+            <p class="text-amber-100 text-sm">Meister, Techniker, Fachwirt: Was Ihre Fortbildung nach Förderung wirklich kostet</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <AufstiegsBafoegRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">AFBG in der Fassung des 4. AFBGÄndG: § 10 (Maßnahme-/Unterhaltsbeitrag, Kinderbetreuungszuschlag), § 12 (15.000 €, 50 % Zuschuss, Meisterstück 2.000 €), § 13 (KfW-Darlehen), § 13b (Erlass 50 %/100 %), § 17a (Vermögen); §§ 13, 13a, 23, 25 BAföG (Bedarf 442 + 380 + 137 €, Freibeträge); BMBFSFJ-Angabe 1.019 €.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Höchstbetrag, Zuschuss/Darlehen-Split, Meisterstück, Arbeitgeberanrechnung, Bestehens- und Gründungserlass, Restdarlehen mit Mindestrate, Unterhaltsbedarf nach Familienstand/Kindern/KV-Status, Einkommensfreibeträge für Teilnehmer und Partner, Vermögensfreibetrag, Kinderbetreuungszuschlag, Reformvergleich 2027.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Exakte Einkommensermittlung nach § 21 BAföG (vorletztes Kalenderjahr, Sozialpauschale), Härtefallfreibeträge, Prüfungsvorbereitungsphase (Unterhalt als Darlehen, § 12 Abs. 3), Förderungshöchstdauer-Verlängerungen (§ 11 Abs. 2), Freistellung von der Rückzahlung, Zinsen in Euro, Landes-Meisterboni.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Aufstiegs-BAföG 2026: So viel bleibt vom Meisterkurs wirklich hängen</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Ein Meisterkurs kostet schnell 8.000 bis 15.000 €, eine Technikerschule in Vollzeit bedeutet zwei Jahre ohne
+            volles Gehalt. Das <strong>Aufstiegs-BAföG</strong> (offiziell: Förderung nach dem Aufstiegsfortbildungsförderungsgesetz,
+            AFBG) fängt beides ab: Es bezuschusst die Lehrgangs- und Prüfungsgebühren und zahlt bei Vollzeit einen
+            Beitrag zum Lebensunterhalt. Rund 190.000 Menschen nutzen die Förderung jedes Jahr – Meister, Techniker,
+            Fachwirte, Erzieher, Betriebswirte, Fachkrankenpfleger.
+          </p>
+          <p>
+            Die entscheidende Frage ist nicht „Wie viel Förderung gibt es?", sondern <strong>„Was zahle ich am Ende
+            selbst?"</strong> Denn ein Teil der Förderung ist ein Darlehen, das je nach Prüfungserfolg teilweise oder ganz
+            erlassen wird. Unser Rechner trennt sauber zwischen Zuschuss, Darlehen, Erlass und Eigenanteil – und zeigt,
+            was die für 2027 geplante Reform ändern würde. Für das Schüler- und Studenten-BAföG gibt es den
+            <a href="/bafoeg-rechner">BAföG-Rechner</a>.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der Maßnahmebeitrag: 50 % geschenkt, 50 % geliehen, davon die Hälfte erlassen</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Förderfähig = min(Gebühren − Arbeitgeberzuschuss, 15.000 €)</div>
+            <div>Zuschuss = 50 % · Darlehen = 50 %</div>
+            <div>Erlass bei Bestehen = 50 % des Darlehens (Gründung: 100 %)</div>
+            <div>Eigenanteil = Gebühren − Zuschuss − Erlass</div>
+          </div>
+          <p>
+            <strong>Rechenbeispiel Handwerksmeister, 9.500 € Gebühren:</strong> 4.750 € Zuschuss, 4.750 € KfW-Darlehen.
+            Nach bestandener Prüfung werden 2.375 € des Darlehens erlassen. Zurückzuzahlen bleiben 2.375 € – über zehn
+            Jahre sind das bei der Mindestrate von 128 € rund 19 Monate. <strong>Eigenanteil: 2.375 € statt 9.500 €.</strong>
+            Wer sich anschließend selbständig macht und den Betrieb drei Jahre führt, bekommt auch diesen Rest erlassen.
+          </p>
+          <p>
+            <strong>Beispiel Fachwirt berufsbegleitend, 4.200 € Gebühren:</strong> 2.100 € Zuschuss, 2.100 € Darlehen,
+            1.050 € Erlass. Eigenanteil 1.050 € – ohne Unterhaltsbeitrag, weil Teilzeit.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der Unterhaltsbeitrag bei Vollzeit: bis zu 1.019 € als Vollzuschuss</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Bestandteil</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Monatlich</th>
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Rechtsgrundlage</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-1.5 px-3 border-b">Grundbedarf</td><td class="py-1.5 px-3 border-b text-right">442 €</td><td class="py-1.5 px-3 border-b">§ 13 Abs. 1 Nr. 1 BAföG</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">Wohnpauschale</td><td class="py-1.5 px-3 border-b text-right">380 €</td><td class="py-1.5 px-3 border-b">§ 13 Abs. 2 Nr. 2 BAföG</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">Kranken- und Pflegeversicherung</td><td class="py-1.5 px-3 border-b text-right">102 € + 35 €</td><td class="py-1.5 px-3 border-b">§ 13a BAföG</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">Erhöhungsbetrag Teilnehmer</td><td class="py-1.5 px-3 border-b text-right">60 €</td><td class="py-1.5 px-3 border-b">§ 10 Abs. 2 S. 3 AFBG</td></tr>
+                <tr class="font-semibold"><td class="py-1.5 px-3 border-b">Alleinstehend gesamt</td><td class="py-1.5 px-3 border-b text-right">1.019 €</td><td class="py-1.5 px-3 border-b"></td></tr>
+                <tr><td class="py-1.5 px-3 border-b">+ Ehe-/Lebenspartner</td><td class="py-1.5 px-3 border-b text-right">235 €</td><td class="py-1.5 px-3 border-b">§ 10 Abs. 2 S. 3 AFBG</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">+ je Kind mit Kindergeld</td><td class="py-1.5 px-3 border-b text-right">235 €</td><td class="py-1.5 px-3 border-b">§ 10 Abs. 2 S. 3 AFBG</td></tr>
+                <tr><td class="py-1.5 px-3">+ Kinderbetreuung Alleinerziehende, je Kind unter 14</td><td class="py-1.5 px-3 text-right">150 €</td><td class="py-1.5 px-3">§ 10 Abs. 3 AFBG</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Auf den Bedarf werden Einkommen und Vermögen angerechnet: Vom eigenen Einkommen bleiben 353 € im Monat frei
+            (plus 850 € für den Partner, 770 € je Kind), vom Partnereinkommen 1.690 € plus 770 € je Kind – und vom
+            übersteigenden Partnereinkommen noch einmal die Hälfte. Vermögen ist bis 45.000 € geschützt (§ 17a AFBG),
+            plus 2.300 € für Partner und jedes Kind. Ein <a href="/minijob-rechner">Minijob</a> nebenher bleibt
+            dank Werbungskosten- und Sozialpauschale praktisch anrechnungsfrei.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Wer wird gefördert – und wie lange?</h3>
+          <p>
+            Förderfähig sind Fortbildungen auf öffentlich-rechtlich geregelte Abschlüsse oberhalb der Gesellen- oder
+            Facharbeiterebene: Meister, Techniker, Fachwirt, Betriebswirt, Erzieher, Fachkrankenpfleger und gleichwertige
+            Abschlüsse (§ 2 AFBG). Die Maßnahme braucht mindestens 400 Unterrichtsstunden; Vollzeit verlangt 25 Stunden
+            an vier Werktagen pro Woche, Teilzeit im Schnitt 18 Stunden pro Monat. Gefördert werden bis zu 24 Monate in
+            Vollzeit und 48 Monate in Teilzeit (§ 11). Eine Altersgrenze gibt es nicht; ein Bachelor schadet nicht, ein
+            Master oder gleichwertiger höherer Hochschulabschluss schließt die Förderung aus (§ 9 Abs. 4). Antrag: beim Amt für Ausbildungsförderung des
+            Wohnorts, digital über „AFBG Digital" – spätestens bis zum Ende der Maßnahme (§ 19).
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Dazu kommt: Meisterbonus und Meisterprämie der Länder</h3>
+          <p>
+            Unabhängig vom Aufstiegs-BAföG zahlen viele Bundesländer nach bestandener Meister- oder Fachwirtprüfung eine
+            Prämie – Bayern den Meisterbonus, Niedersachsen, NRW, Hessen und andere ähnliche Boni zwischen 1.000 und
+            3.000 €. Die Beträge und Bedingungen unterscheiden sich je Land und Jahr; sie mindern die AFBG-Förderung
+            nicht. Fragen Sie bei Ihrer Handwerks- oder Industrie- und Handelskammer nach.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Darlehen nicht abgeschlossen – Erlass verschenkt</h3>
+            <p>Der Erlass gilt nur für ein tatsächlich aufgenommenes KfW-Darlehen. Wer die zweite Hälfte der Gebühren lieber aus Erspartem zahlt, bekommt 50 % Zuschuss, aber keinen Erlass. Da das Darlehen während der Maßnahme und zwei Jahre danach zinsfrei ist, lohnt es sich fast immer, es zu nehmen – der Vertrag muss innerhalb von drei Monaten nach dem Bescheid angefordert werden (§ 12 Abs. 4).</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Erlass auf das Meisterstück erwartet</h3>
+            <p>Der 50-%-Erlass gilt nur für das Darlehen zu den Lehrgangs- und Prüfungsgebühren (§ 13b Abs. 1 verweist auf § 12 Abs. 1 Nr. 1). Das Darlehen für die Materialkosten des Meisterstücks ist voll zurückzuzahlen.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Arbeitgeberzuschuss verschwiegen</h3>
+            <p>Zuschüsse des Betriebs zu den Gebühren müssen angegeben werden und mindern die Förderung – bis zur Reform. Wer sie verschweigt, riskiert die Rückforderung. Ein Arbeitgeberdarlehen oder eine Freistellung mit Gehalt ist dagegen kein Zuschuss zu den Gebühren.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Prüfungsvorbereitung ohne Unterricht</h3>
+            <p>Der Unterhaltsbeitrag endet mit dem Monat des letzten planmäßigen Unterrichts. Für bis zu drei weitere Monate bis zur Prüfung gibt es ihn nur noch als Darlehen (§ 12 Abs. 3), nicht als Zuschuss. Wer die Prüfung zeitnah nach Kursende ablegt, spart sich das.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Reform 2027 als sicher eingeplant</h3>
+            <p>Die höheren Beträge (18.000 €, 60 % Erlass) stehen bislang nur im Regierungsentwurf. Bis zur Verkündung im Bundesgesetzblatt gilt das heutige Recht. Wer einen Kurs 2026 beginnt, sollte nicht mit den Reformwerten kalkulieren – und wer ohnehin erst Ende 2027 starten will, kann das Inkrafttreten abwarten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="aufstiegs-bafoeg" slugs={['bafoeg', 'minijob', 'brutto-netto', 'kredit']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Aufstiegs-BAföG-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/aufstiegs-bafoeg-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>

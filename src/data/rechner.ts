@@ -4310,6 +4310,23 @@ export const rechnerListe: Rechner[] = [
       'https://www.dehst.de/DE/Themen/nEHS/Verkauf-Versteigerung/Kohlendioxidkostenaufteilungsgesetz/kohlendioxidkostenaufteilungsgesetz_node.html',
     ],
   },
+  {
+    id: 'aufstiegs-bafoeg',
+    name: 'Aufstiegs-BAföG-Rechner',
+    beschreibung: 'Meister, Techniker, Fachwirt: Eigenanteil nach Zuschuss, Darlehen und Erlass (AFBG)',
+    icon: '🎓',
+    kategorie: 'arbeit',
+    fertig: true,
+    seoKeywords: 'Aufstiegs BAföG Rechner, Meister BAföG Rechner, Aufstiegs BAföG berechnen, Fachwirt Kosten nach Förderung, Aufstiegs BAföG Unterhaltsbeitrag 2026',
+    quellen: [
+      'https://www.gesetze-im-internet.de/afbg/__12.html',
+      'https://www.gesetze-im-internet.de/afbg/__10.html',
+      'https://www.gesetze-im-internet.de/afbg/__13b.html',
+      'https://www.gesetze-im-internet.de/afbg/__17a.html',
+      'https://www.gesetze-im-internet.de/baf_g/__13.html',
+      'https://www.aufstiegs-bafoeg.de/aufstiegsbafoeg/de/die-foerderung/wie-wird-gefoerdert/wie-wird-gefoerdert_node.html',
+    ],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 
