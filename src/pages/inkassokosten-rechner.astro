@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import InkassokostenRechner from '../components/rechner/InkassokostenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Inkassokosten-Rechner 2026 – Wie viel darf das Inkasso verlangen?";
+const description = "Inkassokosten prüfen: Was Inkassounternehmen nach § 13e RDG und RVG höchstens berechnen dürfen – 0,5/0,9-Gebühr, Auslagenpauschale, Einigungsgebühr, Umsatzsteuer. Mit Gebührentabelle 2025/2026 und Vergleich zur Inkasso-Forderung.";
+const keywords = "Inkassokosten Rechner, Inkassokosten prüfen, Inkassogebühren Höhe zulässig, Inkasso Kosten berechnen, Inkassokosten Tabelle 2026, § 13e RDG, Inkasso zu viel berechnet, Inkassokosten erstattungsfähig, Inkasso Gebühren unbestrittene Forderung 0,9, Inkassokosten Mahnung Verzug";
+
+const faqs = [
+  {
+    frage: "Wie hoch dürfen Inkassokosten maximal sein?",
+    antwort: "Höchstens so hoch wie die Vergütung, die ein Rechtsanwalt nach dem RVG für dieselbe Tätigkeit verlangen dürfte (§ 13e Abs. 1 RDG). Bei einer unbestrittenen Forderung ist das in der Regel eine 0,9-Geschäftsgebühr aus dem Forderungsbetrag, im einfachen Fall nur 0,5. Beispiel: Bei 350 € Hauptforderung beträgt eine volle Gebühr 51,50 €; die 0,9-Gebühr sind 46,35 €, plus 20 % Auslagenpauschale (9,27 €) und 19 % Umsatzsteuer ergibt das höchstens 66,19 €. Im einfachen Fall sind es 36,77 €."
+  },
+  {
+    frage: "Was ist ein „einfacher Fall“ mit der 0,5-Gebühr?",
+    antwort: "Nach der Anmerkung zu Nr. 2300 VV RVG liegt ein einfacher Fall in der Regel vor, wenn die Forderung innerhalb von zwei Wochen nach der ersten Zahlungsaufforderung des Inkassounternehmens beglichen wird. Dann darf nur eine 0,5-Gebühr verlangt werden. Wer also auf das erste Inkassoschreiben hin schnell zahlt, halbiert die Kosten. Mehr als 0,9 sind nur bei besonders umfangreicher oder schwieriger Tätigkeit erlaubt – das muss das Inkasso begründen; die Obergrenze ist 1,3."
+  },
+  {
+    frage: "Welche Zusatzkosten sind unzulässig?",
+    antwort: "Kontoführungsgebühren, Bearbeitungspauschalen, Kosten für die Aktenanlage, Bonitätsauskünfte, pauschale Adressermittlungskosten oder eine Mahngebühr des Inkassounternehmens selbst sind keine erstattungsfähigen Verzugsschäden. Zulässig sind neben der Geschäftsgebühr nur die Auslagenpauschale (20 %, max. 20 €), die Umsatzsteuer – sofern der Gläubiger nicht vorsteuerabzugsberechtigt ist – und tatsächlich nachgewiesene Kosten wie eine Einwohnermeldeamtsanfrage. Verzugszinsen und Mahnkosten des Gläubigers kommen hinzu, aber nur für Mahnungen nach Verzugseintritt."
+  },
+  {
+    frage: "Muss ich Inkassokosten überhaupt zahlen?",
+    antwort: "Nur, wenn Sie mit der Zahlung in Verzug waren, als das Inkasso beauftragt wurde. Verzug tritt ein nach einer Mahnung, spätestens 30 Tage nach Fälligkeit und Zugang einer Rechnung, wenn Sie als Verbraucher darauf hingewiesen wurden (§ 286 BGB). Hat der Gläubiger das Inkasso beauftragt, bevor Sie in Verzug waren, schulden Sie keine Inkassokosten. Und wenn die Hauptforderung unberechtigt ist – etwa bei einer Abofalle oder nie bestellter Ware – schulden Sie weder die Forderung noch die Kosten."
+  },
+  {
+    frage: "Was gilt bei Kleinforderungen bis 50 Euro?",
+    antwort: "Für unbestrittene Forderungen bis 50 € gilt eine abgesenkte Gebühr von 31,50 € statt 51,50 € (§ 13 Abs. 2 RVG). Im einfachen Fall (0,5) sind das 15,75 €, plus Auslagen 3,15 € und Umsatzsteuer 3,59 € – zusammen 22,49 €. Im Regelfall (0,9) sind es rund 40 €. Inkassokosten von 60 oder 80 € für eine 30-€-Rechnung sind damit klar überhöht. Die Mindestgebühr für jede Gebühr beträgt 15 €."
+  },
+  {
+    frage: "Darf das Inkasso für eine Ratenzahlung extra Gebühren berechnen?",
+    antwort: "Ja, aber begrenzt: Für eine Zahlungsvereinbarung – also Ratenzahlung oder Stundung mit vorläufigem Verzicht auf gerichtliche Geltendmachung – darf eine Einigungsgebühr von 0,7 berechnet werden (Nr. 1000 Nr. 2 VV RVG). Bei 1.200 € Forderung sind das 94,15 € netto zusätzlich. Diese Gebühr entsteht nur, wenn die Vereinbarung tatsächlich zustande kommt. Wer stattdessen den Gesamtbetrag zahlt oder selbst einen Ratenplan vorschlägt, ohne dass das Inkasso mitwirkt, schuldet sie nicht."
+  },
+  {
+    frage: "Wie wehre ich mich gegen überhöhte Inkassokosten?",
+    antwort: "Zahlen Sie die berechtigte Hauptforderung samt Verzugszinsen und den nach dem Rechner zulässigen Kostenanteil, und widersprechen Sie dem Rest schriftlich unter Verweis auf § 13e RDG und Nr. 2300 VV RVG. Prüfen Sie im Rechtsdienstleistungsregister, ob das Unternehmen registriert ist. Ein Inkassobüro kann keinen Titel erwirken, keine Konten pfänden und keinen Schufa-Eintrag ohne Voraussetzungen veranlassen – Druckmittel wie Hausbesuche oder Mahnbescheid-Drohungen ändern an der Rechtslage nichts. Bei Streit hilft die Verbraucherzentrale oder die Aufsichtsbehörde (seit 2021 das Bundesamt für Justiz)."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Inkassokosten-Rechner", url: "/inkassokosten-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-stone-700 to-stone-900 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-stone-300 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Inkassokosten-Rechner</h1>
+            <p class="text-stone-300 text-sm">Was ein Inkassounternehmen nach § 13e RDG und RVG höchstens verlangen darf</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <InkassokostenRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 13e RDG (Deckelung auf Anwaltsvergütung), § 13 RVG (Gebührentabelle nach KostRÄG 2025, 31,50 € bis 50 €, Mindestgebühr 15 €), Nr. 2300 VV RVG mit Anmerkung Abs. 2 (0,5 / 0,9 / 1,3), Nr. 1000 VV (Einigungsgebühr 0,7), Nr. 7002 VV (Auslagenpauschale), § 288 BGB.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Gegenstandswert-Staffel bis über 500.000 €, Kleinforderungsgebühr, einfacher Fall/Regelfall/umfangreicher Fall, bestrittene Forderung (1,3), Einigungsgebühr bei Ratenzahlung, Auslagenpauschale mit 20-€-Deckel, Umsatzsteuer je nach Vorsteuerabzug, Vergleich mit der Inkasso-Rechnung.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Verzugszinsen und Mahnkosten des Gläubigers (eigener Rechner), Kosten des gerichtlichen Mahnverfahrens und der Zwangsvollstreckung (§ 788 ZPO, § 13e Abs. 2 RDG), Anrechnung bei späterer Anwaltsbeauftragung, Prüfung, ob Verzug oder die Forderung selbst besteht.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Inkassokosten: Aus 30 € Rechnung werden 120 € – was davon rechtens ist</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Inkassoschreiben arbeiten mit Druck: hohe Gesamtsummen, kurze Fristen, viele Kostenpositionen. Dabei ist
+            die Rechtslage seit dem Gesetz zur Verbesserung des Verbraucherschutzes im Inkassorecht (2021) klar:
+            <strong>Inkassokosten sind nur bis zur Höhe der Anwaltsgebühren erstattungsfähig</strong> (§ 13e RDG), und
+            für unbestrittene Forderungen ist die Anwaltsgebühr auf 0,9 gedeckelt – im einfachen Fall auf 0,5. Alles,
+            was darüber liegt, dürfen Sie streichen. Unser Rechner ermittelt die zulässige Obergrenze aus dem
+            Forderungsbetrag und vergleicht sie mit dem, was das Inkasso verlangt.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">So setzt sich die zulässige Inkassovergütung zusammen</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Volle Gebühr = Tabellenwert aus § 13 RVG (51,50 € bis 500 €, 31,50 € bis 50 € unbestritten)</div>
+            <div>Geschäftsgebühr = Gebühr × 0,5 (einfach) / 0,9 (Regel) / max. 1,3</div>
+            <div>+ Auslagenpauschale 20 % der Gebühren, höchstens 20 €</div>
+            <div>+ 19 % USt (nur wenn Gläubiger nicht vorsteuerabzugsberechtigt)</div>
+          </div>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Gebührentabelle 2025/2026 (Auszug)</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Forderung bis</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Volle Gebühr</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Einfacher Fall 0,5 (brutto)</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Regelfall 0,9 (brutto)</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-1.5 px-3 border-b">50 € (unbestritten)</td><td class="py-1.5 px-3 border-b text-right">31,50 €</td><td class="py-1.5 px-3 border-b text-right">22,49 €</td><td class="py-1.5 px-3 border-b text-right">40,48 €</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">500 €</td><td class="py-1.5 px-3 border-b text-right">51,50 €</td><td class="py-1.5 px-3 border-b text-right">36,77 €</td><td class="py-1.5 px-3 border-b text-right">66,19 €</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">1.000 €</td><td class="py-1.5 px-3 border-b text-right">93,00 €</td><td class="py-1.5 px-3 border-b text-right">66,40 €</td><td class="py-1.5 px-3 border-b text-right">119,52 €</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">2.000 €</td><td class="py-1.5 px-3 border-b text-right">176,00 €</td><td class="py-1.5 px-3 border-b text-right">125,66 €</td><td class="py-1.5 px-3 border-b text-right">212,30 €</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">5.000 €</td><td class="py-1.5 px-3 border-b text-right">354,50 €</td><td class="py-1.5 px-3 border-b text-right">234,73 €</td><td class="py-1.5 px-3 border-b text-right">403,47 €</td></tr>
+                <tr><td class="py-1.5 px-3">10.000 €</td><td class="py-1.5 px-3 text-right">652,00 €</td><td class="py-1.5 px-3 text-right">411,74 €</td><td class="py-1.5 px-3 text-right">722,09 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Brutto = Gebühr × Satz + Auslagenpauschale (20 %, max. 20 €) + 19 % USt. Gebührentabelle in der Fassung des Kostenrechtsänderungsgesetzes 2025 (gültig ab 1. Juni 2025, +6 % gegenüber 2021).</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Rechenbeispiel: Handyrechnung 350 €</h3>
+          <p>
+            Sie haben eine Mobilfunkrechnung über 350 € übersehen, wurden gemahnt und erhalten nun ein Inkassoschreiben
+            über 512,40 €: 350 € Hauptforderung, 6,20 € Zinsen, 2,50 € Mahnkosten, 95,20 € Inkassovergütung, 20 €
+            Auslagen, 21,90 € Umsatzsteuer, 16,60 € Kontoführung. Zulässig wären: Hauptforderung, Zinsen, Mahnkosten –
+            und Inkassokosten von höchstens <strong>66,19 €</strong> (0,9-Gebühr 46,35 € + 9,27 € Auslagen + 10,57 € USt).
+            Rund 87 € des Schreibens sind überhöht. Zahlen Sie innerhalb von zwei Wochen nach der ersten Zahlungsaufforderung,
+            sinkt die zulässige Vergütung sogar auf 36,77 €.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Verzug: die Voraussetzung, die oft fehlt</h3>
+          <p>
+            Inkassokosten sind ein Verzugsschaden. Ohne Verzug gibt es keinen Anspruch – egal, was im Schreiben steht.
+            Verzug tritt ein durch eine Mahnung nach Fälligkeit oder automatisch 30 Tage nach Zugang der Rechnung, bei
+            Verbrauchern aber nur, wenn die Rechnung ausdrücklich darauf hinweist (§ 286 Abs. 3 BGB). Die verzugsbegründende
+            Mahnung selbst ist kostenlos; erst weitere Mahnungen dürfen mit ihren tatsächlichen Kosten – meist Porto –
+            berechnet werden. <a href="/verzugszinsen-rechner">Verzugszinsen</a> von 5 Prozentpunkten über dem Basiszinssatz
+            kommen hinzu.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Wenn der Gläubiger vorsteuerabzugsberechtigt ist</h3>
+          <p>
+            Die Umsatzsteuer auf die Inkassovergütung ist nur dann ein Schaden des Gläubigers, wenn er sie nicht als
+            Vorsteuer zurückholen kann. Ein Online-Shop, ein Mobilfunkanbieter oder ein Energieversorger kann das –
+            deshalb darf er von Ihnen nur den Nettobetrag verlangen. Privatvermieter, Ärzte oder Kleinunternehmer sind
+            dagegen häufig nicht vorsteuerabzugsberechtigt. Im Zweifel: nachfragen und die Umsatzsteuer nur gegen
+            Nachweis zahlen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Gesamtsumme als Gegenstandswert</h3><p>Die Gebühr richtet sich nach der Hauptforderung – nicht nach der Gesamtforderung inklusive Zinsen und Kosten. Manche Schreiben rechnen mit dem aufgeblähten Gesamtbetrag und landen so in der nächsten Gebührenstufe.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Doppelte Gebühren durch Anwalt und Inkasso</h3><p>Schaltet der Gläubiger nach dem Inkassobüro noch einen Anwalt ein, muss er sich die Inkassokosten auf die Anwaltsgebühr anrechnen lassen. Beide voll zu berechnen ist unzulässig.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Schweigen statt bestreiten</h3><p>Wer eine unberechtigte Forderung ignoriert, riskiert einen gerichtlichen Mahnbescheid. Dem müssen Sie innerhalb von zwei Wochen widersprechen – sonst folgt ein vollstreckbarer Vollstreckungsbescheid. Unberechtigte Forderungen also schriftlich bestreiten, berechtigte zügig zahlen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Teilzahlung ohne Tilgungsbestimmung</h3><p>Zahlen Sie ohne Angabe, worauf, verrechnet das Inkasso nach § 367 BGB zuerst auf Kosten und Zinsen, die Hauptforderung bleibt offen. Geben Sie im Verwendungszweck an: „Hauptforderung Rechnung Nr. …“.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Unregistriertes Inkasso</h3><p>Inkassodienstleister müssen im Rechtsdienstleistungsregister eingetragen sein (§ 10 RDG). Fehlt die Registrierung, ist die Tätigkeit unzulässig – die Kosten schulden Sie dann nicht, und Sie können den Fall dem Bundesamt für Justiz melden.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="inkassokosten" slugs={['verzugszinsen', 'mahnbescheid-kosten', 'rvg', 'gerichtskosten']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Inkassokosten-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/inkassokosten-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

@@ -4373,6 +4373,36 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Krankengeld Aussteuerung berechnen, 78 Wochen Krankengeld berechnen, Krankengeld Blockfrist Rechner, Krankengeld Ende Datum, Aussteuerung Krankenkasse',
     quellen: ['https://www.gesetze-im-internet.de/sgb_5/__48.html', 'https://www.gesetze-im-internet.de/entgfg/__3.html', 'https://www.gesetze-im-internet.de/sgb_3/__145.html'],
   },
+  {
+    id: 'inkassokosten',
+    name: 'Inkassokosten-Rechner',
+    beschreibung: 'Was das Inkasso nach § 13e RDG und RVG höchstens verlangen darf – Forderung prüfen',
+    icon: '⚖️',
+    kategorie: 'finanzen',
+    fertig: true,
+    seoKeywords: 'Inkassokosten Rechner, Inkassokosten prüfen, Inkassogebühren Höhe zulässig, Inkasso Kosten berechnen, § 13e RDG',
+    quellen: ['https://www.gesetze-im-internet.de/rdg/__13e.html', 'https://www.gesetze-im-internet.de/rvg/__13.html', 'https://www.gesetze-im-internet.de/rvg/anlage_1.html'],
+  },
+  {
+    id: 'spekulationssteuer',
+    name: 'Spekulationssteuer-Rechner (Immobilien)',
+    beschreibung: 'Zehnjahresfrist, Eigennutzung und Steuer auf den Gewinn beim Immobilienverkauf (§ 23 EStG)',
+    icon: '🏠',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Spekulationssteuer Rechner Immobilien, Spekulationssteuer Haus verkaufen berechnen, Spekulationsfrist 10 Jahre, § 23 EStG Immobilie, Spekulationssteuer Eigennutzung',
+    quellen: ['https://www.gesetze-im-internet.de/estg/__23.html', 'https://www.gesetze-im-internet.de/estg/__32a.html'],
+  },
+  {
+    id: 'modernisierungsumlage',
+    name: 'Modernisierungsumlage-Rechner',
+    beschreibung: 'Mieterhöhung nach Modernisierung: 8 %/10 % der Kosten, Kappungsgrenze 3 €/m² (§ 559 BGB)',
+    icon: '🔧',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'Modernisierungsumlage Rechner, Mieterhöhung Modernisierung berechnen, § 559 BGB, Kappungsgrenze Modernisierung 3 Euro, Modernisierungsumlage Heizung',
+    quellen: ['https://www.gesetze-im-internet.de/bgb/__559.html', 'https://www.gesetze-im-internet.de/bgb/__559e.html', 'https://www.gesetze-im-internet.de/bgb/__559a.html', 'https://www.gesetze-im-internet.de/bgb/__555b.html'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

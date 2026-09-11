@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import SpekulationssteuerRechner from '../components/rechner/SpekulationssteuerRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Spekulationssteuer-Rechner Immobilien 2026 – Was bleibt beim Verkauf?";
+const description = "Spekulationssteuer beim Immobilienverkauf berechnen: 10-Jahres-Frist, Ausnahme bei Selbstnutzung, Gewinn nach § 23 EStG inkl. AfA-Rückgängig, Freigrenze 1.000 €, Steuer nach Ihrem persönlichen Steuersatz 2026 – mit Netto-Erlös und Countdown bis zum steuerfreien Verkauf.";
+const keywords = "Spekulationssteuer Rechner Immobilien, Spekulationssteuer Haus verkaufen berechnen, Spekulationsfrist 10 Jahre Immobilie, Spekulationssteuer Höhe, Spekulationssteuer Eigennutzung Ausnahme, § 23 EStG Immobilie, Spekulationssteuer vermietete Wohnung, Spekulationssteuer Erbschaft, Spekulationssteuer AfA, Immobilie verkaufen Steuer 2026";
+
+const faqs = [
+  {
+    frage: "Wann fällt beim Immobilienverkauf Spekulationssteuer an?",
+    antwort: "Wenn zwischen dem notariellen Kaufvertrag und dem notariellen Verkaufsvertrag nicht mehr als zehn Jahre liegen und die Immobilie nicht ausreichend selbst genutzt wurde (§ 23 Abs. 1 Satz 1 Nr. 1 EStG). Der Gewinn zählt dann als sonstige Einkünfte und wird mit dem persönlichen Einkommensteuersatz besteuert – es gibt keinen festen „Spekulationssteuersatz“. Beispiel: Kauf am 15. Mai 2019, Verkauf am 1. November 2026 nach 7,5 Jahren, Gewinn 78.000 €, zu versteuerndes Einkommen 60.000 €: rund 35.200 € Steuer inklusive Solidaritätszuschlag. Ein Verkauf ab dem 16. Mai 2029 wäre steuerfrei."
+  },
+  {
+    frage: "Wie berechnet sich die Zehnjahresfrist genau?",
+    antwort: "Maßgeblich sind die Daten der beiden notariellen Verträge – nicht Übergabe, Kaufpreiszahlung oder Grundbucheintrag. Die Frist endet mit Ablauf des Tages, der dem Kaufdatum zehn Jahre später entspricht; ein Verkaufsvertrag am Tag danach ist steuerfrei. Bei geerbten oder geschenkten Immobilien wird das Kaufdatum des Vorbesitzers übernommen (§ 23 Abs. 1 Satz 3): Wer 2026 ein Haus erbt, das die Eltern 2010 gekauft haben, kann sofort steuerfrei verkaufen. Bei Scheidung mit Übertragung des Miteigentumsanteils beginnt für den erworbenen Anteil dagegen eine neue Frist."
+  },
+  {
+    frage: "Wann befreit die Eigennutzung von der Spekulationssteuer?",
+    antwort: "In zwei Fällen (§ 23 Abs. 1 Satz 1 Nr. 1 Satz 3 EStG): Die Immobilie wurde zwischen Kauf und Verkauf ausschließlich selbst bewohnt – oder im Jahr des Verkaufs und in den beiden vorangegangenen Kalenderjahren. Die zweite Variante ist großzügig: Es reicht ein zusammenhängender Zeitraum, der drei Kalenderjahre berührt, etwa Einzug im Dezember 2024 und Verkauf im Januar 2026. Eigene Wohnzwecke umfassen auch die unentgeltliche Überlassung an ein Kind, für das Kindergeld gezahlt wird. Eine Vermietung nach der Selbstnutzung im Verkaufsjahr ist nach der BFH-Rechtsprechung unschädlich, ein Leerstand vor dem Verkauf ebenfalls."
+  },
+  {
+    frage: "Wie wird der steuerpflichtige Gewinn ermittelt?",
+    antwort: "Gewinn = Veräußerungspreis minus Anschaffungs- oder Herstellungskosten minus Werbungskosten (§ 23 Abs. 3 Satz 1 EStG). Zu den Anschaffungskosten gehören Kaufpreis, Grunderwerbsteuer, Notar, Grundbuch und Makler sowie nachträgliche Herstellungskosten wie ein Anbau. Bei vermieteten Objekten werden die in Anspruch genommenen Abschreibungen (AfA) von den Anschaffungskosten abgezogen – sie erhöhen also den Gewinn (Satz 4). Werbungskosten sind die Verkaufskosten: Maklerprovision, Vorfälligkeitsentschädigung für die Kreditablösung, Notarkosten für die Grundschuldlöschung."
+  },
+  {
+    frage: "Gibt es einen Freibetrag bei der Spekulationssteuer?",
+    antwort: "Eine Freigrenze, keinen Freibetrag: Bleibt der Gesamtgewinn aus allen privaten Veräußerungsgeschäften des Kalenderjahres unter 1.000 €, ist er steuerfrei (§ 23 Abs. 3 Satz 5 EStG, seit 2024; zuvor 600 €). Ab 1.000 € wird der komplette Gewinn besteuert, nicht nur der übersteigende Teil. Bei Immobilien spielt die Freigrenze deshalb praktisch nur bei Verlustnähe eine Rolle."
+  },
+  {
+    frage: "Kann ich einen Verlust aus dem Verkauf steuerlich nutzen?",
+    antwort: "Nur eingeschränkt. Verluste aus privaten Veräußerungsgeschäften dürfen nur mit Gewinnen aus anderen privaten Veräußerungsgeschäften verrechnet werden – im selben Jahr, im Vorjahr oder in Folgejahren (§ 23 Abs. 3 Satz 7 und 8 EStG). Eine Verrechnung mit Gehalt, Mieteinnahmen oder Kapitalerträgen ist ausgeschlossen. Wer innerhalb der Zehnjahresfrist mit Verlust verkauft, sollte den Verlust trotzdem in der Steuererklärung erklären, damit er festgestellt und später mit einem Gewinn aus Gold, Kryptowährungen oder einer weiteren Immobilie verrechnet werden kann."
+  },
+  {
+    frage: "Wann droht gewerblicher Grundstückshandel statt Spekulationssteuer?",
+    antwort: "Wer innerhalb von etwa fünf Jahren mehr als drei Objekte kauft und wieder verkauft, überschreitet die Drei-Objekt-Grenze der Rechtsprechung. Dann gelten die Verkäufe als gewerblich: Gewerbesteuer, keine Zehnjahresfrist und keine Steuerfreiheit nach Fristablauf – auch rückwirkend für die bereits verkauften Objekte. Ferienwohnungen und Eigentumswohnungen zählen jeweils als eigenes Objekt. Wer mehrere Immobilien besitzt, sollte Verkäufe zeitlich strecken und die Grenze im Blick behalten."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Spekulationssteuer-Rechner", url: "/spekulationssteuer-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-emerald-600 to-green-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-2xl font-bold">Spekulationssteuer-Rechner für Immobilien</h1>
+            <p class="text-emerald-100 text-sm">Zehnjahresfrist, Eigennutzung, Gewinn nach § 23 EStG und Ihr Netto-Erlös, Stand 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <SpekulationssteuerRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 23 Abs. 1 Nr. 1 EStG (Zehnjahresfrist, Selbstnutzung, Rechtsnachfolge), § 23 Abs. 3 EStG (Gewinnermittlung, AfA-Kürzung, Freigrenze 1.000 €, Verlustverrechnung), § 22 Nr. 2 EStG, § 32a EStG Tarif 2026, SolzG.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Taggenaue Frist nach Vertragsdaten, beide Selbstnutzungs-Ausnahmen, Anschaffungsnebenkosten, nachträgliche Herstellungskosten, AfA-Rückgängigmachung, Verkaufskosten, Freigrenze, Steuer als Differenzrechnung mit Grenzsteuersatz (Grund-/Splittingtarif, Soli, Kirchensteuer), Countdown bis Fristablauf.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Gewerblicher Grundstückshandel (Drei-Objekt-Grenze), Betriebsvermögen, anteilige Eigennutzung (Arbeitszimmer, Einliegerwohnung), Verlustverrechnung mit anderen Jahren, Progressionsvorbehalt, Grunderwerbsteuer des Käufers, Vorfälligkeitsentschädigung als Werbungskosten nur bei Vermietung.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Spekulationssteuer 2026: Die zehn Jahre, die über fünfstellige Beträge entscheiden</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            „Spekulationssteuer“ ist kein eigener Steuertyp, sondern Einkommensteuer auf ein
+            <strong>privates Veräußerungsgeschäft</strong> (§ 23 EStG). Der Gewinn aus dem Immobilienverkauf wird
+            Ihrem übrigen Einkommen hinzugerechnet und mit dem persönlichen Steuersatz belastet – bei einem
+            Gutverdiener also mit 42 % plus Soli. Weil die Immobilienpreise seit 2015 stark gestiegen sind, geht es
+            oft um Beträge zwischen 20.000 und 100.000 €. Unser Rechner zeigt, ob Sie überhaupt betroffen sind, wie
+            hoch die Steuer wäre und wie viele Tage ein Warten bis zum Fristablauf einbringt.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Drei Prüfschritte</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>1. Frist: Verkaufsvertrag ≤ Kaufvertrag + 10 Jahre? → sonst steuerfrei</div>
+            <div>2. Selbstnutzung: durchgehend oder Verkaufsjahr + 2 Vorjahre? → steuerfrei</div>
+            <div>3. Gewinn = Verkaufspreis − (Anschaffungskosten − AfA) − Verkaufskosten; unter 1.000 € steuerfrei</div>
+          </div>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Rechenbeispiel: vermietete Eigentumswohnung</h3>
+          <p>
+            Kauf am 15. Mai 2019 für 300.000 € plus 30.000 € Nebenkosten, Verkauf am 1. November 2026 für 420.000 €,
+            Verkaufskosten 12.000 €, keine AfA berücksichtigt. Gewinn: 420.000 − 330.000 − 12.000 =
+            <strong>78.000 €</strong>. Bei 60.000 € zu versteuerndem Einkommen (ledig) steigt die Einkommensteuer um
+            32.591 €, dazu 2.575 € Solidaritätszuschlag: <strong>rund 35.200 € Steuer</strong>, Grenzsteuersatz 41,8 %.
+            Netto bleiben statt 408.000 € nur 372.800 €. Wer den Verkauf auf den 16. Mai 2029 verschiebt – 927 Tage
+            später –, spart die gesamte Summe. Hätte der Eigentümer sieben Jahre lang 2 % AfA abgesetzt (rund 40.000 €),
+            läge der Gewinn bei 118.000 € und die Steuer bei etwa 52.900 €.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Eigennutzungs-Ausnahme richtig nutzen</h3>
+          <p>
+            Selbstnutzung im Verkaufsjahr und den beiden Vorjahren genügt – und „Jahr“ heißt Kalenderjahr. Wer eine
+            vermietete Wohnung im Dezember 2024 selbst bezieht und im Januar 2026 verkauft, erfüllt die Ausnahme mit
+            13 Monaten tatsächlicher Nutzung. Als Eigennutzung zählt auch die kostenlose Überlassung an ein
+            kindergeldberechtigtes Kind, nicht aber an die Eltern oder an geschiedene Partner. Ein Arbeitszimmer im
+            selbst genutzten Haus ist seit dem BFH-Urteil von 2021 unschädlich. Wird die Wohnung nach dem Auszug
+            noch kurz vermietet oder steht sie leer, bleibt die Befreiung nach der Rechtsprechung erhalten, solange die
+            Selbstnutzung bis ins Verkaufsjahr reichte.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Was die Steuer senkt</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Alle Anschaffungsnebenkosten</strong> ansetzen: Grunderwerbsteuer (3,5 bis 6,5 %), Notar, Grundbuch, Makler – oft 10 % des Kaufpreises.</li>
+            <li><strong>Nachträgliche Herstellungskosten</strong> wie Anbau, Dachgeschossausbau oder Standardhebung; normale Renovierungen zählen nicht.</li>
+            <li><strong>Verkaufskosten</strong>: Makler, Vorfälligkeitsentschädigung, Energieausweis, Inserate, Notarkosten für die Löschung der Grundschuld.</li>
+            <li><strong>Verkauf in einem einkommensschwachen Jahr</strong>: Wer in Elternzeit, Sabbatical oder Rente ist, zahlt einen niedrigeren Grenzsteuersatz. Der Zufluss des Kaufpreises bestimmt das Steuerjahr.</li>
+            <li><strong>Verrechnung</strong> mit Verlusten aus anderen privaten Veräußerungsgeschäften – etwa Kryptoverlusten desselben Jahres.</li>
+          </ul>
+          <p>
+            Die <a href="/grunderwerbsteuer-rechner">Grunderwerbsteuer</a> des damaligen Kaufs und die
+            <a href="/vorfaelligkeitsentschaedigung-rechner">Vorfälligkeitsentschädigung</a> lassen sich mit den
+            jeweiligen Rechnern nachvollziehen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Übergabedatum statt Notartermin</h3><p>Die Frist läuft von Kaufvertrag zu Verkaufsvertrag. Wer den Verkaufsvertrag wenige Tage vor Fristablauf beurkundet, weil die Übergabe erst später ist, zahlt trotzdem. Notartermin notfalls verschieben.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">AfA vergessen</h3><p>Bei vermieteten Objekten mindert jede abgesetzte Abschreibung die Anschaffungskosten. Nach zehn Jahren Vermietung mit 2 % AfA sind das 20 % des Gebäudewerts mehr Gewinn – ein häufiger Grund für Nachzahlungen nach Prüfung des Finanzamts.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Scheidung und Übertragung des Anteils</h3><p>Übernimmt ein Ehepartner den hälftigen Anteil des anderen gegen Ausgleichszahlung, ist das für den Übertragenden ein Verkauf (Spekulationssteuer möglich, wenn er ausgezogen ist) und für den Übernehmenden eine neue Anschaffung mit neuer Frist für diesen Anteil.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Unbebautes Grundstück selbst genutzt</h3><p>Die Eigennutzungs-Ausnahme gilt nur für Wohnzwecke. Ein Garten- oder Baugrundstück ohne Wohnhaus kann nicht „selbst bewohnt“ werden – hier gilt allein die Zehnjahresfrist.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Ferienwohnung als Eigennutzung</h3><p>Eine Zweit- oder Ferienwohnung, die Sie zeitweise selbst nutzen und nicht vermieten, gilt als eigene Wohnzwecke (BFH 2017). Wird sie auch nur zeitweise vermietet, entfällt die Ausnahme.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="spekulationssteuer" slugs={['grunderwerbsteuer', 'vorfaelligkeitsentschaedigung', 'maklerkosten', 'einkommensteuer']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Spekulationssteuer-Rechner Immobilien 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/spekulationssteuer-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

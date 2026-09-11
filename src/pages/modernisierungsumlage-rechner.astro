@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import ModernisierungsumlageRechner from '../components/rechner/ModernisierungsumlageRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Modernisierungsumlage-Rechner 2026 – Mieterhöhung nach § 559 BGB berechnen";
+const description = "Mieterhöhung nach Modernisierung berechnen: 8 % der Kosten (10 % bei geförderter Heizung), Erhaltungsanteil und Zuschüsse abziehen, Kappungsgrenze 3 €/2 €/0,50 € je m² in 6 Jahren. Für Mieter und Vermieter, mit Rechenweg und Fristen.";
+const keywords = "Modernisierungsumlage Rechner, Mieterhöhung Modernisierung berechnen, § 559 BGB Rechner, Modernisierungsumlage 8 Prozent, Kappungsgrenze Modernisierung 3 Euro, Mieterhöhung nach Sanierung, Modernisierungsumlage Heizung 559e, Modernisierungsumlage Erhaltungsanteil, Mieterhöhung Dämmung Fenster, Modernisierungsumlage prüfen";
+
+const faqs = [
+  {
+    frage: "Wie viel darf die Miete nach einer Modernisierung steigen?",
+    antwort: "Der Vermieter darf die Jahresmiete um 8 % der für die Wohnung aufgewendeten Modernisierungskosten erhöhen (§ 559 Abs. 1 BGB). Vorher müssen ersparte Instandhaltungskosten und öffentliche Zuschüsse abgezogen werden. Zusätzlich gilt eine Kappungsgrenze: Innerhalb von sechs Jahren darf die Monatsmiete um höchstens 3 € je Quadratmeter steigen, bei einer Ausgangsmiete unter 7 €/m² nur um 2 €. Beispiel: 21.000 € Kosten für eine 70-m²-Wohnung, davon 4.000 € Erhaltungsanteil – 17.000 € × 8 % = 1.360 € im Jahr, also 113,33 € im Monat (1,62 €/m²)."
+  },
+  {
+    frage: "Was ist der Erhaltungsanteil und wie wird er berechnet?",
+    antwort: "Kosten, die ohnehin für die Instandhaltung angefallen wären, gehören nicht zu den umlagefähigen Modernisierungskosten (§ 559 Abs. 2 BGB). Werden 30 Jahre alte Fenster durch Wärmeschutzfenster ersetzt, muss der Vermieter den Betrag abziehen, den eine Erneuerung alter Fenster ohne Verbesserung gekostet hätte – notfalls durch Schätzung unter Berücksichtigung des Abnutzungsgrads. Bei komplett verschlissenen Bauteilen kann das der Großteil der Kosten sein. Bei geförderten Heizungstauschs gilt seit 2024 eine Pauschale von 15 % (§ 559e Abs. 2)."
+  },
+  {
+    frage: "Welche Sonderregeln gelten beim Heizungstausch?",
+    antwort: "Für den Einbau einer Heizung nach § 555b Nr. 1a BGB, die die Förderbedingungen (BEG) erfüllt und für die der Vermieter Fördermittel in Anspruch nimmt, gilt § 559e: Die Umlage beträgt 10 % statt 8 % der Kosten – aber erst nach Abzug der Förderung und pauschal 15 % Erhaltungsanteil. Die Mieterhöhung ist zusätzlich auf 0,50 € je Quadratmeter und Monat innerhalb von sechs Jahren begrenzt, und diese 0,50 € zählen innerhalb der allgemeinen 3-€-Grenze. Nimmt der Vermieter keine Förderung in Anspruch, gilt § 559 mit 8 % und ebenfalls der 0,50-€-Deckel für die Heizung."
+  },
+  {
+    frage: "Muss der Vermieter die Modernisierung ankündigen?",
+    antwort: "Ja, spätestens drei Monate vor Beginn in Textform mit Art, Umfang, Beginn, voraussichtlicher Dauer und der zu erwartenden Mieterhöhung (§ 555c BGB). Unterbleibt die Ankündigung oder übersteigt die spätere Mieterhöhung die angekündigte um mehr als 10 %, wird die Erhöhung erst sechs Monate später wirksam (§ 559b Abs. 2 BGB). Nach Abschluss der Arbeiten muss der Vermieter die Erhöhung in Textform erklären und berechnen; sie gilt ab Beginn des dritten Monats nach Zugang."
+  },
+  {
+    frage: "Kann ich mich als Mieter gegen die Erhöhung wehren?",
+    antwort: "In drei Richtungen: Erstens prüfen, ob es sich überhaupt um eine Modernisierung nach § 555b BGB handelt – reine Reparaturen sind nicht umlagefähig. Zweitens die Berechnung prüfen: Erhaltungsanteil, Zuschüsse, Verteilungsschlüssel und Kappungsgrenze. Drittens den Härteeinwand: Bedeutet die Erhöhung unter Berücksichtigung der künftigen Betriebskosten eine unzumutbare wirtschaftliche Härte, ist sie ausgeschlossen (§ 559 Abs. 4). Die Härte müssen Sie bis zum Ablauf des Monats nach Zugang der Ankündigung mitteilen (§ 555d Abs. 3). Alternativ besteht ein Sonderkündigungsrecht."
+  },
+  {
+    frage: "Gilt die Kappungsgrenze auch für mehrere Modernisierungen nacheinander?",
+    antwort: "Ja, die 3 € (bzw. 2 €) je Quadratmeter gelten für alle Modernisierungserhöhungen zusammen innerhalb eines Sechsjahreszeitraums. Hat der Vermieter vor drei Jahren nach einer Dachdämmung bereits 1,50 €/m² umgelegt, bleiben für eine neue Fassadendämmung nur 1,50 €/m². Erhöhungen nach § 558 (Mietspiegel) oder § 560 (Betriebskosten) werden nicht mitgerechnet. Der Rechner zieht frühere Modernisierungserhöhungen der letzten sechs Jahre von der Grenze ab."
+  },
+  {
+    frage: "Wann lohnt sich die Modernisierung für den Vermieter?",
+    antwort: "Die 8-%-Umlage ist keine Amortisationsrechnung, sondern eine dauerhafte Mieterhöhung: Nach 12,5 Jahren hat der Vermieter die umlagefähigen Kosten über die Erhöhung wieder eingenommen (100 % ÷ 8 %), danach bleibt die höhere Miete bestehen. Greift die Kappungsgrenze, verlängert sich die Amortisation entsprechend. Beim geförderten Heizungstausch mit 10 % sind es 10 Jahre – gerechnet auf die Kosten nach Abzug der Förderung. Dazu kommt bei Mieterwechsel die Möglichkeit, die Miete an den Mietspiegel anzupassen."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Modernisierungsumlage-Rechner", url: "/modernisierungsumlage-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-amber-600 to-orange-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🔧</span>
+          <div>
+            <h1 class="text-2xl font-bold">Modernisierungsumlage-Rechner</h1>
+            <p class="text-amber-100 text-sm">Wie viel mehr Miete die Sanierung nach § 559 BGB ergibt – mit Kappungsgrenze und Heizungsregel</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <ModernisierungsumlageRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 559 BGB (8 %, Erhaltungsabzug, Kappungsgrenze 3 €/2 €/0,50 €, Härte), § 559e BGB (Heizung: 10 %, 15 % Pauschale, 0,50 €/m²), § 559a (Drittmittel), § 555b (Modernisierungsbegriff), § 555c/§ 559b (Ankündigung, Wirksamwerden), § 555d/§ 555e/§ 561 (Härte, Kündigungsrechte).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Beide Umlagesätze, Erhaltungsanteil (individuell oder 15 % Pauschale), Zuschüsse, Kappungsgrenze abhängig von der Ausgangsmiete, Verbrauch der Grenze durch frühere Erhöhungen, Heizungsdeckel, neue Miete, Amortisationsdauer.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Verteilung der Gesamtkosten auf mehrere Wohnungen, zinsverbilligte Darlehen (§ 559a Abs. 2), vereinfachtes Verfahren (§ 559c), Mietspiegel-Vergleich, Indexmiete und preisgebundener Wohnraum, Gewerbemiete, Verhältnis zur Mietpreisbremse.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Modernisierungsumlage: Anders als jede andere Mieterhöhung</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die normale <a href="/mieterhoehung-rechner">Mieterhöhung</a> orientiert sich an der ortsüblichen
+            Vergleichsmiete und ist auf 15 bis 20 % in drei Jahren begrenzt. Die
+            <strong>Modernisierungsumlage</strong> funktioniert völlig anders: Der Vermieter legt einen festen
+            Prozentsatz seiner Investition auf die Jahresmiete um – unabhängig vom Mietspiegel, unbefristet und
+            zusätzlich zu späteren Vergleichsmieten-Erhöhungen. Seit dem Mietrechtsanpassungsgesetz 2019 sind es
+            8 % statt 11 %, und eine Kappungsgrenze schützt vor Sprüngen. Unser Rechner bildet die Regel für Mieter
+            (Prüfung der Ankündigung) und Vermieter (Planung) ab.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Umlagefähig = Kosten der Wohnung − Erhaltungsanteil − Zuschüsse</div>
+            <div>Erhöhung/Monat = Umlagefähig × 8 % ÷ 12  (Heizung mit Förderung: 10 %)</div>
+            <div>Deckel = 3 €/m² in 6 Jahren (2 €/m² bei Miete &lt; 7 €/m²; Heizung: 0,50 €/m²)</div>
+          </div>
+          <p>
+            <strong>Beispiel Fassadendämmung und neue Fenster:</strong> Auf die 70-m²-Wohnung entfallen 21.000 €. Die
+            alten Fenster hätten ohnehin erneuert werden müssen – 4.000 € Erhaltungsanteil. Umlagefähig 17.000 €,
+            8 % = 1.360 € im Jahr, <strong>113,33 € im Monat</strong> oder 1,62 €/m². Die Miete steigt von 600 auf 713,33 €.
+            Die Kappungsgrenze (3 €/m² = 210 €) ist nicht erreicht. Hätte die Wohnung vorher nur 450 € gekostet
+            (6,43 €/m²), läge die Grenze bei 2 €/m² = 140 € – die Erhöhung bliebe trotzdem zulässig.
+          </p>
+          <p>
+            <strong>Beispiel Wärmepumpe mit Förderung:</strong> 40.000 € Kosten für die Wohnung, 12.000 € BEG-Förderung.
+            Nach § 559e: 40.000 − 15 % Pauschale (6.000) − 12.000 = 22.000 € × 10 % = 2.200 € im Jahr = 183,33 € im Monat.
+            Der Heizungsdeckel von 0,50 €/m² × 70 m² = 35 € begrenzt die Erhöhung aber auf <strong>35 € im Monat</strong>.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Was zählt als Modernisierung?</h3>
+          <p>
+            § 555b BGB nennt abschließend: energetische Modernisierung (Dämmung, neue Fenster, Heizung), nachhaltige
+            Einsparung von Wasser, Erhöhung des Gebrauchswerts (Bad, Balkon, Aufzug), Verbesserung der allgemeinen
+            Wohnverhältnisse, Schaffung neuen Wohnraums, Glasfaseranschluss und Maßnahmen aufgrund gesetzlicher
+            Pflichten. Nicht umlagefähig sind Instandsetzung und Instandhaltung – also alles, was nur den
+            vertragsgemäßen Zustand wiederherstellt. Bei „modernisierender Instandsetzung“ (alte Heizung raus,
+            Brennwertheizung rein) ist deshalb der Erhaltungsanteil zu schätzen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der Ablauf mit Fristen</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Ankündigung</strong> mindestens 3 Monate vor Beginn, Textform, mit voraussichtlicher Mieterhöhung (§ 555c).</li>
+            <li><strong>Härteeinwand</strong> des Mieters bis Ende des Folgemonats nach Zugang der Ankündigung (§ 555d Abs. 3); <strong>Sonderkündigung</strong> bis Ende des Folgemonats zum Ablauf des übernächsten Monats (§ 555e).</li>
+            <li><strong>Duldung</strong> der Arbeiten – bei energetischer Modernisierung drei Monate ohne Mietminderung (§ 536 Abs. 1a).</li>
+            <li><strong>Erhöhungserklärung</strong> nach Abschluss mit Berechnung (§ 559b Abs. 1); wirksam ab dem dritten Monat nach Zugang, bei fehlender Ankündigung oder Überschreitung um mehr als 10 % sechs Monate später.</li>
+            <li><strong>Vereinfachtes Verfahren</strong> bei Kosten bis 10.000 € je Wohnung: pauschal 30 % Erhaltungsabzug, keine Härtefallprüfung (§ 559c).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Erhaltungsanteil mit null angesetzt</h3><p>Der häufigste Fehler in Vermieterankündigungen: Bei 30 Jahre alten Fenstern oder einer 25 Jahre alten Heizung ist ein Erhaltungsanteil von 30 bis 50 % realistisch. Ein Ansatz von 0 € macht die Erhöhung angreifbar. Mieter sollten die Schätzung ausdrücklich verlangen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Gesamtkosten des Hauses auf die Wohnung umgelegt</h3><p>Die Kosten sind angemessen auf die Wohnungen zu verteilen (§ 559 Abs. 3) – üblich nach Wohnfläche. Kosten für Bauteile, die nur andere Wohnungen betreffen (Balkone im Vorderhaus), dürfen nicht auf alle verteilt werden.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kappungsgrenze auf die Jahresmiete bezogen</h3><p>Die 3 € gelten je Quadratmeter und Monat, bezogen auf die Monatsmiete. Eine 70-m²-Wohnung darf in sechs Jahren um höchstens 210 € monatlich steigen, egal wie teuer die Sanierung war.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Indexmiete</h3><p>Bei einer Indexmietvereinbarung sind Modernisierungsumlagen ausgeschlossen, außer der Vermieter war zur Maßnahme gesetzlich verpflichtet (§ 557b Abs. 2). Wer eine Indexmiete hat, kann die Erhöhung meist komplett zurückweisen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Förderung verschwiegen</h3><p>Zuschüsse aus BEG, KfW oder Landesprogrammen sind abzuziehen – auch anteilig für die einzelne Wohnung. Mieter können Auskunft über in Anspruch genommene Fördermittel verlangen; beim Heizungstausch ist die Förderung sogar Voraussetzung für die 10 %.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="modernisierungsumlage" slugs={['mieterhoehung', 'indexmiete', 'mietpreisbremse', 'co2-kostenaufteilung']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Modernisierungsumlage-Rechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/modernisierungsumlage-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>
