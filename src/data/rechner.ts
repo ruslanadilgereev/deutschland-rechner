@@ -4265,6 +4265,21 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/sgb_7/__85.html',
     ],
   },
+  {
+    id: 'kvdr',
+    name: 'KVdR-Rechner (9/10-Regel)',
+    beschreibung: 'Erfülle ich die Vorversicherungszeit für die Krankenversicherung der Rentner?',
+    icon: '🏥',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'KVdR Rechner, 9/10 Regelung Rechner, Vorversicherungszeit Rentner berechnen, Krankenversicherung der Rentner Voraussetzungen, KVdR Kinder Anrechnung',
+    quellen: [
+      'https://www.gesetze-im-internet.de/sgb_5/__5.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__237.html',
+      'https://www.gesetze-im-internet.de/sgb_5/__240.html',
+      'https://www.gesetze-im-internet.de/sgb_6/__106.html',
+    ],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

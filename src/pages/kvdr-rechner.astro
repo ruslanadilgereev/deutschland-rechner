@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import KvdrRechner from '../components/rechner/KvdrRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "KVdR-Rechner 2026 – 9/10-Regel & Vorversicherungszeit prüfen";
+const description = "Komme ich in die Krankenversicherung der Rentner? 9/10-Regelung taggenau prüfen: zweite Hälfte des Erwerbslebens, Zeiten ohne GKV, 3 Jahre je Kind (§ 5 Abs. 1 Nr. 11 SGB V). Mit Zeitachse und frühestem Antragsdatum.";
+const keywords = "KVdR Rechner, 9/10 Regelung Rechner, Vorversicherungszeit Rentner berechnen, Krankenversicherung der Rentner Voraussetzungen, KVdR Kinder Anrechnung, 9/10 Regel zweite Hälfte Erwerbsleben, KVdR privat versichert, freiwillig versichert Rentner Beitrag, KVdR 2026, Krankenversicherung Rente Pflichtversicherung";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Was besagt die 9/10-Regelung für die Krankenversicherung der Rentner?",
+    antwort: "Wer eine gesetzliche Rente beantragt, wird nur dann Pflichtmitglied der Krankenversicherung der Rentner (KVdR), wenn er seit der ersten Erwerbstätigkeit bis zur Rentenantragstellung mindestens 9/10 der zweiten Hälfte dieses Zeitraums in der gesetzlichen Krankenversicherung war – als Pflichtmitglied, freiwilliges Mitglied oder familienversichert (§ 5 Abs. 1 Nr. 11 SGB V). Beispiel: 42 Jahre zwischen erstem Job und Antrag, zweite Hälfte 21 Jahre, erforderlich sind 18,9 Jahre GKV. Bis zu 2,1 Jahre ohne GKV wären unschädlich."
+  },
+  {
+    frage: "Wie werden Kinder bei der 9/10-Regel angerechnet?",
+    antwort: "Für jedes Kind, Stiefkind oder Pflegekind werden drei Jahre auf die erforderliche Mitgliedszeit angerechnet (§ 5 Abs. 2 Satz 3 SGB V, seit 1. August 2017). Das gilt für Mütter und Väter gleichermaßen und unabhängig davon, wann das Kind geboren wurde. Mit zwei Kindern gleichen Sie also sechs Jahre ohne gesetzliche Krankenversicherung in der zweiten Hälfte aus. Ausgenommen sind Adoptiv- und Stiefkinder, die bei Adoption bzw. Heirat bereits die Altersgrenzen der Familienversicherung überschritten hatten."
+  },
+  {
+    frage: "Zählt die Zeit als Beamter oder privat Versicherter?",
+    antwort: "Nein. Nur Zeiten als Mitglied der gesetzlichen Krankenversicherung oder als Familienversicherter zählen. Zeiten mit privater Krankenversicherung – auch als Beamtin oder Beamter mit Beihilfe –, Zeiten ohne jede Krankenversicherung und Zeiten im Ausland ohne GKV sind Lücken. Entscheidend ist aber nur die zweite Hälfte des Erwerbslebens: Eine private Versicherung in jungen Jahren schadet nicht, wenn Sie in der zweiten Hälfte zu mindestens 90 % gesetzlich versichert waren."
+  },
+  {
+    frage: "Was passiert, wenn ich die Vorversicherungszeit nicht erfülle?",
+    antwort: "Dann sind Sie nicht pflichtversichert, können sich aber meist freiwillig gesetzlich versichern (§ 9 SGB V) – oder bleiben privat versichert. Der Unterschied ist teuer: Pflichtversicherte Rentner zahlen Beiträge nur auf gesetzliche Rente, Versorgungsbezüge und Arbeitseinkommen (§ 237 SGB V). Freiwillig Versicherte zahlen auf ihre gesamte wirtschaftliche Leistungsfähigkeit, also auch auf Mieteinnahmen, Kapitalerträge, private Renten und Riester-Auszahlungen (§ 240 SGB V), mindestens aber auf 1.318,33 € im Monat (2026). Den Zuschuss der Rentenversicherung zur Krankenversicherung gibt es in beiden Fällen nur zur gesetzlichen Rente."
+  },
+  {
+    frage: "Kann ich die 9/10-Regel durch einen späteren Rentenantrag noch erfüllen?",
+    antwort: "Manchmal ja. Der Rahmenzeitraum endet mit der Antragstellung – wer später beantragt, verschiebt die Mitte des Erwerbslebens nach hinten. Liegt Ihre Lücke ohne GKV kurz nach der Mitte, kann sie durch einen späteren Antrag in die unschädliche erste Hälfte rutschen, während hinten GKV-Zeit dazukommt. Der Rechner zeigt Ihnen das früheste Antragsdatum, ab dem die Regel erfüllt wäre – vorausgesetzt, Sie bleiben bis dahin gesetzlich versichert. Ein späterer Antrag verschiebt aber auch den Rentenbeginn; rückwirkend gibt es Rente nur für maximal drei Monate."
+  },
+  {
+    frage: "Wann beginnt die Rahmenfrist – ab der Ausbildung oder ab dem ersten richtigen Job?",
+    antwort: "Mit der erstmaligen Aufnahme einer Erwerbstätigkeit. Dazu zählt eine betriebliche Ausbildung oder Lehre ebenso wie eine versicherungspflichtige Beschäftigung nach der Schule, nicht aber Schule oder Studium selbst. Auch eine kurze Beschäftigung mit 17 setzt die Rahmenfrist in Gang. Je früher die Rahmenfrist beginnt, desto früher liegt die Mitte – und desto mehr frühe Lücken werden unschädlich. Die Krankenkasse ermittelt den Beginn aus dem Versicherungsverlauf der Rentenversicherung."
+  },
+  {
+    frage: "Wer entscheidet über die KVdR – Rentenversicherung oder Krankenkasse?",
+    antwort: "Die Krankenkasse. Mit dem Rentenantrag wird eine Meldung zur Krankenversicherung der Rentner ausgelöst; die Krankenkasse prüft anhand aller Versicherungszeiten, ob die Vorversicherungszeit erfüllt ist, und stellt den Versicherungsstatus fest. Wer den Bescheid für falsch hält, kann Widerspruch einlegen – häufige Streitpunkte sind der Beginn der ersten Erwerbstätigkeit und nicht erfasste Familienversicherungszeiten. Sammeln Sie deshalb Mitgliedsbescheinigungen früherer Kassen."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "KVdR-Rechner", url: "/kvdr-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-sky-500 to-blue-600 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sky-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏥</span>
+          <div>
+            <h1 class="text-2xl font-bold">KVdR-Rechner: 9/10-Regel prüfen</h1>
+            <p class="text-sky-100 text-sm">Erfülle ich die Vorversicherungszeit für die Krankenversicherung der Rentner?</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <KvdrRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">§ 5 Abs. 1 Nr. 11 SGB V (9/10 der zweiten Hälfte), § 5 Abs. 2 Satz 3 SGB V (3 Jahre je Kind), § 237 SGB V (Beiträge Pflichtversicherter), § 240 SGB V (freiwillig Versicherte), § 106 SGB VI (Zuschuss).</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Taggenaue Rahmenfrist von erster Erwerbstätigkeit bis Antragstellung, Halbierung, beliebig viele Lücken ohne GKV (Überschneidungen werden bereinigt), Kinderanrechnung, Puffer bzw. Fehlzeit, frühestes Antragsdatum mit erfüllter Regel.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Sonderregeln für Künstler/Publizisten (Nr. 11a), Ehezeiten bis 31.12.1988, abgeleitete Hinterbliebenenrenten, Vorrang anderer Pflichtversicherungen (§ 5 Abs. 8), Beitrittsvoraussetzungen der freiwilligen Versicherung (§ 9), konkrete Beitragshöhe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Krankenversicherung der Rentner 2026: Die 9/10-Regel verständlich erklärt</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die <strong>Krankenversicherung der Rentner (KVdR)</strong> ist keine eigene Kasse, sondern ein
+            Versicherungsstatus: Wer als Rentner <em>pflichtversichert</em> ist, zahlt Beiträge nur auf Rente,
+            Betriebsrente und Arbeitseinkommen. Wer die Hürde nicht schafft, kann sich zwar meist freiwillig
+            versichern – zahlt dann aber auf <em>alle</em> Einkünfte, auch auf Mieten, Zinsen und private
+            Renten. Bei einer Zusatzrente oder vermieteten Wohnung macht das schnell mehrere Hundert Euro
+            im Monat aus.
+          </p>
+          <p>
+            Die Hürde heißt <strong>Vorversicherungszeit</strong> und steht in § 5 Abs. 1 Nr. 11 SGB V:
+            Seit der erstmaligen Aufnahme einer Erwerbstätigkeit bis zur Stellung des Rentenantrags müssen
+            Sie <strong>mindestens neun Zehntel der zweiten Hälfte</strong> dieses Zeitraums gesetzlich
+            krankenversichert gewesen sein. Unser <strong>KVdR-Rechner</strong> rechnet das taggenau aus,
+            zeigt die Zeitachse und berücksichtigt die Kinderanrechnung – die Entscheidung selbst trifft
+            am Ende die Krankenkasse.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">So funktioniert die Rechnung in drei Schritten</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>1. Rahmenzeit = Rentenantrag − erste Erwerbstätigkeit</div>
+            <div>2. Zweite Hälfte = letzte 50 % der Rahmenzeit</div>
+            <div>3. Erfüllt, wenn GKV-Zeit + 3 Jahre × Kinder ≥ 90 % der zweiten Hälfte</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Ausbildungsbeginn 1. September 1985, Rentenantrag 1. Januar 2027. Die Rahmenzeit
+            umfasst 15.097 Tage (gut 41 Jahre), die zweite Hälfte beginnt am 2. Mai 2006 und dauert 7.549 Tage.
+            Erforderlich sind 90 % davon: 6.794 Tage, rund 18 Jahre und 7 Monate. Wer in dieser Zeit durchgehend
+            gesetzlich versichert war, hat einen Puffer von etwa 2 Jahren – so lange hätte er privat versichert sein
+            dürfen, ohne den Status zu verlieren. Fünf Jahre privat (2015–2020) reißen die Grenze; mit zwei Kindern
+            (6 Jahre Anrechnung) ist sie trotzdem erfüllt.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Was zählt als Versicherungszeit – und was nicht</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Zählt:</strong> Pflichtmitgliedschaft als Arbeitnehmer, freiwillige Mitgliedschaft (z. B. als Selbständiger in der GKV), Familienversicherung über Ehepartner oder Eltern, Zeiten mit Arbeitslosengeld oder Grundsicherungsgeld, Elternzeit mit Familienversicherung, Studentenversicherung.</li>
+            <li><strong>Zählt nicht:</strong> private Krankenversicherung (auch als Beamter mit Beihilfe oder als gut verdienender Angestellter über der Versicherungspflichtgrenze), Zeiten ohne Versicherung, Auslandsaufenthalte ohne deutsche GKV, Zeiten als Soldat mit freier Heilfürsorge.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Kinderanrechnung seit 2017</h3>
+          <p>
+            Seit dem 1. August 2017 werden <strong>je Kind drei Jahre</strong> auf die erforderliche Mitgliedszeit
+            angerechnet (§ 5 Abs. 2 Satz 3 SGB V) – für Mütter und Väter, für leibliche Kinder ebenso wie für Stief-
+            und Pflegekinder. Die Anrechnung erfolgt pauschal, unabhängig davon, ob Sie in der Kindererziehungszeit
+            überhaupt eine Lücke hatten. Mit drei Kindern gleichen Sie so neun Jahre private Versicherung aus. Wer
+            vor 2017 abgelehnt wurde und Kinder hat, kann die Prüfung erneut beantragen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Pflichtversichert oder freiwillig: Der Beitragsunterschied</h3>
+          <p>
+            Pflichtversicherte Rentner zahlen den Beitrag auf die gesetzliche Rente je zur Hälfte mit der
+            Rentenversicherung (§ 249a SGB V); Versorgungsbezüge und Arbeitseinkommen sind ebenfalls beitragspflichtig.
+            Freiwillig Versicherte zahlen auf alle Einnahmen, die ihre wirtschaftliche Leistungsfähigkeit bestimmen –
+            und mindestens auf ein Drittel der Bezugsgröße (2026: 1.318,33 € im Monat). Wie hoch der Beitrag in Ihrem
+            Fall ausfällt, zeigt der <a href="/freiwillige-krankenversicherung-rechner">Rechner für die freiwillige
+            Krankenversicherung</a>; das Netto Ihrer Rente ermittelt der <a href="/rentensteuer-rechner">Rentensteuer-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Rentenbeginn statt Antragsdatum</h3>
+            <p>Die Rahmenfrist endet mit der Stellung des Rentenantrags, nicht mit dem ersten Rentenmonat. Wer den Antrag früh stellt, verkürzt die Rahmenfrist – das kann eine späte Lücke schädlich machen oder eine frühe unschädlich. Rechnen Sie beide Varianten.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Kurz vor der Rente in die GKV zurück</h3>
+            <p>Wer sein halbes Erwerbsleben privat versichert war, rettet den KVdR-Status nicht durch eine Rückkehr in die GKV mit 54. Es zählt der Anteil an der gesamten zweiten Hälfte. Ab 55 ist die Rückkehr in die GKV ohnehin nur in Ausnahmefällen möglich (§ 6 Abs. 3a SGB V).</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Familienversicherung vergessen</h3>
+            <p>Zeiten, in denen Sie beitragsfrei über Ihren Ehepartner familienversichert waren, sind vollwertige Vorversicherungszeit. Sie fehlen aber oft in den Unterlagen, weil keine eigenen Beiträge geflossen sind. Fordern Sie Mitgliedsbescheinigungen der damaligen Kasse an.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Hinterbliebenenrente: fremde Vorversicherungszeit</h3>
+            <p>Bei einer Witwen- oder Witwerrente gilt die Vorversicherungszeit als erfüllt, wenn der verstorbene Partner sie erfüllt hatte (§ 5 Abs. 2 Satz 2 SGB V). Das kann Hinterbliebene in die KVdR bringen, die es aus eigenem Recht nicht schaffen würden.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Erwerbsminderungsrente zählt auch</h3>
+            <p>Die 9/10-Regel gilt für jede Rente aus der gesetzlichen Rentenversicherung – auch für Erwerbsminderungsrenten. Wer mit 50 erwerbsgemindert wird, hat eine kürzere Rahmenfrist, und die zweite Hälfte beginnt entsprechend früher.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="kvdr" slugs={['freiwillige-krankenversicherung', 'rentensteuer', 'krankenkassenbeitrag', 'renteneintrittsalter']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "KVdR-Rechner 2026 – 9/10-Regel",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/kvdr-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>
