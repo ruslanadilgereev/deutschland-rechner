@@ -4473,6 +4473,16 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'Kita Gebühren Rechner, Kita Kosten nach Stadt, Elternbeitrag Kita berechnen, Kita Gebühren Hamburg, Kita Gebühren München, Elternbeitrag Köln, Kita Gebühren Stuttgart',
     quellen: ['https://www.berlin.de/sen/jugend/familie-und-kinder/kindertagesbetreuung/kostenbeteiligung/', 'https://www.hamburg.de/politik-und-verwaltung/behoerden/bsfb/familie/kinderbetreuung/elterninformationen/elternbeitrag-hoehe-35372', 'https://stadt.muenchen.de/infos/kosten-kita-platz.html', 'https://www.stadt-koeln.de/mediaasset/content/satzungen/elternbeitraege_20250417.pdf', 'https://www.stuttgart.de/rathaus/verwaltung/stadtrecht/4/anlagen-1-bis-5-zu-4-6-verzeichnis-der-kostenbeitraege-und-des-essensgeldes-pro-monat'],
   },
+  {
+    id: 'mehr-arbeiten',
+    name: 'Lohnt sich mehr arbeiten? Familienrechner',
+    beschreibung: 'Netto, Kindergeld, Wohngeld, Kinderzuschlag und Grundsicherung: Was von mehr Brutto wirklich bleibt',
+    icon: '💼',
+    kategorie: 'familie',
+    fertig: true,
+    seoKeywords: 'lohnt sich mehr arbeiten Rechner, Teilzeit Vollzeit Rechner Familie, Transferentzugsrate, Wohngeld Kinderzuschlag Rechner, mehr arbeiten weniger Geld, Grenzbelastung Familie',
+    quellen: ['https://www.gesetze-im-internet.de/bkgg_1996/__6a.html', 'https://www.arbeitsagentur.de/datei/kiz2-merkblattkinderzuschlag_ba034485.pdf', 'https://www.gesetze-im-internet.de/sgb_2/__11b.html', 'https://www.gesetze-im-internet.de/sgb_2/__21.html', 'https://www.gesetze-im-internet.de/wogg/__19.html', 'https://www.gesetze-im-internet.de/wogg/__16.html', 'https://www.bmf-steuerrechner.de/'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

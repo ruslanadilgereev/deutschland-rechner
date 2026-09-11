@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import MehrArbeitenRechner from '../components/rechner/MehrArbeitenRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Lohnt sich mehr arbeiten? Familienrechner 2026 – Netto, Wohngeld, Kinderzuschlag und Bürgergeld im Zusammenspiel";
+const description = "Berechnen, was von mehr Brutto wirklich übrig bleibt: Lohnsteuer 2026, Sozialabgaben, Kindergeld, Wohngeld (WoGG 2025), Kinderzuschlag (§ 6a BKGG) und aufstockende Grundsicherung mit Erwerbstätigenfreibeträgen. Zeigt die Transferentzugsrate für jeden Schritt mehr Brutto.";
+const keywords = "lohnt sich mehr arbeiten Rechner, Teilzeit auf Vollzeit Rechner Familie, Transferentzugsrate berechnen, Wohngeld Kinderzuschlag Rechner Familie, mehr arbeiten weniger Geld, Aufstocken lohnt sich, Grenzbelastung Familie 2026, Kinderzuschlag 45 Prozent Anrechnung, Erwerbstätigenfreibetrag Bürgergeld, Steuerklasse 5 lohnt sich arbeiten";
+
+const faqs = [
+  {
+    frage: "Warum bleibt von 800 € mehr Brutto manchmal fast nichts übrig?",
+    antwort: "Weil mehrere Systeme gleichzeitig zugreifen. Auf zusätzliches Brutto fallen Lohnsteuer und rund 20 Prozent Sozialabgaben an; in Steuerklasse 5 sind das schnell 45 Prozent. Gleichzeitig sinken einkommensabhängige Leistungen: Das Wohngeld fällt mit steigendem Einkommen nach der Formel des § 19 WoGG, der Kinderzuschlag wird um 45 Prozent des Einkommens gemindert, das den Elternbedarf übersteigt, und aufstockende Grundsicherung rechnet oberhalb der Freibeträge 70 bis 100 Prozent des Nettos an. Im Beispiel des Rechners (Paar, zwei Kinder, Partner 3.200 € brutto, Aufstockung von 1.600 auf 2.400 € in Steuerklasse 5) bringen 800 € mehr Brutto 362 € mehr Netto, aber 274 € weniger Wohngeld und Kinderzuschlag: unterm Strich 87 € mehr im Monat, also 89 Prozent Belastung."
+  },
+  {
+    frage: "Was ist die Transferentzugsrate?",
+    antwort: "Der Anteil eines zusätzlich verdienten Euros, der durch Steuern, Abgaben und wegfallende Sozialleistungen wieder verloren geht. Die Tabelle im Rechner zeigt sie für jeden Schritt von 250 oder 500 € Brutto als Spalte „Bleibt“. Werte unter 20 Prozent bedeuten, dass Mehrarbeit sich kaum auszahlt; solche Zonen entstehen typischerweise beim Übergang aus der Grundsicherung (Freibeträge enden bei 1.200 bzw. 1.500 € Brutto) und im Auslaufbereich von Wohngeld und Kinderzuschlag. Oberhalb davon steigt der verbleibende Anteil wieder auf 50 bis 60 Prozent."
+  },
+  {
+    frage: "Wie wird der Kinderzuschlag angerechnet?",
+    antwort: "Nach § 6a BKGG steht jedem Kind bis zu 297 € zu. Übersteigt das bereinigte Einkommen der Eltern (Netto minus Erwerbstätigenfreibetrag) ihren eigenen Bedarf, wird der Gesamtkinderzuschlag um 45 Prozent des übersteigenden Erwerbseinkommens gekürzt. Der Elternbedarf besteht aus den Regelbedarfen (563 € allein, 2 × 506 € als Paar) und einem Anteil der Warmmiete, der von der Kinderzahl abhängt: 83 Prozent bei Paaren mit einem Kind, 71 Prozent mit zwei, 62 Prozent mit drei Kindern; bei Alleinerziehenden 77, 63 und 53 Prozent. Voraussetzung ist, dass die Familie mit Kindergeld, Wohngeld und Kinderzuschlag nicht mehr hilfebedürftig ist; fehlen höchstens 100 €, gilt der erweiterte Zugang."
+  },
+  {
+    frage: "Wie rechnet der Rechner das Wohngeld?",
+    antwort: "Nach der Formel des § 19 WoGG: 1,15 × (M − (a + b × M + c × Y) × Y). M ist die Warmmiete bis zum Höchstbetrag der Mietenstufe (Anlage 1 plus Heizkosten- und Klimakomponente nach § 12), Y das monatliche Gesamteinkommen. Dafür wird vom Brutto die Werbungskostenpauschale abgezogen und nach § 16 WoGG pauschal je 10 Prozent für Steuern, Kranken-/Pflege- und Rentenversicherung, Alleinerziehende erhalten zusätzlich 1.320 € Freibetrag im Jahr. Kindergeld und Kinderzuschlag zählen nicht als Einkommen. Die Koeffizienten a, b und c stammen aus der seit 2025 geltenden Anlage 2; unter 10 € gibt es kein Wohngeld."
+  },
+  {
+    frage: "Was passiert beim Wechsel zwischen Bürgergeld und Wohngeld?",
+    antwort: "Wer Grundsicherung bezieht, bekommt kein Wohngeld und keinen Kinderzuschlag. Umgekehrt setzen Wohngeld und Kinderzuschlag voraus, dass damit keine Hilfebedürftigkeit mehr besteht. Der Rechner prüft deshalb für jedes Einkommen, ob Netto plus Kindergeld plus Wohngeld plus Kinderzuschlag den SGB-II-Bedarf (Regelbedarfe, Mehrbedarf Alleinerziehende, Warmmiete) deckt. Wenn nicht, wird die Grundsicherung als Aufstockung angesetzt; in der Grundsicherung bleiben vom Brutto 100 € plus 20 Prozent zwischen 100 und 520 €, 30 Prozent bis 1.000 € und 10 Prozent bis 1.200 € (mit Kind 1.500 €) anrechnungsfrei. An der Schwelle zwischen beiden Systemen kann das verfügbare Einkommen springen."
+  },
+  {
+    frage: "Welche Rolle spielt die Steuerklasse?",
+    antwort: "Eine große, aber nur auf den ersten Blick. In Steuerklasse 5 wird das Zweiteinkommen mit hohem Abzug besteuert, in Klasse 3 der Partner entlastet; über das Jahr gleicht die Einkommensteuererklärung das aus. Der Rechner zeigt die monatliche Sicht, weil Wohngeld und Kinderzuschlag mit dem tatsächlichen monatlichen Netto rechnen. Wer die Kombination 4/4 wählt, sieht ein realistischeres Bild der Gesamtbelastung; die Steuerrückerstattung im Folgejahr fehlt dann aber. Für die Frage „lohnt sich Vollzeit“ sollten Paare beide Varianten durchspielen."
+  },
+  {
+    frage: "Sind die Betreuungskosten schon enthalten?",
+    antwort: "Nur, wenn Sie sie eintragen. Mehr Arbeitsstunden bedeuten oft längere Kita-Buchungszeiten und in vielen Städten höhere Gebühren, weil diese nach Einkommen gestaffelt sind (München, Köln, Hamburg). Umgekehrt entfallen Kita-Gebühren bei Bezug von Wohngeld, Kinderzuschlag oder Grundsicherung in den meisten Kommunen ganz. Beide Effekte können den Ausschlag geben; tragen Sie die Beträge für heute und nach der Aufstockung ein. Den passenden Wert liefert der Kita-Gebühren-Rechner."
+  },
+  {
+    frage: "Wie genau ist die Rechnung?",
+    antwort: "Lohnsteuer und Sozialabgaben folgen dem BMF-Programmablaufplan 2026 und sind auf den Euro genau, sofern keine Kirchensteuer, Freibeträge oder Sonderzahlungen hinzukommen. Wohngeld und Kinderzuschlag folgen den gesetzlichen Formeln, aber ohne Einzelfallprüfung: Vermögen, Unterhalt, Elterngeld, Kindeseinkommen, Mehrbedarfe außer für Alleinerziehende und die Angemessenheit der Miete bleiben außen vor. Die Behörden rechnen zudem mit dem Durchschnittseinkommen der letzten sechs Monate. Das Ergebnis ist eine belastbare Orientierung, aber kein Bescheid."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Mehr-arbeiten-Rechner", url: "/mehr-arbeiten-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-violet-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-violet-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">💼</span>
+          <div>
+            <h1 class="text-2xl font-bold">Lohnt sich mehr arbeiten? Familienrechner</h1>
+            <p class="text-violet-100 text-sm">Netto, Kindergeld, Wohngeld, Kinderzuschlag und Grundsicherung im Zusammenspiel</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <MehrArbeitenRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">BMF-Programmablaufplan Lohnsteuer 2026, Sozialversicherungs-Rechengrößen 2026; § 66 EStG (Kindergeld 259 €); § 6a BKGG und Merkblatt Kinderzuschlag der Familienkasse (Stand Juli 2026); §§ 11b, 20, 21 SGB II (Freibeträge, Regelbedarfe, Mehrbedarf); WoGG §§ 12, 16, 17, 19, 21 mit Anlagen 1–3 in der Fassung 2025.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Zwei Einkommen mit Steuerklassenkombination, Kinder in drei Altersgruppen, Kindergeld, Wohngeld nach Mietenstufe mit Pauschalabzügen und Alleinerziehendenfreibetrag, Kinderzuschlag mit Elternanteil an den Wohnkosten und 45-%-Anrechnung, erweiterter Zugang, aufstockende Grundsicherung mit Erwerbstätigenfreibeträgen, Betreuungskosten, Grenzbelastung je Einkommensschritt.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Kirchensteuer, Steuerfreibeträge, Einkommensteuerveranlagung, Elterngeld, Unterhalt und Unterhaltsvorschuss, Kindeseinkommen, Vermögen, Mehrbedarfe (außer Alleinerziehende), Angemessenheitsprüfung der Miete, Bildung und Teilhabe, Kita-Beitragsfreiheit bei Leistungsbezug.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Mehr arbeiten, weniger Geld? Warum die Rechnung für Familien so kompliziert ist</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>Die Frage klingt banal: Wenn ich von 25 auf 35 Stunden aufstocke, habe ich dann mehr in der Tasche? Für Alleinstehende ohne Kinder ist die Antwort fast immer ja, und der Brutto-Netto-Rechner genügt. Für Familien mit kleinen und mittleren Einkommen ist sie es nicht, weil neben Steuern und Sozialabgaben drei einkommensabhängige Leistungen gleichzeitig reagieren: Wohngeld, Kinderzuschlag und die Grundsicherung. Jede hat eine eigene Einkommensdefinition, eigene Freibeträge und eine eigene Anrechnungsrate. Erst die Summe zeigt, was ein zusätzlicher Euro Brutto wert ist. Dieser Rechner setzt alle Bausteine zusammen und rechnet sie für jeden Einkommensschritt durch.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Baustein 1: Netto nach PAP 2026</h3>
+          <p>Lohnsteuer und Solidaritätszuschlag werden nach dem amtlichen Programmablaufplan des Bundesfinanzministeriums für 2026 berechnet, die Sozialabgaben mit den Rechengrößen 2026: 9,3 Prozent Rentenversicherung, 1,3 Prozent Arbeitslosenversicherung, 7,3 Prozent Krankenversicherung plus halber Zusatzbeitrag (Durchschnitt 2,9 Prozent) und 1,8 Prozent Pflegeversicherung mit Abschlägen ab dem zweiten Kind. Bei Paaren wählen Sie Ihre Steuerklasse, der Partner erhält automatisch die Gegenklasse (3/5, 4/4 oder 5/3). Alleinerziehende mit Kind rechnen in Steuerklasse 2 mit Entlastungsbetrag.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Baustein 2: Wohngeld</h3>
+          <p>Das Wohngeld ist als Mietzuschuss für Haushalte gedacht, die ihren Lebensunterhalt selbst bestreiten, aber die Miete nicht allein stemmen können. Der Rechner ermittelt zunächst das Gesamteinkommen nach §§ 14 bis 17 WoGG: Brutto minus Werbungskostenpauschale, davon pauschal 30 Prozent Abzug für Steuern und Sozialversicherung, bei Alleinerziehenden minus 1.320 € im Jahr. Die Miete zählt bis zum Höchstbetrag der Mietenstufe (Anlage 1) plus Heizkosten- und Klimakomponente, in Mietenstufe IV für vier Personen 1.090,20 €. Aus beiden Größen ergibt sich das Wohngeld nach der Formel des § 19. Weil das Einkommen quadratisch in die Formel eingeht, sinkt das Wohngeld mit jedem zusätzlichen Euro immer schneller.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Baustein 3: Kinderzuschlag</h3>
+          <p>Bis zu 297 € je Kind erhalten Eltern, deren Einkommen für sie selbst reicht, aber nicht für die Kinder. Der Rechner bildet § 6a BKGG so ab, wie es das Merkblatt der Familienkasse beschreibt: Das bereinigte Einkommen der Eltern (Netto abzüglich Erwerbstätigenfreibetrag) wird mit ihrem eigenen Bedarf verglichen, also Regelbedarf plus Elternanteil an der Warmmiete. Was darüber liegt, mindert den Gesamtkinderzuschlag zu 45 Prozent. Anschließend wird geprüft, ob die Familie mit Kindergeld, Wohngeld und Kinderzuschlag ihren SGB-II-Bedarf deckt; sonst gibt es keinen Kinderzuschlag, es sei denn, es fehlen höchstens 100 € (erweiterter Zugang).</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Baustein 4: Aufstockende Grundsicherung</h3>
+          <p>Reichen Wohngeld und Kinderzuschlag nicht, springt die Grundsicherung ein. Sie füllt die Lücke zwischen dem Bedarf (Regelbedarfe 563 bzw. 2 × 506 € für Erwachsene, 357/390/471 € für Kinder nach Alter, Mehrbedarf für Alleinerziehende, volle Warmmiete) und dem bereinigten Einkommen. Vom Erwerbseinkommen bleiben 100 € plus 20 Prozent des Bruttos zwischen 100 und 520 €, 30 Prozent zwischen 520 und 1.000 € und 10 Prozent bis 1.200 € (mit minderjährigem Kind 1.500 €) anrechnungsfrei, höchstens 378 €. Oberhalb dieser Grenze wird jeder Euro Netto zu 100 Prozent angerechnet, weshalb sich in dieser Zone Mehrarbeit fast nur über die Freibeträge lohnt.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Rechenbeispiel: Von 1.600 auf 2.400 € brutto</h3>
+          <p>Paar mit zwei Kindern (3 und 8 Jahre), Warmmiete 1.100 € in Mietenstufe IV, der Partner verdient 3.200 € brutto in Steuerklasse 3, Sie 1.600 € in Steuerklasse 5. Heute: Ihr Netto 1.096 €, Netto des Partners 2.463 €, Kindergeld 518 €, Wohngeld 135 €, Kinderzuschlag 139 €. Verfügbar: 4.352 €. Nach der Aufstockung auf 2.400 €: Ihr Netto 1.458 €, aber Wohngeld und Kinderzuschlag entfallen, weil das bereinigte Elterneinkommen nun 3.165 € beträgt und die 45-Prozent-Anrechnung den Kinderzuschlag aufzehrt. Verfügbar: 4.439 €. Von 800 € mehr Brutto bleiben 87 €, die Belastung liegt bei 89 Prozent. Kämen 100 € höhere Kita-Gebühren hinzu, wäre das Ergebnis negativ. Das ist die Voreinstellung des Rechners.</p>
+          <p>Die Tabelle darunter zeigt den gesamten Verlauf für diesen Haushalt: Weil der Partner bereits 3.200 € verdient, laufen Wohngeld und Kinderzuschlag vom ersten Euro Ihres Bruttos an ab. Von den ersten 250 € bleiben noch 48 Prozent, zwischen 500 und 1.500 € nur 13 bis 24 Prozent, und zwischen 1.500 und 2.250 € praktisch nichts, weil Steuerklasse 5, Wohngeldformel und 45-Prozent-Anrechnung zusammentreffen. Erst ab 2.500 €, wenn beide Leistungen ausgelaufen sind, kommen wieder 42 bis 49 Prozent des zusätzlichen Bruttos an. Wer in dieser Zone steckt, sollte nicht in kleinen Schritten aufstocken, sondern prüfen, ob ein großer Sprung über die Zone hinaus möglich ist. Bei Alleinerziehenden ohne Partnereinkommen sieht die Kurve anders aus: Dort stockt bei niedrigem Brutto die Grundsicherung auf, und es bleiben nur die Freibeträge, bis ab rund 1.500 € Wohngeld und Kinderzuschlag übernehmen.</p>
+
+          <h3 class="font-semibold text-gray-800 mt-4">Was der Rechner nicht wissen kann</h3>
+          <p>Die Behörden rechnen mit dem Durchschnittseinkommen der letzten sechs Monate (Kinderzuschlag) oder dem voraussichtlichen Einkommen im Bewilligungszeitraum (Wohngeld), sodass Veränderungen verzögert wirken. Vermögen über den Freigrenzen, Unterhalt, Elterngeld, eigenes Einkommen der Kinder und die Angemessenheit der Miete verändern das Ergebnis. Steuerlich gleicht die Einkommensteuererklärung die Steuerklassenwahl im Folgejahr aus. Und nicht zuletzt zählt mehr Arbeit auch langfristig: höhere Rentenansprüche, Arbeitslosengeld und Elterngeld bemessen sich am Brutto, nicht am verfügbaren Einkommen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Nur das Netto verglichen</h3><p>362 € mehr Netto sehen gut aus, bis Wohngeld und Kinderzuschlag wegfallen. Entscheidend ist die Zeile „Verfügbar“, nicht der Brutto-Netto-Vergleich.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kaltmiete statt Warmmiete</h3><p>Wohngeld, Kinderzuschlag und Grundsicherung rechnen mit Kaltmiete plus Nebenkosten plus Heizung. Eine zu niedrige Miete unterschätzt alle drei Leistungen und damit auch den Transferentzug.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Falsche Mietenstufe</h3><p>Die Mietenstufe der Gemeinde bestimmt den Höchstbetrag der berücksichtigten Miete. Großstädte liegen meist in den Stufen IV bis VII, ländliche Kreise in I bis III. Die verbindliche Zuordnung steht in der Anlage zu § 1 Abs. 3 der Wohngeldverordnung.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kita-Gebühren vergessen</h3><p>In einkommensgestaffelten Städten steigt die Gebühr mit dem Einkommen, und bei Wegfall von Wohngeld oder Kinderzuschlag endet oft die Beitragsfreiheit. Tragen Sie beide Werte ein; sie können das Vorzeichen des Ergebnisses drehen.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Steuerklasse 5 als Dauerzustand gerechnet</h3><p>Der hohe Abzug in Klasse 5 ist eine Vorauszahlung; die Steuererklärung holt den Überschuss zurück. Für Wohngeld und Kinderzuschlag zählt aber das laufende Netto. Rechnen Sie zusätzlich mit 4/4, um beide Sichten zu haben.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Sechs-Monats-Durchschnitt übersehen</h3><p>Der Kinderzuschlag wird für sechs Monate bewilligt und mit dem Durchschnittseinkommen der sechs Monate davor berechnet. Nach einer Aufstockung läuft die alte Bewilligung weiter; der Rechner zeigt den Dauerzustand.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="mehr-arbeiten" slugs={['brutto-netto', 'kinderzuschlag', 'wohngeld', 'kita-gebuehren']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Lohnt sich mehr arbeiten? Familienrechner 2026", "description": description,
+    "url": "https://www.deutschland-rechner.de/mehr-arbeiten-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>
