@@ -4280,6 +4280,36 @@ export const rechnerListe: Rechner[] = [
       'https://www.gesetze-im-internet.de/sgb_6/__106.html',
     ],
   },
+  {
+    id: 'internet-ausfall-entschaedigung',
+    name: 'Internet-Ausfall-Entschädigung',
+    beschreibung: 'Was der Anbieter bei Totalausfall, versäumtem Termin oder Wechselpanne zahlen muss (§ 58 TKG)',
+    icon: '📡',
+    kategorie: 'alltag',
+    fertig: true,
+    seoKeywords: 'Internet Ausfall Entschädigung Rechner, Internetausfall Entschädigung berechnen, § 58 TKG Entschädigung, Telekom Störung Entschädigung, Vodafone Ausfall Entschädigung',
+    quellen: [
+      'https://www.gesetze-im-internet.de/tkg_2021/__58.html',
+      'https://www.gesetze-im-internet.de/tkg_2021/__59.html',
+      'https://www.gesetze-im-internet.de/tkg_2021/__57.html',
+    ],
+  },
+  {
+    id: 'co2-kostenaufteilung',
+    name: 'CO₂-Kostenaufteilung-Rechner',
+    beschreibung: 'Anteil des Vermieters an den CO₂-Kosten nach dem 10-Stufen-Modell (CO2KostAufG)',
+    icon: '🏠',
+    kategorie: 'wohnen',
+    fertig: true,
+    seoKeywords: 'CO2 Kosten Vermieter Rechner, CO2 Kostenaufteilung berechnen, CO2 Erstattung Gasetagenheizung, CO2KostAufG Stufenmodell, CO2 Kosten Mieter Vermieter Anteil',
+    quellen: [
+      'https://www.gesetze-im-internet.de/co2kostaufg/anlage.html',
+      'https://www.gesetze-im-internet.de/co2kostaufg/__5.html',
+      'https://www.gesetze-im-internet.de/co2kostaufg/__6.html',
+      'https://www.gesetze-im-internet.de/ebev_2030/anlage_2.html',
+      'https://www.dehst.de/DE/Themen/nEHS/Verkauf-Versteigerung/Kohlendioxidkostenaufteilungsgesetz/kohlendioxidkostenaufteilungsgesetz_node.html',
+    ],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import InternetAusfallRechner from '../components/rechner/InternetAusfallRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Internet-Ausfall-Entschädigung berechnen – § 58 TKG Rechner 2026";
+const description = "Internet oder Telefon tagelang tot? Entschädigung nach § 58 TKG berechnen: ab dem 3. Tag 5 € oder 10 %, ab dem 5. Tag 10 € oder 20 % des Monatsentgelts – tagesgenau aufgeschlüsselt, plus versäumte Techniker-Termine und Anbieterwechsel.";
+const keywords = "Internet Ausfall Entschädigung Rechner, Internetausfall Entschädigung berechnen, § 58 TKG Entschädigung, Telekom Störung Entschädigung, Vodafone Ausfall Entschädigung, 1&1 Störung Entschädigung, Entschädigung Internet Störung pro Tag, Techniker Termin versäumt Entschädigung, Anbieterwechsel Entschädigung TKG, Internet tot Geld zurück";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie viel Entschädigung bekomme ich bei einem Internetausfall?",
+    antwort: "Nach § 58 Abs. 3 TKG gibt es bei vollständigem Ausfall am dritten und vierten Tag nach der Störungsmeldung je 5 € oder 10 % des Monatsentgelts und ab dem fünften Tag je 10 € oder 20 % – immer der höhere Betrag. Bei 39,99 € Monatsentgelt sind das 5 € bzw. 10 € pro Tag, bei 59,99 € schon 6 € bzw. 12 €. Beispiel: Störung am 1. September gemeldet, am 10. September behoben – das ergibt 50 € (2 × 5 € für Tag 3 und 4, 4 × 10 € für Tag 5 bis 8)."
+  },
+  {
+    frage: "Ab welchem Tag zählt die Entschädigung?",
+    antwort: "Der Anbieter hat nach Eingang der Störungsmeldung zwei Kalendertage Zeit zur Entstörung. Ist die Störung danach nicht beseitigt, gibt es ab dem Folgetag – also ab dem dritten Kalendertag nach der Meldung – für jeden Tag des vollständigen Ausfalls Geld. Der Tag der Meldung selbst zählt nicht mit. Deshalb ist die sofortige Meldung so wichtig: Ohne Störungsmeldung läuft keine Frist, und für Ausfalltage vor der Meldung gibt es keine Entschädigung."
+  },
+  {
+    frage: "Gilt die Entschädigung auch bei langsamem Internet?",
+    antwort: "Nein. § 58 Abs. 3 TKG entschädigt nur den vollständigen Ausfall des Dienstes. Bei zu geringer Geschwindigkeit greift stattdessen das Minderungsrecht nach § 57 Abs. 4 TKG: Sie dürfen das Entgelt in dem Verhältnis kürzen, in dem die tatsächliche Leistung von der vertraglichen abweicht – nachgewiesen über die Breitbandmessung der Bundesnetzagentur (mindestens 30 Messungen an 3 Tagen). Alternativ können Sie außerordentlich kündigen. Eine feste Minderungsquote gibt es nicht."
+  },
+  {
+    frage: "Muss ich die Entschädigung beantragen?",
+    antwort: "Ja, Sie müssen sie beim Anbieter verlangen – automatisch gutgeschrieben wird sie in der Regel nicht. Schreiben Sie dem Anbieter mit Ticketnummer, Datum der Störungsmeldung, Datum der Entstörung und Rechenweg, und setzen Sie eine Zahlungsfrist von 14 Tagen. Der Anspruch verjährt nach drei Jahren. Zahlt der Anbieter nicht, können Sie kostenlos die Schlichtungsstelle Telekommunikation der Bundesnetzagentur anrufen."
+  },
+  {
+    frage: "Was gibt es bei einem versäumten Techniker-Termin?",
+    antwort: "Erscheint der Techniker zu einem vereinbarten Kundendienst- oder Installationstermin nicht, können Sie je versäumtem Termin 10 € oder 20 % des Monatsentgelts verlangen – je nachdem, welcher Betrag höher ist (§ 58 Abs. 4 TKG). Bei 59,99 € Monatspreis sind das 12 € pro Termin. Die Entschädigung entfällt nur, wenn Sie das Versäumnis selbst zu vertreten haben, etwa weil niemand zu Hause war."
+  },
+  {
+    frage: "Welche Entschädigung gibt es beim Anbieterwechsel?",
+    antwort: "Beim Wechsel darf der Dienst höchstens einen Arbeitstag unterbrochen sein (§ 59 Abs. 2 TKG). Für jeden weiteren Arbeitstag ohne Anschluss schuldet der abgebende Anbieter 10 € oder 20 % des Monatsentgelts, je nachdem, was höher ist (§ 59 Abs. 4 TKG). Klappt die Rufnummernmitnahme nicht spätestens am Arbeitstag nach dem vereinbarten Tag, gibt es zusätzlich 10 € je Tag der Verzögerung von dem Anbieter, der sie zu vertreten hat (§ 59 Abs. 6 TKG). Solange der Wechsel nicht abgeschlossen ist, muss der alte Anbieter Sie weiterversorgen – zu 50 % reduzierten Anschlussentgelten."
+  },
+  {
+    frage: "Kann ich zusätzlich Schadensersatz verlangen?",
+    antwort: "Ja, die Entschädigung nach § 58 TKG schließt weitergehenden Schadensersatz nicht aus – etwa für ein nachweislich nötiges Ersatz-Mobilfunkpaket oder Verdienstausfall im Homeoffice. Allerdings wird die Entschädigung auf den Schadensersatz angerechnet und umgekehrt (§ 58 Abs. 3 Satz 5 TKG), beide Beträge addieren sich also nicht. Eine bereits gewährte Minderung nach § 57 Abs. 4 TKG wird ebenfalls angerechnet."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "Internet-Ausfall-Entschädigung", url: "/internet-ausfall-entschaedigung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-indigo-500 to-blue-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-indigo-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📡</span>
+          <div>
+            <h1 class="text-2xl font-bold">Internet-Ausfall-Entschädigung berechnen</h1>
+            <p class="text-indigo-100 text-sm">Was der Anbieter nach § 58 TKG pro Ausfalltag zahlen muss</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <InternetAusfallRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">§ 58 Abs. 3 TKG (5 €/10 % am 3. und 4. Tag, 10 €/20 % ab dem 5. Tag), § 58 Abs. 4 TKG (versäumte Termine), § 59 Abs. 4 und 6 TKG (Anbieterwechsel, Rufnummernmitnahme), § 57 Abs. 4 TKG (Minderung).</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Tagesgenaue Zählung ab Eingang der Störungsmeldung, Höher-Regel (Festbetrag vs. Prozentsatz), laufende Störung bis heute, Anrechnung einer erhaltenen Minderung, Ausschlussgründe, versäumte Termine, Arbeitstage beim Wechsel, Rufnummernverzögerung.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Teilausfälle und Geschwindigkeitsabweichungen (Minderung nach § 57 Abs. 4, keine feste Quote), Verträge ohne gleichbleibendes Monatsentgelt, Individualvereinbarungen mit Geschäftskunden, weitergehender Schadensersatz, Sonderkündigungsrecht.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Entschädigung bei Internetausfall: Ihre Rechte nach dem TKG 2021</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Seit dem 1. Dezember 2021 steht es im Gesetz: Wer als Verbraucher tagelang ohne Internet oder Telefon
+            sitzt, hat einen <strong>gesetzlichen Anspruch auf Entschädigung</strong> – unabhängig davon, ob dem
+            Anbieter ein Verschulden nachgewiesen werden kann. Geregelt ist das in <strong>§ 58 TKG</strong>
+            (Entstörung). Die Beträge sind klein, aber sie summieren sich: Bei einer zweiwöchigen Störung kommen
+            schnell über 100 € zusammen, bei teuren Glasfaser- oder Kabeltarifen mehr.
+          </p>
+          <p>
+            Unser Rechner schlüsselt die Entschädigung <strong>Tag für Tag</strong> auf, berücksichtigt die
+            zweitägige Entstörfrist und die „Höher-Regel" zwischen Festbetrag und Prozentsatz. Dazu rechnet er die
+            Pauschalen für versäumte Techniker-Termine und für Probleme beim Anbieterwechsel aus.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Staffel nach § 58 Abs. 3 TKG</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Tag nach der Meldung</th>
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Entschädigung je Tag</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">bei 39,99 €</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">bei 59,99 €</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-2 px-3 border-b">Tag 1 und 2</td><td class="py-2 px-3 border-b">Entstörfrist, keine Entschädigung</td><td class="py-2 px-3 border-b text-right">0 €</td><td class="py-2 px-3 border-b text-right">0 €</td></tr>
+                <tr><td class="py-2 px-3 border-b">Tag 3 und 4</td><td class="py-2 px-3 border-b">5 € oder 10 % des Monatsentgelts</td><td class="py-2 px-3 border-b text-right">5,00 €</td><td class="py-2 px-3 border-b text-right">6,00 €</td></tr>
+                <tr><td class="py-2 px-3">ab Tag 5</td><td class="py-2 px-3">10 € oder 20 % des Monatsentgelts</td><td class="py-2 px-3 text-right">10,00 €</td><td class="py-2 px-3 text-right">12,00 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Es gilt jeweils der höhere Betrag. Bis 50 € Monatsentgelt greift der Festbetrag, darüber der Prozentsatz.</p>
+
+          <p>
+            <strong>Rechenbeispiel:</strong> Sie melden den Totalausfall Ihres DSL-Anschlusses (39,99 €/Monat) am
+            Montag, 1. September. Am Mittwoch, 10. September, funktioniert er wieder. Tag 1 und 2 (2. und 3.
+            September) fallen in die Entstörfrist. Tag 3 und 4 bringen je 5 €, Tag 5 bis 8 je 10 €. Ergebnis:
+            <strong>50 €</strong>. Mit einem 59,99-€-Tarif wären es 60 €, weil dann 10 % bzw. 20 % über den
+            Festbeträgen liegen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Voraussetzungen und Ausschlüsse</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Vollständiger Ausfall:</strong> Der Dienst muss komplett tot sein. Ein sehr langsamer, aber funktionierender Anschluss ist ein Fall für die Minderung nach § 57 Abs. 4 TKG.</li>
+            <li><strong>Störungsmeldung:</strong> Die Fristen laufen ab Eingang Ihrer Meldung beim Anbieter. Der Anbieter muss den Eingang dokumentieren und Sie spätestens am Folgetag informieren, was er unternimmt (§ 58 Abs. 2 TKG).</li>
+            <li><strong>Kein Ausschlussgrund:</strong> Keine Entschädigung, wenn Sie die Störung selbst zu vertreten haben (defekter eigener Router, gekapptes Kabel im Haus), oder bei höherer Gewalt, behördlichen Anordnungen und gesetzlich vorgeschriebenen Maßnahmen.</li>
+            <li><strong>Verbraucher:</strong> Der Anspruch gilt für Privatkunden. Geschäftskunden profitieren nur, wenn keine abweichende Individualvereinbarung getroffen wurde.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Versäumte Termine und Anbieterwechsel</h3>
+          <p>
+            Zwei weitere Pauschalen sind oft unbekannt: Kommt der Techniker zum vereinbarten Termin nicht, gibt es
+            <strong>je Termin 10 € oder 20 %</strong> des Monatsentgelts (§ 58 Abs. 4 TKG). Und beim Anbieterwechsel darf
+            der Anschluss höchstens <strong>einen Arbeitstag</strong> ausfallen – jeder weitere Arbeitstag kostet den
+            abgebenden Anbieter 10 € oder 20 % (§ 59 Abs. 4 TKG), eine verspätete Rufnummernmitnahme 10 € je Tag
+            (§ 59 Abs. 6 TKG). Bis der Wechsel klappt, muss der alte Anbieter weiterliefern, darf aber nur noch die
+            Hälfte der Anschlussentgelte berechnen.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">So setzen Sie die Entschädigung durch</h3>
+          <p>
+            Schreiben Sie dem Anbieter nach der Entstörung eine kurze Forderung: Ticketnummer, Meldedatum,
+            Entstördatum, Monatsentgelt, Rechenweg (am besten die Tagestabelle aus dem Rechner) und eine Frist von
+            14 Tagen. Viele Anbieter schreiben den Betrag dann auf der nächsten Rechnung gut. Bleibt die Zahlung aus,
+            ist die <strong>Schlichtungsstelle Telekommunikation</strong> der Bundesnetzagentur der nächste Schritt –
+            kostenlos, ohne Anwalt, und der Anbieter muss sich äußern. Weitere Verbraucherrechte bei Vertragsproblemen
+            zeigt der <a href="/kuendigungsfrist-rechner">Kündigungsfrist-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Störung erst nach Tagen gemeldet</h3>
+            <p>Die Frist läuft ab Eingang der Störungsmeldung, nicht ab Beginn des Ausfalls. Wer drei Tage wartet, bevor er anruft, verschenkt diese Tage komplett. Melden Sie sofort – per Hotline, App oder Kundenportal – und lassen Sie sich die Ticketnummer geben.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">„Langsam" mit „ausgefallen" verwechselt</h3>
+            <p>Die Tagespauschalen gibt es nur bei vollständigem Ausfall. Bei 5 statt 100 Mbit/s greift die Minderung nach § 57 Abs. 4 TKG – nachzuweisen mit der Breitbandmessung der Bundesnetzagentur (Desktop-App, mindestens 30 Messungen an 3 verschiedenen Tagen).</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Kulanz-Gutschrift als Entschädigung akzeptiert</h3>
+            <p>Anbieter bieten gern „aus Kulanz" einen Monat gratis an. Rechnen Sie nach: Bei zwei Wochen Ausfall übersteigt die gesetzliche Entschädigung das Monatsentgelt oft deutlich. Sie können die gesetzliche Pauschale zusätzlich fordern, sofern die Gutschrift nicht ausdrücklich als Minderung gewährt wurde.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Mobilfunk-Ausfall</h3>
+            <p>§ 58 TKG gilt für alle öffentlich zugänglichen Telekommunikationsdienste, also grundsätzlich auch für Mobilfunk. Praktisch scheitert der Anspruch aber meist am Nachweis eines vollständigen Ausfalls, weil ein Funkloch ortsabhängig ist. Bei Prepaid-Tarifen ohne festes Monatsentgelt gelten nur die Festbeträge.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Doppelt kassieren geht nicht</h3>
+            <p>Entschädigung, Minderung und Schadensersatz werden gegenseitig angerechnet. Wer 40 € Minderung erhalten hat und 50 € Entschädigung fordert, bekommt noch 10 €.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="internet-ausfall-entschaedigung" slugs={['kuendigungsfrist', 'verzugszinsen', 'tage', 'arbeitstage']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Internet-Ausfall-Entschädigung-Rechner (§ 58 TKG)",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/internet-ausfall-entschaedigung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>

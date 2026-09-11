@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import Co2KostenaufteilungRechner from '../components/rechner/Co2KostenaufteilungRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "CO₂-Kostenaufteilung-Rechner 2026 – Was muss der Vermieter zahlen?";
+const description = "CO₂-Kosten zwischen Mieter und Vermieter aufteilen: 10-Stufen-Modell nach CO2KostAufG, kg CO₂ pro m² aus der Heizkostenabrechnung, Erstattungsanspruch bei eigenem Gasvertrag, CO₂-Preis 2026 (60 €/t). Kostenlos!";
+const keywords = "CO2 Kosten Vermieter Rechner, CO2 Kostenaufteilung berechnen, CO2KostAufG Rechner, CO2 Erstattung Gasetagenheizung, CO2 Abgabe Mieter Vermieter Anteil, Stufenmodell CO2 Kosten Tabelle, CO2 Kosten Heizkostenabrechnung, Kohlendioxidkostenaufteilungsgesetz, CO2 Preis 2026 Vermieter, CO2 Kosten Erstattung Vermieter Frist";
+
+// FAQ einmal definiert – wird sichtbar UND im FAQPage-Schema wortgleich ausgegeben
+const faqs = [
+  {
+    frage: "Wie werden die CO₂-Kosten zwischen Mieter und Vermieter aufgeteilt?",
+    antwort: "Bei Wohngebäuden nach einem 10-Stufen-Modell (Anlage zu § 5 Abs. 2 CO2KostAufG). Maßgeblich ist der CO₂-Ausstoß des Gebäudes in Kilogramm je Quadratmeter Wohnfläche und Jahr: Unter 12 kg/m² trägt der Mieter 100 %, ab 12 kg/m² zahlt der Vermieter 10 %, ab 17 kg/m² 20 %, und so weiter in 5-kg-Schritten bis zu 95 % Vermieteranteil ab 52 kg/m². Je schlechter das Gebäude gedämmt und je fossiler die Heizung, desto größer der Anteil des Vermieters. Bei Nichtwohngebäuden gilt pauschal 50/50."
+  },
+  {
+    frage: "Wie finde ich heraus, wie viel kg CO₂ pro m² mein Gebäude ausstößt?",
+    antwort: "Aus der Heizkostenabrechnung: Der Vermieter muss darin den Anteil des Mieters an den CO₂-Kosten, die Einstufung des Gebäudes und die Berechnungsgrundlagen ausweisen (§ 7 Abs. 3 CO2KostAufG). Die CO₂-Emissionen in kg und den CO₂-Kostenanteil muss bereits der Brennstoff- oder Wärmelieferant auf seiner Rechnung angeben (§ 3). Teilen Sie die Emissionen durch die Gesamtwohnfläche. Beispiel: 16.325 kg CO₂ bei 600 m² Wohnfläche ergeben 27,2 kg/m² – Stufe 27 bis unter 32, der Vermieter trägt 40 %."
+  },
+  {
+    frage: "Ich habe einen eigenen Gasvertrag (Gasetagenheizung). Bekomme ich Geld vom Vermieter?",
+    antwort: "Ja. Wer sich selbst mit Wärme versorgt, ermittelt den CO₂-Ausstoß seiner Wohnung je m² selbst, stuft sie in die Tabelle ein und kann vom Vermieter dessen Anteil an den CO₂-Kosten zurückverlangen (§ 6 Abs. 2 CO2KostAufG). Beispiel: 12.000 kWh Erdgas in einer 70-m²-Wohnung ergeben rund 2.177 kg CO₂, also 31,1 kg/m² – Stufe 27 bis unter 32, Vermieteranteil 40 %. Bei 155,41 € CO₂-Kosten (2026 inkl. USt) sind das 62,17 € Erstattung. Wichtig: Sie müssen den Anspruch in Textform innerhalb von 12 Monaten nach der Abrechnung Ihres Gaslieferanten geltend machen."
+  },
+  {
+    frage: "Wie hoch ist der CO₂-Preis 2026 für Heizöl und Gas?",
+    antwort: "Für die Kostenaufteilung gilt 2026 der Mittelwert des gesetzlichen Preiskorridors von 55 bis 65 €, also 60 € je Tonne CO₂ (§ 4 Abs. 1 Nr. 2 CO2KostAufG, bekannt gemacht von der DEHSt). Für Lieferungen 2025 galt der Festpreis von 55 €/t. Darauf kommt die Umsatzsteuer von 19 %. Pro Kilowattstunde Erdgas (Brennwert) sind das 2026 rund 1,3 Cent, pro Liter Heizöl rund 19 Cent. Ab 2027 richtet sich der Preis nach den Versteigerungsergebnissen des Vorjahres."
+  },
+  {
+    frage: "Was passiert, wenn der Vermieter die CO₂-Kosten nicht in der Abrechnung ausweist?",
+    antwort: "Dann dürfen Sie den auf Sie entfallenden Anteil an den Heizkosten – nicht nur an den CO₂-Kosten – pauschal um 3 % kürzen (§ 7 Abs. 4 CO2KostAufG). Das Kürzungsrecht besteht, wenn der Vermieter den Mieteranteil an den CO₂-Kosten nicht bestimmt oder die Einstufung und Berechnungsgrundlagen nicht ausweist. Vereinbarungen im Mietvertrag, nach denen der Mieter mehr als seinen Stufenanteil trägt, sind unwirksam (§ 6 Abs. 1)."
+  },
+  {
+    frage: "Gilt die Aufteilung auch bei Fernwärme und Denkmalschutz?",
+    antwort: "Fernwärme: Ja, das Gesetz gilt auch für gewerbliche Wärmelieferung; der Wärmelieferant weist einen einheitlichen Emissionsfaktor des Wärmenetzes aus (§ 3 Abs. 4). Denkmalschutz: Steht eine denkmalrechtliche Beschränkung, eine Erhaltungssatzung oder ein Anschluss- und Benutzungszwang einer energetischen Sanierung oder einem Heizungstausch entgegen, wird der Vermieteranteil halbiert; verhindern die Vorgaben beides, entfällt die Aufteilung ganz (§ 9). Der Vermieter muss die Umstände nachweisen."
+  },
+  {
+    frage: "Was ändert sich durch die Gesetzesänderung 2026 (Gebäudemodernisierungsgesetz)?",
+    antwort: "Mit dem Gesetz vom 23. Juli 2026 wurden die §§ 5a und 5b in das CO2KostAufG eingefügt. Für Wohnungen, die von einer nach § 43 Abs. 1 Gebäudemodernisierungsgesetz neu eingebauten Gas-, Öl- oder Flüssiggasheizung versorgt werden, gilt abweichend vom Stufenmodell ab dem 1. Januar 2028 eine hälftige Aufteilung der CO₂-Kosten und der Gas-Netzentgelte, ab 2029 zusätzlich der Kosten des verpflichtend beizumischenden Brennstoffanteils (bis 30 %). Für alle bestehenden Heizungen bleibt es beim 10-Stufen-Modell."
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+>
+  <BreadcrumbSchema items={[{ name: "CO₂-Kostenaufteilung-Rechner", url: "/co2-kostenaufteilung-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <!-- Header mit Zurück-Button -->
+    <header class="bg-gradient-to-r from-lime-600 to-green-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-lime-100 hover:text-white mb-4 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏠</span>
+          <div>
+            <h1 class="text-2xl font-bold">CO₂-Kostenaufteilung-Rechner</h1>
+            <p class="text-lime-100 text-sm">Welchen Anteil der CO₂-Kosten muss der Vermieter tragen? Stufenmodell 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Calculator -->
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <Co2KostenaufteilungRechner client:load />
+    </div>
+
+    <!-- Trust / E-E-A-T Block -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Grundlage</h2>
+            <p class="text-gray-600">CO2KostAufG (Fassung nach Änderung vom 23.7.2026): § 5 mit Anlage (Stufenmodell), § 6 (Erstattung), § 7 (Abrechnung, 3-%-Kürzung), § 8 (Nichtwohngebäude), § 9 (Einschränkungen); § 4 i.V.m. § 10 BEHG (Preis 2026: 60 €/t, DEHSt); EBeV 2030 Anlage 2 (Emissionsfaktoren).</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2>
+            <p class="text-gray-600">Alle 10 Stufen, Rundung auf 0,1 kg/m², anteilige Stufenwerte bei kürzerem Abrechnungszeitraum, Zentralheizung vs. eigener Vertrag, kg und € aus der Rechnung oder Schätzung aus Verbrauch (Erdgas Brennwert-kWh, Heizöl Liter, Flüssiggas kg), USt 19 %, Halbierung/Wegfall nach § 9, 50/50 bei Nichtwohngebäuden.</p>
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2>
+            <p class="text-gray-600">Verteilung des Mieteranteils auf einzelne Wohnungen (HeizkostenV), Zweifamilienhaus mit selbstnutzendem Vermieter (§ 7 Abs. 2), 5-%-Kürzung bei gewerblicher Mitnutzung (§ 6 Abs. 3), Sonderregeln für neue Heizungen ab 2028 (§§ 5a, 5b), KWK-Zuordnung bei Fernwärme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">CO₂-Kosten in der Heizkostenabrechnung: So viel gehört dem Vermieter</h2>
+
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Seit dem 1. Januar 2023 dürfen Vermieter die <strong>CO₂-Abgabe auf Heizöl, Erdgas und Fernwärme</strong>
+            nicht mehr komplett auf die Mieter umlegen. Das <strong>Kohlendioxidkostenaufteilungsgesetz
+            (CO2KostAufG)</strong> teilt die Kosten nach einem Stufenmodell auf: Je mehr CO₂ ein Gebäude pro
+            Quadratmeter ausstößt, desto größer ist der Anteil des Vermieters – denn er entscheidet über Dämmung
+            und Heizungstechnik, der Mieter nur über sein Heizverhalten.
+          </p>
+          <p>
+            Unser Rechner führt Sie durch Ihre Abrechnung: Wohnfläche und CO₂-Menge eingeben, Stufe ablesen,
+            Vermieteranteil in Euro erhalten. Wer eine <strong>Gasetagenheizung mit eigenem Vertrag</strong> hat,
+            bekommt direkt den Erstattungsbetrag, den er beim Vermieter einfordern kann. Der reine CO₂-Preis
+            selbst lässt sich mit dem <a href="/co2-steuer-rechner">CO₂-Steuer-Rechner</a> ermitteln.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Das 10-Stufen-Modell für Wohngebäude</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">CO₂-Ausstoß je m² Wohnfläche und Jahr</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Anteil Mieter</th>
+                  <th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Anteil Vermieter</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-1.5 px-3 border-b">unter 12 kg</td><td class="py-1.5 px-3 border-b text-right">100 %</td><td class="py-1.5 px-3 border-b text-right">0 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">12 bis unter 17 kg</td><td class="py-1.5 px-3 border-b text-right">90 %</td><td class="py-1.5 px-3 border-b text-right">10 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">17 bis unter 22 kg</td><td class="py-1.5 px-3 border-b text-right">80 %</td><td class="py-1.5 px-3 border-b text-right">20 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">22 bis unter 27 kg</td><td class="py-1.5 px-3 border-b text-right">70 %</td><td class="py-1.5 px-3 border-b text-right">30 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">27 bis unter 32 kg</td><td class="py-1.5 px-3 border-b text-right">60 %</td><td class="py-1.5 px-3 border-b text-right">40 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">32 bis unter 37 kg</td><td class="py-1.5 px-3 border-b text-right">50 %</td><td class="py-1.5 px-3 border-b text-right">50 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">37 bis unter 42 kg</td><td class="py-1.5 px-3 border-b text-right">40 %</td><td class="py-1.5 px-3 border-b text-right">60 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">42 bis unter 47 kg</td><td class="py-1.5 px-3 border-b text-right">30 %</td><td class="py-1.5 px-3 border-b text-right">70 %</td></tr>
+                <tr><td class="py-1.5 px-3 border-b">47 bis unter 52 kg</td><td class="py-1.5 px-3 border-b text-right">20 %</td><td class="py-1.5 px-3 border-b text-right">80 %</td></tr>
+                <tr><td class="py-1.5 px-3">52 kg und mehr</td><td class="py-1.5 px-3 text-right">5 %</td><td class="py-1.5 px-3 text-right">95 %</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">Quelle: Anlage zu § 5 Abs. 2 CO2KostAufG. Der spezifische Ausstoß wird auf eine Nachkommastelle gerundet; bei Abrechnungszeiträumen unter einem Jahr werden die Stufenwerte anteilig gekürzt.</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Rechenbeispiel Mehrfamilienhaus mit Gaszentralheizung</h3>
+          <p>
+            Ein Mehrfamilienhaus mit 600 m² Wohnfläche verbraucht 90.000 kWh Erdgas im Jahr. Mit dem Standardfaktor
+            0,18139 kg CO₂ je kWh (Brennwert) sind das 16.325 kg CO₂, also <strong>27,2 kg/m²</strong> – Stufe 27 bis
+            unter 32, der Vermieter trägt 40 %. Bei 60 €/t plus 19 % Umsatzsteuer betragen die CO₂-Kosten 1.165,61 €;
+            <strong>466,24 € bleiben beim Vermieter</strong>, 699,37 € werden nach dem Heizkostenschlüssel auf die Mieter
+            verteilt. Wäre das Haus gedämmt und der Verbrauch bei 40.000 kWh, läge der Ausstoß bei 12,1 kg/m² – Stufe 2,
+            nur noch 10 % Vermieteranteil.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Zentralheizung oder eigener Vertrag – zwei Wege</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Zentralheizung:</strong> Der Vermieter rechnet ab. Er muss in der Heizkostenabrechnung die Einstufung, die Berechnungsgrundlagen und Ihren Anteil an den CO₂-Kosten ausweisen (§ 7 Abs. 3). Fehlt das, dürfen Sie Ihren Heizkostenanteil um 3 % kürzen (§ 7 Abs. 4).</li>
+            <li><strong>Eigener Gas- oder Ölvertrag:</strong> Sie rechnen selbst. Die Emissionen und den CO₂-Kostenanteil finden Sie auf der Rechnung Ihres Lieferanten, die Wohnfläche im Mietvertrag. Den Vermieteranteil fordern Sie <strong>in Textform innerhalb von 12 Monaten</strong> nach der Lieferantenabrechnung ein (§ 6 Abs. 2). Der Vermieter darf mit der nächsten Betriebskostenabrechnung verrechnen, spätestens 12 Monate nach Ihrer Anzeige muss er zahlen.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der CO₂-Preis: 2025, 2026 und danach</h3>
+          <p>
+            Bis 2025 galt ein gesetzlicher Festpreis (2025: 55 €/t). Für 2026 sieht das Brennstoffemissionshandelsgesetz
+            einen Versteigerungskorridor von 55 bis 65 € vor; für die Kostenaufteilung gilt dessen
+            <strong>Mittelwert von 60 €/t</strong> (§ 4 Abs. 1 Nr. 2 CO2KostAufG). Ab 2027 zählt der Durchschnittspreis
+            der Versteigerungen von Juli bis November des Vorjahres, den das Umweltbundesamt jeweils bis Mitte
+            Dezember veröffentlicht. Auf den CO₂-Kostenanteil fällt Umsatzsteuer an – bei Gas und Heizöl 19 %.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Einschränkungen: Denkmalschutz und Milieuschutz</h3>
+          <p>
+            Kann der Vermieter nachweislich nicht sanieren, weil öffentlich-rechtliche Vorgaben entgegenstehen –
+            Denkmalschutz, eine Erhaltungssatzung nach § 172 BauGB oder ein Anschluss- und Benutzungszwang an ein
+            Wärmenetz –, wird sein Anteil halbiert. Verhindern die Vorgaben sowohl die energetische Sanierung als auch
+            einen Heizungstausch, entfällt die Aufteilung ganz (§ 9). Die Beweislast liegt beim Vermieter.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typische Fehler & Sonderfälle -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Wohnungsfläche statt Gebäudefläche</h3>
+            <p>Bei Zentralheizung zählt der Ausstoß des gesamten Gebäudes je m² Gesamtwohnfläche – nicht Ihr persönlicher Verbrauch je m² Ihrer Wohnung. Ihr individueller Anteil ergibt sich erst im zweiten Schritt über den Heizkostenschlüssel. Nur bei eigener Versorgung zählt Ihre Wohnung allein.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Heizwert-kWh und Brennwert-kWh verwechselt</h3>
+            <p>Gasrechnungen weisen Brennwert-kWh aus, der gesetzliche Emissionsfaktor ist aber heizwertbezogen (0,20088 kg/kWh). Für Rechnungs-kWh gilt der umgerechnete Wert von 0,18139 kg/kWh. Wer den Heizwert-Faktor auf Brennwert-kWh anwendet, überschätzt die Emissionen um rund 11 % – und rutscht womöglich eine Stufe zu hoch.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Frist verpasst bei eigenem Gasvertrag</h3>
+            <p>Der Erstattungsanspruch muss innerhalb von 12 Monaten ab der Abrechnung des Gaslieferanten in Textform geltend gemacht werden. Danach ist er weg – auch wenn der Vermieter Sie beim Einzug nicht auf den Anspruch hingewiesen hat, wozu er verpflichtet ist.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Nichtwohngebäude weiter 50/50</h3>
+            <p>Für Büros, Läden und Praxen sollte 2025 ein eigenes Stufenmodell kommen (§ 8 Abs. 4). Es wurde bisher nicht erlassen – es bleibt bei der hälftigen Aufteilung. Vereinbarungen, nach denen der gewerbliche Mieter mehr als 50 % trägt, sind unwirksam.</p>
+          </div>
+          <div class="border-l-4 border-red-400 pl-4">
+            <h3 class="font-semibold text-gray-800">Vermieter im Zweifamilienhaus</h3>
+            <p>Wohnt der Vermieter selbst in einem Gebäude mit höchstens zwei Wohnungen, gilt das vereinbarte Abrechnungsverfahren (§ 7 Abs. 2) – das Stufenmodell greift dann nicht automatisch. Gleiches gilt bei Vereinbarungen nach § 11 HeizkostenV ohne verbrauchsabhängige Abrechnung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (sichtbar) – wortgleich zum FAQPage-Schema -->
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600">
+                <p>{faq.antwort}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="co2-kostenaufteilung" slugs={['co2-steuer', 'heizkosten', 'nebenkosten', 'gasverbrauch']} />
+  </main>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CO₂-Kostenaufteilung-Rechner 2026",
+    "description": description,
+    "url": "https://www.deutschland-rechner.de/co2-kostenaufteilung-rechner",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Deutschland-Rechner"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.frage,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.antwort }
+    }))
+  })} />
+</Layout>
