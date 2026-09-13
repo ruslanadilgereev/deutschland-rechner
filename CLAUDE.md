@@ -25,9 +25,10 @@ node scripts/link-check.mjs           # interne Links gegen vorhandene src/pages
 node scripts/faq-surface.mjs --dry <slug>      # FAQ-<details> aus FAQPage-Schema ableiten
 node scripts/guide-crosslinks.mjs --dry        # Ratgeber-Crosslink-Boxen vorschlagen
 node scripts/generate-icons.mjs       # PWA-Icons aus public/favicon.svg (Sharp)
+node scripts/year-rollover-2027.mjs   # Jahreszahl 2026→2027 in Title/Description/H1 fuer Seiten ohne Rechtsbezug (Liste: year-rollover-2027.json; --apply schreibt)
 ```
 
-⚠️ `faq-surface.mjs` und `guide-crosslinks.mjs` **schreiben Quelldateien mit `--apply`** – immer zuerst `--dry`. `jsonld-check.mjs`/`content-audit.mjs` brauchen ein gebautes `dist/`.
+⚠️ `faq-surface.mjs`, `guide-crosslinks.mjs` und `year-rollover-2027.mjs` **schreiben Quelldateien mit `--apply`** – immer zuerst `--dry`. `jsonld-check.mjs`/`content-audit.mjs` brauchen ein gebautes `dist/`.
 
 ## Architektur: Drei-Teile-Konvention pro Rechner
 
