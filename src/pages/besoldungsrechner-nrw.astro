@@ -6,7 +6,7 @@ import besoldung from '../data/besoldung-nrw.json';
 
 const title = "Besoldungsrechner NRW: Tabelle + Abschlag 3,36 %";
 const description = "Besoldungstabelle NRW: alle Grundgehälter A 5 bis A 16 nach der amtlichen LBV-Tabelle (gültig ab 01.02.2025) plus die seit 01.04.2026 gezahlten Abschläge von 3,36 %. Rechner für Besoldungsgruppe und Erfahrungsstufe.";
-const keywords = "Besoldungsrechner NRW, Besoldungstabelle NRW, Besoldungstabelle NRW 2026, Besoldung NRW, A12 NRW, A13 NRW Lehrer, Besoldungserhöhung NRW 2026, LBesG NRW, LBV NRW Besoldung, Beamte Gehalt NRW, Polizei Besoldung NRW";
+const keywords = "Besoldungsrechner NRW, Besoldungstabelle NRW, Besoldungstabelle NRW 2026, Besoldung NRW, A12 NRW, A13 NRW Lehrer, Besoldungserhöhung NRW 2026, LBesG NRW, LBV NRW Besoldung, Beamte Gehalt NRW, Polizei Besoldung NRW, Besoldung NRW 2027, Besoldungstabelle NRW 2027, Besoldungsrechner NRW 2027";
 
 type GruppeA = { startStufe: number; werte: number[] };
 const aGruppen = Object.entries(besoldung.grundgehaltA) as [string, GruppeA][];
@@ -33,6 +33,17 @@ const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2,
     </div>
 
     <BesoldungsRechnerNRW client:load />
+<!-- Ausblick 2027 -->
+    <div class="mt-6">
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+        <h2 class="text-lg font-bold text-gray-800 mb-2">🔭 Was ändert sich 2027? <span class="text-xs font-normal text-gray-500">(Stand 13. September 2026)</span></h2>
+        <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+          <li>Nordrhein-Westfalen überträgt den TV-L-Abschluss vom 14.02.2026 auf die Landesbesoldung: +2,8 % (mindestens 100 €) zum 01.04.2026, <strong>+2,0 % zum 01.03.2027</strong>, +1,0 % zum 01.01.2028 – vorbehaltlich des Besoldungs- und Versorgungsanpassungsgesetzes NRW. Die Tabelle 2027 wird nach Verkündung eingepflegt.</li>
+          <li>Einkommensteuertarif 2027 lt. Regierungsentwurf Einkommensteuerreformgesetz 2027 (Kabinett 02.09.2026, Bundestag/Bundesrat stehen aus): <strong>Grundfreibetrag 12.564 €</strong> (2026: 12.348 €), 42 % ab 70.601 €, <strong>45 % bereits ab 250.000 €</strong> und neuer Spitzensatz <strong>47 % ab 280.000 €</strong> zu versteuerndem Einkommen; 2028: Grundfreibetrag 12.900 €.</li>
+        </ul>
+        <p class="text-xs text-gray-500 mt-3">Quellen: <a href="https://www.tdl-online.de/" class="text-blue-600 hover:underline" rel="noopener" target="_blank">TdL – Tarifeinigung TV-L vom 14.02.2026</a> · <a href="https://www.bundesfinanzministerium.de/Content/DE/Gesetzestexte/Gesetze_Gesetzesvorhaben/Abteilungen/Abteilung_IV/21_Legislaturperiode/2026-08-18-EStReformG-2027/1-Referentenentwurf.pdf?__blob=publicationFile&v=2" class="text-blue-600 hover:underline" rel="noopener" target="_blank">BMF – Entwurf Einkommensteuerreformgesetz 2027 (Bearbeitungsstand 18.08.2026, Kabinett 02.09.2026)</a>. Entwürfe sind als solche gekennzeichnet und können sich im Gesetzgebungsverfahren noch ändern.</p>
+      </div>
+    </div>
 
     <div class="bg-white rounded-2xl shadow-lg p-6 my-6">
       <h2 class="text-xl font-bold text-gray-800 mb-4">Besoldungstabelle NRW – Landesbesoldungsordnung A (ab 01.02.2025)</h2>
