@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import Steuerreform2027Rechner from '../components/rechner/Steuerreform2027Rechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Steuerreform 2027 Rechner: Einkommensteuer 2026 vs. 2027 vergleichen";
+const description = "Steuerreform 2027 berechnen: Tarif 2027 und 2028 aus dem Regierungsentwurf (Grundfreibetrag 12.564 €, 45 % ab 250.000 €, neuer Spitzensatz 47 % ab 280.000 €, Kindergeld 267 €) gegen den Tarif 2026 – Ihre Ersparnis oder Mehrbelastung pro Jahr und Monat.";
+const keywords = "Steuerreform 2027, Steuerreform 2027 Rechner, Einkommensteuer 2027, Einkommensteuertarif 2027, Grundfreibetrag 2027, Steuer 2027 Änderungen, Einkommensteuerreformgesetz 2027, Spitzensteuersatz 47 Prozent, Reichensteuer 250000, Steuerentlastung 2027, was ändert sich 2027 Steuer";
+
+const faqs = [
+  {
+    frage: "Was ändert sich 2027 bei der Einkommensteuer?",
+    antwort: "Nach dem Regierungsentwurf des Einkommensteuerreformgesetzes 2027 (Kabinett 2. September 2026) steigt der Grundfreibetrag von 12.348 € auf 12.564 €, der Spitzensteuersatz von 42 % beginnt bei 70.601 € statt 69.879 €, der 45-%-Satz greift bereits ab 250.000 € (bisher 277.826 €) und neu gilt ein 47-%-Satz ab 280.000 € zu versteuerndem Einkommen. Dazu kommen Kindergeld 267 €, Kinderfreibetrag 10.056 € und Arbeitnehmer-Pauschbetrag 1.430 €. 2028 steigt der Grundfreibetrag auf 12.900 €."
+  },
+  {
+    frage: "Wie viel spare ich durch die Steuerreform 2027?",
+    antwort: "Bei mittleren Einkommen 40 bis 120 € im Jahr – der Effekt kommt fast nur aus dem höheren Grundfreibetrag und der leicht verschobenen Tarifzone. Beispiel: 45.000 € zu versteuerndes Einkommen zahlen 2026 rund 8.835 € Einkommensteuer, 2027 rund 8.777 € – 58 € weniger. Familien profitieren zusätzlich von 96 € mehr Kindergeld je Kind. Ab etwa 254.000 € (Einzelveranlagung) wird die Reform durch den vorgezogenen 45-%-Satz zur Mehrbelastung."
+  },
+  {
+    frage: "Ab welchem Einkommen zahlt man 2027 mehr Steuern?",
+    antwort: "Der 45-%-Satz beginnt lt. Entwurf bei 250.000 € statt 277.826 €, der neue 47-%-Satz bei 280.000 € (Splitting: 500.000 bzw. 560.000 €). Wer als Einzelperson mehr als rund 254.000 € zu versteuerndes Einkommen hat, zahlt 2027 mehr als 2026; bei 300.000 € sind es rund 1.200 € mehr (inkl. Soli), bei 500.000 € rund 5.400 €."
+  },
+  {
+    frage: "Ist die Steuerreform 2027 schon beschlossen?",
+    antwort: "Nein. Das Bundesfinanzministerium hat den Referentenentwurf am 18. August 2026 veröffentlicht, das Kabinett den Regierungsentwurf am 2. September 2026 beschlossen. Bundestag und Bundesrat müssen noch zustimmen; das Gesetz soll zum 1. Januar 2027 in Kraft treten. Der Grundfreibetrag kann nach dem 16. Existenzminimumbericht (Herbst 2026) noch angehoben werden."
+  },
+  {
+    frage: "Gilt der neue Tarif schon für die Lohnsteuer im Januar 2027?",
+    antwort: "Erst nach Verkündung und Einarbeitung in den Programmablaufplan 2027, den das BMF im November/Dezember 2026 veröffentlicht. Kommt das Gesetz später, wird der Lohnsteuerabzug rückwirkend korrigiert oder die Entlastung über die Steuererklärung 2027 nachgeholt."
+  },
+  {
+    frage: "Was passiert mit dem Solidaritätszuschlag 2027?",
+    antwort: "Der Entwurf ändert den Soli nicht: Freigrenze 20.350 € Einkommensteuer (Zusammenveranlagung 40.700 €), darüber Milderungszone mit 11,9 %, voller Satz 5,5 %. Durch die höhere Einkommensteuer ab 250.000 € steigt der Soli für Spitzenverdiener mit."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Steuerreform 2027 Rechner", url: "/steuerreform-2027-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-slate-200 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <h1 class="text-2xl font-bold">Steuerreform 2027 Rechner</h1>
+            <p class="text-slate-200 text-sm">Einkommensteuer 2026, 2027 und 2028 im Vergleich – nach dem Regierungsentwurf vom 2. September 2026</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <Steuerreform2027Rechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> 13. September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">§ 32a Abs. 1 EStG (Tarif 2026); Regierungsentwurf Einkommensteuerreformgesetz 2027, Art. 1 Nr. 4 und Art. 2 Nr. 2 (Tarife 2027/2028, § 32a EStG-E), § 66 EStG-E (Kindergeld); §§ 3, 4 SolZG.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Grund- und Splittingtarif, alle fünf Tarifzonen 2027 inkl. 47-%-Satz, Solidaritätszuschlag mit Freigrenze und Milderungszone, Kindergeld-Plus 2027/2028, Vergleichstabelle.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Arbeitnehmer-Pauschbetrag 1.430 €, Kinderfreibetrag/Günstigerprüfung, Handwerkerleistungen 15 %, Kirchensteuer, Progressionsvorbehalt, Sozialabgaben 2027, Änderungen im parlamentarischen Verfahren.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Steuerreform 2027: Wer wird entlastet, wer zahlt drauf?</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Das <strong>Einkommensteuerreformgesetz 2027</strong> ist das Steuerpaket der Bundesregierung für die zweite Hälfte der
+            Legislaturperiode. Der Entwurf verbindet Entlastungen für untere und mittlere Einkommen (höherer Grundfreibetrag, Kindergeld,
+            Arbeitnehmer-Pauschbetrag) mit einer Gegenfinanzierung bei hohen Einkommen: Der 45-%-Satz rückt von 277.826 € auf
+            <strong>250.000 €</strong> vor, und ab <strong>280.000 €</strong> gilt erstmals ein Satz von <strong>47 %</strong>. Der Rechner oben rechnet die
+            reine Tarifwirkung für Ihr zu versteuerndes Einkommen – mit Solidaritätszuschlag und dem Kindergeld-Plus.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Der Tarif 2027 im Wortlaut des Entwurfs (§ 32a Abs. 1 EStG-E)</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead><tr class="bg-gray-50"><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">zu versteuerndes Einkommen</th><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Tarif 2026</th><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Tarif 2027 (Entwurf)</th></tr></thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-1 px-3 border-b">Grundfreibetrag</td><td class="py-1 px-3 border-b">bis 12.348 €: 0</td><td class="py-1 px-3 border-b">bis 12.564 €: 0</td></tr>
+                <tr><td class="py-1 px-3 border-b">Zone 2 (14–24 %)</td><td class="py-1 px-3 border-b">bis 17.799 €: (914,51·y + 1.400)·y</td><td class="py-1 px-3 border-b">bis 17.799 €: (952,24·y + 1.400)·y</td></tr>
+                <tr><td class="py-1 px-3 border-b">Zone 3 (24–42 %)</td><td class="py-1 px-3 border-b">bis 69.878 €: (173,10·z + 2.397)·z + 1.034,87</td><td class="py-1 px-3 border-b">bis 70.600 €: (170,74·z + 2.397)·z + 993,86</td></tr>
+                <tr><td class="py-1 px-3 border-b">Zone 4 (42 %)</td><td class="py-1 px-3 border-b">bis 277.825 €: 0,42·x − 11.135,63</td><td class="py-1 px-3 border-b">bis 249.999 €: 0,42·x − 11.241,73</td></tr>
+                <tr><td class="py-1 px-3 border-b">Zone 5 (45 %)</td><td class="py-1 px-3 border-b">ab 277.826 €: 0,45·x − 19.470,38</td><td class="py-1 px-3 border-b">250.000–279.999 €: 0,45·x − 18.741,73</td></tr>
+                <tr><td class="py-1 px-3">Zone 6 (47 %)</td><td class="py-1 px-3">–</td><td class="py-1 px-3">ab 280.000 €: 0,47·x − 24.341,73</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500">y = Zehntausendstel des Einkommens über dem Grundfreibetrag, z = Zehntausendstel über 17.799 €, x = zu versteuerndes Einkommen. 2028: Grundfreibetrag 12.900 €, Zone 2 (1.017,55·y + 1.400)·y, Zone 3 + 930,08, Konstanten 11.305,52 / 18.805,52 / 24.405,52.</p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Beispiele</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>25.000 € (Einzel):</strong> 2026 rund 2.850 € Einkommensteuer, 2027 rund 2.808 € – <strong>42 € weniger</strong>.</li>
+            <li><strong>45.000 € (Einzel):</strong> 8.835 € → 8.777 €, <strong>58 € weniger</strong>; mit zwei Kindern kommen 192 € mehr Kindergeld hinzu.</li>
+            <li><strong>80.000 € (Einzel):</strong> 22.464 € → 22.358 €, <strong>106 € weniger</strong> (plus Soli-Effekt).</li>
+            <li><strong>300.000 € (Einzel):</strong> 2026 115.529 €, 2027 116.658 € – <strong>rund 1.130 € mehr</strong> (Soli obendrauf).</li>
+            <li><strong>120.000 € (Ehepaar, Splitting):</strong> 2026 28.466 €, 2027 28.300 € – <strong>166 € weniger</strong>.</li>
+          </ul>
+          <p>
+            Die Entlastung ist klein, weil die Tarifformeln 2027 nur die Verschiebung um den Grundfreibetrag abbilden; eine
+            weitergehende Abflachung des „Mittelstandsbauchs" enthält der Entwurf nicht. Mehr Netto bringen 2027 eher die Nebenmaßnahmen:
+            Arbeitnehmer-Pauschbetrag 1.430 € (+200 €), Kinderfreibetrag 10.056 €, höherer Grundlohn für steuerfreie Sonn- und
+            Feiertagszuschläge. Für Ihr konkretes Netto nutzen Sie den <a href="/brutto-netto-rechner">Brutto-Netto-Rechner</a>, für die
+            Jahressteuer den <a href="/einkommensteuer-rechner">Einkommensteuer-Rechner</a>; Familien vergleichen im
+            <a href="/kinderfreibetrag-rechner">Kinderfreibetrag-Rechner</a>, ob Kindergeld oder Freibetrag günstiger ist.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Zeitplan</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>18.08.2026: Referentenentwurf des BMF · 02.09.2026: Kabinettsbeschluss (Regierungsentwurf)</li>
+            <li>Herbst 2026: 1. Lesung Bundestag, Anhörung im Finanzausschuss, 16. Existenzminimumbericht (kann Grundfreibetrag anheben)</li>
+            <li>Nov./Dez. 2026: 2./3. Lesung, Bundesrat, Verkündung; BMF-Programmablaufplan 2027 für die Lohnsteuer</li>
+            <li>01.01.2027: Inkrafttreten; 01.01.2028: zweite Stufe (Grundfreibetrag 12.900 €, Kindergeld 272 €)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Bruttogehalt statt zu versteuerndes Einkommen</h3><p>Der Tarif greift auf das zu versteuernde Einkommen zu – nach Abzug von Werbungskosten, Vorsorgeaufwendungen und Sonderausgaben. Bei 60.000 € Brutto liegt es typischerweise bei 45.000–50.000 €.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Entlastung mit Nettoeffekt gleichgesetzt</h3><p>Der Rechner zeigt nur die Tarifwirkung. Ob 2027 tatsächlich mehr Netto bleibt, hängt auch von Beitragsbemessungsgrenzen, Zusatzbeitrag und Pflegebeitrag ab – die werden im Herbst 2026 festgelegt und können die Steuerersparnis aufzehren.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Splitting falsch angewandt</h3><p>Beim Ehegattensplitting wird das gemeinsame Einkommen halbiert, der Tarif angewandt und die Steuer verdoppelt. Die Reichensteuer-Grenzen gelten deshalb bei Ehepaaren erst ab 500.000 bzw. 560.000 €.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kapitalerträge eingerechnet</h3><p>Zinsen und Dividenden unterliegen der Abgeltungsteuer (25 %) und gehören nicht ins zu versteuernde Einkommen – es sei denn, die Günstigerprüfung greift.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="steuerreform-2027" slugs={['einkommensteuer', 'brutto-netto', 'kinderfreibetrag', 'lohnsteuer', 'soli']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Steuerreform 2027 Rechner", "description": description,
+    "url": "https://www.deutschland-rechner.de/steuerreform-2027-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

@@ -37,13 +37,13 @@ const NEIGUNG_FAKTOREN: Record<string, { name: string; faktor: number; grad: num
   '90': { name: 'Fassade (90°)', faktor: 0.70, grad: 90 },
 };
 
-// Einspeisevergütung ab Februar 2026 (nach EEG, halbjährliche Degression -1%) in ct/kWh
-// Quelle: Bundesnetzagentur, ADAC, photovoltaik.org
+// Einspeisevergütung für Inbetriebnahmen 01.08.2026–31.01.2027 (§ 49 EEG, halbjährliche Degression -1%) in ct/kWh
+// Quelle: Bundesnetzagentur – EEG-Fördersätze
 const EINSPEISEVERGUETUNG = {
-  bis10kWp: 7.78, // ct/kWh für Anlagen ≤10 kWp (Teileinspeisung) ab 01.02.2026
-  bis40kWp: 6.73, // ct/kWh für Anlagenteile >10 bis 40 kWp ab 01.02.2026
-  volleinspeisung10kWp: 12.35, // Volleinspeisung ≤10 kWp ab 01.02.2026
-  volleinspeisung40kWp: 10.36, // Volleinspeisung >10-40 kWp ab 01.02.2026
+  bis10kWp: 7.70, // ct/kWh für Anlagen ≤10 kWp (Teileinspeisung) ab 01.08.2026
+  bis40kWp: 6.66, // ct/kWh für Anlagenteile >10 bis 40 kWp ab 01.08.2026
+  volleinspeisung10kWp: 12.22, // Volleinspeisung ≤10 kWp ab 01.08.2026
+  volleinspeisung40kWp: 10.24, // Volleinspeisung >10-40 kWp ab 01.08.2026
 };
 
 // Durchschnittliche Systemkosten 2026

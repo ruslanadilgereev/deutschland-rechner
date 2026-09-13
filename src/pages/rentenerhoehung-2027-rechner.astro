@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import Rentenerhoehung2027Rechner from '../components/rechner/Rentenerhoehung2027Rechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Rentenerhöhung 2027 Rechner: +4,4 % ab 1. Juli 2027 (Prognose)";
+const description = "Rentenerhöhung 2027 berechnen: Prognose +4,4 % zum 1. Juli 2027 (Rentenversicherungsbericht 2025, Rentenwert ca. 44,32 €). Bruttorente eingeben, Erhöhung brutto und netto nach Kranken-/Pflegeversicherung sehen – mit Tabelle 800 bis 2.500 €.";
+const keywords = "Rentenerhöhung 2027, Rentenerhöhung 2027 Rechner, Rentenanpassung 2027, Rentenerhöhung 2027 Tabelle, Rente 2027 Erhöhung, Rentenwert 2027, wie hoch ist die Rentenerhöhung 2027, Rentenerhöhung Juli 2027, Rentenerhöhung 2027 berechnen, Rente 2027";
+
+const faqs = [
+  {
+    frage: "Wie hoch ist die Rentenerhöhung 2027?",
+    antwort: "Nach dem Rentenversicherungsbericht 2025 der Bundesregierung steigen die Renten zum 1. Juli 2027 voraussichtlich um rund 4,4 Prozent; der aktuelle Rentenwert würde damit von 42,52 € auf etwa 44,32 € steigen (DRV-Finanzschätzung: 44,39 €). Der endgültige Wert wird im Frühjahr 2027 auf Basis der Lohnentwicklung 2026 berechnet und per Rentenwertbestimmungsverordnung festgelegt."
+  },
+  {
+    frage: "Wann wird die Rentenerhöhung 2027 ausgezahlt?",
+    antwort: "Die Anpassung gilt ab 1. Juli 2027. Wer seine Rente am Monatsende erhält (Rentenbeginn ab April 2004), bekommt den höheren Betrag erstmals Ende Juli 2027; bei Zahlung im Voraus (ältere Renten) bereits Ende Juni 2027. Die Rentenanpassungsmitteilung der Deutschen Rentenversicherung kommt im Juni 2027."
+  },
+  {
+    frage: "Wie viel bleibt von der Rentenerhöhung netto übrig?",
+    antwort: "Bei Pflichtversicherten in der Krankenversicherung der Rentner gehen 7,3 % plus der halbe Zusatzbeitrag (2026 im Schnitt 1,45 %) für die Krankenversicherung und 3,6 % (Kinderlose 4,2 %) für die Pflegeversicherung ab – zusammen rund 12,35 %. Von 66 € brutto Erhöhung bleiben so etwa 58 €. Zusätzlich ist die Erhöhung zu 100 % steuerpflichtig, weil der Rentenfreibetrag in Euro festgeschrieben ist."
+  },
+  {
+    frage: "Gibt es 2027 eine Nullrunde oder Rentenkürzung?",
+    antwort: "Nein. Die Rentengarantie (§ 68a SGB VI) schließt eine Kürzung aus, und die Löhne sind 2026 deutlich gestiegen. Das Rentenniveau ist mit dem Rentenpaket 2025 bis 2031 gesetzlich bei 48 % gesichert; die Anpassung 2027 folgt der Lohnentwicklung."
+  },
+  {
+    frage: "Was ändert sich 2027 sonst bei der Rente?",
+    antwort: "Ab 1. Januar 2027 gilt die Mütterrente III: Für jedes vor 1992 geborene Kind gibt es 3,0 statt 2,5 Entgeltpunkte (rund 21 € mehr im Monat je Kind), ausgezahlt ab 2028 rückwirkend ab Januar 2027. Der Besteuerungsanteil für Neurentner 2027 beträgt 84,5 %, die Regelaltersgrenze für Jahrgang 1961 liegt bei 66 Jahren und 6 Monaten. Das Altersvorsorgedepot startet als neue geförderte Vorsorge."
+  },
+  {
+    frage: "Wie wurde die Rente in den Vorjahren erhöht?",
+    antwort: "2026: +4,24 % (Rentenwert 42,52 €), 2025: +3,74 % (40,79 €), 2024: +4,57 % (39,32 €), 2023: +4,39 % West / +5,86 % Ost (37,60 €, seitdem einheitlicher Rentenwert). Die Prognose 2027 von 4,4 % liegt damit im Bereich der letzten Jahre."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Rentenerhöhung 2027 Rechner", url: "/rentenerhoehung-2027-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">📈</span>
+          <div>
+            <h1 class="text-2xl font-bold">Rentenerhöhung 2027 Rechner</h1>
+            <p class="text-emerald-100 text-sm">Prognose +4,4 % zum 1. Juli 2027 – brutto, netto nach KV/PV und als Tabelle</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <Rentenerhoehung2027Rechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> 13. September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">Rentenversicherungsbericht 2025 (Bundesregierung, Prognose Rentenwert 1.7.2027: 44,32 €), DRV-Finanzschätzung Frühjahr 2026 (44,39 €), § 68 SGB VI (Anpassungsformel), § 249a SGB V und § 55 SGB XI (Beiträge der Rentner), § 22 EStG.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Frei wählbarer Anpassungssatz (Prognose 4,4 %, Szenarien 3,5–5 %), Kranken- und Pflegeversicherungsabzug mit Zusatzbeitrag und Kinderlosenzuschlag, optionaler Grenzsteuersatz, Entgeltpunkte, Plus für Juli–Dezember 2027.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Mütterrente III (ab 2027, Auszahlung 2028), Grundrentenzuschlag, Einkommensanrechnung bei Witwenrenten, Beitragsabschlag für Eltern mit Kindern unter 25, Zusatzbeitrag 2027 (Festsetzung Oktober 2026).</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Rentenerhöhung 2027: Was die Prognose bedeutet</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Zum <strong>1. Juli 2027</strong> steht die nächste Rentenanpassung an. Die Bundesregierung rechnet im
+            Rentenversicherungsbericht 2025 mit einem Plus von <strong>rund 4,4 Prozent</strong>; die Deutsche Rentenversicherung
+            kommt in ihrer Finanzschätzung vom Frühjahr 2026 auf einen ähnlichen Wert. Der aktuelle Rentenwert – der Betrag, den ein
+            Entgeltpunkt monatlich wert ist – stiege damit von heute 42,52 € auf etwa 44,32 €. Bei einer Rente von 1.500 € sind das
+            rund <strong>66 € brutto mehr im Monat</strong>, bei 2.000 € rund 88 €. Der Rechner oben zeigt Ihren persönlichen Betrag,
+            brutto und nach Abzug der Beiträge zur Kranken- und Pflegeversicherung.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Erhöhung brutto = Rente × Anpassungssatz</div>
+            <div>Neue Rente = Entgeltpunkte × neuer Rentenwert (42,52 € × 1,044 ≈ 44,39 €)</div>
+            <div>Netto = Erhöhung × (1 − 7,3 % − ½ Zusatzbeitrag − 3,6 % PV [− 0,6 % kinderlos])</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Eine Rentnerin erhält 1.500 € brutto, ist in der Krankenversicherung der Rentner mit
+            2,9 % Zusatzbeitrag und hat Kinder. Bei 4,4 % Anpassung steigt ihre Rente um 66,00 € auf 1.566,00 €. Abzüge: 7,3 % + 1,45 %
+            Krankenversicherung und 3,6 % Pflegeversicherung = 12,35 %, also 8,15 €. <strong>Netto bleiben 57,85 € mehr im Monat</strong>,
+            im zweiten Halbjahr 2027 zusammen 396 € brutto. Ihre Rente liegt unter dem Grundfreibetrag – Steuern fallen nicht an.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Warum die Zahl noch nicht feststeht</h3>
+          <p>
+            Die Rentenanpassung folgt nach § 68 SGB VI der Entwicklung der Bruttolöhne des Vorjahres, korrigiert um den
+            Nachhaltigkeitsfaktor und den Beitragssatzfaktor. Erst wenn das Statistische Bundesamt im März 2027 die Lohndaten 2026
+            vorlegt, berechnet die Rentenversicherung den exakten Wert; die Bundesregierung beschließt die
+            Rentenwertbestimmungsverordnung im April/Mai, der Bundesrat stimmt im Juni zu. Die 4,4 % sind eine Modellrechnung mit
+            Annahmen zur Lohnentwicklung – 2026 lag die tatsächliche Anpassung (4,24 %) leicht über der Prognose des Vorjahres.
+            Mit dem Rentenpaket 2025 ist außerdem das Rentenniveau bis 2031 bei 48 % gesetzlich gesichert; das erhöht die
+            Anpassungen gegenüber der reinen Formel leicht.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Anpassungen der letzten Jahre</h3>
+          <div class="overflow-x-auto not-prose">
+            <table class="w-full text-sm border-collapse">
+              <thead><tr class="bg-gray-50"><th class="text-left py-2 px-3 font-semibold text-gray-700 border-b">Zum 1. Juli</th><th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Anpassung</th><th class="text-right py-2 px-3 font-semibold text-gray-700 border-b">Rentenwert</th></tr></thead>
+              <tbody class="text-gray-700">
+                <tr><td class="py-1 px-3 border-b">2023</td><td class="py-1 px-3 border-b text-right">+4,39 % West / +5,86 % Ost</td><td class="py-1 px-3 border-b text-right">37,60 €</td></tr>
+                <tr><td class="py-1 px-3 border-b">2024</td><td class="py-1 px-3 border-b text-right">+4,57 %</td><td class="py-1 px-3 border-b text-right">39,32 €</td></tr>
+                <tr><td class="py-1 px-3 border-b">2025</td><td class="py-1 px-3 border-b text-right">+3,74 %</td><td class="py-1 px-3 border-b text-right">40,79 €</td></tr>
+                <tr><td class="py-1 px-3 border-b">2026</td><td class="py-1 px-3 border-b text-right">+4,24 %</td><td class="py-1 px-3 border-b text-right">42,52 €</td></tr>
+                <tr class="font-semibold"><td class="py-1 px-3">2027 (Prognose)</td><td class="py-1 px-3 text-right">+4,4 %</td><td class="py-1 px-3 text-right">ca. 44,32 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Steuer auf die Erhöhung</h3>
+          <p>
+            Der steuerfreie Teil der Rente wird beim Rentenbeginn einmalig in Euro festgesetzt (§ 22 EStG). Jede spätere Erhöhung ist
+            deshalb <strong>voll steuerpflichtig</strong>. Wer mit seiner Rente knapp unter dem Grundfreibetrag liegt (2026: 12.348 €,
+            2027 lt. Regierungsentwurf 12.564 €), kann durch die Anpassung erstmals steuerpflichtig werden. Ob das bei Ihnen der Fall ist,
+            zeigt der <a href="/rentensteuer-rechner">Rentensteuer-Rechner</a>; die Anzahl Ihrer Entgeltpunkte liefert der
+            <a href="/rentenpunkte-rechner">Rentenpunkte-Rechner</a>, die Mütterrente III der <a href="/muetterrente-rechner">Mütterrente-Rechner</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Nettorente eingegeben</h3><p>Die Anpassung wirkt auf die Bruttorente (Zahlbetrag vor Kranken- und Pflegeversicherung). Der Betrag steht in der letzten Rentenanpassungsmitteilung als „monatliche Rente".</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Prognose als Zusage verstanden</h3><p>4,4 % ist der Wert aus der Modellrechnung des Rentenversicherungsberichts. Fällt die Lohnentwicklung 2026 schwächer aus, sinkt die Anpassung – 2025 lag sie mit 3,74 % unter der Vorjahresprognose.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Witwenrente</h3><p>Hinterbliebenenrenten steigen ebenfalls um den Anpassungssatz, gleichzeitig steigt aber der Freibetrag der Einkommensanrechnung (26,4 Rentenwerte). Eigene Einkünfte werden neu angerechnet – Details im <a href="/witwenrente-rechner" class="text-blue-600 hover:underline">Witwenrente-Rechner</a>.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Privat Krankenversicherte</h3><p>Wer nicht in der KVdR ist, zahlt keine Beiträge von der Rente ab, erhält aber einen Zuschuss zur privaten Krankenversicherung (§ 106 SGB VI), der mit der Rente steigt. Wählen Sie „privat / keine Abzüge".</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Grundsicherung im Alter</h3><p>Wer ergänzend Grundsicherung bezieht, hat von der Erhöhung meist nichts – sie wird als Einkommen angerechnet, sofern kein Freibetrag (z. B. für Grundrentenzeiten) greift.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="rentenerhoehung-2027" slugs={['renten', 'rentensteuer', 'rentenpunkte', 'muetterrente', 'witwenrente']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Rentenerhöhung 2027 Rechner", "description": description,
+    "url": "https://www.deutschland-rechner.de/rentenerhoehung-2027-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>

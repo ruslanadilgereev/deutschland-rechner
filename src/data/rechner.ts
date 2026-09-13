@@ -4483,6 +4483,36 @@ export const rechnerListe: Rechner[] = [
     seoKeywords: 'lohnt sich mehr arbeiten Rechner, Teilzeit Vollzeit Rechner Familie, Transferentzugsrate, Wohngeld Kinderzuschlag Rechner, mehr arbeiten weniger Geld, Grenzbelastung Familie',
     quellen: ['https://www.gesetze-im-internet.de/bkgg_1996/__6a.html', 'https://www.arbeitsagentur.de/datei/kiz2-merkblattkinderzuschlag_ba034485.pdf', 'https://www.gesetze-im-internet.de/sgb_2/__11b.html', 'https://www.gesetze-im-internet.de/sgb_2/__21.html', 'https://www.gesetze-im-internet.de/wogg/__19.html', 'https://www.gesetze-im-internet.de/wogg/__16.html', 'https://www.bmf-steuerrechner.de/'],
   },
+  {
+    id: 'rentenerhoehung-2027',
+    name: 'Rentenerhöhung 2027 Rechner',
+    beschreibung: 'Prognose +4,4 % zum 1. Juli 2027: Erhöhung brutto und netto nach Kranken- und Pflegeversicherung',
+    icon: '📈',
+    kategorie: 'soziales',
+    fertig: true,
+    seoKeywords: 'Rentenerhöhung 2027, Rentenerhöhung 2027 Rechner, Rentenanpassung 2027, Rentenerhöhung 2027 Tabelle, Rentenwert 2027, Rente 2027, Rentenerhöhung Juli 2027',
+    quellen: ['https://www.bmas.de/DE/Soziales/Rente-und-Altersvorsorge/rentenversicherungsbericht.html', 'https://www.gesetze-im-internet.de/sgb_6/__68.html', 'https://www.gesetze-im-internet.de/sgb_5/__249a.html', 'https://www.gesetze-im-internet.de/sgb_11/__55.html', 'https://www.gesetze-im-internet.de/estg/__22.html'],
+  },
+  {
+    id: 'fruehstart-rente',
+    name: 'Frühstart-Rente Rechner',
+    beschreibung: '10 € vom Staat für jedes Kind von 6 bis 18: Kapital mit 18 und 65, mit und ohne Zuzahlung',
+    icon: '🌱',
+    kategorie: 'familie',
+    fertig: true,
+    seoKeywords: 'Frühstart-Rente, Frühstartrente, Frühstart Rente Rechner, Frühstart-Rente 2027, Kinderdepot Staat 10 Euro, Altersvorsorge Kinder 2027, Frühstartrente Jahrgang 2020',
+    quellen: ['https://www.bundesfinanzministerium.de/Content/DE/Pressemitteilungen/Finanzpolitik/2026/08/2026-08-12-regierungsentwurf-fruehstartrente.html', 'https://www.bundesregierung.de/breg-de/aktuelles/reform-private-altersvorsorge-2400072', 'https://www.bundestag.de/dokumente/textarchiv/2026/kw13-de-altersvorsorge-1156798'],
+  },
+  {
+    id: 'steuerreform-2027',
+    name: 'Steuerreform 2027 Rechner',
+    beschreibung: 'Einkommensteuer 2026 vs. 2027/2028 nach dem Regierungsentwurf: Ersparnis oder Mehrbelastung',
+    icon: '🏛️',
+    kategorie: 'steuern',
+    fertig: true,
+    seoKeywords: 'Steuerreform 2027, Steuerreform 2027 Rechner, Einkommensteuer 2027, Einkommensteuertarif 2027, Grundfreibetrag 2027, Spitzensteuersatz 47 Prozent, Einkommensteuerreformgesetz 2027, Steuer 2027 Änderungen',
+    quellen: ['https://www.bundesfinanzministerium.de/Content/DE/Gesetzestexte/Gesetze_Gesetzesvorhaben/Abteilungen/Abteilung_IV/21_Legislaturperiode/2026-08-18-EStReformG-2027/1-Referentenentwurf.pdf?__blob=publicationFile&v=2', 'https://www.gesetze-im-internet.de/estg/__32a.html', 'https://www.gesetze-im-internet.de/solzg_1995/__4.html'],
+  },
 ];
 
 export const getRechnerByKategorie = (kategorie: string) => 

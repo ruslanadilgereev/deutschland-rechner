@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VerwandteRechner from '../components/VerwandteRechner.astro';
+import FruehstartRenteRechner from '../components/rechner/FruehstartRenteRechner';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const title = "Frühstart-Rente Rechner 2027: 10 € vom Staat – Kapital mit 18 & 65";
+const description = "Frühstart-Rente berechnen: Der Staat zahlt ab 2027 für jedes Kind vom 6. bis 18. Geburtstag 10 € im Monat in ein Altersvorsorgedepot (Regierungsentwurf 12.08.2026). Rechner zeigt Kapital mit 18 und 65 – mit und ohne eigene Zuzahlung, Jahrgänge ab 2020.";
+const keywords = "Frühstart-Rente, Frühstartrente, Frühstart Rente Rechner, Frühstart-Rente 2027, Frühstartrente Kinder 10 Euro, Kinderdepot Staat, Frühstart Rente Jahrgang 2020, Altersvorsorge Kinder 2027, Frühstartrente Gesetz, Frühstartrente Auszahlung";
+
+const faqs = [
+  {
+    frage: "Was ist die Frühstart-Rente?",
+    antwort: "Ein vom Bund finanziertes Altersvorsorgedepot für Kinder: Für jedes Kind, das sechs Jahre alt wird, zahlt der Staat bis zum 18. Geburtstag 10 € pro Monat in ein zertifiziertes Altersvorsorgedepot – insgesamt 1.440 €. Das Geld wird am Kapitalmarkt angelegt, Erträge bleiben bis zur Auszahlung steuerfrei, ausgezahlt wird grundsätzlich erst ab dem 65. Lebensjahr. Grundlage ist der Regierungsentwurf vom 12. August 2026 (Gesetz zur Einführung einer Frühstartrente)."
+  },
+  {
+    frage: "Welche Kinder bekommen die Frühstart-Rente?",
+    antwort: "Lt. Regierungsentwurf startet die Förderung rückwirkend zum 1. Januar 2026 mit dem Geburtsjahrgang 2020 – also mit den Kindern, die 2026 sechs Jahre alt werden. Jedes Jahr kommt der nächste Jahrgang hinzu. Kinder, die vor 2020 geboren sind, gehen nach dem Entwurf leer aus; die ersten Depots können ab 1. Januar 2027 eröffnet werden, die Beiträge für 2026 werden nachgezahlt."
+  },
+  {
+    frage: "Wie viel wird aus 10 € im Monat bis zur Rente?",
+    antwort: "Der Staat zahlt 144 Monate lang 10 €, also 1.440 €. Bei 6 % Rendite sind das mit 18 rund 2.100 €; wächst das Depot danach mit 5 % pro Jahr weiter, stehen mit 65 etwa 21.000 € bereit. Mit 7 % über die gesamte Laufzeit nennt das Bundesfinanzministerium rund 53.000 €. Die Rendite ist eine Annahme – Depots ohne Garantie können auch an Wert verlieren."
+  },
+  {
+    frage: "Können Eltern zusätzlich einzahlen?",
+    antwort: "Ja. Eigene Zuzahlungen sind lt. Entwurf bis zu 6.840 € pro Jahr möglich (570 € im Monat). Schon 25 € monatlich zusätzlich verdreieinhalbfachen das Kapital: Statt 2.100 € stehen mit 18 dann rund 7.300 € im Depot, mit 65 bei 5 % Rendite über 70.000 €."
+  },
+  {
+    frage: "Muss ich die Frühstart-Rente beantragen?",
+    antwort: "Eltern können für ihr Kind ein zertifiziertes Altersvorsorgedepot bei einer Bank, Fondsgesellschaft oder einem Versicherer eröffnen und den staatlichen Beitrag dorthin lenken. Wer nichts unternimmt, dessen Kind wird lt. Entwurf über eine kollektive Anlage bei der Deutschen Bundesbank berücksichtigt – die Ansprüche gehen also nicht verloren. Details zum Verfahren legt das Gesetz nach dem Bundestagsbeschluss fest."
+  },
+  {
+    frage: "Was passiert mit dem Geld nach dem 18. Geburtstag?",
+    antwort: "Die staatlichen Zahlungen enden, das Depot bleibt bestehen und wächst weiter. Ab 18 kann das Kind selbst in das Altersvorsorgedepot einzahlen und die reguläre Förderung nutzen: Grundzulage bis 540 € im Jahr, Berufseinsteigerbonus 200 € bei Abschluss vor 25, Sonderausgabenabzug bis 6.840 €. Eine Auszahlung vor 65 ist grundsätzlich nicht vorgesehen."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords}>
+  <BreadcrumbSchema items={[{ name: "Frühstart-Rente Rechner", url: "/fruehstart-rente-rechner" }]} />
+  <main class="min-h-screen pb-8">
+    <header class="bg-gradient-to-r from-violet-600 to-indigo-700 text-white py-6 px-4">
+      <div class="max-w-2xl mx-auto">
+        <a href="/" class="inline-flex items-center gap-2 text-violet-100 hover:text-white mb-4 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          Alle Rechner
+        </a>
+        <div class="flex items-center gap-3">
+          <span class="text-4xl">🌱</span>
+          <div>
+            <h1 class="text-2xl font-bold">Frühstart-Rente Rechner</h1>
+            <p class="text-violet-100 text-sm">10 € im Monat vom Staat für jedes Kind von 6 bis 18 – was daraus bis 65 wird</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-2xl mx-auto px-4 py-6">
+      <FruehstartRenteRechner client:load />
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <p class="text-sm text-gray-500 mb-4"><strong>Zuletzt aktualisiert:</strong> 13. September 2026</p>
+        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+          <div><h2 class="font-bold text-gray-800 mb-1">Grundlage</h2><p class="text-gray-600">Regierungsentwurf „Gesetz zur Einführung einer Frühstartrente" (Kabinett 12.08.2026): 10 €/Monat vom 6. bis 18. Lebensjahr, Start 01.01.2026 mit Jahrgang 2020, Zuzahlungen bis 6.840 €/Jahr, steuerfreie Ansparphase, Auszahlung ab 65; Altersvorsorgereformgesetz (Depots ab 01.01.2027).</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Berücksichtigt</h2><p class="text-gray-600">Jahrgänge 2020–2027, 144 Monatsraten des Staates, eigene Zuzahlung bis zur Höchstgrenze, getrennte Renditeannahmen bis 18 und bis 65, Kapital mit 18/30/50/65.</p></div>
+          <div><h2 class="font-bold text-gray-800 mb-1">Nicht berücksichtigt</h2><p class="text-gray-600">Depot- und Fondskosten, Inflation, Besteuerung der Auszahlung, Zulagen und Eigenbeiträge nach dem 18. Geburtstag, mögliche Änderungen im Gesetzgebungsverfahren.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-8">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Frühstart-Rente: So funktioniert das Kinderdepot vom Staat</h2>
+        <div class="prose prose-sm text-gray-600 space-y-4">
+          <p>
+            Die Frühstart-Rente ist der zweite Baustein der Altersvorsorgereform: Während das <a href="/altersvorsorgedepot-rechner">Altersvorsorgedepot</a>
+            ab 2027 die Riester-Rente für Erwachsene ablöst, soll die Frühstart-Rente Kinder schon in der Grundschule ans
+            Kapitalmarkt-Sparen heranführen. Der Bund überweist <strong>10 € pro Monat</strong> für jedes Kind zwischen dem 6. und 18. Geburtstag
+            in ein zertifiziertes Depot – ohne Antrag, ohne Eigenbeitrag, unabhängig vom Einkommen der Eltern. Über zwölf Jahre sind das
+            <strong>1.440 €</strong>. Weil das Geld bis zur Rente angelegt bleibt, zählt vor allem die Zeit: Aus 1.440 € werden bei 5–7 % Rendite bis
+            zum 65. Geburtstag zwischen 20.000 und 53.000 €.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Die Formel</h3>
+          <div class="bg-gray-100 p-4 rounded-lg my-4 not-prose font-mono text-sm space-y-1">
+            <div>Kapital mit 18 = Rate × ((1 + i)^144 − 1) ÷ i &nbsp; (i = Jahresrendite ÷ 12)</div>
+            <div>Kapital mit 65 = Kapital mit 18 × (1 + Rendite)^47</div>
+          </div>
+          <p>
+            <strong>Beispiel:</strong> Ein Kind, geboren 2021, wird 2027 sechs. Von 2027 bis 2039 zahlt der Staat 144 × 10 €. Bei 6 % Rendite
+            stehen zum 18. Geburtstag rund <strong>2.100 €</strong> im Depot. Ohne weitere Einzahlung und mit 5 % Rendite wächst der Betrag bis
+            2086 (65. Geburtstag) auf etwa <strong>21.000 €</strong>. Legen die Eltern 25 € im Monat dazu, sind es mit 18 rund 7.300 € und mit 65
+            über 70.000 € – die eigene Zuzahlung wird durch dieselbe steuerfreie Ansparphase begünstigt.
+          </p>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Wer bekommt sie – und ab wann?</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Jahrgang 2020</strong> startet rückwirkend zum 1. Januar 2026, die Beiträge werden nach Depoteröffnung 2027 nachgezahlt.</li>
+            <li><strong>Jahrgänge ab 2021</strong> kommen jeweils mit dem 6. Geburtstag hinzu; Jahrgang 2021 also ab 2027, Jahrgang 2027 ab 2033.</li>
+            <li><strong>Vor 2020 geborene Kinder</strong> sind nach dem Entwurf nicht förderberechtigt – auch nicht anteilig für die verbleibenden Jahre bis 18.</li>
+            <li>Eltern können ein Depot bei einem zertifizierten Anbieter wählen; sonst verwaltet die Deutsche Bundesbank die Beiträge kollektiv.</li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-gray-800 mt-6">Zuzahlen oder nicht?</h3>
+          <p>
+            Bis 6.840 € im Jahr dürfen Eltern, Großeltern oder das Kind selbst zuzahlen. Der Vorteil gegenüber einem normalen
+            Kinder-Depot ist die steuerfreie Ansparphase (keine Vorabpauschale, keine Abgeltungsteuer auf Umschichtungen); der Nachteil
+            ist die Bindung bis 65 – für Führerschein, Ausbildung oder die erste Wohnung ist das Geld nicht verfügbar. Sinnvoll ist deshalb
+            eine Aufteilung: kleiner Betrag in die Frühstart-Rente, der Rest in ein frei verfügbares Depot (siehe
+            <a href="/etf-sparplan-rechner">ETF-Sparplan-Rechner</a>, <a href="/zinseszins-rechner">Zinseszins-Rechner</a>). Das Kindergeld
+            steigt 2027 lt. Regierungsentwurf auf 267 € – der <a href="/kindergeld-rechner">Kindergeld-Rechner</a> zeigt die Auszahlung.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">⚠️ Typische Fehler & Sonderfälle</h2>
+        <div class="space-y-4 text-sm text-gray-600">
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Rendite als Garantie gelesen</h3><p>Das Altersvorsorgedepot hat bewusst keine Beitragsgarantie. 6 % sind der langfristige Durchschnitt breit gestreuter Aktien-ETFs vor Kosten; einzelne Jahrzehnte lagen darunter. Rechnen Sie zur Sicherheit auch mit 4 %.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Kosten vergessen</h3><p>Depotgebühren und Fondskosten von 0,3–1 % pro Jahr mindern die Rendite spürbar – über 59 Jahre macht ein Prozentpunkt beim Endkapital mit 65 rund 40 % aus. Tragen Sie die Netto-Rendite ein.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Inflation ausgeblendet</h3><p>21.000 € im Jahr 2086 sind bei 2 % Inflation nur rund 6.500 € heutiger Kaufkraft. Die Frühstart-Rente ist ein Baustein, kein Ersatz für eigene Vorsorge.</p></div>
+          <div class="border-l-4 border-red-400 pl-4"><h3 class="font-semibold text-gray-800">Entwurf ist nicht Gesetz</h3><p>Bundestag und Bundesrat können Altersgrenzen, Beträge und den Startjahrgang noch ändern. Verbindlich sind erst die im Bundesgesetzblatt verkündeten Regeln.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 mt-6">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">&#10067; Häufig gestellte Fragen</h2>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="border border-gray-200 rounded-lg">
+              <summary class="p-4 cursor-pointer font-medium text-gray-800 hover:bg-gray-50">{faq.frage}</summary>
+              <div class="px-4 pb-4 text-sm text-gray-600"><p>{faq.antwort}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <VerwandteRechner aktuellerSlug="fruehstart-rente" slugs={['altersvorsorgedepot', 'kindergeld', 'etf-sparplan', 'zinseszins']} />
+  </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "WebApplication", "name": "Frühstart-Rente Rechner", "description": description,
+    "url": "https://www.deutschland-rechner.de/fruehstart-rente-rechner", "applicationCategory": "FinanceApplication", "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }, "author": { "@type": "Organization", "name": "Deutschland-Rechner" }
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({ "@type": "Question", "name": faq.frage, "acceptedAnswer": { "@type": "Answer", "text": faq.antwort } }))
+  })} />
+</Layout>
